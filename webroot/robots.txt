@@ -1,0 +1,7 @@
+User-agent: *	# applies to all robots
+Disallow: /admin/
+Disallow: /cache/
+Disallow: /images/
+Disallow: /media/
+Disallow: /tmp/
+Disallow: /*/delete/

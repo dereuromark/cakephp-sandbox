@@ -1,0 +1,59 @@
+/* als JAVASCRIPT highlighten zum Editieren! */
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP 1.2.x.x\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2006-12-23 16:42+0100\n"
+"Last-Translator: Daniel Hofstetter <daniel-hofstetter@gmx.ch>\n"
+"Language-Team: CakePHP I18N & I10N Team <i10n.cakephp@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: English\n"
+
+# Contact
+
+msgid "contactChoseSubject"
+msgstr "Please chose a subject or define one yourself"
+
+msgid "contactHeader"
+msgstr "Contact me"
+
+msgid "contactLegend"
+msgstr "The fastest way to contact me"
+
+msgid "contactOwnSubject"
+msgstr "Own subject"
+
+msgid "contactMessage"
+msgstr "Your message"
+
+msgid "valErrMandatoryField"
+msgstr "Mandatory field"
+
+msgid "valErrInvalidEmail"
+msgstr "Invalid eMail"
+
+
+# Eigene neue:
+
+msgid "language_help"
+msgstr "<h3>Help</h3>sf<br>Thx, Mark"
+
+
+msgid "Blogä@$€ posts"
+msgstr ""
+
+msgid "lipsum"
+msgstr ""
+
+
+msgid "Vielen Dank"
+msgstr "Vielen Äther"
+
+
+msgid "Zuruck"
+msgstr "Zurück!"

@@ -1,0 +1,15 @@
+{
+    "name": "dereuromark/sandbox",
+    "description": "A CakePHP Sandbox App",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mark Scherer",
+            "email": "euromark@web.de"
+        }
+    ],
+    "require": {
+        "dereuromark/cakephp-sandbox": "master",
+        "FriendsOfCake/Authenticate": "master"
+    }
+}

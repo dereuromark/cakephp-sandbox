@@ -1,0 +1,6 @@
+[submodule "Plugin/Tools"]
+	path = Plugin/Tools
+	url = https://github.com/dereuromark/tools/
+[submodule "Plugin/Authenticate"]
+	path = Plugin/Authenticate
+	url = https://github.com/ceeram/Authenticate/

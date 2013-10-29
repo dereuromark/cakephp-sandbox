@@ -1,0 +1,33 @@
+/*
+ * COMMON CSS STYLING
+ */
+
+
+ /** diff **/
+
+div.diff {
+
+}
+
+div.diff del {
+	color: red;
+}
+div.diff ins {
+	color: green;
+}
+
+table.diff {
+
+}
+table.diff tr td {
+	padding: 2px;
+}
+
+table.diff td.diffdeleted {
+	color: red;
+}
+
+table.diff td.diffadded {
+	color: green;
+}
+
