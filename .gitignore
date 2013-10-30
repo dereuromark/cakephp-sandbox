@@ -1,5 +1,6 @@
-Config/database.php
-tmp
-Plugin/DebugKit
+/tmp
+/Plugin/DebugKit
+/Config/database.php
 /Config/configs_private.php
+/Config/email.php
 _*

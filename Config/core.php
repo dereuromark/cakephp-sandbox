@@ -348,6 +348,9 @@ if (Configure::read('debug') > 0) {
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
 $prefix = 'site_';
 
+App::uses('CakeLog', 'Log');
+CakeLog::config('default', array('engine' => 'FileLog'));
+
 /**
  * Configure the cache used for general framework caching. Path information,
  * object listings, and translation cache files are stored with this configuration.
