@@ -23,7 +23,7 @@ class ContactController extends AppController {
 			$subject = $this->request->data['ContactForm']['subject'];
 
 			if (!Auth::id()) {
-				$this->ContactForm->Behaviors->attach('Tools.Captcha');
+				$this->ContactForm->Behaviors->attach('Tools.Captcha', array('type' => 'passive'));
 			}
 			$this->ContactForm->set($this->request->data);
 			if ($this->ContactForm->validates()) {

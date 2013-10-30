@@ -7,3 +7,8 @@
 	padding-right: 10px;
 	padding-bottom: 10px;
 }
+
+div.error-message {
+	color: red;
+	padding-bottom: 10px;
+}
