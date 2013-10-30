@@ -34,7 +34,7 @@ $var9=\'string\';
 $var10=\'123string\';	// integer with string
 $var11=1.21;
 $var12=\'1.21\';';
-echo $this->Geshi->highlight($data_print,'php')
+echo $this->Geshi->highlightText($data_print,'php')
 ?>
 Lets test them...
 <br />
@@ -96,7 +96,7 @@ if ($id>0) {
 } else {
 	...
 }';
-echo $this->Geshi->highlight($data_print,'php');?>
+echo $this->Geshi->highlightText($data_print,'php');?>
 As you would see in the "<?php echo $this->Html->link('basicfunctions example', array('action'=>'php_basicfunctions'))?>" the usual way queries even if $id contains bad content. Why should we query the database about '123string' or ' ' if it would result in 0 rows anyway? Going my way we only use real integers - what the primary fields usually are.
 
 <br />

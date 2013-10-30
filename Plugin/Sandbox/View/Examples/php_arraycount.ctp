@@ -36,7 +36,7 @@ Our test array is the following:
 <?php
 
 $data_print='$array(\'12121\', ..., \'23232\'); // gets filled according to the loops';
-echo $this->Geshi->highlight($data_print,'php')
+echo $this->Geshi->highlightText($data_print,'php')
 ?>
 
 With for ($i=0;$i&lt;$int;$i++) we fill it with random numbers.<br />

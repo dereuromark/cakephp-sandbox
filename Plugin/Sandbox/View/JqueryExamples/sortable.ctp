@@ -92,7 +92,7 @@ $data_print='$(document).ready(function() {
 	// Initialise the table
 	$("#table-1").tableDnD();
 });';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 The ID of the table is about everything it is needed. Although there are optional parameters that can be assigned.
 <table id="table-1" class="list">
@@ -124,7 +124,7 @@ $data_print='$("#table-2").tableDnD({
 			$("#debugArea").html("Started dragging row "+row.id);
 		}
 	});';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 The debug-content could be saved into a hidden field - to be submitted when finished sorting.
 <div id="debugArea" style="float: right; width: 250px; border: 1px solid silver; padding: 4px;">&nbsp;</div>
@@ -149,7 +149,7 @@ $data_print='$(\'#table-3\').tableDnD({
 			$(\'#AjaxResult\').load("/jquery_examples/sortable_ajax/"+$.tableDnD.serialize());
 		}
 	});';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 <div id="AjaxResult" style="float: right; width: 250px; border: 1px solid silver; padding: 4px;"></div>
 
@@ -214,7 +214,7 @@ $data_print='$(\'#table-5\').tableDnD({
 	}, function() {
 		 $(this.cells[0]).removeClass(\'showDragHandle\');
 	});';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 <table id="table-5" class="list">

@@ -3,7 +3,7 @@ App::uses('SandboxAppController', 'Sandbox.Controller');
 
 class ExamplesController extends SandboxAppController {
 
-	public $helpers = array('Tools.Geshi', 'Tools.Piechart', 'Tools.Highslide');
+	public $helpers = array('Geshi.Geshi', 'Tools.Piechart', 'Tools.Highslide');
 
 	public function beforeFilter() {
 		parent::beforeFilter();

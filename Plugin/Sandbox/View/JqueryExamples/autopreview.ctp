@@ -43,14 +43,14 @@ $data_print='$(document).ready(function() {
 	}).keyup();
 
 });';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 Notice: Due to security issues i did not allow html content. that would be so if you change the following line:
 <?php
 $data_print='		$("p").text(value);
 	/* into */
 		$("p").html(value);';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 <br />

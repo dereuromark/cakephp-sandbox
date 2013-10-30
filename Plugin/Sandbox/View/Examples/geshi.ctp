@@ -2,8 +2,8 @@
 To begin with, the lines you need to display code:
 <?php
 $data_print='$var=\'Some <b>Text</b> for Geshi\';
-$this->Geshi->highlight($var,\'php\',\'none\');';
-echo $this->Geshi->highlight($data_print,'php');
+$this->Geshi->highlightText($var,\'php\',\'none\');';
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 1. parameter: String to Print<br>
 2. parameter: What kind of Code (PHP, SQL, CSS, JS etc)<br />
@@ -23,7 +23,7 @@ div.paging div.disabled {
 }
 div.paging span {
 }';
-echo $this->Geshi->highlight($data_print,'css');
+echo $this->Geshi->highlightText($data_print,'css');
 
 $data_print='function toggleMe(id) {
  var e=document.getElementById(id);
@@ -35,18 +35,18 @@ $data_print='function toggleMe(id) {
  }
  return true;
 }';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 
 $data_print='<b>Wow</b>
 <u> Underline text</u>
 <input type="text"/>';
-echo $this->Geshi->highlight($data_print,'html4strict');
+echo $this->Geshi->highlightText($data_print,'html4strict');
 
 
 $data_print='SELECT * FROM `telbuch_types`
 WHERE `user_name` = \'testmensch\'
 ORDER BY userid ASC LIMIT 0 , 30 ';
-echo $this->Geshi->highlight($data_print,'mysql');
+echo $this->Geshi->highlightText($data_print,'mysql');
 
 $data_print='<addresses>
  <person>
@@ -66,14 +66,14 @@ $data_print='<addresses>
 	 <country>Germany</country>
  </person>
 </addresses>';
-echo $this->Geshi->highlight($data_print,'xml');
+echo $this->Geshi->highlightText($data_print,'xml');
 
 $data_print='User-agent: EmailCollector
 Disallow: /
 
 User-Agent: *
 Disallow: /verzeichnis3/';
-echo $this->Geshi->highlight($data_print,'robots');
+echo $this->Geshi->highlightText($data_print,'robots');
 
 
 ?>

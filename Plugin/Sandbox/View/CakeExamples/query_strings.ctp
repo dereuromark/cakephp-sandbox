@@ -12,7 +12,7 @@ So not checking on the type and blindly using it in stringish operations can cur
 $data= <<<'TEXT'
 $result = 'string' . $this->request->query('key'); // Dangerous without checking if set and a string
 TEXT;
-echo $this->Geshi->parse($data, 'php');
+echo $this->Geshi->highlightText($data, 'php');
 ?>
 
 So with the current implementation of how query strings (and named params) work, one should always assert the correct type first:
@@ -24,7 +24,7 @@ if (is_array($key)) { // Or: if (!is_scalar($key))
 }
 $result = 'string' . $this->request->query('key'); // Dangerous without checking if a stringish (=scalar) value
 TEXT;
-echo $this->Geshi->parse($data, 'php');
+echo $this->Geshi->highlightText($data, 'php');
 ?>
 Annoying - I know. That's why I opened a <a href="">ticket regarding this issue</a>.
 

@@ -63,7 +63,7 @@ $data_print='$(document).ready(function() {
 		alert(file);
 	});
 });';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 

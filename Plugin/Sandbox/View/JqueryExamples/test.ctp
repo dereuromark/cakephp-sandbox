@@ -63,7 +63,7 @@ function showResponse() {
 	document.getElementById(\'ajax-loading-alt\').style.display = \'none\';
 }
 	</script>';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 <br />
 And the form now gets id="myForm" and the action (if not the same page) - thats it. Now it gets posted via ajax.<br />
@@ -78,7 +78,7 @@ $data_print='function index_ajax() {
 		echo $ajax;
 	}
 }';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 <br />
 

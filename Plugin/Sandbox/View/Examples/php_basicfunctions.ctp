@@ -24,7 +24,7 @@ $var6=\' \';		// whitespace
 $var7=\'something\';
 $var8=array();		// empty array
 $var9=\'0\';';	
-echo $this->Geshi->highlight($data_print, 'php')
+echo $this->Geshi->highlightText($data_print, 'php')
 ?>
 Lets test them...
 <br />
@@ -175,5 +175,5 @@ if (!empty($x) && !empty($y))
 {
 	...	
 }';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>

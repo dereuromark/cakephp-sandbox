@@ -22,7 +22,7 @@ Also notice that all highslides on this page are images - for html/ajax/swl cont
 Take a onclick=""-attribute and insert the following code (here inside a link):
 <?php
 $data_print='<a href="IMAGE.EXT" onclick="<?php echo $this->Highslide->onclick()?>"/>';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 It uses the href-tag for the image path and opens the link just as a normal one, if JS is not activated.<br />
 I didn't use the html-&gt;image() helper-function to show the simple onclick element.
@@ -32,7 +32,7 @@ I didn't use the html-&gt;image() helper-function to show the simple onclick ele
 If you dont want to use this fallback-feature, set it manually in the options array:
 <?php
 $data_print='.. onclick="<?php echo $this->Highslide->onclick(array(\'src\'=>\'IMAGE.EXT\'))?>" ..';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 
 Results can be:<br /><br />
@@ -52,7 +52,7 @@ $data_print='<?php echo $this->Html->image(\'icons/loupe.gif\', array(
 	\'onclick\'=>$this->Highslide->onclick(array(\'src\'=>\'IMAGE.EXT\')),
 	\'class\'=>\'pointer\')
 );?>';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 
 
@@ -85,7 +85,7 @@ false);?>
 		\'outlineType\'=>\'glossy-dark\',\'dimmingOpacity\'=>0.70))),
 null,
 false);?>';
-echo $this->Geshi->highlight($data_print,'php');?>
+echo $this->Geshi->highlightText($data_print,'php');?>
 Results in:
 
 <br />
@@ -141,7 +141,7 @@ $data_print='\'allowSizeReduction\'=>null,
 /* sometimes both overlay and option */
 \'thumbnailId\'=>null,
 \'slideshowGroup\'=>null';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 
 
@@ -161,7 +161,7 @@ $data_print='echo $this->Highslide->registerOverlay(array(
 	\'opacity\'=>\'0.8\'
 	),
 \'forfun\'=>array()));';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 
 <a class="display" href="javascript:void(0)" onclick="toggleMe('example-1')">Show the html/javascript output</a>
@@ -183,7 +183,7 @@ hs.registerOverlay({
 	});
 }
 </script>';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 </div>
 
@@ -200,14 +200,14 @@ $data_print='echo $this->Html->link($this->Html->image(\'cake.icon.gif\', array(
 	\'id\'=>\'my-thumb\'),
 null,
 false);';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 <?php
 $data_print='echo $this->Highslide->overlay(array(
 \'my-caption\'=>array(
 	\'content\'=>\'a header or description\')));';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 <?php echo $this->Highslide->overlay(array('my-caption'=>array('content'=>'a header or description')))?>

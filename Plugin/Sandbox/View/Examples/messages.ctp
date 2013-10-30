@@ -13,7 +13,7 @@ $this->flashMessage(\'This is a second very interesting warning\',\'warning\');
 $this->flashMessage(\'Good Job :) You did it\',\'success\');
 $this->flashMessage(\'I am a info message for you\',\'info\');';
 
-echo $this->Geshi->highlight($code_highlight,'php');
+echo $this->Geshi->highlightText($code_highlight,'php');
 ?>
 1. parameter: Message<br>
 2. parameter: What kind of Message (error, warning, success, info)<br />

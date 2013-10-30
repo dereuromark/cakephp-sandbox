@@ -49,7 +49,7 @@ $data_print='$("form").submit(function() {
 	$(":submit",this).attr("disabled", "disabled");
 });
 $(":submit",this).removeAttr("disabled");';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 The last line I added to ensure that the button is enabled on default (especially after reloading/[F5-force-reload]/Backbutton-Usage). Prevents some little things you dont want to happen.
 <br /><br />

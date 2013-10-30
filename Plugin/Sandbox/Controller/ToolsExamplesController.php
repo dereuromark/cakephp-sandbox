@@ -3,7 +3,7 @@ App::uses('SandboxAppController', 'Sandbox.Controller');
 
 class ToolsExamplesController extends SandboxAppController {
 
-	public $helpers = array('Tools.Geshi');
+	public $helpers = array('Geshi.Geshi');
 
 	public $components = array('Security');
 

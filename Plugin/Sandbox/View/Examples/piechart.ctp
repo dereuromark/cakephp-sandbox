@@ -35,7 +35,7 @@ if ($this->Piechart->create($eq_data)) {
 <br />
 <a class="display" href="javascript:void(0)" onclick="toggleMe('example-1')">Show Source Code</a>
 <div class="example" id="example-1" style="display:none">
-<?php echo $this->Geshi->highlight($eq_data_print,'php')?>
+<?php echo $this->Geshi->highlightText($eq_data_print,'php')?>
 </div>
 <br />
 
@@ -71,7 +71,7 @@ if ($this->Piechart->create($eq_data)) {
 <br /><br />
 <a class="display" href="javascript:void(0)" onclick="toggleMe('example-2')">Show Source Code</a>
 <div class="example" id="example-2" style="display:none">
-<?php echo $this->Geshi->highlight($eq_data_print,'php')?>
+<?php echo $this->Geshi->highlightText($eq_data_print,'php')?>
 </div>
 <br />
 
@@ -105,6 +105,6 @@ if ($this->Piechart->create($eq_data)) {
 <br /><br />
 <a class="display" href="javascript:void(0)" onclick="toggleMe('example-3')">Show Source Code</a>
 <div class="example" id="example-3" style="display:none">
-<?php echo $this->Geshi->highlight($eq_data_print,'php')?>
+<?php echo $this->Geshi->highlightText($eq_data_print,'php')?>
 </div>
 <br />

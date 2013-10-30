@@ -25,7 +25,7 @@ $data_print='$(document).ready(function() {
 	// bind \'myForm\' and provide a simple callback function
 	$(\'#myForm\').ajaxForm(options);
 });';
-echo $this->Geshi->highlight($data_print,'javascript');
+echo $this->Geshi->highlightText($data_print,'javascript');
 ?>
 
 
@@ -42,7 +42,7 @@ $data_print='function formpost_ajax() {
 			a random number: <b>\'.mt_rand(5, 15).\'</b> - just for fun...\';
 	}
 }';
-echo $this->Geshi->highlight($data_print,'php');
+echo $this->Geshi->highlightText($data_print,'php');
 ?>
 
 <br />
