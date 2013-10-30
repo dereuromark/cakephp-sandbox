@@ -1,4 +1,4 @@
-Contact Form submission
+Sandbox - Contact Form submission
 
 Subject: <?php echo $subject; ?>
 

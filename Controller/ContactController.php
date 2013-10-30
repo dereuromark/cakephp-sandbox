@@ -64,7 +64,7 @@ class ContactController extends AppController {
 		$this->Email->to($adminEmail, $adminEmailname);
 
 		$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
-		$this->Email->template('contact');
+		$this->Email->template('contact', 'default');
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {
 			$this->Common->flashMessage(__('contactSuccessfullySent %s', $fromEmail), 'success');
