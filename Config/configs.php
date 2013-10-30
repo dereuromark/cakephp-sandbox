@@ -46,8 +46,6 @@ $config['Config'] = array(
 	'admin_emailname' => 'Site Owner',
 	'no_reply_email' => 'noreply@test.de',
 	'no_reply_emailname' => '',
-	'page_name' => 'Sandbox',
-	'domain_name' => 'CakePHP Sandbox',
 	'keywords' => '',
 	'description' => '',
 );

@@ -16,6 +16,9 @@ msgstr ""
 
 # Contact
 
+msgid "contactSuccessfullySent %s"
+msgstr "Your message has been sent - I will respond to the provided address %s"
+
 msgid "contactChoseSubject"
 msgstr "Please chose a subject or define one yourself"
 
