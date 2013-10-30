@@ -10,3 +10,6 @@
 [submodule "Geshi"]
 	path = Geshi
 	url = https://github.com/markstory/cakephp_geshi.git
+[submodule "Plugin/Geshi"]
+	path = Plugin/Geshi
+	url = https://github.com/markstory/cakephp_geshi.git
