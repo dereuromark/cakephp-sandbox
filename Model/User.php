@@ -27,22 +27,9 @@ class User extends AppModel {
 			'unique' => array(
 				'rule' => array('isUnique'),
 				'message' => 'Email already exists',
-				//'last' => true
+				'last' => true
 			),
 		),
 	);
 
-	public $hasMany = array(
-		'Codesnippet' => array(
-			'className' => 'Codesnippet',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-		),
-	);
-
 }
-
