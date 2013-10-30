@@ -2,7 +2,7 @@
 <?php //echo $this->SourceCode->link(null, array('class' => 'btn btn-info')); ?>
 </div>
 
-<h2>Query strings</h2>
+<h2>Query strings and type safety</h2>
 <p>
 Query strings are usually strings, but - as some might not be aware of - can also be quite easily an array.
 So not checking on the type and blindly using it in stringish operations can currently cause undesired results.
