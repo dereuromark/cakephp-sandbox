@@ -37,6 +37,8 @@ msgstr "Mandatory field"
 msgid "valErrInvalidEmail"
 msgstr "Invalid eMail"
 
+msgid "formContainsErrors"
+msgstr "The form below contains errors. Please correct them in order to proceed."
 
 # Eigene neue:
 

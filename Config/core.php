@@ -15,7 +15,7 @@
  */
 	Configure::write('debug', 0);
 	# Enhancement
-	if (!empty($_SERVER['HTTP_HOST']) && ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'sandbox')) {
+	if (!empty($_SERVER['HTTP_HOST']) && ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'sandbox')) {
 		Configure::write('debug', 2);
 	}
 
@@ -122,24 +122,12 @@ Configure::write('Dispatcher.filters', array(
 
 	Configure::write('Session', array(
 		'defaults' => 'php',
-		'timeout' => 4000,
+		'timeout' => 2000,
 		'cookie' => 'SANDBOX',
+		'cookieTimeout' => 20000,
 		'checkAgent' => true
 	));
 
-/**
- * The level of CakePHP security. The session timeout time defined
- * in 'Session.timeout' is multiplied according to the settings here.
- * Valid values:
- *
- * 'high'	Session timeout in 'Session.timeout' x 10
- * 'medium'	Session timeout in 'Session.timeout' x 100
- * 'low'		Session timeout in 'Session.timeout' x 300
- *
- * CakePHP session IDs are also regenerated between requests if
- * 'Security.level' is set to 'high'.
- */
-	Configure::write('Security.level', 'low');
 /**
  * A random string used in security hashing methods.
  */

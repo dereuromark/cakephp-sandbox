@@ -27,6 +27,7 @@ echo $this->Html->meta('icon');
 
 echo $this->Html->css('bootstrap');
 echo $this->Html->css('app');
+echo $this->Html->css('flash_messages');
 echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
 
 echo $this->Html->script('jquery/jquery');
@@ -45,7 +46,7 @@ echo $this->fetch('script');
 	<div id="navigation" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a href="/" class="navbar-brand">CakePHP Sandbox App</a>
+          <a href="<?php echo $this->Html->url('/')?>" class="navbar-brand">CakePHP Sandbox App</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
