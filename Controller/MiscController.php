@@ -10,8 +10,7 @@ class MiscController extends AppController {
 	}
 
 	/**
-	 * overview
-	 * 2010-09-30 ms
+	 * Overview
 	 */
 	public function index() {
 	}

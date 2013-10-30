@@ -16,7 +16,8 @@ class CustomHelper extends AppHelper {
 	public $helpers = array('Common', 'Html');
 
 	/**
-	 * cups (places: gold, silver, bronze)
+	 * Cups (places: gold, silver, bronze)
+	 *
 	 * @param integer $place: 0,1,2 or anything else for "no cup"
 	 * @param boolean $consolationPrize: TRUE or image url (defaults to FALSE)
 	 * @return string $cupImage

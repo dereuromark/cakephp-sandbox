@@ -31,6 +31,7 @@ class BbcodeHelper extends AppHelper {
 
 	/**
 	 * Has to be called right at the top of the Page where you want to use it (needs the language array from the controller!)
+	 *
 	 * @param form name, text name, languages array, (options)
 	 */
 	public function init($formName, $textName, $languages = array(), $options = null) {
