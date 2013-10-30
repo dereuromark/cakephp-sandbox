@@ -1,15 +1,15 @@
-Jemand hat sich über das Kontaktformular gemeldet
+Contact Form submission
 
-Betreff: <?php echo $subject; ?>
+Subject: <?php echo $subject; ?>
 
 
-Nachricht:
+Message:
 <?php echo $message; ?>
 
 
 - - - - - - - - - - - - - - - - - - - - - - - -
 
-Userinfos
+User infos:
 <?php echo TB; ?>Name: <?php echo TB; ?><?php echo $fromName;?>
 
 <?php echo TB; ?>Email: <?php echo TB; ?><?php echo $fromEmail;?>
