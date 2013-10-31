@@ -11,9 +11,9 @@ pr($userRoles);
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('New RoleApplication'), array('controller'=>'roleApplications','action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List %s', __('ApplicationHistory')), array('controller'=>'roleApplications','action'=>'history')); ?> </li>
-		<li><?php echo $this->Html->link(__('Pending Applications'), array('controller'=>'roleApplications','action'=>'pending')); ?> </li>
+		<li><?php echo $this->Html->link(__('New RoleApplication'), array('controller' => 'roleApplications', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List %s', __('ApplicationHistory')), array('controller' => 'roleApplications', 'action' => 'history')); ?> </li>
+		<li><?php echo $this->Html->link(__('Pending Applications'), array('controller' => 'roleApplications', 'action' => 'pending')); ?> </li>
 	</ul>
 </div>
 

@@ -12,4 +12,4 @@ Message:
 User infos:
 <?php echo TB; ?>Name: <?php echo TB; ?><?php echo $fromName;?>
 
-<?php echo TB; ?>Email: <?php echo TB; ?><?php echo $fromEmail;?>
+<?php echo TB; ?>Email: <?php echo TB; ?><?php echo $fromEmail;

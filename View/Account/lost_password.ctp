@@ -7,7 +7,7 @@
 		<legend><?php echo __('Step %s', 1);?></legend>
 		<p>Please enter your email address</p>
 	<?php
-	echo $this->Form->input('Form.login', array('autocomplete'=>'off', 'label'=>__('Email')));
+	echo $this->Form->input('Form.login', array('autocomplete' => 'off', 'label' => __('Email')));
 	echo $this->Captcha->input();
 
 	echo $this->Form->submit(__('Submit'));

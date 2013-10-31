@@ -280,7 +280,7 @@ class CountriesController extends DataAppController {
 	}
 
 	/**
-	 * validate
+	 * Validate
 	 * - abbr
 	 * - zip length/regexp ?
 	 * - EU ?

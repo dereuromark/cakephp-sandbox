@@ -9,7 +9,7 @@ After clicking the link you should be able to login.
 
 If you want, you can take the activation key from the email you got and paste it in here:
 
-<?php echo $this->Form->create('User', array('action'=>'registered'));?>
+<?php echo $this->Form->create('User', array('action' => 'registered'));?>
 	<fieldset>
  		<legend><?php echo __('Manually activate your account');?></legend>
 	<?php

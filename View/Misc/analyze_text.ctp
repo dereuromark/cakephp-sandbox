@@ -8,13 +8,13 @@ Count words, sentences, etc
 	<fieldset>
  		<legend><?php echo __('Enter Text');?></legend>
 	<?php
-		echo $this->Form->input('Form.text', array('type'=>'textarea', 'class'=>'halfSize', 'rows'=>15));
+		echo $this->Form->input('Form.text', array('type' => 'textarea', 'class' => 'halfSize', 'rows' => 15));
 		//echo $this->Form->input('Form.type', array('empty'=>array('0'=>'- [auto-detect] -')));
 		echo $this->Form->input('Form.min_char', array());
 		echo $this->Form->input('Form.max_char', array());
-		echo $this->Form->input('Form.sort', array('options'=>array(''=>'- [none] -', 'asc'=>'ASC', 'desc'=>'DESC')));
+		echo $this->Form->input('Form.sort', array('options' => array('' => '- [none] -', 'asc' => 'ASC', 'desc' => 'DESC')));
 		echo $this->Form->input('Form.limit');
-		
+
 		//echo $this->Form->input('Form.prevent_trim', array('type'=>'hidden', 'value'=>1));
 	?>
 	</fieldset>
@@ -24,18 +24,18 @@ Count words, sentences, etc
 <h2>Result</h2>
 <?php
 if (!empty($results)) {
-	echo $results['sentence_count'].' Sätze in '.$results['paragraph_count'].' Absätzen mit einer Gesamtlänge von '.$results['length'].' Buchstaben.';
+	echo $results['sentence_count'] . ' Sätze in ' . $results['paragraph_count'] . ' Absätzen mit einer Gesamtlänge von ' . $results['length'] . ' Buchstaben.';
 	echo BR;
-	echo 'Es handelt sich um einen '.($results['is_ascii']?'':'Nicht-').'ASCII Text.';
-	echo BR.BR;
-	
-	echo 'Ingesamt '.$results['word_count'].' Wörter, davon sind einmalig: ';
+	echo 'Es handelt sich um einen ' . ($results['is_ascii'] ? '' : 'Nicht-') . 'ASCII Text.';
+	echo BR . BR;
 
-	echo count($results['words']).' Wörter';
-	
+	echo 'Ingesamt ' . $results['word_count'] . ' Wörter, davon sind einmalig: ';
+
+	echo count($results['words']) . ' Wörter';
+
 	foreach ($results['words'] as $result => $occ) {
 		echo '<li>';
-		echo h($result). ' ('.$occ.')';
+		echo h($result) . ' (' . $occ . ')';
 		echo '</li>';
 	}
 
@@ -46,6 +46,6 @@ if (!empty($results)) {
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Back'), array('action'=>'index'));?></li>
+		<li><?php echo $this->Html->link(__('Back'), array('action' => 'index'));?></li>
 	</ul>
 </div>

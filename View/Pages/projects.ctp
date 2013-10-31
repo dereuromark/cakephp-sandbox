@@ -12,7 +12,7 @@ Maybe you find some errors, program some enhancements or just tell me what could
 Extends the Cake core role system (With Auth/Acl). In this special case it uses AuthExt Component by Franck (with a small modification)
 for the possibility to have multiple roles per user.</br>
 But it would work with any "single" role system as well - as it is independant from the live "roles" table. The "approve method" has to be altered then, though.
-Details <?php echo $this->Html->link('here', array('modul-role-application'), array('title'=>'Role Application Modul'));?>.
+Details <?php echo $this->Html->link('here', array('modul-role-application'), array('title' => 'Role Application Modul'));?>.
 </li>
 </ul>
 
@@ -26,7 +26,7 @@ Details <?php echo $this->Html->link('here', array('modul-role-application'), ar
 <b>Fuel Consumption - keeping track of fuel costs / milage / development</b>
 <br />
 Individually for each car observed. Calculates the missing value out of the other 2 values given.<br />
-<?php echo $this->Html->link('See it in action', array('controller'=>'fuel_consumptions'), array('title'=>'Here is a working example of this project'));?>
+<?php echo $this->Html->link('See it in action', array('controller' => 'fuel_consumptions'), array('title' => 'Here is a working example of this project'));?>
 </li>
 
 <li>
@@ -66,4 +66,4 @@ Maybe with friend/block list - multiple addresses - flood protection - email not
 </ul>
 
 <br />
-<?php echo $this->Html->link('Send me your idea', array('controller'=>'contact','subject'=>'Project idea'), array('title'=>'To the contact form'));
+<?php echo $this->Html->link('Send me your idea', array('controller' => 'contact', 'subject' => 'Project idea'), array('title' => 'To the contact form'));

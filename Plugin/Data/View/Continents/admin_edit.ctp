@@ -8,7 +8,7 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		//echo $this->Form->input('ori_name');
-		echo $this->Form->input('parent_id', array('empty'=>' - [ '.__('pleaseSelect').' ] - '));
+		echo $this->Form->input('parent_id', array('empty' => ' - [ ' . __('pleaseSelect') . ' ] - '));
 		//echo $this->Form->input('status');
 	?>
 	</fieldset>

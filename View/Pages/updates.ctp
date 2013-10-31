@@ -4,7 +4,7 @@
 <div class="message warning">
 Anybody who wants to help improve this site - or add new features? Feel free to contact me.
 <br /><br />
-Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller'=>'contact'))?>.
+Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller' => 'contact'))?>.
 <br />
 Or directly <b>make a "Pull request" with the changes on Github</b>.
 <br /><br />

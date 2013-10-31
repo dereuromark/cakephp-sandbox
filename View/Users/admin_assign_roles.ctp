@@ -17,7 +17,7 @@ Current Roles:
 <?php
 if (!empty($user['Role'])) {
 	foreach ($user['Role'] as $role) {
-		echo '<li>'.$role['name'].'('.$role['id'].') '.$this->Format->icon('delete').'</li>';
+		echo '<li>' . $role['name'] . '(' . $role['id'] . ') ' . $this->Format->icon('delete') . '</li>';
 	}
 } else {
 	echo '<li><i>no roles yet</i></li>';
@@ -33,7 +33,7 @@ Add Roles:
 <?php
 if (!empty($userRoles)) {
 	foreach ($userRoles as $id => $userRole) {
-		echo ''.$this->Form->input($userRole, array('type'=>'checkbox','value'=>$id)).'';
+		echo '' . $this->Form->input($userRole, array('type' => 'checkbox', 'value' => $id)) . '';
 	}
 } else {
 	echo '<li><i>no more roles availible</i></li>';
@@ -46,7 +46,7 @@ if (!empty($userRoles)) {
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit %s', __('User')), array('action'=>'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action'=>'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit %s', __('User')), array('action' => 'edit', $user['User']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action' => 'index')); ?> </li>
 	</ul>
 </div>

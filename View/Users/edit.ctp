@@ -24,23 +24,23 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action'=>'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action'=>'index'));?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Roles')), array('controller'=> 'roles', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New First Role'), array('controller'=> 'roles', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List User Infos'), array('controller'=> 'user_infos', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User Info'), array('controller'=> 'user_infos', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Addresses Addresstypes'), array('controller'=> 'addresses_addresstypes', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Addresses Addresstype'), array('controller'=> 'addresses_addresstypes', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Chat Entries'), array('controller'=> 'chat_entries', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Chat Entry'), array('controller'=> 'chat_entries', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Email Entries'), array('controller'=> 'email_entries', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Email Entry'), array('controller'=> 'email_entries', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Group Entries'), array('controller'=> 'group_entries', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group Entry'), array('controller'=> 'group_entries', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Tag Entries'), array('controller'=> 'tag_entries', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Tag Entry'), array('controller'=> 'tag_entries', 'action'=>'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Telnumber Entries'), array('controller'=> 'telnumber_entries', 'action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Telnumber Entry'), array('controller'=> 'telnumber_entries', 'action'=>'add')); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List %s', __('Roles')), array('controller' => 'roles', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New First Role'), array('controller' => 'roles', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List User Infos'), array('controller' => 'user_infos', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New User Info'), array('controller' => 'user_infos', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Addresses Addresstypes'), array('controller' => 'addresses_addresstypes', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Addresses Addresstype'), array('controller' => 'addresses_addresstypes', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Chat Entries'), array('controller' => 'chat_entries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Chat Entry'), array('controller' => 'chat_entries', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Email Entries'), array('controller' => 'email_entries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Email Entry'), array('controller' => 'email_entries', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Group Entries'), array('controller' => 'group_entries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Group Entry'), array('controller' => 'group_entries', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Tag Entries'), array('controller' => 'tag_entries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Tag Entry'), array('controller' => 'tag_entries', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Telnumber Entries'), array('controller' => 'telnumber_entries', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Telnumber Entry'), array('controller' => 'telnumber_entries', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

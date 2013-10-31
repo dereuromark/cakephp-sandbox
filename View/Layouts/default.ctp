@@ -17,7 +17,7 @@ echo $description
 ?>:
 		<?php
 
-echo $title_for_layout;
+echo $titleForLayout;
 
 ?>
 	</title>

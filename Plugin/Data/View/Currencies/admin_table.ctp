@@ -12,6 +12,6 @@
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Add %s', __('Currency')), array('action'=>'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Add %s', __('Currency')), array('action' => 'add')); ?></li>
 	</ul>
 </div>

@@ -40,9 +40,9 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit %s', __('Currency')), array('action'=>'edit', $currency['Currency']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Currency'), array('action'=>'delete', $currency['Currency']['id']), array('escape'=>false), __('Are you sure you want to delete # %s?', $currency['Currency']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List %s', __('Currencies')), array('action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('Add %s', __('Currency')), array('action'=>'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit %s', __('Currency')), array('action' => 'edit', $currency['Currency']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Currency'), array('action' => 'delete', $currency['Currency']['id']), array('escape' => false), __('Are you sure you want to delete # %s?', $currency['Currency']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List %s', __('Currencies')), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Add %s', __('Currency')), array('action' => 'add')); ?> </li>
 	</ul>
 </div>

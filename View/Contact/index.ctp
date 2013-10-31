@@ -13,9 +13,9 @@ Email: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.admin_em
 		echo $this->Form->input('name');
 		echo $this->Form->input('email');
 		echo $this->Form->input('subject', array(
-			'label'=>__('contactSubject'),
+			'label' => __('contactSubject'),
 		));
-		echo $this->Form->input('message', array('type'=>'textarea', 'label'=>__('contactMessage')));
+		echo $this->Form->input('message', array('type' => 'textarea', 'label' => __('contactMessage')));
 
 		echo $this->Captcha->passive();
 	?>

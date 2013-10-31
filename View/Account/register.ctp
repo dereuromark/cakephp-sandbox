@@ -33,4 +33,4 @@
 
 
 <h3><?php echo __('Already registered');?>?</h3>
-<?php echo $this->Html->link(__('Login'), array('action'=>'login'));?>
+<?php echo $this->Html->link(__('Login'), array('action' => 'login'));

@@ -1,1 +1,1 @@
-<?php echo $this->Html->link($this->Format->yesNo($ajaxToggle[$model][$field]), array('action'=>'toggle', $field, $ajaxToggle[$model]['id']), array('escape'=>false));?>
+<?php echo $this->Html->link($this->Format->yesNo($ajaxToggle[$model][$field]), array('action' => 'toggle', $field, $ajaxToggle[$model]['id']), array('escape' => false));

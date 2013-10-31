@@ -37,7 +37,7 @@ class CurrencyComponent extends Component {
 	public $cacheTime = DAY;
 
 	/**
-	 * convert
+	 * Convert
 	 *
 	 * Converts the $amount from $fromCurrency to $toCurrency, formatted to
 	 * $decimals decimal places
@@ -60,7 +60,7 @@ class CurrencyComponent extends Component {
 	}
 
 	/**
-	 * table
+	 * Table
 	 *
 	 * Returns an array of rates in comparison the the $base currency given to $decimals
 	 * number of decimal places

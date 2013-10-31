@@ -43,9 +43,9 @@
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Edit %s', __('Country')), array('action'=>'edit', $country['Country']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Country'), array('action'=>'delete', $country['Country']['id']), array('escape'=>false), __('Are you sure you want to delete # %s?', $country['Country']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List %s', __('Countries')), array('action'=>'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Country Provinces'), array('controller'=> 'country_provinces', 'action'=>'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit %s', __('Country')), array('action' => 'edit', $country['Country']['id'])); ?> </li>
+		<li><?php echo $this->Form->postLink(__('Delete Country'), array('action' => 'delete', $country['Country']['id']), array('escape' => false), __('Are you sure you want to delete # %s?', $country['Country']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('List %s', __('Countries')), array('action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Country Provinces'), array('controller' => 'country_provinces', 'action' => 'index')); ?> </li>
 	</ul>
 </div>
