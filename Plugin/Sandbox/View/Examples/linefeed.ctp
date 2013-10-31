@@ -10,13 +10,13 @@ Tip: Read the codesnippet for the CakePHP Reference to this topic.
 Interesting to know: LF, CR and NL are interpreted as "whitespace" in HTML-Code (besides their main function to start a new line in the source code)
 
 <?php
-echo TB.'sssfsdf'.LF.TB.TB.'dfsdfdsf'.LF.'dfsdfdsf'.LF.LF.'dfsdfdsf'.LF.TB.'dfsdfdsf'.BR.'dfsdfd';
+echo TB . 'sssfsdf' . LF . TB . TB . 'dfsdfdsf' . LF . 'dfsdfdsf' . LF . LF . 'dfsdfdsf' . LF . TB . 'dfsdfdsf' . BR . 'dfsdfd';
 ?>
 
 
 <br /><br />
 <?php
-echo 'dfdf'.LF.'dfsdfd';
+echo 'dfdf' . LF . 'dfsdfd';
 ?>
 
 
@@ -29,10 +29,10 @@ echo 'dfdf'.LF.'dfsdfd';
 
 <h2>nl2br() - str_replace()</h2>
 <?php
-$string = 'SomeText'.NL.'NewLineStart'.NL.NL.'NewParagrahStart'.LF.'With PHP Linefeed'.CR.'CarriageReturn Tryout';
-$data_print='$v=\'SomeText\nNewLineStart\n\nNewParagrahStart\r\nWith PHP Linefeed\rCarriageReturn Tryout\';
+$string = 'SomeText' . NL . 'NewLineStart' . NL . NL . 'NewParagrahStart' . LF . 'With PHP Linefeed' . CR . 'CarriageReturn Tryout';
+$dataPrint = '$v=\'SomeText\nNewLineStart\n\nNewParagrahStart\r\nWith PHP Linefeed\rCarriageReturn Tryout\';
 // the PHP Linefeed depens on the system...';
-echo $this->Geshi->highlightText($data_print,'php');
+echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 
 <b>nl2br():</b>
@@ -41,7 +41,7 @@ echo $this->Geshi->highlightText($data_print,'php');
 <br />
 
 <b>str_replace():</b><br />
-<div class="example"><?php echo str_replace("\n",'<br />', $string);?></div>
+<div class="example"><?php echo str_replace("\n", '<br />', $string);?></div>
 
 <br />
 
@@ -50,7 +50,7 @@ It clearly shows, that it is better to use the PHP function nl2br() for that. It
 <br /><br />
 <b>Notice:</b> for str_replace it is "\n" - and not '\n' (does not work)
 <?php
-echo $this->Geshi->highlightText('str_replace("\n",\'<br />\', $string);','php');
+echo $this->Geshi->highlightText('str_replace("\n",\'<br />\', $string);', 'php');
 ?>
 
 <br />

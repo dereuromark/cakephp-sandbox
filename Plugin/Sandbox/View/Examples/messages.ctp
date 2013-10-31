@@ -7,13 +7,13 @@ Additionally, they now could be sorted by desired priority (instead of appearing
 <h2>Unsorted example</h2>
 The above output has the following code in the controller:
 <?php
-$code_highlight='$this->flashMessage(\'An error occured somewhere - mabye\',\'error\');
+$codeHighlight = '$this->flashMessage(\'An error occured somewhere - mabye\',\'error\');
 $this->flashMessage(\'This is a warning...\',\'warning\');
 $this->flashMessage(\'This is a second very interesting warning\',\'warning\');
 $this->flashMessage(\'Good Job :) You did it\',\'success\');
 $this->flashMessage(\'I am a info message for you\',\'info\');';
 
-echo $this->Geshi->highlightText($code_highlight,'php');
+echo $this->Geshi->highlightText($codeHighlight, 'php');
 ?>
 1. parameter: Message<br>
 2. parameter: What kind of Message (error, warning, success, info)<br />

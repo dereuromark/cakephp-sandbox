@@ -35,7 +35,7 @@ jQuery( function() {
 <h1><?php echo __('Auto Preview');?></h1>
 Preview the result while typing. Works on any input (text,textarea):<br />
 <?php
-$data_print='$(document).ready(function() {
+$dataPrint = '$(document).ready(function() {
 
 	$("textarea").keyup(function () {
 		var value = $(this).val();
@@ -43,14 +43,14 @@ $data_print='$(document).ready(function() {
 	}).keyup();
 
 });';
-echo $this->Geshi->highlightText($data_print,'javascript');
+echo $this->Geshi->highlightText($dataPrint, 'javascript');
 ?>
 Notice: Due to security issues i did not allow html content. that would be so if you change the following line:
 <?php
-$data_print='		$("p").text(value);
+$dataPrint = '		$("p").text(value);
 	/* into */
 		$("p").html(value);';
-echo $this->Geshi->highlightText($data_print,'javascript');
+echo $this->Geshi->highlightText($dataPrint, 'javascript');
 ?>
 
 <br />

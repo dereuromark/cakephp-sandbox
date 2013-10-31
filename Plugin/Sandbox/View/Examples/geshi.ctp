@@ -1,9 +1,9 @@
 <h1>Geshi - TextHighlighting:</h1>
 To begin with, the lines you need to display code:
 <?php
-$data_print='$var=\'Some <b>Text</b> for Geshi\';
+$dataPrint = '$var=\'Some <b>Text</b> for Geshi\';
 $this->Geshi->highlightText($var,\'php\',\'none\');';
-echo $this->Geshi->highlightText($data_print,'php');
+echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 1. parameter: String to Print<br>
 2. parameter: What kind of Code (PHP, SQL, CSS, JS etc)<br />
@@ -12,7 +12,7 @@ echo $this->Geshi->highlightText($data_print,'php');
 
 <h2>Some Examples - what you can do with it</h2>
 <?php
-$data_print='div.paging {
+$dataPrint = 'div.paging {
 	background:#fff;
 	color: #ccc;
 	margin-bottom: 2em;
@@ -23,9 +23,9 @@ div.paging div.disabled {
 }
 div.paging span {
 }';
-echo $this->Geshi->highlightText($data_print,'css');
+echo $this->Geshi->highlightText($dataPrint, 'css');
 
-$data_print='function toggleMe(id) {
+$dataPrint = 'function toggleMe(id) {
  var e=document.getElementById(id);
  if (!e)return true;
  if (e.style.display=="none") {
@@ -35,20 +35,20 @@ $data_print='function toggleMe(id) {
  }
  return true;
 }';
-echo $this->Geshi->highlightText($data_print,'javascript');
+echo $this->Geshi->highlightText($dataPrint, 'javascript');
 
-$data_print='<b>Wow</b>
+$dataPrint = '<b>Wow</b>
 <u> Underline text</u>
 <input type="text"/>';
-echo $this->Geshi->highlightText($data_print,'html4strict');
+echo $this->Geshi->highlightText($dataPrint, 'html4strict');
 
 
-$data_print='SELECT * FROM `telbuch_types`
+$dataPrint = 'SELECT * FROM `telbuch_types`
 WHERE `user_name` = \'testmensch\'
 ORDER BY userid ASC LIMIT 0 , 30 ';
-echo $this->Geshi->highlightText($data_print,'mysql');
+echo $this->Geshi->highlightText($dataPrint, 'mysql');
 
-$data_print='<addresses>
+$dataPrint = '<addresses>
  <person>
 	 <name>
 		 <first>Ingo</first>
@@ -66,14 +66,13 @@ $data_print='<addresses>
 	 <country>Germany</country>
  </person>
 </addresses>';
-echo $this->Geshi->highlightText($data_print,'xml');
+echo $this->Geshi->highlightText($dataPrint, 'xml');
 
-$data_print='User-agent: EmailCollector
+$dataPrint = 'User-agent: EmailCollector
 Disallow: /
 
 User-Agent: *
 Disallow: /verzeichnis3/';
-echo $this->Geshi->highlightText($data_print,'robots');
+echo $this->Geshi->highlightText($dataPrint, 'robots');
 
 
-?>

@@ -1,15 +1,15 @@
 <?php
-$int=100;
+$int = 100;
 if (!empty($this->request->params['named']['loops'])) {
-	$int=(int)$this->request->params['named']['loops'];
+	$int = (int)$this->request->params['named']['loops'];
 }
 
-if ($int>0 && $int<3001) {
+if ($int > 0 && $int < 3001) {
 } else {
-	$int=100;
+	$int = 100;
 	echo '<div class="messages">';
 		echo '<div class="message warning">';
-			__('Not a valid loop integer! Changed to <b>'.$int.' loops</b>');
+			__('Not a valid loop integer! Changed to <b>' . $int . ' loops</b>');
 		echo '</div>';
 	echo '</div>';
 }
@@ -23,9 +23,9 @@ Or by setting all Configuration Information into Global Constants with define('V
 <h2>Test Parameter</h2>
 How many vars to read out (simulated as a loop):<br />
 <?php
-$times=array(10,50,100,500,1000,2000,3000);
+$times = array(10, 50, 100, 500, 1000, 2000, 3000);
 foreach ($times as $time) {
-	echo ' | '.$this->Html->link($time, array('controller'=>'examples','action'=>'configure_usage','loops'=>$time), array('title'=>'Click to change loop count')).' | ';
+	echo ' | ' . $this->Html->link($time, array('controller' => 'examples', 'action' => 'configure_usage', 'loops' => $time), array('title' => 'Click to change loop count')) . ' | ';
 }
 ?>
 <br />
@@ -40,36 +40,36 @@ $var = PAGE_NAME;
 <?php
 App::uses('Utility', 'Tools.Utility');
 
-$page_name = Configure::read('Config.page_name');
-define('PAGE_NAME_FAKE', $page_name);
+$pageName = Configure::read('Config.page_name');
+define('PAGE_NAME_FAKE', $pageName);
 
 
 /** fixing some bug with the microtime timing */
-$time_start = Utility::microtime();
-$time_end = Utility::microtime();
+$timeStart = Utility::microtime();
+$timeEnd = Utility::microtime();
 
 
 # versuch 1
-$time_start = Utility::microtime();
+$timeStart = Utility::microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = Configure::read('Config.page_name');
 }
 
-$time_end = Utility::microtime();
-$time1 = $time_end - $time_start;
-$time1 = round(($time1*1000),4);
+$timeEnd = Utility::microtime();
+$time1 = $timeEnd - $timeStart;
+$time1 = round(($time1 * 1000), 4);
 
 # versuch 2
-$time_start = Utility::microtime();
+$timeStart = Utility::microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = PAGE_NAME_FAKE;
 }
 
-$time_end = Utility::microtime();
-$time2 = $time_end - $time_start;
-$time2 = round(($time2*1000),4);
+$timeEnd = Utility::microtime();
+$time2 = $timeEnd - $timeStart;
+$time2 = round(($time2 * 1000), 4);
 
 
 ?>
@@ -107,4 +107,3 @@ foreach (...) { define(strtoupper($variable), ''.$value); }
 <br>
 Besides that, it is now way easier and shorter to access the content of my configuration. Just use the constanct directly.
 <?php
-?>

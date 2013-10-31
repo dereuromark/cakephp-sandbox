@@ -5,17 +5,17 @@ PHP version: PHP5
 Our test variable contents are:
 <?php
 $vars = array();
-$vars[1]=0;
-$vars[]=null;
-$vars[]=false;
-$vars[]=true;
-$vars[]='';
-$vars[]=' ';
-$vars[]='something';
-$vars[]=array();
-$vars[]= '0';
+$vars[1] = 0;
+$vars[] = null;
+$vars[] = false;
+$vars[] = true;
+$vars[] = '';
+$vars[] = ' ';
+$vars[] = 'something';
+$vars[] = array();
+$vars[] = '0';
 
-$data_print='$var1=0;
+$dataPrint = '$var1=0;
 $var2=null;
 $var3=false;		// boolean
 $var4=true;		// boolean
@@ -23,8 +23,8 @@ $var5=\'\';
 $var6=\' \';		// whitespace
 $var7=\'something\';
 $var8=array();		// empty array
-$var9=\'0\';';	
-echo $this->Geshi->highlightText($data_print, 'php')
+$var9=\'0\';';
+echo $this->Geshi->highlightText($dataPrint, 'php')
 ?>
 Lets test them...
 <br />
@@ -41,13 +41,13 @@ Lets test them...
 <?php
 foreach ($vars as $var => $v)
 {
-	echo '<tr><td>$var'.$var.':</td>';
+	echo '<tr><td>$var' . $var . ':</td>';
 	if (isset($v)) {
-		echo '<td class="yes">isset</td>';	
+		echo '<td class="yes">isset</td>';
 	} else {
 		echo '<td class="no">not isset</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -59,13 +59,13 @@ foreach ($vars as $var => $v)
 <?php
 foreach ($vars as $var => $v)
 {
-	echo '<tr><td>$var'.$var.':</td>';
+	echo '<tr><td>$var' . $var . ':</td>';
 	if ($v) {
-		echo '<td class="yes">isset</td>';	
+		echo '<td class="yes">isset</td>';
 	} else {
 		echo '<td class="no">not isset</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -83,13 +83,13 @@ In the second case it has to be a non-empty string or boolean TRUE. The first on
 <?php
 foreach ($vars as $var => $v)
 {
-	echo '<tr><td>$var'.$var.':</td>';
+	echo '<tr><td>$var' . $var . ':</td>';
 	if (!empty($v)) {
-		echo '<td class="yes">not empty</td>';	
+		echo '<td class="yes">not empty</td>';
 	} else {
 		echo '<td class="no">empty</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -102,13 +102,13 @@ foreach ($vars as $var => $v)
 <?php
 foreach ($vars as $var => $v)
 {
-	echo '<tr><td>$var'.$var.':</td>';
-	if ($v!='') {
-		echo '<td class="yes">not empty</td>';	
+	echo '<tr><td>$var' . $var . ':</td>';
+	if ($v != '') {
+		echo '<td class="yes">not empty</td>';
 	} else {
 		echo '<td class="no">empty</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -125,13 +125,13 @@ foreach ($vars as $var => $v)
 	<table width="99%">
 <?php
 foreach ($vars as $var => $v) {
-	echo '<tr><td>$var'.$var.':</td>';
+	echo '<tr><td>$var' . $var . ':</td>';
 	if ($v == null) {
-		echo '<td class="yes">empty</td>';	
+		echo '<td class="yes">empty</td>';
 	} else {
 		echo '<td class="no">not empty</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -143,13 +143,13 @@ foreach ($vars as $var => $v) {
 <?php
 foreach ($vars as $var => $v)
 {
-	echo '<tr><td>$var'.$var.':</td>';
+	echo '<tr><td>$var' . $var . ':</td>';
 	if (is_array($v)) {
-		echo '<td class="yes">is array</td>';	
+		echo '<td class="yes">is array</td>';
 	} else {
 		echo '<td class="no">is not array</td>';
 	}
-	echo '<td class="content">'.$v.'</td></tr>';
+	echo '<td class="content">' . $v . '</td></tr>';
 }
 ?>
 	</table>
@@ -165,7 +165,7 @@ Although it should be noted that == null is not exactly the same as empty() - at
 To filter out any unneccesary or even validation breaking whitespaces, use <b>trim()</b> on them before checking the variable:
 <br />
 <?php
-$data_print='$x=\' string with whitespaces on both ends \'
+$dataPrint = '$x=\' string with whitespaces on both ends \'
 $y=\' \'	// whitespace that breaks !empty() validation
 
 $x=trim($x);
@@ -175,5 +175,4 @@ if (!empty($x) && !empty($y))
 {
 	...	
 }';
-echo $this->Geshi->highlightText($data_print,'php');
-?>
+echo $this->Geshi->highlightText($dataPrint, 'php');

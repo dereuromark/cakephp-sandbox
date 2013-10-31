@@ -1,15 +1,15 @@
 <?php
-$int=100;
+$int = 100;
 if (!empty($this->request->params['named']['loops'])) {
-	$int=(int)$this->request->params['named']['loops'];
+	$int = (int)$this->request->params['named']['loops'];
 }
 
-if ($int>0 && $int<3001) {
+if ($int > 0 && $int < 3001) {
 } else {
-	$int=100;
+	$int = 100;
 	echo '<div class="messages">';
 		echo '<div class="message warning">';
-			__('Not a valid loop integer! Changed to <b>'.$int.' loops</b>');
+			__('Not a valid loop integer! Changed to <b>' . $int . ' loops</b>');
 		echo '</div>';
 	echo '</div>';
 }
@@ -23,9 +23,9 @@ Or by dumping all translation strings into Global Constants with define('LANG_TR
 <h2>Test Parameter</h2>
 How many vars to read out (simulated as a loop):<br />
 <?php
-$times=array(10,50,100,500,1000,2000,3000);
+$times = array(10, 50, 100, 500, 1000, 2000, 3000);
 foreach ($times as $time) {
-	echo ' | '.$this->Html->link($time, array('controller'=>'examples','action'=>'translate_usage','loops'=>$time), array('title'=>'Click to change loop count')).' | ';
+	echo ' | ' . $this->Html->link($time, array('controller' => 'examples', 'action' => 'translate_usage', 'loops' => $time), array('title' => 'Click to change loop count')) . ' | ';
 }
 ?>
 <br />
@@ -43,18 +43,18 @@ Lets run different tests - one for both string and const. present, and one for e
 
 <?php
 
-$page_name = 'Translate String';
-define('LANG_TRANSLATE_STRING', $page_name);
+$pageName = 'Translate String';
+define('LANG_TRANSLATE_STRING', $pageName);
 
 
 /** fixing some bug with the microtime timing */
-$time_start = AppController::my_microtime();
-$time_end = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
+$timeEnd = AppController::my_microtime();
 
-for ($i=0;$i<2;$i++) {
+for ($i = 0;$i < 2;$i++) {
 	$var = __('Translate String');
 }
-for ($i=0;$i<2;$i++) {
+for ($i = 0;$i < 2;$i++) {
 	$var = LANG_TRANSLATE_STRING_X;
 }
 
@@ -63,51 +63,51 @@ for ($i=0;$i<2;$i++) {
 ### .po string present, Constant MISSING ###
 
 # versuch 1
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = __('Translate String');
 }
 
-$time_end = AppController::my_microtime();
-$time_p1 = $time_end - $time_start;
-$time_p1 = round(($time_p1*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeP1 = $timeEnd - $timeStart;
+$timeP1 = round(($timeP1 * 1000), 4);
 
 # versuch 2
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = LANG_TRANSLATE_STRING_X;
 }
 
-$time_end = AppController::my_microtime();
-$time_p2 = $time_end - $time_start;
-$time_p2 = round(($time_p2*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeP2 = $timeEnd - $timeStart;
+$timeP2 = round(($timeP2 * 1000), 4);
 
 
 ### Constant present, .po string MISSING ###
 
 # versuch 1
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = __('Translate String_X');
 }
 
-$time_end = AppController::my_microtime();
-$time_c1 = $time_end - $time_start;
-$time_c1 = round(($time_c1*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeC1 = $timeEnd - $timeStart;
+$timeC1 = round(($timeC1 * 1000), 4);
 
 # versuch 2
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = LANG_TRANSLATE_STRING;
 }
 
-$time_end = AppController::my_microtime();
-$time_c2 = $time_end - $time_start;
-$time_c2 = round(($time_c2*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeC2 = $timeEnd - $timeStart;
+$timeC2 = round(($timeC2 * 1000), 4);
 
 
 
@@ -115,26 +115,26 @@ $time_c2 = round(($time_c2*1000),4);
 ### Constant and .po string both present ###
 
 # versuch 1
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = __('Translate String');
 }
 
-$time_end = AppController::my_microtime();
-$time_b1 = $time_end - $time_start;
-$time_b1 = round(($time_b1*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeB1 = $timeEnd - $timeStart;
+$timeB1 = round(($timeB1 * 1000), 4);
 
 # versuch 2
-$time_start = AppController::my_microtime();
+$timeStart = AppController::my_microtime();
 
-for ($i=0;$i<$int;$i++) {
+for ($i = 0;$i < $int;$i++) {
 	$var = LANG_TRANSLATE_STRING;
 }
 
-$time_end = AppController::my_microtime();
-$time_b2 = $time_end - $time_start;
-$time_b2 = round(($time_b2*1000),4);
+$timeEnd = AppController::my_microtime();
+$timeB2 = $timeEnd - $timeStart;
+$timeB2 = round(($timeB2 * 1000), 4);
 
 
 
@@ -146,17 +146,17 @@ $time_b2 = round(($time_b2*1000),4);
 
 <div class="message success">
 <b><?php echo $int?> loops</b> | Constant not defined<br />
-_() Translating needed <b><?php echo $time_p1?></b> ms. - Constants Translating needed <b><?php echo $time_p2?></b> ms.
+_() Translating needed <b><?php echo $timeP1?></b> ms. - Constants Translating needed <b><?php echo $timeP2?></b> ms.
 </div>
 
 <div class="message success">
 <b><?php echo $int?> loops</b> | .po-string not defined<br />
-_() Translating needed <b><?php echo $time_c1?></b> ms. - Constants Translating needed <b><?php echo $time_c2?></b> ms.
+_() Translating needed <b><?php echo $timeC1?></b> ms. - Constants Translating needed <b><?php echo $timeC2?></b> ms.
 </div>
 
 <div class="message success">
 <b><?php echo $int?> loops</b> | BOTH Present<br />
-_() Translating needed <b><?php echo $time_b1?></b> ms. - Constants Translating needed <b><?php echo $time_b2?></b> ms.
+_() Translating needed <b><?php echo $timeB1?></b> ms. - Constants Translating needed <b><?php echo $timeB2?></b> ms.
 </div></div>
 
 
@@ -191,4 +191,3 @@ The sprintf() function though can still be used:
 </pre>
 
 <?php
-?>

@@ -9,7 +9,7 @@ So not checking on the type and blindly using it in stringish operations can cur
 </p>
 
 <?php
-$data= <<<'TEXT'
+$data = <<<'TEXT'
 $result = 'string' . $this->request->query('key'); // Dangerous without checking if set and a string
 TEXT;
 echo $this->Geshi->highlightText($data, 'php');
@@ -17,7 +17,7 @@ echo $this->Geshi->highlightText($data, 'php');
 
 So with the current implementation of how query strings (and named params) work, one should always assert the correct type first:
 <?php
-$data= <<<'TEXT'
+$data = <<<'TEXT'
 $key = $this->request->query('key');
 if (is_array($key)) { // Or: if (!is_scalar($key))
 	throw new NotFoundException('Invalid query string'); // Simple 404

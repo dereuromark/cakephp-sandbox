@@ -17,8 +17,8 @@ Notice: this example page covers html/ajax/swl content etc (see also the first e
 <h2>One line of code - and you can set all kinds of stuff as highslide-clickable</h2>
 Take a onclick=""-attribute and insert the following code (here inside a link):
 <?php
-$data_print='<a href="IMAGE.EXT" onclick="<?php echo $this->Highslide->onclick()?>"/>';
-echo $this->Geshi->highlightText($data_print,'php');
+$dataPrint = '<a href="IMAGE.EXT" onclick="<?php echo $this->Highslide->onclick()?>"/>';
+echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 It uses the href-tag for the image path and opens the link just as a normal one, if JS is not activated.<br />
 I didn't use the html-&gt;image() helper-function to show the simple onclick element.

@@ -4,7 +4,7 @@ Controller and Action params are stored as string, though.
 <br /><br />
 
 Test it with the following links:<br /><br />
-<?php echo $this->Html->link('Saved in "named"', array('action'=>'params','xyz'=>123,'test'=>'yes','var'=>'s1'))?> | <?php echo $this->Html->link('Saved in "pass"', array('action'=>'params','very','cool','stuff'))?> | <?php echo $this->Html->link('Old fashened', array('action'=>'params','?id=1&teststring=active'))?> (not recommended)
+<?php echo $this->Html->link('Saved in "named"', array('action' => 'params', 'xyz' => 123, 'test' => 'yes', 'var' => 's1'))?> | <?php echo $this->Html->link('Saved in "pass"', array('action' => 'params', 'very', 'cool', 'stuff'))?> | <?php echo $this->Html->link('Old fashened', array('action' => 'params', '?id=1&teststring=active'))?> (not recommended)
 
 <br />
 <h2>Retrieving URL Information</h2>
@@ -44,4 +44,3 @@ echo $this->Html->pre($this->request->params['pass']);
 
 <?php
 //pr($this->request->params);
-?>

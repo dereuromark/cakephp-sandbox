@@ -55,8 +55,8 @@ Just write it via keyboard, scan it and send it.
 	<fieldset>
 		<legend><?php echo __('New %s', __('QR Code')); ?></legend>
 	<?php
-		echo $this->Form->input('type', array('options'=>$types));
-		echo $this->Form->input('size', array('options'=>array('Auto')));
+		echo $this->Form->input('type', array('options' => $types));
+		echo $this->Form->input('size', array('options' => array('Auto')));
 	?>
 
 	<div id="cardBox">
@@ -69,17 +69,17 @@ Just write it via keyboard, scan it and send it.
 		//echo $this->Form->input('Card.video', array());
 		echo $this->Form->input('Card.email', array());
 		echo $this->Form->input('Card.address', array());
-		echo $this->Form->input('Card.url', array('placeholder'=>'http://'));
-		echo $this->Form->input('Card.birthday', array('type'=>'date', 'dateFormat'=>'DMY', 'minYear'=>date('Y')-90, 'empty'=>true, 'maxYear'=>date('Y')));
+		echo $this->Form->input('Card.url', array('placeholder' => 'http://'));
+		echo $this->Form->input('Card.birthday', array('type' => 'date', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 90, 'empty' => true, 'maxYear' => date('Y')));
 
-		echo $this->Form->input('Card.note', array('rows'=>10));
+		echo $this->Form->input('Card.note', array('rows' => 10));
 
 	?>
 	</div>
 	<div id="textBox">
 	<?php
 		echo BR;
-		echo $this->Form->input('content', array('rows'=>10));
+		echo $this->Form->input('content', array('rows' => 10));
 
 	?>
 	</div>
@@ -87,7 +87,7 @@ Just write it via keyboard, scan it and send it.
 	<?php
 		echo BR;
 		echo $this->Form->input('Sms.number', array());
-		echo $this->Form->input('Sms.content', array('rows'=>10));
+		echo $this->Form->input('Sms.content', array('rows' => 10));
 
 	?>
 	</div>

@@ -38,4 +38,3 @@ Using the GoogleMapV3 to output a map with pins.
 	$result .= $this->GoogleMapV3->script();
 	echo $result;
 
-?>

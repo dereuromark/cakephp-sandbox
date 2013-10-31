@@ -26,7 +26,7 @@ Using the BitmaskedBehavior
  		<legend><?php echo __('Add %s', __('Entry')); ?></legend>
 	<?php
 		echo $this->Form->input('name', array());
-		echo $this->Form->input('flag', array('type'=>'select', 'multiple'=>'checkbox'));
+		echo $this->Form->input('flag', array('type' => 'select', 'multiple' => 'checkbox'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
@@ -46,4 +46,4 @@ foreach ($result as $key => $value) {
 }
 echo '</pre>';
 ?>
-<?php } ?>
+<?php } 
