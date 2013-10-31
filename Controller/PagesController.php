@@ -1,15 +1,4 @@
 <?php
-/**
- * Static content controller.
- *
- * This file will render views from views/pages/
- *
- * PHP 5
- *
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
- */
 
 App::uses('AppController', 'Controller');
 
@@ -23,14 +12,21 @@ App::uses('AppController', 'Controller');
  */
 class PagesController extends AppController {
 
-	/**
-	 * Displays a view
-	 *
-	 * @param mixed What page to display
-	 * @return void
-	 * @throws NotFoundException When the view file could not be found
-	 *	or MissingViewException in debug mode.
-	 */
+/**
+ * This controller does not use a model
+ *
+ * @var array
+ */
+	public $uses = array();
+
+/**
+ * Displays a view
+ *
+ * @param mixed What page to display
+ * @return void
+ * @throws NotFoundException When the view file could not be found
+ *   or MissingViewException in debug mode.
+ */
 	public function display() {
 		$path = func_get_args();
 

@@ -60,13 +60,6 @@ class AppController extends MyController {
 			'controller' => 'account',
 			'action' => 'login');
 
-		$controllers = array('Pages');
-		foreach ($controllers as $controller) {
-			if ($this->name === $controller) {
-				$this->Auth->allow();
-			}
-		}
-
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
 		if (!Auth::id()) {
 			return;

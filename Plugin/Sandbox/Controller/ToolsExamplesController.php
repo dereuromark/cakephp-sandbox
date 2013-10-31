@@ -26,6 +26,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 	/**
 	 * ToolsExamplesController::tree()
+	 * //TODO
 	 *
 	 * @return void
 	 */
@@ -35,10 +36,11 @@ class ToolsExamplesController extends SandboxAppController {
 
 	/**
 	 * ToolsExamplesController::bitmasks()
+	 * //TODO
 	 *
 	 * @return void
 	 */
-	public function bitmasks() {
+	public function _bitmasks() {
 		$flags = array(
 			'1' => 'Apple',
 			'2' => 'Peach',
@@ -81,10 +83,36 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function qr() {
-		if ($this->request->is('post')) {
+		$types = array('text' => 'Text', 'url' => 'Url', 'tel' => 'Phone Number', 'sms' => 'Text message', 'email' => 'E-Mail', 'geo' => 'Geo', 'market' => 'Market', 'card' => 'Vcard');
 
+		if ($this->Common->isPosted()) {
+			switch ($this->request->data['Misc']['type']) {
+				case 'url':
+				case 'tel':
+				case 'email':
+				case 'geo':
+				case 'market':
+					$result = str_replace(array(PHP_EOL, NL), ' ', $this->request->data['Misc']['content']);
+					break;
+				case 'card':
+					$result = $this->request->data['Card'];
+					$result['birthday'] = $result['birthday']['year'] . '-' . $result['birthday']['month'] . '-' . $result['birthday']['day'];
+
+					break;
+				case 'sms':
+					$result = array($this->request->data['Sms']['number'], $this->request->data['Sms']['content']);
+					break;
+				case 'text':
+					$result = $this->request->data['Misc']['content'];
+					break;
+				default:
+					$result = null;
+			}
+			$this->set(compact('result'));
 		}
-		$this->helpers[] = 'Tools.Qrcode';
+
+		$this->set(compact('types'));
+		$this->helpers[] = 'Tools.QrCode';
 	}
 
 	/**

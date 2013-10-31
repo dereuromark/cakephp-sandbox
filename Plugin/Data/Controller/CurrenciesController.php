@@ -1,5 +1,6 @@
 <?php
 App::uses('DataAppController', 'Data.Controller');
+
 class CurrenciesController extends DataAppController {
 
 	//public $helpers = array('Data.Numeric', 'Data.FormExt');
