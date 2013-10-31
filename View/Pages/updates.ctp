@@ -2,10 +2,13 @@
 
 <div class="messages">
 <div class="message warning">
-<b>Need Some Help!</b><br />
 Anybody who wants to help improve this site - or add new features? Feel free to contact me.
 <br /><br />
-Found some errors? spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller'=>'contact'))?>
+Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller'=>'contact'))?>.
+<br />
+Or directly <b>make a "Pull request" with the changes on Github</b>.
+<br /><br />
+You can also add new content and or features this way.
 </div>
 </div>
 

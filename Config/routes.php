@@ -14,6 +14,8 @@ Router::connect('/admin', array('admin' => 'admin', 'controller' => 'overview', 
 
 //Router::connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
 
+Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+
 CakePlugin::routes();
 
 /**
