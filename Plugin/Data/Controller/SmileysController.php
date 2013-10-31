@@ -1,6 +1,6 @@
 <?php
-App::uses('ToolsAppController', 'Tools.Controller');
-class SmileysController extends ToolsAppController {
+App::uses('DataAppController', 'Data.Controller');
+class SmileysController extends DataAppController {
 
 	public $paginate = array('order' => array('Smiley.is_base' => 'DESC', 'Smiley.sort' => 'ASC'), 'limit' => 100);
 

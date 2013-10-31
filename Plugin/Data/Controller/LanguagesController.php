@@ -1,7 +1,7 @@
 <?php
-App::uses('ToolsAppController', 'Tools.Controller');
+App::uses('DataAppController', 'Data.Controller');
 
-class LanguagesController extends ToolsAppController {
+class LanguagesController extends DataAppController {
 
 	public $paginate = array('order' => array('Language.name' => 'ASC'));
 

@@ -17,10 +17,10 @@
 
 				<li><?php echo $this->Html->link('CakePHP Core', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'cake_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
 
+				<li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'tools_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
+
 				<li><?php echo $this->Html->link('JS', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'js_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
 				<li><?php echo $this->Html->link('Jquery', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'jquery_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
-
-        <li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'tools_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
       </ul>
     </li>
     <li>

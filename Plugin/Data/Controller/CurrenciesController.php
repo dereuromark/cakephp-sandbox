@@ -1,8 +1,8 @@
 <?php
-App::uses('ToolsAppController', 'Tools.Controller');
-class CurrenciesController extends ToolsAppController {
+App::uses('DataAppController', 'Data.Controller');
+class CurrenciesController extends DataAppController {
 
-	public $helpers = array('Tools.Numeric', 'Tools.FormExt');
+	//public $helpers = array('Data.Numeric', 'Data.FormExt');
 
 	public $paginate = array('order' => array('Currency.base' => 'DESC', 'Currency.modified' => 'DESC'));
 
@@ -98,10 +98,6 @@ class CurrenciesController extends ToolsAppController {
 		}
 	}
 */
-
-/****************************************************************************************
- * ADMIN functions
- ****************************************************************************************/
 
 	//@deprecated
 
@@ -279,13 +275,5 @@ class CurrenciesController extends ToolsAppController {
 			$this->render('admin_toggle', 'ajax');
 		}
 	}
-
-/****************************************************************************************
- * protected/internal functions
- ****************************************************************************************/
-
-/****************************************************************************************
- * deprecated/test functions
- ****************************************************************************************/
 
 }

@@ -157,7 +157,7 @@ class CurrencyComponent extends Component {
 	}
 
 	public function _getBitcoin() {
-		App::uses('CurrencyBitcoinLib', 'Tools.Lib');
+		App::uses('CurrencyBitcoinLib', 'Data.Lib');
 		$Btc = new CurrencyBitcoinLib();
 		return $Btc->rate(array('currency' => $this->baseCurrency));
 	}

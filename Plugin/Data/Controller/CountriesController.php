@@ -1,7 +1,7 @@
 <?php
-App::uses('ToolsAppController', 'Tools.Controller');
+App::uses('DataAppController', 'Data.Controller');
 
-class CountriesController extends ToolsAppController {
+class CountriesController extends DataAppController {
 
 	public $paginate = array('order' => array('Country.sort' => 'DESC'));
 
@@ -11,7 +11,7 @@ class CountriesController extends ToolsAppController {
 		if ($specific = Configure::read('Country.image_path')) {
 			$this->imageFolder = WWW_ROOT . 'img' . DS . $specific . DS;
 		} else {
-			$this->imageFolder = APP . 'plugins' . DS . 'tools' . DS . 'webroot' . DS . 'img' . DS . 'country_flags' . DS;
+			$this->imageFolder = CakePlugin::path('Data') . DS . 'webroot' . DS . 'img' . DS . 'country_flags' . DS;
 		}
 
 		if (isset($this->Auth)) {
@@ -25,15 +25,16 @@ class CountriesController extends ToolsAppController {
 		}
 	}
 
+	/**
+	 * CountriesController::index()
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$this->Country->recursive = 0;
 		$countries = $this->paginate();
 		$this->set(compact('countries'));
 	}
-
-	/****************************************************************************************
-	* ADMIN functions
-	****************************************************************************************/
 
 	public function _icons() {
 		$useCache = true;
@@ -58,6 +59,12 @@ class CountriesController extends ToolsAppController {
 		return $iconNames;
 	}
 
+	/**
+	 * CountriesController::admin_update_coordinates()
+	 *
+	 * @param mixed $id
+	 * @return
+	 */
 	public function admin_update_coordinates($id = null) {
 		set_time_limit(120);
 		$res = $this->Country->updateCoordinates($id);
@@ -177,7 +184,7 @@ class CountriesController extends ToolsAppController {
 		$countries = $this->paginate();
 		$this->set(compact('countries'));
 
-		$this->helpers = array_merge($this->helpers, array('Tools.GoogleMapV3'));
+		$this->helpers = array_merge($this->helpers, array('Data.GoogleMapV3'));
 	}
 
 	public function admin_view($id = null) {

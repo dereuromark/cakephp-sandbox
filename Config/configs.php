@@ -123,3 +123,7 @@ $config['Search'] = array(
 	),
 	'Searchable' => array(),
 );
+
+$config['Country'] = array(
+	'imagePath' => 'Data./img/country_flags/',
+);
