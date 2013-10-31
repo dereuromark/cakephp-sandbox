@@ -45,7 +45,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function countries() {
-		$this->Country = ClassRegistry::init('Tools.Country');
+		$this->Country = ClassRegistry::init('Data.Country');
 		$countries = $this->Country->find('all', array('fields' => array()));
 
 		$this->set(compact('countries'));
@@ -56,7 +56,7 @@ class ExportController extends AppController {
 	 * maybe with countries directly?
 	 */
 	public function country_provinces() {
-		$this->CountryProvince = ClassRegistry::init('Tools.CountryProvince');
+		$this->CountryProvince = ClassRegistry::init('Data.CountryProvince');
 		$countryProvinces = $this->CountryProvince->find('all', array('fields' => array()));
 
 		$this->set(compact('countryProvinces'));
@@ -67,7 +67,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function currencies() {
-		$this->Currency = ClassRegistry::init('Tools.Currency');
+		$this->Currency = ClassRegistry::init('Data.Currency');
 		$currencies = $this->Currency->find('all', array('fields' => array()));
 
 		$this->set(compact('currencies'));
@@ -78,7 +78,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function languages() {
-		$this->Language = ClassRegistry::init('Tools.Language');
+		$this->Language = ClassRegistry::init('Data.Language');
 		$languages = $this->Language->find('all', array('fields' => array()));
 
 		$this->set(compact('languages'));
@@ -89,7 +89,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function continents() {
-		$this->Continent = ClassRegistry::init('Tools.Continent');
+		$this->Continent = ClassRegistry::init('Data.Continent');
 		$continents = $this->Continent->find('all', array('fields' => array()));
 
 		$this->set(compact('continents'));
@@ -100,7 +100,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function postal_codes() {
-		$this->PostalCode = ClassRegistry::init('Tools.PostalCode');
+		$this->PostalCode = ClassRegistry::init('Data.PostalCode');
 		$postalCodes = $this->PostalCode->find('all', array('fields' => array()));
 
 		$this->set(compact('postalCodes'));

@@ -13,19 +13,31 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->Auth->allow();
 	}
 
+	/**
+	 * ToolsExamplesController::index()
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
 	}
 
+	/**
+	 * ToolsExamplesController::tree()
+	 *
+	 * @return void
+	 */
 	public function tree() {
 		$this->Common->loadHelper(array('Tools.Tree'));
 	}
 
-	public function enum() {
-	}
-
+	/**
+	 * ToolsExamplesController::bitmasks()
+	 *
+	 * @return void
+	 */
 	public function bitmasks() {
 		$flags = array(
 			'1' => 'Apple',
@@ -46,19 +58,40 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->set(compact('records', 'flags'));
 	}
 
-	public function password() {
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function _password() {
 	}
 
+	/**
+	 * Display a Google map.
+	 *
+	 * @return void
+	 */
 	public function googlemap() {
+		$this->helpers[] = 'Tools.GoogleMapV3';
 	}
 
+	/**
+	 * ToolsExamplesController::qr()
+	 *
+	 * @return void
+	 */
 	public function qr() {
-
 		if ($this->request->is('post')) {
 
 		}
+		$this->helpers[] = 'Tools.Qrcode';
 	}
 
+	/**
+	 * ToolsExamplesController::geocode()
+	 *
+	 * @return void
+	 */
 	public function geocode() {
 		$this->Model = ClassRegistry::init('Sandbox.ExampleRecord');
 		$this->Model->Behaviors->load('Tools.Geocoder', array('before' => 'validate', 'address' => array('location')));
@@ -76,10 +109,20 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 	}
 
-	public function captcha() {
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function _captcha() {
 	}
 
-	public function diff() {
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function _diff() {
 	}
 
 	public function typography() {

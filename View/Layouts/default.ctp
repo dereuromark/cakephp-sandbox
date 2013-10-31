@@ -42,6 +42,10 @@ echo $this->fetch('script');
 <body>
  <div id="container">
 
+	<?php
+		$navigation = array(
+		);
+	?>
 
 	<div id="navigation" class="navbar navbar-default navbar-fixed-top">
       <div class="container">
@@ -58,7 +62,7 @@ echo $this->fetch('script');
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="sandbox">
-                <li><a tabindex="-1" href="./sandbox/cake_examples/">Core</a></li>
+                <li><?php echo $this->Html->link('CakePHP Core', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'cake_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
 
 								<li class="divider"></li>
 
@@ -67,11 +71,11 @@ echo $this->fetch('script');
 
                 <li class="divider"></li>
 
-                <li><a tabindex="-1" href="/sandbox/tools_examples">Tools</a></li>
+                <li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'sandbox', 'admin' => false, 'controller'=>'tools_examples', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
 
                 <li class="divider"></li>
 
-								<li><a tabindex="-1" href="/export">(ISO) Data - Download</a></li>
+								<li><?php echo $this->Html->link('(ISO) Data - Download', array('plugin' => false, 'admin' => false, 'controller'=>'export', 'action'=>'index'), array('tabindex' => '-1')); ?></li>
               </ul>
             </li>
 

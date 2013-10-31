@@ -11,17 +11,31 @@ class CakeExamplesController extends SandboxAppController {
 		$this->Auth->allow();
 	}
 
+	/**
+	 * CakeExamplesController::index()
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
 	}
 
+	/**
+	 * CakeExamplesController::query_strings()
+	 *
+	 * @return void
+	 */
 	public function query_strings() {
 	}
 
+	/**
+	 * CakeExamplesController::merge()
+	 *
+	 * @return void
+	 */
 	public function merge() {
-
 		$array = array(
 			'root' => array(
 				'deep1' => array('deeper1a' => 'value1a', 'deeper2b' => 'value2b'),
@@ -59,7 +73,12 @@ class CakeExamplesController extends SandboxAppController {
 		$this->set(compact('array', 'mergeArray', 'result'));
 	}
 
-	public function translate_behavior() {
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function _translate_behavior() {
 	}
 
 }
