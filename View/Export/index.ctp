@@ -3,6 +3,9 @@ This is the export interface where you can get the current version of the tables
 Please help to keep it up to date. You can submit changes via Email.<br />
 An interface to directly modify the data is planned, though.
 
+<div class="row">
+	<div class="col-md-4">
+
 <h3><?php echo __('Continents'); ?></h3>
 <div>Key information: lat/lng</div>
 <?php //echo $this->Html->link(__('View online'), array('plugin'=>'tools', 'controller'=>'continents', 'action'=>'index')); ?>
@@ -27,6 +30,12 @@ An interface to directly modify the data is planned, though.
 <li><?php echo $this->Html->link('XML', array('action'=>'country_provinces', 'ext'=>'xml')); ?></li>
 </ul>
 
+<h3>State / District / Cities / Postal Codes</h3>
+TODO
+	</div>
+
+	<div class="col-md-4">
+
 <h3><?php echo __('Currencies'); ?></h3>
 <div>Key information: iso codes, current value, base currency, symbol</div>
 <?php //echo $this->Html->link(__('View online'), array('plugin'=>'tools', 'controller'=>'currencies', 'action'=>'index')); ?>
@@ -41,6 +50,18 @@ An interface to directly modify the data is planned, though.
 <li><?php echo $this->Html->link('JSON', array('action'=>'languages', 'ext'=>'json')); ?></li>
 <li><?php echo $this->Html->link('XML', array('action'=>'languages', 'ext'=>'xml')); ?></li>
 </ul>
+
+<h3><?php echo __('Smileys'); ?></h3>
+TODO
+
+<h3><?php echo __('Mime Types'); ?></h3>
+TODO
+
+	</div>
+</div>
+
+
+
 
 <br />
 Note: If you want to force downloading, append `?download=1` after the extension.
