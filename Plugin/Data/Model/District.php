@@ -1,5 +1,6 @@
 <?php
 App::uses('DataAppModel', 'Data.Model');
+
 class District extends DataAppModel {
 
 	public $actsAs = array('Tools.Geocoder' => array(
@@ -33,6 +34,12 @@ class District extends DataAppModel {
 		)
 	);
 
+	/**
+	 * District::beforeValidate()
+	 *
+	 * @param array $options
+	 * @return boolean Success
+	 */
 	public function beforeValidate($options = array()) {
 		parent::beforeValidate($options);
 
@@ -46,6 +53,8 @@ class District extends DataAppModel {
 
 	/**
 	 * For start page
+	 *
+	 * @return array
 	 */
 	public function getDistrictsByCity($citySlug, $type = 'all') {
 		$options = array(
@@ -60,6 +69,13 @@ class District extends DataAppModel {
 		return $this->find($type, $options);
 	}
 
+	/**
+	 * District::getIdBySlug()
+	 *
+	 * @param string $slug
+	 * @param array $customOptions
+	 * @return array
+	 */
 	public function getIdBySlug($slug, $customOptions = array()) {
 		$options = array(
 			'conditions' => array(
