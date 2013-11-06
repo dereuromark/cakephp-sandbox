@@ -1,3 +1,6 @@
+<div class="index">
 <h2>Tools Plugin examples / showcase</h2>
 
-<?php echo $this->element('Sandbox.actions')
+<?php echo $this->element('Sandbox.actions'); ?>
+
+</div>
