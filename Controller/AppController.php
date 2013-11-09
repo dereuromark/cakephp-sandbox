@@ -60,6 +60,10 @@ class AppController extends MyController {
 			'controller' => 'account',
 			'action' => 'login');
 
+		if (in_array($this->viewPath, array('Pages'))) {
+			$this->Auth->allow();
+		}
+
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
 		if (!Auth::id()) {
 			return;
