@@ -1,4 +1,4 @@
-<h1>Downloads</h1>
+<h2>Downloads</h2>
 Some download links to make life easier
 
 <h2>CakePHP-Core: Nightly Build + Stable</h2>

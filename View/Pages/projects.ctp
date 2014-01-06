@@ -1,4 +1,4 @@
-<h1>Projects</h1>
+<h2>Projects</h2>
 My little projects - mainly for testing purposes.<br/>
 Some might even be useful. If you are interested, drop me a line.<br />
 Maybe you find some errors, program some enhancements or just tell me what could be added.

@@ -13,8 +13,10 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 0);
-	# Enhancement
-	if (!empty($_SERVER['HTTP_HOST']) && ($_SERVER['HTTP_HOST'] === 'localhost' || $_SERVER['HTTP_HOST'] === 'sandbox')) {
+	// Enhancement
+	if (!empty($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], array('localhost', 'sandbox.local'))) {
+		Configure::write('debug', 2);
+	} elseif (!env('REMOTE_ADDR') || env('REMOTE_ADDR') === '127.0.0.1') {
 		Configure::write('debug', 2);
 	}
 

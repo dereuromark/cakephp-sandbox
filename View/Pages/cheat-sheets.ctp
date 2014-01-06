@@ -1,4 +1,4 @@
-<h1>Cheat-Sheets</h1>
+<h2>Cheat-Sheets</h2>
 Updated 2011/01
 
 <?php

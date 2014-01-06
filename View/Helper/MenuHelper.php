@@ -8,7 +8,7 @@ class MenuHelper extends Helper {
 
 	protected $_out;
 
-	protected $_typeTags = array('dl'=>'dd', 'ul'=>'li', 'ol'=>'li');
+	protected $_typeTags = array('dl' => 'dd', 'ul' => 'li', 'ol' => 'li');
 
 	/**
 	 *
@@ -20,7 +20,7 @@ class MenuHelper extends Helper {
 	 * usage: <?php $this->Menus->menu(array('Home'=>'/home', 'Profile'=>'/profile'), 'li', 'current'); ?>
 	 */
 
-	public function menu($data=array(), $tag='li', $activeClass='current', $mainMenuActive=null) {
+	public function menu($data = array(), $tag = 'li', $activeClass = 'current', $mainMenuActive = null) {
 		// reset output
 		$this->_out = array();
 		// check data
@@ -34,11 +34,11 @@ class MenuHelper extends Helper {
 		foreach ($data as $link) {
 			//
 			if ($mainMenuActive) {
-				if (preg_match('/^'.preg_quote($link, '/').'/', $mainMenuActive)) {
+				if (preg_match('/^' . preg_quote($link, '/') . '/', $mainMenuActive)) {
 					$matchingLinks[strlen($link)] = $link;
 				}
 			} else {
-				if (preg_match('/^'.preg_quote($link, '/').'/', substr($this->request->here, strlen($this->request->base)))) {
+				if (preg_match('/^' . preg_quote($link, '/') . '/', substr($this->request->here, strlen($this->request->base)))) {
 					$matchingLinks[strlen($link)] = $link;
 				}
 			}
@@ -51,8 +51,8 @@ class MenuHelper extends Helper {
 		# VIEW html
 
 		foreach ($data as $title => $link) {
-			$content = $this->Html->link($title, $link, $link == $activeLink ? array('class'=>$activeClass) : false);
-			$this->_out[] = '<'.$tag.'>'.$content.'</'.$tag.'>';
+			$content = $this->Html->link($title, $link, $link == $activeLink ? array('class' => $activeClass) : false);
+			$this->_out[] = '<' . $tag . '>' . $content . '</' . $tag . '>';
 		}
 
 		return join("", $this->_out);
@@ -67,7 +67,7 @@ class MenuHelper extends Helper {
 	 * usage: <?php $this->Menu->twoTierMenu($data, array('type'=>'dl', 'class'=>'sub-menu', 'title'=>'dt', 'activeClass'=>'current')); ?>
 	 */
 
-	public function twoTierMenu($data=array(), $options=array('activeClass'=>'current', 'type'=>'ul', 'class'=>false, 'title'=>false)) {
+	public function twoTierMenu($data = array(), $options = array('activeClass' => 'current', 'type' => 'ul', 'class' => false, 'title' => false)) {
 		// reset output
 		$this->_out = array();
 		// check data
@@ -88,7 +88,7 @@ class MenuHelper extends Helper {
 			$matchingLinks = array();
 
 			foreach ($groupLinks as $linkTitle => $linkUrl) {
-				if (preg_match('/^'.preg_quote($linkUrl, '/').'/', substr($this->request->here, strlen($this->request->base)))) {
+				if (preg_match('/^' . preg_quote($linkUrl, '/') . '/', substr($this->request->here, strlen($this->request->base)))) {
 				// if (preg_match('/^'.preg_quote($link, '/').'/', $this->request->url)) {
 					$matchingLinks[strlen($linkUrl)] = $linkUrl;
 				} elseif ($linkUrl == substr($this->request->here, strlen($this->request->base))) {
@@ -112,22 +112,22 @@ class MenuHelper extends Helper {
 
 		// output menu
 		if ($options['class']) {
-			$this->_out[] = '<'.$options['type'].' class="'.$options['class'].'">';
+			$this->_out[] = '<' . $options['type'] . ' class="' . $options['class'] . '">';
 		} else {
-			$this->_out[] = '<'.$options['type'].'>';
+			$this->_out[] = '<' . $options['type'] . '>';
 		}
 
 		// build html
 		foreach ($data as $groupTitle => $links) {
 			if ($options['title']) {
-				$this->_out[] = "<".$options['title'].">".$groupTitle."</".$options['title'].">";
+				$this->_out[] = "<" . $options['title'] . ">" . $groupTitle . "</" . $options['title'] . ">";
 			}
 
 			foreach ($links as $linkTitle => $linkUrl) {
-				$this->_out[] = '<'.$this->_typeTags[$options['type']].'>'.$this->Html->link($linkTitle, $linkUrl, $linkUrl == $activeLinks[$groupTitle] ? array('class'=>$options['activeClass']) : false).'</'.$this->_typeTags[$options['type']].'>';
+				$this->_out[] = '<' . $this->_typeTags[$options['type']] . '>' . $this->Html->link($linkTitle, $linkUrl, $linkUrl == $activeLinks[$groupTitle] ? array('class' => $options['activeClass']) : false) . '</' . $this->_typeTags[$options['type']] . '>';
 			}
 		}
-		$this->_out[] = '</'.$options['type'].'>';
+		$this->_out[] = '</' . $options['type'] . '>';
 
 		// return
 		return join("\n", $this->_out);

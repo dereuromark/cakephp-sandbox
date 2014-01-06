@@ -9,6 +9,18 @@
 <div class="navbar-collapse collapse" id="navbar-main">
   <ul class="nav navbar-nav">
     <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Basics <span class="caret"></span></a>
+      <ul class="dropdown-menu" aria-labelledby="sandbox">
+        <li><?php echo $this->Html->link('Conventions', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'conventions', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+
+				<li class="divider"></li>
+
+				<li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'best-practices'), array('tabindex' => '-1')); ?></li>
+
+				<li><?php echo $this->Html->link('Do\'s and Don\'ts', array('plugin' => false, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'dos-and-donts'), array('tabindex' => '-1')); ?></li>
+      </ul>
+    </li>
+		<li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
       <ul class="dropdown-menu" aria-labelledby="sandbox">
         <li><?php echo $this->Html->link('Overview', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'sandbox', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
@@ -21,6 +33,10 @@
 
 				<li><?php echo $this->Html->link('JS', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'js_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li><?php echo $this->Html->link('Jquery', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'jquery_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+
+				<li class="divider"></li>
+
+				<li><?php echo $this->Html->link('Tryouts', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'tryouts', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
       </ul>
     </li>
     <li>

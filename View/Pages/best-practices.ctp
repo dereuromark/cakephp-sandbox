@@ -1,4 +1,4 @@
-<h2>Updates</h2>
+<h2>Best practices</h2>
 
 <div class="messages">
 <div class="message warning">
