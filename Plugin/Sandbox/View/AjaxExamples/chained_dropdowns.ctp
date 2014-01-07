@@ -1,0 +1,49 @@
+<div class="form">
+<h2>Chained Dropdowns using AJAX</h2>
+
+<?php echo $this->Form->create('User');?>
+	<fieldset>
+ 		<legend><?php echo __('Countries and Country Provinces');?></legend>
+	<?php
+		$url = $this->Html->url(array('plugin' => 'sandbox', 'controller' => 'ajax_examples', 'action' => 'country_provinces_ajax', 'ext' => 'json'));
+		$empty = count($countryProvinces) > 0 ? Configure::read('Select.defaultBefore') . __('pleaseSelect') . Configure::read('Select.default_after') : array('0' => '-- ' . __('noOptionAvailable') . ' --');
+
+		echo $this->Form->input('country_id', array('id' => 'countries', 'rel' => $url));
+		echo $this->Form->input('country_province_id', array('id' => 'provinces', 'empty' => $empty));
+	?>
+	</fieldset>
+
+	The province list is updated each time the country is switched. It also has a basic fallback for POST data (will auto-remember the previous selection).
+	<br /><br />
+
+<?php echo $this->Form->end(__('Submit'));?>
+</div>
+
+
+<script>
+$(function() {
+
+	$('#countries').change(function() {
+		var selectedValue = $(this).val();
+
+		var targeturl = $(this).attr('rel') + '?id=' + selectedValue;
+		$.ajax({
+			type: 'get',
+			url: targeturl,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			},
+			success: function(response) {
+				if (response.content) {
+					$('#provinces').html(response.content);
+				}
+			},
+			error: function(e) {
+				alert("An error occurred: " + e.responseText.message);
+				console.log(e);
+			}
+		});
+	});
+
+});
+</script>

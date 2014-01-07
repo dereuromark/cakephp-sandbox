@@ -5,24 +5,14 @@ $description = 'CakePHP Sandbox App';
 <html>
 <head>
 	<?php
-
 echo $this->Html->charset();
-
 ?>
 	<title>
-		<?php
-
-echo $description
-
-?>:
-		<?php
-
-echo $titleForLayout;
-
-?>
+		<?php echo $description; ?>:
+		<?php echo $this->fetch('title'); ?>
 	</title>
-	<?php
 
+<?php
 echo $this->Html->meta('icon');
 
 echo $this->Html->css('bootstrap');
@@ -36,7 +26,6 @@ echo $this->Html->script('bootstrap');
 echo $this->fetch('meta');
 echo $this->fetch('css');
 echo $this->fetch('script');
-
 ?>
 </head>
 <body>
