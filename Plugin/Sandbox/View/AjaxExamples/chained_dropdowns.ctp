@@ -14,6 +14,8 @@
 	</fieldset>
 
 	The province list is updated each time the country is switched. It also has a basic fallback for POST data (will auto-remember the previous selection).
+	<br />
+	Also note how "Please select" requires input, whereas "No option available" does not.
 	<br /><br />
 
 <?php echo $this->Form->end(__('Submit'));?>

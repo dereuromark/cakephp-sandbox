@@ -25,6 +25,16 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function chained_dropdowns() {
+		if ($this->request->is('post')) {
+			$this->User = ClassRegistry::init('User');
+			$this->User->validate['country_province_id']['numeric'] = array(
+				'rule' => 'numeric',
+				'message' => 'Please select something'
+			);
+			$this->User->set($this->request->data);
+			$result = $this->User->validates();
+		}
+
 		$this->CountryProvinceHelper->provideData(false, 'User');
 	}
 
