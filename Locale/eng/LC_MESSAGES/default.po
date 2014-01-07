@@ -43,22 +43,8 @@ msgstr "Invalid eMail"
 msgid "formContainsErrors"
 msgstr "The form below contains errors. Please correct them in order to proceed."
 
-# Eigene neue:
+msgid "pleaseSelect"
+msgstr "Please select"
 
-msgid "language_help"
-msgstr "<h3>Help</h3>sf<br>Thx, Mark"
-
-
-msgid "Blogä@$€ posts"
-msgstr ""
-
-msgid "lipsum"
-msgstr ""
-
-
-msgid "Vielen Dank"
-msgstr "Vielen Äther"
-
-
-msgid "Zuruck"
-msgstr "Zurück!"
+msgid "noOptionAvailable"
+msgstr "No option available"

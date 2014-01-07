@@ -11,9 +11,19 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->Auth->allow();
 	}
 
+	/**
+	 * List of all examples.
+	 *
+	 * @return void
+	 */
 	public function index() {
 	}
 
+	/**
+	 * Main AJAX example.
+	 *
+	 * @return void
+	 */
 	public function chained_dropdowns() {
 		$this->CountryProvinceHelper->provideData(false, 'User');
 	}

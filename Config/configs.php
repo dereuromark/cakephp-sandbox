@@ -127,3 +127,10 @@ $config['Search'] = array(
 $config['Country'] = array(
 	'imagePath' => 'Data./img/country_flags/',
 );
+
+$config['Select'] = array(
+	'defaultBefore' => ' -[ ',
+	'defaultAfter' => ' ]- ',
+	'naBefore' => ' -- ',
+	'naAfter' => ' -- '
+);
