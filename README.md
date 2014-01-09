@@ -2,7 +2,7 @@
 
 A sandbox app to showcase Cake features and tools as well as a sandbox for tryouts.
 
-* Check it out live: http://cakephp.dereuromark.de
+* Check it out live: http://sandbox.dereuromark.de
 * Author: Mark Scherer alias dereuromark
 
 
@@ -10,14 +10,11 @@ A sandbox app to showcase Cake features and tools as well as a sandbox for tryou
 
 * CakePHP 2.4/2.5
 * FriendsOfCake/Authenticate plugin
-* My Tools plugin
+* My Tools and Data plugins
 
 
 ### TODOS
 
 * OptIn/Registration
-
-#### Ideas
-
 * Timezone
 * More stuff
