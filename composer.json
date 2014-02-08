@@ -1,15 +1,35 @@
 {
-    "name": "dereuromark/sandbox",
-    "description": "A CakePHP Sandbox App",
-    "minimum-stability": "dev",
-    "authors": [
-        {
-            "name": "Mark Scherer",
-            "email": "euromark@web.de"
-        }
-    ],
-    "require": {
-        "dereuromark/cakephp-sandbox": "master",
-        "FriendsOfCake/Authenticate": "master"
-    }
+	"name" : "dereuromark/cakephp-sandbox",
+	"description" : "A CakePHP Sandbox App",
+	"authors" : [{
+			"name" : "Mark Scherer",
+			"email" : "euromark@web.de",
+			"homepage" : "http://www.dereuromark.de"
+		}
+	],
+	"keywords" : [
+		"CakePHP",
+		"Plugin",
+		"Sandbox"
+	],
+	"homepage" : "http://sandbox.dereuromark.de/",
+	"license" : [
+		"MIT"
+	],
+	"require" : {
+		"markstory/cakephp_geshi" : "master-dev",
+		"markstory/asset_compress" : "master-dev",
+		"dereuromark/data" : "master-dev",
+		"FriendsOfCake/Authenticate" : "master-dev",
+		"dereuromark/tools-cakephp" : "master-dev",
+		"dereuromark/setup-cakephp" : "master-dev",
+		"CakeDC/search" : "dev-develop"
+	},
+	"minimum-stability" : "dev",
+	"support" : {
+		"source" : "https://github.com/dereuromark/cakephp-sandbox"
+	},
+	"config" : {
+		"vendor-dir" : "Vendor"
+	}
 }
