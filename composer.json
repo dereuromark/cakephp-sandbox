@@ -1,10 +1,13 @@
 {
-	"name" : "dereuromark/cakephp-sandbox",
-	"description" : "A CakePHP Sandbox App",
-	"authors" : [{
-			"name" : "Mark Scherer",
-			"email" : "euromark@web.de",
-			"homepage" : "http://www.dereuromark.de"
+	"name": "dereuromark/cakephp-sandbox",
+	"description": "A CakePHP Sandbox App",
+	"minimum-stability": "dev",
+	"homepage" : "http://sandbox.dereuromark.de/",
+	"authors": [
+		{
+      "name": "Mark Scherer",
+      "email": "euromark@web.de",
+			"homepage": "http://www.dereuromark.de"
 		}
 	],
 	"keywords" : [
@@ -12,29 +15,20 @@
 		"Plugin",
 		"Sandbox"
 	],
-	"homepage" : "http://sandbox.dereuromark.de/",
-	"license" : [
-		"MIT"
-	],
-	"require" : {
-		"friendsofcake/authenticate" : "dev-master",
-		"markstory/geshi" : "master-dev",
+	"license": "MIT",
+	"require": {
+		"FriendsOfCake/Authenticate": "master-dev",
 		"markstory/asset_compress" : "master-dev",
-		"dereuromark/cakephp-data" : "master-dev",
 		"dereuromark/tools-cakephp" : "master-dev",
 		"dereuromark/setup-cakephp" : "master-dev",
-		"cakedc/search" : "dev-develop"
+		"dereuromark/cakephp-data" : "master-dev",
+		"markstory/geshi" : "master-dev",
+		"CakeDC/search" : "dev-develop"
 	},
-	"minimum-stability" : "dev",
-	"support" : {
-		"source" : "https://github.com/dereuromark/cakephp-sandbox"
-	},
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "https://github.com/MenschDankeGmbH/cakephp-wysiwyg"
-		}
-	],
 	"config" : {
 		"vendor-dir" : "Vendor"
+	},
+	"support": {
+		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	}
 }
