@@ -1,9 +1,9 @@
 <?php
 CakePlugin::loadAll();
+CakePlugin::load('Tools', array('bootstrap' => true));
 
 Configure::load('configs'); // to define own parameters
 Configure::load('configs_private'); // to define own non-version-controlled parameters
-App::import('Lib', 'Tools.Bootstrap/MyBootstrap');
 
 App::uses('Auth', 'Tools.Lib');
 
