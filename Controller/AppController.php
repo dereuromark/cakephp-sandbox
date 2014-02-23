@@ -8,7 +8,9 @@ class AppController extends MyController {
 
 	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth');
 
-	public $helpers = array('Session', 'Html', 'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format', 'Tools.Datetime', 'Tools.Numeric');
+	public $helpers = array('Session', 'Html' => array('className' => 'Tools.HtmlExt'),
+		'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format',
+		'Tools.Datetime', 'Tools.Numeric');
 
 	/**
 	 * AppController::constructClasses()
