@@ -144,7 +144,8 @@ class AccountController extends AppController {
 
 		$this->User->Behaviors->load('Tools.Passwordable', array());
 		if ($this->Common->isPosted()) {
-			if ($this->User->save($this->request->data)) {
+			$this->request->data['User']['id'] = $uid;
+			if ($this->User->save($this->request->data, true, array('id', 'pwd', 'pwd_repeat'))) {
 				$this->Common->flashMessage(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
 				$username = $this->User->field('username', array('id' => $uid));
