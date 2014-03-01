@@ -17,12 +17,12 @@
 	],
 	"license": "MIT",
 	"require": {
-		"FriendsOfCake/Authenticate": "master-dev",
-		"markstory/asset_compress" : "master-dev",
-		"dereuromark/tools-cakephp" : "master-dev",
-		"dereuromark/setup-cakephp" : "master-dev",
-		"dereuromark/cakephp-data" : "master-dev",
-		"markstory/geshi" : "master-dev",
+		"FriendsOfCake/Authenticate": "dev-master",
+		"markstory/asset_compress" : "dev-master",
+		"dereuromark/tools-cakephp" : "dev-master",
+		"dereuromark/setup-cakephp" : "dev-master",
+		"dereuromark/cakephp-data" : "dev-master",
+		"markstory/geshi" : "dev-master",
 		"CakeDC/search" : "dev-develop"
 	},
 	"config" : {
