@@ -35,3 +35,9 @@ The fading is not necessary and only shows more clearly the beginning and end of
 Note: Instead of the jQuery.live plugin one could also just use on() event and bind the pagination
 links to a click event.
 
+<h3>How does it work</h3>
+You only need
+<ul>
+	<li>A "pagination-container" div and a separate ctp file of the "common" content for both AJAX and normal view</li>
+	<li>A few lines of custom (jQuery) JS on top</li>
+</ul>
