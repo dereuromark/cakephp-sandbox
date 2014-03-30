@@ -20,11 +20,11 @@ Play around with demos and see some core and plugin tools in action:
 <h3>Shared Standard data</h3>
 ISO and other commonly used data:
 <ul>
-<li><?php echo $this->Html->link('Standards', array('plugin' => false, 'controller' => 'export', 'action' => 'index')); ?></li>
+<li><?php echo $this->Html->link('Standard Data', array('plugin' => false, 'controller' => 'export', 'action' => 'index')); ?></li>
 </ul>
 You may also contribute back by adding/editing data.
 
 <hr />
 
 <h3><?php echo __('Join in!') ?></h3>
-There are lots of things that can be done - even for beginners. <?php echo $this->Html->link('Details', array('controller' => 'pages', 'action' => 'display', 'updates')); 
+There are lots of things that can be done - even for beginners. <?php echo $this->Html->link('Details', array('controller' => 'pages', 'action' => 'display', 'updates'));

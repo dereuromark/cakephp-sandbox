@@ -5,6 +5,8 @@ class AjaxExamplesController extends SandboxAppController {
 
 	public $components = array('Data.CountryProvinceHelper');
 
+	public $helpers = array('Data.Data');
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 
@@ -17,6 +19,23 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+	}
+
+	/**
+	 * AJAX Pagination example.
+	 *
+	 * @return void
+	 */
+	public function pagination() {
+		$this->loadModel('Data.Country');
+
+		$this->Country->recursive = 0;
+		$countries = $this->paginate('Country');
+		$this->set(compact('countries'));
+
+		if ($this->request->is('ajax')) {
+			$this->render('pagination_container');
+		}
 	}
 
 	/**
