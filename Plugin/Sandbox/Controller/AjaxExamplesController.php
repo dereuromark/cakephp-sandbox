@@ -45,7 +45,12 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * Main AJAX example.
+	 * Main AJAX example for chained dropdowns.
+	 * If the first dropdown has been selected, it will trigger an
+	 * AJAX call to pre-fill the next dropdown with the appropriate options.
+	 *
+	 * It should also prefill the previously selected choices on POST.
+	 * That is what the component does here.
 	 *
 	 * @return void
 	 */
@@ -66,10 +71,12 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * My own convention was to suffix AJAX only actions with "_ajax".
 	 *
+	 * This method provides the AJAX data chained_dropdowns() needs.
+	 *
 	 * @return void
 	 */
 	public function country_provinces_ajax() {
-		//$this->request->onlyAllow('ajax');
+		$this->request->onlyAllow('ajax');
 		$id = $this->request->query('id');
 		if (!$id) {
 			throw new NotFoundException();
