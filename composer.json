@@ -23,7 +23,8 @@
 		"dereuromark/setup-cakephp" : "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
 		"markstory/geshi" : "dev-master",
-		"CakeDC/search" : "dev-develop"
+		"CakeDC/search" : "dev-develop",
+		"cakephp/datasources" : "dev-master"
 	},
 	"config" : {
 		"vendor-dir" : "Vendor"

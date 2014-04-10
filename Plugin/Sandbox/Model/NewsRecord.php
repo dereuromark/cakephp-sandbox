@@ -12,7 +12,7 @@ class NewsRecord extends SandboxAppModel {
 	public $records = array();
 
 	public function __construct($id = false, $table = false, $ds = null) {
-		ConnectionManager::create('array', array('datasource' => 'Tools.ArraySource'));
+		ConnectionManager::create('array', array('datasource' => 'Datasources.ArraySource'));
 
 		$this->records = array(
 			array(
