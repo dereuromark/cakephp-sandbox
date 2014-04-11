@@ -3,21 +3,15 @@ App::uses('SandboxAppController', 'Sandbox.Controller');
 
 class RssExamplesController extends SandboxAppController {
 
+	public $components = array(
+		'RequestHandler' => array(
+			'viewClassMap' => array(
+				'rss' => 'Tools.Rss')));
+
 	public function beforeFilter() {
 		parent::beforeFilter();
 
 		$this->Auth->allow();
-
-	}
-
-	public function beforeRender() {
-		// Remove the auto-added RssHelper again - for now
-		$keys = array_keys($this->helpers, 'Rss');
-		foreach ($keys as $key) {
-			unset($this->helpers[$key]);
-		}
-
-		parent::beforeRender();
 	}
 
 	/**
@@ -37,7 +31,8 @@ class RssExamplesController extends SandboxAppController {
 		if (empty($this->request->params['ext']) || $this->request->params['ext'] !== 'rss') {
 			throw new NotFoundException();
 		}
-		$this->viewClass = 'Tools.Rss';
+		// This is only needed without the viewClassMap setting for RequestHandler
+		//$this->viewClass = 'Tools.Rss';
 
 		$this->News = ClassRegistry::init('Sandbox.NewsRecord');
 		$news = $this->News->feed();
