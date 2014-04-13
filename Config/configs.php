@@ -17,16 +17,20 @@ $config['Asset'] = array(
 	'js' => 'buffer'
 );
 
+$config['Passwordable'] = array(
+	'authType' => 'Blowfish'
+);
+
 /** private information holder */
 $config['Mail'] = array(
 	'debug' => 0,	# 0=no,1=flashMessageAfterwards,2=fullDebug(noMailSent)
 	'log' => 1,
-	'use_smtp' => 1,
-	'smtp_port' => 25,
-	'smtp_timeout' => 20,
-	'smtp_host' => '',
-	'smtp_username' => '',
-	'smtp_password' => '',
+	'useSmtp' => 1,
+	'smtpPort' => 25,
+	'smtpTimeout' => 20,
+	'smtpHost' => '',
+	'smtpUsername' => '',
+	'smtpPassword' => '',
 );
 
 $config['Google'] = array(
@@ -41,16 +45,13 @@ $config['Google'] = array(
 
 $config['Config'] = array(
 	'language' => 'en',
-	'admin_name' => 'Site Owner',
-	'admin_email' => 'test@test.de',
-	'admin_emailname' => 'Site Owner',
-	'no_reply_email' => 'noreply@test.de',
-	'no_reply_emailname' => '',
+	'adminName' => 'Site Owner',
+	'adminEmail' => 'test@test.de',
+	'noReplyEmail' => 'noreply@test.de',
+	'noReplyEmailname' => '',
 	'keywords' => '',
 	'description' => '',
 );
-
-/** end: private information holder */
 
 $config['Paginator'] = array(
 	'paramType' => 'querystring'
@@ -92,7 +93,7 @@ $config['Currency'] = array(
 );
 
 $config['Localization'] = array(
-	'address_format' => 'en',
+	'addressFormat' => 'en',
 	'thousands' => ',',
 	'decimals' => '.',
 );

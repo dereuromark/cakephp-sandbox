@@ -34,6 +34,7 @@ class AppController extends MyController {
 		parent::beforeFilter();
 		$this->Auth->authenticate = array(
 			'Authenticate.MultiColumn' => array(
+				'passwordHasher' => Configure::read('Passwordable.authType'),
 				'fields' => array(
 					'username' => 'login',
 					'password' => 'password'
