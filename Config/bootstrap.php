@@ -1,6 +1,7 @@
 <?php
-CakePlugin::loadAll();
-CakePlugin::load('Tools', array('bootstrap' => true));
+require APP . 'Vendor/autoload.php';
+
+CakePlugin::loadAll(array('Tools' => array('bootstrap' => true)));
 
 Configure::load('configs'); // to define own parameters
 Configure::load('configs_private'); // to define own non-version-controlled parameters

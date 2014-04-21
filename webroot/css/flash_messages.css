@@ -1,42 +1,36 @@
-div.flashMessages {
+div.flash-messages {
 	margin-bottom: 16px;
 }
 
-div.flashMessages div {
+div.flash-messages div {
 	border-bottom-left-radius:4px 4px;
-  border-bottom-right-radius:4px 4px;
-  border-top-left-radius:4px 4px;
-  border-top-right-radius:4px 4px;
-}
-
-div.flashMessages div.error {
-	border-style: solid; border-width:1px; border-color:#B84D17; margin-right:2px; color:#000000; margin-bottom:8px;
+	border-bottom-right-radius:4px 4px;
+	border-top-left-radius:4px 4px;
+	border-top-right-radius:4px 4px;
 	padding: 10px;
 	padding-left:40px;
+}
+
+div.flash-messages div.error {
+	border-style: solid; border-width:1px; border-color:#B84D17; margin-right:2px; color:#000000; margin-bottom:8px;
 	background: url(/img/css/layout/icon_error.gif) left center no-repeat;
 	background-color:#F7C6A5;
 }
 
-div.flashMessages div.warning {
-	 border-style: solid; border-width:1px; border-color:#D0C130; margin-right:2px; color:#000000; margin-bottom:8px;
-	padding: 10px;
-	padding-left:40px;
+div.flash-messages div.warning {
+	border-style: solid; border-width:1px; border-color:#D0C130; margin-right:2px; color:#000000; margin-bottom:8px;
 	background: url(/img/css/layout/icon_warning.gif) left center no-repeat;
 	background-color:#F6F3A4;
 }
 
-div.flashMessages div.success {
+div.flash-messages div.success {
 	border-style: solid; border-width:1px; border-color:#009900; margin-right:2px; color:#000000; margin-bottom:8px;
-	padding: 10px;
-	padding-left:40px;
 	background: url(/img/css/layout/icon_success.gif) left center no-repeat;
 	background-color:#A5F7A8;
 }
 
-div.flashMessages div.info {
+div.flash-messages div.info {
 	border-style: solid; border-width:1px; border-color:#cccccc; margin-right:2px; color:#000000; margin-bottom:8px;
-	padding: 10px;
-	padding-left:40px;
 	background: url(/img/css/layout/icon_info.gif) left center no-repeat;
 	background-color:#ffffff;
 }

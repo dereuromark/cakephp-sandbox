@@ -24,7 +24,8 @@
 		"dereuromark/cakephp-data" : "dev-master",
 		"markstory/geshi" : "dev-master",
 		"CakeDC/search" : "dev-develop",
-		"cakephp/datasources" : "dev-master"
+		"cakephp/datasources" : "dev-master",
+		"nesbot/Carbon": "dev-master"
 	},
 	"config" : {
 		"vendor-dir" : "Vendor"
