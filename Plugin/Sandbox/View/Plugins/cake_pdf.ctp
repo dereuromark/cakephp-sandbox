@@ -19,7 +19,7 @@ For details on how to use it see <a href="http://www.dereuromark.de/2014/04/08/g
 </ul>
 
 <p>For me DomPdf was the one working out of the box on all systems. Even though slower than WkHtmlToPdf that usually suffices for background PDF tasks.
-<br />DomPdf also seems to support some more advanced CSS features like floating etc. But with the custom binary path you can make WkHtmlToPdf work both on linux and windows without problems.</p>
+<br />WkHtmlToPdf on the other hand seems to support some more advanced CSS features like floating etc. With the custom binary path you can make WkHtmlToPdf work both on linux and windows without problems.</p>
 
 <p>
 Note that it's best to use PNG images, as GIF don't seem to work with most PDF engines.
