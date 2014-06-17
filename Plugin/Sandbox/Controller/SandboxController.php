@@ -1,4 +1,5 @@
 <?php
+App::uses('SandboxAppController', 'Sandbox.Controller');
 
 class SandboxController extends SandboxAppController {
 
@@ -12,24 +13,15 @@ class SandboxController extends SandboxAppController {
 
 	/**
 	 * Overview
-	 * 2010-07-24 ms
+	 *
+	 * @return void
 	 */
 	public function index() {
 	}
 
 
 	public function admin_index() {
-		$methods = get_class_methods($this);
-		$parentMethods = get_class_methods(get_parent_class($this));
-		$parentMethods[] = 'index';
-		$parentMethods[] = 'admin_index';
-
-		$methods = array_diff($methods, $parentMethods);
-		foreach ($methods as $key => $val) {
-			if (strpos($val, '_') === 0) {
-				unset($methods[$key]);
-			}
-		}
+		$methods = $this->_getActions($this);
 
 		$this->set(compact('methods'));
 	}

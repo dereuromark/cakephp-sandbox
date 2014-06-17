@@ -15,8 +15,6 @@ class MenuHelper extends Helper {
 	 * @param array 	$data data for menu as Name=>value pairs
 	 * @param string 	$tag html tag to enclose link in
 	 * @param string 	$activeClass Css class to use for highlight
-	 * @access public
-
 	 * usage: <?php $this->Menus->menu(array('Home'=>'/home', 'Profile'=>'/profile'), 'li', 'current'); ?>
 	 */
 
@@ -62,8 +60,6 @@ class MenuHelper extends Helper {
 	 *
 	 * @param array 	$data data for menu as Name=>array(Name=>value) pairs
 	 * @param array 	$options options for menu as array to enable new features to be added
-	 * @access public
-
 	 * usage: <?php $this->Menu->twoTierMenu($data, array('type'=>'dl', 'class'=>'sub-menu', 'title'=>'dt', 'activeClass'=>'current')); ?>
 	 */
 

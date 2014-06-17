@@ -25,7 +25,8 @@
 		"markstory/geshi" : "dev-master",
 		"CakeDC/search" : "dev-develop",
 		"cakephp/datasources" : "dev-master",
-		"nesbot/Carbon": "dev-master"
+		"nesbot/Carbon": "dev-master",
+		"ceeram/cakepdf": "dev-master"
 	},
 	"config" : {
 		"vendor-dir" : "Vendor"

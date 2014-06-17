@@ -1,4 +1,5 @@
 <?php
+App::uses('SandboxAppController', 'Sandbox.Controller');
 
 class ConventionsController extends SandboxAppController {
 

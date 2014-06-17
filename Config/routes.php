@@ -1,5 +1,6 @@
 <?php
 Router::parseExtensions();
+Router::setExtensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
 
 Router::connect('/', array('controller' => 'overview', 'action' => 'index'));
 

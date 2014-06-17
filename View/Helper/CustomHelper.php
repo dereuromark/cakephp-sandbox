@@ -11,17 +11,15 @@ class CustomHelper extends AppHelper {
 	 * Other helpers used by FormHelper
 	 *
 	 * @var array
-	 * @access public
 	 */
 	public $helpers = array('Common', 'Html');
 
 	/**
 	 * Cups (places: gold, silver, bronze)
 	 *
-	 * @param integer $place: 0,1,2 or anything else for "no cup"
-	 * @param boolean $consolationPrize: TRUE or image url (defaults to FALSE)
-	 * @return string $cupImage
-	 * 2009-09-09 ms
+	 * @param int $place: 0,1,2 or anything else for "no cup"
+	 * @param bool $consolationPrize: TRUE or image url (defaults to FALSE)
+	 * @return string cupImage
 	 */
 	public function place($place = null, $consolationPrize = false) {
 		if ($place === 0) {
