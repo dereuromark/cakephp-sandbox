@@ -52,17 +52,22 @@ class PluginsController extends SandboxAppController {
 			'tc' => 'Tcpdf',
 			//'m' => 'Mpdf'
 		);
-		if (empty($engines[$engineSlug])) {
-			throw new NotFoundException('Invalid engine');
+		if (!empty($engineSlug)) {
+			if (empty($engines[$engineSlug])) {
+				throw new NotFoundException('Invalid engine');
+			}
+			$engine = $engines[$engineSlug];
+			$this->_setPdfConfig($engine);
+		} else {
+			$this->viewPath = 'plugins' . DS . 'pdf';
+			$this->layoutPath = 'pdf';
 		}
-		$engine = $engines[$engineSlug];
-		$this->_setPdfConfig($engine);
 
 		// Setting dynamic config settings
 		$this->pdfConfig = array(
-      'filename' => $engineSlug,
-      'download' => (bool)$this->request->query('download')
-    );
+			'filename' => $engineSlug,
+			'download' => (bool)$this->request->query('download')
+		);
 
 		// Passing some test data to the view
 		$someTestArray = array('Foo' => array('bar' => 'value'));
@@ -93,8 +98,8 @@ class PluginsController extends SandboxAppController {
 				'top' => 45
 			),
 			'orientation' => 'portrait',
-    );
-    $settings += (array)Configure::read('CakePdf');
+		);
+		$settings += (array)Configure::read('CakePdf');
 		Configure::write('CakePdf', $settings);
 
 		if ($engine === 'DomPdf') {

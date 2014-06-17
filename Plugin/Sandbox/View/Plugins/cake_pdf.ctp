@@ -11,6 +11,7 @@ $engines = array(
 For details on how to use it see <a href="http://www.dereuromark.de/2014/04/08/generating-pdfs-with-cakephp/">generating-pdfs-with-cakephp</a> or the <a href="https://github.com/ceeram/CakePdf">CakePDF plugin</a> directly.
 
 <ul>
+	<li><b><?php echo $this->Html->link('The plain HTML template', array('action' => 'pdf_test')); ?></b></li>
 <?php foreach ($engines as $engine => $action) { ?>
 	<li><b><?php echo $this->Html->link($engine, array('action' => 'pdf_test', $action, 'ext' => 'pdf')); ?></b> | <?php echo $this->Html->link('Custom Download Filename', array('action' => 'pdf_test', $action, 'foo-bar', 'ext' => 'pdf')); ?> | <?php echo $this->Html->link('Force Download', array('action' => 'pdf_test', $action, 'ext' => 'pdf', '?' => array('download' => 1))); ?></li>
 <?php } ?>
@@ -24,6 +25,6 @@ For details on how to use it see <a href="http://www.dereuromark.de/2014/04/08/g
 Note that it's best to use PNG images, as GIF don't seem to work with most PDF engines.
 </p>
 <p>
-Also note the <i>Custom Download Filename trick</i> when displaying PDFs that you want the user to manually download.
+Also note the <i>Custom Download Filename trick</i> from <a href="http://www.dereuromark.de/2011/11/21/serving-views-as-files-in-cake2">here</a> when displaying PDFs that you want the user to display the PDF first and manually download afterwards. This will ensure the filename is what it was intended to be.
 </p>
 
