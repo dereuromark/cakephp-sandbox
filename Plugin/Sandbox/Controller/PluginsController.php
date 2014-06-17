@@ -32,8 +32,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function cake_pdf($engine = null) {
-
+	public function cake_pdf() {
 	}
 
 	/**
@@ -45,7 +44,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function pdf_test($engine = null) {
+	public function pdf_test($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
 		$engines = array(
 			'dom' => 'DomPdf',
@@ -53,15 +52,15 @@ class PluginsController extends SandboxAppController {
 			'tc' => 'Tcpdf',
 			//'m' => 'Mpdf'
 		);
-		if (empty($engines[$engine])) {
+		if (empty($engines[$engineSlug])) {
 			throw new NotFoundException('Invalid engine');
 		}
-		$engineName = $engines[$engine];
-		$this->_setPdfConfig($engineName);
+		$engine = $engines[$engineSlug];
+		$this->_setPdfConfig($engine);
 
 		// Setting dynamic config settings
 		$this->pdfConfig = array(
-      'filename' => $engine,
+      'filename' => $engineSlug,
       'download' => (bool)$this->request->query('download')
     );
 
