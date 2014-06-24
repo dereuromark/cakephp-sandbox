@@ -18,3 +18,6 @@ _*
 /Vendor/composer/*
 /Vendor/nesbot/carbon
 /Vendor/autoload.php
+/Vendor/bin
+/Vendor/cakephp
+/Plugin/Upgrade
