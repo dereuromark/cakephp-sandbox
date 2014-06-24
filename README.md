@@ -8,7 +8,7 @@ A sandbox app to showcase Cake features and tools as well as a sandbox for tryou
 
 ### Dependencies
 
-* CakePHP 2.4/2.5
+* CakePHP 2.x via composer
 * Plugins via composer
 
 ### Installation

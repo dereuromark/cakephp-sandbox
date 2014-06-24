@@ -8,7 +8,7 @@ First, clone the repo into a root folder:
 
 	git clone https://github.com/dereuromark/cakephp-sandbox.git
 
-Then make sure, all Plugins are also available.
+Then make sure, core + all plugins are also available.
 This should be done using composer from your application dir:
 
 	composer install
@@ -16,8 +16,6 @@ This should be done using composer from your application dir:
 and from there on
 
 	composer update
-
-Also clone CakePHP 2.4/2.5 into this root folder as `/lib/Cake`.
 
 Consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
