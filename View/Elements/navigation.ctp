@@ -54,7 +54,7 @@
   	<li><?php echo $this->Html->link($this->Format->fontIcon('signout') . ' ' . __('Logout'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'), array('escape' => false)); ?></li>
 	<?php } else { ?>
 		<li><?php echo $this->Html->link($this->Format->fontIcon('signin') . ' ' . __('Login'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'login'), array('escape' => false)); ?></li>
-		<?php if (Configure::read('Config.allow_register')) {
+		<?php if (Configure::read('Config.allowRegister')) {
 echo '<li>' . $this->Html->link(__('Register'), array('plugin' => false, 'admin' => false, 'controller' => 'users', 'action' => 'register')) . '</li>';
 } ?>
 	<?php } ?>

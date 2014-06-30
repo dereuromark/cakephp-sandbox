@@ -54,8 +54,8 @@ class ContactController extends AppController {
 	 * @return void
 	 */
 	protected function _send($fromName, $fromEmail, $subject, $message) {
-		$adminEmail = Configure::read('Config.admin_email');
-		$adminEmailname = Configure::read('Config.admin_emailname');
+		$adminEmail = Configure::read('Config.adminEmail');
+		$adminEmailname = Configure::read('Config.adminName');
 
 		// Send email to Admin
 		Configure::write('Email.live', true);

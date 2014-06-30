@@ -31,7 +31,7 @@
 <li><?php echo $this->Html->link(__('Translations'), array('admin' => false, 'plugin' => 'translate', 'controller' => 'translate', 'action' => 'index'))?></li>
 
 
-<?php if (Auth::hasRole(ROLE_SUPERADMIN)) { ?>
+<?php if (Auth::hasRole('admin')) { ?>
 
 <li><?php echo $this->Html->link(__('Cronjobs'), array('plugin' => 'queue', 'controller' => 'cron_tasks', 'action' => 'index'))?></li>
 <li><?php echo $this->Html->link(__('Setup'), array('plugin' => 'setup', 'controller' => 'setup', 'action' => 'index'))?></li>

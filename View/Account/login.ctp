@@ -16,7 +16,7 @@
 <?php echo $this->Form->end(__('Log me in'));?>
 
 <h3>No account yet?</h3>
-<?php if (Configure::read('Config.allow_register')) { ?>
+<?php if (Configure::read('Config.allowRegister')) { ?>
 	<p><?php echo $this->Html->link('Create one here. For free :P', array('action' => 'register'))?></p>
 <?php } else { ?>
 	<p><?php echo __('Note'); ?>: <?php echo __('Currenctly the backend is for the admin only - but it will soon be available for public contributors')?></p>
