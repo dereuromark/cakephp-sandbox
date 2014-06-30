@@ -4,7 +4,7 @@
 <div>
 
 <h2><?php echo __('contactHeader');?></h2>
-Email: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.admin_email')); ?><br /><br />
+Email: <?php echo $this->Format->encodeEmailUrl(Configure::read('Config.adminEmail')); ?><br /><br />
 
 <?php echo $this->Form->create('ContactForm');?>
 	<fieldset>
