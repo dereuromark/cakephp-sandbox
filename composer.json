@@ -18,19 +18,27 @@
 	],
 	"license": "MIT",
 	"require": {
-		"cakephp/cakephp" : "dev-master",
+		"cakephp/cakephp" : "2.5.*",
 		"FriendsOfCake/Authenticate": "dev-master",
 		"markstory/asset_compress" : "dev-master",
 		"dereuromark/tools-cakephp" : "dev-master",
 		"dereuromark/setup-cakephp" : "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
 		"markstory/geshi" : "dev-master",
-		"CakeDC/search" : "dev-develop",
+		"CakeDC/search" : "dev-master",
 		"cakephp/datasources" : "dev-master",
 		"nesbot/Carbon": "dev-master",
-		"ceeram/cakepdf": "dev-master",
+		"ceeram/cakepdf": "dev-master"
+	},
+	"require-dev": {
 		"dereuromark/upgrade-cakephp": "dev-master"
 	},
+	"minimum-stability" : "dev",
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/dereuromark/search"
+		}
+	],
 	"config" : {
 		"vendor-dir" : "Vendor"
 	},
