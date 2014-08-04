@@ -5,8 +5,8 @@
 	"homepage" : "http://sandbox.dereuromark.de/",
 	"authors": [
 		{
-      "name": "Mark Scherer",
-      "email": "euromark@web.de",
+			"name": "Mark Scherer",
+			"email": "euromark@web.de",
 			"homepage": "http://www.dereuromark.de",
 			"role" : "Project Manager"
 		}
@@ -21,14 +21,17 @@
 		"cakephp/cakephp" : "2.5.*",
 		"FriendsOfCake/Authenticate": "dev-master",
 		"markstory/asset_compress" : "dev-master",
-		"dereuromark/tools-cakephp" : "dev-master",
-		"dereuromark/setup-cakephp" : "dev-master",
+		"dereuromark/cakephp-tools" : "dev-master",
+		"dereuromark/cakephp-setup" : "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
 		"markstory/geshi" : "dev-master",
 		"CakeDC/search" : "dev-master",
 		"cakephp/datasources" : "dev-master",
 		"nesbot/Carbon": "dev-master",
-		"ceeram/cakepdf": "dev-master"
+		"ceeram/cakepdf": "dev-master",
+		"dereuromark/media-embed": "dev-master",
+		"kzykhys/ciconia": "dev-master",
+		"geshi/geshi": ">=1.0"
 	},
 	"require-dev": {
 		"dereuromark/upgrade-cakephp": "dev-master"
@@ -37,6 +40,9 @@
 	"repositories" : [{
 			"type" : "vcs",
 			"url" : "https://github.com/dereuromark/search"
+		}, {
+			"type" : "vcs",
+			"url" : "https://github.com/dereuromark/ciconia"
 		}
 	],
 	"config" : {

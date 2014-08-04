@@ -21,3 +21,6 @@ _*
 /Vendor/bin
 /Vendor/cakephp
 /Plugin/Upgrade
+/Vendor/geshi
+/Vendor/kzykhys
+/Vendor/symfony
