@@ -34,7 +34,7 @@
 		"geshi/geshi": ">=1.0"
 	},
 	"require-dev": {
-		"dereuromark/upgrade-cakephp": "dev-master"
+		"dereuromark/cakephp-upgrade": "dev-master"
 	},
 	"minimum-stability" : "dev",
 	"repositories" : [{
