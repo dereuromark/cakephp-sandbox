@@ -30,7 +30,7 @@ An interface to directly modify the data is planned, though.
 <li><?php echo $this->Html->link('XML', array('action' => 'country_provinces', 'ext' => 'xml')); ?></li>
 </ul>
 
-<h3>State / District / Cities / Postal Codes</h3>
+<h3>States / Cities / Districts / Postal Codes</h3>
 TODO
 	</div>
 
