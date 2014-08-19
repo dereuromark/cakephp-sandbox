@@ -5,7 +5,8 @@ App::uses('SandboxAppModel', 'Sandbox.Model');
  *
  * @author David Yell <neon1024@gmail.com>
  */
-class Animal extends SandboxAppModel {}
+class Animal extends SandboxAppModel {
+}
 
 /**
 This model relies on having some data to search. Included here is the example

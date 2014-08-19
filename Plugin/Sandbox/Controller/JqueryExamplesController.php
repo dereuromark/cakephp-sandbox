@@ -27,28 +27,28 @@ class JqueryExamplesController extends SandboxAppController {
 		$this->set(compact('actions'));
 	}
 
-	/**
-	 * JqueryExamplesController::autopreview()
-	 *
-	 * @return void
-	 */
+/**
+ * JqueryExamplesController::autopreview()
+ *
+ * @return void
+ */
 	public function autopreview() {
 	}
 
-	/**
-	 * JqueryExamplesController::maxlength()
-	 *
-	 * @return void
-	 */
+/**
+ * JqueryExamplesController::maxlength()
+ *
+ * @return void
+ */
 	public function maxlength() {
 	}
 
-	/**
-	 * Example of an autocomplete field using jQueryUI autocomplete with JSON
-	 * and AJAX
-	 *
-	 * @return mixed void || JSON
-	 */
+/**
+ * Example of an autocomplete field using jQueryUI autocomplete with JSON
+ * and AJAX
+ *
+ * @return mixed void || JSON
+ */
 	public function autocomplete() {
 		if ($this->request->is('ajax')) {
 			$this->loadModel('Sandbox.Animal');
