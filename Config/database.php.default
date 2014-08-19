@@ -2,7 +2,7 @@
 
 App::uses('BaseConfig', 'Setup.Lib');
 
-class DATABASE_CONFIG extends BASE_CONFIG {
+class DATABASE_CONFIG extends BaseConfig {
 
 	var $default = array(
 		'name' => 'default',
