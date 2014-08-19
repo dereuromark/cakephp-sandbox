@@ -43,5 +43,25 @@ class JqueryExamplesController extends SandboxAppController {
 	public function maxlength() {
 	}
 
+	/**
+	 * Example of an autocomplete field using jQueryUI autocomplete with JSON
+	 * and AJAX
+	 *
+	 * @return mixed void || JSON
+	 */
+	public function autocomplete() {
+		if ($this->request->is('ajax')) {
+			$this->loadModel('Sandbox.Animal');
+			$items = $this->Animal->find('list', [
+				'conditions' => [
+					'name LIKE "%' . $this->request->query['term'] . '%"'
+				]
+			]);
+
+			$this->set('items', $items);
+			$this->set('_serialize', ['items']);
+		}
+	}
+
 }
 
