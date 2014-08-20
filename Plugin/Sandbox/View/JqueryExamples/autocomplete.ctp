@@ -41,7 +41,7 @@ echo $this->Form->end();
 					},
 					close: function () {
 						$(this).removeClass('ui-corner-top').addClass('ui-corner-all');
-					},
+					}
 				});
 			}
 		});

@@ -47,19 +47,19 @@ class JqueryExamplesController extends SandboxAppController {
  * Example of an autocomplete field using jQueryUI autocomplete with JSON
  * and AJAX
  *
- * @return mixed void || JSON
+ * @return mixed void
  */
 	public function autocomplete() {
 		if ($this->request->is('ajax')) {
 			$this->loadModel('Sandbox.Animal');
-			$items = $this->Animal->find('list', [
-				'conditions' => [
+			$items = $this->Animal->find('list', array(
+				'conditions' => array(
 					'name LIKE "%' . $this->request->query['term'] . '%"'
-				]
-			]);
+				)
+			));
 
 			$this->set('items', $items);
-			$this->set('_serialize', ['items']);
+			$this->set('_serialize', array('items'));
 		}
 	}
 
