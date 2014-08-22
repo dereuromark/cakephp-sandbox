@@ -50,17 +50,17 @@ class JqueryExamplesController extends SandboxAppController {
  * @return void
  */
 	public function autocomplete() {
-		$this->request->allowMethod('ajax');
+		if ($this->request->is(array('ajax'))) {
+			$this->loadModel('Sandbox.Animal');
+			$items = $this->Animal->find('list', array(
+					'conditions' => array(
+						'name LIKE' => '%' . $this->request->query('term') . '%'
+					)
+			));
 
-		$this->loadModel('Sandbox.Animal');
-		$items = $this->Animal->find('list', array(
-				'conditions' => array(
-					'name LIKE' => '%' . $this->request->query('term') . '%'
-				)
-		));
-
-		$this->set('items', $items);
-		$this->set('_serialize', array('items'));
+			$this->set('items', $items);
+			$this->set('_serialize', array('items'));
+		}
 	}
 
 }
