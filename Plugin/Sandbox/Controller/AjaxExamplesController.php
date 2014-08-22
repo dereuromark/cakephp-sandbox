@@ -22,6 +22,45 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * AjaxExamplesController::simple()
+	 *
+	 * @return void
+	 */
+	public function simple() {
+		if ($this->request->is(array('ajax'))) {
+			// Lets create current datetime
+			$now = date(FORMAT_DB_DATETIME);
+			$this->set('result', array('now' => $now));
+			$this->set('_serialize', array('result'));
+		}
+	}
+
+	/**
+	 * AjaxExamplesController::toggle()
+	 *
+	 * @return void
+	 */
+	public function toggle() {
+		if ($this->request->is(array('ajax'))) {
+			// Simulate a DB save via session
+			$status = (bool)$this->request->query('status');
+			$this->Session->write('AjaxToogle.status', $status);
+			$this->set(compact('status'));
+			$result = (string)$this->render();
+			$this->set(compact('result'));
+			// Since we already rendered the snippet, we need to reset the render state
+			$this->autoRender = true;
+			$this->set('_serialize', array('result'));
+			return;
+		}
+
+		// Read from DB (simulated)
+		$status = (bool)$this->Session->read('AjaxToogle.status');
+
+		$this->set(compact('status'));
+	}
+
+	/**
 	 * AJAX Pagination example.
 	 *
 	 * When the request is ajax, just render the container,
@@ -76,7 +115,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function country_provinces_ajax() {
-		$this->request->onlyAllow('ajax');
+		$this->request->allowMethod('ajax');
 		$id = $this->request->query('id');
 		if (!$id) {
 			throw new NotFoundException();
