@@ -45,9 +45,4 @@ A simple AJAX toggle. Press F5 after you changed it to verify that the "simulate
 	</div>
 </div>
 
-<h3>Result</h3>
-<div id="result">
-<i>n/a</i>
-</div>
-
 </div>
