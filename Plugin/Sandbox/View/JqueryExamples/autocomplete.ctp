@@ -32,7 +32,7 @@ echo $this->Form->end();
 					success: function (data) {
 						response(data.items);
 					},
-					minLength: 2,
+					minLength: 1,
 					select: function (event, ui) {
 						// If you want to do something when a user clicks an item
 					},
