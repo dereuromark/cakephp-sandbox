@@ -319,7 +319,7 @@ function do_bbcode_nobb($action, $attributes, $content, $params, $nodeObject) {
 }
 
 /*
-function do_bbcode_br($action, $attributes, $content, $params, $node_object) {
+function do_bbcode_br($action, $attributes, $content, $params, $nodeObject) {
  return '<br />';
 }
 */
