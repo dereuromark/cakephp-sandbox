@@ -273,12 +273,12 @@ function do_bbcode_url($action, $attributes, $content, $params, $nodeObject) {
  }
  return true;
  }
- if (substr($url, 0, 1) == '/') {
+ if (substr($url, 0, 1) === '/') {
 
  	$url = Router::url($url); //substr($this->Html->url('/'),0,-1).$url;
 		$target = '';
 	} else {
-		$url = (@substr($url) == 'http://' ? $url : 'http://' . $url);
+		$url = (@substr($url) === 'http://' ? $url : 'http://' . $url);
 		$target = ' target="_blank"';
 	}
  return '<a href="' . h($url) . '"' . $target . '>' . h($text) . '</a>';

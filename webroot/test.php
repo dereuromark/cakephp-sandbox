@@ -5,7 +5,6 @@
  * PHP 5
  *
  * @link          http://book.cakephp.org/2.0/en/development/testing.html
- * @package       app.webroot
  * @since         CakePHP(tm) v 1.2.0.4433
  */
 

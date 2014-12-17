@@ -10,7 +10,7 @@ echo $this->Paginator->counter(array(
 <tr>
 	<th><?php echo $this->Paginator->sort('username');?></th>
 	<th><?php echo $this->Paginator->sort('email');?></th>
-	<th><?php echo $this->Paginator->sort('created');?></th>
+	<th><?php echo $this->Paginator->sort('created', null, array('direction' => 'desc'));?></th>
 	<th><?php echo $this->Paginator->sort('logins');?></th>
 	
 	<th class="actions"><?php echo __('Actions');?></th>
