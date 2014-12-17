@@ -51,7 +51,7 @@ echo $description;
 
 			<?php
 echo $this->Session->flash();
-echo $this->Common->flash();
+echo $this->Flash->flash();
 ?>
 
 			<?php

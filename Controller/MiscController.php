@@ -32,9 +32,9 @@ class MiscController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->request->data['Form']['result'] = $this->_process($this->request->data['Form']['text'], $this->request->data['Form']['type']);
 			if (array_key_exists((string)$this->request->data['Form']['type'], $this->types)) {
-				$this->Common->flashMessage($this->types[(string)$this->request->data['Form']['type']] . ' done', 'success');
+				$this->Flash->message($this->types[(string)$this->request->data['Form']['type']] . ' done', 'success');
 			} else {
-				$this->Common->flashMessage($this->types[(string)$this->request->data['Form']['type']] . ' not successfull', 'warning');
+				$this->Flash->message($this->types[(string)$this->request->data['Form']['type']] . ' not successfull', 'warning');
 			}
 		}
 

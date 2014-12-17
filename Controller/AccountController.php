@@ -19,7 +19,7 @@ class AccountController extends AppController {
 	public function login() {
 		if ($this->Common->isPosted()) {
 			if ($this->Auth->login()) {
-				$this->Common->flashMessage(__('loggedInMessage'), 'success');
+				$this->Flash->message(__('loggedInMessage'), 'success');
 
 				return $this->redirect($this->Auth->redirectUrl());
 			}
@@ -44,7 +44,7 @@ class AccountController extends AppController {
 			$this->Comon->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
-		$this->Common->flashMessage(__('loggedOutMessage'), 'success');
+		$this->Flash->message(__('loggedOutMessage'), 'success');
 		return $this->redirect($whereTo);
 	}
 
@@ -66,13 +66,13 @@ class AccountController extends AppController {
 			$key = $this->Token->useKey('reset_pwd', $keyToCheck);
 
 			if (!empty($key) && $key['Token']['used'] == 1) {
-				$this->Common->flashMessage(__('alreadyChangedYourPassword'), 'warning');
+				$this->Flash->message(__('alreadyChangedYourPassword'), 'warning');
 			} elseif (!empty($key)) {
 				$uid = $key['Token']['user_id'];
 				$this->Session->write('Auth.Tmp.id', $uid);
 				return $this->redirect(array('action' => 'change_password'));
 			} else {
-				$this->Common->flashMessage(__('Invalid Key'), 'error');
+				$this->Flash->message(__('Invalid Key'), 'error');
 			}
 
 		} elseif (!empty($this->request->data['Form']['login'])) {
@@ -93,7 +93,7 @@ class AccountController extends AppController {
 					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
-						$this->Common->flashMessage($debugMessage, 'info');
+						$this->Flash->message($debugMessage, 'info');
 					}
 
 					// Send email
@@ -109,14 +109,14 @@ class AccountController extends AppController {
 						App::uses('FormatHelper', 'Tools.View/Helper');
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
-						$this->Common->flashMessage(__('An email with instructions has been send to \'%s\'.', $email), 'success');
-						$this->Common->flashMessage(__('In a third step you will then be able to change your password.'), 'success');
+						$this->Flash->message(__('An email with instructions has been send to \'%s\'.', $email), 'success');
+						$this->Flash->message(__('In a third step you will then be able to change your password.'), 'success');
 					} else {
-						$this->Common->flashMessage(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
+						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
 					}
 					return $this->redirect(array('action' => 'lost_password'));
 				}
-				$this->Common->flashMessage(__('No account has been found for \'%s\'', $this->request->data['Form']['login']), 'error');
+				$this->Flash->message(__('No account has been found for \'%s\'', $this->request->data['Form']['login']), 'error');
 			}
 		}
 
@@ -131,7 +131,7 @@ class AccountController extends AppController {
 	public function change_password() {
 		$uid = $this->Session->read('Auth.Tmp.id');
 		if (empty($uid)) {
-			$this->Common->flashMessage(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
+			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
 			return $this->redirect(array('action' => 'lost_password'));
 		}
 
@@ -146,12 +146,12 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
 			if ($this->User->save($this->request->data, true, array('id', 'pwd', 'pwd_repeat'))) {
-				$this->Common->flashMessage(__('new pw saved - you may now log in'), 'success');
+				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
 				$username = $this->User->field('username', array('id' => $uid));
 				return $this->redirect(array('action' => 'login', '?' => array('username' => $username)));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 
 			// Pwd should not be passed to the view again for security reasons.
 			unset($this->request->data['User']['pwd']);
@@ -169,13 +169,13 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->User->save($this->request->data)) {
-				$this->Common->flashMessage(__('Account created'), 'success');
+				$this->Flash->message(__('Account created'), 'success');
 				if (!$this->Auth->login($user['User'])) {
 					throw new CakeException('Cannot log user in');
 				}
 				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 
 			# pw should not be passed to the view again for security reasons
 			unset($this->request->data['User']['pwd']);
@@ -204,13 +204,13 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
 			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
-				$this->Common->flashMessage(__('Account modified'), 'success');
+				$this->Flash->message(__('Account modified'), 'success');
 				if (!$this->Auth->login($user['User'])) {
 					throw new CakeException('Cannot log user in');
 				}
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Common->flashMessage(__('formContainsErrors'), 'error');
+			$this->Flash->message(__('formContainsErrors'), 'error');
 
 			// Pwd should not be passed to the view again for security reasons.
 			unset($this->request->data['User']['pwd']);
@@ -232,7 +232,7 @@ class AccountController extends AppController {
 		if (!$this->User->delete($uid)) {
 			throw new InternalErrorException();
 		}
-		$this->Common->flashMessage('Account deleted', 'success');
+		$this->Flash->message('Account deleted', 'success');
 		return $this->redirect(array('action' => 'logout'));
 	}
 

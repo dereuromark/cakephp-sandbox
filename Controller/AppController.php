@@ -6,10 +6,10 @@ App::uses('MyController', 'Tools.Controller');
  */
 class AppController extends MyController {
 
-	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Auth');
+	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth');
 
 	public $helpers = array('Session', 'Html' => array('className' => 'Tools.HtmlExt'),
-		'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Format',
+		'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Flash', 'Tools.Format',
 		'Tools.Datetime', 'Tools.Numeric');
 
 	/**
@@ -73,7 +73,7 @@ class AppController extends MyController {
 		}
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
-				$this->Common->flashMessage('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
+				$this->Flash->message('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
 				return $this->redirect($this->Auth->loginRedirect);
 			}
 		}
@@ -98,7 +98,7 @@ class AppController extends MyController {
 		$this->disableCache();
 
 		if ($m = $this->Session->read('Message.auth')) {
-			$this->Common->flashMessage($m['message'], 'error');
+			$this->Flash->message($m['message'], 'error');
 			$this->Session->delete('Message.auth');
 		}
 
