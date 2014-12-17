@@ -70,7 +70,7 @@ class AccountController extends AppController {
 			} elseif (!empty($key)) {
 				$uid = $key['Token']['user_id'];
 				$this->Session->write('Auth.Tmp.id', $uid);
-				$this->redirect(array('action' => 'change_password'));
+				return $this->redirect(array('action' => 'change_password'));
 			} else {
 				$this->Common->flashMessage(__('Invalid Key'), 'error');
 			}
@@ -132,14 +132,14 @@ class AccountController extends AppController {
 		$uid = $this->Session->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Common->flashMessage(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
-			$this->redirect(array('action' => 'lost_password'));
+			return $this->redirect(array('action' => 'lost_password'));
 		}
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
 				$this->Session->delete('Auth.Tmp');
 			}
-			$this->redirect(array('action' => 'login'));
+			return $this->redirect(array('action' => 'login'));
 		}
 
 		$this->User->Behaviors->load('Tools.Passwordable', array());
@@ -149,7 +149,7 @@ class AccountController extends AppController {
 				$this->Common->flashMessage(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
 				$username = $this->User->field('username', array('id' => $uid));
-				$this->redirect(array('action' => 'login', '?' => array('username' => $username)));
+				return $this->redirect(array('action' => 'login', '?' => array('username' => $username)));
 			}
 			$this->Common->flashMessage(__('formContainsErrors'), 'error');
 
