@@ -129,9 +129,9 @@ class ToolsExamplesController extends SandboxAppController {
 
 			$data = $this->Model->data;
 			if (!empty($data['ExampleRecord']['geocoder_result'])) {
-				$this->Common->flashMessage('Location geocoded: ' . $data['ExampleRecord']['lat'] . '/' . $data['ExampleRecord']['lng'], 'success');
+				$this->Flash->message('Location geocoded: ' . $data['ExampleRecord']['lat'] . '/' . $data['ExampleRecord']['lng'], 'success');
 			} else {
-				$this->Common->flashMessage('Location could not be geocoded.', 'error');
+				$this->Flash->message('Location could not be geocoded.', 'error');
 			}
 			$this->set(compact('data'));
 		}

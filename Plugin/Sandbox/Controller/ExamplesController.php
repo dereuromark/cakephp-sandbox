@@ -44,11 +44,11 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	public function messages() {
-		$this->Common->flashMessage('An error occured somewhere - mabye', 'error');
-		$this->Common->flashMessage('This is a warning...', 'warning');
-		$this->Common->flashMessage('This is a second very interesting warning', 'warning');
-		$this->Common->flashMessage('Good Job :) You did it', 'success');
-		$this->Common->flashMessage('I am a info message for you', 'info');
+		$this->Flash->message('An error occured somewhere - mabye', 'error');
+		$this->Flash->message('This is a warning...', 'warning');
+		$this->Flash->message('This is a second very interesting warning', 'warning');
+		$this->Flash->message('Good Job :) You did it', 'success');
+		$this->Flash->message('I am a info message for you', 'info');
 	}
 
 }
