@@ -19,7 +19,6 @@ class SandboxController extends SandboxAppController {
 	public function index() {
 	}
 
-
 	public function admin_index() {
 		$methods = $this->_getActions($this);
 
