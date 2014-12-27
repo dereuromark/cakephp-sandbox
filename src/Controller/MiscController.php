@@ -1,5 +1,6 @@
 <?php
 namespace Controller;
+App::uses('TextLib', 'Tools.Utility');
 App::uses('AppController', 'Controller');
 class MiscController extends AppController {
 
@@ -104,7 +105,7 @@ class MiscController extends AppController {
 		if (empty($text)) {
 			return $res;
 		}
-		App::uses('TextLib', 'Tools.Utility');
+		
 		$textLib = new TextLib($text);
 
 		ini_set('memory_limit', '128M');

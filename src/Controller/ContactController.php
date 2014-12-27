@@ -1,5 +1,6 @@
 <?php
 namespace Controller;
+App::uses('EmailLib', 'Tools.Lib');
 App::uses('AppController', 'Controller');
 
 class ContactController extends AppController {
@@ -60,7 +61,7 @@ class ContactController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		App::uses('EmailLib', 'Tools.Lib');
+		
 		$this->Email = new EmailLib();
 		$this->Email->to($adminEmail, $adminEmailname);
 

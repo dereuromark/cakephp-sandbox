@@ -1,5 +1,7 @@
 <?php
 namespace Controller;
+App::uses('FormatHelper', 'Tools.View/Helper');
+App::uses('EmailLib', 'Tools.Lib');
 App::uses('AppController', 'Controller');
 
 class AccountController extends AppController {
@@ -99,7 +101,7 @@ class AccountController extends AppController {
 
 					// Send email
 					Configure::write('Email.live', true);
-					App::uses('EmailLib', 'Tools.Lib');
+					
 					$this->Email = new EmailLib();
 					$this->Email->to($res['User']['email'], $res['User']['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
@@ -107,7 +109,7 @@ class AccountController extends AppController {
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
 						// Confirmation output
-						App::uses('FormatHelper', 'Tools.View/Helper');
+						
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
 						$this->Flash->message(__('An email with instructions has been send to \'%s\'.', $email), 'success');
