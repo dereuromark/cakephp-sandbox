@@ -18,36 +18,40 @@
 	],
 	"license": "MIT",
 	"require": {
-		"cakephp/cakephp" : "2.5.*",
-		"FriendsOfCake/Authenticate": "dev-master",
-		"markstory/asset_compress" : "dev-master",
-		"dereuromark/cakephp-tools" : "dev-master",
-		"dereuromark/cakephp-setup" : "dev-master",
-		"dereuromark/cakephp-data" : "dev-master",
-		"markstory/geshi" : "dev-master",
-		"CakeDC/search" : "dev-master",
-		"cakephp/datasources" : "dev-master",
-		"nesbot/Carbon": "dev-master",
-		"ceeram/cakepdf": "dev-master",
-		"dereuromark/media-embed": "dev-master",
-		"kzykhys/ciconia": "dev-master",
-		"geshi/geshi": ">=1.0"
+		"cakephp/cakephp": "3.0.*-dev",
+		"mobiledetect/mobiledetectlib": "2.*",
+		"dereuromark/cakephp-tinyauth": "dev-master",
+		"dereuromark/cakephp-geo": "dev-master",
+		"dereuromark/cakephp-tools": "dev-cake3",
+		"dereuromark/cakephp-setup": "dev-cake3",
+		"friendsofcake/authenticate": "dev-cake3",
+		"CakeDC/search" : "3.0.*-dev",
+		"cakephp/migrations": "dev-master",
+
+		"markstory/asset_compress" : "3.0.*-dev",
+		"dereuromark/cakephp-data" : "dev-cake3",
+		"friendsofcake/cakepdf": "3.0.*-dev"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "3.7.*",
-		"dereuromark/cakephp-upgrade": "dev-master"
+		"phpunit/phpunit": "*",
+		"d11wtq/boris": "1.0.*",
+		"cakephp/debug_kit": "3.0.*-dev",
+		"cakephp/bake": "dev-master",
+		"dereuromark/cakephp-codesniffer": "3.0.*-dev",
+		"dereuromark/cakephp-upgrade": "dev-cake3"
 	},
 	"minimum-stability" : "dev",
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/search"
-		}, {
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/Ciconia"
+	"prefer-stable": false,
+	"autoload": {
+		"psr-4": {
+			"App\\": "src"
 		}
-	],
-	"config" : {
-		"vendor-dir" : "Vendor"
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"App\\Test\\": "tests",
+			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+		}
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
