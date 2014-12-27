@@ -39,7 +39,7 @@ foreach ($users as $user):
 		
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), array('action'=>'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action'=>'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action'=>'delete', $user['User']['id']), null, __('Are you sure you want to delete # {0}?', $user['User']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -53,6 +53,6 @@ foreach ($users as $user):
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('controller' => 'users', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Users')), array('controller' => 'users', 'action' => 'index')); ?> </li>
 	</ul>
 </div>

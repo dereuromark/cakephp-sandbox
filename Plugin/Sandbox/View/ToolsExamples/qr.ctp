@@ -53,7 +53,7 @@ Just write it via keyboard, scan it and send it.
 <div class="boardPosts form">
 <?php echo $this->Form->create('Misc');?>
 	<fieldset>
-		<legend><?php echo __('New %s', __('QR Code')); ?></legend>
+		<legend><?php echo __('New {0}', __('QR Code')); ?></legend>
 	<?php
 		echo $this->Form->input('type', array('options' => $types));
 		echo $this->Form->input('size', array('options' => array('Auto')));

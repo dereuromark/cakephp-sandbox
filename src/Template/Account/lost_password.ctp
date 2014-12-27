@@ -4,7 +4,7 @@
 <div class="users form">
 <?php echo $this->Form->create('User');?>
 	<fieldset id="step-1">
-		<legend><?php echo __('Step %s', 1);?></legend>
+		<legend><?php echo __('Step {0}', 1);?></legend>
 		<p>Please enter your email address</p>
 	<?php
 	echo $this->Form->input('Form.login', array('autocomplete' => 'off', 'label' => __('Email')));
@@ -17,7 +17,7 @@
 <br />
 <?php echo $this->Form->create('User');?>
 	<fieldset id="step-2">
- 		<legend><?php echo __('Step %s', 2);?></legend>
+ 		<legend><?php echo __('Step {0}', 2);?></legend>
  		<p>
 			Click on the link in the email or Copy-and-Paste your received token here:
  		</p>

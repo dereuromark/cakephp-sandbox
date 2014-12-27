@@ -23,7 +23,7 @@ Using the BitmaskedBehavior
 <div class="page form">
 <?php echo $this->Form->create('BitmaskRecord');?>
 	<fieldset>
- 		<legend><?php echo __('Add %s', __('Entry')); ?></legend>
+ 		<legend><?php echo __('Add {0}', __('Entry')); ?></legend>
 	<?php
 		echo $this->Form->input('name', array());
 		echo $this->Form->input('flag', array('type' => 'select', 'multiple' => 'checkbox'));

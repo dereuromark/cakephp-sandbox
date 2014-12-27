@@ -1,7 +1,7 @@
 <div class="users form">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
- 		<legend><?php echo __('Edit %s', __('User'));?></legend>
+ 		<legend><?php echo __('Edit {0}', __('User'));?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('username');
@@ -16,7 +16,7 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action' => 'index'));?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # {0}?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Users')), array('action' => 'index'));?></li>
 	</ul>
 </div>

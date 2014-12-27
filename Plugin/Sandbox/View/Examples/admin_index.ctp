@@ -42,7 +42,7 @@ foreach ($examples as $example):
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->image('icons/edit.gif', array('alt'=>__('Edit'),'title'=>__('Edit'))), array('action'=>'edit', $example['Example']['id']), array('escape' => false));?>
 
-			<?php echo $this->Html->link($this->Html->image('icons/delete.gif', array('alt'=>__('Delete'),'title'=>__('Delete'))), array('action'=>'delete', $example['Example']['id']), array('escape' => false),__('Are you sure you want to delete # %s?', $example['Example']['id']));?>
+			<?php echo $this->Html->link($this->Html->image('icons/delete.gif', array('alt'=>__('Delete'),'title'=>__('Delete'))), array('action'=>'delete', $example['Example']['id']), array('escape' => false),__('Are you sure you want to delete # {0}?', $example['Example']['id']));?>
 
 		</td>
 	</tr>
@@ -57,7 +57,7 @@ foreach ($examples as $example):
 <div class="actions">
 	<ul>
 		<li><?php echo $this->Html->link(__('New Example'), array('action'=>'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Codesnippets')), array('controller'=> 'codesnippets', 'action'=>'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Codesnippets')), array('controller'=> 'codesnippets', 'action'=>'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Codesnippet'), array('controller'=> 'codesnippets', 'action'=>'add')); ?> </li>
 	</ul>
 </div>

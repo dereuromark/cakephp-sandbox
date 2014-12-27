@@ -1,7 +1,7 @@
 <div class="users form">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
- 		<legend><?php echo __('Add %s', __('User'));?></legend>
+ 		<legend><?php echo __('Add {0}', __('User'));?></legend>
 	<?php
 		echo $this->Form->input('username');
 		echo $this->Form->input('email');
@@ -15,6 +15,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('List %s', __('Users')), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Users')), array('action' => 'index'));?></li>
 	</ul>
 </div>

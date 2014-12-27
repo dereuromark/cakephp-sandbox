@@ -6,7 +6,7 @@ $this->Activecalendar->includeFiles('ceramique');
 <div class="examples form">
 <?php echo $this->Form->create('Example');?>
 	<fieldset>
- 		<legend><?php echo __('Add %s', __('Example'));?></legend>
+ 		<legend><?php echo __('Add {0}', __('Example'));?></legend>
 	<?php
 		echo $this->Form->input('link');
 		echo $this->Form->input('title');
@@ -20,8 +20,8 @@ $this->Activecalendar->includeFiles('ceramique');
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('List %s', __('Examples')), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List %s', __('Codesnippets')), array('controller' => 'codesnippets', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Examples')), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('List {0}', __('Codesnippets')), array('controller' => 'codesnippets', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Codesnippet'), array('controller' => 'codesnippets', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

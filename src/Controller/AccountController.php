@@ -110,14 +110,14 @@ class AccountController extends AppController {
 						
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
-						$this->Flash->message(__('An email with instructions has been send to \'%s\'.', $email), 'success');
+						$this->Flash->message(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
 						$this->Flash->message(__('In a third step you will then be able to change your password.'), 'success');
 					} else {
 						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
 					}
 					return $this->redirect(array('action' => 'lost_password'));
 				}
-				$this->Flash->message(__('No account has been found for \'%s\'', $this->request->data['Form']['login']), 'error');
+				$this->Flash->message(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
 			}
 		}
 
