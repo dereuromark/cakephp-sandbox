@@ -1,6 +1,6 @@
 <?php
 namespace View\Helper;
-App::uses('Helper', 'View/Helper');
+use App\View\Helper\Helper;
 // http://cakeforge.org/snippet/detail.php?type=snippet&id=194
 
 class MenuHelper extends Helper {

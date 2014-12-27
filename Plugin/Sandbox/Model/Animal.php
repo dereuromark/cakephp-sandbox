@@ -1,5 +1,5 @@
 <?php
-App::uses('SandboxAppModel', 'Sandbox.Model');
+use Sandbox\Model\SandboxAppModel;
 /**
  * Description of Animal
  *

@@ -1,5 +1,5 @@
 <?php
-App::uses('SandboxAppController', 'Sandbox.Controller');
+use Sandbox\Controller\SandboxAppController;
 
 class TryoutsController extends SandboxAppController {
 

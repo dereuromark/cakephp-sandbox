@@ -1,6 +1,6 @@
 <?php
 namespace Controller;
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 
 class ExportController extends AppController {
 

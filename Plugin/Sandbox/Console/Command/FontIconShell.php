@@ -1,7 +1,7 @@
 <?php
 
-App::uses('AppShell', 'Console/Command');
-//App::uses('Folder', 'Utility');
+use App\Console\Command\AppShell;
+//use Cake\Utility\Folder;
 
 class FontIconShell extends AppShell {
 

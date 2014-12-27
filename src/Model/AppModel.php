@@ -1,6 +1,6 @@
 <?php
 namespace Model;
-App::uses('MyModel', 'Tools.Model');
+use Tools\Model\MyModel;
 
 class AppModel extends MyModel {
 

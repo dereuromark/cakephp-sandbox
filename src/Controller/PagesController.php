@@ -1,7 +1,7 @@
 <?php
 
 namespace Controller;
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 
 /**
  * Static content controller

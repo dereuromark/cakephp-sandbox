@@ -1,6 +1,6 @@
 <?php
 namespace Model;
-App::uses('AppModel', 'Model');
+use App\Model\AppModel;
 
 class User extends AppModel {
 

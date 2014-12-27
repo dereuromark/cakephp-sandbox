@@ -1,7 +1,6 @@
 <?php
 namespace Controller;
-App::uses('EmailLib', 'Tools.Lib');
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 
 class ContactController extends AppController {
 

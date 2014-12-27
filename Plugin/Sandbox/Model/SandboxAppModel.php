@@ -1,5 +1,5 @@
 <?php
-App::uses('AppModel', 'Model');
+use App\Model\AppModel;
 
 class SandboxAppModel extends AppModel {
 

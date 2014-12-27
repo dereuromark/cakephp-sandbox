@@ -1,6 +1,6 @@
 <?php
 namespace View\Helper;
-App::uses('AppHelper', 'View/Helper');
+use App\View\Helper\AppHelper;
 // http://www.cakephp-forum.com/posting.php
 
 /**

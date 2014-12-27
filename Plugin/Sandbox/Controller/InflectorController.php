@@ -1,5 +1,5 @@
 <?php
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 
 class InflectorController extends AppController {
 

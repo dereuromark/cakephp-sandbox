@@ -1,7 +1,6 @@
 <?php
 namespace Controller;
-App::uses('TextLib', 'Tools.Utility');
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 class MiscController extends AppController {
 
 	public $uses = array(); //'Tool'

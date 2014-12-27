@@ -1,8 +1,6 @@
 <?php
 namespace Controller;
-App::uses('FormatHelper', 'Tools.View/Helper');
-App::uses('EmailLib', 'Tools.Lib');
-App::uses('AppController', 'Controller');
+use App\Controller\AppController;
 
 class AccountController extends AppController {
 
