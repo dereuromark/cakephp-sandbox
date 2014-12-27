@@ -16,7 +16,7 @@ class UserTest extends TestCase {
 	 * @var array
 	 */
 	public $fixtures = array(
-		'app.user'
+		'app.users'
 	);
 
 	/**
