@@ -2,7 +2,8 @@
 /**
  * UserFixture
  *
- */
+ */namespace Test\Fixture;
+
 class UserFixture extends CakeTestFixture {
 
 	/**

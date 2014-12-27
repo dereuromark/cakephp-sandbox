@@ -1,4 +1,5 @@
 <?php
+namespace View\Helper;
 App::uses('Helper', 'View/Helper');
 // http://cakeforge.org/snippet/detail.php?type=snippet&id=194
 

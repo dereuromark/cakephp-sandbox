@@ -1,4 +1,5 @@
 <?php
+namespace View\Helper;
 App::uses('AppHelper', 'View/Helper');
 
 /**

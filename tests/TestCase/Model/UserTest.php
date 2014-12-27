@@ -1,4 +1,5 @@
 <?php
+namespace Test\TestCase\Model;
 App::uses('User', 'Model');
 
 /**

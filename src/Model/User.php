@@ -1,4 +1,5 @@
 <?php
+namespace Model;
 App::uses('AppModel', 'Model');
 
 class User extends AppModel {
