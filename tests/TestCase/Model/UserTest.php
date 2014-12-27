@@ -1,12 +1,14 @@
 <?php
 namespace Test\TestCase\Model;
+
 use App\Model\User;
+use Cake\TestSuite\TestCase;
 
 /**
  * User Test Case
  *
  */
-class UserTest extends CakeTestCase {
+class UserTest extends TestCase {
 
 	/**
 	 * Fixtures

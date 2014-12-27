@@ -4,7 +4,9 @@
  *
  */namespace Test\Fixture;
 
-class UserFixture extends CakeTestFixture {
+use Cake\TestSuite\Fixture\TestFixture;
+
+class UserFixture extends TestFixture {
 
 	/**
 	 * Fields
