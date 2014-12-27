@@ -14,20 +14,18 @@ class UserFixture extends TestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'primary'),
-		'active' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
-		'last_login' => array('type' => 'datetime', 'null' => false, 'default' => null),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'modified' => array('type' => 'datetime', 'null' => true, 'default' => null),
-		'logins' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
-		'username' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'password' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 255, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'email' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 80, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
-		'role_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2),
-		'indexes' => array(
-			'PRIMARY' => array('column' => 'id', 'unique' => 1)
-		),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM')
+		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'active' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
+		'last_login' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
+		'logins' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
+		'username' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 30, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'password' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 255, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'email' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 80, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
+		'role_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2],
+		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM']
 	);
 
 	/**
