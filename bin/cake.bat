@@ -10,8 +10,8 @@
 ::
 :: @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
 :: @link          http://cakephp.org CakePHP(tm) Project
-:: @package       app.Console
-:: @since         CakePHP(tm) v 2.0
+:: @since         2.0.0
+:: @license       http://www.opensource.org/licenses/mit-license.php MIT License
 ::
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -23,7 +23,7 @@
 SET app=%0
 SET lib=%~dp0
 
-php -q "%lib%cake.php" -working "%CD% " %*
+php "%lib%cake.php" %*
 
 echo.
 

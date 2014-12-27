@@ -1,26 +1,74 @@
 <?php
-Router::parseExtensions();
-Router::setExtensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
-
-Router::connect('/', array('controller' => 'overview', 'action' => 'index'));
-
-Router::connect('/register', array('controller' => 'account', 'action' => 'register'));
-Router::connect('/login', array('controller' => 'account', 'action' => 'login'));
-Router::connect('/logout', array('controller' => 'account', 'action' => 'logout'));
-
-//route to switch locale
-//Router::connect('/lang/*', array('controller' => 'p28n', 'action' => 'change'));
-
-Router::connect('/admin', array('admin' => 'admin', 'controller' => 'overview', 'action' => 'index'));
-
-//Router::connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
-
-Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
-
-CakePlugin::routes();
+use Cake\Core\Plugin;
+use Cake\Routing\Router;
 
 /**
- * Load the CakePHP default routes. Only remove this if you do not want to use
- * the built-in default routes.
+ * The default class to use for all routes
+ *
+ * The following route classes are supplied with CakePHP and are appropriate
+ * to set as the default:
+ *
+ * - Route
+ * - InflectedRoute
+ * - DashedRoute
+ *
+ * If no call is made to `Router::defaultRouteClass`, the class used is
+ * `Route` (`Cake\Routing\Route\Route`)
+ *
+ * Note that `Route` does not do any inflections on URLs which will result in
+ * inconsistently cased URLs when used with `:plugin`, `:controller` and
+ * `:action` markers.
+ *
  */
-require CAKE . 'Config' . DS . 'routes.php';
+Router::defaultRouteClass('InflectedRoute');
+
+Router::scope('/', function ($routes) {
+/**
+ * Here, we are connecting '/' (base path) to a controller called 'Pages',
+ * its action called 'display', and we pass a param to select the view file
+ * to use (in this case, src/Template/Pages/home.ctp)...
+ */
+	$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+
+	$routes->connect('/', array('controller' => 'overview', 'action' => 'index'));
+
+	$routes->connect('/register', array('controller' => 'account', 'action' => 'register'));
+	$routes->connect('/login', array('controller' => 'account', 'action' => 'login'));
+	$routes->connect('/logout', array('controller' => 'account', 'action' => 'logout'));
+
+	//route to switch locale
+	//$routes->connect('/lang/*', array('controller' => 'p28n', 'action' => 'change'));
+
+	$routes->connect('/admin', array('admin' => 'admin', 'controller' => 'overview', 'action' => 'index'));
+
+	//$routes->connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
+
+/**
+ * ...and connect the rest of 'Pages' controller's URLs.
+ */
+	$routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+
+/**
+ * Connect catchall routes for all controllers.
+ *
+ * Using the argument `InflectedRoute`, the `fallbacks` method is a shortcut for
+ *    `$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'InflectedRoute']);`
+ *    `$routes->connect('/:controller/:action/*', [], ['routeClass' => 'InflectedRoute']);`
+ *
+ * Any route class can be used with this method, such as:
+ * - DashedRoute
+ * - InflectedRoute
+ * - Route
+ * - Or your own route class
+ *
+ * You can remove these routes once you've connected the
+ * routes you want in your application.
+ */
+	$routes->fallbacks('InflectedRoute');
+});
+
+/**
+ * Load all plugin routes.  See the Plugin documentation on
+ * how to customize the loading of plugin routes.
+ */
+Plugin::routes();
