@@ -10,7 +10,7 @@ use App\View\Helper\AppHelper;
  */
 class BbcodeHelper extends AppHelper {
 
-	public $helpers = array ('Html', 'Tools.Geshi');
+	public $helpers = array ('Html', 'Tools.Geshi', 'Url');
 
 	public $languages = array();
 
@@ -276,7 +276,7 @@ function do_bbcode_url($action, $attributes, $content, $params, $nodeObject) {
  }
  if (substr($url, 0, 1) === '/') {
 
- 	$url = Router::url($url); //substr($this->Html->url('/'),0,-1).$url;
+ 	$url = Router::url($url); //substr($this->Url->build('/'),0,-1).$url;
 		$target = '';
 	} else {
 		$url = (@substr($url) === 'http://' ? $url : 'http://' . $url);
