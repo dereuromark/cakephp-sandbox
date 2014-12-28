@@ -1,5 +1,5 @@
 <?php
-namespace Controller;
+namespace App\Controller;
 use App\Controller\AppController;
 
 class AccountController extends AppController {
@@ -99,7 +99,7 @@ class AccountController extends AppController {
 
 					// Send email
 					Configure::write('Email.live', true);
-					
+
 					$this->Email = new EmailLib();
 					$this->Email->to($res['User']['email'], $res['User']['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
@@ -107,7 +107,7 @@ class AccountController extends AppController {
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
 						// Confirmation output
-						
+
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
 						$this->Flash->message(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
@@ -172,7 +172,7 @@ class AccountController extends AppController {
 			if ($user = $this->User->save($this->request->data)) {
 				$this->Flash->message(__('Account created'), 'success');
 				if (!$this->Auth->login($user['User'])) {
-					throw new CakeException('Cannot log user in');
+					throw new \Exception('Cannot log user in');
 				}
 				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
 			}
@@ -207,7 +207,7 @@ class AccountController extends AppController {
 			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
 				$this->Flash->message(__('Account modified'), 'success');
 				if (!$this->Auth->login($user['User'])) {
-					throw new CakeException('Cannot log user in');
+					throw new \Exception('Cannot log user in');
 				}
 				return $this->redirect(array('action' => 'index'));
 			}

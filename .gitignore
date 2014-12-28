@@ -7,3 +7,4 @@ _*
 /vendor/
 /plugins/
 /composer.lock
+/logs

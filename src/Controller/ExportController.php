@@ -1,5 +1,5 @@
 <?php
-namespace Controller;
+namespace App\Controller;
 use App\Controller\AppController;
 
 class ExportController extends AppController {

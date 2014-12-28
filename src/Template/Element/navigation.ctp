@@ -11,29 +11,29 @@
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Basics <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><?php echo $this->Html->link('Conventions', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'conventions', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Conventions', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
-				<li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'pages', 'action' => 'display', 'best-practices'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'), array('tabindex' => '-1')); ?></li>
 			</ul>
 		</li>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><?php echo $this->Html->link('Overview', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'sandbox', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Overview', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Sandbox', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
-				<li><?php echo $this->Html->link('CakePHP Core', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'cake_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
-				<li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'tools_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
-				<li><?php echo $this->Html->link('JS', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'js_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
-				<li><?php echo $this->Html->link('Jquery', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'jquery_examples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('CakePHP Core', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'ToolsExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('JS', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Jquery', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JqueryExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
-				<li><?php echo $this->Html->link('Tryouts', array('plugin' => 'sandbox', 'admin' => false, 'controller' => 'tryouts', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('Tryouts', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Tryouts', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 			</ul>
 		</li>
-		<li><?php echo $this->Html->link('(ISO) Data', array('plugin' => false, 'admin' => false, 'controller' => 'export', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+		<li><?php echo $this->Html->link('(ISO) Data', array('plugin' => false, 'admin' => false, 'controller' => 'Export', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 		<li><a href="http://www.dereuromark.de">Blog</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
-		<?php if (Auth::id()) { ?>
+		<?php if ($this->AuthUser->id()) { ?>
 	  	<li><?php echo $this->Html->link($this->Format->fontIcon('home') . ' ' . 'Account', array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'), array('escape' => false)); ?></li>
 	  	<li><?php echo $this->Html->link($this->Format->fontIcon('signout') . ' ' . __('Logout'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'), array('escape' => false)); ?></li>
 		<?php } else { ?>

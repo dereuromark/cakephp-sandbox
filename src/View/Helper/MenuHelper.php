@@ -1,5 +1,5 @@
 <?php
-namespace View\Helper;
+namespace App\View\Helper;
 use App\View\Helper\Helper;
 // http://cakeforge.org/snippet/detail.php?type=snippet&id=194
 

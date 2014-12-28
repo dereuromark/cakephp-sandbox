@@ -1,5 +1,5 @@
 <?php
-namespace View\Helper;
+namespace App\View\Helper;
 use App\View\Helper\AppHelper;
 // http://www.cakephp-forum.com/posting.php
 

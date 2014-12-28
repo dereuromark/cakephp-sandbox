@@ -1,5 +1,5 @@
 <?php
-namespace Controller;
+namespace App\Controller;
 use App\Controller\AppController;
 
 class ContactController extends AppController {
@@ -23,7 +23,7 @@ class ContactController extends AppController {
 			$message = $this->request->data['ContactForm']['message'];
 			$subject = $this->request->data['ContactForm']['subject'];
 
-			if (!Auth::id()) {
+			if (!$this->AuthUser->id()) {
 				$this->ContactForm->Behaviors->attach('Tools.Captcha', array('type' => 'passive'));
 			}
 			$this->ContactForm->set($this->request->data);

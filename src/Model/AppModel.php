@@ -1,5 +1,5 @@
 <?php
-namespace Model;
+namespace App\Model;
 use Tools\Model\MyModel;
 
 class AppModel extends MyModel {

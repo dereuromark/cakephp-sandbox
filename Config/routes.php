@@ -28,18 +28,16 @@ Router::scope('/', function ($routes) {
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, src/Template/Pages/home.ctp)...
  */
-	$routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+	$routes->connect('/', array('controller' => 'Overview', 'action' => 'index'));
 
-	$routes->connect('/', array('controller' => 'overview', 'action' => 'index'));
-
-	$routes->connect('/register', array('controller' => 'account', 'action' => 'register'));
-	$routes->connect('/login', array('controller' => 'account', 'action' => 'login'));
-	$routes->connect('/logout', array('controller' => 'account', 'action' => 'logout'));
+	$routes->connect('/register', array('controller' => 'Account', 'action' => 'register'));
+	$routes->connect('/login', array('controller' => 'Account', 'action' => 'login'));
+	$routes->connect('/logout', array('controller' => 'Account', 'action' => 'logout'));
 
 	//route to switch locale
 	//$routes->connect('/lang/*', array('controller' => 'p28n', 'action' => 'change'));
 
-	$routes->connect('/admin', array('admin' => 'admin', 'controller' => 'overview', 'action' => 'index'));
+	$routes->connect('/admin', array('admin' => 'admin', 'controller' => 'Overview', 'action' => 'index'));
 
 	//$routes->connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
 

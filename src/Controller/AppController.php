@@ -1,17 +1,19 @@
 <?php
-namespace Controller;
-use Tools\Controller\MyController;
+namespace App\Controller;
+use Tools\Controller\Controller;
+use Cake\Core\Configure;
+use Cake\Utility\Inflector;
 
 /**
  * Application Controller
  */
-class AppController extends MyController {
+class AppController extends Controller {
 
-	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth');
+	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth', 'Tools.AuthUser');
 
-	public $helpers = array('Session', 'Html' => array('className' => 'Tools.HtmlExt'),
-		'Form' => array('className' => 'Tools.FormExt'), 'Tools.Common', 'Tools.Flash', 'Tools.Format',
-		'Tools.Datetime', 'Tools.Numeric');
+	public $helpers = array('Session', 'Html',
+		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
+		'Tools.Time', 'Tools.Number', 'Tools.AuthUser');
 
 	/**
 	 * AppController::constructClasses()
@@ -69,7 +71,7 @@ class AppController extends MyController {
 		}
 
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
-		if (!Auth::id()) {
+		if (!$this->AuthUser->id()) {
 			return;
 		}
 		foreach ($allowed as $controller => $actions) {
