@@ -176,4 +176,6 @@ DispatcherFactory::add('Asset');
 DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
 
-Router::parseExtensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
+Router::extensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
+
+class_alias('Cake\Core\Configure', 'Configure');

@@ -9,7 +9,7 @@ use Cake\Utility\Inflector;
  */
 class AppController extends Controller {
 
-	public $components = array('Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth', 'Tools.AuthUser');
+	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth', 'Tools.AuthUser');
 
 	public $helpers = array('Session', 'Html',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',

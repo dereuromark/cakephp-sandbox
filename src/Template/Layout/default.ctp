@@ -69,17 +69,5 @@ echo $this->Html->link('Contact', array('plugin' => false, 'admin' => false, 'co
 		</div>
 	</div>
 
-<?php
-if (CakePlugin::loaded('Setup')) {
-	$debug = (int)Configure::read('debug');
-	if ($debug > 0 && Configure::read('Debug.helper')) {
-		$this->loadHelper('Setup.Debug', $debug);
-
-		echo $this->Debug->show();
-	}
-} else {
-	echo $this->element('sql_dump');
-}
-?>
 </body>
 </html>

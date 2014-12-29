@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
+use Cake\Network\Exception\MethodNotAllowedException;
 
 class ExportController extends AppController {
 
@@ -16,7 +18,7 @@ class ExportController extends AppController {
 
 		$this->Auth->allow();
 
-		if ($this->viewClass === 'View') {
+		if (!$this->viewClass || $this->viewClass === 'View') {
 			return;
 		}
 
