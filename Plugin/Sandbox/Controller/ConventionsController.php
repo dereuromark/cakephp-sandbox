@@ -5,7 +5,7 @@ class ConventionsController extends SandboxAppController {
 
 	public $uses = array('User');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

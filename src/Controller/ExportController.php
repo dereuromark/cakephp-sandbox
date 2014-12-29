@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\Network\Exception\MethodNotAllowedException;
+use Cake\Event\Event;
 
 class ExportController extends AppController {
 
@@ -13,7 +14,7 @@ class ExportController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();
@@ -33,7 +34,7 @@ class ExportController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function afterFilter() {
+	public function afterFilter(Event $event) {
 		parent::afterFilter();
 
 		if ($this->request->query('download')) {

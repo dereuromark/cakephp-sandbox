@@ -8,7 +8,7 @@ class CarbonController extends SandboxAppController {
 
 	public $uses = array();
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		$this->Auth->allow('index');
 	}
 

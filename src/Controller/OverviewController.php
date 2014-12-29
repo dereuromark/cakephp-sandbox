@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Start page controller.
@@ -9,7 +11,7 @@ class OverviewController extends AppController {
 
 	public $uses = array('User');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		$this->Auth->allow('index');
 	}
 

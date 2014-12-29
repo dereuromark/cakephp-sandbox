@@ -7,7 +7,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 	public $components = array('Security');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

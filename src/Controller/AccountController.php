@@ -6,7 +6,7 @@ class AccountController extends AppController {
 
 	public $uses = array('User');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow('login', 'logout', 'register', 'activate', 'lost_password', 'change_password');

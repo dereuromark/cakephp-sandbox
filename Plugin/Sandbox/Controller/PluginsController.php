@@ -11,7 +11,7 @@ class PluginsController extends SandboxAppController {
 		)
 	);
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

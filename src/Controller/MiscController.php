@@ -1,11 +1,14 @@
 <?php
 namespace App\Controller;
+
 use App\Controller\AppController;
+use Cake\Event\Event;
+
 class MiscController extends AppController {
 
 	public $uses = array(); //'Tool'
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 		$this->Auth->allow('index', 'convert_text', 'analyze_text');
 	}

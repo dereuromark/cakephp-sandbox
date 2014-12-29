@@ -1,12 +1,13 @@
 <?php
 namespace App\Controller;
 use App\Controller\AppController;
+use Cake\Event\Event;
 
 class ContactController extends AppController {
 
 	public $uses = array('Tools.ContactForm');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

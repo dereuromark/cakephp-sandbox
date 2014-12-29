@@ -5,7 +5,7 @@ class HelpersController extends SandboxAppController {
 
 	public $uses = array();
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

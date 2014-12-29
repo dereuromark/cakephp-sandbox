@@ -5,7 +5,7 @@ class CakeExamplesController extends SandboxAppController {
 
 	public $helpers = array('Geshi.Geshi');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 
 		$this->Auth->allow();

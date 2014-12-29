@@ -3,7 +3,7 @@ use Sandbox\Controller\SandboxAppController;
 
 class JsExamplesController extends SandboxAppController {
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
 
 		parent::beforeFilter();

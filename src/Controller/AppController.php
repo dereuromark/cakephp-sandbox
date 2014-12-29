@@ -3,6 +3,7 @@ namespace App\Controller;
 use Tools\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Utility\Inflector;
+use Cake\Event\Event;
 
 /**
  * Application Controller
@@ -33,7 +34,7 @@ class AppController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		parent::beforeFilter();
 		$this->Auth->authenticate = array(
 			'Authenticate.MultiColumn' => array(
@@ -87,7 +88,7 @@ class AppController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function beforeRender() {
+	public function beforeRender(Event $event) {
 		if ($this->request->is('ajax') && $this->layout === 'default') {
 			$this->layout = 'ajax';
 		}

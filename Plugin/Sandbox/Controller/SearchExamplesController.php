@@ -9,7 +9,7 @@ class SearchExamplesController extends SandboxAppController {
 
 	public $helpers = array('Data.Data');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
 
 		parent::beforeFilter();

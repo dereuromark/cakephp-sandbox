@@ -9,13 +9,13 @@ class JqueryExamplesController extends SandboxAppController {
 
 	public $jqueryPlugins = array('media');
 
-	public function beforeFilter() {
+	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
 
 		parent::beforeFilter();
 	}
 
-	public function beforeRender() {
+	public function beforeRender(Event $event) {
 		$this->set('jquery_plugins', $this->jqueryPlugins);
 
 		parent::beforeRender();
