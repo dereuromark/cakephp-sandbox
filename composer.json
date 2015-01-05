@@ -28,7 +28,7 @@
 		"CakeDC/search" : "dev-master",
 		"cakephp/datasources" : "dev-master",
 		"nesbot/Carbon": "dev-master",
-		"ceeram/cakepdf": "dev-master",
+		"friendsofcake/cakepdf": "dev-master",
 		"dereuromark/media-embed": "dev-master",
 		"kzykhys/ciconia": "dev-master",
 		"geshi/geshi": ">=1.0"
