@@ -62,9 +62,11 @@ echo $this->fetch('content');
 		</div>
 		<div id="footer">
 		<hr />
+
+		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?></div>
+
 			Author: dereuromark | <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
 echo $this->Html->link('Contact', array('plugin' => false, 'admin' => false, 'controller' => 'contact', 'action' => 'index'));
-
 ?>
 		</div>
 	</div>
