@@ -31,6 +31,7 @@
 		"markstory/asset_compress" : "3.0.*-dev",
 		"dereuromark/cakephp-data" : "dev-cake3",
 		"dereuromark/cakephp-feed" : "dev-master",
+		"dereuromark/cakephp-ajax" : "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev"
 	},
 	"require-dev": {
