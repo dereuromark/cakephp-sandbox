@@ -11,20 +11,19 @@ First, clone the repo into a root folder:
 Then make sure, core + all plugins are also available.
 This should be done using composer from your application dir:
 
-	composer install
+	composer update
 
 and from there on
 
-	composer update
+	composer install
 
 Consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
 
 Then:
 
-* Set up your database.php file in /Config.
-* Optionally create a configs_private.php file with your custom and local settings.
-Those will not be version-controlled. I use it for email setup, API keys and core salt value etc.
+* Set up your `app_local.php` file in `/config`.
+This will not be version-controlled. I use it for email setup, API keys and core salt value etc.
 * Make sure you are in debug mode (2).
 
 Everything should be up and running.

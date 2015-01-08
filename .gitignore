@@ -1,10 +1,12 @@
 /tmp
-/Config/database.php
-/Config/configs_private.php
-/Config/email.php
+/config/database.php
+/config/configs_private.php
+/config/email.php
 _*
 /files/wkhtmltopdf
 /vendor/
 /plugins/
 /composer.lock
 /logs
+/config/app_local.php
+/phpunit.phar
