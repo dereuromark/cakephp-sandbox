@@ -8,7 +8,7 @@ class ContactController extends AppController {
 	public $uses = array('Tools.ContactForm');
 
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 
 		$this->Auth->allow();
 	}
@@ -61,7 +61,7 @@ class ContactController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		
+
 		$this->Email = new EmailLib();
 		$this->Email->to($adminEmail, $adminEmailname);
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Network\Exception\MethodNotAllowedException;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
 
@@ -15,7 +16,7 @@ class ExportController extends AppController {
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 
 		$this->Auth->allow();
 
@@ -35,7 +36,7 @@ class ExportController extends AppController {
 	 * @return void
 	 */
 	public function afterFilter(Event $event) {
-		parent::afterFilter();
+		parent::afterFilter($event);
 
 		if ($this->request->query('download')) {
 			$this->response->download($this->request->params['action'] . '.' . $this->request->params['ext']);
@@ -49,8 +50,8 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function countries() {
-		$this->Country = ClassRegistry::init('Data.Country');
-		$countries = $this->Country->find('all', array('fields' => array()));
+		$this->Countries = TableRegistry::get('Data.Countries');
+		$countries = $this->Countries->find('all', array('fields' => array()));
 
 		$this->set(compact('countries'));
 		$this->set('_serialize', array('countries'));
@@ -60,7 +61,7 @@ class ExportController extends AppController {
 	 * maybe with countries directly?
 	 */
 	public function country_provinces() {
-		$this->CountryProvince = ClassRegistry::init('Data.CountryProvince');
+		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
 		$countryProvinces = $this->CountryProvince->find('all', array('fields' => array()));
 
 		$this->set(compact('countryProvinces'));
@@ -71,7 +72,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function currencies() {
-		$this->Currency = ClassRegistry::init('Data.Currency');
+		$this->Currency = TableRegistry::get('Data.Currencies');
 		$currencies = $this->Currency->find('all', array('fields' => array()));
 
 		$this->set(compact('currencies'));
@@ -82,7 +83,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function languages() {
-		$this->Language = ClassRegistry::init('Data.Language');
+		$this->Language = TableRegistry::get('Data.Languages');
 		$languages = $this->Language->find('all', array('fields' => array()));
 
 		$this->set(compact('languages'));
@@ -93,7 +94,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function continents() {
-		$this->Continent = ClassRegistry::init('Data.Continent');
+		$this->Continent = TableRegistry::get('Data.Continents');
 		$continents = $this->Continent->find('all', array('fields' => array()));
 
 		$this->set(compact('continents'));
@@ -104,7 +105,7 @@ class ExportController extends AppController {
 	 *
 	 */
 	public function postal_codes() {
-		$this->PostalCode = ClassRegistry::init('Data.PostalCode');
+		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
 		$postalCodes = $this->PostalCode->find('all', array('fields' => array()));
 
 		$this->set(compact('postalCodes'));
@@ -118,4 +119,3 @@ class ExportController extends AppController {
 	}
 
 }
-

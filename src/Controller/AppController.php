@@ -4,6 +4,7 @@ use Tools\Controller\Controller;
 use Cake\Core\Configure;
 use Cake\Utility\Inflector;
 use Cake\Event\Event;
+use Cake\Core\Plugin;
 
 /**
  * Application Controller
@@ -21,12 +22,8 @@ class AppController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function constructClasses() {
-		if (Plugin::loaded('DebugKit')) {
-			$this->components[] = 'DebugKit.Toolbar';
-		}
-
-		parent::constructClasses();
+	public function initialize() {
+		parent::initialize();
 	}
 
 	/**
@@ -35,7 +32,7 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 		$this->Auth->authenticate = array(
 			'Authenticate.MultiColumn' => array(
 				'passwordHasher' => Configure::read('Passwordable.authType'),
@@ -106,7 +103,7 @@ class AppController extends Controller {
 			$this->Session->delete('Message.auth');
 		}
 
-		parent::beforeRender();
+		parent::beforeRender($event);
 	}
 
 }

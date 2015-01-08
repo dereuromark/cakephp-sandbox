@@ -1,5 +1,5 @@
 <div class="navbar-header">
-	<a href="<?php echo $this->Html->url('/')?>" class="navbar-brand">CakePHP Sandbox App</a>
+	<a href="<?php echo $this->Url->build('/')?>" class="navbar-brand">CakePHP Sandbox App</a>
 	<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
 		<span class="icon-bar"></span>
 		<span class="icon-bar"></span>

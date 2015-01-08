@@ -69,6 +69,10 @@ Router::plugin('Sandbox', function ($routes) {
 	$routes->fallbacks('InflectedRoute');
 });
 
+Router::plugin('Data', function ($routes) {
+	$routes->fallbacks('InflectedRoute');
+});
+
 /**
  * Load all plugin routes.  See the Plugin documentation on
  * how to customize the loading of plugin routes.

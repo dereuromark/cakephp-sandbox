@@ -9,7 +9,7 @@ class MiscController extends AppController {
 	public $uses = array(); //'Tool'
 
 	public function beforeFilter(Event $event) {
-		parent::beforeFilter();
+		parent::beforeFilter($event);
 		$this->Auth->allow('index', 'convert_text', 'analyze_text');
 	}
 
@@ -107,7 +107,7 @@ class MiscController extends AppController {
 		if (empty($text)) {
 			return $res;
 		}
-		
+
 		$textLib = new TextLib($text);
 
 		ini_set('memory_limit', '128M');
