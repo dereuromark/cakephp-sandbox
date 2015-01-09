@@ -46,7 +46,8 @@
 	"prefer-stable": false,
 	"autoload": {
 		"psr-4": {
-			"App\\": "src"
+			"App\\": "src",
+			"Sandbox\\": "src/Plugin/Sandbox/src"
 		}
 	},
 	"autoload-dev": {
