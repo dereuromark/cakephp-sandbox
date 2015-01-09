@@ -33,7 +33,7 @@ The response will be an object and its content is accessable via `response.resul
 We just need our `result.now` date value.
 </p>
 
-<button id="button" data-rel="<?php echo $this->Html->url(array('ext' => 'json')); ?>">Click me</button>
+<button id="button" data-rel="<?php echo $this->Url->build(array('_ext' => 'json')); ?>">Click me</button>
 
 <h3>Result</h3>
 <div id="result">

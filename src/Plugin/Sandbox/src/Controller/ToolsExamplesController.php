@@ -2,12 +2,11 @@
 namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
+use Cake\Event\Event;
 
 class ToolsExamplesController extends SandboxAppController {
 
 	public $helpers = array('Geshi.Geshi');
-
-	public $components = array('Security');
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

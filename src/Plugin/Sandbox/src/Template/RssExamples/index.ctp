@@ -1,7 +1,7 @@
 <h2>Tools Plugin</h2>
 
 <ul>
-	<li><?php echo $this->Html->link('RSS Feed', array('action' => 'feed', 'ext' => 'rss')); ?></li>
+	<li><?php echo $this->Html->link('RSS Feed', array('action' => 'feed', '_ext' => 'rss')); ?></li>
 </ul>
 
 Validation passed using W3Cs validator:

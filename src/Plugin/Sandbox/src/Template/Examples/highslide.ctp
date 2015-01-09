@@ -36,9 +36,9 @@ echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 
 Results can be:<br /><br />
-<span class="pointer" style="background-color:yellow" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Html->url('/img/content/examples/cake.jpg')))?>">I am a &lt;span&gt;-tag | Click me</span>
+<span class="pointer" style="background-color:yellow" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Url->build('/img/content/examples/cake.jpg')))?>">I am a &lt;span&gt;-tag | Click me</span>
 <br /><br />
-<div class="pointer" style="background-color:orange;float:right;" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Html->url('/img/content/examples/cake.jpg')))?>">I am a &lt;div&gt;-tag floating at the right | Click me</div>
+<div class="pointer" style="background-color:orange;float:right;" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Url->build('/img/content/examples/cake.jpg')))?>">I am a &lt;div&gt;-tag floating at the right | Click me</div>
 <br class="clear"/>
 <br />
 and every other html element (because the href tag is now not necessary anymore).

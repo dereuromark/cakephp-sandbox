@@ -49,8 +49,11 @@ class AjaxExamplesController extends SandboxAppController {
 			$status = (bool)$this->request->query('status');
 			$this->Session->write('AjaxToggle.status', $status);
 			$this->set(compact('status'));
+
+			// Manually render
 			$result = (string)$this->render();
 			$this->set(compact('result'));
+
 			// Since we already rendered the snippet, we need to reset the render state
 			$this->autoRender = true;
 			$this->set('_serialize', array('result'));

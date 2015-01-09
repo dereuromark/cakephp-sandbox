@@ -169,7 +169,10 @@ Request::addDetector('tablet', function ($request) {
  *
  */
 
-Plugin::loadAll();
+Plugin::loadAll([
+		'Tools' => array('bootstrap' => true),
+		//'Ajax' => array('bootstrap' => true)
+]);
 
 /**
  * Connect middleware/dispatcher filters.
