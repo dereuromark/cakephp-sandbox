@@ -1,20 +1,23 @@
 <?php
-namespace Sandbox\Model;
+namespace Sandbox\Model\Table;
 
-use Sandbox\Model\SandboxAppModel;
+use Tools\Model\Table\Table;
 
-class CountryRecord extends SandboxAppModel {
+class CountryRecordsTable extends Table {
 
-	public $useTable = 'countries';
+	//public $alias = 'Country';
 
-	public $alias = 'Country';
-
-	public $order = array('CountryRecord.sort' => 'DESC', 'CountryRecord.name' => 'ASC');
-
-	public $actsAs = array('Search.Searchable');
+	public $order = array('sort' => 'DESC', 'name' => 'ASC');
 
 	public $filterArgs = array(
 		'search' => array('type' => 'like', 'field' => array('name', 'ori_name', 'iso2', 'iso3')),
 	);
+
+	public function initialize(array $config) {
+		$this->table('countries');
+
+		$this->addBehavior('Search.Searchable');
+		parent::initialize($config);
+	}
 
 }

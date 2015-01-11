@@ -5,7 +5,9 @@
 <h2>Fontawesome</h2>
 
 <h3>Setup</h3>
-echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
+<?php
+echo $this->Html->css(Cake\Routing\Router::url('/', true) . 'sandbox/font-awesome/css/font-awesome.css');
+?>
 
 <h3><i class="icon-ok"></i> Icons en masse!</h3>
 

@@ -3,6 +3,7 @@ namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class AjaxExamplesController extends SandboxAppController {
 
@@ -101,7 +102,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function chained_dropdowns() {
 		$this->Users = TableRegistry::get('Users');
-		$user = $this->Users->getEntity();
+		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
 

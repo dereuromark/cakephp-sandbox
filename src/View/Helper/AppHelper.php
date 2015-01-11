@@ -1,8 +1,9 @@
 <?php
 namespace App\View\Helper;
-use Tools\View\Helper\MyHelper;
 
-class AppHelper extends MyHelper {
+use Cake\View\Helper;
+
+class AppHelper extends Helper {
 
 	/**
 	 * Replaces the special chars back to the 'real' chars.

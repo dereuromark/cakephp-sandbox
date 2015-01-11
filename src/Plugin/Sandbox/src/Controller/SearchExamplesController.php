@@ -2,10 +2,11 @@
 namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
+use Cake\Event\Event;
 
 class SearchExamplesController extends SandboxAppController {
 
-	public $uses = array('Sandbox.CountryRecord');
+	public $modelClass = 'Sandbox.CountryRecords';
 
 	public $components = array('Search.Prg');
 
@@ -19,7 +20,7 @@ class SearchExamplesController extends SandboxAppController {
 
 	public function index() {
 		$this->Prg->commonProcess();
-		$this->paginate['conditions'] = $this->CountryRecord->parseCriteria($this->Prg->parsedParams());
+		$this->paginate['conditions'] = $this->CountryRecords->find('searchable', $this->Prg->parsedParams());
 
 		$countries = $this->paginate();
 		$this->set(compact('countries'));
