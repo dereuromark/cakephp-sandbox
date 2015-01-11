@@ -1,0 +1,50 @@
+/* als JAVASCRIPT highlighten zum Editieren! */
+msgid ""
+msgstr ""
+"Project-Id-Version: CakePHP 1.2.x.x\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2006-12-23 16:42+0100\n"
+"Last-Translator: Daniel Hofstetter <daniel-hofstetter@gmx.ch>\n"
+"Language-Team: CakePHP I18N & I10N Team <i10n.cakephp@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Language: English\n"
+
+# Contact
+
+msgid "contactSuccessfullySent %s"
+msgstr "Your message has been sent - I will respond to the provided address %s"
+
+msgid "contactChoseSubject"
+msgstr "Please chose a subject or define one yourself"
+
+msgid "contactHeader"
+msgstr "Contact me"
+
+msgid "contactLegend"
+msgstr "The fastest way to contact me"
+
+msgid "contactSubject"
+msgstr "Subject"
+
+msgid "contactMessage"
+msgstr "Your message"
+
+msgid "valErrMandatoryField"
+msgstr "Mandatory field"
+
+msgid "valErrInvalidEmail"
+msgstr "Invalid eMail"
+
+msgid "formContainsErrors"
+msgstr "The form below contains errors. Please correct them in order to proceed."
+
+msgid "pleaseSelect"
+msgstr "Please select"
+
+msgid "noOptionAvailable"
+msgstr "No option available"
