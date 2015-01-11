@@ -2,13 +2,17 @@
 namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
+use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
+use Cake\Utility\Text;
+use Cake\ORM\TableRegistry;
 
 class RssExamplesController extends SandboxAppController {
 
 	public $components = array(
 		'RequestHandler' => array(
 			'viewClassMap' => array(
-				'rss' => 'Tools.Rss')));
+				'rss' => 'Feed.Rss')));
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -30,28 +34,27 @@ class RssExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function feed() {
-		if (empty($this->request->params['ext']) || $this->request->params['ext'] !== 'rss') {
+		if (empty($this->request->params['_ext']) || $this->request->params['_ext'] !== 'rss') {
 			throw new NotFoundException();
 		}
 		// This is only needed without the viewClassMap setting for RequestHandler
 		//$this->viewClass = 'Tools.Rss';
 
-		$this->News = ClassRegistry::init('Sandbox.NewsRecord');
-		$news = $this->News->feed();
+		$news = $this->_feedData();
 
 		$items = array();
 		foreach ($news as $key => $val) {
-			$content = nl2br(h($val['News']['content']));
-			$link = array('action' => 'feedview', $val['News']['id']);
-			$guidLink = array('action' => 'view', $val['News']['id']);;
+			$content = nl2br(h($val['content']));
+			$link = array('action' => 'feedview', $val['id']);
+			$guidLink = array('action' => 'view', $val['id']);;
 
 			$items[] = array(
-				'title' => $val['News']['title'],
+				'title' => $val['title'],
 				'link' => $link,
 				'guid' => array('url' => $guidLink, '@isPermaLink' => 'true'),
-				'description' => Text::truncate($val['News']['content']),
+				'description' => Text::truncate($val['content']),
 				'dc:creator' => $val['User']['username'],
-				'pubDate' => $val['News']['published'],
+				'pubDate' => $val['published'],
 				'content:encoded' => $content
 			);
 		}
@@ -76,6 +79,31 @@ class RssExamplesController extends SandboxAppController {
 			'items' => $items
 		);
 		$this->set(array('channel' => $data, '_serialize' => 'channel'));
+	}
+
+	protected function _feedData() {
+		$records = array(
+			array(
+				'id' => 1,
+				'title' => 'Foo',
+				'content' => '<b>Bold text</b>',
+				'published' => '2012-01-04 11:12:13',
+			),
+			array(
+				'id' => 2,
+				'title' => 'Bar',
+				'content' => '<i>Italic text</b>',
+				'published' => '2012-07-04 11:12:13',
+			),
+		);
+		$res = array();
+		foreach ($records as $k => $v) {
+			$v['User'] = array(
+				'username' => 'Some user'
+			);
+			$res[] = $v;
+		}
+		return $res;
 	}
 
 	/**

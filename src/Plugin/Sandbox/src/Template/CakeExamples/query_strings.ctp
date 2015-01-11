@@ -42,24 +42,3 @@ Annoying - I know. That's why I opened a <a href="">ticket regarding this issue<
 
 <?php echo $this->Html->link('A simple array', array('action' => 'query_strings', '?' => array('key' => array('v1', 'v2')))); ?>
 </p>
-
-<h3>Named params also have the same issue</h3>
-
-<?php
-	if (!empty($this->request->params['named'])) {
-		echo '<b>Result:</b>';
-		echo pre(h($this->request->params['named']));
-	}
-?>
-
-<b>Let's test:</b>
-<p>
-<?php echo $this->Html->link('A simple string', array('action' => 'query_strings', 'key' => 'value')); ?>
-
-<?php echo $this->Html->link('A simple array', array('action' => 'query_strings', 'key' => array('v1', 'v2'))); ?>
-</p>
-
-Even worse: Faulty JS appending params to the end of the url can also cause this:
-<p>
-<?php echo $this->Html->link('A problematic array', Router::url(array('action' => 'query_strings', 'key' => 'v1')) . '/key:v2'); ?>
-</p>

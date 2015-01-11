@@ -1,12 +1,11 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Utility\Inflector;
 use App\Controller\AppController;
+use Cake\Utility\Inflector;
+use Cake\Event\Event;
 
 class InflectorController extends AppController {
-
-	public $uses = array();
 
 	protected $_reflectExceptions = array(
 		'_cache',
@@ -41,7 +40,7 @@ class InflectorController extends AppController {
 		}
 
 		if ($string) {
-			$r = new ReflectionClass('Inflector');
+			$r = new \ReflectionClass('Cake\Utility\Inflector');
 			foreach ($r->getMethods() as $method) {
 				if (in_array($method->name, $this->_reflectExceptions)) {
 					continue;

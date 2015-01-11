@@ -5,31 +5,33 @@ This should clarify the basics.
 </p>
 
 <p>
-Bottom line: Controllers are plural, their models singular.
+Bottom line: Controllers are plural, their tables plural as well, the entity is singular.
 </p>
 
 <h3>Class names and URLs</h3>
+It is recommended to use the "DashedRoute". If you upgrade a 2.x app, you can stick to the "InflectedRoute" however for BC and to stay
+URL-consistent for SEO reasons.
+
 <p>
-Then, with a basic request, we take a closer look at the naming scheme in URLs:
+With a basic example, we take a closer look at the naming scheme in URLs:
 </p>
 
-<pre>/example_pages/action_name/passed_param?limit=1</pre>
+<pre>/example-plugin/example-pages/action-name/passed-param?limit=1</pre>
 <p>
-This url includes already all basic elements: A controller "ExamplePages" with an action "action_name"
-as well as a passed param "passed_param" and query string "limit" with a value of "1".
+This URL includes already all basic elements: A controller "ExamplePages" in the "ExamplePlugin" with an action "action_name"
+as well as a passed param "passed-param" and query string "limit" with a value of "1".
 <br />
-If the controller has a model, its name would be "ExamplePage".
+If the controller had a model, its table class would be "ExamplePages" and the entity class "ExamplePage". The table would be "example_pages".
 </p>
 
 <p>
-If you also use prefix routing (usually with the prefix "admin") as well as a plugin "Data", this could be the
-url to the the same controller in that plugin:
+If you also use prefix routing (usually with the prefix "admin") as well, this could be the
+URL to the the same controller in that plugin:
 </p>
-<pre>/admin/data/example_pages/action_name/passed_param</pre>
+<pre>/admin/example-plugin/example-pages/action-name/passed-param</pre>
 <p>
 What you need to understand is, that the class names as well as the namespaces like plugins are CamelCase, but
-the url representation is always lowercase_underscored (snake_case).
-This is what many confuse and what will hopefully not be supported in 3.x anymore. The ambiguity is not good for SEO purposes for example.
+the URL representation is always lowercase-underscored (dashed) due to the "DashedRoute" class.
 </p>
 
 <h3>Hands on</h3>
