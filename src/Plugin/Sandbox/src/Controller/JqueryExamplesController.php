@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
+use Cake\Event\Event;
 
 class JqueryExamplesController extends SandboxAppController {
 
@@ -53,8 +54,8 @@ class JqueryExamplesController extends SandboxAppController {
  */
 	public function autocomplete() {
 		if ($this->request->is(array('ajax'))) {
-			$this->loadModel('Sandbox.Animal');
-			$items = $this->Animal->find('list', array(
+			$this->loadModel('Sandbox.Animals');
+			$items = $this->Animals->find('list', array(
 					'conditions' => array(
 						'name LIKE' => '%' . $this->request->query('term') . '%'
 					)

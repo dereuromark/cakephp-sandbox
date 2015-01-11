@@ -5,8 +5,8 @@
 
 // wait for the DOM to be loaded
 $(document).ready(function() {
-	$('#JqueryExampleComment').maxlength();
-	$('#JqueryExampleText').maxlength();
+	$('#jquery-example-comment').maxlength();
+	$('#jquery-example-text').maxlength();
 });
 
 </script>
@@ -14,8 +14,8 @@ $(document).ready(function() {
 <h1><?php echo __('Max length');?></h1>
 
 <?php
-echo $this->Form->create('JqueryExample');
-echo $this->Form->input('comment', array('type' => 'textarea', 'maxlength' => '20'));
-echo $this->Form->input('text', array('maxlength' => '20'));
+echo $this->Form->create('JqueryExample', ['id' => 'jquery-example-form']);
+echo $this->Form->input('comment', array('type' => 'textarea', 'maxlength' => '20', 'id' => 'jquery-example-comment'));
+echo $this->Form->input('text', array('maxlength' => '20', 'id' => 'jquery-example-text'));
 
 echo $this->Form->end('Submit Test');

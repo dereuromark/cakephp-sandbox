@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 use Sandbox\Controller\SandboxAppController;
+use Cake\Event\Event;
 
 class TryoutsController extends SandboxAppController {
 

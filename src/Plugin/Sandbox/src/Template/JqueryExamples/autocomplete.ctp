@@ -1,14 +1,15 @@
 <h1><?php echo __('Auto-complete');?></h1>
 
 <?php
-echo $this->Form->create('JqueryExample', [
+echo $this->Form->create(false, [
+	'id' => 'jquery-example-form',
 	'url' => [
 		'plugin' => 'sandbox',
 		'controller' => 'jquery_examples',
 		'action' => 'autocomplete'
 	]
 ]);
-echo $this->Form->input('term', ['label' => __('Search for an animal')]);
+echo $this->Form->input('term', ['id' => 'jquery-example-input', 'label' => __('Search for an animal')]);
 echo $this->Form->submit(__('Search'));
 echo $this->Form->end();
 ?>
@@ -21,13 +22,13 @@ echo $this->Form->end();
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 	<script>
 	$(function () {
-		$('#JqueryExampleTerm').autocomplete({
+		$('#jquery-example-input').autocomplete({
 			source: function (request, response) {
 				$.ajax({
-					url: $('#JqueryExampleAutocompleteForm').attr('action') + '.json',
+					url: $('#jquery-example-form').attr('action') + '.json',
 					dataType: 'json',
 					data: {
-						'term': $('#JqueryExampleTerm').val()
+						'term': $('#jquery-example-input').val()
 					},
 					success: function (data) {
 						response(data.items);

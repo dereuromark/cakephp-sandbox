@@ -29,6 +29,6 @@ German (setlocale(LC_TIME, 'German');)
 <h3>Diffs</h3>
 <?php
 	echo h('Carbon::now()->subDays(24)->diffForHumans();');
-	echo BR;
+	echo '<br/>';
 	echo Carbon::now()->subDays(24)->diffForHumans();
 ?>
