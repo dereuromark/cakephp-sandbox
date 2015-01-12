@@ -1,18 +1,23 @@
 <h2>Best practices</h2>
+DOs and DONT's of common CakePHP problems.
 
-<div class="messages">
-<div class="message warning">
-Anybody who wants to help improve this site - or add new features? Feel free to contact me.
+<h3>URLs</h3>
+Use array URLs wherever possible, this saves you a lot of trouble once you actually want to customize the routing:
+<pre><code>// URL /my-controller/my-action
+echo $this->Html->link($title, ['controller' => 'MyController', 'action' => 'myAction']);
+</code></pre>
+The speed issue can be neglected compared to the advantages of the flexibility.
+
+<h3>Don't sanitize the heck out your data</h3>
+Use Sanitization wisely, and not blindly.<br />
+Not without reason the Sanitize class has been kicked out of the core files.
 <br /><br />
-Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller' => 'Contact'))?>.
+Sanitization is useful and necessary, when working with HTML content, that needs to be stripped of invalid/dangerous
+markup. But here it is best to use <a href="https://github.com/FriendsOfCake/awesome-cakephp#filtering-and-validation">plugins</a> specifically
+written for this job.
 <br />
-Or directly <b>make a "Pull request" with the changes on Github</b>.
-<br /><br />
-You can also add new content and or features this way.
-</div>
-</div>
+For most normal use cases, by using save(), SQL injections are already prevented. No need to modify the data upon save. Only use h() in the view
+to secure (stringish) output by escaping potentially dangerous chars:
+<pre><code>echo h($entity->name);
+</code></pre>
 
-<h2>Here will soon be a list...</h2>
-...of all the things that happens on this page
-<br /><br />
-Mabye even some RSS feed to it.

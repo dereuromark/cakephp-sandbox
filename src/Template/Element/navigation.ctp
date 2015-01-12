@@ -14,6 +14,8 @@
 				<li><?php echo $this->Html->link('Conventions', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
 				<li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'), array('tabindex' => '-1')); ?></li>
+				<li class="divider"></li>
+				<li><?php echo $this->Html->link('Contribute', array('plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'), array('tabindex' => '-1')); ?></li>
 			</ul>
 		</li>
 		<li class="dropdown">
