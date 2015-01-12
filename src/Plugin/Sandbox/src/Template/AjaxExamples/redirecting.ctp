@@ -5,7 +5,6 @@ $(function() {
 	  e.preventDefault();
 	  var form = $(this).prev();
 		var url = $(form).attr("action");
-		var tr = $(this).closest('tr');
 
 		$.ajax({
 			type: 'post',
@@ -14,9 +13,7 @@ $(function() {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			},
 			success: function(res) {
-				if (res.error) {
-					alert(res.error);
-				}
+				$('#example-target').html(res);
 			},
 			error: function(e) {
 				alert("Error");
@@ -49,9 +46,12 @@ of the response.
 <div class="toggle">
 	<p><?php echo $this->Form->postLink(__('A normal POST link'), array()); ?></p>
 
-	<div id="example-container">
+	<p id="example-container">
 		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), array()); ?>
-	</div>
+	</p>
+
+	<p id="example-target">
+	</p>
 </div>
 
 </div>
