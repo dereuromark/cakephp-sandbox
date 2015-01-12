@@ -151,6 +151,9 @@ class AjaxExamplesController extends SandboxAppController {
 
 		if ($this->request->is('post')) {
 			// Do sth like saving data
+			if (!$this->request->is('ajax')) {
+				$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
+			}
 			return $this->redirect(array('action' => 'index'));
 		}
 	}
