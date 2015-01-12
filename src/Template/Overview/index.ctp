@@ -8,7 +8,7 @@ This site combines useful code snippets with their live result.
 <h3>Conventions and help for Cake Newbies</h3>
 <ul>
 <li><?php echo $this->Html->link('Discover CakePHP Conventions', array('plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index')); ?></li>
-<li><?php echo $this->Html->link('CakePHP Inflector at it\'s work', array('plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index')); ?></li>
+<li><?php echo $this->Html->link('The CakePHP Inflector at work', array('plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index')); ?></li>
 <li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices')); ?></li>
 </ul>
 
