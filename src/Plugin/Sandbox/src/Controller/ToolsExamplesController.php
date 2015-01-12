@@ -31,8 +31,8 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function tree() {
-		$this->Common->loadHelper(array('Tools.Tree'));
+	public function _tree() {
+		$this->helpers[] = 'Tools.Tree';
 	}
 
 	/**
@@ -49,7 +49,7 @@ class ToolsExamplesController extends SandboxAppController {
 			'8' => 'Lemon',
 			'16' => 'Coconut',
 		);
-		$this->Model = ClassRegistry::init('Sandbox.BitmaskRecord');
+		$this->Model = TableRegistry::get('Sandbox.BitmaskRecords');
 		$this->Model->Behaviors->load('Tools.Bitmasked', array('field' => 'flag', 'bits' => $flags));
 
 		$records = $this->Model->find('all');
@@ -72,10 +72,12 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * Display a Google map.
 	 *
+	 * //TODO: move to Geo plugin examples
+	 *
 	 * @return void
 	 */
-	public function googlemap() {
-		$this->helpers[] = 'Tools.GoogleMapV3';
+	public function _googlemap() {
+		$this->helpers[] = 'Geo.GoogleMapV3';
 	}
 
 	/**
@@ -86,7 +88,7 @@ class ToolsExamplesController extends SandboxAppController {
 	public function qr() {
 		$types = array('text' => 'Text', 'url' => 'Url', 'tel' => 'Phone Number', 'sms' => 'Text message', 'email' => 'E-Mail', 'geo' => 'Geo', 'market' => 'Market', 'card' => 'Vcard');
 
-		if ($this->Common->isPosted()) {
+		if ($this->request->is('post')) {
 			switch ($this->request->data['Misc']['type']) {
 				case 'url':
 				case 'tel':
@@ -119,11 +121,13 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * ToolsExamplesController::geocode()
 	 *
+	 * //TODO: move to Geo plugin examples
+	 *
 	 * @return void
 	 */
-	public function geocode() {
-		$this->Model = ClassRegistry::init('Sandbox.ExampleRecord');
-		$this->Model->Behaviors->load('Tools.Geocoder', array('before' => 'validate', 'address' => array('location')));
+	public function _geocode() {
+		$this->Model = TableRegistry::get('Sandbox.ExampleRecords');
+		$this->Model->addBehavior('Geo.Geocoder', array('on' => 'beforeValidate', 'address' => array('location')));
 		if ($this->request->is('post')) {
 			$this->Model->set($this->request->data);
 			$this->Model->validates();
@@ -147,6 +151,23 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Display a dynamic timeline.
+	 *
+	 * @return void
+	 */
+	public function timeline() {
+	}
+
+	/**
+	 * Display a gravatar image.
+	 *
+	 * @return void
+	 */
+	public function gravatar() {
+		$this->helpers[] = 'Tools.Gravatar';
+	}
+
+	/**
 	 * //TODO
 	 *
 	 * @return void
@@ -154,7 +175,7 @@ class ToolsExamplesController extends SandboxAppController {
 	public function _diff() {
 	}
 
-	public function typography() {
+	public function _typography() {
 
 		$this->Common->loadHelper(array('Tools.Typography'));
 	}

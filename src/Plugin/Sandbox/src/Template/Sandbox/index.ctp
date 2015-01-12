@@ -1,15 +1,15 @@
 <h2>Sandbox</h2>
 
 <h3>CakePHP Core</h3>
-Code @ github: <a href="https://github.com/cakephp/cakephp">CakePHP 2.x</a>
+Code @ github: <a href="https://github.com/cakephp/cakephp" target="_blank">CakePHP 2.x</a>
 <ul>
 <li><?php echo $this->Html->link('Core examples', array('controller' => 'cake_examples', 'action' => 'index')); ?></li>
 </ul>
 
-<h3>Tools Plugin</h3>
-Code @ github: <a href="https://github.com/dereuromark/tools">Tools</a>
+<h3>CakePHP Plugins</h3>
+Some of the plugins from the <a href="https://github.com/FriendsOfCake/awesome-cakephp/tree/cake3" target="_blank">awesome-cakephp</a> list.
 <ul>
-<li><?php echo $this->Html->link('Tools examples', array('controller' => 'tools_examples', 'action' => 'index')); ?></li>
+<li><?php echo $this->Html->link('Plugin example usage / showcase', array('controller' => 'plugin_examples', 'action' => 'index')); ?></li>
 
 <?php if (false) { ?>
 <li><?php echo $this->Html->link('Helpers', array('controller' => 'helpers', 'action' => 'index')); ?></li>
@@ -20,8 +20,8 @@ Code @ github: <a href="https://github.com/dereuromark/tools">Tools</a>
 </ul>
 
 <h3>Examples</h3>
+JavaScript related.
 <ul>
-<li><?php echo $this->Html->link('Search Plugin', array('controller'=>'search_examples', 'action' => 'index')); ?></li>
 <li><?php echo $this->Html->link('JS', array('controller' => 'js_examples', 'action' => 'index')); ?></li>
 <li><?php echo $this->Html->link('Jquery', array('controller' => 'jquery_examples', 'action' => 'index')); ?></li>
 </ul>
