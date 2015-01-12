@@ -11,6 +11,7 @@ $(function() {
 			url: url,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				$('#example-target').html('');
 			},
 			success: function(res) {
 				$('#example-target').html(res);
