@@ -46,9 +46,9 @@ of the response.
 <div class="toggle">
 	<p><?php echo $this->Form->postLink(__('A normal POST link'), array()); ?></p>
 
-	<p id="example-container">
+	<div id="example-container">
 		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), array()); ?>
-	</p>
+	</div>
 
 	<p id="example-target">
 	</p>
