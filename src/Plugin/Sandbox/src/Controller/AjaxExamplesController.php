@@ -52,12 +52,13 @@ class AjaxExamplesController extends SandboxAppController {
 			$this->set(compact('status'));
 
 			// Manually render
-			$result = (string)$this->render();
-			$this->set(compact('result'));
+			$View = $this->getView();
+			$result = (string)$View->render();
+			$View->set(compact('result'));
 
 			// Since we already rendered the snippet, we need to reset the render state
-			$this->autoRender = true;
-			$this->set('_serialize', array('result'));
+			$View->hasRendered = false;
+			$View->set('_serialize', array('result'));
 			return;
 		}
 

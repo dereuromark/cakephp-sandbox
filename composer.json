@@ -57,6 +57,11 @@
 			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
 		}
 	},
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/dereuromark/search"
+		}
+	],
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	}

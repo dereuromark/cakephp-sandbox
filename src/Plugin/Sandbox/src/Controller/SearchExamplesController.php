@@ -20,9 +20,8 @@ class SearchExamplesController extends SandboxAppController {
 
 	public function index() {
 		$this->Prg->commonProcess();
-		$this->paginate['conditions'] = $this->CountryRecords->find('searchable', $this->Prg->parsedParams());
 
-		$countries = $this->paginate();
+		$countries = $this->paginate($this->CountryRecords->find('searchable', $this->Prg->parsedParams()));
 		$this->set(compact('countries'));
 	}
 
