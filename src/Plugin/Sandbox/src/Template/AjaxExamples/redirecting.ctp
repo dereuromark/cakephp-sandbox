@@ -44,13 +44,14 @@ of the response.
 </p>
 
 <div class="toggle">
-	<p><?php echo $this->Form->postLink(__('A normal POST link'), array()); ?></p>
+	<div style="margin-bottom: 10px;"><?php echo $this->Form->postLink(__('A normal POST link'), array()); ?></div>
 
-	<div id="example-container">
+	<div style="margin-bottom: 10px;" id="example-container">
 		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), array()); ?>
 	</div>
 
 	<p id="example-target">
+	<small><i>The AJAX result (from the redirect) will go here</i></small>
 	</p>
 </div>
 
