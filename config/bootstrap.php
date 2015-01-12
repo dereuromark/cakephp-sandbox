@@ -64,6 +64,7 @@ try {
 	die($e->getMessage() . "\n");
 }
 
+Configure::load('app_custom');
 Configure::load('app_local');
 
 // Load an environment local configuration file.
@@ -172,6 +173,7 @@ Request::addDetector('tablet', function ($request) {
 Plugin::loadAll([
 		'Tools' => array('bootstrap' => true),
 		//'Ajax' => array('bootstrap' => true)
+		'DebugKit' => array('bootstrap' => true)
 ]);
 
 /**
