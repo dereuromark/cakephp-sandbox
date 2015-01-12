@@ -9,6 +9,7 @@ This site combines useful code snippets with their live result.
 <ul>
 <li><?php echo $this->Html->link('Discover CakePHP Conventions', array('plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index')); ?></li>
 <li><?php echo $this->Html->link('CakePHP Inflector at it\'s work', array('plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index')); ?></li>
+<li><?php echo $this->Html->link('Best practice', array('plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices')); ?></li>
 </ul>
 
 <h3>Sandbox</h3>
@@ -27,4 +28,4 @@ You may also contribute back by adding/editing data.
 <hr />
 
 <h3><?php echo __('Join in!') ?></h3>
-There are lots of things that can be done - even for beginners. <?php echo $this->Html->link('Details', array('controller' => 'Pages', 'action' => 'display', 'updates'));
+There are lots of things that can be done - even for beginners. <?php echo $this->Html->link('Details', array('controller' => 'Pages', 'action' => 'display', 'contribute'));
