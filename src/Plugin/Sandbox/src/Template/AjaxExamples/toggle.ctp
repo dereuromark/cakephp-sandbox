@@ -7,6 +7,9 @@ $(function() {
 		$.ajax({
 			type: 'post',
 			url: targeturl,
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			},
 			success: function(response) {
 				container.html(response.result);
 				container.data('value', val);

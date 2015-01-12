@@ -142,5 +142,18 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->set(compact('countryProvinces'));
 	}
 
+	/**
+	 * AjaxExamplesController::redirecting()
+	 *
+	 * @return void
+	 */
+	public function redirecting() {
+
+		if ($this->request->is('post')) {
+			// Do sth like saving data
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
 }
 
