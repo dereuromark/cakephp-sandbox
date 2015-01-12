@@ -122,6 +122,8 @@ class AjaxExamplesController extends SandboxAppController {
 
 	/**
 	 * My own convention was to suffix AJAX only actions with "_ajax".
+	 * Not really necessary, but can maybe distinguish such actions from
+	 * the normal ones.
 	 *
 	 * This method provides the AJAX data chained_dropdowns() needs.
 	 *
@@ -143,7 +145,8 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * AjaxExamplesController::redirecting()
+	 * Show how redirecting works when AJAX is involved:
+	 * It will requestAction() the redirect instead of actually redirecting.
 	 *
 	 * @return void
 	 */

@@ -7,7 +7,7 @@ use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Text;
 use Cake\ORM\TableRegistry;
 
-class RssExamplesController extends SandboxAppController {
+class FeedExamplesController extends SandboxAppController {
 
 	public $components = array(
 		'RequestHandler' => array(

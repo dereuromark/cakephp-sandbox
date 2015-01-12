@@ -22,7 +22,7 @@
 				<li><?php echo $this->Html->link('Overview', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Sandbox', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
 				<li><?php echo $this->Html->link('CakePHP Core', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
-				<li><?php echo $this->Html->link('Tools Plugin', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'ToolsExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
+				<li><?php echo $this->Html->link('CakePHP Plugins', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'PluginExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li><?php echo $this->Html->link('JS', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li><?php echo $this->Html->link('Jquery', array('plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JqueryExamples', 'action' => 'index'), array('tabindex' => '-1')); ?></li>
 				<li class="divider"></li>
