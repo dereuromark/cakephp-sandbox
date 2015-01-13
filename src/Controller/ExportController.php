@@ -1,9 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
-use Cake\Network\Exception\MethodNotAllowedException;
 use Cake\Event\Event;
+use Cake\Network\Exception\MethodNotAllowedException;
 use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
@@ -28,7 +27,7 @@ class ExportController extends AppController {
 			throw new MethodNotAllowedException('Please do not use this as a webservice (the capacities are limited). Download the JSON or XML file and import it.');
 		}
 		//die($this->referer(null, true));
-	}
+}
 
 	/**
 	 * ExportController::afterFilter()

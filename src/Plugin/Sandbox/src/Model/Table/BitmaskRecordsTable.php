@@ -2,9 +2,8 @@
 namespace Sandbox\Model;
 
 use Cake\Database\ConnectionManager;
-use Sandbox\Model\SandboxAppModel;
 
-class BitmaskRecord extends SandboxAppModel {
+class BitmaskRecordsTable extends SandboxAppModel {
 
 	public $useDbConfig = 'array';
 

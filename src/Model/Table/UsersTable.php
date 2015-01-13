@@ -1,8 +1,9 @@
 <?php
-namespace App\Model;
-use App\Model\AppModel;
+namespace App\Model\Table;
 
-class User extends AppModel {
+use Tools\Model\Table\Table;
+
+class UsersTable extends Table {
 
 	public $displayField = 'username';
 

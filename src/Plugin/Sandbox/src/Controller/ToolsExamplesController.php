@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
 
 class ToolsExamplesController extends SandboxAppController {
@@ -55,7 +54,6 @@ class ToolsExamplesController extends SandboxAppController {
 		$records = $this->Model->find('all');
 
 		if ($this->request->is('post')) {
-
 		}
 
 		$this->set(compact('records', 'flags'));
@@ -176,9 +174,7 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	public function _typography() {
-
 		$this->Common->loadHelper(array('Tools.Typography'));
 	}
 
 }
-

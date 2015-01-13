@@ -1,11 +1,10 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
-use App\Controller\AppController;
-use Tools\Network\Email\Email;
 use Cake\Core\Configure;
+use Cake\Event\Event;
 use Tools\Form\ContactForm;
+use Tools\Network\Email\Email;
 
 class ContactController extends AppController {
 
@@ -24,7 +23,6 @@ class ContactController extends AppController {
 		$contact = new ContactForm();
 
 		if ($this->Common->isPosted()) {
-
 			$name = $this->request->data['name'];
 			$email = $this->request->data['email'];
 			$message = $this->request->data['message'];
@@ -32,13 +30,12 @@ class ContactController extends AppController {
 
 			if (!$this->AuthUser->id()) {
 				//$this->ContactForm->addBehavior('Tools.Captcha');
-			}
+}
 			if ($contact->execute($this->request->data)) {
 				$this->_send($name, $email, $subject, $message);
 			} else {
 				$this->Flash->message(__('formContainsErrors'), 'error');
 			}
-
 		} else {
 			// prepopulate form
 			$this->request->data = $this->request->query;

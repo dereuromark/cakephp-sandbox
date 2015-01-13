@@ -44,8 +44,8 @@ use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
 use Cake\Network\Email\Email;
 use Cake\Network\Request;
-use Cake\Routing\Router;
 use Cake\Routing\DispatcherFactory;
+use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
 

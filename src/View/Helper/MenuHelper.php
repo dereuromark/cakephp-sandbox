@@ -1,6 +1,6 @@
 <?php
 namespace App\View\Helper;
-use App\View\Helper\Helper;
+
 // http://cakeforge.org/snippet/detail.php?type=snippet&id=194
 
 class MenuHelper extends Helper {
@@ -54,7 +54,7 @@ class MenuHelper extends Helper {
 			$this->_out[] = '<' . $tag . '>' . $content . '</' . $tag . '>';
 		}
 
-		return join("", $this->_out);
+		return implode("", $this->_out);
 	}
 
 	/**
@@ -86,17 +86,17 @@ class MenuHelper extends Helper {
 
 			foreach ($groupLinks as $linkTitle => $linkUrl) {
 				if (preg_match('/^' . preg_quote($linkUrl, '/') . '/', substr($this->request->here, strlen($this->request->base)))) {
-				// if (preg_match('/^'.preg_quote($link, '/').'/', $this->request->url)) {
+					// if (preg_match('/^'.preg_quote($link, '/').'/', $this->request->url)) {
 					$matchingLinks[strlen($linkUrl)] = $linkUrl;
 				} elseif ($linkUrl == substr($this->request->here, strlen($this->request->base))) {
 					// $matchingLinks[$groupTitle][strlen($linkUrl)] = $linkUrl;
-				} else {
-					// pr('link: '.$link.' | url: '.substr($this->request->here, strlen($this->request->base)));
-				}
+} else {
+	// pr('link: '.$link.' | url: '.substr($this->request->here, strlen($this->request->base)));
+}
 				// pr('preg: '.preg_quote($link).'/');
 				// pr('base: '.substr($this->request->here, strlen($this->request->base)));
 				// pr('url: '.$this->request->url);
-			}
+}
 			// sorting
 			krsort($matchingLinks);
 			// pr($matchingLinks);
@@ -127,8 +127,7 @@ class MenuHelper extends Helper {
 		$this->_out[] = '</' . $options['type'] . '>';
 
 		// return
-		return join("\n", $this->_out);
+		return implode("\n", $this->_out);
 	}
 
 }
-

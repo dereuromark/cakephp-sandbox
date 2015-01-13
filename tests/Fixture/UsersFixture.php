@@ -2,11 +2,12 @@
 /**
  * UserFixture
  *
- */namespace Test\Fixture;
+ */
+namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
 
-class UserFixture extends TestFixture {
+class UsersFixture extends TestFixture {
 
 	/**
 	 * Fields
@@ -41,12 +42,11 @@ class UserFixture extends TestFixture {
 			'created' => '2014-04-13 05:10:28',
 			'modified' => '2014-04-13 05:10:28',
 			'logins' => 1,
-			'login_errors' => 1,
-			'flood_protection' => '2014-04-13 05:10:28',
 			'username' => 'Lorem ipsum dolor sit amet',
 			'password' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
 			'role_id' => 1
 		),
 	);
+
 }

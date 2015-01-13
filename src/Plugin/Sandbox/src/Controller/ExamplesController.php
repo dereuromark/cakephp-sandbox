@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 
 class ExamplesController extends SandboxAppController {
 
@@ -54,4 +53,3 @@ class ExamplesController extends SandboxAppController {
 	}
 
 }
-

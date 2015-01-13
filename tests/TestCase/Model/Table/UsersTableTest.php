@@ -3,12 +3,13 @@ namespace Test\TestCase\Model;
 
 use App\Model\User;
 use Cake\TestSuite\TestCase;
+use Cake\ORM\TableRegistry;
 
 /**
  * User Test Case
  *
  */
-class UserTest extends TestCase {
+class UsersTableTest extends TestCase {
 
 	/**
 	 * Fixtures
@@ -26,18 +27,23 @@ class UserTest extends TestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
-		$this->User = ClassRegistry::init('User');
+		$this->Users = TableRegistry::get('Users');
 	}
 
-/**
- * TearDown method
- *
- * @return void
- */
+	/**
+	 * TearDown method
+	 *
+	 * @return void
+	 */
 	public function tearDown() {
-		unset($this->User);
+		unset($this->Users);
 
 		parent::tearDown();
+	}
+
+	public function testBasic() {
+		$result = $this->Users->find()->first();
+		$this->assertNotEmpty($result);
 	}
 
 }

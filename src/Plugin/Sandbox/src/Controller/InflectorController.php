@@ -2,8 +2,8 @@
 namespace Sandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Utility\Inflector;
 use Cake\Event\Event;
+use Cake\Utility\Inflector;
 
 class InflectorController extends AppController {
 

@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Shell;
 
-use Cake\Core\Configure;
 use Cake\Console\Shell;
 
 class FontIconShell extends Shell {

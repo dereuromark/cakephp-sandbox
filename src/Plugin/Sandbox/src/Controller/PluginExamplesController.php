@@ -1,9 +1,7 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
-use Cake\Utility\Hash;
 
 class PluginExamplesController extends SandboxAppController {
 
@@ -22,5 +20,5 @@ class PluginExamplesController extends SandboxAppController {
 	 */
 	public function index() {
 	}
-}
 
+}

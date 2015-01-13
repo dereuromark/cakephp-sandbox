@@ -2,11 +2,10 @@
 namespace Sandbox\Model;
 
 use Cake\Database\ConnectionManager;
-use Sandbox\Model\SandboxAppModel;
+use Tools\Model\Table\Table;
 
-class ExampleRecord extends SandboxAppModel {
+class ExampleRecordsTable extends Table {
 
-	public $useDbConfig = 'array';
 
 	public $records = array();
 

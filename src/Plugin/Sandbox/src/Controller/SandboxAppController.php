@@ -1,8 +1,8 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Controller\Controller;
 use App\Controller\AppController;
+use Cake\Controller\Controller;
 
 class SandboxAppController extends AppController {
 

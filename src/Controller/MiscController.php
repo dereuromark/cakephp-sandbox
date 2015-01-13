@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\Event\Event;
 
 class MiscController extends AppController {
@@ -32,7 +31,6 @@ class MiscController extends AppController {
 	 * 2010-09-30 ms
 	 */
 	public function convert_text() {
-
 		if ($this->Common->isPosted()) {
 			$this->request->data['Form']['result'] = $this->_process($this->request->data['Form']['text'], $this->request->data['Form']['type']);
 			if (array_key_exists((string)$this->request->data['Form']['type'], $this->types)) {
@@ -52,7 +50,7 @@ class MiscController extends AppController {
 			$type = $this->_autoDetect($text);
 			$this->request->data['Form']['type'] = $type;
 			//return $text;
-		}
+}
 		switch ($type) {
 			case '1':
 				$text = h($text);
@@ -123,4 +121,3 @@ class MiscController extends AppController {
 	}
 
 }
-

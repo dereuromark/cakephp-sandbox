@@ -1,10 +1,11 @@
 <?php
 namespace App\Controller;
-use Tools\Controller\Controller;
+
 use Cake\Core\Configure;
-use Cake\Utility\Inflector;
-use Cake\Event\Event;
 use Cake\Core\Plugin;
+use Cake\Event\Event;
+use Cake\Utility\Inflector;
+use Tools\Controller\Controller;
 
 /**
  * Application Controller

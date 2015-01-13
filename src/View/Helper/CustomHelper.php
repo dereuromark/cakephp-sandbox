@@ -1,12 +1,12 @@
 <?php
 namespace App\View\Helper;
-use App\View\Helper\AppHelper;
+use Cake\View\Helper;
+
 
 /**
  * Custom helper
- * 2009-12-22 ms
  */
-class CustomHelper extends AppHelper {
+class CustomHelper extends Helper {
 
 	/**
 	 * Other helpers used by FormHelper
@@ -47,4 +47,3 @@ class CustomHelper extends AppHelper {
 	}
 
 }
-

@@ -1,11 +1,9 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Text;
-use Cake\ORM\TableRegistry;
 
 class FeedExamplesController extends SandboxAppController {
 
@@ -46,7 +44,7 @@ class FeedExamplesController extends SandboxAppController {
 		foreach ($news as $key => $val) {
 			$content = nl2br(h($val['content']));
 			$link = array('action' => 'feedview', $val['id']);
-			$guidLink = array('action' => 'view', $val['id']);;
+			$guidLink = array('action' => 'view', $val['id']);
 
 			$items[] = array(
 				'title' => $val['title'],
@@ -121,4 +119,3 @@ class FeedExamplesController extends SandboxAppController {
 	}
 
 }
-

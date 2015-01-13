@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Controller\AppController;
 use Cake\Event\Event;
 
 class AccountController extends AppController {
@@ -27,7 +26,6 @@ class AccountController extends AppController {
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->request->data['User']['password'] = '';
-
 		} else {
 			if ($username = $this->request->query('username')) {
 				$this->request->data['User']['login'] = $username;
@@ -77,7 +75,6 @@ class AccountController extends AppController {
 			} else {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
-
 		} elseif (!empty($this->request->data['Form']['login'])) {
 			$this->User->Behaviors->attach('Tools.Captcha');
 			unset($this->User->validate['email']['isUnique']);

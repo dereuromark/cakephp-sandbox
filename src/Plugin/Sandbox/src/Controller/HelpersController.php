@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 
 class HelpersController extends SandboxAppController {
 
@@ -23,7 +22,6 @@ class HelpersController extends SandboxAppController {
 	 * GoogleMapV3Helper
 	 */
 	public function google_map_v3() {
-
 		$this->Common->loadHelper(array('Tools.GoogleMapV3'));
 	}
 

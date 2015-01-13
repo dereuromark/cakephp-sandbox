@@ -1,6 +1,6 @@
 <?php
 namespace App\View\Helper;
-use App\View\Helper\AppHelper;
+
 // http://www.cakephp-forum.com/posting.php
 
 /**
@@ -10,7 +10,7 @@ use App\View\Helper\AppHelper;
  */
 class BbcodeHelper extends AppHelper {
 
-	public $helpers = array ('Html', 'Tools.Geshi', 'Url');
+	public $helpers = array('Html', 'Tools.Geshi', 'Url');
 
 	public $languages = array();
 
@@ -28,7 +28,7 @@ class BbcodeHelper extends AppHelper {
 		}
 	}
 
-/** INPUT (Form Element And Buttons) **/
+	/** INPUT (Form Element And Buttons) **/
 
 	/**
 	 * Has to be called right at the top of the Page where you want to use it (needs the language array from the controller!)
@@ -66,14 +66,13 @@ class BbcodeHelper extends AppHelper {
 			$codedropdown = '
 <select name="addbbcode23" onchange="bbfontstyle(\'[code=\' + this.form.addbbcode23.options[this.form.addbbcode23.selectedIndex].value + \']\', \'[/code]\');this.form.addbbcode23.selectedIndex = 0;" title="Special Code: [code=xx]Code Text[/code]">
 	<option value="" selected="selected">- [ Special Codes ] -</option>';
-	foreach ($this->languages as $value => $language) {
-		$codedropdown .= '<option value="' . $value . '">' . $language . '</option>';
-	}
+			foreach ($this->languages as $value => $language) {
+				$codedropdown .= '<option value="' . $value . '">' . $language . '</option>';
+			}
 
-$codedropdown .= '</select>';
+			$codedropdown .= '</select>';
 
 			$codebutton = '<div class="bbcode_button" id="addbbcode8" style="width: 40px" onclick="bbstyle(8)" title="Code Box: [code=text]Code[/code]">Code</div>';
-
 		} else {
 			$codedropdown = '';
 			$codebutton = '';
@@ -124,7 +123,7 @@ Note: If there is some BB-Code left (on preview or after saving it) - you probab
 		return $output;
 	}
 
-/** OUTPUT (Tansforming into html + highlighting) **/
+	/** OUTPUT (Tansforming into html + highlighting) **/
 
 	/**
 	 *
@@ -139,48 +138,48 @@ Note: If there is some BB-Code left (on preview or after saving it) - you probab
 		$this->Bbcode->setGlobalCaseSensitive(false);	// [b]=[B]
 
 		//$this->Bbcode->addParser (array ('header','block', 'inline', 'link', 'listitem'), 'htmlspecialchars');
-		$this->Bbcode->addParser(array ('block', 'inline', 'link', 'listitem', 'nobb'), 'nl2br');
+		$this->Bbcode->addParser(array('block', 'inline', 'link', 'listitem', 'nobb'), 'nl2br');
 		$this->Bbcode->addParser('list', 'bbcode_stripcontents');
 		$this->Bbcode->addParser('header', 'bbcode_stripnewlines');
 
-		$this->Bbcode->addCode('h1', 'simple_replace', null, array ('start_tag' => '<h2>', 'end_tag' => '</h2>'),
-		 'header', array ('block', 'inline'), array ());
-		$this->Bbcode->addCode('h2', 'simple_replace', null, array ('start_tag' => '<h4>', 'end_tag' => '</h4>'),
-		 'header', array ('block', 'inline'), array ());
+		$this->Bbcode->addCode('h1', 'simple_replace', null, array('start_tag' => '<h2>', 'end_tag' => '</h2>'),
+		 'header', array('block', 'inline'), array());
+		$this->Bbcode->addCode('h2', 'simple_replace', null, array('start_tag' => '<h4>', 'end_tag' => '</h4>'),
+		 'header', array('block', 'inline'), array());
 
-		$this->Bbcode->addCode('b', 'simple_replace', null, array ('start_tag' => '<b>', 'end_tag' => '</b>'),
-		 'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-		$this->Bbcode->addCode('i', 'simple_replace', null, array ('start_tag' => '<i>', 'end_tag' => '</i>'),
-		 'inline', array ('listitem', 'block', 'inline', 'link'), array ());
-		$this->Bbcode->addCode('u', 'simple_replace', null, array ('start_tag' => '<u>', 'end_tag' => '</u>'),
-		 'inline', array ('listitem', 'block', 'inline', 'link'), array ());
+		$this->Bbcode->addCode('b', 'simple_replace', null, array('start_tag' => '<b>', 'end_tag' => '</b>'),
+		 'inline', array('listitem', 'block', 'inline', 'link'), array());
+		$this->Bbcode->addCode('i', 'simple_replace', null, array('start_tag' => '<i>', 'end_tag' => '</i>'),
+		 'inline', array('listitem', 'block', 'inline', 'link'), array());
+		$this->Bbcode->addCode('u', 'simple_replace', null, array('start_tag' => '<u>', 'end_tag' => '</u>'),
+		 'inline', array('listitem', 'block', 'inline', 'link'), array());
 
-		$this->Bbcode->addCode('email', 'usecontent', 'do_bbcode_email', array (),
-		 'link', array ('listitem', 'block', 'inline', 'link'), array ());
+		$this->Bbcode->addCode('email', 'usecontent', 'do_bbcode_email', array(),
+		 'link', array('listitem', 'block', 'inline', 'link'), array());
 
-		$this->Bbcode->addCode('url', 'usecontent?', 'do_bbcode_url', array ('usecontent_param' => 'default'),
-		 'link', array ('listitem', 'block', 'inline'), array ('link'));
-		$this->Bbcode->addCode('link', 'callback_replace_single', 'do_bbcode_url', array (),
-		 'link', array ('listitem', 'block', 'inline'), array ('link'));
-		$this->Bbcode->addCode('img', 'usecontent', 'do_bbcode_img', array (),
-		 'image', array ('listitem', 'block', 'inline', 'link'), array ());
+		$this->Bbcode->addCode('url', 'usecontent?', 'do_bbcode_url', array('usecontent_param' => 'default'),
+		 'link', array('listitem', 'block', 'inline'), array('link'));
+		$this->Bbcode->addCode('link', 'callback_replace_single', 'do_bbcode_url', array(),
+		 'link', array('listitem', 'block', 'inline'), array('link'));
+		$this->Bbcode->addCode('img', 'usecontent', 'do_bbcode_img', array(),
+		 'image', array('listitem', 'block', 'inline', 'link'), array());
 
-		$this->Bbcode->addCode('quote', 'simple_replace', null, array ('start_tag' => '<quote>', 'end_tag' => '</quote>'),
-		 'quote', array ('block', 'inline'), array ());
+		$this->Bbcode->addCode('quote', 'simple_replace', null, array('start_tag' => '<quote>', 'end_tag' => '</quote>'),
+		 'quote', array('block', 'inline'), array());
 
-		$this->Bbcode->addCode('code', 'usecontent', 'do_bbcode_code', array (),
-		 'code', array ('block', 'inline'), array ());
+		$this->Bbcode->addCode('code', 'usecontent', 'do_bbcode_code', array(),
+		 'code', array('block', 'inline'), array());
 
-		$this->Bbcode->addCode('nobb', 'usecontent', 'do_bbcode_nobb', array (),
-		 'nobb', array ('block', 'listitem', 'link', 'inline'), array ());
+		$this->Bbcode->addCode('nobb', 'usecontent', 'do_bbcode_nobb', array(),
+		 'nobb', array('block', 'listitem', 'link', 'inline'), array());
 
 		//$this->Bbcode->setOccurrenceType ('img', 'image');
 		//$this->Bbcode->setMaxOccurrences ('image', 2);
 
-		$this->Bbcode->addCode('list', 'simple_replace', null, array ('start_tag' => '<ul>', 'end_tag' => '</ul>'),
-		 'list', array ('block', 'listitem'), array ());
-		$this->Bbcode->addCode('*', 'simple_replace', null, array ('start_tag' => '<li>', 'end_tag' => '</li>'),
-		 'listitem', array ('list'), array ());
+		$this->Bbcode->addCode('list', 'simple_replace', null, array('start_tag' => '<ul>', 'end_tag' => '</ul>'),
+		 'list', array('block', 'listitem'), array());
+		$this->Bbcode->addCode('*', 'simple_replace', null, array('start_tag' => '<li>', 'end_tag' => '</li>'),
+		 'listitem', array('list'), array());
 
 		//$this->Bbcode->addCode ('br', 'simple_replace', null, array ('start_tag' => '<br/>', 'end_tag' => ''),
 		// 'linefeed', array ('block','inline','listitem'), array ());
@@ -209,14 +208,16 @@ Note: If there is some BB-Code left (on preview or after saving it) - you probab
 		//$out = $this->parseImagesRecursive($out);	// not important
 
 		# Highlighting
-		if (!empty($options['highlight']) && $options['highlight'] === false) {} else {
+		if (!empty($options['highlight']) && $options['highlight'] === false) {
+		} else {
 			$out = $this->Geshi->parseTagsRecursive(($out));
 		}
 
 		#Smileys
-		if (!empty($options['smiley']) && $options['smiley'] === true) {} else {
+		if (!empty($options['smiley']) && $options['smiley'] === true) {
+		} else {
 			//$out = $this->Common->parseSmileys($out);
-		}
+}
 
 		//$out = nl2br($out);
 		return $out;
@@ -231,15 +232,14 @@ Note: If there is some BB-Code left (on preview or after saving it) - you probab
  	// geht nicht: $regex = '#\<pre>((?:[^[]|\<(?!/?pre>)|(?R))+)\</pre>#';
 
  	if (is_array($input)) {
-
-			pr($input);
+ 		pr($input);
  		$input = '<a href="' . $link . '" ' . $target . '>' . $input[2] . '</a>';
 			//$this->highlight(trim(html_entity_decode($this->entodec($input[2]),ENT_QUOTES)), $input[1], $flag);
  	//$input = '<div style="margin-left: 20px">'.$input[1].'</div>';
- 	}
+}
 
- 	return preg_replace_callback($regex, array(&$this, 'parseImagesRecursive'), $input);
- }
+		return preg_replace_callback($regex, array(&$this, 'parseImagesRecursive'), $input);
+	}
 
 }
 
@@ -255,68 +255,67 @@ function bbcode_stripnewlines($text) {
 // Neuezeile-Zeichen entfernen
 
 function bbcode_stripcontents($text) {
- return preg_replace("/[^\n]/", '', $text);
+	return preg_replace("/[^\n]/", '', $text);
 }
 
 /** TODO: action=validate for visitors */
 function do_bbcode_url($action, $attributes, $content, $params, $nodeObject) {
- if (!isset($attributes['default'])) {
- $url = trim($content);
- $text = $content;
- } else {
- $url = trim($attributes['default']);
- $text = $content;
- }
- if ($action === 'validate') {
- if (substr($url, 0, 5) === 'data:' || substr($url, 0, 5) === 'file:'
+	if (!isset($attributes['default'])) {
+		$url = trim($content);
+		$text = $content;
+	} else {
+		$url = trim($attributes['default']);
+		$text = $content;
+	}
+	if ($action === 'validate') {
+		if (substr($url, 0, 5) === 'data:' || substr($url, 0, 5) === 'file:'
  || substr($url, 0, 11) === 'javascript:' || substr($url, 0, 4) === 'jar:') {
- return false;
- }
- return true;
- }
- if (substr($url, 0, 1) === '/') {
-
- 	$url = Router::url($url); //substr($this->Url->build('/'),0,-1).$url;
+			return false;
+		}
+		return true;
+	}
+	if (substr($url, 0, 1) === '/') {
+		$url = Router::url($url); //substr($this->Url->build('/'),0,-1).$url;
 		$target = '';
 	} else {
 		$url = (@substr($url) === 'http://' ? $url : 'http://' . $url);
 		$target = ' target="_blank"';
 	}
- return '<a href="' . h($url) . '"' . $target . '>' . h($text) . '</a>';
+	return '<a href="' . h($url) . '"' . $target . '>' . h($text) . '</a>';
 }
 
 // Funktion zum Einbinden von Bildern
 
 function do_bbcode_img($action, $attributes, $content, $params, $nodeObject) {
- if ($action === 'validate') {
- if (substr($content, 0, 5) === 'data:' || substr($content, 0, 5) === 'file:'
+	if ($action === 'validate') {
+		if (substr($content, 0, 5) === 'data:' || substr($content, 0, 5) === 'file:'
  || substr($content, 0, 11) === 'javascript:' || substr($content, 0, 4) === 'jar:') {
- return false;
- }
- return true;
- }
- return '<img src="' . h($content) . '" alt="">';
+			return false;
+		}
+		return true;
+	}
+	return '<img src="' . h($content) . '" alt="">';
 }
 
 // Funktion zum Einbinden von Bildern
 
 function do_bbcode_code($action, $attributes, $content, $params, $nodeObject) {
- if (!isset($attributes['default'])) {
- $class = 'text';
- $text = h($content);
- } else {
- $class = $attributes['default'];
- $text = $content;
- }
- return '<code class="' . $class . '">' . h($content) . '</code>';
+	if (!isset($attributes['default'])) {
+		$class = 'text';
+		$text = h($content);
+	} else {
+		$class = $attributes['default'];
+		$text = $content;
+	}
+	return '<code class="' . $class . '">' . h($content) . '</code>';
 }
 
 function do_bbcode_email($action, $attributes, $content, $params, $nodeObject) {
- return 'vv';
+	return 'vv';
 }
 
 function do_bbcode_nobb($action, $attributes, $content, $params, $nodeObject) {
- return h($content);
+	return h($content);
 }
 
 /*
@@ -324,4 +323,3 @@ function do_bbcode_br($action, $attributes, $content, $params, $nodeObject) {
  return '<br />';
 }
 */
-

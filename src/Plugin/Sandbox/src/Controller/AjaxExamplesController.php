@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 
@@ -106,7 +105,6 @@ class AjaxExamplesController extends SandboxAppController {
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
-
 			/*
 			$this->User->validate['country_province_id']['numeric'] = array(
 				'rule' => 'numeric',
@@ -115,7 +113,7 @@ class AjaxExamplesController extends SandboxAppController {
 			*/
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			//$result = $this->User->validates();
-		}
+}
 
 		$this->CountryProvinceHelper->provideData(false, 'User');
 	}
@@ -151,7 +149,6 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function redirecting() {
-
 		if ($this->request->is('post')) {
 			// Do sth like saving data
 			if (!$this->request->is('ajax')) {
@@ -162,4 +159,3 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 }
-

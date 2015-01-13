@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
 
 class JqueryExamplesController extends SandboxAppController {
@@ -30,28 +29,28 @@ class JqueryExamplesController extends SandboxAppController {
 		$this->set(compact('actions'));
 	}
 
-/**
- * JqueryExamplesController::autopreview()
- *
- * @return void
- */
+	/**
+	 * JqueryExamplesController::autopreview()
+	 *
+	 * @return void
+	 */
 	public function autopreview() {
 	}
 
-/**
- * JqueryExamplesController::maxlength()
- *
- * @return void
- */
+	/**
+	 * JqueryExamplesController::maxlength()
+	 *
+	 * @return void
+	 */
 	public function maxlength() {
 	}
 
-/**
- * Example of an autocomplete field using jQueryUI autocomplete with JSON
- * and AJAX
- *
- * @return void
- */
+	/**
+	 * Example of an autocomplete field using jQueryUI autocomplete with JSON
+	 * and AJAX
+	 *
+	 * @return void
+	 */
 	public function autocomplete() {
 		if ($this->request->is(array('ajax'))) {
 			$this->loadModel('Sandbox.Animals');
@@ -67,4 +66,3 @@ class JqueryExamplesController extends SandboxAppController {
 	}
 
 }
-

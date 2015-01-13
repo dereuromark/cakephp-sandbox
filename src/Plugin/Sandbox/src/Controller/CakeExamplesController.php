@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 use Cake\Event\Event;
 use Cake\Utility\Hash;
 
@@ -86,4 +85,3 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 }
-

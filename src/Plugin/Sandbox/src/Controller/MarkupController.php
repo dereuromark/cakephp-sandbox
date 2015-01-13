@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Sandbox\Controller\SandboxAppController;
 
 class MarkupController extends SandboxAppController {
 
@@ -28,4 +27,3 @@ class MarkupController extends SandboxAppController {
 	}
 
 }
-
