@@ -10,6 +10,18 @@ class AjaxExamplesController extends SandboxAppController {
 
 	public $helpers = array('Data.Data');
 
+	/**
+	 * AppController::constructClasses()
+	 *
+	 * @return void
+	 */
+	public function initialize() {
+		if ($this->request->action === 'redirecting_prevented') {
+			$this->components['Ajax.Ajax'] = array('flashKey' => 'FlashMessage');
+		}
+		parent::initialize();
+	}
+
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
@@ -154,6 +166,22 @@ class AjaxExamplesController extends SandboxAppController {
 			if (!$this->request->is('ajax')) {
 				$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 			}
+			return $this->redirect(array('action' => 'index'));
+		}
+	}
+
+	/**
+	 * Show how redirecting works when AJAX is involved:
+	 * It will requestAction() the redirect instead of actually redirecting.
+	 *
+	 * @return void
+	 */
+	public function redirecting_prevented() {
+		if ($this->request->is('post')) {
+			// Do sth like saving data
+
+			$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
+
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

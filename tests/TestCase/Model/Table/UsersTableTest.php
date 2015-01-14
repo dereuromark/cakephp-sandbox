@@ -2,8 +2,8 @@
 namespace Test\TestCase\Model;
 
 use App\Model\User;
-use Cake\TestSuite\TestCase;
 use Cake\ORM\TableRegistry;
+use Cake\TestSuite\TestCase;
 
 /**
  * User Test Case

@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-
 class HelpersController extends SandboxAppController {
 
 	public $uses = array();

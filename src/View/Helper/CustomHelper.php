@@ -1,7 +1,7 @@
 <?php
 namespace App\View\Helper;
-use Cake\View\Helper;
 
+use Cake\View\Helper;
 
 /**
  * Custom helper
@@ -42,7 +42,7 @@ class CustomHelper extends Helper {
 			} /* elseif (!empty($consolationPrize)) {
 				return $this->Html->image($consolationPrize);
 			} */
-		}
+}
 		return $this->Html->image('places/cup_' . $i . '.gif', array('title' => $title));
 	}
 

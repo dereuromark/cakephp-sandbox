@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-
 class MarkupController extends SandboxAppController {
 
 	public function beforeFilter(Event $event) {

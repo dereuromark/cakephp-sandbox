@@ -1,6 +1,11 @@
 <h2>Best practices</h2>
 DOs and DONT's of common CakePHP problems.
 
+<h3>Routing</h3>
+Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', array('plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'))?>) as default one:
+<pre><code>Router::defaultRouteClass('DashedRoute');
+</code></pre>
+
 <h3>URLs</h3>
 Use array URLs wherever possible, this saves you a lot of trouble once you actually want to customize the routing:
 <pre><code>// URL /my-controller/my-action

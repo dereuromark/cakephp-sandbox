@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-
 class ExamplesController extends SandboxAppController {
 
 	public $helpers = array('Geshi.Geshi');

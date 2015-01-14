@@ -6,7 +6,6 @@ use Tools\Model\Table\Table;
 
 class ExampleRecordsTable extends Table {
 
-
 	public $records = array();
 
 	public function __construct($id = false, $table = false, $ds = null) {
