@@ -12,7 +12,7 @@ There are quite a few functions and methods available:
  <?php echo $this->Html->link('array_merge_recursive()', array('action' => 'merge', '?' => array('type' => 'array_merge_recursive'))); ?>
 </p>
 <p>
-The produce different results. So it's good to know when which of those merging methods should be best used.
+They produce different results. So it's good to know when which of those merging methods should be best used.
 See for yourself.
 </p>
 
