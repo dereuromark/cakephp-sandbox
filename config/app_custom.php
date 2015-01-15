@@ -29,6 +29,10 @@ $config = [
 		'adminEmail' => '' // Set in your app_local.php
 	),
 
+	'App' => array(
+		'monitorHeaders' => 1
+	),
+
 	'FormConfig' => array(
 		'novalidate' => true,
 		'templates' => array(
