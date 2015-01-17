@@ -12,7 +12,8 @@ use Tools\Controller\Controller;
  */
 class AppController extends Controller {
 
-	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common', 'Tools.Flash', 'Auth', 'Tools.AuthUser');
+	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common',
+		'Tools.Flash', 'Auth', 'Tools.AuthUser');
 
 	public $helpers = array('Session', 'Html',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
@@ -43,7 +44,6 @@ class AppController extends Controller {
 				),
 				'columns' => array('username', 'email'),
 				'userModel' => 'User',
-				//'scope' => array('User.email_confirmed' => 1)
 			)
 		);
 		$this->Auth->authorize = array(
@@ -65,10 +65,12 @@ class AppController extends Controller {
 			'controller' => 'account',
 			'action' => 'login');
 
+		// Short-cicuit Auth for some controllers
 		if (in_array($this->viewPath, array('Pages'))) {
 			$this->Auth->allow();
 		}
 
+		// Make sure you can't access login etc when already logged in
 		$allowed = array('Account' => array('login', 'lost_password', 'register'));
 		if (!$this->AuthUser->id()) {
 			return;
@@ -87,22 +89,22 @@ class AppController extends Controller {
 	 * @return void
 	 */
 	public function beforeRender(Event $event) {
+		/*
 		if ($this->request->is('ajax') && $this->layout === 'default') {
 			$this->layout = 'ajax';
 		}
+		*/
 
-		# default title
+		// default title
+		/*
 		if (empty($this->pageTitle)) {
 			$this->pageTitle = __(Inflector::humanize($this->request->action)) . ' | ' . __($this->name);
 		}
+
 		$this->set('title_for_layout', $this->pageTitle);
+		*/
 
 		$this->disableCache();
-
-		if ($m = $this->Session->read('Message.auth')) {
-			$this->Flash->message($m['message'], 'error');
-			$this->Session->delete('Message.auth');
-		}
 
 		parent::beforeRender($event);
 	}
