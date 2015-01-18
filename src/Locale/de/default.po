@@ -12,16 +12,29 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Language: German\n"
 
-# Eigene neue:
 
-msgid "Translate String"
-msgstr "This is a Translate String"
 
-msgid "Blogä@$€ posts"
-msgstr "Blogü-Post"
+### SANDBOX i18n examples
 
-msgid "language_help"
-msgstr "<h3>Hilfe</h3>Der 'Sprach-Wechsler' ist eigentlich hauptsächlich zu Präsentationszwecken da. Auf die ganze Seite bezogen wird dadurch nur sehr wenig übersetzt.<br />Falls eine andere Sprache als Englisch gesetzt wird, werden höchstens wichtige Seitenelemente und Links in der Sprache angezeigt.Was vielleicht demjenigen, der in Englisch nicht so bewandert ist, eine kleine Navigationshilfe geben kann.(Aber mal ehrlich, welcher deutsche - ernsthafte - Programmierer spricht kein englisch...)<br /><br />An dieser Stelle möchte ich auch nochmal betonen, dass die Hauptsprache dieser Seite definitiv englisch ist - auch wenn ich selbst aus Deutschland bin.Es ist auf deiner einen Seite zu viel Arbeit, alles mehrsprachig anzubieten, auf der anderen Seite ist die deutsche CakePHP Community (noch) nicht groß genug, dass es Sinn machen würde.<br />Vielleicht ändert sich das ja in der Zukunft irgendwann.<br />Darum auch die Bitte, Code-Stücke, Verbesserungsvorschläge, Kommentare, Tipps etc. in englisch zu verfassen, oder es zumindest zu versuchen. Es muss ja nich das 'Business English' sein - aber auf diese Weise profitiert ein größerer Teil der Community von deinem Beitrag.<br /><br />Danke, Mark"
+msgid "A simple string."
+msgstr "Eine übersetzte Version eines einfachen Strings."
+
+msgid "Language switched to {0}."
+msgstr "Sprache auf <b>{0}</b> gewechselt."
+
+msgid "Hello, my name is {0}, I'm {1} years old."
+msgstr "Hallo, mein Name ist {0}, ich bin {1} Jahre alt."
+
+msgid "You have traveled {0,number} kilometers in {1,number,integer} weeks."
+msgstr "Du bist {0,number} Kilometer in {1,number,integer} Wochen gereist."
+
+msgid "Your balance on the {0,date} is {1,number,currency}."
+msgstr "Dein Kontostand am {0,date} beträgt {1,number,currency}."
+
+
+### SANDBOX i18n examples END
+
+
 
 
 msgid "pleaseSelect"

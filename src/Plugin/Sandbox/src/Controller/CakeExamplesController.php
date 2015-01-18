@@ -3,6 +3,8 @@ namespace Sandbox\Controller;
 
 use Cake\Event\Event;
 use Cake\Utility\Hash;
+use Cake\Core\Configure;
+use Cake\I18n\I18n;
 
 class CakeExamplesController extends SandboxAppController {
 
@@ -74,6 +76,29 @@ class CakeExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('array', 'mergeArray', 'result'));
+	}
+
+	/**
+	 * CakeExamplesController::i18n()
+	 *
+	 * @return void
+	 */
+	public function i18n() {
+		// Make sure we have defaults set to I18n if language has been switched previously
+		if ($lang = $this->Session->read('Config.language')) {
+			I18n::locale($lang);
+		} else {
+			$this->Session->write('Config.language', 'en');
+		}
+
+		// Language switcher
+		if ($this->request->is('post')) {
+			$lang = $this->request->query('lang');
+			$this->Session->write('Config.language', $lang);
+			I18n::locale($lang);
+			$this->Flash->success(__('Language switched to {0}.', $lang));
+			return $this->redirect(array('action' => 'i18n'));
+		}
 	}
 
 	/**

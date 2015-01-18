@@ -14,6 +14,27 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Language: English\n"
 
+
+### SANDBOX i18n examples
+
+msgid "A simple string."
+msgstr "A translated version of a simple string."
+
+msgid "Language switched to {0}."
+msgstr "Language switched to <b>{0}</b>."
+
+msgid "Hello, my name is {0}, I'm {1} years old."
+msgstr ""
+
+msgid "You have traveled {0,number} kilometers in {1,number,integer} weeks."
+msgstr ""
+
+msgid "Your balance on the {0,date} is {1,number,currency}."
+msgstr ""
+
+### SANDBOX i18n examples END
+
+
 # Contact
 
 msgid "contactSuccessfullySent %s"
