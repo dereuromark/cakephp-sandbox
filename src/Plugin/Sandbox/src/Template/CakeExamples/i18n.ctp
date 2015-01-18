@@ -61,12 +61,13 @@ echo __(
 ?>
 </pre>
 
-<code><?php echo h("echo __('Your balance on the {0,date} is {1,number,currency}. {2,number,percent} more.', ['2014-01-13 11:12:00', 1354.376], 0.02);"); ?></code>
+<code><?php echo h("echo __('Your balance on the {0,date} is {1,number,currency}. {2,number,percent} more.', [strtotime('2014-01-13 11:12:00'), 1354.376], 0.02);"); ?></code>
 <pre>
 <?php
 echo __(
 	'Your balance on the {0,date} is {1,number,currency}. {2,number,percent} more.',
-	['2014-01-13 11:12:00', 1354.376, 0.02]
+	[strtotime('2014-01-13 11:12:00'), 1354.376, 0.02]
 );
 ?>
 </pre>
+Note that the strtotime() call is <a href="http://php.net/manual/de/class.messageformatter.php#115841" target="_blank">necessary for PHP &lt; 5.5</a>.
