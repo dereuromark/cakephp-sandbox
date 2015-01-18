@@ -171,8 +171,8 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * Show how redirecting works when AJAX is involved:
-	 * It will requestAction() the redirect instead of actually redirecting.
+	 * Show how redirecting works when AJAX is involved using Ajax component and view class.
+	 * It will not follow the redirect, but instead return it along with messages sent.
 	 *
 	 * @return void
 	 */
