@@ -71,3 +71,7 @@ echo __(
 ?>
 </pre>
 Note that the strtotime() call is <a href="http://php.net/manual/de/class.messageformatter.php#115841" target="_blank">necessary for PHP &lt; 5.5</a>.
+
+
+<h4>Debugging</h4>
+ICU version: <?php echo INTL_ICU_VERSION;?>
