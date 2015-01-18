@@ -96,6 +96,7 @@ class CakeExamplesController extends SandboxAppController {
 			$lang = $this->request->query('lang');
 			$this->Session->write('Config.language', $lang);
 			I18n::locale($lang);
+			$lang = locale_get_display_name($lang) . ' ['. strtoupper($lang) . ']';
 			$this->Flash->success(__('Language switched to {0}.', $lang));
 			return $this->redirect(array('action' => 'i18n'));
 		}

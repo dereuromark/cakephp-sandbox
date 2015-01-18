@@ -1,24 +1,29 @@
 <?php
 use Cake\I18n\I18n;
+
+$langEn = locale_get_display_name('en');
+$langDe = locale_get_display_name('de');
+
 ?>
 
 <div class="source-link" style="float: right;">
-<?php if ($this->Session->read('Config.language') === 'de') { ?>
-	<b>DE</b>
+<?php if ($this->Session->read('Config.language') === 'en') { ?>
+	<b><?php echo $langEn; ?></b>
 <?php } else { ?>
-	<?php echo $this->Form->postLink('DE', array('?' => array('lang' => 'de'))); ?>
+	<?php echo $this->Form->postLink($langEn, array('?' => array('lang' => 'en')), ['title' => __('Switch language')]); ?>
 <?php } ?>
  |
-<?php if ($this->Session->read('Config.language') === 'en') { ?>
-	<b>EN</b>
+<?php if ($this->Session->read('Config.language') === 'de') { ?>
+	<b><?php echo $langDe; ?></b>
 <?php } else { ?>
-	<?php echo $this->Form->postLink('EN', array('?' => array('lang' => 'en'))); ?>
+	<?php echo $this->Form->postLink($langDe, array('?' => array('lang' => 'de')), ['title' => __('Switch language')]); ?>
 <?php } ?>
+ | <small><i>Add yours here</i></small>
 </div>
 
 <h2>I18n</h2>
 <p>
-Current locale (<code><?php echo h('echo I18n::locale();'); ?></code>): <b><?php echo I18n::locale();?></b>
+Current locale (<code><?php echo h('echo I18n::locale();'); ?></code>): <b><?php echo locale_get_display_name(I18n::locale(), I18n::locale());?> [<?php echo I18n::locale();?>]</b>
 </p>
 
 <h3>
