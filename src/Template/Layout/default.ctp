@@ -45,7 +45,7 @@ echo $this->fetch('script');
 		<div id="header">
 			<h1><?php
 echo $description;
-?></h1>
+?> <b>v3</b></h1>
 		</div>
 		<div id="content">
 
@@ -63,7 +63,7 @@ echo $this->fetch('content');
 		<div id="footer">
 		<hr />
 
-		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP<?php echo substr(phpversion(), 0, 3);?></div>
+		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
 
 			Author: dereuromark | <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
 echo $this->Html->link('Contact', array('plugin' => false, 'admin' => false, 'controller' => 'contact', 'action' => 'index'));
