@@ -48,7 +48,7 @@ Let's try to translate something.
 
 
 <h3>Complex placeholders</h3>
-<p><i>(Experimental)</i></p>
+<p><i>(Experimental - most doesn't seem to work properly in PHP5.4)</i></p>
 
 <code><?php echo h("echo __('You have traveled {0,number,decimal} kilometers in {1,number,integer} weeks.', [5423.344, 5.1]);"); ?></code>
 <pre>
