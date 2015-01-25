@@ -45,7 +45,7 @@ echo $this->fetch('script');
 		<div id="header">
 			<h1><?php
 echo $description;
-?></h1>
+?> <b>v2</b></h1>
 		</div>
 		<div id="content">
 

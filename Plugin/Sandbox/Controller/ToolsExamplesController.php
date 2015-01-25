@@ -65,7 +65,37 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function _password() {
+	public function password() {
+		$this->User = ClassRegistry::init('User');
+		$this->User->Behaviors->attach('Tools.Passwordable');
+
+		if ($this->request->is('post')) {
+			if ($this->User->save($this->request->data)) {
+				$this->Common->flashMessage('Yeah!', 'success');
+			} else {
+				$this->Common->flashMessage('Please correct your form.', 'error');
+			}
+		}
+	}
+
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function password_edit() {
+		$this->User = ClassRegistry::init('User');
+		$this->User->Behaviors->attach('Tools.Passwordable', array('require' => false));
+
+		if ($this->request->is('post')) {
+			if ($this->User->save($this->request->data)) {
+				$this->Common->flashMessage('Yeah!', 'success');
+			} else {
+				$this->Common->flashMessage('Please correct your form.', 'error');
+			}
+		}
+
+		$this->render('password');
 	}
 
 	/**
