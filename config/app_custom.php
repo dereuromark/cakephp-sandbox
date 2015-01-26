@@ -1,6 +1,11 @@
 <?php
+$debug = false;
+if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
+	$debug = true;
+}
+
 return [
-	'debug' => false,
+	'debug' => $debug,
 
 	'Security' => [
 		'salt' => '0ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',

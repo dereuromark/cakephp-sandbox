@@ -5,6 +5,7 @@ use Cake\Event\Event;
 use Cake\Utility\Hash;
 use Cake\Core\Configure;
 use Cake\I18n\I18n;
+use Cake\ORM\TableRegistry;
 
 class CakeExamplesController extends SandboxAppController {
 
@@ -100,6 +101,30 @@ class CakeExamplesController extends SandboxAppController {
 			$this->Flash->success(__('Language switched to {0}.', $lang));
 			return $this->redirect(array('action' => 'i18n'));
 		}
+	}
+
+	/**
+	 * Test validation on marshal and rules on save.
+	 *
+	 * @return void
+	 */
+	public function validation() {
+		$Animals = TableRegistry::get('Sandbox.Animals');
+
+		$animal = $Animals->newEntity();
+
+		if ($this->request->is('post')) {
+			$animal = $Animals->patchEntity($animal, $this->request->data);
+
+			// Simulate $Animals->save($animal) call as we dont't want to really save here
+			if (!$animal->errors() & $Animals->checkRules($animal)) {
+				$this->Flash->success('Yeah, entry would have been saved.');
+			} else {
+				$this->Flash->error('Please correct your form content.');
+			}
+		}
+
+		$this->set(compact('animal'));
 	}
 
 	/**

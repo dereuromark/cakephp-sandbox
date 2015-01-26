@@ -1,7 +1,7 @@
 <div class="form">
 <h2>Chained Dropdowns using AJAX</h2>
 
-<?php echo $this->Form->create('User');?>
+<?php echo $this->Form->create($user);?>
 	<fieldset>
  		<legend><?php echo __('Countries and Country Provinces');?></legend>
 	<?php
