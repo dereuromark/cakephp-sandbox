@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 class ToolsExamplesController extends SandboxAppController {
 
@@ -64,7 +65,48 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function _password() {
+	public function password() {
+		$this->Users = TableRegistry::get('Users');
+		$this->Users->addBehavior('Tools.Passwordable');
+
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is('post')) {
+			$this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
+				$this->Flash->success('Yeah!');
+			} else {
+				$this->Flash->error('Please correct your form.');
+			}
+		}
+
+		$this->set(compact('user'));
+	}
+
+	/**
+	 * //TODO
+	 *
+	 * @return void
+	 */
+	public function password_edit() {
+		$this->Users = TableRegistry::get('Users');
+		$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
+
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is('post')) {
+			$this->Users->patchEntity($user, $this->request->data);
+			//die(debug($user->errors()));
+			//die(debug($this->Users->checkRules($user)));
+			if ($this->Users->save($user)) {
+				$this->Flash->success('Yeah!');
+			} else {
+				$this->Flash->error('Please correct your form.');
+			}
+		}
+
+		$this->set(compact('user'));
+		$this->render('password');
 	}
 
 	/**

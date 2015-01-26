@@ -1,9 +1,9 @@
 <?php
 return [
-	'debug' => false,
+	//'debug' => true,
 
 	'Security' => [
-		'salt' => '0ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
+		'salt' => '9ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
 	],
 
 	'Datasources' => [
@@ -11,7 +11,7 @@ return [
 			'host' => 'localhost',
 			'username' => 'root',
 			'password' => '',
-			'database' => '', // Set in your app_local.php
+			'database' => 'cake_sandbox',
 		],
 
 		/**
@@ -21,36 +21,18 @@ return [
 			'host' => 'localhost',
 			'username' => 'root',
 			'password' => '',
-			'database' => '', // Set in your app_local.php
+			'database' => 'cake_test',
 		],
 	],
 
 	'Config' => array(
-		'adminEmail' => '' // Set in your app_local.php
-	),
-
-	'App' => array(
-		'monitorHeaders' => 1
+		'adminEmail' => 'youremail@host.de'
 	),
 
 	'FormConfig' => array(
 		'novalidate' => true,
 		'templates' => array(
 			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		)
-	),
-
-	'EmailTransport' => array(
-		'default' => array(
-			'className' => 'Smtp',
-			'tls' => true,
-			'port' => 587
-		)
-	),
-
-	'Email' => array(
-		'default' => array(
-			'from' => ''
 		)
 	)
 
