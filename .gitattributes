@@ -33,3 +33,12 @@
 *.ico binary
 *.mo binary
 *.pdf binary
+*.jar binary
+*.exe binary
+*.eot binary
+*.ttf binary
+*.otf binary
+*.pdf binary
+*.woff binary
+*.bz2 binary
+*.gz binary
