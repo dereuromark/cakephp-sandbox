@@ -8,6 +8,7 @@ git pull
 php composer.phar update --prefer-dist --no-dev --optimize-autoloader
 
 echo "### DB MIGRATION ###";
+# Don't forget to "chmod +x bin/cake" first
 bin/cake Migrations migrate
 
 echo "### CLEANUP ###";
