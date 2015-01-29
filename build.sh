@@ -17,5 +17,5 @@ rm -rf ./tmp/cache/persistent/*
 
 chown -R www-data:www-data *
 
-echo "### DONE ###;
+echo "### DONE ###";
 exit
