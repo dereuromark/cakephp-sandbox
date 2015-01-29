@@ -8,7 +8,7 @@ git pull
 php composer.phar update --prefer-dist --no-dev --optimize-autoloader
 
 echo "### DB MIGRATION ###";
-bin/cake Migrations.migrate
+bin/cake Migrations migrate
 
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
@@ -16,5 +16,5 @@ rm -rf ./tmp/cache/persistent/*
 
 chown -R www-data:www-data *
 
-echo ### DONE ###;
+echo "### DONE ###;
 exit
