@@ -1,15 +1,16 @@
 #!/bin/bash
 
-echo "### INSTALL ###";
-
+echo "### INSTALL/UPDATE ###";
 php composer.phar selfupdate
 
 git pull
 
 php composer.phar update --prefer-dist --no-dev --optimize-autoloader
 
+echo "### DB MIGRATION ###";
+bin/cake Migrations.migrate
+
 echo "### CLEANUP ###";
-# cleanup
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
 

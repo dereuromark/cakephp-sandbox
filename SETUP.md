@@ -26,6 +26,13 @@ Then:
 This will not be version-controlled. I use it for email setup, API keys and core salt value etc.
 * Make sure you are in debug mode (2).
 
+Take the `/config/Migrations/0_sandbox_first_manual_init.sql` and execute it.
+This gives you all the basic tables.
+Use the Migrations plugin to add the rest of the SQL:
+```
+bin/cake Migrations migrate
+```
+
 Everything should be up and running.
 
 ### Contributing
