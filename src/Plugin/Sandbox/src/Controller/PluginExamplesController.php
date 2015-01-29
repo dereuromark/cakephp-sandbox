@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class PluginExamplesController extends SandboxAppController {
 
-	public $helpers = array('Geshi.Geshi');
+	public $helpers = array();
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
