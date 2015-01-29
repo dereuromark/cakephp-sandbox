@@ -34,7 +34,9 @@ class AnimalsTable extends Table {
 				'unique' => ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'This animal already exists!']
 			])
 			->add('confirm', 'notEmpty', [
-				'rule' => function ($value, $context) { return !empty($value); },
+				'rule' => function ($value, $context) {
+					return !empty($value);
+				},
 				'message' => __('Please select checkbox to continue.'),
 				//'provider' => 'table',
 				'requirePresence' => true,

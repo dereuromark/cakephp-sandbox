@@ -110,6 +110,34 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Test validation on marshal and rules on save.
+	 *
+	 * @return void
+	 */
+	public function confirmable() {
+		$Animals = TableRegistry::get('Sandbox.Animals');
+		$Animals->validator()->remove('confirm');
+		$Animals->addBehavior('Tools.Confirmable');
+		// Bug in CakePHP: You need to manually trigger build on the behavior and pass the validator!
+		$Animals->behaviors()->Confirmable->build($Animals->validator());
+
+		$animal = $Animals->newEntity();
+
+		if ($this->request->is('post')) {
+			$animal = $Animals->patchEntity($animal, $this->request->data);
+
+			// Simulate $Animals->save($animal) call as we dont't want to really save here
+			if (!$animal->errors()) {
+				$this->Flash->success('Yeah, you are allowed to continue!');
+			} else {
+				$this->Flash->error('Please correct your form content!');
+			}
+		}
+
+		$this->set(compact('animal'));
+	}
+
+	/**
 	 * Display a Google map.
 	 *
 	 * //TODO: move to Geo plugin examples
