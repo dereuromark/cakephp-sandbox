@@ -18,7 +18,7 @@
 	Also note how "Please select" requires input, whereas "No option available" does not.
 	<br /><br />
 
-<?php echo $this->Form->end(__('Submit'));?>
+<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
 
 

@@ -12,7 +12,7 @@ use Tools\Controller\Controller;
  */
 class AppController extends Controller {
 
-	public $components = array('Tools.Session', 'RequestHandler', 'Tools.Common',
+	public $components = array('Shim.Session', 'RequestHandler', 'Tools.Common',
 		'Tools.Flash', 'Auth', 'Tools.AuthUser');
 
 	public $helpers = array('Session', 'Html',

@@ -33,7 +33,8 @@
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev",
-		"markstory/geshi": "3.0.*-dev"
+		"markstory/geshi": "3.0.*-dev",
+		"dereuromark/cakephp-shim": "3.0.*-dev"
 	},
 	"require-dev": {
 		"d11wtq/boris": "1.0.*",

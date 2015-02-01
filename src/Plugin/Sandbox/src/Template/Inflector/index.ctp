@@ -3,7 +3,8 @@
 <?php
 echo $this->Form->create(false, array('type' => 'get'));
 echo $this->Form->input('string', array('label' => false, 'value' => $string));
-echo $this->Form->end('Inflect me!');
+echo $this->Form->submit('Inflect me!');
+echo $this->Form->end();
 
 if (!empty($results)) {
 	echo $this->element('Sandbox.inflector/results');

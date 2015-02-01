@@ -17,5 +17,5 @@ $(document).ready(function() {
 echo $this->Form->create('JqueryExample', ['id' => 'jquery-example-form']);
 echo $this->Form->input('comment', array('type' => 'textarea', 'maxlength' => '20', 'id' => 'jquery-example-comment'));
 echo $this->Form->input('text', array('maxlength' => '20', 'id' => 'jquery-example-text'));
-
-echo $this->Form->end('Submit Test');
+echo $this->Form->submit('Submit Test');
+echo $this->Form->end();

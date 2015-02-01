@@ -93,5 +93,5 @@ Just write it via keyboard, scan it and send it.
 	</div>
 	</fieldset>
 
-<?php echo $this->Form->end(__('Submit'));?>
+<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
