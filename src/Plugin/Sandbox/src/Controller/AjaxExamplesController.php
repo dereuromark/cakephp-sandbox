@@ -117,12 +117,11 @@ class AjaxExamplesController extends SandboxAppController {
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
-			/*
-			$this->User->validate['country_province_id']['numeric'] = array(
+			
+			$this->Users->validator()->add('country_province_id', 'numeric', array(
 				'rule' => 'numeric',
 				'message' => 'Please select something'
-			);
-			*/
+			));
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			//$result = $this->User->validates();
 		}
