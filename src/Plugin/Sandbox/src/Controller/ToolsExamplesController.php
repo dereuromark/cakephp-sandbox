@@ -61,6 +61,29 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Slugged behavior and ascii unique URL slugs
+	 * 
+	 * @return void
+	 */
+	public function slug() {
+		$this->Users = TableRegistry::get('Sandbox.SandboxUsers');
+		$this->Users->addBehavior('Tools.Slugged', ['mode' => 'ascii', 'unique' => true]);
+
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is('post')) {
+			$this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
+				$this->Flash->success('Yeah!');
+			} else {
+				$this->Flash->error('Please correct your form.');
+			}
+		}
+
+		$this->set(compact('user'));
+	}
+
+	/**
 	 * //TODO
 	 *
 	 * @return void
