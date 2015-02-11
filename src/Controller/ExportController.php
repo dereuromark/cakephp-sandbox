@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Cake\Network\Exception\MethodNotAllowedException;
+use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
@@ -51,6 +52,10 @@ class ExportController extends AppController {
 	public function countries() {
 		$this->Countries = TableRegistry::get('Data.Countries');
 		$countries = $this->Countries->find('all', array('fields' => array()));
+
+		if (!$this->viewClass) {
+			throw new NotFoundException();
+		}
 
 		$this->set(compact('countries'));
 		$this->set('_serialize', array('countries'));

@@ -15,9 +15,10 @@ class UsersTable extends Table {
 				'last' => true
 			),
 			'isUnique' => array(
-				'rule' => 'isUnique',
+				'rule' => 'validateUnique',
 				'message' => 'Username already exists',
-				'last' => true
+				'last' => true,
+				'provider' => 'table'
 			),
 		),
 		'email' => array(
@@ -27,9 +28,10 @@ class UsersTable extends Table {
 				'last' => true
 			),
 			'unique' => array(
-				'rule' => array('isUnique'),
+				'rule' => array('validateUnique'),
 				'message' => 'Email already exists',
-				'last' => true
+				'last' => true,
+				'provider' => 'table'
 			),
 		),
 	);
