@@ -1,5 +1,10 @@
 <h2>Working with Slugs</h2>
-Using the SluggedBehavior
+<p>Using the SluggedBehavior.
+</p>
+<p>
+The following example uses unique slugs (Try saving the same username twice) and ascii chars only.<br>
+So when you try to save "n/a" it will become "n-a". If that is already taken, it will increment the suffix, e.g. "n-a-1" etc.
+</p>
 
 <div class="page form">
 <?php echo $this->Form->create($user);?>
@@ -14,11 +19,16 @@ Using the SluggedBehavior
 <?php echo $this->Form->end();?>
 </div>
 
-<h3>Info</h3>
 <?php if ($slug = $user->get('slug')) { ?>
+<h3>Info</h3>
 </p>The generated slug that is saved along with the username: <b><?php echo h($slug); ?></b><p>
-<?php } ?>
 
+<br><br>
+
+Entity data:
+<pre>
 <?php
-pr($user->toArray());
+print_r($user->toArray());
 ?>
+</pre>
+<?php } ?>

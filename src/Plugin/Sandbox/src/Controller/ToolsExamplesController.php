@@ -62,7 +62,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 	/**
 	 * Slugged behavior and ascii unique URL slugs
-	 * 
+	 *
 	 * @return void
 	 */
 	public function slug() {
@@ -71,7 +71,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 		$user = $this->Users->newEntity();
 
-		if ($this->request->is('post')) {
+		if ($this->request->is(['post', 'put'])) {
 			$this->Users->patchEntity($user, $this->request->data);
 			if ($this->Users->save($user)) {
 				$this->Flash->success('Yeah!');

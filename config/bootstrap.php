@@ -173,6 +173,8 @@ Request::addDetector('tablet', function ($request) {
 Plugin::loadAll([
 		'Tools' => array('bootstrap' => true),
 		//'Ajax' => array('bootstrap' => true)
+		'Sandbox' => array('routes' => true),
+		'AuthSandbox' => array('routes' => true),
 		'DebugKit' => array('bootstrap' => true)
 ]);
 
@@ -182,6 +184,7 @@ Plugin::loadAll([
 DispatcherFactory::add('Asset');
 DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
+//DispatcherFactory::add('Shim.Seo');
 
 Router::extensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
 

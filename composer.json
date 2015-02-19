@@ -48,7 +48,8 @@
 	"autoload": {
 		"psr-4": {
 			"App\\": "src",
-			"Sandbox\\": "src/Plugin/Sandbox/src"
+			"Sandbox\\": "src/Plugin/Sandbox/src",
+			"AuthSandbox\\": "src/Plugin/AuthSandbox/src"
 		}
 	},
 	"autoload-dev": {

@@ -17,6 +17,9 @@ class AssetCompressExamplesController extends SandboxAppController {
 	}
 
 	public function index() {
+		$actions = $this->_getActions($this);
+
+		$this->set(compact('actions'));
 	}
 
 	public function sass() {

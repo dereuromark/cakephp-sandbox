@@ -62,15 +62,11 @@ Router::scope('/', function ($routes) {
 	 * You can remove these routes once you've connected the
 	 * routes you want in your application.
 	 */
-	$routes->fallbacks('InflectedRoute');
-});
-
-Router::plugin('Sandbox', function ($routes) {
-	$routes->fallbacks('InflectedRoute');
+	$routes->fallbacks();
 });
 
 Router::plugin('Data', function ($routes) {
-	$routes->fallbacks('InflectedRoute');
+	$routes->fallbacks();
 });
 
 /**
