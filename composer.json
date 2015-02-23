@@ -21,7 +21,7 @@
 		"cakephp/cakephp" : "2.6.*",
 		"FriendsOfCake/Authenticate": "dev-master",
 		"markstory/asset_compress" : "dev-master",
-		"dereuromark/cakephp-tools" : "dev-master",
+		"dereuromark/cakephp-tools" : "0.*",
 		"dereuromark/cakephp-setup" : "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
 		"markstory/geshi" : "dev-master",

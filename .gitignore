@@ -26,3 +26,4 @@ _*
 /Vendor/symfony
 /Vendor/dereuromark
 /Vendor/phpunit
+/Plugin/Shim
