@@ -12,6 +12,11 @@ class AuthSandboxController extends AppController {
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
+		$this->_authSetup();
+		$this->_allowActions();
+	}
+
+	protected function _authSetup() {
 		$this->Auth->config('authenticate', [
 			'FOC/Authenticate.MultiColumn' => [
 				'fields' => array(
@@ -27,17 +32,21 @@ class AuthSandboxController extends AppController {
 		$this->Auth->config('authorize', ['TinyAuth.Tiny']);
 
 		$this->Auth->config('loginAction', [
+			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
 			'plugin' => 'AuthSandbox'
 		]);
 		$this->Auth->config('loginRedirect', [
+			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'index',
 			'plugin' => 'AuthSandbox'
 		]);
-        $this->Auth->config('authError', 'Did you really think you are allowed to see that?');
+		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
+	}
 
+	protected function _allowActions() {
 		$this->Auth->allow(['index', 'login', 'logout']);
 	}
 

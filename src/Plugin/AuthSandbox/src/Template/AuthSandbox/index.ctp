@@ -25,7 +25,7 @@ Authentication is provided by a basic Form adapter.
     <li><?php echo $this->Html->link('index', ['action' => 'index']); ?>: public</li>
     <li><?php echo $this->Html->link('for_all', ['action' => 'for_all']); ?>: for all who are logged in</li>
     <li><?php echo $this->Html->link('for_mods', ['action' => 'for_mods']); ?>: for all moderators</li>
-    <li></li>
+    <li><?php echo $this->Html->link('admin/index', ['prefix' => 'admin', 'action' => 'index']); ?>: for all admins</li>
 </ul>
 
 <h3>Roles and access data</h3>
