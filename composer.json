@@ -37,7 +37,7 @@
 		"dereuromark/cakephp-shim": "3.0.*-dev"
 	},
 	"require-dev": {
-		"d11wtq/boris": "1.0.*",
+		"psy/psysh": "@stable",
 		"cakephp/debug_kit": "3.0.*-dev",
 		"cakephp/bake": "dev-master",
 		"dereuromark/cakephp-codesniffer": "3.0.*-dev",

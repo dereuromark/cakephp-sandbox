@@ -37,7 +37,7 @@ Router::scope('/', function ($routes) {
 	//route to switch locale
 	//$routes->connect('/lang/*', array('controller' => 'p28n', 'action' => 'change'));
 
-	$routes->connect('/admin', array('admin' => 'admin', 'controller' => 'Overview', 'action' => 'index'));
+	$routes->connect('/admin', array('prefix' => 'admin', 'controller' => 'Overview', 'action' => 'index'));
 
 	//$routes->connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
 
@@ -63,6 +63,14 @@ Router::scope('/', function ($routes) {
 	 * routes you want in your application.
 	 */
 	$routes->fallbacks();
+});
+
+Router::prefix('admin', function ($routes) {
+	// Because you are in the admin scope,
+	// you do not need to include the /admin prefix
+	// or the admin route element.
+	$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);
+	$routes->connect('/:controller/:action/*', [], ['routeClass' => 'DashedRoute']);
 });
 
 Router::plugin('Data', function ($routes) {
