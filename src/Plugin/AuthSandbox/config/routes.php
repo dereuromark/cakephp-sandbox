@@ -3,6 +3,9 @@ namespace AuthSandbox\Config;
 
 use Cake\Routing\Router;
 
+// With Router::defaultRouteClass('InflectedRoute'); in the app's routes config
+// This always results in the URL /auth_sandbox/auth-sandbox instead of /auth-sandbox/auth-sandbox ...
+
 Router::prefix('admin', function ($routes) {
 	$routes->plugin('AuthSandbox', function ($routes) {
 		$routes->connect('/:controller', ['action' => 'index'], ['routeClass' => 'DashedRoute']);
