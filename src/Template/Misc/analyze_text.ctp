@@ -8,11 +8,11 @@ Count words, sentences, etc
 	<fieldset>
  		<legend><?php echo __('Enter Text');?></legend>
 	<?php
-		echo $this->Form->input('Form.text', array('type' => 'textarea', 'class' => 'halfSize', 'rows' => 15));
+		echo $this->Form->input('Form.text', ['type' => 'textarea', 'class' => 'halfSize', 'rows' => 15]);
 		//echo $this->Form->input('Form.type', array('empty'=>array('0'=>'- [auto-detect] -')));
-		echo $this->Form->input('Form.min_char', array());
-		echo $this->Form->input('Form.max_char', array());
-		echo $this->Form->input('Form.sort', array('options' => array('' => '- [none] -', 'asc' => 'ASC', 'desc' => 'DESC')));
+		echo $this->Form->input('Form.min_char', []);
+		echo $this->Form->input('Form.max_char', []);
+		echo $this->Form->input('Form.sort', ['options' => ['' => '- [none] -', 'asc' => 'ASC', 'desc' => 'DESC']]);
 		echo $this->Form->input('Form.limit');
 
 		//echo $this->Form->input('Form.prevent_trim', array('type'=>'hidden', 'value'=>1));
@@ -46,6 +46,6 @@ if (!empty($results)) {
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Back'), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['action' => 'index']);?></li>
 	</ul>
 </div>

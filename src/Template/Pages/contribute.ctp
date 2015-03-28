@@ -3,7 +3,7 @@
 <h3>Join in</h3>
 Anybody who wants to help improve this site - or add new features? Feel free to contact me.
 <br /><br />
-Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', array('controller' => 'Contact'))?>.
+Found some errors? Spelling mistakes? &nbsp; <?php echo $this->Html->link('-> Contact Form', ['controller' => 'Contact'])?>.
 <br />
 Or directly <b>make a "Pull Request" with the changes on Github</b>.
 <br /><br />

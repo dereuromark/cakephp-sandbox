@@ -35,7 +35,7 @@ Other:
 <li>RegExp <a href="<?php echo $url; ?>/regular-expressions-cheat-sheet-v2.pdf"><?php echo $this->Html->image('statics/file_types/reg-exp.png');?></a></li>
 <li>ModRewrite <a href="<?php echo $url; ?>/mod_rewrite-cheat-sheet-v2.pdf"><?php echo $this->Html->image('statics/file_types/mod-rewrite.gif');?></a></li>
 <li>RGB/Hex <a href="<?php echo $url; ?>/rgb-hex-cheat-sheet-v1.pdf"><?php echo $this->Html->image('statics/file_types/rgb-hex.png');?></a></li>
-<li>RnR <a href="<?php echo $url; ?>/ruby-on-rails-cheat-sheet-v1.pdf"><?php echo $this->Html->image('statics/file_types/rb.png', array('title' => 'Ruby on Rails'));?></a></li>
+<li>RnR <a href="<?php echo $url; ?>/ruby-on-rails-cheat-sheet-v1.pdf"><?php echo $this->Html->image('statics/file_types/rb.png', ['title' => 'Ruby on Rails']);?></a></li>
 
 </ul>
 

@@ -8,7 +8,7 @@ use Cake\Event\Event;
  */
 class OverviewController extends AppController {
 
-	public $uses = array('User');
+	public $uses = ['User'];
 
 	public function beforeFilter(Event $event) {
 		$this->Auth->allow('index');

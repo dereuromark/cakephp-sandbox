@@ -7,34 +7,34 @@ class UsersTable extends Table {
 
 	public $displayField = 'username';
 
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+	public $validate = [
+		'username' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
 				'message' => 'Mandatory',
 				'last' => true
-			),
-			'isUnique' => array(
+			],
+			'isUnique' => [
 				'rule' => 'validateUnique',
 				'message' => 'Username already exists',
 				'last' => true,
 				'provider' => 'table'
-			),
-		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
+			],
+		],
+		'email' => [
+			'email' => [
+				'rule' => ['email'],
 				'message' => 'Email invalid',
 				'last' => true
-			),
-			'unique' => array(
-				'rule' => array('validateUnique'),
+			],
+			'unique' => [
+				'rule' => ['validateUnique'],
 				'message' => 'Email already exists',
 				'last' => true,
 				'provider' => 'table'
-			),
-		),
-	);
+			],
+		],
+	];
 
 	public function initialize(array $config) {
 		$this->belongsTo('Roles');

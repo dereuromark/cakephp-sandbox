@@ -7,7 +7,7 @@
 		<legend><?php echo __('Step {0}', 1);?></legend>
 		<p>Please enter your email address</p>
 	<?php
-	echo $this->Form->input('Form.login', array('autocomplete' => 'off', 'label' => __('Email')));
+	echo $this->Form->input('Form.login', ['autocomplete' => 'off', 'label' => __('Email')]);
 	echo $this->Captcha->input();
 
 	echo $this->Form->submit(__('Submit'));
@@ -22,7 +22,7 @@
 			Click on the link in the email or Copy-and-Paste your received token here:
  		</p>
 	<?php
-	echo $this->Form->input('Form.key', array('autocomplete' => 'off'));
+	echo $this->Form->input('Form.key', ['autocomplete' => 'off']);
 
 	echo $this->Form->submit(__('Submit'));
 	?>
@@ -35,6 +35,6 @@
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Login instead'), array('action' => 'login'));?></li>
+		<li><?php echo $this->Html->link(__('Login instead'), ['action' => 'login']);?></li>
 	</ul>
 </div>

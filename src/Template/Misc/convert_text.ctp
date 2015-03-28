@@ -12,9 +12,9 @@ Use this converter to get the text in the appropriate format.
 	<fieldset>
  		<legend><?php echo __('Enter Text');?></legend>
 	<?php
-		echo $this->Form->input('Form.text', array('type' => 'textarea', 'class' => 'halfSize'));
-		echo $this->Form->input('Form.type', array('empty' => array('0' => '- [auto-detect] -')));
-		echo $this->Form->input('Form.prevent_trim', array('type' => 'hidden', 'value' => 1));
+		echo $this->Form->input('Form.text', ['type' => 'textarea', 'class' => 'halfSize']);
+		echo $this->Form->input('Form.type', ['empty' => ['0' => '- [auto-detect] -']]);
+		echo $this->Form->input('Form.prevent_trim', ['type' => 'hidden', 'value' => 1]);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
@@ -22,7 +22,7 @@ Use this converter to get the text in the appropriate format.
 
 <h2>Result</h2>
 <?php
-echo $this->Form->input('Form.result', array('type' => 'textarea', 'class' => 'halfSize'));
+echo $this->Form->input('Form.result', ['type' => 'textarea', 'class' => 'halfSize']);
 
 if (!empty($this->request->data) && !empty($this->request->data['Form']['result'])) {
 	echo '<div class="">';
@@ -56,6 +56,6 @@ if (!empty($this->request->data) && !empty($this->request->data['Form']['result'
 
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Html->link(__('Back'), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['action' => 'index']);?></li>
 	</ul>
 </div>

@@ -32,8 +32,8 @@ echo $this->fetch('script');
  <div id="container">
 
 	<?php
-		$navigation = array(
-		);
+		$navigation = [
+		];
 	?>
 
 	<div id="navigation" class="navbar navbar-default navbar-fixed-top">
@@ -66,7 +66,7 @@ echo $this->fetch('content');
 		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
 
 			Author: dereuromark | <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
-echo $this->Html->link('Contact', array('plugin' => false, 'admin' => false, 'controller' => 'contact', 'action' => 'index'));
+echo $this->Html->link('Contact', ['plugin' => false, 'admin' => false, 'controller' => 'contact', 'action' => 'index']);
 
 ?>
 		</div>

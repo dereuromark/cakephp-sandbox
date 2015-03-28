@@ -12,12 +12,12 @@ use Tools\Controller\Controller;
  */
 class AppController extends Controller {
 
-	public $components = array('Shim.Session', 'RequestHandler', 'Tools.Common',
-		'Tools.Flash', 'Auth', 'Tools.AuthUser');
+	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
+		'Tools.Flash', 'Auth', 'Tools.AuthUser'];
 
-	public $helpers = array('Session', 'Html',
+	public $helpers = ['Session', 'Html',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'Tools.AuthUser');
+		'Tools.Time', 'Tools.Number', 'Tools.AuthUser'];
 
 	/**
 	 * AppController::constructClasses()
@@ -35,43 +35,43 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
-		$this->Auth->authenticate = array(
-			'Authenticate.MultiColumn' => array(
+		$this->Auth->authenticate = [
+			'Authenticate.MultiColumn' => [
 				'passwordHasher' => Configure::read('Passwordable.authType'),
-				'fields' => array(
+				'fields' => [
 					'username' => 'login',
 					'password' => 'password'
-				),
-				'columns' => array('username', 'email'),
+				],
+				'columns' => ['username', 'email'],
 				'userModel' => 'User',
-			)
-		);
-		$this->Auth->authorize = array(
-			'Tools.Tiny' => array()
-		);
-		$this->Auth->logoutRedirect = array(
+			]
+		];
+		$this->Auth->authorize = [
+			'Tools.Tiny' => []
+		];
+		$this->Auth->logoutRedirect = [
 			'plugin' => false,
 			'admin' => false,
 			'controller' => 'overview',
-			'action' => 'index');
-		$this->Auth->loginRedirect = array(
+			'action' => 'index'];
+		$this->Auth->loginRedirect = [
 			'plugin' => false,
 			'admin' => false,
 			'controller' => 'account',
-			'action' => 'index');
-		$this->Auth->loginAction = array(
+			'action' => 'index'];
+		$this->Auth->loginAction = [
 			'plugin' => false,
 			'admin' => false,
 			'controller' => 'account',
-			'action' => 'login');
+			'action' => 'login'];
 
 		// Short-cicuit Auth for some controllers
-		if (in_array($this->viewPath, array('Pages'))) {
+		if (in_array($this->viewPath, ['Pages'])) {
 			$this->Auth->allow();
 		}
 
 		// Make sure you can't access login etc when already logged in
-		$allowed = array('Account' => array('login', 'lost_password', 'register'));
+		$allowed = ['Account' => ['login', 'lost_password', 'register']];
 		if (!$this->AuthUser->id()) {
 			return;
 		}

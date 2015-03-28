@@ -8,7 +8,7 @@ use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
 
-	public $uses = array();
+	public $uses = [];
 
 	/**
 	 * ExportController::beforeFilter()
@@ -51,14 +51,14 @@ class ExportController extends AppController {
 	 */
 	public function countries() {
 		$this->Countries = TableRegistry::get('Data.Countries');
-		$countries = $this->Countries->find('all', array('fields' => array()));
+		$countries = $this->Countries->find('all', ['fields' => []]);
 
 		if (!$this->viewClass) {
 			throw new NotFoundException();
 		}
 
 		$this->set(compact('countries'));
-		$this->set('_serialize', array('countries'));
+		$this->set('_serialize', ['countries']);
 	}
 
 	/**
@@ -66,10 +66,10 @@ class ExportController extends AppController {
 	 */
 	public function country_provinces() {
 		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
-		$countryProvinces = $this->CountryProvince->find('all', array('fields' => array()));
+		$countryProvinces = $this->CountryProvince->find('all', ['fields' => []]);
 
 		$this->set(compact('countryProvinces'));
-		$this->set('_serialize', array('countryProvinces'));
+		$this->set('_serialize', ['countryProvinces']);
 	}
 
 	/**
@@ -77,10 +77,10 @@ class ExportController extends AppController {
 	 */
 	public function currencies() {
 		$this->Currency = TableRegistry::get('Data.Currencies');
-		$currencies = $this->Currency->find('all', array('fields' => array()));
+		$currencies = $this->Currency->find('all', ['fields' => []]);
 
 		$this->set(compact('currencies'));
-		$this->set('_serialize', array('currencies'));
+		$this->set('_serialize', ['currencies']);
 	}
 
 	/**
@@ -88,10 +88,10 @@ class ExportController extends AppController {
 	 */
 	public function languages() {
 		$this->Language = TableRegistry::get('Data.Languages');
-		$languages = $this->Language->find('all', array('fields' => array()));
+		$languages = $this->Language->find('all', ['fields' => []]);
 
 		$this->set(compact('languages'));
-		$this->set('_serialize', array('languages'));
+		$this->set('_serialize', ['languages']);
 	}
 
 	/**
@@ -99,10 +99,10 @@ class ExportController extends AppController {
 	 */
 	public function continents() {
 		$this->Continent = TableRegistry::get('Data.Continents');
-		$continents = $this->Continent->find('all', array('fields' => array()));
+		$continents = $this->Continent->find('all', ['fields' => []]);
 
 		$this->set(compact('continents'));
-		$this->set('_serialize', array('continents'));
+		$this->set('_serialize', ['continents']);
 	}
 
 	/**
@@ -110,10 +110,10 @@ class ExportController extends AppController {
 	 */
 	public function postal_codes() {
 		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
-		$postalCodes = $this->PostalCode->find('all', array('fields' => array()));
+		$postalCodes = $this->PostalCode->find('all', ['fields' => []]);
 
 		$this->set(compact('postalCodes'));
-		$this->set('_serialize', array('postalCodes'));
+		$this->set('_serialize', ['postalCodes']);
 	}
 
 	/**

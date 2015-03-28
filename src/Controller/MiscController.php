@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class MiscController extends AppController {
 
-	public $uses = array(); //'Tool'
+	public $uses = []; //'Tool'
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -18,14 +18,14 @@ class MiscController extends AppController {
 	public function index() {
 	}
 
-	public $types = array(
+	public $types = [
 		'1' => 'html encode',
 		'2' => 'html decode',
 		'3' => 'entity encode',
 		'4' => 'entity decode',
 		'5' => 'indent',
 		'6' => 'outdent'
-	);
+	];
 
 	/**
 	 * 2010-09-30 ms
@@ -91,7 +91,7 @@ class MiscController extends AppController {
 	}
 
 	public function analyze_text() {
-		$results = array();
+		$results = [];
 
 		if ($this->Common->isPosted()) {
 			$results = $this->_analyze($this->request->data['Form']['text']);
@@ -101,7 +101,7 @@ class MiscController extends AppController {
 	}
 
 	protected function _analyze($text, $type = null) {
-		$res = array();
+		$res = [];
 		if (empty($text)) {
 			return $res;
 		}

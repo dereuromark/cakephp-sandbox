@@ -9,19 +9,19 @@
 	<legend>Required information</legend>
 
 	<?php
-		echo $this->Form->input('username', array());
-		echo $this->Form->input('email', array());
+		echo $this->Form->input('username', []);
+		echo $this->Form->input('email', []);
 
-		echo $this->Form->input('pwd', array('type' => 'password'));
-		echo $this->Form->input('pwd_repeat', array('type' => 'password'));
+		echo $this->Form->input('pwd', ['type' => 'password']);
+		echo $this->Form->input('pwd_repeat', ['type' => 'password']);
 	?>
 </fieldset>
 <?php if (false) { ?>
 <fieldset>
 	<legend>Optional information</legend>
 	<?php
-		echo $this->Form->input('timezone', array());
-		echo $this->Form->input('irc_nick', array());
+		echo $this->Form->input('timezone', []);
+		echo $this->Form->input('irc_nick', []);
 	?>
 </fieldset>
 <?php } ?>
@@ -29,8 +29,8 @@
 <?php echo $this->Form->end(__('Create account'));?>
 
 <h3>No account yet?</h3>
-<p><?php echo $this->Html->link('Create one here. For free :P', array('action' => 'register'))?></p>
+<p><?php echo $this->Html->link('Create one here. For free :P', ['action' => 'register'])?></p>
 
 
 <h3><?php echo __('Already registered');?>?</h3>
-<?php echo $this->Html->link(__('Login'), array('action' => 'login'));
+<?php echo $this->Html->link(__('Login'), ['action' => 'login']);

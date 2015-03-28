@@ -13,7 +13,7 @@ class UsersController extends AppController {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->message(__('The User has been saved'), 'success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->message(__('The User could not be saved. Please, try again.'), 'error');
 			}
@@ -26,12 +26,12 @@ class UsersController extends AppController {
 		$id = (int)$id;
 		if ($id <= 0 && empty($this->request->data)) {
 			$this->Flash->message(__('Invalid User'), 'error');
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 		if ($this->Common->isPosted()) {
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->message(__('The User has been saved'), 'success');
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$this->Flash->message(__('The User could not be saved. Please, try again.'), 'error');
 			}
@@ -45,11 +45,11 @@ class UsersController extends AppController {
 		$id = (int)$id;
 		if ($id <= 0) {
 			$this->Flash->message(__('Invalid id for User'), 'error');
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 		if ($this->User->delete($id)) {
 			$this->Flash->message(__('User deleted'), 'xxxxx');
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 	}
 

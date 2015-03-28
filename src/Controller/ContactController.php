@@ -8,7 +8,7 @@ use Tools\Network\Email\Email;
 
 class ContactController extends AppController {
 
-	public $helpers = array('Tools.Obfuscate');
+	public $helpers = ['Tools.Obfuscate'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -71,7 +71,7 @@ class ContactController extends AppController {
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {
 			$this->Flash->message(__('contactSuccessfullySent {0}', $fromEmail), 'success');
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 		if (Configure::read('debug')) {
 			$this->Flash->warning($this->Email->getError());

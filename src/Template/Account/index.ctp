@@ -4,7 +4,7 @@ Your eMail: <?php echo h($this->Session->read('Auth.User.email'));?>
 
 <h3>Your account</h3>
 <ul>
-<li><?php echo $this->Html->link(__('Edit'), array('plugin' => false, 'admin' => false, 'action' => 'edit')); ?></li>
+<li><?php echo $this->Html->link(__('Edit'), ['plugin' => false, 'admin' => false, 'action' => 'edit']); ?></li>
 </ul>
 
 <?php

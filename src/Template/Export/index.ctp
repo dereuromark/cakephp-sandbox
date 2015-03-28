@@ -10,24 +10,24 @@ An interface to directly modify the data is planned, though.
 <div>Key information: lat/lng</div>
 <?php //echo $this->Html->link(__('View online'), array('plugin'=>'tools', 'controller'=>'continents', 'action'=>'index')); ?>
 <ul>
-<li><?php echo $this->Html->link('JSON', array('action' => 'continents', '_ext' => 'json')); ?></li>
-<li><?php echo $this->Html->link('XML', array('action' => 'continents', '_ext' => 'xml')); ?></li>
+<li><?php echo $this->Html->link('JSON', ['action' => 'continents', '_ext' => 'json']); ?></li>
+<li><?php echo $this->Html->link('XML', ['action' => 'continents', '_ext' => 'xml']); ?></li>
 </ul>
 
 <h3>Countries</h3>
 <div>Key information: lat/lng, iso codes, zip code length/regexp, eu member, address_format, country_code, timezone</div>
-<?php echo $this->Html->link(__('View online'), array('plugin' => 'data', 'controller' => 'countries', 'action' => 'index')); ?>
+<?php echo $this->Html->link(__('View online'), ['plugin' => 'data', 'controller' => 'countries', 'action' => 'index']); ?>
 <ul>
-<li><?php echo $this->Html->link('JSON', array('action' => 'countries', '_ext' => 'json')); ?></li>
-<li><?php echo $this->Html->link('XML', array('action' => 'countries', '_ext' => 'xml')); ?></li>
+<li><?php echo $this->Html->link('JSON', ['action' => 'countries', '_ext' => 'json']); ?></li>
+<li><?php echo $this->Html->link('XML', ['action' => 'countries', '_ext' => 'xml']); ?></li>
 </ul>
 
 <h3>Country Provinces</h3>
 <div>Key information: lat/lng, iso codes, timezone</div>
-<?php echo $this->Html->link(__('View online'), array('plugin' => 'data', 'controller' => 'country_provinces', 'action' => 'index')); ?>
+<?php echo $this->Html->link(__('View online'), ['plugin' => 'data', 'controller' => 'country_provinces', 'action' => 'index']); ?>
 <ul>
-<li><?php echo $this->Html->link('JSON', array('action' => 'country_provinces', '_ext' => 'json')); ?></li>
-<li><?php echo $this->Html->link('XML', array('action' => 'country_provinces', '_ext' => 'xml')); ?></li>
+<li><?php echo $this->Html->link('JSON', ['action' => 'country_provinces', '_ext' => 'json']); ?></li>
+<li><?php echo $this->Html->link('XML', ['action' => 'country_provinces', '_ext' => 'xml']); ?></li>
 </ul>
 
 <h3>States / Cities / Districts / Postal Codes</h3>
@@ -40,15 +40,15 @@ TODO
 <div>Key information: iso codes, current value, base currency, symbol</div>
 <?php //echo $this->Html->link(__('View online'), array('plugin'=>'data', 'controller'=>'currencies', 'action'=>'index')); ?>
 <ul>
-<li><?php echo $this->Html->link('JSON', array('action' => 'currencies', '_ext' => 'json')); ?></li>
-<li><?php echo $this->Html->link('XML', array('action' => 'currencies', '_ext' => 'xml')); ?></li>
+<li><?php echo $this->Html->link('JSON', ['action' => 'currencies', '_ext' => 'json']); ?></li>
+<li><?php echo $this->Html->link('XML', ['action' => 'currencies', '_ext' => 'xml']); ?></li>
 </ul>
 
 <h3><?php echo __('Languages'); ?></h3>
 <?php //echo $this->Html->link(__('View online'), array('plugin'=>'data', 'controller'=>'languages', 'action'=>'index')); ?>
 <ul>
-<li><?php echo $this->Html->link('JSON', array('action' => 'languages', '_ext' => 'json')); ?></li>
-<li><?php echo $this->Html->link('XML', array('action' => 'languages', '_ext' => 'xml')); ?></li>
+<li><?php echo $this->Html->link('JSON', ['action' => 'languages', '_ext' => 'json']); ?></li>
+<li><?php echo $this->Html->link('XML', ['action' => 'languages', '_ext' => 'xml']); ?></li>
 </ul>
 
 <h3><?php echo __('Smileys'); ?></h3>

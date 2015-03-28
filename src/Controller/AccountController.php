@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class AccountController extends AppController {
 
-	public $uses = array('User');
+	public $uses = ['User'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -71,7 +71,7 @@ class AccountController extends AppController {
 			} elseif (!empty($key)) {
 				$uid = $key['Token']['user_id'];
 				$this->Session->write('Auth.Tmp.id', $uid);
-				return $this->redirect(array('action' => 'change_password'));
+				return $this->redirect(['action' => 'change_password']);
 			} else {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
@@ -82,9 +82,9 @@ class AccountController extends AppController {
 
 			// Validate basic email scheme and captcha input.
 			if ($this->User->validates()) {
-				$res = $this->User->find('first', array(
-					'fields' => array('username', 'id', 'email'),
-					'conditions' => array('email' => $this->request->data['Form']['login'])));
+				$res = $this->User->find('first', [
+					'fields' => ['username', 'id', 'email'],
+					'conditions' => ['email' => $this->request->data['Form']['login']]]);
 
 				// Valid user found to this email address
 				if (!empty($res)) {
@@ -114,13 +114,13 @@ class AccountController extends AppController {
 					} else {
 						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
 					}
-					return $this->redirect(array('action' => 'lost_password'));
+					return $this->redirect(['action' => 'lost_password']);
 				}
 				$this->Flash->message(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
 			}
 		}
 
-		$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
+		$this->helpers = array_merge($this->helpers, ['Tools.Captcha']);
 	}
 
 	/**
@@ -132,24 +132,24 @@ class AccountController extends AppController {
 		$uid = $this->Session->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
-			return $this->redirect(array('action' => 'lost_password'));
+			return $this->redirect(['action' => 'lost_password']);
 		}
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
 				$this->Session->delete('Auth.Tmp');
 			}
-			return $this->redirect(array('action' => 'login'));
+			return $this->redirect(['action' => 'login']);
 		}
 
-		$this->User->Behaviors->load('Tools.Passwordable', array());
+		$this->User->Behaviors->load('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, array('id', 'pwd', 'pwd_repeat'))) {
+			if ($this->User->save($this->request->data, true, ['id', 'pwd', 'pwd_repeat'])) {
 				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
-				$username = $this->User->field('username', array('id' => $uid));
-				return $this->redirect(array('action' => 'login', '?' => array('username' => $username)));
+				$username = $this->User->field('username', ['id' => $uid]);
+				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -165,7 +165,7 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function register() {
-		$this->User->Behaviors->load('Tools.Passwordable', array());
+		$this->User->Behaviors->load('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->User->save($this->request->data)) {
@@ -173,7 +173,7 @@ class AccountController extends AppController {
 				if (!$this->Auth->login($user['User'])) {
 					throw new \Exception('Cannot log user in');
 				}
-				return $this->redirect(array('controller' => 'overview', 'action' => 'index'));
+				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -199,16 +199,16 @@ class AccountController extends AppController {
 	public function edit() {
 		$uid = $this->Session->read('Auth.User.id');
 		$user = $this->User->get($uid);
-		$this->User->Behaviors->attach('Tools.Passwordable', array('require' => false));
+		$this->User->Behaviors->attach('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, array('id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'))) {
+			if ($this->User->save($this->request->data, true, ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'])) {
 				$this->Flash->message(__('Account modified'), 'success');
 				if (!$this->Auth->login($user['User'])) {
 					throw new \Exception('Cannot log user in');
 				}
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
@@ -233,7 +233,7 @@ class AccountController extends AppController {
 			throw new InternalErrorException();
 		}
 		$this->Flash->message('Account deleted', 'success');
-		return $this->redirect(array('action' => 'logout'));
+		return $this->redirect(['action' => 'logout']);
 	}
 
 }
