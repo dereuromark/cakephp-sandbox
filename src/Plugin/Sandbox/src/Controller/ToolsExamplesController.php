@@ -111,7 +111,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function password_edit() {
+	public function passwordEdit() {
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
 
