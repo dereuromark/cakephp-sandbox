@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class SandboxController extends SandboxAppController {
 
-	public $uses = array();
+	public $uses = [];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

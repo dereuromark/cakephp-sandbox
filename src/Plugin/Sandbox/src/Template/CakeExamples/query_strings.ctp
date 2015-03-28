@@ -38,7 +38,7 @@ Annoying - I know. That's why I opened a <a href="">ticket regarding this issue<
 
 <b>Let's test:</b>
 <p>
-<?php echo $this->Html->link('A simple string', array('action' => 'query_strings', '?' => array('key' => 'value'))); ?>
+<?php echo $this->Html->link('A simple string', ['action' => 'query_strings', '?' => ['key' => 'value']]); ?>
 
-<?php echo $this->Html->link('A simple array', array('action' => 'query_strings', '?' => array('key' => array('v1', 'v2')))); ?>
+<?php echo $this->Html->link('A simple array', ['action' => 'query_strings', '?' => ['key' => ['v1', 'v2']]]); ?>
 </p>

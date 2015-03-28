@@ -9,7 +9,7 @@ use Cake\ORM\TableRegistry;
 
 class CakeExamplesController extends SandboxAppController {
 
-	public $helpers = array('Geshi.Geshi');
+	public $helpers = ['Geshi.Geshi'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -42,20 +42,20 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function merge() {
-		$array = array(
-			'root' => array(
-				'deep1' => array('deeper1a' => 'value1a', 'deeper2b' => 'value2b'),
-				'deep2' => array('deeper1', 'deeper2'),
+		$array = [
+			'root' => [
+				'deep1' => ['deeper1a' => 'value1a', 'deeper2b' => 'value2b'],
+				'deep2' => ['deeper1', 'deeper2'],
 				'deep3' => 'stringX',
-			)
-		);
-		$mergeArray = array(
-			'root' => array(
-				'deep1' => array('deeper1a' => 'value1a', 'deeper3b' => 'value3b'),
-				'deep2' => array('deeper1', 'deeper3'),
+			]
+		];
+		$mergeArray = [
+			'root' => [
+				'deep1' => ['deeper1a' => 'value1a', 'deeper3b' => 'value3b'],
+				'deep2' => ['deeper1', 'deeper3'],
 				'deep3' => 'stringY',
-			)
-		);
+			]
+		];
 
 		if ($type = $this->request->query('type')) {
 			switch ($type) {
@@ -99,7 +99,7 @@ class CakeExamplesController extends SandboxAppController {
 			I18n::locale($lang);
 			$lang = locale_get_display_name($lang) . ' ['. strtoupper($lang) . ']';
 			$this->Flash->success(__('Language switched to {0}.', $lang));
-			return $this->redirect(array('action' => 'i18n'));
+			return $this->redirect(['action' => 'i18n']);
 		}
 	}
 

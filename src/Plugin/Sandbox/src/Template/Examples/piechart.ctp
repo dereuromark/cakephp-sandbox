@@ -8,12 +8,12 @@ This one even uses its own pre-defined colors (no third value).<br />
 The ul-listed legend can be set anywhere in the view (use css for color reference here).<br />
 <br />
 <?php
-$eqData = array();
+$eqData = [];
 
-$eqData[] = array('English', 10);
-$eqData[] = array('Spanish', 5);
-$eqData[] = array('German', 25);
-$eqData[] = array('Dutch', 2);
+$eqData[] = ['English', 10];
+$eqData[] = ['Spanish', 5];
+$eqData[] = ['German', 25];
+$eqData[] = ['Dutch', 2];
 
 if ($this->Piechart->create($eqData)) {
 	echo $this->Piechart->draw(180, 100, 20, '#ffffff', 1);
@@ -46,11 +46,11 @@ The third value in the array stands for the color<br />
 <br />
 
 <?php
-$eqData = array();
+$eqData = [];
 
-$eqData[] = array('Male', 10, '#999900');
-$eqData[] = array('Female', 5, '#224422');
-$eqData[] = array('Unknown', 25, '#00ffff');
+$eqData[] = ['Male', 10, '#999900'];
+$eqData[] = ['Female', 5, '#224422'];
+$eqData[] = ['Unknown', 25, '#00ffff'];
 
 //$this->set('eq_data', $eq_data);
 
@@ -80,11 +80,11 @@ if ($this->Piechart->create($eq_data)) {
 That's possible as well (forth value at the draw()-function to zero)<br />
 <br />
 <?php
-$eqData = array();
+$eqData = [];
 
-$eqData[] = array('Young', 30, '#009999');
-$eqData[] = array('Younger', 5, '#442244');
-$eqData[] = array('Youngest', 25, '#ffff00');
+$eqData[] = ['Young', 30, '#009999'];
+$eqData[] = ['Younger', 5, '#442244'];
+$eqData[] = ['Youngest', 25, '#ffff00'];
 
 //$this->set('eq_data', $eq_data);
 

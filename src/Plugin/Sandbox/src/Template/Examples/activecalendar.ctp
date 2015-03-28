@@ -1,5 +1,5 @@
 <?php
-$styleArray = array();
+$styleArray = [];
 foreach ($this->Activecalendar->styles as $style)
 {
 	$styleArray[$style] = false;
@@ -33,7 +33,7 @@ foreach ($styleArray as $style => $value)
 	if ($value) {
 		echo ' -&nbsp;<b>' . $style . '</b>&nbsp;- ';
 	} else {
-		echo ' -&nbsp;' . $this->Html->link('\'' . $style . '\'', array('action' => 'activecalendar', 'style' => $style)) . '&nbsp;- ';
+		echo ' -&nbsp;' . $this->Html->link('\'' . $style . '\'', ['action' => 'activecalendar', 'style' => $style]) . '&nbsp;- ';
 	}
 
 }
@@ -64,7 +64,7 @@ echo $this->Geshi->highlightText($dataPrint, 'php');
 
 
 <?php
-echo $this->Form->input('published', array('type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId()));
+echo $this->Form->input('published', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId()]);
 
 ?>
 
@@ -81,15 +81,15 @@ echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 
 <?php
-echo $this->Form->input('published a', array('type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD-MM-YYYY')));
+echo $this->Form->input('published a', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD-MM-YYYY')]);
 ?>
 <br />
 <?php
-echo $this->Form->input('published b', array('type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('MM/DD/YYYY')));
+echo $this->Form->input('published b', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('MM/DD/YYYY')]);
 ?>
 <br />
 <?php
-echo $this->Form->input('published c', array('type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD.MM.YYYY')));
+echo $this->Form->input('published c', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD.MM.YYYY')]);
 ?>
 
 
@@ -102,13 +102,13 @@ Anyone interested? All files will immediately be reposted with the changes made.
 These are the original ones:<br/>
 <?php
 foreach ($styleArray as $style => $value) {
-echo ' - ' . $this->Html->link('\'' . $style . '\'', '/ajax/activecalendar_old.php?style=' . $style . '', array('onclick' => $this->Highslide->onclick(array('contentId' => 'highslide', 'objectType' => 'iframe'), 'html'))) . ' - ';
+echo ' - ' . $this->Html->link('\'' . $style . '\'', '/ajax/activecalendar_old.php?style=' . $style . '', ['onclick' => $this->Highslide->onclick(['contentId' => 'highslide', 'objectType' => 'iframe'], 'html')]) . ' - ';
 }
 ?>
 <br /><br />
 Maybe we can even make up some new and more modern ones..
 
 
-<?php echo $this->Activecalendar->createInput('test', array('onclick' => 'ss'), array())?>
+<?php echo $this->Activecalendar->createInput('test', ['onclick' => 'ss'], [])?>
 
 </div>

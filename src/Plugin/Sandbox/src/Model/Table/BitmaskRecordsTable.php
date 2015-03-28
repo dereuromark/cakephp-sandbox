@@ -7,25 +7,25 @@ class BitmaskRecordsTable extends SandboxAppModel {
 
 	public $useDbConfig = 'array';
 
-	public $records = array();
+	public $records = [];
 
 	public function __construct($id = false, $table = false, $ds = null) {
 		parent::__construct($id, $table, $ds);
 
-		ConnectionManager::create('array', array('datasource' => 'Datasources.ArraySource'));
+		ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
 
-		$this->records = array(
-			array(
+		$this->records = [
+			[
 				'id' => 1,
 				'name' => 'Foo',
 				'flag' => 3,
-			),
-			array(
+			],
+			[
 				'id' => 2,
 				'name' => 'Bar',
 				'flag' => 7,
-			),
-		);
+			],
+		];
 	}
 
 }

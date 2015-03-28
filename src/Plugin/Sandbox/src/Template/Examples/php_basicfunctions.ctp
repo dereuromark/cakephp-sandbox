@@ -4,7 +4,7 @@ PHP version: PHP5
 <br/><br/>
 Our test variable contents are:
 <?php
-$vars = array();
+$vars = [];
 $vars[1] = 0;
 $vars[] = null;
 $vars[] = false;
@@ -12,7 +12,7 @@ $vars[] = true;
 $vars[] = '';
 $vars[] = ' ';
 $vars[] = 'something';
-$vars[] = array();
+$vars[] = [];
 $vars[] = '0';
 
 $dataPrint = '$var1=0;

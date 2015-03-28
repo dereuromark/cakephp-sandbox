@@ -5,13 +5,13 @@ use Cake\Core\Configure;
 
 class PluginsController extends SandboxAppController {
 
-	public $uses = array();
+	public $uses = [];
 
-	public $components = array(
-		'RequestHandler' => array(
-			'viewClassMap' => array('pdf' => 'CakePdf.Pdf')
-		)
-	);
+	public $components = [
+		'RequestHandler' => [
+			'viewClassMap' => ['pdf' => 'CakePdf.Pdf']
+		]
+	];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -48,12 +48,12 @@ class PluginsController extends SandboxAppController {
 	 */
 	public function pdf_test($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
-		$engines = array(
+		$engines = [
 			'dom' => 'DomPdf',
 			'wk' => 'WkHtmlToPdf',
 			'tc' => 'Tcpdf',
 			//'m' => 'Mpdf'
-		);
+		];
 		if (!empty($engineSlug)) {
 			if (empty($engines[$engineSlug])) {
 				throw new NotFoundException('Invalid engine');
@@ -66,13 +66,13 @@ class PluginsController extends SandboxAppController {
 		}
 
 		// Setting dynamic config settings
-		$this->pdfConfig = array(
+		$this->pdfConfig = [
 			'filename' => $engineSlug,
 			'download' => (bool)$this->request->query('download')
-		);
+		];
 
 		// Passing some test data to the view
-		$someTestArray = array('Foo' => array('bar' => 'value'));
+		$someTestArray = ['Foo' => ['bar' => 'value']];
 		$this->set(compact('someTestArray'));
 	}
 
@@ -86,21 +86,21 @@ class PluginsController extends SandboxAppController {
 		if ($engine === null) {
 			$engine = 'WkHtmlToPdf';
 		}
-		$settings = array(
+		$settings = [
 			'engine' => 'CakePdf.' . $engine,
-			'options' => array(
+			'options' => [
 				'print-media-type' => false,
 				'outline' => true,
 				'dpi' => 96
-			),
-			'margin' => array(
+			],
+			'margin' => [
 				'bottom' => 15,
 				'left' => 50,
 				'right' => 30,
 				'top' => 45
-			),
+			],
 			'orientation' => 'portrait',
-		);
+		];
 		$settings += (array)Configure::read('CakePdf');
 		Configure::write('CakePdf', $settings);
 

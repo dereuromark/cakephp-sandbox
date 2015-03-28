@@ -1,4 +1,4 @@
-<?php $this->Html->scriptStart(array('inline' => false)); ?>
+<?php $this->Html->scriptStart(['inline' => false]); ?>
 
 $(document).ready(function() {
 
@@ -42,21 +42,21 @@ $(document).ready(function() {
 <div id="ajax-loading"><?php echo $this->Format->icon('loader');?></div>
 
 <h1>Folder Zip</h1>
-This is the CakePHP Version from <?php echo $this->Html->link('www.web-development-blog.com', 'http://www.web-development-blog.com/archives/tutorial-create-a-zip-file-from-folders-on-the-fly', array('target' => '_blank'))?>
+This is the CakePHP Version from <?php echo $this->Html->link('www.web-development-blog.com', 'http://www.web-development-blog.com/archives/tutorial-create-a-zip-file-from-folders-on-the-fly', ['target' => '_blank'])?>
 
 <br /><br />
 Now, the structure of our example file in /ROOT/files/examples/ is the following:
 <?php
-echo $this->Html->pre(array(
-	'folder_zip' => array(
+echo $this->Html->pre([
+	'folder_zip' => [
 		'a folder' => '',
-		'containing subfolders' => array(
+		'containing subfolders' => [
 			'New Folder' => '',
 			'Some File.txt'
-			),
+			],
 		'1.txt',
-		),
-	)
+		],
+	]
 )
 ?>
 The content of "folder_zip" now is read and gets zipped (.zip) as "whatever.zip".<br />
@@ -73,13 +73,13 @@ Go ahead and try the wrong "version" - i cannot open the mac-version under windo
 <br />
 
 <h2>Example</h2>
-Zipping on the fly: <?php echo $this->Html->link('Create and download it (normal mouse click)', array('action' => 'folder_download', 'folder_zip'), array('id' => 'download'))?>
+Zipping on the fly: <?php echo $this->Html->link('Create and download it (normal mouse click)', ['action' => 'folder_download', 'folder_zip'], ['id' => 'download'])?>
 
 
 <br /><br />
 Some other ones:
 <br />
-<?php echo $this->Html->link('An empty folder', array('action' => 'folder_download', 'folder_empty'), array('id' => 'download'))?> | <?php echo $this->Html->link('An non-existing folder', array('action' => 'folder_download', 's'), array('id' => 'download'))?>
+<?php echo $this->Html->link('An empty folder', ['action' => 'folder_download', 'folder_empty'], ['id' => 'download'])?> | <?php echo $this->Html->link('An non-existing folder', ['action' => 'folder_download', 's'], ['id' => 'download'])?>
 
 <br />
 

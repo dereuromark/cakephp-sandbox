@@ -7,10 +7,10 @@ use Cake\Utility\Text;
 
 class FeedExamplesController extends SandboxAppController {
 
-	public $components = array(
-		'RequestHandler' => array(
-			'viewClassMap' => array(
-				'rss' => 'Feed.Rss')));
+	public $components = [
+		'RequestHandler' => [
+			'viewClassMap' => [
+				'rss' => 'Feed.Rss']]];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -40,65 +40,65 @@ class FeedExamplesController extends SandboxAppController {
 
 		$news = $this->_feedData();
 
-		$items = array();
+		$items = [];
 		foreach ($news as $key => $val) {
 			$content = nl2br(h($val['content']));
-			$link = array('action' => 'feedview', $val['id']);
-			$guidLink = array('action' => 'view', $val['id']);
+			$link = ['action' => 'feedview', $val['id']];
+			$guidLink = ['action' => 'view', $val['id']];
 
-			$items[] = array(
+			$items[] = [
 				'title' => $val['title'],
 				'link' => $link,
-				'guid' => array('url' => $guidLink, '@isPermaLink' => 'true'),
+				'guid' => ['url' => $guidLink, '@isPermaLink' => 'true'],
 				'description' => Text::truncate($val['content']),
 				'dc:creator' => $val['User']['username'],
 				'pubDate' => $val['published'],
 				'content:encoded' => $content
-			);
+			];
 		}
 
-		$atomLink = array('action' => 'feed', 'ext' => 'rss');
+		$atomLink = ['action' => 'feed', 'ext' => 'rss'];
 
-		$channel = array(
+		$channel = [
 			'title' => __('News/Updates') . '', 'link' => '/',
-			'atom:link' => array('@href' => $atomLink),
+			'atom:link' => ['@href' => $atomLink],
 			'description' => __('Most recent news articles'),
 			'language' => 'en-en',
-			'image' => array(
+			'image' => [
 				'url' => '/img/statics/logo_rss.png',
 				'link' => '/'
-			)
-		);
+			]
+		];
 
-		$data = array(
-			'document' => array(
-			),
+		$data = [
+			'document' => [
+			],
 			'channel' => $channel,
 			'items' => $items
-		);
-		$this->set(array('channel' => $data, '_serialize' => 'channel'));
+		];
+		$this->set(['channel' => $data, '_serialize' => 'channel']);
 	}
 
 	protected function _feedData() {
-		$records = array(
-			array(
+		$records = [
+			[
 				'id' => 1,
 				'title' => 'Foo',
 				'content' => '<b>Bold text</b>',
 				'published' => '2012-01-04 11:12:13',
-			),
-			array(
+			],
+			[
 				'id' => 2,
 				'title' => 'Bar',
 				'content' => '<i>Italic text</b>',
 				'published' => '2012-07-04 11:12:13',
-			),
-		);
-		$res = array();
+			],
+		];
+		$res = [];
 		foreach ($records as $k => $v) {
-			$v['User'] = array(
+			$v['User'] = [
 				'username' => 'Some user'
-			);
+			];
 			$res[] = $v;
 		}
 		return $res;

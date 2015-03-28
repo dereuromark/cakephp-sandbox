@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 
 class ToolsExamplesController extends SandboxAppController {
 
-	public $helpers = array('Geshi.Geshi');
+	public $helpers = ['Geshi.Geshi'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -42,15 +42,15 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function _bitmasks() {
-		$flags = array(
+		$flags = [
 			'1' => 'Apple',
 			'2' => 'Peach',
 			'4' => 'Banana',
 			'8' => 'Lemon',
 			'16' => 'Coconut',
-		);
+		];
 		$this->Model = TableRegistry::get('Sandbox.BitmaskRecords');
-		$this->Model->Behaviors->load('Tools.Bitmasked', array('field' => 'flag', 'bits' => $flags));
+		$this->Model->Behaviors->load('Tools.Bitmasked', ['field' => 'flag', 'bits' => $flags]);
 
 		$records = $this->Model->find('all');
 
@@ -113,7 +113,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 */
 	public function passwordEdit() {
 		$this->Users = TableRegistry::get('Users');
-		$this->Users->addBehavior('Tools.Passwordable', array('require' => false));
+		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		$user = $this->Users->newEntity();
 
@@ -177,7 +177,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function qr() {
-		$types = array('text' => 'Text', 'url' => 'Url', 'tel' => 'Phone Number', 'sms' => 'Text message', 'email' => 'E-Mail', 'geo' => 'Geo', 'market' => 'Market', 'card' => 'Vcard');
+		$types = ['text' => 'Text', 'url' => 'Url', 'tel' => 'Phone Number', 'sms' => 'Text message', 'email' => 'E-Mail', 'geo' => 'Geo', 'market' => 'Market', 'card' => 'Vcard'];
 
 		if ($this->request->is('post')) {
 			switch ($this->request->data['Misc']['type']) {
@@ -186,7 +186,7 @@ class ToolsExamplesController extends SandboxAppController {
 				case 'email':
 				case 'geo':
 				case 'market':
-					$result = str_replace(array(PHP_EOL, NL), ' ', $this->request->data['Misc']['content']);
+					$result = str_replace([PHP_EOL, NL], ' ', $this->request->data['Misc']['content']);
 					break;
 				case 'card':
 					$result = $this->request->data['Card'];
@@ -194,7 +194,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 					break;
 				case 'sms':
-					$result = array($this->request->data['Sms']['number'], $this->request->data['Sms']['content']);
+					$result = [$this->request->data['Sms']['number'], $this->request->data['Sms']['content']];
 					break;
 				case 'text':
 					$result = $this->request->data['Misc']['content'];
@@ -218,7 +218,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 */
 	public function _geocode() {
 		$this->Model = TableRegistry::get('Sandbox.ExampleRecords');
-		$this->Model->addBehavior('Geo.Geocoder', array('on' => 'beforeValidate', 'address' => array('location')));
+		$this->Model->addBehavior('Geo.Geocoder', ['on' => 'beforeValidate', 'address' => ['location']]);
 		if ($this->request->is('post')) {
 			$this->Model->set($this->request->data);
 			$this->Model->validates();
@@ -267,7 +267,7 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	public function _typography() {
-		$this->Common->loadHelper(array('Tools.Typography'));
+		$this->Common->loadHelper(['Tools.Typography']);
 	}
 
 }

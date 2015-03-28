@@ -38,7 +38,7 @@ class FontIconShell extends Shell {
 		}
 		$matchesRight = $matches[1];
 
-		$diffLeft = array();
+		$diffLeft = [];
 		foreach ($matchesRight as $m) {
 			if (!in_array($m, $matchesLeft)) {
 				continue;
@@ -51,24 +51,24 @@ class FontIconShell extends Shell {
 	}
 
 	public function getOptionParser() {
-		$subcommandParser = array(
-			'options' => array(
-				'dry-run' => array(
+		$subcommandParser = [
+			'options' => [
+				'dry-run' => [
 					'short' => 'd',
 					'help' => 'Dry run.',
 					'boolean' => true
-				),
-			)
-		);
+				],
+			]
+		];
 
 		return parent::getOptionParser()
 			->description("A shell to work with font icons via CSS and custom fonts.")
-			->addSubcommand('compare', array(
+			->addSubcommand('compare', [
 				'help' => 'Compare two scripts.',
 				'parser' => $subcommandParser
-			))
-			->addArgument('left', array('required' => true))
-			->addArgument('right', array('required' => true));
+			])
+			->addArgument('left', ['required' => true])
+			->addArgument('right', ['required' => true]);
 	}
 
 }

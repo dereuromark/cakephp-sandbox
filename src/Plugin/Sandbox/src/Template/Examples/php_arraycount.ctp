@@ -14,21 +14,21 @@ if ($int > 0 && $int < 20001) {
 	echo '</div>';
 }
 
-$array = array();
+$array = [];
 for ($i = 0;$i < $int;$i++) {
 	$array[] = mt_rand(11111, 99999);
 }
 ?>
 <h1>About count() and sizeof()</h1>
-I stumpled upon a "sizof vs. count" thing at <?php echo $this->Html->link('codesnippets.joyent.com/tag/count', 'http://codesnippets.joyent.com/tag/count', array('target' => '_blank'))?>.
+I stumpled upon a "sizof vs. count" thing at <?php echo $this->Html->link('codesnippets.joyent.com/tag/count', 'http://codesnippets.joyent.com/tag/count', ['target' => '_blank'])?>.
 And i just had to check it out :)
 <br/>
 <h2>Test Parameter</h2>
 How much shall the array contain (stored in a loop):<br />
 <?php
-$times = array(500, 1000, 2000, 4000, 8000, 15000, 20000);
+$times = [500, 1000, 2000, 4000, 8000, 15000, 20000];
 foreach ($times as $time) {
-	echo ' | ' . $this->Html->link($time, array('controller' => 'examples', 'action' => 'php_arraycount', 'loops' => $time), array('title' => 'Click to change loop count')) . ' | ';
+	echo ' | ' . $this->Html->link($time, ['controller' => 'examples', 'action' => 'php_arraycount', 'loops' => $time], ['title' => 'Click to change loop count']) . ' | ';
 }
 ?>
 <br/><br/>

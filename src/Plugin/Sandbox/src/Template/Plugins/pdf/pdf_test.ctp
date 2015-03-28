@@ -10,7 +10,7 @@
 <h3>Some h3 header</h3>
 <div style="width: 300px;">
 	<div style="float: right;"><?php echo $this->Format->icon('edit'); ?> Floating Icon gif</div>
-	<div style="float: right;"><?php echo $this->Html->image(Router::fullBaseUrl() . '/img/icons/paste.png', array('alt' => 'go-down')); ?> Floating Icon png</div>
+	<div style="float: right;"><?php echo $this->Html->image(Router::fullBaseUrl() . '/img/icons/paste.png', ['alt' => 'go-down']); ?> Floating Icon png</div>
 </div>
 
 <p>$someTestArray[Foo][bar] content: <?php echo h($someTestArray['Foo']['bar']); ?></p>

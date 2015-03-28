@@ -7,9 +7,9 @@
 There are quite a few functions and methods available:
 </p>
 <p>
- <?php echo $this->Html->link('Cake\'s Hash::merge() (former Set::merge)', array('action' => 'merge', '?' => array('type' => 'hash'))); ?> |
- <?php echo $this->Html->link('array_merge() (pretty much the same than Cake\'s am() function)', array('action' => 'merge', '?' => array('type' => 'array_merge'))); ?> |
- <?php echo $this->Html->link('array_merge_recursive()', array('action' => 'merge', '?' => array('type' => 'array_merge_recursive'))); ?>
+ <?php echo $this->Html->link('Cake\'s Hash::merge() (former Set::merge)', ['action' => 'merge', '?' => ['type' => 'hash']]); ?> |
+ <?php echo $this->Html->link('array_merge() (pretty much the same than Cake\'s am() function)', ['action' => 'merge', '?' => ['type' => 'array_merge']]); ?> |
+ <?php echo $this->Html->link('array_merge_recursive()', ['action' => 'merge', '?' => ['type' => 'array_merge_recursive']]); ?>
 </p>
 <p>
 They produce different results. So it's good to know when which of those merging methods should be best used.

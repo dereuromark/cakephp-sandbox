@@ -4,7 +4,7 @@ PHP version: PHP5
 <br/><br/>
 Our test variable contents are:
 <?php
-$vars = array();
+$vars = [];
 $vars[1] = 0;
 $vars[2] = '0';
 $vars[3] = 1;
@@ -97,7 +97,7 @@ if ($id>0) {
 	...
 }';
 echo $this->Geshi->highlightText($dataPrint, 'php');?>
-As you would see in the "<?php echo $this->Html->link('basicfunctions example', array('action' => 'php_basicfunctions'))?>" the usual way queries even if $id contains bad content. Why should we query the database about '123string' or ' ' if it would result in 0 rows anyway? Going my way we only use real integers - what the primary fields usually are.
+As you would see in the "<?php echo $this->Html->link('basicfunctions example', ['action' => 'php_basicfunctions'])?>" the usual way queries even if $id contains bad content. Why should we query the database about '123string' or ' ' if it would result in 0 rows anyway? Going my way we only use real integers - what the primary fields usually are.
 
 <br />
 

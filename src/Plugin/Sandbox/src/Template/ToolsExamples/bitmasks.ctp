@@ -25,8 +25,8 @@ Using the BitmaskedBehavior
 	<fieldset>
  		<legend><?php echo __('Add {0}', __('Entry')); ?></legend>
 	<?php
-		echo $this->Form->input('name', array());
-		echo $this->Form->input('flag', array('type' => 'select', 'multiple' => 'checkbox'));
+		echo $this->Form->input('name', []);
+		echo $this->Form->input('flag', ['type' => 'select', 'multiple' => 'checkbox']);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>

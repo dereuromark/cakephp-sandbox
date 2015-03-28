@@ -35,4 +35,4 @@ the URL representation is always lowercase-underscored (dashed) due to the "Dash
 </p>
 
 <h3>Hands on</h3>
-Try it out with the <?php echo $this->Html->link('Inflector', array('controller' => 'inflector')); ?>.
+Try it out with the <?php echo $this->Html->link('Inflector', ['controller' => 'inflector']); ?>.

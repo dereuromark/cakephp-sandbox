@@ -5,11 +5,11 @@ use Cake\Event\Event;
 
 class JqueryExamplesController extends SandboxAppController {
 
-	public $helpers = array('Geshi.Geshi');
+	public $helpers = ['Geshi.Geshi'];
 
-	public $uses = array();
+	public $uses = [];
 
-	public $jqueryPlugins = array('media');
+	public $jqueryPlugins = ['media'];
 
 	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
@@ -52,16 +52,16 @@ class JqueryExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function autocomplete() {
-		if ($this->request->is(array('ajax'))) {
+		if ($this->request->is(['ajax'])) {
 			$this->loadModel('Sandbox.Animals');
-			$items = $this->Animals->find('list', array(
-					'conditions' => array(
+			$items = $this->Animals->find('list', [
+					'conditions' => [
 						'name LIKE' => '%' . $this->request->query('term') . '%'
-					)
-			));
+					]
+			]);
 
 			$this->set('items', $items);
-			$this->set('_serialize', array('items'));
+			$this->set('_serialize', ['items']);
 		}
 	}
 

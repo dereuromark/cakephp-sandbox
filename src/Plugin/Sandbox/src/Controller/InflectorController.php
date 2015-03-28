@@ -7,12 +7,12 @@ use Cake\Utility\Inflector;
 
 class InflectorController extends AppController {
 
-	protected $_reflectExceptions = array(
+	protected $_reflectExceptions = [
 		'_cache',
 		'reset',
 		'rules',
 		'variable',
-	);
+	];
 
 	/**
 	 * InflectorController::beforeFilter()
@@ -31,7 +31,7 @@ class InflectorController extends AppController {
 	 * @return void
 	 */
 	public function index() {
-		$results = array();
+		$results = [];
 		$string = false;
 		if ($this->request->is('post')) {
 			$string = $this->request->data['string'];

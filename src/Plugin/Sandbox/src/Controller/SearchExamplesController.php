@@ -7,9 +7,9 @@ class SearchExamplesController extends SandboxAppController {
 
 	public $modelClass = 'Sandbox.CountryRecords';
 
-	public $components = array('Search.Prg');
+	public $components = ['Search.Prg'];
 
-	public $helpers = array('Data.Data');
+	public $helpers = ['Data.Data'];
 
 	public function beforeFilter(Event $event) {
 		$this->Auth->allow();

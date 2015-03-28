@@ -9,7 +9,7 @@ They mainly just need CSS assets added.
 These are included using composer.
 
 <ul>
-	<li><?php echo $this->Html->link('Carbon', array('controller' => 'carbon', 'action' => 'index')); ?></li>
+	<li><?php echo $this->Html->link('Carbon', ['controller' => 'carbon', 'action' => 'index']); ?></li>
 </ul>
 
 </div>

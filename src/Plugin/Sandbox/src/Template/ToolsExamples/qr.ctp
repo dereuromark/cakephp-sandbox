@@ -55,39 +55,39 @@ Just write it via keyboard, scan it and send it.
 	<fieldset>
 		<legend><?php echo __('New {0}', __('QR Code')); ?></legend>
 	<?php
-		echo $this->Form->input('type', array('options' => $types));
-		echo $this->Form->input('size', array('options' => array('Auto')));
+		echo $this->Form->input('type', ['options' => $types]);
+		echo $this->Form->input('size', ['options' => ['Auto']]);
 	?>
 
 	<div id="cardBox">
 	<?php
 		echo BR;
-		echo $this->Form->input('Card.name', array());
+		echo $this->Form->input('Card.name', []);
 		//echo $this->Form->input('Card.sound', array());
-		echo $this->Form->input('Card.nickname', array());
-		echo $this->Form->input('Card.tel', array());
+		echo $this->Form->input('Card.nickname', []);
+		echo $this->Form->input('Card.tel', []);
 		//echo $this->Form->input('Card.video', array());
-		echo $this->Form->input('Card.email', array());
-		echo $this->Form->input('Card.address', array());
-		echo $this->Form->input('Card.url', array('placeholder' => 'http://'));
-		echo $this->Form->input('Card.birthday', array('type' => 'date', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 90, 'empty' => true, 'maxYear' => date('Y')));
+		echo $this->Form->input('Card.email', []);
+		echo $this->Form->input('Card.address', []);
+		echo $this->Form->input('Card.url', ['placeholder' => 'http://']);
+		echo $this->Form->input('Card.birthday', ['type' => 'date', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 90, 'empty' => true, 'maxYear' => date('Y')]);
 
-		echo $this->Form->input('Card.note', array('rows' => 10));
+		echo $this->Form->input('Card.note', ['rows' => 10]);
 
 	?>
 	</div>
 	<div id="textBox">
 	<?php
 		echo BR;
-		echo $this->Form->input('content', array('rows' => 10));
+		echo $this->Form->input('content', ['rows' => 10]);
 
 	?>
 	</div>
 	<div id="smsBox">
 	<?php
 		echo BR;
-		echo $this->Form->input('Sms.number', array());
-		echo $this->Form->input('Sms.content', array('rows' => 10));
+		echo $this->Form->input('Sms.number', []);
+		echo $this->Form->input('Sms.content', ['rows' => 10]);
 
 	?>
 	</div>

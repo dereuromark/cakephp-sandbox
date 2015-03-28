@@ -16,7 +16,7 @@ Details (<?php echo h('$data[\'ExampleRecord\'][\'geocoder_result\']'); ?>):
 	<fieldset>
 		<legend><?php echo __('Geocode');?></legend>
 	<?php
-		echo $this->Form->input('location', array('placeholder' => 'Address, postal code, city etc.'));
+		echo $this->Form->input('location', ['placeholder' => 'Address, postal code, city etc.']);
 
 	?>
 	</fieldset>

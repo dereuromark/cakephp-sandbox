@@ -1,5 +1,5 @@
 <?php
-$this->Highslide->changeDefaultOverlays(array());
+$this->Highslide->changeDefaultOverlays([]);
 //pr($this->Highslide->default_options);
 ?>
 

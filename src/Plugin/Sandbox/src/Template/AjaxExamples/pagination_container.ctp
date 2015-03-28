@@ -1,6 +1,6 @@
 <table class="list" width="100%">
 <tr>
-	<th><?php echo $this->Paginator->sort('sort', $this->Format->cIcon('filter.gif'), array('escape' => false));?></th>
+	<th><?php echo $this->Paginator->sort('sort', $this->Format->cIcon('filter.gif'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>
 	<th><?php echo $this->Paginator->sort('ori_name');?></th>
 	<th><?php echo $this->Paginator->sort('iso2');?></th>

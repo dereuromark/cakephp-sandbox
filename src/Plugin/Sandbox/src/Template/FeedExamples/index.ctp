@@ -3,7 +3,7 @@
 
 <h3>Example Feed</h3>
 <ul>
-	<li><?php echo $this->Html->link('I am a RSS Feed', array('action' => 'feed', '_ext' => 'rss')); ?></li>
+	<li><?php echo $this->Html->link('I am a RSS Feed', ['action' => 'feed', '_ext' => 'rss']); ?></li>
 </ul>
 
 Validation passed using W3Cs validator:

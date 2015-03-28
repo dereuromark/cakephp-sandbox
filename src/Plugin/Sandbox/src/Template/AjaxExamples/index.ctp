@@ -3,14 +3,14 @@
 
 <h3>Using CakePHP Core only</h3>
 <ul>
-	<li><?php echo $this->Html->link('Simple JSON response', array('action' => 'simple'))?></li>
-	<li><?php echo $this->Html->link('Toggle', array('action' => 'toggle'))?></li>
-	<li><?php echo $this->Html->link('Pagination', array('action' => 'pagination'))?></li>
-	<li><?php echo $this->Html->link('Redirecting', array('action' => 'redirecting'))?></li>
+	<li><?php echo $this->Html->link('Simple JSON response', ['action' => 'simple'])?></li>
+	<li><?php echo $this->Html->link('Toggle', ['action' => 'toggle'])?></li>
+	<li><?php echo $this->Html->link('Pagination', ['action' => 'pagination'])?></li>
+	<li><?php echo $this->Html->link('Redirecting', ['action' => 'redirecting'])?></li>
 </ul>
 
 <h3>Using Ajax Plugin</h3>
 <ul>
-	<li><?php echo $this->Html->link('Chained dropdowns', array('action' => 'chained_dropdowns'))?></li>
-	<li><?php echo $this->Html->link('Redirecting (prevented)', array('action' => 'redirecting_prevented'))?></li>
+	<li><?php echo $this->Html->link('Chained dropdowns', ['action' => 'chained_dropdowns'])?></li>
+	<li><?php echo $this->Html->link('Redirecting (prevented)', ['action' => 'redirecting_prevented'])?></li>
 </ul>

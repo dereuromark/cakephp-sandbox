@@ -1,19 +1,19 @@
 <?php
-$engines = array(
+$engines = [
 	'DomPdf' => 'dom',
 	'WkHtmlToPdf' => 'wk',
 	'Tcpdf' => 'tc',
 	//'Mpdf' => 'm'
-);
+];
 ?>
 
 <h2>Pdf Tests</h2>
 For details on how to use it see <a href="http://www.dereuromark.de/2014/04/08/generating-pdfs-with-cakephp/">generating-pdfs-with-cakephp</a> or the <a href="https://github.com/ceeram/CakePdf">CakePDF plugin</a> directly.
 
 <ul>
-	<li><b><?php echo $this->Html->link('The plain HTML template', array('action' => 'pdf_test')); ?></b></li>
+	<li><b><?php echo $this->Html->link('The plain HTML template', ['action' => 'pdf_test']); ?></b></li>
 <?php foreach ($engines as $engine => $action) { ?>
-	<li><b><?php echo $this->Html->link($engine, array('action' => 'pdf_test', $action, '_ext' => 'pdf')); ?></b> | <?php echo $this->Html->link('Custom Download Filename', array('action' => 'pdf_test', $action, 'foo-bar', '_ext' => 'pdf')); ?> | <?php echo $this->Html->link('Force Download', array('action' => 'pdf_test', $action, '_ext' => 'pdf', '?' => array('download' => 1))); ?></li>
+	<li><b><?php echo $this->Html->link($engine, ['action' => 'pdf_test', $action, '_ext' => 'pdf']); ?></b> | <?php echo $this->Html->link('Custom Download Filename', ['action' => 'pdf_test', $action, 'foo-bar', '_ext' => 'pdf']); ?> | <?php echo $this->Html->link('Force Download', ['action' => 'pdf_test', $action, '_ext' => 'pdf', '?' => ['download' => 1]]); ?></li>
 <?php } ?>
 	<li>Mpdf has been removed as it was quite buggy</li>
 </ul>

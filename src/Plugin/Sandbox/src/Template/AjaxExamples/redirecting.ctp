@@ -45,10 +45,10 @@ of the response.
 </p>
 
 <div class="toggle">
-	<div style="margin-bottom: 10px;"><?php echo $this->Form->postLink(__('A normal POST link'), array()); ?></div>
+	<div style="margin-bottom: 10px;"><?php echo $this->Form->postLink(__('A normal POST link'), []); ?></div>
 
 	<div style="margin-bottom: 10px;" id="example-container">
-		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), array()); ?>
+		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), []); ?>
 	</div>
 
 	<p id="example-target">

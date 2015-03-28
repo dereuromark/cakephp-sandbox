@@ -10,13 +10,13 @@ $langDe = locale_get_display_name('de');
 <?php if ($this->Session->read('Config.language') === 'en') { ?>
 	<b><?php echo $langEn; ?></b>
 <?php } else { ?>
-	<?php echo $this->Form->postLink($langEn, array('?' => array('lang' => 'en')), ['title' => __('Switch language')]); ?>
+	<?php echo $this->Form->postLink($langEn, ['?' => ['lang' => 'en']], ['title' => __('Switch language')]); ?>
 <?php } ?>
  |
 <?php if ($this->Session->read('Config.language') === 'de') { ?>
 	<b><?php echo $langDe; ?></b>
 <?php } else { ?>
-	<?php echo $this->Form->postLink($langDe, array('?' => array('lang' => 'de')), ['title' => __('Switch language')]); ?>
+	<?php echo $this->Form->postLink($langDe, ['?' => ['lang' => 'de']], ['title' => __('Switch language')]); ?>
 <?php } ?>
  | <small><i>Add yours here</i></small>
 </div>

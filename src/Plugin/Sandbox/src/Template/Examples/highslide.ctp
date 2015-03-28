@@ -1,6 +1,6 @@
 <?php
-$this->Highslide->changeDefaultOptions(array('captionText' => 'ssss'));
-$this->Highslide->changeDefaultOverlays(array());
+$this->Highslide->changeDefaultOptions(['captionText' => 'ssss']);
+$this->Highslide->changeDefaultOverlays([]);
 //pr($this->Highslide->default_options);
 ?>
 
@@ -36,15 +36,15 @@ echo $this->Geshi->highlightText($dataPrint, 'php');
 ?>
 
 Results can be:<br /><br />
-<span class="pointer" style="background-color:yellow" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Url->build('/img/content/examples/cake.jpg')))?>">I am a &lt;span&gt;-tag | Click me</span>
+<span class="pointer" style="background-color:yellow" onclick="<?php echo $this->Highslide->onclick(['src' => $this->Url->build('/img/content/examples/cake.jpg')])?>">I am a &lt;span&gt;-tag | Click me</span>
 <br /><br />
-<div class="pointer" style="background-color:orange;float:right;" onclick="<?php echo $this->Highslide->onclick(array('src' => $this->Url->build('/img/content/examples/cake.jpg')))?>">I am a &lt;div&gt;-tag floating at the right | Click me</div>
+<div class="pointer" style="background-color:orange;float:right;" onclick="<?php echo $this->Highslide->onclick(['src' => $this->Url->build('/img/content/examples/cake.jpg')])?>">I am a &lt;div&gt;-tag floating at the right | Click me</div>
 <br class="clear"/>
 <br />
 and every other html element (because the href tag is now not necessary anymore).
 <br /><br /><br />
 
-This clickable image <?php echo $this->Html->image('icons/loupe.gif', array('title' => 'Click me', 'alt' => 'I am an image', 'onclick' => $this->Highslide->onclick(array('src' => 'http://localhost/c/telapp/img/content/examples/cake.jpg')), 'class' => 'pointer'));?> can easily be made combining html- and highslide-helper:
+This clickable image <?php echo $this->Html->image('icons/loupe.gif', ['title' => 'Click me', 'alt' => 'I am an image', 'onclick' => $this->Highslide->onclick(['src' => 'http://localhost/c/telapp/img/content/examples/cake.jpg']), 'class' => 'pointer']);?> can easily be made combining html- and highslide-helper:
 <?php
 $dataPrint = '<?php echo $this->Html->image(\'icons/loupe.gif\', array(
 	\'title\'=>\'Click me\',
@@ -92,9 +92,9 @@ Results in:
 
 Click on the following icons to see the effects:
 <ul>
-<li>1: <?php echo $this->Html->link($this->Html->image('icons/help.png', array('title' => 'Click me', 'alt' => '1')), '/img/content/examples/cake.jpg', array('onclick' => $this->Highslide->onclick(array('captionText' => 'This is a caption for just this one image'))), null, false);?></li>
-<li>2: <?php echo $this->Html->link($this->Html->image('icons/help.png', array('title' => 'Click me', 'alt' => '2')), '/img/content/examples/cake.jpg', array('onclick' => $this->Highslide->onclick(array('targetX' => 'h3_advaced 20px', 'targetY' => 'h3_advaced -20px;'))), null, false);?></li>
-<li>3: <?php echo $this->Html->link($this->Html->image('icons/help.png', array('title' => 'Click me', 'alt' => '3')), '/img/content/examples/cake.jpg', array('onclick' => $this->Highslide->onclick(array('outlineType' => 'glossy-dark', 'dimmingOpacity' => 0.70))), null, false);?></li>
+<li>1: <?php echo $this->Html->link($this->Html->image('icons/help.png', ['title' => 'Click me', 'alt' => '1']), '/img/content/examples/cake.jpg', ['onclick' => $this->Highslide->onclick(['captionText' => 'This is a caption for just this one image'])], null, false);?></li>
+<li>2: <?php echo $this->Html->link($this->Html->image('icons/help.png', ['title' => 'Click me', 'alt' => '2']), '/img/content/examples/cake.jpg', ['onclick' => $this->Highslide->onclick(['targetX' => 'h3_advaced 20px', 'targetY' => 'h3_advaced -20px;'])], null, false);?></li>
+<li>3: <?php echo $this->Html->link($this->Html->image('icons/help.png', ['title' => 'Click me', 'alt' => '3']), '/img/content/examples/cake.jpg', ['onclick' => $this->Highslide->onclick(['outlineType' => 'glossy-dark', 'dimmingOpacity' => 0.70])], null, false);?></li>
 </ul>
 
 
@@ -150,7 +150,7 @@ echo $this->Geshi->highlightText($dataPrint, 'php');
 First of all, you have to register the overlays you want to use:
 
 <?php
-echo $this->Highslide->registerOverlay(array('tryout' => array('hideOnMouseOut' => 'true', 'position' => 'top left', 'overlayId' => 'my-caption', 'thumbnailId' => 'my-thumb', 'opacity' => '0.8'), 'forfun' => array()));
+echo $this->Highslide->registerOverlay(['tryout' => ['hideOnMouseOut' => 'true', 'position' => 'top left', 'overlayId' => 'my-caption', 'thumbnailId' => 'my-thumb', 'opacity' => '0.8'], 'forfun' => []]);
 
 $dataPrint = 'echo $this->Highslide->registerOverlay(array(
 \'tryout\'=>array(
@@ -210,6 +210,6 @@ $dataPrint = 'echo $this->Highslide->overlay(array(
 echo $this->Geshi->highlightText($dataPrint, 'javascript');
 ?>
 
-<?php echo $this->Highslide->overlay(array('my-caption' => array('content' => 'a header or description')))?>
+<?php echo $this->Highslide->overlay(['my-caption' => ['content' => 'a header or description']])?>
 
-We are done, click the cake to see the result: <?php echo $this->Html->link($this->Html->image('cake.icon.gif', array('title' => 'Click me', 'alt' => '1')), '/img/content/examples/cake.jpg', array('onclick' => $this->Highslide->onclick(array('captionText' => 'This one has a custom overlay at the top (mouve the mouse in and out to notice the difference)', 'overlayId' => 'my-caption')), 'id' => 'my-thumb'), null, false);
+We are done, click the cake to see the result: <?php echo $this->Html->link($this->Html->image('cake.icon.gif', ['title' => 'Click me', 'alt' => '1']), '/img/content/examples/cake.jpg', ['onclick' => $this->Highslide->onclick(['captionText' => 'This one has a custom overlay at the top (mouve the mouse in and out to notice the difference)', 'overlayId' => 'my-caption']), 'id' => 'my-thumb'], null, false);

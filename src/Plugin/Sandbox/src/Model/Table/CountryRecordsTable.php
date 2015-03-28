@@ -7,11 +7,11 @@ class CountryRecordsTable extends Table {
 
 	//public $alias = 'Country';
 
-	public $order = array('sort' => 'DESC', 'name' => 'ASC');
+	public $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
-	public $filterArgs = array(
-		'search' => array('type' => 'like', 'field' => array('name', 'ori_name', 'iso2', 'iso3')),
-	);
+	public $filterArgs = [
+		'search' => ['type' => 'like', 'field' => ['name', 'ori_name', 'iso2', 'iso3']],
+	];
 
 	public function initialize(array $config) {
 		$this->table('countries');

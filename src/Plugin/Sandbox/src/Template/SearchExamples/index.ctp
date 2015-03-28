@@ -4,7 +4,7 @@
 <div class="search-box">
 <?php
 echo $this->Form->create('CountryRecord');
-echo $this->Form->input('search', array('placeholder' => 'Wildcards: * and ?'));
+echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
 echo $this->Form->submit(__('Search'));
 echo $this->Form->end();
 ?>
@@ -12,13 +12,13 @@ echo $this->Form->end();
 
 <table class="list">
 <tr>
-	<th><?php echo $this->Paginator->sort('sort', $this->Format->cIcon('filter.gif'), array('escape' => false));?></th>
+	<th><?php echo $this->Paginator->sort('sort', $this->Format->cIcon('filter.gif'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>
 	<th><?php echo $this->Paginator->sort('ori_name');?></th>
 	<th><?php echo $this->Paginator->sort('iso2');?></th>
 	<th><?php echo $this->Paginator->sort('iso3');?></th>
 	<th><?php echo $this->Paginator->sort('country_code');?></th>
-	<th><?php echo $this->Paginator->sort('zip_length', null, array('direction' => 'desc'));?></th>
+	<th><?php echo $this->Paginator->sort('zip_length', null, ['direction' => 'desc']);?></th>
 </tr>
 <?php
 $i = 0;

@@ -5,11 +5,11 @@
 	<fieldset>
  		<legend><?php echo __('Countries and Country Provinces');?></legend>
 	<?php
-		$url = $this->Url->build(array('plugin' => 'sandbox', 'controller' => 'ajax_examples', 'action' => 'country_provinces_ajax', '_ext' => 'json'));
-		$empty = $countryProvinces->toArray() ? Configure::read('Select.defaultBefore') . __('pleaseSelect') . Configure::read('Select.defaultAfter') : array('0' => Configure::read('Select.naBefore') . __('noOptionAvailable') . Configure::read('Select.naAfter'));
+		$url = $this->Url->build(['plugin' => 'sandbox', 'controller' => 'ajax_examples', 'action' => 'country_provinces_ajax', '_ext' => 'json']);
+		$empty = $countryProvinces->toArray() ? Configure::read('Select.defaultBefore') . __('pleaseSelect') . Configure::read('Select.defaultAfter') : ['0' => Configure::read('Select.naBefore') . __('noOptionAvailable') . Configure::read('Select.naAfter')];
 
-		echo $this->Form->input('country_id', array('id' => 'countries', 'rel' => $url));
-		echo $this->Form->input('country_province_id', array('id' => 'provinces', 'empty' => $empty));
+		echo $this->Form->input('country_id', ['id' => 'countries', 'rel' => $url]);
+		echo $this->Form->input('country_province_id', ['id' => 'provinces', 'empty' => $empty]);
 	?>
 	</fieldset>
 

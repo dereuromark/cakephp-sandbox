@@ -44,7 +44,7 @@ A simple AJAX toggle. Press F5 after you changed it to verify that the "simulate
 
 <div class="toggle">
 	<div id="example-container">
-		Status/Active: <span class="toggle-element" id="example" data-value="<?php echo $status; ?>" data-rel="<?php echo $this->Url->build(array('_ext' => 'json')); ?>"><?php echo $this->Format->yesNo($status, 'Yeaah', 'Nooo'); ?></span>
+		Status/Active: <span class="toggle-element" id="example" data-value="<?php echo $status; ?>" data-rel="<?php echo $this->Url->build(['_ext' => 'json']); ?>"><?php echo $this->Format->yesNo($status, 'Yeaah', 'Nooo'); ?></span>
 	</div>
 </div>
 

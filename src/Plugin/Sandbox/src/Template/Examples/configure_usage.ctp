@@ -23,9 +23,9 @@ Or by setting all Configuration Information into Global Constants with define('V
 <h2>Test Parameter</h2>
 How many vars to read out (simulated as a loop):<br />
 <?php
-$times = array(10, 50, 100, 500, 1000, 2000, 3000);
+$times = [10, 50, 100, 500, 1000, 2000, 3000];
 foreach ($times as $time) {
-	echo ' | ' . $this->Html->link($time, array('controller' => 'examples', 'action' => 'configure_usage', 'loops' => $time), array('title' => 'Click to change loop count')) . ' | ';
+	echo ' | ' . $this->Html->link($time, ['controller' => 'examples', 'action' => 'configure_usage', 'loops' => $time], ['title' => 'Click to change loop count']) . ' | ';
 }
 ?>
 <br />

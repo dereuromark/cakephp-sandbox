@@ -6,9 +6,9 @@ use Cake\ORM\TableRegistry;
 
 class AjaxExamplesController extends SandboxAppController {
 
-	public $components = array('Data.CountryProvinceHelper');
+	public $components = ['Data.CountryProvinceHelper'];
 
-	public $helpers = array('Data.Data');
+	public $helpers = ['Data.Data'];
 
 	/**
 	 * AppController::constructClasses()
@@ -17,7 +17,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function initialize() {
 		if ($this->request->action === 'redirecting_prevented') {
-			$this->components['Ajax.Ajax'] = array('flashKey' => 'FlashMessage');
+			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
 		}
 		parent::initialize();
 	}
@@ -42,11 +42,11 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function simple() {
-		if ($this->request->is(array('ajax'))) {
+		if ($this->request->is(['ajax'])) {
 			// Lets create current datetime
 			$now = date(FORMAT_DB_DATETIME);
-			$this->set('result', array('now' => $now));
-			$this->set('_serialize', array('result'));
+			$this->set('result', ['now' => $now]);
+			$this->set('_serialize', ['result']);
 		}
 	}
 
@@ -56,7 +56,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function toggle() {
-		if ($this->request->is(array('ajax'))) {
+		if ($this->request->is(['ajax'])) {
 			// Simulate a DB save via session
 			$status = (bool)$this->request->query('status');
 			$this->Session->write('AjaxToggle.status', $status);
@@ -69,7 +69,7 @@ class AjaxExamplesController extends SandboxAppController {
 
 			// Since we already rendered the snippet, we need to reset the render state
 			$View->hasRendered = false;
-			$View->set('_serialize', array('result'));
+			$View->set('_serialize', ['result']);
 			return;
 		}
 
@@ -118,10 +118,10 @@ class AjaxExamplesController extends SandboxAppController {
 
 		if ($this->request->is('post')) {
 			
-			$this->Users->validator()->add('country_province_id', 'numeric', array(
+			$this->Users->validator()->add('country_province_id', 'numeric', [
 				'rule' => 'numeric',
 				'message' => 'Please select something'
-			));
+			]);
 			$user = $this->Users->patchEntity($user, $this->request->data);
 			//$result = $this->User->validates();
 		}
@@ -166,7 +166,7 @@ class AjaxExamplesController extends SandboxAppController {
 			if (!$this->request->is('ajax')) {
 				$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 			}
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 	}
 
@@ -182,7 +182,7 @@ class AjaxExamplesController extends SandboxAppController {
 
 			$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 
-			return $this->redirect(array('action' => 'index'));
+			return $this->redirect(['action' => 'index']);
 		}
 	}
 

@@ -12,7 +12,7 @@ Using the PasswordableBehavior
 	<fieldset>
  		<legend><?php echo $action . ' Demo'; ?></legend>
 	<?php
-		echo $this->Form->input('username', array());
+		echo $this->Form->input('username', []);
 		echo $this->Form->input('pwd');
 		echo $this->Form->input('pwd_repeat');
 	?>

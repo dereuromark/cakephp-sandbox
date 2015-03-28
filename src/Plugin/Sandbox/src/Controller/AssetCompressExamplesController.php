@@ -37,7 +37,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 			$result = $this->filter->input($this->_cssDir . 'test.scss', $source);
 		} catch (\RuntimeException $e) {
 			$this->Flash->error('SASS Parsing error: ' . $e->getMessage());
-			$result = array();
+			$result = [];
 		}
 		$expected = file_get_contents($this->_cssDir . 'compiled_scss.css');
 		if (!$result) {

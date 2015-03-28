@@ -11,7 +11,7 @@ So when you try to save "n/a" it will become "n-a". If that is already taken, it
 	<fieldset>
  		<legend><?php echo 'Slug Demo'; ?></legend>
 	<?php
-		echo $this->Form->input('username', array('size' => 50, ));
+		echo $this->Form->input('username', ['size' => 50, ]);
 		//echo $this->Form->input('slug', array('size' => 50, 'placeholder' => 'Leave empty to auto-generate using the behavior'));
 	?>
 	<?php echo $this->Form->submit(__('Submit'));?>

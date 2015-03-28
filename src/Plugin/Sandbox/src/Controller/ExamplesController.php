@@ -3,7 +3,7 @@ namespace Sandbox\Controller;
 
 class ExamplesController extends SandboxAppController {
 
-	public $helpers = array('Geshi.Geshi');
+	public $helpers = ['Geshi.Geshi'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

@@ -3,7 +3,7 @@ namespace Sandbox\Controller;
 
 class HelpersController extends SandboxAppController {
 
-	public $uses = array();
+	public $uses = [];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -21,7 +21,7 @@ class HelpersController extends SandboxAppController {
 	 * GoogleMapV3Helper
 	 */
 	public function google_map_v3() {
-		$this->Common->loadHelper(array('Tools.GoogleMapV3'));
+		$this->Common->loadHelper(['Tools.GoogleMapV3']);
 	}
 
 }

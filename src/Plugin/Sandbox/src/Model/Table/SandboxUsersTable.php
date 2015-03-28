@@ -7,21 +7,21 @@ class SandboxUsersTable extends Table {
 
 	public $displayField = 'username';
 
-	public $validate = array(
-		'username' => array(
-			'notEmpty' => array(
-				'rule' => array('notEmpty'),
+	public $validate = [
+		'username' => [
+			'notEmpty' => [
+				'rule' => ['notEmpty'],
 				'message' => 'Mandatory',
 				'last' => true
-			)
-		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
+			]
+		],
+		'email' => [
+			'email' => [
+				'rule' => ['email'],
 				'message' => 'Email invalid',
 				'last' => true
-			)
-		),
-	);
+			]
+		],
+	];
 
 }

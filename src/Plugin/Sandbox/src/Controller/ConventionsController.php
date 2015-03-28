@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class ConventionsController extends SandboxAppController {
 
-	public $uses = array('User');
+	public $uses = ['User'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

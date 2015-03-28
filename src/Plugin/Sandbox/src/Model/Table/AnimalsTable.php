@@ -7,11 +7,11 @@ use Cake\ORM\RulesChecker;
 
 class AnimalsTable extends Table {
 
-	public $order = array('name' => 'ASC');
+	public $order = ['name' => 'ASC'];
 
-	public $filterArgs = array(
-		'search' => array('type' => 'like', 'field' => array('name')),
-	);
+	public $filterArgs = [
+		'search' => ['type' => 'like', 'field' => ['name']],
+	];
 
 	public function initialize(array $config) {
 		$this->table('sandbox_animals');
