@@ -7,7 +7,7 @@ use Cake\Core\Configure;
 
 class AuthSandboxController extends AppController {
 
-	public $uses = array();
+	public $uses = [];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -19,11 +19,11 @@ class AuthSandboxController extends AppController {
 	protected function _authSetup() {
 		$this->Auth->config('authenticate', [
 			'FOC/Authenticate.MultiColumn' => [
-				'fields' => array(
+				'fields' => [
 					'username' => 'login',
 					'password' => 'password'
-				),
-				'columns' => array('username', 'email'),
+				],
+				'columns' => ['username', 'email'],
 				'userModel' => 'Users'
 			]
 		]);

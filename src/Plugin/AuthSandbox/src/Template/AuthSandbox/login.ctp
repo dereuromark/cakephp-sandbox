@@ -6,8 +6,8 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 <p>Please enter your username/email and password below.</p>
 
 <?php
-echo $this->Form->input('login', array('label' => 'Your username or email'));
-echo $this->Form->input('password', array('autocomplete' => 'off'));
+echo $this->Form->input('login', ['label' => 'Your username or email']);
+echo $this->Form->input('password', ['autocomplete' => 'off']);
 ?>
 <?php echo $this->Form->submit(__('Log me in'));?>
 <?php echo $this->Form->end(); ?>
