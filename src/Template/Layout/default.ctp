@@ -15,13 +15,13 @@ echo $this->Html->charset();
 <?php
 echo $this->Html->meta('icon');
 
-echo $this->Html->css('bootstrap');
+echo $this->Html->css('/assets/bootstrap/dist/css/bootstrap.min');
 echo $this->Html->css('app');
 echo $this->Html->css('flash_messages');
 echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
 
-echo $this->Html->script('jquery/jquery');
-echo $this->Html->script('bootstrap');
+echo $this->Html->script('/assets/jquery/jquery.min');
+echo $this->Html->script('/assets/bootstrap/dist/js/bootstrap.min');
 
 echo $this->fetch('meta');
 echo $this->fetch('css');
