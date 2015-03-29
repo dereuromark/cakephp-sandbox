@@ -35,35 +35,42 @@ class AppController extends Controller {
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
-		$this->Auth->authenticate = [
-			'Authenticate.MultiColumn' => [
-				'passwordHasher' => Configure::read('Passwordable.authType'),
-				'fields' => [
-					'username' => 'login',
-					'password' => 'password'
-				],
-				'columns' => ['username', 'email'],
-				'userModel' => 'User',
+
+		$config = [
+			/*
+			'authenticate' => [
+				'Authenticate.MultiColumn' => [
+					'passwordHasher' => Configure::read('Passwordable.authType'),
+					'fields' => [
+						'username' => 'login',
+						'password' => 'password'
+					],
+					'columns' => ['username', 'email'],
+					'userModel' => 'User',
+				]
+			],
+			*/
+			'authorize' => ['Tools.Tiny' => []],
+			'logoutRedirect' => [
+				'plugin' => false,
+				'admin' => false,
+				'controller' => 'Overview',
+				'action' => 'index'
+			],
+			'loginRedirect' => [
+				'plugin' => false,
+				'admin' => false,
+				'controller' => 'Account',
+				'action' => 'index'
+			],
+			'loginAction' => [
+				'plugin' => false,
+				'admin' => false,
+				'controller' => 'Account',
+				'action' => 'login'
 			]
 		];
-		$this->Auth->authorize = [
-			'Tools.Tiny' => []
-		];
-		$this->Auth->logoutRedirect = [
-			'plugin' => false,
-			'admin' => false,
-			'controller' => 'overview',
-			'action' => 'index'];
-		$this->Auth->loginRedirect = [
-			'plugin' => false,
-			'admin' => false,
-			'controller' => 'account',
-			'action' => 'index'];
-		$this->Auth->loginAction = [
-			'plugin' => false,
-			'admin' => false,
-			'controller' => 'account',
-			'action' => 'login'];
+		$this->Auth->config($config);
 
 		// Short-cicuit Auth for some controllers
 		if (in_array($this->viewPath, ['Pages'])) {
