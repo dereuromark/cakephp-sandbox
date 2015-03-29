@@ -21,7 +21,7 @@ $this->Activecalendar->includeFiles('ceramique');
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $this->Form->value('Example.id')], null, __('Are you sure you want to delete # {0}?', $this->Form->value('Example.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $this->Form->value('Example.id')], ['confirm' => __('Are you sure you want to delete # {0}?', $this->Form->value('Example.id'))]); ?></li>
 		<li><?php echo $this->Html->link(__('List {0}', __('Examples')), ['action' => 'index']);?></li>
 		<li><?php echo $this->Html->link(__('List {0}', __('Codesnippets')), ['controller' => 'codesnippets', 'action' => 'index']); ?> </li>
 		<li><?php echo $this->Html->link(__('New Codesnippet'), ['controller' => 'codesnippets', 'action' => 'add']); ?> </li>

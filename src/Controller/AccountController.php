@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use Cake\Event\Event;
+use Cake\Core\Configure;
 
 class AccountController extends AppController {
 
@@ -20,7 +21,9 @@ class AccountController extends AppController {
 	 */
 	public function login() {
 		if ($this->Common->isPosted()) {
-			if ($this->Auth->login()) {
+			$user = $this->Auth->identify();
+			if ($user) {
+				$this->Auth->setUser($user);
 				$this->Flash->message(__('loggedInMessage'), 'success');
 
 				return $this->redirect($this->Auth->redirectUrl());

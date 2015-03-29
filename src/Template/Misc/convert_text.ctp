@@ -17,7 +17,7 @@ Use this converter to get the text in the appropriate format.
 		echo $this->Form->input('Form.prevent_trim', ['type' => 'hidden', 'value' => 1]);
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
+<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
 
 <h2>Result</h2>

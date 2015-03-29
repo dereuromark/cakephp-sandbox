@@ -26,7 +26,7 @@
 </fieldset>
 <?php } ?>
 
-<?php echo $this->Form->end(__('Create account'));?>
+<?php echo $this->Form->submit(__('Create account')); echo $this->Form->end();?>
 
 <h3>No account yet?</h3>
 <p><?php echo $this->Html->link('Create one here. For free :P', ['action' => 'register'])?></p>

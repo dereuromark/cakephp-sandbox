@@ -42,7 +42,7 @@ foreach ($examples as $example):
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->image('icons/edit.gif', ['alt'=>__('Edit'),'title'=>__('Edit')]), ['action'=>'edit', $example['Example']['id']], ['escape' => false]);?>
 
-			<?php echo $this->Html->link($this->Html->image('icons/delete.gif', ['alt'=>__('Delete'),'title'=>__('Delete')]), ['action'=>'delete', $example['Example']['id']], ['escape' => false],__('Are you sure you want to delete # {0}?', $example['Example']['id']));?>
+			<?php echo $this->Html->link($this->Html->image('icons/delete.gif', ['alt'=>__('Delete'),'title'=>__('Delete')]), ['action'=>'delete', $example['Example']['id']], ['escape' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $example['Example']['id'])]);?>
 
 		</td>
 	</tr>

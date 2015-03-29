@@ -25,12 +25,12 @@
 	?>
 	</fieldset>
 
-<?php echo $this->Form->end(__('Submit')); ?>
+<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end(); ?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $this->Form->value('User.id')], null, __('Are you sure you want to delete your account # {0}?', $this->Form->value('User.id'))); ?></li>
+		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $this->Form->value('User.id')], ['confirm' => __('Are you sure you want to delete your account # {0}?', $this->Form->value('User.id'))]); ?></li>
 	</ul>
 </div>

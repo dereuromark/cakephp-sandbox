@@ -39,7 +39,7 @@ foreach ($users as $user):
 		
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), ['action'=>'edit', $user['User']['id']]); ?>
-			<?php echo $this->Form->postLink(__('Delete'), ['action'=>'delete', $user['User']['id']], null, __('Are you sure you want to delete # {0}?', $user['User']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), ['action'=>'delete', $user['User']['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $user['User']['id'])]); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -13,7 +13,7 @@
 		}
 	?>
 
-<?php echo $this->Form->end(__('Log me in'));?>
+<?php echo $this->Form->submit(__('Log me in')); echo $this->Form->end();?>
 
 <h3>No account yet?</h3>
 <?php if (Configure::read('Config.allowRegister')) { ?>
