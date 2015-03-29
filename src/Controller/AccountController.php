@@ -6,12 +6,12 @@ use Cake\Core\Configure;
 
 class AccountController extends AppController {
 
-	public $uses = ['User'];
+	public $modelClass = 'Users';
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
-		$this->Auth->allow('login', 'logout', 'register', 'activate', 'lost_password', 'change_password');
+		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lost_password', 'change_password']);
 	}
 
 	/**
@@ -79,13 +79,13 @@ class AccountController extends AppController {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
 		} elseif (!empty($this->request->data['Form']['login'])) {
-			$this->User->Behaviors->attach('Tools.Captcha');
-			unset($this->User->validate['email']['isUnique']);
-			$this->User->set($this->request->data);
+			$this->Users->behaviors()->load('Tools.Captcha');
+			unset($this->Users->validate['email']['isUnique']);
+			$this->Users->set($this->request->data);
 
 			// Validate basic email scheme and captcha input.
-			if ($this->User->validates()) {
-				$res = $this->User->find('first', [
+			if ($this->Users->validates()) {
+				$res = $this->Users->find('first', [
 					'fields' => ['username', 'id', 'email'],
 					'conditions' => ['email' => $this->request->data['Form']['login']]]);
 
@@ -145,13 +145,15 @@ class AccountController extends AppController {
 			return $this->redirect(['action' => 'login']);
 		}
 
-		$this->User->Behaviors->load('Tools.Passwordable', []);
+		$user = $this->Users->newEntity();
+		$this->Users->behaviors()->load('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
+			$user = $this->Users->patchEntity($user, $this->request->data);
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, ['id', 'pwd', 'pwd_repeat'])) {
+			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
 				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
-				$username = $this->User->field('username', ['id' => $uid]);
+				$username = $this->Users->field('username', ['id' => $uid]);
 				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
@@ -168,12 +170,12 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function register() {
-		$this->User->Behaviors->load('Tools.Passwordable', []);
+		$this->Users->behaviors()->load('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
-			if ($user = $this->User->save($this->request->data)) {
+			if ($user = $this->Users->save($this->request->data)) {
 				$this->Flash->message(__('Account created'), 'success');
-				if (!$this->Auth->login($user['User'])) {
+				if (!$this->Auth->setUser($user['User'])) {
 					throw new \Exception('Cannot log user in');
 				}
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
@@ -201,14 +203,14 @@ class AccountController extends AppController {
 	 */
 	public function edit() {
 		$uid = $this->Session->read('Auth.User.id');
-		$user = $this->User->get($uid);
-		$this->User->Behaviors->attach('Tools.Passwordable', ['require' => false]);
+		$user = $this->Users->get($uid);
+		$this->Users->behaviors()->load('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;
-			if ($this->User->save($this->request->data, true, ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'])) {
+			if ($this->Users->save($this->request->data, true, ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'])) {
 				$this->Flash->message(__('Account modified'), 'success');
-				if (!$this->Auth->login($user['User'])) {
+				if (!$this->Auth->setUser($user['User'])) {
 					throw new \Exception('Cannot log user in');
 				}
 				return $this->redirect(['action' => 'index']);
@@ -232,7 +234,7 @@ class AccountController extends AppController {
 	public function delete($id = null) {
 		$this->request->onlyAllow('post', 'delete');
 		$uid = $this->Session->read('Auth.User.id');
-		if (!$this->User->delete($uid)) {
+		if (!$this->Users->delete($uid)) {
 			throw new InternalErrorException();
 		}
 		$this->Flash->message('Account deleted', 'success');
