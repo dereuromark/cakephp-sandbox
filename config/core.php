@@ -2,7 +2,7 @@
 
 use Cake\Log\Log;
 
-	/**
+/**
 	 * CakePHP Debug Level:
 	 *
 	 * Production Mode:

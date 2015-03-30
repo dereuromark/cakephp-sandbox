@@ -117,7 +117,6 @@ class AjaxExamplesController extends SandboxAppController {
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
-			
 			$this->Users->validator()->add('country_province_id', 'numeric', [
 				'rule' => 'numeric',
 				'message' => 'Please select something'

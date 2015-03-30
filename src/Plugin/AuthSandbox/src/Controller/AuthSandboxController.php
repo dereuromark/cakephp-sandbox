@@ -1,9 +1,8 @@
 <?php
 namespace AuthSandbox\Controller;
 
-use Cake\Event\Event;
 use App\Controller\AppController;
-use Cake\Core\Configure;
+use Cake\Event\Event;
 
 class AuthSandboxController extends AppController {
 

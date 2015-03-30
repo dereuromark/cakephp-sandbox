@@ -1,8 +1,8 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
 use Cake\Core\Configure;
+use Cake\Event\Event;
 
 class AccountController extends AppController {
 

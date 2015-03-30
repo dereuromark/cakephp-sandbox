@@ -1,9 +1,9 @@
 <?php
 namespace Sandbox\Model\Table;
 
-use Tools\Model\Table\Table;
-use Cake\Validation\Validator;
 use Cake\ORM\RulesChecker;
+use Cake\Validation\Validator;
+use Tools\Model\Table\Table;
 
 class AnimalsTable extends Table {
 

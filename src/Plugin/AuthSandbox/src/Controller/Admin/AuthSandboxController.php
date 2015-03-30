@@ -1,9 +1,7 @@
 <?php
 namespace AuthSandbox\Controller\Admin;
 
-use Cake\Event\Event;
 use AuthSandbox\Controller\AuthSandboxController as NormalAuthSandboxController;
-use Cake\Core\Configure;
 
 class AuthSandboxController extends NormalAuthSandboxController {
 

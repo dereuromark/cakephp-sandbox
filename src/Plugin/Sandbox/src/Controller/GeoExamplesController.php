@@ -2,8 +2,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
-use Cake\Core\Plugin;
-use Cake\Core\Configure;
 use Geo\Geocode\Geocode;
 
 class GeoExamplesController extends SandboxAppController {

@@ -26,7 +26,6 @@ class BootstrapController extends SandboxAppController {
 	public function index() {
 		$animal = $this->Animals->newEntity();
 
-
 		$this->set(compact('animal'));
 	}
 

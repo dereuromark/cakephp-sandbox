@@ -1,10 +1,10 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use AssetCompress\Filter\ScssFilter;
-use Cake\Core\Plugin;
 use Cake\Core\Configure;
+use Cake\Core\Plugin;
+use Cake\Event\Event;
 
 class AssetCompressExamplesController extends SandboxAppController {
 

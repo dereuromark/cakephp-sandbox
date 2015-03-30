@@ -2,10 +2,9 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
-use Cake\Utility\Hash;
-use Cake\Core\Configure;
 use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Hash;
 
 class CakeExamplesController extends SandboxAppController {
 
@@ -97,7 +96,7 @@ class CakeExamplesController extends SandboxAppController {
 			$lang = $this->request->query('lang');
 			$this->Session->write('Config.language', $lang);
 			I18n::locale($lang);
-			$lang = locale_get_display_name($lang) . ' ['. strtoupper($lang) . ']';
+			$lang = locale_get_display_name($lang) . ' [' . strtoupper($lang) . ']';
 			$this->Flash->success(__('Language switched to {0}.', $lang));
 			return $this->redirect(['action' => 'i18n']);
 		}

@@ -42,12 +42,12 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
-use Tools\Network\Email\Email;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Inflector;
 use Cake\Utility\Security;
+use Tools\Network\Email\Email;
 
 /**
  * Read configuration file and inject configuration into various
