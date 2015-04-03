@@ -45,6 +45,7 @@
 		"dereuromark/cakephp-upgrade": "dev-cake3"
 	},
 	"minimum-stability" : "dev",
+	"preferred-install": "source",
 	"prefer-stable": false,
 	"autoload": {
 		"psr-4": {
