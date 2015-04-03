@@ -39,7 +39,7 @@
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
-		"cakephp/debug_kit": "3.0.*-dev",
+		"cakephp/debug_kit": "dev-master",
 		"cakephp/bake": "dev-master",
 		"dereuromark/cakephp-codesniffer": "3.0.*-dev",
 		"dereuromark/cakephp-upgrade": "dev-cake3"
