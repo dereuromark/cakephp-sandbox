@@ -1,4 +1,4 @@
-<h2>CakePHP - Rapid Develoment Framework</h2>
+<h2>CakePHP - Rapid Development Framework</h2>
 
 <p><?php echo __('My Version') ?>: <?php echo Configure::read('Cake.version');?></p>
 
