@@ -16,7 +16,7 @@ echo $this->Html->charset();
 echo $this->Html->meta('icon');
 
 echo $this->Html->css('/assets/bootstrap/dist/css/bootstrap.min');
-echo $this->Html->css('BootstrapUI.bootstrap-u-i');
+//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
 echo $this->Html->css('app');
 echo $this->Html->css('flash_messages');
 echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
