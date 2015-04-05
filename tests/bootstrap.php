@@ -19,7 +19,7 @@ if (!getenv('db_class')) {
 	putenv('db_dsn=sqlite::memory:');
 }
 
-if (!empty($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] !== '127.0.0.1') {
+if (!WINDOWS) {
 	Cake\Datasource\ConnectionManager::drop('test');
 	Cake\Datasource\ConnectionManager::config('test', [
 		'className' => 'Cake\Database\Connection',
