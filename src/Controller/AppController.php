@@ -15,7 +15,7 @@ class AppController extends Controller {
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
 		'Tools.Flash', 'Auth', 'Tools.AuthUser'];
 
-	public $helpers = ['Session', 'Html',
+	public $helpers = ['Shim.Session', 'Html',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'Tools.AuthUser'];
 
