@@ -20,6 +20,11 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function login() {
+		$userId = $this->Auth->user('id');
+		if ($userId) {
+			return $this->redirect($this->Auth->redirectUrl());
+		}
+
 		if ($this->Common->isPosted()) {
 			$user = $this->Auth->identify();
 			if ($user) {
