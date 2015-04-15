@@ -9,7 +9,15 @@
 <div class="navbar-collapse collapse" id="navbar-main">
 	<ul class="nav navbar-nav">
 		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Basics <span class="caret"></span></a>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="label label-success">CakePHP 3.x</span> <span class="caret"></span></a>
+			<ul class="dropdown-menu" aria-labelledby="sandbox">
+				<li><a class="dropdown-toggle" data-toggle="dropdown" href="http://sandbox.dereuromark.de/"><span class="label label-warning">CakePHP 2.x</span> <span class="caret"></span></a></li>
+
+			</ul>
+		</li>
+
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="basics">Basics <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
 				<li><?php echo $this->Html->link('Conventions', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 				<li><?php echo $this->Html->link('Inflector', ['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
