@@ -5,8 +5,8 @@
 _*
 /files/wkhtmltopdf
 /vendor/
-/plugins/
 /composer.lock
 /logs
 /config/app_local.php
 /phpunit.phar
+/.idea
