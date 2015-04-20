@@ -52,9 +52,9 @@ of the response.
 		<?php echo $this->Form->postLink(__('Click me (I am AJAXified).'), []); ?>
 	</div>
 
-	<p id="example-target">
+	<div class="alert alert-info" id="example-target">
 	<small><i>The AJAX result (from the redirect) will go here</i></small>
-	</p>
+	</div>
 </div>
 
 </div>
