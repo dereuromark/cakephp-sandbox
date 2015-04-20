@@ -11,7 +11,7 @@ $(function() {
 			url: url,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				$('#example-target').html('');
+				$('#example-target').html('...');
 			},
 			success: function(res) {
 				// Will not run into this as it returns a 302 status code

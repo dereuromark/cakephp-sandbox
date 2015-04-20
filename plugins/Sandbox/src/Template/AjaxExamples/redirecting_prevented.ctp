@@ -2,8 +2,8 @@
 $(function() {
 	$('#example-container a').removeAttr('onclick');
 	$('#example-container a').click(function(e) {
-	  e.preventDefault();
-	  var form = $(this).prev();
+		e.preventDefault();
+		var form = $(this).prev();
 		var url = $(form).attr("action");
 
 		$.ajax({
@@ -11,7 +11,7 @@ $(function() {
 			url: url,
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-				$('#example-target').html('');
+				$('#example-target').html('...');
 			},
 			success: function(res) {
 				$('#example-target').text('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')');
