@@ -15,7 +15,7 @@ $(function() {
 			},
 			success: function(res) {
 				$('#example-target').text('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')');
-				$('#example-target').text('Message: ' + res._message.success);
+				$('#example-target').append('<br/>Message: ' + res._message.success);
 				$('#example-target').append("<br/><br/>Raw data:<br/>" + JSON.stringify(res));
 			},
 			error: function(e) {
