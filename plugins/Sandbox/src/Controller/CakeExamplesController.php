@@ -32,7 +32,7 @@ class CakeExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function query_strings() {
+	public function queryStrings() {
 	}
 
 	/**

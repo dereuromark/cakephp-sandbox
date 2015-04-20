@@ -16,7 +16,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize() {
-		if ($this->request->action === 'redirecting_prevented') {
+		if ($this->request->action === 'redirectingPrevented') {
 			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
 		}
 		parent::initialize();
@@ -112,7 +112,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function chained_dropdowns() {
+	public function chainedDropdowns() {
 		$this->Users = TableRegistry::get('Users');
 		$user = $this->Users->newEntity();
 
@@ -138,7 +138,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function country_provinces_ajax() {
+	public function countryProvincesAjax() {
 		$this->request->allowMethod('ajax');
 		$id = $this->request->query('id');
 		if (!$id) {
@@ -165,7 +165,7 @@ class AjaxExamplesController extends SandboxAppController {
 			if (!$this->request->is('ajax')) {
 				$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 			}
-			return $this->redirect(['action' => 'index']);
+			return $this->redirect(['action' => 'redirecting']);
 		}
 	}
 
@@ -175,13 +175,13 @@ class AjaxExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function redirecting_prevented() {
+	public function redirectingPrevented() {
 		if ($this->request->is('post')) {
 			// Do sth like saving data
 
 			$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 
-			return $this->redirect(['action' => 'index']);
+			return $this->redirect(['action' => 'redirectingPrevented']);
 		}
 	}
 

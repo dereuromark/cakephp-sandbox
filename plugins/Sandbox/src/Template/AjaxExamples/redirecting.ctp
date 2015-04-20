@@ -14,11 +14,12 @@ $(function() {
 				$('#example-target').html('');
 			},
 			success: function(res) {
+				// Will not run into this as it returns a 302 status code
 				$('#example-target').html(res);
 			},
-			error: function(e) {
-				alert("Error");
-				console.log(e);
+			error: function(e, res) {
+				// The 302 status code will make it run into this
+				$('#example-target').html(res);
 			}
 		});
 	});
