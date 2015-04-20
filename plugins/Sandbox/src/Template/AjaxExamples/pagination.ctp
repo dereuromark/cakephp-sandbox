@@ -1,9 +1,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
-	$('#pagination-container a').live('click', function () {
-		$('#pagination-container').fadeTo(300, 0);
-
+	$(document).on('click', '#pagination-container a', function () {
 		var thisHref = $(this).attr('href');
+		if (!thisHref) {
+			return false;
+		}
+		$('#pagination-container').fadeTo(300, 0);
 
 		$('#pagination-container').load(thisHref, function() {
 			$(this).fadeTo(200, 1);
