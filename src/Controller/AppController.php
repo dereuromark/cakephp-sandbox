@@ -50,7 +50,7 @@ class AppController extends Controller {
 				]
 			],
 			*/
-			'authorize' => ['Tools.Tiny' => []],
+			'authorize' => ['TinyAuth.Tiny' => []],
 			'logoutRedirect' => [
 				'plugin' => false,
 				'admin' => false,
