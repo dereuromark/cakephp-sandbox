@@ -35,7 +35,7 @@ class GeoExamplesController extends SandboxAppController {
 		if ($this->Common->isPosted()) {
 			$this->Countries->validator()->add('address', array(
 				'notEmpty' => array(
-					'rule' => array('notEmpty'),
+					'rule' => 'notBlank',
 					'message' => 'valErrMandatoryField',
 					'last' => true
 				)));

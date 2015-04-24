@@ -2,7 +2,7 @@
 
 <?php
 
-echo $this->Form->create($animal, ['horizontal' => true]);
+echo $this->Form->create($animal, ['align' => 'horizontal']);
 echo $this->Form->input('name');
 echo $this->Form->input('comment', ['type' => 'textarea']);
 echo $this->Form->input('discovered', ['type' => 'date']);
