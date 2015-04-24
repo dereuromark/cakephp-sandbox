@@ -1,7 +1,7 @@
 <?php
 namespace Sandbox\Controller;
 
-use AssetCompress\Filter\ScssFilter;
+use MiniAsset\Filter\ScssFilter;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Event\Event;
