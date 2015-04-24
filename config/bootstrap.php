@@ -177,6 +177,7 @@ Plugin::loadAll([
 		'Sandbox' => array('routes' => true),
 		'AuthSandbox' => array('routes' => true),
 		'DebugKit' => array('bootstrap' => true),
+		'AssetCompress' => array('bootstrap' => true),
 ]);
 
 /**

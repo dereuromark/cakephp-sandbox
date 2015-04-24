@@ -14,19 +14,16 @@ echo $this->Html->charset();
 
 <?php
 echo $this->Html->meta('icon');
-
-echo $this->Html->css('/assets/bootstrap/dist/css/bootstrap.min');
-//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
-echo $this->Html->css('app');
-echo $this->Html->css('flash_messages');
-echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
-
-echo $this->Html->script('/assets/jquery/jquery.min');
-echo $this->Html->script('/assets/bootstrap/dist/js/bootstrap.min');
-
 echo $this->fetch('meta');
+
+echo $this->AssetCompress->css('css-combined');
+//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
+echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
 echo $this->fetch('css');
+
+echo $this->AssetCompress->script('js-combined');
 echo $this->fetch('script');
+
 ?>
 </head>
 <body>

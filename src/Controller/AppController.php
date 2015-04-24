@@ -17,7 +17,7 @@ class AppController extends Controller {
 
 	public $helpers = ['Shim.Session', 'Html',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'Tools.AuthUser'];
+		'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**
 	 * AppController::constructClasses()

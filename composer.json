@@ -29,6 +29,8 @@
 		"cakephp/migrations": "dev-master",
 
 		"markstory/asset_compress" : "3.0.*-dev",
+		"natxet/CssMin": "dev-master",
+		"linkorb/jsmin-php": "dev-master",
 		"dereuromark/cakephp-data" : "dev-cake3",
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",

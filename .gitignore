@@ -10,3 +10,6 @@ _*
 /config/app_local.php
 /phpunit.phar
 /.idea
+/webroot/assets
+/webroot/js/cjs
+/webroot/css/ccss
