@@ -10,7 +10,7 @@ class SandboxUsersTable extends Table {
 	public $validate = [
 		'username' => [
 			'notEmpty' => [
-				'rule' => ['notEmpty'],
+				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
 				'last' => true
 			]
