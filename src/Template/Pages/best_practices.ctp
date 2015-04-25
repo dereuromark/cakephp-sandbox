@@ -5,12 +5,20 @@ DOs and DONT's of common CakePHP problems.
 Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'])?>) as default one:
 <pre><code>Router::defaultRouteClass('DashedRoute');
 </code></pre>
+This way your URLs are `my-prefix/my-plugin/controller-name/action-name` whereas your URL contains the CamelCase variants:
+<pre><code>'prefix' => 'my-prefix // unmodified
+'plugin' => 'MyPlugin, // camelCased
+'controller' => 'ControllerName', // camelCased
+'action' => 'actionName' // camelBacked
+</code></pre>
+The idea of CakePHP 3.x is to inflect internally as less as possible.
 
 <h3>URLs</h3>
 Use array URLs wherever possible, this saves you a lot of trouble once you actually want to customize the routing:
 <pre><code>// URL /my-controller/my-action
 echo $this->Html->link($title, ['controller' => 'MyController', 'action' => 'myAction']);
 </code></pre>
+You can then alter the URLs via Routing and all those URLs change cleanly.
 The speed issue can be neglected compared to the advantages of the flexibility.
 
 <h3>Don't sanitize the heck out your data</h3>
