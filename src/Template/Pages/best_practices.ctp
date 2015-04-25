@@ -26,3 +26,19 @@ to secure (stringish) output by escaping potentially dangerous chars:
 <pre><code>echo h($entity->name);
 </code></pre>
 
+<h3>Logging</h3>
+By default the log streams catch all, even scoped logs that should only go to those scoped listeners.
+As a result they are duplicated.
+<br>
+So I would change the scopes to false here for all default listeners:
+<pre><code>// in your app.php config
+'Log' => [
+	'debug' => [
+		'scopes' => false,
+	],
+	'error' => [
+		'scopes' => false,
+	],
+	...
+],
+</code></pre>

@@ -23,6 +23,7 @@
 				<li><?php echo $this->Html->link('Inflector', ['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 
 				<li class="divider"></li>
+				<li><?php echo $this->Html->link('Beginner tips', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'beginner-tips'], ['tabindex' => '-1']); ?></li>
 				<li><?php echo $this->Html->link('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'], ['tabindex' => '-1']); ?></li>
 
 				<li class="divider"></li>
