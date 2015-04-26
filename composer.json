@@ -32,6 +32,7 @@
 		"natxet/CssMin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
 		"dereuromark/cakephp-data" : "dev-cake3",
+		"dereuromark/cakephp-queue" : "dev-upgrade3",
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev",

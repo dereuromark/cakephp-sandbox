@@ -30,4 +30,3 @@ chmod -R 0770 ./webroot/js/cjs/
 chmod -R 0770 ./webroot/css/ccss/
 
 echo "### DONE ###";
-exit;
