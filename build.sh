@@ -24,7 +24,8 @@ rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
 
 chown -R www-data:www-data *
-chmod -R 0770 *
+chmod -R 0770 ./tmp
+chmod -R 0770 ./logs
 
 echo "### DONE ###";
 exit;
