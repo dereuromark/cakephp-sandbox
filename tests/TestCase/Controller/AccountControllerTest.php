@@ -158,7 +158,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$session = array('Auth' => array('User' => array('id' => '1')));
+		$session = array('Auth' => array('User' => array('id' => '1', 'role_id' => 1)));
 		$this->session($session);
 
 		$this->get(array('controller' => 'Account', 'action' => 'logout'));
