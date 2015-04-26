@@ -26,6 +26,8 @@ rm -rf ./tmp/cache/persistent/*
 chown -R www-data:www-data *
 chmod -R 0770 ./tmp
 chmod -R 0770 ./logs
+chmod -R 0770 ./webroot/js/cjs/
+chmod -R 0770 ./webroot/css/ccss/
 
 echo "### DONE ###";
 exit;
