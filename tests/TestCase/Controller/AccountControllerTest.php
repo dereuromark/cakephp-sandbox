@@ -22,6 +22,12 @@ class AccountControllerTest extends IntegrationTestCase {
 		parent::setUp();
 	}
 
+	public function tearDown() {
+		parent::tearDown();
+
+		TableRegistry::clear();
+	}
+
 	/**
 	 * Test index method
 	 *
@@ -167,7 +173,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testLostPassword() {
 		$this->skipIf(true);
-		
+
 		$this->get(array('controller' => 'Account', 'action' => 'lost_password'));
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
