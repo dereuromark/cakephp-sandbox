@@ -153,8 +153,9 @@ class AccountController extends AppController {
 		$user = $this->Users->newEntity();
 		$this->Users->behaviors()->load('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
+			$this->request->data['id'] = $uid;
 			$user = $this->Users->patchEntity($user, $this->request->data);
-			$this->request->data['User']['id'] = $uid;
+
 			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
 				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
 				$this->Session->delete('Auth.Tmp');
