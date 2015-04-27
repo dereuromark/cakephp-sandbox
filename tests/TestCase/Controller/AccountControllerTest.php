@@ -222,6 +222,10 @@ class AccountControllerTest extends IntegrationTestCase {
 		);
 		$this->post(array('controller' => 'Account', 'action' => 'change_password'), $data);
 
+		if ($this->_response->statusCode() !== 302) {
+			debug($this->_response->body());
+		}
+
 		$this->assertResponseCode(302);
 		$this->assertRedirect(array('action' => 'login', '?' => array('username' => $username)));
 
