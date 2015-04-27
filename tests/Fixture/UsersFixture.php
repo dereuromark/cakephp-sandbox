@@ -17,7 +17,7 @@ class UsersFixture extends TestFixture {
 	public $fields = array(
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'active' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
-		'last_login' => ['type' => 'datetime', 'null' => false, 'default' => null],
+		'last_login' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'created' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'modified' => ['type' => 'datetime', 'null' => true, 'default' => null],
 		'logins' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10],
