@@ -5,7 +5,6 @@
 _*
 /files/wkhtmltopdf
 /vendor/
-/composer.lock
 /logs
 /config/app_local.php
 /phpunit.phar

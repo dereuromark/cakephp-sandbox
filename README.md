@@ -18,7 +18,7 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 
 ### Where to find the code
 Most of the example code can be found inside `/plugins`:
-- Sandbox: Misc. example code
+- Sandbox: Misc. examples
 - AuthSandbox: Auth examples
 
 ### Installation
@@ -29,4 +29,4 @@ Please see [SETUP.md](/SETUP.md)
 
 * OptIn/Registration
 * Timezone
-* More stuff
+* More stuff / plugins
