@@ -84,7 +84,7 @@ class AccountController extends AppController {
 				$this->Flash->message(__('Invalid Key'), 'error');
 			}
 		} elseif (!empty($this->request->data['Form']['login'])) {
-			$this->Users->behaviors()->load('Tools.Captcha');
+			//$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
 			$this->Users->set($this->request->data);
 
@@ -151,7 +151,7 @@ class AccountController extends AppController {
 		}
 
 		$user = $this->Users->newEntity();
-		$this->Users->behaviors()->load('Tools.Passwordable', []);
+		$this->Users->addBehavior('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
 			$this->request->data['id'] = $uid;
 			$user = $this->Users->patchEntity($user, $this->request->data);
@@ -176,7 +176,8 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function register() {
-		$this->Users->behaviors()->load('Tools.Passwordable', []);
+		$this->Users->addBehavior('Tools.Passwordable', []);
+
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->Users->save($this->request->data)) {
@@ -210,7 +211,7 @@ class AccountController extends AppController {
 	public function edit() {
 		$uid = $this->Session->read('Auth.User.id');
 		$user = $this->Users->get($uid);
-		$this->Users->behaviors()->load('Tools.Passwordable', ['require' => false]);
+		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['id'] = $uid;

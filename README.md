@@ -16,6 +16,11 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 * CakePHP 3.x via composer
 * Plugins via composer
 
+### Where to find the code
+Most of the example code can be found inside `/plugins`:
+- Sandbox: Misc. example code
+- AuthSandbox: Auth examples
+
 ### Installation
 
 Please see [SETUP.md](/SETUP.md)
