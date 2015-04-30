@@ -1,5 +1,5 @@
 <?php
-namespace AuthSandbox\Config;
+//namespace AuthSandbox\Config;
 
 use Cake\Routing\Router;
 

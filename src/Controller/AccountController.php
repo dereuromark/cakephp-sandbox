@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Event\Event;
+use Cake\Network\Exception\NotFoundException;
 
 class AccountController extends AppController {
 
@@ -29,14 +30,15 @@ class AccountController extends AppController {
 			$user = $this->Auth->identify();
 			if ($user) {
 				$this->Auth->setUser($user);
-				$this->Flash->message(__('loggedInMessage'), 'success');
+				$this->Flash->success(__('loggedInMessage'));
 
 				return $this->redirect($this->Auth->redirectUrl());
 			}
-			$this->request->data['User']['password'] = '';
+			$this->Flash->error('Wrong username/email or password');
+			$this->request->data['password'] = '';
 		} else {
 			if ($username = $this->request->query('username')) {
-				$this->request->data['User']['login'] = $username;
+				$this->request->data['login'] = $username;
 			}
 		}
 	}
@@ -209,27 +211,33 @@ class AccountController extends AppController {
 	 * @return void
 	 */
 	public function edit() {
+		throw new NotFoundException();
+
 		$uid = $this->Session->read('Auth.User.id');
 		$user = $this->Users->get($uid);
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
-			$this->request->data['User']['id'] = $uid;
-			if ($this->Users->save($this->request->data, true, ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'])) {
+			$this->request->data['id'] = $uid;
+			$fieldList = ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'];
+			$this->Users->patchEntity($user, $this->request->data, ['fieldList' => $fieldList]);
+			if ($this->Users->save($user)) {
 				$this->Flash->message(__('Account modified'), 'success');
-				if (!$this->Auth->setUser($user['User'])) {
+				/*
+				if (!$this->Auth->setUser($this->Users->get($uid))) {
 					throw new \Exception('Cannot log user in');
 				}
+				*/
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->message(__('formContainsErrors'), 'error');
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
-		} else {
-			$this->request->data = $user;
+			unset($this->request->data['pwd']);
+			unset($this->request->data['pwd_repeat']);
 		}
+
+		$this->set(compact('user'));
 	}
 
 	/**

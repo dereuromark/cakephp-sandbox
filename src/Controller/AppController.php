@@ -15,7 +15,7 @@ class AppController extends Controller {
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
 		'Tools.Flash', 'Auth', 'Tools.AuthUser'];
 
-	public $helpers = ['Shim.Session', 'Html',
+	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'AssetCompress.AssetCompress'];
 
@@ -37,19 +37,17 @@ class AppController extends Controller {
 		parent::beforeFilter($event);
 
 		$config = [
-			/*
 			'authenticate' => [
-				'Authenticate.MultiColumn' => [
-					'passwordHasher' => Configure::read('Passwordable.authType'),
+				'FOC/Authenticate.MultiColumn' => [
+					//'passwordHasher' => 'Default',
 					'fields' => [
 						'username' => 'login',
 						'password' => 'password'
 					],
 					'columns' => ['username', 'email'],
-					'userModel' => 'User',
+					'userModel' => 'Users',
 				]
 			],
-			*/
 			'authorize' => ['TinyAuth.Tiny' => []],
 			'logoutRedirect' => [
 				'plugin' => false,
