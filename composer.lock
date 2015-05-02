@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72cdc9c0c03752729af4703169f3ad42",
+    "hash": "c0842cdbab7905ae81ece4439a1c1e3f",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "2f6ac30dd7bc4cbe3ec0ec6fd32526d5bcfc6420"
+                "reference": "bc2d2229419370ef52f3a5845cc2818a0dd86f04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2f6ac30dd7bc4cbe3ec0ec6fd32526d5bcfc6420",
-                "reference": "2f6ac30dd7bc4cbe3ec0ec6fd32526d5bcfc6420",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bc2d2229419370ef52f3a5845cc2818a0dd86f04",
+                "reference": "bc2d2229419370ef52f3a5845cc2818a0dd86f04",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-30 18:32:01"
+            "time": "2015-05-01 23:59:47"
         },
         {
             "name": "cakephp/migrations",
@@ -946,134 +946,6 @@
             "time": "2015-03-26 12:52:59"
         },
         {
-            "name": "friendsofcake/crud",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfCake/crud.git",
-                "reference": "eb944f5062f29d9bc9220f9e93b64336f90c65a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud/zipball/eb944f5062f29d9bc9220f9e93b64336f90c65a4",
-                "reference": "eb944f5062f29d9bc9220f9e93b64336f90c65a4",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0"
-            },
-            "require-dev": {
-                "friendsofcake/cakephp-test-utilities": "dev-master",
-                "phpunit/phpunit": "3.7.33"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Crud\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Winther",
-                    "homepage": "http://cakephp.nu/",
-                    "role": "Author"
-                },
-                {
-                    "name": "José Lorenzo Rodríguez",
-                    "homepage": "https://github.com/lorenzo",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "Andy Dawson",
-                    "homepage": "https://github.com/ad7six",
-                    "role": "Contributor"
-                },
-                {
-                    "name": "ADmad",
-                    "homepage": "https://github.com/admad",
-                    "role": "Contributor"
-                }
-            ],
-            "description": "CakePHP Application development on steroids - rapid prototyping / scaffolding & production ready code - XML / JSON APIs and more",
-            "homepage": "https://github.com/FriendsOfCake/crud",
-            "keywords": [
-                "bake",
-                "cake",
-                "cakephp",
-                "create",
-                "crud",
-                "delete",
-                "retrieve",
-                "scaffold",
-                "scaffolding",
-                "update"
-            ],
-            "time": "2015-04-29 05:55:55"
-        },
-        {
-            "name": "friendsofcake/crud-view",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfCake/crud-view.git",
-                "reference": "73e0283d262b12a9e11e6f62c5225bb8b5043b83"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/73e0283d262b12a9e11e6f62c5225bb8b5043b83",
-                "reference": "73e0283d262b12a9e11e6f62c5225bb8b5043b83",
-                "shasum": ""
-            },
-            "require": {
-                "friendsofcake/crud": "*"
-            },
-            "require-dev": {
-                "cakephp/app": "dev-master",
-                "cakephp/cakephp": "3.0.*-dev",
-                "friendsofcake/cakephp-test-utilities": "dev-master",
-                "phpunit/phpunit": "3.7.33"
-            },
-            "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "CrudView"
-            },
-            "autoload": {
-                "psr-4": {
-                    "CrudView\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Winther",
-                    "homepage": "http://cakephp.nu/",
-                    "role": "Author"
-                }
-            ],
-            "description": "View layer for CRUD",
-            "homepage": "https://github.com/FriendsOfCake/crud-view",
-            "keywords": [
-                "bake",
-                "cake",
-                "cakephp",
-                "create",
-                "crud",
-                "delete",
-                "retrieve",
-                "scaffold",
-                "scaffolding",
-                "update"
-            ],
-            "time": "2015-02-17 16:00:28"
-        },
-        {
             "name": "geshi/geshi",
             "version": "dev-master",
             "source": {
@@ -1154,20 +1026,21 @@
         },
         {
             "name": "league/climate",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/climate.git",
-                "reference": "11980f1c7351d2d456d1d396c781bc14893c0b5b"
+                "reference": "04026b95fa3eddc937573bfd6a6b542fb204500b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/climate/zipball/11980f1c7351d2d456d1d396c781bc14893c0b5b",
-                "reference": "11980f1c7351d2d456d1d396c781bc14893c0b5b",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/04026b95fa3eddc937573bfd6a6b542fb204500b",
+                "reference": "04026b95fa3eddc937573bfd6a6b542fb204500b",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.4.0",
+                "seld/cli-prompt": "~1.0"
             },
             "require-dev": {
                 "mikey179/vfsstream": "~1.4",
@@ -1200,7 +1073,7 @@
                 "php",
                 "terminal"
             ],
-            "time": "2015-04-30 16:55:30"
+            "time": "2015-05-01 11:19:42"
         },
         {
             "name": "linkorb/jsmin-php",
@@ -1371,12 +1244,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/mini-asset.git",
-                "reference": "aeb5a9d6c5cee632f50643abf9e761826fb104f3"
+                "reference": "f01dc6a40d6e7a01dd4ba63b91f88102c71db81f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/aeb5a9d6c5cee632f50643abf9e761826fb104f3",
-                "reference": "aeb5a9d6c5cee632f50643abf9e761826fb104f3",
+                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/f01dc6a40d6e7a01dd4ba63b91f88102c71db81f",
+                "reference": "f01dc6a40d6e7a01dd4ba63b91f88102c71db81f",
                 "shasum": ""
             },
             "require": {
@@ -1423,7 +1296,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2015-04-25 01:15:27"
+            "time": "2015-05-01 01:19:57"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1671,6 +1544,54 @@
                 "phinx"
             ],
             "time": "2015-02-23 16:38:12"
+        },
+        {
+            "name": "seld/cli-prompt",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/cli-prompt.git",
+                "reference": "fe114c7a6ac5cb0ce76932ae4017024d9842a49c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/cli-prompt/zipball/fe114c7a6ac5cb0ce76932ae4017024d9842a49c",
+                "reference": "fe114c7a6ac5cb0ce76932ae4017024d9842a49c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seld\\CliPrompt\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be"
+                }
+            ],
+            "description": "Allows you to prompt for user input on the command line, and optionally hide the characters they type",
+            "keywords": [
+                "cli",
+                "console",
+                "hidden",
+                "input",
+                "prompt"
+            ],
+            "time": "2015-04-30 20:24:49"
         },
         {
             "name": "symfony/config",
@@ -2432,12 +2353,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "23bf4f0c13dc196efbd2027987afbda63c47462a"
+                "reference": "8b64195cf2c81ac96e0d1ddfb035c79afce9ab35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/23bf4f0c13dc196efbd2027987afbda63c47462a",
-                "reference": "23bf4f0c13dc196efbd2027987afbda63c47462a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8b64195cf2c81ac96e0d1ddfb035c79afce9ab35",
+                "reference": "8b64195cf2c81ac96e0d1ddfb035c79afce9ab35",
                 "shasum": ""
             },
             "require": {
@@ -2469,7 +2390,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-04-30 19:58:45"
+            "time": "2015-05-02 09:48:55"
         },
         {
             "name": "pdepend/pdepend",
@@ -3637,7 +3558,6 @@
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
         "friendsofcake/authenticate": 20,
-        "friendsofcake/crud-view": 20,
         "cakedc/search": 20,
         "cakephp/migrations": 20,
         "markstory/asset_compress": 20,
