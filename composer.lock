@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f5d9a1ff71694a546e04e294c8cee0097e8cecaa"
+                "reference": "62ad00c3487db143b5cb245938af60de2c144261"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f5d9a1ff71694a546e04e294c8cee0097e8cecaa",
-                "reference": "f5d9a1ff71694a546e04e294c8cee0097e8cecaa",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/62ad00c3487db143b5cb245938af60de2c144261",
+                "reference": "62ad00c3487db143b5cb245938af60de2c144261",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-03 14:53:51"
+            "time": "2015-05-04 12:23:20"
         },
         {
             "name": "cakephp/migrations",
@@ -808,17 +808,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-social-share.git",
-                "reference": "d9161c3b217684a1fa000b523efbec0a215f1fb9"
+                "reference": "24b39485a923e7cffe5425f57f4416222c165aa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-social-share/zipball/d9161c3b217684a1fa000b523efbec0a215f1fb9",
-                "reference": "d9161c3b217684a1fa000b523efbec0a215f1fb9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-social-share/zipball/24b39485a923e7cffe5425f57f4416222c165aa5",
+                "reference": "24b39485a923e7cffe5425f57f4416222c165aa5",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4.0"
+                "cakephp/cakephp": "~3.0"
             },
             "type": "cakephp-plugin",
             "extra": {
@@ -857,7 +856,7 @@
             "support": {
                 "source": "https://github.com/dereuromark/cakephp-social-share/tree/3.0"
             },
-            "time": "2015-05-04 11:21:20"
+            "time": "2015-05-04 13:08:23"
         },
         {
             "name": "friendsofcake/authenticate",
