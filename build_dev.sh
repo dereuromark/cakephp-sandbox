@@ -6,7 +6,8 @@ php composer.phar selfupdate
 
 git pull
 
-php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-interaction
+rm composer.lock
+php composer.phar update --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
 chmod +x bin/cake
 

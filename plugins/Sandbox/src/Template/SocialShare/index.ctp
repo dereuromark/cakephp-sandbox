@@ -12,4 +12,4 @@ The icons are part of "font awesome" and therefore available in all sizes thanks
 <?php } ?>
 </ul>
 
-<p>Note: Some services only work for mobile (whatsapp). For these you should use the built-in mobile detection to display them online in case of "mobile".</p>
+<p>Note: Some services only work for mobile (whatsapp). For these you should use the built-in mobile detection to only display them in case of "mobile".</p>
