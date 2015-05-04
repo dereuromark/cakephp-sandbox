@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72cdc9c0c03752729af4703169f3ad42",
+    "hash": "fcb139d7a61a0b730bfa8a97471d3e72",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "bc2d2229419370ef52f3a5845cc2818a0dd86f04"
+                "reference": "f5d9a1ff71694a546e04e294c8cee0097e8cecaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bc2d2229419370ef52f3a5845cc2818a0dd86f04",
-                "reference": "bc2d2229419370ef52f3a5845cc2818a0dd86f04",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f5d9a1ff71694a546e04e294c8cee0097e8cecaa",
+                "reference": "f5d9a1ff71694a546e04e294c8cee0097e8cecaa",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-01 23:59:47"
+            "time": "2015-05-03 14:53:51"
         },
         {
             "name": "cakephp/migrations",
@@ -803,6 +803,63 @@
             "time": "2015-04-30 21:33:50"
         },
         {
+            "name": "drmonkeyninja/cakephp-social-share",
+            "version": "3.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-social-share.git",
+                "reference": "d9161c3b217684a1fa000b523efbec0a215f1fb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-social-share/zipball/d9161c3b217684a1fa000b523efbec0a215f1fb9",
+                "reference": "d9161c3b217684a1fa000b523efbec0a215f1fb9",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "php": ">=5.4.0"
+            },
+            "type": "cakephp-plugin",
+            "extra": {
+                "installer-name": "SocialShare"
+            },
+            "autoload": {
+                "psr-4": {
+                    "SocialShare\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
+                    "SocialShare\\Test\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Carter",
+                    "role": "Author"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "CakePHP helper for creating social share/bookmark links",
+            "homepage": "https://github.com/drmonkeyninja/cakephp-social-share",
+            "keywords": [
+                "cakephp",
+                "helper"
+            ],
+            "support": {
+                "source": "https://github.com/dereuromark/cakephp-social-share/tree/3.0"
+            },
+            "time": "2015-05-04 11:21:20"
+        },
+        {
             "name": "friendsofcake/authenticate",
             "version": "dev-cake3",
             "source": {
@@ -951,12 +1008,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/crud.git",
-                "reference": "492efd5d92a4da581a3d18f860cbd241f63c15bf"
+                "reference": "ad8d84988fd0c2a6dbad388779767aa25d55b3f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud/zipball/492efd5d92a4da581a3d18f860cbd241f63c15bf",
-                "reference": "492efd5d92a4da581a3d18f860cbd241f63c15bf",
+                "url": "https://api.github.com/repos/FriendsOfCake/crud/zipball/ad8d84988fd0c2a6dbad388779767aa25d55b3f4",
+                "reference": "ad8d84988fd0c2a6dbad388779767aa25d55b3f4",
                 "shasum": ""
             },
             "require": {
@@ -1012,7 +1069,7 @@
                 "scaffolding",
                 "update"
             ],
-            "time": "2015-05-01 11:35:58"
+            "time": "2015-05-04 08:21:16"
         },
         {
             "name": "friendsofcake/crud-view",
@@ -1372,12 +1429,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/mini-asset.git",
-                "reference": "f01dc6a40d6e7a01dd4ba63b91f88102c71db81f"
+                "reference": "0323929c1fafa2400afe1a5794de360cbd707f71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/f01dc6a40d6e7a01dd4ba63b91f88102c71db81f",
-                "reference": "f01dc6a40d6e7a01dd4ba63b91f88102c71db81f",
+                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/0323929c1fafa2400afe1a5794de360cbd707f71",
+                "reference": "0323929c1fafa2400afe1a5794de360cbd707f71",
                 "shasum": ""
             },
             "require": {
@@ -1424,7 +1481,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2015-05-01 01:19:57"
+            "time": "2015-05-03 02:22:08"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -1728,12 +1785,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Config.git",
-                "reference": "c09b78a9984f2c7fc9e3d331aa576bb25ea54052"
+                "reference": "b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Config/zipball/c09b78a9984f2c7fc9e3d331aa576bb25ea54052",
-                "reference": "c09b78a9984f2c7fc9e3d331aa576bb25ea54052",
+                "url": "https://api.github.com/repos/symfony/Config/zipball/b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25",
+                "reference": "b6fddb4aa2daaa2b06f0040071ac131b4a1ecf25",
                 "shasum": ""
             },
             "require": {
@@ -1760,17 +1817,17 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Config Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-04-18 15:02:51"
+            "homepage": "https://symfony.com",
+            "time": "2015-05-02 15:18:45"
         },
         {
             "name": "symfony/console",
@@ -1779,12 +1836,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "d46ae15633480fe35c6be26f1ee97ec02ab9eba4"
+                "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/d46ae15633480fe35c6be26f1ee97ec02ab9eba4",
-                "reference": "d46ae15633480fe35c6be26f1ee97ec02ab9eba4",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/ebc5679854aa24ed7d65062e9e3ab0b18a917272",
+                "reference": "ebc5679854aa24ed7d65062e9e3ab0b18a917272",
                 "shasum": ""
             },
             "require": {
@@ -1818,17 +1875,17 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Console Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-04-18 15:02:51"
+            "homepage": "https://symfony.com",
+            "time": "2015-05-02 15:18:45"
         },
         {
             "name": "symfony/filesystem",
@@ -1886,12 +1943,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "7e9e156003c943f0023378691ee5b8366b77deda"
+                "reference": "f157ab074e453ecd4c0fa775f721f6e67a99d9e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/7e9e156003c943f0023378691ee5b8366b77deda",
-                "reference": "7e9e156003c943f0023378691ee5b8366b77deda",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/f157ab074e453ecd4c0fa775f721f6e67a99d9e2",
+                "reference": "f157ab074e453ecd4c0fa775f721f6e67a99d9e2",
                 "shasum": ""
             },
             "require": {
@@ -1917,17 +1974,17 @@
             ],
             "authors": [
                 {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
                     "name": "Fabien Potencier",
                     "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
             "description": "Symfony Yaml Component",
-            "homepage": "http://symfony.com",
-            "time": "2015-04-18 15:02:51"
+            "homepage": "https://symfony.com",
+            "time": "2015-05-02 15:18:45"
         }
     ],
     "packages-dev": [
@@ -2478,16 +2535,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "dev-master",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "8b64195cf2c81ac96e0d1ddfb035c79afce9ab35"
+                "reference": "30abe062f22c770aff8e8f086413d1b6fadbd684"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8b64195cf2c81ac96e0d1ddfb035c79afce9ab35",
-                "reference": "8b64195cf2c81ac96e0d1ddfb035c79afce9ab35",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/30abe062f22c770aff8e8f086413d1b6fadbd684",
+                "reference": "30abe062f22c770aff8e8f086413d1b6fadbd684",
                 "shasum": ""
             },
             "require": {
@@ -2519,7 +2576,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-05-02 09:48:55"
+            "time": "2015-05-02 20:03:33"
         },
         {
             "name": "pdepend/pdepend",
@@ -3693,6 +3750,7 @@
         "friendsofcake/crud-view": 20,
         "cakedc/search": 20,
         "cakephp/migrations": 20,
+        "drmonkeyninja/cakephp-social-share": 20,
         "markstory/asset_compress": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,

@@ -39,6 +39,11 @@
 			<li><?php echo $this->Html->link('AssetCompress and CakePHP', ['controller' => 'asset_compress_examples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>SocialShare Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('SocialShare and CakePHP', ['controller' => 'SocialShare', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>BootstrapUI Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Bootstrap and CakePHP', ['controller' => 'bootstrap', 'action' => 'index']); ?></li>
