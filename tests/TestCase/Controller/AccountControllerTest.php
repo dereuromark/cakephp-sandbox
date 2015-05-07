@@ -35,7 +35,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testLoginX() {
 		$this->get(array('controller' => 'Account', 'action' => 'login'));
-		file_put_contents(TMP . 'error.html', $this->_response->body());
+
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}

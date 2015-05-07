@@ -39,71 +39,15 @@ class RolesFixture extends TestFixture
 	public $records = [
 		[
 			'id' => 1,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 2,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 3,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
+			'name' => 'Admin',
+			'alias' => 'admin',
 			'created' => '2015-03-29 00:18:50',
 			'modified' => '2015-03-29 00:18:50'
 		],
 		[
 			'id' => 4,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 5,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 6,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 7,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 8,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 9,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
-			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
-		],
-		[
-			'id' => 10,
-			'name' => 'Lorem ipsum dolor sit amet',
-			'alias' => 'Lorem ipsum dolor ',
+			'name' => 'User',
+			'alias' => 'user',
 			'created' => '2015-03-29 00:18:50',
 			'modified' => '2015-03-29 00:18:50'
 		],

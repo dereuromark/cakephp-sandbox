@@ -17,6 +17,12 @@
 			<directory>./tests/TestCase</directory>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
+		<testsuite name="AuthSandbox Test Suite">
+			<directory>./plugins/AuthSandbox/tests/TestCase</directory>
+		</testsuite>
+		<testsuite name="Sandbox Test Suite">
+			<directory>./plugins/Sandbox/tests/TestCase</directory>
+		</testsuite>
 	</testsuites>
 
 	<!-- Setup a listener for fixtures -->
