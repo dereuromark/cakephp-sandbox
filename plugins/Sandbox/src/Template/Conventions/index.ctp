@@ -18,7 +18,7 @@ With a basic example, we take a closer look at the naming scheme in URLs:
 
 <pre>/example-plugin/example-pages/action-name/passed-param?limit=1</pre>
 <p>
-This URL includes already all basic elements: A controller "ExamplePages" in the "ExamplePlugin" with an action "action_name"
+This URL includes already all basic elements: A controller "ExamplePages" in the "ExamplePlugin" with an action "actionName"
 as well as a passed param "passed-param" and query string "limit" with a value of "1".
 <br />
 If the controller had a model, its table class would be "ExamplePages" and the entity class "ExamplePage". The table would be "example_pages".
@@ -35,4 +35,4 @@ the URL representation is always lowercase-underscored (dashed) due to the "Dash
 </p>
 
 <h3>Hands on</h3>
-Try it out with the <?php echo $this->Html->link('Inflector', ['controller' => 'inflector']); ?>.
+Try it out the different inflections with the <?php echo $this->Html->link('Inflector', ['controller' => 'inflector']); ?>.
