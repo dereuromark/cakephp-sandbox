@@ -37,7 +37,7 @@ class SandboxAnimalsFixture extends TestFixture {
      */
     public $records = [
         [
-            'id' => 1,
+            //'id' => 1,
             'name' => 'Lorem ipsum dolor sit amet',
             'created' => '2015-05-07 16:49:27',
             'modified' => '2015-05-07 16:49:27'
