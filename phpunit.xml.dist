@@ -43,6 +43,12 @@
 
 			<directory suffix=".php">./tests/</directory>
 			<directory suffix=".ctp">./tests/</directory>
+
+			<directory suffix=".php">./plugins/AuthSandbox/tests/</directory>
+			<directory suffix=".ctp">./plugins/AuthSandbox/tests/</directory>
+
+			<directory suffix=".php">./plugins/Sandbox/tests/</directory>
+			<directory suffix=".ctp">./plugins/Sandbox/tests/</directory>
 		</blacklist>
 	</filter>
 
