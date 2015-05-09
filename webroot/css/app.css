@@ -55,7 +55,7 @@ input[type=checkbox] {
 	width: auto;
 }
 
-div.date .form-control {
+div.date select.form-control {
 	width: auto;
 }
 

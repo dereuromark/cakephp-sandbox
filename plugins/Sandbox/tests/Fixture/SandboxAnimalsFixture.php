@@ -16,7 +16,7 @@ class SandboxAnimalsFixture extends TestFixture {
 	 */
 	// @codingStandardsIgnoreStart
 	public $fields = [
-		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
+		'id' => ['type' => 'integer', 'length' => 11, 'null' => false, 'default' => null],
 		'name' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
 		'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
 		'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],

@@ -19,7 +19,7 @@ if (!getenv('db_class')) {
 	putenv('db_dsn=sqlite::memory:');
 }
 
-if (!WINDOWS) {
+if (true || !WINDOWS) {
 	Cake\Datasource\ConnectionManager::drop('test');
 	Cake\Datasource\ConnectionManager::config('test', [
 		'className' => 'Cake\Database\Connection',

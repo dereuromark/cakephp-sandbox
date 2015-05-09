@@ -24,7 +24,24 @@ class BootstrapController extends SandboxAppController {
 	}
 
 	public function index() {
+		$actions = $this->_getActions($this);
+
+		$this->set(compact('actions'));
+	}
+
+	public function form() {
 		$animal = $this->Animals->newEntity();
+
+		$this->set(compact('animal'));
+	}
+
+	public function localized() {
+		$animal = $this->Animals->newEntity();
+
+		// This hack is needed to prevent the forms from being autofilled with todays date
+		$this->request->data['discovered'] = '';
+		$this->request->data['published'] = '';
+		$this->request->data['time'] = '';
 
 		$this->set(compact('animal'));
 	}

@@ -11,7 +11,7 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class BootstrapControllerTest extends IntegrationTestCase {
 
-	public $fixtures = ['plugin.Sandbox.SandboxAnimals'];
+	public $fixtures = ['plugin.Sandbox.SandboxAnimals', 'plugin.Sandbox.SandboxUsers'];
 
 	public function setUp() {
 		parent::setUp();
