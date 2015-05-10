@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "22976db9856c1d6dea8b94136030cf8804609035"
+                "reference": "fa241001e2de52a5fde5224cf9b3ac734626a977"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/22976db9856c1d6dea8b94136030cf8804609035",
-                "reference": "22976db9856c1d6dea8b94136030cf8804609035",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/fa241001e2de52a5fde5224cf9b3ac734626a977",
+                "reference": "fa241001e2de52a5fde5224cf9b3ac734626a977",
                 "shasum": ""
             },
             "require": {
@@ -238,7 +238,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-08 01:45:39"
+            "time": "2015-05-09 12:18:27"
         },
         {
             "name": "cakephp/migrations",
@@ -489,12 +489,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "758bfb29aec1ddc7e761c91fd37b9d017e1bfd12"
+                "reference": "9fe13096abd22b55547f58c639e3a1fd880fd0db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/758bfb29aec1ddc7e761c91fd37b9d017e1bfd12",
-                "reference": "758bfb29aec1ddc7e761c91fd37b9d017e1bfd12",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/9fe13096abd22b55547f58c639e3a1fd880fd0db",
+                "reference": "9fe13096abd22b55547f58c639e3a1fd880fd0db",
                 "shasum": ""
             },
             "require": {
@@ -531,7 +531,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2015-04-24 23:39:25"
+            "time": "2015-05-09 18:29:35"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -2795,12 +2795,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "1678cee3b7f93f994da6acf7e998b23a98e955f1"
+                "reference": "9ef4b8cbf3e839a44a9b375d8c59e109ac7aa020"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/1678cee3b7f93f994da6acf7e998b23a98e955f1",
-                "reference": "1678cee3b7f93f994da6acf7e998b23a98e955f1",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9ef4b8cbf3e839a44a9b375d8c59e109ac7aa020",
+                "reference": "9ef4b8cbf3e839a44a9b375d8c59e109ac7aa020",
                 "shasum": ""
             },
             "require": {
@@ -2849,7 +2849,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-16 05:00:01"
+            "time": "2015-05-09 04:40:58"
         },
         {
             "name": "phpunit/php-file-iterator",
