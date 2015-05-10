@@ -1,10 +1,6 @@
 <h2>Working with time inputs</h2>
 
 <?php
-$this->Form->addWidget(
-	'select',
-	'Sandbox\View\Widget\SelectBoxWidget'
-);
 
 $this->Form->addWidget(
 	'clockTime',
