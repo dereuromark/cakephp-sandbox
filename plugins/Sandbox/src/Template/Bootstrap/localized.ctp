@@ -19,6 +19,8 @@ echo $this->Form->input('confirmed', ['type' => 'checkbox']);
 echo $this->Form->input('age', ['options' => ['Young', 'Old']]);
 //echo $this->Form->input('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
 
+
+echo $this->Form->end();
 ?>
 
 

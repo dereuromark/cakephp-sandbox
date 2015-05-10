@@ -8,7 +8,7 @@ use DateTime;
 /**
  * Class DateTimeWidget
  *
- * Requires bootstrap datetimepicker and moment (localizaion) js dependencies.
+ * Requires bootstrap datetimepicker and moment (localisation) js dependencies.
  */
 class DateTimeWidget extends BasicWidget {
 
