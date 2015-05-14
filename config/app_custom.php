@@ -17,6 +17,7 @@ return [
 			'username' => 'root',
 			'password' => '',
 			'database' => '', // Set in your app_local.php
+			'quoteIdentifiers' => true,
 		],
 
 		/**
@@ -27,6 +28,7 @@ return [
 			'username' => 'root',
 			'password' => '',
 			'database' => '', // Set in your app_local.php
+			'quoteIdentifiers' => true,
 		],
 	],
 
