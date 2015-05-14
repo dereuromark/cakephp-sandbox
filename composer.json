@@ -40,7 +40,7 @@
 		"friendsofcake/cakepdf": "3.0.*-dev",
 		"markstory/geshi": "3.0.*-dev",
 		"dereuromark/cakephp-shim": "dev-master",
-		"friendsofcake/bootstrap-ui": "dev-master"
+		"friendsofcake/bootstrap-ui": "0.*"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
