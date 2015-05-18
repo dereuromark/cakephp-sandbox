@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "64631361675a575a9f79b1d327b4ab2a19c225d8"
+                "reference": "e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/64631361675a575a9f79b1d327b4ab2a19c225d8",
-                "reference": "64631361675a575a9f79b1d327b4ab2a19c225d8",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad",
+                "reference": "e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-18 03:01:01"
+            "time": "2015-05-18 20:50:24"
         },
         {
             "name": "cakephp/migrations",
@@ -2029,12 +2029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "9ffdab566f5486d52f90b50262997b6ef2ba8fce"
+                "reference": "bbf85a29cc9304cd7025c34f04e9a7233bdc451b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/9ffdab566f5486d52f90b50262997b6ef2ba8fce",
-                "reference": "9ffdab566f5486d52f90b50262997b6ef2ba8fce",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/bbf85a29cc9304cd7025c34f04e9a7233bdc451b",
+                "reference": "bbf85a29cc9304cd7025c34f04e9a7233bdc451b",
                 "shasum": ""
             },
             "require": {
@@ -2067,7 +2067,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2015-05-11 11:51:54"
+            "time": "2015-05-18 22:04:53"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
