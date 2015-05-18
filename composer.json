@@ -39,7 +39,6 @@
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev",
 		"markstory/geshi": "3.0.*-dev",
-		"dereuromark/cakephp-shim": "dev-master",
 		"friendsofcake/bootstrap-ui": "0.*"
 	},
 	"require-dev": {
