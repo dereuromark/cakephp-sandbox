@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "28f87af5ebdb5b73e4da77c72864d240",
+    "hash": "61f61ff8a541f2d076bd26eef84fd8c3",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -386,28 +386,25 @@
         },
         {
             "name": "dereuromark/cakephp-data",
-            "version": "dev-cake3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "7bcf569ca090826e9678fced972cf8f85d47d162"
+                "reference": "bef28642eda47fe57529431fe20a3ddf0adf8485"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/7bcf569ca090826e9678fced972cf8f85d47d162",
-                "reference": "7bcf569ca090826e9678fced972cf8f85d47d162",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/bef28642eda47fe57529431fe20a3ddf0adf8485",
+                "reference": "bef28642eda47fe57529431fe20a3ddf0adf8485",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0",
                 "dereuromark/cakephp-geo": "dev-master",
-                "dereuromark/cakephp-tools": "dev-cake3",
+                "dereuromark/cakephp-tools": "dev-master",
                 "php": ">=5.4"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "Data"
-            },
             "autoload": {
                 "psr-4": {
                     "Data\\": "src"
@@ -432,7 +429,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2015-04-25 11:28:08"
+            "time": "2015-05-18 18:09:14"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -536,16 +533,16 @@
         },
         {
             "name": "dereuromark/cakephp-queue",
-            "version": "dev-upgrade3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "48a8f54969dae0e30e9c64bbf545365108926660"
+                "reference": "54473b6ea978875f93cfb135e5f2c5e905653ffc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/48a8f54969dae0e30e9c64bbf545365108926660",
-                "reference": "48a8f54969dae0e30e9c64bbf545365108926660",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/54473b6ea978875f93cfb135e5f2c5e905653ffc",
+                "reference": "54473b6ea978875f93cfb135e5f2c5e905653ffc",
                 "shasum": ""
             },
             "require": {
@@ -560,9 +557,6 @@
                 "dereuromark/cakephp-tools": "For the Email lib and QueueEmailTask. Or write your own task here."
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "Queue"
-            },
             "autoload": {
                 "psr-4": {
                     "Queue\\": "src",
@@ -593,34 +587,31 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2015-04-25 14:47:14"
+            "time": "2015-05-14 17:44:58"
         },
         {
             "name": "dereuromark/cakephp-setup",
-            "version": "dev-cake3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "9e7d48e45df40dc170b57fb0bba60e9b30c1ebd1"
+                "reference": "a06f9fb9130f55c5ddfc9bcf6d18b7a1f00d6e54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/9e7d48e45df40dc170b57fb0bba60e9b30c1ebd1",
-                "reference": "9e7d48e45df40dc170b57fb0bba60e9b30c1ebd1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/a06f9fb9130f55c5ddfc9bcf6d18b7a1f00d6e54",
+                "reference": "a06f9fb9130f55c5ddfc9bcf6d18b7a1f00d6e54",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "3.0.*",
-                "dereuromark/cakephp-tools": "dev-cake3",
+                "cakephp/cakephp": "~3.0",
+                "dereuromark/cakephp-tools": "dev-master",
                 "php": ">=5.4"
             },
             "require-dev": {
                 "cakephp/migrations": "dev-master"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "Setup"
-            },
             "autoload": {
                 "psr-4": {
                     "Setup\\": "src"
@@ -648,11 +639,11 @@
                 "setup",
                 "templates"
             ],
-            "time": "2015-04-25 11:28:55"
+            "time": "2015-05-18 18:06:55"
         },
         {
             "name": "dereuromark/cakephp-shim",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
@@ -750,30 +741,27 @@
         },
         {
             "name": "dereuromark/cakephp-tools",
-            "version": "dev-cake3",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "87718a6e5829b1482c085cb1438fce230ffe4f12"
+                "reference": "355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/87718a6e5829b1482c085cb1438fce230ffe4f12",
-                "reference": "87718a6e5829b1482c085cb1438fce230ffe4f12",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0",
+                "reference": "355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0",
-                "dereuromark/cakephp-shim": "dev-master",
+                "dereuromark/cakephp-shim": "~1.0",
                 "php": ">=5.4"
             },
             "suggest": {
                 "yangqi/htmldom": "For HtmlDom usage"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "Tools"
-            },
             "autoload": {
                 "psr-4": {
                     "Tools\\": "src"
@@ -802,7 +790,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2015-05-14 08:41:41"
+            "time": "2015-05-18 17:48:38"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
