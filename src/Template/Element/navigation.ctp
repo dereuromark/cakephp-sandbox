@@ -27,7 +27,7 @@
 				<li><?php echo $this->Html->resetLink('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'], ['tabindex' => '-1']); ?></li>
 
 				<li class="divider"></li>
-				<li><?php echo $this->Html->resetLink('Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->resetLink('<span class="glyphicon glyphicon-pencil"></span> Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['tabindex' => '-1', 'escape' => false]); ?></li>
 			</ul>
 		</li>
 		<li class="dropdown">
@@ -44,7 +44,7 @@
 			</ul>
 		</li>
 		<li><?php echo $this->Html->resetLink('(ISO) Data', ['plugin' => false, 'admin' => false, 'controller' => 'Export', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-		<li><a href="http://www.dereuromark.de">Blog</a></li>
+		<li><a href="http://www.dereuromark.de"><span class="fa fa-rss"></span> Blog</a></li>
 	</ul>
 	<ul class="nav navbar-nav navbar-right">
 		<?php if ($this->AuthUser->id()) { ?>
