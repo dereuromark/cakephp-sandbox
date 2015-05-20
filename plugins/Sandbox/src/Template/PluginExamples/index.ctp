@@ -54,7 +54,10 @@
 			<li><?php echo $this->Html->link('Advanced Filtering in CakePHP', ['controller' => 'search_examples', 'action' => 'index']); ?></li>
 		</ul>
 
-
+		<h4>KnpMenu Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Menu Building in CakePHP', ['controller' => 'menu', 'action' => 'index']); ?></li>
+		</ul>
 	</div>
 </div>
 
@@ -64,7 +67,6 @@
 	<li>CakePdf</li>
 	<li>Crud</li>
 	<li>Wysiwyg</li>
-	<li>MenuBuilder</li>
 	<li>Like / Rating / Favorite</li>
 	<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
 </ul>

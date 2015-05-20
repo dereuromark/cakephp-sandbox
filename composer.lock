@@ -745,12 +745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0"
+                "reference": "622c79da4c84f41a99eeb7f956e8b5d536ae87e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0",
-                "reference": "355a2ad8aca59dc7b4bd674c53c4f9cad1ee20a0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/622c79da4c84f41a99eeb7f956e8b5d536ae87e1",
+                "reference": "622c79da4c84f41a99eeb7f956e8b5d536ae87e1",
                 "shasum": ""
             },
             "require": {
@@ -790,7 +790,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2015-05-18 17:48:38"
+            "time": "2015-05-20 19:29:12"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
