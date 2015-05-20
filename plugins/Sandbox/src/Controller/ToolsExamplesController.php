@@ -31,8 +31,58 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function _tree() {
+	public function tree() {
 		$this->helpers[] = 'Tools.Tree';
+
+		$this->loadModel('Sandbox.SandboxCategories');
+
+		// Example data added:
+		/*
+		$data = [
+			[
+				'name' => 'Alpha',
+				'description' => 'First One'
+			],
+			[
+				'name' => 'Beta',
+				'description' => 'Second One'
+			],
+			[
+				'name' => 'Gamma',
+				'description' => 'Third One'
+			],
+			[
+				'name' => 'Delta',
+				'description' => 'Forth One'
+			],
+			[
+				'name' => 'Child of 2nd one',
+				'parent_id' => 2,
+				'description' => 'Fifth One'
+			],
+			[
+				'name' => 'Child of child',
+				'parent_id' => 5,
+				'description' => 'Sixth One'
+			],
+			[
+				'name' => 'Child of 4th one',
+				'parent_id' => 4,
+				'description' => 'Seventh One'
+			],
+		];
+
+		$entities = $this->SandboxCategories->newEntities($data);
+		foreach ($entities as $entity) {
+			// Save entity
+			$this->SandboxCategories->save($entity);
+		}
+		*/
+
+		$options = [];
+		$tree = $this->SandboxCategories->find('threaded', $options);
+
+		$this->set(compact('tree'));
 	}
 
 	/**

@@ -26,7 +26,7 @@ $result = 'string' . $this->request->query('key'); // Dangerous without checking
 TEXT;
 echo $this->Geshi->highlightText($data, 'php');
 ?>
-Annoying - I know. That's why I opened a <a href="">ticket regarding this issue</a>.
+Annoying - I know. That's why I opened a <a href="https://github.com/cakephp/cakephp/issues/2223">ticket regarding this issue</a>.
 
 <h3>Demo/Example</h3>
 <?php

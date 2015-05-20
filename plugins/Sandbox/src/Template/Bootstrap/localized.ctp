@@ -11,7 +11,7 @@ $this->Form->addWidget(
 echo $this->Form->create($animal, ['align' => 'horizontal']);
 echo $this->Form->input('name');
 echo $this->Form->input('comment', ['type' => 'textarea']);
-echo $this->Form->input('discovered', ['type' => 'date']);
+echo $this->Form->input('discovered', ['type' => 'date', 'default' => true]);
 echo $this->Form->input('published', ['type' => 'datetime']);
 echo $this->Form->input('time', ['type' => 'time', 'second' => true]);
 echo $this->Form->input('confirmed', ['type' => 'checkbox']);
