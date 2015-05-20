@@ -48,7 +48,7 @@ echo $description;
 		<div id="content">
 
 			<?php
-//echo $this->Session->flash();
+
 echo $this->Flash->render();
 ?>
 

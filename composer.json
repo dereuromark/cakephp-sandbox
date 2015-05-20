@@ -28,8 +28,8 @@
 		"friendsofcake/crud-view": "dev-master",
 		"CakeDC/search" : "3.0.*-dev",
 		"cakephp/migrations": "dev-master",
-		"drmonkeyninja/cakephp-social-share": "3.0.*-dev",
-
+		"drmonkeyninja/cakephp-social-share": "dev-master",
+		"gourmet/knp-menu": "dev-master",
 		"markstory/asset_compress" : "3.0.*-dev",
 		"natxet/CssMin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
@@ -69,9 +69,6 @@
 	"repositories" : [{
 			"type" : "vcs",
 			"url" : "https://github.com/dereuromark/search"
-		}, {
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/cakephp-social-share"
 		}
 	],
 	"support": {

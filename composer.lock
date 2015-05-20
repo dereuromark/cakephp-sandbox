@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61f61ff8a541f2d076bd26eef84fd8c3",
+    "hash": "ffb76a7ce36b26db68a06c26d7187245",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad"
+                "reference": "61e9d23c658b919dec7159f59e55f872803ddd35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad",
-                "reference": "e9fe6b60007ce71912ee46f2e45a2c3ba249f8ad",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/61e9d23c658b919dec7159f59e55f872803ddd35",
+                "reference": "61e9d23c658b919dec7159f59e55f872803ddd35",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-18 20:50:24"
+            "time": "2015-05-20 07:56:25"
         },
         {
             "name": "cakephp/migrations",
@@ -794,36 +794,28 @@
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
-            "version": "3.0.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dereuromark/cakephp-social-share.git",
-                "reference": "7844febeddb4dc4b827330d463cbd662aacfcf9b"
+                "url": "https://github.com/drmonkeyninja/cakephp-social-share.git",
+                "reference": "6b8e4db62c4555c3d0593af3b914e604482f89d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-social-share/zipball/7844febeddb4dc4b827330d463cbd662aacfcf9b",
-                "reference": "7844febeddb4dc4b827330d463cbd662aacfcf9b",
+                "url": "https://api.github.com/repos/drmonkeyninja/cakephp-social-share/zipball/6b8e4db62c4555c3d0593af3b914e604482f89d3",
+                "reference": "6b8e4db62c4555c3d0593af3b914e604482f89d3",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "SocialShare"
-            },
             "autoload": {
                 "psr-4": {
                     "SocialShare\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cake\\Test\\": "./vendor/cakephp/cakephp/tests",
-                    "SocialShare\\Test\\": "tests"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -843,10 +835,7 @@
                 "cakephp",
                 "helper"
             ],
-            "support": {
-                "source": "https://github.com/dereuromark/cakephp-social-share/tree/3.0"
-            },
-            "time": "2015-05-08 10:31:18"
+            "time": "2015-05-18 21:24:25"
         },
         {
             "name": "friendsofcake/authenticate",
@@ -1159,6 +1148,53 @@
             "time": "2014-11-03 21:20:34"
         },
         {
+            "name": "gourmet/knp-menu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gourmet/knp-menu.git",
+                "reference": "23262594577b8ec2662f94041f5052463169bf7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gourmet/knp-menu/zipball/23262594577b8ec2662f94041f5052463169bf7e",
+                "reference": "23262594577b8ec2662f94041f5052463169bf7e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "knplabs/knp-menu": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Gourmet\\KnpMenu\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                }
+            ],
+            "description": "KnpMenu for CakePHP 3",
+            "homepage": "http://github.com/gourmet/knp-menu",
+            "keywords": [
+                "cakephp",
+                "knp",
+                "menu"
+            ],
+            "time": "2015-05-20 10:05:21"
+        },
+        {
             "name": "ircmaxell/password-compat",
             "version": "1.0.x-dev",
             "source": {
@@ -1199,6 +1235,70 @@
                 "password"
             ],
             "time": "2014-11-20 19:18:42"
+        },
+        {
+            "name": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/KnpMenu.git",
+                "reference": "0a7608e6d540d6558e817168329ea4e759b9dbe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/0a7608e6d540d6558e817168329ea4e759b9dbe4",
+                "reference": "0a7608e6d540d6558e817168329ea4e759b9dbe4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "pimple/pimple": "1.0.*",
+                "silex/silex": "1.0.*",
+                "twig/twig": ">=1.2,<2.0-dev"
+            },
+            "suggest": {
+                "pimple/pimple": "for the built-in implementations of the menu provider and renderer provider",
+                "silex/silex": "for the integration with your silex application",
+                "twig/twig": "for the TwigRenderer and the integration with your templates"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Knp\\Menu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                },
+                {
+                    "name": "KnpLabs",
+                    "homepage": "http://knplabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/KnpLabs/KnpMenu/contributors"
+                }
+            ],
+            "description": "An object oriented menu library",
+            "homepage": "http://knplabs.com",
+            "keywords": [
+                "menu",
+                "tree"
+            ],
+            "time": "2015-04-16 19:08:19"
         },
         {
             "name": "league/climate",
@@ -2029,12 +2129,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "bbf85a29cc9304cd7025c34f04e9a7233bdc451b"
+                "reference": "0bfd148d124543e17d8a2b16216f4d3986c722fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/bbf85a29cc9304cd7025c34f04e9a7233bdc451b",
-                "reference": "bbf85a29cc9304cd7025c34f04e9a7233bdc451b",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/0bfd148d124543e17d8a2b16216f4d3986c722fe",
+                "reference": "0bfd148d124543e17d8a2b16216f4d3986c722fe",
                 "shasum": ""
             },
             "require": {
@@ -2067,7 +2167,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2015-05-18 22:04:53"
+            "time": "2015-05-19 15:49:55"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -2111,12 +2211,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "b5491b2aaf5064a00cdbc2b82538610e8f938bdd"
+                "reference": "a7963f6e9095a5e9f08112ca89b604269f8ccf75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/b5491b2aaf5064a00cdbc2b82538610e8f938bdd",
-                "reference": "b5491b2aaf5064a00cdbc2b82538610e8f938bdd",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/a7963f6e9095a5e9f08112ca89b604269f8ccf75",
+                "reference": "a7963f6e9095a5e9f08112ca89b604269f8ccf75",
                 "shasum": ""
             },
             "require": {
@@ -2163,7 +2263,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2015-05-17 18:01:14"
+            "time": "2015-05-19 16:25:55"
         },
         {
             "name": "cakephp/upgrade",
@@ -2725,12 +2825,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373"
+                "reference": "5a355f91730c845301a9e28f91c8a5053353c496"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
-                "reference": "3132b1f44c7bf2ec4c7eb2d3cb78fdeca760d373",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/5a355f91730c845301a9e28f91c8a5053353c496",
+                "reference": "5a355f91730c845301a9e28f91c8a5053353c496",
                 "shasum": ""
             },
             "require": {
@@ -2777,7 +2877,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2015-04-27 22:15:08"
+            "time": "2015-05-20 16:00:43"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3031,12 +3131,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a"
+                "reference": "510c153fb4a8b995e4ef8da8168870f1c987f7bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
-                "reference": "13a957b45df0b04f2e3b1fabd4a83eb4e5e5046a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/510c153fb4a8b995e4ef8da8168870f1c987f7bf",
+                "reference": "510c153fb4a8b995e4ef8da8168870f1c987f7bf",
                 "shasum": ""
             },
             "require": {
@@ -3095,7 +3195,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-29 13:03:58"
+            "time": "2015-05-20 13:11:14"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3741,6 +3841,7 @@
         "cakedc/search": 20,
         "cakephp/migrations": 20,
         "drmonkeyninja/cakephp-social-share": 20,
+        "gourmet/knp-menu": 20,
         "markstory/asset_compress": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,
