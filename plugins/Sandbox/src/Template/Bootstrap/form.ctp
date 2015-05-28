@@ -25,6 +25,7 @@ echo $this->Form->input('age', ['options' => ['Young', 'Old']]);
 // Not working yet:
 //echo $this->Form->input('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
 
+echo $this->Form->end();
 ?>
 
 <p>Note the break point, when you resize the browser. It will automatically jump from horizontal to non-horizontal at some point.</p>
