@@ -52,6 +52,8 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->get(array('controller' => 'Account', 'action' => 'login'));
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
+
+		$this->assertSession(['The page you tried to access is not relevant if you are already logged in. Redirected to main page.'], 'FlashMessage.info');
 	}
 
 	/**

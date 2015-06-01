@@ -70,7 +70,7 @@ class AppController extends Controller {
 		];
 		$this->Auth->config($config);
 
-		// Short-cicuit Auth for some controllers
+		// Short-circuit Auth for some controllers
 		if (in_array($this->viewPath, ['Pages'])) {
 			$this->Auth->allow();
 		}
@@ -82,8 +82,8 @@ class AppController extends Controller {
 		}
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
-				$this->Flash->message('The page you tried to access is not relevant if you are already logged in. Redirected to main page.', 'info');
-				return $this->redirect($this->Auth->loginRedirect);
+				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
+				return $this->redirect($this->Auth->config('loginRedirect'));
 			}
 		}
 	}
