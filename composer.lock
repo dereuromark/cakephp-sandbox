@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ffb76a7ce36b26db68a06c26d7187245",
+    "hash": "5acbfa7d4640fa270c8ceb757738bf24",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "4e975da0781c882ab98c0034cd00879993b595af"
+                "reference": "b853eb3ca0200822550bf0dbc2e418060853e40f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4e975da0781c882ab98c0034cd00879993b595af",
-                "reference": "4e975da0781c882ab98c0034cd00879993b595af",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b853eb3ca0200822550bf0dbc2e418060853e40f",
+                "reference": "b853eb3ca0200822550bf0dbc2e418060853e40f",
                 "shasum": ""
             },
             "require": {
@@ -240,7 +240,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-05-31 08:47:40"
+            "time": "2015-05-31 14:48:55"
         },
         {
             "name": "cakephp/migrations",
@@ -591,6 +591,57 @@
             "time": "2015-05-14 17:44:58"
         },
         {
+            "name": "dereuromark/cakephp-ratings",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-ratings.git",
+                "reference": "f20d936d741c3ccd1a288c28cc543cb2ef81f789"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/f20d936d741c3ccd1a288c28cc543cb2ef81f789",
+                "reference": "f20d936d741c3ccd1a288c28cc543cb2ef81f789",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "php": ">=5.4"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Ratings\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "email": "euromark@web.de",
+                    "homepage": "https://github.com/dereuromark/cakephp-ratings",
+                    "role": "maintainer"
+                },
+                {
+                    "name": "Cake Development Corporation",
+                    "email": "team@cakedc.com",
+                    "homepage": "http://cakedc.com",
+                    "role": "original maintainer"
+                }
+            ],
+            "description": "Ratings Plugin for CakePHP.",
+            "homepage": "http://github.com/dereuromark/cakephp-ratings",
+            "keywords": [
+                "cakephp",
+                "plugin",
+                "ratings"
+            ],
+            "time": "2015-06-02 00:24:48"
+        },
+        {
             "name": "dereuromark/cakephp-setup",
             "version": "dev-master",
             "source": {
@@ -644,16 +695,16 @@
         },
         {
             "name": "dereuromark/cakephp-shim",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "1506579bc902e26194d354b430a6708a12c862cc"
+                "reference": "9f167b5169f7453da585402a1bf32093d012344e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/1506579bc902e26194d354b430a6708a12c862cc",
-                "reference": "1506579bc902e26194d354b430a6708a12c862cc",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/9f167b5169f7453da585402a1bf32093d012344e",
+                "reference": "9f167b5169f7453da585402a1bf32093d012344e",
                 "shasum": ""
             },
             "require": {
@@ -661,9 +712,6 @@
                 "php": ">=5.4"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "Shim"
-            },
             "autoload": {
                 "psr-4": {
                     "Shim\\": "src",
@@ -689,7 +737,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2015-05-07 20:34:14"
+            "time": "2015-05-31 14:26:19"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -746,18 +794,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "8fcc9bb6b1671f693ff53bef231abb855996a3bf"
+                "reference": "bced46ab45700f6249d24077994028c5ed03de74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/8fcc9bb6b1671f693ff53bef231abb855996a3bf",
-                "reference": "8fcc9bb6b1671f693ff53bef231abb855996a3bf",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/bced46ab45700f6249d24077994028c5ed03de74",
+                "reference": "bced46ab45700f6249d24077994028c5ed03de74",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0",
                 "dereuromark/cakephp-shim": "~1.0",
                 "php": ">=5.4"
+            },
+            "require-dev": {
+                "mobiledetect/mobiledetectlib": "2.*"
             },
             "suggest": {
                 "yangqi/htmldom": "For HtmlDom usage"
@@ -791,7 +842,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2015-05-30 20:54:49"
+            "time": "2015-06-01 08:13:55"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
@@ -943,12 +994,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/CakePdf.git",
-                "reference": "9a74324f5ab465f636cb300bea26b47e3e4f6aa8"
+                "reference": "7cf0b9d6ab5997a28782303996730face766f931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/9a74324f5ab465f636cb300bea26b47e3e4f6aa8",
-                "reference": "9a74324f5ab465f636cb300bea26b47e3e4f6aa8",
+                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/7cf0b9d6ab5997a28782303996730face766f931",
+                "reference": "7cf0b9d6ab5997a28782303996730face766f931",
                 "shasum": ""
             },
             "require": {
@@ -979,7 +1030,7 @@
             ],
             "description": "CakePHP plugin for creating and/or rendering Pdfs, several Pdf engines supported.",
             "homepage": "http://github.com/friendsofcake/CakePdf",
-            "time": "2015-03-26 12:52:59"
+            "time": "2015-05-31 17:59:04"
         },
         {
             "name": "friendsofcake/crud",
@@ -2130,12 +2181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "bf14d9cc37b0f2a7ee0ea2c1114162848befb688"
+                "reference": "da683a06847d695748a6d86f3699733d806d1e9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/bf14d9cc37b0f2a7ee0ea2c1114162848befb688",
-                "reference": "bf14d9cc37b0f2a7ee0ea2c1114162848befb688",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/da683a06847d695748a6d86f3699733d806d1e9e",
+                "reference": "da683a06847d695748a6d86f3699733d806d1e9e",
                 "shasum": ""
             },
             "require": {
@@ -2168,7 +2219,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2015-05-26 12:00:12"
+            "time": "2015-06-01 18:53:03"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -2882,16 +2933,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "dev-master",
+            "version": "2.1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "2d01c8f264191ca2e4a746fbf016958f45083478"
+                "reference": "6b7d2094ca2a685a2cad846cb7cd7a30e8b9470f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2d01c8f264191ca2e4a746fbf016958f45083478",
-                "reference": "2d01c8f264191ca2e4a746fbf016958f45083478",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6b7d2094ca2a685a2cad846cb7cd7a30e8b9470f",
+                "reference": "6b7d2094ca2a685a2cad846cb7cd7a30e8b9470f",
                 "shasum": ""
             },
             "require": {
@@ -2914,7 +2965,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -2940,7 +2991,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-05-31 03:12:48"
+            "time": "2015-06-01 07:35:26"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3132,12 +3183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b3383599a2f21f02766bc31875c2a7b9a50656cc"
+                "reference": "667aca34d1f1148da86a8ac3a8a841a8a92f933b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b3383599a2f21f02766bc31875c2a7b9a50656cc",
-                "reference": "b3383599a2f21f02766bc31875c2a7b9a50656cc",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/667aca34d1f1148da86a8ac3a8a841a8a92f933b",
+                "reference": "667aca34d1f1148da86a8ac3a8a841a8a92f933b",
                 "shasum": ""
             },
             "require": {
@@ -3196,7 +3247,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-05-30 13:10:11"
+            "time": "2015-06-02 07:10:31"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3850,6 +3901,7 @@
         "dereuromark/cakephp-queue": 20,
         "dereuromark/cakephp-feed": 20,
         "dereuromark/cakephp-ajax": 20,
+        "dereuromark/cakephp-ratings": 20,
         "friendsofcake/cakepdf": 20,
         "markstory/geshi": 20,
         "psy/psysh": 0,

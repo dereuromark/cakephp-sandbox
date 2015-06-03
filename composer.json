@@ -37,6 +37,7 @@
 		"dereuromark/cakephp-queue" : "dev-master",
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
+		"dereuromark/cakephp-ratings": "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev",
 		"markstory/geshi": "3.0.*-dev",
 		"friendsofcake/bootstrap-ui": "0.*"

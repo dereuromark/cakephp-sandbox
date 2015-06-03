@@ -8,7 +8,8 @@
 		"jquery-ui": "~1.11",
 		"eonasdan-bootstrap-datetimepicker": "latest",
 		"moment": "latest",
-		"clockpicker": "latest"
+		"clockpicker": "latest",
+		"bootstrap-star-rating": "latest"
 	},
 	"private": true
 }
