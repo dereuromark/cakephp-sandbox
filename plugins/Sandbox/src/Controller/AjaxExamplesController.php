@@ -93,12 +93,27 @@ class AjaxExamplesController extends SandboxAppController {
 	public function pagination() {
 		$this->loadModel('Data.Countries');
 
-		$this->Countries->recursive = 0;
 		$countries = $this->paginate('Countries');
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
 			$this->render('pagination_container');
+		}
+	}
+
+	/**
+	 * Using infinitescroll
+	 *
+	 * @return void
+	 */
+	public function endlessScroll() {
+		$this->loadModel('Data.Countries');
+
+		$countries = $this->paginate('Countries');
+		$this->set(compact('countries'));
+
+		if ($this->request->is('ajax')) {
+			$this->render('endless_scroll_container');
 		}
 	}
 

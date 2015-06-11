@@ -9,7 +9,8 @@
 		"eonasdan-bootstrap-datetimepicker": "latest",
 		"moment": "latest",
 		"clockpicker": "latest",
-		"bootstrap-star-rating": "latest"
+		"bootstrap-star-rating": "latest",
+		"jquery-infinite-scroll": "latest"
 	},
 	"private": true
 }

@@ -19,16 +19,16 @@ foreach ($countries as $country):
 			<?php echo $this->Data->countryIcon($country['iso2']); ?>
 		</td>
 		<td>
-			<?php echo $country['name']; ?>
+			<?php echo h($country['name']); ?>
 		</td>
 		<td>
-			<?php echo $country['ori_name']; ?>
+			<?php echo h($country['ori_name']); ?>
 		</td>
 		<td>
-			<?php echo $country['iso2']; ?>
+			<?php echo h($country['iso2']); ?>
 		</td>
 		<td>
-			<?php echo $country['iso3']; ?>
+			<?php echo h($country['iso3']); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
