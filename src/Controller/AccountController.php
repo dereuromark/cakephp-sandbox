@@ -55,7 +55,7 @@ class AccountController extends AppController {
 			$this->Comon->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
-		$this->Flash->message(__('loggedOutMessage'), 'success');
+		$this->Flash->success(__('loggedOutMessage'));
 		return $this->redirect($whereTo);
 	}
 
@@ -77,13 +77,13 @@ class AccountController extends AppController {
 			$key = $this->Token->useKey('reset_pwd', $keyToCheck);
 
 			if (!empty($key) && $key['Token']['used'] == 1) {
-				$this->Flash->message(__('alreadyChangedYourPassword'), 'warning');
+				$this->Flash->warning(__('alreadyChangedYourPassword'));
 			} elseif (!empty($key)) {
 				$uid = $key['Token']['user_id'];
 				$this->Session->write('Auth.Tmp.id', $uid);
 				return $this->redirect(['action' => 'change_password']);
 			} else {
-				$this->Flash->message(__('Invalid Key'), 'error');
+				$this->Flash->error(__('Invalid Key'));
 			}
 		} elseif (!empty($this->request->data['Form']['login'])) {
 			//$this->Users->addBehavior('Tools.Captcha');
@@ -103,13 +103,13 @@ class AccountController extends AppController {
 					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
-						$this->Flash->message($debugMessage, 'info');
+						$this->Flash->info($debugMessage);
 					}
 
 					// Send email
 					Configure::write('Email.live', true);
 
-					$this->Email = new EmailLib();
+					$this->Email = new Email();
 					$this->Email->to($res['User']['email'], $res['User']['username']);
 					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$this->Email->template('lost_password');
@@ -119,14 +119,14 @@ class AccountController extends AppController {
 
 						$email = h(FormatHelper::hideEmail($res['User']['email']));
 
-						$this->Flash->message(__('An email with instructions has been send to \'{0}\'.', $email), 'success');
-						$this->Flash->message(__('In a third step you will then be able to change your password.'), 'success');
+						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
+						$this->Flash->success(__('In a third step you will then be able to change your password.'));
 					} else {
-						$this->Flash->message(__('Confirmation Email could not be sent. Please consult an admin.'), 'error');
+						$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
 					}
 					return $this->redirect(['action' => 'lost_password']);
 				}
-				$this->Flash->message(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']), 'error');
+				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']));
 			}
 		}
 
@@ -141,7 +141,7 @@ class AccountController extends AppController {
 	public function change_password() {
 		$uid = $this->Session->read('Auth.Tmp.id');
 		if (empty($uid)) {
-			$this->Flash->message(__('You have to find your account first and click on the link in the email you receive afterwards'), 'error');
+			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
 			return $this->redirect(['action' => 'lost_password']);
 		}
 
@@ -159,12 +159,12 @@ class AccountController extends AppController {
 			$user = $this->Users->patchEntity($user, $this->request->data);
 
 			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
-				$this->Flash->message(__('new pw saved - you may now log in'), 'success');
+				$this->Flash->success(__('new pw saved - you may now log in'));
 				$this->Session->delete('Auth.Tmp');
 				$username = $this->Users->field('username', ['id' => $uid]);
 				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
-			$this->Flash->message(__('formContainsErrors'), 'error');
+			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
 			unset($this->request->data['User']['pwd']);
@@ -183,13 +183,13 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
 			if ($user = $this->Users->save($this->request->data)) {
-				$this->Flash->message(__('Account created'), 'success');
+				$this->Flash->success(__('Account created'));
 				if (!$this->Auth->setUser($user['User'])) {
 					throw new \Exception('Cannot log user in');
 				}
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
 			}
-			$this->Flash->message(__('formContainsErrors'), 'error');
+			$this->Flash->error(__('formContainsErrors'));
 
 			# pw should not be passed to the view again for security reasons
 			unset($this->request->data['User']['pwd']);
@@ -222,7 +222,7 @@ class AccountController extends AppController {
 			$fieldList = ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'];
 			$this->Users->patchEntity($user, $this->request->data, ['fieldList' => $fieldList]);
 			if ($this->Users->save($user)) {
-				$this->Flash->message(__('Account modified'), 'success');
+				$this->Flash->success(__('Account modified'));
 				/*
 				if (!$this->Auth->setUser($this->Users->get($uid))) {
 					throw new \Exception('Cannot log user in');
@@ -230,7 +230,7 @@ class AccountController extends AppController {
 				*/
 				return $this->redirect(['action' => 'index']);
 			}
-			$this->Flash->message(__('formContainsErrors'), 'error');
+			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
 			unset($this->request->data['pwd']);
@@ -252,7 +252,7 @@ class AccountController extends AppController {
 		if (!$this->Users->delete($uid)) {
 			throw new InternalErrorException();
 		}
-		$this->Flash->message('Account deleted', 'success');
+		$this->Flash->success('Account deleted');
 		return $this->redirect(['action' => 'logout']);
 	}
 

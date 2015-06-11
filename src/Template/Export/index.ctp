@@ -1,6 +1,6 @@
 <h2>Export</h2>
-This is the export interface where you can get the current version of the tables.<br />
-Please help to keep it up to date. You can submit changes via Email.<br />
+This is the export interface where you can get the current version of the tables.<br/>
+Please help to keep it up to date. You can submit changes via Email.<br/>
 An interface to directly modify the data is planned, though.
 
 <div class="row">
@@ -63,5 +63,5 @@ TODO
 
 
 
-<br />
+<br/>
 Note: If you want to force downloading, append `?download=1` after the extension.

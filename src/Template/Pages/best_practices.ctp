@@ -22,13 +22,13 @@ You can then alter the URLs via Routing and all those URLs change cleanly.
 The speed issue can be neglected compared to the advantages of the flexibility.
 
 <h3>Don't sanitize the heck out your data</h3>
-Use Sanitization wisely, and not blindly.<br />
+Use Sanitization wisely, and not blindly.<br/>
 Not without reason the Sanitize class has been kicked out of the core files.
-<br /><br />
+<br/><br/>
 Sanitization is useful and necessary, when working with HTML content, that needs to be stripped of invalid/dangerous
 markup. But here it is best to use <a href="https://github.com/FriendsOfCake/awesome-cakephp#filtering-and-validation">plugins</a> specifically
 written for this job.
-<br />
+<br/>
 For most normal use cases, by using save(), SQL injections are already prevented. No need to modify the data upon save. Only use h() in the view
 to secure (stringish) output by escaping potentially dangerous chars:
 <pre><code>echo h($entity->name);
@@ -37,7 +37,7 @@ to secure (stringish) output by escaping potentially dangerous chars:
 <h3>Logging</h3>
 By default the log streams catch all, even scoped logs that should only go to those scoped listeners.
 As a result they are duplicated.
-<br>
+<br/>
 So I would change the scopes to false here for all default listeners:
 <pre><code>// in your app.php config
 'Log' => [

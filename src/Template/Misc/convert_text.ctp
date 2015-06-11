@@ -1,7 +1,7 @@
 <h1>Convert Text</h1>
-Sometimes you need to escape the text in order to post somewhere. Sometimes you need exactly the opposite.<br />
+Sometimes you need to escape the text in order to post somewhere. Sometimes you need exactly the opposite.<br/>
 Example: If a blog already escapes characters like &amp; (result is <?php echo h('&amp;'); ?>) and you would pass already escaped characters, you would end up with double-escaped characters (<?php echo h('&amp;amp;'); ?>) which are not readable anymore.
-<br /><br />
+<br/><br/>
 Use this converter to get the text in the appropriate format.
 
 
@@ -52,7 +52,7 @@ if (!empty($this->request->data) && !empty($this->request->data['Form']['result'
 
 ?>
 
-<br /><br />
+<br/><br/>
 
 <div class="actions">
 	<ul>

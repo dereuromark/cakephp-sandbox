@@ -14,7 +14,7 @@
 	?>
 	</fieldset>
 <?php echo $this->Form->end();?>
-<br />
+<br/>
 <?php echo $this->Form->create('User');?>
 	<fieldset id="step-2">
  		<legend><?php echo __('Step {0}', 2);?></legend>
@@ -31,7 +31,7 @@
 </div>
 
 
-<br /><br />
+<br/><br/>
 
 <div class="actions">
 	<ul>

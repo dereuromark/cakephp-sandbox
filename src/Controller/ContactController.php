@@ -34,7 +34,7 @@ class ContactController extends AppController {
 			if ($contact->execute($this->request->data)) {
 				$this->_send($name, $email, $subject, $message);
 			} else {
-				$this->Flash->message(__('formContainsErrors'), 'error');
+				$this->Flash->error(__('formContainsErrors'));
 			}
 		} else {
 			// prepopulate form
@@ -70,14 +70,14 @@ class ContactController extends AppController {
 		$this->Email->template('contact');
 		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($this->Email->send()) {
-			$this->Flash->message(__('contactSuccessfullySent {0}', $fromEmail), 'success');
+			$this->Flash->success(__('contactSuccessfullySent {0}', $fromEmail));
 			return $this->redirect(['action' => 'index']);
 		}
 		if (Configure::read('debug')) {
 			$this->Flash->warning($this->Email->getError());
 		}
 		$this->log($this->Email->getError());
-		$this->Flash->message(__('Contact Email could not be sent'), 'error');
+		$this->Flash->error(__('Contact Email could not be sent'));
 	}
 
 }

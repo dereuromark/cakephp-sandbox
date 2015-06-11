@@ -13,12 +13,12 @@ Even nicer because you need just one click to get the current HEAD (current vers
 <ul>
 <li><?php echo $this->Html->link('Browse the online rep.', 'http://github.com/cakephp/cakephp', ['target' => '_blank']);?></li>
 </ul>
-<br />
+<br/>
 For downloading select "Git Clone" and use the following url:
 <ul>
 <li><?php echo h('git://github.com/cakephp/cakephp.git')?></li>
 </ul>
 After that you can change to Cake1.2, Cake1.3, Cake1.3dev or even Cake2.0 by using "Switch/Checkout"
 
-<br /><br />
+<br/><br/>
 And one "Pull" command gets all the updates and displays what files have been changed.

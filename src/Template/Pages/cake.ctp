@@ -4,14 +4,14 @@
 
 <h2>What is CakePHP?</h2>
 It is one of the most powerful Frameworks for PHP.
-<br />
-Framework means you don't have to write functions for every little task. The framework provides you with basic functionality which you can extend.<br />
+<br/>
+Framework means you don't have to write functions for every little task. The framework provides you with basic functionality which you can extend.<br/>
 <?php echo $this->Html->link('CakePHP', 'http://www.cakephp.org'); ?> is easier to learn than many other frameworks - and comes with very handy features.
 
 <p>
 <h2><?php echo __('Advantages') ?></h2>
 Using commonly known design patterns like MVC and ORM within the convention over configuration paradigm, CakePHP reduces development costs and helps developers write less code.
-<br /><br />
+<br/><br/>
 What speaks for CakePHP:
 <?php
 $list = [];
@@ -57,7 +57,7 @@ $list[] = $this->Html->link('CakePHP German Google Group (the smaller one)', 'ht
 
 echo $this->Html->nestedList($list, ['class' => 'links']);
 
-echo '<br>Examples and Code Pieces';
+echo '<br/>Examples and Code Pieces';
 $list = [];
 
 $list[] = $this->Html->link('CakePHP Links (Blogs etc.)', 'http://cakephp.org/#read', ['target' => '_blank']);
@@ -74,7 +74,7 @@ echo $this->Html->nestedList($list, ['class' => 'links']);
 
 
 
-echo '<br>Other Links';
+echo '<br/>Other Links';
 $list = [];
 
 $list[] = $this->Html->link('Code-Snippets to test your application against XSS Hackings', 'http://ha.ckers.org/xss.html', ['target' => '_blank']);

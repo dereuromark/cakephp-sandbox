@@ -42,7 +42,7 @@ if (!empty($results)) {
 }
 ?>
 
-<br /><br />
+<br/><br/>
 
 <div class="actions">
 	<ul>

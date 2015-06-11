@@ -31,7 +31,7 @@ foreach ($users as $user):
 			<?php echo $user['User']['email']; ?>
 		</td>
 		<td>
-			<?php echo $this->Datetime->niceDate($user['User']['created']); ?>
+			<?php echo $this->Time->niceDate($user['User']['created']); ?>
 		</td>
 		<td>
 			<?php echo $user['User']['logins']; ?>
