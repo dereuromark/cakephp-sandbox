@@ -14,7 +14,6 @@ _*
 /Plugin/Search
 /Plugin/Setup
 /Plugin/Tools
-/composer.lock
 /Vendor/composer/*
 /Vendor/nesbot/carbon
 /Vendor/autoload.php
