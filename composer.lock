@@ -588,12 +588,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "15e1c0654157e63614ac8a5e7704a352815a7f9e"
+                "reference": "a28153dc5dae0c49ef852d6f63f804836c32d276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/15e1c0654157e63614ac8a5e7704a352815a7f9e",
-                "reference": "15e1c0654157e63614ac8a5e7704a352815a7f9e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/a28153dc5dae0c49ef852d6f63f804836c32d276",
+                "reference": "a28153dc5dae0c49ef852d6f63f804836c32d276",
                 "shasum": ""
             },
             "require": {
@@ -631,7 +631,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2015-06-15 23:50:18"
+            "time": "2015-06-15 23:55:38"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -2624,16 +2624,16 @@
         },
         {
             "name": "jakub-onderka/php-console-highlighter",
-            "version": "v0.3.1",
+            "version": "v0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JakubOnderka/PHP-Console-Highlighter.git",
-                "reference": "05bce997da20acf873e6bf396276798f3cd2c76a"
+                "reference": "7daa75df45242c8d5b75a22c00a201e7954e4fb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Highlighter/zipball/05bce997da20acf873e6bf396276798f3cd2c76a",
-                "reference": "05bce997da20acf873e6bf396276798f3cd2c76a",
+                "url": "https://api.github.com/repos/JakubOnderka/PHP-Console-Highlighter/zipball/7daa75df45242c8d5b75a22c00a201e7954e4fb5",
+                "reference": "7daa75df45242c8d5b75a22c00a201e7954e4fb5",
                 "shasum": ""
             },
             "require": {
@@ -2643,6 +2643,7 @@
             "require-dev": {
                 "jakub-onderka/php-code-style": "~1.0",
                 "jakub-onderka/php-parallel-lint": "~0.5",
+                "jakub-onderka/php-var-dump-check": "~0.1",
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
@@ -2663,7 +2664,7 @@
                     "homepage": "http://www.acci.cz/"
                 }
             ],
-            "time": "2014-07-14 20:59:35"
+            "time": "2015-04-20 18:58:01"
         },
         {
             "name": "nikic/php-parser",
