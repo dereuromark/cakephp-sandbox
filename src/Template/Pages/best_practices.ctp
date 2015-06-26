@@ -50,3 +50,13 @@ So I would change the scopes to false here for all default listeners:
 	...
 ],
 </code></pre>
+
+<h3>Use AJAX wisely</h3>
+Don't over-ajaxify your views. It can easily create complications and become error-prone.
+Use it wisely where it makes sense.
+<br>
+Also always try to provide a non-JS fallback solution in case the JS breaks or cannot work properly in some browsers.
+It might also be a good idea for search engines to properly pick up your site content (e.g. when using pagination and AJAX).
+<br><br>
+So the smart approach is: First code the non-JS functionality. And then you can add JS-functionality for it on top.
+In case the JS breaks, the non-js part can take over without users being unable to proceed.

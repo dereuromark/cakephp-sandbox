@@ -11,6 +11,7 @@ class CountryRecordsTable extends Table {
 
 	public $filterArgs = [
 		'search' => ['type' => 'like', 'field' => ['name', 'ori_name', 'iso2', 'iso3']],
+		'status' => ['type' => 'value']
 	];
 
 	public function initialize(array $config) {

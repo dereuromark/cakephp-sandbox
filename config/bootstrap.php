@@ -178,6 +178,7 @@ Plugin::loadAll([
 		'AuthSandbox' => array('routes' => true),
 		'DebugKit' => array('bootstrap' => true),
 		'AssetCompress' => array('bootstrap' => true),
+		'Cache' => ['bootstrap' => false, 'routes' => true]
 ]);
 
 /**
@@ -187,6 +188,7 @@ DispatcherFactory::add('Asset');
 DispatcherFactory::add('Routing');
 DispatcherFactory::add('ControllerFactory');
 //DispatcherFactory::add('Shim.Seo');
+DispatcherFactory::add('Cache.Cache');
 
 Router::extensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
 

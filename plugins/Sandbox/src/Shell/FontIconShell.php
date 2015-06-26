@@ -3,6 +3,11 @@ namespace Sandbox\Shell;
 
 use Cake\Console\Shell;
 
+/**
+ * Class FontIconShell
+ *
+ * @deprecated
+ */
 class FontIconShell extends Shell {
 
 	public function initialize() {

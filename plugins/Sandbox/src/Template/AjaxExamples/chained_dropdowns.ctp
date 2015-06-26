@@ -17,6 +17,8 @@
 	<br />
 	Also note how "Please select" requires input, whereas "No option available" does not.
 	<br /><br />
+	Submit the form to see how validation kicks in and how it behaves with these two different options (required vs. no option available).
+	<br /><br />
 
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>

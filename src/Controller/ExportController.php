@@ -8,6 +8,8 @@ use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
 
+	public $components = ['Cache.Cache'];
+
 	public $uses = [];
 
 	/**

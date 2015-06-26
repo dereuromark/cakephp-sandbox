@@ -13,4 +13,6 @@ Set it to true in your app.php config so any field names that could be reserverd
 
 <h3>Routing</h3>
 Use DashedRoute class as default for new CakePHP 3 apps. See <a href="/pages/best-practices#routing">here</a>.
+<br>
+It is going to be the default in 3.1+ anyway.
 

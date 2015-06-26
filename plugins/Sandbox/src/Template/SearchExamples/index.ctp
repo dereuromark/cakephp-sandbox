@@ -5,6 +5,7 @@
 <?php
 echo $this->Form->create('CountryRecord');
 echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
+echo $this->Form->input('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
 echo $this->Form->submit(__('Search'));
 echo $this->Form->end();
 ?>

@@ -283,6 +283,10 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 	}
 
+	public function formatHelper() {
+
+	}
+
 	/**
 	 * //TODO
 	 *
