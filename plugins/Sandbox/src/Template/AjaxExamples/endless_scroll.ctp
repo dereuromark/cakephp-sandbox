@@ -13,8 +13,9 @@
 					finishedMsg: 'No more posts to load!',
 					img: 'http://miftyisbored.com/wp-tutorials/cakephp-infinite-scroll/img/spinner.gif'
 				}
-			}
-		);
+		});
+
+		$('.paging-description').hide();
 	});
 
 </script>
