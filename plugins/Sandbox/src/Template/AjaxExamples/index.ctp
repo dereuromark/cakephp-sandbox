@@ -6,6 +6,7 @@
 	<li><?php echo $this->Html->link('Simple JSON response', ['action' => 'simple'])?></li>
 	<li><?php echo $this->Html->link('Toggle', ['action' => 'toggle'])?></li>
 	<li><?php echo $this->Html->link('Pagination', ['action' => 'pagination'])?></li>
+	<li><?php echo $this->Html->link('Endless scroll (vertical pagination)', ['action' => 'endlessScroll'])?></li>
 	<li><?php echo $this->Html->link('Redirecting', ['action' => 'redirecting'])?></li>
 </ul>
 

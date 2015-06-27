@@ -9,46 +9,42 @@ use Cake\TestSuite\Fixture\TestFixture;
  */
 class SandboxPostsFixture extends TestFixture {
 
-    /**
-     * Fields
-     *
-     * @var array
-     */
-    // @codingStandardsIgnoreStart
-    public $fields = [
-        'id' => ['type' => 'integer', 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
-        'username' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'slug' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'password' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'email' => ['type' => 'string', 'length' => 80, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
-        'role_id' => ['type' => 'integer', 'length' => 2, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-        ],
-        '_options' => [
-            'engine' => 'MyISAM',
-            'collation' => 'utf8_unicode_ci'
-        ],
-    ];
-    // @codingStandardsIgnoreEnd
+	/**
+	 * Fields
+	 *
+	 * @var array
+	 */
+	// @codingStandardsIgnoreStart
+	public $fields = [
+		'id' => ['type' => 'integer', 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+		'title' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+		'slug' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
+		'content' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => ''],
+		'rating_count' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => ''],
+		'rating_sum' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => false, 'default' => '0', 'comment' => ''],
+		'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+		'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
+		'_constraints' => [
+			'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+		],
+	];
+	// @codingStandardsIgnoreEnd
 
-    /**
-     * Records
-     *
-     * @var array
-     */
-    public $records = [
-        [
-            'id' => 1,
-            'created' => '2015-05-07 16:54:56',
-            'modified' => '2015-05-07 16:54:56',
-            'username' => 'Lorem ipsum dolor sit amet',
-            'slug' => 'Lorem ipsum dolor sit amet',
-            'password' => 'Lorem ipsum dolor sit amet',
-            'email' => 'Lorem ipsum dolor sit amet',
-            'role_id' => 1
-        ]
-    ];
+	/**
+	 * Records
+	 *
+	 * @var array
+	 */
+	public $records = [
+		[
+			'id' => 1,
+			'tile' => 'Lorem ipsum dolor sit amet',
+			'slug' => 'Lorem ipsum dolor sit amet',
+			'content' => 'Lorem ipsum dolor sit amet',
+			'rating_count' => 1,
+			'rating_sum' => 1,
+			'created' => '2015-05-07 16:54:56',
+			'modified' => '2015-05-07 16:54:56'
+		]
+	];
 }
