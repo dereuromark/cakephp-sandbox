@@ -1,1 +1,1 @@
-<?php echo $this->Format->yesNo($status, 'Yeaah', 'Nooo'); ?>
+<?php echo $this->Format->yesNo($status); ?>

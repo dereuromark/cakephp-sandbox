@@ -37,7 +37,7 @@ foreach ($examples as $example):
 			<?php echo $this->Datetime->niceDate($example['Example']['modified']); ?>
 		</td>
 		<td>
-			<?php echo $this->Format->yesNo($example['Example']['active'],'Active','Inactive'); ?>
+			<?php echo $this->Format->yesNo($example['Example']['active'], ['onTitle' => 'Active', 'offTitle' => 'Inactive']); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link($this->Html->image('icons/edit.gif', ['alt'=>__('Edit'),'title'=>__('Edit')]), ['action'=>'edit', $example['Example']['id']], ['escape' => false]);?>
