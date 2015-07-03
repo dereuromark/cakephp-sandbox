@@ -25,8 +25,9 @@ $(function() {
 </script>
 
 <style>
-.toggle img.icon {
+.toggle i.icon {
 	cursor: pointer;
+	font-size: 18px;
 }
 #some-record {
 	background-color: #eee;
