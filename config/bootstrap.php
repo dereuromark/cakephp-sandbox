@@ -193,3 +193,4 @@ DispatcherFactory::add('Cache.Cache');
 Router::extensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
 
 class_alias('Cake\Core\Configure', 'Configure');
+class_alias('Cake\Core\Plugin', 'Plugin');

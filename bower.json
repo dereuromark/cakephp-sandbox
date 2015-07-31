@@ -4,7 +4,7 @@
 	"dependencies": {
 		"bootstrap": "~3.3",
 		"jquery": "~1.10",
-		"font-awesome": "~4.3",
+		"font-awesome": "latest",
 		"jquery-ui": "~1.11",
 		"eonasdan-bootstrap-datetimepicker": "latest",
 		"moment": "latest",

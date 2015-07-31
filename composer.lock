@@ -172,12 +172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "3963c8e4334d69fbd80f6c622906ab16c25003a7"
+                "reference": "d28053e4312f2f68e453485b32464040a979ca1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3963c8e4334d69fbd80f6c622906ab16c25003a7",
-                "reference": "3963c8e4334d69fbd80f6c622906ab16c25003a7",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/d28053e4312f2f68e453485b32464040a979ca1e",
+                "reference": "d28053e4312f2f68e453485b32464040a979ca1e",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-07-28 23:46:16"
+            "time": "2015-07-30 08:18:50"
         },
         {
             "name": "cakephp/migrations",
@@ -247,12 +247,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "b6d1e4fd7f4e1592ba1101ee5ab1327f662456eb"
+                "reference": "7ef12e51442095b5787287ff6f9b1f2dc71717ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/b6d1e4fd7f4e1592ba1101ee5ab1327f662456eb",
-                "reference": "b6d1e4fd7f4e1592ba1101ee5ab1327f662456eb",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/7ef12e51442095b5787287ff6f9b1f2dc71717ce",
+                "reference": "7ef12e51442095b5787287ff6f9b1f2dc71717ce",
                 "shasum": ""
             },
             "require": {
@@ -289,7 +289,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2015-07-24 12:14:45"
+            "time": "2015-07-29 20:48:02"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -420,12 +420,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "bef28642eda47fe57529431fe20a3ddf0adf8485"
+                "reference": "a882b7246ebf56edac40db12ac2ad61d996cfbc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/bef28642eda47fe57529431fe20a3ddf0adf8485",
-                "reference": "bef28642eda47fe57529431fe20a3ddf0adf8485",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/a882b7246ebf56edac40db12ac2ad61d996cfbc3",
+                "reference": "a882b7246ebf56edac40db12ac2ad61d996cfbc3",
                 "shasum": ""
             },
             "require": {
@@ -459,7 +459,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2015-05-18 18:09:14"
+            "time": "2015-07-31 09:01:27"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -820,12 +820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "4c8fbf92c62d28195f0f0ac099f8f9c1570f19ba"
+                "reference": "d936c9e9bfca423054b33bebe3056ebddb39bf1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/4c8fbf92c62d28195f0f0ac099f8f9c1570f19ba",
-                "reference": "4c8fbf92c62d28195f0f0ac099f8f9c1570f19ba",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/d936c9e9bfca423054b33bebe3056ebddb39bf1f",
+                "reference": "d936c9e9bfca423054b33bebe3056ebddb39bf1f",
                 "shasum": ""
             },
             "require": {
@@ -868,7 +868,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2015-07-29 11:51:05"
+            "time": "2015-07-31 08:54:17"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
@@ -1136,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/crud-view.git",
-                "reference": "5ab6bc5b41019affb7c3f411c9c5c203a2fcb127"
+                "reference": "ad5596180944bb016ed693a0600e0a92e10edc0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/5ab6bc5b41019affb7c3f411c9c5c203a2fcb127",
-                "reference": "5ab6bc5b41019affb7c3f411c9c5c203a2fcb127",
+                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/ad5596180944bb016ed693a0600e0a92e10edc0b",
+                "reference": "ad5596180944bb016ed693a0600e0a92e10edc0b",
                 "shasum": ""
             },
             "require": {
@@ -1188,7 +1188,7 @@
                 "scaffolding",
                 "update"
             ],
-            "time": "2015-07-29 08:28:40"
+            "time": "2015-07-30 04:09:36"
         },
         {
             "name": "geshi/geshi",
@@ -2206,12 +2206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "68dcbbf239a87265e81f2ebd44ae39135c3d186b"
+                "reference": "5db7dae3ac951fab2261baa3aa1e1d19e9c6c230"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/68dcbbf239a87265e81f2ebd44ae39135c3d186b",
-                "reference": "68dcbbf239a87265e81f2ebd44ae39135c3d186b",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/5db7dae3ac951fab2261baa3aa1e1d19e9c6c230",
+                "reference": "5db7dae3ac951fab2261baa3aa1e1d19e9c6c230",
                 "shasum": ""
             },
             "require": {
@@ -2244,7 +2244,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2015-07-26 21:50:43"
+            "time": "2015-07-29 20:33:50"
         },
         {
             "name": "cakephp/cakephp-codesniffer",
@@ -2288,12 +2288,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "64f7daa081ea7be1c2c136801172ee7393ce09a2"
+                "reference": "0ddfe1bfcbebeaf718cb2c92187fd2dda968d273"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/64f7daa081ea7be1c2c136801172ee7393ce09a2",
-                "reference": "64f7daa081ea7be1c2c136801172ee7393ce09a2",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/0ddfe1bfcbebeaf718cb2c92187fd2dda968d273",
+                "reference": "0ddfe1bfcbebeaf718cb2c92187fd2dda968d273",
                 "shasum": ""
             },
             "require": {
@@ -2341,7 +2341,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2015-07-28 08:21:11"
+            "time": "2015-07-30 09:53:03"
         },
         {
             "name": "cakephp/upgrade",
@@ -3623,12 +3623,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e"
+                "reference": "66fb20c9e1b3617651c3f66be7a1747479d96ba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/7ae5513327cb536431847bcc0c10edba2701064e",
-                "reference": "7ae5513327cb536431847bcc0c10edba2701064e",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/66fb20c9e1b3617651c3f66be7a1747479d96ba5",
+                "reference": "66fb20c9e1b3617651c3f66be7a1747479d96ba5",
                 "shasum": ""
             },
             "require": {
@@ -3636,12 +3636,13 @@
                 "sebastian/recursion-context": "~1.0"
             },
             "require-dev": {
+                "ext-mbstring": "*",
                 "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.3.x-dev"
                 }
             },
             "autoload": {
@@ -3681,7 +3682,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-06-21 07:55:53"
+            "time": "2015-07-30 09:58:30"
         },
         {
             "name": "sebastian/global-state",
