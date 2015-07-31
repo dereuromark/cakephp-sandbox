@@ -51,19 +51,19 @@ class AppController extends Controller {
 			'authorize' => ['TinyAuth.Tiny' => []],
 			'logoutRedirect' => [
 				'plugin' => false,
-				'admin' => false,
+				'prefix' => false,
 				'controller' => 'Overview',
 				'action' => 'index'
 			],
 			'loginRedirect' => [
 				'plugin' => false,
-				'admin' => false,
+				'prefix' => false,
 				'controller' => 'Account',
 				'action' => 'index'
 			],
 			'loginAction' => [
 				'plugin' => false,
-				'admin' => false,
+				'prefix' => false,
 				'controller' => 'Account',
 				'action' => 'login'
 			]
