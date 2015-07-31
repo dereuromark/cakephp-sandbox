@@ -420,12 +420,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "a882b7246ebf56edac40db12ac2ad61d996cfbc3"
+                "reference": "46a3acdc365ca1b06e241568fdd2dc01dc93509e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/a882b7246ebf56edac40db12ac2ad61d996cfbc3",
-                "reference": "a882b7246ebf56edac40db12ac2ad61d996cfbc3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/46a3acdc365ca1b06e241568fdd2dc01dc93509e",
+                "reference": "46a3acdc365ca1b06e241568fdd2dc01dc93509e",
                 "shasum": ""
             },
             "require": {
@@ -459,7 +459,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2015-07-31 09:01:27"
+            "time": "2015-07-31 10:20:07"
         },
         {
             "name": "dereuromark/cakephp-feed",
