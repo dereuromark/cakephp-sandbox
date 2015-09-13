@@ -16,14 +16,9 @@ echo $this->Paginator->counter([
 	<th class="actions"><?php echo __('Actions');?></th>
 </tr>
 <?php
-$i = 0;
 foreach ($users as $user):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
 ?>
-	<tr<?php echo $class;?>>
+	<tr>
 		<td>
 			<?php echo $user['User']['username']; ?>
 		</td>

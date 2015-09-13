@@ -7,14 +7,9 @@
 	<th><?php echo $this->Paginator->sort('iso3');?></th>
 </tr>
 <?php
-$i = 0;
 foreach ($countries as $country):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
 ?>
-	<tr<?php echo $class;?>>
+	<tr>
 		<td>
 			<?php echo $this->Data->countryIcon($country['iso2']); ?>
 		</td>

@@ -12,14 +12,9 @@
 	<th class="actions"><?php echo __('Actions');?></th>
 </tr>
 <?php
-$i = 0;
 foreach ($examples as $example):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
 ?>
-	<tr<?php echo $class;?>>
+	<tr>
 
 		<td>
 			<?php echo $this->Html->link($this->Format->truncate($example['Example']['title'], 30), ['admin'=>false, 'action'=>$example['Example']['link']], ['title'=>$example['Example']['title']]); ?>
