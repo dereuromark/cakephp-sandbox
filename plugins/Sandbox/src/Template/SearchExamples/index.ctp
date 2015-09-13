@@ -13,7 +13,7 @@ echo $this->Form->end();
 
 <table class="list">
 <tr>
-	<th><?php echo $this->Paginator->sort('sort', $this->Format->cIcon('filter.gif'), ['escape' => false]);?></th>
+	<th><?php echo $this->Paginator->sort('sort', $this->Format->icon('filter'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>
 	<th><?php echo $this->Paginator->sort('ori_name');?></th>
 	<th><?php echo $this->Paginator->sort('iso2');?></th>
