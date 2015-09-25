@@ -171,6 +171,7 @@ Request::addDetector('tablet', function ($request) {
  */
 
 Plugin::loadAll([
+		'Setup' => ['bootstrap' => true],
 		'Tools' => array('bootstrap' => true),
 		'Data' => array('routes' => true),
 		//'Ajax' => array('bootstrap' => true)

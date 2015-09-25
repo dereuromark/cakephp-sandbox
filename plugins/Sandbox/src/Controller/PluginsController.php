@@ -61,8 +61,8 @@ class PluginsController extends SandboxAppController {
 			$engine = $engines[$engineSlug];
 			$this->_setPdfConfig($engine);
 		} else {
-			$this->viewPath = 'Plugins' . DS . 'pdf';
-			$this->layoutPath = 'pdf';
+			$this->viewBuilder()->templatePath('Plugins' . DS . 'pdf');
+			$this->viewBuilder()->layoutPath('pdf');
 		}
 
 		// Setting dynamic config settings

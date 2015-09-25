@@ -36,7 +36,7 @@ class FeedExamplesController extends SandboxAppController {
 			throw new NotFoundException();
 		}
 		// This is only needed without the viewClassMap setting for RequestHandler
-		//$this->viewClass = 'Feed.Rss';
+		//$this->viewBuilder()->className('Feed.Rss');
 
 		$news = $this->_feedData();
 

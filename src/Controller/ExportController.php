@@ -22,7 +22,7 @@ class ExportController extends AppController {
 
 		$this->Auth->allow();
 
-		if (!$this->viewClass || $this->viewClass === 'View') {
+		if (!$this->viewBuilder()->className() || $this->viewBuilder()->className() === 'View') {
 			return;
 		}
 
@@ -55,7 +55,7 @@ class ExportController extends AppController {
 		$this->Countries = TableRegistry::get('Data.Countries');
 		$countries = $this->Countries->find('all', ['fields' => []]);
 
-		if (!$this->viewClass) {
+		if (!$this->viewBuilder()->className()) {
 			throw new NotFoundException();
 		}
 
