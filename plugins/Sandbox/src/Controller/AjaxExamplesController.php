@@ -16,7 +16,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize() {
-		if ($this->request->action === 'redirectingPrevented') {
+		if (in_array($this->request->action, ['redirectingPrevented', 'form'])) {
 			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
 		}
 		parent::initialize();
@@ -166,6 +166,27 @@ class AjaxExamplesController extends SandboxAppController {
 		$countryProvinces = $this->CountryProvinces->getListByCountry($id);
 
 		$this->set(compact('countryProvinces'));
+	}
+
+	/**
+	 * Show how AJAX plugin can work with forms just as normal PRG behavior would.
+	 *
+	 * @return void
+	 */
+	public function form() {
+		$this->Users = TableRegistry::get('Users');
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is(['post', 'put'])) {
+			$user = $this->Users->patchEntity($user, $this->request->data());
+			if (!$user->errors()) {
+				$this->Flash->success('Simulated save.');
+				return $this->redirect(['action' => 'form']);
+			}
+			$this->Flash->error('Form not yet valid.');
+		}
+
+		$this->set(compact('user'));
 	}
 
 	/**
