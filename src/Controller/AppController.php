@@ -71,7 +71,7 @@ class AppController extends Controller {
 		$this->Auth->config($config);
 
 		// Short-circuit Auth for some controllers
-		if (in_array($this->viewPath, ['Pages'])) {
+		if (in_array($this->viewBuilder()->templatePath(), ['Pages'])) {
 			$this->Auth->allow();
 		}
 
@@ -95,8 +95,8 @@ class AppController extends Controller {
 	 */
 	public function beforeRender(Event $event) {
 		/*
-		if ($this->request->is('ajax') && $this->layout === 'default') {
-			$this->layout = 'ajax';
+		if ($this->request->is('ajax') && $this->viewBuilder()->layout() === 'default') {
+			$this->viewBuilder()->layout('ajax');
 		}
 		*/
 

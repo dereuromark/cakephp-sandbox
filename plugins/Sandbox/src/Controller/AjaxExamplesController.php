@@ -160,7 +160,7 @@ class AjaxExamplesController extends SandboxAppController {
 			throw new NotFoundException();
 		}
 
-		$this->viewClass = 'Ajax.Ajax';
+		$this->viewBuilder()->className('Ajax.Ajax');
 
 		$this->loadModel('Data.CountryProvinces');
 		$countryProvinces = $this->CountryProvinces->getListByCountry($id);
