@@ -55,10 +55,6 @@ class ExportController extends AppController {
 		$this->Countries = TableRegistry::get('Data.Countries');
 		$countries = $this->Countries->find('all', ['fields' => []]);
 
-		if (!$this->viewBuilder()->className()) {
-			throw new NotFoundException();
-		}
-
 		$this->set(compact('countries'));
 		$this->set('_serialize', ['countries']);
 	}
