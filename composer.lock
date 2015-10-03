@@ -168,16 +168,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.1.x-dev",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "059fabb35e543f9e448ada11dd705cb1b76ee125"
+                "reference": "e430f46594877acf7f165464d097d2167e1ba166"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/059fabb35e543f9e448ada11dd705cb1b76ee125",
-                "reference": "059fabb35e543f9e448ada11dd705cb1b76ee125",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e430f46594877acf7f165464d097d2167e1ba166",
+                "reference": "e430f46594877acf7f165464d097d2167e1ba166",
                 "shasum": ""
             },
             "require": {
@@ -239,7 +239,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-09-20 01:27:06"
+            "time": "2015-09-20 02:14:20"
         },
         {
             "name": "cakephp/migrations",
@@ -1137,12 +1137,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/crud-view.git",
-                "reference": "d5d488e32640590985ca93519952cb97513f7c2d"
+                "reference": "00b4ffc4820d3646d30d72e97aca6820d579fad4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/d5d488e32640590985ca93519952cb97513f7c2d",
-                "reference": "d5d488e32640590985ca93519952cb97513f7c2d",
+                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/00b4ffc4820d3646d30d72e97aca6820d579fad4",
+                "reference": "00b4ffc4820d3646d30d72e97aca6820d579fad4",
                 "shasum": ""
             },
             "require": {
@@ -1189,7 +1189,7 @@
                 "scaffolding",
                 "update"
             ],
-            "time": "2015-09-01 09:59:47"
+            "time": "2015-10-03 08:10:58"
         },
         {
             "name": "geshi/geshi",
