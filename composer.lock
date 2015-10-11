@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4eb1ceeb94620810b5ba005a2fd6218c",
+    "hash": "4b2fa2cfe6e12a2f271cfdd5de9ab125",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -513,12 +513,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-feed.git",
-                "reference": "d687187a347fc763fbbc9241bf65b7d4012f6994"
+                "reference": "2710b7abf101fcfa4ea963ab71c96db7d58a984c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-feed/zipball/d687187a347fc763fbbc9241bf65b7d4012f6994",
-                "reference": "d687187a347fc763fbbc9241bf65b7d4012f6994",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-feed/zipball/2710b7abf101fcfa4ea963ab71c96db7d58a984c",
+                "reference": "2710b7abf101fcfa4ea963ab71c96db7d58a984c",
                 "shasum": ""
             },
             "require": {
@@ -552,7 +552,7 @@
                 "rss",
                 "view"
             ],
-            "time": "2015-10-07 20:34:37"
+            "time": "2015-10-10 11:46:12"
         },
         {
             "name": "dereuromark/cakephp-geo",
@@ -2003,12 +2003,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "52cb3e6806a06159f2f64b04a651fed4eb372f69"
+                "reference": "647a2a148d8ce2847ea75e58608b0a89f5a1dd1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/52cb3e6806a06159f2f64b04a651fed4eb372f69",
-                "reference": "52cb3e6806a06159f2f64b04a651fed4eb372f69",
+                "url": "https://api.github.com/repos/symfony/config/zipball/647a2a148d8ce2847ea75e58608b0a89f5a1dd1b",
+                "reference": "647a2a148d8ce2847ea75e58608b0a89f5a1dd1b",
                 "shasum": ""
             },
             "require": {
@@ -2042,7 +2042,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-10 09:36:22"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "symfony/console",
@@ -2050,12 +2050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "984e13389331cc32d38ed7bd56a62bb4102dd515"
+                "reference": "3f8418691d71b6024adbb2a7add9598af5b0494c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/984e13389331cc32d38ed7bd56a62bb4102dd515",
-                "reference": "984e13389331cc32d38ed7bd56a62bb4102dd515",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3f8418691d71b6024adbb2a7add9598af5b0494c",
+                "reference": "3f8418691d71b6024adbb2a7add9598af5b0494c",
                 "shasum": ""
             },
             "require": {
@@ -2098,7 +2098,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-10 09:38:45"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "symfony/filesystem",
@@ -2106,12 +2106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "482f0ea602dc067197f8e418bf49812b13a73b6a"
+                "reference": "fc3fe52fef85e1f3e7775ffad92539e16c20e0af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/482f0ea602dc067197f8e418bf49812b13a73b6a",
-                "reference": "482f0ea602dc067197f8e418bf49812b13a73b6a",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/fc3fe52fef85e1f3e7775ffad92539e16c20e0af",
+                "reference": "fc3fe52fef85e1f3e7775ffad92539e16c20e0af",
                 "shasum": ""
             },
             "require": {
@@ -2144,7 +2144,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-10 09:36:22"
+            "time": "2015-10-11 08:29:26"
         },
         {
             "name": "symfony/yaml",
@@ -2152,19 +2152,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "36ddab7971364b20229155cd972631a2257d7dac"
+                "reference": "725887b209844abda9d864de722515d0fc13dd75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/36ddab7971364b20229155cd972631a2257d7dac",
-                "reference": "36ddab7971364b20229155cd972631a2257d7dac",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/725887b209844abda9d864de722515d0fc13dd75",
+                "reference": "725887b209844abda9d864de722515d0fc13dd75",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -2193,7 +2190,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-02 12:38:01"
+            "time": "2015-10-11 08:29:26"
         }
     ],
     "packages-dev": [
@@ -2249,12 +2246,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "0ca303362de89d89cd2ef17893f00e999757eb91"
+                "reference": "638172845c65dc61ec6732eb680af434794f2623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/0ca303362de89d89cd2ef17893f00e999757eb91",
-                "reference": "0ca303362de89d89cd2ef17893f00e999757eb91",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/638172845c65dc61ec6732eb680af434794f2623",
+                "reference": "638172845c65dc61ec6732eb680af434794f2623",
                 "shasum": ""
             },
             "require": {
@@ -2297,7 +2294,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2015-10-07 00:55:10"
+            "time": "2015-10-11 02:06:19"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2595,19 +2592,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "a60326a03246a47dcfe220cba0901ae3142a8785"
+                "reference": "7ea1039d1abd76eb7e0a413ca90b123edf714b84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/a60326a03246a47dcfe220cba0901ae3142a8785",
-                "reference": "a60326a03246a47dcfe220cba0901ae3142a8785",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/7ea1039d1abd76eb7e0a413ca90b123edf714b84",
+                "reference": "7ea1039d1abd76eb7e0a413ca90b123edf714b84",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.9"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "~2.8|~3.0",
                 "twig/twig": "~1.20|~2.0"
             },
             "suggest": {
@@ -2647,7 +2643,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2015-10-07 07:44:07"
+            "time": "2015-10-11 09:14:55"
         }
     ],
     "aliases": [],
