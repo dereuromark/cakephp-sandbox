@@ -42,7 +42,8 @@
 		"markstory/geshi": "dev-master",
 		"friendsofcake/bootstrap-ui": "0.*",
 		"dereuromark/cakephp-cache": "dev-master",
-		"symfony/filesystem": "2.*"
+		"symfony/filesystem": "2.*",
+		"cakephp/chronos": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",

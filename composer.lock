@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73c0969a598545c33b078958984f48ed",
+    "hash": "4eb1ceeb94620810b5ba005a2fd6218c",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -237,17 +237,68 @@
             "time": "2015-10-07 02:10:21"
         },
         {
+            "name": "cakephp/chronos",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/chronos.git",
+                "reference": "74c1ae9b5b41bb40df21d1e995beaed793c791e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/74c1ae9b5b41bb40df21d1e995beaed793c791e9",
+                "reference": "74c1ae9b5b41bb40df21d1e995beaed793c791e9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "dev-master",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Chronos\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Nesbitt",
+                    "email": "brian@nesbot.com",
+                    "homepage": "http://nesbot.com"
+                },
+                {
+                    "name": "The CakePHP Team",
+                    "homepage": "http://cakephp.org"
+                }
+            ],
+            "description": "A simple API extension for DateTime.",
+            "homepage": "http://cakephp.org",
+            "keywords": [
+                "date",
+                "datetime",
+                "time"
+            ],
+            "time": "2015-10-07 01:53:08"
+        },
+        {
             "name": "cakephp/migrations",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "307d7db01355199e61b50d72e3f307ff74161cf5"
+                "reference": "e3285849419a753726941f972f89334c0659feae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/307d7db01355199e61b50d72e3f307ff74161cf5",
-                "reference": "307d7db01355199e61b50d72e3f307ff74161cf5",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e3285849419a753726941f972f89334c0659feae",
+                "reference": "e3285849419a753726941f972f89334c0659feae",
                 "shasum": ""
             },
             "require": {
@@ -284,7 +335,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2015-10-01 17:49:51"
+            "time": "2015-10-09 22:23:50"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -462,12 +513,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-feed.git",
-                "reference": "5fbe05beb9a721be0f74fcc5b8d2ef5774f64926"
+                "reference": "d687187a347fc763fbbc9241bf65b7d4012f6994"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-feed/zipball/5fbe05beb9a721be0f74fcc5b8d2ef5774f64926",
-                "reference": "5fbe05beb9a721be0f74fcc5b8d2ef5774f64926",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-feed/zipball/d687187a347fc763fbbc9241bf65b7d4012f6994",
+                "reference": "d687187a347fc763fbbc9241bf65b7d4012f6994",
                 "shasum": ""
             },
             "require": {
@@ -501,7 +552,7 @@
                 "rss",
                 "view"
             ],
-            "time": "2015-09-30 22:11:36"
+            "time": "2015-10-07 20:34:37"
         },
         {
             "name": "dereuromark/cakephp-geo",
@@ -617,12 +668,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "f3c2f6693b279178bbff733d177dea506d91b440"
+                "reference": "93f2d9afe06e2ee9a1baf834c243a516aa555edd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/f3c2f6693b279178bbff733d177dea506d91b440",
-                "reference": "f3c2f6693b279178bbff733d177dea506d91b440",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/93f2d9afe06e2ee9a1baf834c243a516aa555edd",
+                "reference": "93f2d9afe06e2ee9a1baf834c243a516aa555edd",
                 "shasum": ""
             },
             "require": {
@@ -660,7 +711,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2015-09-30 22:13:42"
+            "time": "2015-10-08 00:13:26"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -1132,12 +1183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/crud-view.git",
-                "reference": "00b4ffc4820d3646d30d72e97aca6820d579fad4"
+                "reference": "7c85b04efdb9ab444998e035f41b00ca73e26f21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/00b4ffc4820d3646d30d72e97aca6820d579fad4",
-                "reference": "00b4ffc4820d3646d30d72e97aca6820d579fad4",
+                "url": "https://api.github.com/repos/FriendsOfCake/crud-view/zipball/7c85b04efdb9ab444998e035f41b00ca73e26f21",
+                "reference": "7c85b04efdb9ab444998e035f41b00ca73e26f21",
                 "shasum": ""
             },
             "require": {
@@ -1184,7 +1235,7 @@
                 "scaffolding",
                 "update"
             ],
-            "time": "2015-10-03 08:10:58"
+            "time": "2015-10-09 10:38:48"
         },
         {
             "name": "geshi/geshi",
@@ -1952,20 +2003,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba"
+                "reference": "52cb3e6806a06159f2f64b04a651fed4eb372f69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba",
-                "reference": "91f483a2de7b6c0552f42aa1d4fd1c066bc7ccba",
+                "url": "https://api.github.com/repos/symfony/config/zipball/52cb3e6806a06159f2f64b04a651fed4eb372f69",
+                "reference": "52cb3e6806a06159f2f64b04a651fed4eb372f69",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9",
                 "symfony/filesystem": "~2.3|~3.0.0"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -1994,7 +2042,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2015-09-27 10:15:37"
+            "time": "2015-10-10 09:36:22"
         },
         {
             "name": "symfony/console",
@@ -2002,12 +2050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "e7e8b85e1018eda3a0dab51d8dc37fd112f90ddb"
+                "reference": "984e13389331cc32d38ed7bd56a62bb4102dd515"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/e7e8b85e1018eda3a0dab51d8dc37fd112f90ddb",
-                "reference": "e7e8b85e1018eda3a0dab51d8dc37fd112f90ddb",
+                "url": "https://api.github.com/repos/symfony/console/zipball/984e13389331cc32d38ed7bd56a62bb4102dd515",
+                "reference": "984e13389331cc32d38ed7bd56a62bb4102dd515",
                 "shasum": ""
             },
             "require": {
@@ -2016,7 +2064,6 @@
             "require-dev": {
                 "psr/log": "~1.0",
                 "symfony/event-dispatcher": "~2.1|~3.0.0",
-                "symfony/phpunit-bridge": "~2.7|~3.0.0",
                 "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
@@ -2051,7 +2098,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-06 17:12:59"
+            "time": "2015-10-10 09:38:45"
         },
         {
             "name": "symfony/filesystem",
@@ -2059,19 +2106,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "52c8da7c882e00b5d6ea6544724bcdcedae560b2"
+                "reference": "482f0ea602dc067197f8e418bf49812b13a73b6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/52c8da7c882e00b5d6ea6544724bcdcedae560b2",
-                "reference": "52c8da7c882e00b5d6ea6544724bcdcedae560b2",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/482f0ea602dc067197f8e418bf49812b13a73b6a",
+                "reference": "482f0ea602dc067197f8e418bf49812b13a73b6a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -2100,7 +2144,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2015-10-07 07:09:15"
+            "time": "2015-10-10 09:36:22"
         },
         {
             "name": "symfony/yaml",
@@ -2630,6 +2674,7 @@
         "friendsofcake/cakepdf": 20,
         "markstory/geshi": 20,
         "dereuromark/cakephp-cache": 20,
+        "cakephp/chronos": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20
