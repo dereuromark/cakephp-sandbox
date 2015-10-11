@@ -10,6 +10,8 @@ php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-inte
 
 chmod +x bin/cake
 
+mkdir -p ./tmp
+mkdir -p ./logs
 mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
