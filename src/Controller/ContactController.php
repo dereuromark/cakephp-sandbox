@@ -4,7 +4,7 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 use Tools\Form\ContactForm;
-use Tools\Network\Email\Email;
+use Tools\Mailer\Email;
 
 class ContactController extends AppController {
 
