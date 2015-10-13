@@ -37,8 +37,8 @@ msgstr ""
 
 # Contact
 
-msgid "contactSuccessfullySent %s"
-msgstr "Your message has been sent - I will respond to the provided address %s"
+msgid "contactSuccessfullySent {0}"
+msgstr "Your message has been sent - I will respond to the provided address {0}"
 
 msgid "contactChoseSubject"
 msgstr "Please chose a subject or define one yourself"
