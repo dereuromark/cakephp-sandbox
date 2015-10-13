@@ -16,11 +16,11 @@ mkdir -p ./logs
 mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
-echo "### ASSETS ###";
-bin/cake AssetCompress.AssetCompress build
-
 echo "### DB MIGRATION ###";
 bin/cake Migrations migrate
+
+echo "### ASSETS ###";
+bin/cake AssetCompress.AssetCompress build
 
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
