@@ -62,7 +62,7 @@ class ExportController extends AppController {
 	/**
 	 * maybe with countries directly?
 	 */
-	public function country_provinces() {
+	public function countryProvinces() {
 		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
 		$countryProvinces = $this->CountryProvince->find('all', ['fields' => []]);
 
@@ -106,7 +106,7 @@ class ExportController extends AppController {
 	/**
 	 *
 	 */
-	public function postal_codes() {
+	public function postalCodes() {
 		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
 		$postalCodes = $this->PostalCode->find('all', ['fields' => []]);
 
@@ -117,7 +117,7 @@ class ExportController extends AppController {
 	/**
 	 * and mime_type_images
 	 */
-	public function mime_types() {
+	public function mimeTypes() {
 	}
 
 }

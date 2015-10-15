@@ -20,7 +20,7 @@ use Cake\Routing\Router;
  * `:action` markers.
  *
  */
-Router::defaultRouteClass('InflectedRoute');
+Router::defaultRouteClass('DashedRoute');
 
 Router::scope('/', function ($routes) {
 	/**
