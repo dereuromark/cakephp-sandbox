@@ -51,9 +51,8 @@
 		"cakephp/debug_kit": "dev-master",
 		"cakephp/bake": "dev-master"
 	},
-	"minimum-stability" : "dev",
 	"preferred-install": "source",
-	"prefer-stable": false,
+	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"App\\": "src",
