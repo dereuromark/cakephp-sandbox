@@ -3,10 +3,10 @@
 
 <?php
 if (!$isRated) {
-    echo $this->Rating->display(array(
+    echo $this->Rating->display([
 		'item' => $post['id'],
-		'url' => array($post['id'])
-	));
+		'url' => [$post['id']]
+	]);
 } else {
 	echo __('You have already rated.');
 	echo $this->Rating->ratingImage($isRated['value']);

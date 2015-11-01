@@ -30,7 +30,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 */
 	public function testIndex() {
 		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 1]]]);
-		$this->get(array('prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index'));
+		$this->get(['prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -42,7 +42,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndexNotAuthenticated() {
-		$this->get(array('prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index'));
+		$this->get(['prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
@@ -55,7 +55,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 */
 	public function testIndexNotAllowed() {
 		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]]);
-		$this->get(array('prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index'));
+		$this->get(['prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
@@ -67,7 +67,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testMyPublicOne() {
-		$this->get(array('prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'myPublicOne'));
+		$this->get(['prefix' => 'admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'myPublicOne']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

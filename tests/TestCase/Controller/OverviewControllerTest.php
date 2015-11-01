@@ -27,7 +27,7 @@ class OverviewControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('controller' => 'Overview', 'action' => 'index'));
+		$this->get(['controller' => 'Overview', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

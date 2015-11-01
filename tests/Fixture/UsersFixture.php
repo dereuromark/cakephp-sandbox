@@ -14,7 +14,7 @@ class UsersFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $fields = array(
+	public $fields = [
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'active' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
 		'last_login' => ['type' => 'datetime', 'null' => true, 'default' => null],
@@ -27,15 +27,15 @@ class UsersFixture extends TestFixture {
 		'role_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
 		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM']
-	);
+	];
 
 	/**
 	 * Records
 	 *
 	 * @var array
 	 */
-	public $records = array(
-		array(
+	public $records = [
+		[
 			'id' => 1,
 			'active' => 1,
 			'last_login' => '2014-04-13 05:10:28',
@@ -46,7 +46,7 @@ class UsersFixture extends TestFixture {
 			'password' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
 			'role_id' => 1
-		),
-	);
+		],
+	];
 
 }

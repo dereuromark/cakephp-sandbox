@@ -27,7 +27,7 @@ class ExportControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('controller' => 'Export', 'action' => 'index'));
+		$this->get(['controller' => 'Export', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

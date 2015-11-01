@@ -16,19 +16,19 @@ Try it:
 
 <h4>Static Map</h4>
 <?php
-$m = $this->markerElements = array(
-	array(
+$m = $this->markerElements = [
+	[
 		'address' => '44.3,11.2',
-	),
-	array(
+	],
+	[
 		'address' => '44.2,11.1',
-	)
-);
-$markers = $this->GoogleMapV3->staticMarkers($m, array('color' => 'red', 'char' => 'C', 'shadow' => 'false'));
+	]
+];
+$markers = $this->GoogleMapV3->staticMarkers($m, ['color' => 'red', 'char' => 'C', 'shadow' => 'false']);
 
-$options = array(
+$options = [
 	'markers' => $markers
-);
+];
 echo $this->GoogleMapV3->staticMap($options);
 ?>
 
@@ -36,19 +36,19 @@ echo $this->GoogleMapV3->staticMap($options);
 <?php
 echo '<script src="'.$this->GoogleMapV3->apiUrl().'"></script>';
 
-$options = array(
+$options = [
 	'zoom' => 6,
 	'type' => 'R',
 	'geolocate' => true,
-	'div' => array('id' => 'someothers'),
-	'map' => array('navOptions' => array('style' => 'SMALL'), 'typeOptions' => array('style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER'))
-);
+	'div' => ['id' => 'someothers'],
+	'map' => ['navOptions' => ['style' => 'SMALL'], 'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']]
+];
 $result = $this->GoogleMapV3->map($options);
-$this->GoogleMapV3->addMarker(array('lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green')));
+$this->GoogleMapV3->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green')]);
 
-$this->GoogleMapV3->addMarker(array('lat' => 47.69847, 'lng' => 11.9514, 'title' => 'Marker2', 'content' => 'Some more Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green', 'E')));
+$this->GoogleMapV3->addMarker(['lat' => 47.69847, 'lng' => 11.9514, 'title' => 'Marker2', 'content' => 'Some more Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green', 'E')]);
 
-$this->GoogleMapV3->addMarker(array('lat' => 47.19847, 'lng' => 11.1514, 'title' => 'Marker3'));
+$this->GoogleMapV3->addMarker(['lat' => 47.19847, 'lng' => 11.1514, 'title' => 'Marker3']);
 
 $result .= $this->GoogleMapV3->script();
 echo $result;

@@ -29,7 +29,7 @@ class BootstrapControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'index'));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

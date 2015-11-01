@@ -29,7 +29,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index'));
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -41,7 +41,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogin() {
-		$this->get(array('plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'login'));
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'login']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

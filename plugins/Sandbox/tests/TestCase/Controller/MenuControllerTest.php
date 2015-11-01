@@ -29,7 +29,7 @@ class MenuControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index'));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

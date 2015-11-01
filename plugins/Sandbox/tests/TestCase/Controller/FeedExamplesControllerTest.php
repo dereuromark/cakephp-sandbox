@@ -30,7 +30,7 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'index'));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -42,7 +42,7 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testFeed() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'feed', '_ext' => 'rss'));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'feed', '_ext' => 'rss']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -54,7 +54,7 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testFeedview() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'feedview', 1));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'feedview', 1]);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

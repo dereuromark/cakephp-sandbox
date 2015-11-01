@@ -29,23 +29,23 @@ class GeoExamplesController extends SandboxAppController {
 	 */
 	public function query() {
 		$this->Geocode = new Geocode();
-		$results = array();
+		$results = [];
 		$country = $this->Countries->newEntity();
 
 		if ($this->Common->isPosted()) {
-			$this->Countries->validator()->add('address', array(
-				'notEmpty' => array(
+			$this->Countries->validator()->add('address', [
+				'notEmpty' => [
 					'rule' => 'notBlank',
 					'message' => 'valErrMandatoryField',
 					'last' => true
-				)));
+				]]);
 			$country = $this->Countries->patchEntity($country, $this->request->data);
 
 			$address = $this->request->data['address'];
-			$settings = array(
+			$settings = [
 				'allow_inconclusive' => $this->request->data['allow_inconclusive'],
 				'min_accuracy' => $this->request->data['min_accuracy']
-			);
+			];
 			$this->Geocode->setOptions($settings);
 
 			if (!$country->errors() && $this->Geocode->geocode($address)) {

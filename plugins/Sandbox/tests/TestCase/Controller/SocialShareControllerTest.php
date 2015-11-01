@@ -27,7 +27,7 @@ class SocialShareControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(array('plugin' => 'Sandbox', 'controller' => 'SocialShare', 'action' => 'index'));
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SocialShare', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

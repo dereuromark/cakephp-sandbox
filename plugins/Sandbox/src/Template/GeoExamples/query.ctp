@@ -6,8 +6,8 @@
 		<legend><?php echo __('Enter Postal Code, City, Address or other Geo Data'); ?></legend>
 	<?php
 		echo $this->Form->input('address');
-		echo $this->Form->input('allow_inconclusive', array('type' => 'checkbox'));
-		echo $this->Form->input('min_accuracy', array());
+		echo $this->Form->input('allow_inconclusive', ['type' => 'checkbox']);
+		echo $this->Form->input('min_accuracy', []);
 	?>
 	</fieldset>
 	<?php echo $this->Form->submit(__('Submit')); ?>
@@ -26,6 +26,6 @@
 <div class="actions">
 	<ul>
 
-		<li><?php echo $this->Html->link(__('Back'), array('action' => 'index'));?></li>
+		<li><?php echo $this->Html->link(__('Back'), ['action' => 'index']);?></li>
 	</ul>
 </div>
