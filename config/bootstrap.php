@@ -172,13 +172,13 @@ Request::addDetector('tablet', function ($request) {
 
 Plugin::loadAll([
 		'Setup' => ['bootstrap' => true],
-		'Tools' => array('bootstrap' => true),
-		'Data' => array('routes' => true),
+		'Tools' => ['bootstrap' => true],
+		'Data' => ['routes' => true],
 		//'Ajax' => array('bootstrap' => true)
-		'Sandbox' => array('routes' => true),
-		'AuthSandbox' => array('routes' => true),
-		'DebugKit' => array('bootstrap' => true),
-		'AssetCompress' => array('bootstrap' => true),
+		'Sandbox' => ['routes' => true],
+		'AuthSandbox' => ['routes' => true],
+		'DebugKit' => ['bootstrap' => true],
+		'AssetCompress' => ['bootstrap' => true],
 		'Cache' => ['bootstrap' => false, 'routes' => true]
 ]);
 
@@ -191,7 +191,7 @@ DispatcherFactory::add('ControllerFactory');
 //DispatcherFactory::add('Shim.Seo');
 DispatcherFactory::add('Cache.Cache');
 
-Router::extensions(array('json', 'xml', 'csv', 'rss', 'pdf'));
+Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 class_alias('Cake\Core\Configure', 'Configure');
 class_alias('Cake\Core\Plugin', 'Plugin');

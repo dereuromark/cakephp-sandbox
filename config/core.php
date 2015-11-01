@@ -17,7 +17,7 @@ use Cake\Log\Log;
 	 */
 	Configure::write('debug', 0);
 	// Enhancement
-	if (!empty($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], array('localhost', 'sandbox.local'))) {
+	if (!empty($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], ['localhost', 'sandbox.local'])) {
 		Configure::write('debug', 2);
 	} elseif (!env('REMOTE_ADDR') || env('REMOTE_ADDR') === '127.0.0.1') {
 		Configure::write('debug', 2);
@@ -38,11 +38,11 @@ use Cake\Log\Log;
 	 *
 	 * @see ErrorHandler for more information on error handling and configuration.
 	 */
-	Configure::write('Error', array(
+	Configure::write('Error', [
 		'handler' => 'ErrorHandler::handleError',
 		'level' => E_ALL & ~E_DEPRECATED,
 		'trace' => true
-	));
+	]);
 
 	/**
 	 * Configure the Exception handler used for uncaught exceptions. By default,
@@ -64,21 +64,21 @@ use Cake\Log\Log;
 	 *
 	 * @see ErrorHandler for more information on exception handling and configuration.
 	 */
-	Configure::write('Exception', array(
+	Configure::write('Exception', [
 		'handler' => 'ErrorHandler::handleException',
 		'renderer' => 'ExceptionRenderer',
 		'log' => true
-	));
+	]);
 
 	/**
 	 * Application wide charset encoding
 	 */
 	Configure::write('App.encoding', 'UTF-8');
 
-Configure::write('Dispatcher.filters', array(
+Configure::write('Dispatcher.filters', [
 	'AssetDispatcher',
 	//'CacheDispatcher'
-));
+]);
 
 	/**
 	 * To configure CakePHP *not* to use mod_rewrite and to
@@ -144,7 +144,7 @@ Configure::write('Dispatcher.filters', array(
 	 *	`manager_index()` and `/manager/controller/index`
 	 *
 	 */
-	Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', ['admin']);
 
 	/**
 	 * Turn off all caching application-wide.
@@ -210,13 +210,13 @@ Configure::write('Dispatcher.filters', array(
 	 * the cake shell command: cake schema create Sessions
 	 *
 	 */
-	Configure::write('Session', array(
+	Configure::write('Session', [
 		'defaults' => 'php',
 		'timeout' => 2000,
 		'cookie' => 'SANDBOX',
 		'cookieTimeout' => 20000,
 		'checkAgent' => true
-	));
+	]);
 
 	/**
 	 * A random string used in security hashing methods.
@@ -353,35 +353,35 @@ if (Configure::read('debug') > 0) {
 // Prefix each application on the same server with a different string, to avoid Memcache and APC conflicts.
 $prefix = 'site_';
 
-Log::config('default', array('engine' => 'FileLog'));
+Log::config('default', ['engine' => 'FileLog']);
 
 /**
  * Configure the cache used for general framework caching. Path information,
  * object listings, and translation cache files are stored with this configuration.
  */
-Cache::config('_cake_core_', array(
+Cache::config('_cake_core_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_core_',
 	'path' => CACHE . 'persistent' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);
 
 /**
  * Configure the cache for model and datasource caches. This cache configuration
  * is used to store schema descriptions, and table listings in connections.
  */
-Cache::config('_cake_model_', array(
+Cache::config('_cake_model_', [
 	'engine' => $engine,
 	'prefix' => $prefix . 'cake_model_',
 	'path' => CACHE . 'models' . DS,
 	'serialize' => ($engine === 'File'),
 	'duration' => $duration
-));
+]);
 
-Cache::config('default', array(
+Cache::config('default', [
 	'engine' => $engine,
 	'serialize' => ($engine === 'File'),
 	'duration' => 31 * DAY,
 	//'path' => CACHE . 'data' . DS,
-));
+]);

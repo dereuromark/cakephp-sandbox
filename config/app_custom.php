@@ -41,33 +41,33 @@ return [
 		],
 	],
 
-	'Config' => array(
+	'Config' => [
 		'adminEmail' => '' // Set in your app_local.php
-	),
+	],
 
-	'App' => array(
+	'App' => [
 		'monitorHeaders' => 1
-	),
+	],
 
-	'FormConfig' => array(
+	'FormConfig' => [
 		'novalidate' => true,
-		'templates' => array(
+		'templates' => [
 			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		)
-	),
+		]
+	],
 
-	'EmailTransport' => array(
-		'default' => array(
+	'EmailTransport' => [
+		'default' => [
 			'className' => 'Smtp',
 			'tls' => true,
 			'port' => 587
-		)
-	),
+		]
+	],
 
-	'Email' => array(
-		'default' => array(
+	'Email' => [
+		'default' => [
 			'from' => ''
-		)
-	)
+		]
+	]
 
 ];

@@ -25,15 +25,15 @@ return [
 		],
 	],
 
-	'Config' => array(
+	'Config' => [
 		'adminEmail' => 'youremail@host.de'
-	),
+	],
 
-	'FormConfig' => array(
+	'FormConfig' => [
 		'novalidate' => true,
-		'templates' => array(
+		'templates' => [
 			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		)
-	)
+		]
+	]
 
 ];

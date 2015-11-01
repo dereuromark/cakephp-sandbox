@@ -28,7 +28,7 @@
 		"friendsofcake/authenticate": "dev-cake3",
 		"friendsofcake/crud-view": "dev-master",
 		"CakeDC/search" : "3.0.*-dev",
-		"cakephp/migrations": "dev-master",
+		"cakephp/migrations": "~1.3",
 		"drmonkeyninja/cakephp-social-share": "dev-master",
 		"gourmet/knp-menu": "dev-master",
 		"markstory/asset_compress" : "3.0.*-dev",
