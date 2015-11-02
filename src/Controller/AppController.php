@@ -70,8 +70,8 @@ class AppController extends Controller {
 		];
 		$this->Auth->config($config);
 
-		// Short-circuit Auth for some controllers
-		if (in_array($this->viewBuilder()->templatePath(), ['Pages'])) {
+		// Short-circuit Auth for some controller
+		if (in_array($this->request->params['controller'], ['Pages'])) {
 			$this->Auth->allow();
 		}
 
