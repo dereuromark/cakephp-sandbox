@@ -73,6 +73,10 @@
 			"url" : "https://github.com/dereuromark/search"
 		}
 	],
+	"scripts": {
+		"post-install-cmd": "App\\Console\\Installer::postInstall",
+		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump"
+	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	}
