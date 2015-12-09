@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"bootstrap": "~3.3",
+		"bootstrapv4": "bootstrap#v4.0.0-alpha.2",
 		"jquery": "~1.10",
 		"font-awesome": "latest",
 		"jquery-ui": "~1.11",
