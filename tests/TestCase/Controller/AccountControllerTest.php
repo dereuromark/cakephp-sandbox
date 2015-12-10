@@ -176,7 +176,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	public function testLostPassword() {
 		$this->skipIf(true);
 
-		$this->get(['controller' => 'Account', 'action' => 'lost_password']);
+		$this->get(['controller' => 'Account', 'action' => 'lostPassword']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -187,9 +187,9 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testChangePasswordInvalid() {
-		$this->get(['controller' => 'Account', 'action' => 'change_password']);
+		$this->get(['controller' => 'Account', 'action' => 'changePassword']);
 		$this->assertResponseCode(302);
-		$this->assertRedirect(['controller' => 'Account', 'action' => 'lost_password']);
+		$this->assertRedirect(['controller' => 'Account', 'action' => 'lostPassword']);
 	}
 
 	/**
@@ -201,7 +201,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$session = ['Auth' => ['Tmp' => ['id' => '1']]];
 		$this->session($session);
 
-		$this->get(['controller' => 'Account', 'action' => 'change_password']);
+		$this->get(['controller' => 'Account', 'action' => 'changePassword']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
@@ -224,7 +224,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'pwd' => '123456',
 			'pwd_repeat' => '123456'
 		];
-		$this->post(['controller' => 'Account', 'action' => 'change_password'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'changePassword'], $data);
 
 		if ($this->_response->statusCode() !== 302) {
 			debug($this->_response->body());

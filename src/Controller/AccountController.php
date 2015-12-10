@@ -12,7 +12,7 @@ class AccountController extends AppController {
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
-		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lost_password', 'change_password']);
+		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lostPassword', 'changePassword']);
 	}
 
 	/**
@@ -65,7 +65,7 @@ class AccountController extends AppController {
 	 * @param string $key
 	 * @return void
 	 */
-	public function lost_password($key = null) {
+	public function lostPassword($key = null) {
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
 		} elseif (!empty($key)) {
@@ -138,7 +138,7 @@ class AccountController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function change_password() {
+	public function changePassword() {
 		$uid = $this->Session->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
