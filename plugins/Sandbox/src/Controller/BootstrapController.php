@@ -28,9 +28,6 @@ class BootstrapController extends SandboxAppController {
 		$this->Auth->allow();
 		parent::beforeFilter($event);
 
-		if ($this->request->pass[0] == 'v4') {
-			$this->viewBuilder()->layout('bootstrap-alpha');
-		}
 	}
 
 	public function index() {
