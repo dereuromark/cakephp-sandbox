@@ -27,6 +27,7 @@ class BootstrapController extends SandboxAppController {
 
 		$this->Auth->allow();
 		parent::beforeFilter($event);
+
 	}
 
 	public function index() {

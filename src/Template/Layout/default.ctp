@@ -15,15 +15,25 @@ echo $this->Html->charset();
 <?php
 echo $this->Html->meta('icon');
 echo $this->fetch('meta');
+if (!empty($this->request->query['assets'])) {
+	switch ($this->request->query['assets']) {
+		case 'bootstrap-alpha':
+			echo $this->AssetCompress->css('bootstrap-alpha');
+			echo $this->AssetCompress->script('js-combined');
+			echo $this->fetch('css');
+			echo $this->fetch('js');
+		break;
+	}
+}
+else {
+	echo $this->AssetCompress->css('css-combined');
+	//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
+	echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
+	echo $this->fetch('css');
 
-echo $this->AssetCompress->css('css-combined');
-//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
-echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
-echo $this->fetch('css');
-
-echo $this->AssetCompress->script('js-combined');
-echo $this->fetch('script');
-
+	echo $this->AssetCompress->script('js-combined');
+	echo $this->fetch('script');
+}
 ?>
 </head>
 <body>
