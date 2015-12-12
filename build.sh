@@ -20,6 +20,7 @@ echo "### DB MIGRATION ###";
 bin/cake Migrations migrate
 
 echo "### ASSETS ###";
+bower install --allow-root
 bin/cake AssetCompress.AssetCompress build
 
 echo "### CLEANUP ###";
