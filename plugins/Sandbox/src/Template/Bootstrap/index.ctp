@@ -4,4 +4,4 @@
 
 <h2>Bootstrap V4 (experimental!)</h2>
 
-<?php echo $this->element('Sandbox.actions',['arguments' => ['assets' => 'bootstrap-alpha']]); ?>
+<?php echo $this->element('Sandbox.actions', ['arguments' => ['assets' => 'bootstrap-alpha']]); ?>
