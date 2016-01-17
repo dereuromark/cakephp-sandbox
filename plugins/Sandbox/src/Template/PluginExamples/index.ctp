@@ -39,6 +39,11 @@
 	<div class="col-xs-6">
 		<h3>Other plugins</h3>
 
+		<h4>CsvViewPlugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('CSV export and CakePHP', ['controller' => 'csv', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>AssetCompress Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('AssetCompress and CakePHP', ['controller' => 'asset_compress_examples', 'action' => 'index']); ?></li>
