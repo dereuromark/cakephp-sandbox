@@ -1,6 +1,8 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Network\Exception\NotFoundException;
+
 class ExamplesController extends SandboxAppController {
 
 	public $helpers = ['Geshi.Geshi'];
@@ -23,6 +25,7 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	public function geshi() {
+		throw new NotFoundException('Currently disabled because they cannot provide a stable composer tag.');
 	}
 
 	public function params() {

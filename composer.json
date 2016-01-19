@@ -1,7 +1,6 @@
 {
 	"name": "dereuromark/cakephp-sandbox",
 	"description": "A CakePHP Sandbox App",
-	"minimum-stability": "dev",
 	"homepage" : "http://sandbox.dereuromark.de/",
 	"authors": [
 		{
@@ -40,12 +39,12 @@
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"friendsofcake/cakepdf": "3.0.*-dev",
-		"markstory/geshi": "dev-master",
 		"friendsofcake/bootstrap-ui": "0.*",
 		"dereuromark/cakephp-cache": "dev-master",
 		"symfony/filesystem": "2.*",
 		"cakephp/chronos": "dev-master",
-		"friendsofcake/cakephp-csvview": "^2.2"
+		"friendsofcake/cakephp-csvview": "^2.2",
+		"dereuromark/cakephp-hashid": "dev-develop"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",

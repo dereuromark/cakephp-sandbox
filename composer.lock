@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "54e1796c283dd7439435b6bdb9c841c6",
-    "content-hash": "4ee3afe530ba9d3a80df6478cbd351ae",
+    "hash": "26ad4afc97f09a56b55e14825a877ef4",
+    "content-hash": "61fc59fc160f9b8b1644dff857ead02d",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -623,6 +623,52 @@
             "time": "2016-01-07 21:13:11"
         },
         {
+            "name": "dereuromark/cakephp-hashid",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-hashid.git",
+                "reference": "ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e",
+                "reference": "ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "hashids/hashids": "^1.0",
+                "php": ">=5.4"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Hashid\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin to allow using hashids instead of numeric primary keys.",
+            "homepage": "https://github.com/dereuromark/cakephp-hashid",
+            "keywords": [
+                "Behavior",
+                "cakephp",
+                "hashids",
+                "plugin"
+            ],
+            "time": "2016-01-19 00:27:17"
+        },
+        {
             "name": "dereuromark/cakephp-queue",
             "version": "dev-master",
             "source": {
@@ -884,12 +930,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "2de222e222bf20dbf4fc39a368b1c775ba17334d"
+                "reference": "061af188ec487950924db6f1ee94dbf1821b3918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/2de222e222bf20dbf4fc39a368b1c775ba17334d",
-                "reference": "2de222e222bf20dbf4fc39a368b1c775ba17334d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/061af188ec487950924db6f1ee94dbf1821b3918",
+                "reference": "061af188ec487950924db6f1ee94dbf1821b3918",
                 "shasum": ""
             },
             "require": {
@@ -932,7 +978,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2016-01-17 13:52:47"
+            "time": "2016-01-18 23:50:19"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
@@ -1330,43 +1376,6 @@
             "time": "2015-12-28 07:25:52"
         },
         {
-            "name": "geshi/geshi",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/GeSHi/geshi-1.0.git",
-                "reference": "d9cfd3e0cc9b24e6bd3045a4d222e651e68accd8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/GeSHi/geshi-1.0/zipball/d9cfd3e0cc9b24e6bd3045a4d222e651e68accd8",
-                "reference": "d9cfd3e0cc9b24e6bd3045a4d222e651e68accd8",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/geshi/",
-                    "src/geshi.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Benny Baumann",
-                    "email": "BenBE@geshi.org",
-                    "homepage": "http://blog.benny-baumann.de/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Generic Syntax Highlighter",
-            "homepage": "http://qbnz.com/highlighter/",
-            "time": "2014-11-03 21:20:34"
-        },
-        {
             "name": "gourmet/knp-menu",
             "version": "dev-master",
             "source": {
@@ -1412,6 +1421,63 @@
                 "menu"
             ],
             "time": "2015-07-21 17:11:50"
+        },
+        {
+            "name": "hashids/hashids",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ivanakimov/hashids.php.git",
+                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/991a88b01b01b053fbd39a56780a66e572f1dc1a",
+                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Hashids": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Akimov",
+                    "email": "ivan@barreleye.com",
+                    "homepage": "https://twitter.com/IvanAkimov"
+                }
+            ],
+            "description": "Generate hashids like YouTube or Bitly from numbers to obfuscate your database primary ids, or navigate to the right shard.",
+            "homepage": "http://hashids.org/php",
+            "keywords": [
+                "bitly",
+                "decrypt",
+                "encrypt",
+                "hash",
+                "hashid",
+                "hashids",
+                "ids",
+                "obfuscate",
+                "youtube"
+            ],
+            "time": "2015-01-21 00:49:41"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -1687,66 +1753,17 @@
             "time": "2015-04-24 16:35:23"
         },
         {
-            "name": "markstory/geshi",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/markstory/cakephp_geshi.git",
-                "reference": "c9d00a4d3849db4d196029e1fae6efd835f082d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/markstory/cakephp_geshi/zipball/c9d00a4d3849db4d196029e1fae6efd835f082d2",
-                "reference": "c9d00a4d3849db4d196029e1fae6efd835f082d2",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0",
-                "cakephp/plugin-installer": "*",
-                "geshi/geshi": "dev-master"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Geshi\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Story",
-                    "homepage": "http://mark-story.com",
-                    "role": "Author"
-                }
-            ],
-            "description": "CakePHP plugin that integrates with Geshi Syntax highlighter.",
-            "homepage": "https://github.com/markstory/cakephp_geshi",
-            "keywords": [
-                "cakephp",
-                "geshi",
-                "helper",
-                "highlighting"
-            ],
-            "time": "2015-08-31 03:11:57"
-        },
-        {
             "name": "markstory/mini-asset",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/mini-asset.git",
-                "reference": "69c7ef7acc28eb02f072ac2b6d345a1f21918424"
+                "reference": "e895d826e8e918f9bd3445a8dce62db0902d2ae7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/69c7ef7acc28eb02f072ac2b6d345a1f21918424",
-                "reference": "69c7ef7acc28eb02f072ac2b6d345a1f21918424",
+                "url": "https://api.github.com/repos/markstory/mini-asset/zipball/e895d826e8e918f9bd3445a8dce62db0902d2ae7",
+                "reference": "e895d826e8e918f9bd3445a8dce62db0902d2ae7",
                 "shasum": ""
             },
             "require": {
@@ -1757,10 +1774,10 @@
                 "squizlabs/php_codesniffer": "*"
             },
             "suggest": {
-                "leafo/lessphp": "For using the LessPHP filter.",
                 "leafo/scssphp": "For using the ScssPHP filter.",
                 "linkorb/jsmin-php": "For using the JSMin filter.",
                 "natxet/CssMin": "For using the CssMin filter.",
+                "oyejorge/less.php": "For using the LessDotPHP filter, see https://github.com/oyejorge/less.php",
                 "tedivm/jshrink": "For using the JShrink filter."
             },
             "bin": [
@@ -1793,7 +1810,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2015-08-02 15:07:59"
+            "time": "2016-01-17 22:59:24"
         },
         {
             "name": "mobiledetect/mobiledetectlib",
@@ -2818,7 +2835,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
@@ -2838,9 +2855,9 @@
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-ratings": 20,
         "friendsofcake/cakepdf": 20,
-        "markstory/geshi": 20,
         "dereuromark/cakephp-cache": 20,
         "cakephp/chronos": 20,
+        "dereuromark/cakephp-hashid": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20

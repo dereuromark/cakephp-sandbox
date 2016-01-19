@@ -30,7 +30,7 @@ class CsvController extends SandboxAppController {
 	}
 
 	/**
-	 * AjaxExamplesController::simple()
+	 * Simple CSV
 	 *
 	 * @return void
 	 */
@@ -53,13 +53,7 @@ class CsvController extends SandboxAppController {
 	}
 
 	/**
-	 * AJAX Pagination example.
-	 *
-	 * When the request is ajax, just render the container,
-	 * otherwise include the container ctp as element in the main ctp.
-	 *
-	 * The JS could probably be simplified or made more generic to be put
-	 * in a central location and used for all paginations across the website.
+	 * Pagination example with CSV export.
 	 *
 	 * @return void
 	 */

@@ -6,7 +6,7 @@ use Cake\ORM\TableRegistry;
 
 class ToolsExamplesController extends SandboxAppController {
 
-	public $helpers = ['Geshi.Geshi'];
+	//public $helpers = ['Geshi.Geshi'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);

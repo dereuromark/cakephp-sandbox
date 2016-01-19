@@ -1,4 +1,4 @@
-<table class="list" width="100%">
+<table class="table list" width="100%">
 <tr>
 	<th><?php echo $this->Paginator->sort('sort', $this->Format->icon('filter'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>
