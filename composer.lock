@@ -628,12 +628,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-hashid.git",
-                "reference": "ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e"
+                "reference": "cbc2032d04f12b8629dda26aa7bf4e9ef586786f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e",
-                "reference": "ff9f4f30f1ed8ebeb36a35ca109f06286ff2ee5e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/cbc2032d04f12b8629dda26aa7bf4e9ef586786f",
+                "reference": "cbc2032d04f12b8629dda26aa7bf4e9ef586786f",
                 "shasum": ""
             },
             "require": {
@@ -666,7 +666,7 @@
                 "hashids",
                 "plugin"
             ],
-            "time": "2016-01-19 00:27:17"
+            "time": "2016-01-19 01:14:23"
         },
         {
             "name": "dereuromark/cakephp-queue",

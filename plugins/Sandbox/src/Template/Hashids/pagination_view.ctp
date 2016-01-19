@@ -1,4 +1,6 @@
 <div class="page index">
+
+
 <h2><?php echo h($country['name']);?></h2>
 
 	<table class="table list" width="100%">
@@ -25,5 +27,5 @@
 
 
 <ul>
-	<li><?php echo $this->Html->link('Back', ['action' => 'pagination']); ?></li>
+	<li><?php echo $this->Html->link('Back', ['action' => 'pagination', '?' => $this->request->query]); ?></li>
 </ul>

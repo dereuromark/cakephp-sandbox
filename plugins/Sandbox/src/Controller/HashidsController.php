@@ -1,6 +1,7 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
@@ -11,6 +12,11 @@ class HashidsController extends SandboxAppController {
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
+
+		Configure::write('Hashid.debug', false);
+		if ($this->request->query('debug')) {
+			Configure::write('Hashid.debug', true);
+		}
 
 		$this->Auth->allow();
 	}
