@@ -50,5 +50,6 @@
 
 <h3>Key Goals for the Hashids and working with entities</h3>
 <ul>
-	<li>Same controller and view code, no need to make extra actions.</li>
+	<li>Same controller and view code, no need to make extra actions. Activate/Deactivate with a config switch.</li>
+	<li>Auto-Debug mode feature to see the actual primary key id appended after a dash (hashid-id).</li>
 </ul>
