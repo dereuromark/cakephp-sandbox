@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "26ad4afc97f09a56b55e14825a877ef4",
-    "content-hash": "61fc59fc160f9b8b1644dff857ead02d",
+    "hash": "e16a19754845e7f28f4127ac06f011d7",
+    "content-hash": "33d85d3b2bfd8dd204c3431f6d3ae885",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -581,12 +581,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "5e7ddad2d4f79119319b4a1ee760cc16947a52d9"
+                "reference": "b0d1e20acf08228f9c4ffd743ceb3bf09f912cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/5e7ddad2d4f79119319b4a1ee760cc16947a52d9",
-                "reference": "5e7ddad2d4f79119319b4a1ee760cc16947a52d9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/b0d1e20acf08228f9c4ffd743ceb3bf09f912cfa",
+                "reference": "b0d1e20acf08228f9c4ffd743ceb3bf09f912cfa",
                 "shasum": ""
             },
             "require": {
@@ -620,20 +620,20 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2016-01-07 21:13:11"
+            "time": "2016-01-20 13:24:05"
         },
         {
             "name": "dereuromark/cakephp-hashid",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-hashid.git",
-                "reference": "cbc2032d04f12b8629dda26aa7bf4e9ef586786f"
+                "reference": "c1fe55cba7d4bf178b39b02bdbf1ebb563e06779"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/cbc2032d04f12b8629dda26aa7bf4e9ef586786f",
-                "reference": "cbc2032d04f12b8629dda26aa7bf4e9ef586786f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/c1fe55cba7d4bf178b39b02bdbf1ebb563e06779",
+                "reference": "c1fe55cba7d4bf178b39b02bdbf1ebb563e06779",
                 "shasum": ""
             },
             "require": {
@@ -666,7 +666,7 @@
                 "hashids",
                 "plugin"
             ],
-            "time": "2016-01-19 01:14:23"
+            "time": "2016-01-20 01:14:24"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -1173,16 +1173,16 @@
         },
         {
             "name": "friendsofcake/cakephp-csvview",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/cakephp-csvview.git",
-                "reference": "0444c4c7b3ae227d2acbd5c753d5f1e402c966ac"
+                "reference": "ef829a095991d777f3b04c4cb0ae0be7b5257f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/0444c4c7b3ae227d2acbd5c753d5f1e402c966ac",
-                "reference": "0444c4c7b3ae227d2acbd5c753d5f1e402c966ac",
+                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/ef829a095991d777f3b04c4cb0ae0be7b5257f19",
+                "reference": "ef829a095991d777f3b04c4cb0ae0be7b5257f19",
                 "shasum": ""
             },
             "require": {
@@ -1240,7 +1240,7 @@
                 "export",
                 "view"
             ],
-            "time": "2016-01-16 22:54:27"
+            "time": "2016-01-20 20:59:55"
         },
         {
             "name": "friendsofcake/crud",
@@ -1424,23 +1424,23 @@
         },
         {
             "name": "hashids/hashids",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ivanakimov/hashids.php.git",
-                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a"
+                "reference": "6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/991a88b01b01b053fbd39a56780a66e572f1dc1a",
-                "reference": "991a88b01b01b053fbd39a56780a66e572f1dc1a",
+                "url": "https://api.github.com/repos/ivanakimov/hashids.php/zipball/6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c",
+                "reference": "6bd7ceffb2ccddef6cd64e88f1717f97d131cc3c",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "3.7.*"
+                "phpunit/phpunit": "^4.8 || ^5.0"
             },
             "type": "library",
             "extra": {
@@ -1449,8 +1449,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Hashids": "lib/"
+                "psr-4": {
+                    "Hashids\\": "lib/Hashids/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1464,12 +1464,12 @@
                     "homepage": "https://twitter.com/IvanAkimov"
                 }
             ],
-            "description": "Generate hashids like YouTube or Bitly from numbers to obfuscate your database primary ids, or navigate to the right shard.",
+            "description": "Generate short, unique, non-sequential ids (like YouTube and Bitly) from numbers.",
             "homepage": "http://hashids.org/php",
             "keywords": [
                 "bitly",
-                "decrypt",
-                "encrypt",
+                "decode",
+                "encode",
                 "hash",
                 "hashid",
                 "hashids",
@@ -1477,7 +1477,7 @@
                 "obfuscate",
                 "youtube"
             ],
-            "time": "2015-01-21 00:49:41"
+            "time": "2016-01-21 04:26:38"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -2381,12 +2381,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "d340817d279b6cdfee7b4b5cd9c7591ebabb4c48"
+                "reference": "fddd652388072ea2e917100c0da0b6f04e257820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/d340817d279b6cdfee7b4b5cd9c7591ebabb4c48",
-                "reference": "d340817d279b6cdfee7b4b5cd9c7591ebabb4c48",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/fddd652388072ea2e917100c0da0b6f04e257820",
+                "reference": "fddd652388072ea2e917100c0da0b6f04e257820",
                 "shasum": ""
             },
             "require": {
@@ -2419,7 +2419,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2016-01-09 18:30:19"
+            "time": "2016-01-19 17:29:15"
         },
         {
             "name": "cakephp/debug_kit",
