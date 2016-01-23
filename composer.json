@@ -44,7 +44,8 @@
 		"symfony/filesystem": "2.*",
 		"cakephp/chronos": "dev-master",
 		"friendsofcake/cakephp-csvview": "^2.2",
-		"dereuromark/cakephp-hashid": "dev-master"
+		"dereuromark/cakephp-hashid": "dev-master",
+		"dereuromark/cakephp-markup": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",

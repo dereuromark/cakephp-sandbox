@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
+use Cake\I18n\Time;
 use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 
@@ -72,6 +73,8 @@ class CsvController extends SandboxAppController {
 		$this->set(compact('countries'));
 
 		if (!empty($this->request->params['_ext'])) {
+			Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
+
 			$_serialize = 'countries';
 			$_null = '';
 			$_header = ['Name', 'ISO2', 'ISO3', 'Modified'];

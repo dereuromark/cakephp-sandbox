@@ -5,7 +5,7 @@ use Cake\Event\Event;
 
 class JqueryExamplesController extends SandboxAppController {
 
-	public $helpers = ['Geshi.Geshi'];
+	public $helpers = ['Markup.Highlighter'];
 
 	public $uses = [];
 

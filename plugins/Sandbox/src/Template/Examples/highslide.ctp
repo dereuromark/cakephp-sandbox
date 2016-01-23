@@ -22,7 +22,7 @@ Also notice that all highslides on this page are images - for html/ajax/swl cont
 Take a onclick=""-attribute and insert the following code (here inside a link):
 <?php
 $dataPrint = '<a href="IMAGE.EXT" onclick="<?php echo $this->Highslide->onclick()?>"/>';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 It uses the href-tag for the image path and opens the link just as a normal one, if JS is not activated.<br />
 I didn't use the html-&gt;image() helper-function to show the simple onclick element.
@@ -32,7 +32,7 @@ I didn't use the html-&gt;image() helper-function to show the simple onclick ele
 If you dont want to use this fallback-feature, set it manually in the options array:
 <?php
 $dataPrint = '.. onclick="<?php echo $this->Highslide->onclick(array(\'src\'=>\'IMAGE.EXT\'))?>" ..';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 Results can be:<br /><br />
@@ -52,13 +52,13 @@ $dataPrint = '<?php echo $this->Html->image(\'icons/loupe.gif\', array(
 	\'onclick\'=>$this->Highslide->onclick(array(\'src\'=>\'IMAGE.EXT\')),
 	\'class\'=>\'pointer\')
 );?>';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 
 <br />
 
-<h3 id="h3_advaced">Advanced Examples</h2>
+<h3 id="h3_advaced">Advanced Examples</h3>
 If you use the options array, you are able to set a hole bunch of settings at runtime - and for just this one specific highslide tag.
 <?php
 $dataPrint = '1: captioning
@@ -85,7 +85,7 @@ false);?>
 		\'outlineType\'=>\'glossy-dark\',\'dimmingOpacity\'=>0.70))),
 null,
 false);?>';
-echo $this->Geshi->highlightText($dataPrint, 'php');?>
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);?>
 Results in:
 
 <br />
@@ -103,7 +103,7 @@ Click on the following icons to see the effects:
 
 <br />
 
-<h3 id="h3_advaced">Full reference on the specific options</h2>
+<h3 id="h3_advaced">Full reference on the specific options</h3>
 they are all set to NULL - but could be set to some value as well...
 <?php
 $dataPrint = '\'allowSizeReduction\'=>null,
@@ -141,12 +141,12 @@ $dataPrint = '\'allowSizeReduction\'=>null,
 /* sometimes both overlay and option */
 \'thumbnailId\'=>null,
 \'slideshowGroup\'=>null';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 
 
-<h3 id="h3_advaced">Overlays</h2>
+<h3 id="h3_advaced">Overlays</h3>
 First of all, you have to register the overlays you want to use:
 
 <?php
@@ -161,7 +161,7 @@ $dataPrint = 'echo $this->Highslide->registerOverlay(array(
 	\'opacity\'=>\'0.8\'
 	),
 \'forfun\'=>array()));';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 <a class="display" href="javascript:void(0)" onclick="toggleMe('example-1')">Show the html/javascript output</a>
@@ -183,7 +183,7 @@ hs.registerOverlay({
 	});
 }
 </script>';
-echo $this->Geshi->highlightText($dataPrint, 'javascript');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
 </div>
 
@@ -200,14 +200,14 @@ $dataPrint = 'echo $this->Html->link($this->Html->image(\'cake.icon.gif\', array
 	\'id\'=>\'my-thumb\'),
 null,
 false);';
-echo $this->Geshi->highlightText($dataPrint, 'javascript');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
 
 <?php
 $dataPrint = 'echo $this->Highslide->overlay(array(
 \'my-caption\'=>array(
 	\'content\'=>\'a header or description\')));';
-echo $this->Geshi->highlightText($dataPrint, 'javascript');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
 
 <?php echo $this->Highslide->overlay(['my-caption' => ['content' => 'a header or description']])?>

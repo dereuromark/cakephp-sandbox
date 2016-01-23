@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e16a19754845e7f28f4127ac06f011d7",
-    "content-hash": "33d85d3b2bfd8dd204c3431f6d3ae885",
+    "hash": "433923aa35a3173a353b33fd040ab77f",
+    "content-hash": "72cd462616e14a985dc62fe0a63da7db",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -667,6 +667,51 @@
                 "plugin"
             ],
             "time": "2016-01-20 01:14:24"
+        },
+        {
+            "name": "dereuromark/cakephp-markup",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-markup.git",
+                "reference": "40ec4f2715215f31d5b000bd4e572891331cb192"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/40ec4f2715215f31d5b000bd4e572891331cb192",
+                "reference": "40ec4f2715215f31d5b000bd4e572891331cb192",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "php": ">=5.4"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Markup\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "CakePHP plugin for markup (parsing and displaying)",
+            "homepage": "https://github.com/dereuromark/cakephp-markup",
+            "keywords": [
+                "cakephp",
+                "highlighting",
+                "markup",
+                "plugin"
+            ],
+            "time": "2016-01-23 00:50:06"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -2858,6 +2903,7 @@
         "dereuromark/cakephp-cache": 20,
         "cakephp/chronos": 20,
         "dereuromark/cakephp-hashid": 20,
+        "dereuromark/cakephp-markup": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20

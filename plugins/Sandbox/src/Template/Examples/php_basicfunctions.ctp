@@ -24,7 +24,7 @@ $var6=\' \';		// whitespace
 $var7=\'something\';
 $var8=array();		// empty array
 $var9=\'0\';';
-echo $this->Geshi->highlightText($dataPrint, 'php')
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php'])
 ?>
 Lets test them...
 <br />
@@ -153,7 +153,7 @@ foreach ($vars as $var => $v)
 }
 ?>
 	</table>
-</td></tr></table>	
+</td></tr></table>
 
 <br />
 Ok, not that interesting :)<br />
@@ -173,6 +173,6 @@ $y=trim($y);
 
 if (!empty($x) && !empty($y))
 {
-	...	
+	...
 }';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);

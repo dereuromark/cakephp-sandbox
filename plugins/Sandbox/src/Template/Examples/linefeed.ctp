@@ -32,7 +32,7 @@ echo 'dfdf' . LF . 'dfsdfd';
 $string = 'SomeText' . NL . 'NewLineStart' . NL . NL . 'NewParagrahStart' . LF . 'With PHP Linefeed' . CR . 'CarriageReturn Tryout';
 $dataPrint = '$v=\'SomeText\nNewLineStart\n\nNewParagrahStart\r\nWith PHP Linefeed\rCarriageReturn Tryout\';
 // the PHP Linefeed depens on the system...';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 <b>nl2br():</b>
@@ -50,7 +50,7 @@ It clearly shows, that it is better to use the PHP function nl2br() for that. It
 <br /><br />
 <b>Notice:</b> for str_replace it is "\n" - and not '\n' (does not work)
 <?php
-echo $this->Geshi->highlightText('str_replace("\n",\'<br />\', $string);', 'php');
+echo $this->Highlighter->highlight('str_replace("\n",\'<br />\', $string);', 'php');
 ?>
 
 <br />

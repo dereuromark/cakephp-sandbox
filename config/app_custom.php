@@ -68,6 +68,10 @@ return [
 		'default' => [
 			'from' => ''
 		]
+	],
+
+	'Highlighter' => [
+		'highlighter' => 'Markup\Highlighter\JsHighlighter'
 	]
 
 ];

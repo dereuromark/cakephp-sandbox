@@ -43,14 +43,14 @@ $dataPrint = '$(document).ready(function() {
 	}).keyup();
 
 });';
-echo $this->Geshi->highlightText($dataPrint, 'javascript');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
 Notice: Due to security issues i did not allow html content. that would be so if you change the following line:
 <?php
 $dataPrint = '		$("p").text(value);
 	/* into */
 		$("p").html(value);';
-echo $this->Geshi->highlightText($dataPrint, 'javascript');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
 
 <br />

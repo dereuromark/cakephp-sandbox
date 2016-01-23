@@ -12,10 +12,22 @@ So not checking on the type and blindly using it in stringish operations can cur
 $data = <<<'TEXT'
 $result = 'string' . $this->request->query('key'); // Dangerous without checking if set and a string
 TEXT;
-echo $this->Geshi->highlightText($data, 'php');
+echo $this->Highlighter->highlight($data, ['lang' => 'php']);
 ?>
 
 So with the current implementation of how query strings (and named params) work, one should always assert the correct type first:
+
+<!--
+<?php
+echo time();
+?>
+!>
+
+```php
+dfsf<?php
+echo time(); ?>
+```
+
 <?php
 $data = <<<'TEXT'
 $key = $this->request->query('key');
@@ -24,9 +36,9 @@ if (is_array($key)) { // Or: if (!is_scalar($key))
 }
 $result = 'string' . $this->request->query('key'); // Dangerous without checking if a stringish (=scalar) value
 TEXT;
-echo $this->Geshi->highlightText($data, 'php');
+echo $this->Highlighter->highlight($data, ['lang' => 'php']);
 ?>
-Annoying - I know. That's why I opened a <a href="https://github.com/cakephp/cakephp/issues/2223">ticket regarding this issue</a>.
+I opened a <a href="https://github.com/cakephp/cakephp/issues/2223">ticket regarding this issue</a>.
 
 <h3>Demo/Example</h3>
 <?php

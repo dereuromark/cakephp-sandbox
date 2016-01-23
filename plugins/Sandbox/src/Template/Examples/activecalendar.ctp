@@ -44,7 +44,7 @@ This is done by the following function:
 $dataPrint = '$this->Activecalendar->includeFiles(); // includes default js and css files
 ## or ##
 $this->Activecalendar->includeFiles(\'' . $activeStyle . '\'); // specific style';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 <h2>Example</h2>
@@ -56,7 +56,7 @@ $dataPrint = 'echo $this->Form->input(\'published\', array(
 	\'class\'=>\'datepicker\',
 	\'id\'=>$this->Activecalendar->setId() // this needs to be added each time
 	));';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 
@@ -77,7 +77,7 @@ $dataPrint = 'a) \'id\'=>$this->Activecalendar->setId(\'DD-MM-YYYY\') // reverse
 b) \'id\'=>$this->Activecalendar->setId(\'MM/DD/YYYY\') // american
 c) \'id\'=>$this->Activecalendar->setId(\'DD.MM.YYYY\')	// german
 ';
-echo $this->Geshi->highlightText($dataPrint, 'php');
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 <?php

@@ -8,7 +8,7 @@ use Cake\Utility\Hash;
 
 class CakeExamplesController extends SandboxAppController {
 
-	public $helpers = ['Geshi.Geshi'];
+	public $helpers = ['Markup.Highlighter'];
 
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
