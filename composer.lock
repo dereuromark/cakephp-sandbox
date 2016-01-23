@@ -674,12 +674,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "40ec4f2715215f31d5b000bd4e572891331cb192"
+                "reference": "c10f8a0e00049197765ac0b4a633dc27828bfff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/40ec4f2715215f31d5b000bd4e572891331cb192",
-                "reference": "40ec4f2715215f31d5b000bd4e572891331cb192",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/c10f8a0e00049197765ac0b4a633dc27828bfff9",
+                "reference": "c10f8a0e00049197765ac0b4a633dc27828bfff9",
                 "shasum": ""
             },
             "require": {
@@ -711,7 +711,7 @@
                 "markup",
                 "plugin"
             ],
-            "time": "2016-01-23 00:50:06"
+            "time": "2016-01-23 01:42:42"
         },
         {
             "name": "dereuromark/cakephp-queue",

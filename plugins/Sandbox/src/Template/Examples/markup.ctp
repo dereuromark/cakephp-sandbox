@@ -36,14 +36,14 @@ div.paging span {
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'css']);
 
 $dataPrint = 'function toggleMe(id) {
- var e=document.getElementById(id);
- if (!e)return true;
- if (e.style.display=="none") {
-	e.style.display="block"
- } else {
-	e.style.display="none"
- }
- return true;
+	var e=document.getElementById(id);
+	if (!e)return true;
+	if (e.style.display=="none") {
+		e.style.display="block"
+	} else {
+		e.style.display="none"
+	}
+	return true;
 }';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 
@@ -56,7 +56,7 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'html4strict']);
 $dataPrint = 'SELECT * FROM `telbuch_types`
 WHERE `user_name` = \'testmensch\'
 ORDER BY userid ASC LIMIT 0 , 30 ';
-echo $this->Highlighter->highlight($dataPrint, ['lang' => 'mysql']);
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'sql']);
 
 $dataPrint = '<addresses>
  <person>
@@ -78,11 +78,31 @@ $dataPrint = '<addresses>
 </addresses>';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'xml']);
 
-$dataPrint = 'User-agent: EmailCollector
-Disallow: /
+$dataPrint = '# hello world
 
-User-Agent: *
-Disallow: /verzeichnis3/';
-echo $this->Highlighter->highlight($dataPrint, ['lang' => 'robots']);
+you can write text [with links](http://example.com) inline or [link references][1].
 
+* one _thing_ has *em*phasis
+* two __things__ are **bold**
 
+[1]: http://example.com
+
+---
+
+hello world
+===========
+
+<this_is inline="xml"></this_is>
+
+> markdown is so cool
+
+    so are code segments
+
+1. one thing (yeah!)
+2. two thing `i can write code`, and `more` wipee!';
+echo $this->Highlighter->highlight($dataPrint, ['lang' => 'markdown']);
+?>
+
+<p>
+More examples directly at <a href="https://highlightjs.org/static/demo/" target="_blank">highlightjs.org/static/demo</a>
+</p>
