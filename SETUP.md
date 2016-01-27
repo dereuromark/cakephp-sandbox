@@ -9,11 +9,6 @@ First, clone the repo into a root folder:
 	git clone https://github.com/dereuromark/cakephp-sandbox.git
 
 Then make sure, core + all plugins are also available.
-This should be done using composer from your application dir:
-
-	composer update
-
-and from there on
 
 	composer install
 
