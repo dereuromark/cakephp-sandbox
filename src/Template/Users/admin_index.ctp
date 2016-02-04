@@ -6,13 +6,13 @@ echo $this->Paginator->counter([
 'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%')
 ]);
 ?></p>
-<table class="list">
+<table class="table list">
 <tr>
 	<th><?php echo $this->Paginator->sort('username');?></th>
 	<th><?php echo $this->Paginator->sort('email');?></th>
 	<th><?php echo $this->Paginator->sort('created', null, ['direction' => 'desc']);?></th>
 	<th><?php echo $this->Paginator->sort('logins');?></th>
-	
+
 	<th class="actions"><?php echo __('Actions');?></th>
 </tr>
 <?php
@@ -31,7 +31,7 @@ foreach ($users as $user):
 		<td>
 			<?php echo $user['User']['logins']; ?>
 		</td>
-		
+
 		<td class="actions">
 			<?php echo $this->Html->link(__('Edit'), ['action'=>'edit', $user['User']['id']]); ?>
 			<?php echo $this->Form->postLink(__('Delete'), ['action'=>'delete', $user['User']['id']], ['confirm' => __('Are you sure you want to delete # {0}?', $user['User']['id'])]); ?>

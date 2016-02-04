@@ -1,5 +1,10 @@
 <?php
-	echo $this->Html->css('Sandbox.highlighting/github.css');
+if ($this->request->query('dark')) {
+	$file = '//highlightjs.org/static/demo/styles/hybrid.css';
+} else {
+	$file = 'Sandbox.highlighting/github.css';
+}
+echo $this->Html->css($file);
 ?>
 
 <script src="https://highlightjs.org/static/highlight.pack.js"></script>
@@ -104,5 +109,5 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'markdown']);
 ?>
 
 <p>
-More examples directly at <a href="https://highlightjs.org/static/demo/" target="_blank">highlightjs.org/static/demo</a>
+<?php echo $this->Html->link('Dark Theme', ['?' => ['dark' => 1]]); ?> | More examples directly at <a href="https://highlightjs.org/static/demo/" target="_blank">highlightjs.org/static/demo</a>
 </p>

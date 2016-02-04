@@ -1,17 +1,19 @@
 <div class="page index">
-<h2><?php echo __('Countries');?> and Search plugin</h2>
 
-<div class="search-box">
-<?php
-echo $this->Form->create('CountryRecord');
-echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
-echo $this->Form->input('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
-echo $this->Form->submit(__('Search'));
-echo $this->Form->end();
-?>
-</div>
+	<div class="search-box pull-right" style="margin-bottom: 10px;">
+		<?php
+		echo $this->Form->create('CountryRecord');
+		echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
+		echo $this->Form->input('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
+		echo $this->Form->submit(__('Search'));
+		echo $this->Form->end();
+		?>
+	</div>
 
-<table class="list">
+	<h2><?php echo __('Countries');?> and Search plugin</h2>
+
+
+<table class="table list">
 <tr>
 	<th><?php echo $this->Paginator->sort('sort', $this->Format->icon('filter'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>

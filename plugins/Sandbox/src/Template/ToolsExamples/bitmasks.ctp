@@ -2,7 +2,7 @@
 Using the BitmaskedBehavior
 
 <h3>Table</h3>
-<table class="list">
+<table class="table list">
 <tr>
 	<th>Id</th>
 	<th>Name</th>
@@ -46,4 +46,4 @@ foreach ($result as $key => $value) {
 }
 echo '</pre>';
 ?>
-<?php } 
+<?php }

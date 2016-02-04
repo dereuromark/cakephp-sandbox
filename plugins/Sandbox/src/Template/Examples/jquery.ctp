@@ -7,7 +7,7 @@ In fact, it is even easier to use Jquery pure - you are more flexibel with it th
 Additionally, this section shows how to integrate some of the really cool stuff of Jquery into CakePHP(1.1/1.2) Projects - respecting the MVC pattern.
 <br /><br />
 
-<table class="list">
+<table class="table list">
 <tr>
 	<th>About</th>
 	<th>Author</th>

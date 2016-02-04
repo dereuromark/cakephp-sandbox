@@ -1,7 +1,7 @@
 <div class="examples index">
 <h1><?php echo __('Examples');?></h1>
 
-<table class="list">
+<table class="table list">
 <tr>
 	<th><?php echo $this->Paginator->sort('title');?></th>
 	<th>Link</th>
