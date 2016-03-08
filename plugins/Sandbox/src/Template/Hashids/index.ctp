@@ -27,6 +27,9 @@ $i = 1;
 	<tr><td><?php echo PHP_INT_MAX; ?> (PHP_INT_MAX)</td><td><?php echo $this->Hashid->encodeId(PHP_INT_MAX); ?></td></tr>
 </table>
 
+<p>
+	Of course the actual hashids are always different and unique per system, based on the salt that was provided.
+</p>
 
 <h3>Hashid plugin examples</h3>
 <ul>
