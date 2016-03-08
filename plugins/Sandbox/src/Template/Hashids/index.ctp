@@ -15,13 +15,13 @@ $i = 1;
 	<tr>
 		<th>Auto increment ID (Primary key)</th><th>Hashid</th>
 	</tr>
-<?php while ($i < PHP_INT_MAX / 10) { ?>
+<?php while ($i < PHP_INT_MAX / 100) { ?>
 	<tr>
 		<td><?php echo $i; ?></td>
 		<td><?php echo $this->Hashid->encodeId($i); ?></td>
 	</tr>
 <?php
-	$i = $i * 10;
+	$i = $i * 100;
 }
 ?>
 	<tr><td><?php echo PHP_INT_MAX; ?> (PHP_INT_MAX)</td><td><?php echo $this->Hashid->encodeId(PHP_INT_MAX); ?></td></tr>
