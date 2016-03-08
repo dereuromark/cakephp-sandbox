@@ -1,6 +1,6 @@
 <h2>Hashid Examples</h2>
 <p>
-<a href="https://github.com/FriendsOfCake/cakephp-csvview" target="_blank">[Source]</a>
+<a href="https://github.com/dereuromark/cakephp-hashid" target="_blank">[Source]</a>
 </p>
 
 <p>
