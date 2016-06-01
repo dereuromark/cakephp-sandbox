@@ -11,7 +11,7 @@
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="label label-success">CakePHP 3.x</span> <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><a href="http://sandbox.dereuromark.de/"><span class="label label-warning">CakePHP 2.x</span></a></li>
+				<li><a href="http://sandbox2.dereuromark.de/"><span class="label label-warning">CakePHP 2.x</span></a></li>
 
 			</ul>
 		</li>

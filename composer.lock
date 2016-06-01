@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "433923aa35a3173a353b33fd040ab77f",
-    "content-hash": "72cd462616e14a985dc62fe0a63da7db",
+    "hash": "42ab4676bc2c3339626c8f5800de63d3",
+    "content-hash": "65d56636dd6adbd48fc2665aed42b2ba",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -304,6 +304,54 @@
                 "time"
             ],
             "time": "2016-01-09 00:14:36"
+        },
+        {
+            "name": "cakephp/localized",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/localized.git",
+                "reference": "2a010fce36f41e89c82a60f98a89bf8b08957b28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/2a010fce36f41e89c82a60f98a89bf8b08957b28",
+                "reference": "2a010fce36f41e89c82a60f98a89bf8b08957b28",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "3.1.*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "2.*",
+                "phpunit/phpunit": "*"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Localized\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/localized/graphs/contributors"
+                }
+            ],
+            "description": "CakePHP Localized Plugin",
+            "homepage": "https://github.com/cakephp/localized",
+            "keywords": [
+                "cakephp",
+                "i18n",
+                "l10n",
+                "localized"
+            ],
+            "time": "2016-01-20 16:20:34"
         },
         {
             "name": "cakephp/migrations",
@@ -678,7 +726,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/c10f8a0e00049197765ac0b4a633dc27828bfff9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/7c7c6e9d4c075822e42a26fb11fb47c2ece18344",
                 "reference": "c10f8a0e00049197765ac0b4a633dc27828bfff9",
                 "shasum": ""
             },
@@ -832,7 +880,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/9aa8f7b22168a646d060397aa601991f98b82993",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/5a5cb620dcbf84328d416f3ee3edad5fafb9602c",
                 "reference": "9aa8f7b22168a646d060397aa601991f98b82993",
                 "shasum": ""
             },
@@ -979,7 +1027,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/061af188ec487950924db6f1ee94dbf1821b3918",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/d0910dcb6605e811c8c3a701d1ac9668d9e658c1",
                 "reference": "061af188ec487950924db6f1ee94dbf1821b3918",
                 "shasum": ""
             },
@@ -2430,7 +2478,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/fddd652388072ea2e917100c0da0b6f04e257820",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/b29e11cd3dd86fcd3b9284d9df3f03aa747ec2e8",
                 "reference": "fddd652388072ea2e917100c0da0b6f04e257820",
                 "shasum": ""
             },
@@ -2521,6 +2569,104 @@
                 "kit"
             ],
             "time": "2016-01-15 02:08:25"
+        },
+        {
+            "name": "composer/installers",
+            "version": "v1.0.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "6213d900e92647831f7a406d5c530ea1f3d4360e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/6213d900e92647831f7a406d5c530ea1f3d4360e",
+                "reference": "6213d900e92647831f7a406d5c530ea1f3d4360e",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Composer\\Installers\\Plugin",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "SMF",
+                "Thelia",
+                "WolfCMS",
+                "agl",
+                "aimeos",
+                "annotatecms",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "dokuwiki",
+                "drupal",
+                "elgg",
+                "fuelphp",
+                "grav",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "zend",
+                "zikula"
+            ],
+            "time": "2016-01-27 12:54:22"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2904,6 +3050,7 @@
         "cakephp/chronos": 20,
         "dereuromark/cakephp-hashid": 20,
         "dereuromark/cakephp-markup": 20,
+        "cakephp/localized": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20

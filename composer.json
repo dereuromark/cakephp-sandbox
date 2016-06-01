@@ -45,7 +45,8 @@
 		"cakephp/chronos": "dev-master",
 		"friendsofcake/cakephp-csvview": "^2.2",
 		"dereuromark/cakephp-hashid": "dev-master",
-		"dereuromark/cakephp-markup": "dev-master"
+		"dereuromark/cakephp-markup": "dev-master",
+		"cakephp/localized": "~3.0"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
