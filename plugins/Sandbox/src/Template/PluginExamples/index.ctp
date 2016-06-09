@@ -36,6 +36,11 @@
 			<li><?php echo $this->Html->link('Hashids and CakePHP', ['controller' => 'Hashids', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Captcha Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Captchas and CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Ratings Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('(Star) Ratings in CakePHP', ['controller' => 'Ratings', 'action' => 'index']); ?></li>

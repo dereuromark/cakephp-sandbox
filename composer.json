@@ -34,7 +34,7 @@
 		"natxet/CssMin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
-		"dereuromark/cakephp-queue" : "dev-master",
+		"dereuromark/cakephp-captcha" : "dev-master",
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",

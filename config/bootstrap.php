@@ -179,7 +179,8 @@ Plugin::loadAll([
 		'AuthSandbox' => ['routes' => true],
 		'DebugKit' => ['bootstrap' => true],
 		'AssetCompress' => ['bootstrap' => true],
-		'Cache' => ['bootstrap' => false, 'routes' => true]
+		'Cache' => ['bootstrap' => false, 'routes' => true],
+		'Captcha' => ['bootstrap' => true, 'routes' => true],
 ]);
 
 /**

@@ -17,6 +17,7 @@ mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
+bin/cake Migrations migrate -p Captcha
 bin/cake Migrations migrate
 
 echo "### ASSETS ###";
