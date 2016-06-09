@@ -36,10 +36,12 @@
 			<li><?php echo $this->Html->link('Hashids and CakePHP', ['controller' => 'Hashids', 'action' => 'index']); ?></li>
 		</ul>
 
+		<?php if (false) { ?>
 		<h4>Captcha Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Captchas and CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
 		</ul>
+		<?php } ?>
 
 		<h4>Ratings Plugin</h4>
 		<ul>
