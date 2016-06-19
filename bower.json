@@ -4,14 +4,15 @@
 	"dependencies": {
 		"bootstrap": "~3.3",
 		"bootstrapv4": "bootstrap#v4.0.0-alpha.2",
-		"jquery": "~1.10",
+		"jquery": "~1.12",
 		"font-awesome": "latest",
 		"jquery-ui": "~1.11",
 		"eonasdan-bootstrap-datetimepicker": "latest",
 		"moment": "latest",
 		"clockpicker": "latest",
 		"bootstrap-star-rating": "latest",
-		"jquery-infinite-scroll": "latest"
+		"jquery-infinite-scroll": "latest",
+		"raty-fa": "latest"
 	},
 	"private": true
 }
