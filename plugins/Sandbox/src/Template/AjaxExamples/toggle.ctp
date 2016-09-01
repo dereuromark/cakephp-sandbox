@@ -11,7 +11,7 @@ $(function() {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			},
 			success: function(response) {
-				container.html(response.result);
+				container.html(response.content);
 				container.data('value', val);
 			},
 			error: function(e) {

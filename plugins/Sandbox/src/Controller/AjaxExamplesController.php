@@ -16,7 +16,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize() {
-		if (in_array($this->request->action, ['redirectingPrevented', 'form'])) {
+		if (in_array($this->request->action, ['redirectingPrevented', 'form', 'toggle'])) {
 			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
 		}
 		parent::initialize();
@@ -53,24 +53,15 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * AjaxExamplesController::toggle()
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function toggle() {
-		if ($this->request->is(['ajax'])) {
+
+
+		if ($this->request->is(['post'])) {
 			// Simulate a DB save via session
 			$status = (bool)$this->request->query('status');
 			$this->Session->write('AjaxToggle.status', $status);
-			$this->set(compact('status'));
-
-			// Manually render
-			$View = $this->getView();
-			$result = (string)$View->render();
-			$View->set(compact('result'));
-
-			// Since we already rendered the snippet, we need to reset the render state
-			$View->hasRendered = false;
-			$View->set('_serialize', ['result']);
-			return;
 		}
 
 		// Read from DB (simulated)
