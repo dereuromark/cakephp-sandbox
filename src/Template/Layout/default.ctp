@@ -27,8 +27,6 @@ if (!empty($this->request->query['assets'])) {
 }
 else {
 	echo $this->AssetCompress->css('css-combined');
-	//echo $this->Html->css('BootstrapUI.bootstrap-u-i');
-	echo $this->Html->css('/sandbox/font-awesome/css/font-awesome');
 	echo $this->fetch('css');
 
 	echo $this->AssetCompress->script('js-combined');

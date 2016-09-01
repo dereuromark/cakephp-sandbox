@@ -22,6 +22,11 @@ bin/cake Migrations migrate
 
 echo "### ASSETS ###";
 bower install --allow-root
+
+mkdir -p ./webroot/css/fonts
+cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
+cp -R ./webroot/assets/font-awesome/fonts/* ./webroot/css/fonts/
+
 bin/cake AssetCompress.AssetCompress build
 
 echo "### CLEANUP ###";

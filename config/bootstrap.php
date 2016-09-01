@@ -45,9 +45,8 @@ use Cake\Log\Log;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
-use Cake\Utility\Inflector;
 use Cake\Utility\Security;
-use Tools\Network\Email\Email;
+use Tools\Mailer\Email;
 
 /**
  * Read configuration file and inject configuration into various
