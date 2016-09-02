@@ -8,7 +8,7 @@ class GeoExamplesController extends SandboxAppController {
 
 	public $modelClass = 'Data.Countries';
 
-	public $helpers = ['Geo.GoogleMapV3'];
+	public $helpers = ['Geo.GoogleMap'];
 
 	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
@@ -25,7 +25,7 @@ class GeoExamplesController extends SandboxAppController {
 	/**
 	 * Geocode an address string
 	 *
-	 * @return void|Response
+	 * @return \Cake\Network\Response|null
 	 */
 	public function query() {
 		$this->Geocode = new Geocode();

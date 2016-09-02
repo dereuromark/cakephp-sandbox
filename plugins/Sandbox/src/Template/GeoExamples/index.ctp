@@ -24,17 +24,17 @@ $m = $this->markerElements = [
 		'address' => '44.2,11.1',
 	]
 ];
-$markers = $this->GoogleMapV3->staticMarkers($m, ['color' => 'red', 'char' => 'C', 'shadow' => 'false']);
+$markers = $this->GoogleMap->staticMarkers($m, ['color' => 'red', 'char' => 'C', 'shadow' => 'false']);
 
 $options = [
 	'markers' => $markers
 ];
-echo $this->GoogleMapV3->staticMap($options);
+echo $this->GoogleMap->staticMap($options);
 ?>
 
 <h4>Dynamic Map</h4>
 <?php
-echo '<script src="'.$this->GoogleMapV3->apiUrl().'"></script>';
+echo '<script src="'.$this->GoogleMap->apiUrl().'"></script>';
 
 $options = [
 	'zoom' => 6,
@@ -43,14 +43,14 @@ $options = [
 	'div' => ['id' => 'someothers'],
 	'map' => ['navOptions' => ['style' => 'SMALL'], 'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']]
 ];
-$result = $this->GoogleMapV3->map($options);
-$this->GoogleMapV3->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green')]);
+$result = $this->GoogleMap->map($options);
+$this->GoogleMap->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMap->iconSet('green')]);
 
-$this->GoogleMapV3->addMarker(['lat' => 47.69847, 'lng' => 11.9514, 'title' => 'Marker2', 'content' => 'Some more Html-<b>Content</b>', 'icon' => $this->GoogleMapV3->iconSet('green', 'E')]);
+$this->GoogleMap->addMarker(['lat' => 47.69847, 'lng' => 11.9514, 'title' => 'Marker2', 'content' => 'Some more Html-<b>Content</b>', 'icon' => $this->GoogleMap->iconSet('green', 'E')]);
 
-$this->GoogleMapV3->addMarker(['lat' => 47.19847, 'lng' => 11.1514, 'title' => 'Marker3']);
+$this->GoogleMap->addMarker(['lat' => 47.19847, 'lng' => 11.1514, 'title' => 'Marker3']);
 
-$result .= $this->GoogleMapV3->script();
+$result .= $this->GoogleMap->script();
 echo $result;
 ?>
 
