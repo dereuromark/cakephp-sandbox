@@ -1,8 +1,10 @@
 <?php
 namespace Sandbox\Controller;
 
+use Aura\Intl\Exception;
 use Cake\Event\Event;
-use Geo\Geocode\Geocode;
+use Geo\Exception\InconclusiveException;
+use Geo\Geocoder\Geocoder;
 
 class GeoExamplesController extends SandboxAppController {
 
@@ -28,7 +30,7 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function query() {
-		$this->Geocode = new Geocode();
+		$this->Geocoder = new Geocoder();
 		$results = [];
 		$country = $this->Countries->newEntity();
 
@@ -43,22 +45,27 @@ class GeoExamplesController extends SandboxAppController {
 
 			$address = $this->request->data['address'];
 			$settings = [
-				'allow_inconclusive' => $this->request->data['allow_inconclusive'],
-				'min_accuracy' => $this->request->data['min_accuracy']
+				'allowInconclusive' => $this->request->data['allow_inconclusive'],
+				'minAccuracy' => $this->request->data['min_accuracy']
 			];
-			$this->Geocode->setOptions($settings);
+			$this->Geocoder->config($settings);
 
-			if (!$country->errors() && $this->Geocode->geocode($address)) {
-				$results = $this->Geocode->getResult();
+			if (!$country->errors()) {
+				try {
+					$results = $this->Geocoder->geocode($address);
+
+				} catch (InconclusiveException $e) {
+					$this->Flash->error(__('Nothing found'));
+				}
 			} else {
 				$this->Flash->error(__('formContainsErrors'));
 			}
 		} else {
 			$this->request->data['allow_inconclusive'] = 1;
-			$this->request->data['min_accuracy'] = Geocode::ACC_COUNTRY;
+			$this->request->data['min_accuracy'] = Geocoder::TYPE_COUNTRY;
 		}
 
-		$minAccuracies = $this->Geocode->accuracyTypes();
+		$minAccuracies = $this->Geocoder->accuracyTypes();
 		$this->set(compact('country', 'results', 'minAccuracies'));
 	}
 
