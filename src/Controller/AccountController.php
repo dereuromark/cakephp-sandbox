@@ -7,18 +7,13 @@ use Cake\Network\Exception\NotFoundException;
 
 class AccountController extends AppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Users';
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow(['login', 'logout', 'register', 'activate', 'lostPassword', 'changePassword']);
-	}
-
 	/**
-	 * AccountController::login()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function login() {
 		$userId = $this->Auth->user('id');

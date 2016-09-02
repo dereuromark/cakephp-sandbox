@@ -182,16 +182,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.3.0",
+            "version": "3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "37b9149877359288c27ae21e33cd1de55803f885"
+                "reference": "0ac7ed9888f8b105d9e99c14e473bdc71653be9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/37b9149877359288c27ae21e33cd1de55803f885",
-                "reference": "37b9149877359288c27ae21e33cd1de55803f885",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0ac7ed9888f8b105d9e99c14e473bdc71653be9e",
+                "reference": "0ac7ed9888f8b105d9e99c14e473bdc71653be9e",
                 "shasum": ""
             },
             "require": {
@@ -251,7 +251,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-08-13 02:26:28"
+            "time": "2016-08-22 02:15:27"
         },
         {
             "name": "cakephp/chronos",
@@ -985,17 +985,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "bad71595bfc483441c2c01781af606b95e4b274a"
+                "reference": "35ac9237fe128fae7a257b8580465fe386c49e49"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/bad71595bfc483441c2c01781af606b95e4b274a",
-                "reference": "bad71595bfc483441c2c01781af606b95e4b274a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/35ac9237fe128fae7a257b8580465fe386c49e49",
+                "reference": "35ac9237fe128fae7a257b8580465fe386c49e49",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4"
+                "cakephp/cakephp": "~3.2",
+                "php": ">=5.5"
             },
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
@@ -1029,7 +1029,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2016-08-15 16:35:13"
+            "time": "2016-08-27 16:22:46"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -1037,18 +1037,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "07a579cbd2dcd97ed231ea2504f2a76a2d9f3998"
+                "reference": "cef630bbb08e2228f823ea31e26a5c0d5ed9bbb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/07a579cbd2dcd97ed231ea2504f2a76a2d9f3998",
-                "reference": "07a579cbd2dcd97ed231ea2504f2a76a2d9f3998",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/cef630bbb08e2228f823ea31e26a5c0d5ed9bbb0",
+                "reference": "cef630bbb08e2228f823ea31e26a5c0d5ed9bbb0",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.1",
-                "dereuromark/cakephp-shim": "~1.0",
-                "php": ">=5.4"
+                "cakephp/cakephp": "^3.3",
+                "dereuromark/cakephp-shim": "^1.0",
+                "php": ">=5.5"
             },
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master",
@@ -1086,7 +1086,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2016-08-09 08:47:54"
+            "time": "2016-08-18 23:40:23"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
@@ -2605,12 +2605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "b6ffbc1caa59d7fb247644109efc83b895a3795e"
+                "reference": "2b11e4f5a7182b480fab3093981e5813a0cdfc3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/b6ffbc1caa59d7fb247644109efc83b895a3795e",
-                "reference": "b6ffbc1caa59d7fb247644109efc83b895a3795e",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/2b11e4f5a7182b480fab3093981e5813a0cdfc3c",
+                "reference": "2b11e4f5a7182b480fab3093981e5813a0cdfc3c",
                 "shasum": ""
             },
             "require": {
@@ -2643,7 +2643,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2016-07-22 01:31:00"
+            "time": "2016-08-23 19:28:02"
         },
         {
             "name": "cakephp/debug_kit",
@@ -2651,12 +2651,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "0ebee6e902156a2d9395d02f081db4b3b2a5b0dd"
+                "reference": "0b08a398d359afd9fdd22d13115ce6054e1bd580"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/0ebee6e902156a2d9395d02f081db4b3b2a5b0dd",
-                "reference": "0ebee6e902156a2d9395d02f081db4b3b2a5b0dd",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/0b08a398d359afd9fdd22d13115ce6054e1bd580",
+                "reference": "0b08a398d359afd9fdd22d13115ce6054e1bd580",
                 "shasum": ""
             },
             "require": {
@@ -2699,7 +2699,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2016-08-10 01:21:04"
+            "time": "2016-08-31 21:12:25"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

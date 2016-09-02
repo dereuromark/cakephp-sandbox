@@ -7,11 +7,6 @@ class MiscController extends AppController {
 
 	public $uses = []; //'Tool'
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-		$this->Auth->allow('index', 'convert_text', 'analyze_text');
-	}
-
 	/**
 	 * Overview
 	 */

@@ -8,13 +8,10 @@ use Tools\Mailer\Email;
 
 class ContactController extends AppController {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Tools.Obfuscate'];
-
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
 
 	/**
 	 * @return void

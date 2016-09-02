@@ -13,7 +13,7 @@ use Tools\Controller\Controller;
 class AppController extends Controller {
 
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
-		'Tools.Flash', 'Auth', 'Tools.AuthUser'];
+		'Tools.Flash', 'TinyAuth.Auth', 'Tools.AuthUser'];
 
 	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
@@ -29,8 +29,7 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * AppController::beforeFilter()
-	 *
+	 * @param \Cake\Event\Event $event
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
@@ -69,11 +68,6 @@ class AppController extends Controller {
 			]
 		];
 		$this->Auth->config($config);
-
-		// Short-circuit Auth for some controller
-		if (in_array($this->request->params['controller'], ['Pages'])) {
-			$this->Auth->allow();
-		}
 
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lost_password', 'register']];
