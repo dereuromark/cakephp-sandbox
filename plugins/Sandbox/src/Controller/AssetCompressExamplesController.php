@@ -16,6 +16,9 @@ class AssetCompressExamplesController extends SandboxAppController {
 		parent::beforeFilter($event);
 	}
 
+	/**
+	 * @return \Cake\Network\Response|null|void
+     */
 	public function index() {
 		$actions = $this->_getActions($this);
 

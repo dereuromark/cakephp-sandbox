@@ -50,9 +50,9 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/debug_kit": "dev-master",
-		"cakephp/bake": "dev-master"
+		"cakephp/bake": "dev-master",
+		"fig-r/psr2r-sniffer": "dev-master"
 	},
-	"preferred-install": "source",
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
@@ -80,5 +80,8 @@
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
+	},
+	"config": {
+		"preferred-install": "source"
 	}
 }
