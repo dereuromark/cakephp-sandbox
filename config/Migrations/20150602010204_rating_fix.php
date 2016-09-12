@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class Rating extends AbstractMigration {
+class RatingFix extends AbstractMigration {
 
 	/**
 	 * Migrate Up.

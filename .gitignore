@@ -8,6 +8,7 @@ _*
 /logs
 /config/app_local.php
 /phpunit.phar
+/composer.phar
 /.idea
 /webroot/assets
 /webroot/js/cjs
