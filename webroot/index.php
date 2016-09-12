@@ -15,7 +15,7 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 // for built-in server
-if (php_sapi_name() === 'cli-server') {
+if (PHP_SAPI === 'cli-server') {
 	$_SERVER['PHP_SELF'] = '/' . basename(__FILE__);
 
 	$url = parse_url(urldecode($_SERVER['REQUEST_URI']));

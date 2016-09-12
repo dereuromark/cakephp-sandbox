@@ -1,10 +1,7 @@
 <?php
 namespace App\Controller;
 
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
 use Cake\Event\Event;
-use Cake\Utility\Inflector;
 use Tools\Controller\Controller;
 
 /**
@@ -12,16 +9,20 @@ use Tools\Controller\Controller;
  */
 class AppController extends Controller {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
 		'Tools.Flash', 'TinyAuth.Auth', 'Tools.AuthUser'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**
-	 * AppController::constructClasses()
-	 *
 	 * @return void
 	 */
 	public function initialize() {
@@ -30,7 +31,8 @@ class AppController extends Controller {
 
 	/**
 	 * @param \Cake\Event\Event $event
-	 * @return void
+	 *
+	 * @return \Cake\Network\Response|null
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -72,8 +74,9 @@ class AppController extends Controller {
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lost_password', 'register']];
 		if (!$this->AuthUser->id()) {
-			return;
+			return null;
 		}
+
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->action, $actions)) {
 				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
@@ -83,29 +86,14 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * AppController::beforeRender()
+	 * @param \Cake\Event\Event $event
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function beforeRender(Event $event) {
-		/*
-		if ($this->request->is('ajax') && $this->viewBuilder()->layout() === 'default') {
-			$this->viewBuilder()->layout('ajax');
-		}
-		*/
-
-		// default title
-		/*
-		if (empty($this->pageTitle)) {
-			$this->pageTitle = __(Inflector::humanize($this->request->action)) . ' | ' . __($this->name);
-		}
-
-		$this->set('title_for_layout', $this->pageTitle);
-		*/
+		parent::beforeRender($event);
 
 		$this->disableCache();
-
-		parent::beforeRender($event);
 	}
 
 }

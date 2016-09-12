@@ -1,10 +1,11 @@
 <?php
 namespace Sandbox\Controller;
 
-use MiniAsset\Filter\ScssFilter;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Event\Event;
+use Exception;
+use MiniAsset\Filter\ScssFilter;
 
 class AssetCompressExamplesController extends SandboxAppController {
 
@@ -18,7 +19,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 
 	/**
 	 * @return \Cake\Network\Response|null|void
-     */
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
@@ -27,7 +28,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 
 	public function sass() {
 		if (!file_exists($this->_cssDir . 'test.scss')) {
-			throw new \Exception('Cannot find scss test file.');
+			throw new Exception('Cannot find scss test file.');
 		}
 
 		$this->filter = new ScssFilter();
@@ -44,7 +45,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 		}
 		$expected = file_get_contents($this->_cssDir . 'compiled_scss.css');
 		if (!$result) {
-			$result  = $expected;
+			$result = $expected;
 			$expected = null;
 		}
 

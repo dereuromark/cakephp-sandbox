@@ -43,7 +43,7 @@ class ConsoleShell extends Shell {
 			return 1;
 		}
 
-		$this->out("You can exit with <info>`CTRL-C`</info> or <info>`exit`</info>");
+		$this->out('You can exit with <info>`CTRL-C`</info> or <info>`exit`</info>');
 		$this->out('');
 
 		Log::drop('debug');
@@ -59,7 +59,7 @@ class ConsoleShell extends Shell {
 	/**
 	 * Display help for this console.
 	 *
-	 * @return ConsoleOptionParser
+	 * @return \Cake\Console\ConsoleOptionParser
 	 */
 	public function getOptionParser() {
 		$parser = new ConsoleOptionParser('console', false);

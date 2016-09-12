@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\Event;
+use Cake\Network\Exception\InternalErrorException;
 use Cake\Network\Exception\NotFoundException;
 
 class AccountController extends AppController {
@@ -32,16 +32,15 @@ class AccountController extends AppController {
 			$this->Flash->error('Wrong username/email or password');
 			$this->request->data['password'] = '';
 		} else {
-			if ($username = $this->request->query('username')) {
+			$username = $this->request->query('username');
+			if ($username) {
 				$this->request->data['login'] = $username;
 			}
 		}
 	}
 
 	/**
-	 * AccountController::logout()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
@@ -55,10 +54,8 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::lost_password()
-	 *
-	 * @param string $key
-	 * @return void
+	 * @param string|null $key
+	 * @return \Cake\Network\Response|null
 	 */
 	public function lostPassword($key = null) {
 		if ($this->Common->isPosted()) {
@@ -131,7 +128,7 @@ class AccountController extends AppController {
 	/**
 	 * AccountController::change_password()
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function changePassword() {
 		$uid = $this->Session->read('Auth.Tmp.id');
@@ -168,20 +165,17 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::register()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function register() {
 		$this->Users->addBehavior('Tools.Passwordable', []);
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['User']['role_id'] = Configure::read('Role.user');
-			if ($user = $this->Users->save($this->request->data)) {
+			$user = $this->Users->save($this->request->data);
+			if ($user) {
 				$this->Flash->success(__('Account created'));
-				if (!$this->Auth->setUser($user['User'])) {
-					throw new \Exception('Cannot log user in');
-				}
+				$this->Auth->setUser($user['User']);
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
 			}
 			$this->Flash->error(__('formContainsErrors'));
@@ -193,17 +187,13 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::index()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function index() {
 	}
 
 	/**
-	 * AccountController::edit()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function edit() {
 		throw new NotFoundException();
@@ -236,13 +226,11 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::delete()
-	 *
 	 * @param mixed $id
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function delete($id = null) {
-		$this->request->onlyAllow('post', 'delete');
+		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->Session->read('Auth.User.id');
 		if (!$this->Users->delete($uid)) {
 			throw new InternalErrorException();

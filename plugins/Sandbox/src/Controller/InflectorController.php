@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use Cake\Utility\Inflector;
+use ReflectionClass;
 
 class InflectorController extends AppController {
 
@@ -40,7 +41,7 @@ class InflectorController extends AppController {
 		}
 
 		if ($string) {
-			$r = new \ReflectionClass('Cake\Utility\Inflector');
+			$r = new ReflectionClass('Cake\Utility\Inflector');
 			foreach ($r->getMethods() as $method) {
 				if (in_array($method->name, $this->_reflectExceptions)) {
 					continue;

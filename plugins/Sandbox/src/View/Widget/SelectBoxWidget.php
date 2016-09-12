@@ -1,8 +1,8 @@
 <?php
 namespace Sandbox\View\Widget;
 
-use Cake\View\Form\ContextInterface;
 use BootstrapUI\View\Helper\OptionsAwareTrait;
+use Cake\View\Form\ContextInterface;
 
 /**
  * Select Widget
@@ -21,4 +21,5 @@ class SelectBoxWidget extends \Cake\View\Widget\SelectBoxWidget {
 	public function render(array $data, ContextInterface $context) {
 		return parent::render($this->injectClasses('form-control', $data), $context);
 	}
+
 }

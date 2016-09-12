@@ -3,19 +3,20 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Cake\Network\Exception\MethodNotAllowedException;
-use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 
 class ExportController extends AppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Cache.Cache'];
-
-	public $uses = [];
 
 	/**
 	 * ExportController::beforeFilter()
 	 *
-	 * @return void
+	 * @param \Cake\Event\Event $event
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -27,13 +28,13 @@ class ExportController extends AppController {
 		if ($this->referer(null, true) !== '/export') {
 			throw new MethodNotAllowedException('Please do not use this as a webservice (the capacities are limited). Download the JSON or XML file and import it.');
 		}
-		//die($this->referer(null, true));
-}
+	}
 
 	/**
 	 * ExportController::afterFilter()
 	 *
-	 * @return void
+	 * @param \Cake\Event\Event $event
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);
@@ -47,7 +48,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function countries() {
 		$this->Countries = TableRegistry::get('Data.Countries');
@@ -59,6 +60,8 @@ class ExportController extends AppController {
 
 	/**
 	 * maybe with countries directly?
+	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function countryProvinces() {
 		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
@@ -69,7 +72,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function currencies() {
 		$this->Currency = TableRegistry::get('Data.Currencies');
@@ -80,7 +83,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function languages() {
 		$this->Language = TableRegistry::get('Data.Languages');
@@ -91,7 +94,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function continents() {
 		$this->Continent = TableRegistry::get('Data.Continents');
@@ -102,7 +105,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 *
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function postalCodes() {
 		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
@@ -113,7 +116,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * and mime_type_images
+	 * @return \Cake\Network\Response|null|void
 	 */
 	public function mimeTypes() {
 	}

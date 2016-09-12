@@ -1,7 +1,6 @@
 <?php
 /**
  * UserFixture
- *
  */
 namespace App\Test\Fixture;
 

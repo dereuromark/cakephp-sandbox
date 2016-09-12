@@ -7,11 +7,19 @@ use Cake\Utility\Text;
 
 class FeedExamplesController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = [
 		'RequestHandler' => [
 			'viewClassMap' => [
 				'rss' => 'Feed.Rss']]];
 
+	/**
+	 * @param \Cake\Event\Event $event
+	 *
+	 * @return void
+	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
@@ -107,7 +115,7 @@ class FeedExamplesController extends SandboxAppController {
 	/**
 	 * RssExamplesController::feedview()
 	 *
-	 * @param string $id
+	 * @param string|null $id
 	 * @return void
 	 */
 	public function feedview($id = null) {

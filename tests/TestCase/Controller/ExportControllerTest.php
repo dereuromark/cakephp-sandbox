@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\ExportController;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 

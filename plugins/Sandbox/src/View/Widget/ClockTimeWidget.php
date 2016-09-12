@@ -44,4 +44,5 @@ class ClockTimeWidget extends DateTimeWidget {
             });
             </script>';
 	}
+
 }

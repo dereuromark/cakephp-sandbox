@@ -1,8 +1,8 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Cake\Chronos\Chronos;
+use Cake\Event\Event;
 
 /**
  * Start page controller.
@@ -20,7 +20,6 @@ class ChronosExamplesController extends SandboxAppController {
 		if (!empty($this->request->data['now'])) {
 			$referenceString = $this->request->data['now']['year'] . '-' . $this->request->data['now']['month'] . '-' . $this->request->data['now']['day'];
 		}
-
 
 		if (strlen($referenceString) !== 10) {
 			$now = Chronos::now();

@@ -3,8 +3,6 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Network\Exception\NotFoundException;
-use Cake\ORM\TableRegistry;
 
 class HashidsController extends SandboxAppController {
 

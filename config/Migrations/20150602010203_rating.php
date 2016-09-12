@@ -6,6 +6,8 @@ class Rating extends AbstractMigration {
 
 	/**
 	 * Migrate Up.
+	 *
+	 * @return void
 	 */
 	public function up() {
 		$content = <<<SQL
@@ -41,6 +43,8 @@ SQL;
 
 	/**
 	 * Migrate Down.
+	 *
+	 * @return void
 	 */
 	public function down() {
 

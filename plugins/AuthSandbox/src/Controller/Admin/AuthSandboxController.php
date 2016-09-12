@@ -22,6 +22,8 @@ class AuthSandboxController extends NormalAuthSandboxController {
 
 	/**
 	 * A public method in the admin prefixed scope
+	 *
+	 * @return void
 	 */
 	public function myPublicOne() {
 	}

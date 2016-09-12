@@ -17,6 +17,7 @@ class ConventionsController extends SandboxAppController {
 	 * @see http://groups.google.com/group/cake-php/browse_thread/thread/6908dce4d55c1a5d
 	 * //TODO
 	 * 2010-07-24 ms
+	 * @return void
 	 */
 	public function index() {
 	}

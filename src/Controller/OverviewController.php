@@ -1,18 +1,25 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
-
 /**
  * Start page controller.
  */
 class OverviewController extends AppController {
 
+	/**
+	 * @var array
+	 */
 	public $uses = ['User'];
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 	}
 
+	/**
+	 * @return void
+	 */
 	public function admin_index() {
 	}
 

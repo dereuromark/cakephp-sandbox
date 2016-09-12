@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Sandbox\Controller\MenuController;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 

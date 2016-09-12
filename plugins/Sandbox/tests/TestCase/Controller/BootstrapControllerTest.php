@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Sandbox\Controller\BootstrapController;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 

@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\Event;
 use Tools\Form\ContactForm;
 use Tools\Mailer\Email;
 
@@ -52,7 +51,12 @@ class ContactController extends AppController {
 	}
 
 	/**
-	 * @return void
+	 * @param string $fromName
+	 * @param string $fromEmail
+	 * @param string $subject
+	 * @param string $message
+	 *
+	 * @return \Cake\Network\Response|null
 	 */
 	protected function _send($fromName, $fromEmail, $subject, $message) {
 		$adminEmail = Configure::read('Config.adminEmail');

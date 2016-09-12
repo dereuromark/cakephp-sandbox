@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Aura\Intl\Exception;
 use Cake\Event\Event;
 use Geo\Exception\InconclusiveException;
 use Geo\Geocoder\Geocoder;

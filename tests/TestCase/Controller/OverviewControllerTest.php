@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\OverviewController;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 

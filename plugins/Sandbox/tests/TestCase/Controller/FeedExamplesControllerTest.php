@@ -2,10 +2,9 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Sandbox\Controller\FeedExamplesController;
 use Cake\ORM\TableRegistry;
-use Tools\TestSuite\IntegrationTestCase;
 use Cake\Routing\Router;
+use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * FeedExamples

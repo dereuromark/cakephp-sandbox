@@ -5,7 +5,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * SandboxUsersFixture
- *
  */
 class SandboxPostsFixture extends TestFixture {
 
@@ -28,7 +27,6 @@ class SandboxPostsFixture extends TestFixture {
 			'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
 		],
 	];
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Records
@@ -47,4 +45,5 @@ class SandboxPostsFixture extends TestFixture {
 			'modified' => '2015-05-07 16:54:56'
 		]
 	];
+
 }

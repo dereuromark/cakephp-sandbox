@@ -5,8 +5,14 @@ use Tools\Model\Table\Table;
 
 class UsersTable extends Table {
 
+	/**
+	 * @var string
+	 */
 	public $displayField = 'username';
 
+	/**
+	 * @var array
+	 */
 	public $validate = [
 		'username' => [
 			'notEmpty' => [
@@ -36,6 +42,11 @@ class UsersTable extends Table {
 		],
 	];
 
+	/***
+	 * @param array $config
+	 *
+	 * @return void
+	 */
 	public function initialize(array $config) {
 		$this->belongsTo('Roles');
 	}

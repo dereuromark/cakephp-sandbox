@@ -79,7 +79,7 @@ class PluginsController extends SandboxAppController {
 	/**
 	 * PdfTestController::_setConfig()
 	 *
-	 * @param strin $engine
+	 * @param strin|null $engine
 	 * @return void
 	 */
 	protected function _setPdfConfig($engine = null) {

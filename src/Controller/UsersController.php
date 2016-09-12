@@ -14,9 +14,9 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);
-			} else {
-				$this->Flash->error(__('The User could not be saved. Please, try again.'));
 			}
+
+			$this->Flash->error(__('The User could not be saved. Please, try again.'));
 		}
 		$roles = $this->User->Role->find('list');
 		$this->set(compact('roles'));
@@ -32,9 +32,9 @@ class UsersController extends AppController {
 			if ($this->User->save($this->request->data)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);
-			} else {
-				$this->Flash->error(__('The User could not be saved. Please, try again.'));
 			}
+
+			$this->Flash->error(__('The User could not be saved. Please, try again.'));
 		}
 		if (empty($this->request->data)) {
 			$this->request->data = $this->User->get($id);

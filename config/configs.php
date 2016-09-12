@@ -21,7 +21,9 @@ $config['Passwordable'] = [
 	'authType' => 'Blowfish'
 ];
 
-/** private information holder */
+/**
+ * private information holder
+ */
 $config['Mail'] = [
 	'debug' => 0,	# 0=no,1=flashMessageAfterwards,2=fullDebug(noMailSent)
 	'log' => 1,

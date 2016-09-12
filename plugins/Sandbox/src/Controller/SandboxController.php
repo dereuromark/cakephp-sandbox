@@ -5,8 +5,16 @@ use Cake\Event\Event;
 
 class SandboxController extends SandboxAppController {
 
+	/**
+	 * @var string|bool
+	 */
 	public $modelClass = false;
 
+	/**
+	 * @param \Cake\Event\Event $event
+	 *
+	 * @return void
+	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
@@ -14,17 +22,9 @@ class SandboxController extends SandboxAppController {
 	}
 
 	/**
-	 * Overview
-	 *
 	 * @return void
 	 */
 	public function index() {
-	}
-
-	public function admin_index() {
-		$methods = $this->_getActions($this);
-
-		$this->set(compact('methods'));
 	}
 
 }

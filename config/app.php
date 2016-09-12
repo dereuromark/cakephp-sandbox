@@ -283,7 +283,6 @@ return [
 	],
 
 	/**
-	 *
 	 * Session configuration.
 	 *
 	 * Contains an array of settings to use for session configuration. The

@@ -2,7 +2,6 @@
 
 namespace AuthSandbox\Test\TestCase\Controller\Admin;
 
-use AuthSandbox\Controller\Admin\AuthSandboxController;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 

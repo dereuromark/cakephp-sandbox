@@ -6,6 +6,8 @@ class Init extends AbstractMigration {
 
 	/**
 	 * Migrate Up.
+	 *
+	 * @return void
 	 */
 	public function up() {
 		$content = file_get_contents(dirname(__FILE__) . '/' . '20150117000256_sql.sql');
@@ -14,6 +16,8 @@ class Init extends AbstractMigration {
 
 	/**
 	 * Migrate Down.
+	 *
+	 * @return void
 	 */
 	public function down() {
 

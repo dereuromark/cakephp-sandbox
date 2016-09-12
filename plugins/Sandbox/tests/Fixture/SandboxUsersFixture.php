@@ -5,15 +5,14 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * SandboxUsersFixture
- *
  */
 class SandboxUsersFixture extends TestFixture {
 
-    /**
-     * Fields
-     *
-     * @var array
-     */
+	/**
+	 * Fields
+	 *
+	 * @var array
+	 */
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
@@ -32,23 +31,23 @@ class SandboxUsersFixture extends TestFixture {
             'collation' => 'utf8_unicode_ci'
         ],
     ];
-    // @codingStandardsIgnoreEnd
 
-    /**
-     * Records
-     *
-     * @var array
-     */
-    public $records = [
-        [
-            'id' => 1,
-            'created' => '2015-05-07 16:54:56',
-            'modified' => '2015-05-07 16:54:56',
-            'username' => 'Lorem ipsum dolor sit amet',
-            'slug' => 'Lorem ipsum dolor sit amet',
-            'password' => 'Lorem ipsum dolor sit amet',
-            'email' => 'Lorem ipsum dolor sit amet',
-            'role_id' => 1
-        ]
-    ];
+	/**
+	 * Records
+	 *
+	 * @var array
+	 */
+	public $records = [
+		[
+			'id' => 1,
+			'created' => '2015-05-07 16:54:56',
+			'modified' => '2015-05-07 16:54:56',
+			'username' => 'Lorem ipsum dolor sit amet',
+			'slug' => 'Lorem ipsum dolor sit amet',
+			'password' => 'Lorem ipsum dolor sit amet',
+			'email' => 'Lorem ipsum dolor sit amet',
+			'role_id' => 1
+		]
+	];
+
 }

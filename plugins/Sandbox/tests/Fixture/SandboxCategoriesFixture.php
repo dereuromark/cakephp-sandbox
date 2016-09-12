@@ -5,7 +5,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * SandboxCategoriesFixture
- *
  */
 class SandboxCategoriesFixture extends TestFixture {
 
@@ -33,7 +32,6 @@ class SandboxCategoriesFixture extends TestFixture {
 			'collation' => 'utf8_unicode_ci'
 		],
 	];
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Records

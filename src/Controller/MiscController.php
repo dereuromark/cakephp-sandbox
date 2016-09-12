@@ -1,18 +1,11 @@
 <?php
 namespace App\Controller;
 
-use Cake\Event\Event;
-
 class MiscController extends AppController {
 
-	public $uses = []; //'Tool'
-
 	/**
-	 * Overview
+	 * @var array
 	 */
-	public function index() {
-	}
-
 	public $types = [
 		'1' => 'html encode',
 		'2' => 'html decode',
@@ -23,9 +16,17 @@ class MiscController extends AppController {
 	];
 
 	/**
-	 * 2010-09-30 ms
+	 * Overview
+	 *
+	 * @return void
 	 */
-	public function convert_text() {
+	public function index() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function convertText() {
 		if ($this->Common->isPosted()) {
 			$this->request->data['Form']['result'] = $this->_process($this->request->data['Form']['text'], $this->request->data['Form']['type']);
 			if (array_key_exists((string)$this->request->data['Form']['type'], $this->types)) {
@@ -39,6 +40,12 @@ class MiscController extends AppController {
 		$this->set(compact('types'));
 	}
 
+	/**
+	 * @param string $text
+	 * @param string|null $type
+	 *
+	 * @return string
+	 */
 	protected function _process($text, $type = null) {
 		if (empty($type)) {
 			# auto detect
@@ -78,41 +85,16 @@ class MiscController extends AppController {
 		return $text;
 	}
 
+	/**
+	 * @param string $text
+	 *
+	 * @return int
+	 */
 	protected function _autoDetect($text) {
 		if (mb_strpos($text, '&gt;') !== false || mb_strpos($text, '&lt;') || mb_strpos($text, '&amp;') || mb_strpos($text, '&quot;')) { // || mb_strpos($text, '&#39;')
 			return 2;
 		}
 		return 1;
-	}
-
-	public function analyze_text() {
-		$results = [];
-
-		if ($this->Common->isPosted()) {
-			$results = $this->_analyze($this->request->data['Form']['text']);
-		}
-
-		$this->set(compact('results'));
-	}
-
-	protected function _analyze($text, $type = null) {
-		$res = [];
-		if (empty($text)) {
-			return $res;
-		}
-
-		$textLib = new TextLib($text);
-
-		ini_set('memory_limit', '128M');
-
-		$res['words'] = $textLib->wordCount($this->request->data['Form']);
-		$res['sentence_count'] = $textLib->getSentence();
-		$res['paragraph_count'] = $textLib->getParagraph();
-		$res['length'] = $textLib->getLength();
-		$res['is_ascii'] = $textLib->isAscii();
-		$res['word_count'] = $textLib->getWord();
-
-		return $res;
 	}
 
 }

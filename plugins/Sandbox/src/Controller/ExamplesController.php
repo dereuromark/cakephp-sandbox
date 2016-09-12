@@ -2,7 +2,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
-use Cake\Network\Exception\NotFoundException;
 
 class ExamplesController extends SandboxAppController {
 

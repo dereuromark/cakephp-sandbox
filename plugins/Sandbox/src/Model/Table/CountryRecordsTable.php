@@ -6,7 +6,6 @@ use Tools\Model\Table\Table;
 class CountryRecordsTable extends Table {
 
 	//public $alias = 'Country';
-
 	public $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
 	public $filterArgs = [

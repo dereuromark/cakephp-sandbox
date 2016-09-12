@@ -29,9 +29,9 @@ class CacheExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 * @return \Cake\Network\Response|null|void
-     */
+	 */
 	public function beforeFilter(Event $event) {
 		$this->Auth->allow();
 	}
@@ -45,7 +45,7 @@ class CacheExamplesController extends SandboxAppController {
 
 	/**
 	 * @return \Cake\Network\Response|null|void
-     */
+	 */
 	public function hour() {
 		$this->Flash->info('Will be cached for an hour!');
 

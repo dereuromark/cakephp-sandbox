@@ -5,10 +5,8 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * RolesFixture
- *
  */
-class RolesFixture extends TestFixture
-{
+class RolesFixture extends TestFixture {
 
 	/**
 	 * Fields
@@ -29,7 +27,6 @@ class RolesFixture extends TestFixture
 			'engine' => 'MyISAM', 'collation' => 'utf8_unicode_ci'
 		],
 	];
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Records
@@ -52,4 +49,5 @@ class RolesFixture extends TestFixture
 			'modified' => '2015-03-29 00:18:50'
 		],
 	];
+
 }

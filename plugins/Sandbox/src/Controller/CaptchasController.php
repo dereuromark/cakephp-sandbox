@@ -27,7 +27,7 @@ class CaptchasController extends SandboxAppController {
 
 	/**
 	 * @return \Cake\Network\Response|null
-     */
+	 */
 	public function math() {
 		$animal = $this->Animals->newEntity();
 		if ($this->request->is('post')) {

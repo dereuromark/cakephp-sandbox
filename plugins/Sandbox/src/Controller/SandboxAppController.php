@@ -9,7 +9,7 @@ class SandboxAppController extends AppController {
 	/**
 	 * SandboxAppController::_getActions()
 	 *
-	 * @param Controller $Controller
+	 * @param \Cake\Controller\Controller $Controller
 	 * @return array
 	 */
 	protected function _getActions(Controller $Controller) {

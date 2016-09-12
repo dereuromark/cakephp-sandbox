@@ -6,6 +6,7 @@ use Cake\Event\Event;
 class MenuController extends SandboxAppController {
 
 	public $components = ['Gourmet/KnpMenu.Menu'];
+
 	public $helpers = ['Gourmet/KnpMenu.Menu'];
 
 	public function beforeFilter(Event $event) {

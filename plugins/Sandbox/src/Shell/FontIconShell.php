@@ -67,7 +67,7 @@ class FontIconShell extends Shell {
 		];
 
 		return parent::getOptionParser()
-			->description("A shell to work with font icons via CSS and custom fonts.")
+			->description('A shell to work with font icons via CSS and custom fonts.')
 			->addSubcommand('compare', [
 				'help' => 'Compare two scripts.',
 				'parser' => $subcommandParser

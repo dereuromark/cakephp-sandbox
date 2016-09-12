@@ -6,11 +6,11 @@ use Cake\Log\Log;
 	 * CakePHP Debug Level:
 	 *
 	 * Production Mode:
-	 * 	0: No error messages, errors, or warnings shown. Flash messages redirect.
+	 *     0: No error messages, errors, or warnings shown. Flash messages redirect.
 	 *
 	 * Development Mode:
-	 * 	1: Errors and warnings shown, model caches refreshed, flash messages halted.
-	 * 	2: As in 1, but also with full debug messages and SQL output.
+	 *     1: Errors and warnings shown, model caches refreshed, flash messages halted.
+	 *     2: As in 1, but also with full debug messages and SQL output.
 	 *
 	 * In production mode, flash messages redirect after a time interval.
 	 * In development mode, you need to click the flash message to continue.
@@ -137,18 +137,16 @@ Configure::write('Dispatcher.filters', [
 	 * Set to an array of prefixes you want to use in your application. Use for
 	 * admin or other prefixed routes.
 	 *
-	 * 	Routing.prefixes = array('admin', 'manager');
+	 *     Routing.prefixes = array('admin', 'manager');
 	 *
 	 * Enables:
-	 *	`admin_index()` and `/admin/controller/index`
-	 *	`manager_index()` and `/manager/controller/index`
-	 *
+	 *    `admin_index()` and `/admin/controller/index`
+	 *    `manager_index()` and `/manager/controller/index`
 	 */
 	Configure::write('Routing.prefixes', ['admin']);
 
 	/**
 	 * Turn off all caching application-wide.
-	 *
 	 */
 	//Configure::write('Cache.disable', true);
 
@@ -159,7 +157,6 @@ Configure::write('Dispatcher.filters', [
 	 * public $cacheAction inside your controllers to define caching settings.
 	 * You can either set it controller-wide by setting public $cacheAction = true,
 	 * or in each action using $this->cacheAction = true.
-	 *
 	 */
 	//Configure::write('Cache.check', true);
 
@@ -208,7 +205,6 @@ Configure::write('Dispatcher.filters', [
 	 *
 	 * To use database sessions, run the app/Config/Schema/sessions.php schema using
 	 * the cake shell command: cake schema create Sessions
-	 *
 	 */
 	Configure::write('Session', [
 		'defaults' => 'php',
@@ -269,67 +265,66 @@ Configure::write('Dispatcher.filters', [
 	date_default_timezone_set('Europe/Berlin'); // UTC
 
 /**
- *
  * Cache Engine Configuration
  * Default settings provided below
  *
  * File storage engine.
  *
- * 	 Cache::config('default', array(
- *		'engine' => 'File', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'path' => CACHE, //[optional] use system tmp directory - remember to use absolute path
- * 		'prefix' => 'cake_', //[optional]  prefix every cache file with this string
- * 		'lock' => false, //[optional]  use file locking
- * 		'serialize' => true, //[optional]
- * 		'mask' => 0664, //[optional]
- *	));
+ *      Cache::config('default', array(
+ *        'engine' => 'File', //[required]
+ *        'duration' => 3600, //[optional]
+ *        'probability' => 100, //[optional]
+ *         'path' => CACHE, //[optional] use system tmp directory - remember to use absolute path
+ *         'prefix' => 'cake_', //[optional]  prefix every cache file with this string
+ *         'lock' => false, //[optional]  use file locking
+ *         'serialize' => true, //[optional]
+ *         'mask' => 0664, //[optional]
+ *    ));
  *
  * APC (http://pecl.php.net/package/APC)
  *
- * 	 Cache::config('default', array(
- *		'engine' => 'Apc', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
+ *      Cache::config('default', array(
+ *        'engine' => 'Apc', //[required]
+ *        'duration' => 3600, //[optional]
+ *        'probability' => 100, //[optional]
+ *         'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+ *    ));
  *
  * Xcache (http://xcache.lighttpd.net/)
  *
- * 	 Cache::config('default', array(
- *		'engine' => 'Xcache', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
- *		'user' => 'user', //user from xcache.admin.user settings
- *		'password' => 'password', //plaintext password (xcache.admin.pass)
- *	));
+ *      Cache::config('default', array(
+ *        'engine' => 'Xcache', //[required]
+ *        'duration' => 3600, //[optional]
+ *        'probability' => 100, //[optional]
+ *        'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
+ *        'user' => 'user', //user from xcache.admin.user settings
+ *        'password' => 'password', //plaintext password (xcache.admin.pass)
+ *    ));
  *
  * Memcached (http://www.danga.com/memcached/)
  *
  * Uses the memcached extension. See http://php.net/memcached
  *
- * 	 Cache::config('default', array(
- *		'engine' => 'Memcached', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- * 		'servers' => array(
- * 			'127.0.0.1:11211' // localhost, default port 11211
- * 		), //[optional]
- * 		'persistent' => 'my_connection', // [optional] The name of the persistent connection.
- * 		'compress' => false, // [optional] compress data in Memcached (slower, but uses less memory)
- *	));
+ *      Cache::config('default', array(
+ *        'engine' => 'Memcached', //[required]
+ *        'duration' => 3600, //[optional]
+ *        'probability' => 100, //[optional]
+ *         'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+ *         'servers' => array(
+ *             '127.0.0.1:11211' // localhost, default port 11211
+ *         ), //[optional]
+ *         'persistent' => 'my_connection', // [optional] The name of the persistent connection.
+ *         'compress' => false, // [optional] compress data in Memcached (slower, but uses less memory)
+ *    ));
  *
  *  Wincache (http://php.net/wincache)
  *
- * 	 Cache::config('default', array(
- *		'engine' => 'Wincache', //[required]
- *		'duration' => 3600, //[optional]
- *		'probability' => 100, //[optional]
- *		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
- *	));
+ *      Cache::config('default', array(
+ *        'engine' => 'Wincache', //[required]
+ *        'duration' => 3600, //[optional]
+ *        'probability' => 100, //[optional]
+ *        'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
+ *    ));
  */
 
 /**

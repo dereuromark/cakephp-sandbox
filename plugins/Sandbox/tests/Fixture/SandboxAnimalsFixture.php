@@ -5,7 +5,6 @@ use Cake\TestSuite\Fixture\TestFixture;
 
 /**
  * SandboxAnimalsFixture
- *
  */
 class SandboxAnimalsFixture extends TestFixture {
 
@@ -28,7 +27,6 @@ class SandboxAnimalsFixture extends TestFixture {
 			'collation' => 'utf8_unicode_ci'
 		],
 	];
-	// @codingStandardsIgnoreEnd
 
 	/**
 	 * Records
@@ -43,4 +41,5 @@ class SandboxAnimalsFixture extends TestFixture {
 			'modified' => '2015-05-07 16:49:27'
 		]
 	];
+
 }
