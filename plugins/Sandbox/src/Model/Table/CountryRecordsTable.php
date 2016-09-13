@@ -10,16 +10,11 @@ class CountryRecordsTable extends Table {
 
 	public $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
-	public $filterArgs = [
-		'search' => ['type' => 'like', 'field' => ['name', 'ori_name', 'iso2', 'iso3']],
-		'status' => ['type' => 'value']
-	];
-
 	/**
 	 * @param array $config
 	 *
 	 * @return void
-     */
+	 */
 	public function initialize(array $config) {
 		$this->table('countries');
 

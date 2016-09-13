@@ -11,12 +11,19 @@ class SearchExamplesController extends SandboxAppController {
 
 	public $helpers = ['Data.Data'];
 
+	/**
+	 * @param \Cake\Event\Event $event
+	 * @return void
+	 */
 	public function beforeFilter(Event $event) {
-		$this->Auth->allow();
-
 		parent::beforeFilter($event);
+
+		$this->Auth->allow();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
@@ -28,8 +35,6 @@ class SearchExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * ExportController::afterFilter()
-	 *
 	 * @param Event $event
 	 *
 	 * @return \Cake\Network\Response|null|void

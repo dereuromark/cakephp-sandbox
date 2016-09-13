@@ -13,10 +13,6 @@
 			echo $this->Html->link(__('Reset'), ['action' => 'index'], ['class' => 'btn btn-default']);
 		}
 
-		foreach (\Cake\Utility\Hash::flatten($this->request->query) as $param => $value) {
-			echo $this->Form->hidden($param, compact('value'));
-		}
-
 		echo $this->Form->end();
 		?>
 	</div>

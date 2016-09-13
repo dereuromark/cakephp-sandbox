@@ -932,12 +932,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "0388e4b48a268e7e885600c6b207e167bd8af909"
+                "reference": "df7a7b37b379bc3fd000ea7a86db43f225521631"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/0388e4b48a268e7e885600c6b207e167bd8af909",
-                "reference": "0388e4b48a268e7e885600c6b207e167bd8af909",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/df7a7b37b379bc3fd000ea7a86db43f225521631",
+                "reference": "df7a7b37b379bc3fd000ea7a86db43f225521631",
                 "shasum": ""
             },
             "require": {
@@ -977,7 +977,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2016-09-07 08:30:44"
+            "time": "2016-09-13 16:05:48"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -1208,7 +1208,6 @@
                 "authenticate",
                 "cakephp"
             ],
-            "abandoned": true,
             "time": "2015-06-17 19:04:56"
         },
         {
