@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "66d09a10fa705cd455497f11ab73adc2",
-    "content-hash": "e6d255f1ce464d0d089834c403061758",
+    "hash": "fff793c8b68d6f709b4a72b17d6fc555",
+    "content-hash": "f476d673230ac96ef531e61ccd13091d",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -1378,16 +1378,16 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "dev-master",
+            "version": "dev-bugfix-keep-sorting",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "c725f9706df74caa72c0d8a4fbfdcde17ba1f299"
+                "reference": "916d358230a0ccb41a261bc4532b2db1dc51df3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/c725f9706df74caa72c0d8a4fbfdcde17ba1f299",
-                "reference": "c725f9706df74caa72c0d8a4fbfdcde17ba1f299",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/916d358230a0ccb41a261bc4532b2db1dc51df3d",
+                "reference": "916d358230a0ccb41a261bc4532b2db1dc51df3d",
                 "shasum": ""
             },
             "require-dev": {
@@ -1419,7 +1419,7 @@
                 "cakephp3",
                 "search"
             ],
-            "time": "2016-09-13 15:23:38"
+            "time": "2016-09-13 22:24:11"
         },
         {
             "name": "gourmet/knp-menu",

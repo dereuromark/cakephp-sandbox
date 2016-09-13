@@ -42,7 +42,7 @@
 		"symfony/filesystem": "2.*",
 		"cakephp/chronos": "~1.0",
 		"friendsofcake/cakephp-csvview": "^2.2",
-		"friendsofcake/search": "dev-master",
+		"friendsofcake/search": "dev-bugfix-keep-sorting",
 		"dereuromark/cakephp-hashid": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"cakephp/localized": "~3.0"
