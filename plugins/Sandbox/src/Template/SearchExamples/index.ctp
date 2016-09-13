@@ -3,9 +3,20 @@
 	<div class="search-box pull-right" style="margin-bottom: 10px;">
 		<?php
 		echo $this->Form->create('CountryRecord');
+
 		echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
 		echo $this->Form->input('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
-		echo $this->Form->submit(__('Search'));
+
+		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
+		if ($isSearch) {
+			echo ' ';
+			echo $this->Html->link(__('Reset'), ['action' => 'index'], ['class' => 'btn btn-default']);
+		}
+
+		foreach (\Cake\Utility\Hash::flatten($this->request->query) as $param => $value) {
+			echo $this->Form->hidden($param, compact('value'));
+		}
+
 		echo $this->Form->end();
 		?>
 	</div>

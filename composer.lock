@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7b023589e66ccadcdc3e86e8b4405e6d",
-    "content-hash": "51122f795e3b9d5ede3572911d8c0fd2",
+    "hash": "66d09a10fa705cd455497f11ab73adc2",
+    "content-hash": "e6d255f1ce464d0d089834c403061758",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -125,60 +125,6 @@
                 "localization"
             ],
             "time": "2014-08-24 00:00:00"
-        },
-        {
-            "name": "cakedc/search",
-            "version": "3.0.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/search.git",
-                "reference": "e26d761742d484e8f3fa3fb51d521f1254a7ad41"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/search/zipball/e26d761742d484e8f3fa3fb51d521f1254a7ad41",
-                "reference": "e26d761742d484e8f3fa3fb51d521f1254a7ad41",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4.16"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Search\\": "src",
-                    "Search\\Test\\": "tests"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Cake Development Corporation",
-                    "email": "team@cakedc.com",
-                    "homepage": "http://cakedc.com"
-                }
-            ],
-            "description": "Search Plugin for CakePHP",
-            "homepage": "http://github.com/CakeDC/search",
-            "keywords": [
-                "cakephp",
-                "filter",
-                "post-redirect-get",
-                "prg",
-                "search"
-            ],
-            "support": {
-                "email": "team@cakedc.com",
-                "issues": "https://github.com/CakeDC/search/issues",
-                "forum": "http://stackoverflow.com/tags/cakedc",
-                "wiki": "https://github.com/CakeDC/search/blob/master/Docs/Home.md",
-                "irc": "irc://irc.freenode.org/cakephp",
-                "source": "https://github.com/CakeDC/search"
-            },
-            "time": "2015-12-29 00:04:54"
         },
         {
             "name": "cakephp/cakephp",
@@ -502,12 +448,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "49d42a0937a8e122fe7e7b3d5cdeb08c888a83fa"
+                "reference": "36b7c1c3ecb21111f78b9f92ca95589c43e502af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/49d42a0937a8e122fe7e7b3d5cdeb08c888a83fa",
-                "reference": "49d42a0937a8e122fe7e7b3d5cdeb08c888a83fa",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/36b7c1c3ecb21111f78b9f92ca95589c43e502af",
+                "reference": "36b7c1c3ecb21111f78b9f92ca95589c43e502af",
                 "shasum": ""
             },
             "require": {
@@ -530,7 +476,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2016-09-12 12:42:45"
+            "time": "2016-09-12 20:43:30"
         },
         {
             "name": "dereuromark/cakephp-captcha",
@@ -1430,6 +1376,51 @@
                 "view"
             ],
             "time": "2016-01-20 20:59:55"
+        },
+        {
+            "name": "friendsofcake/search",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfCake/search.git",
+                "reference": "c725f9706df74caa72c0d8a4fbfdcde17ba1f299"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/c725f9706df74caa72c0d8a4fbfdcde17ba1f299",
+                "reference": "c725f9706df74caa72c0d8a4fbfdcde17ba1f299",
+                "shasum": ""
+            },
+            "require-dev": {
+                "cakephp/cakephp": "~3.0",
+                "friendsofcake/cakephp-test-utilities": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Search\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Winther",
+                    "homepage": "http://cakephp.nu/",
+                    "role": "Author"
+                }
+            ],
+            "description": "CakePHP 3.0 easy search framework",
+            "homepage": "https://github.com/FriendsOfCake/search",
+            "keywords": [
+                "cake3",
+                "cakephp",
+                "cakephp3",
+                "search"
+            ],
+            "time": "2016-09-13 15:23:38"
         },
         {
             "name": "gourmet/knp-menu",
@@ -3191,7 +3182,6 @@
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
         "friendsofcake/authenticate": 20,
-        "cakedc/search": 20,
         "drmonkeyninja/cakephp-social-share": 20,
         "gourmet/knp-menu": 20,
         "markstory/asset_compress": 20,
@@ -3204,6 +3194,7 @@
         "dereuromark/cakephp-ratings": 20,
         "friendsofcake/cakepdf": 20,
         "dereuromark/cakephp-cache": 20,
+        "friendsofcake/search": 20,
         "dereuromark/cakephp-hashid": 20,
         "dereuromark/cakephp-markup": 20,
         "psy/psysh": 0,
