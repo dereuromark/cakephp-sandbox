@@ -18,18 +18,23 @@ echo $this->fetch('meta');
 if (!empty($this->request->query['assets'])) {
 	switch ($this->request->query['assets']) {
 		case 'bootstrap-alpha':
-			echo $this->AssetCompress->css('bootstrap-alpha');
-			echo $this->AssetCompress->script('js-combined');
+			if (PHP_SAPI !== 'cli') {
+				echo $this->AssetCompress->css('bootstrap-alpha');
+				echo $this->AssetCompress->script('js-combined');
+			}
 			echo $this->fetch('css');
 			echo $this->fetch('js');
 		break;
 	}
-}
-else {
-	echo $this->AssetCompress->css('css-combined');
+} else {
+	if (PHP_SAPI !== 'cli') {
+		echo $this->AssetCompress->css('css-combined');
+	}
 	echo $this->fetch('css');
 
+	if (PHP_SAPI !== 'cli') {
 	echo $this->AssetCompress->script('js-combined');
+	}
 	echo $this->fetch('script');
 }
 ?>
