@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Cake\I18n\I18n;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;

@@ -12,9 +12,9 @@ class JqueryExamplesController extends SandboxAppController {
 	public $jqueryPlugins = ['media'];
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 * @return void
-     */
+	 */
 	public function beforeRender(Event $event) {
 		$this->set('jquery_plugins', $this->jqueryPlugins);
 
@@ -23,7 +23,7 @@ class JqueryExamplesController extends SandboxAppController {
 
 	/**
 	 * @return void
-     */
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 

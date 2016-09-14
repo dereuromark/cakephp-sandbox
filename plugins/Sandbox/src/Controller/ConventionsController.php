@@ -1,8 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
-
 class ConventionsController extends SandboxAppController {
 
 	public $uses = ['User'];

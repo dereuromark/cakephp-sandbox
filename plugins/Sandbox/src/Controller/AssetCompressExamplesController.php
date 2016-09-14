@@ -10,9 +10,9 @@ use MiniAsset\Filter\ScssFilter;
 class AssetCompressExamplesController extends SandboxAppController {
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 * @return void
-     */
+	 */
 	public function beforeFilter(Event $event) {
 		$this->_cssDir = Plugin::path('Sandbox') . 'files' . DS . 'AssetCompress' . DS;
 

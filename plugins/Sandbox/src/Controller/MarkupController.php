@@ -5,7 +5,7 @@ class MarkupController extends SandboxAppController {
 
 	/**
 	 * @return void
-     */
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 

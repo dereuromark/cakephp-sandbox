@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Cake\Network\Exception\NotFoundException;
 use Cake\Utility\Text;
 

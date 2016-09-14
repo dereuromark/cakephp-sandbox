@@ -7,9 +7,9 @@ use Cake\Event\Event;
 class AuthSandboxController extends AppController {
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 * @return void
-     */
+	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
@@ -18,7 +18,7 @@ class AuthSandboxController extends AppController {
 
 	/**
 	 * @return void
-     */
+	 */
 	protected function _authSetup() {
 		$this->Auth->config('authenticate', [
 			'FOC/Authenticate.MultiColumn' => [

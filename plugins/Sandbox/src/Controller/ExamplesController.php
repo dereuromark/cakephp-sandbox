@@ -1,8 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
-
 class ExamplesController extends SandboxAppController {
 
 	public $helpers = ['Markup.Highlighter'];

@@ -2,7 +2,6 @@
 namespace Sandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
 use Cake\Utility\Inflector;
 use ReflectionClass;
 

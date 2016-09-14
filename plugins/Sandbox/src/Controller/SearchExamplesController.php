@@ -25,7 +25,7 @@ class SearchExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 *
 	 * @return \Cake\Network\Response|null|void
 	 */

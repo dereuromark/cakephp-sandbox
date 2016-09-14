@@ -1,8 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
-
 class MenuController extends SandboxAppController {
 
 	public $components = ['Gourmet/KnpMenu.Menu'];

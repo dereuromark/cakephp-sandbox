@@ -2,7 +2,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Chronos\Chronos;
-use Cake\Event\Event;
 
 /**
  * Start page controller.
@@ -11,7 +10,7 @@ class ChronosExamplesController extends SandboxAppController {
 
 	/**
 	 * @return void
-     */
+	 */
 	public function index() {
 		$referenceString = null;
 		if (!empty($this->request->data['now'])) {

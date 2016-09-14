@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Geo\Exception\InconclusiveException;
 use Geo\Geocoder\Geocoder;
 
@@ -13,7 +12,7 @@ class GeoExamplesController extends SandboxAppController {
 
 	/**
 	 * @return void
-     */
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
