@@ -33,12 +33,11 @@ Everything should be up and running.
 * Use the Sandbox plugin to create more sandbox functionality
 * Submit your changes via PR (pull request).
 
-Please check the quality of your changes via [CodeSniffer](https://github.com/dereuromark/cakephp-codesniffer),
-ideally with my MyCakePHP sniff package. You can use my convenience shell command that
-also includes auto-correction for found issues:
-
-	cake CodeSniffer.CodeSniffer run -s MyCakePHP -p Sandbox -v
-
-To correct fixable errors:
-
-	cake CodeSniffer.CodeSniffer run -s MyCakePHP -p Sandbox -v -f
+Please check the quality of your changes via
+```
+./sniff
+```
+You can auto-fix most issues with
+```
+./sniff -f
+```

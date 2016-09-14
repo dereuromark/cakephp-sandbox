@@ -86,14 +86,15 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * Show how posted forms behave and how to set default values.
 	 *
-	 * @return void|\Cake\Network\Response
+	 * @return \Cake\Network\Response|null
 	 */
 	public function formPost() {
 		$animal = $this->Animals->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
 			// Save form data
-			if (false) {
+			$result = false;
+			if ($result) {
 				$this->Flash->success('Saved and redirected');
 				return $this->redirect(['action' => 'formPost']);
 			}
