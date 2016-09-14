@@ -11,18 +11,19 @@ class JqueryExamplesController extends SandboxAppController {
 
 	public $jqueryPlugins = ['media'];
 
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow();
-
-		parent::beforeFilter($event);
-	}
-
+	/**
+	 * @param Event $event
+	 * @return void
+     */
 	public function beforeRender(Event $event) {
 		$this->set('jquery_plugins', $this->jqueryPlugins);
 
 		parent::beforeRender($event);
 	}
 
+	/**
+	 * @return void
+     */
 	public function index() {
 		$actions = $this->_getActions($this);
 
@@ -30,16 +31,12 @@ class JqueryExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * JqueryExamplesController::autopreview()
-	 *
 	 * @return void
 	 */
 	public function autopreview() {
 	}
 
 	/**
-	 * JqueryExamplesController::maxlength()
-	 *
 	 * @return void
 	 */
 	public function maxlength() {

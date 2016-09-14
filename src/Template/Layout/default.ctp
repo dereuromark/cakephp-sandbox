@@ -33,7 +33,7 @@ if (!empty($this->request->query['assets'])) {
 	echo $this->fetch('css');
 
 	if (PHP_SAPI !== 'cli') {
-	echo $this->AssetCompress->script('js-combined');
+		echo $this->AssetCompress->script('js-combined');
 	}
 	echo $this->fetch('script');
 }

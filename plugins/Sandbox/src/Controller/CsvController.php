@@ -15,12 +15,6 @@ class CsvController extends SandboxAppController {
 
 	public $helpers = ['Data.Data'];
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
 	/**
 	 * List of all examples.
 	 *

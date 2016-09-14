@@ -9,7 +9,7 @@ class AuthSandboxController extends NormalAuthSandboxController {
 	 * @return void
 	 */
 	protected function _allowActions() {
-		$this->Auth->allow(['myPublicOne']);
+		$this->Auth->allow(['']);
 	}
 
 	/**

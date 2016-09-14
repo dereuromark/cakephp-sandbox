@@ -14,10 +14,6 @@ class BootstrapController extends SandboxAppController {
 		'Flash' => ['className' => 'BootstrapUI.Flash']
 	];
 
-	public function initialize() {
-		parent::initialize();
-	}
-
 	public function beforeFilter(Event $event) {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
@@ -25,7 +21,6 @@ class BootstrapController extends SandboxAppController {
 		unset($this->helpers['Tools.Form']);
 		unset($this->helpers['Tools.Flash']);
 
-		$this->Auth->allow();
 		parent::beforeFilter($event);
 
 	}

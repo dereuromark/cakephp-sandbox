@@ -16,17 +16,6 @@ class InflectorController extends AppController {
 	];
 
 	/**
-	 * InflectorController::beforeFilter()
-	 *
-	 * @return void
-	 */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
-	/**
 	 * InflectorsController::show()
 	 *
 	 * @return void

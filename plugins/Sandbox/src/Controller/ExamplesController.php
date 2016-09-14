@@ -7,12 +7,6 @@ class ExamplesController extends SandboxAppController {
 
 	public $helpers = ['Markup.Highlighter'];
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
 	/**
 	 * Lists all actions available.
 	 *

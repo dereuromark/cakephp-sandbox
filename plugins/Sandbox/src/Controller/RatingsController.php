@@ -1,23 +1,11 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
-
 class RatingsController extends SandboxAppController {
 
 	public $modelClass = 'Sandbox.SandboxPosts';
 
 	public $components = ['Ratings.Ratings' => ['userId' => true, 'rateClass' => 'Sandbox.SandboxRatings']];
-
-	public function initialize() {
-		parent::initialize();
-	}
-
-	public function beforeFilter(Event $event) {
-
-		$this->Auth->allow();
-		parent::beforeFilter($event);
-	}
 
 	public function index() {
 		// We fake a user / auth

@@ -15,8 +15,6 @@ class HashidsController extends SandboxAppController {
 		if ($this->request->query('debug')) {
 			Configure::write('Hashid.debug', true);
 		}
-
-		$this->Auth->allow();
 	}
 
 	/**

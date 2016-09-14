@@ -9,12 +9,6 @@ class MenuController extends SandboxAppController {
 
 	public $helpers = ['Gourmet/KnpMenu.Menu'];
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
 	/**
 	 * PluginExamplesController::index()
 	 *

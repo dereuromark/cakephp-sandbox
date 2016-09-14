@@ -3,12 +3,9 @@ namespace Sandbox\Controller;
 
 class MarkupController extends SandboxAppController {
 
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
+	/**
+	 * @return void
+     */
 	public function index() {
 		$actions = $this->_getActions($this);
 

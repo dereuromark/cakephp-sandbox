@@ -1,5 +1,5 @@
 <h2>Auth Sandbox</h2>
-For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cakephp-tinyauth'); ?> CakePHP authorization plugin.
+For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cakephp-tinyauth'); ?> CakePHP authentication and authorization plugin.
 
 <h3>Status</h3>
 <?php
@@ -20,12 +20,20 @@ if ($this->request->session()->read('Auth.User.id')) {
 <?php } ?>
 
 <h3>Access overview</h3>
-Authentication is provided by a basic Form adapter.
+<p>
+    Authentication is provided by an Auth component. It is used for all the "public" actions of this sandbox.
+    See the AppController and AuthSandboxController setup, the config/auth_allow.ini file and the TinyAuth documentation.
+</p>
+
+<p>
+    Authorization is provided by an Authorize adapter and the main demo content here.
+</p>
 <ul>
     <li><?php echo $this->Html->link('index', ['action' => 'index']); ?>: public</li>
     <li><?php echo $this->Html->link('for_all', ['action' => 'for_all']); ?>: for all who are logged in</li>
     <li><?php echo $this->Html->link('for_mods', ['action' => 'for_mods']); ?>: for all moderators</li>
     <li><?php echo $this->Html->link('admin/index', ['prefix' => 'admin', 'action' => 'index']); ?>: for all admins</li>
+    <li><?php echo $this->Html->link('admin/my-public-one', ['prefix' => 'admin', 'action' => 'myPublicOne']); ?>: public admin action</li>
 </ul>
 
 <h3>Roles and access data</h3>

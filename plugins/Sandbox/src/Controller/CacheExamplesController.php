@@ -29,14 +29,6 @@ class CacheExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
-	 * @return \Cake\Network\Response|null|void
-	 */
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow();
-	}
-
-	/**
 	 * @return \Cake\Network\Response|null|void
 	 */
 	public function minute() {

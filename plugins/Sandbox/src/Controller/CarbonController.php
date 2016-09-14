@@ -10,12 +10,6 @@ use Cake\Event\Event;
  */
 class CarbonController extends SandboxAppController {
 
-	public $uses = [];
-
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow('index');
-	}
-
 	public function index() {
 	}
 

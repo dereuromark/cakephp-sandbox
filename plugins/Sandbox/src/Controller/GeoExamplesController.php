@@ -11,12 +11,9 @@ class GeoExamplesController extends SandboxAppController {
 
 	public $helpers = ['Geo.GoogleMap'];
 
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow();
-
-		parent::beforeFilter($event);
-	}
-
+	/**
+	 * @return void
+     */
 	public function index() {
 		$actions = $this->_getActions($this);
 

@@ -9,12 +9,9 @@ use Cake\Event\Event;
  */
 class ChronosExamplesController extends SandboxAppController {
 
-	public $uses = [];
-
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow('index');
-	}
-
+	/**
+	 * @return void
+     */
 	public function index() {
 		$referenceString = null;
 		if (!empty($this->request->data['now'])) {

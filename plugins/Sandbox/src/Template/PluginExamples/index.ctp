@@ -23,7 +23,7 @@
 
 		<h4>TinyAuth Plugin</h4>
 		<ul>
-			<li><?php echo $this->Html->link('TinyAuth RBAC authentication adapter', ['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']); ?></li>
+			<li><?php echo $this->Html->link('TinyAuth RBAC authorization adapter', ['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']); ?></li>
 		</ul>
 
 		<h4>Geo Plugin</h4>

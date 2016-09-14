@@ -16,17 +16,6 @@ class FeedExamplesController extends SandboxAppController {
 				'rss' => 'Feed.Rss']]];
 
 	/**
-	 * @param \Cake\Event\Event $event
-	 *
-	 * @return void
-	 */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
-	/**
 	 * List of all examples.
 	 *
 	 * @return void

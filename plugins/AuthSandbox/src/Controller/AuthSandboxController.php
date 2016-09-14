@@ -6,15 +6,19 @@ use Cake\Event\Event;
 
 class AuthSandboxController extends AppController {
 
-	public $uses = [];
-
+	/**
+	 * @param Event $event
+	 * @return void
+     */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
 		$this->_authSetup();
-		$this->_allowActions();
 	}
 
+	/**
+	 * @return void
+     */
 	protected function _authSetup() {
 		$this->Auth->config('authenticate', [
 			'FOC/Authenticate.MultiColumn' => [
@@ -43,10 +47,6 @@ class AuthSandboxController extends AppController {
 			'plugin' => 'AuthSandbox'
 		]);
 		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
-	}
-
-	protected function _allowActions() {
-		$this->Auth->allow(['index', 'login', 'logout']);
 	}
 
 	/**

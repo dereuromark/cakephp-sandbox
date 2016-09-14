@@ -1,7 +1,6 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Cake\ORM\TableRegistry;
 
 class AjaxExamplesController extends SandboxAppController {
@@ -20,12 +19,6 @@ class AjaxExamplesController extends SandboxAppController {
 			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
 		}
 		parent::initialize();
-	}
-
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
 	}
 
 	/**

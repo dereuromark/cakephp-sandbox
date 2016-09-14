@@ -12,16 +12,6 @@ class SearchExamplesController extends SandboxAppController {
 	public $helpers = ['Data.Data'];
 
 	/**
-	 * @param \Cake\Event\Event $event
-	 * @return void
-	 */
-	public function beforeFilter(Event $event) {
-		parent::beforeFilter($event);
-
-		$this->Auth->allow();
-	}
-
-	/**
 	 * @return void
 	 */
 	public function index() {

@@ -12,12 +12,6 @@ class CaptchasController extends SandboxAppController {
 
 	public $helpers = ['Captcha.Captcha'];
 
-	public function beforeFilter(Event $event) {
-		$this->Auth->allow();
-
-		$this->Animals->addBehavior('Captcha.Captcha');
-	}
-
 	/**
 	 * @return void
 	 */
