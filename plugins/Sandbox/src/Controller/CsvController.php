@@ -6,12 +6,18 @@ use Cake\Network\Exception\NotFoundException;
 
 class CsvController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = [
 		'RequestHandler' => [
 			'viewClassMap' => ['csv' => 'CsvView.Csv']
 		]
 	];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Data.Data'];
 
 	/**

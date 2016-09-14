@@ -3,6 +3,9 @@ namespace Sandbox\Controller;
 
 class ConventionsController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $uses = ['User'];
 
 	/**

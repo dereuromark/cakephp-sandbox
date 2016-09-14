@@ -6,8 +6,16 @@ use Cake\Event\Event;
 
 class HashidsController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Sandbox.HashidCountries';
 
+	/**
+	 * @param \Cake\Event\Event $event
+	 *
+	 * @return void
+	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 

@@ -5,10 +5,14 @@ use Cake\Event\Event;
 
 class JqueryExamplesController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Markup.Highlighter'];
 
-	public $uses = [];
-
+	/**
+	 * @var array
+	 */
 	public $jqueryPlugins = ['media'];
 
 	/**

@@ -1,18 +1,24 @@
 <?php
 namespace Sandbox\Model;
 
-use Cake\Database\ConnectionManager;
+use Tools\Model\Table\Table;
 
-class BitmaskRecordsTable extends SandboxAppModel {
+class BitmaskRecordsTable extends Table {
 
+	/**
+	 * @var string
+	 */
 	public $useDbConfig = 'array';
 
+	/**
+	 * @var array
+	 */
 	public $records = [];
 
-	public function __construct($id = false, $table = false, $ds = null) {
-		parent::__construct($id, $table, $ds);
+	public function __construct(array $config = []) {
+		parent::__construct($config);
 
-		ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
+		//ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
 
 		$this->records = [
 			[

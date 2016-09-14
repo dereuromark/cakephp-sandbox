@@ -5,10 +5,19 @@ use Cake\Event\Event;
 
 class SearchExamplesController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Sandbox.CountryRecords';
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Search.Prg'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Data.Data'];
 
 	/**

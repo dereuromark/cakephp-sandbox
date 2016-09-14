@@ -10,12 +10,21 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class MenuControllerTest extends IntegrationTestCase {
 
+	/**
+	 * @var array
+	 */
 	public $fixtures = ['plugin.Sandbox.SandboxCategories'];
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 
@@ -23,8 +32,6 @@ class MenuControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testIndex() {

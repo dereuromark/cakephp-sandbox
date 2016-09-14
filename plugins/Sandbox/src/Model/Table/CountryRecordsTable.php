@@ -8,6 +8,9 @@ use Tools\Model\Table\Table;
  */
 class CountryRecordsTable extends Table {
 
+	/**
+	 * @var array
+	 */
 	public $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
 	/**

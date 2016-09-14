@@ -3,10 +3,19 @@ namespace Sandbox\Controller;
 
 class RatingsController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Sandbox.SandboxPosts';
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Ratings.Ratings' => ['userId' => true, 'rateClass' => 'Sandbox.SandboxRatings']];
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 		// We fake a user / auth
 		if (!$this->request->session()->read('Tmp.User.id')) {

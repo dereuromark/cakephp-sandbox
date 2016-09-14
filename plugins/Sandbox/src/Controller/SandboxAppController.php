@@ -7,8 +7,6 @@ use Cake\Controller\Controller;
 class SandboxAppController extends AppController {
 
 	/**
-	 * SandboxAppController::_getActions()
-	 *
 	 * @param \Cake\Controller\Controller $Controller
 	 * @return array
 	 */

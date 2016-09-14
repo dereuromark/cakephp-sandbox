@@ -2,11 +2,13 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Network\Exception\NotFoundException;
 
 class PluginsController extends SandboxAppController {
 
-	public $uses = [];
-
+	/**
+	 * @var array
+	 */
 	public $components = [
 		'RequestHandler' => [
 			'viewClassMap' => ['pdf' => 'CakePdf.Pdf']
@@ -38,9 +40,11 @@ class PluginsController extends SandboxAppController {
 	 * - APP/files/wkhtmltopdf/ with the binary files (or any other location)
 	 * - Configure::write('CakePdf.binary', APP . 'files\wkhtmltopdf\wkhtmltopdf.exe'); in your configs
 	 *
+	 * @param string|null $engineSlug
+	 * @throws \Cake\Network\Exception\NotFoundException
 	 * @return void
 	 */
-	public function pdf_test($engineSlug = null) {
+	public function pdfTest($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
 		$engines = [
 			'dom' => 'DomPdf',
@@ -73,7 +77,7 @@ class PluginsController extends SandboxAppController {
 	/**
 	 * PdfTestController::_setConfig()
 	 *
-	 * @param strin|null $engine
+	 * @param string|null $engine
 	 * @return void
 	 */
 	protected function _setPdfConfig($engine = null) {
@@ -101,17 +105,6 @@ class PluginsController extends SandboxAppController {
 		if ($engine === 'DomPdf') {
 			define('DOMPDF_ENABLE_REMOTE', true);
 		}
-	}
-
-	/**
-	 * PluginsController::admin_index()
-	 *
-	 * @return void
-	 */
-	public function admin_index() {
-		$methods = $this->_getActions($this);
-
-		$this->set(compact('methods'));
 	}
 
 }

@@ -5,15 +5,28 @@ use Cake\Event\Event;
 
 class BootstrapController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Sandbox.Animals';
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Search.Prg'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = [
 		'Form' => ['className' => 'BootstrapUI.Form'],
 		'Flash' => ['className' => 'BootstrapUI.Flash']
 	];
 
+	/**
+	 * @param \Cake\Event\Event $event
+	 * @return void
+	 */
 	public function beforeFilter(Event $event) {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
@@ -25,18 +38,27 @@ class BootstrapController extends SandboxAppController {
 
 	}
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
 	}
 
+	/**
+	 * @return void
+	 */
 	public function form() {
 		$animal = $this->Animals->newEntity();
 
 		$this->set(compact('animal'));
 	}
 
+	/**
+	 * @return void
+	 */
 	public function localized() {
 		$animal = $this->Animals->newEntity();
 
@@ -48,6 +70,9 @@ class BootstrapController extends SandboxAppController {
 		$this->set(compact('animal'));
 	}
 
+	/**
+	 * @return void
+	 */
 	public function time() {
 		$animal = $this->Animals->newEntity();
 
@@ -87,7 +112,7 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * Show flash message output.
 	 *
-	 * @param null $type
+	 * @param string|null $type
 	 * @return void|\Cake\Network\Response
 	 */
 	public function flash($type = null) {
@@ -100,11 +125,12 @@ class BootstrapController extends SandboxAppController {
 		$this->Flash->{$type}('I am a message of type ' . $type . '.');
 
 		// This is for CakePHP 3.1
-		return;
+		/*
 		$this->Flash->error('I am an <b>error</b>');
 		$this->Flash->success('I am an success message');
 		$this->Flash->warning('I am a warning');
 		$this->Flash->info('I am a info message');
+		*/
 	}
 
 }

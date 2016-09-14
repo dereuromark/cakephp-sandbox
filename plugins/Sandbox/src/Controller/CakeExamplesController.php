@@ -2,16 +2,18 @@
 namespace Sandbox\Controller;
 
 use Cake\I18n\I18n;
+use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
 class CakeExamplesController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Markup.Highlighter'];
 
 	/**
-	 * CakeExamplesController::index()
-	 *
 	 * @return void
 	 */
 	public function index() {
@@ -21,16 +23,12 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * CakeExamplesController::query_strings()
-	 *
 	 * @return void
 	 */
 	public function queryStrings() {
 	}
 
 	/**
-	 * CakeExamplesController::merge()
-	 *
 	 * @return void
 	 */
 	public function merge() {
@@ -49,13 +47,11 @@ class CakeExamplesController extends SandboxAppController {
 			]
 		];
 
-		if ($type = $this->request->query('type')) {
+		$type = $this->request->query('type');
+		if ($type) {
 			switch ($type) {
 				case 'hash':
 					$result = Hash::merge($array, $mergeArray);
-					break;
-				case 'am':
-					$result = am($array, $mergeArray);
 					break;
 				case 'array_merge':
 					$result = array_merge($array, $mergeArray);
@@ -72,13 +68,12 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * CakeExamplesController::i18n()
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function i18n() {
 		// Make sure we have defaults set to I18n if language has been switched previously
-		if ($lang = $this->Session->read('Config.language')) {
+		$lang = $this->Session->read('Config.language');
+		if ($lang) {
 			I18n::locale($lang);
 		} else {
 			$this->Session->write('Config.language', 'en');
@@ -117,14 +112,6 @@ class CakeExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('animal'));
-	}
-
-	/**
-	 * //TODO
-	 *
-	 * @return void
-	 */
-	public function _translate_behavior() {
 	}
 
 }

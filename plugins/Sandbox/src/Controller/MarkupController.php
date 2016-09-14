@@ -13,8 +13,6 @@ class MarkupController extends SandboxAppController {
 	}
 
 	/**
-	 * TryoutsController::fontawesome()
-	 *
 	 * @see http://fontawesome.io/
 	 *
 	 * @return void

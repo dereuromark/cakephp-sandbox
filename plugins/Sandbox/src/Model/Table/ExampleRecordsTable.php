@@ -1,17 +1,22 @@
 <?php
 namespace Sandbox\Model;
 
-use Cake\Database\ConnectionManager;
 use Tools\Model\Table\Table;
 
 class ExampleRecordsTable extends Table {
 
+	/**
+	 * @var array
+	 */
 	public $records = [];
 
-	public function __construct($id = false, $table = false, $ds = null) {
-		parent::__construct($id, $table, $ds);
+	/**
+	 * @param array $config
+	 */
+	public function __construct(array $config = []) {
+		parent::__construct($config);
 
-		ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
+		//ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
 
 		$this->records = [
 			[

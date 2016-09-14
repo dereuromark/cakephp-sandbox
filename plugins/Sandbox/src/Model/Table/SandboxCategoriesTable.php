@@ -5,8 +5,14 @@ use Tools\Model\Table\Table;
 
 class SandboxCategoriesTable extends Table {
 
+	/**
+	 * @var array
+	 */
 	public $actsAs = ['Tree'];
 
+	/**
+	 * @var array
+	 */
 	public $validate = [
 		'name' => [
 			'notEmpty' => [

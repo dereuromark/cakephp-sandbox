@@ -5,8 +5,14 @@ use Tools\Model\Table\Table;
 
 class SandboxUsersTable extends Table {
 
+	/**
+	 * @var string
+	 */
 	public $displayField = 'username';
 
+	/**
+	 * @var array
+	 */
 	public $validate = [
 		'username' => [
 			'notEmpty' => [

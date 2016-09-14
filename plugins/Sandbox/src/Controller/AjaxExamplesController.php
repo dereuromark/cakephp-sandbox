@@ -1,17 +1,22 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 
 class AjaxExamplesController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Data.CountryProvinceHelper'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Data.Data'];
 
 	/**
-	 * AppController::constructClasses()
-	 *
 	 * @return void
 	 */
 	public function initialize() {
@@ -154,7 +159,7 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * Show how AJAX plugin can work with forms just as normal PRG behavior would.
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function form() {
 		$this->Users = TableRegistry::get('Users');
@@ -176,7 +181,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved:
 	 * It will requestAction() the redirect instead of actually redirecting.
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function redirecting() {
 		if ($this->request->is('post')) {
@@ -192,7 +197,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved using Ajax component and view class.
 	 * It will not follow the redirect, but instead return it along with messages sent.
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function redirectingPrevented() {
 		if ($this->request->is('post')) {

@@ -3,13 +3,17 @@ namespace Sandbox\Controller;
 
 class MenuController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['Gourmet/KnpMenu.Menu'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Gourmet/KnpMenu.Menu'];
 
 	/**
-	 * PluginExamplesController::index()
-	 *
 	 * @return void
 	 */
 	public function index() {

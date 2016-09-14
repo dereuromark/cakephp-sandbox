@@ -28,6 +28,10 @@ class AssetCompressExamplesController extends SandboxAppController {
 		$this->set(compact('actions'));
 	}
 
+	/**
+	 * @throws \Exception
+	 * @return void
+	 */
 	public function sass() {
 		if (!file_exists($this->_cssDir . 'test.scss')) {
 			throw new Exception('Cannot find scss test file.');

@@ -14,5 +14,5 @@ if [ "$FIX" = 1 ]; then
 	vendor/bin/sniff --ignore=vendor/,scripts/,tmp/,logs/,config/Migrations/,webroot/assets/ --extensions=php ./  -v -f
 else
 	# Sniff only
-	vendor/bin/sniff --ignore=vendor/,scripts/,tmp/,logs/,config/Migrations/webroot/assets/ --extensions=php ./ -v
+	vendor/bin/sniff --ignore=vendor/,scripts/,tmp/,logs/,config/Migrations/,webroot/assets/ --extensions=php ./ -v
 fi

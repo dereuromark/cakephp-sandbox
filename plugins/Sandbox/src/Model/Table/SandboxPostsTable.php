@@ -5,6 +5,9 @@ use Tools\Model\Table\Table;
 
 class SandboxPostsTable extends Table {
 
+	/**
+	 * @var array
+	 */
 	public $validate = [
 		'title' => [
 			'notEmpty' => [

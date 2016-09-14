@@ -6,8 +6,6 @@ use Cake\ORM\TableRegistry;
 class ToolsExamplesController extends SandboxAppController {
 
 	/**
-	 * ToolsExamplesController::index()
-	 *
 	 * @return void
 	 */
 	public function index() {
@@ -17,9 +15,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * ToolsExamplesController::tree()
-	 * //TODO
-	 *
 	 * @return void
 	 */
 	public function tree() {
@@ -77,7 +72,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * ToolsExamplesController::bitmasks()
 	 * //TODO
 	 *
 	 * @return void
@@ -202,19 +196,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * Display a Google map.
-	 *
-	 * //TODO: move to Geo plugin examples
-	 *
-	 * @return void
-	 */
-	public function _googlemap() {
-		$this->helpers[] = 'Geo.GoogleMapV3';
-	}
-
-	/**
-	 * ToolsExamplesController::qr()
-	 *
 	 * @return void
 	 */
 	public function qr() {
@@ -251,39 +232,10 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * ToolsExamplesController::geocode()
-	 *
-	 * //TODO: move to Geo plugin examples
-	 *
 	 * @return void
 	 */
-	public function _geocode() {
-		$this->Model = TableRegistry::get('Sandbox.ExampleRecords');
-		$this->Model->addBehavior('Geo.Geocoder', ['on' => 'beforeValidate', 'address' => ['location']]);
-		if ($this->request->is('post')) {
-			$this->Model->set($this->request->data);
-			$this->Model->validates();
-
-			$data = $this->Model->data;
-			if (!empty($data['ExampleRecord']['geocoder_result'])) {
-				$this->Flash->message('Location geocoded: ' . $data['ExampleRecord']['lat'] . '/' . $data['ExampleRecord']['lng'], 'success');
-			} else {
-				$this->Flash->message('Location could not be geocoded.', 'error');
-			}
-			$this->set(compact('data'));
-		}
-	}
-
 	public function formatHelper() {
 
-	}
-
-	/**
-	 * //TODO
-	 *
-	 * @return void
-	 */
-	public function _captcha() {
 	}
 
 	/**

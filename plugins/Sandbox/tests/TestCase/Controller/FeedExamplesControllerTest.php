@@ -11,12 +11,18 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class FeedExamplesControllerTest extends IntegrationTestCase {
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 
 		Router::extensions(['rss']);
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 
@@ -24,8 +30,6 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testIndex() {
@@ -36,8 +40,6 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testFeed() {

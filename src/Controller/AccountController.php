@@ -3,7 +3,9 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Network\Exception\InternalErrorException;
-use Cake\Network\Exception\NotFoundException;
+use Cake\ORM\TableRegistry;
+use Tools\Mailer\Email;
+use Tools\View\Helper\ObfuscateHelper;
 
 class AccountController extends AppController {
 
@@ -65,13 +67,13 @@ class AccountController extends AppController {
 		}
 
 		if (!empty($keyToCheck)) {
-			$this->Token = ClassRegistry::init('Tools.Token');
+			$this->Token = TableRegistry::get('Tools.Tokens');
 			$key = $this->Token->useKey('reset_pwd', $keyToCheck);
 
-			if (!empty($key) && $key['Token']['used'] == 1) {
+			if (!empty($key) && $key['used'] == 1) {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
 			} elseif (!empty($key)) {
-				$uid = $key['Token']['user_id'];
+				$uid = $key['user_id'];
 				$this->Session->write('Auth.Tmp.id', $uid);
 				return $this->redirect(['action' => 'change_password']);
 			} else {
@@ -91,7 +93,7 @@ class AccountController extends AppController {
 				// Valid user found to this email address
 				if (!empty($res)) {
 					$uid = $res['User']['id'];
-					$this->Token = ClassRegistry::init('Tools.Token');
+					$this->Token = TableRegistry::get('Tools.Tokens');
 					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
@@ -107,9 +109,7 @@ class AccountController extends AppController {
 					$this->Email->template('lost_password');
 					$this->Email->viewVars(compact('cCode'));
 					if ($this->Email->send()) {
-						// Confirmation output
-
-						$email = h(FormatHelper::hideEmail($res['User']['email']));
+						$email = h(ObfuscateHelper::hideEmail($res['User']['email']));
 
 						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
@@ -196,8 +196,6 @@ class AccountController extends AppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function edit() {
-		throw new NotFoundException();
-
 		$uid = $this->Session->read('Auth.User.id');
 		$user = $this->Users->get($uid);
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);

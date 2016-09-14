@@ -10,10 +10,16 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class SocialShareControllerTest extends IntegrationTestCase {
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 
@@ -21,8 +27,6 @@ class SocialShareControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testIndex() {

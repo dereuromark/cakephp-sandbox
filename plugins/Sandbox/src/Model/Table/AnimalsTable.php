@@ -7,12 +7,22 @@ use Tools\Model\Table\Table;
 
 class AnimalsTable extends Table {
 
+	/**
+	 * @var array
+	 */
 	public $order = ['name' => 'ASC'];
 
+	/**
+	 * @var array
+	 */
 	public $filterArgs = [
 		'search' => ['type' => 'like', 'field' => ['name']],
 	];
 
+	/**
+	 * @param array $config
+	 * @return void
+	 */
 	public function initialize(array $config) {
 		$this->table('sandbox_animals');
 
@@ -20,6 +30,11 @@ class AnimalsTable extends Table {
 		parent::initialize($config);
 	}
 
+	/**
+	 * @param \Cake\Validation\Validator $validator
+	 *
+	 * @return \Cake\Validation\Validator
+	 */
 	public function validationDefault(Validator $validator) {
 		$validator
 			->add('name', 'alphanumeric', [
@@ -46,6 +61,11 @@ class AnimalsTable extends Table {
 		return $validator;
 	}
 
+	/**
+	 * @param \Cake\ORM\RulesChecker $rules
+	 *
+	 * @return \Cake\ORM\RulesChecker
+	 */
 	public function buildRules(RulesChecker $rules) {
 		// Add a rule that is applied for create and update operations
 		$rules->add(function ($entity, $options) {

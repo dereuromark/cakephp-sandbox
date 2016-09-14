@@ -6,8 +6,14 @@ use Geo\Geocoder\Geocoder;
 
 class GeoExamplesController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Data.Countries';
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Geo.GoogleMap'];
 
 	/**

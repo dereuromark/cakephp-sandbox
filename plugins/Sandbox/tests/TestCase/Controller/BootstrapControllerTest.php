@@ -10,12 +10,21 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class BootstrapControllerTest extends IntegrationTestCase {
 
+	/**
+	 * @var array
+	 */
 	public $fixtures = ['plugin.Sandbox.SandboxAnimals', 'plugin.Sandbox.SandboxUsers'];
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 

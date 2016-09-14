@@ -5,7 +5,9 @@ use Cake\Event\Event;
 use Tools\Controller\Controller;
 
 /**
- * Application Controller
+ * @property \Tools\Controller\Component\FlashComponent $Flash
+ * @property \Tools\Controller\Component\CommonComponent $Common
+ * @property \Tools\Controller\Component\AuthUserComponent $AuthUser
  */
 class AppController extends Controller {
 

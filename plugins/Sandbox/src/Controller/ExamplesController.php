@@ -3,6 +3,9 @@ namespace Sandbox\Controller;
 
 class ExamplesController extends SandboxAppController {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Markup.Highlighter'];
 
 	/**
@@ -23,24 +26,42 @@ class ExamplesController extends SandboxAppController {
 		//throw new NotFoundException('Currently disabled because they cannot provide a stable composer tag.');
 	}
 
+	/**
+	 * @return void
+	 */
 	public function params() {
 	}
 
-	public function php_basicfunctions() {
+	/**
+	 * @return void
+	 */
+	public function phpBasicfunctions() {
 	}
 
-	public function php_validationfunctions() {
+	/**
+	 * @return void
+	 */
+	public function phpValidationfunctions() {
 	}
 
-	public function php_arraycount() {
+	/**
+	 * @return void
+	 */
+	public function phpArraycount() {
 	}
 
+	/**
+	 * @return void
+	 */
 	public function activecalendar() {
 		if (!empty($this->request->params['named']['style'])) {
 			$this->set('active_style', $this->request->params['named']['style']);
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	public function messages() {
 		$this->Flash->message('An error occured somewhere - mabye', 'error');
 		$this->Flash->message('This is a warning...', 'warning');

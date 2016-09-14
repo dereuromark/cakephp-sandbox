@@ -1,14 +1,15 @@
 <?php
-namespace App\Controller;
+namespace App\Controller\Admin;
+
+use App\Controller\AppController;
 
 class UsersController extends AppController {
 
-	public function admin_index() {
-		$this->User->recursive = 0;
+	public function index() {
 		$this->set('users', $this->paginate());
 	}
 
-	public function admin_add() {
+	public function add() {
 		if ($this->Common->isPosted()) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -22,7 +23,7 @@ class UsersController extends AppController {
 		$this->set(compact('roles'));
 	}
 
-	public function admin_edit($id = null) {
+	public function edit($id = null) {
 		$id = (int)$id;
 		if ($id <= 0 && empty($this->request->data)) {
 			$this->Flash->error(__('Invalid User'));
@@ -41,7 +42,7 @@ class UsersController extends AppController {
 		}
 	}
 
-	public function admin_delete($id = null) {
+	public function delete($id = null) {
 		$id = (int)$id;
 		if ($id <= 0) {
 			$this->Flash->error(__('Invalid id for User'));

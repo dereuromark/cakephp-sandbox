@@ -7,9 +7,7 @@ use Data\Model\Table\CountriesTable;
 class HashidCountriesTable extends CountriesTable {
 
 	/**
-	 * initialize()
-	 *
-	 * @param mixed $config
+	 * @param array $config
 	 * @return void
 	 */
 	public function initialize(array $config) {

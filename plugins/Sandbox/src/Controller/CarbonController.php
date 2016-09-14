@@ -8,6 +8,9 @@ namespace Sandbox\Controller;
  */
 class CarbonController extends SandboxAppController {
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 	}
 

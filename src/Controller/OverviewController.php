@@ -17,10 +17,4 @@ class OverviewController extends AppController {
 	public function index() {
 	}
 
-	/**
-	 * @return void
-	 */
-	public function admin_index() {
-	}
-
 }

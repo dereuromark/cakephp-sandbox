@@ -6,8 +6,14 @@ namespace Sandbox\Controller;
  */
 class CaptchasController extends SandboxAppController {
 
+	/**
+	 * @var string
+	 */
 	public $modelClass = 'Sandbox.Animals';
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Captcha.Captcha'];
 
 	/**
