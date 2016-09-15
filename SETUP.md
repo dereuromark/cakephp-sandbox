@@ -30,6 +30,20 @@ Everything should be up and running.
 Consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
 
+#### Use CakeBox as VM
+Hot tip: Using [CakeBox](https://github.com/alt3/cakebox) is the fast way to get it working on any OS.
+Just follow the docs there, log in and create a project:
+```
+cakebox application add sandbox.local
+```
+Then remove that folder in /Apps and instead clone the sandbox into it.
+Follow the same instructions and above and it all works.
+
+In this case the hosts entry would more look like:
+```
+10.33.10.10 cakebox sandbox.local
+```
+
 ### Contributing
 
 * Use the Sandbox plugin to create more sandbox functionality
