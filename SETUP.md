@@ -8,25 +8,27 @@ First, clone the repo into a root folder:
 
 	git clone https://github.com/dereuromark/cakephp-sandbox.git
 
-Then make sure, core + all plugins are also available.
-
-	composer install
-
-Consider using a vhost setup to map the base path to `http://sandbox.local/`.
-This will ensure that all linked assets will be found. Should also work without, though.
-
 Then:
 
 * Set up your `app_local.php` file in `/config`.
 This will not be version-controlled. I use it for email setup, API keys and core salt value etc.
-* Make sure you are in debug mode (2).
+* Make sure you are in debug mode (`true`).
 
-Use the Migrations plugin to add the tables and some basic data:
+Manually you can run the following commands one by one:
+
 ```
+composer install
 bin/cake Migrations migrate
 ```
 
+But it is easier to run the quick command here doing it all at once:
+```
+./build-dev.sh
+```
 Everything should be up and running.
+
+Consider using a vhost setup to map the base path to `http://sandbox.local/`.
+This will ensure that all linked assets will be found. Should also work without, though.
 
 ### Contributing
 
