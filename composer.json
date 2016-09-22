@@ -22,7 +22,7 @@
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
-		"dereuromark/cakephp-tools": "dev-master",
+		"dereuromark/cakephp-tools": "~1.1",
 		"dereuromark/cakephp-setup": "dev-master",
 		"friendsofcake/authenticate": "dev-cake3",
 		"cakephp/migrations": "~1.3",
@@ -42,7 +42,7 @@
 		"symfony/filesystem": "2.*",
 		"cakephp/chronos": "~1.0",
 		"friendsofcake/cakephp-csvview": "^2.2",
-		"friendsofcake/search": "dev-bugfix-keep-sorting",
+		"friendsofcake/search": "dev-master",
 		"dereuromark/cakephp-hashid": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"cakephp/localized": "~3.0"
