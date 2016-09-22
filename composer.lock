@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "91ee4da1358e2909a3528dca5b7ca880",
-    "content-hash": "88588a011278e575818bbc12a7cc7444",
+    "hash": "f958d98932da07cf415e8ed4c8823207",
+    "content-hash": "e954601454ac5caf9c508bb7577b5cbc",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -533,12 +533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "8488679d9170980396337bbed4055ba295faae70"
+                "reference": "441af6f560754e90e6fc61fc7ca7e77e95e6b485"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/8488679d9170980396337bbed4055ba295faae70",
-                "reference": "8488679d9170980396337bbed4055ba295faae70",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/441af6f560754e90e6fc61fc7ca7e77e95e6b485",
+                "reference": "441af6f560754e90e6fc61fc7ca7e77e95e6b485",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +575,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2016-09-22 20:53:20"
+            "time": "2016-09-22 20:54:31"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1213,16 +1213,16 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "v0.5.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "d1483230d1bb46f6ff114ae987ddefd285f09dc7"
+                "reference": "d4d5a8d75638a73605fa5ac2584fe6e43976040d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/d1483230d1bb46f6ff114ae987ddefd285f09dc7",
-                "reference": "d1483230d1bb46f6ff114ae987ddefd285f09dc7",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/d4d5a8d75638a73605fa5ac2584fe6e43976040d",
+                "reference": "d4d5a8d75638a73605fa5ac2584fe6e43976040d",
                 "shasum": ""
             },
             "require": {
@@ -1260,7 +1260,7 @@
                 "cakephp",
                 "twitter"
             ],
-            "time": "2016-04-06 12:22:58"
+            "time": "2016-09-22 20:46:29"
         },
         {
             "name": "friendsofcake/cakepdf",
@@ -3196,6 +3196,7 @@
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-ratings": 20,
         "friendsofcake/cakepdf": 20,
+        "friendsofcake/bootstrap-ui": 20,
         "dereuromark/cakephp-cache": 20,
         "friendsofcake/search": 20,
         "dereuromark/cakephp-hashid": 20,
