@@ -26,7 +26,7 @@ class AnimalsTable extends Table {
 	public function initialize(array $config) {
 		$this->table('sandbox_animals');
 
-		$this->addBehavior('Search.Searchable');
+		//$this->addBehavior('Search.Searchable');
 		parent::initialize($config);
 	}
 

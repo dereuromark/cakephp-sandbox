@@ -22,8 +22,13 @@ echo $this->Form->input('confirmed', ['type' => 'checkbox']);
 
 echo $this->Form->input('age', ['options' => ['Young', 'Old']]);
 
-// Not working yet:
-//echo $this->Form->input('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
+echo $this->Form->input('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
+
+$options = [
+	'Value 1' => 'Multiple choices',
+	'Value 2' => 'Allowed'
+];
+echo $this->Form->input('options', ['type' => 'multicheckbox', 'options' => $options]);
 
 echo $this->Form->end();
 ?>

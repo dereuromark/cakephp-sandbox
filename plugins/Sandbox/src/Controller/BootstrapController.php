@@ -13,11 +13,6 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Search.Prg'];
-
-	/**
-	 * @var array
-	 */
 	public $helpers = [
 		'Form' => ['className' => 'BootstrapUI.Form'],
 		'Flash' => ['className' => 'BootstrapUI.Flash']
