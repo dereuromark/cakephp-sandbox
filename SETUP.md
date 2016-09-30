@@ -37,7 +37,6 @@ Just follow the docs there, log in and create a project:
 cakebox application add sandbox.local
 ```
 Then remove that folder in /Apps and instead clone the sandbox into it.
-Follow the same instructions and above and it all works.
 
 In this case the hosts entry would more look like:
 ```
