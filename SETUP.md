@@ -44,6 +44,11 @@ In this case the hosts entry would more look like:
 10.33.10.10 cakebox sandbox.local
 ```
 
+Then inside the vagrant machine navigate to `/Apps/sandbox.local/` and execute
+```
+./setup
+```
+
 ### Contributing
 
 * Use the Sandbox plugin to create more sandbox functionality
