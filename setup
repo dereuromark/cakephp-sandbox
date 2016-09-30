@@ -1,0 +1,43 @@
+#!/bin/bash
+# Warning: This is NOT a productive script, but for local dev envs only!
+
+set -o pipefail
+
+echo "### INSTALL/UPDATE ###";
+composer selfupdate
+
+[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar
+
+git pull
+
+composer install -n
+
+[ ! -f config/app_local.php ] && cp config/app_local.default.php config/app_local.php && echo "ERROR: DB credentials missing, enter them now and run again!" && exit 1
+
+mkdir -p ./tmp
+mkdir -p ./logs
+mkdir -p ./webroot/js/cjs/
+mkdir -p ./webroot/css/ccss/
+
+
+chmod +x bin/cake
+
+bin/cake Migrations migrate -p Captcha
+bin/cake Migrations migrate
+
+echo "### ASSETS ###";
+bower install
+
+ttembed-js ./webroot/assets/font-awesome/fonts/fontawesome-webfont.ttf
+
+mkdir -p ./webroot/css/fonts
+cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
+cp -R ./webroot/assets/font-awesome/fonts/* ./webroot/css/fonts/
+
+bin/cake AssetCompress.AssetCompress build
+
+echo "### CLEANUP ###";
+rm -rf ./tmp/cache/models/*
+rm -rf ./tmp/cache/persistent/*
+
+exit 0

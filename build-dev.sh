@@ -23,6 +23,9 @@ echo "### ASSETS ###";
 bower install --allow-root
 bin/cake AssetCompress.AssetCompress build
 
+#sudo npm install -g ttembed-js
+ttembed-js ./webroot/css/fonts/fontawesome-webfont.ttf
+
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
