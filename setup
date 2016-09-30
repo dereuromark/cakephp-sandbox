@@ -10,7 +10,7 @@ composer selfupdate
 
 git pull
 
-composer install -n
+composer install
 
 [ ! -f config/app_local.php ] && cp config/app_local.default.php config/app_local.php && echo "ERROR: DB credentials missing, enter them now and run again!" && exit 1
 
@@ -39,5 +39,7 @@ bin/cake AssetCompress.AssetCompress build
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
+
+echo "### DONE ###";
 
 exit 0
