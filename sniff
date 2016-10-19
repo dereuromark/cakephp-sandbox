@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Make sure this file is executable
-# chmod +x phpcs
+# chmod +x sniff
 
 if [ `echo "$@" | grep '\-\-fix'` ] || [ `echo "$@" | grep '\-f'` ]; then
     FIX=1
