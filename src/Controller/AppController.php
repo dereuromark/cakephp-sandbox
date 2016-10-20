@@ -15,14 +15,14 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
-		'Tools.Flash', 'TinyAuth.Auth', 'Tools.AuthUser'];
+		'Tools.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
 
 	/**
 	 * @var array
 	 */
 	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
 		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'Tools.AuthUser', 'AssetCompress.AssetCompress'];
+		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**
 	 * @return void
@@ -80,7 +80,7 @@ class AppController extends Controller {
 		}
 
 		foreach ($allowed as $controller => $actions) {
-			if ($this->name === $controller && in_array($this->request->action, $actions)) {
+			if ($this->name === $controller && in_array($this->request->param('action'), $actions)) {
 				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
 				return $this->redirect($this->Auth->config('loginRedirect'));
 			}

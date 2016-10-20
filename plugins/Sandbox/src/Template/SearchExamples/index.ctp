@@ -18,6 +18,7 @@
 	</div>
 
 	<h2><?php echo __('Countries');?> and Search plugin</h2>
+	<a href="https://github.com/FriendsOfCake/search/" target="_blank">[Search Plugin]</a>
 
 
 <table class="table list">

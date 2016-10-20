@@ -12,6 +12,9 @@ echo $this->Html->css($file);
 
 
 <h2>Highlighter - Text Highlighting:</h2>
+<a href="https://github.com/dereuromark/cakephp-markup" target="_blank">[Markup Plugin]</a>
+
+
 To begin with, the lines you need to display code:
 <?php
 $dataPrint = '$var = \'Some <b>Text</b> as PHP Code\';

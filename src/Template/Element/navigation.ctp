@@ -46,6 +46,8 @@
 		<li><?php echo $this->Html->resetLink('(ISO) Data', ['plugin' => false, 'admin' => false, 'controller' => 'Export', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 		<li><a href="http://www.dereuromark.de"><span class="fa fa-rss"></span> Blog</a></li>
 	</ul>
+
+	<?php if (false) { ?>
 	<ul class="nav navbar-nav navbar-right">
 		<?php if ($this->AuthUser->id()) { ?>
 	  	<li><?php echo $this->Html->resetLink($this->Format->fontIcon('home') . ' ' . 'Account', ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'], ['escape' => false]); ?></li>
@@ -57,4 +59,5 @@
 			<?php } ?>
 		<?php } ?>
 	</ul>
+	<?php } ?>
 </div>

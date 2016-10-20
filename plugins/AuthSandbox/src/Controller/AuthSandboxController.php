@@ -4,7 +4,15 @@ namespace AuthSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
+/**
+ * @property \TinyAuth\Controller\Component\AuthComponent $Auth
+ * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
+ */
 class AuthSandboxController extends AppController {
+
+	public $components = ['TinyAuth.AuthUser'];
+
+	public $helpers = ['TinyAuth.AuthUser'];
 
 	/**
 	 * @param \Cake\Event\Event $event
@@ -46,26 +54,27 @@ class AuthSandboxController extends AppController {
 			'action' => 'index',
 			'plugin' => 'AuthSandbox'
 		]);
+		$this->Auth->config('logoutRedirect', [
+			'prefix' => false,
+			'controller' => 'AuthSandbox',
+			'action' => 'login',
+			'plugin' => 'AuthSandbox'
+		]);
 		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
 	}
 
 	/**
-	 * Overview
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function index() {
 	}
 
 	/**
-	 * Overview
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function login() {
 		if ($this->request->is('post')) {
 			$user = $this->Auth->identify();
-			//die(debug($user));
 			if ($user) {
 				$this->Auth->setUser($user);
 				return $this->redirect($this->Auth->redirectUrl());
@@ -75,9 +84,7 @@ class AuthSandboxController extends AppController {
 	}
 
 	/**
-	 * Overview
-	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function logout() {
 		return $this->redirect($this->Auth->logout());
@@ -86,7 +93,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * Once you are logged in you can access this
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function forAll() {
 	}
@@ -94,7 +101,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * Only mods can access this
 	 *
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function forMods() {
 	}

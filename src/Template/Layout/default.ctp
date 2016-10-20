@@ -40,17 +40,19 @@ if (!empty($this->request->query['assets'])) {
 ?>
 </head>
 <body>
- <div id="container">
+ <div class="container">
+	 <div class="row">
+	<div class="col-xs-12">
 
 	<?php
 		$navigation = [
 		];
 	?>
 
-	<div id="navigation" class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
         <?php echo $this->element('navigation'); ?>
-      </div>
+		</div>
     </div>
 
 		<div id="header">
@@ -71,7 +73,7 @@ echo $this->fetch('content');
 
 ?>
 		</div>
-		<div id="footer">
+		<div id="footer" class="">
 		<hr />
 
 		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
@@ -81,6 +83,8 @@ echo $this->Html->resetLink('Contact', ['controller' => 'contact', 'action' => '
 ?>
 		</div>
 	</div>
+ </div>
+ </div>
 
 </body>
 </html>

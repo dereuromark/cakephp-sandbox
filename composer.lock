@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f958d98932da07cf415e8ed4c8823207",
-    "content-hash": "e954601454ac5caf9c508bb7577b5cbc",
+    "hash": "34cd606495d3adff40fd2279150e3237",
+    "content-hash": "0e3fc70bac9b20b9f6fee9acb510f142",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -533,12 +533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "441af6f560754e90e6fc61fc7ca7e77e95e6b485"
+                "reference": "9c05f98d21729c0b2f2d5759d240fd352a726953"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/441af6f560754e90e6fc61fc7ca7e77e95e6b485",
-                "reference": "441af6f560754e90e6fc61fc7ca7e77e95e6b485",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/9c05f98d21729c0b2f2d5759d240fd352a726953",
+                "reference": "9c05f98d21729c0b2f2d5759d240fd352a726953",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +575,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2016-09-22 20:54:31"
+            "time": "2016-10-10 18:14:15"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -833,12 +833,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "518e9d370e9a6ec6214d5dc3e78fffdc95b552ff"
+                "reference": "ddb6bd1e405d36b6fbebbfa733178e620e038058"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/518e9d370e9a6ec6214d5dc3e78fffdc95b552ff",
-                "reference": "518e9d370e9a6ec6214d5dc3e78fffdc95b552ff",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/ddb6bd1e405d36b6fbebbfa733178e620e038058",
+                "reference": "ddb6bd1e405d36b6fbebbfa733178e620e038058",
                 "shasum": ""
             },
             "require": {
@@ -879,7 +879,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2016-09-21 14:35:21"
+            "time": "2016-10-03 14:28:04"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -929,16 +929,16 @@
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "c4ecfd60a0a8883e59d70a99219e4dedb5e3c181"
+                "reference": "c7a5540f5a710fdc3011eeb2b94ddf082a0062c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/c4ecfd60a0a8883e59d70a99219e4dedb5e3c181",
-                "reference": "c4ecfd60a0a8883e59d70a99219e4dedb5e3c181",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/c7a5540f5a710fdc3011eeb2b94ddf082a0062c7",
+                "reference": "c7a5540f5a710fdc3011eeb2b94ddf082a0062c7",
                 "shasum": ""
             },
             "require": {
@@ -978,7 +978,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2016-09-14 09:57:08"
+            "time": "2016-10-20 21:27:07"
         },
         {
             "name": "dereuromark/cakephp-tools",

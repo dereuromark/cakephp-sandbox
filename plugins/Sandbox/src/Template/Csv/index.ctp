@@ -1,5 +1,5 @@
 <h2>CsvView Examples</h2>
-<a href="https://github.com/FriendsOfCake/cakephp-csvview" target="_blank">[Source]</a>
+<a href="https://github.com/FriendsOfCake/cakephp-csvview" target="_blank">[CsvView Plugin]</a>
 
 <h3>CsvView plugin examples</h3>
 <ul>

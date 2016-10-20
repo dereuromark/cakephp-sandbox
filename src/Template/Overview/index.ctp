@@ -16,6 +16,7 @@ This site combines useful code snippets with their live result.
 Play around with demos and see some core and plugin tools in action:
 <ul>
 <li><?php echo $this->Html->link('Sandbox', ['plugin' => 'Sandbox', 'controller' => 'Sandbox', 'action' => 'index']); ?></li>
+	<li><?php echo $this->Html->link('Auth Sandbox', ['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']); ?></li>
 </ul>
 
 <h3>Shared Standard data</h3>
