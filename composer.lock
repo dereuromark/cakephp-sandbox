@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34cd606495d3adff40fd2279150e3237",
-    "content-hash": "0e3fc70bac9b20b9f6fee9acb510f142",
+    "hash": "f958d98932da07cf415e8ed4c8823207",
+    "content-hash": "e954601454ac5caf9c508bb7577b5cbc",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -929,16 +929,16 @@
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
-            "version": "dev-develop",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "c7a5540f5a710fdc3011eeb2b94ddf082a0062c7"
+                "reference": "e7a1c4713260bd3e7af4f2e4cac15706e380f3a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/c7a5540f5a710fdc3011eeb2b94ddf082a0062c7",
-                "reference": "c7a5540f5a710fdc3011eeb2b94ddf082a0062c7",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/e7a1c4713260bd3e7af4f2e4cac15706e380f3a1",
+                "reference": "e7a1c4713260bd3e7af4f2e4cac15706e380f3a1",
                 "shasum": ""
             },
             "require": {
@@ -978,7 +978,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2016-10-20 21:27:07"
+            "time": "2016-10-21 22:54:05"
         },
         {
             "name": "dereuromark/cakephp-tools",
