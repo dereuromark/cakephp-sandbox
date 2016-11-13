@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 SQL;
+		$this->query($content);
 
 		$content = <<<'SQL'
 INSERT INTO `users` (`id`, `active`, `last_login`, `created`, `modified`, `logins`, `username`, `password`, `email`, `role_id`) VALUES
