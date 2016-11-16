@@ -26,7 +26,7 @@
 					<?php echo h($country['iso3']); ?>
 				</td>
 				<td>
-					<?php echo $this->Time->localDate($country['modified']); ?>
+					<?php echo $this->Time->nice($country['modified']); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
