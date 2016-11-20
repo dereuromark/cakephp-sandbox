@@ -10,8 +10,14 @@ use Cake\Event\Event;
  */
 class AuthSandboxController extends AppController {
 
+	/**
+	 * @var array
+	 */
 	public $components = ['TinyAuth.AuthUser'];
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['TinyAuth.AuthUser'];
 
 	/**
