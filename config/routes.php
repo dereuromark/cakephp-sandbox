@@ -1,8 +1,8 @@
 <?php
 use Cake\Core\Plugin;
-use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 /**
  * The default class to use for all routes
