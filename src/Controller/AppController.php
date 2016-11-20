@@ -5,9 +5,9 @@ use Cake\Event\Event;
 use Tools\Controller\Controller;
 
 /**
- * @property \Tools\Controller\Component\FlashComponent $Flash
+ * @property \Flash\Controller\Component\FlashComponent $Flash
  * @property \Tools\Controller\Component\CommonComponent $Common
- * @property \Tools\Controller\Component\AuthUserComponent $AuthUser
+ * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
  */
 class AppController extends Controller {
 
@@ -21,7 +21,8 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
-		'Tools.Form', 'Tools.Common', 'Tools.Flash', 'Tools.Format',
+		'Form' => ['className' => 'Tools.Form'],
+		'Tools.Common', 'Tools.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**

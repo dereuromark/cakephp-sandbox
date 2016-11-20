@@ -42,7 +42,7 @@ return [
 	],
 
 	'Config' => [
-		'adminEmail' => '' // Set in your app_local.php
+		'adminEmail' => null, // Set in your app_local.php
 	],
 
 	'App' => [
@@ -66,7 +66,7 @@ return [
 
 	'Email' => [
 		'default' => [
-			'from' => ''
+			'from' => null
 		]
 	],
 

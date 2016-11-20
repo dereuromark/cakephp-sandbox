@@ -10,7 +10,7 @@ class ContactController extends AppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Tools.Obfuscate'];
+	public $helpers = ['Tools.Obfuscate', 'Form' => ['className' => 'BootstrapUI.Form']];
 
 	/**
 	 * @return void
@@ -46,7 +46,6 @@ class ContactController extends AppController {
 			}
 		}
 
-		//$this->helpers = array_merge($this->helpers, array('Tools.Captcha'));
 		$this->set(compact('contact'));
 	}
 
@@ -61,7 +60,7 @@ class ContactController extends AppController {
 	protected function _send($fromName, $fromEmail, $subject, $message) {
 		$adminEmail = Configure::read('Config.adminEmail');
 		$adminName = Configure::read('Config.adminName');
-
+		
 		// Send email to Admin
 		Configure::write('Email.live', true);
 		$this->Email = new Email();

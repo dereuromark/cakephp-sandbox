@@ -59,3 +59,12 @@ div.date select.form-control {
 }
 
 /* boostrap end */
+
+th > a.asc:after {
+	content: " \f0dd";
+	font-family: FontAwesome;
+}
+th > a.desc:after {
+	content: " \f0de";
+	font-family: FontAwesome;
+}
