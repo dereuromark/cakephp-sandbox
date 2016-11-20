@@ -6,9 +6,8 @@ use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
- * OverviewControllerTest
  */
-class OverviewControllerTest extends IntegrationTestCase {
+class ContactControllerTest extends IntegrationTestCase {
 
 	public function setUp() {
 		parent::setUp();
