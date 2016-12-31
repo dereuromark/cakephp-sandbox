@@ -43,6 +43,7 @@
 	table.calendar .cell-data {
 		vertical-align: top;
 		min-height: 40px;
+		color: white;
 	}
 
 	table.calendar th {
