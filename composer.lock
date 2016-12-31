@@ -128,16 +128,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.3.7",
+            "version": "3.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "60d45ff9bb47b1857cbda1d4d2fbaaff86e164f8"
+                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/60d45ff9bb47b1857cbda1d4d2fbaaff86e164f8",
-                "reference": "60d45ff9bb47b1857cbda1d4d2fbaaff86e164f8",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
+                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
                 "ext-intl": "*",
                 "ext-mbstring": "*",
                 "php": ">=5.5.9",
-                "psr/log": "1.0",
+                "psr/log": "^1.0",
                 "zendframework/zend-diactoros": "~1.0"
             },
             "replace": {
@@ -157,6 +157,7 @@
                 "cakephp/datasource": "self.version",
                 "cakephp/event": "self.version",
                 "cakephp/filesystem": "self.version",
+                "cakephp/form": "self.version",
                 "cakephp/i18n": "self.version",
                 "cakephp/log": "self.version",
                 "cakephp/orm": "self.version",
@@ -197,7 +198,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-10-29 02:00:38"
+            "time": "2016-12-27 21:17:03"
         },
         {
             "name": "cakephp/chronos",
@@ -484,12 +485,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-calendar.git",
-                "reference": "85a73cd308cacfa1bb8ac3309facae7feb221640"
+                "reference": "d0db7c45188919a04402deb42320dd281e1e4e34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-calendar/zipball/85a73cd308cacfa1bb8ac3309facae7feb221640",
-                "reference": "85a73cd308cacfa1bb8ac3309facae7feb221640",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-calendar/zipball/d0db7c45188919a04402deb42320dd281e1e4e34",
+                "reference": "d0db7c45188919a04402deb42320dd281e1e4e34",
                 "shasum": ""
             },
             "require": {
@@ -525,7 +526,7 @@
                 "helper",
                 "plugin"
             ],
-            "time": "2016-12-31 14:38:25"
+            "time": "2016-12-31 15:12:24"
         },
         {
             "name": "dereuromark/cakephp-captcha",
