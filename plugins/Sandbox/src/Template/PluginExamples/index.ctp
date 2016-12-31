@@ -41,6 +41,11 @@
 			<li><?php echo $this->Html->link('CakePHP Cache plugin and view caching', ['controller' => 'CacheExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Calendar Plugin (NEW)</h4>
+		<ul>
+			<li><?php echo $this->Html->link('CakePHP Calendar plugin and event calendars', ['controller' => 'Calendar', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Ratings Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('(Star) Ratings in CakePHP', ['controller' => 'Ratings', 'action' => 'index']); ?></li>

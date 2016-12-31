@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f958d98932da07cf415e8ed4c8823207",
-    "content-hash": "e954601454ac5caf9c508bb7577b5cbc",
+    "hash": "4550b1061808a38e3499aa626b3bc913",
+    "content-hash": "dbc2f3f647ad0b91110336261f5791e0",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -477,6 +477,55 @@
             ],
             "description": "Cache plugin for CakePHP",
             "time": "2016-09-18 22:11:50"
+        },
+        {
+            "name": "dereuromark/cakephp-calendar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-calendar.git",
+                "reference": "85a73cd308cacfa1bb8ac3309facae7feb221640"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-calendar/zipball/85a73cd308cacfa1bb8ac3309facae7feb221640",
+                "reference": "85a73cd308cacfa1bb8ac3309facae7feb221640",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.3",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Calendar\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin to easily create calendars.",
+            "homepage": "https://github.com/dereuromark/cakephp-calendar",
+            "keywords": [
+                "cakephp",
+                "calendar",
+                "events",
+                "helper",
+                "plugin"
+            ],
+            "time": "2016-12-31 14:38:25"
         },
         {
             "name": "dereuromark/cakephp-captcha",
@@ -3263,6 +3312,7 @@
         "friendsofcake/search": 20,
         "dereuromark/cakephp-hashid": 20,
         "dereuromark/cakephp-markup": 20,
+        "dereuromark/cakephp-calendar": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20,

@@ -45,7 +45,8 @@
 		"friendsofcake/search": "dev-master",
 		"dereuromark/cakephp-hashid": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
-		"cakephp/localized": "~3.0"
+		"cakephp/localized": "~3.0",
+		"dereuromark/cakephp-calendar": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
