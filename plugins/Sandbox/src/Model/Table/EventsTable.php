@@ -1,8 +1,6 @@
 <?php
 namespace Sandbox\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -17,66 +15,64 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])
  */
-class EventsTable extends Table
-{
+class EventsTable extends Table {
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config)
-    {
-        parent::initialize($config);
+	/**
+	 * Initialize method
+	 *
+	 * @param array $config The configuration for the Table.
+	 * @return void
+	 */
+	public function initialize(array $config) {
+		parent::initialize($config);
 
-        $this->table('events');
-        $this->displayField('title');
-        $this->primaryKey('id');
+		$this->table('events');
+		$this->displayField('title');
+		$this->primaryKey('id');
 
-        $this->addBehavior('Calendar.Calendar', [
-        	'field' => 'beginning'
+		$this->addBehavior('Calendar.Calendar', [
+			'field' => 'beginning'
 		]);
-    }
+	}
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator)
-    {
-        $validator
-            ->integer('id')
-            ->allowEmpty('id', 'create');
+	/**
+	 * Default validation rules.
+	 *
+	 * @param \Cake\Validation\Validator $validator Validator instance.
+	 * @return \Cake\Validation\Validator
+	 */
+	public function validationDefault(Validator $validator) {
+		$validator
+			->integer('id')
+			->allowEmpty('id', 'create');
 
-        $validator
-            ->requirePresence('title', 'create')
-            ->notEmpty('title');
+		$validator
+			->requirePresence('title', 'create')
+			->notEmpty('title');
 
-        $validator
-            ->allowEmpty('location');
+		$validator
+			->allowEmpty('location');
 
-        $validator
-            ->numeric('lat')
-            ->allowEmpty('lat');
+		$validator
+			->numeric('lat')
+			->allowEmpty('lat');
 
-        $validator
-            ->numeric('lng')
-            ->allowEmpty('lng');
+		$validator
+			->numeric('lng')
+			->allowEmpty('lng');
 
-        $validator
-            ->allowEmpty('description');
+		$validator
+			->allowEmpty('description');
 
-        $validator
-            ->dateTime('beginning')
-            ->allowEmpty('beginning');
+		$validator
+			->dateTime('beginning')
+			->allowEmpty('beginning');
 
-        $validator
-            ->dateTime('end')
-            ->allowEmpty('end');
+		$validator
+			->dateTime('end')
+			->allowEmpty('end');
 
-        return $validator;
-    }
+		return $validator;
+	}
+
 }

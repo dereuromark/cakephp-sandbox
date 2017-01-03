@@ -1,6 +1,8 @@
 <?php
 namespace Sandbox\Controller;
+
 use Cake\Event\Event;
+use Cake\I18n\Time;
 use Cake\Network\Exception\InternalErrorException;
 
 /**
@@ -25,11 +27,10 @@ class CalendarController extends SandboxAppController {
 	public $helpers = ['Calendar.Calendar'];
 
 	/**
-	 * @param Event $event
+	 * @param \Cake\Event\Event $event
 	 * @return \Cake\Network\Response|null
 	 */
-	public function beforeFilter(Event $event)
-	{
+	public function beforeFilter(Event $event) {
 		return parent::beforeFilter($event);
 	}
 
@@ -53,6 +54,7 @@ class CalendarController extends SandboxAppController {
 	}
 
 	/**
+	 * @param string|null $id
 	 * @return \Cake\Network\Response|null
 	 */
 	public function view($id = null) {
@@ -65,8 +67,7 @@ class CalendarController extends SandboxAppController {
 	 * @param array $options
 	 * @return void
 	 */
-	protected function _populateDemoData(array $options)
-	{
+	protected function _populateDemoData(array $options) {
 		if ($this->Events->find('calendar', $options)->count()) {
 			return;
 		}
@@ -87,7 +88,7 @@ class CalendarController extends SandboxAppController {
 				'lng' => $countryProvince->lng,
 				'location' => $countryProvince->name,
 				'description' => 'Some cool event @ ' . $countryProvince->abbr,
-				'beginning' => new \Cake\I18n\Time(mktime(mt_rand(8, 22), 0, 0, $options['month'], mt_rand(1, 28), $options['year'])),
+				'beginning' => new Time(mktime(mt_rand(8, 22), 0, 0, $options['month'], mt_rand(1, 28), $options['year'])),
 			]);
 			if (!$this->Events->save($event)) {
 				throw new InternalErrorException('Cannot save Event - ' . print_r($event->errors()));
