@@ -15,14 +15,14 @@ class AppController extends Controller {
 	 * @var array
 	 */
 	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
-		'Tools.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
+		'Flash.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
 
 	/**
 	 * @var array
 	 */
 	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
 		'Form' => ['className' => 'Tools.Form'],
-		'Tools.Common', 'Tools.Flash', 'Tools.Format',
+		'Tools.Common', 'Flash.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**

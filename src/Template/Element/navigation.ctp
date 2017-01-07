@@ -19,43 +19,43 @@
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="basics">Basics <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><?php echo $this->Html->resetLink('Conventions', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-				<li><?php echo $this->Html->resetLink('Inflector', ['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Conventions', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Inflector', ['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 
 				<li class="divider"></li>
-				<li><?php echo $this->Html->resetLink('Beginner tips', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'beginner-tips'], ['tabindex' => '-1']); ?></li>
-				<li><?php echo $this->Html->resetLink('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Beginner tips', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'beginner-tips'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'], ['tabindex' => '-1']); ?></li>
 
 				<li class="divider"></li>
-				<li><?php echo $this->Html->resetLink('<span class="glyphicon glyphicon-pencil"></span> Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['tabindex' => '-1', 'escape' => false]); ?></li>
+				<li><?php echo $this->Html->linkReset('<span class="glyphicon glyphicon-pencil"></span> Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['tabindex' => '-1', 'escape' => false]); ?></li>
 			</ul>
 		</li>
 		<li class="dropdown">
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><?php echo $this->Html->resetLink('Overview', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Sandbox', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Overview', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Sandbox', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 				<li class="divider"></li>
-				<li><?php echo $this->Html->resetLink('CakePHP Core', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-				<li><?php echo $this->Html->resetLink('CakePHP Plugins', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'PluginExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-				<li><?php echo $this->Html->resetLink('JS', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-				<li><?php echo $this->Html->resetLink('Jquery', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JqueryExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('CakePHP Core', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('CakePHP Plugins', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'PluginExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('JS', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Jquery', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JqueryExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 				<li class="divider"></li>
-				<li><?php echo $this->Html->resetLink('Tryouts', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Tryouts', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Tryouts', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Tryouts', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 			</ul>
 		</li>
-		<li><?php echo $this->Html->resetLink('(ISO) Data', ['plugin' => false, 'admin' => false, 'controller' => 'Export', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+		<li><?php echo $this->Html->linkReset('(ISO) Data', ['plugin' => false, 'admin' => false, 'controller' => 'Export', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 		<li><a href="http://www.dereuromark.de"><span class="fa fa-rss"></span> Blog</a></li>
 	</ul>
 
 	<?php if (false) { ?>
 	<ul class="nav navbar-nav navbar-right">
 		<?php if ($this->AuthUser->id()) { ?>
-	  	<li><?php echo $this->Html->resetLink($this->Format->fontIcon('home') . ' ' . 'Account', ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'], ['escape' => false]); ?></li>
-	  	<li><?php echo $this->Html->resetLink($this->Format->fontIcon('signout') . ' ' . __('Logout'), ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'], ['escape' => false]); ?></li>
+	  	<li><?php echo $this->Html->linkReset($this->Format->fontIcon('home') . ' ' . 'Account', ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'], ['escape' => false]); ?></li>
+	  	<li><?php echo $this->Html->linkReset($this->Format->fontIcon('signout') . ' ' . __('Logout'), ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'], ['escape' => false]); ?></li>
 		<?php } else { ?>
-		<li><?php //echo $this->Html->resetLink($this->Format->fontIcon('signin') . ' ' . __('Login'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'login'), array('escape' => false)); ?></li>
+		<li><?php //echo $this->Html->linkReset($this->Format->fontIcon('signin') . ' ' . __('Login'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'login'), array('escape' => false)); ?></li>
 			<?php if (Configure::read('Config.allowRegister')) { ?>
-			<li><?php echo $this->Html->resetLink(__('Register'), ['plugin' => false, 'admin' => false, 'controller' => 'users', 'action' => 'register']); ?></li>
+			<li><?php echo $this->Html->linkReset(__('Register'), ['plugin' => false, 'admin' => false, 'controller' => 'users', 'action' => 'register']); ?></li>
 			<?php } ?>
 		<?php } ?>
 	</ul>

@@ -27,7 +27,7 @@ class BootstrapController extends SandboxAppController {
 		$this->loadComponent('Flash');
 
 		unset($this->helpers['Tools.Form']);
-		unset($this->helpers['Tools.Flash']);
+		unset($this->helpers['Flash.Flash']);
 
 		parent::beforeFilter($event);
 

@@ -6,4 +6,4 @@ foreach ($types as $type) {
 ?>
 
 <br><br>
-<p>Note that multi (stackable) messages are only supported in CakePHP 3.1+ or using the Tools Plugin functionality.</p>
+<p>Note that multi (stackable) messages are only supported in CakePHP 3.1+ or using the Flash Plugin functionality.</p>
