@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6dc8fd5869a0a0ee4f733207ac65049d",
-    "content-hash": "67a2b9a0e069bc5ebfda62b40e1f4e2c",
+    "hash": "d734acde0065f7d67aa6c5fe22a283fd",
+    "content-hash": "bdfafc120d8aae4468ae6cd5d271c533",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -128,16 +128,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.3.11",
+            "version": "dev-3.next",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d"
+                "reference": "a893adf8436fb769450d2602b471545b0985e046"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
-                "reference": "e5e3dfbc48e3db858fa2adb4dcd7957a688bc61d",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a893adf8436fb769450d2602b471545b0985e046",
+                "reference": "a893adf8436fb769450d2602b471545b0985e046",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,8 @@
                 "cakephp/chronos": "~1.0",
                 "ext-intl": "*",
                 "ext-mbstring": "*",
-                "php": ">=5.5.9",
+                "lib-icu": ">=4.8",
+                "php": ">=5.6.0",
                 "psr/log": "^1.0",
                 "zendframework/zend-diactoros": "~1.0"
             },
@@ -180,6 +181,7 @@
                     "src/Core/functions.php",
                     "src/Collection/functions.php",
                     "src/I18n/functions.php",
+                    "src/Http/backwards_compat.php",
                     "src/Utility/bootstrap.php"
                 ]
             },
@@ -198,7 +200,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-12-27 21:17:03"
+            "time": "2017-01-06 18:42:28"
         },
         {
             "name": "cakephp/chronos",
@@ -3364,9 +3366,17 @@
             "time": "2016-12-11 14:34:22"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "3.4",
+            "alias_normalized": "3.4.0.0",
+            "version": "dev-3.next",
+            "package": "cakephp/cakephp"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-setup": 20,
