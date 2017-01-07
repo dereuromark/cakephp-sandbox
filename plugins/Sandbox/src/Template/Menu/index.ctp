@@ -5,5 +5,13 @@
 
 <h3>Simple menu</h3>
 <?php
-	echo $this->Menu->render('my_menu');
+	echo $this->Menu->render('my_menu', ['currentClass' => 'active']);
 ?>
+
+
+
+<style>
+	#content li.active {
+		font-weight: bold;
+	}
+</style>
