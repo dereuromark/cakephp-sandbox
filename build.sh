@@ -32,6 +32,7 @@ bin/cake AssetCompress.AssetCompress build
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
+rm -rf ./tmp/cache/views/*
 
 chown -R www-data:www-data *
 chmod -R 0770 ./tmp
