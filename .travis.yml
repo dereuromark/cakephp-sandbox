@@ -3,7 +3,6 @@ language: php
 sudo: false
 
 php:
-  - 5.5
   - 5.6
   - 7.0
 
@@ -20,7 +19,7 @@ matrix:
     - php: 7.0
       env: PHPCS=1 DEFAULT=0
 
-    - php: 5.5
+    - php: 5.6
       env: COVERALLS=1 DEFAULT=0
 
 before_script:
