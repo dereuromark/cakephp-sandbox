@@ -159,28 +159,6 @@ Request::addDetector('tablet', function ($request) {
  */
 
 /**
- * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
- * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
- * advanced ways of loading plugins
- *
- * Plugin::loadAll(); // Loads all plugins at once
- * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
- */
-
-Plugin::loadAll([
-		'Setup' => ['bootstrap' => true],
-		'Tools' => ['bootstrap' => true],
-		'Data' => ['routes' => true],
-		//'Ajax' => array('bootstrap' => true)
-		'Sandbox' => ['routes' => true],
-		'AuthSandbox' => ['routes' => true],
-		'DebugKit' => ['bootstrap' => true],
-		'AssetCompress' => ['bootstrap' => true],
-		'Cache' => ['bootstrap' => false, 'routes' => true],
-		'Captcha' => ['bootstrap' => true, 'routes' => true],
-]);
-
-/**
  * Connect middleware/dispatcher filters.
  */
 DispatcherFactory::add('Asset');
@@ -196,3 +174,26 @@ Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 class_alias('Cake\Core\Configure', 'Configure');
 class_alias('Cake\Core\Plugin', 'Plugin');
+
+/**
+ * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
+ * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
+ * advanced ways of loading plugins
+ *
+ * Plugin::loadAll(); // Loads all plugins at once
+ * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
+ */
+
+Plugin::loadAll([
+	'Setup' => ['bootstrap' => true],
+	'Tools' => ['bootstrap' => true],
+	'Data' => ['routes' => true],
+	//'Ajax' => array('bootstrap' => true)
+	'Sandbox' => ['routes' => true],
+	'AuthSandbox' => ['routes' => true],
+	'DebugKit' => ['bootstrap' => true],
+	'AssetCompress' => ['bootstrap' => true],
+	'Cache' => ['bootstrap' => false, 'routes' => true],
+	'Captcha' => ['bootstrap' => true, 'routes' => true],
+	'DatabaseLog' => ['bootstrap' => true, 'routes' => true],
+]);

@@ -14,9 +14,11 @@ return [
 	'Log' => [
 		'debug' => [
 			'scopes' => false,
+			'className' => 'DatabaseLog.Database'
 		],
 		'error' => [
 			'scopes' => false,
+			'className' => 'DatabaseLog.Database'
 		],
 	],
 

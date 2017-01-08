@@ -3,52 +3,71 @@ namespace App\Controller\Admin;
 
 use App\Controller\AppController;
 
+/**
+ * @property \App\Model\Table\UsersTable $Users
+ */
 class UsersController extends AppController {
 
+	/**
+	 * @return \Cake\Network\Response|null
+	 */
 	public function index() {
+		$this->paginate = [
+			'contain' => ['Roles']
+		];
 		$this->set('users', $this->paginate());
 	}
 
+	/**
+	 * @return \Cake\Network\Response|null
+	 */
 	public function add() {
+		$user = $this->Users->newEntity();
+
+		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		if ($this->Common->isPosted()) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
+			$user = $this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);
 			}
 
 			$this->Flash->error(__('The User could not be saved. Please, try again.'));
 		}
-		$roles = $this->User->Role->find('list');
-		$this->set(compact('roles'));
+		$roles = $this->Users->Roles->find('list');
+		$this->set(compact('roles', 'user'));
 	}
 
+	/**
+	 * @param int|null $id
+	 * @return \Cake\Network\Response|null
+	 */
 	public function edit($id = null) {
-		$id = (int)$id;
-		if ($id <= 0 && empty($this->request->data)) {
-			$this->Flash->error(__('Invalid User'));
-			return $this->redirect(['action' => 'index']);
-		}
+		$user = $this->Users->get($id);
+
+		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false, 'require' => false]);
 		if ($this->Common->isPosted()) {
-			if ($this->User->save($this->request->data)) {
+			$user = $this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);
 			}
 
 			$this->Flash->error(__('The User could not be saved. Please, try again.'));
 		}
-		if (empty($this->request->data)) {
-			$this->request->data = $this->User->get($id);
-		}
+
+		$roles = $this->Users->Roles->find('list');
+		$this->set(compact('roles', 'user'));
 	}
 
+	/**
+	 * @param int|null $id
+	 * @return \Cake\Network\Response|null
+	 */
 	public function delete($id = null) {
-		$id = (int)$id;
-		if ($id <= 0) {
-			$this->Flash->error(__('Invalid id for User'));
-			return $this->redirect(['action' => 'index']);
-		}
-		if ($this->User->delete($id)) {
+		$user = $this->Users->get($id);
+
+		if ($this->Users->delete($user)) {
 			$this->Flash->message(__('User deleted'), 'xxxxx');
 			return $this->redirect(['action' => 'index']);
 		}

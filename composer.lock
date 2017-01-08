@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d734acde0065f7d67aa6c5fe22a283fd",
-    "content-hash": "bdfafc120d8aae4468ae6cd5d271c533",
+    "hash": "a3aa1f090265c929a0b49acdbb25d849",
+    "content-hash": "f40ec20eb83e66995cc9d53157783711",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -132,12 +132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "a893adf8436fb769450d2602b471545b0985e046"
+                "reference": "10a5205b36d9b23894e7176a483a0d1e730ba378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a893adf8436fb769450d2602b471545b0985e046",
-                "reference": "a893adf8436fb769450d2602b471545b0985e046",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/10a5205b36d9b23894e7176a483a0d1e730ba378",
+                "reference": "10a5205b36d9b23894e7176a483a0d1e730ba378",
                 "shasum": ""
             },
             "require": {
@@ -200,7 +200,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-01-06 18:42:28"
+            "time": "2017-01-08 16:31:19"
         },
         {
             "name": "cakephp/chronos",
@@ -307,16 +307,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "1.6.6",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "bed3b4d4957a04b355f85a49cf80440092a6c23f"
+                "reference": "f2a5e2915f8924bd36979a1001edeef7cd455f89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/bed3b4d4957a04b355f85a49cf80440092a6c23f",
-                "reference": "bed3b4d4957a04b355f85a49cf80440092a6c23f",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/f2a5e2915f8924bd36979a1001edeef7cd455f89",
+                "reference": "f2a5e2915f8924bd36979a1001edeef7cd455f89",
                 "shasum": ""
             },
             "require": {
@@ -353,7 +353,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2017-01-01 17:29:48"
+            "time": "2017-01-07 16:45:31"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -630,6 +630,66 @@
             "time": "2016-11-13 20:52:12"
         },
         {
+            "name": "dereuromark/cakephp-databaselog",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
+                "reference": "0bebc494b65e936847344ca3391f6e10002c68f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/0bebc494b65e936847344ca3391f6e10002c68f4",
+                "reference": "0bebc494b65e936847344ca3391f6e10002c68f4",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.2",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "dereuromark/cakephp-tools": "dev-master",
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "DatabaseLog\\": "src",
+                    "DatabaseLog\\Test\\Fixture\\": "tests/Fixture"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nick Baker",
+                    "homepage": "http://www.webtechnick.com",
+                    "role": "Original author"
+                },
+                {
+                    "name": "Other contributors",
+                    "homepage": "https://github.com/dereuromark/CakePHP-DatabaseLog/graphs/contributors"
+                }
+            ],
+            "description": "CakePHP DatabaseLog Plugin",
+            "homepage": "https://github.com/dereuromark/CakePHP-DatabaseLog/",
+            "keywords": [
+                "cakephp",
+                "database",
+                "logging",
+                "logs",
+                "plugin"
+            ],
+            "time": "2017-01-08 19:47:59"
+        },
+        {
             "name": "dereuromark/cakephp-feed",
             "version": "dev-master",
             "source": {
@@ -733,12 +793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "2e43fd803c234bcd94db7d4176ea459f4400bc53"
+                "reference": "18f0e89056c1fe14ead3f47148376efa284a8155"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/2e43fd803c234bcd94db7d4176ea459f4400bc53",
-                "reference": "2e43fd803c234bcd94db7d4176ea459f4400bc53",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/18f0e89056c1fe14ead3f47148376efa284a8155",
+                "reference": "18f0e89056c1fe14ead3f47148376efa284a8155",
                 "shasum": ""
             },
             "require": {
@@ -777,7 +837,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2016-11-28 08:31:24"
+            "time": "2017-01-08 13:54:36"
         },
         {
             "name": "dereuromark/cakephp-hashid",
@@ -2927,12 +2987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "3c188501c75b8a8edbee5e1993f594d0dd7acc45"
+                "reference": "d99356a95eee75010528237b484d1c3cc4d095b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/3c188501c75b8a8edbee5e1993f594d0dd7acc45",
-                "reference": "3c188501c75b8a8edbee5e1993f594d0dd7acc45",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/d99356a95eee75010528237b484d1c3cc4d095b8",
+                "reference": "d99356a95eee75010528237b484d1c3cc4d095b8",
                 "shasum": ""
             },
             "require": {
@@ -2961,7 +3021,7 @@
                 }
             ],
             "description": "Code-Sniffer, Auto-Fixer and Tokenizer for PSR2-R",
-            "time": "2017-01-06 20:17:54"
+            "time": "2017-01-08 15:40:44"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3399,6 +3459,7 @@
         "dereuromark/cakephp-markup": 20,
         "dereuromark/cakephp-calendar": 20,
         "dereuromark/cakephp-flash": 20,
+        "dereuromark/cakephp-databaselog": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20,
