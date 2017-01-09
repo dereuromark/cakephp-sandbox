@@ -48,7 +48,8 @@
 		"cakephp/localized": "~3.0",
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
-		"dereuromark/cakephp-databaselog": "dev-master"
+		"dereuromark/cakephp-databaselog": "dev-master",
+		"oldskool/whoops-cakephp": "dev-patch-1"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
@@ -84,5 +85,11 @@
 	"config": {
 		"preferred-install": "source",
 		"process-timeout": 600
-	}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "git@github.com:dereuromark/WhoopsCakephp.git"
+		}
+	]
 }

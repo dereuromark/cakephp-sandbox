@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2f738d01673e9ef0386f84488d955d95",
-    "content-hash": "a2df52a9f118202fea54f606188a0e94",
+    "hash": "db985e6de8439500c25ac7fb51f837a0",
+    "content-hash": "d8ff929506ca08522b1a6143773f7705",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -1286,6 +1286,66 @@
             "time": "2015-08-12 09:35:40"
         },
         {
+            "name": "filp/whoops",
+            "version": "2.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "2abce9d956589122c6443d6265f01cf7e9388e3c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/2abce9d956589122c6443d6265f01cf7e9388e3c",
+                "reference": "2abce9d956589122c6443d6265f01cf7e9388e3c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9 || ^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^4.8 || ^5.0",
+                "symfony/var-dumper": "^2.6 || ^3.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "whoops",
+                "zf2"
+            ],
+            "time": "2016-12-26 16:13:31"
+        },
+        {
             "name": "friendsofcake/authenticate",
             "version": "dev-cake3",
             "source": {
@@ -2093,6 +2153,40 @@
                 "minify"
             ],
             "time": "2016-10-12 20:22:23"
+        },
+        {
+            "name": "oldskool/whoops-cakephp",
+            "version": "dev-patch-1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/WhoopsCakephp.git",
+                "reference": "25dd055fa33f2a97230c1f9ed9ee956df07a34cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/WhoopsCakephp/zipball/25dd055fa33f2a97230c1f9ed9ee956df07a34cc",
+                "reference": "25dd055fa33f2a97230c1f9ed9ee956df07a34cc",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "~3.0",
+                "filp/whoops": "~2.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "WhoopsCakephp\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Integrates the Whoops library into a CakePHP application",
+            "homepage": "https://github.com/oldskool/WhoopsCakephp",
+            "support": {
+                "source": "https://github.com/dereuromark/WhoopsCakephp/tree/patch-1"
+            },
+            "time": "2017-01-09 22:52:12"
         },
         {
             "name": "paragonie/random_compat",
@@ -3460,6 +3554,7 @@
         "dereuromark/cakephp-calendar": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-databaselog": 20,
+        "oldskool/whoops-cakephp": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20,

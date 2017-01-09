@@ -184,16 +184,19 @@ class_alias('Cake\Core\Plugin', 'Plugin');
  * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
  */
 
-Plugin::loadAll([
-	'Setup' => ['bootstrap' => true],
-	'Tools' => ['bootstrap' => true],
-	'Data' => ['routes' => true],
-	//'Ajax' => array('bootstrap' => true)
-	'Sandbox' => ['routes' => true],
-	'AuthSandbox' => ['routes' => true],
-	'DebugKit' => ['bootstrap' => true],
-	'AssetCompress' => ['bootstrap' => true],
-	'Cache' => ['bootstrap' => false, 'routes' => true],
-	'Captcha' => ['bootstrap' => true, 'routes' => true],
-	'DatabaseLog' => ['bootstrap' => true, 'routes' => true],
-]);
+Plugin::load('Setup', ['bootstrap' => true]);
+Plugin::load('Tools', ['bootstrap' => true]);
+Plugin::load('Data', ['routes' => true]);
+Plugin::load('Setup', ['bootstrap' => true]);
+Plugin::load('Sandbox', ['routes' => true]);
+Plugin::load('AuthSandbox', ['routes' => true]);
+Plugin::load('DebugKit', ['bootstrap' => true]);
+Plugin::load('AssetCompress', ['bootstrap' => true]);
+
+Plugin::load('Cache', ['routes' => true]);
+Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('DatabaseLog', ['bootstrap' => true, 'routes' => true]);
+
+if (Configure::read('debug')) {
+	Plugin::load('WhoopsCakephp', ['bootstrap' => true]);
+}
