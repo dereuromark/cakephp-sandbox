@@ -32,7 +32,6 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		parent::tearDown();
 
 		TableRegistry::clear();
-		$_ENV['HTTP_X_REQUESTED_WITH'] = null;
 	}
 
 	/**
@@ -59,7 +58,11 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testSimpleAjax() {
-		$_ENV['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'simple', '_ext' => 'json']);
 

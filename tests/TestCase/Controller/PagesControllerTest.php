@@ -7,7 +7,7 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  */
-class MiscControllerTest extends IntegrationTestCase {
+class PagesControllerTest extends IntegrationTestCase {
 
 	public function setUp() {
 		parent::setUp();
