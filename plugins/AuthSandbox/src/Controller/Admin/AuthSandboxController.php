@@ -6,13 +6,6 @@ use AuthSandbox\Controller\AuthSandboxController as NormalAuthSandboxController;
 class AuthSandboxController extends NormalAuthSandboxController {
 
 	/**
-	 * @return void
-	 */
-	protected function _allowActions() {
-		$this->Auth->allow(['']);
-	}
-
-	/**
 	 * Only admins can access this
 	 *
 	 * @return void

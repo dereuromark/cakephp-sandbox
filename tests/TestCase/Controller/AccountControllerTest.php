@@ -176,7 +176,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLostPassword() {
-		$this->skipIf(true);
+		$this->skipIf(true, 'FIXME');
 
 		$this->get(['controller' => 'Account', 'action' => 'lostPassword']);
 		$this->assertResponseCode(200);
@@ -240,12 +240,25 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testRegister() {
 		$this->get(['controller' => 'Account', 'action' => 'register']);
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testEdit() {
+		$data = [
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]]
+		];
+		$this->session($data);
+
+		$this->get(['controller' => 'Account', 'action' => 'edit']);
+
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}

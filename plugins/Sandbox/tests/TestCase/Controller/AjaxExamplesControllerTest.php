@@ -3,6 +3,7 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
@@ -11,10 +12,17 @@ use Tools\TestSuite\IntegrationTestCase;
 class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 	/**
+	 * @var array
+	 */
+	public $fixtures = ['plugin.Data.Countries'];
+
+	/**
 	 * @return void
 	 */
 	public function setUp() {
 		parent::setUp();
+
+		Router::extensions(['json']);
 	}
 
 	/**
@@ -24,6 +32,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		parent::tearDown();
 
 		TableRegistry::clear();
+		$_ENV['HTTP_X_REQUESTED_WITH'] = null;
 	}
 
 	/**
@@ -34,6 +43,28 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testSimple() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'simple']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testSimpleAjax() {
+		$_ENV['HTTP_X_REQUESTED_WITH'] = 'XMLHttpRequest';
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'simple', '_ext' => 'json']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('"now": "');
 	}
 
 	/**
@@ -51,6 +82,26 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function testTogglePost() {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'toggle'], []);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPagination() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'pagination']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testEndlessScroll() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'endlessScroll']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

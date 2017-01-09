@@ -82,7 +82,7 @@ class AccountController extends AppController {
 		} elseif (!empty($this->request->data['Form']['login'])) {
 			//$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
-			$this->Users->set($this->request->data);
+			//$this->Users->set($this->request->data);
 
 			// Validate basic email scheme and captcha input.
 			if ($this->Users->validates()) {
@@ -122,7 +122,7 @@ class AccountController extends AppController {
 			}
 		}
 
-		$this->helpers = array_merge($this->helpers, ['Tools.Captcha']);
+		//$this->helpers = array_merge($this->helpers, ['Tools.Captcha']);
 	}
 
 	/**
