@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3aa1f090265c929a0b49acdbb25d849",
-    "content-hash": "f40ec20eb83e66995cc9d53157783711",
+    "hash": "2f738d01673e9ef0386f84488d955d95",
+    "content-hash": "a2df52a9f118202fea54f606188a0e94",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -132,12 +132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "10a5205b36d9b23894e7176a483a0d1e730ba378"
+                "reference": "c2f0b9dd390494ea722497149fac4592d7a56acc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/10a5205b36d9b23894e7176a483a0d1e730ba378",
-                "reference": "10a5205b36d9b23894e7176a483a0d1e730ba378",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c2f0b9dd390494ea722497149fac4592d7a56acc",
+                "reference": "c2f0b9dd390494ea722497149fac4592d7a56acc",
                 "shasum": ""
             },
             "require": {
@@ -200,20 +200,20 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-01-08 16:31:19"
+            "time": "2017-01-09 01:19:27"
         },
         {
             "name": "cakephp/chronos",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "016e7bcc080dbf67baf71a8646efb1d8c50389e9"
+                "reference": "16753ad209f5b478dd35caadcd609104762fc157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/016e7bcc080dbf67baf71a8646efb1d8c50389e9",
-                "reference": "016e7bcc080dbf67baf71a8646efb1d8c50389e9",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/16753ad209f5b478dd35caadcd609104762fc157",
+                "reference": "16753ad209f5b478dd35caadcd609104762fc157",
                 "shasum": ""
             },
             "require": {
@@ -255,7 +255,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2016-12-21 21:09:39"
+            "time": "2017-01-09 02:11:45"
         },
         {
             "name": "cakephp/localized",
@@ -354,46 +354,6 @@
                 "migrations"
             ],
             "time": "2017-01-07 16:45:31"
-        },
-        {
-            "name": "cakephp/plugin-installer",
-            "version": "0.0.15",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/plugin-installer.git",
-                "reference": "8e84898b44df50e88b5109bb7d4d28de845e9bf8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/8e84898b44df50e88b5109bb7d4d28de845e9bf8",
-                "reference": "8e84898b44df50e88b5109bb7d4d28de845e9bf8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "dev-master",
-                "composer/composer": "1.0.*@dev"
-            },
-            "type": "composer-installer",
-            "extra": {
-                "class": "Cake\\Composer\\Installer\\PluginInstaller"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Cake\\Composer\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "CakePHP Community",
-                    "homepage": "http://cakephp.org"
-                }
-            ],
-            "description": "A composer installer for CakePHP 3.0+ plugins.",
-            "time": "2016-04-28 03:01:34"
         },
         {
             "name": "dereuromark/cakephp-ajax",
@@ -1429,21 +1389,20 @@
         },
         {
             "name": "friendsofcake/cakepdf",
-            "version": "3.0.x-dev",
+            "version": "3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/CakePdf.git",
-                "reference": "3b9ebbf266957ee0a5c942b38b97112b16fdffad"
+                "reference": "edc55dc2dabbd94340584f7238062bfbf2e43d39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/3b9ebbf266957ee0a5c942b38b97112b16fdffad",
-                "reference": "3b9ebbf266957ee0a5c942b38b97112b16fdffad",
+                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/edc55dc2dabbd94340584f7238062bfbf2e43d39",
+                "reference": "edc55dc2dabbd94340584f7238062bfbf2e43d39",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.1",
-                "cakephp/plugin-installer": "*",
                 "php": ">=5.4.16"
             },
             "replace": {
@@ -1469,7 +1428,7 @@
             ],
             "description": "CakePHP plugin for creating and/or rendering Pdfs, several Pdf engines supported.",
             "homepage": "http://github.com/friendsofcake/CakePdf",
-            "time": "2015-09-20 15:38:04"
+            "time": "2016-08-22 21:51:12"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
@@ -2950,6 +2909,46 @@
             "time": "2016-12-22 20:40:05"
         },
         {
+            "name": "cakephp/plugin-installer",
+            "version": "0.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/plugin-installer.git",
+                "reference": "8e84898b44df50e88b5109bb7d4d28de845e9bf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/8e84898b44df50e88b5109bb7d4d28de845e9bf8",
+                "reference": "8e84898b44df50e88b5109bb7d4d28de845e9bf8",
+                "shasum": ""
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "dev-master",
+                "composer/composer": "1.0.*@dev"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Cake\\Composer\\Installer\\PluginInstaller"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "http://cakephp.org"
+                }
+            ],
+            "description": "A composer installer for CakePHP 3.0+ plugins.",
+            "time": "2016-04-28 03:01:34"
+        },
+        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -2988,12 +2987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "d99356a95eee75010528237b484d1c3cc4d095b8"
+                "reference": "fc7eab661c5f8dd3fa8c690ea4c8e47580752612"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/d99356a95eee75010528237b484d1c3cc4d095b8",
-                "reference": "d99356a95eee75010528237b484d1c3cc4d095b8",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/fc7eab661c5f8dd3fa8c690ea4c8e47580752612",
+                "reference": "fc7eab661c5f8dd3fa8c690ea4c8e47580752612",
                 "shasum": ""
             },
             "require": {
@@ -3022,7 +3021,7 @@
                 }
             ],
             "description": "Code-Sniffer, Auto-Fixer and Tokenizer for PSR2-R",
-            "time": "2017-01-08 15:40:44"
+            "time": "2017-01-09 01:49:39"
         },
         {
             "name": "jakub-onderka/php-console-color",

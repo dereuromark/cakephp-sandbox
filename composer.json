@@ -36,7 +36,7 @@
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
-		"friendsofcake/cakepdf": "3.0.*-dev",
+		"friendsofcake/cakepdf": "^3.0@dev",
 		"friendsofcake/bootstrap-ui": "dev-master",
 		"dereuromark/cakephp-cache": "dev-master",
 		"symfony/filesystem": "2.*",
@@ -82,6 +82,7 @@
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
 	"config": {
-		"preferred-install": "source"
+		"preferred-install": "source",
+		"process-timeout": 600
 	}
 }
