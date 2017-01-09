@@ -30,3 +30,5 @@ try {
 } catch (MissingPluginException $e) {
 	// Do not halt if the plugin is missing
 }
+
+Plugin::load('Migrations');
