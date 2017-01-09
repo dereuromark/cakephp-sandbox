@@ -22,7 +22,7 @@
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
-		"dereuromark/cakephp-tools": "~1.1",
+		"dereuromark/cakephp-tools": "^1.1",
 		"dereuromark/cakephp-setup": "dev-master",
 		"friendsofcake/authenticate": "dev-cake3",
 		"cakephp/migrations": "~1.3",
@@ -40,16 +40,16 @@
 		"friendsofcake/bootstrap-ui": "dev-master",
 		"dereuromark/cakephp-cache": "dev-master",
 		"symfony/filesystem": "2.*",
-		"cakephp/chronos": "~1.0",
+		"cakephp/chronos": "^1.0",
 		"friendsofcake/cakephp-csvview": "^2.2",
 		"friendsofcake/search": "dev-master",
 		"dereuromark/cakephp-hashid": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
-		"cakephp/localized": "~3.0",
+		"cakephp/localized": "^3.0",
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
-		"oldskool/whoops-cakephp": "dev-patch-1"
+		"gourmet/whoops": "^1.0"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
@@ -85,11 +85,5 @@
 	"config": {
 		"preferred-install": "source",
 		"process-timeout": 600
-	},
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "git@github.com:dereuromark/WhoopsCakephp.git"
-		}
-	]
+	}
 }

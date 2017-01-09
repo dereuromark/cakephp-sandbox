@@ -39,7 +39,6 @@ use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ErrorHandler;
 use Cake\Log\Log;
 use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
@@ -102,7 +101,8 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
 	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-	(new ErrorHandler(Configure::consume('Error')))->register();
+	//(new ErrorHandler(Configure::consume('Error')))->register();
+	(new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.
@@ -196,7 +196,3 @@ Plugin::load('AssetCompress', ['bootstrap' => true]);
 Plugin::load('Cache', ['routes' => true]);
 Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('DatabaseLog', ['bootstrap' => true, 'routes' => true]);
-
-if (Configure::read('debug')) {
-	Plugin::load('WhoopsCakephp', ['bootstrap' => true]);
-}

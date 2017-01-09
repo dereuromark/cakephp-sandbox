@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "db985e6de8439500c25ac7fb51f837a0",
-    "content-hash": "d8ff929506ca08522b1a6143773f7705",
+    "hash": "765d7ee72678b0f863f5e2f3c33d6650",
+    "content-hash": "a09e3e7a2c91870df6d5e5e3fc79d65a",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -1657,6 +1657,51 @@
             "time": "2016-08-13 16:52:04"
         },
         {
+            "name": "gourmet/whoops",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gourmet/whoops.git",
+                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gourmet/whoops/zipball/25c835810283ae71a378a20a7f5516a75eb6657b",
+                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.0"
+            },
+            "suggest": {
+                "phpunit/phpunit": "Allows automated tests to be run without system-wide install."
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Gourmet\\Whoops\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                }
+            ],
+            "description": "Whoops for CakePHP 3",
+            "homepage": "http://github.com/gourmet/whoops",
+            "keywords": [
+                "cakephp",
+                "whoops"
+            ],
+            "time": "2016-08-02 14:27:06"
+        },
+        {
             "name": "hashids/hashids",
             "version": "1.0.6",
             "source": {
@@ -2153,40 +2198,6 @@
                 "minify"
             ],
             "time": "2016-10-12 20:22:23"
-        },
-        {
-            "name": "oldskool/whoops-cakephp",
-            "version": "dev-patch-1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/WhoopsCakephp.git",
-                "reference": "25dd055fa33f2a97230c1f9ed9ee956df07a34cc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/WhoopsCakephp/zipball/25dd055fa33f2a97230c1f9ed9ee956df07a34cc",
-                "reference": "25dd055fa33f2a97230c1f9ed9ee956df07a34cc",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0",
-                "filp/whoops": "~2.0"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "WhoopsCakephp\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "Integrates the Whoops library into a CakePHP application",
-            "homepage": "https://github.com/oldskool/WhoopsCakephp",
-            "support": {
-                "source": "https://github.com/dereuromark/WhoopsCakephp/tree/patch-1"
-            },
-            "time": "2017-01-09 22:52:12"
         },
         {
             "name": "paragonie/random_compat",
@@ -3554,7 +3565,6 @@
         "dereuromark/cakephp-calendar": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-databaselog": 20,
-        "oldskool/whoops-cakephp": 20,
         "psy/psysh": 0,
         "cakephp/debug_kit": 20,
         "cakephp/bake": 20,
