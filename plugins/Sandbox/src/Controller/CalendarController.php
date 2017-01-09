@@ -76,10 +76,14 @@ class CalendarController extends SandboxAppController {
 
 		$count = mt_rand(3, 8);
 		for ($i = 0; $i < $count; $i++) {
+			$config = $this->Events->connection()->config();
+			$driver = $config['driver'];
+			$random = strpos($driver, 'Sqlite') !== false ? 'RANDOM()' : 'RAND()';
+
 			$countryProvince = $this->CountryProvinces
 				->find()
 				->where(['abbr !=' => '', 'lat !=' => 0, 'lng !=' => 0])
-				->order('rand()')
+				->order($random)
 				->first();
 
 			$event = $this->Events->newEntity([
