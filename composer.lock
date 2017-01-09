@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eb082c7e6dba0a6b1931d4634e9dbec8",
-    "content-hash": "ce0f87199eeb1bbf1de13d18f1373479",
+    "hash": "95eb49614f00dbd245157fba0c19789d",
+    "content-hash": "6d4141cf10e7f33ee918d174281da61f",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -256,6 +256,63 @@
                 "time"
             ],
             "time": "2017-01-09 02:11:45"
+        },
+        {
+            "name": "cakephp/debug_kit",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/debug_kit.git",
+                "reference": "62edba760ddfbece24607aa0577f4e755a625402"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/62edba760ddfbece24607aa0577f4e755a625402",
+                "reference": "62edba760ddfbece24607aa0577f4e755a625402",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": ">=3.1.0 <4.0",
+                "cakephp/plugin-installer": "*",
+                "jdorn/sql-formatter": "~1.2"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "~2.1",
+                "phpunit/phpunit": "~4.1"
+            },
+            "suggest": {
+                "ext-sqlite": "DebugKit needs to store panel data in a database. SQLite is simple and easy to use."
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "DebugKit\\": "src",
+                    "DebugKit\\Test\\Fixture\\": "tests\\Fixture"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Story",
+                    "homepage": "http://mark-story.com",
+                    "role": "Author"
+                },
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/debug_kit/graphs/contributors"
+                }
+            ],
+            "description": "CakePHP Debug Kit",
+            "homepage": "https://github.com/cakephp/debug_kit",
+            "keywords": [
+                "cakephp",
+                "debug",
+                "kit"
+            ],
+            "time": "2016-12-22 20:40:05"
         },
         {
             "name": "cakephp/localized",
@@ -1844,6 +1901,56 @@
             "time": "2014-12-15 23:03:51"
         },
         {
+            "name": "jdorn/sql-formatter",
+            "version": "v1.2.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jdorn/sql-formatter.git",
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/64990d96e0959dff8e059dfcdc1af130728d92bc",
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "lib"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Dorn",
+                    "email": "jeremy@jeremydorn.com",
+                    "homepage": "http://jeremydorn.com/"
+                }
+            ],
+            "description": "a PHP SQL highlighting library",
+            "homepage": "https://github.com/jdorn/sql-formatter/",
+            "keywords": [
+                "highlight",
+                "sql"
+            ],
+            "time": "2014-01-12 16:20:24"
+        },
+        {
             "name": "knplabs/knp-menu",
             "version": "2.2.0",
             "source": {
@@ -2997,63 +3104,6 @@
             "time": "2017-01-04 07:52:22"
         },
         {
-            "name": "cakephp/debug_kit",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "62edba760ddfbece24607aa0577f4e755a625402"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/62edba760ddfbece24607aa0577f4e755a625402",
-                "reference": "62edba760ddfbece24607aa0577f4e755a625402",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": ">=3.1.0 <4.0",
-                "cakephp/plugin-installer": "*",
-                "jdorn/sql-formatter": "~1.2"
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "~2.1",
-                "phpunit/phpunit": "~4.1"
-            },
-            "suggest": {
-                "ext-sqlite": "DebugKit needs to store panel data in a database. SQLite is simple and easy to use."
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "DebugKit\\": "src",
-                    "DebugKit\\Test\\Fixture\\": "tests\\Fixture"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mark Story",
-                    "homepage": "http://mark-story.com",
-                    "role": "Author"
-                },
-                {
-                    "name": "CakePHP Community",
-                    "homepage": "https://github.com/cakephp/debug_kit/graphs/contributors"
-                }
-            ],
-            "description": "CakePHP Debug Kit",
-            "homepage": "https://github.com/cakephp/debug_kit",
-            "keywords": [
-                "cakephp",
-                "debug",
-                "kit"
-            ],
-            "time": "2016-12-22 20:40:05"
-        },
-        {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
             "source": {
@@ -3214,56 +3264,6 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
-        },
-        {
-            "name": "jdorn/sql-formatter",
-            "version": "v1.2.17",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/64990d96e0959dff8e059dfcdc1af130728d92bc",
-                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3.x-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "lib"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jeremy Dorn",
-                    "email": "jeremy@jeremydorn.com",
-                    "homepage": "http://jeremydorn.com/"
-                }
-            ],
-            "description": "a PHP SQL highlighting library",
-            "homepage": "https://github.com/jdorn/sql-formatter/",
-            "keywords": [
-                "highlight",
-                "sql"
-            ],
-            "time": "2014-01-12 16:20:24"
         },
         {
             "name": "nikic/php-parser",
@@ -3565,8 +3565,8 @@
         "dereuromark/cakephp-calendar": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-databaselog": 20,
-        "psy/psysh": 0,
         "cakephp/debug_kit": 20,
+        "psy/psysh": 0,
         "cakephp/bake": 20,
         "fig-r/psr2r-sniffer": 20
     },

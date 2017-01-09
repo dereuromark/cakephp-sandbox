@@ -50,11 +50,11 @@
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
-		"gourmet/whoops": "^1.0"
+		"gourmet/whoops": "^1.0",
+		"cakephp/debug_kit": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
-		"cakephp/debug_kit": "dev-master",
 		"cakephp/bake": "dev-master",
 		"fig-r/psr2r-sniffer": "dev-master"
 	},
