@@ -29,7 +29,9 @@ Just write it via keyboard, scan it and send it.
 
 <h3>Result</h3>
 <?php
-	if (!empty($result)) {
+use Cake\Validation\Validation;
+
+if (!empty($result)) {
 		$this->QrCode->setSize(300);
 		if ($this->request->data['Misc']['type'] === 'card') {
 			if (!Validation::date($result['birthday'])) {
@@ -60,8 +62,8 @@ Just write it via keyboard, scan it and send it.
 	?>
 
 	<div id="cardBox">
+		<br>
 	<?php
-		echo BR;
 		echo $this->Form->input('Card.name', []);
 		//echo $this->Form->input('Card.sound', array());
 		echo $this->Form->input('Card.nickname', []);
@@ -77,15 +79,15 @@ Just write it via keyboard, scan it and send it.
 	?>
 	</div>
 	<div id="textBox">
+		<br>
 	<?php
-		echo BR;
 		echo $this->Form->input('content', ['rows' => 10]);
 
 	?>
 	</div>
+		<br>
 	<div id="smsBox">
 	<?php
-		echo BR;
 		echo $this->Form->input('Sms.number', []);
 		echo $this->Form->input('Sms.content', ['rows' => 10]);
 

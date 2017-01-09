@@ -15,6 +15,7 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @deprecated Standalone now as https://github.com/ADmad/CakePHP-tree
 	 * @return void
 	 */
 	public function tree() {

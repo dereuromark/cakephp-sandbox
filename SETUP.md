@@ -55,9 +55,9 @@ Then inside the vagrant machine navigate to `/Apps/sandbox.local/` and execute
 
 Please check the quality of your changes via
 ```
-./sniff
+composer cs-check
 ```
 You can auto-fix most issues with
 ```
-./sniff -f
+composer cs-fix
 ```

@@ -3,7 +3,6 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\ORM\TableRegistry;
-use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
@@ -18,16 +17,14 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function setUp()
-	{
+	public function setUp() {
 		parent::setUp();
 	}
 
 	/**
 	 * @return void
 	 */
-	public function tearDown()
-	{
+	public function tearDown() {
 		parent::tearDown();
 
 		TableRegistry::clear();
@@ -36,8 +33,7 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function testIndex()
-	{
+	public function testIndex() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
