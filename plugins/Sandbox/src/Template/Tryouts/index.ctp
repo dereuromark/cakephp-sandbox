@@ -9,7 +9,7 @@ They mainly just need CSS assets added.
 These are included using composer.
 
 <ul>
-	<li><?php echo $this->Html->link('Carbon', ['controller' => 'carbon', 'action' => 'index']); ?></li>
+	<li><a href="http://filp.github.io/whoops/" target="_blank">Whoops</a> as error handler and exception renderer is used for this. Make sure you are in debug mode for testing it :)</li>
 </ul>
 
 </div>
