@@ -26,7 +26,9 @@ class MenuController extends SandboxAppController {
 
 		$menu['Sandbox']->setUri(['plugin' => 'Sandbox', 'controller' => 'Sandbox', 'action' => 'index']);
 		$menu['Sandbox']->addChild('Bootstrap', ['uri' => ['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'index']]);
-		$menu['Sandbox']->addChild('Menu', ['uri' => ['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']]);
+		$menu['Sandbox']->addChild('Menu Index', ['uri' => ['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']]);
+		$menu['Sandbox']->addChild('Menu Index with Passed Param', ['uri' => ['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index', 'foo']]);
+		$menu['Sandbox']->addChild('Menu Index with Query String', ['uri' => ['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index', '?' => ['foo' => 'bar']]]);
 	}
 
 }
