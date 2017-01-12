@@ -10,25 +10,17 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 * Check it out live: http://sandbox3.dereuromark.de
 * Author: Mark Scherer alias dereuromark
 
-
-### Dependencies
-
-* CakePHP 3.x via composer
-* Plugins via composer
+### Key Features
+- Plugin showcasings
+- Whoops as error renderer for development (debug true)
 
 ### Where to find the code
 You have probably been to [sandbox/plugin-examples](http://sandbox3.dereuromark.de/sandbox/plugin-examples).
 
-Most of the example code can be found inside `/plugins`:
-- Sandbox: Misc. examples
-- AuthSandbox: Auth examples
+Most of the example code can be found inside `/plugins/` directory:
+- `/plugins/Sandbox/`: Misc. examples
+- `/plugins/AuthSandbox/`: Auth examples
 
 ### Installation
 
 Please see [SETUP.md](/SETUP.md)
-
-### TODOS
-
-* OptIn/Registration
-* Timezone
-* More stuff / plugins

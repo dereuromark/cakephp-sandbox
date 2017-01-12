@@ -1,12 +1,18 @@
 # CakePHP Sandbox APP - How to setup
 
-If you want to contribute, these are the basic steps to get the repo to run locally.
+These are the basic steps to get the repo to run locally.
+
+### Dependencies
+
+* CakePHP 3.x via composer
+* Plugins via composer
 
 ### Installation
 
-First, clone the repo into a root folder:
-
-	git clone https://github.com/dereuromark/cakephp-sandbox.git
+First, clone the repo:
+```
+git clone https://github.com/dereuromark/cakephp-sandbox.git
+```
 
 Then:
 
@@ -58,12 +64,17 @@ bin/cake Setup.User create yourname yourpassword
 
 For the role select `1` (=admin) manually, and confirm the save operation. You should now be able to log in.
 
+Note: Do you not use the usernames `admin`, `mod`, `user` as those come shipped along with the migrations seeding data for the sandbox examples.
+If you want to use those to log in check the Auth sandbox part.
+
 ### Contributing
 
 * Use the Sandbox plugin to create more sandbox functionality
 * Submit your changes via PR (pull request).
 
-Please check the quality of your changes via
+The tests should pass: `php phpunit.phar`
+
+Please make sure the coding style is fine for your changes via
 ```
 composer cs-check
 ```
