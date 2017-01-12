@@ -36,12 +36,13 @@ Just follow the docs there, log in and create a project:
 ```
 cakebox application add sandbox.local
 ```
-Then remove that folder in /Apps and instead clone the sandbox into it.
+Then remove that `sandbox.local` folder in /Apps/ and instead clone the sandbox into it.
 
 In this case the hosts entry would more look like:
 ```
 10.33.10.10 cakebox sandbox.local
 ```
+The `add` command from above should automatically do that. If not, adjust your hosts file manually.
 
 Then inside the vagrant machine navigate to `/Apps/sandbox.local/` and execute
 ```
