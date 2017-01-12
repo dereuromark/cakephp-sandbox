@@ -26,6 +26,8 @@ bin/cake Migrations migrate -p Captcha
 bin/cake Migrations migrate
 
 echo "### ASSETS ###";
+npm install -g bower
+npm install -g ttembed-js
 bower install
 
 ttembed-js ./webroot/assets/font-awesome/fonts/fontawesome-webfont.ttf
