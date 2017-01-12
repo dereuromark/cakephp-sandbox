@@ -49,6 +49,15 @@ Then inside the vagrant machine navigate to `/Apps/sandbox.local/` and execute
 ./setup
 ```
 
+### Creating Admin User
+In case you want to check out the admin area (`/admin`), you want to create an admin user.
+You can do that via command line:
+```
+bin/cake Setup.User create yourname yourpassword
+```
+
+For the role select `1` (=admin) manually, and confirm the save operation. You should now be able to log in.
+
 ### Contributing
 
 * Use the Sandbox plugin to create more sandbox functionality
