@@ -22,8 +22,8 @@ bin/cake Migrations migrate
 ```
 
 But it is easier to run the quick command here doing it all at once:
-```
-./build-dev.sh
+``` 
+./setup
 ```
 Everything should be up and running.
 
