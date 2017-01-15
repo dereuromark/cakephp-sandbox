@@ -3,6 +3,6 @@
 
 <h3>CsvView plugin examples</h3>
 <ul>
-	<li><?php echo $this->Html->link('Simple', ['action' => 'simple', '_ext' => 'csv'])?></li>
-	<li><?php echo $this->Html->link('Paginations and CSV', ['action' => 'pagination'])?></li>
+	<li><?php echo $this->Html->link('Simple Export', ['action' => 'simple', '_ext' => 'csv'])?></li>
+	<li><?php echo $this->Html->link('Pagination and CSV', ['action' => 'pagination'])?></li>
 </ul>

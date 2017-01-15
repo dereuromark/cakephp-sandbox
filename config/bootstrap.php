@@ -192,6 +192,7 @@ Plugin::load('Sandbox', ['routes' => true]);
 Plugin::load('AuthSandbox', ['routes' => true]);
 Plugin::load('DebugKit', ['bootstrap' => true]);
 Plugin::load('AssetCompress', ['bootstrap' => true]);
+Plugin::load('BootstrapUI', []);
 
 Plugin::load('Cache', ['routes' => true]);
 Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
