@@ -54,7 +54,6 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function toggle() {
-
 		if ($this->request->is(['post'])) {
 			// Simulate a DB save via session
 			$status = (bool)$this->request->query('status');

@@ -236,7 +236,6 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function formatHelper() {
-
 	}
 
 	/**

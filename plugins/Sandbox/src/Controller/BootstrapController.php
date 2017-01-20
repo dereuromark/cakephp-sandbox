@@ -30,7 +30,6 @@ class BootstrapController extends SandboxAppController {
 		unset($this->helpers['Flash.Flash']);
 
 		parent::beforeFilter($event);
-
 	}
 
 	/**

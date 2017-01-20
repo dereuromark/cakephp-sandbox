@@ -20,7 +20,6 @@ class CaptchasController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-
 	}
 
 	/**

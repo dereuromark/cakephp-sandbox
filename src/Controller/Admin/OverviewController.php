@@ -6,7 +6,6 @@ use App\Controller\AppController;
 class OverviewController extends AppController {
 
 	public function index() {
-
 	}
 
 }
