@@ -62,15 +62,14 @@ class UsersController extends AppController {
 
 	/**
 	 * @param int|null $id
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Network\Response
 	 */
 	public function delete($id = null) {
 		$user = $this->Users->get($id);
 
-		if ($this->Users->delete($user)) {
-			$this->Flash->message(__('User deleted'), 'xxxxx');
-			return $this->redirect(['action' => 'index']);
-		}
+		$this->Users->delete($user);
+		$this->Flash->success(__('User deleted'));
+		return $this->redirect(['action' => 'index']);
 	}
 
 }
