@@ -16,7 +16,7 @@ class ExportController extends AppController {
 	 * ExportController::beforeFilter()
 	 *
 	 * @param \Cake\Event\Event $event
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -34,7 +34,7 @@ class ExportController extends AppController {
 	 * ExportController::afterFilter()
 	 *
 	 * @param \Cake\Event\Event $event
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);
@@ -48,7 +48,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function countries() {
 		$this->Countries = TableRegistry::get('Data.Countries');
@@ -61,7 +61,7 @@ class ExportController extends AppController {
 	/**
 	 * maybe with countries directly?
 	 *
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function countryProvinces() {
 		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
@@ -72,7 +72,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function currencies() {
 		$this->Currency = TableRegistry::get('Data.Currencies');
@@ -83,7 +83,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function languages() {
 		$this->Language = TableRegistry::get('Data.Languages');
@@ -94,7 +94,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function continents() {
 		$this->Continent = TableRegistry::get('Data.Continents');
@@ -105,7 +105,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function postalCodes() {
 		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
@@ -116,7 +116,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function mimeTypes() {
 	}

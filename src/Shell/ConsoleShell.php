@@ -27,7 +27,7 @@ class ConsoleShell extends Shell {
 	/**
 	 * Start the shell and interactive console.
 	 *
-	 * @return int|void
+	 * @return int|null
 	 */
 	public function main() {
 		if (!class_exists('Psy\Shell')) {
@@ -40,7 +40,7 @@ class ConsoleShell extends Shell {
 			$this->err('');
 			$this->err('<info>$ php composer.phar require --dev psy/psysh</info>');
 			$this->err('');
-			return 1;
+			return static::CODE_ERROR;
 		}
 
 		$this->out('You can exit with <info>`CTRL-C`</info> or <info>`exit`</info>');
