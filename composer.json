@@ -77,6 +77,9 @@
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+		"setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar",
+		"test": "php phpunit.phar",
+		"coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./",
 		"cs-fix": "phpcbf -f --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./"
 	},
