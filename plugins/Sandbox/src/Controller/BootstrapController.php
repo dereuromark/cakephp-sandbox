@@ -115,18 +115,15 @@ class BootstrapController extends SandboxAppController {
 		$types = ['error', 'warning', 'success', 'info'];
 		$this->set(compact('types'));
 
-		if (!$type || !in_array($type, $types, true)) {
+		if (!$type || !in_array($type, $types, true) && $type !== 'html') {
 			$type = 'error';
 		}
-		$this->Flash->{$type}('I am a message of type ' . $type . '.');
-
-		// This is for CakePHP 3.1
-		/*
-		$this->Flash->error('I am an <b>error</b>');
-		$this->Flash->success('I am an success message');
-		$this->Flash->warning('I am a warning');
-		$this->Flash->info('I am a info message');
-		*/
+		if ($type === 'html') {
+			$type = '<b>Success</b> in HTML';
+			$this->Flash->success('I am a message of type ' . $type . '.', ['escape' => false]);
+		} else {
+			$this->Flash->{$type}('I am a message of type ' . $type . '.');
+		}
 	}
 
 }
