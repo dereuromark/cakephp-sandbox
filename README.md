@@ -13,6 +13,7 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 ### Key Features
 - Plugin showcasings
 - Whoops as error renderer for development (debug true)
+- Logging to a paginated and searchable DB solution instead of plain files
 
 ### Where to find the code
 You have probably been to [sandbox/plugin-examples](http://sandbox3.dereuromark.de/sandbox/plugin-examples).
