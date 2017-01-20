@@ -27,7 +27,7 @@ class AccountController extends AppController {
 			$user = $this->Auth->identify();
 			if ($user) {
 				$this->Auth->setUser($user);
-				$this->Flash->success(__('loggedInMessage'));
+				$this->Flash->success(__('You are now logged in.'));
 
 				return $this->redirect($this->Auth->redirectUrl());
 			}
@@ -51,7 +51,7 @@ class AccountController extends AppController {
 			$this->Comon->loadComponent('Tools.RememberMe');
 			$this->RememberMe->delete();
 		}
-		$this->Flash->success(__('loggedOutMessage'));
+		$this->Flash->success(__('You are now logged out.'));
 		return $this->redirect($whereTo);
 	}
 
