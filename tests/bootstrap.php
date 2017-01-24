@@ -5,11 +5,29 @@
  * Add additional configuration/setup your application needs when running
  * unit tests in this file.
  */
+use Cake\Datasource\ConnectionManager;
+use Cake\Log\Log;
+use Cake\Network\Exception\InternalErrorException;
+
 require dirname(__DIR__) . '/vendor/autoload.php';
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 
 $_SERVER['PHP_SELF'] = '/';
+
+// Tests should log to file instead of the default configured DatabaseLog
+$logs = Log::configured();
+foreach ($logs as $log) {
+	$config = Log::config($log);
+	if ($config['className'] === 'Cake\Log\Engine\FileLog') {
+		continue;
+	}
+	Log::drop($log);
+	Log::config($log, [
+		'className' => 'Cake\Log\Engine\FileLog',
+		'path' => LOGS,
+	] + $config);
+}
 
 $Tmp = new Cake\Filesystem\Folder(TMP);
 $Tmp->create(TMP . 'cache/models', 0770);
