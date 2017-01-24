@@ -37,8 +37,6 @@ class EventsTableTest extends TestCase {
 	}
 
 	/**
-	 * tearDown method
-	 *
 	 * @return void
 	 */
 	public function tearDown() {
@@ -48,21 +46,17 @@ class EventsTableTest extends TestCase {
 	}
 
 	/**
-	 * Test initialize method
-	 *
 	 * @return void
 	 */
-	public function testInitialize() {
-		$this->markTestIncomplete('Not implemented yet.');
-	}
+	public function testBasicSave() {
+		$event = $this->Events->newEntity([
+			'title' => 'Foo',
+			'location' => 'Bar',
+			'description' => 'Baz',
+		]);
+		$result = $this->Events->save($event);
 
-	/**
-	 * Test validationDefault method
-	 *
-	 * @return void
-	 */
-	public function testValidationDefault() {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->assertTrue((bool)$result);
 	}
 
 }
