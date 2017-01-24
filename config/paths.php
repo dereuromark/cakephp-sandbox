@@ -15,7 +15,9 @@
 /**
  * Use the DS to separate the directories in other defines
  */
-define('DS', DIRECTORY_SEPARATOR);
+if (!defined('DS')) {
+	define('DS', DIRECTORY_SEPARATOR);
+}
 
 /**
  * These defines should only be edited if you have cake installed in
@@ -24,12 +26,13 @@ define('DS', DIRECTORY_SEPARATOR);
  */
 
 /**
- * The full path to the directory which holds "App", WITHOUT a trailing DS.
+ * The full path to the directory which holds "src", WITHOUT a trailing DS.
  */
 define('ROOT', dirname(__DIR__));
 
 /**
- * The actual directory name for the "App".
+ * The actual directory name for the application directory. Normally
+ * named 'src'.
  */
 define('APP_DIR', 'src');
 
