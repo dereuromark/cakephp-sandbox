@@ -33,7 +33,11 @@ class Application extends BaseApplication {
             ->add(new AssetMiddleware())
 
 			// Handle cached files
-			->add(new CacheMiddleware())
+			->add(new CacheMiddleware([
+				'when' => function ($request, $response) {
+					return $request->is('get');
+				},
+			]))
 
             // Apply routing
             ->add(new RoutingMiddleware());
