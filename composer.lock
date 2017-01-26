@@ -8,113 +8,40 @@
     "content-hash": "550ffba117a6bfaa560de5566a2f72e1",
     "packages": [
         {
-            "name": "aura/installer-default",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/auraphp/installer-default.git",
-                "reference": "52f8de3670cc1ef45a916f40f732937436d028c8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/installer-default/zipball/52f8de3670cc1ef45a916f40f732937436d028c8",
-                "reference": "52f8de3670cc1ef45a916f40f732937436d028c8",
-                "shasum": ""
-            },
-            "type": "composer-installer",
-            "extra": {
-                "class": "Aura\\Composer\\DefaultInstaller"
-            },
-            "autoload": {
-                "psr-0": {
-                    "Aura\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul M. Jones",
-                    "email": "pmjones88@gmail.com",
-                    "homepage": "http://paul-m-jones.com"
-                }
-            ],
-            "description": "Installs Aura packages using the Composer defaults.",
-            "keywords": [
-                "aura",
-                "installer"
-            ],
-            "time": "2012-11-26 21:35:57"
-        },
-        {
             "name": "aura/intl",
-            "version": "1.1.1",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/auraphp/Aura.Intl.git",
-                "reference": "c5fe620167550ad6fa77dd3570fba2efc77a2a21"
+                "reference": "7fce228980b19bf4dee2d7bbd6202a69b0dde926"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/auraphp/Aura.Intl/zipball/c5fe620167550ad6fa77dd3570fba2efc77a2a21",
-                "reference": "c5fe620167550ad6fa77dd3570fba2efc77a2a21",
+                "url": "https://api.github.com/repos/auraphp/Aura.Intl/zipball/7fce228980b19bf4dee2d7bbd6202a69b0dde926",
+                "reference": "7fce228980b19bf4dee2d7bbd6202a69b0dde926",
                 "shasum": ""
             },
             "require": {
-                "aura/installer-default": "1.0.*",
-                "php": ">=5.4.0"
+                "php": "^5.6|^7.0"
             },
-            "type": "aura-package",
-            "extra": {
-                "aura": {
-                    "type": "library",
-                    "config": {
-                        "common": "Aura\\Intl\\_Config\\Common"
-                    }
-                },
-                "branch-alias": {
-                    "dev-develop": "1.1.x-dev"
-                }
-            },
+            "type": "library",
             "autoload": {
-                "psr-0": {
-                    "Aura\\Intl": "src/"
-                },
                 "psr-4": {
-                    "Aura\\Intl\\_Config\\": "config/"
+                    "Aura\\Intl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD-2-Clause"
+                "MIT"
             ],
             "authors": [
                 {
-                    "name": "Paul M. Jones",
-                    "email": "pmjones88@gmail.com",
-                    "homepage": "http://paul-m-jones.com"
-                },
-                {
                     "name": "Aura.Intl Contributors",
                     "homepage": "https://github.com/auraphp/Aura.Intl/contributors"
-                },
-                {
-                    "name": "Pascal Borreli",
-                    "email": "pascal@borreli.com"
-                },
-                {
-                    "name": "Mapthegod",
-                    "email": "mapthegod@gmail.com"
-                },
-                {
-                    "name": "Jose Lorenzo Rodriguez",
-                    "email": "jose.zap@gmail.com"
                 }
             ],
-            "description": "The Aura.Intl package provides internationalization (I18N) tools, specifically\npackage-oriented per-locale message translation.",
-            "homepage": "http://auraphp.com/Aura.Intl",
+            "description": "The Aura Intl package provides internationalization tools, specifically message translation.",
+            "homepage": "https://github.com/auraphp/Aura.Intl",
             "keywords": [
                 "g11n",
                 "globalization",
@@ -124,7 +51,7 @@
                 "l10n",
                 "localization"
             ],
-            "time": "2014-08-24 00:00:00"
+            "time": "2017-01-20 05:00:11"
         },
         {
             "name": "cakephp/cakephp",
@@ -132,16 +59,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f9fbead4b61be40d3b3544d0fb5c37e508ff5f66"
+                "reference": "21539614a0b9c55f60bac14ec9a06381be19fa81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f9fbead4b61be40d3b3544d0fb5c37e508ff5f66",
-                "reference": "f9fbead4b61be40d3b3544d0fb5c37e508ff5f66",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/21539614a0b9c55f60bac14ec9a06381be19fa81",
+                "reference": "21539614a0b9c55f60bac14ec9a06381be19fa81",
                 "shasum": ""
             },
             "require": {
-                "aura/intl": "1.1.*",
+                "aura/intl": "^3.0.0",
                 "cakephp/chronos": "~1.0",
                 "ext-intl": "*",
                 "ext-mbstring": "*",
@@ -181,7 +108,6 @@
                     "src/Core/functions.php",
                     "src/Collection/functions.php",
                     "src/I18n/functions.php",
-                    "src/Http/backwards_compat.php",
                     "src/Utility/bootstrap.php"
                 ]
             },
@@ -200,7 +126,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2017-01-20 02:05:36"
+            "time": "2017-01-25 02:24:28"
         },
         {
             "name": "cakephp/chronos",
@@ -263,12 +189,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "f064138375048a3a9ddfa51fef403704ad186c3f"
+                "reference": "98ebb7fd0e91b7ae82d3790727df523b2fbe4626"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/f064138375048a3a9ddfa51fef403704ad186c3f",
-                "reference": "f064138375048a3a9ddfa51fef403704ad186c3f",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/98ebb7fd0e91b7ae82d3790727df523b2fbe4626",
+                "reference": "98ebb7fd0e91b7ae82d3790727df523b2fbe4626",
                 "shasum": ""
             },
             "require": {
@@ -313,20 +239,20 @@
                 "debug",
                 "kit"
             ],
-            "time": "2017-01-19 03:11:00"
+            "time": "2017-01-26 02:51:10"
         },
         {
             "name": "cakephp/localized",
-            "version": "3.0.0",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/localized.git",
-                "reference": "3e3e90e9779cfcc0f1d1891405b779200a7407b3"
+                "reference": "01cf2e2f3a0dd53d8c80b7a05babe5460082b25a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/localized/zipball/3e3e90e9779cfcc0f1d1891405b779200a7407b3",
-                "reference": "3e3e90e9779cfcc0f1d1891405b779200a7407b3",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/01cf2e2f3a0dd53d8c80b7a05babe5460082b25a",
+                "reference": "01cf2e2f3a0dd53d8c80b7a05babe5460082b25a",
                 "shasum": ""
             },
             "require": {
@@ -334,7 +260,7 @@
                 "php": ">=5.4"
             },
             "require-dev": {
-                "cakephp/cakephp-codesniffer": "2.*",
+                "cakephp/cakephp-codesniffer": "^2.1",
                 "phpunit/phpunit": "*"
             },
             "type": "cakephp-plugin",
@@ -361,7 +287,7 @@
                 "l10n",
                 "localized"
             ],
-            "time": "2016-02-29 16:34:17"
+            "time": "2017-01-23 00:23:52"
         },
         {
             "name": "cakephp/migrations",
@@ -767,16 +693,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "7dd26995f1d2ab09f1f6dcd95dac89865e191ccc"
+                "reference": "a71b2681fd3e9d10c80e3353e6bb17b3a86b886f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/7dd26995f1d2ab09f1f6dcd95dac89865e191ccc",
-                "reference": "7dd26995f1d2ab09f1f6dcd95dac89865e191ccc",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/a71b2681fd3e9d10c80e3353e6bb17b3a86b886f",
+                "reference": "a71b2681fd3e9d10c80e3353e6bb17b3a86b886f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "~3.3",
+                "cakephp/cakephp": "^3.3",
                 "php": ">=5.5"
             },
             "require-dev": {
@@ -795,7 +721,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2016-09-18 22:11:50"
+            "time": "2017-01-26 23:07:15"
         },
         {
             "name": "dereuromark/cakephp-calendar",
@@ -3524,16 +3450,16 @@
         },
         {
             "name": "zendframework/zend-diactoros",
-            "version": "1.3.9",
+            "version": "1.3.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-diactoros.git",
-                "reference": "d5d74ca5548753e0e427fcffca89b134943bac89"
+                "reference": "83e8d98b9915de76c659ce27d683c02a0f99fa90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/d5d74ca5548753e0e427fcffca89b134943bac89",
-                "reference": "d5d74ca5548753e0e427fcffca89b134943bac89",
+                "url": "https://api.github.com/repos/zendframework/zend-diactoros/zipball/83e8d98b9915de76c659ce27d683c02a0f99fa90",
+                "reference": "83e8d98b9915de76c659ce27d683c02a0f99fa90",
                 "shasum": ""
             },
             "require": {
@@ -3570,7 +3496,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-17 16:18:33"
+            "time": "2017-01-23 04:53:24"
         }
     ],
     "packages-dev": [
@@ -3580,12 +3506,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "f3a149a21da2d49afd86119ac8ab5683f9062e16"
+                "reference": "28d9a67d41fec773dc618d0b639c3b3d74b17eaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/f3a149a21da2d49afd86119ac8ab5683f9062e16",
-                "reference": "f3a149a21da2d49afd86119ac8ab5683f9062e16",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/28d9a67d41fec773dc618d0b639c3b3d74b17eaf",
+                "reference": "28d9a67d41fec773dc618d0b639c3b3d74b17eaf",
                 "shasum": ""
             },
             "require": {
@@ -3619,7 +3545,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2017-01-04 07:52:22"
+            "time": "2017-01-26 02:57:18"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
