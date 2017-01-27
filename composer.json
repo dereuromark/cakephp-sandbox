@@ -53,8 +53,7 @@
 		"gourmet/whoops": "^1.0",
 		"cakephp/debug_kit": "dev-master",
 		"tecnickcom/tcpdf": "^6.2",
-		"dompdf/dompdf": "^0.7.0",
-		"mpdf/mpdf": "^6.1"
+		"dompdf/dompdf": "^0.7.0"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
