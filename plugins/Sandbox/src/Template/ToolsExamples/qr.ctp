@@ -1,7 +1,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-	$("#MiscType").change(function () {
+	$("#type").change(function () {
 		var selvalue = $(this).val();
 		if (selvalue == 'card') {
 			$("#textBox").hide(100);
@@ -33,7 +33,7 @@ use Cake\Validation\Validation;
 
 if (!empty($result)) {
 		$this->QrCode->setSize(300);
-		if ($this->request->data['Misc']['type'] === 'card') {
+		if ($this->request->data['type'] === 'card') {
 			if (!Validation::date($result['birthday'])) {
 				unset($result['birthday']);
 			}
@@ -44,7 +44,7 @@ if (!empty($result)) {
 			}
 			$string = $this->QrCode->formatCard($result);
 		} else {
-			$string = $this->QrCode->formatText($result, $this->request->data['Misc']['type']);
+			$string = $this->QrCode->formatText($result, $this->request->data['type']);
 		}
 
 		echo $this->QrCode->image($string);
@@ -53,7 +53,7 @@ if (!empty($result)) {
 
 <h3>Generate QR Code</h3>
 <div class="boardPosts form">
-<?php echo $this->Form->create('Misc');?>
+<?php echo $this->Form->create();?>
 	<fieldset>
 		<legend><?php echo __('New {0}', __('QR Code')); ?></legend>
 	<?php

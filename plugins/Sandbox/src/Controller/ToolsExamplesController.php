@@ -200,16 +200,25 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function qr() {
-		$types = ['text' => 'Text', 'url' => 'Url', 'tel' => 'Phone Number', 'sms' => 'Text message', 'email' => 'E-Mail', 'geo' => 'Geo', 'market' => 'Market', 'card' => 'Vcard'];
+		$types = [
+			'text' => 'Text',
+			'url' => 'Url',
+			'tel' => 'Phone Number',
+			'sms' => 'Text message',
+			'email' => 'E-Mail',
+			'geo' => 'Geo',
+			'market' => 'Market',
+			'card' => 'Vcard'
+		];
 
 		if ($this->request->is('post')) {
-			switch ($this->request->data['Misc']['type']) {
+			switch ($this->request->data['type']) {
 				case 'url':
 				case 'tel':
 				case 'email':
 				case 'geo':
 				case 'market':
-					$result = str_replace([PHP_EOL, NL], ' ', $this->request->data['Misc']['content']);
+					$result = str_replace([PHP_EOL, "\n"], ' ', $this->request->data['content']);
 					break;
 				case 'card':
 					$result = $this->request->data['Card'];
@@ -220,7 +229,7 @@ class ToolsExamplesController extends SandboxAppController {
 					$result = [$this->request->data['Sms']['number'], $this->request->data['Sms']['content']];
 					break;
 				case 'text':
-					$result = $this->request->data['Misc']['content'];
+					$result = $this->request->data['content'];
 					break;
 				default:
 					$result = null;

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8f1c11b9fd7c32dcac845a7af056220",
-    "content-hash": "550ffba117a6bfaa560de5566a2f72e1",
+    "hash": "62a4c6ff3b55494cd32aa02700a3b837",
+    "content-hash": "172a36c3eb748e18be18324ce73d3995",
     "packages": [
         {
             "name": "aura/intl",
@@ -1339,12 +1339,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "2d171029b7b7f1dff2631771098cb9458b0bda22"
+                "reference": "7192e186a12be52beb2a126faee74da0f495802e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/2d171029b7b7f1dff2631771098cb9458b0bda22",
-                "reference": "2d171029b7b7f1dff2631771098cb9458b0bda22",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/7192e186a12be52beb2a126faee74da0f495802e",
+                "reference": "7192e186a12be52beb2a126faee74da0f495802e",
                 "shasum": ""
             },
             "require": {
@@ -1355,9 +1355,6 @@
                 "fig-r/psr2r-sniffer": "dev-master"
             },
             "type": "cakephp-plugin",
-            "extra": {
-                "installer-name": "TinyAuth"
-            },
             "autoload": {
                 "psr-4": {
                     "TinyAuth\\": "src"
@@ -1384,20 +1381,20 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2017-01-20 01:46:17"
+            "time": "2017-01-27 11:39:57"
         },
         {
             "name": "dereuromark/cakephp-tools",
-            "version": "1.2.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "e433ecd8052fe5f7405038ad81793b177138a24a"
+                "reference": "7ce00422bd7aa9a1c2d91b4c06fc7da2e8385700"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/e433ecd8052fe5f7405038ad81793b177138a24a",
-                "reference": "e433ecd8052fe5f7405038ad81793b177138a24a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/7ce00422bd7aa9a1c2d91b4c06fc7da2e8385700",
+                "reference": "7ce00422bd7aa9a1c2d91b4c06fc7da2e8385700",
                 "shasum": ""
             },
             "require": {
@@ -1441,7 +1438,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2017-01-08 14:13:19"
+            "time": "2017-01-27 11:50:37"
         },
         {
             "name": "drmonkeyninja/cakephp-social-share",
@@ -3981,6 +3978,12 @@
             "alias_normalized": "3.4.0.0",
             "version": "dev-3.next",
             "package": "cakephp/cakephp"
+        },
+        {
+            "alias": "1.2",
+            "alias_normalized": "1.2.0.0",
+            "version": "9999999-dev",
+            "package": "dereuromark/cakephp-tools"
         }
     ],
     "minimum-stability": "stable",
@@ -3988,6 +3991,7 @@
         "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
+        "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
         "friendsofcake/authenticate": 20,
         "drmonkeyninja/cakephp-social-share": 20,
