@@ -5,9 +5,7 @@
  * Add additional configuration/setup your application needs when running
  * unit tests in this file.
  */
-use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
-use Cake\Network\Exception\InternalErrorException;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
