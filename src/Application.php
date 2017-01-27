@@ -2,7 +2,6 @@
 namespace App;
 
 use Cache\Routing\Middleware\CacheMiddleware;
-use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
@@ -25,6 +24,7 @@ class Application extends BaseApplication {
 		$middleware
 			// Catch any exceptions in the lower layers,
 			// and make an error page/response
+			// Removed for now because of Whoops Error Handler
 			//->add(new ErrorHandlerMiddleware())
 
 			// Handle plugin/theme assets like CakePHP normally does.
