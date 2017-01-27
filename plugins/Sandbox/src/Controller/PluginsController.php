@@ -30,7 +30,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function cake_pdf() {
+	public function cakePdf() {
 	}
 
 	/**

@@ -51,7 +51,10 @@
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
 		"gourmet/whoops": "^1.0",
-		"cakephp/debug_kit": "dev-master"
+		"cakephp/debug_kit": "dev-master",
+		"tecnickcom/tcpdf": "^6.2",
+		"dompdf/dompdf": "^0.7.0",
+		"mpdf/mpdf": "^6.1"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
