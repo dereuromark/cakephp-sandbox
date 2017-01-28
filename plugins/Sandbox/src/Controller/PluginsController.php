@@ -70,7 +70,7 @@ class PluginsController extends SandboxAppController {
 
 		// Setting dynamic config settings
 		Configure::write('CakePdf.download', (bool)$this->request->query('download'));
-		Configure::write('CakePdf.filename', $engineSlug);
+		Configure::write('CakePdf.filename', 'example-' . $engineSlug . '.pdf');
 
 		// Passing some test data to the view
 		$someTestArray = ['Foo' => ['bar' => 'value']];
