@@ -88,15 +88,18 @@
 		<ul>
 			<li><?php echo $this->Html->link('Menu Building in CakePHP', ['controller' => 'Menu', 'action' => 'index']); ?></li>
 		</ul>
+
+		<h4>CakePdf Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('PDF rendering in CakePHP', ['controller' => 'Plugins', 'action' => 'cakePdf']); ?></li>
+		</ul>
 	</div>
 </div>
 
 
 <h3>TODO</h3>
 <ul>
-	<li>CakePdf</li>
-	<li>Crud</li>
 	<li>Wysiwyg</li>
-	<li>Like / Rating / Favorite</li>
+	<li>Like / Favorite</li>
 	<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
 </ul>

@@ -42,7 +42,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @param string|null $engineSlug
 	 * @throws \Cake\Network\Exception\NotFoundException
-	 * @return void
+	 * @return \Cake\Network\Response|null
 	 */
 	public function pdfTest($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
@@ -53,6 +53,11 @@ class PluginsController extends SandboxAppController {
 			//'m' => 'Mpdf'
 		];
 		if (!empty($engineSlug)) {
+			if (Configure::read('debug') && $engineSlug === 'wk') {
+				$this->Flash->error('This engine does not work on this server right now, try locally');
+				return $this->redirect(['action' => 'cakePdf']);
+			}
+
 			if (empty($engines[$engineSlug])) {
 				throw new NotFoundException('Invalid engine');
 			}
@@ -100,6 +105,10 @@ class PluginsController extends SandboxAppController {
 			'orientation' => 'portrait',
 		];
 		$settings += (array)Configure::read('CakePdf');
+		if ($settings['engine'] === 'CakePdf.WkHtmlToPdf') {
+			$settings['engine'] = ['className' => 'CakePdf.WkHtmlToPdf'] + $settings;
+		}
+
 		Configure::write('CakePdf', $settings);
 
 		if ($engine === 'DomPdf') {
