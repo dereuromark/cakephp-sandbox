@@ -1,4 +1,5 @@
-<div class="users form">
+<div class="row">
+<div class="col-xs-12">
 <?php echo $this->Form->create($user); ?>
 	<fieldset>
 		<legend><?php echo __('Account information'); ?></legend>
@@ -15,22 +16,19 @@
 	?>
 	</fieldset>
 
-	<fieldset>
-		<legend><?php echo __('Details'); ?></legend>
-	<?php
-		echo $this->Form->input('irc_nick');
-		//echo $this->Form->input('timezone');
-
-		//echo $this->Form->input('language_id');
-	?>
-	</fieldset>
-
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end(); ?>
+
+
+
 </div>
-<div class="actions">
+</div>
+
+<div class="row">
+<div class="actions col-xs-12">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
 		<li><?php echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $this->Form->value('User.id')], ['confirm' => __('Are you sure you want to delete your account # {0}?', $this->Form->value('User.id'))]); ?></li>
 	</ul>
+</div>
 </div>

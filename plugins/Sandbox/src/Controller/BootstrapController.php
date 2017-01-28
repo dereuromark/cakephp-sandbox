@@ -14,7 +14,6 @@ class BootstrapController extends SandboxAppController {
 	 * @var array
 	 */
 	public $helpers = [
-		'Form' => ['className' => 'BootstrapUI.Form'],
 		'Flash' => ['className' => 'BootstrapUI.Flash']
 	];
 
@@ -26,7 +25,6 @@ class BootstrapController extends SandboxAppController {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
 
-		unset($this->helpers['Tools.Form']);
 		unset($this->helpers['Flash.Flash']);
 
 		parent::beforeFilter($event);

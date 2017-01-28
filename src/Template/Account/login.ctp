@@ -1,3 +1,7 @@
+<div class="row">
+
+	<div class="col-xs-12">
+
 <h2>Welcome</h2>
 <p>You need to login to proceed.</p>
 
@@ -15,13 +19,23 @@
 
 <?php echo $this->Form->submit(__('Log me in')); echo $this->Form->end();?>
 
-<h3>No account yet?</h3>
-<?php if (Configure::read('Config.allowRegister')) { ?>
-	<p><?php echo $this->Html->link('Create one here. For free :P', ['action' => 'register'])?></p>
-<?php } else { ?>
-	<p><?php echo __('Note'); ?>: <?php echo __('Currenctly the backend is for the admin only - but it will soon be available for public contributors')?></p>
-<?php } ?>
+		<?php if (false) { ?>
+<div class="row">
+	<div class="col-sm-6 col-xs-12">
+		<h3>No account yet?</h3>
+		<?php if (Configure::read('Config.allowRegister')) { ?>
+			<p><?php echo $this->Html->link('Create one here. For free :P', ['action' => 'register'])?></p>
+		<?php } else { ?>
+			<p><?php echo __('Note'); ?>: <?php echo __('Currenctly the backend is for the admin only - but it will soon be available for public contributors')?></p>
+		<?php } ?>
+	</div>
+	<div class="col-sm-6 col-xs-12">
+		<h3>Password lost?</h3>
+		<p><?php echo $this->Html->link('Reset your password.', ['action' => 'lost_password'])?></p>
+	</div>
+</div>
+		<?php } ?>
 
-<h3>Password lost?</h3>
-<p><?php echo $this->Html->link('Reset your password.', ['action' => 'lost_password'])?></p>
+	</div>
 
+</div>

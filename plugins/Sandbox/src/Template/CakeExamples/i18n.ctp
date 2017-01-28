@@ -7,13 +7,13 @@ $langDe = locale_get_display_name('de');
 ?>
 
 <div class="source-link" style="float: right;">
-<?php if ($this->Session->read('Config.language') === 'en') { ?>
+<?php if ($this->request->session()->read('Config.language') === 'en') { ?>
 	<b><?php echo $langEn; ?></b>
 <?php } else { ?>
 	<?php echo $this->Form->postLink($langEn, ['?' => ['lang' => 'en']], ['title' => __('Switch language')]); ?>
 <?php } ?>
  |
-<?php if ($this->Session->read('Config.language') === 'de') { ?>
+<?php if ($this->request->session()->read('Config.language') === 'de') { ?>
 	<b><?php echo $langDe; ?></b>
 <?php } else { ?>
 	<?php echo $this->Form->postLink($langDe, ['?' => ['lang' => 'de']], ['title' => __('Switch language')]); ?>

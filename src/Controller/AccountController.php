@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Event\Event;
 use Cake\Network\Exception\InternalErrorException;
+use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 use Tools\Mailer\Email;
 use Tools\View\Helper\ObfuscateHelper;
@@ -15,6 +17,27 @@ class AccountController extends AppController {
 	public $modelClass = 'Users';
 
 	/**
+	 * @param \Cake\Event\Event $event
+	 *
+	 * @return \Cake\Network\Response|null
+	 */
+	public function beforeFilter(Event $event) {
+		parent::beforeFilter($event);
+
+		if (Configure::read('debug')) {
+			return null;
+		}
+
+		// Make sure people can't change the default users for security reasons
+		$action = $this->request->param('action');
+		$user = $this->AuthUser->user('username');
+		if (in_array($action, ['edit', 'delete']) && in_array($user, ['user', 'mod', 'admin'])) {
+			$this->Flash->warning('This user is for demo purposes and protected');
+			return $this->redirect(['action' => 'index']);
+		}
+	}
+
+		/**
 	 * @return \Cake\Network\Response|null
 	 */
 	public function login() {
@@ -60,6 +83,10 @@ class AccountController extends AppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function lostPassword($key = null) {
+		if (!Configure::read('debug')) {
+			throw new NotFoundException('Disabled for live');
+		}
+
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
 		} elseif (!empty($key)) {
@@ -74,7 +101,7 @@ class AccountController extends AppController {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
 			} elseif (!empty($key)) {
 				$uid = $key['user_id'];
-				$this->Session->write('Auth.Tmp.id', $uid);
+				$this->request->session()->write('Auth.Tmp.id', $uid);
 				return $this->redirect(['action' => 'change_password']);
 			} else {
 				$this->Flash->error(__('Invalid Key'));
@@ -126,12 +153,14 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * AccountController::change_password()
-	 *
 	 * @return \Cake\Network\Response|null
 	 */
 	public function changePassword() {
-		$uid = $this->Session->read('Auth.Tmp.id');
+		if (!Configure::read('debug')) {
+			throw new NotFoundException('Disabled for live');
+		}
+
+		$uid = $this->request->session()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
 			return $this->redirect(['action' => 'lost_password']);
@@ -139,7 +168,7 @@ class AccountController extends AppController {
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
-				$this->Session->delete('Auth.Tmp');
+				$this->request->session()->delete('Auth.Tmp');
 			}
 			return $this->redirect(['action' => 'login']);
 		}
@@ -152,7 +181,7 @@ class AccountController extends AppController {
 
 			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
-				$this->Session->delete('Auth.Tmp');
+				$this->request->session()->delete('Auth.Tmp');
 				$username = $this->Users->field('username', ['id' => $uid]);
 				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
@@ -196,21 +225,19 @@ class AccountController extends AppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function edit() {
-		$uid = $this->Session->read('Auth.User.id');
+		$uid = $this->request->session()->read('Auth.User.id');
 		$user = $this->Users->get($uid);
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
 			$this->request->data['id'] = $uid;
-			$fieldList = ['id', 'username', 'email', 'irc_nick', 'pwd', 'pwd_repeat'];
+			$fieldList = ['id', 'username', 'email', 'pwd', 'pwd_repeat'];
 			$this->Users->patchEntity($user, $this->request->data, ['fieldList' => $fieldList]);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('Account modified'));
-				/*
-				if (!$this->Auth->setUser($this->Users->get($uid))) {
-					throw new \Exception('Cannot log user in');
-				}
-				*/
+
+				$this->Auth->setUser($this->Users->get($uid)->toArray());
+
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->error(__('formContainsErrors'));
@@ -224,12 +251,11 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @param mixed $id
 	 * @return \Cake\Network\Response|null
 	 */
-	public function delete($id = null) {
+	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);
-		$uid = $this->Session->read('Auth.User.id');
+		$uid = $this->request->session()->read('Auth.User.id');
 		if (!$this->Users->delete($uid)) {
 			throw new InternalErrorException();
 		}

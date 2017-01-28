@@ -57,11 +57,11 @@ class AjaxExamplesController extends SandboxAppController {
 		if ($this->request->is(['post'])) {
 			// Simulate a DB save via session
 			$status = (bool)$this->request->query('status');
-			$this->Session->write('AjaxToggle.status', $status);
+			$this->request->session()->write('AjaxToggle.status', $status);
 		}
 
 		// Read from DB (simulated)
-		$status = (bool)$this->Session->read('AjaxToggle.status');
+		$status = (bool)$this->request->session()->read('AjaxToggle.status');
 
 		$this->set(compact('status'));
 	}

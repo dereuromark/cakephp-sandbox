@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use Cake\Core\Configure;
 use Cake\Event\Event;
 use Tools\Controller\Controller;
 
@@ -14,22 +15,24 @@ class AppController extends Controller {
 	/**
 	 * @var array
 	 */
-	public $components = ['Shim.Session', 'RequestHandler', 'Tools.Common',
+	public $components = ['RequestHandler', 'Tools.Common',
 		'Flash.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Shim.Session', 'Tools.Html', 'Tools.Url',
-		'Form' => ['className' => 'Tools.Form'],
+	public $helpers = ['Tools.Html', 'Tools.Url',
+		'Form' => ['className' => 'BootstrapUI.Form'],
 		'Tools.Common', 'Flash.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress'];
 
 	/**
 	 * @return void
 	 */
-	public function initialize() {
-		parent::initialize();
+	protected function _mergeControllerVars() {
+		parent::_mergeControllerVars();
+
+		$this->helpers['Form'] += (array)Configure::read('FormConfig');
 	}
 
 	/**

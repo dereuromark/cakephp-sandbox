@@ -72,17 +72,17 @@ class CakeExamplesController extends SandboxAppController {
 	 */
 	public function i18n() {
 		// Make sure we have defaults set to I18n if language has been switched previously
-		$lang = $this->Session->read('Config.language');
+		$lang = $this->request->session()->read('Config.language');
 		if ($lang) {
 			I18n::locale($lang);
 		} else {
-			$this->Session->write('Config.language', 'en');
+			$this->request->session()->write('Config.language', 'en');
 		}
 
 		// Language switcher
 		if ($this->request->is('post')) {
 			$lang = $this->request->query('lang');
-			$this->Session->write('Config.language', $lang);
+			$this->request->session()->write('Config.language', $lang);
 			I18n::locale($lang);
 			$lang = locale_get_display_name($lang) . ' [' . strtoupper($lang) . ']';
 			$this->Flash->success(__('Language switched to {0}.', h($lang)), ['escape' => false]);
