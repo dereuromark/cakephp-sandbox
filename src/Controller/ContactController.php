@@ -15,6 +15,14 @@ class ContactController extends AppController {
 	/**
 	 * @return void
 	 */
+	public function initialize() {
+		parent::initialize();
+		$this->loadComponent('Csrf');
+	}
+
+	/**
+	 * @return void
+	 */
 	public function index() {
 		$contact = new ContactForm();
 
