@@ -17,7 +17,12 @@ class ContactController extends AppController {
 	 */
 	public function initialize() {
 		parent::initialize();
+
+		if (Configure::read('debug')) {
+			return;
+		}
 		$this->loadComponent('Csrf');
+		$this->loadComponent('Security');
 	}
 
 	/**
