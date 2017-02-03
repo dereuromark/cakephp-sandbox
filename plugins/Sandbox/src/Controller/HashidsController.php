@@ -52,6 +52,10 @@ class HashidsController extends SandboxAppController {
 		$this->set(compact('countries'));
 	}
 
+	/**
+	 * @param int|null $id
+	 * @return void
+	 */
 	public function paginationView($id = null) {
 		//$country = $this->HashidCountries->get($id);
 		$country = $this->HashidCountries->find()->where(['id' => $id])->firstOrFail();

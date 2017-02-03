@@ -55,7 +55,7 @@ class UsersTable extends Table {
 		],
 	];
 
-	/***
+	/**
 	 * @param array $config
 	 *
 	 * @return void

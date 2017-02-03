@@ -15,10 +15,11 @@ class BitmaskRecordsTable extends Table {
 	 */
 	public $records = [];
 
+	/**
+	 * @param array $config
+	 */
 	public function __construct(array $config = []) {
 		parent::__construct($config);
-
-		//ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
 
 		$this->records = [
 			[

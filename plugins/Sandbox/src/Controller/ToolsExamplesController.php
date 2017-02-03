@@ -272,6 +272,9 @@ class ToolsExamplesController extends SandboxAppController {
 	public function _diff() {
 	}
 
+	/**
+	 * @return void
+	 */
 	public function _typography() {
 		$this->Common->loadHelper(['Tools.Typography']);
 	}

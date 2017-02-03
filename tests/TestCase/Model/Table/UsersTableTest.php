@@ -39,6 +39,9 @@ class UsersTableTest extends TestCase {
 		parent::tearDown();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function testBasic() {
 		$result = $this->Users->find()->first();
 		$this->assertNotEmpty($result);

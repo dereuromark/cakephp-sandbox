@@ -17,10 +17,16 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public $fixtures = ['Users' => 'app.users', 'Roles' => 'app.roles'];
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 

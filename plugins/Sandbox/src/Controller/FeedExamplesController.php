@@ -75,6 +75,9 @@ class FeedExamplesController extends SandboxAppController {
 		$this->set(['channel' => $data, '_serialize' => 'channel']);
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function _feedData() {
 		$records = [
 			[
@@ -101,8 +104,6 @@ class FeedExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * RssExamplesController::feedview()
-	 *
 	 * @param string|null $id
 	 * @return void
 	 */

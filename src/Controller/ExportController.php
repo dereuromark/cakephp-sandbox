@@ -44,6 +44,9 @@ class ExportController extends AppController {
 		}
 	}
 
+	/**
+	 * @return void
+	 */
 	public function index() {
 	}
 

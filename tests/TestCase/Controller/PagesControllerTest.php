@@ -9,10 +9,16 @@ use Tools\TestSuite\IntegrationTestCase;
  */
 class PagesControllerTest extends IntegrationTestCase {
 
+	/**
+	 * @return void
+	 */
 	public function setUp() {
 		parent::setUp();
 	}
 
+	/**
+	 * @return void
+	 */
 	public function tearDown() {
 		parent::tearDown();
 
