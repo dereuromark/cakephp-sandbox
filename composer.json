@@ -19,10 +19,10 @@
 	"require": {
 		"php": ">=5.5",
 		"cakephp/plugin-installer": "*",
-		"cakephp/cakephp": "dev-3.next as 3.4",
+		"cakephp/cakephp": "dev-master as 3.4",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
-		"dereuromark/cakephp-geo": "dev-master",
+		"dereuromark/cakephp-geo": "dev-master as 1.0",
 		"dereuromark/cakephp-tools": "dev-master as 1.2",
 		"dereuromark/cakephp-setup": "dev-master",
 		"friendsofcake/authenticate": "dev-cake3",
@@ -58,7 +58,8 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/bake": "dev-master",
-		"fig-r/psr2r-sniffer": "dev-master"
+		"fig-r/psr2r-sniffer": "dev-develop",
+		"squizlabs/php_codesniffer": "3.0.x-dev as 3.0.0"
 	},
 	"prefer-stable": true,
 	"autoload": {
