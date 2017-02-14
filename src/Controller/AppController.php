@@ -46,7 +46,6 @@ class AppController extends Controller {
 		$config = [
 			'authenticate' => [
 				'FOC/Authenticate.MultiColumn' => [
-					//'passwordHasher' => 'Default',
 					'fields' => [
 						'username' => 'login',
 						'password' => 'password'
