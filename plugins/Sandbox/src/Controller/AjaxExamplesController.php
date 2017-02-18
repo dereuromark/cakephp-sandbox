@@ -4,12 +4,17 @@ namespace Sandbox\Controller;
 use Cake\Network\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 
+/**
+ * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
+ * @property \Data\Model\Table\CountriesTable $Countries
+ * @property \Data\Model\Table\StatesTable $States
+ */
 class AjaxExamplesController extends SandboxAppController {
 
 	/**
 	 * @var array
 	 */
-	public $components = ['Data.CountryProvinceHelper'];
+	public $components = ['Data.CountryStateHelper'];
 
 	/**
 	 * @var array
@@ -119,15 +124,14 @@ class AjaxExamplesController extends SandboxAppController {
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
-			$this->Users->validator()->add('country_province_id', 'numeric', [
+			$this->Users->validator()->add('state_id', 'numeric', [
 				'rule' => 'numeric',
 				'message' => 'Please select something'
 			]);
 			$user = $this->Users->patchEntity($user, $this->request->data);
-			//$result = $this->User->validates();
 		}
 
-		$this->CountryProvinceHelper->provideData(false, 'User');
+		$this->CountryStateHelper->provideData(false, 'User');
 		$this->set(compact('user'));
 	}
 
@@ -140,7 +144,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function countryProvincesAjax() {
+	public function countryStates() {
 		$this->request->allowMethod('ajax');
 		$id = $this->request->query('id');
 		if (!$id) {
@@ -149,10 +153,10 @@ class AjaxExamplesController extends SandboxAppController {
 
 		$this->viewBuilder()->className('Ajax.Ajax');
 
-		$this->loadModel('Data.CountryProvinces');
-		$countryProvinces = $this->CountryProvinces->getListByCountry($id);
+		$this->loadModel('Data.States');
+		$states = $this->States->getListByCountry($id);
 
-		$this->set(compact('countryProvinces'));
+		$this->set(compact('states'));
 	}
 
 	/**

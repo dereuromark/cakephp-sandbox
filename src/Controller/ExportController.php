@@ -66,12 +66,12 @@ class ExportController extends AppController {
 	 *
 	 * @return \Cake\Network\Response|null
 	 */
-	public function countryProvinces() {
-		$this->CountryProvince = TableRegistry::get('Data.CountryProvinces');
-		$countryProvinces = $this->CountryProvince->find('all', ['fields' => []]);
+	public function states() {
+		$this->States = TableRegistry::get('Data.States');
+		$states = $this->States->find('all', ['fields' => []]);
 
-		$this->set(compact('countryProvinces'));
-		$this->set('_serialize', ['countryProvinces']);
+		$this->set(compact('states'));
+		$this->set('_serialize', ['states']);
 	}
 
 	/**

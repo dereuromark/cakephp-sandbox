@@ -828,12 +828,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "e8128e073c55eba30c01bb22a1798e73fc57ffcf"
+                "reference": "c5a5f83dea9371270e2b4340d5187ff76bed3128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/e8128e073c55eba30c01bb22a1798e73fc57ffcf",
-                "reference": "e8128e073c55eba30c01bb22a1798e73fc57ffcf",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/c5a5f83dea9371270e2b4340d5187ff76bed3128",
+                "reference": "c5a5f83dea9371270e2b4340d5187ff76bed3128",
                 "shasum": ""
             },
             "require": {
@@ -845,6 +845,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master",
                 "friendsofcake/search": "^2.3",
+                "phpunit/phpunit": "<6.0",
                 "yangqi/htmldom": "dev-master"
             },
             "type": "cakephp-plugin",
@@ -873,7 +874,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2017-02-18 02:45:39"
+            "time": "2017-02-18 22:48:44"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1039,12 +1040,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "4d6065e68cbb8ceb7f17f96aec143fe9984b174f"
+                "reference": "3b53499f46d20d2cc5e2492b7f1c502fdfdb627b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/4d6065e68cbb8ceb7f17f96aec143fe9984b174f",
-                "reference": "4d6065e68cbb8ceb7f17f96aec143fe9984b174f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/3b53499f46d20d2cc5e2492b7f1c502fdfdb627b",
+                "reference": "3b53499f46d20d2cc5e2492b7f1c502fdfdb627b",
                 "shasum": ""
             },
             "require": {
@@ -1083,7 +1084,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2017-02-17 01:01:52"
+            "time": "2017-02-18 18:48:51"
         },
         {
             "name": "dereuromark/cakephp-hashid",
@@ -1091,12 +1092,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-hashid.git",
-                "reference": "4833d418d61dfc61730ded14bac12a0355033b00"
+                "reference": "417e38ac12b7eb49d2147cb357d554f68b98d31c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/4833d418d61dfc61730ded14bac12a0355033b00",
-                "reference": "4833d418d61dfc61730ded14bac12a0355033b00",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/417e38ac12b7eb49d2147cb357d554f68b98d31c",
+                "reference": "417e38ac12b7eb49d2147cb357d554f68b98d31c",
                 "shasum": ""
             },
             "require": {
@@ -1132,7 +1133,7 @@
                 "hashids",
                 "plugin"
             ],
-            "time": "2017-01-12 11:01:06"
+            "time": "2017-02-18 22:46:49"
         },
         {
             "name": "dereuromark/cakephp-markup",

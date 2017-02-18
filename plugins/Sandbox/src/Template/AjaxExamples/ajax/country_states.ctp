@@ -1,7 +1,7 @@
 <?php
-if ($countryProvinces->toArray()) {
+if ($states) {
 	echo '<option value="">' . Configure::read('Select.defaultBefore') . __('pleaseSelect') . Configure::read('Select.defaultAfter') . '</option>';
-	foreach ($countryProvinces as $k => $v) {
+	foreach ($states as $k => $v) {
 		echo '<option value="' . $k . '">' . h($v) . '</option>';
 	}
 } else {
