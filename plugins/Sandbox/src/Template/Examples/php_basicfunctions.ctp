@@ -4,6 +4,8 @@ PHP version: PHP5
 <br/><br/>
 Our test variable contents are:
 <?php
+use Cake\Error\Debugger;
+
 $vars = [];
 $vars[1] = 0;
 $vars[] = null;
@@ -47,7 +49,8 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">not isset</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+	
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -65,7 +68,8 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">not isset</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -89,7 +93,8 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">empty</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -108,7 +113,8 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">empty</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -131,7 +137,11 @@ foreach ($vars as $var => $v) {
 	} else {
 		echo '<td class="no">not empty</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+
+	if (is_array($v)) {
+		$v = '[]';
+	}
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -149,7 +159,11 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">is not array</td>';
 	}
-	echo '<td class="content">' . $v . '</td></tr>';
+
+	if (is_array($v)) {
+		$v = '[]';
+	}
+	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>
 	</table>
@@ -162,7 +176,7 @@ Although it should be noted that == null is not exactly the same as empty() - at
 <br />
 <br />
 <h2>Conclusions</h2>
-To filter out any unneccesary or even validation breaking whitespaces, use <b>trim()</b> on them before checking the variable:
+To filter out any unnecessary or even validation breaking whitespaces, use <b>trim()</b> on them before checking the variable:
 <br />
 <?php
 $dataPrint = '$x=\' string with whitespaces on both ends \'

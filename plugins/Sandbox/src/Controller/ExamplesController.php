@@ -27,8 +27,8 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
-	 */
+ * @return void
+ */
 	public function params() {
 	}
 
@@ -42,21 +42,6 @@ class ExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function phpValidationfunctions() {
-	}
-
-	/**
-	 * @return void
-	 */
-	public function phpArraycount() {
-	}
-
-	/**
-	 * @return void
-	 */
-	public function activecalendar() {
-		if (!empty($this->request->params['named']['style'])) {
-			$this->set('active_style', $this->request->params['named']['style']);
-		}
 	}
 
 	/**

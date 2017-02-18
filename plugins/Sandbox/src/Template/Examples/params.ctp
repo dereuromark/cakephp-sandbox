@@ -4,22 +4,31 @@ Controller and Action params are stored as string, though.
 <br /><br />
 
 Test it with the following links:<br /><br />
-<?php echo $this->Html->link('Saved in "named"', ['action' => 'params', 'xyz' => 123, 'test' => 'yes', 'var' => 's1'])?> | <?php echo $this->Html->link('Saved in "pass"', ['action' => 'params', 'very', 'cool', 'stuff'])?> | <?php echo $this->Html->link('Old fashened', ['action' => 'params', '?id=1&teststring=active'])?> (not recommended)
+<?php echo $this->Html->link('Saved in "pass"', ['action' => 'params', 'very', 'cool', 'stuff'])?> | <?php echo $this->Html->link('Query strings', ['action' => 'params', '?' => ['id' => 1, 'teststring' => 'active']])?>
 
 <br />
 <h2>Retrieving URL Information</h2>
-<b>$this-&gt;params['url']</b>:
+<b>$this->request->url</b>:
 <?php
-echo $this->Html->pre($this->request->params['url']);
+echo $this->Sandbox->pre($this->request->url);
 ?>
 
 <br />
-<b>$this-&gt;params['controller']</b>:
+<b>$this->request-&gt;params['prefix']</b>:
+<i>n/a</i>
+
+<br />
+<b>$this->request-&gt;params['plugin']</b>:
+<i>n/a</i>
+
+<br />
+<b>$this->request-&gt;params['controller']</b>:
 <?php
 echo $this->request->params['controller'];
 ?>
-<br /><br />
-<b>$this-&gt;params['action']</b>:
+
+<br />
+<b>$this->request-&gt;params['action']</b>:
 <?php
 echo $this->request->params['action'];
 ?>
@@ -27,20 +36,16 @@ echo $this->request->params['action'];
 
 <br />
 <br />
-<b>$this-&gt;params['named']</b>:
+<b>$this->request-&gt;params['pass']</b>:
 <?php
 
-echo $this->Html->pre($this->request->params['named']);
+echo $this->Sandbox->pre($this->request->params['pass']);
 
 ?>
 
 <br />
-<b>$this-&gt;params['pass']</b>:
+<br />
+<b>$this->request-&gt;query</b>:
 <?php
-
-echo $this->Html->pre($this->request->params['pass']);
-
+echo $this->Sandbox->pre($this->request->query);
 ?>
-
-<?php
-//pr($this->request->params);
