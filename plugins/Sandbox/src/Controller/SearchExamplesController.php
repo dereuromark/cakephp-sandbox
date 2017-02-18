@@ -42,7 +42,7 @@ class SearchExamplesController extends SandboxAppController {
 		parent::afterFilter($event);
 
 		if ($this->request->query('download')) {
-			$this->response->download($this->request->params['action'] . '.' . $this->request->params['ext']);
+			$this->response->download($this->request->params['action'] . '.' . $this->request->params['_ext']);
 		}
 	}
 
