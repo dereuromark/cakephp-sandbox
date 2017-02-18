@@ -120,8 +120,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * //TODO
-	 *
 	 * @return void
 	 */
 	public function password() {
@@ -143,8 +141,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * //TODO
-	 *
 	 * @return void
 	 */
 	public function passwordEdit() {
@@ -155,8 +151,6 @@ class ToolsExamplesController extends SandboxAppController {
 
 		if ($this->request->is('post')) {
 			$this->Users->patchEntity($user, $this->request->data);
-			//die(debug($user->errors()));
-			//die(debug($this->Users->checkRules($user)));
 			if ($this->Users->save($user)) {
 				$this->Flash->success('Yeah!');
 			} else {
@@ -166,6 +160,27 @@ class ToolsExamplesController extends SandboxAppController {
 
 		$this->set(compact('user'));
 		$this->render('password');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function passwordEditCurrent() {
+		$this->Users = TableRegistry::get('Users');
+		$this->Users->addBehavior('Tools.Passwordable', ['require' => false, 'current' => true]);
+
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is('post')) {
+			$this->Users->patchEntity($user, $this->request->data);
+			if ($this->Users->save($user)) {
+				$this->Flash->success('Yeah!');
+			} else {
+				$this->Flash->error('Please correct your form.');
+			}
+		}
+
+		$this->set(compact('user'));
 	}
 
 	/**

@@ -2,17 +2,15 @@
 Using the PasswordableBehavior
 
 <?php
-	$action = 'Register';
-	if ($this->request->action === 'password_edit') {
-		$action = 'Edit';
-	}
 ?>
 <div class="page form">
 <?php echo $this->Form->create($user);?>
 	<fieldset>
- 		<legend><?php echo $action . ' Demo'; ?></legend>
+ 		<legend><?php echo 'Demo with current password confirmation'; ?></legend>
 	<?php
-		echo $this->Form->input('username', []);
+		echo $this->Form->input('username');
+		
+		echo $this->Form->input('pwd_current');
 		echo $this->Form->input('pwd');
 		echo $this->Form->input('pwd_repeat');
 	?>
@@ -22,9 +20,5 @@ Using the PasswordableBehavior
 </div>
 
 <h3>Info</h3>
-<?php if ($action === 'register') { ?>
-The pwd and pwd_repeat fields are both mandatory.
-<?php } else { ?>
 The password fields are optional, but as soon as the pwd field has content, both
-are validated.
-<?php } ?>
+are validated. Also, the current password is then required.
