@@ -10,10 +10,26 @@ use Tools\TestSuite\IntegrationTestCase;
 class ContactControllerTest extends IntegrationTestCase {
 
 	/**
+	 * @var array
+	 */
+	public $fixtures = [
+		'plugin.Captcha.Captchas',
+	];
+
+	/**
 	 * @return void
 	 */
 	public function setUp() {
 		parent::setUp();
+
+		$this->session([
+			'id' => '123',
+		]);
+		$this->configRequest([
+			'environment' => [
+				'REMOTE_ADDR' => '127.0.0.1'
+			]
+		]);
 	}
 
 	/**

@@ -33,7 +33,7 @@ class AccountController extends AppController {
 		$user = $this->AuthUser->user('username');
 		if (in_array($action, ['edit', 'delete']) && in_array($user, ['user', 'mod', 'admin'])) {
 			$this->Flash->warning('This user is for demo purposes and protected');
-			return $this->redirect(['action' => 'index']);
+			return $this->redirect($this->referer(['action' => 'index']));
 		}
 	}
 

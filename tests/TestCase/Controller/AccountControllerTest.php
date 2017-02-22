@@ -7,12 +7,12 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AccountController Test Case
+ *
+ * @property \App\Model\Table\UsersTable $Users
  */
 class AccountControllerTest extends IntegrationTestCase {
 
 	/**
-	 * Fixtures
-	 *
 	 * @var array
 	 */
 	public $fixtures = ['Users' => 'app.users', 'Roles' => 'app.roles'];
@@ -34,11 +34,9 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
-	public function testLoginX() {
+	public function testLogin() {
 		$this->get(['controller' => 'Account', 'action' => 'login']);
 
 		$this->assertResponseCode(200);
@@ -65,8 +63,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostInvalidData() {
@@ -76,13 +72,9 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidData() {
-		$this->skipIf(true);
-
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
@@ -100,17 +92,13 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/');
+		$this->assertRedirect('/account');
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataEmail() {
-		$this->skipIf(true);
-
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
@@ -128,20 +116,13 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/');
+		$this->assertRedirect('/account');
 	}
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataReferrer() {
-		$this->skipIf(true);
-
-		$session = ['Auth' => ['redirect' => '/attendance']];
-		$this->session($session);
-
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
@@ -157,14 +138,12 @@ class AccountControllerTest extends IntegrationTestCase {
 		$data = [
 			'login' => 'admin', 'password' => '123456'
 		];
-		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/attendance');
+		$this->assertRedirect('/somewhere');
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testLogout() {
@@ -177,8 +156,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testLostPassword() {
@@ -190,8 +167,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePasswordInvalid() {
@@ -201,8 +176,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePassword() {
@@ -215,8 +188,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * AccountControllerTest::testLogout()
-	 *
 	 * @return void
 	 */
 	public function testChangePasswordPost() {

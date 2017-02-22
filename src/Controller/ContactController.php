@@ -10,7 +10,16 @@ class ContactController extends AppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Tools.Obfuscate', 'Form' => ['className' => 'BootstrapUI.Form']];
+	public $components =  [
+		//'Captcha.Captcha'
+	];
+
+	/**
+	 * @var array
+	 */
+	public $helpers = [
+		'Tools.Obfuscate',
+	];
 
 	/**
 	 * @return void
@@ -38,8 +47,9 @@ class ContactController extends AppController {
 			$subject = $this->request->data['subject'];
 
 			if (!$this->AuthUser->id()) {
-				//$this->ContactForm->addBehavior('Tools.Captcha');
-}
+				//$this->Captcha->addValidation($contact->validator());
+			}
+
 			if ($contact->execute($this->request->data)) {
 				$this->_send($name, $email, $subject, $message);
 			} else {

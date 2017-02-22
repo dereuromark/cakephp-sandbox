@@ -72,7 +72,7 @@ class CalendarController extends SandboxAppController {
 			return;
 		}
 
-		$this->loadModel('Data.CountryProvinces');
+		$this->loadModel('Data.States');
 
 		$count = mt_rand(3, 8);
 		for ($i = 0; $i < $count; $i++) {
@@ -80,7 +80,7 @@ class CalendarController extends SandboxAppController {
 			$driver = $config['driver'];
 			$random = strpos($driver, 'Sqlite') !== false ? 'RANDOM()' : 'RAND()';
 
-			$countryProvince = $this->CountryProvinces
+			$states = $this->States
 				->find()
 				->where(['abbr !=' => '', 'lat !=' => 0, 'lng !=' => 0])
 				->order($random)
@@ -88,10 +88,10 @@ class CalendarController extends SandboxAppController {
 
 			$event = $this->Events->newEntity([
 				'title' => $this->_getRandomWord(mt_rand(10, 20)),
-				'lat' => $countryProvince->lat,
-				'lng' => $countryProvince->lng,
-				'location' => $countryProvince->name,
-				'description' => 'Some cool event @ ' . $countryProvince->abbr,
+				'lat' => $states->lat,
+				'lng' => $states->lng,
+				'location' => $states->name,
+				'description' => 'Some cool event @ ' . $states->abbr,
 				'beginning' => new Time(mktime(mt_rand(8, 22), 0, 0, $options['month'], mt_rand(1, 28), $options['year'])),
 			]);
 			if (!$this->Events->save($event)) {

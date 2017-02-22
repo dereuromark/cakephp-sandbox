@@ -1,4 +1,6 @@
-
+<?php
+/** @var \App\View\AppView $this */
+?>
 <h2><?php echo __('Contact Form');?></h2>
 <p>
 My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configure::read('Config.adminEmail')); ?></p>
@@ -13,7 +15,7 @@ My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configur
 		echo $this->Form->input('message', ['type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')]);
 
 		if (!$this->AuthUser->id()) {
-			//echo $this->Captcha->input('Contact');
+			//echo $this->Captcha->passive();
 		}
 
 	?>
