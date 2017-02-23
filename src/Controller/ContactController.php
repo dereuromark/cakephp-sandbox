@@ -10,7 +10,7 @@ class ContactController extends AppController {
 	/**
 	 * @var array
 	 */
-	public $components =  [
+	public $components = [
 		//'Captcha.Captcha'
 	];
 
