@@ -27,6 +27,7 @@ before_script:
   - composer install --prefer-source --no-interaction
 
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi"
+  - if [[ $PHPCS != 1 ]]; then composer require phpunit/phpunit:"^5.7|^6.0"; fi
 
   - phpenv rehash
   - set +H
@@ -34,9 +35,9 @@ before_script:
   - cp config/app.php config/app_local.php
 
 script:
-  - sh -c "if [ '$DEFAULT' = '1' ]; then phpunit; fi"
+  - sh -c "if [ '$DEFAULT' = '1' ]; then vendor/bin/phpunit; fi"
   - sh -c "if [ '$PHPCS' = '1' ]; then vendor/bin/phpcs -p --extensions=php --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=vendor/,config/Migrations/ -v . ; fi"
-  - sh -c "if [ '$CODECOVERAGE' = '1' ]; then phpunit --coverage-clover=clover.xml || true; fi"
+  - sh -c "if [ '$CODECOVERAGE' = '1' ]; then vendor/bin/phpunit --coverage-clover=clover.xml || true; fi"
   - sh -c "if [ '$CODECOVERAGE' = '1' ]; then wget -O codecov.sh https://codecov.io/bash; fi"
   - sh -c "if [ '$CODECOVERAGE' = '1' ]; then bash codecov.sh; fi"
 
