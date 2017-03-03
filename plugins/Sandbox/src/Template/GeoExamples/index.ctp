@@ -37,7 +37,7 @@ echo $this->GoogleMap->staticMap($options);
 echo '<script src="'.$this->GoogleMap->apiUrl().'"></script>';
 
 $options = [
-	'zoom' => 6,
+	'zoom' => 5,
 	'type' => 'R',
 	'geolocate' => true,
 	'div' => ['id' => 'someothers'],
