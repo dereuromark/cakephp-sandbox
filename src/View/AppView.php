@@ -4,7 +4,10 @@ namespace App\View;
 use Cake\View\View;
 
 /**
- * App View class
+ * @property \AssetCompress\View\Helper\AssetCompressHelper $AssetCompress
+ * @property \Tools\View\Helper\FormHelper $Format
+ * @property \TinyAuth\View\Helper\AuthUserHelper $AuthUser
+ * @property \Geo\View\Helper\GoogleMapHelper $GoogleMap
  */
 class AppView extends View {
 
