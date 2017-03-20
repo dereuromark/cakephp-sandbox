@@ -37,9 +37,10 @@
 				<li class="divider"></li>
 				<li><?php echo $this->Html->linkReset('CakePHP Core', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 				<li><?php echo $this->Html->linkReset('CakePHP Plugins', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'PluginExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li><?php echo $this->Html->linkReset('Auth Sandbox', ['plugin' => 'AuthSandbox', 'admin' => false, 'controller' => 'AuthSandbox', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
+				<li class="divider"></li>
 				<li><?php echo $this->Html->linkReset('JS', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 				<li><?php echo $this->Html->linkReset('Jquery', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JqueryExamples', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
-				<li class="divider"></li>
 				<li><?php echo $this->Html->linkReset('Tryouts', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Tryouts', 'action' => 'index'], ['tabindex' => '-1']); ?></li>
 			</ul>
 		</li>
