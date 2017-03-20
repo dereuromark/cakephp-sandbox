@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\User[] $users
+ */
+?>
 <div class="users index">
 <h2><?php echo __('Users');?></h2>
 

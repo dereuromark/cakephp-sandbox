@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Best practices</h2>
 DOs and DONT's of common CakePHP problems.
 

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 
 <h2>Welcome</h2>
 This is a private website contributing to CakePHP.

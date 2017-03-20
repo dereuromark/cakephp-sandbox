@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>CakePHP - Rapid Development Framework</h2>
 
 <p><?php echo __('My Version') ?>: <?php echo Configure::read('Cake.version');?></p>

@@ -5,6 +5,9 @@ use Cake\Event\Event;
 use Cake\Network\Exception\MethodNotAllowedException;
 use Cake\ORM\TableRegistry;
 
+/**
+ * @property \Cache\Controller\Component\CacheComponent $Cache
+ */
 class ExportController extends AppController {
 
 	/**

@@ -9,6 +9,7 @@ use Tools\Controller\Controller;
  * @property \Flash\Controller\Component\FlashComponent $Flash
  * @property \Tools\Controller\Component\CommonComponent $Common
  * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
+ * @property \TinyAuth\Controller\Component\AuthComponent $Auth
  */
 class AppController extends Controller {
 

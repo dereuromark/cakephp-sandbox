@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Register</h2>
 <p>We don't want SPAM. So we need to verify your account/email.</p>
 

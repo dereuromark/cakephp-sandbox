@@ -9,6 +9,9 @@ use Cake\ORM\TableRegistry;
 use Tools\Mailer\Email;
 use Tools\View\Helper\ObfuscateHelper;
 
+/**
+ * @property \App\Model\Table\UsersTable $Users
+ */
 class AccountController extends AppController {
 
 	/**

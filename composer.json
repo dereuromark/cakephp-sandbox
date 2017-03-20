@@ -58,8 +58,8 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
-		"fig-r/psr2r-sniffer": "dev-develop",
-		"squizlabs/php_codesniffer": "3.0.x-dev as 3.0.0"
+		"fig-r/psr2r-sniffer": "dev-master",
+		"dereuromark/cakephp-ide-helper": "dev-master"
 	},
 	"prefer-stable": true,
 	"autoload": {

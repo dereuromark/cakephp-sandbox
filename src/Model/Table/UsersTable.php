@@ -15,6 +15,7 @@ use Tools\Model\Table\Table;
  * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsTo $Roles
  */
 class UsersTable extends Table {
 

@@ -27,6 +27,7 @@ Configure::write('Log.error.file', 'cli-error');
 
 try {
 	Plugin::load('Bake');
+	Plugin::load('IdeHelper');
 } catch (MissingPluginException $e) {
 	// Do not halt if the plugin is missing
 }

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Analyze Text</h1>
 Count words, sentences, etc
 

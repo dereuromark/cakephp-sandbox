@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Convert Text</h1>
 Sometimes you need to escape the text in order to post somewhere. Sometimes you need exactly the opposite.<br/>
 Example: If a blog already escapes characters like &amp; (result is <?php echo h('&amp;'); ?>) and you would pass already escaped characters, you would end up with double-escaped characters (<?php echo h('&amp;amp;'); ?>) which are not readable anymore.

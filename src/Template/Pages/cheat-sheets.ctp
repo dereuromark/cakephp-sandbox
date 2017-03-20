@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Cheat-Sheets</h2>
 Updated 2011/01
 

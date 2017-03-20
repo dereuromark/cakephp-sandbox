@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $description = 'CakePHP Sandbox App';
 ?>
 <!DOCTYPE html>

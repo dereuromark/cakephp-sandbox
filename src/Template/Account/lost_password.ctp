@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\User $user
+ */
+?>
 
 <h2><?php echo __('Password lost?');?></h2>
 
