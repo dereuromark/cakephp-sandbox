@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
+
 <h2>Auth Sandbox</h2>
 For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cakephp-tinyauth'); ?> CakePHP authentication and authorization plugin.
 
@@ -12,7 +18,11 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 echo $this->Form->input('login', ['label' => 'Your username']);
 echo $this->Form->input('password', ['autocomplete' => 'off']);
 ?>
-<?php echo $this->Form->submit(__('Log me in'));?>
+<div class="col-md-offset-2 col-md-6">
+	<?php echo $this->Form->button(__('Log me in'), ['class' => 'btn btn-success']);?>
+
+	<?php echo $this->Html->link(__('Register'), ['action' => 'register'], ['class' => 'btn btn-default']);?>
+</div>
 <?php echo $this->Form->end(); ?>
 </div>
 <div class="col-md-6">

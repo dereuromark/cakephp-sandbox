@@ -9,10 +9,12 @@
 <?php echo $this->Form->create($user);?>
 <?php
 echo $this->Form->input('username');
-echo $this->Form->input('pwd', ['autocomplete' => 'off']);
-echo $this->Form->input('pwd_repeat', ['autocomplete' => 'off']);
+echo $this->Form->input('pwd', ['type' => 'password', 'autocomplete' => 'off']);
+echo $this->Form->input('pwd_repeat', ['type' => 'password', 'autocomplete' => 'off']);
 ?>
-<?php echo $this->Form->submit(__('Register and log me in'));?>
+<div class="col-md-offset-2 col-md-6">
+	<?php echo $this->Form->button(__('Register and log me in'), ['class' => 'btn btn-success']);?>
+</div>
 <?php echo $this->Form->end(); ?>
 </div>
 <div class="col-md-6">
