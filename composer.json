@@ -57,7 +57,7 @@
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
-		"cakephp/bake": "dev-master",
+		"cakephp/bake": "@stable",
 		"fig-r/psr2r-sniffer": "dev-develop",
 		"squizlabs/php_codesniffer": "3.0.x-dev as 3.0.0"
 	},

@@ -10,6 +10,7 @@ _*
 /phpunit.phar
 /composer.phar
 /.idea
+/npm-debug.log
 /webroot/assets
 /webroot/js/cjs
 /webroot/css/ccss

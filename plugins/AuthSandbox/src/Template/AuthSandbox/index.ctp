@@ -12,7 +12,7 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 		<?php
 		$status = ' a guest';
 		if ($this->request->session()->read('Auth.User.id')) {
-			$status = ' logged in as <b>' . $this->request->session()->read('Auth.User.username') . '</b>';
+			$status = ' logged in as <b>' . $this->request->session()->read('Auth.User.username') . '</b> <span class="badge" title="' . h($role->name) . '">' . h($role->alias) . '</span>';
 		}
 
 		?>

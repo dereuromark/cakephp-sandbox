@@ -7,13 +7,21 @@ use Cake\Event\Event;
 /**
  * @property \TinyAuth\Controller\Component\AuthComponent $Auth
  * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
+ * @property \App\Model\Table\UsersTable $Users
  */
 class AuthSandboxController extends AppController {
+
+	const ROLE_USER = 4;
+
+	/**
+	 * @var string
+	 */
+	public $modelClass = 'Users';
 
 	/**
 	 * @var array
 	 */
-	public $components = ['TinyAuth.AuthUser'];
+	public $components = ['TinyAuth.AuthUser', 'Security', 'Csrf'];
 
 	/**
 	 * @var array
@@ -73,6 +81,10 @@ class AuthSandboxController extends AppController {
 	 * @return \Cake\Network\Response|null
 	 */
 	public function index() {
+		if ($this->AuthUser->user('role_id')) {
+			$role = $this->Users->Roles->get($this->AuthUser->user('role_id'));
+			$this->set(compact('role'));
+		}
 	}
 
 	/**
@@ -87,6 +99,31 @@ class AuthSandboxController extends AppController {
 			}
 			$this->Flash->error(__('Username or password is incorrect'));
 		}
+	}
+
+	/**
+	 * @return \Cake\Network\Response|null
+	 */
+	public function register() {
+		$user = $this->Users->newEntity();
+
+		if ($this->request->is('post')) {
+			$this->Users->addBehavior('Tools.Passwordable');
+
+			$user->role_id = static::ROLE_USER;
+			$user = $this->Users->patchEntity($user, $this->request->getData(), ['fields' => ['username']]);
+
+			if ($this->Users->save($user)) {
+				$this->Auth->setUser($user->toArray());
+				$this->Flash->success('Registered and logged in :-)');
+
+				return $this->redirect($this->Auth->redirectUrl());
+			}
+
+			$this->Flash->error(__('Please try again'));
+		}
+
+		$this->set(compact('user'));
 	}
 
 	/**
