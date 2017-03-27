@@ -20,6 +20,7 @@
 	<?= $this->Form->button(__('Submit')) ?>
 	<?= $this->Form->end() ?>
 
+	<br><br>
 	<p>Note: You can only save "Mouse" or "Cat" as animals for this demo!</p>
 
 <h3>Key Goals</h3>
