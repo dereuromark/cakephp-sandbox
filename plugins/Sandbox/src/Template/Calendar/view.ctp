@@ -1,4 +1,8 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ * @var \Sandbox\Model\Entity\Event $event
+ */
 $this->loadHelper('Geo.GoogleMap');
 ?>
 <nav class="actions col-md-3 col-sm-4 col-xs-12">

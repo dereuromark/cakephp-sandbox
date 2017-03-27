@@ -3,6 +3,9 @@ namespace Sandbox\Controller;
 
 use Cake\Event\Event;
 
+/**
+ * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ */
 class JqueryExamplesController extends SandboxAppController {
 
 	/**

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Sandbox</h2>
 
 <h3>CakePHP Core</h3>

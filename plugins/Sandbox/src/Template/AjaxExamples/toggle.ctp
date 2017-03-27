@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <script type="text/javascript">
 $(function() {
 	$('.toggle-element').click(function() {

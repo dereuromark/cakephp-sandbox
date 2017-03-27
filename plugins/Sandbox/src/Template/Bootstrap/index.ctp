@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Bootstrap Plugin Examples</h2>
 <p>
 	<a href="https://github.com/FriendsOfCake/bootstrap-ui" target="_blank">[BootstrapUi Plugin]</a>

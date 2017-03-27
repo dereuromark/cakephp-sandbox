@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 echo $this->Html->css('/sandbox/fontello/css/webfont');
 ?>
 

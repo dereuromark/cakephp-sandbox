@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Gravatar images</h2>
 
 <h3>Default image for non existend emails</h3>

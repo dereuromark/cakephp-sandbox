@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Hashid Examples</h2>
 <p>
 <a href="https://github.com/dereuromark/cakephp-hashid" target="_blank">[Source]</a>

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>AssetCompress plugin</h2>
 <a href="https://github.com/markstory/asset_compress" target="_blank">[AssetCompress Plugin]</a>
 

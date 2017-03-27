@@ -4,6 +4,9 @@ namespace Sandbox\Controller;
 use Cake\Core\Configure;
 use Cake\Event\Event;
 
+/**
+ * @property \Sandbox\Model\Table\HashidCountriesTable $HashidCountries
+ */
 class HashidsController extends SandboxAppController {
 
 	/**

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>AJAX Examples</h2>
 <a href="https://github.com/dereuromark/cakephp-ajax" target="_blank">[Source]</a>
 

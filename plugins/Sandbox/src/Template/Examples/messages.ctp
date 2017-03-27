@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Messages:</h1>
 The message helper "flash" is capable of handling multiple flash messages (of one kind). <br/>
 Additionally, they now could be sorted by desired priority (instead of appearing at random).

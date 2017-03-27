@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $int = 100;
 if (!empty($this->request->params['named']['loops'])) {
 	$int = (int)$this->request->params['named']['loops'];

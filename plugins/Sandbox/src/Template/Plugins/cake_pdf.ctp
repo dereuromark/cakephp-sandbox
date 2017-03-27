@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $engines = [
 	'DomPdf' => 'dom',
 	'WkHtmlToPdf' => 'wk',

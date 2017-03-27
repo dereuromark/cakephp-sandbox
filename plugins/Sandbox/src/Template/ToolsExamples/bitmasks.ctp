@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Bitmasks</h2>
 Using the BitmaskedBehavior
 

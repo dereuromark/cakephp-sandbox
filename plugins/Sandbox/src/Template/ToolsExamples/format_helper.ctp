@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Format Helper</h2>
 
 <h3>Specific Icons</h3>

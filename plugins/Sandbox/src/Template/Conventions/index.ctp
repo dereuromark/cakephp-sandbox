@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Naming Conventions in CakePHP</h2>
 <p>
 First, you should definitly read <a href="http://book.cakephp.org/3.0/en/intro/conventions.html">cakephp-conventions.html</a>.

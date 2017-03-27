@@ -782,12 +782,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "fc285f11f8b28570a35d4b7a051de0cc3729b854"
+                "reference": "aa60111b6936156d19e3dd02d55cfd95cccff195"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/fc285f11f8b28570a35d4b7a051de0cc3729b854",
-                "reference": "fc285f11f8b28570a35d4b7a051de0cc3729b854",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/aa60111b6936156d19e3dd02d55cfd95cccff195",
+                "reference": "aa60111b6936156d19e3dd02d55cfd95cccff195",
                 "shasum": ""
             },
             "require": {
@@ -823,7 +823,7 @@
                 "plugin",
                 "security"
             ],
-            "time": "2017-03-27 22:27:52"
+            "time": "2017-03-27 22:59:51"
         },
         {
             "name": "dereuromark/cakephp-data",

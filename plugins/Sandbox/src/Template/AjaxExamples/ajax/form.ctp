@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <?php echo $this->Form->create($user);?>
 	<fieldset>
  		<legend><?php echo __('Register fake action');?></legend>

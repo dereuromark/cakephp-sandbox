@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>CsvView Examples</h2>
 <a href="https://github.com/FriendsOfCake/cakephp-csvview" target="_blank">[CsvView Plugin]</a>
 

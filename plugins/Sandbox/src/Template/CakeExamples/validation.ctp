@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="form">
 <h2>Validation</h2>
 Test validation on marshal and rules on save.

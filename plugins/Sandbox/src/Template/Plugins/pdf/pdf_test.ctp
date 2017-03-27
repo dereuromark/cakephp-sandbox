@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Some header</h1>
 <p>A paragrah with <b>Bold text</b>!</p>
 

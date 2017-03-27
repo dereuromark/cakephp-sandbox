@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <?php echo $this->Html->script('/sandbox/jquery.maxlength/jquery.maxlength')?>
 <?php echo $this->Html->css('/sandbox/jquery.maxlength/style')?>
 

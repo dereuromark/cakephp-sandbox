@@ -3,6 +3,8 @@ namespace Sandbox\Controller;
 
 /**
  * Start page controller.
+ *
+ * @property \Sandbox\Model\Table\AnimalsTable $Animals
  */
 class CaptchasController extends SandboxAppController {
 
@@ -28,6 +30,8 @@ class CaptchasController extends SandboxAppController {
 	public function math() {
 		$animal = $this->Animals->newEntity();
 		if ($this->request->is('post')) {
+			$this->Animals->addBehavior('Captcha.Captcha');
+
 			$animal = $this->Animals->patchEntity($animal, $this->request->data);
 			if ($this->Animals->save($animal)) {
 				$this->Flash->success(__('The animal has been saved.'));

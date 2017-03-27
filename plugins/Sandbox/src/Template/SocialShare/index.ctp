@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>SocialShare Plugin Examples</h2>
 <a href="https://github.com/drmonkeyninja/cakephp-social-share" target="_blank">[SocialShare Plugin]</a>
 

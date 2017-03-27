@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Pie-Chart:</h1>
 Some Examples (just a basic CSS layout - you might want to improve it)
 

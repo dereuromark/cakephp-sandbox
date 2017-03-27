@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <script type="text/javascript">
 $(function() {
 	$('#example-container a').removeAttr('onclick');

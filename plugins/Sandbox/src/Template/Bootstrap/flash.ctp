@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Flash Messages</h2>
 <?php
 foreach ($types as $type) {

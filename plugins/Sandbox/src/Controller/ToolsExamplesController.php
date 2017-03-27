@@ -3,6 +3,9 @@ namespace Sandbox\Controller;
 
 use Cake\ORM\TableRegistry;
 
+/**
+ * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
+ */
 class ToolsExamplesController extends SandboxAppController {
 
 	/**

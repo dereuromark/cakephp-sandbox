@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <?php echo $this->Html->script('/assets/jquery-infinite-scroll/jquery.infinitescroll.js'); ?>
 <script>
 	$(function() {

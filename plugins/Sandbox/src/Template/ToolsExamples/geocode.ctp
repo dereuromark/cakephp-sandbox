@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Geocode with CakePHP</h2>
 
 <?php if (!empty($data)) { ?>

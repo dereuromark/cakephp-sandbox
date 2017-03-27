@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Geo Examples</h2>
 <a href="https://github.com/dereuromark/cakephp-geo" target="_blank">[Source]</a>
 

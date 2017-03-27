@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>A localized form (German)</h2>
 <p>Currently, mainly the date(time) fields have been localized.</p>
 

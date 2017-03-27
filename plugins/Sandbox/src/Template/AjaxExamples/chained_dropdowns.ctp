@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="form">
 <h2>Chained Dropdowns using AJAX</h2>
 

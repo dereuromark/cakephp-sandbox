@@ -5,6 +5,7 @@ use Tools\Model\Table\Table;
 
 /**
  * @method \Search\Manager searchManager()
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class CountryRecordsTable extends Table {
 

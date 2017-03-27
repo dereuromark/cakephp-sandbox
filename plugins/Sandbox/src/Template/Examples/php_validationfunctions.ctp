@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Some validation (and basic sanitizing) php functions</h1>
 Their correct usage is especially important at validating user input.<br />
 PHP version: PHP5

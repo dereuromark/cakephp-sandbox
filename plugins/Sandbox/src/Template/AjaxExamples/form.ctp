@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="ajax-form">
 <h2>AJAX Forms</h2>
 

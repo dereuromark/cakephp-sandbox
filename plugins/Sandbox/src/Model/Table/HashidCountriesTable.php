@@ -4,6 +4,11 @@ namespace Sandbox\Model\Table;
 use Cake\Core\Configure;
 use Data\Model\Table\CountriesTable;
 
+/**
+ * @property \Data\Model\Table\StatesTable|\Cake\ORM\Association\HasMany $States
+ *
+ * @mixin \Hashid\Model\Behavior\HashidBehavior
+ */
 class HashidCountriesTable extends CountriesTable {
 
 	/**

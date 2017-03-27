@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="page index">
 
 	<div class="search-box pull-right" style="margin-bottom: 10px;">

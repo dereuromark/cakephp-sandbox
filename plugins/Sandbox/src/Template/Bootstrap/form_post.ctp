@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Posting forms, invalidation and keeping changes</h2>
 
 <?php

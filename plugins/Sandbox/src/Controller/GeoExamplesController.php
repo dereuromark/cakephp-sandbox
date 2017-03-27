@@ -4,6 +4,9 @@ namespace Sandbox\Controller;
 use Geo\Exception\InconclusiveException;
 use Geo\Geocoder\Geocoder;
 
+/**
+ * @property \Data\Model\Table\CountriesTable $Countries
+ */
 class GeoExamplesController extends SandboxAppController {
 
 	/**

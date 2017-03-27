@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <script type="text/javascript">
 $(document).ready(function() {
 	$(document).on('click', '#pagination-container a', function () {

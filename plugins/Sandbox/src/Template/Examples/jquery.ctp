@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="examples index">
 <h1><?php echo __('Jquery Examples');?></h1>
 For everybody that knows Jquery very well, this sure isn't anything new at all.<br />

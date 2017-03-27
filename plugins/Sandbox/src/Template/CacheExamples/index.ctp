@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="index">
 <h2>Cache Plugin examples / showcase</h2>
 <p>

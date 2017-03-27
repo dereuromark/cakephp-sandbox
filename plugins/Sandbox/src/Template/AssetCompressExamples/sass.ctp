@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="source-link" style="float: right;">
 <?php //echo $this->SourceCode->link(null, array('class' => 'btn btn-info')); ?>
 </div>

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="page index">
 <h2><?php echo __('Countries');?> and AJAX Pagination</h2>
 

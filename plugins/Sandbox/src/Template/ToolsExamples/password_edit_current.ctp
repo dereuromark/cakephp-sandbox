@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Working with Passwords</h2>
 Using the PasswordableBehavior
 

@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>KnpMenu plugin</h2>
 <p>
 	<a href="https://github.com/gourmet/knp-menu" target="_blank">[KnpMenu Plugin]</a>

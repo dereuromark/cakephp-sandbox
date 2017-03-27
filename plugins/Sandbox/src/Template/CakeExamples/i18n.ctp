@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 use Cake\I18n\I18n;
 
 $langEn = locale_get_display_name('en');

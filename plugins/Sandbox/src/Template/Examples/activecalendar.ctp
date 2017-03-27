@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $styleArray = [];
 foreach ($this->Activecalendar->styles as $style)
 {

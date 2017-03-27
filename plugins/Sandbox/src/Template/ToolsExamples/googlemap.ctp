@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>GoogleMap</h2>
 Using the GoogleMapV3 to output a map with pins.
 

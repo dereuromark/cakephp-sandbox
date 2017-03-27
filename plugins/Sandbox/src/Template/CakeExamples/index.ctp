@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="index">
 <h2><?php echo __('CakePHP Core Examples');?></h2>
 

@@ -1,6 +1,9 @@
 <?php
 namespace Sandbox\Controller;
 
+/**
+ * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
+ */
 class RatingsController extends SandboxAppController {
 
 	/**

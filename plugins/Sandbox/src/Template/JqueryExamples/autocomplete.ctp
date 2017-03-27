@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1><?php echo __('Auto-complete');?></h1>
 
 <?php

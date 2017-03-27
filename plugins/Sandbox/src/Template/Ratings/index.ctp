@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Ratings plugin</h2>
 <p>
 	<a href="https://github.com/dereuromark/cakephp-ratings" target="_blank">[Ratings Plugin]</a>

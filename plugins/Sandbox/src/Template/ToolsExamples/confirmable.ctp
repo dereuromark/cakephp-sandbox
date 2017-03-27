@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="form">
 <h2>Confirmable Behavior</h2>
 Test validation with Confirmable behavior attached.

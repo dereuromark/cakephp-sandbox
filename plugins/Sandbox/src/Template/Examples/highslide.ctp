@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 $this->Highslide->changeDefaultOptions(['captionText' => 'ssss']);
 $this->Highslide->changeDefaultOverlays([]);
 //pr($this->Highslide->default_options);

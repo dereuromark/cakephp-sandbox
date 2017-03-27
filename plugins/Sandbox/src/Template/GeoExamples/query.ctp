@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <div class="page form">
 <h2><?php echo __('Query {0}', __('Geo Data')); ?></h2>
 

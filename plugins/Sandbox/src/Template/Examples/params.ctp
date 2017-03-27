@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h1>Params of the URL passed:</h1>
 There are different ways of passing and retrieving url information via $_GET['']. The information of the params are stored in "named", "pass" etc depending on how they are passed. The nice thing about this is, that CakePHP automatically seperates the different params and returns them as array.
 Controller and Action params are stored as string, though.

@@ -4,6 +4,9 @@ namespace Sandbox\Controller;
 use Cake\I18n\Time;
 use Cake\Network\Exception\NotFoundException;
 
+/**
+ * @property \Data\Model\Table\CountriesTable $Countries
+ */
 class CsvController extends SandboxAppController {
 
 	/**

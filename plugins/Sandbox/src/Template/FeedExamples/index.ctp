@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Feed Plugin</h2>
 <a href="https://github.com/dereuromark/cakephp-feed" target="_blank">[Source]</a>
 

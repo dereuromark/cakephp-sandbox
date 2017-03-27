@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <h2>Working with Slugs</h2>
 <p>Using the SluggedBehavior.
 </p>

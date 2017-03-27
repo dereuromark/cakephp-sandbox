@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \Sandbox\Model\Entity\Event[] $events
+ */
+?>
 <div class="page index">
 
 	<h2>Calendar Plugin examples</h2>
