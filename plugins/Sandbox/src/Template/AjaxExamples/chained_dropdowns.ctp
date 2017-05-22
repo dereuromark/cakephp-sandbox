@@ -3,7 +3,10 @@
  * @var \App\View\AppView $this
  */
 ?>
-<div class="form">
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/ajax'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
 <h2>Chained Dropdowns using AJAX</h2>
 
 <?php echo $this->Form->create($user);?>
