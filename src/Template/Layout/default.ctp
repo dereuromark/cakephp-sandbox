@@ -70,14 +70,17 @@ echo $description;
 echo $this->Flash->render();
 ?>
 
+			<div class="row">
 			<?php
+				echo $this->fetch('content');
+			?>
+			</div>
 
-echo $this->fetch('content');
-
-?>
 		</div>
-		<div id="footer" class="">
+
 		<hr />
+
+		<div id="footer" class="">
 
 		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
 

@@ -11,14 +11,14 @@ class ContactController extends AppController {
 	 * @var array
 	 */
 	public $components = [
-		//'Captcha.Captcha'
+		'Captcha.Captcha',
 	];
 
 	/**
 	 * @var array
 	 */
 	public $helpers = [
-		'Tools.Obfuscate',
+		'Tools.Obfuscate', 'Captcha.Captcha',
 	];
 
 	/**
@@ -46,9 +46,7 @@ class ContactController extends AppController {
 			$message = $this->request->data['message'];
 			$subject = $this->request->data['subject'];
 
-			if (!$this->AuthUser->id()) {
-				//$this->Captcha->addValidation($contact->validator());
-			}
+			$this->Captcha->addValidation($contact->validator());
 
 			if ($contact->execute($this->request->data)) {
 				$this->_send($name, $email, $subject, $message);
@@ -78,7 +76,7 @@ class ContactController extends AppController {
 	 * @param string $subject
 	 * @param string $message
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	protected function _send($fromName, $fromEmail, $subject, $message) {
 		$adminEmail = Configure::read('Config.adminEmail');

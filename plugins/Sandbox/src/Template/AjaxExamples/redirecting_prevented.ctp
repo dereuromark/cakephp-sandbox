@@ -19,9 +19,7 @@ $(function() {
 				$('#example-target').html('...');
 			},
 			success: function(res) {
-				$('#example-target').text('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')');
-				$('#example-target').append('<br/>Message: ' + res._message.success);
-				$('#example-target').append("<br/><br/>Raw data:<br/>" + JSON.stringify(res));
+				$('#example-target').html('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')' + "<br/><br/>Raw data:<br/>" + JSON.stringify(res));
 			},
 			error: function(e) {
 				alert("Error");
@@ -43,7 +41,10 @@ $(function() {
 
 </style>
 
-<div class="page index">
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/ajax'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
 <h2><?php echo __('Redirecting');?> and AJAX - Using Ajax Plugin</h2>
 
 <p>
@@ -65,3 +66,4 @@ the redirect URL and its status code to manually use it in your JS/jQuery code.
 </div>
 
 </div>
+

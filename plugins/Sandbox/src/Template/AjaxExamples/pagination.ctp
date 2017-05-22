@@ -20,16 +20,17 @@ $(document).ready(function() {
 });
 </script>
 
-<div class="page index">
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/ajax'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
 <h2><?php echo __('Countries');?> and AJAX Pagination</h2>
 
 <div id="pagination-container">
 <?php echo $this->element('../AjaxExamples/pagination_container'); ?>
 </div>
 
-</div>
-
-
+<br><br>
 
 <h3>Key Goals for the AJAX Pagination</h3>
 <ul>
@@ -48,3 +49,5 @@ You only need
 	<li>A "pagination-container" div and a separate ctp file of the "common" content for both AJAX and normal view</li>
 	<li>A few lines of custom (jQuery) JS on top</li>
 </ul>
+
+</div>

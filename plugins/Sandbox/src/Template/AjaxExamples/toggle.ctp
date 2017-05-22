@@ -41,7 +41,10 @@ $(function() {
 
 </style>
 
-<div class="page index">
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/ajax'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
 <h2><?php echo __('Toggles');?> via AJAX</h2>
 
 <p>

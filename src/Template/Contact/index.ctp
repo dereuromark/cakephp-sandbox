@@ -14,9 +14,7 @@ My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configur
 		echo $this->Form->input('subject');
 		echo $this->Form->input('message', ['type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')]);
 
-		if (!$this->AuthUser->id()) {
-			//echo $this->Captcha->passive();
-		}
+		echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
 
 	?>
 	</fieldset>

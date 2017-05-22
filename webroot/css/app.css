@@ -68,3 +68,12 @@ th > a.desc:after {
 	content: " \f0de";
 	font-family: FontAwesome;
 }
+
+ul.side-nav {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+ul.side-nav li.heading {
+	font-weight: bold;
+}

@@ -3,11 +3,16 @@
  * @var \App\View\AppView $this
  */
 ?>
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/ajax'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <div class="ajax-form">
 <h2>AJAX Forms</h2>
 
 <div class="form-container">
-<?php echo $this->Form->create($user);?>
+<?php echo $this->Form->create($user, ['novalidate' => true]);?>
 	<fieldset>
  		<legend><?php echo __('Register fake action');?></legend>
 	<?php
@@ -17,6 +22,8 @@
 	</fieldset>
 
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
+</div>
+
 </div>
 
 </div>
