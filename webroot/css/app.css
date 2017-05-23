@@ -77,3 +77,7 @@ ul.side-nav {
 ul.side-nav li.heading {
 	font-weight: bold;
 }
+
+ul.side-nav li a.active {
+	color: orange;
+}
