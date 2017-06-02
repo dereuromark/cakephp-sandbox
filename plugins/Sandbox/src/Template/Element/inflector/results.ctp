@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  */
 ?>
-<table id="inflections">
+<table class="table" id="inflections">
 	<thead>
 		<tr>
 			<th colspan="2"><?php echo __('Method'); ?></th>
