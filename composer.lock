@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "397779599f4e950c225afb77d23cb02a172d3d47"
+                "reference": "80457472cda2df8e527d24d51526af1a3aec640f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/397779599f4e950c225afb77d23cb02a172d3d47",
-                "reference": "397779599f4e950c225afb77d23cb02a172d3d47",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/80457472cda2df8e527d24d51526af1a3aec640f",
+                "reference": "80457472cda2df8e527d24d51526af1a3aec640f",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2017-05-26 01:26:45"
+            "time": "2017-08-03 17:12:40"
         },
         {
             "name": "cakephp/chronos",
@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "8af5f028e68f36a5a29d3994aa4085143530a59e"
+                "reference": "2056a85214838fab4764f716c6d02e3f104e1c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/8af5f028e68f36a5a29d3994aa4085143530a59e",
-                "reference": "8af5f028e68f36a5a29d3994aa4085143530a59e",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/2056a85214838fab4764f716c6d02e3f104e1c4d",
+                "reference": "2056a85214838fab4764f716c6d02e3f104e1c4d",
                 "shasum": ""
             },
             "require": {
@@ -214,11 +214,12 @@
                 "cakephp/chronos": "^1.0.0",
                 "cakephp/plugin-installer": "^1.0.0",
                 "composer/composer": "^1.3.0",
-                "jdorn/sql-formatter": "^1.2.0"
+                "jdorn/sql-formatter": "^1.2.0",
+                "php": ">=5.6.0"
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^3.0",
-                "phpunit/phpunit": "<6.0"
+                "phpunit/phpunit": "^5.7|^6.0"
             },
             "suggest": {
                 "ext-sqlite": "DebugKit needs to store panel data in a database. SQLite is simple and easy to use."
@@ -252,7 +253,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2017-05-31 21:15:26"
+            "time": "2017-08-04 02:08:55"
         },
         {
             "name": "cakephp/localized",
@@ -1195,7 +1196,7 @@
                 "markup",
                 "plugin"
             ],
-            "time": "2016-02-15T00:55:40+00:00"
+            "time": "2016-02-15 00:55:40"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1754,7 +1755,7 @@
                 "cakephp"
             ],
             "abandoned": true,
-            "time": "2015-06-17T19:04:56+00:00"
+            "time": "2015-06-17 19:04:56"
         },
         {
             "name": "friendsofcake/bootstrap-ui",
@@ -2013,7 +2014,7 @@
                 "knp",
                 "menu"
             ],
-            "time": "2016-08-13T16:52:04+00:00"
+            "time": "2016-08-13 16:52:04"
         },
         {
             "name": "gourmet/whoops",
@@ -2335,7 +2336,7 @@
                     "email": "stof@notk.org"
                 },
                 {
-                    "name": "Knplabs",
+                    "name": "KnpLabs",
                     "homepage": "http://knplabs.com"
                 },
                 {
@@ -2457,7 +2458,7 @@
                 "jsmin",
                 "minify"
             ],
-            "time": "2014-03-04T21:29:41+00:00"
+            "time": "2014-03-04 21:29:41"
         },
         {
             "name": "markstory/asset_compress",
@@ -2898,12 +2899,12 @@
             "version": "v0.6.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/robmorgan/phinx.git",
+                "url": "https://github.com/cakephp/phinx.git",
                 "reference": "6943cb4bb78bf9d3964967a032220b7c793b97b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/robmorgan/phinx/zipball/6943cb4bb78bf9d3964967a032220b7c793b97b7",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/6943cb4bb78bf9d3964967a032220b7c793b97b7",
                 "reference": "6943cb4bb78bf9d3964967a032220b7c793b97b7",
                 "shasum": ""
             },
@@ -3613,12 +3614,12 @@
             "version": "v3.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/geocoder-php/Geocoder.git",
+                "url": "https://github.com/geocoder-php/php-common.git",
                 "reference": "ccc178e2984c0af24881faa0ffe515f20e5e8c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geocoder-php/Geocoder/zipball/ccc178e2984c0af24881faa0ffe515f20e5e8c23",
+                "url": "https://api.github.com/repos/geocoder-php/php-common/zipball/ccc178e2984c0af24881faa0ffe515f20e5e8c23",
                 "reference": "ccc178e2984c0af24881faa0ffe515f20e5e8c23",
                 "shasum": ""
             },
@@ -3724,16 +3725,16 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "1.3.4",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "3a6bdcab9e4820e1e26d621b600729b0fcd36937"
+                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/3a6bdcab9e4820e1e26d621b600729b0fcd36937",
-                "reference": "3a6bdcab9e4820e1e26d621b600729b0fcd36937",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/4bbb541ee27d12fe63f15cf5acf70b94553de209",
+                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209",
                 "shasum": ""
             },
             "require": {
@@ -3742,7 +3743,7 @@
                 "php": ">=5.6.0"
             },
             "require-dev": {
-                "cakephp/cakephp-codesniffer": "^2.1",
+                "cakephp/cakephp-codesniffer": "^3.0",
                 "phpunit/phpunit": "~5.7 | ~6.0"
             },
             "type": "cakephp-plugin",
@@ -3767,7 +3768,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2017-05-07T01:46:45+00:00"
+            "time": "2017-07-01T15:59:12+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -3827,7 +3828,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2017-05-21T18:18:51+00:00"
+            "time": "2017-05-21 18:18:51"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -3906,7 +3907,7 @@
                 "codesniffer",
                 "cs"
             ],
-            "time": "2017-05-11T09:39:38+00:00"
+            "time": "2017-05-11 09:39:38"
         },
         {
             "name": "jakub-onderka/php-console-color",
