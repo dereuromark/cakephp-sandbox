@@ -46,7 +46,9 @@ class ContactController extends AppController {
 			$message = $this->request->data['message'];
 			$subject = $this->request->data['subject'];
 
-			$this->Captcha->addValidation($contact->validator());
+			if (!Configure::read('debug')) {
+				$this->Captcha->addValidation($contact->validator());
+			}
 
 			if ($contact->execute($this->request->data)) {
 				$this->_send($name, $email, $subject, $message);
