@@ -3,11 +3,12 @@ namespace Sandbox\View\Widget;
 
 use BootstrapUI\View\Helper\OptionsAwareTrait;
 use Cake\View\Form\ContextInterface;
+use Cake\View\Widget\SelectBoxWidget as CoreSelectBoxWidget;
 
 /**
  * Select Widget
  */
-class SelectBoxWidget extends \Cake\View\Widget\SelectBoxWidget {
+class SelectBoxWidget extends CoreSelectBoxWidget {
 
 	use OptionsAwareTrait;
 

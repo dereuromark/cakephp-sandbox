@@ -58,7 +58,7 @@ try {
 	Configure::config('default', new PhpConfig());
 	Configure::load('app', 'default', false);
 } catch (\Exception $e) {
-	die($e->getMessage() . "\n");
+	exit($e->getMessage() . "\n");
 }
 
 Configure::load('app_custom');

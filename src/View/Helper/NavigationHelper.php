@@ -1,11 +1,13 @@
 <?php
 namespace App\View\Helper;
 
-use Cake\Error\Debugger;
 use Cake\View\Helper;
 
 class NavigationHelper extends Helper {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = ['Html'];
 
 	/**
