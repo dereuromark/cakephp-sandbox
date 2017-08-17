@@ -17,7 +17,7 @@
 	],
 	"license": "MIT",
 	"require": {
-		"php": ">=5.5",
+		"php": ">=5.6",
 		"cakephp/plugin-installer": "*",
 		"cakephp/cakephp": "dev-master as 3.4",
 		"mobiledetect/mobiledetectlib": "2.*",
@@ -58,8 +58,8 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
-		"fig-r/psr2r-sniffer": "dev-master",
-		"dereuromark/cakephp-ide-helper": "dev-master"
+		"dereuromark/cakephp-ide-helper": "@stable",
+		"fig-r/psr2r-sniffer": "dev-master"
 	},
 	"prefer-stable": true,
 	"autoload": {

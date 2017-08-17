@@ -2,7 +2,7 @@
 [![Build Status](https://api.travis-ci.org/dereuromark/cakephp-sandbox.png?branch=3.0)](https://travis-ci.org/dereuromark/cakephp-sandbox)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dereuromark/cakephp-sandbox/3.0.svg)](https://codecov.io/github/dereuromark/cakephp-sandbox)
 [![License](https://poser.pugx.org/dereuromark/cakephp-sandbox/license.svg)](https://packagist.org/packages/dereuromark/cakephp-sandbox)
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.5-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg)](https://php.net/)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
 A sandbox app to showcase CakePHP features and tools as well as provide a sandbox for tryouts.
