@@ -3,6 +3,9 @@ namespace App\View\Helper;
 
 use Cake\View\Helper;
 
+/**
+ * @property \Cake\View\Helper\HtmlHelper $Html
+ */
 class NavigationHelper extends Helper {
 
 	/**
