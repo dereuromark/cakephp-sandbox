@@ -113,5 +113,11 @@ class CakeExamplesController extends SandboxAppController {
 
 		$this->set(compact('animal'));
 	}
+	
+	/**
+	 * @return void
+	 */
+	public function htmlArrays() {
+	}
 
 }
