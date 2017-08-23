@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c416aa2948ea63ce9cdc7afc8c0f7605",
+    "content-hash": "c6133de92262d99f9f31e1dcb01f4e17",
     "packages": [
         {
             "name": "aura/intl",
@@ -54,16 +54,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "dev-master",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "91274ddb7d89ff2141eea8c417971abb9d514d41"
+                "reference": "2149b75793b1a20b60b0b70f2b75e2d0bf10a480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/91274ddb7d89ff2141eea8c417971abb9d514d41",
-                "reference": "91274ddb7d89ff2141eea8c417971abb9d514d41",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2149b75793b1a20b60b0b70f2b75e2d0bf10a480",
+                "reference": "2149b75793b1a20b60b0b70f2b75e2d0bf10a480",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2017-08-23 03:35:52"
+            "time": "2017-08-19T01:20:13+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -3734,21 +3734,21 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "1.3.7",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209"
+                "reference": "53e40910aec77743ed1e30d4925a43b37197729d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/4bbb541ee27d12fe63f15cf5acf70b94553de209",
-                "reference": "4bbb541ee27d12fe63f15cf5acf70b94553de209",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/53e40910aec77743ed1e30d4925a43b37197729d",
+                "reference": "53e40910aec77743ed1e30d4925a43b37197729d",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": ">=3.4.0 <4.0.0",
-                "cakephp/plugin-installer": "*",
+                "cakephp/cakephp": ">=3.5.0,<4.0.0",
+                "cakephp/plugin-installer": "~1.0",
                 "php": ">=5.6.0"
             },
             "require-dev": {
@@ -3771,13 +3771,13 @@
                     "homepage": "https://github.com/cakephp/bake/graphs/contributors"
                 }
             ],
-            "description": "Bake plugin for CakePHP 3.0",
+            "description": "Bake plugin for CakePHP 3",
             "homepage": "https://github.com/cakephp/bake",
             "keywords": [
                 "bake",
                 "cakephp"
             ],
-            "time": "2017-07-01T15:59:12+00:00"
+            "time": "2017-08-19T02:47:18+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -4304,12 +4304,6 @@
     ],
     "aliases": [
         {
-            "alias": "3.4",
-            "alias_normalized": "3.4.0.0",
-            "version": "9999999-dev",
-            "package": "cakephp/cakephp"
-        },
-        {
             "alias": "1.0",
             "alias_normalized": "1.0.0.0",
             "version": "9999999-dev",
@@ -4324,7 +4318,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-tools": 20,
