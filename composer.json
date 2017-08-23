@@ -58,8 +58,9 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
-		"dereuromark/cakephp-ide-helper": "@stable",
-		"fig-r/psr2r-sniffer": "dev-master"
+		"fig-r/psr2r-sniffer": "dev-master",
+		"dereuromark/cakephp-ide-helper": "dev-master",
+		"sebastian/diff": "^1.4"
 	},
 	"prefer-stable": true,
 	"autoload": {
