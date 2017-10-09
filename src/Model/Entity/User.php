@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
  * @property \Cake\I18n\Time $last_login
+ * @property \App\Model\Entity\Role $role
  */
 class User extends Entity {
 

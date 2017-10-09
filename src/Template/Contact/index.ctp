@@ -1,5 +1,7 @@
 <?php
-/** @var \App\View\AppView $this */
+/**
+ * @var \App\View\AppView $this
+ */
 ?>
 <h2><?php echo __('Contact Form');?></h2>
 <p>
