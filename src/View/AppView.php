@@ -13,6 +13,17 @@ use Cake\View\View;
  * @property \App\View\Helper\AppHelper $App
  * @property \App\View\Helper\NavigationHelper $Navigation
  * @property \App\View\Helper\SandboxHelper $Sandbox
+ * @property \Tools\View\Helper\HtmlHelper $Html
+ * @property \Tools\View\Helper\UrlHelper $Url
+ * @property \BootstrapUI\View\Helper\FormHelper $Form
+ * @property \Tools\View\Helper\CommonHelper $Common
+ * @property \Flash\View\Helper\FlashHelper $Flash
+ * @property \Tools\View\Helper\TimeHelper $Time
+ * @property \Tools\View\Helper\NumberHelper $Number
+ * @property \Data\View\Helper\DataHelper $Data
+ * @property \Tools\View\Helper\GravatarHelper $Gravatar
+ * @property \Tools\View\Helper\QrCodeHelper $QrCode
+ * @property \Tools\View\Helper\TreeHelper $Tree
  */
 class AppView extends View {
 

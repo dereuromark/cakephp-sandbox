@@ -192,8 +192,9 @@ Plugin::load('Sandbox', ['routes' => true]);
 Plugin::load('AuthSandbox', ['routes' => true]);
 Plugin::load('DebugKit', ['bootstrap' => true]);
 Plugin::load('AssetCompress', ['bootstrap' => true]);
-Plugin::load('BootstrapUI', []);
-Plugin::load('Search', []);
+Plugin::load('BootstrapUI');
+Plugin::load('Search');
+Plugin::load('Geo');
 
 Plugin::load('CakePdf', ['routes' => true]);
 Plugin::load('Cache', ['routes' => true]);

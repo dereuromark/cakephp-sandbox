@@ -73,8 +73,15 @@ return [
 		]
 	],
 
+	'IdeHelper' => [
+		'includedPlugins' => [
+			'Sandbox',
+			'AuthSandbox',
+		],
+	],
+
 	'Highlighter' => [
 		'highlighter' => 'Markup\Highlighter\JsHighlighter'
-	]
+	],
 
 ];
