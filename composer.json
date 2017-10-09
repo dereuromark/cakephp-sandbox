@@ -59,8 +59,7 @@
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
 		"fig-r/psr2r-sniffer": "dev-master",
-		"dereuromark/cakephp-ide-helper": "dev-master",
-		"sebastian/diff": "^1.4"
+		"dereuromark/cakephp-ide-helper": "dev-master"
 	},
 	"prefer-stable": true,
 	"autoload": {
@@ -83,7 +82,7 @@
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
 		"test": "php phpunit.phar",
-		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar",
+		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./",
 		"cs-fix": "phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./"
