@@ -105,10 +105,9 @@ The following file is an example sh script:
 
 <pre>
 <code>#!/bin/bash
-
-echo "### CODE ###";
 bin/cake Setup.MaintenanceMode activate
 
+echo "### CODE ###";
 git pull
 
 php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-interaction
@@ -119,11 +118,11 @@ mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
-bin/cake Migrations migrate -p Geo
+bin/cake Migrations migrate -p Geo // and all other plugin migrations
 bin/cake Migrations migrate
 
 echo "### ASSETS ###";
-bower install --allow-root
+bower install // or npm -i etc
 
 mkdir -p ./webroot/css/fonts
 cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
