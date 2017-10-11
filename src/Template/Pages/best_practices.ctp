@@ -100,7 +100,7 @@ Always use your `www-data` user for this and never root, otherwise you will have
 </p>
 
 <p>
-The following file is an example sh script:
+The following file is an example sh script for a very very basic single server update process:
 </p>
 
 <pre>
