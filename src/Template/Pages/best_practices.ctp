@@ -6,9 +6,33 @@
 <h2>Best practices</h2>
 DOs and DONT's of common CakePHP problems.
 
+<h3>Config</h3>
+The easiest approach for the beginning is a local config file that is not under version control per environment/server.
+<ul>
+	<li>app.php (CakePHP core configs)</li>
+	<li>app_custom.php (project overwriting on top)</li>
+	<li>app_local.php (env specific, in gitignore!)</li>
+</ul>
+
+Then in your bootstrap code:
+<pre><code>Configure::load('app', 'default', false);
+Configure::load('app_custom');
+Configure::load('app_local');
+</code></pre>
+
+<p>
+	The main idea here is to ease upgrading in minors as the app.php one is the one from cakephp/app repo always and it makes it easy to diff and know what new config keys are added with each minor.
+If you overwrite it directly, this will get very messy otherwise.
+</p>
+<p>
+Check this applications's config folder on how it is done.
+</p>
+
 <h3>Routing</h3>
 Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'])?>) as default one:
-<pre><code>Router::defaultRouteClass('DashedRoute');
+<pre><code>use Cake\Routing\Route\DashedRoute;
+
+Router::defaultRouteClass(DashedRoute::class);
 </code></pre>
 This way your URLs are `my-prefix/my-plugin/controller-name/action-name` whereas your URL contains the CamelCase variants:
 <pre><code>'prefix' => 'my-prefix // unmodified
