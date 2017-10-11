@@ -79,6 +79,7 @@ So I would change the scopes to false here for all default listeners:
 	...
 ],
 </code></pre>
+<p>Another very useful addition is to log 404s separately from actual (internal) errors happening using <a href="https://github.com/dereuromark/cakephp-tools/blob/master/docs/Error/ErrorHandler.md">Tools.ErrorHandler</a>.</p>
 
 <h3>Use AJAX wisely</h3>
 Don't over-ajaxify your views. It can easily create complications and become error-prone.
@@ -89,3 +90,58 @@ It might also be a good idea for search engines to properly pick up your site co
 <br><br>
 So the smart approach is: First code the non-JS functionality. And then you can add JS-functionality for it on top.
 In case the JS breaks, the non-js part can take over without users being unable to proceed.
+
+<h3>Deployment</h3>
+<p>You should automate your deployment process, e.g. via basic deploy.sh file.
+Then you can just execute `./deploy.sh`.
+</p>
+<p>
+Always use your `www-data` user for this and never root, otherwise you will have some serious permissions problems afterwards.
+</p>
+
+<p>
+The following file is an example sh script:
+</p>
+
+<pre>
+<code>#!/bin/bash
+
+echo "### CODE ###";
+bin/cake Setup.MaintenanceMode activate
+
+git pull
+
+php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-interaction
+
+mkdir -p ./tmp
+mkdir -p ./logs
+mkdir -p ./webroot/js/cjs/
+mkdir -p ./webroot/css/ccss/
+
+echo "### DB MIGRATION ###";
+bin/cake Migrations migrate -p Geo
+bin/cake Migrations migrate
+
+echo "### ASSETS ###";
+bower install --allow-root
+
+mkdir -p ./webroot/css/fonts
+cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
+
+bin/cake AssetCompress.AssetCompress build
+
+echo "### CLEANUP ###";
+bin/cake clear cache
+
+echo "### DONE ###";
+bin/cake Setup.MaintenanceMode deactivate</code>
+</pre>
+
+<p>It should at least contain:</p>
+<ul>
+	<li>composer install (from lock file!)</li>
+	<li>DB Migration</li>
+	<li>Asset update</li>
+	<li>Cache invalidation</li>
+</ul>
+<p>Wrapping it with maintenance mode can help to avoid side effects for users currently on the website.</p>
