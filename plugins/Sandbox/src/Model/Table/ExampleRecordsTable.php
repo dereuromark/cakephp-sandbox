@@ -1,5 +1,5 @@
 <?php
-namespace Sandbox\Model;
+namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
 

@@ -3,6 +3,9 @@ namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
 
+/**
+ * @mixin \Cake\ORM\Behavior\TreeBehavior
+ */
 class SandboxCategoriesTable extends Table {
 
 	/**

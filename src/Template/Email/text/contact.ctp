@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 Sandbox - Contact Form submission
 
 Subject: <?php echo $subject; ?>

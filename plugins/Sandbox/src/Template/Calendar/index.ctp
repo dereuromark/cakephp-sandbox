@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\Event[] $events
+ * @var \Sandbox\Model\Entity\Event[]|\Cake\Collection\CollectionInterface $events
  */
 ?>
 <div class="page index">

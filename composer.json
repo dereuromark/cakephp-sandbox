@@ -53,7 +53,8 @@
 		"gourmet/whoops": "^1.0",
 		"cakephp/debug_kit": "dev-master",
 		"tecnickcom/tcpdf": "^6.2",
-		"dompdf/dompdf": "^0.7.0"
+		"dompdf/dompdf": "^0.7.0",
+		"dereuromark/cakephp-feedback": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
@@ -81,6 +82,7 @@
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
+		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
 		"test": "php phpunit.phar",
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
@@ -92,6 +94,9 @@
 	},
 	"config": {
 		"preferred-install": "source",
-		"process-timeout": 600
+		"process-timeout": 600,
+		"platform": {
+			"php": "5.6"
+		}
 	}
 }

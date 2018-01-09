@@ -9,6 +9,7 @@ use Cake\Network\Exception\InternalErrorException;
  * @property \Sandbox\Model\Table\EventsTable $Events
  * @property \Data\Model\Table\CountryProvincesTable $CountryProvinces
  * @property \Data\Model\Table\StatesTable $States
+ * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
 class CalendarController extends SandboxAppController {
 

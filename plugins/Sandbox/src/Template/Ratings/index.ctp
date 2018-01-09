@@ -3,20 +3,31 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<?php $this->Html->script('/assets/bootstrap-star-rating/js/star-rating.js', ['block' => true]); ?>
+<?php $this->Html->css('/assets/bootstrap-star-rating/css/star-rating.css', ['block' => true]); ?>
+
 <h2>Ratings plugin</h2>
 <p>
 	<a href="https://github.com/dereuromark/cakephp-ratings" target="_blank">[Ratings Plugin]</a>
 </p>
 
+<h3>Rate now!</h3>
+
 <?php
 if (!$isRated) {
-    echo $this->Rating->display([
+    echo $this->Rating->control([
 		'item' => $post['id'],
-		'url' => [$post['id']]
+		'js' => true,
 	]);
 } else {
+	echo '<p>';
 	echo __('You have already rated.');
-	echo $this->Rating->ratingImage($isRated['value']);
+	echo $this->Rating->display($isRated['value']);
+	echo '</p>';
+
+	echo '<p>For demo purposes:</p>';
+	echo $this->Form->postLink('Unrate', ['action' => 'unrate', $post['id']], ['class' => 'btn btn-warning']);
 }
 
 
@@ -24,70 +35,36 @@ if (!$isRated) {
 
 
 
-<h3>Different settings
-</h3>
+<h3>Read-only star rating display</h3>
 
-<?php echo $this->Html->script('/assets/bootstrap-star-rating/js/star-rating.js'); ?>
-<?php echo $this->Html->css('/assets/bootstrap-star-rating/css/star-rating.css'); ?>
-
-<br>
-
-<div style="font-size: 20px">
-<div class="rating-container rating-fa" data-content="&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;" title="x of y stars">
-	<div class="rating-stars" data-content="&#xf005;&#xf005;&#xf005;&#xf005;&#xf005;" style="width: 20%;"></div>
-</div>
-
-<br>
+<h4>2.25 of 5 stars</h4>
+<p>Also has a custom title attribute:</p>
 <?php
-
-echo $this->Rating->image(2.75,
-	['title' => 'x of y stars !!!']);
-
+echo $this->Rating->display(2.25, ['steps' => 1], ['title' => 'X of Y stars !!!']);
 ?>
 
-<br>
+<h4>3.25 of 5 stars</h4>
+<p>With half-steps:</p>
 <?php
-echo $this->Rating->image(2.25,
-	['steps' => 2, 'label' => false, 'title' => 'x of y stars !!!', 'class'=> 'rating', 'data-symbol' => '&#xf005;', 'data-glyphicon' => 'false', 'data-rating-class' => 'rating-fa', 'escape' => false,
-		'data-readonly' => 'true', 'data-show-clear' => 'false', 'data-show-caption' => 'false']);
+echo $this->Rating->display(3.25, ['steps' => 2]);
 ?>
 
-</div>
 
-<br>
+<h4>Bar Rating</h4>
+<p>Similar to percentage, here 8.5 of 10:</p>
 
+<style>
+	.bar-rating {
+		background-color: #0b58a2;
+	}
+	.bar-rating .inner {
+		background-color: #00b3ee;
+	}
+	.bar-rating .inner span {
+		color: white;
+		margin-left: 10px;
+	}
+</style>
 <?php
-echo $this->Rating->input('input-5',
-	['value' => 2.75, 'label' => false, 'title' => 'x of y stars', 'class'=> 'rating', 'data-symbol' => '&#xf005;', 'data-glyphicon' => 'false', 'data-rating-class' => 'rating-fa', 'escape' => false,
-		'data-readonly' => 'true', 'data-show-clear' => 'false', 'data-show-caption' => 'false']);
+echo $this->Rating->bar(8.5, 10);
 ?>
-<script>
-	$("#input-5").rating({
-		starCaptions: {1: "Very Poor", 2: "Poor", 3: "Ok", 4: "Good", 5: "Very Good"}
-	});
-	$(".rating-container").mouseover(function() {
-		$(this).attr('title', $(this).find('input').attr('title'));
-	});
-</script>
-
-<input id="input-5x" data-step="1" data-min="0" data-max="5" value="3" class="rating" data-symbol="&#xf005;" data-glyphicon="false" data-rating-class="rating-fa">
-
-<br>
-
-<input id="input-5a" data-step="1" data-min="0" data-max="5" value="2" class="rating" data-readonly="true">
-
-<br>
-
-<input id="input-5b" data-step="1" data-min="0" data-max="5" value="4" class="rating" data-disabled="true">
-
-<br>
-
-AJAX
-<br>
-
-<input id="input-27" class="rating">
-<script>
-	$("#input-27").on("rating.change", function(event, value, caption) {
-		$("#input-27").rating("refresh", {disabled: true, showClear: false});
-	});
-</script>

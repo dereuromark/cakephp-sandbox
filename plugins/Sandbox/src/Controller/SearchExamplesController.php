@@ -5,6 +5,7 @@ use Cake\Event\Event;
 
 /**
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
+ * @property \Search\Controller\Component\PrgComponent $Prg
  */
 class SearchExamplesController extends SandboxAppController {
 

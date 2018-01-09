@@ -3,13 +3,15 @@ namespace App\Controller;
 
 /**
  * Start page controller.
+ *
+ * @property \App\Model\Table\UsersTable $Users
  */
 class OverviewController extends AppController {
 
 	/**
-	 * @var array
+	 * @var string
 	 */
-	public $uses = ['User'];
+	public $modelClass = 'Users';
 
 	/**
 	 * @return void

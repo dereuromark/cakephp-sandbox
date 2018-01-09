@@ -16,3 +16,4 @@ _*
 /webroot/css/ccss
 /webroot/css/fonts
 /config/Migrations/schema-dump-default.lock
+/.phpstorm.meta.php/.ide-helper.meta.php

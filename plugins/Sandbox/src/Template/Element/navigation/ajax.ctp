@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
 <ul class="side-nav nav nav-pills nav-stacked">
 	<li class="heading"><?= __('Actions') ?></li>
 	<li><?= $this->Html->link(__('Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>

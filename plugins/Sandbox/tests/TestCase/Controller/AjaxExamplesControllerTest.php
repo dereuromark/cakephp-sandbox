@@ -67,7 +67,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'simple', '_ext' => 'json']);
 
 		$this->assertResponseCode(200);
-		$this->assertResponseContains('"now": "');
+		$this->assertResponseContains('"now":');
 	}
 
 	/**

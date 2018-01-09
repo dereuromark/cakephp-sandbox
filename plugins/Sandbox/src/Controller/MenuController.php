@@ -1,6 +1,9 @@
 <?php
 namespace Sandbox\Controller;
 
+/**
+ * @property \Gourmet\KnpMenu\Controller\Component\MenuComponent $Menu
+ */
 class MenuController extends SandboxAppController {
 
 	/**

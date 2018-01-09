@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 /**
+ * @property \Cache\Controller\Component\CacheComponent $Cache
  */
 class CacheExamplesController extends SandboxAppController {
 

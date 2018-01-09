@@ -4,7 +4,6 @@
 set -o pipefail
 
 echo "### INSTALL/UPDATE ###";
-composer selfupdate
 
 [ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar
 
@@ -41,6 +40,9 @@ bin/cake AssetCompress.AssetCompress build
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
+
+echo "### IDE HELPER ###";
+composer setup
 
 echo "### DONE ###";
 

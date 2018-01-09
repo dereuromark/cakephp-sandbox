@@ -24,6 +24,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\GravatarHelper $Gravatar
  * @property \Tools\View\Helper\QrCodeHelper $QrCode
  * @property \Tools\View\Helper\TreeHelper $Tree
+ * @property \Ratings\View\Helper\RatingHelper $Rating
  */
 class AppView extends View {
 

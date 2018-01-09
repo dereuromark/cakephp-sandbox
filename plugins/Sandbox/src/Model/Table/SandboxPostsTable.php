@@ -3,6 +3,9 @@ namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
 
+/**
+ * @mixin \Ratings\Model\Behavior\RatableBehavior
+ */
 class SandboxPostsTable extends Table {
 
 	/**

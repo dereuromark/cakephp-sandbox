@@ -3,6 +3,7 @@ namespace Sandbox\Controller;
 
 /**
  * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
+ * @property \Ratings\Controller\Component\RatingComponent $Rating
  */
 class RatingsController extends SandboxAppController {
 
@@ -12,22 +13,25 @@ class RatingsController extends SandboxAppController {
 	public $modelClass = 'Sandbox.SandboxPosts';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	public $components = ['Ratings.Ratings' => ['userId' => true, 'rateClass' => 'Sandbox.SandboxRatings']];
+	public function initialize() {
+		parent::initialize();
+
+		// We fake a user / auth
+		$uid = $this->request->session()->read('Tmp.User.id');
+		if (!$uid) {
+			$uid = time();
+			$this->request->session()->write('Tmp.User.id', $uid);
+		}
+
+		$this->loadComponent('Ratings.Rating', ['userId' => $uid, 'rateClass' => 'Sandbox.SandboxRatings']);
+	}
 
 	/**
 	 * @return void
 	 */
 	public function index() {
-		// We fake a user / auth
-		if (!$this->request->session()->read('Tmp.User.id')) {
-			$this->request->session()->write('Tmp.User.id', 1);
-		}
-
-		//$actions = $this->_getActions($this);
-		//$this->set(compact('actions'));
-
 		$record = $this->SandboxPosts->find('first');
 		if (!$record) {
 			$data = [
@@ -41,7 +45,27 @@ class RatingsController extends SandboxAppController {
 		$this->set('post', $record);
 
 		$userId = $this->request->session()->read('Tmp.User.id');
-		$this->set('isRated', $this->SandboxPosts->isRatedBy($id, $userId));
+		$isRated = $this->SandboxPosts->isRatedBy($id, $userId)->first();
+		$this->set(compact('isRated'));
+	}
+
+	/**
+	 * @param int|null $id
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function unrate($id = null) {
+		$this->request->allowMethod('post');
+		$uid = $this->request->session()->read('Tmp.User.id');
+		if (!$id || !$uid) {
+			$this->Flash->error('No ID given. Cannot delete rating.');
+			return $this->redirect($this->referer(['action' => 'index']));
+		}
+
+		$this->SandboxPosts->removeRating($id, $uid);
+
+		$this->Flash->success('Rating resetted.');
+		return $this->redirect($this->referer(['action' => 'index']));
 	}
 
 }

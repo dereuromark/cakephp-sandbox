@@ -195,6 +195,8 @@ Plugin::load('AssetCompress', ['bootstrap' => true]);
 Plugin::load('BootstrapUI');
 Plugin::load('Search');
 Plugin::load('Geo');
+Plugin::load('Ratings');
+Plugin::load('Feedback', ['routes' => true, 'bootstrap' => true]);
 
 Plugin::load('CakePdf', ['routes' => true]);
 Plugin::load('Cache', ['routes' => true]);

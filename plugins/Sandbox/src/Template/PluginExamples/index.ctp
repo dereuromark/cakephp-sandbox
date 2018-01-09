@@ -51,6 +51,11 @@
 			<li><?php echo $this->Html->link('CakePHP Calendar plugin and event calendars', ['controller' => 'Calendar', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Captcha Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Captchas in CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Ratings Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('(Star) Ratings in CakePHP', ['controller' => 'Ratings', 'action' => 'index']); ?></li>

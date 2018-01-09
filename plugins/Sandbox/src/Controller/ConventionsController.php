@@ -1,12 +1,15 @@
 <?php
 namespace Sandbox\Controller;
 
+/**
+ * @property \App\Model\Table\UsersTable $Users
+ */
 class ConventionsController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @var string
 	 */
-	public $uses = ['User'];
+	public $modelClass = 'Users';
 
 	/**
 	 * @see http://groups.google.com/group/cake-php/browse_thread/thread/6908dce4d55c1a5d

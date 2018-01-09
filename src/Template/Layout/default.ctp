@@ -11,7 +11,7 @@ $description = 'CakePHP Sandbox App';
 echo $this->Html->charset();
 ?>
 	<title>
-		<?php echo $description; ?>:
+		<?php echo h($description); ?>:
 		<?php echo $this->fetch('title'); ?>
 	</title>
 
@@ -26,7 +26,7 @@ if (!empty($this->request->query['assets'])) {
 				echo $this->AssetCompress->script('js-combined');
 			}
 			echo $this->fetch('css');
-			echo $this->fetch('js');
+			echo $this->fetch('script');
 		break;
 	}
 } else {
@@ -93,5 +93,8 @@ echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => '
  </div>
 
 <?php echo $this->element('stats'); ?>
+
+<?php echo $this->element('Feedback.sidebar');?>
+<?php echo $this->fetch('script'); ?>
 </body>
 </html>

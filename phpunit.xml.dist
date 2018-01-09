@@ -12,15 +12,15 @@
 
 	<!-- Add any additional test suites you want to run here -->
 	<testsuites>
-		<testsuite name="App Test Suite">
-			<directory>./tests/TestCase</directory>
+		<testsuite name="app">
+			<directory>./tests/TestCase/</directory>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
-		<testsuite name="AuthSandbox Test Suite">
-			<directory>./plugins/AuthSandbox/tests/TestCase</directory>
+		<testsuite name="auth-sandbox">
+			<directory>./plugins/AuthSandbox/tests/TestCase/</directory>
 		</testsuite>
-		<testsuite name="Sandbox Test Suite">
-			<directory>./plugins/Sandbox/tests/TestCase</directory>
+		<testsuite name="sandbox">
+			<directory>./plugins/Sandbox/tests/TestCase/</directory>
 		</testsuite>
 	</testsuites>
 
@@ -37,9 +37,9 @@
 
 	<filter>
 		<whitelist>
-			<directory suffix=".php">./src</directory>
-			<directory suffix=".php">./plugins/Sandbox/src</directory>
-			<directory suffix=".php">./plugins/AuthSandbox/src</directory>
+			<directory suffix=".php">./src/</directory>
+			<directory suffix=".php">./plugins/Sandbox/src/</directory>
+			<directory suffix=".php">./plugins/AuthSandbox/src/</directory>
 		</whitelist>
 	</filter>
 

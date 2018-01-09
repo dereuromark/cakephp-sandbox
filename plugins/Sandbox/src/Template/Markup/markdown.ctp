@@ -1,4 +1,7 @@
 <?php
+/**
+ * @var \App\View\AppView $this
+ */
 use Ciconia\Ciconia;
 use Ciconia\Extension\Gfm\FencedCodeBlockExtension;
 use Ciconia\Extension\Gfm\TaskListExtension;
