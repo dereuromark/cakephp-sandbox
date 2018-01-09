@@ -12,7 +12,7 @@ class Rating extends AbstractMigration {
 	public function up() {
 		$content = <<<SQL
 CREATE TABLE IF NOT EXISTS `sandbox_ratings` (
-  `id` int(10) NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(10) DEFAULT NULL,
   `foreign_key` int(10) DEFAULT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
