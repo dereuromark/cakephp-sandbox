@@ -46,7 +46,7 @@
 			<li><?php echo $this->Html->link('CakePHP Cache plugin and view caching', ['controller' => 'CacheExamples', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>Calendar Plugin (NEW)</h4>
+		<h4>Calendar Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('CakePHP Calendar plugin and event calendars', ['controller' => 'Calendar', 'action' => 'index']); ?></li>
 		</ul>
@@ -56,7 +56,12 @@
 			<li><?php echo $this->Html->link('Captchas in CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>Ratings Plugin</h4>
+		<h4>Feedback Plugin (NEW)</h4>
+		<ul>
+			<li>See the "Feedback" button on the right side. To test: Click, fill out the form and send (do not send sensitive information!).</li>
+		</ul>
+
+		<h4>Ratings Plugin (NEW)</h4>
 		<ul>
 			<li><?php echo $this->Html->link('(Star) Ratings in CakePHP', ['controller' => 'Ratings', 'action' => 'index']); ?></li>
 		</ul>
@@ -103,13 +108,15 @@
 		<ul>
 			<li><?php echo $this->Html->link('PDF rendering in CakePHP', ['controller' => 'Plugins', 'action' => 'cakePdf']); ?></li>
 		</ul>
+
+
+		<h3>TODO</h3>
+		<ul>
+			<li>Wysiwyg</li>
+			<li>Like / Favorite</li>
+			<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
+		</ul>
+
 	</div>
 </div>
 
-
-<h3>TODO</h3>
-<ul>
-	<li>Wysiwyg</li>
-	<li>Like / Favorite</li>
-	<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
-</ul>
