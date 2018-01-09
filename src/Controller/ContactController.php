@@ -46,10 +46,12 @@ class ContactController extends AppController {
 		if ($this->Common->isPosted()) {
 			$name = $this->request->data['name'];
 			$email = $this->request->data['email'];
-			$message = $this->request->data['message'];
 			$subject = $this->request->data['subject'];
+			$message = $this->request->data['body'];
 
-			if (!Configure::read('debug')) {
+			if (Configure::read('debug')) {
+				$this->Flash->info('In debug mode there is no captcha validation necessary.');
+			} else {
 				$this->Captcha->addValidation($contact->validator());
 			}
 
