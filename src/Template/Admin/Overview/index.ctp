@@ -8,14 +8,14 @@
 
 <h3><?php echo __('Public Lists')?></h3>
 <ul>
-	<li><?php echo $this->Html->link(__('Countries'), ['plugin' => 'tools', 'controller' => 'countries', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('States'), ['plugin' => 'tools', 'controller' => 'states', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Postal Codes'), ['plugin' => 'tools', 'controller' => 'postal_codes', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Countries'), ['plugin' => 'data', 'controller' => 'countries', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('States'), ['plugin' => 'data', 'controller' => 'states', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Postal Codes'), ['plugin' => 'data', 'controller' => 'postal_codes', 'action' => 'index'])?></li>
 
-	<li><?php echo $this->Html->link(__('Currencies'), ['plugin' => 'tools', 'controller' => 'currencies', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Languages'), ['plugin' => 'tools', 'controller' => 'languages', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Smileys'), ['plugin' => 'tools', 'controller' => 'smileys', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Mime Types'), ['plugin' => 'tools', 'controller' => 'mime_types', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Currencies'), ['plugin' => 'data', 'controller' => 'currencies', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Languages'), ['plugin' => 'data', 'controller' => 'languages', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Smileys'), ['plugin' => 'data', 'controller' => 'smileys', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Mime Types'), ['plugin' => 'data', 'controller' => 'mime_types', 'action' => 'index'])?></li>
 </ul>
 
 
@@ -39,13 +39,6 @@
 <ul>
 	<?php if (false) { ?>
 		<li><?php echo $this->Html->link(__('Translations'), ['admin' => false, 'plugin' => 'translate', 'controller' => 'translate', 'action' => 'index'])?></li>
-	<?php } ?>
-
-	<?php if (true || $this->AuthUser->hasRole('admin')) { ?>
-
-		<li><?php echo $this->Html->link(__('Cronjobs'), ['plugin' => 'queue', 'controller' => 'cron_tasks', 'action' => 'index'])?></li>
-		<li><?php echo $this->Html->link(__('Setup'), ['plugin' => 'setup', 'controller' => 'setup', 'action' => 'index'])?></li>
-
 	<?php } ?>
 
 	<li><?php echo $this->Html->link(__('Logs'), ['prefix' => 'admin', 'plugin' => 'DatabaseLog', 'controller' => 'Logs'])?></li>
