@@ -65,6 +65,11 @@
 		<ul>
 			<li><?php echo $this->Html->link('(Star) Ratings in CakePHP', ['controller' => 'Ratings', 'action' => 'index']); ?></li>
 		</ul>
+
+		<h4>Tags Plugin (NEW)</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Tagging in CakePHP', ['controller' => 'Tags', 'action' => 'index']); ?></li>
+		</ul>
 	</div>
 	<div class="col-xs-6">
 		<h3>Other plugins</h3>

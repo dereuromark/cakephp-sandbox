@@ -22,10 +22,10 @@
 <h3><?php echo __('Content')?></h3>
 <ul>
 
-	<li><?php echo $this->Html->link(__('Code Snippets'), ['controller' => 'code_snippets', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Examples'), ['plugin' => 'Sandbox', 'controller' => 'examples', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Jquery Examples'), ['plugin' => 'Sandbox', 'controller' => 'examples', 'action' => 'index'])?></li>
-
+	<li><?php echo $this->Html->link(__('Code Snippets'), ['controller' => 'CodeSnippets', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Examples'), ['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Jquery Examples'), ['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Feedback'), ['plugin' => 'Feedback', 'controller' => 'Feedback', 'action' => 'index'])?></li>
 
 </ul>
 

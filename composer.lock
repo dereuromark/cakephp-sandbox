@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "343ec2f0d2bf6ddcc075737029183c49",
+    "content-hash": "7d95aa852c2e71be43964e29f758e22f",
     "packages": [
         {
             "name": "aura/intl",
@@ -1398,6 +1398,69 @@
                 "shim"
             ],
             "time": "2017-12-27T23:35:21+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-tags",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-tags.git",
+                "reference": "56325e11e3a86d3080d83213343413582bf2e9d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/56325e11e3a86d3080d83213343413582bf2e9d3",
+                "reference": "56325e11e3a86d3080d83213343413582bf2e9d3",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.4"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^3.4",
+                "cakephp/migrations": "*",
+                "dereuromark/cakephp-tools": "^1.0",
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Tags\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "ADmad",
+                    "homepage": "https://github.com/ADmad",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/dereuromark/cakephp-tags/graphs/contributors"
+                }
+            ],
+            "description": "Tags plugin for CakePHP 3.x",
+            "homepage": "https://github.com/dereuromark/cakephp-tags",
+            "keywords": [
+                "cakephp",
+                "tagging",
+                "tags"
+            ],
+            "time": "2018-01-15T00:13:40+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -4782,6 +4845,7 @@
         "dereuromark/cakephp-databaselog": 20,
         "cakephp/debug_kit": 20,
         "dereuromark/cakephp-feedback": 20,
+        "dereuromark/cakephp-tags": 20,
         "psy/psysh": 0,
         "cakephp/bake": 0,
         "fig-r/psr2r-sniffer": 20,

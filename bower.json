@@ -12,7 +12,8 @@
     "clockpicker": "latest",
     "bootstrap-star-rating": "^4.0.3",
     "jquery-infinite-scroll": "latest",
-    "raty-fa": "latest"
+    "raty-fa": "latest",
+    "select2": "^4.0.5"
   },
   "private": true
 }
