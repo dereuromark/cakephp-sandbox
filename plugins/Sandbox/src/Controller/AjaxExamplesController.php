@@ -26,7 +26,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function initialize() {
 		if (in_array($this->request->action, ['redirectingPrevented', 'form', 'toggle'])) {
-			$this->components['Ajax.Ajax'] = ['flashKey' => 'FlashMessage'];
+			$this->components['Ajax.Ajax'] = [];
 		}
 		parent::initialize();
 	}
@@ -56,7 +56,7 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * AjaxExamplesController::toggle()
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function toggle() {
 		if ($this->request->is(['post'])) {
@@ -162,10 +162,10 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * Show how AJAX plugin can work with forms just as normal PRG behavior would.
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function form() {
-		$this->Users = TableRegistry::get('Users');
+		$this->loadModel('Users');
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
@@ -184,7 +184,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved:
 	 * It will requestAction() the redirect instead of actually redirecting.
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function redirecting() {
 		if ($this->request->is('post')) {
@@ -200,7 +200,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved using Ajax component and view class.
 	 * It will not follow the redirect, but instead return it along with messages sent.
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function redirectingPrevented() {
 		if ($this->request->is('post')) {

@@ -41,21 +41,20 @@
 				data: form.serialize()
 			}).done(function(response) {
 				// Flash message
+				$('.flash-messages').remove();
 				if (response._message) {
+					var flashMessages = '';
 					// Display the error
-					var flashMessages = '<div class="flash-messages">';
-					if (response._message.error) {
-						response._message.error.forEach (function(entry) {
-							flashMessages += '<div class="message error">' + entry + '</div>';
-						});
-					}
-					if (response._message.success) {
-						response._message.success.forEach (function(entry) {
-							flashMessages += '<div class="message success">' + entry + '</div>';
-						});
-					}
-					flashMessages += '</div>';
-					$('.flash-messages').remove();
+					response._message.forEach(function(message) {
+						flashMessages += '<div class="flash-messages">';
+						if (message.type == 'error') {
+							flashMessages += '<div class="message error">' + message.message + '</div>';
+						}
+						if (message.type == 'success') {
+							flashMessages += '<div class="message success">' + message.message + '</div>';
+						}
+						flashMessages += '</div>';
+					});
 					$('.ajax-form').prepend(flashMessages);
 				}
 				// Redirect if given

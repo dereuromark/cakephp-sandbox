@@ -14,7 +14,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['plugin.Data.Countries'];
+	public $fixtures = ['plugin.Data.Countries', 'app.users'];
 
 	/**
 	 * @return void
@@ -78,6 +78,63 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testForm() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'form']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormPostError() {
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
+
+		$data = [
+			'username' => '',
+			'email' => '',
+		];
+		// For now without '_ext' => 'json'
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'form'], $data);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		//$flashMessage = '<div class="message error">Form not yet valid.</div>';
+		$flashMessageJsonPiece = '"_message":[{"type":"error","message":"Form not yet valid."';
+		$this->assertResponseContains($flashMessageJsonPiece);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormPostSuccess() {
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
+
+		$data = [
+			'username' => 'foo',
+			'email' => 'foo@bar.de',
+		];
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'form'], $data);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		//$flashMessage = '<div class="message success">Simulated save.</div>';
+		$flashMessageJsonPiece = '"_message":[{"type":"success","message":"Simulated save."';
+		$this->assertResponseContains($flashMessageJsonPiece);
 	}
 
 	/**
