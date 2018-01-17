@@ -20,7 +20,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Http\Response|null
 	 */
 	public function index() {
 		$actions = $this->_getActions($this);

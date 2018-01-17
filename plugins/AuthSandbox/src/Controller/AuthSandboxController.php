@@ -78,7 +78,7 @@ class AuthSandboxController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function index() {
 		if ($this->AuthUser->user('role_id')) {
@@ -88,7 +88,7 @@ class AuthSandboxController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function login() {
 		if ($this->request->is('post')) {
@@ -102,7 +102,7 @@ class AuthSandboxController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function register() {
 		$user = $this->Users->newEntity();
@@ -127,7 +127,7 @@ class AuthSandboxController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function logout() {
 		return $this->redirect($this->Auth->logout());
@@ -136,7 +136,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * Once you are logged in you can access this
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function forAll() {
 	}
@@ -144,7 +144,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * Only mods can access this
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function forMods() {
 	}

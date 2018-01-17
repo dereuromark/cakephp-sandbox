@@ -10,7 +10,7 @@ use App\Controller\AppController;
 class UsersController extends AppController {
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function index() {
 		$this->paginate = [
@@ -20,7 +20,7 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function add() {
 		$user = $this->Users->newEntity();
@@ -41,7 +41,7 @@ class UsersController extends AppController {
 
 	/**
 	 * @param int|null $id
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function edit($id = null) {
 		$user = $this->Users->get($id);
@@ -63,7 +63,7 @@ class UsersController extends AppController {
 
 	/**
 	 * @param int|null $id
-	 * @return \Cake\Network\Response
+	 * @return \Cake\Http\Response
 	 */
 	public function delete($id = null) {
 		$user = $this->Users->get($id);

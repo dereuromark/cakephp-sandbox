@@ -62,7 +62,7 @@ class ContactControllerTest extends IntegrationTestCase {
 		$data = [
 			'name' => '',
 			'email' => '',
-			'message' => '',
+			'body' => '',
 			'subject' => '',
 		];
 		$this->post(['controller' => 'Contact', 'action' => 'index'], $data);
@@ -80,7 +80,7 @@ class ContactControllerTest extends IntegrationTestCase {
 		$data = [
 			'name' => 'Foo',
 			'email' => 'foo@bar.de',
-			'message' => 'Test',
+			'body' => 'Test',
 			'subject' => 'Test',
 		];
 		$this->post(['controller' => 'Contact', 'action' => 'index'], $data);

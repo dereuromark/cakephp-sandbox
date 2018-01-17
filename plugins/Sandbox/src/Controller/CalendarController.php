@@ -30,7 +30,7 @@ class CalendarController extends SandboxAppController {
 
 	/**
 	 * @param \Cake\Event\Event $event
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function beforeFilter(Event $event) {
 		return parent::beforeFilter($event);
@@ -57,7 +57,7 @@ class CalendarController extends SandboxAppController {
 
 	/**
 	 * @param string|null $id
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function view($id = null) {
 		$event = $this->Events->get($id);

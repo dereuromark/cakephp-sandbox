@@ -22,7 +22,7 @@ class AccountController extends AppController {
 	/**
 	 * @param \Cake\Event\Event $event
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -41,7 +41,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function login() {
 		$userId = $this->Auth->user('id');
@@ -68,7 +68,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
@@ -83,7 +83,7 @@ class AccountController extends AppController {
 
 	/**
 	 * @param string|null $key
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function lostPassword($key = null) {
 		if (!Configure::read('debug')) {
@@ -156,7 +156,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function changePassword() {
 		if (!Configure::read('debug')) {
@@ -197,7 +197,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function register() {
 		$this->Users->addBehavior('Tools.Passwordable', []);
@@ -219,13 +219,13 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function index() {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function edit() {
 		$uid = $this->request->session()->read('Auth.User.id');
@@ -254,7 +254,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);

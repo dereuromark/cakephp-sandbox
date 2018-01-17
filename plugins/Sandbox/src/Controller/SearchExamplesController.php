@@ -40,7 +40,7 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @param \Cake\Event\Event $event
 	 *
-	 * @return \Cake\Network\Response|null|void
+	 * @return \Cake\Http\Response|null
 	 */
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);

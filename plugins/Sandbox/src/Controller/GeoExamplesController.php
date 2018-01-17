@@ -31,7 +31,7 @@ class GeoExamplesController extends SandboxAppController {
 	/**
 	 * Geocode an address string
 	 *
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function query() {
 		$this->Geocoder = new Geocoder();

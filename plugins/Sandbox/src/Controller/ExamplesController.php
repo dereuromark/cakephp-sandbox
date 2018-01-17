@@ -20,7 +20,7 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function markup() {
 		//throw new NotFoundException('Currently disabled because they cannot provide a stable composer tag.');

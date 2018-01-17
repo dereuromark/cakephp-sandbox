@@ -42,7 +42,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @param string|null $engineSlug
 	 * @throws \Cake\Network\Exception\NotFoundException
-	 * @return \Cake\Network\Response|null
+	 * @return \Cake\Http\Response|null
 	 */
 	public function pdfTest($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
