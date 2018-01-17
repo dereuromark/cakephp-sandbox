@@ -6,8 +6,7 @@ use Cake\Core\Configure;
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
  */
-class TagsController extends SandboxAppController
-{
+class TagsController extends SandboxAppController {
 
 	/**
 	 * @var string
@@ -17,8 +16,7 @@ class TagsController extends SandboxAppController
 	/**
 	 * @return void
 	 */
-	public function initialize()
-	{
+	public function initialize() {
 		parent::initialize();
 
 		// We fake a user / auth
@@ -27,14 +25,12 @@ class TagsController extends SandboxAppController
 			$uid = time();
 			$this->request->session()->write('Tmp.User.id', $uid);
 		}
-
 	}
 
 	/**
 	 * @return void
 	 */
-	public function index()
-	{
+	public function index() {
 		$this->loadModel('Sandbox.SandboxCategories');
 
 		$category = $this->SandboxCategories->newEntity();
@@ -46,15 +42,13 @@ class TagsController extends SandboxAppController
 			$category->tag_list = 'Foo, Bar';
 		}
 
-
 		$this->set(compact('category'));
 	}
 
 	/**
 	 * @return void
 	 */
-	public function select()
-	{
+	public function select() {
 		Configure::write('Tags.strategy', 'array');
 		$this->loadModel('Sandbox.SandboxCategories');
 
@@ -73,8 +67,7 @@ class TagsController extends SandboxAppController
 	/**
 	 * @return void
 	 */
-	public function cloud()
-	{
+	public function cloud() {
 		Configure::write('Tags', [
 			'taggedCounter' => false,
 			'tagsCounter' => false,
@@ -125,8 +118,7 @@ class TagsController extends SandboxAppController
 	 *
 	 * @return void
 	 */
-	protected function ensureDemoData()
-	{
+	protected function ensureDemoData() {
 		//$result = $this->SandboxCategories->Tags->find()->toArray();
 
 		$categories = $this->SandboxCategories->find()->all()->toArray();
