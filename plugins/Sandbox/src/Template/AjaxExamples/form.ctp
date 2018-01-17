@@ -59,7 +59,7 @@
 				}
 				// Redirect if given
 				if (response._redirect) {
-					$('.ajax-form .form-container').html('Done - Save simulated. Redirect prevented to:' + response._redirect.url + ' (' + response._redirect.status + ')');
+					$('.ajax-form .form-container').html('Done - Save simulated. Redirect prevented to: ' + response._redirect.url + ' (' + response._redirect.status + ')');
 					return;
 				}
 				$('.ajax-form .form-container').html(response.content);
