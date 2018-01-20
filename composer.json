@@ -50,7 +50,7 @@
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
-		"gourmet/whoops": "^1.0",
+		"dereuromark/cakephp-whoops": "^0.1.0",
 		"cakephp/debug_kit": "dev-master",
 		"tecnickcom/tcpdf": "^6.2",
 		"dompdf/dompdf": "^0.7.0",

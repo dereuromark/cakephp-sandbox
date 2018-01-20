@@ -44,6 +44,7 @@ use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use CakephpWhoops\Error\WhoopsHandler;
 use Tools\Mailer\Email;
 
 /**
@@ -101,8 +102,7 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
 	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-	//(new ErrorHandler(Configure::consume('Error')))->register();
-	(new \Gourmet\Whoops\Error\WhoopsHandler(Configure::consume('Error')))->register();
+	(new WhoopsHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.

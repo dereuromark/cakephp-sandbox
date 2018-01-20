@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d95aa852c2e71be43964e29f758e22f",
+    "content-hash": "7804012584b82b5c1eaa4f64c1cc4b79",
     "packages": [
         {
             "name": "aura/intl",
@@ -1573,6 +1573,59 @@
             "time": "2018-01-19T19:54:29+00:00"
         },
         {
+            "name": "dereuromark/cakephp-whoops",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-whoops.git",
+                "reference": "6c20aca68152a0cb00820dc7e96b9ea5c02723c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-whoops/zipball/6c20aca68152a0cb00820dc7e96b9ea5c02723c3",
+                "reference": "6c20aca68152a0cb00820dc7e96b9ea5c02723c3",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "cakephp/cakephp": "^3.4",
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakephpWhoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Whoops error handler for CakePHP",
+            "homepage": "http://github.com/dereuromark/cakephp-whoops",
+            "keywords": [
+                "cakephp",
+                "error handler",
+                "whoops"
+            ],
+            "time": "2018-01-19T20:46:46+00:00"
+        },
+        {
             "name": "dompdf/dompdf",
             "version": "v0.7.0",
             "source": {
@@ -2134,51 +2187,6 @@
                 "menu"
             ],
             "time": "2016-08-13T16:52:04+00:00"
-        },
-        {
-            "name": "gourmet/whoops",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gourmet/whoops.git",
-                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gourmet/whoops/zipball/25c835810283ae71a378a20a7f5516a75eb6657b",
-                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b",
-                "shasum": ""
-            },
-            "require": {
-                "filp/whoops": "^2.0"
-            },
-            "suggest": {
-                "phpunit/phpunit": "Allows automated tests to be run without system-wide install."
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Gourmet\\Whoops\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jad Bitar",
-                    "homepage": "http://jadb.io",
-                    "role": "Author"
-                }
-            ],
-            "description": "Whoops for CakePHP 3",
-            "homepage": "http://github.com/gourmet/whoops",
-            "keywords": [
-                "cakephp",
-                "whoops"
-            ],
-            "time": "2016-08-02T14:27:06+00:00"
         },
         {
             "name": "hashids/hashids",
@@ -4196,6 +4204,51 @@
                 "cs"
             ],
             "time": "2018-01-06T00:08:44+00:00"
+        },
+        {
+            "name": "gourmet/whoops",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gourmet/whoops.git",
+                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gourmet/whoops/zipball/25c835810283ae71a378a20a7f5516a75eb6657b",
+                "reference": "25c835810283ae71a378a20a7f5516a75eb6657b",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.0"
+            },
+            "suggest": {
+                "phpunit/phpunit": "Allows automated tests to be run without system-wide install."
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Gourmet\\Whoops\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jad Bitar",
+                    "homepage": "http://jadb.io",
+                    "role": "Author"
+                }
+            ],
+            "description": "Whoops for CakePHP 3",
+            "homepage": "http://github.com/gourmet/whoops",
+            "keywords": [
+                "cakephp",
+                "whoops"
+            ],
+            "time": "2016-08-02T14:27:06+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

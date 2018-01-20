@@ -1,4 +1,3 @@
-/* als JAVASCRIPT highlighten zum Editieren! */
 msgid ""
 msgstr ""
 "Project-Id-Version: CakePHP 1.2.x.x\n"
