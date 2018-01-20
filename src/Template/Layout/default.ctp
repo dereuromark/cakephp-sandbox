@@ -82,7 +82,7 @@ echo $this->Flash->render();
 
 		<div id="footer" class="">
 
-		<div style="float: right;">Running on CakePHP <?php echo Configure::version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
+		<div style="float: right;">Running on CakePHP <?php echo $this->Configure->version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
 
 			Author: dereuromark | <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
 echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => 'index']);

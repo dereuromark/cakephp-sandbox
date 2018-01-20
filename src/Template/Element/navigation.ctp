@@ -60,7 +60,7 @@
 	  	<li><?php echo $this->Html->linkReset($this->Format->fontIcon('signout') . ' ' . __('Logout'), ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'], ['escape' => false]); ?></li>
 		<?php } else { ?>
 		<li><?php //echo $this->Html->linkReset($this->Format->fontIcon('signin') . ' ' . __('Login'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'login'), array('escape' => false)); ?></li>
-			<?php if (Configure::read('Config.allowRegister')) { ?>
+			<?php if ($this->Configure->read('Config.allowRegister')) { ?>
 			<li><?php echo $this->Html->linkReset(__('Register'), ['plugin' => false, 'admin' => false, 'controller' => 'users', 'action' => 'register']); ?></li>
 			<?php } ?>
 		<?php } ?>

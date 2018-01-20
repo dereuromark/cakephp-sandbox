@@ -5,7 +5,7 @@
 ?>
 <h2>CakePHP - Rapid Development Framework</h2>
 
-<p><?php echo __('My Version') ?>: <?php echo Configure::read('Cake.version');?></p>
+<p><?php echo __('My Version') ?>: <?php echo $this->Configure->read('Cake.version');?></p>
 
 <h2>What is CakePHP?</h2>
 It is one of the most powerful Frameworks for PHP.

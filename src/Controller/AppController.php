@@ -25,7 +25,9 @@ class AppController extends Controller {
 	public $helpers = ['Tools.Html', 'Tools.Url',
 		'Form' => ['className' => 'BootstrapUI.Form'],
 		'Tools.Common', 'Flash.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress'];
+		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress',
+		'Shim.Configure',
+	];
 
 	/**
 	 * @return void

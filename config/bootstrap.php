@@ -172,9 +172,6 @@ DispatcherFactory::add('Cache.Cache', [
 
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
-class_alias('Cake\Core\Configure', 'Configure');
-class_alias('Cake\Core\Plugin', 'Plugin');
-
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more

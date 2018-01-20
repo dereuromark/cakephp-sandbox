@@ -5,7 +5,7 @@
 ?>
 <h2><?php echo __('Contact Form');?></h2>
 <p>
-My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configure::read('Config.adminEmail')); ?></p>
+My email address: <?php echo $this->Obfuscate->encodeEmailUrl($this->Configure->read('Config.adminEmail')); ?></p>
 
 <?php echo $this->Form->create($contact);?>
 	<fieldset>
