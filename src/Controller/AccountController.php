@@ -171,7 +171,7 @@ class AccountController extends AppController {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
 			return $this->redirect(['action' => 'lost_password']);
 		}
-		$user = $this->User->get($uid);
+		$user = $this->Users->get($uid);
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
