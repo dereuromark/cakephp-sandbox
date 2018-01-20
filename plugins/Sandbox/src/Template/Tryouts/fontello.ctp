@@ -5,7 +5,7 @@
 echo $this->Html->css('/sandbox/fontello/css/webfont');
 ?>
 
-<h2>Fontawesome</h2>
+<h2>Fontello</h2>
 
 <h3>Setup</h3>
 echo $this->Html->css('/sandbox/fontello/css/webfont');

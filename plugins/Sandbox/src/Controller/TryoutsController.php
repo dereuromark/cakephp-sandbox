@@ -13,8 +13,6 @@ class TryoutsController extends SandboxAppController {
 	}
 
 	/**
-	 * TryoutsController::fontawesome()
-	 *
 	 * @see http://fontawesome.io/
 	 *
 	 * @return void
@@ -23,8 +21,6 @@ class TryoutsController extends SandboxAppController {
 	}
 
 	/**
-	 * TryoutsController::fontello()
-	 *
 	 * @return void
 	 */
 	public function fontello() {
