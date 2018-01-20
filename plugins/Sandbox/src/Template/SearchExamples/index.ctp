@@ -7,10 +7,10 @@
 
 	<div class="search-box pull-right" style="margin-bottom: 10px;">
 		<?php
-		echo $this->Form->create('CountryRecord');
+		echo $this->Form->create(null, ['valueSources' => 'query']);
 
-		echo $this->Form->input('search', ['placeholder' => 'Wildcards: * and ?']);
-		echo $this->Form->input('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
+		echo $this->Form->control('search', ['placeholder' => 'Wildcards: * and ?']);
+		echo $this->Form->control('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
 
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 		if ($isSearch) {

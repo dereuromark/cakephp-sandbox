@@ -16,8 +16,8 @@
 		$url = $this->Url->build(['plugin' => 'sandbox', 'controller' => 'ajax_examples', 'action' => 'countryStates', '_ext' => 'json']);
 		$empty = $states ? Configure::read('Select.defaultBefore') . __('pleaseSelect') . Configure::read('Select.defaultAfter') : ['0' => Configure::read('Select.naBefore') . __('noOptionAvailable') . Configure::read('Select.naAfter')];
 
-		echo $this->Form->input('country_id', ['id' => 'countries', 'rel' => $url]);
-		echo $this->Form->input('state_id', ['id' => 'states', 'empty' => $empty]);
+		echo $this->Form->control('country_id', ['id' => 'countries', 'rel' => $url]);
+		echo $this->Form->control('state_id', ['id' => 'states', 'empty' => $empty]);
 	?>
 	</fieldset>
 

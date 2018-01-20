@@ -62,39 +62,39 @@ if (!empty($result)) {
 	<fieldset>
 		<legend><?php echo __('New {0}', __('QR Code')); ?></legend>
 	<?php
-		echo $this->Form->input('type', ['options' => $types]);
-		echo $this->Form->input('size', ['options' => ['Auto']]);
+		echo $this->Form->control('type', ['options' => $types]);
+		echo $this->Form->control('size', ['options' => ['Auto']]);
 	?>
 
 	<div id="cardBox">
 		<br>
 	<?php
-		echo $this->Form->input('Card.name', []);
-		//echo $this->Form->input('Card.sound', array());
-		echo $this->Form->input('Card.nickname', []);
-		echo $this->Form->input('Card.tel', []);
-		//echo $this->Form->input('Card.video', array());
-		echo $this->Form->input('Card.email', []);
-		echo $this->Form->input('Card.address', []);
-		echo $this->Form->input('Card.url', ['placeholder' => 'http://']);
-		echo $this->Form->input('Card.birthday', ['type' => 'date', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 90, 'empty' => true, 'maxYear' => date('Y')]);
+		echo $this->Form->control('Card.name', []);
+		//echo $this->Form->control('Card.sound', array());
+		echo $this->Form->control('Card.nickname', []);
+		echo $this->Form->control('Card.tel', []);
+		//echo $this->Form->control('Card.video', array());
+		echo $this->Form->control('Card.email', []);
+		echo $this->Form->control('Card.address', []);
+		echo $this->Form->control('Card.url', ['placeholder' => 'http://']);
+		echo $this->Form->control('Card.birthday', ['type' => 'date', 'dateFormat' => 'DMY', 'minYear' => date('Y') - 90, 'empty' => true, 'maxYear' => date('Y')]);
 
-		echo $this->Form->input('Card.note', ['rows' => 10]);
+		echo $this->Form->control('Card.note', ['rows' => 10]);
 
 	?>
 	</div>
 	<div id="textBox">
 		<br>
 	<?php
-		echo $this->Form->input('content', ['rows' => 10]);
+		echo $this->Form->control('content', ['rows' => 10]);
 
 	?>
 	</div>
 		<br>
 	<div id="smsBox">
 	<?php
-		echo $this->Form->input('Sms.number', []);
-		echo $this->Form->input('Sms.content', ['rows' => 10]);
+		echo $this->Form->control('Sms.number', []);
+		echo $this->Form->control('Sms.content', ['rows' => 10]);
 
 	?>
 	</div>

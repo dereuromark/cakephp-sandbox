@@ -10,9 +10,9 @@
 	<fieldset>
 		<legend><?php echo __('Enter Postal Code, City, Address or other Geo Data'); ?></legend>
 	<?php
-		echo $this->Form->input('address');
-		echo $this->Form->input('allow_inconclusive', ['type' => 'checkbox']);
-		echo $this->Form->input('min_accuracy', []);
+		echo $this->Form->control('address');
+		echo $this->Form->control('allow_inconclusive', ['type' => 'checkbox']);
+		echo $this->Form->control('min_accuracy', []);
 	?>
 	</fieldset>
 	<?php echo $this->Form->submit(__('Submit')); ?>

@@ -17,9 +17,9 @@ Using the PasswordableBehavior
 	<fieldset>
  		<legend><?php echo $action . ' Demo'; ?></legend>
 	<?php
-		echo $this->Form->input('username', []);
-		echo $this->Form->input('pwd');
-		echo $this->Form->input('pwd_repeat');
+		echo $this->Form->control('username', []);
+		echo $this->Form->control('pwd');
+		echo $this->Form->control('pwd_repeat');
 	?>
 	<?php echo $this->Form->submit(__('Submit'));?>
 	</fieldset>

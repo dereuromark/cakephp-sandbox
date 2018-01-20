@@ -13,13 +13,13 @@ Use this converter to get the text in the appropriate format.
 <h2>Converter</h2>
 
 <div class="examples form">
-<?php echo $this->Form->create('Tool');?>
+<?php echo $this->Form->create();?>
 	<fieldset>
  		<legend><?php echo __('Enter Text');?></legend>
 	<?php
-		echo $this->Form->input('Form.text', ['type' => 'textarea', 'class' => 'halfSize']);
-		echo $this->Form->input('Form.type', ['empty' => ['0' => '- [auto-detect] -']]);
-		echo $this->Form->input('Form.prevent_trim', ['type' => 'hidden', 'value' => 1]);
+		echo $this->Form->control('Form.text', ['type' => 'textarea', 'class' => 'halfSize']);
+		echo $this->Form->control('Form.type', ['empty' => ['0' => '- [auto-detect] -']]);
+		echo $this->Form->control('Form.prevent_trim', ['type' => 'hidden', 'value' => 1]);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
@@ -27,7 +27,7 @@ Use this converter to get the text in the appropriate format.
 
 <h2>Result</h2>
 <?php
-echo $this->Form->input('Form.result', ['type' => 'textarea', 'class' => 'halfSize']);
+echo $this->Form->control('Form.result', ['type' => 'textarea', 'class' => 'halfSize']);
 
 if (!empty($this->request->data) && !empty($this->request->data['Form']['result'])) {
 	echo '<div class="">';

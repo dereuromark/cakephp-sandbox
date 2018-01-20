@@ -18,9 +18,9 @@ $this->Form->addWidget(
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);
-echo $this->Form->input('time', ['type' => 'clockTime']);
+echo $this->Form->control('time', ['type' => 'clockTime']);
 
-echo $this->Form->input('time_with_seconds', ['type' => 'clockTime', 'second' => true]);
+echo $this->Form->control('time_with_seconds', ['type' => 'clockTime', 'second' => true]);
 
 echo $this->Form->end();
 

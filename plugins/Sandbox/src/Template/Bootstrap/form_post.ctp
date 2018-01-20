@@ -20,16 +20,16 @@ $this->Form->addWidget(
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);
-echo $this->Form->input('name');
-echo $this->Form->input('confirmed', ['type' => 'checkbox']);
+echo $this->Form->control('name');
+echo $this->Form->control('confirmed', ['type' => 'checkbox']);
 
-echo $this->Form->input('multiple_checkboxes', ['multiple' => 'checkbox', 'options' => ['Young', 'Old', 'Hipster', 'Cool', 'Blue']]);
+echo $this->Form->control('multiple_checkboxes', ['multiple' => 'checkbox', 'options' => ['Young', 'Old', 'Hipster', 'Cool', 'Blue']]);
 
-echo $this->Form->input('multiple_selects', ['multiple' => true, 'options' => ['Young', 'Old', 'Hipster', 'Cool', 'Blue']]);
+echo $this->Form->control('multiple_selects', ['multiple' => true, 'options' => ['Young', 'Old', 'Hipster', 'Cool', 'Blue']]);
 
 
 echo '<div class="form-group">';
-echo $this->Form->input(__('Submit'), ['type' => 'submit']);
+echo $this->Form->control(__('Submit'), ['type' => 'submit']);
 echo '</div>';
 
 echo $this->Form->end();

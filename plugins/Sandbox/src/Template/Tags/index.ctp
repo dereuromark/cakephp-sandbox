@@ -20,7 +20,7 @@
 $this->loadHelper('Tags.Tag');
 
 echo $this->Form->create($category);
-echo $this->Form->input('title');
+echo $this->Form->control('title');
 echo $this->Tag->control(['help' => 'Use comma (,) for separation.']);
 echo $this->Form->submit('Save');
 

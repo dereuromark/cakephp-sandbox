@@ -17,11 +17,11 @@ Details (<?php echo h('$data[\'ExampleRecord\'][\'geocoder_result\']'); ?>):
 <?php } ?>
 
 <h3>Input your location</h3>
-<?php echo $this->Form->create('ExampleRecord');?>
+<?php echo $this->Form->create();?>
 	<fieldset>
 		<legend><?php echo __('Geocode');?></legend>
 	<?php
-		echo $this->Form->input('location', ['placeholder' => 'Address, postal code, city etc.']);
+		echo $this->Form->control('location', ['placeholder' => 'Address, postal code, city etc.']);
 
 	?>
 	</fieldset>

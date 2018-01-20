@@ -7,8 +7,8 @@
 	<fieldset>
  		<legend><?php echo __('Register fake action');?></legend>
 	<?php
-		echo $this->Form->input('username', []);
-		echo $this->Form->input('email', []);
+		echo $this->Form->control('username', []);
+		echo $this->Form->control('email', []);
 	?>
 	</fieldset>
 

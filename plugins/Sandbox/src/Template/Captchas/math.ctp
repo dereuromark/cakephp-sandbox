@@ -12,7 +12,7 @@
 	<fieldset>
 		<legend><?= __('Add Animal') ?></legend>
 		<?php
-		echo $this->Form->input('name');
+		echo $this->Form->control('name');
 
 		echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
 		?>

@@ -7,7 +7,7 @@
 <h2>Inflector test</h2>
 <?php
 echo $this->Form->create(false, ['type' => 'get']);
-echo $this->Form->input('string', ['label' => false, 'value' => $string]);
+echo $this->Form->control('string', ['label' => false, 'value' => $string]);
 echo $this->Form->submit('Inflect me!');
 echo $this->Form->end();
 

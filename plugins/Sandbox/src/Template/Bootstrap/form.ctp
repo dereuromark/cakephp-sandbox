@@ -20,20 +20,20 @@ $this->Form->addWidget(
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);
-echo $this->Form->input('name');
-echo $this->Form->input('comment', ['type' => 'textarea']);
-echo $this->Form->input('discovered', ['type' => 'date', 'class' => 'date']);
-echo $this->Form->input('confirmed', ['type' => 'checkbox']);
+echo $this->Form->control('name');
+echo $this->Form->control('comment', ['type' => 'textarea']);
+echo $this->Form->control('discovered', ['type' => 'date', 'class' => 'date']);
+echo $this->Form->control('confirmed', ['type' => 'checkbox']);
 
-echo $this->Form->input('age', ['options' => ['Young', 'Old']]);
+echo $this->Form->control('age', ['options' => ['Young', 'Old']]);
 
-echo $this->Form->input('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
+echo $this->Form->control('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
 
 $options = [
 	'Value 1' => 'Multiple choices',
 	'Value 2' => 'Allowed'
 ];
-echo $this->Form->input('options', ['type' => 'multicheckbox', 'options' => $options]);
+echo $this->Form->control('options', ['type' => 'multicheckbox', 'options' => $options]);
 
 echo $this->Form->end();
 ?>

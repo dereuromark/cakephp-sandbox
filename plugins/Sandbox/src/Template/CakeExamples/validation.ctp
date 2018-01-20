@@ -11,8 +11,8 @@ Test validation on marshal and rules on save.
 	<fieldset>
  		<legend><?php echo __('Validating your forms');?></legend>
 	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('confirm', ['type' => 'checkbox', 'label' => 'I confirm that I want to add this animal and that it is not yet present :)']);
+		echo $this->Form->control('name');
+		echo $this->Form->control('confirm', ['type' => 'checkbox', 'label' => 'I confirm that I want to add this animal and that it is not yet present :)']);
 	?>
 	<?php echo $this->Form->submit(__('Submit')); ?>
 	</fieldset>

@@ -19,8 +19,8 @@ $(document).ready(function() {
 <h1><?php echo __('Max length');?></h1>
 
 <?php
-echo $this->Form->create('JqueryExample', ['id' => 'jquery-example-form']);
-echo $this->Form->input('comment', ['type' => 'textarea', 'maxlength' => '20', 'id' => 'jquery-example-comment']);
-echo $this->Form->input('text', ['maxlength' => '20', 'id' => 'jquery-example-text']);
+echo $this->Form->create(null, ['id' => 'jquery-example-form']);
+echo $this->Form->control('comment', ['type' => 'textarea', 'maxlength' => '20', 'id' => 'jquery-example-comment']);
+echo $this->Form->control('text', ['maxlength' => '20', 'id' => 'jquery-example-text']);
 echo $this->Form->submit('Submit Test');
 echo $this->Form->end();

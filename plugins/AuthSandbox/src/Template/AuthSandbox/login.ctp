@@ -15,8 +15,8 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 <p>Please enter your username and password below.</p>
 
 <?php
-echo $this->Form->input('login', ['label' => 'Your username']);
-echo $this->Form->input('password', ['autocomplete' => 'off']);
+echo $this->Form->control('login', ['label' => 'Your username']);
+echo $this->Form->control('password', ['autocomplete' => 'off']);
 ?>
 <div class="col-md-offset-2 col-md-6">
 	<?php echo $this->Form->button(__('Log me in'), ['class' => 'btn btn-success']);?>

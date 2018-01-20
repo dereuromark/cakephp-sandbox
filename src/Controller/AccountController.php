@@ -90,6 +90,8 @@ class AccountController extends AppController {
 			throw new NotFoundException('Disabled for live');
 		}
 
+		$user = $this->Users->newEntity();
+
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
 		} elseif (!empty($key)) {
@@ -153,6 +155,7 @@ class AccountController extends AppController {
 		}
 
 		//$this->helpers = array_merge($this->helpers, ['Tools.Captcha']);
+		$this->set(compact('user'));
 	}
 
 	/**
@@ -168,6 +171,7 @@ class AccountController extends AppController {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
 			return $this->redirect(['action' => 'lost_password']);
 		}
+		$user = $this->User->get($uid);
 
 		if ($this->request->query('abort')) {
 			if (!empty($uid)) {
@@ -176,11 +180,9 @@ class AccountController extends AppController {
 			return $this->redirect(['action' => 'login']);
 		}
 
-		$user = $this->Users->newEntity();
 		$this->Users->addBehavior('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
-			$this->request->data['id'] = $uid;
-			$user = $this->Users->patchEntity($user, $this->request->data);
+			$user = $this->Users->patchEntity($user, $this->request->data, ['fields' => ['pwd', 'pwd_repeat']]);
 
 			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
@@ -194,6 +196,8 @@ class AccountController extends AppController {
 			unset($this->request->data['User']['pwd']);
 			unset($this->request->data['User']['pwd_repeat']);
 		}
+
+		$this->set(compact('user'));
 	}
 
 	/**

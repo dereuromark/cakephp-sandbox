@@ -11,7 +11,6 @@
 
 <h3>Tag Cloud</h3>
 
-
 	<style>
 		.tag-cloud li {
 			float: left;
@@ -24,12 +23,10 @@
 		}
 	</style>
 
-	<ul class="tag-cloud">
 	<?php
 	$this->loadHelper('Tags.TagCloud');
 
-	echo $this->TagCloud->display($tags, ['before' => '<li style="font-size: %size%%">', 'after' => '</li>']);
+	echo $this->TagCloud->display($tags, [], ['class' => 'tag-cloud']);
 	?>
-	</ul>
 
 </div>

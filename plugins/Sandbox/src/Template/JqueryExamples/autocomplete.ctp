@@ -14,7 +14,7 @@ echo $this->Form->create(false, [
 		'action' => 'autocomplete'
 	]
 ]);
-echo $this->Form->input('term', ['id' => 'jquery-example-input', 'label' => __('Search for an animal')]);
+echo $this->Form->control('term', ['id' => 'jquery-example-input', 'label' => __('Search for an animal')]);
 echo $this->Form->submit(__('Search'));
 echo $this->Form->end();
 ?>

@@ -10,15 +10,15 @@
 <h2>Welcome</h2>
 <p>You need to login to proceed.</p>
 
-<?php echo $this->Form->create('User');?>
+<?php echo $this->Form->create();?>
 
 <h3>Please enter your username/email and password below.</h3>
 
 	<?php
-		echo $this->Form->input('login', ['label' => 'Your username or email']);
-		echo $this->Form->input('password', ['autocomplete' => 'off']);
+		echo $this->Form->control('login', ['label' => 'Your username or email']);
+		echo $this->Form->control('password', ['autocomplete' => 'off']);
 		if (Configure::read('Config.rememberMe')) {
-			echo $this->Form->input('RememberMe.confirm', ['type' => 'checkbox', 'label' => __('Remember me on this device.')]);
+			echo $this->Form->control('RememberMe.confirm', ['type' => 'checkbox', 'label' => __('Remember me on this device.')]);
 		}
 	?>
 

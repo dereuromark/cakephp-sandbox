@@ -26,12 +26,12 @@ Using the BitmaskedBehavior
 <h3>sss</h3>
 
 <div class="page form">
-<?php echo $this->Form->create('BitmaskRecord');?>
+<?php echo $this->Form->create();?>
 	<fieldset>
  		<legend><?php echo __('Add {0}', __('Entry')); ?></legend>
 	<?php
-		echo $this->Form->input('name', []);
-		echo $this->Form->input('flag', ['type' => 'select', 'multiple' => 'checkbox']);
+		echo $this->Form->control('name', []);
+		echo $this->Form->control('flag', ['type' => 'select', 'multiple' => 'checkbox']);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>

@@ -10,15 +10,15 @@
 	<fieldset>
 		<legend><?php echo __('Account information'); ?></legend>
 	<?php
-		echo $this->Form->input('username');
-		echo $this->Form->input('email');
+		echo $this->Form->control('username');
+		echo $this->Form->control('email');
 	?>
 	</fieldset>
 	<fieldset>
 		<legend>Set new password</legend>
 	<?php
-		echo $this->Form->input('pwd', ['type' => 'password']);
-		echo $this->Form->input('pwd_repeat', ['type' => 'password']);
+		echo $this->Form->control('pwd', ['type' => 'password']);
+		echo $this->Form->control('pwd_repeat', ['type' => 'password']);
 	?>
 	</fieldset>
 

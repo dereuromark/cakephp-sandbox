@@ -54,7 +54,7 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 Just one id-tag is enough to get it to work:
 
 <?php
-$dataPrint = 'echo $this->Form->input(\'published\', array(
+$dataPrint = 'echo $this->Form->control(\'published\', array(
 	\'type\'=>\'text\',
 	\'class\'=>\'datepicker\',
 	\'id\'=>$this->Activecalendar->setId() // this needs to be added each time
@@ -67,7 +67,7 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 
 
 <?php
-echo $this->Form->input('published', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId()]);
+echo $this->Form->control('published', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId()]);
 
 ?>
 
@@ -84,15 +84,15 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 
 <?php
-echo $this->Form->input('published a', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD-MM-YYYY')]);
+echo $this->Form->control('published a', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD-MM-YYYY')]);
 ?>
 <br />
 <?php
-echo $this->Form->input('published b', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('MM/DD/YYYY')]);
+echo $this->Form->control('published b', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('MM/DD/YYYY')]);
 ?>
 <br />
 <?php
-echo $this->Form->input('published c', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD.MM.YYYY')]);
+echo $this->Form->control('published c', ['type' => 'text', 'class' => 'datepicker', 'id' => $this->Activecalendar->setId('DD.MM.YYYY')]);
 ?>
 
 

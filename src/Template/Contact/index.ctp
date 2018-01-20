@@ -11,10 +11,10 @@ My email address: <?php echo $this->Obfuscate->encodeEmailUrl(Cake\Core\Configur
 	<fieldset>
 		<legend><?php echo __('The quickest way to write me an email');?></legend>
 	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('email');
-		echo $this->Form->input('subject');
-		echo $this->Form->input('body', ['type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')]);
+		echo $this->Form->control('name');
+		echo $this->Form->control('email');
+		echo $this->Form->control('subject');
+		echo $this->Form->control('body', ['type' => 'textarea', 'class'=>'contact', 'rows'=>10, 'label'=>__('Your Message')]);
 
 		echo $this->Captcha->render(['placeholder' => __('Please solve the riddle')]);
 
