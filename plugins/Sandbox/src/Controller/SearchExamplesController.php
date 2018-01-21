@@ -28,7 +28,6 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-
 	}
 
 	/**

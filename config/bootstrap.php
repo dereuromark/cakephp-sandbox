@@ -33,6 +33,7 @@ require ROOT . DS . 'vendor' . DS . 'autoload.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
+use CakephpWhoops\Error\WhoopsHandler;
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
@@ -44,7 +45,6 @@ use Cake\Network\Request;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
-use CakephpWhoops\Error\WhoopsHandler;
 use Tools\Mailer\Email;
 
 /**
