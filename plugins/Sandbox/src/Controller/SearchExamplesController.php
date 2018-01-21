@@ -17,7 +17,7 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Search.Prg'];
+	public $components = ['Search.Prg' => ['actions' => ['table']]];
 
 	/**
 	 * @var array
@@ -28,12 +28,19 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+
+	}
+
+	/**
+	 * @return void
+	 */
+	public function table() {
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
 
 		$countries = $this->paginate($this->CountryRecords->find('search', ['search' => $this->request->query]));
-		$isSearch = $this->CountryRecords->isSearch();
-		$this->set(compact('countries', 'isSearch'));
+
+		$this->set(compact('countries'));
 		$this->set('_serialize', ['countries']);
 	}
 
