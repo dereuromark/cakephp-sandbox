@@ -19,7 +19,7 @@
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 		if (!empty($_isSearch)) {
 			echo ' ';
-			echo $this->Html->link(__('Reset'), ['action' => 'table'], ['class' => 'btn btn-default']);
+			echo $this->Html->link(__('Reset'), ['action' => 'table', '?' => array_intersect_key($this->request->query, array_flip(['sort', 'direction']))], ['class' => 'btn btn-default']);
 		}
 
 		echo $this->Form->end();
