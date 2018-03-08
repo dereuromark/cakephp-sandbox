@@ -55,7 +55,8 @@
 		"tecnickcom/tcpdf": "^6.2",
 		"dompdf/dompdf": "^0.7.0",
 		"dereuromark/cakephp-feedback": "dev-master",
-		"dereuromark/cakephp-tags": "dev-master"
+		"dereuromark/cakephp-tags": "dev-master",
+		"dereuromark/media-embed": "^0.4.0"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",

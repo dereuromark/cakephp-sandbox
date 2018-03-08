@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7804012584b82b5c1eaa4f64c1cc4b79",
+    "content-hash": "8156aaae1a7d82681a5a6b5d1d2d71b2",
     "packages": [
         {
             "name": "aura/intl",
@@ -1628,6 +1628,55 @@
             "time": "2018-01-25T16:24:38+00:00"
         },
         {
+            "name": "dereuromark/media-embed",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/MediaEmbed.git",
+                "reference": "c6a062b853d83bfe9e8239575f1c8eacf8895b50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/MediaEmbed/zipball/c6a062b853d83bfe9e8239575f1c8eacf8895b50",
+                "reference": "c6a062b853d83bfe9e8239575f1c8eacf8895b50",
+                "shasum": ""
+            },
+            "require": {
+                "jbroadway/urlify": "^1.0.0",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MediaEmbed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Author"
+                }
+            ],
+            "description": "A PHP library to deal with all those media services around, parsing their URLs and embedding their audio/video content in websites.",
+            "keywords": [
+                "audio",
+                "embed",
+                "iframe",
+                "media",
+                "php",
+                "video"
+            ],
+            "time": "2018-03-07T00:49:03+00:00"
+        },
+        {
             "name": "dompdf/dompdf",
             "version": "v0.7.0",
             "source": {
@@ -2337,6 +2386,60 @@
                 "hash-map"
             ],
             "time": "2014-12-15T23:03:51+00:00"
+        },
+        {
+            "name": "jbroadway/urlify",
+            "version": "1.1.0-stable",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jbroadway/urlify.git",
+                "reference": "99bb78cd9002d0e9ce479bb81635eb665e37e981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jbroadway/urlify/zipball/99bb78cd9002d0e9ce479bb81635eb665e37e981",
+                "reference": "99bb78cd9002d0e9ce479bb81635eb665e37e981",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "URLify": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Johnny Broadway",
+                    "email": "johnny@johnnybroadway.com",
+                    "homepage": "http://www.johnnybroadway.com/"
+                }
+            ],
+            "description": "PHP port of URLify.js from the Django project. Transliterates non-ascii characters for use in URLs.",
+            "homepage": "https://github.com/jbroadway/urlify",
+            "keywords": [
+                "encode",
+                "iconv",
+                "link",
+                "slug",
+                "translit",
+                "transliterate",
+                "transliteration",
+                "url",
+                "urlify"
+            ],
+            "time": "2017-01-03T20:12:54+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
