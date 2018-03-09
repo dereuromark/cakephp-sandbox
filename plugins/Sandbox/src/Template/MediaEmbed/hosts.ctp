@@ -12,7 +12,7 @@
 
 <h2>MediaEmbed</h2>
 
-<h3>Supported Sites</h3>
+<h3><?php echo count($hosts); ?> Supported Sites/Hosts</h3>
 <ul>
 <?php
 foreach ($hosts as $host) {
