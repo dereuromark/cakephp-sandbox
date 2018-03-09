@@ -20,7 +20,7 @@ foreach ($hosts as $host) {
 	if (empty($host['website']) || $host['website'] === 'localhost') {
 		echo h($host['name']);
 	} else {
-		echo $this->Html->link($host['name'], $host['website'], ['_target' => '_blank']);
+		echo $this->Html->link($host['name'], $host['website'], ['target' => '_blank']);
 	}
 	echo '</li>';
 }
