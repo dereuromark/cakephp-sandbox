@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8156aaae1a7d82681a5a6b5d1d2d71b2",
+    "content-hash": "16da17a2c56e5e2e57eb70c81c2fd5a9",
     "packages": [
         {
             "name": "aura/intl",
@@ -201,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "bef81274a4bcc1ec3bb440672ff0309687ae5831"
+                "reference": "b5e11f386b9ff28694950f68ef3e0456c242051b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/bef81274a4bcc1ec3bb440672ff0309687ae5831",
-                "reference": "bef81274a4bcc1ec3bb440672ff0309687ae5831",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/b5e11f386b9ff28694950f68ef3e0456c242051b",
+                "reference": "b5e11f386b9ff28694950f68ef3e0456c242051b",
                 "shasum": ""
             },
             "require": {
@@ -253,7 +253,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2018-03-06T21:49:50+00:00"
+            "time": "2018-03-08T18:21:10+00:00"
         },
         {
             "name": "cakephp/localized",
@@ -1629,16 +1629,16 @@
         },
         {
             "name": "dereuromark/media-embed",
-            "version": "0.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/MediaEmbed.git",
-                "reference": "c6a062b853d83bfe9e8239575f1c8eacf8895b50"
+                "reference": "4381aaeada40c0a03be58a7ff1002988140e69c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/MediaEmbed/zipball/c6a062b853d83bfe9e8239575f1c8eacf8895b50",
-                "reference": "c6a062b853d83bfe9e8239575f1c8eacf8895b50",
+                "url": "https://api.github.com/repos/dereuromark/MediaEmbed/zipball/4381aaeada40c0a03be58a7ff1002988140e69c5",
+                "reference": "4381aaeada40c0a03be58a7ff1002988140e69c5",
                 "shasum": ""
             },
             "require": {
@@ -1674,7 +1674,7 @@
                 "php",
                 "video"
             ],
-            "time": "2018-03-07T00:49:03+00:00"
+            "time": "2018-03-09T00:01:37+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -1967,57 +1967,6 @@
             "time": "2017-11-23T18:22:44+00:00"
         },
         {
-            "name": "friendsofcake/authenticate",
-            "version": "dev-cake3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/FriendsOfCake/Authenticate.git",
-                "reference": "92145e66cf52abdb6fa065101ff74e8d6e70c4a4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/Authenticate/zipball/92145e66cf52abdb6fa065101ff74e8d6e70c4a4",
-                "reference": "92145e66cf52abdb6fa065101ff74e8d6e70c4a4",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "~3.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.1.*"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "FOC\\Authenticate\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ceeram",
-                    "role": "Author"
-                },
-                {
-                    "name": "ADmad",
-                    "homepage": "https://github.com/ADmad",
-                    "role": "Developer"
-                }
-            ],
-            "description": "CakePHP plugin with authentication classes for AuthComponent.",
-            "homepage": "http://github.com/FriendsOfCake/Authenticate",
-            "keywords": [
-                "authenticate",
-                "cakephp"
-            ],
-            "abandoned": true,
-            "time": "2015-06-17T19:04:56+00:00"
-        },
-        {
             "name": "friendsofcake/bootstrap-ui",
             "version": "dev-master",
             "source": {
@@ -2189,12 +2138,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "1f694910a90cceb7132d0c0172e0d2d7a756ab5f"
+                "reference": "ef1a489fee498059bbcb7df241d11e309fa1b5a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/1f694910a90cceb7132d0c0172e0d2d7a756ab5f",
-                "reference": "1f694910a90cceb7132d0c0172e0d2d7a756ab5f",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/ef1a489fee498059bbcb7df241d11e309fa1b5a3",
+                "reference": "ef1a489fee498059bbcb7df241d11e309fa1b5a3",
                 "shasum": ""
             },
             "require": {
@@ -2236,7 +2185,7 @@
                 "cakephp3",
                 "search"
             ],
-            "time": "2018-02-08T12:41:31+00:00"
+            "time": "2018-03-07T20:49:15+00:00"
         },
         {
             "name": "gourmet/knp-menu",
@@ -4984,7 +4933,6 @@
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
-        "friendsofcake/authenticate": 20,
         "drmonkeyninja/cakephp-social-share": 20,
         "gourmet/knp-menu": 20,
         "markstory/asset_compress": 20,
@@ -5007,6 +4955,7 @@
         "cakephp/debug_kit": 20,
         "dereuromark/cakephp-feedback": 20,
         "dereuromark/cakephp-tags": 20,
+        "dereuromark/media-embed": 20,
         "psy/psysh": 0,
         "cakephp/bake": 0,
         "fig-r/psr2r-sniffer": 20,

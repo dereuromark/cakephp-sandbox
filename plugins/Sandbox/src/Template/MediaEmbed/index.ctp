@@ -5,6 +5,11 @@
  */
 ?>
 
+<nav class="actions col-md-3 col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/media_embed'); ?>
+</nav>
+<div class="col-md-9 col-sm-8 col-xs-12">
+
 <h2>MediaEmbed</h2>
 <p>
 <a href="https://github.com/dereuromark/MediaEmbed" target="_blank">[MediaEmbed]</a> is a PHP library to deal with media services, parsing their URLs and displaying audio/video as embed HTML code.
@@ -46,3 +51,5 @@ if (!empty($mediaObject)) {
 <?php
 }
 ?>
+
+</div>

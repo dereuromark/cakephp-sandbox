@@ -43,7 +43,7 @@ class AuthSandboxController extends AppController {
 	 */
 	protected function _authSetup() {
 		$this->Auth->config('authenticate', [
-			'FOC/Authenticate.MultiColumn' => [
+			'Tools.MultiColumn' => [
 				'fields' => [
 					'username' => 'login',
 					'password' => 'password'

@@ -12,7 +12,7 @@ $this->loadHelper('Geo.GoogleMap');
     </ul>
 </nav>
 <div class="contactAds view col-md-9 col-sm-8 col-xs-12">
-	<h1><?= h($event->title ?: __('Event')) ?></h1>
+	<h2><?= h($event->title ?: __('Event')) ?></h2>
 
 	<div class="col-sm-6 col-xs-12">
 		<h2>

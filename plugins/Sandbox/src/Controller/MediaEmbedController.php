@@ -29,4 +29,28 @@ class MediaEmbedController extends SandboxAppController {
 		}
 	}
 
+	/**
+	 * @return void
+	 */
+	public function bbcode() {
+		if ($this->request->is('post')) {
+			$bbcode = $this->request->getData('bbcode');
+
+			$this->set(compact('bbcode'));
+		}
+
+		$bbcodeExample = '[video=youtube]Jh7oFiMVCZM[/video]';
+
+		$this->set(compact('bbcodeExample'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function hosts() {
+		$mediaEmbed = new MediaEmbed();
+		$hosts = $mediaEmbed->getHosts();
+
+		$this->set(compact('hosts'));
+	}
 }

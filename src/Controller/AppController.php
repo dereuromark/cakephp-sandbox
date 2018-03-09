@@ -48,7 +48,7 @@ class AppController extends Controller {
 
 		$config = [
 			'authenticate' => [
-				'FOC/Authenticate.MultiColumn' => [
+				'Tools.MultiColumn' => [
 					'fields' => [
 						'username' => 'login',
 						'password' => 'password'
