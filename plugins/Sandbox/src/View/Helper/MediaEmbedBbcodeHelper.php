@@ -10,6 +10,9 @@ use MediaEmbed\MediaEmbed;
  */
 class MediaEmbedBbcodeHelper extends Helper {
 
+	/**
+	 * @var array
+	 */
 	public $helpers = [
 		'Text',
 	];

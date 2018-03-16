@@ -53,4 +53,5 @@ class MediaEmbedController extends SandboxAppController {
 
 		$this->set(compact('hosts'));
 	}
+
 }
