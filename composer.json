@@ -55,7 +55,8 @@
 		"dompdf/dompdf": "^0.7.0",
 		"dereuromark/cakephp-feedback": "dev-master",
 		"dereuromark/cakephp-tags": "dev-master",
-		"dereuromark/media-embed": "dev-master"
+		"dereuromark/media-embed": "dev-master",
+		"dereuromark/cakephp-menu": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",
@@ -93,6 +94,12 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:dereuromark/cakephp-menu.git"
+		}
+	],
 	"config": {
 		"preferred-install": "source",
 		"process-timeout": 600,

@@ -200,3 +200,4 @@ Plugin::load('CakePdf', ['routes' => true]);
 Plugin::load('Cache', ['routes' => true]);
 Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('DatabaseLog', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('Menu', []);

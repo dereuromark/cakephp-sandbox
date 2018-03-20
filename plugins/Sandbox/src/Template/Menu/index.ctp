@@ -2,22 +2,37 @@
 /**
  * @var \App\View\AppView $this
  */
+use Menu\Link\Link;
+use Menu\Menu;
+
+/**
+ * To test and work on it:
+ *
+ * git checkout 3.0-menu
+ *
+ * composer update --ignore-platform-reqs
+ *
+ * and go to
+ *
+ * http://sandbox.local/sandbox/menu
+ */
+
 ?>
-<h2>KnpMenu plugin</h2>
+<h2>Menu plugin</h2>
 <p>
-	<a href="https://github.com/gourmet/knp-menu" target="_blank">[KnpMenu Plugin]</a>
+	Showcasing the CakePHP <a href="https://github.com/dereuromark/cakephp-menu" target="_blank">[Menu Plugin]</a>
 </p>
 
 <h3>Simple menu</h3>
 <?php
-	echo $this->Menu->render('my_menu', ['currentClass' => 'active']);
+	$menu = Menu::create();
+	$item = $menu->newItem();
+	$item->setLink(Link::create()->setUrl('/x')->setAttribute('target', '_blank'));
+	$item->setLabel('My label');
+
+	$menu->add($item);
+
+
+	$result = $this->Menu->render($menu);
+	echo $result;
 ?>
-
-<p>Notes:
-It seems that the "active" part does only work with the exact URL (here <code><?php echo h($this->Url->build(['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']));?></code>), not with the same action and just other passed params or query strings.</p>
-
-<style>
-	#content li.active {
-		font-weight: bold;
-	}
-</style>
