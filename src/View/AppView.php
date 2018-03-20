@@ -25,6 +25,12 @@ use Cake\View\View;
  * @property \Tools\View\Helper\QrCodeHelper $QrCode
  * @property \Tools\View\Helper\TreeHelper $Tree
  * @property \Ratings\View\Helper\RatingHelper $Rating
+ * @property \Cake\Menu\View\Helper\MenuHelper $Menu
+ * @property \Shim\View\Helper\ConfigureHelper $Configure
+ * @property \Calendar\View\Helper\CalendarHelper $Calendar
+ * @property \Sandbox\View\Helper\MediaEmbedBbcodeHelper $MediaEmbedBbcode
+ * @property \Tags\View\Helper\TagCloudHelper $TagCloud
+ * @property \Tags\View\Helper\TagHelper $Tag
  */
 class AppView extends View {
 
