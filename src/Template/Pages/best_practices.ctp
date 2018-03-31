@@ -132,6 +132,9 @@ bin/cake AssetCompress.AssetCompress build
 echo "### CLEANUP ###";
 bin/cake clear cache
 
+echo "### CACHE WARMING ###;
+bin/cake orm_cache build
+
 echo "### DONE ###";
 bin/cake Setup.MaintenanceMode deactivate</code>
 </pre>
