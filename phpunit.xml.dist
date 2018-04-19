@@ -8,27 +8,29 @@
 	<php>
 		<ini name="memory_limit" value="-1"/>
 		<ini name="apc.enable_cli" value="1"/>
+		<!-- E_ALL => 32767 -->
+		<!-- E_ALL & ~E_USER_DEPRECATED => 16383 -->
+		<ini name="error_reporting" value="16383"/>
 	</php>
 
 	<!-- Add any additional test suites you want to run here -->
 	<testsuites>
 		<testsuite name="app">
-			<directory>./tests/TestCase/</directory>
+			<directory>tests/TestCase/</directory>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
 		<testsuite name="auth-sandbox">
-			<directory>./plugins/AuthSandbox/tests/TestCase/</directory>
+			<directory>plugins/AuthSandbox/tests/TestCase/</directory>
 		</testsuite>
 		<testsuite name="sandbox">
-			<directory>./plugins/Sandbox/tests/TestCase/</directory>
+			<directory>plugins/Sandbox/tests/TestCase/</directory>
 		</testsuite>
 	</testsuites>
 
 	<!-- Setup a listener for fixtures -->
 	<listeners>
 		<listener
-		class="\Cake\TestSuite\Fixture\FixtureInjector"
-		file="./vendor/cakephp/cakephp/src/TestSuite/Fixture/FixtureInjector.php">
+		class="\Cake\TestSuite\Fixture\FixtureInjector">
 			<arguments>
 				<object class="\Cake\TestSuite\Fixture\FixtureManager" />
 			</arguments>
@@ -37,9 +39,9 @@
 
 	<filter>
 		<whitelist>
-			<directory suffix=".php">./src/</directory>
-			<directory suffix=".php">./plugins/Sandbox/src/</directory>
-			<directory suffix=".php">./plugins/AuthSandbox/src/</directory>
+			<directory suffix=".php">src/</directory>
+			<directory suffix=".php">plugins/Sandbox/src/</directory>
+			<directory suffix=".php">plugins/AuthSandbox/src/</directory>
 		</whitelist>
 	</filter>
 

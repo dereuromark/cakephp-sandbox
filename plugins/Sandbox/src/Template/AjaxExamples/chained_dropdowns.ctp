@@ -2,6 +2,9 @@
 /**
  * @var \App\View\AppView $this
  */
+
+use Cake\Core\Configure;
+
 ?>
 <nav class="actions col-sm-4 col-xs-12">
 	<?php echo $this->element('navigation/ajax'); ?>

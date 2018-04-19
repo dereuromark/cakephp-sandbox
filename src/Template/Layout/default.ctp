@@ -28,13 +28,14 @@ if (!empty($this->request->query['assets'])) {
 			echo $this->fetch('css');
 			echo $this->fetch('script');
 		break;
+		default:
+			throw new \RuntimeException('Invalid asset type');
 	}
 } else {
 	if (PHP_SAPI !== 'cli') {
 		echo $this->AssetCompress->css('css-combined');
 	}
 	echo $this->fetch('css');
-
 	if (PHP_SAPI !== 'cli') {
 		echo $this->AssetCompress->script('js-combined');
 	}

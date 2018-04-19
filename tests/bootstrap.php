@@ -1,14 +1,8 @@
 <?php
-/**
- * Test runner bootstrap.
- *
- * Add additional configuration/setup your application needs when running
- * unit tests in this file.
- */
+
 use Cake\Log\Log;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
-
 require dirname(__DIR__) . '/config/bootstrap.php';
 
 $_SERVER['PHP_SELF'] = '/';
@@ -16,12 +10,12 @@ $_SERVER['PHP_SELF'] = '/';
 // Tests should log to file instead of the default configured DatabaseLog
 $logs = Log::configured();
 foreach ($logs as $log) {
-	$config = Log::config($log);
+	$config = Log::getConfig($log);
 	if ($config['className'] === 'Cake\Log\Engine\FileLog') {
 		continue;
 	}
 	Log::drop($log);
-	Log::config($log, [
+	Log::setConfig($log, [
 		'className' => 'Cake\Log\Engine\FileLog',
 		'path' => LOGS,
 	] + $config);
@@ -41,7 +35,7 @@ if (!getenv('db_class')) {
 
 if (true || !WINDOWS) {
 	Cake\Datasource\ConnectionManager::drop('test');
-	Cake\Datasource\ConnectionManager::config('test', [
+	Cake\Datasource\ConnectionManager::setConfig('test', [
 		'className' => 'Cake\Database\Connection',
 		'driver' => getenv('db_class'),
 		'dsn' => getenv('db_dsn'),

@@ -2,6 +2,9 @@
 /**
  * @var \App\View\AppView $this
  */
+
+use Cake\Core\Configure;
+
 ?>
 <h2>Typography</h2>
 

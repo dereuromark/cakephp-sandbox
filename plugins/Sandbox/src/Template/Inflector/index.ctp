@@ -18,4 +18,4 @@ if (!empty($results)) {
 ?>
 
 <br /><br />
-<small>The inflector uses version <?php echo Cake\Core\Configure::version()?> of CakePHP.</small>
+<small>The inflector uses version <?php echo $this->Configure->version()?> of CakePHP.</small>

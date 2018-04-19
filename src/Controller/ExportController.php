@@ -24,8 +24,8 @@ class ExportController extends AppController {
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
 
-		if (!$this->viewBuilder()->className() || $this->viewBuilder()->className() === 'View') {
-			return;
+		if (!$this->viewBuilder()->getClassName() || $this->viewBuilder()->getClassName() === 'View') {
+			return null;
 		}
 
 		if ($this->referer(null, true) !== '/export') {

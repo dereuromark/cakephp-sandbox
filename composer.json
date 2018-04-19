@@ -19,7 +19,7 @@
 	"require": {
 		"php": ">=5.6",
 		"cakephp/plugin-installer": "*",
-		"cakephp/cakephp": "^3.5",
+		"cakephp/cakephp": "dev-master as 3.6.0",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master as 1.0",
@@ -87,7 +87,7 @@
 		"test": "php phpunit.phar",
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
-		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./",
+		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/ --extensions=php src/ tests/ config/ plugins/ webroot/",
 		"cs-fix": "phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/vendor/,/tmp/,/logs/,/webroot/assets/,/config/Migrations/ --extensions=php ./"
 	},
 	"support": {
@@ -95,7 +95,7 @@
 	},
 	"config": {
 		"preferred-install": "source",
-		"process-timeout": 600,
+		"process-timeout": 900,
 		"platform": {
 			"php": "5.6"
 		}
