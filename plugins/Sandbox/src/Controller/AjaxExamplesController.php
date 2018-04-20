@@ -1,13 +1,13 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Network\Exception\NotFoundException;
-use Cake\ORM\TableRegistry;
+use Cake\Http\Exception\NotFoundException;
 
 /**
  * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
  * @property \Data\Model\Table\CountriesTable $Countries
  * @property \Data\Model\Table\StatesTable $States
+ * @property \App\Model\Table\UsersTable $Users
  */
 class AjaxExamplesController extends SandboxAppController {
 
@@ -120,7 +120,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function chainedDropdowns() {
-		$this->Users = TableRegistry::get('Users');
+		$this->loadModel('Users');
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {

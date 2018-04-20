@@ -3,12 +3,18 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <h2>Working with Passwords</h2>
-Using the PasswordableBehavior
+	<p>Using the PasswordableBehavior</p>
 
 <?php
 	$action = 'Register';
-	if ($this->request->action === 'password_edit') {
+	if ($this->request->getAttribute('params')['action'] === 'passwordEdit') {
 		$action = 'Edit';
 	}
 ?>
@@ -16,6 +22,9 @@ Using the PasswordableBehavior
 <?php echo $this->Form->create($user);?>
 	<fieldset>
  		<legend><?php echo $action . ' Demo'; ?></legend>
+
+		<p>Existing Demo User: <code>demo</code></p>
+
 	<?php
 		echo $this->Form->control('username', []);
 		echo $this->Form->control('pwd');
@@ -33,3 +42,5 @@ The pwd and pwd_repeat fields are both mandatory.
 The password fields are optional, but as soon as the pwd field has content, both
 are validated.
 <?php } ?>
+
+</div>

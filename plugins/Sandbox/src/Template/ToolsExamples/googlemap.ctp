@@ -3,8 +3,16 @@
  * @var \App\View\AppView $this
  */
 ?>
-<h2>GoogleMap</h2>
-Using the GoogleMapV3 to output a map with pins.
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
+<h2>Google Map</h2>
+<p>
+	Using the GoogleMapV3 to output a map with pins.
+</p>
 
 <h3>Data</h3>
 <?php
@@ -43,3 +51,5 @@ Using the GoogleMapV3 to output a map with pins.
 	$result .= $this->GoogleMapV3->script();
 	echo $result;
 
+?>
+</div>

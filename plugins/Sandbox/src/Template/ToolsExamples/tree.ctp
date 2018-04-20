@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <h2>Tree structures - Tree behavior and helper</h2>
 
 <h3>Simple Example</h3>
@@ -88,3 +94,5 @@ $callback = function($params) {
 
 echo $this->Tree->generate($tree, ['callback' => $callback, 'autoPath' => $autoPath]);
 ?>
+
+</div>

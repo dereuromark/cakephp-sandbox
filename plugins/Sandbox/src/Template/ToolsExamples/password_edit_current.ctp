@@ -3,16 +3,24 @@
  * @var \App\View\AppView $this
  */
 ?>
-<h2>Working with Passwords</h2>
-Using the PasswordableBehavior
 
-<?php
-?>
-<div class="page form">
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
+	<h2>Working with Passwords</h2>
+	<p>Using the PasswordableBehavior</p>
+
 <?php echo $this->Form->create($user);?>
+
 	<fieldset>
  		<legend><?php echo 'Demo with current password confirmation'; ?></legend>
-	<?php
+
+		<p>Demo User: <code>demo</code> - Demo User Password: <code>demo123</code></p>
+
+
+		<?php
 		echo $this->Form->control('username');
 
 		echo $this->Form->control('pwd_current');
@@ -27,3 +35,5 @@ Using the PasswordableBehavior
 <h3>Info</h3>
 The password fields are optional, but as soon as the pwd field has content, both
 are validated. Also, the current password is then required.
+
+</div>

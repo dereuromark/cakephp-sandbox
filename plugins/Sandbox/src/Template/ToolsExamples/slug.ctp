@@ -3,9 +3,16 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <h2>Working with Slugs</h2>
 <p>Using the SluggedBehavior.
 </p>
+
 <p>
 The following example uses unique slugs (Try saving the same username twice) and ascii chars only.<br>
 So when you try to save "n/a" it will become "n-a". If that is already taken, it will increment the suffix, e.g. "n-a-1" etc.
@@ -37,3 +44,5 @@ print_r($user->toArray());
 ?>
 </pre>
 <?php } ?>
+
+</div>

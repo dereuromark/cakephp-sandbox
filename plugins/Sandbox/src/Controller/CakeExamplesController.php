@@ -1,11 +1,13 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
-use Cake\Network\Exception\NotFoundException;
-use Cake\ORM\TableRegistry;
 use Cake\Utility\Hash;
 
+/**
+ * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ */
 class CakeExamplesController extends SandboxAppController {
 
 	/**
@@ -96,15 +98,15 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function validation() {
-		$Animals = TableRegistry::get('Sandbox.Animals');
+		$this->loadModel('Sandbox.Animals');
 
-		$animal = $Animals->newEntity();
+		$animal = $this->Animals->newEntity();
 
 		if ($this->request->is('post')) {
-			$animal = $Animals->patchEntity($animal, $this->request->data);
+			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
 
 			// Simulate $Animals->save($animal) call as we dont't want to really save here
-			if (!$animal->errors() & $Animals->checkRules($animal)) {
+			if (!$animal->getErrors() & $this->Animals->checkRules($animal)) {
 				$this->Flash->success('Yeah, entry would have been saved.');
 			} else {
 				$this->Flash->error('Please correct your form content.');

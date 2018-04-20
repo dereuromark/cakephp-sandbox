@@ -1,7 +1,7 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Utility\Text;
 
 class FeedExamplesController extends SandboxAppController {

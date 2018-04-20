@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <h2>Format Helper</h2>
 
 <h3>Specific Icons</h3>
@@ -101,3 +107,5 @@ $array = [
 echo $this->Format->array2table($array);
 
 ?>
+
+</div>

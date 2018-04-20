@@ -1,8 +1,8 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\Time;
-use Cake\Network\Exception\NotFoundException;
 
 /**
  * @property \Data\Model\Table\CountriesTable $Countries

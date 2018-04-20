@@ -2,7 +2,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 
 class PluginsController extends SandboxAppController {
 

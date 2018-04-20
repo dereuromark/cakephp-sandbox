@@ -1306,12 +1306,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "03bc32efa7b44233a9a9e4235b301130e7b602c9"
+                "reference": "9e8a02a91b0da79226c9b0215408d8481bac9918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/03bc32efa7b44233a9a9e4235b301130e7b602c9",
-                "reference": "03bc32efa7b44233a9a9e4235b301130e7b602c9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/9e8a02a91b0da79226c9b0215408d8481bac9918",
+                "reference": "9e8a02a91b0da79226c9b0215408d8481bac9918",
                 "shasum": ""
             },
             "require": {
@@ -1352,7 +1352,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2018-04-19T17:20:41+00:00"
+            "time": "2018-04-20T08:44:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -1523,12 +1523,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "9589dcfa9c124c71b9bff3324f0937b22aab847a"
+                "reference": "6e4cd0156b7bb197f98890ac80453c4127688b48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/9589dcfa9c124c71b9bff3324f0937b22aab847a",
-                "reference": "9589dcfa9c124c71b9bff3324f0937b22aab847a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/6e4cd0156b7bb197f98890ac80453c4127688b48",
+                "reference": "6e4cd0156b7bb197f98890ac80453c4127688b48",
                 "shasum": ""
             },
             "require": {
@@ -1575,7 +1575,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2018-04-20T08:17:40+00:00"
+            "time": "2018-04-20T11:45:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",

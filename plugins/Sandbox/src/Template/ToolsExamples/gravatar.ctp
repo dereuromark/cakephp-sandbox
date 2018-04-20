@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <h2>Gravatar images</h2>
 
 <h3>Default image for non existend emails</h3>
@@ -32,6 +38,7 @@ foreach ($defaults as $name => $default) {
 ?>
 </table>
 
+</div>
 
 <style>
 .icons img {

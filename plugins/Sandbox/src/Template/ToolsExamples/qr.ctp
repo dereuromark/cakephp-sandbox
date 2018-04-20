@@ -2,30 +2,15 @@
 /**
  * @var \App\View\AppView $this
  */
+
+use Cake\Validation\Validation;
+
 ?>
-<script type="text/javascript">
-$(document).ready(function() {
 
-	$("#type").change(function () {
-		var selvalue = $(this).val();
-		if (selvalue == 'card') {
-			$("#textBox").hide(100);
-			$("#smsBox").hide(100);
-			$("#cardBox").show(100);
-		} else if (selvalue == 'sms') {
-			$("#textBox").hide(100);
-			$("#cardBox").hide(100);
-			$("#smsBox").show(100);
-		} else {
-			$("#cardBox").hide(100);
-			$("#smsBox").hide(100);
-			$("#textBox").show(100);
-		}
-	}).change();
-
-});
-
-</script>
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
 
 <h3>QR Codes</h3>
 Too lazy to type text messages via cellphone? This is the smart way.
@@ -34,7 +19,6 @@ Just write it via keyboard, scan it and send it.
 
 <h3>Result</h3>
 <?php
-use Cake\Validation\Validation;
 
 if (!empty($result)) {
 		$this->QrCode->setSize(300);
@@ -102,3 +86,32 @@ if (!empty($result)) {
 
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
+
+</div>
+
+
+<?php $this->append('script');?>
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$("#type").change(function () {
+			var selvalue = $(this).val();
+			if (selvalue == 'card') {
+				$("#textBox").hide(100);
+				$("#smsBox").hide(100);
+				$("#cardBox").show(100);
+			} else if (selvalue == 'sms') {
+				$("#textBox").hide(100);
+				$("#cardBox").hide(100);
+				$("#smsBox").show(100);
+			} else {
+				$("#cardBox").hide(100);
+				$("#smsBox").hide(100);
+				$("#textBox").show(100);
+			}
+		}).change();
+
+	});
+
+</script>
+<?php $this->end(); ?>

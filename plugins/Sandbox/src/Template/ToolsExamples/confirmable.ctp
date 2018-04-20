@@ -3,9 +3,15 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<nav class="actions col-sm-4 col-xs-12">
+	<?php echo $this->element('navigation/tools'); ?>
+</nav>
+<div class="page index col-sm-8 col-xs-12">
+
 <div class="form">
 <h2>Confirmable Behavior</h2>
-Test validation with Confirmable behavior attached.
+<p>Test validation with Confirmable behavior attached.</p>
 
 <?php echo $this->Form->create($animal);?>
 	<fieldset>
@@ -23,3 +29,5 @@ Test validation with Confirmable behavior attached.
 The confirm fields needs to be checked. This simple validation is added with a behavior:
 <code><pre>$this->ModelName->addBehavior('Tools.Confirmable');
 </pre></code>
+
+</div>

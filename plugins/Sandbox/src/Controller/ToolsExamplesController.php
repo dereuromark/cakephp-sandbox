@@ -1,10 +1,12 @@
 <?php
 namespace Sandbox\Controller;
 
-use Cake\ORM\TableRegistry;
-
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
+ * @property \Sandbox\Model\Table\BitmaskRecordsTable $BitmaskRecords
+ * @property \Sandbox\Model\Table\SandboxUsersTable $SandboxUsers
+ * @property \App\Model\Table\UsersTable $Users
+ * @property \Sandbox\Model\Table\AnimalsTable $Animals
  */
 class ToolsExamplesController extends SandboxAppController {
 
@@ -88,10 +90,10 @@ class ToolsExamplesController extends SandboxAppController {
 			'8' => 'Lemon',
 			'16' => 'Coconut',
 		];
-		$this->Model = TableRegistry::get('Sandbox.BitmaskRecords');
-		$this->Model->Behaviors->load('Tools.Bitmasked', ['field' => 'flag', 'bits' => $flags]);
+		$this->loadModel('Sandbox.BitmaskRecords');
+		$this->BitmaskRecords->behaviors()->load('Tools.Bitmasked', ['field' => 'flag', 'bits' => $flags]);
 
-		$records = $this->Model->find('all');
+		$records = $this->BitmaskRecords->find('all');
 
 		if ($this->request->is('post')) {
 		}
@@ -105,15 +107,15 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function slug() {
-		$this->Users = TableRegistry::get('Sandbox.SandboxUsers');
-		$this->Users->addBehavior('Tools.Slugged', ['mode' => 'ascii', 'unique' => true]);
+		$this->loadModel('Sandbox.SandboxUsers');
+		$this->SandboxUsers->addBehavior('Tools.Slugged', ['mode' => 'ascii', 'unique' => true]);
 
-		$user = $this->Users->newEntity();
+		$user = $this->SandboxUsers->newEntity();
 
 		if ($this->request->is(['post', 'put'])) {
-			$this->Users->patchEntity($user, $this->request->data);
-			if ($this->Users->save($user)) {
-				$this->Flash->success('Yeah!');
+			$this->SandboxUsers->patchEntity($user, $this->request->getData());
+			if ($this->SandboxUsers->save($user)) {
+				$this->Flash->success('Yeah! Saved!');
 			} else {
 				$this->Flash->error('Please correct your form.');
 			}
@@ -126,15 +128,15 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function password() {
-		$this->Users = TableRegistry::get('Users');
+		$this->loadModel('Users');
 		$this->Users->addBehavior('Tools.Passwordable');
 
 		$user = $this->Users->newEntity();
 
 		if ($this->request->is('post')) {
-			$this->Users->patchEntity($user, $this->request->data);
-			if ($this->Users->save($user)) {
-				$this->Flash->success('Yeah!');
+			$this->Users->patchEntity($user, $this->request->getData());
+			if (!$user->getErrors()) {
+				$this->Flash->success('Yeah! Saved!');
 			} else {
 				$this->Flash->error('Please correct your form.');
 			}
@@ -147,15 +149,15 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function passwordEdit() {
-		$this->Users = TableRegistry::get('Users');
+		$this->loadModel('Users');
+		$user = $this->getDemoUser();
+
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
-		$user = $this->Users->newEntity();
-
-		if ($this->request->is('post')) {
-			$this->Users->patchEntity($user, $this->request->data);
-			if ($this->Users->save($user)) {
-				$this->Flash->success('Yeah!');
+		if ($this->request->is(['post', 'patch', 'put'])) {
+			$this->Users->patchEntity($user, $this->request->getData());
+			if (!$user->getErrors()) {
+				$this->Flash->success('Yeah! Saved!');
 			} else {
 				$this->Flash->error('Please correct your form.');
 			}
@@ -169,15 +171,17 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function passwordEditCurrent() {
-		$this->Users = TableRegistry::get('Users');
+		$this->loadModel('Users');
+		$user = $this->getDemoUser();
+
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false, 'current' => true]);
 
-		$user = $this->Users->newEntity();
+		$data = $this->request->getData();
 
-		if ($this->request->is('post')) {
-			$this->Users->patchEntity($user, $this->request->data);
-			if ($this->Users->save($user)) {
-				$this->Flash->success('Yeah!');
+		if ($this->request->is(['post', 'patch', 'put'])) {
+			$this->Users->patchEntity($user, $data);
+			if (!$user->getErrors()) {
+				$this->Flash->success('Yeah! Saved!');
 			} else {
 				$this->Flash->error('Please correct your form.');
 			}
@@ -192,19 +196,19 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function confirmable() {
-		$Animals = TableRegistry::get('Sandbox.Animals');
-		$Animals->validator()->remove('confirm');
-		$Animals->addBehavior('Tools.Confirmable');
+		$this->loadModel('Sandbox.Animals');
+		$this->Animals->getValidator()->remove('confirm');
+		$this->Animals->addBehavior('Tools.Confirmable');
 		// Bug in CakePHP: You need to manually trigger build on the behavior and pass the validator!
-		$Animals->behaviors()->Confirmable->build($Animals->validator());
+		$this->Animals->behaviors()->Confirmable->build($this->Animals->getValidator());
 
-		$animal = $Animals->newEntity();
+		$animal = $this->Animals->newEntity();
 
 		if ($this->request->is('post')) {
-			$animal = $Animals->patchEntity($animal, $this->request->data);
+			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
 
 			// Simulate $Animals->save($animal) call as we dont't want to really save here
-			if (!$animal->errors()) {
+			if (!$animal->getErrors()) {
 				$this->Flash->success('Yeah, you are allowed to continue!');
 			} else {
 				$this->Flash->error('Please correct your form content!');
@@ -293,8 +297,30 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function _typography() {
+	public function typography() {
 		$this->Common->loadHelper(['Tools.Typography']);
+	}
+
+	/**
+	 * @return \App\Model\Entity\User
+	 */
+	protected function getDemoUser() {
+		$user = $this->Users->find()->where(['username' => 'demo'])->first();
+		if ($user) {
+			return $user;
+		}
+
+		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
+		$data = [
+			'username' => 'demo',
+			'pwd' => 'demo123',
+		];
+		$user = $this->Users->newEntity($data);
+		$this->Users->saveOrFail($user);
+
+		$this->Users->removeBehavior('Passwordable');
+
+		return $user;
 	}
 
 }
