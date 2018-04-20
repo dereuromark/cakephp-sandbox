@@ -33,7 +33,7 @@ require ROOT . DS . 'vendor' . DS . 'autoload.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
-use CakephpWhoops\Error\WhoopsHandler;
+use App\Error\ErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
@@ -102,7 +102,7 @@ $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
 	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
 } else {
-	(new WhoopsHandler(Configure::consume('Error')))->register();
+	(new ErrorHandler(Configure::consume('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.
