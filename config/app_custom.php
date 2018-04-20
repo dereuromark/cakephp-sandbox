@@ -20,6 +20,12 @@ return [
 			'scopes' => false,
 			'className' => 'DatabaseLog.Database'
 		],
+		'404' => [
+			'className' => 'DatabaseLog.Database',
+			'type' => '404',
+			'levels' => ['error'],
+			'scopes' => ['404'],
+		],
 	],
 
 	'Datasources' => [
