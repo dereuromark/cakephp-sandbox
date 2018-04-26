@@ -61,7 +61,8 @@
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
 		"fig-r/psr2r-sniffer": "dev-master",
-		"dereuromark/cakephp-ide-helper": "dev-master"
+		"dereuromark/cakephp-ide-helper": "dev-master",
+		"dereuromark/cakephp-test-helper": "dev-master"
 	},
 	"prefer-stable": true,
 	"autoload": {
