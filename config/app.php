@@ -138,7 +138,7 @@ return [
 	 *   E.g.: `'skipLog' => ['Cake\Network\Exception\NotFoundException', 'Cake\Network\Exception\UnauthorizedException']`
 	 */
 	'Error' => [
-		'errorLevel' => E_ALL & ~E_USER_DEPRECATED,
+		'errorLevel' => E_ALL & ~E_USER_DEPRECATED & ~E_DEPRECATED,
 		'exceptionRenderer' => 'Cake\Error\ExceptionRenderer',
 		'skipLog' => [],
 		'log' => true,

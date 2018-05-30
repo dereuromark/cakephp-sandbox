@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5dae7f769b8fbcbab27b19dab813b23",
+    "content-hash": "e5bc1f697f95c893350898e4669b4103",
     "packages": [
         {
             "name": "aura/intl",
@@ -2703,16 +2703,16 @@
         },
         {
             "name": "markstory/asset_compress",
-            "version": "dev-master",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/asset_compress.git",
-                "reference": "fa0b90dc83c54aadd59af912cce364e43f6d006b"
+                "reference": "2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/fa0b90dc83c54aadd59af912cce364e43f6d006b",
-                "reference": "fa0b90dc83c54aadd59af912cce364e43f6d006b",
+                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8",
+                "reference": "2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8",
                 "shasum": ""
             },
             "require": {
@@ -2757,7 +2757,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2018-05-23T15:42:46+00:00"
+            "time": "2018-05-15T01:06:19+00:00"
         },
         {
             "name": "markstory/mini-asset",
@@ -5070,7 +5070,6 @@
         "dereuromark/cakephp-setup": 20,
         "drmonkeyninja/cakephp-social-share": 20,
         "gourmet/knp-menu": 20,
-        "markstory/asset_compress": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,
         "dereuromark/cakephp-data": 20,

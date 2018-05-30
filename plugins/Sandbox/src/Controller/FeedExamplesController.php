@@ -26,6 +26,7 @@ class FeedExamplesController extends SandboxAppController {
 	 * Main RSS example.
 	 *
 	 * @return void
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function feed() {
 		if (empty($this->request->params['_ext']) || $this->request->params['_ext'] !== 'rss') {
@@ -53,7 +54,7 @@ class FeedExamplesController extends SandboxAppController {
 			];
 		}
 
-		$atomLink = ['action' => 'feed', 'ext' => 'rss'];
+		$atomLink = ['action' => 'feed', '_ext' => 'rss'];
 
 		$channel = [
 			'title' => __('News/Updates') . '', 'link' => '/',

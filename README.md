@@ -7,7 +7,7 @@
 
 A sandbox app to showcase CakePHP features and tools as well as provide a sandbox for tryouts.
 
-* Check it out live: http://sandbox3.dereuromark.de
+* Check it out live: https://sandbox.dereuromark.de
 * Author: Mark Scherer alias dereuromark
 
 ### Key Features
@@ -16,7 +16,7 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 - Logging to a paginated and searchable DB solution instead of plain files
 
 ### Where to find the code
-You have probably been to [sandbox/plugin-examples](http://sandbox3.dereuromark.de/sandbox/plugin-examples).
+You have probably been to [sandbox/plugin-examples](https://sandbox.dereuromark.de/sandbox/plugin-examples).
 
 Most of the example code can be found inside `/plugins/` directory:
 - `/plugins/Sandbox/`: Misc. examples
