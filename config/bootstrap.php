@@ -188,7 +188,7 @@ Plugin::load('Setup', ['bootstrap' => true]);
 Plugin::load('Sandbox', ['routes' => true]);
 Plugin::load('AuthSandbox', ['routes' => true]);
 Plugin::load('DebugKit', ['bootstrap' => true]);
-Plugin::load('AssetCompress', []); //'bootstrap' => true
+Plugin::load('AssetCompress', ['bootstrap' => true]);
 Plugin::load('BootstrapUI');
 Plugin::load('Search');
 Plugin::load('Geo');
