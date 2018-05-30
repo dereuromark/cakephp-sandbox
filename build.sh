@@ -17,7 +17,7 @@ mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
-composer migrate
+php composer.phar migrate
 
 echo "### ASSETS ###";
 bower install --allow-root
