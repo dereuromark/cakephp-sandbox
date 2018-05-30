@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5bc1f697f95c893350898e4669b4103",
+    "content-hash": "e1ee5592dbe86985a05900514dd437dd",
     "packages": [
         {
             "name": "aura/intl",
@@ -2703,16 +2703,16 @@
         },
         {
             "name": "markstory/asset_compress",
-            "version": "3.4.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/asset_compress.git",
-                "reference": "2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8"
+                "reference": "05c2452ceed6821ef447c495c10c613458efd225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8",
-                "reference": "2acfa8587ebdabe3b70f9b7f3c3fdbad0cdf7fb8",
+                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/05c2452ceed6821ef447c495c10c613458efd225",
+                "reference": "05c2452ceed6821ef447c495c10c613458efd225",
                 "shasum": ""
             },
             "require": {
@@ -2757,7 +2757,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2018-05-15T01:06:19+00:00"
+            "time": "2018-05-01T01:19:24+00:00"
         },
         {
             "name": "markstory/mini-asset",
