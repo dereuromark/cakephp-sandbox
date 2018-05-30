@@ -2,6 +2,7 @@
 namespace App;
 
 use App\Error\Middleware\ErrorHandlerMiddleware;
+use App\Http\Middleware\HttpsMiddleware;
 use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
@@ -16,20 +17,30 @@ use Cake\Routing\Middleware\RoutingMiddleware;
 class Application extends BaseApplication {
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function bootstrap() {
+		// Call parent to load bootstrap from files.
+		parent::bootstrap();
+
+		$this->addPlugin('AssetCompress');
+	}
+
+	/**
 	 * Setup the middleware your application will use.
 	 *
-	 * @param \Cake\Http\MiddlewareQueue $middleware The middleware queue to setup.
+	 * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
 	 * @return \Cake\Http\MiddlewareQueue The updated middleware.
 	 */
-	public function middleware($middleware) {
-		$middleware
+	public function middleware($middlewareQueue) {
+		$middlewareQueue
 			// Catch any exceptions in the lower layers,
 			// and make an error page/response
 			// Removed for now because of Whoops Error Handler
-			->add(new ErrorHandlerMiddleware())
+			->add(ErrorHandlerMiddleware::class)
 
 			// Handle plugin/theme assets like CakePHP normally does.
-			->add(new AssetMiddleware())
+			->add(AssetMiddleware::class)
 
 			// Handle cached files
 			->add(new CacheMiddleware([
@@ -38,10 +49,12 @@ class Application extends BaseApplication {
 				},
 			]))
 
-			// Apply routing
-			->add(new RoutingMiddleware());
+			->add(HttpsMiddleware::class)
 
-		return $middleware;
+			// Apply routing
+			->add(RoutingMiddleware::class);
+
+		return $middlewareQueue;
 	}
 
 }

@@ -18,11 +18,9 @@ mkdir -p ./logs
 mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
-
 chmod +x bin/cake
 
-bin/cake Migrations migrate -p Captcha
-bin/cake Migrations migrate
+composer migrate
 
 echo "### ASSETS ###";
 #npm install -g bower
@@ -34,8 +32,6 @@ ttembed-js ./webroot/assets/font-awesome/fonts/fontawesome-webfont.ttf
 mkdir -p ./webroot/css/fonts
 cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
 cp -R ./webroot/assets/font-awesome/fonts/* ./webroot/css/fonts/
-
-bin/cake AssetCompress.AssetCompress build
 
 echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*

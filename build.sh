@@ -17,8 +17,7 @@ mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
-bin/cake Migrations migrate -p Captcha
-bin/cake Migrations migrate
+composer migrate
 
 echo "### ASSETS ###";
 bower install --allow-root
