@@ -313,6 +313,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		$data = [
 			'username' => 'demo',
+			'email' => 'demo@demo.de',
 			'pwd' => 'demo123',
 		];
 		$user = $this->Users->newEntity($data);

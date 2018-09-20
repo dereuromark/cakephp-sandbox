@@ -58,6 +58,8 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testSimpleAjax() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->configRequest([
 			'headers' => [
 				'X_REQUESTED_WITH' => 'XMLHttpRequest',
