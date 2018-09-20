@@ -18,3 +18,4 @@ _*
 /webroot/coverage/
 /config/Migrations/schema-dump-default.lock
 /.phpstorm.meta.php/.ide-helper.meta.php
+/node_modules/
