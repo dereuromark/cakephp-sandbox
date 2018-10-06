@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1ee5592dbe86985a05900514dd437dd",
+    "content-hash": "67aa912de9875344d55dba9671c30eb8",
     "packages": [
         {
             "name": "aura/intl",
@@ -54,16 +54,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.6.12",
+            "version": "dev-master-regression-fix",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "cb3034e636e256e8726e3a4383e5ae77fe4e86ef"
+                "reference": "249532b9767a5a1e55b37fae630d54472636d9ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/cb3034e636e256e8726e3a4383e5ae77fe4e86ef",
-                "reference": "cb3034e636e256e8726e3a4383e5ae77fe4e86ef",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/249532b9767a5a1e55b37fae630d54472636d9ac",
+                "reference": "249532b9767a5a1e55b37fae630d54472636d9ac",
                 "shasum": ""
             },
             "require": {
@@ -136,7 +136,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2018-10-02T01:46:03+00:00"
+            "time": "2018-10-06T19:50:39+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -5115,6 +5115,12 @@
     ],
     "aliases": [
         {
+            "alias": "3.6.11",
+            "alias_normalized": "3.6.11.0",
+            "version": "dev-master-regression-fix",
+            "package": "cakephp/cakephp"
+        },
+        {
             "alias": "1.0",
             "alias_normalized": "1.0.0.0",
             "version": "9999999-dev",
@@ -5129,6 +5135,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-tools": 20,
