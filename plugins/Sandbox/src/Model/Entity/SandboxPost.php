@@ -5,16 +5,17 @@ use Cake\ORM\Entity;
 
 /**
  * @property int $id
- * @property int $parent_id
- * @property string $name
- * @property string $description
- * @property int $status
- * @property int $lft
- * @property int $rght
+ * @property string $title
+ * @property string $content
+ * @property int $rating_count
+ * @property int $rating_sum
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+ * @property \Tags\Model\Entity\Tagged[] $tagged
+ * @property \Tags\Model\Entity\Tag[] $tags
+ * @property string $tag_list !
  */
-class SandboxCategory extends Entity {
+class SandboxPost extends Entity {
 
 	/**
 	 * Fields that can be mass assigned using newEntity() or patchEntity().
