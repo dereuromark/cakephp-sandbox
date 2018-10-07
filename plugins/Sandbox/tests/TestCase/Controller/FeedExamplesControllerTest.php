@@ -43,6 +43,8 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testFeed() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'FeedExamples', 'action' => 'feed', '_ext' => 'rss']);
 
 		$this->assertResponseCode(200);

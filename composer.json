@@ -86,6 +86,7 @@
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
 		"migrate": [
 			"bin/cake migrations migrate -p Captcha",
+			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate"
 		],
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",

@@ -47,6 +47,8 @@ class CsvControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testSimple() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Csv', 'action' => 'simple', '_ext' => 'csv']);
 
 		$this->assertResponseCode(200);
@@ -67,6 +69,8 @@ class CsvControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testPaginationCsv() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Csv', 'action' => 'pagination', '_ext' => 'csv']);
 
 		$this->assertResponseCode(200);
