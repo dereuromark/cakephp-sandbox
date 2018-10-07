@@ -2,6 +2,8 @@
 
 If you want to contribute, these are the basic steps to get the repo to run locally.
 
+This branch is for **CakePHP 2.x**. It is **deprecated**, please use the 3.x one now.
+
 ### Installation
 
 First, clone the repo into a root folder:
