@@ -7,6 +7,8 @@
 
 A sandbox app to showcase CakePHP features and tools as well as provide a sandbox for tryouts.
 
+This branch is for **CakePHP 3.x**. For deprecated 2.x one, please use the corresponding branch.
+
 * Check it out live: https://sandbox.dereuromark.de
 * Author: Mark Scherer alias dereuromark
 
