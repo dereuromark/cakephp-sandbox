@@ -143,6 +143,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * This method provides the AJAX data chained_dropdowns() needs.
 	 *
 	 * @return void
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function countryStates() {
 		$this->request->allowMethod('ajax');
@@ -168,7 +169,7 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->loadModel('Users');
 		$user = $this->Users->newEntity();
 
-		if ($this->request->is(['post', 'put'])) {
+		if ($this->request->is(['post', 'put', 'patch'])) {
 			$user = $this->Users->patchEntity($user, $this->request->getData());
 			if (!$user->errors()) {
 				$this->Flash->success('Simulated save.');
