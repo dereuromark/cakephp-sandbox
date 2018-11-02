@@ -12,6 +12,13 @@ use Tools\TestSuite\IntegrationTestCase;
 class FeedExamplesControllerTest extends IntegrationTestCase {
 
 	/**
+	 * Allow router reloading to be disabled.
+	 *
+	 * @var bool
+	 */
+	protected $_disableRouterReload = true;
+
+	/**
 	 * @return void
 	 */
 	public function setUp() {
