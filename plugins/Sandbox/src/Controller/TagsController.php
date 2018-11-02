@@ -155,8 +155,7 @@ class TagsController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	protected function ensurePostsDemoData()
-	{
+	protected function ensurePostsDemoData() {
 		$hasRecords = (bool)$this->SandboxPosts->find()->where(['title' => 'Awesome Post'])->first();
 		if ($hasRecords) {
 			return;

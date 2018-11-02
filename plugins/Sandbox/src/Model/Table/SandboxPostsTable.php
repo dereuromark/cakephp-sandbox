@@ -48,7 +48,6 @@ class SandboxPostsTable extends Table {
 		],
 	];
 
-
 	/**
 	 * @return \Search\Manager
 	 */
