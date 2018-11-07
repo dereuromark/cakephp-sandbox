@@ -41,6 +41,10 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\ServerRequest;
+use Cake\I18n\Date;
+use Cake\I18n\FrozenDate;
+use Cake\I18n\FrozenTime;
+use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
@@ -172,6 +176,11 @@ DispatcherFactory::add('Cache.Cache', [
 
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
+Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime
+FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateTime
+Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
+FrozenDate::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
+
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
@@ -194,6 +203,7 @@ Plugin::load('Search');
 Plugin::load('Geo');
 Plugin::load('Ratings');
 Plugin::load('Tags');
+Plugin::load('Queue');
 Plugin::load('Feedback', ['routes' => true, 'bootstrap' => true]);
 
 Plugin::load('CakePdf', ['routes' => true]);
