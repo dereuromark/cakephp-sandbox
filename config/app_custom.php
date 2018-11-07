@@ -54,7 +54,8 @@ return [
 	],
 
 	'App' => [
-		'monitorHeaders' => 1
+		'monitorHeaders' => 1,
+		'defaultOutputTimezone' => 'Europe/Berlin',
 	],
 
 	'FormConfig' => [

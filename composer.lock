@@ -1301,12 +1301,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "520c284c697d167c221dfc410e78b8e5326ba8c4"
+                "reference": "32e3dce6815325bfe97acfc9383ac00e6b6a9ea2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/520c284c697d167c221dfc410e78b8e5326ba8c4",
-                "reference": "520c284c697d167c221dfc410e78b8e5326ba8c4",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/32e3dce6815325bfe97acfc9383ac00e6b6a9ea2",
+                "reference": "32e3dce6815325bfe97acfc9383ac00e6b6a9ea2",
                 "shasum": ""
             },
             "require": {
@@ -1356,7 +1356,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2018-11-07T21:32:12+00:00"
+            "time": "2018-11-07T21:41:38+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1637,12 +1637,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "45805fe44529d640f9e382a555c6f8b829e5e033"
+                "reference": "9ec994cf456583dd6336143614b7dcd1b0a4901f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/45805fe44529d640f9e382a555c6f8b829e5e033",
-                "reference": "45805fe44529d640f9e382a555c6f8b829e5e033",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/9ec994cf456583dd6336143614b7dcd1b0a4901f",
+                "reference": "9ec994cf456583dd6336143614b7dcd1b0a4901f",
                 "shasum": ""
             },
             "require": {
@@ -1689,7 +1689,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2018-10-28T17:44:10+00:00"
+            "time": "2018-11-07T22:09:31+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",
