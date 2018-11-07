@@ -5,6 +5,7 @@ use Tools\Utility\Time;
 
 /**
  * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
+ * @property \Queue\Model\Table\QueueProcessesTable $QueueProcesses
  */
 class QueueExamplesController extends SandboxAppController {
 
@@ -81,6 +82,18 @@ class QueueExamplesController extends SandboxAppController {
 		$queuedJobs = $this->QueuedJobs->find()->where(['reference LIKE' => 'scheduling-' . $sid, 'completed IS' => null])->all()->toArray();
 
 		$this->set(compact('queuedJobs', 'queuedJob', 'tasks'));
+	}
+
+	/**
+	 * @return \Cake\Http\Response|null
+	 */
+	public function config() {
+		$this->loadModel('Queue.QueueProcesses');
+		$status = $this->QueueProcesses->status();
+
+		$length = $this->QueuedJobs->getLength();
+
+		$this->set(compact('status', 'length'));
 	}
 
 	/**

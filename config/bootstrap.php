@@ -181,6 +181,22 @@ FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateT
 Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 FrozenDate::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
+/*
+Type::build('time')
+	->useImmutable()->setLocaleFormat('HH:mm:ss');
+Type::build('date')
+	->useImmutable()->setLocaleFormat('dd.MM.YYYY');
+Type::build('datetime')
+	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
+Type::build('timestamp')
+	->useImmutable();
+
+FrozenTime::setToStringFormat('dd.MM.YYYY HH:mm:ss');
+Time::setToStringFormat('dd.MM.YYYY HH:mm:ss');
+FrozenDate::setToStringFormat('dd.MM.YYYY');
+Date::setToStringFormat('dd.MM.YYYY');
+ */
+
 /**
  * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
  * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
