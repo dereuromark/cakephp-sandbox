@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "72df685b4bfc367bf98cff1d9c8e4aef",
+    "content-hash": "047b83a70ed5e4ecf2c5f3ce1b1266d2",
     "packages": [
         {
             "name": "aura/intl",
@@ -1294,6 +1294,69 @@
                 "plugin"
             ],
             "time": "2018-10-28T22:31:06+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-queue",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-queue.git",
+                "reference": "22b70edb680d304a1b1d402644519053bd040a7b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/22b70edb680d304a1b1d402644519053bd040a7b",
+                "reference": "22b70edb680d304a1b1d402644519053bd040a7b",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.6",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "cakephp/migrations": "^1.0",
+                "dereuromark/cakephp-ide-helper": "^0.12",
+                "dereuromark/cakephp-tools": "^1.5.6",
+                "fig-r/psr2r-sniffer": "dev-master",
+                "friendsofcake/search": "^4.4"
+            },
+            "suggest": {
+                "dereuromark/cakephp-ide-helper": "For maximum IDE support, especially around createJob() usage.",
+                "dereuromark/cakephp-tools": "For the Email lib and QueueEmailTask. Or write your own task here. Also for admin backend.",
+                "friendsofcake/search": "For admin backend and filtering of current jobs."
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Queue\\": "src/",
+                    "Queue\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Yell",
+                    "homepage": "https://github.com/davidyell",
+                    "role": "Contributor"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "http://www.dereuromark.de",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "The Queue plugin for CakePHP provides deferred task execution.",
+            "homepage": "http://github.com/dereuromark/cakephp-queue",
+            "keywords": [
+                "background",
+                "cakephp",
+                "deferred tasks",
+                "queue"
+            ],
+            "time": "2018-11-07T11:23:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -4317,12 +4380,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "6a50e099bc45abc553604553dcbcb1a9a0790dea"
+                "reference": "4ab6fc104c96f3f014142f5a08083a40fd5be50a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/6a50e099bc45abc553604553dcbcb1a9a0790dea",
-                "reference": "6a50e099bc45abc553604553dcbcb1a9a0790dea",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/4ab6fc104c96f3f014142f5a08083a40fd5be50a",
+                "reference": "4ab6fc104c96f3f014142f5a08083a40fd5be50a",
                 "shasum": ""
             },
             "require": {
@@ -4371,7 +4434,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2018-11-04T17:27:07+00:00"
+            "time": "2018-11-07T10:35:33+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
@@ -5143,6 +5206,7 @@
         "dereuromark/cakephp-captcha": 20,
         "dereuromark/cakephp-feed": 20,
         "dereuromark/cakephp-ajax": 20,
+        "dereuromark/cakephp-queue": 20,
         "dereuromark/cakephp-ratings": 20,
         "friendsofcake/cakepdf": 20,
         "friendsofcake/bootstrap-ui": 20,

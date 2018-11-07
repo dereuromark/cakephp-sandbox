@@ -56,6 +56,11 @@
 			<li><?php echo $this->Html->link('Captchas in CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Queue Plugin (NEW)</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Queue and CakePHP', ['controller' => 'QueueExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Feedback Plugin (NEW)</h4>
 		<ul>
 			<li>See the "Feedback" button on the right side. To test: Click, fill out the form and send (do not send sensitive information!).</li>

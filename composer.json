@@ -35,6 +35,7 @@
 		"dereuromark/cakephp-captcha" : "dev-master",
 		"dereuromark/cakephp-feed" : "dev-master",
 		"dereuromark/cakephp-ajax" : "dev-master",
+		"dereuromark/cakephp-queue": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"friendsofcake/cakepdf": "^3.0@dev",
 		"friendsofcake/bootstrap-ui": "dev-master",
@@ -87,6 +88,7 @@
 		"migrate": [
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
+			"bin/cake migrations migrate -p Queue",
 			"bin/cake migrations migrate"
 		],
 		"assets": [
