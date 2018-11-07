@@ -15,6 +15,7 @@ use Tools\Model\Table\Table;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  *
  * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsTo $Roles
+ * @method \App\Model\Entity\User|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  */
 class UsersTable extends Table {
 
