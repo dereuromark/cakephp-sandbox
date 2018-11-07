@@ -43,6 +43,10 @@
 			<?php foreach ($queuedJobs as $queuedJob) { ?>
 				<li>
 					<b><?php echo h($queuedJob->job_type); ?></b>: scheduled to start at <?php echo $this->Time->nice($queuedJob->notbefore); ?>
+					<?php if (!$queuedJob->fetched) {
+						echo $this->Form->postLink($this->Format->icon('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
+					} ?>
+
 					<div><?php echo $this->Number->toPercentage($queuedJob->progress * 100, 0); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)<div>
 				</li>
 			<?php } ?>

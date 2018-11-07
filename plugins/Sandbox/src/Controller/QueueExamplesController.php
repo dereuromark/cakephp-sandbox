@@ -1,6 +1,7 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Http\Exception\NotFoundException;
 use Tools\Utility\Time;
 
 /**
@@ -62,7 +63,11 @@ class QueueExamplesController extends SandboxAppController {
 				$queuedJob->setError('task', 'Required field.');
 			}
 			if (!$notBefore || !$notBefore->isFuture()) {
-				$queuedJob->setError('notbefore', 'Invalid value.');
+				$queuedJob->setError('notbefore', 'Invalid value. Must be a date/time in the near future.');
+			}
+
+			if ($notBefore && $notBefore->subDay()->isFuture()) {
+				$queuedJob->setError('notbefore', 'Too far in the future. Max 1 day.');
 			}
 
 			if (!$queuedJob->getErrors()) {
@@ -94,6 +99,34 @@ class QueueExamplesController extends SandboxAppController {
 		$length = $this->QueuedJobs->getLength();
 
 		$this->set(compact('status', 'length'));
+	}
+
+	/**
+	 * @param int|null $id
+	 *
+	 * @return \Cake\Http\Response|null
+	 *
+	 * @throws \Cake\Http\Exception\NotFoundException
+	 */
+	public function cancelJob($id = null) {
+		$this->request->allowMethod('post');
+
+		$job = $this->QueuedJobs->get($id);
+
+		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
+		$sid = $this->request->getSession()->id();
+		if (strpos($job->reference, '-' . $sid) === false) {
+			throw new NotFoundException();
+		}
+
+		if ($job->fetched) {
+			$this->Flash->error('Already started, can not be cancelled anymore.');
+		} else {
+			$this->QueuedJobs->delete($job);
+			$this->Flash->success('Job cancelled.');
+		}
+
+		return $this->redirect($this->referer(['action' => 'schedule']));
 	}
 
 	/**

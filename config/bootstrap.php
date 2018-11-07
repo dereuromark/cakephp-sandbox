@@ -39,6 +39,7 @@ use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Core\Plugin;
+use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
@@ -181,7 +182,6 @@ FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateT
 Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 FrozenDate::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
-/*
 Type::build('time')
 	->useImmutable()->setLocaleFormat('HH:mm:ss');
 Type::build('date')
@@ -190,6 +190,13 @@ Type::build('datetime')
 	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
 Type::build('timestamp')
 	->useImmutable();
+/*
+Type::build('time')
+	->useImmutable()->setLocaleFormat('HH:mm:ss');
+Type::build('date')
+	->useImmutable()->setLocaleFormat('dd.MM.YYYY');
+Type::build('datetime')
+	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
 
 FrozenTime::setToStringFormat('dd.MM.YYYY HH:mm:ss');
 Time::setToStringFormat('dd.MM.YYYY HH:mm:ss');
