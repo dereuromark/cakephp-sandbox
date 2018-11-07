@@ -11,10 +11,10 @@ php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-inte
 
 chmod +x bin/cake
 
-mkdir -p ./tmp
-mkdir -p ./logs
-mkdir -p ./webroot/js/cjs/
-mkdir -p ./webroot/css/ccss/
+mkdir -p tmp
+mkdir -p logs
+mkdir -p webroot/js/cjs/
+mkdir -p webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
 php composer.phar migrate
@@ -22,21 +22,21 @@ php composer.phar migrate
 echo "### ASSETS ###";
 bower install --allow-root
 
-mkdir -p ./webroot/css/fonts
-cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
-cp -R ./webroot/assets/font-awesome/fonts/* ./webroot/css/fonts/
+mkdir -p webroot/css/fonts
+cp -R webroot/assets/bootstrap/dist/fonts/* webroot/css/fonts/
+cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/
 
-bin/cake AssetCompress.AssetCompress build
+bin/cake asset_compress build
 
 echo "### CLEANUP ###";
-rm -rf ./tmp/cache/models/*
-rm -rf ./tmp/cache/persistent/*
-rm -rf ./tmp/cache/views/*
+rm -rf tmp/cache/models/*
+rm -rf tmp/cache/persistent/*
+rm -rf tmp/cache/views/*
 
 chown -R www-data:www-data *
-chmod -R 0770 ./tmp
-chmod -R 0770 ./logs
-chmod -R 0770 ./webroot/js/cjs/
-chmod -R 0770 ./webroot/css/ccss/
+chmod -R 0770 tmp
+chmod -R 0770 logs
+chmod -R 0770 webroot/js/cjs/
+chmod -R 0770 webroot/css/ccss/
 
 echo "### DONE ###";
