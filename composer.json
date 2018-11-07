@@ -19,7 +19,7 @@
 	"require": {
 		"php": ">=5.6",
 		"cakephp/plugin-installer": "*",
-		"cakephp/cakephp": "^3.6.4",
+		"cakephp/cakephp": "^3.6.13",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master as 1.0",
@@ -88,6 +88,12 @@
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate"
+		],
+		"assets": [
+			"npm i",
+			"cp -R node_modules/* webroot/assets/",
+			"cp -R webroot/assets/bootstrap/dist/fonts/* webroot/css/fonts/",
+			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/"
 		],
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
 		"test": "php phpunit.phar",
