@@ -28,7 +28,7 @@
 	<?php echo $this->Form->postLink('Trigger a demo task', ['action' => 'scheduleDemo'], ['class' => 'btn btn-primary']); ?>
 	</p>
 
-	<p>This job will take about 20 sek. You can monitor the progress below. Note that we prevent it to be run twice while still running.</p>
+	<p>This job will take about 20 sek. You can monitor the progress below (you need to reload the page, browser refresh). Note that we prevent it to be run twice while still running.</p>
 
 	<?php if ($queuedJobs) { ?>
 	<h4>Currently running: </h4>

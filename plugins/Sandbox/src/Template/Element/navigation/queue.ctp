@@ -10,7 +10,7 @@
 	<a href="https://github.com/dereuromark/cakephp-queue" target="_blank">[Queue Plugin]</a>
 </p>
 
-<h3>Background Processing in CakePHP</h3>
+<h3>Background Processing</h3>
 <p>Using the queue and cronjob functionality you can easily offload some longer running tasks into a background process.</p>
 
 <ul class="side-nav nav nav-pills nav-stacked">
