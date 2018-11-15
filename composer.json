@@ -102,7 +102,9 @@
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/ --extensions=php src/ tests/ config/ plugins/ webroot/",
-		"cs-fix": "phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/ --extensions=php src/ tests/ config/ plugins/ webroot/"
+		"cs-fix": "phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/ --extensions=php src/ tests/ config/ plugins/ webroot/",
+		"phpstan-setup": "wget https://github.com/phpstan/phpstan-shim/raw/master/phpstan.phar",
+		"phpstan": "php phpstan.phar analyse -c tests/phpstan.neon -l 1 src/ plugins/Sandbox/src plugins/AuthSandbox/src"
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"

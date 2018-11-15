@@ -34,29 +34,29 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function query() {
-		$this->Geocoder = new Geocoder();
+		$geocoder = new Geocoder();
 		$results = [];
 		$country = $this->Countries->newEntity();
 
 		if ($this->Common->isPosted()) {
-			$this->Countries->validator()->add('address', [
+			$this->Countries->getValidator()->add('address', [
 				'notEmpty' => [
 					'rule' => 'notBlank',
 					'message' => 'valErrMandatoryField',
 					'last' => true
 				]]);
-			$country = $this->Countries->patchEntity($country, $this->request->data);
+			$country = $this->Countries->patchEntity($country, $this->request->getData());
 
 			$address = $this->request->data['address'];
 			$settings = [
 				'allowInconclusive' => $this->request->data['allow_inconclusive'],
 				'minAccuracy' => $this->request->data['min_accuracy']
 			];
-			$this->Geocoder->config($settings);
+			$geocoder->setConfig($settings);
 
-			if (!$country->errors()) {
+			if (!$country->getErrors()) {
 				try {
-					$results = $this->Geocoder->geocode($address);
+					$results = $geocoder->geocode($address);
 
 				} catch (InconclusiveException $e) {
 					$this->Flash->error(__('Nothing found'));
@@ -69,7 +69,7 @@ class GeoExamplesController extends SandboxAppController {
 			$this->request->data['min_accuracy'] = Geocoder::TYPE_COUNTRY;
 		}
 
-		$minAccuracies = $this->Geocoder->accuracyTypes();
+		$minAccuracies = $geocoder->accuracyTypes();
 		$this->set(compact('country', 'results', 'minAccuracies'));
 	}
 

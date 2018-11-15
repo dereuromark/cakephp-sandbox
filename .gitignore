@@ -9,6 +9,8 @@ _*
 /config/app_local.php
 /phpunit.phar
 /composer.phar
+/phpstan.phar
+
 /.idea
 /npm-debug.log
 /webroot/assets

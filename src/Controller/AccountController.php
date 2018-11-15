@@ -3,14 +3,15 @@ namespace App\Controller;
 
 use Cake\Core\Configure;
 use Cake\Event\Event;
-use Cake\Network\Exception\InternalErrorException;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\InternalErrorException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\ORM\TableRegistry;
 use Tools\Mailer\Email;
 use Tools\View\Helper\ObfuscateHelper;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
+ * @property \Tools\Model\Table\TokensTable $Tokens
  */
 class AccountController extends AppController {
 
@@ -72,11 +73,7 @@ class AccountController extends AppController {
 	 */
 	public function logout() {
 		$whereTo = $this->Auth->logout();
-		# delete cookie
-		if (Configure::read('Config.rememberMe')) {
-			$this->Comon->loadComponent('Tools.RememberMe');
-			$this->RememberMe->delete();
-		}
+
 		$this->Flash->success(__('You are now logged out.'));
 		return $this->redirect($whereTo);
 	}
@@ -84,6 +81,7 @@ class AccountController extends AppController {
 	/**
 	 * @param string|null $key
 	 * @return \Cake\Http\Response|null
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function lostPassword($key = null) {
 		if (!Configure::read('debug')) {
@@ -99,8 +97,8 @@ class AccountController extends AppController {
 		}
 
 		if (!empty($keyToCheck)) {
-			$this->Token = TableRegistry::get('Tools.Tokens');
-			$key = $this->Token->useKey('reset_pwd', $keyToCheck);
+			$this->loadModel('Tools.Tokens');
+			$key = $this->Tokens->useKey('reset_pwd', $keyToCheck);
 
 			if (!empty($key) && $key['used'] == 1) {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
@@ -125,8 +123,8 @@ class AccountController extends AppController {
 				// Valid user found to this email address
 				if (!empty($res)) {
 					$uid = $res['User']['id'];
-					$this->Token = TableRegistry::get('Tools.Tokens');
-					$cCode = $this->Token->newKey('reset_pwd', null, $uid);
+					$this->loadModel('Tools.Tokens');
+					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
 						$this->Flash->info($debugMessage);
@@ -135,15 +133,15 @@ class AccountController extends AppController {
 					// Send email
 					Configure::write('Email.live', true);
 
-					$this->Email = new Email();
-					$this->Email->to($res['User']['email'], $res['User']['username']);
-					$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
-					$this->Email->template('lost_password');
-					$this->Email->viewVars(compact('cCode'));
-					if ($this->Email->send()) {
-						$email = h(ObfuscateHelper::hideEmail($res['User']['email']));
+					$email = new Email();
+					$email->to($res['User']['email'], $res['User']['username']);
+					$email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
+					$email->template('lost_password');
+					$email->viewVars(compact('cCode'));
+					if ($email->send()) {
+						$userEmail = h(ObfuscateHelper::hideEmail($res['User']['email']));
 
-						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $email));
+						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
 					} else {
 						$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
@@ -160,6 +158,7 @@ class AccountController extends AppController {
 
 	/**
 	 * @return \Cake\Http\Response|null
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function changePassword() {
 		if (!Configure::read('debug')) {
@@ -204,6 +203,10 @@ class AccountController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function register() {
+		if (!Configure::read('debug')) {
+			throw new NotFoundException('Disabled for live');
+		}
+
 		$this->Users->addBehavior('Tools.Passwordable', []);
 
 		if ($this->Common->isPosted()) {
@@ -259,12 +262,13 @@ class AccountController extends AppController {
 
 	/**
 	 * @return \Cake\Http\Response|null
+	 * @throws \Cake\Http\Exception\InternalErrorException
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->request->session()->read('Auth.User.id');
 		if (!$this->Users->delete($uid)) {
-			throw new InternalErrorException();
+			throw new InternalErrorException('Cannot delete user');
 		}
 		$this->Flash->success('Account deleted');
 		return $this->redirect(['action' => 'logout']);

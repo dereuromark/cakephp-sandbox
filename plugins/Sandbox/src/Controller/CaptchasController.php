@@ -32,7 +32,7 @@ class CaptchasController extends SandboxAppController {
 		if ($this->request->is('post')) {
 			$this->Animals->addBehavior('Captcha.Captcha');
 
-			$animal = $this->Animals->patchEntity($animal, $this->request->data);
+			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
 			if ($this->Animals->save($animal)) {
 				$this->Flash->success(__('The animal has been saved.'));
 

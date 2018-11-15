@@ -1,0 +1,9 @@
+parameters:
+	autoload_files:
+		- tests/bootstrap.php
+
+	excludes_analyse:
+		- src/Console/Installer.php
+
+	ignoreErrors:
+		- '#Constant \w+ not found\.#'

@@ -27,7 +27,7 @@ class UsersController extends AppController {
 
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		if ($this->Common->isPosted()) {
-			$user = $this->Users->patchEntity($user, $this->request->data);
+			$user = $this->Users->patchEntity($user, $this->request->getData());
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);
@@ -48,7 +48,7 @@ class UsersController extends AppController {
 
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false, 'require' => false]);
 		if ($this->Common->isPosted()) {
-			$user = $this->Users->patchEntity($user, $this->request->data);
+			$user = $this->Users->patchEntity($user, $this->request->getData());
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('The User has been saved'));
 				return $this->redirect(['action' => 'index']);

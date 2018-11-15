@@ -10,6 +10,11 @@ use MiniAsset\Filter\ScssFilter;
 class AssetCompressExamplesController extends SandboxAppController {
 
 	/**
+	 * @var string|null
+	 */
+	protected $_cssDir;
+
+	/**
 	 * @param \Cake\Event\Event $event
 	 * @return void
 	 */
@@ -37,14 +42,14 @@ class AssetCompressExamplesController extends SandboxAppController {
 			throw new Exception('Cannot find scss test file.');
 		}
 
-		$this->filter = new ScssFilter();
+		$filter = new ScssFilter();
 		$settings = (array)Configure::read('Sass');
-		$this->filter->settings($settings);
+		$filter->settings($settings);
 
 		$source = file_get_contents($this->_cssDir . 'test.scss');
 
 		try {
-			$result = $this->filter->input($this->_cssDir . 'test.scss', $source);
+			$result = $filter->input($this->_cssDir . 'test.scss', $source);
 		} catch (\RuntimeException $e) {
 			$this->Flash->error('SASS Parsing error: ' . $e->getMessage());
 			$result = [];

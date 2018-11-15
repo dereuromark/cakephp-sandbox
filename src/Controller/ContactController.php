@@ -52,7 +52,7 @@ class ContactController extends AppController {
 			if (Configure::read('debug')) {
 				$this->Flash->info('In debug mode there is no captcha validation necessary.');
 			} else {
-				$this->Captcha->addValidation($contact->validator());
+				$this->Captcha->addValidation($contact->getValidator());
 			}
 
 			if ($contact->execute($this->request->data)) {
@@ -91,20 +91,20 @@ class ContactController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		$this->Email = new Email();
-		$this->Email->to($adminEmail, $adminName);
+		$email = new Email();
+		$email->to($adminEmail, $adminName);
 
-		$this->Email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
-		$this->Email->template('contact');
-		$this->Email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
-		if ($this->Email->send()) {
+		$email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
+		$email->template('contact');
+		$email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
+		if ($email->send()) {
 			$this->Flash->success(__('contactSuccessfullySent {0}', $fromEmail));
 			return $this->redirect(['action' => 'index']);
 		}
 		if (Configure::read('debug')) {
-			$this->Flash->warning($this->Email->getError());
+			$this->Flash->warning($email->getError());
 		}
-		$this->log($this->Email->getError());
+		$this->log($email->getError());
 		$this->Flash->error(__('Contact Email could not be sent'));
 	}
 
