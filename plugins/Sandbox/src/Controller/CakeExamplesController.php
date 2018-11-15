@@ -49,7 +49,7 @@ class CakeExamplesController extends SandboxAppController {
 			]
 		];
 
-		$type = $this->request->query('type');
+		$type = $this->request->getQuery('type');
 		if ($type) {
 			switch ($type) {
 				case 'hash':
@@ -83,7 +83,7 @@ class CakeExamplesController extends SandboxAppController {
 
 		// Language switcher
 		if ($this->request->is('post')) {
-			$lang = $this->request->query('lang');
+			$lang = $this->request->getQuery('lang');
 			$this->request->session()->write('Config.language', $lang);
 			I18n::locale($lang);
 			$lang = locale_get_display_name($lang) . ' [' . strtoupper($lang) . ']';

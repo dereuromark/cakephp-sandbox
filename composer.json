@@ -79,7 +79,8 @@
 			"Sandbox\\Test\\": "plugins/Sandbox/tests/",
 			"AuthSandbox\\Test\\": "plugins/AuthSandbox/tests/",
 			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests/",
-			"Captcha\\Test\\": "./vendor/dereuromark/cakephp-captcha/tests/"
+			"Captcha\\Test\\": "./vendor/dereuromark/cakephp-captcha/tests/",
+			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
 	"scripts": {

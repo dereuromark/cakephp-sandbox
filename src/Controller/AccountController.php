@@ -5,7 +5,6 @@ use Cake\Core\Configure;
 use Cake\Event\Event;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
-use Cake\ORM\TableRegistry;
 use Tools\Mailer\Email;
 use Tools\View\Helper\ObfuscateHelper;
 
@@ -61,7 +60,7 @@ class AccountController extends AppController {
 			$this->Flash->error('Wrong username/email or password');
 			$this->request->data['password'] = '';
 		} else {
-			$username = $this->request->query('username');
+			$username = $this->request->getQuery('username');
 			if ($username) {
 				$this->request->data['login'] = $username;
 			}
@@ -172,7 +171,7 @@ class AccountController extends AppController {
 		}
 		$user = $this->Users->get($uid);
 
-		if ($this->request->query('abort')) {
+		if ($this->request->getQuery('abort')) {
 			if (!empty($uid)) {
 				$this->request->session()->delete('Auth.Tmp');
 			}

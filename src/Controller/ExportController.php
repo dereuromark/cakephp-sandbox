@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use Cake\Event\Event;
 use Cake\Http\Exception\MethodNotAllowedException;
-use Cake\ORM\TableRegistry;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
@@ -45,7 +44,7 @@ class ExportController extends AppController {
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);
 
-		if ($this->request->query('download')) {
+		if ($this->request->getQuery('download')) {
 			$this->response->download($this->request->params['action'] . '.' . $this->request->params['ext']);
 		}
 	}

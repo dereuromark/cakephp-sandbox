@@ -41,7 +41,7 @@
 
 </div>
 
-<?php echo $this->Html->link('Export the current selection as CSV file', ['_ext' => 'csv', '?' => $this->request->query]); ?> | <?php echo $this->Html->link('Download the current selection as my-cool-country-list.csv file', ['_ext' => 'csv', '?' => ['download' => 1] + $this->request->query]); ?>
+<?php echo $this->Html->link('Export the current selection as CSV file', ['_ext' => 'csv', '?' => $this->request->getQuery()]); ?> | <?php echo $this->Html->link('Download the current selection as my-cool-country-list.csv file', ['_ext' => 'csv', '?' => ['download' => 1] + $this->request->getQuery()]); ?>
 
 
 

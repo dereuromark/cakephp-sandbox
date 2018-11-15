@@ -60,7 +60,7 @@ class JqueryExamplesController extends SandboxAppController {
 			$this->loadModel('Sandbox.Animals');
 			$items = $this->Animals->find('list', [
 					'conditions' => [
-						'name LIKE' => '%' . $this->request->query('term') . '%'
+						'name LIKE' => '%' . $this->request->getQuery('term') . '%'
 					]
 			]);
 

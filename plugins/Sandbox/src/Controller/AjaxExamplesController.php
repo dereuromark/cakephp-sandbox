@@ -25,7 +25,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize() {
-		if (in_array($this->request->action, ['redirectingPrevented', 'form', 'toggle'])) {
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle'])) {
 			$this->components['Ajax.Ajax'] = [];
 		}
 		parent::initialize();
@@ -61,7 +61,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function toggle() {
 		if ($this->request->is(['post'])) {
 			// Simulate a DB save via session
-			$status = (bool)$this->request->query('status');
+			$status = (bool)$this->request->getQuery('status');
 			$this->request->session()->write('AjaxToggle.status', $status);
 		}
 
@@ -147,7 +147,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function countryStates() {
 		$this->request->allowMethod('ajax');
-		$id = $this->request->query('id');
+		$id = $this->request->getQuery('id');
 		if (!$id) {
 			throw new NotFoundException();
 		}

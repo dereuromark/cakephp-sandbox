@@ -62,7 +62,7 @@ class ContactController extends AppController {
 			}
 		} else {
 			// prepopulate form
-			$this->request->data = $this->request->query;
+			$this->request->data = $this->request->getQuery();
 
 			# try to autofill fields
 			$user = (array)$this->request->session()->read('Auth.User');

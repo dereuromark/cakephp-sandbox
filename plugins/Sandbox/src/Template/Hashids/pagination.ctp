@@ -7,7 +7,7 @@
 
 
 	<div class="pull-right">
-		<?php if ($this->request->query('debug')) { ?>
+		<?php if ($this->request->getQuery('debug')) { ?>
 			<?php echo $this->Html->link('Disable fake debug mode', ['action' => 'pagination'], ['class' => 'btn btn-default']); ?>
 		<?php } else { ?>
 			<?php echo $this->Html->link('Enable fake debug mode', ['action' => 'pagination', '?' => ['debug' => 1]], ['class' => 'btn btn-primary']); ?>
@@ -33,7 +33,7 @@
 					<?php echo h($country['id']); ?>
 				</td>
 				<td>
-					<?php echo $this->Html->link($country['name'], ['action' => 'paginationView', $country->id, '?' => $this->request->query]); ?>
+					<?php echo $this->Html->link($country['name'], ['action' => 'paginationView', $country->id, '?' => $this->request->getQuery()]); ?>
 				</td>
 				<td>
 					<?php echo h($country['iso2']); ?>
