@@ -23,7 +23,7 @@ class HashidsController extends SandboxAppController {
 		parent::beforeFilter($event);
 
 		Configure::write('Hashid.debug', false);
-		if ($this->request->query('debug')) {
+		if ($this->request->getQuery('debug')) {
 			Configure::write('Hashid.debug', true);
 		}
 	}

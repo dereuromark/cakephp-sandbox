@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  */
-if ($this->request->query('dark')) {
+if ($this->request->getQuery('dark')) {
 	$file = '//highlightjs.org/static/demo/styles/hybrid.css';
 } else {
 	$file = 'Sandbox.highlighting/github.css';

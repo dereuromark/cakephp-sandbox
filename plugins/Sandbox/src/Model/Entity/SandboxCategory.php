@@ -5,14 +5,14 @@ use Cake\ORM\Entity;
 
 /**
  * @property int $id
- * @property int $parent_id
+ * @property int|null $parent_id
  * @property string $name
  * @property string $description
- * @property int $status
- * @property int $lft
- * @property int $rght
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property int|null $status
+ * @property int|null $lft
+ * @property int|null $rght
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  */
 class SandboxCategory extends Entity {
 

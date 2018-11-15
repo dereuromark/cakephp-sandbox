@@ -18,6 +18,11 @@ class MediaEmbedBbcodeHelper extends Helper {
 	];
 
 	/**
+	 * @var \MediaEmbed\MediaEmbed|null
+	 */
+	protected $MediaEmbed;
+
+	/**
 	 * @param string $string
 	 * @return string
 	 */

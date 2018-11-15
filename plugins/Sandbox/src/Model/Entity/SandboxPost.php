@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * @property string $content
  * @property int $rating_count
  * @property int $rating_sum
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  * @property \Tags\Model\Entity\Tagged[] $tagged
  * @property \Tags\Model\Entity\Tag[] $tags
  * @property string $tag_list !

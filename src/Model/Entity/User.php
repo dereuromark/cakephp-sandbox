@@ -13,9 +13,9 @@ use Cake\ORM\Entity;
  * @property int $logins
  * @property bool $active
  * @property int $role_id
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
- * @property \Cake\I18n\Time $last_login
+ * @property \Cake\I18n\FrozenTime $created
+ * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\FrozenTime|null $last_login
  * @property \Cake\ORM\Entity $role
  */
 class User extends Entity {

@@ -9,11 +9,11 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $title
  * @property string $location
- * @property float $lat
- * @property float $lng
+ * @property float|null $lat
+ * @property float|null $lng
  * @property string $description
- * @property \Cake\I18n\Time $beginning
- * @property \Cake\I18n\Time $end
+ * @property \Cake\I18n\FrozenTime|null $beginning
+ * @property \Cake\I18n\FrozenTime|null $end
  */
 class Event extends Entity {
 

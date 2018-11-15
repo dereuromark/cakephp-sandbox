@@ -19,7 +19,7 @@
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 		if (!empty($_isSearch)) {
 			echo ' ';
-			echo $this->Html->link(__('Reset'), ['action' => 'table', '?' => array_intersect_key($this->request->query, array_flip(['sort', 'direction']))], ['class' => 'btn btn-default']);
+			echo $this->Html->link(__('Reset'), ['action' => 'table', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-default']);
 		}
 
 		echo $this->Form->end();
@@ -73,6 +73,6 @@ foreach ($countries as $country):
 
 <?php echo $this->element('Tools.pagination'); ?>
 
-	<p>Display filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->query]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->query]); ?></p>
-	<p>Download filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->query + ['download' => 1]]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->query + ['download' => 1]]); ?></p>
+	<p>Display filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->getQuery()]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->getQuery()]); ?></p>
+	<p>Download filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->getQuery() + ['download' => 1]]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->getQuery() + ['download' => 1]]); ?></p>
 </div>

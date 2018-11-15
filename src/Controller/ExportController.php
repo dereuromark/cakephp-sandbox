@@ -2,11 +2,16 @@
 namespace App\Controller;
 
 use Cake\Event\Event;
-use Cake\Network\Exception\MethodNotAllowedException;
-use Cake\ORM\TableRegistry;
+use Cake\Http\Exception\MethodNotAllowedException;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
+ * @property \Data\Model\Table\CountriesTable $Countries
+ * @property \Data\Model\Table\StatesTable $States
+ * @property \Data\Model\Table\CurrenciesTable $Currencies
+ * @property \Data\Model\Table\LanguagesTable $Languages
+ * @property \Data\Model\Table\ContinentsTable $Continents
+ * @property \Data\Model\Table\PostalCodesTable $PostalCodes
  */
 class ExportController extends AppController {
 
@@ -16,10 +21,9 @@ class ExportController extends AppController {
 	public $components = ['Cache.Cache'];
 
 	/**
-	 * ExportController::beforeFilter()
-	 *
 	 * @param \Cake\Event\Event $event
 	 * @return \Cake\Http\Response|null
+	 * @throws \Cake\Http\Exception\MethodNotAllowedException
 	 */
 	public function beforeFilter(Event $event) {
 		parent::beforeFilter($event);
@@ -34,15 +38,13 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * ExportController::afterFilter()
-	 *
 	 * @param \Cake\Event\Event $event
 	 * @return \Cake\Http\Response|null
 	 */
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);
 
-		if ($this->request->query('download')) {
+		if ($this->request->getQuery('download')) {
 			$this->response->download($this->request->params['action'] . '.' . $this->request->params['ext']);
 		}
 	}
@@ -57,7 +59,7 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function countries() {
-		$this->Countries = TableRegistry::get('Data.Countries');
+		$this->loadModel('Data.Countries');
 		$countries = $this->Countries->find('all', ['fields' => []]);
 
 		$this->set(compact('countries'));
@@ -70,7 +72,7 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function states() {
-		$this->States = TableRegistry::get('Data.States');
+		$this->loadModel('Data.States');
 		$states = $this->States->find('all', ['fields' => []]);
 
 		$this->set(compact('states'));
@@ -81,8 +83,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function currencies() {
-		$this->Currency = TableRegistry::get('Data.Currencies');
-		$currencies = $this->Currency->find('all', ['fields' => []]);
+		$this->loadModel('Data.Currencies');
+		$currencies = $this->Currencies->find('all', ['fields' => []]);
 
 		$this->set(compact('currencies'));
 		$this->set('_serialize', ['currencies']);
@@ -92,8 +94,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function languages() {
-		$this->Language = TableRegistry::get('Data.Languages');
-		$languages = $this->Language->find('all', ['fields' => []]);
+		$this->loadModel('Data.Languages');
+		$languages = $this->Languages->find('all', ['fields' => []]);
 
 		$this->set(compact('languages'));
 		$this->set('_serialize', ['languages']);
@@ -103,8 +105,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function continents() {
-		$this->Continent = TableRegistry::get('Data.Continents');
-		$continents = $this->Continent->find('all', ['fields' => []]);
+		$this->loadModel('Data.Continents');
+		$continents = $this->Continents->find('all', ['fields' => []]);
 
 		$this->set(compact('continents'));
 		$this->set('_serialize', ['continents']);
@@ -114,8 +116,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function postalCodes() {
-		$this->PostalCode = TableRegistry::get('Data.PostalCodes');
-		$postalCodes = $this->PostalCode->find('all', ['fields' => []]);
+		$this->loadModel('Data.PostalCodes');
+		$postalCodes = $this->PostalCodes->find('all', ['fields' => []]);
 
 		$this->set(compact('postalCodes'));
 		$this->set('_serialize', ['postalCodes']);

@@ -37,7 +37,7 @@ class SearchExamplesController extends SandboxAppController {
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
 
-		$countries = $this->paginate($this->CountryRecords->find('search', ['search' => $this->request->query]));
+		$countries = $this->paginate($this->CountryRecords->find('search', ['search' => $this->request->getQuery()]));
 
 		$this->set(compact('countries'));
 		$this->set('_serialize', ['countries']);
@@ -51,7 +51,7 @@ class SearchExamplesController extends SandboxAppController {
 	public function afterFilter(Event $event) {
 		parent::afterFilter($event);
 
-		if ($this->request->query('download')) {
+		if ($this->request->getQuery('download')) {
 			$this->response->download($this->request->params['action'] . '.' . $this->request->params['_ext']);
 		}
 	}

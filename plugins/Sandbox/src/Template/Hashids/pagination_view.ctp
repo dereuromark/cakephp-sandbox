@@ -32,5 +32,5 @@
 
 
 <ul>
-	<li><?php echo $this->Html->link('Back', ['action' => 'pagination', '?' => $this->request->query]); ?></li>
+	<li><?php echo $this->Html->link('Back', ['action' => 'pagination', '?' => $this->request->getQuery()]); ?></li>
 </ul>

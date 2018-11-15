@@ -1,0 +1,14 @@
+parameters:
+	autoload_files:
+		- tests/bootstrap.php
+		- tmp/CodeCompletionCakeORM.php
+
+	excludes_analyse:
+		- src/Console/Installer.php
+
+	ignoreErrors:
+		- '#Constant \w+ not found\.#'
+
+services:
+    -
+        class: Cake\PHPStan\AssociationTableMixinClassReflectionExtension

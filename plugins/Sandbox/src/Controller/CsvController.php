@@ -84,7 +84,7 @@ class CsvController extends SandboxAppController {
 			$this->set(compact('_serialize', '_header', '_extract', '_null'));
 		}
 
-		if ($this->request->query('download')) {
+		if ($this->request->getQuery('download')) {
 			$this->response->download('my-cool-country-list.csv');
 		}
 	}
