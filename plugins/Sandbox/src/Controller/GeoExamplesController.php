@@ -1,6 +1,9 @@
 <?php
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
+use Cake\Utility\Text;
+use Exception;
 use Geo\Exception\InconclusiveException;
 use Geo\Geocoder\Geocoder;
 
@@ -39,6 +42,8 @@ class GeoExamplesController extends SandboxAppController {
 		$country = $this->Countries->newEntity();
 
 		if ($this->Common->isPosted()) {
+			$this->Countries->addBehavior('Captcha.Captcha');
+
 			$this->Countries->getValidator()->add('address', [
 				'notEmpty' => [
 					'rule' => 'notBlank',
@@ -47,10 +52,10 @@ class GeoExamplesController extends SandboxAppController {
 				]]);
 			$country = $this->Countries->patchEntity($country, $this->request->getData());
 
-			$address = $this->request->data['address'];
+			$address = $this->request->getData('address');
 			$settings = [
-				'allowInconclusive' => $this->request->data['allow_inconclusive'],
-				'minAccuracy' => $this->request->data['min_accuracy']
+				'allowInconclusive' => $this->request->getData('allow_inconclusive'),
+				'minAccuracy' => $this->request->getData('min_accuracy'),
 			];
 			$geocoder->setConfig($settings);
 
@@ -60,6 +65,8 @@ class GeoExamplesController extends SandboxAppController {
 
 				} catch (InconclusiveException $e) {
 					$this->Flash->error(__('Nothing found'));
+				} catch (Exception $e) {
+					$this->Flash->error('Something went wrong: ' . (Configure::read('debug') ? $e->getMessage() : Text::truncate($e->getMessage(), 60)));
 				}
 			} else {
 				$this->Flash->error(__('formContainsErrors'));

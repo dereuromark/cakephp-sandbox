@@ -13,6 +13,10 @@
 		echo $this->Form->control('address');
 		echo $this->Form->control('allow_inconclusive', ['type' => 'checkbox']);
 		echo $this->Form->control('min_accuracy', []);
+
+		// To prevent DDOS or alike
+		$this->loadHelper('Captcha.Captcha');
+		echo $this->Captcha->render();
 	?>
 	</fieldset>
 	<?php echo $this->Form->submit(__('Submit')); ?>
