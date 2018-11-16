@@ -106,4 +106,11 @@ return [
 		'cleanuptimeout' => 2592000, // 30 days
 	],
 
+	'Geocoder' => [
+		'apiKey' => '',
+	],
+
+	'GoogleMap' => [
+		'key' => '',
+	],
 ];
