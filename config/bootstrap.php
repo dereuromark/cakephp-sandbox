@@ -212,6 +212,7 @@ Date::setToStringFormat('dd.MM.YYYY');
  * Plugin::loadAll(); // Loads all plugins at once
  * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
  */
+Plugin::load('DebugKit', ['bootstrap' => true]);
 
 Plugin::load('Setup', ['bootstrap' => true]);
 Plugin::load('Tools', ['bootstrap' => true]);
@@ -219,7 +220,6 @@ Plugin::load('Data', ['routes' => true]);
 Plugin::load('Setup', ['bootstrap' => true]);
 Plugin::load('Sandbox', ['routes' => true]);
 Plugin::load('AuthSandbox', ['routes' => true]);
-Plugin::load('DebugKit', ['bootstrap' => true]);
 Plugin::load('AssetCompress', ['bootstrap' => true]);
 Plugin::load('BootstrapUI');
 Plugin::load('Search');
