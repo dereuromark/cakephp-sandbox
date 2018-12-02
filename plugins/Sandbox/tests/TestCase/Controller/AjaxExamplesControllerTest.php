@@ -17,13 +17,6 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	public $fixtures = ['plugin.Data.Countries', 'app.users'];
 
 	/**
-	 * Allow router reloading to be disabled.
-	 *
-	 * @var bool
-	 */
-	protected $_disableRouterReload = true;
-
-	/**
 	 * @return void
 	 */
 	public function setUp() {
