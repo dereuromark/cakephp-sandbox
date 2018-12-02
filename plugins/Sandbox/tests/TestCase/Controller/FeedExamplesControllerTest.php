@@ -6,17 +6,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
-/**
- * FeedExamples
- */
 class FeedExamplesControllerTest extends IntegrationTestCase {
-
-	/**
-	 * Allow router reloading to be disabled.
-	 *
-	 * @var bool
-	 */
-	protected $_disableRouterReload = true;
 
 	/**
 	 * @return void

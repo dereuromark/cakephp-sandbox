@@ -5,8 +5,6 @@ namespace Sandbox\Test\TestCase\Controller;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
-/**
- */
 class SearchExamplesControllerTest extends IntegrationTestCase {
 
 	/**

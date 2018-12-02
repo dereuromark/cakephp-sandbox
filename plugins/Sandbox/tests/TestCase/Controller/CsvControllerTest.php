@@ -6,21 +6,12 @@ use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
-/**
- */
 class CsvControllerTest extends IntegrationTestCase {
 
 	/**
 	 * @var array
 	 */
 	public $fixtures = ['plugin.Data.Countries'];
-
-	/**
-	 * Allow router reloading to be disabled.
-	 *
-	 * @var bool
-	 */
-	protected $_disableRouterReload = true;
 
 	/**
 	 * @return void

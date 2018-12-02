@@ -5,8 +5,6 @@ namespace App\Test\TestCase\Controller;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
-/**
- */
 class ContactControllerTest extends IntegrationTestCase {
 
 	/**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "832e5d392b4b8468749fbe0610f6fbd4",
+    "content-hash": "2dcef09ba4dfb73613094a19ac7040ab",
     "packages": [
         {
             "name": "aura/intl",
@@ -54,16 +54,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.6.13",
+            "version": "dev-3.next",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "6a0b9c74710a56c5974d1c8229c7a91dac780402"
+                "reference": "c53429e805e6cdd443c23f2fc638512289440e0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/6a0b9c74710a56c5974d1c8229c7a91dac780402",
-                "reference": "6a0b9c74710a56c5974d1c8229c7a91dac780402",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c53429e805e6cdd443c23f2fc638512289440e0f",
+                "reference": "c53429e805e6cdd443c23f2fc638512289440e0f",
                 "shasum": ""
             },
             "require": {
@@ -73,6 +73,7 @@
                 "ext-mbstring": "*",
                 "php": ">=5.6.0",
                 "psr/log": "^1.0.0",
+                "psr/simple-cache": "^1.0.0",
                 "zendframework/zend-diactoros": "^1.4.0"
             },
             "conflict": {
@@ -98,6 +99,7 @@
                 "phpunit/phpunit": "^5.7.14|^6.0"
             },
             "suggest": {
+                "ext-curl": "To enable more efficient network calls in Http\\Client.",
                 "ext-openssl": "To use Security::encrypt() or have secure CSRF token generation.",
                 "lib-ICU": "The intl PHP library, to use Text::transliterate() or Text::slug()"
             },
@@ -136,7 +138,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2018-11-04T20:29:27+00:00"
+            "time": "2018-12-02T14:30:49+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -197,20 +199,20 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "dev-master",
+            "version": "3.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "b6a75d47b2b1be6f6db31fbdf60ed5e062f310db"
+                "reference": "6a9023ecc4ac0983c184cedf8e6142ab8ea4a3ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/b6a75d47b2b1be6f6db31fbdf60ed5e062f310db",
-                "reference": "b6a75d47b2b1be6f6db31fbdf60ed5e062f310db",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/6a9023ecc4ac0983c184cedf8e6142ab8ea4a3ff",
+                "reference": "6a9023ecc4ac0983c184cedf8e6142ab8ea4a3ff",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.6.0",
+                "cakephp/cakephp": "^3.7.0",
                 "cakephp/chronos": "^1.0.0",
                 "cakephp/plugin-installer": "^1.0.0",
                 "composer/composer": "^1.3.0",
@@ -253,7 +255,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2018-11-22T15:19:18+00:00"
+            "time": "2018-12-02T03:27:26+00:00"
         },
         {
             "name": "cakephp/localized",
@@ -894,12 +896,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "26be7948d4cf15e5716eab43850887d97f620b44"
+                "reference": "f1499f7535f7f78e06db9b5b7287d83be0b9fd2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/26be7948d4cf15e5716eab43850887d97f620b44",
-                "reference": "26be7948d4cf15e5716eab43850887d97f620b44",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/f1499f7535f7f78e06db9b5b7287d83be0b9fd2e",
+                "reference": "f1499f7535f7f78e06db9b5b7287d83be0b9fd2e",
                 "shasum": ""
             },
             "require": {
@@ -941,7 +943,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2018-11-18T23:35:01+00:00"
+            "time": "2018-12-02T15:18:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1638,12 +1640,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "2c85754e0f26c076110fe1630ecc1ca9c023f60b"
+                "reference": "2bb4a12c6f6165bffcb34ed563e66ce6c1260613"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/2c85754e0f26c076110fe1630ecc1ca9c023f60b",
-                "reference": "2c85754e0f26c076110fe1630ecc1ca9c023f60b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/2bb4a12c6f6165bffcb34ed563e66ce6c1260613",
+                "reference": "2bb4a12c6f6165bffcb34ed563e66ce6c1260613",
                 "shasum": ""
             },
             "require": {
@@ -1690,7 +1692,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2018-11-29T14:24:11+00:00"
+            "time": "2018-11-30T21:15:09+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",
@@ -3249,6 +3251,54 @@
             "time": "2018-11-20T15:27:04+00:00"
         },
         {
+            "name": "psr/simple-cache",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
             "name": "robmorgan/phinx",
             "version": "0.10.6",
             "source": {
@@ -4337,20 +4387,20 @@
         },
         {
             "name": "cakephp/bake",
-            "version": "1.8.6",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "bfa552a92a01cb1c878b3a3a67899fcd21569818"
+                "reference": "b69b9200d366634c75d68b2dff1362b16c7a8c1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/bfa552a92a01cb1c878b3a3a67899fcd21569818",
-                "reference": "bfa552a92a01cb1c878b3a3a67899fcd21569818",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/b69b9200d366634c75d68b2dff1362b16c7a8c1c",
+                "reference": "b69b9200d366634c75d68b2dff1362b16c7a8c1c",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.6.12",
+                "cakephp/cakephp": "^3.7.0",
                 "cakephp/plugin-installer": "^1.0",
                 "php": ">=5.6.0",
                 "wyrihaximus/twig-view": "^4.3.4"
@@ -4381,7 +4431,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2018-11-17T03:34:24+00:00"
+            "time": "2018-12-01T03:00:02+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -4389,17 +4439,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "ea37a13249a20bc4dd787ed9b15a47df066023ab"
+                "reference": "2bf6606dee8f5e18c3d686020932b484717a1f66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/ea37a13249a20bc4dd787ed9b15a47df066023ab",
-                "reference": "ea37a13249a20bc4dd787ed9b15a47df066023ab",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/2bf6606dee8f5e18c3d686020932b484717a1f66",
+                "reference": "2bf6606dee8f5e18c3d686020932b484717a1f66",
                 "shasum": ""
             },
             "require": {
                 "cakephp/bake": "^1.8.0",
-                "cakephp/cakephp": "^3.5",
+                "cakephp/cakephp": "^3.6",
                 "php": ">=5.6",
                 "sebastian/diff": "^1.4 || ^2.0 || ^3.0",
                 "squizlabs/php_codesniffer": "^3.0"
@@ -4443,7 +4493,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2018-11-09T15:31:37+00:00"
+            "time": "2018-12-02T10:47:47+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
@@ -5189,6 +5239,12 @@
     ],
     "aliases": [
         {
+            "alias": "3.7",
+            "alias_normalized": "3.7.0.0",
+            "version": "dev-3.next",
+            "package": "cakephp/cakephp"
+        },
+        {
             "alias": "1.0",
             "alias_normalized": "1.0.0.0",
             "version": "9999999-dev",
@@ -5203,6 +5259,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-tools": 20,
@@ -5226,7 +5283,6 @@
         "dereuromark/cakephp-calendar": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-databaselog": 20,
-        "cakephp/debug_kit": 20,
         "dereuromark/cakephp-feedback": 20,
         "dereuromark/cakephp-tags": 20,
         "dereuromark/media-embed": 20,
