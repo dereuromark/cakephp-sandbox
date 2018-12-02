@@ -12,7 +12,7 @@
 
 <h2>MediaEmbed</h2>
 <p>
-<a href="https://github.com/dereuromark/MediaEmbed" target="_blank">[MediaEmbed]</a> is a PHP library to deal with media services, parsing their URLs and displaying audio/video as embed HTML code.
+<a href="https://github.com/dereuromark/media-embed" target="_blank">[MediaEmbed]</a> is a PHP library to deal with media services, parsing their URLs and displaying audio/video as embed HTML code.
 </p>
 
 <h3>Parsing Video URL</h3>
