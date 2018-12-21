@@ -180,7 +180,7 @@ class AccountController extends AppController {
 
 		$this->Users->addBehavior('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
-			$user = $this->Users->patchEntity($user, $this->request->data, ['fields' => ['pwd', 'pwd_repeat']]);
+			$user = $this->Users->patchEntity($user, $this->request->getData(), ['fields' => ['pwd', 'pwd_repeat']]);
 
 			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
@@ -239,9 +239,8 @@ class AccountController extends AppController {
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
 		if ($this->Common->isPosted()) {
-			$this->request->data['id'] = $uid;
-			$fieldList = ['id', 'username', 'email', 'pwd', 'pwd_repeat'];
-			$this->Users->patchEntity($user, $this->request->data, ['fieldList' => $fieldList]);
+			$fieldList = ['username', 'email', 'pwd', 'pwd_repeat'];
+			$this->Users->patchEntity($user, $this->request->getData(), ['fieldList' => $fieldList]);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('Account modified'));
 
