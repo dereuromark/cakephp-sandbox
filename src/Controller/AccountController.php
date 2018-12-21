@@ -182,7 +182,7 @@ class AccountController extends AppController {
 		if ($this->Common->isPosted()) {
 			$user = $this->Users->patchEntity($user, $this->request->getData(), ['fields' => ['pwd', 'pwd_repeat']]);
 
-			if ($this->Users->save($user, ['fieldList' => ['id', 'pwd', 'pwd_repeat']])) {
+			if ($this->Users->save($user)) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
 				$this->request->session()->delete('Auth.Tmp');
 				$username = $this->Users->field('username', ['id' => $uid]);
@@ -191,8 +191,8 @@ class AccountController extends AppController {
 			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
+			unset($this->request->data['pwd']);
+			unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));
@@ -240,7 +240,7 @@ class AccountController extends AppController {
 
 		if ($this->Common->isPosted()) {
 			$fieldList = ['username', 'email', 'pwd', 'pwd_repeat'];
-			$this->Users->patchEntity($user, $this->request->getData(), ['fieldList' => $fieldList]);
+			$this->Users->patchEntity($user, $this->request->getData(), ['fields' => $fieldList]);
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('Account modified'));
 
