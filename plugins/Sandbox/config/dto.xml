@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<dtos
+	xmlns="cakephp-dto"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="cakephp-dto https://github.com/dereuromark/cakephp-dto">
+
+	<!-- Generate via: bin/cake dto generate -p Sandbox -->
+
+	<!-- We only outline the fields we need/want -->
+	
+	<dto name="Github/PullRequest">
+		<field name="url" type="string" required="true"/>
+		<field name="number" type="int" required="true"/>
+		<field name="state" type="string" required="true"/>
+		<field name="title" type="string" required="true"/>
+		<field name="body" type="string" required="true"/>
+		<field name="user" type="Github/User" required="true"/>
+		<field name="createdAt" type="\Cake\I18n\FrozenTime" required="true"/>
+		<field name="labels" type="Github/Label[]" associative="true" key="name"/>
+		<field name="head" type="Github/Head"/>
+		<field name="base" type="Github/Base"/>
+	</dto>
+
+	<dto name="Github/User">
+		<field name="login" type="string" required="true"/>
+		<field name="html_url" type="string" required="true"/>
+		<field name="type" type="string" required="true"/>
+	</dto>
+
+	<dto name="Github/Label">
+		<field name="name" type="string"/>
+		<field name="color" type="string"/>
+	</dto>
+
+	<dto name="Github/Head">
+		<field name="ref" type="string" required="true"/>
+		<field name="sha" type="string" required="true"/>
+		<field name="user" type="Github/User" required="true"/>
+		<field name="repo" type="Github/Repo" required="true"/>
+	</dto>
+
+	<dto name="Github/Base">
+		<field name="ref" type="string" required="true"/>
+		<field name="sha" type="string" required="true"/>
+		<field name="user" type="Github/User" required="true"/>
+		<field name="repo" type="Github/Repo" required="true"/>
+	</dto>
+
+	<dto name="Github/Repo">
+		<field name="name" type="string" required="true"/>
+		<field name="html_url" type="string" required="true"/>
+		<field name="private" type="bool" required="true"/>
+		<field name="owner" type="Github/User" required="true"/>
+	</dto>
+
+</dtos>

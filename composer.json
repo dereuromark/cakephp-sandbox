@@ -56,7 +56,8 @@
 		"dompdf/dompdf": "^0.7.0",
 		"dereuromark/cakephp-feedback": "dev-master",
 		"dereuromark/cakephp-tags": "dev-master",
-		"dereuromark/media-embed": "dev-master"
+		"dereuromark/media-embed": "dev-master",
+		"dereuromark/cakephp-dto": "dev-master"
 	},
 	"require-dev": {
 		"psy/psysh": "@stable",

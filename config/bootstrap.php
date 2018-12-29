@@ -233,6 +233,7 @@ Plugin::load('CakePdf', ['routes' => true]);
 Plugin::load('Cache', ['routes' => true]);
 Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
 Plugin::load('DatabaseLog', ['bootstrap' => true, 'routes' => true]);
+Plugin::load('CakeDto', ['bootstrap' => true]);
 
 if (Configure::read('debug')) {
 	Plugin::load('TestHelper', ['routes' => true]);
