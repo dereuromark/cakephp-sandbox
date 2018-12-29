@@ -237,7 +237,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setUrl(string $url) {
+	public function setUrl($url) {
 		$this->url = $url;
 		$this->_touchedFields[self::FIELD_URL] = true;
 
@@ -247,7 +247,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getUrl(): string {
+	public function getUrl() {
 		return $this->url;
 	}
 
@@ -263,7 +263,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setNumber(int $number) {
+	public function setNumber($number) {
 		$this->number = $number;
 		$this->_touchedFields[self::FIELD_NUMBER] = true;
 
@@ -273,7 +273,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return int
 	 */
-	public function getNumber(): int {
+	public function getNumber() {
 		return $this->number;
 	}
 
@@ -289,7 +289,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setState(string $state) {
+	public function setState($state) {
 		$this->state = $state;
 		$this->_touchedFields[self::FIELD_STATE] = true;
 
@@ -299,7 +299,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getState(): string {
+	public function getState() {
 		return $this->state;
 	}
 
@@ -315,7 +315,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setTitle(string $title) {
+	public function setTitle($title) {
 		$this->title = $title;
 		$this->_touchedFields[self::FIELD_TITLE] = true;
 
@@ -325,7 +325,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getTitle(): string {
+	public function getTitle() {
 		return $this->title;
 	}
 
@@ -341,7 +341,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setBody(string $body) {
+	public function setBody($body) {
 		$this->body = $body;
 		$this->_touchedFields[self::FIELD_BODY] = true;
 
@@ -351,7 +351,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getBody(): string {
+	public function getBody() {
 		return $this->body;
 	}
 
@@ -377,7 +377,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\UserDto
 	 */
-	public function getUser(): \Sandbox\Dto\Github\UserDto {
+	public function getUser() {
 		return $this->user;
 	}
 
@@ -403,7 +403,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Cake\I18n\FrozenTime
 	 */
-	public function getCreatedAt(): \Cake\I18n\FrozenTime {
+	public function getCreatedAt() {
 		return $this->createdAt;
 	}
 
@@ -429,7 +429,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\LabelDto[]
 	 */
-	public function getLabels(): array {
+	public function getLabels() {
 		if ($this->labels === null) {
 			return [];
 		}
@@ -444,7 +444,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @throws \RuntimeException If value with this key is not set.
 	 */
-	public function getLabel($key): \Sandbox\Dto\Github\LabelDto {
+	public function getLabel($key) {
 		if (!isset($this->labels[$key])) {
 			throw new \RuntimeException(sprintf('Value not set for field `labels` and key `%s` (expected to be not null)', $key));
 		}
@@ -492,7 +492,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHead(?\Sandbox\Dto\Github\HeadDto $head = null) {
+	public function setHead(\Sandbox\Dto\Github\HeadDto $head = null) {
 		$this->head = $head;
 		$this->_touchedFields[self::FIELD_HEAD] = true;
 
@@ -502,7 +502,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\HeadDto|null
 	 */
-	public function getHead(): ?\Sandbox\Dto\Github\HeadDto {
+	public function getHead() {
 		return $this->head;
 	}
 
@@ -511,7 +511,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return \Sandbox\Dto\Github\HeadDto
 	 */
-	public function getHeadOrFail(): \Sandbox\Dto\Github\HeadDto {
+	public function getHeadOrFail() {
 		if (!isset($this->head)) {
 			throw new \RuntimeException('Value not set for field `head` (expected to be not null)');
 		}
@@ -531,7 +531,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setBase(?\Sandbox\Dto\Github\BaseDto $base = null) {
+	public function setBase(\Sandbox\Dto\Github\BaseDto $base = null) {
 		$this->base = $base;
 		$this->_touchedFields[self::FIELD_BASE] = true;
 
@@ -541,7 +541,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\BaseDto|null
 	 */
-	public function getBase(): ?\Sandbox\Dto\Github\BaseDto {
+	public function getBase() {
 		return $this->base;
 	}
 
@@ -550,7 +550,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return \Sandbox\Dto\Github\BaseDto
 	 */
-	public function getBaseOrFail(): \Sandbox\Dto\Github\BaseDto {
+	public function getBaseOrFail() {
 		if (!isset($this->base)) {
 			throw new \RuntimeException('Value not set for field `base` (expected to be not null)');
 		}

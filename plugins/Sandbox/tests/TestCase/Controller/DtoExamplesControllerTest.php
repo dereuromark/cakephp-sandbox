@@ -1,0 +1,43 @@
+<?php
+
+namespace Sandbox\Test\TestCase\Controller;
+
+use Cake\ORM\TableRegistry;
+use Cake\Routing\Router;
+use Tools\TestSuite\IntegrationTestCase;
+
+/**
+ * App\Controller\DtoExamplesController Test Case
+ */
+class DtoExamplesControllerTest extends IntegrationTestCase {
+
+	/**
+	 * @return void
+	 */
+	public function tearDown() {
+		parent::tearDown();
+
+		TableRegistry::clear();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testIndex() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testGithub() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'github']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+}

@@ -47,7 +47,7 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 
 <pre><?php echo h(file_get_contents(__DIR__ . DS . 'pr.ctp')); ?></pre>
 
-	<h4>Result</h4>
+	<h4>Resulting output</h4>
 	<?php echo $this->element('../DtoExamples/pr')?>
 
 

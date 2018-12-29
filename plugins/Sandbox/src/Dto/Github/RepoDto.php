@@ -115,7 +115,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setName(string $name) {
+	public function setName($name) {
 		$this->name = $name;
 		$this->_touchedFields[self::FIELD_NAME] = true;
 
@@ -125,7 +125,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getName(): string {
+	public function getName() {
 		return $this->name;
 	}
 
@@ -141,7 +141,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHtml_url(string $html_url) {
+	public function setHtml_url($html_url) {
 		$this->html_url = $html_url;
 		$this->_touchedFields[self::FIELD_HTML_URL] = true;
 
@@ -151,7 +151,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getHtml_url(): string {
+	public function getHtml_url() {
 		return $this->html_url;
 	}
 
@@ -167,7 +167,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setPrivate(bool $private) {
+	public function setPrivate($private) {
 		$this->private = $private;
 		$this->_touchedFields[self::FIELD_PRIVATE] = true;
 
@@ -177,7 +177,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return bool
 	 */
-	public function getPrivate(): bool {
+	public function getPrivate() {
 		return $this->private;
 	}
 
@@ -203,7 +203,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\UserDto
 	 */
-	public function getOwner(): \Sandbox\Dto\Github\UserDto {
+	public function getOwner() {
 		return $this->owner;
 	}
 

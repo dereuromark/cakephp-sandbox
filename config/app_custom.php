@@ -58,6 +58,10 @@ return [
 		'defaultOutputTimezone' => 'Europe/Berlin',
 	],
 
+	'CakeDto'=> [
+		'scalarTypeHints' => false,
+	],
+
 	'FormConfig' => [
 		'novalidate' => true,
 		'templates' => [

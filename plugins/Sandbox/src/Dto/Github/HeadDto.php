@@ -115,7 +115,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setRef(string $ref) {
+	public function setRef($ref) {
 		$this->ref = $ref;
 		$this->_touchedFields[self::FIELD_REF] = true;
 
@@ -125,7 +125,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getRef(): string {
+	public function getRef() {
 		return $this->ref;
 	}
 
@@ -141,7 +141,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setSha(string $sha) {
+	public function setSha($sha) {
 		$this->sha = $sha;
 		$this->_touchedFields[self::FIELD_SHA] = true;
 
@@ -151,7 +151,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getSha(): string {
+	public function getSha() {
 		return $this->sha;
 	}
 
@@ -177,7 +177,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\UserDto
 	 */
-	public function getUser(): \Sandbox\Dto\Github\UserDto {
+	public function getUser() {
 		return $this->user;
 	}
 
@@ -203,7 +203,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\RepoDto
 	 */
-	public function getRepo(): \Sandbox\Dto\Github\RepoDto {
+	public function getRepo() {
 		return $this->repo;
 	}
 

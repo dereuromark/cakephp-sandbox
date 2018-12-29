@@ -95,7 +95,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setLogin(string $login) {
+	public function setLogin($login) {
 		$this->login = $login;
 		$this->_touchedFields[self::FIELD_LOGIN] = true;
 
@@ -105,7 +105,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getLogin(): string {
+	public function getLogin() {
 		return $this->login;
 	}
 
@@ -121,7 +121,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHtml_url(string $html_url) {
+	public function setHtml_url($html_url) {
 		$this->html_url = $html_url;
 		$this->_touchedFields[self::FIELD_HTML_URL] = true;
 
@@ -131,7 +131,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getHtml_url(): string {
+	public function getHtml_url() {
 		return $this->html_url;
 	}
 
@@ -147,7 +147,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setType(string $type) {
+	public function setType($type) {
 		$this->type = $type;
 		$this->_touchedFields[self::FIELD_TYPE] = true;
 
@@ -157,7 +157,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getType(): string {
+	public function getType() {
 		return $this->type;
 	}
 

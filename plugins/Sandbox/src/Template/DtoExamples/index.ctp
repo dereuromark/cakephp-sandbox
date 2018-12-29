@@ -13,11 +13,10 @@
 <h3>Basic Usage</h3>
 	<p>The most common use cases are usually</p>
 	<ul>
-		<li>Email sending (because of gateway timeouts)</li>
-		<li>Video/image processing (because of memory/timeout issues)</li>
-		<li>Invoice/PDF/zipfile generation (because of timeout issues)</li>
+		<li>Incoming JSON/Array data (unstructured)</li>
+		<li>Entity-less speaking objects (non ORM related)</li>
 	</ul>
-	<p>You don't want the browser to reload forever and eventually the request to die. Instead, you want to quickly give feedback of the task being started and then just inform them again once the job is done.</p>
 
+	<p>See <a href="https://github.com/dereuromark/cakephp-dto/blob/master/docs/Examples.md" target="_blank">this</a> for some basic examples.</p>
 
 </div>
