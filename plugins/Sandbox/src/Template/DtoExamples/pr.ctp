@@ -6,6 +6,9 @@
 ?>
 <p>
 	<b>PR: <?php echo h($pullRequestDto->getNumber()); ?> (<?php echo h($pullRequestDto->getTitle()); ?>)</b>
+	<?php foreach ($pullRequestDto->getLabels() as $label) { ?>
+		<span class="badge" style="background-color: #<?php echo h($label->getColor()); ?>"><?php echo h($label->getName()); ?></span>
+	<?php } ?>
 </p>
 <p>
 	Head: <?php echo h($pullRequestDto->getHead()->getRef()) . ':' . $pullRequestDto->getHead()->getSha(); ?>

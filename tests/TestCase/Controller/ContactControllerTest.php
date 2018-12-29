@@ -11,8 +11,8 @@ class ContactControllerTest extends IntegrationTestCase {
 	 * @var array
 	 */
 	public $fixtures = [
-        'plugin.Captcha.Captchas'
-    ];
+		'plugin.Captcha.Captchas'
+	];
 
 	/**
 	 * @return void
