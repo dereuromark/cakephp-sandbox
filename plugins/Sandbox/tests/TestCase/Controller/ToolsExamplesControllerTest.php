@@ -10,7 +10,11 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['app.Users', 'plugin.Sandbox.SandboxUsers', 'plugin.Sandbox.SandboxAnimals'];
+	public $fixtures = [
+        'app.Users',
+        'plugin.Sandbox.SandboxUsers',
+        'plugin.Sandbox.SandboxAnimals'
+    ];
 
 	/**
 	 * @return void

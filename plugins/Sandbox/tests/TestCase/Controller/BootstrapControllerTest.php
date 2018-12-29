@@ -13,7 +13,10 @@ class BootstrapControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['plugin.Sandbox.SandboxAnimals', 'plugin.Sandbox.SandboxUsers'];
+	public $fixtures = [
+        'plugin.Sandbox.SandboxAnimals',
+        'plugin.Sandbox.SandboxUsers'
+    ];
 
 	/**
 	 * @return void

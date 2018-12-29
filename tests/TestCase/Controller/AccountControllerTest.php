@@ -15,7 +15,10 @@ class AccountControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['Users' => 'app.users', 'Roles' => 'app.roles'];
+	public $fixtures = [
+        'app.Users',
+        'app.Roles'
+    ];
 
 	/**
 	 * @return void

@@ -14,7 +14,10 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['plugin.Data.Countries', 'app.users'];
+	public $fixtures = [
+        'plugin.Data.Countries',
+        'app.Users'
+    ];
 
 	/**
 	 * @return void

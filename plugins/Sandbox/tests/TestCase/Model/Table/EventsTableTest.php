@@ -22,8 +22,8 @@ class EventsTableTest extends TestCase {
 	 * @var array
 	 */
 	public $fixtures = [
-		'plugin.sandbox.events'
-	];
+        'plugin.Sandbox.Events'
+    ];
 
 	/**
 	 * setUp method

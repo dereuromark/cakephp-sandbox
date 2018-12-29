@@ -10,7 +10,9 @@ class HashidsControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = ['plugin.Data.Countries'];
+	public $fixtures = [
+        'plugin.Data.Countries'
+    ];
 
 	/**
 	 * @return void
