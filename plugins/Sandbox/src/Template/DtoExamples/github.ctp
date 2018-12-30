@@ -50,5 +50,16 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 	<h4>Resulting output</h4>
 	<?php echo $this->element('../DtoExamples/pr')?>
 
+	<hr>
+
+
+	<p>
+		As you can see (and try out):
+	</p>
+	<ul>
+		<li>Typing out the existing fields is super fast and easy (no tedious lookup on the nested array).</li>
+		<li>Full return-type-hinting (string, int, bool, object, ...) will let you know if you use sth wrongly without having to run it first (string operation on a non-string etc).</li>
+	</ul>
+
 
 </div>
