@@ -58,7 +58,7 @@ return [
 		'defaultOutputTimezone' => 'Europe/Berlin',
 	],
 
-	'CakeDto'=> [
+	'CakeDto' => [
 		'scalarTypeHints' => false,
 	],
 

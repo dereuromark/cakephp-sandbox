@@ -8,6 +8,9 @@ namespace Sandbox\Dto\Github;
 
 /**
  * Github/Label DTO
+ *
+ * @property string|null $name
+ * @property string|null $color
  */
 class LabelDto extends \CakeDto\Dto\AbstractDto {
 

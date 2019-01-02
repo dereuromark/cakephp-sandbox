@@ -21,16 +21,6 @@ class DtoExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
-	 */
-	public function simple() {
-		if ($this->request->is(['post'])) {
-
-			dd($this->request->getData());
-		}
-	}
-
-	/**
 	 * Using a demo PR from GitHub to show case DTOs' power.
 	 *
 	 * @return void

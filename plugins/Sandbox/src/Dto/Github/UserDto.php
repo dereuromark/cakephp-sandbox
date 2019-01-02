@@ -8,6 +8,10 @@ namespace Sandbox\Dto\Github;
 
 /**
  * Github/User DTO
+ *
+ * @property string $login
+ * @property string $html_url
+ * @property string $type
  */
 class UserDto extends \CakeDto\Dto\AbstractDto {
 

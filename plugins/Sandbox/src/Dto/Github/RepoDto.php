@@ -8,6 +8,11 @@ namespace Sandbox\Dto\Github;
 
 /**
  * Github/Repo DTO
+ *
+ * @property string $name
+ * @property string $html_url
+ * @property bool $private
+ * @property \Sandbox\Dto\Github\UserDto $owner
  */
 class RepoDto extends \CakeDto\Dto\AbstractDto {
 

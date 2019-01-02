@@ -3,7 +3,6 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\ORM\TableRegistry;
-use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**

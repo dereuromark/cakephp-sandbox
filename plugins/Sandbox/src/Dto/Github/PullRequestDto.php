@@ -8,6 +8,17 @@ namespace Sandbox\Dto\Github;
 
 /**
  * Github/PullRequest DTO
+ *
+ * @property string $url
+ * @property int $number
+ * @property string $state
+ * @property string $title
+ * @property string $body
+ * @property \Sandbox\Dto\Github\UserDto $user
+ * @property \Cake\I18n\FrozenTime $createdAt
+ * @property \Sandbox\Dto\Github\LabelDto[] $labels
+ * @property \Sandbox\Dto\Github\HeadDto|null $head
+ * @property \Sandbox\Dto\Github\BaseDto|null $base
  */
 class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 

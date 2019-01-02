@@ -8,6 +8,11 @@ namespace Sandbox\Dto\Github;
 
 /**
  * Github/Head DTO
+ *
+ * @property string $ref
+ * @property string $sha
+ * @property \Sandbox\Dto\Github\UserDto $user
+ * @property \Sandbox\Dto\Github\RepoDto $repo
  */
 class HeadDto extends \CakeDto\Dto\AbstractDto {
 
