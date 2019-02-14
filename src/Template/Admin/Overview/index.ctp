@@ -41,5 +41,6 @@
 		<li><?php echo $this->Html->link(__('Translations'), ['admin' => false, 'plugin' => 'translate', 'controller' => 'translate', 'action' => 'index'])?></li>
 	<?php } ?>
 
+	<li><?php echo $this->Html->link(__('Queue'), ['prefix' => 'admin', 'plugin' => 'Queue', 'controller' => 'Queue'])?></li>
 	<li><?php echo $this->Html->link(__('Logs'), ['prefix' => 'admin', 'plugin' => 'DatabaseLog', 'controller' => 'Logs'])?></li>
 </ul>

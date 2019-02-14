@@ -29,7 +29,7 @@
 		"drmonkeyninja/cakephp-social-share": "dev-master",
 		"gourmet/knp-menu": "dev-master",
 		"markstory/asset_compress" : "^3.4.1",
-		"natxet/CssMin": "dev-master",
+		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
 		"dereuromark/cakephp-data" : "dev-master",
 		"dereuromark/cakephp-captcha" : "dev-master",
