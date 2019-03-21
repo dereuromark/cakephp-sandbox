@@ -449,7 +449,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string $key
+	 * @param string|int $key
 	 *
 	 * @return \Sandbox\Dto\Github\LabelDto
 	 *
@@ -475,7 +475,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string $key
+	 * @param string|int $key
 	 * @return bool
 	 */
 	public function hasLabel($key) {
@@ -483,7 +483,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string $key
+	 * @param string|int $key
 	 * @param \Sandbox\Dto\Github\LabelDto $label
 	 * @return $this
 	 */
