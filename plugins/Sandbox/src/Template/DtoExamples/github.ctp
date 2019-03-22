@@ -8,7 +8,11 @@ use Cake\Core\Plugin;
 use Cake\Error\Debugger;
 
 $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
+
+echo $this->Html->css('Sandbox.highlighting/github.css');
 ?>
+<script src="https://highlightjs.org/static/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 <nav class="actions col-sm-4 col-xs-12">
 	<?php echo $this->element('navigation/dto'); ?>
@@ -28,24 +32,22 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 		We use <a href="https://developer.github.com/v3/pulls/#get-a-single-pull-request">this demo data</a> to simulate a request to GitHub API to get a single PR.
 		And we use some simple DTOs here for the fields we need in the template:
 	</p>
-<pre><?php echo h(file_get_contents($dtoFile)); ?></pre>
+<?php echo $this->Highlighter->highlight(file_get_contents($dtoFile), ['lang' => 'xml'])?>
 
 	<p>All we now need to do is to convert the raw JSON/array into our nested DTO object:</p>
-	<pre>$pullRequestDto = PullRequestDto::create($simulatedDataFromGitHubApi, true, PullRequestDto::TYPE_UNDERSCORED);</pre>
+<?php echo $this->Highlighter->highlight('$pullRequestDto = PullRequestDto::create($gitHubApiData, true, PullRequestDto::TYPE_UNDERSCORED);', ['lang' => 'php']); ?>
 
 	<p>We use "ignoreMissing" as true as we do not assign all array values, and we also need to tell it to expect an underscored form.</p>
 
 
 	<h4>dd($pullRequestDto) result</h4>
 	<p>Using debug() or dd() we can easily show what the DTO contains:</p>
-	<pre><?php
-	echo Debugger::exportVar($pullRequestDto, 9);
-	?></pre>
+<?php echo $this->Highlighter->highlight(Debugger::exportVar($pullRequestDto, 9), ['lang' => 'php'])?>
 
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>
 
-<pre><?php echo h(file_get_contents(__DIR__ . DS . 'pr.ctp')); ?></pre>
+<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.ctp'), ['lang' => 'php'])?>
 
 	<h4>Resulting output</h4>
 	<?php echo $this->element('../DtoExamples/pr')?>
