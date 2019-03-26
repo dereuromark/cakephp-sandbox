@@ -13,7 +13,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxPost newEntity($data = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[] newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[] patchEntities($entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, callable $callback = null, $options = [])

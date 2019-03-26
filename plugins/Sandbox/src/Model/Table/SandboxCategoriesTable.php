@@ -9,7 +9,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxCategory newEntity($data = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory[] newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \Sandbox\Model\Entity\SandboxCategory|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCategory saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory[] patchEntities($entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory findOrCreate($search, callable $callback = null, $options = [])

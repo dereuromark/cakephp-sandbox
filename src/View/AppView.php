@@ -31,6 +31,7 @@ use Cake\View\View;
  * @property \Tags\View\Helper\TagCloudHelper $TagCloud
  * @property \Tags\View\Helper\TagHelper $Tag
  * @property \Tools\View\Helper\TypographyHelper $Typography
+ * @property \Markup\View\Helper\HighlighterHelper $Highlighter
  */
 class AppView extends View {
 

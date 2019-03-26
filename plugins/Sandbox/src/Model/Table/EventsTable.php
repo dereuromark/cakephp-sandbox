@@ -15,7 +15,7 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
- * @method \Sandbox\Model\Entity\Event|bool saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  */
 class EventsTable extends Table {
 
