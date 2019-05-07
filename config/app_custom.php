@@ -85,6 +85,9 @@ return [
 	],
 
 	'IdeHelper' => [
+		'annotators' => [
+			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
+		],
 		'includedPlugins' => [
 			'Sandbox',
 			'AuthSandbox',

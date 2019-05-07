@@ -1,7 +1,7 @@
 <?php
 namespace Sandbox\Model\Entity;
 
-use Cake\ORM\Entity;
+use App\Model\Entity\Entity;
 
 /**
  * Event Entity
@@ -14,6 +14,14 @@ use Cake\ORM\Entity;
  * @property string $description
  * @property \Cake\I18n\FrozenTime|null $beginning
  * @property \Cake\I18n\FrozenTime|null $end
+ * @method int getIdOrFail()
+ * @method string getTitleOrFail()
+ * @method string getLocationOrFail()
+ * @method float getLatOrFail()
+ * @method float getLngOrFail()
+ * @method string getDescriptionOrFail()
+ * @method \Cake\I18n\FrozenTime getBeginningOrFail()
+ * @method \Cake\I18n\FrozenTime getEndOrFail()
  */
 class Event extends Entity {
 

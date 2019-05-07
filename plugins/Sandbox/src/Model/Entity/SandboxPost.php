@@ -1,7 +1,7 @@
 <?php
 namespace Sandbox\Model\Entity;
 
-use Cake\ORM\Entity;
+use App\Model\Entity\Entity;
 
 /**
  * @property int $id
@@ -14,6 +14,15 @@ use Cake\ORM\Entity;
  * @property \Tags\Model\Entity\Tagged[] $tagged
  * @property \Tags\Model\Entity\Tag[] $tags
  * @property string $tag_list !
+ * @method int getIdOrFail()
+ * @method string getTitleOrFail()
+ * @method string getContentOrFail()
+ * @method int getRatingCountOrFail()
+ * @method int getRatingSumOrFail()
+ * @method \Cake\I18n\FrozenTime getCreatedOrFail()
+ * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method \Tags\Model\Entity\Tagged[] getTaggedOrFail()
+ * @method \Tags\Model\Entity\Tag[] getTagsOrFail()
  */
 class SandboxPost extends Entity {
 

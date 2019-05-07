@@ -1,8 +1,6 @@
 <?php
 namespace App\Model\Entity;
 
-use Cake\ORM\Entity;
-
 /**
  * User Entity
  *
@@ -17,6 +15,17 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime $modified
  * @property \Cake\I18n\FrozenTime|null $last_login
  * @property \Cake\ORM\Entity $role
+ * @method int getIdOrFail()
+ * @method bool getActiveOrFail()
+ * @method \Cake\I18n\FrozenTime getLastLoginOrFail()
+ * @method \Cake\I18n\FrozenTime getCreatedOrFail()
+ * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method int getLoginsOrFail()
+ * @method string getUsernameOrFail()
+ * @method string getPasswordOrFail()
+ * @method string getEmailOrFail()
+ * @method int getRoleIdOrFail()
+ * @method \Cake\ORM\Entity getRoleOrFail()
  */
 class User extends Entity {
 

@@ -1,7 +1,7 @@
 <?php
 namespace Sandbox\Model\Entity;
 
-use Cake\ORM\Entity;
+use App\Model\Entity\Entity;
 
 /**
  * @property int $id
@@ -13,6 +13,15 @@ use Cake\ORM\Entity;
  * @property int|null $rght
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @method int getIdOrFail()
+ * @method int getParentIdOrFail()
+ * @method string getNameOrFail()
+ * @method string getDescriptionOrFail()
+ * @method int getStatusOrFail()
+ * @method int getLftOrFail()
+ * @method int getRghtOrFail()
+ * @method \Cake\I18n\FrozenTime getCreatedOrFail()
+ * @method \Cake\I18n\FrozenTime getModifiedOrFail()
  */
 class SandboxCategory extends Entity {
 
