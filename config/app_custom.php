@@ -59,6 +59,7 @@ return [
 	],
 
 	'CakeDto' => [
+		'strictTypes' => false,
 		'scalarTypeHints' => false,
 	],
 
