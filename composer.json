@@ -100,6 +100,7 @@
 			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/"
 		],
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
+		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "php phpunit.phar",
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
