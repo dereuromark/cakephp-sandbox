@@ -15,7 +15,7 @@ use Cake\View\View;
  * @property \App\View\Helper\SandboxHelper $Sandbox
  * @property \Tools\View\Helper\HtmlHelper $Html
  * @property \Tools\View\Helper\UrlHelper $Url
- * @property \BootstrapUI\View\Helper\FormHelper $Form
+ * @property \App\View\Helper\FormHelper $Form
  * @property \Tools\View\Helper\CommonHelper $Common
  * @property \Flash\View\Helper\FlashHelper $Flash
  * @property \Tools\View\Helper\TimeHelper $Time

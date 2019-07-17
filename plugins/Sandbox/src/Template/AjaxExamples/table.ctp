@@ -57,8 +57,8 @@
         $('table.list a.postLink').removeAttr('onclick').click(function(e) {
             e.preventDefault();
 
-            var alert = '<?php echo __('Sure?')?>';
-            if (!confirm(alert)) {
+            var alert = $(this).data('confirm');
+            if (alert && !confirm(alert)) {
                 return false;
             }
             var form = $(this).prev();
