@@ -11,7 +11,7 @@
     "moment": "latest",
     "clockpicker": "latest",
     "bootstrap-star-rating": "^4.0.3",
-    "jquery-infinite-scroll": "latest",
+    "jquery-infinite-scroll": "^3.0",
     "raty-fa": "latest",
     "select2": "^4.0.5"
   },

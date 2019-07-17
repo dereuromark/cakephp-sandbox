@@ -3,12 +3,16 @@
  * @var \App\View\AppView $this
  */
 ?>
-<?php echo $this->Html->script('/assets/jquery-infinite-scroll/jquery.infinitescroll.js'); ?>
+<?php echo $this->Html->script('/assets/jquery-infinite-scroll/dist/infinite-scroll.pkgd.js'); ?>
 <script>
 	$(function() {
 		var $container = $('#pagination-container');
 
-		$container.infinitescroll({
+		$container.infiniteScroll({
+            path: '.next a',
+            append: '.country-item',
+            status: '.scroller-status',
+            hideNav: '.paging',
 				navSelector: '.paging', // selector for the paged navigation
 				nextSelector: '.next a', // selector for the NEXT link (to page 2)
 				itemSelector: '.country-item', // selector for all items you'll retrieve
@@ -16,7 +20,7 @@
 				dataType: 'html',
 				loading: {
 					finishedMsg: 'No more posts to load!',
-					img: 'http://miftyisbored.com/wp-tutorials/cakephp-infinite-scroll/img/spinner.gif'
+					img: 'https://miftyisbored.com/wp-tutorials/cakephp-infinite-scroll/img/spinner.gif'
 				}
 		});
 
@@ -36,6 +40,15 @@
 		<br>
 		It will then just fall back to the normal pagination with links at the bottom (try it).
 	</p>
+
+	<!-- status elements -->
+	<div class="scroller-status">
+		<div class="infinite-scroll-request loader-ellips">
+			...
+		</div>
+		<p class="infinite-scroll-last">End of content</p>
+		<p class="infinite-scroll-error">No more pages to load</p>
+	</div>
 
 <div id="pagination-container">
 <?php echo $this->element('../AjaxExamples/endless_scroll_container'); ?>
