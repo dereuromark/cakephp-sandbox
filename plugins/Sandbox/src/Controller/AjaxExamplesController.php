@@ -12,6 +12,11 @@ use Cake\Http\Exception\NotFoundException;
 class AjaxExamplesController extends SandboxAppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	public $components = ['Data.CountryStateHelper'];

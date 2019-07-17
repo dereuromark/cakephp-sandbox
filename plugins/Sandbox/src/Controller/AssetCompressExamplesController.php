@@ -10,6 +10,11 @@ use MiniAsset\Filter\ScssFilter;
 class AssetCompressExamplesController extends SandboxAppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var string|null
 	 */
 	protected $_cssDir;

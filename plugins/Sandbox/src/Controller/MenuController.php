@@ -7,6 +7,11 @@ namespace Sandbox\Controller;
 class MenuController extends SandboxAppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	public $components = ['Gourmet/KnpMenu.Menu'];

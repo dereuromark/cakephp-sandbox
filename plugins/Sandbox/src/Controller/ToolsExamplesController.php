@@ -11,6 +11,11 @@ namespace Sandbox\Controller;
 class ToolsExamplesController extends SandboxAppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @return void
 	 */
 	public function index() {

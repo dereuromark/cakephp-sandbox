@@ -10,6 +10,11 @@ use Cake\I18n\Time;
 class CsvController extends SandboxAppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	public $components = [

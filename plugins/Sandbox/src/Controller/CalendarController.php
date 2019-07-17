@@ -2,12 +2,11 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
+use Cake\Http\Exception\InternalErrorException;
 use Cake\I18n\Time;
-use Cake\Network\Exception\InternalErrorException;
 
 /**
  * @property \Sandbox\Model\Table\EventsTable $Events
- * @property \Data\Model\Table\CountryProvincesTable $CountryProvinces
  * @property \Data\Model\Table\StatesTable $States
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
@@ -62,12 +61,15 @@ class CalendarController extends SandboxAppController {
 	public function view($id = null) {
 		$event = $this->Events->get($id);
 
+		$year = null;
+		$month = null;
 		$this->set(compact('event', 'year', 'month'));
 	}
 
 	/**
 	 * @param array $options
 	 * @return void
+	 * @throws \Cake\Http\Exception\InternalErrorException
 	 */
 	protected function _populateDemoData(array $options) {
 		if ($this->Events->find('calendar', $options)->count()) {

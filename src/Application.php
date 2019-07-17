@@ -45,6 +45,7 @@ class Application extends BaseApplication {
 			// Handle cached files
 			->add(new CacheMiddleware([
 				'when' => function ($request, $response) {
+					/** @var \Cake\Http\ServerRequest $request */
 					return $request->is('get');
 				},
 			]))

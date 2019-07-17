@@ -8,6 +8,11 @@ use ReflectionClass;
 class InflectorController extends AppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	protected $_reflectExceptions = [

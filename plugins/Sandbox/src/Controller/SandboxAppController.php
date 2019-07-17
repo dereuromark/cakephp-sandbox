@@ -7,6 +7,11 @@ use Cake\Controller\Controller;
 class SandboxAppController extends AppController {
 
 	/**
+	 * @var string|bool
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @param \Cake\Controller\Controller $Controller
 	 * @return array
 	 */
