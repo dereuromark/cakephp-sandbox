@@ -37,7 +37,7 @@
 					<?php echo h($country['iso2']); ?>
 				</td>
 				<td class="actions">
-					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country['id']], ['class' => 'btn btn-default postLink', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country['name'])]); ?>
+					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country['id']], ['class' => 'btn btn-default ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country['name'])]); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
@@ -50,11 +50,18 @@
 
 </div>
 
+
+	<p>All this needs is basically</p>
+	<ul>
+		<li>A "post link" with e.g. a <code>ajax-delete</code> class added to signal this should be ajax-deletable.</li>
+		<li>A small JS snippet (see source code)</li>
+	</ul>
+
 </div>
 
 <script>
     $(document).ready(function() {
-        $('table.list a.postLink').removeAttr('onclick').click(function(e) {
+        $('table.list a.ajax-delete').removeAttr('onclick').click(function(e) {
             e.preventDefault();
 
             var alert = $(this).data('confirm');
@@ -78,3 +85,4 @@
         });
     });
 </script>
+

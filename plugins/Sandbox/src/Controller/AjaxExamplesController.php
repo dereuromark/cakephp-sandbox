@@ -131,7 +131,8 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function tableDelete($id = null) {
-		if (false) {
+		$false = false;
+		if ($false) {
 			$country = $this->Countries->get($id);
 			$this->Countries->delete($country);
 		}
