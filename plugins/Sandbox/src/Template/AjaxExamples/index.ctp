@@ -17,6 +17,7 @@
 <h3>Using Ajax Plugin</h3>
 <ul>
 	<li><?php echo $this->Html->link('Toggle', ['action' => 'toggle'])?></li>
+	<li><?php echo $this->Html->link('Buttons/Delete', ['action' => 'table'])?></li>
 	<li><?php echo $this->Html->link('Forms', ['action' => 'form'])?></li>
 	<li><?php echo $this->Html->link('Chained dropdowns', ['action' => 'chained_dropdowns'])?></li>
 	<li><?php echo $this->Html->link('Redirecting (prevented)', ['action' => 'redirecting_prevented'])?></li>
