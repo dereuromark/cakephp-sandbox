@@ -115,6 +115,33 @@ class AjaxExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function table() {
+		$this->loadModel('Data.Countries');
+
+		$countries = $this->paginate('Countries');
+		$this->set(compact('countries'));
+	}
+
+	/**
+	 * Dummy delete
+	 *
+	 * @param int|null $id
+	 * @return \Cake\Http\Response|null
+	 */
+	public function tableDelete($id = null) {
+		if (false) {
+			$country = $this->Countries->get($id);
+			$this->Countries->delete($country);
+		}
+
+		$this->Flash->success('Deleted (simulated)!');
+
+		return $this->redirect(['action' => 'table']);
+	}
+
+	/**
 	 * Main AJAX example for chained dropdowns.
 	 * If the first dropdown has been selected, it will trigger an
 	 * AJAX call to pre-fill the next dropdown with the appropriate options.

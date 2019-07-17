@@ -20,6 +20,7 @@
 <ul class="side-nav nav nav-pills nav-stacked">
 	<li class="heading"><?= __('Using Ajax Plugin') ?></li>
 	<li><?php echo $this->Navigation->link('Toggle', ['action' => 'toggle'])?></li>
+	<li><?php echo $this->Navigation->link('Buttons/Delete', ['action' => 'table'])?></li>
 	<li><?php echo $this->Navigation->link('Forms', ['action' => 'form'])?></li>
 	<li><?php echo $this->Navigation->link('Chained dropdowns', ['action' => 'chainedDropdowns'])?></li>
 	<li><?php echo $this->Navigation->link('Redirecting (prevented)', ['action' => 'redirectingPrevented'])?></li>

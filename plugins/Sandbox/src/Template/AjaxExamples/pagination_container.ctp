@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \Data\Model\Entity\Country[] $countries
  */
 ?>
 <table class="table list" width="100%">
