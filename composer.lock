@@ -479,23 +479,23 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "96e3cc00ede11f28bb8bcefcab95f07c487177cf"
+                "reference": "38fbee62e7f387dbe0dc7ef492aa7dddb8e304fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/96e3cc00ede11f28bb8bcefcab95f07c487177cf",
-                "reference": "96e3cc00ede11f28bb8bcefcab95f07c487177cf",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/38fbee62e7f387dbe0dc7ef492aa7dddb8e304fc",
+                "reference": "38fbee62e7f387dbe0dc7ef492aa7dddb8e304fc",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cache": "^3.6.0",
                 "cakephp/orm": "^3.6.0",
                 "php": ">=5.6.0",
-                "robmorgan/phinx": "~0.10.3"
+                "robmorgan/phinx": "^0.10.3"
             },
             "require-dev": {
                 "cakephp/bake": "^1.7.0",
@@ -509,7 +509,7 @@
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
-                    "Migrations\\": "src"
+                    "Migrations\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -528,7 +528,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2019-02-07T15:20:33+00:00"
+            "time": "2019-07-22T03:02:47+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -879,12 +879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ajax.git",
-                "reference": "2a0f8c530e4b5a5a76e6a77a56197575e063452d"
+                "reference": "89f3e34e14ff9a2e29871a130a3691cb471a945b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/2a0f8c530e4b5a5a76e6a77a56197575e063452d",
-                "reference": "2a0f8c530e4b5a5a76e6a77a56197575e063452d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/89f3e34e14ff9a2e29871a130a3691cb471a945b",
+                "reference": "89f3e34e14ff9a2e29871a130a3691cb471a945b",
                 "shasum": ""
             },
             "require": {
@@ -922,7 +922,7 @@
                 "plugin",
                 "view"
             ],
-            "time": "2019-07-01T12:19:25+00:00"
+            "time": "2019-07-17T22:31:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "b40c829e44a454ea77c063b7552677ed927947cf"
+                "reference": "4495f5df85298d5e53b9b270d6ecd95fc67d181b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/b40c829e44a454ea77c063b7552677ed927947cf",
-                "reference": "b40c829e44a454ea77c063b7552677ed927947cf",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/4495f5df85298d5e53b9b270d6ecd95fc67d181b",
+                "reference": "4495f5df85298d5e53b9b270d6ecd95fc67d181b",
                 "shasum": ""
             },
             "require": {
@@ -1155,17 +1155,17 @@
             "authors": [
                 {
                     "name": "Nick Baker",
-                    "homepage": "http://www.webtechnick.com",
-                    "role": "Original author"
+                    "role": "Original author",
+                    "homepage": "http://www.webtechnick.com"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 },
                 {
                     "name": "Other contributors",
                     "homepage": "https://github.com/dereuromark/CakePHP-DatabaseLog/graphs/contributors"
-                },
-                {
-                    "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
                 }
             ],
             "description": "CakePHP DatabaseLog Plugin",
@@ -1177,7 +1177,7 @@
                 "logs",
                 "plugin"
             ],
-            "time": "2019-05-12T16:02:00+00:00"
+            "time": "2019-07-22T16:22:56+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -1542,12 +1542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "d859bb39589f07c1d828f63169f3e38b2cefd553"
+                "reference": "90ec1761a3b83eeaee82731adf3c4f8a003a4d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/d859bb39589f07c1d828f63169f3e38b2cefd553",
-                "reference": "d859bb39589f07c1d828f63169f3e38b2cefd553",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/90ec1761a3b83eeaee82731adf3c4f8a003a4d25",
+                "reference": "90ec1761a3b83eeaee82731adf3c4f8a003a4d25",
                 "shasum": ""
             },
             "require": {
@@ -1580,13 +1580,13 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 },
                 {
                     "name": "Contributors",
-                    "homepage": "https://github.com/dereuromark/cakephp-queue/graphs/contributors",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "https://github.com/dereuromark/cakephp-queue/graphs/contributors"
                 }
             ],
             "description": "The Queue plugin for CakePHP provides deferred task execution.",
@@ -1597,7 +1597,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2019-07-16T09:46:50+00:00"
+            "time": "2019-07-23T08:29:22+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1605,12 +1605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "d85e4ce709f36b85b42b4c5aa16d6416b034aaa9"
+                "reference": "4bea874ab9a760bfdbd519885c0640bb1e199cb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/d85e4ce709f36b85b42b4c5aa16d6416b034aaa9",
-                "reference": "d85e4ce709f36b85b42b4c5aa16d6416b034aaa9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/4bea874ab9a760bfdbd519885c0640bb1e199cb1",
+                "reference": "4bea874ab9a760bfdbd519885c0640bb1e199cb1",
                 "shasum": ""
             },
             "require": {
@@ -1653,7 +1653,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2019-04-15T21:22:39+00:00"
+            "time": "2019-07-18T12:47:14+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -1879,12 +1879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "b10af266d00f11edde25eeaeb2f742a8b0f814ef"
+                "reference": "55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/b10af266d00f11edde25eeaeb2f742a8b0f814ef",
-                "reference": "b10af266d00f11edde25eeaeb2f742a8b0f814ef",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c",
+                "reference": "55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c",
                 "shasum": ""
             },
             "require": {
@@ -1931,7 +1931,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2019-06-17T16:13:17+00:00"
+            "time": "2019-07-18T13:14:00+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",
@@ -1992,12 +1992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "d9457355a2ac6329a799d9629f499abfcddd78bb"
+                "reference": "c7a8d46180d8b359e060da53108d0fd44f8e1a9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/d9457355a2ac6329a799d9629f499abfcddd78bb",
-                "reference": "d9457355a2ac6329a799d9629f499abfcddd78bb",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/c7a8d46180d8b359e060da53108d0fd44f8e1a9b",
+                "reference": "c7a8d46180d8b359e060da53108d0fd44f8e1a9b",
                 "shasum": ""
             },
             "require": {
@@ -2020,8 +2020,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A PHP library to deal with all those media services around, parsing their URLs and embedding their audio/video content in websites.",
@@ -2033,7 +2033,7 @@
                 "php",
                 "video"
             ],
-            "time": "2019-05-08T00:39:44+00:00"
+            "time": "2019-07-08T18:24:49+00:00"
         },
         {
             "name": "dompdf/dompdf",
