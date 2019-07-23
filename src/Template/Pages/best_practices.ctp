@@ -11,7 +11,7 @@ The easiest approach for the beginning is a local config file that is not under 
 <ul>
 	<li>app.php (CakePHP core configs)</li>
 	<li>app_custom.php (project overwriting on top)</li>
-	<li>app_local.php (env specific, in gitignore!)</li>
+	<li>app_local.php (env specific, contains sensitive keys/pwds, <b>in gitignore!</b>)</li>
 </ul>
 
 Then in your bootstrap code:
