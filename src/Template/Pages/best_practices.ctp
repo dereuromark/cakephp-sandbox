@@ -50,6 +50,8 @@ echo $this->Html->link($title, ['controller' => 'MyController', 'action' => 'myA
 You can then alter the URLs via Routing and all those URLs change cleanly.
 The speed issue can be neglected compared to the advantages of the flexibility.
 
+You can also use "named routes", of course (`['_name' => 'admin:account:password']`). This centralizes the arrays into the routes config.
+
 <h3>Don't sanitize the heck out your data</h3>
 Use Sanitization wisely, and not blindly.<br/>
 Not without reason the Sanitize class has been kicked out of the core files.

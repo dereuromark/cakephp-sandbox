@@ -1,3 +1,5 @@
 {
-	"directory": "./webroot/assets/"
+	"directory": "./webroot/assets/",
+	"strict-ssl": false,
+	"https-proxy": ""
 }

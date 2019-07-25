@@ -13,7 +13,8 @@
     "bootstrap-star-rating": "^4.0.3",
     "jquery-infinite-scroll": "^3.0",
     "raty-fa": "latest",
-    "select2": "^4.0.5"
+    "select2": "^4.0.5",
+    "x-editable": "^1.5.1"
   },
   "private": true
 }

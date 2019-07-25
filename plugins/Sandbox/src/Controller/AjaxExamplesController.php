@@ -2,6 +2,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
+use Cake\Validation\Validation;
 
 /**
  * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
@@ -30,7 +31,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize() {
-		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle'])) {
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail'])) {
 			$this->components['Ajax.Ajax'] = [];
 		}
 		parent::initialize();
@@ -111,6 +112,47 @@ class AjaxExamplesController extends SandboxAppController {
 
 		if ($this->request->is('ajax')) {
 			$this->render('endless_scroll_container');
+		}
+	}
+
+	/**
+	 * We simulate a view that posts to itself as in place edit.
+	 *
+	 * @see https://vitalets.github.io/x-editable/
+	 *
+	 * @return void
+	 */
+	public function editInPlace() {
+		if ($this->request->is('post')) {
+			$value = $this->request->getData('value');
+			$ok = preg_match('/^[A-Za-z]+$/', $value);
+
+			if (!$ok) {
+				$error = 'Only A-Za-z characters are allowed!';
+				$this->set(compact('error'));
+			} else {
+				$success = true;
+				$this->set(compact('success'));
+			}
+		}
+	}
+
+	/**
+	 * Demo of pure post action
+	 *
+	 * @return void
+	 */
+	public function editInPlaceEmail() {
+		$this->request->allowMethod('post');
+
+		$value = $this->request->getData('value');
+		$ok = Validation::email($value);
+		if (!$ok) {
+			$error = 'This is not a valid email!';
+			$this->set(compact('error'));
+		} else {
+			$success = true;
+			$this->set(compact('success'));
 		}
 	}
 

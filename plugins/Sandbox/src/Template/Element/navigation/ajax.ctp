@@ -23,5 +23,6 @@
 	<li><?php echo $this->Navigation->link('Buttons/Delete', ['action' => 'table'])?></li>
 	<li><?php echo $this->Navigation->link('Forms', ['action' => 'form'])?></li>
 	<li><?php echo $this->Navigation->link('Chained dropdowns', ['action' => 'chainedDropdowns'])?></li>
+	<li><?php echo $this->Navigation->link('Edit in Place', ['action' => 'editInPlace'])?></li>
 	<li><?php echo $this->Navigation->link('Redirecting (prevented)', ['action' => 'redirectingPrevented'])?></li>
 </ul>
