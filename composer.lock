@@ -532,16 +532,16 @@
         },
         {
             "name": "cakephp/plugin-installer",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/plugin-installer.git",
-                "reference": "41373d0678490502f45adc7be88aa22d24ac1843"
+                "reference": "af9711ee5dfbe62a76e8aa86cb348895fab23b50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/41373d0678490502f45adc7be88aa22d24ac1843",
-                "reference": "41373d0678490502f45adc7be88aa22d24ac1843",
+                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/af9711ee5dfbe62a76e8aa86cb348895fab23b50",
+                "reference": "af9711ee5dfbe62a76e8aa86cb348895fab23b50",
                 "shasum": ""
             },
             "require-dev": {
@@ -569,7 +569,7 @@
                 }
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
-            "time": "2017-12-24T21:09:29+00:00"
+            "time": "2019-07-25T15:43:38+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -879,12 +879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ajax.git",
-                "reference": "89f3e34e14ff9a2e29871a130a3691cb471a945b"
+                "reference": "030c75fbf99fa50852c2b4d4e01e8d367c5eba5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/89f3e34e14ff9a2e29871a130a3691cb471a945b",
-                "reference": "89f3e34e14ff9a2e29871a130a3691cb471a945b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/030c75fbf99fa50852c2b4d4e01e8d367c5eba5f",
+                "reference": "030c75fbf99fa50852c2b4d4e01e8d367c5eba5f",
                 "shasum": ""
             },
             "require": {
@@ -909,8 +909,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin that makes working with AJAX a piece of cake.",
@@ -922,7 +922,7 @@
                 "plugin",
                 "view"
             ],
-            "time": "2019-07-17T22:31:03+00:00"
+            "time": "2019-07-25T16:53:51+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
@@ -930,12 +930,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "6174c7a85d8226420ddc60f00e5cc0e944f90d49"
+                "reference": "28b0762550026989613a7b7f2d239dac7b0f62f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/6174c7a85d8226420ddc60f00e5cc0e944f90d49",
-                "reference": "6174c7a85d8226420ddc60f00e5cc0e944f90d49",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/28b0762550026989613a7b7f2d239dac7b0f62f5",
+                "reference": "28b0762550026989613a7b7f2d239dac7b0f62f5",
                 "shasum": ""
             },
             "require": {
@@ -958,7 +958,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2019-07-16T11:54:17+00:00"
+            "time": "2019-07-25T13:28:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-calendar",
@@ -1185,12 +1185,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "3ef708029fda8da1771b9f8bafbab8f96aa5a75f"
+                "reference": "be9049c28fd37621c3c315d12a4769bc5aa2dc10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/3ef708029fda8da1771b9f8bafbab8f96aa5a75f",
-                "reference": "3ef708029fda8da1771b9f8bafbab8f96aa5a75f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/be9049c28fd37621c3c315d12a4769bc5aa2dc10",
+                "reference": "be9049c28fd37621c3c315d12a4769bc5aa2dc10",
                 "shasum": ""
             },
             "require": {
@@ -1221,18 +1221,18 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 },
                 {
                     "name": "Timur Asaliev",
-                    "homepage": "https://github.com/Asaliev",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/Asaliev"
                 },
                 {
                     "name": "Other contributors",
-                    "homepage": "https://github.com/dereuromark/cakephp-dto/graphs/contributors",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "https://github.com/dereuromark/cakephp-dto/graphs/contributors"
                 }
             ],
             "description": "CakePHP DTO Plugin",
@@ -1242,7 +1242,7 @@
                 "dto",
                 "plugin"
             ],
-            "time": "2019-06-03T21:42:13+00:00"
+            "time": "2019-07-25T13:27:28+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1542,12 +1542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "90ec1761a3b83eeaee82731adf3c4f8a003a4d25"
+                "reference": "593e9ac57e7d9040479f52ce668ffd2365230b45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/90ec1761a3b83eeaee82731adf3c4f8a003a4d25",
-                "reference": "90ec1761a3b83eeaee82731adf3c4f8a003a4d25",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/593e9ac57e7d9040479f52ce668ffd2365230b45",
+                "reference": "593e9ac57e7d9040479f52ce668ffd2365230b45",
                 "shasum": ""
             },
             "require": {
@@ -1597,7 +1597,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2019-07-23T08:29:22+00:00"
+            "time": "2019-07-23T16:57:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1661,12 +1661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "20757df5df967de606885ac367597727c2102429"
+                "reference": "a60e393922c4079179f0a0f979cc839bb6822611"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/20757df5df967de606885ac367597727c2102429",
-                "reference": "20757df5df967de606885ac367597727c2102429",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/a60e393922c4079179f0a0f979cc839bb6822611",
+                "reference": "a60e393922c4079179f0a0f979cc839bb6822611",
                 "shasum": ""
             },
             "require": {
@@ -1691,8 +1691,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin containing lots of useful management tools",
@@ -1707,7 +1707,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2019-05-09T12:43:34+00:00"
+            "time": "2019-07-25T13:28:07+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -1765,12 +1765,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "465e059bb20d1fd413acbb137b24135d473f16d6"
+                "reference": "f5f89c68bbf73af67c236091a36584a6ca16cc51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/465e059bb20d1fd413acbb137b24135d473f16d6",
-                "reference": "465e059bb20d1fd413acbb137b24135d473f16d6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/f5f89c68bbf73af67c236091a36584a6ca16cc51",
+                "reference": "f5f89c68bbf73af67c236091a36584a6ca16cc51",
                 "shasum": ""
             },
             "require": {
@@ -1795,23 +1795,23 @@
             ],
             "authors": [
                 {
+                    "name": "Mark Scherer",
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
+                },
+                {
                     "name": "Jad Bitar",
-                    "homepage": "http://jadb.io",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "http://jadb.io"
                 },
                 {
                     "name": "ADmad",
-                    "homepage": "https://github.com/ADmad",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "https://github.com/ADmad"
                 },
                 {
                     "name": "Others",
                     "homepage": "https://github.com/dereuromark/cakephp-tags/graphs/contributors"
-                },
-                {
-                    "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
                 }
             ],
             "description": "Tags plugin for CakePHP 3.x",
@@ -1821,7 +1821,7 @@
                 "tagging",
                 "tags"
             ],
-            "time": "2019-07-04T11:57:18+00:00"
+            "time": "2019-07-23T10:32:28+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -1829,12 +1829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "aa1e048e34282cfb0531e45490e8715dfed64aab"
+                "reference": "423b62b53aa266fd4fc0638381d3b2e376e7fa66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/aa1e048e34282cfb0531e45490e8715dfed64aab",
-                "reference": "aa1e048e34282cfb0531e45490e8715dfed64aab",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/423b62b53aa266fd4fc0638381d3b2e376e7fa66",
+                "reference": "423b62b53aa266fd4fc0638381d3b2e376e7fa66",
                 "shasum": ""
             },
             "require": {
@@ -1857,8 +1857,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin to handle user authentication and authorization the easy way.",
@@ -1871,7 +1871,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2019-06-12T15:53:00+00:00"
+            "time": "2019-07-25T14:06:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -1879,12 +1879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c"
+                "reference": "9d3aaffb0eb78b459fa183399974713c5f3dc795"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c",
-                "reference": "55e7bee87e46e2f60fc5f3c06cd513c5a34d9c1c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/9d3aaffb0eb78b459fa183399974713c5f3dc795",
+                "reference": "9d3aaffb0eb78b459fa183399974713c5f3dc795",
                 "shasum": ""
             },
             "require": {
@@ -1915,8 +1915,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Author"
+                    "role": "Author",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin containing lots of useful and reusable tools",
@@ -1931,7 +1931,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2019-07-18T13:14:00+00:00"
+            "time": "2019-07-25T13:28:37+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",
@@ -4790,12 +4790,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "a31b654e6057091079f55d4db0a74064ac983ab8"
+                "reference": "12d7148918e9f6ee99d607a5d81dae49410ae229"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/a31b654e6057091079f55d4db0a74064ac983ab8",
-                "reference": "a31b654e6057091079f55d4db0a74064ac983ab8",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/12d7148918e9f6ee99d607a5d81dae49410ae229",
+                "reference": "12d7148918e9f6ee99d607a5d81dae49410ae229",
                 "shasum": ""
             },
             "require": {
@@ -4823,14 +4823,14 @@
             ],
             "authors": [
                 {
-                    "name": "Other contributors",
-                    "homepage": "https://github.com/dereuromark/cakephp-ide-helper/graphs/contributors",
-                    "role": "Developer"
+                    "name": "Mark Scherer",
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 },
                 {
-                    "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "name": "Other contributors",
+                    "role": "Developer",
+                    "homepage": "https://github.com/dereuromark/cakephp-ide-helper/graphs/contributors"
                 }
             ],
             "description": "CakePHP IdeHelper Plugin to improve auto-completion",
@@ -4844,7 +4844,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2019-07-01T12:49:49+00:00"
+            "time": "2019-07-25T12:49:11+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
