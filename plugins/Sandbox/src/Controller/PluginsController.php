@@ -46,7 +46,7 @@ class PluginsController extends SandboxAppController {
 	 * - Configure::write('CakePdf.binary', APP . 'files\wkhtmltopdf\wkhtmltopdf.exe'); in your configs
 	 *
 	 * @param string|null $engineSlug
-	 * @throws \Cake\Network\Exception\NotFoundException
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 * @return \Cake\Http\Response|null
 	 */
 	public function pdfTest($engineSlug = null) {

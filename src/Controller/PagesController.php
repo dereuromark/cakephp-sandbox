@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
+use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
 
 /**
@@ -15,11 +15,16 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController {
 
 	/**
+	 * @var string|false
+	 */
+	public $modelClass = false;
+
+	/**
 	 * Displays a view
 	 *
 	 * @return \Cake\Http\Response|null
-	 * @throws \Cake\Network\Exception\NotFoundException When the view file could not
-	 *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
+	 * @throws \Cake\Http\Exception\NotFoundException If not found.
+	 * @throws \Cake\View\Exception\MissingTemplateException in debug mode.
 	 */
 	public function display() {
 		$path = func_get_args();

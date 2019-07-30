@@ -11,6 +11,11 @@ use Tools\Mailer\Email;
 class ContactController extends AppController {
 
 	/**
+	 * @var string|false
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	public $components = [

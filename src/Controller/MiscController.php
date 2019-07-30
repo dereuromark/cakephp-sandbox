@@ -4,6 +4,11 @@ namespace App\Controller;
 class MiscController extends AppController {
 
 	/**
+	 * @var string|false
+	 */
+	public $modelClass = false;
+
+	/**
 	 * @var array
 	 */
 	public $types = [

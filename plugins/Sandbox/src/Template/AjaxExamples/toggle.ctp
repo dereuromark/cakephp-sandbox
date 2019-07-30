@@ -47,6 +47,18 @@ $(function() {
 <div class="page index col-sm-8 col-xs-12">
 <h2><?php echo __('Toggles');?> via AJAX</h2>
 
+	<div class="alert alert-info" role="alert">
+		<p>
+			All you need for this is a <code>$.ajax()</code> call and the data-value content added to the span element.
+			<br>
+			Note how this is even tab safe as we are passing the "new" value along instead of just sending the "invert" command.
+			If another tab already set it to active, it will stay this value instead of reverting it again.
+		</p>
+	</div>
+
+
+	<h3>Yes/No</h3>
+
 <p>
 A simple AJAX toggle. Press F5 after you changed it to verify that the "simulated DB save" worked.
 </p>

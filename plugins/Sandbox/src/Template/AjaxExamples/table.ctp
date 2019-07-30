@@ -50,12 +50,13 @@
 
 </div>
 
-
+	<div class="alert alert-info" role="alert">
 	<p>All this needs is basically</p>
 	<ul>
 		<li>A "post link" with e.g. a <code>ajax-delete</code> class added to signal this should be ajax-deletable.</li>
 		<li>A small JS snippet (see source code)</li>
 	</ul>
+	</div>
 
 </div>
 

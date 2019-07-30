@@ -16,7 +16,7 @@ $(function() {
 			success: function(response) {
 				if (response.result) {
 					var result = response.result;
-					$('#result').html(result.now);
+					$('#result-container').html(result.now);
 				}
 			},
 			error: function(e) {
@@ -44,7 +44,7 @@ We just need our `result.now` date value.
 <button id="button" data-rel="<?php echo $this->Url->build(['_ext' => 'json']); ?>">Click me</button>
 
 <h3>Result</h3>
-<div id="result">
+<div id="result-container">
 <i>n/a</i>
 </div>
 

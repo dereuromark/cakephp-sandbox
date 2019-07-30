@@ -3,6 +3,10 @@ namespace App\View\Helper;
 
 use BootstrapUI\View\Helper\FormHelper as BootstrapFormHelper;
 
+/**
+ * @property \Cake\View\Helper\UrlHelper $Url
+ * @property \Cake\View\Helper\HtmlHelper $Html
+ */
 class FormHelper extends BootstrapFormHelper {
 
 	/**
