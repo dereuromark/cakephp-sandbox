@@ -5,6 +5,9 @@ namespace App\Test\TestCase\Controller;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
+/**
+ * @uses \App\Controller\PagesController
+ */
 class PagesControllerTest extends IntegrationTestCase {
 
 	/**

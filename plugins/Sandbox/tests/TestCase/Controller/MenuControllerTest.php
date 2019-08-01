@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\BootstrapController Test Case
+ *
+ * @uses \Sandbox\Controller\MenuController
  */
 class MenuControllerTest extends IntegrationTestCase {
 

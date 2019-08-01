@@ -10,7 +10,7 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\Event get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\Event newEntity($data = null, array $options = [])
  * @method \Sandbox\Model\Entity\Event[] newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])

@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\DtoExamplesController Test Case
+ *
+ * @uses \Sandbox\Controller\DtoExamplesController
  */
 class DtoExamplesControllerTest extends IntegrationTestCase {
 

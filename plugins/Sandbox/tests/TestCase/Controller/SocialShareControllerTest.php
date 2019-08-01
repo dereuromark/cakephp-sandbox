@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\SocialShareController Test Case
+ *
+ * @uses \Sandbox\Controller\SocialShareController
  */
 class SocialShareControllerTest extends IntegrationTestCase {
 

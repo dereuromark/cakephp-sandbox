@@ -8,6 +8,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AjaxExamplesController Test Case
+ *
+ * @uses \Sandbox\Controller\AjaxExamplesController
  */
 class AjaxExamplesControllerTest extends IntegrationTestCase {
 

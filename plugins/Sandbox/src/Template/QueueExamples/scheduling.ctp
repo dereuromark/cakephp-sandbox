@@ -5,6 +5,8 @@
  * @var \Queue\Model\Entity\QueuedJob $queuedJob
  * @var string[] $tasks
  */
+
+$this->loadHelper('Queue.QueueProgress');
 ?>
 
 <nav class="actions col-sm-4 col-xs-12">
@@ -46,8 +48,16 @@
 					<?php if (!$queuedJob->fetched) {
 						echo $this->Form->postLink($this->Format->icon('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
 					} ?>
-
-					<div><?php echo $this->Number->toPercentage($queuedJob->progress * 100, 0); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)<div>
+					<?php if (!$queuedJob->fetched) {
+						echo '<br>';
+						echo 'Scheduling progress (until job starts): ' . $this->QueueProgress->timeoutProgressBar($queuedJob, 20);
+					} else { ?>
+						<div>
+						<?php echo $this->Number->toPercentage($queuedJob->progress * 100, 0); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
+						<br>
+						<?php echo $this->QueueProgress->progressBar($queuedJob, 30); ?>
+						<div>
+					<?php } ?>
 				</li>
 			<?php } ?>
 		</ul>

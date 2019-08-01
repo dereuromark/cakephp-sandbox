@@ -6,13 +6,13 @@ use Tools\Model\Table\Table;
 
 /**
  * @mixin \Ratings\Model\Behavior\RatableBehavior
- * @property \Tags\Model\Table\TaggedTable|\Cake\ORM\Association\HasMany $Tagged
- * @property \Tags\Model\Table\TagsTable|\Cake\ORM\Association\BelongsToMany $Tags
+ * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
+ * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @mixin \Tags\Model\Behavior\TagBehavior
  * @method \Sandbox\Model\Entity\SandboxPost get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost newEntity($data = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[] newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[] patchEntities($entities, array $data, array $options = [])

@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * ExportControllerTest
+ *
+ * @uses \App\Controller\ExportController
  */
 class ExportControllerTest extends IntegrationTestCase {
 

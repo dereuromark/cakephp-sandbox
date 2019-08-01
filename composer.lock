@@ -573,25 +573,25 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.4",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "558f321c52faeb4828c03e7dc0cfe39a09e09a2d"
+                "reference": "ec2e24d4fa6a0d50d423794a56605ecec3401b85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/558f321c52faeb4828c03e7dc0cfe39a09e09a2d",
-                "reference": "558f321c52faeb4828c03e7dc0cfe39a09e09a2d",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/ec2e24d4fa6a0d50d423794a56605ecec3401b85",
+                "reference": "ec2e24d4fa6a0d50d423794a56605ecec3401b85",
                 "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
                 "ext-pcre": "*",
-                "php": "^5.3.2 || ^7.0"
+                "php": "^5.3.2 || ^7.0 || ^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.5",
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || 6.5 - 8",
                 "psr/log": "^1.0",
                 "symfony/process": "^2.5 || ^3.0 || ^4.0"
             },
@@ -625,7 +625,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2019-01-28T09:30:10+00:00"
+            "time": "2019-08-01T07:52:17+00:00"
         },
         {
             "name": "composer/composer",
@@ -1445,12 +1445,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-hashid.git",
-                "reference": "b75f2904a6a9e0c53f82863f70f36639f7693a5f"
+                "reference": "66f8440b60d2c59aa2686a3b04713f40de0196a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/b75f2904a6a9e0c53f82863f70f36639f7693a5f",
-                "reference": "b75f2904a6a9e0c53f82863f70f36639f7693a5f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-hashid/zipball/66f8440b60d2c59aa2686a3b04713f40de0196a4",
+                "reference": "66f8440b60d2c59aa2686a3b04713f40de0196a4",
                 "shasum": ""
             },
             "require": {
@@ -1474,8 +1474,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin to allow using hashids instead of numeric primary keys.",
@@ -1486,7 +1486,7 @@
                 "hashids",
                 "plugin"
             ],
-            "time": "2019-01-06T12:47:51+00:00"
+            "time": "2019-07-31T14:07:31+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -1542,12 +1542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "8a19ae2d7b5e7f104e23ba35de4abf23438ab2ab"
+                "reference": "c95bce0e49dedac1dec77227268c0acacdecb52b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/8a19ae2d7b5e7f104e23ba35de4abf23438ab2ab",
-                "reference": "8a19ae2d7b5e7f104e23ba35de4abf23438ab2ab",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/c95bce0e49dedac1dec77227268c0acacdecb52b",
+                "reference": "c95bce0e49dedac1dec77227268c0acacdecb52b",
                 "shasum": ""
             },
             "require": {
@@ -1555,9 +1555,9 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "cakephp/migrations": "^1.0",
-                "dereuromark/cakephp-ide-helper": "^0.12",
-                "dereuromark/cakephp-tools": "^1.9.1",
+                "cakephp/migrations": "^2.0",
+                "dereuromark/cakephp-ide-helper": "^0.13.16",
+                "dereuromark/cakephp-tools": "^1.9.6",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "friendsofcake/search": "^5.0"
             },
@@ -1597,7 +1597,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2019-07-29T11:58:44+00:00"
+            "time": "2019-08-01T16:50:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1711,16 +1711,16 @@
         },
         {
             "name": "dereuromark/cakephp-shim",
-            "version": "1.8.3",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "1266ff7a78910a3995733c435bdafdb16f14c975"
+                "reference": "6a65d1af81e2bb8da654cce53fa9ef447b2f2287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/1266ff7a78910a3995733c435bdafdb16f14c975",
-                "reference": "1266ff7a78910a3995733c435bdafdb16f14c975",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/6a65d1af81e2bb8da654cce53fa9ef447b2f2287",
+                "reference": "6a65d1af81e2bb8da654cce53fa9ef447b2f2287",
                 "shasum": ""
             },
             "require": {
@@ -1745,8 +1745,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "https://www.dereuromark.de",
-                    "role": "Maintainer"
+                    "role": "Maintainer",
+                    "homepage": "https://www.dereuromark.de"
                 }
             ],
             "description": "A CakePHP plugin to shim applications between major framework versions.",
@@ -1757,7 +1757,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2019-06-06T19:31:19+00:00"
+            "time": "2019-07-30T11:40:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -1879,12 +1879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "9d3aaffb0eb78b459fa183399974713c5f3dc795"
+                "reference": "cc95261759b0341fabcef24d4423cfe2ba39c692"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/9d3aaffb0eb78b459fa183399974713c5f3dc795",
-                "reference": "9d3aaffb0eb78b459fa183399974713c5f3dc795",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/cc95261759b0341fabcef24d4423cfe2ba39c692",
+                "reference": "cc95261759b0341fabcef24d4423cfe2ba39c692",
                 "shasum": ""
             },
             "require": {
@@ -1931,7 +1931,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2019-07-25T13:28:37+00:00"
+            "time": "2019-08-01T09:01:38+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",
@@ -4741,16 +4741,16 @@
     "packages-dev": [
         {
             "name": "cakephp/bake",
-            "version": "1.11.1",
+            "version": "1.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "817282f4f797cd0792a393a870512e9e225e9ac1"
+                "reference": "8598c3326541a16aa7b003ce322c44a34f90ad85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/817282f4f797cd0792a393a870512e9e225e9ac1",
-                "reference": "817282f4f797cd0792a393a870512e9e225e9ac1",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/8598c3326541a16aa7b003ce322c44a34f90ad85",
+                "reference": "8598c3326541a16aa7b003ce322c44a34f90ad85",
                 "shasum": ""
             },
             "require": {
@@ -4785,7 +4785,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2019-07-10T17:48:16+00:00"
+            "time": "2019-07-30T02:08:16+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -4793,12 +4793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "fec0e08e8e34d5e79b639150860ae045e880282f"
+                "reference": "ed8155310552bebabf1a5e006182cb09ca663aeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/fec0e08e8e34d5e79b639150860ae045e880282f",
-                "reference": "fec0e08e8e34d5e79b639150860ae045e880282f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/ed8155310552bebabf1a5e006182cb09ca663aeb",
+                "reference": "ed8155310552bebabf1a5e006182cb09ca663aeb",
                 "shasum": ""
             },
             "require": {
@@ -4847,7 +4847,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2019-07-29T11:11:27+00:00"
+            "time": "2019-08-01T14:28:59+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
@@ -4940,12 +4940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "3dcb12cd404def027c4742d51b704cdb87d043da"
+                "reference": "7eb462bcf19abcae122855a6d79cc8f768c77880"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/3dcb12cd404def027c4742d51b704cdb87d043da",
-                "reference": "3dcb12cd404def027c4742d51b704cdb87d043da",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/7eb462bcf19abcae122855a6d79cc8f768c77880",
+                "reference": "7eb462bcf19abcae122855a6d79cc8f768c77880",
                 "shasum": ""
             },
             "require": {
@@ -4969,8 +4969,8 @@
             "authors": [
                 {
                     "name": "Mark Scherer",
-                    "homepage": "http://www.dereuromark.de",
-                    "role": "Contributor"
+                    "role": "Contributor",
+                    "homepage": "http://www.dereuromark.de"
                 }
             ],
             "description": "Code-Sniffer, Auto-Fixer and Tokenizer for PSR2-R",
@@ -4978,7 +4978,7 @@
                 "codesniffer",
                 "cs"
             ],
-            "time": "2019-05-16T23:17:27+00:00"
+            "time": "2019-07-30T11:13:07+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

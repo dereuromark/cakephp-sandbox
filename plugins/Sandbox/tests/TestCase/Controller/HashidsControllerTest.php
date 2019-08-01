@@ -5,6 +5,9 @@ namespace Sandbox\Test\TestCase\Controller;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
+/**
+ * @uses \Sandbox\Controller\HashidsController
+ */
 class HashidsControllerTest extends IntegrationTestCase {
 
 	/**

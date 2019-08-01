@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \Queue\Model\Entity\QueuedJob[] $queuedJobs
  */
+
+$this->loadHelper('Queue.QueueProgress');
 ?>
 
 <nav class="actions col-sm-4 col-xs-12">
@@ -35,7 +37,9 @@
 	<ul>
 		<?php foreach ($queuedJobs as $queuedJob) { ?>
 		<li>
-			<?php echo h($queuedJob->job_type); ?>: <?php echo $this->Number->toPercentage($queuedJob->progress * 100, 0); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
+			<?php echo h($queuedJob->job_type); ?>: <?php echo $this->Number->toPercentage($queuedJob->progress, 0, ['multiply' => true]); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
+			<br>
+			<?php echo $this->QueueProgress->progressBar($queuedJob, 30); ?>
 		</li>
 		<?php } ?>
 	</ul>

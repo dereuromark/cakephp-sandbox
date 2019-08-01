@@ -9,6 +9,7 @@ use Tools\TestSuite\IntegrationTestCase;
  * App\Controller\AccountController Test Case
  *
  * @property \App\Model\Table\UsersTable $Users
+ * @uses \App\Controller\AccountController
  */
 class AccountControllerTest extends IntegrationTestCase {
 

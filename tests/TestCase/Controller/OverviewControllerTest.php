@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * OverviewControllerTest
+ *
+ * @uses \App\Controller\OverviewController
  */
 class OverviewControllerTest extends IntegrationTestCase {
 

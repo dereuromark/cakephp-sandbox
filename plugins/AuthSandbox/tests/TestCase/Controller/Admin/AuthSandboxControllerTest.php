@@ -7,6 +7,8 @@ use Tools\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AuthSandboxController Test Case
+ *
+ * @uses \AuthSandbox\Controller\Admin\AuthSandboxController
  */
 class AuthSandboxControllerTest extends IntegrationTestCase {
 

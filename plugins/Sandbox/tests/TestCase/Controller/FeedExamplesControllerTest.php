@@ -6,6 +6,9 @@ use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
+/**
+ * @uses \Sandbox\Controller\FeedExamplesController
+ */
 class FeedExamplesControllerTest extends IntegrationTestCase {
 
 	/**

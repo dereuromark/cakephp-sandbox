@@ -5,6 +5,9 @@ namespace Sandbox\Test\TestCase\Controller;
 use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
+/**
+ * @uses \Sandbox\Controller\CalendarController
+ */
 class CalendarControllerTest extends IntegrationTestCase {
 
 	/**

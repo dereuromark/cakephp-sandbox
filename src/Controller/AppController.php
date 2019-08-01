@@ -26,7 +26,7 @@ class AppController extends Controller {
 		'Form' => [], // => ['className' => 'BootstrapUI.Form']
 		'Tools.Common', 'Flash.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress',
-		'Shim.Configure',
+		'Shim.Configure', 'Tools.Progress',
 	];
 
 	/**

@@ -32,6 +32,8 @@ use Cake\View\View;
  * @property \Tags\View\Helper\TagHelper $Tag
  * @property \Tools\View\Helper\TypographyHelper $Typography
  * @property \Markup\View\Helper\HighlighterHelper $Highlighter
+ * @property \Tools\View\Helper\ProgressHelper $Progress
+ * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  */
 class AppView extends View {
 

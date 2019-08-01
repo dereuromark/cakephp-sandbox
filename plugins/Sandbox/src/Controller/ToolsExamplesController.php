@@ -226,6 +226,23 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
+	public function progress() {
+		$value = $this->request->getQuery('value');
+		if ($value < 0 || $value > 1) {
+			$value = null;
+		}
+
+		$length = $this->request->getQuery('length');
+		if ($length < 3 || $length > 60) {
+			$length = null;
+		}
+
+		$this->set(compact('value', 'length'));
+	}
+
+	/**
+	 * @return void
+	 */
 	public function qr() {
 		$types = [
 			'text' => 'Text',
