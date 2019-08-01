@@ -141,7 +141,7 @@ class QueueExamplesController extends SandboxAppController {
 		$seconds = 20;
 		$reference = 'demo-' . $sid;
 		if ($this->QueuedJobs->isQueued($reference, 'ProgressExample')) {
-			$this->Flash->error('Job already running. Refresh the page for details.');
+			$this->Flash->error('Job already running or scheduled. Refresh the page for details.');
 
 			return $this->redirect($this->referer(['action' => 'index']));
 		}

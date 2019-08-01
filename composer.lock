@@ -1123,12 +1123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "4495f5df85298d5e53b9b270d6ecd95fc67d181b"
+                "reference": "8614ba49216a700c87f5bd2282ee02f6a8bf4804"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/4495f5df85298d5e53b9b270d6ecd95fc67d181b",
-                "reference": "4495f5df85298d5e53b9b270d6ecd95fc67d181b",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/8614ba49216a700c87f5bd2282ee02f6a8bf4804",
+                "reference": "8614ba49216a700c87f5bd2282ee02f6a8bf4804",
                 "shasum": ""
             },
             "require": {
@@ -1177,7 +1177,7 @@
                 "logs",
                 "plugin"
             ],
-            "time": "2019-07-22T16:22:56+00:00"
+            "time": "2019-08-01T19:26:30+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -1542,12 +1542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "c95bce0e49dedac1dec77227268c0acacdecb52b"
+                "reference": "bc19881d106d91bb0e7250b74feb6800256efae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/c95bce0e49dedac1dec77227268c0acacdecb52b",
-                "reference": "c95bce0e49dedac1dec77227268c0acacdecb52b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/bc19881d106d91bb0e7250b74feb6800256efae8",
+                "reference": "bc19881d106d91bb0e7250b74feb6800256efae8",
                 "shasum": ""
             },
             "require": {
@@ -1597,7 +1597,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2019-08-01T16:50:46+00:00"
+            "time": "2019-08-01T19:12:05+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
