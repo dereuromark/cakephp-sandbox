@@ -91,6 +91,7 @@
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate -p Queue",
+			"bin/cake migrations migrate -p DatabaseLog",
 			"bin/cake migrations migrate"
 		],
 		"assets": [
