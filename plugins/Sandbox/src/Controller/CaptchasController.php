@@ -28,7 +28,7 @@ class CaptchasController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function math() {
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$this->Animals->addBehavior('Captcha.Captcha');
 

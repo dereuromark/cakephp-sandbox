@@ -105,7 +105,7 @@ class CakeExamplesController extends SandboxAppController {
 	public function validation() {
 		$this->loadModel('Sandbox.Animals');
 
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$animal = $this->Animals->patchEntity($animal, $this->request->getData());

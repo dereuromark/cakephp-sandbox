@@ -196,7 +196,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function chainedDropdowns() {
 		$this->loadModel('Users');
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$this->Users->getValidator()->add('state_id', 'numeric', [
@@ -242,7 +242,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function form() {
 		$this->loadModel('Users');
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		if ($this->request->is(['post', 'put', 'patch'])) {
 			$user = $this->Users->patchEntity($user, $this->request->getData());

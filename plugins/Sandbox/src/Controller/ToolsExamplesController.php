@@ -115,7 +115,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->loadModel('Sandbox.SandboxUsers');
 		$this->SandboxUsers->addBehavior('Tools.Slugged', ['mode' => 'ascii', 'unique' => true]);
 
-		$user = $this->SandboxUsers->newEntity();
+		$user = $this->SandboxUsers->newEmptyEntity();
 
 		if ($this->request->is(['post', 'put'])) {
 			$this->SandboxUsers->patchEntity($user, $this->request->getData());
@@ -136,7 +136,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->loadModel('Users');
 		$this->Users->addBehavior('Tools.Passwordable');
 
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$this->Users->patchEntity($user, $this->request->getData());
@@ -207,7 +207,7 @@ class ToolsExamplesController extends SandboxAppController {
 		// Bug in CakePHP: You need to manually trigger build on the behavior and pass the validator!
 		$this->Animals->behaviors()->Confirmable->build($this->Animals->getValidator());
 
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
@@ -238,6 +238,27 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('value', 'length'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function meter() {
+		$value = $this->request->getQuery('value');
+		$max = $this->request->getQuery('max');
+		$min = $this->request->getQuery('min');
+		if ($max <= $min) {
+			$max = $min = null;
+		}
+
+		$length = $this->request->getQuery('length');
+		if ($length < 3 || $length > 60) {
+			$length = null;
+		}
+
+		$overflow = (bool)$this->request->getQuery('overflow');
+
+		$this->set(compact('value', 'max', 'min', 'length', 'overflow'));
 	}
 
 	/**

@@ -39,7 +39,7 @@ class GeoExamplesController extends SandboxAppController {
 	public function query() {
 		$geocoder = new Geocoder();
 		$results = [];
-		$country = $this->Countries->newEntity();
+		$country = $this->Countries->newEmptyEntity();
 
 		if ($this->Common->isPosted()) {
 			$this->Countries->addBehavior('Captcha.Captcha');

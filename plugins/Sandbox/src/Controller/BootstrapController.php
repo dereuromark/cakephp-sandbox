@@ -46,7 +46,7 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function form() {
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		$this->set(compact('animal'));
 	}
@@ -55,7 +55,7 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function localized() {
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
 		$this->request->data['discovered'] = '';
@@ -69,7 +69,7 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function time() {
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
 		$this->request->data['time'] = '';
@@ -84,7 +84,7 @@ class BootstrapController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function formPost() {
-		$animal = $this->Animals->newEntity();
+		$animal = $this->Animals->newEmptyEntity();
 
 		if ($this->request->is(['post', 'put'])) {
 			// Save form data

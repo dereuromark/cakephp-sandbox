@@ -95,4 +95,24 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testProgress() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'progress']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMeter() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'meter']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

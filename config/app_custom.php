@@ -115,6 +115,12 @@ return [
 		'cleanuptimeout' => 2592000, // 30 days
 	],
 
+	'Shim' => [
+		'deprecations' => true,
+		'deprecationType' => E_USER_NOTICE,
+	],
+
+
 	'Geocoder' => [
 		'apiKey' => '',
 	],

@@ -11,6 +11,9 @@ div.error-message {
 	padding-bottom: 10px;
 }
 
+progress, meter {
+	width: 100%;
+}
 
 
 /* custom bootstrap overwrites */

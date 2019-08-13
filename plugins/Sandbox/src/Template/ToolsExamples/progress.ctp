@@ -20,16 +20,29 @@ if ($length === null) {
 <div class="page index col-sm-8 col-xs-12">
 
 <h2>Progress</h2>
+	<p>
+		Use the Progress helper to display basic progress bars the easy way.
+	</p>
 
 <h3>Progress Bars</h3>
-<p>
-Use the Progress helper to display basic text-based (unicode) progress bars the easy way.
-
-</p>
-
-
+	<p>
+	HTML based (with unicode fallback for IE and older browsers):
+	</p>
 	<?php
-	echo $this->Progress->progressBar($value, $length); #
+	$options = [
+		'fallbackHtml' => $this->Progress->progressBar($value, $length),
+	];
+	echo $this->Progress->htmlProgressBar($value, $options);
+	?>
+	<p>This can be styled easily using CSS.</p>
+
+	<br><br>
+
+	<p>
+	Text-based (unicode):
+	</p>
+	<?php
+	echo $this->Progress->progressBar($value, $length);
 	?>
 
 
@@ -40,6 +53,8 @@ Use the Progress helper to display basic text-based (unicode) progress bars the 
 	<?php
 echo $this->Form->create(false, ['type' => 'get']);
 echo $this->Form->control('value', ['label' => 'Float value 0...1', 'default' => $value]);
+
+echo '<p>Onyl for text output:</p>';
 echo $this->Form->control('length', ['label' => 'Int value 3...60', 'default' => $length]);
 echo $this->Form->submit('Render progress bar!');
 echo $this->Form->end();

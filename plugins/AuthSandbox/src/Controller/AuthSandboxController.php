@@ -105,7 +105,7 @@ class AuthSandboxController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function register() {
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$this->Users->addBehavior('Tools.Passwordable');

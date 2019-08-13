@@ -23,7 +23,7 @@ class UsersController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function add() {
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		if ($this->Common->isPosted()) {

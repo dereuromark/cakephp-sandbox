@@ -33,6 +33,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\TypographyHelper $Typography
  * @property \Markup\View\Helper\HighlighterHelper $Highlighter
  * @property \Tools\View\Helper\ProgressHelper $Progress
+ * @property \Tools\View\Helper\MeterHelper $Meter
  * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  */
 class AppView extends View {

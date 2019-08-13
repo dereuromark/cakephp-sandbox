@@ -41,7 +41,7 @@ class TagsController extends SandboxAppController {
 	public function index() {
 		$this->loadModel('Sandbox.SandboxCategories');
 
-		$category = $this->SandboxCategories->newEntity();
+		$category = $this->SandboxCategories->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
 			// Save here
@@ -60,7 +60,7 @@ class TagsController extends SandboxAppController {
 		Configure::write('Tags.strategy', 'array');
 		$this->loadModel('Sandbox.SandboxCategories');
 
-		$category = $this->SandboxCategories->newEntity();
+		$category = $this->SandboxCategories->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
 			// Save here

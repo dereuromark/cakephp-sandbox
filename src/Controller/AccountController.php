@@ -87,7 +87,7 @@ class AccountController extends AppController {
 			throw new NotFoundException('Disabled for live');
 		}
 
-		$user = $this->Users->newEntity();
+		$user = $this->Users->newEmptyEntity();
 
 		if ($this->Common->isPosted()) {
 			$keyToCheck = $this->request->data('Form.key');
