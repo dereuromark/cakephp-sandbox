@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2a7a2d80f1241561327bd83bb38279d",
+    "content-hash": "c63276eb39da0c3f4333845a5fd93d2c",
     "packages": [
         {
             "name": "ajgl/breakpoint-twig-extension",
@@ -1711,16 +1711,16 @@
         },
         {
             "name": "dereuromark/cakephp-shim",
-            "version": "1.9.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "6a65d1af81e2bb8da654cce53fa9ef447b2f2287"
+                "reference": "0bfd0d4f24e42c6575c4bf7a273ffee184f8fef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/6a65d1af81e2bb8da654cce53fa9ef447b2f2287",
-                "reference": "6a65d1af81e2bb8da654cce53fa9ef447b2f2287",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/0bfd0d4f24e42c6575c4bf7a273ffee184f8fef8",
+                "reference": "0bfd0d4f24e42c6575c4bf7a273ffee184f8fef8",
                 "shasum": ""
             },
             "require": {
@@ -1757,7 +1757,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2019-07-30T11:40:44+00:00"
+            "time": "2019-08-14T13:57:29+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -5320,6 +5320,12 @@
             "package": "dereuromark/cakephp-geo"
         },
         {
+            "alias": "1.10.0",
+            "alias_normalized": "1.10.0.0",
+            "version": "9999999-dev",
+            "package": "dereuromark/cakephp-shim"
+        },
+        {
             "alias": "1.6",
             "alias_normalized": "1.6.0.0",
             "version": "9999999-dev",
@@ -5330,6 +5336,7 @@
     "stability-flags": {
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
+        "dereuromark/cakephp-shim": 20,
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
         "drmonkeyninja/cakephp-social-share": 20,
