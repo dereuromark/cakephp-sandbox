@@ -1,6 +1,10 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var string $fromEmail
+ * @var string $fromName
+ * @var string $message
+ * @var string $subject
  */
 ?>
 Sandbox - Contact Form submission

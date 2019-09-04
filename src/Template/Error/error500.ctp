@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var object $error
+ * @var string $message
  */
 use Cake\Core\Configure;
 use Cake\Error\Debugger;

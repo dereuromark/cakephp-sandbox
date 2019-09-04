@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $params
  */
 $class = 'message';
 if (!empty($params['class'])) {

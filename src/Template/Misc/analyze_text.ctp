@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $results
  */
 ?>
 <h1>Analyze Text</h1>
