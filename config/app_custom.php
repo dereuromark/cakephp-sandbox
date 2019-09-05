@@ -120,7 +120,6 @@ return [
 		'deprecationType' => E_USER_NOTICE,
 	],
 
-
 	'Geocoder' => [
 		'apiKey' => '',
 	],
