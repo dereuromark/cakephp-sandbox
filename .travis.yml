@@ -4,6 +4,9 @@ php:
   - 5.6
   - 7.3
 
+services:
+  - mysql
+
 env:
   matrix:
     - DB=mysql db_dsn='mysql://root@127.0.0.1/cakephp_test'
