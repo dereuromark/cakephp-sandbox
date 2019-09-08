@@ -109,7 +109,7 @@ class BootstrapController extends SandboxAppController {
 	 * Show flash message output.
 	 *
 	 * @param string|null $type
-	 * @return void|\Cake\Http\Response
+	 * @return \Cake\Http\Response|void
 	 */
 	public function flash($type = null) {
 		$types = ['error', 'warning', 'success', 'info'];

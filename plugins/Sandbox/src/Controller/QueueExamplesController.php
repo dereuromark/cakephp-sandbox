@@ -57,7 +57,7 @@ class QueueExamplesController extends SandboxAppController {
 		if ($this->request->is('post')) {
 			$queuedJob = $this->QueuedJobs->patchEntity($queuedJob, $this->request->getData());
 			$notBefore = $queuedJob->notbefore;
-			$task = $queuedJob->task;
+			$task = $queuedJob->task; // $job_type?
 
 			if (!$task || !isset($tasks[$task])) {
 				$queuedJob->setError('task', 'Required field.');

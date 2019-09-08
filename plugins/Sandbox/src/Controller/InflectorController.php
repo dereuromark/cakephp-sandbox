@@ -31,15 +31,15 @@ class InflectorController extends AppController {
 		$results = [];
 		$string = false;
 		if ($this->request->is('post')) {
-			$string = $this->request->data['string'];
-		} elseif (isset($this->request->query['string'])) {
-			$string = $this->request->query['string'];
+			$string = $this->request->getData('string');
+		} elseif ($this->request->getQuery('string')) {
+			$string = $this->request->getQuery('string');
 		}
 
 		if ($string) {
 			$r = new ReflectionClass('Cake\Utility\Inflector');
 			foreach ($r->getMethods() as $method) {
-				if (in_array($method->name, $this->_reflectExceptions)) {
+				if (in_array($method->name, $this->_reflectExceptions, true)) {
 					continue;
 				}
 				$methodName = $method->name;

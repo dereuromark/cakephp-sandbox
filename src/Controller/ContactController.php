@@ -49,10 +49,10 @@ class ContactController extends AppController {
 		$contact = new ContactForm();
 
 		if ($this->Common->isPosted()) {
-			$name = $this->request->data['name'];
-			$email = $this->request->data['email'];
-			$subject = $this->request->data['subject'];
-			$message = $this->request->data['body'];
+			$name = $this->request->getData('name');
+			$email = $this->request->getData('email');
+			$subject = $this->request->getData('subject');
+			$message = $this->request->getData('body');
 
 			if (Configure::read('debug')) {
 				$this->Flash->info('In debug mode there is no captcha validation necessary.');
@@ -60,7 +60,7 @@ class ContactController extends AppController {
 				$this->Captcha->addValidation($contact->getValidator());
 			}
 
-			if ($contact->execute($this->request->data)) {
+			if ($contact->execute($this->request->getData())) {
 				$this->_send($name, $email, $subject, $message);
 			} else {
 				$this->Flash->error(__('formContainsErrors'));

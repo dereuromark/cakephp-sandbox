@@ -8,7 +8,3 @@ parameters:
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
-
-services:
-    -
-        class: Cake\PHPStan\AssociationTableMixinClassReflectionExtension

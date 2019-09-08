@@ -40,6 +40,7 @@ class CsvController extends SandboxAppController {
 	 * Simple CSV
 	 *
 	 * @return void
+	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function simple() {
 		if (empty($this->request->params['_ext'])) {

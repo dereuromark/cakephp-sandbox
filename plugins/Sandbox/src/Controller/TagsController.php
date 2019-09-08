@@ -41,6 +41,7 @@ class TagsController extends SandboxAppController {
 	public function index() {
 		$this->loadModel('Sandbox.SandboxCategories');
 
+		/** @var \Sandbox\Model\Entity\SandboxCategory $category */
 		$category = $this->SandboxCategories->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());

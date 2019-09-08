@@ -105,6 +105,7 @@ class AuthSandboxController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function register() {
+		/** @var \App\Model\Entity\User $user */
 		$user = $this->Users->newEmptyEntity();
 
 		if ($this->request->is('post')) {

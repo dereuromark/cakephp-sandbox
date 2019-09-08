@@ -24,6 +24,7 @@ namespace PHPSTORM_META {
 			'TestHelper.TestRunner' => \TestHelper\Controller\Component\TestRunnerComponent::class,
 			'Tools.Common' => \Tools\Controller\Component\CommonComponent::class,
 			'Tools.Mobile' => \Tools\Controller\Component\MobileComponent::class,
+			'Tools.RefererRedirect' => \Tools\Controller\Component\RefererRedirectComponent::class,
 			'Tools.Url' => \Tools\Controller\Component\UrlComponent::class,
 		])
 	);

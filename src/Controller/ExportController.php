@@ -50,7 +50,7 @@ class ExportController extends AppController {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {
-			$this->response->download($this->request->params['action'] . '.' . $this->request->params['ext']);
+			$this->response->download($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
 		}
 	}
 
