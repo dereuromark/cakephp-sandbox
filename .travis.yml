@@ -35,7 +35,7 @@ script:
   - if [[ $DEFAULT == 1 ]]; then vendor/bin/phpunit; fi
 
   - if [[ $CHECKS == 1 ]]; then bin/cake dto generate -p Sandbox -v -d ; fi
-  - if [[ $CHECKS == 1 ]]; then composer phpstan-setup && bin/cake code_completion generate && composer phpstan ; fi
+  - if [[ $CHECKS == 1 ]]; then composer phpstan-setup-php56 && bin/cake code_completion generate && composer phpstan-php56 ; fi
   - if [[ $CHECKS == 1 ]]; then composer cs-check ; fi
 
   - if [[ $CODECOVERAGE == 1 ]]; then vendor/bin/phpunit --coverage-clover=clover.xml || true; fi

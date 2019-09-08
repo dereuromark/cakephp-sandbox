@@ -4791,12 +4791,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "b6c99844790b51c0f47e976c7cfc789cd5e99a75"
+                "reference": "843560e5ecd7c21069954cd0f602e5c364cf8359"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b6c99844790b51c0f47e976c7cfc789cd5e99a75",
-                "reference": "b6c99844790b51c0f47e976c7cfc789cd5e99a75",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/843560e5ecd7c21069954cd0f602e5c364cf8359",
+                "reference": "843560e5ecd7c21069954cd0f602e5c364cf8359",
                 "shasum": ""
             },
             "require": {
@@ -4846,7 +4846,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2019-09-07T11:35:24+00:00"
+            "time": "2019-09-08T12:26:37+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
