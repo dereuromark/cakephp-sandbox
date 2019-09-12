@@ -17,7 +17,7 @@ class HelpersController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function google_map_v3() {
+	public function googleMapV3() {
 		$this->Common->loadHelper(['Geo.GoogleMap']);
 	}
 
