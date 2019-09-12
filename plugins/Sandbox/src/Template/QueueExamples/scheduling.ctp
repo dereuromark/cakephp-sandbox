@@ -50,12 +50,12 @@ $this->loadHelper('Queue.QueueProgress');
 					} ?>
 					<?php if (!$queuedJob->fetched) {
 						echo '<br>';
-						echo 'Scheduling progress (until job starts): ' . $this->QueueProgress->timeoutProgressBar($queuedJob, 20);
+						echo 'Scheduling progress (until job starts): ' . $this->QueueProgress->htmlTimeoutProgressBar($queuedJob, $this->QueueProgress->timeoutProgressBar($queuedJob, 20));
 					} else { ?>
 						<div>
 						<?php echo $this->Number->toPercentage($queuedJob->progress * 100, 0); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
 						<br>
-						<?php echo $this->QueueProgress->progressBar($queuedJob, 30); ?>
+						<?php echo $this->QueueProgress->htmlProgressBar($queuedJob, $this->QueueProgress->progressBar($queuedJob, 30)); ?>
 						<div>
 					<?php } ?>
 				</li>

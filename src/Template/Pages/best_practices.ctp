@@ -29,6 +29,12 @@ If you overwrite it directly, this will get very messy otherwise.
 Check this applications's config folder on how it is done.
 </p>
 
+<p>
+	Note: You can also leave out the app_local file, and instead use <code>env()</code> wrapper to read from environment variables.
+<br>
+	People often use the env() approach on the server, and the local file on the development machine locally.
+</p>
+
 <h3>Routing</h3>
 Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'])?>) as default one:
 <pre><code>use Cake\Routing\Route\DashedRoute;
