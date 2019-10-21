@@ -11,7 +11,7 @@ php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-inte
 
 chmod +x bin/cake
 
-sudo -u www-data -s bin/cake maintenance_mode activate
+bin/cake maintenance_mode activate
 
 mkdir -p tmp
 mkdir -p logs
@@ -35,6 +35,8 @@ rm -rf tmp/cache/models/*
 rm -rf tmp/cache/persistent/*
 rm -rf tmp/cache/views/*
 
+bin/cake maintenance_mode deactivate
+
 chown -R www-data:www-data *
 chmod -R 0770 tmp
 chmod -R 0770 logs
@@ -42,5 +44,3 @@ chmod -R 0770 webroot/js/cjs/
 chmod -R 0770 webroot/css/ccss/
 
 echo "### DONE ###";
-
-sudo -u www-data -s bin/cake maintenance_mode deactivate
