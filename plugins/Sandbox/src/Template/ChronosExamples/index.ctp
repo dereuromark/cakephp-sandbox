@@ -20,23 +20,27 @@ printf("Now: %s", Chronos::now());
 
 <br>
 Use a different date for "now":
+<div class="date">
 <?php
 echo $this->Form->date('now', ['minYear' => date('Y') - 1, 'maxYear' => date('Y') + 1, 'default' => Chronos::now()]);
 ?>
+</div>
 
 <h3>Timezone</h3>
 <?php echo Chronos::now()->timezoneName; ?>
 
 
 <h3>Birthday and Age</h3>
-1987-03-04: Age <?php echo Chronos::create('1987', '03', '04')->age; ?>
+For example <code>1987-03-04</code>: Age <?php echo Chronos::create('1987', '03', '04')->age; ?>
 
 <h3>Check your birthday or age</h3>
 <?php
-
-echo $this->Form->date('birthday', ['minYear' => date('Y') - 80]);
-
+echo $this->Form->input('birthday', ['type' => 'date', 'minYear' => date('Y') - 80, 'empty' => ['' => '']]);
+?>
+<?php
 if (!empty($this->request->data['birthday'])) {
+	echo '<h4>Result</h4>';
+
 	$birthdayString = $this->request->data['birthday']['year'] . '-' . $this->request->data['birthday']['month'] . '-' . $this->request->data['birthday']['day'];
 	if (strlen($birthdayString) === 10) {
 		$birthday = new Chronos($birthdayString);
@@ -49,9 +53,7 @@ if (!empty($this->request->data['birthday'])) {
 		$isBirthday = $birthday->isBirthday($now);
 	}
 
-	echo '<br>';
 	echo 'Birthday: ' . $this->Format->yesNo($isBirthday);
-
 	echo '<br>';
 	echo 'Age: ' . ($birthday ? $birthday->age : '-');
 }

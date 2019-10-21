@@ -23,10 +23,8 @@ if (!empty($this->request->query['assets'])) {
 		case 'bootstrap-alpha':
 			if (PHP_SAPI !== 'cli') {
 				echo $this->AssetCompress->css('bootstrap-alpha');
-				echo $this->AssetCompress->script('js-combined');
 			}
 			echo $this->fetch('css');
-			echo $this->fetch('script');
 		break;
 		default:
 			throw new \RuntimeException('Invalid asset type');
@@ -36,10 +34,6 @@ if (!empty($this->request->query['assets'])) {
 		echo $this->AssetCompress->css('css-combined');
 	}
 	echo $this->fetch('css');
-	if (PHP_SAPI !== 'cli') {
-		echo $this->AssetCompress->script('js-combined');
-	}
-	echo $this->fetch('script');
 }
 ?>
 </head>
@@ -96,6 +90,24 @@ echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => '
 <?php echo $this->element('stats'); ?>
 
 <?php echo $this->element('Feedback.sidebar');?>
+
+<?php
+if (!empty($this->request->query['assets'])) {
+	switch ($this->request->query['assets']) {
+		case 'bootstrap-alpha':
+			if (PHP_SAPI !== 'cli') {
+				echo $this->AssetCompress->script('js-combined');
+			}
+			break;
+		default:
+			throw new \RuntimeException('Invalid asset type');
+	}
+} else {
+	if (PHP_SAPI !== 'cli') {
+		echo $this->AssetCompress->script('js-combined');
+	}
+}
+?>
 <?php echo $this->fetch('script'); ?>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 namespace Sandbox\Model\Table;
 
+use App\Model\Entity\Entity;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
@@ -24,7 +25,7 @@ class AnimalsTable extends Table {
 	 * @return void
 	 */
 	public function initialize(array $config) {
-		$this->table('sandbox_animals');
+		$this->setTable('sandbox_animals');
 
 		//$this->addBehavior('Search.Searchable');
 		parent::initialize($config);
@@ -68,7 +69,7 @@ class AnimalsTable extends Table {
 	 */
 	public function buildRules(RulesChecker $rules) {
 		// Add a rule that is applied for create and update operations
-		$rules->add(function ($entity, $options) {
+		$rules->add(function (Entity $entity, $options) {
 			if ($entity->get('name') !== 'Mouse' && $entity->get('name') !== 'Cat') {
 				return false;
 			}

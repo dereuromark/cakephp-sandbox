@@ -61,6 +61,15 @@ div.date select.form-control {
 	width: auto;
 }
 
+.form-group.date select.form-control,
+.form-group.time select.form-control,
+.form-group.datetime select.form-control {
+	width: auto;
+	display: inline-block;
+	margin-right: 6px;
+	margin-bottom: 2px;
+}
+
 /* boostrap end */
 
 th > a.asc:after {

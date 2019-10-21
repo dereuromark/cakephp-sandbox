@@ -39,16 +39,3 @@ echo $this->Form->end();
 ?>
 
 <p>Note the break point, when you resize the browser. It will automatically jump from horizontal to non-horizontal at some point.</p>
-
-<h2></h2>
-
-<style>
-.form-group.date .form-control,
-.form-group.time .form-control,
-.form-group.datetime .form-control {
-	width: auto;
-	display: inline-block;
-	margin-right: 6px;
-	margin-bottom: 2px;
-}
-</style>
