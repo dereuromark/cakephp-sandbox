@@ -7,6 +7,7 @@ use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Setup\Middleware\MaintenanceMiddleware;
 
 /**
  * Application setup class.
@@ -34,6 +35,8 @@ class Application extends BaseApplication {
 	 */
 	public function middleware($middlewareQueue) {
 		$middlewareQueue
+			->add(MaintenanceMiddleware::class)
+
 			// Catch any exceptions in the lower layers,
 			// and make an error page/response
 			// Removed for now because of Whoops Error Handler
