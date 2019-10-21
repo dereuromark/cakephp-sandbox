@@ -5,6 +5,8 @@
 ?>
 <h1><?php echo __('Auto-complete');?></h1>
 
+<p>Type into the following input e.g. "Ko" etc and wait for a selection to appear.</p>
+
 <?php
 echo $this->Form->create(false, [
 	'id' => 'jquery-example-form',
@@ -15,7 +17,7 @@ echo $this->Form->create(false, [
 	]
 ]);
 echo $this->Form->control('term', ['id' => 'jquery-example-input', 'label' => __('Search for an animal')]);
-echo $this->Form->submit(__('Search'));
+echo $this->Form->submit(__('Save'));
 echo $this->Form->end();
 ?>
 

@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  */
 ?>
-<script type="text/javascript">
+
+<?php $this->append('script'); ?>
+<script>
 $(function() {
 	$('#button').click(function() {
 		var targeturl = $(this).data('rel');
@@ -28,6 +30,7 @@ $(function() {
 
 });
 </script>
+<?php $this->end(); ?>
 
 <nav class="actions col-sm-4 col-xs-12">
 	<?php echo $this->element('navigation/ajax'); ?>

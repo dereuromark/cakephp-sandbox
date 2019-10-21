@@ -11,6 +11,8 @@ php composer.phar install --prefer-dist --no-dev --optimize-autoloader --no-inte
 
 chmod +x bin/cake
 
+sudo -u www-data -s bin/cake maintenance_mode activate
+
 mkdir -p tmp
 mkdir -p logs
 mkdir -p webroot/js/cjs/
@@ -40,3 +42,5 @@ chmod -R 0770 webroot/js/cjs/
 chmod -R 0770 webroot/css/ccss/
 
 echo "### DONE ###";
+
+sudo -u www-data -s bin/cake maintenance_mode deactivate

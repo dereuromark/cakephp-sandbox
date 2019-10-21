@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  */
 ?>
-<?php echo $this->Html->script('/assets/jquery-infinite-scroll/dist/infinite-scroll.pkgd.js'); ?>
+<?php echo $this->Html->script('/assets/jquery-infinite-scroll/dist/infinite-scroll.pkgd.js', ['block' => true]); ?>
+
+<?php $this->append('script'); ?>
 <script>
 	$(function() {
 		var $container = $('#pagination-container');
@@ -28,6 +30,7 @@
 	});
 
 </script>
+<?php $this->end(); ?>
 
 <nav class="actions col-sm-4 col-xs-12">
 	<?php echo $this->element('navigation/ajax'); ?>

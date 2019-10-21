@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  */
 ?>
-<script type="text/javascript">
+
+<?php $this->append('script'); ?>
+<script>
 $(function() {
 	$('.toggle-element').click(function() {
 		var val = ($(this).data('value') + 1) % 2;
@@ -28,6 +30,7 @@ $(function() {
 
 });
 </script>
+<?php $this->end(); ?>
 
 <style>
 .toggle i.icon {

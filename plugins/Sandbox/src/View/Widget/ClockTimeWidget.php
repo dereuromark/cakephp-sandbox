@@ -30,19 +30,20 @@ class ClockTimeWidget extends DateTimeWidget {
 			$value = new DateTime();
 		}
 
+		$script = '
+			jQuery(function() {
+				$("#timepicker-' . h($data['id']) . '").clockpicker({
+					autoclose: true
+				});
+			});
+		';
+		$this->view->Html->scriptBlock($script, ['block' => true]);
+
 		return '
-            <div class="input-group date clockpicker" id="timepicker-' . h($data['id']) . '">
+			<div class="input-group date clockpicker" id="timepicker-' . h($data['id']) . '">
 				<input type="text" class="form-control" value="' . $value . '" name="' . h($data['name']) . '" />
 				<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
-			</div>
-
-            <script type="text/javascript">
-            jQuery(function() {
-                $("#timepicker-' . h($data['id']) . '").clockpicker({
-                    autoclose: true
-                });
-            });
-            </script>';
+			</div>';
 	}
 
 }

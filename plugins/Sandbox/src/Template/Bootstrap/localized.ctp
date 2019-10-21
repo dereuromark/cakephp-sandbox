@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var App\Model\Entity\Entity $animal
  */
 ?>
 <h2>A localized form (German)</h2>
@@ -8,9 +9,10 @@
 
 <?php
 
+// Usually this is added globally in bootstrap or app config.
 $this->Form->addWidget(
 	'datetime',
-	'Sandbox\View\Widget\DateTimeWidget'
+	['Sandbox\View\Widget\DateTimeWidget', '_view']
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);

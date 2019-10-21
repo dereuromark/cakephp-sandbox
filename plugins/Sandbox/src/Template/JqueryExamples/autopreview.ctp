@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<?php $this->append('script'); ?>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -34,7 +36,7 @@ jQuery( function() {
 } );
 
 </script>
-
+<?php $this->end(); ?>
 
 
 <h1><?php echo __('Auto Preview');?></h1>

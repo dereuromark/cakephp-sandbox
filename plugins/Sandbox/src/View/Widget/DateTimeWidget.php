@@ -2,6 +2,7 @@
 namespace Sandbox\View\Widget;
 
 use Cake\View\Form\ContextInterface;
+use Cake\View\View;
 use Cake\View\Widget\BasicWidget;
 use DateTime;
 
@@ -11,6 +12,21 @@ use DateTime;
  * Requires bootstrap datetimepicker and moment (localisation) js dependencies.
  */
 class DateTimeWidget extends BasicWidget {
+
+	/**
+	 * @var \App\View\AppView
+	 */
+	protected $view;
+
+	/**
+	 * @param \Cake\View\StringTemplate $templates Templates list.
+	 * @param \Cake\View\View $view
+	 */
+	public function __construct($templates, View $view) {
+		parent::__construct($templates);
+
+		$this->view = $view;
+	}
 
 	/**
 	 * Renders a date time widget.
@@ -56,25 +72,28 @@ class DateTimeWidget extends BasicWidget {
 			$value = new DateTime();
 		}
 
+		$id = $data['id'];
+
+		$script = '
+			jQuery(function() {
+				$("#datetimepicker-' . h($id) . '").datetimepicker({
+					sideBySide: true,
+					showTodayButton: true,
+					' . (empty($data['required']) ? 'showClear: true,' : '') . '
+					showClose: true,
+					calendarWeeks: true,
+					format: \'' . $format . '\'
+					//locale: \'de\'
+				});
+			});
+		';
+		$this->view->Html->scriptBlock($script, ['block' => true]);
+
 		return '
-            <div class="input-group date" id="datetimepicker-' . h($data['id']) . '">
+			<div class="input-group date" id="datetimepicker-' . h($id) . '">
 				<input type="text" class="form-control" value="' . $value . '" name="' . h($data['name']) . '" />
 				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-			</div>
-
-            <script type="text/javascript">
-            jQuery(function() {
-                $("#datetimepicker-' . h($data['id']) . '").datetimepicker({
-                    sideBySide: true,
-                    showTodayButton: true,
-                    ' . (empty($data['required']) ? 'showClear: true,' : '') . '
-                    showClose: true,
-                    calendarWeeks: true,
-                    format: \'' . $format . '\'
-                    //locale: \'de\'
-                });
-            });
-            </script>';
+			</div>';
 	}
 
 }

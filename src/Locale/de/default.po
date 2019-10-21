@@ -34,8 +34,6 @@ msgstr "Dein Kontostand am {0,date} beträgt {1,number,currency}."
 ### SANDBOX i18n examples END
 
 
-
-
 msgid "pleaseSelect"
 msgstr "bitte auswählen"
 

@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  */
 ?>
+
+<?php $this->append('script'); ?>
 <script type="text/javascript">
 $(function() {
 	$('#example-container a').removeAttr('onclick');
@@ -30,6 +32,7 @@ $(function() {
 	});
 });
 </script>
+<?php $this->end(); ?>
 
 <style>
 .toggle img.icon {

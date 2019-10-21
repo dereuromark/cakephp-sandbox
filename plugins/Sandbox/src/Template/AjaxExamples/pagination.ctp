@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  */
 ?>
-<script type="text/javascript">
+
+<?php $this->append('script'); ?>
+<script>
 $(document).ready(function() {
 	$(document).on('click', '#pagination-container a', function () {
 		var thisHref = $(this).attr('href');
@@ -19,6 +21,7 @@ $(document).ready(function() {
 	});
 });
 </script>
+<?php $this->end(); ?>
 
 <nav class="actions col-sm-4 col-xs-12">
 	<?php echo $this->element('navigation/ajax'); ?>
@@ -49,5 +52,10 @@ You only need
 	<li>A "pagination-container" div and a separate ctp file of the "common" content for both AJAX and normal view</li>
 	<li>A few lines of custom (jQuery) JS on top</li>
 </ul>
+
+	TODOs:
+	<ul>
+		<li>URL needs to be rewritten/updated to be in sync with current page - for a clean user experience</li>
+	</ul>
 
 </div>

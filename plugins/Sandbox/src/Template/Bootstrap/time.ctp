@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var App\Model\Entity\Entity $animal
  */
 ?>
 <h2>Working with time inputs</h2>
@@ -9,12 +10,12 @@
 
 $this->Form->addWidget(
 	'clockTime',
-	'Sandbox\View\Widget\ClockTimeWidget'
+	['Sandbox\View\Widget\ClockTimeWidget', '_view']
 );
 
 $this->Form->addWidget(
 	'datetime',
-	'Sandbox\View\Widget\DateTimeWidget'
+	['Sandbox\View\Widget\DateTimeWidget', '_view']
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);

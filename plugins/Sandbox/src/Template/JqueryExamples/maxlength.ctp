@@ -3,9 +3,10 @@
  * @var \App\View\AppView $this
  */
 ?>
-<?php echo $this->Html->script('/sandbox/jquery.maxlength/jquery.maxlength')?>
-<?php echo $this->Html->css('/sandbox/jquery.maxlength/style')?>
+<?php echo $this->Html->script('/sandbox/jquery.maxlength/jquery.maxlength', ['block' => true]) ?>
+<?php echo $this->Html->css('/sandbox/jquery.maxlength/style', ['block' => true]) ?>
 
+<?php $this->append('script'); ?>
 <script type="text/javascript">
 
 // wait for the DOM to be loaded
@@ -15,6 +16,7 @@ $(document).ready(function() {
 });
 
 </script>
+<?php $this->end(); ?>
 
 <h1><?php echo __('Max length');?></h1>
 
