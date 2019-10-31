@@ -227,7 +227,7 @@ Plugin::load('Search');
 Plugin::load('Geo');
 Plugin::load('Ratings');
 Plugin::load('Tags');
-Plugin::load('Queue', ['routes' => true]);
+Plugin::load('Queue', ['routes' => true, 'bootstrap' => true]);
 Plugin::load('Feedback', ['routes' => true, 'bootstrap' => true]);
 
 Plugin::load('CakePdf', ['routes' => true]);

@@ -462,6 +462,13 @@ namespace PHPSTORM_META {
 		])
 	);
 
+	expectedArguments(
+		\Cake\Validation\Validator::requirePresence(),
+		1,
+		'create',
+		'update'
+	);
+
 	override(
 		\Cake\View\View::element(0),
 		map([
@@ -569,6 +576,22 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+		])
+	);
+
+	override(
+		\Queue\Model\Table\QueuedJobsTable::createJob(0),
+		map([
+			'CostsExample' => \Queue\Shell\Task\QueueCostsExampleTask::class,
+			'Email' => \Queue\Shell\Task\QueueEmailTask::class,
+			'Example' => \Queue\Shell\Task\QueueExampleTask::class,
+			'ExceptionExample' => \Queue\Shell\Task\QueueExceptionExampleTask::class,
+			'Execute' => \Queue\Shell\Task\QueueExecuteTask::class,
+			'MonitorExample' => \Queue\Shell\Task\QueueMonitorExampleTask::class,
+			'ProgressExample' => \Queue\Shell\Task\QueueProgressExampleTask::class,
+			'RetryExample' => \Queue\Shell\Task\QueueRetryExampleTask::class,
+			'SuperExample' => \Queue\Shell\Task\QueueSuperExampleTask::class,
+			'UniqueExample' => \Queue\Shell\Task\QueueUniqueExampleTask::class,
 		])
 	);
 

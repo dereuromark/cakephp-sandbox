@@ -67,7 +67,6 @@
 		"dereuromark/cakephp-ide-helper": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master"
 	},
-	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"App\\": "src/",
@@ -117,6 +116,7 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
+	"prefer-stable": true,
 	"config": {
 		"preferred-install": "source",
 		"process-timeout": 900,
