@@ -6,20 +6,20 @@ namespace PHPSTORM_META {
 		\Cake\Controller\Controller::loadComponent(0),
 		map([
 			'Auth' => \Cake\Controller\Component\AuthComponent::class,
-			'Cookie' => \Cake\Controller\Component\CookieComponent::class,
-			'Csrf' => \Cake\Controller\Component\CsrfComponent::class,
-			'Flash' => \Cake\Controller\Component\FlashComponent::class,
-			'Paginator' => \Cake\Controller\Component\PaginatorComponent::class,
-			'RequestHandler' => \Cake\Controller\Component\RequestHandlerComponent::class,
-			'Security' => \Cake\Controller\Component\SecurityComponent::class,
 			'Cache.Cache' => \Cache\Controller\Component\CacheComponent::class,
 			'Cache.PartialCache' => \Cache\Controller\Component\PartialCacheComponent::class,
 			'Captcha.Captcha' => \Captcha\Controller\Component\CaptchaComponent::class,
 			'Captcha.Preparer' => \Captcha\Controller\Component\PreparerComponent::class,
+			'Cookie' => \Cake\Controller\Component\CookieComponent::class,
+			'Csrf' => \Cake\Controller\Component\CsrfComponent::class,
 			'Data.CountryStateHelper' => \Data\Controller\Component\CountryStateHelperComponent::class,
 			'DebugKit.Toolbar' => \DebugKit\Controller\Component\ToolbarComponent::class,
+			'Flash' => \Cake\Controller\Component\FlashComponent::class,
+			'Paginator' => \Cake\Controller\Component\PaginatorComponent::class,
 			'Ratings.Rating' => \Ratings\Controller\Component\RatingComponent::class,
+			'RequestHandler' => \Cake\Controller\Component\RequestHandlerComponent::class,
 			'Search.Prg' => \Search\Controller\Component\PrgComponent::class,
+			'Security' => \Cake\Controller\Component\SecurityComponent::class,
 			'Setup.Setup' => \Setup\Controller\Component\SetupComponent::class,
 			'TestHelper.TestRunner' => \TestHelper\Controller\Component\TestRunnerComponent::class,
 			'Tools.Common' => \Tools\Controller\Component\CommonComponent::class,
@@ -101,8 +101,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\Datasource\ModelAwareTrait::loadModel(0),
 		map([
-			'Roles' => \App\Model\Table\RolesTable::class,
-			'Users' => \App\Model\Table\UsersTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -126,6 +124,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Queue\Model\Table\QueueProcessesTable::class,
 			'Queue.QueuedJobs' => \Queue\Model\Table\QueuedJobsTable::class,
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
+			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
 			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
@@ -139,6 +138,7 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Users' => \App\Model\Table\UsersTable::class,
 		])
 	);
 
@@ -163,8 +163,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Locator\LocatorInterface::get(0),
 		map([
-			'Roles' => \App\Model\Table\RolesTable::class,
-			'Users' => \App\Model\Table\UsersTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -188,6 +186,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Queue\Model\Table\QueueProcessesTable::class,
 			'Queue.QueuedJobs' => \Queue\Model\Table\QueuedJobsTable::class,
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
+			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
 			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
@@ -201,6 +200,7 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Users' => \App\Model\Table\UsersTable::class,
 		])
 	);
 
@@ -236,8 +236,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::belongToMany(0),
 		map([
-			'Roles' => \Cake\ORM\Association\BelongsToMany::class,
-			'Users' => \Cake\ORM\Association\BelongsToMany::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsToMany::class,
@@ -261,6 +259,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Cake\ORM\Association\BelongsToMany::class,
 			'Queue.QueuedJobs' => \Cake\ORM\Association\BelongsToMany::class,
 			'Ratings.Ratings' => \Cake\ORM\Association\BelongsToMany::class,
+			'Roles' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\BelongsToMany::class,
@@ -274,14 +273,13 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsToMany::class,
+			'Users' => \Cake\ORM\Association\BelongsToMany::class,
 		])
 	);
 
 	override(
 		\Cake\ORM\Table::belongsTo(0),
 		map([
-			'Roles' => \Cake\ORM\Association\BelongsTo::class,
-			'Users' => \Cake\ORM\Association\BelongsTo::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsTo::class,
@@ -305,6 +303,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Cake\ORM\Association\BelongsTo::class,
 			'Queue.QueuedJobs' => \Cake\ORM\Association\BelongsTo::class,
 			'Ratings.Ratings' => \Cake\ORM\Association\BelongsTo::class,
+			'Roles' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\BelongsTo::class,
@@ -318,6 +317,7 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsTo::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsTo::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsTo::class,
+			'Users' => \Cake\ORM\Association\BelongsTo::class,
 		])
 	);
 
@@ -333,8 +333,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::hasMany(0),
 		map([
-			'Roles' => \Cake\ORM\Association\HasMany::class,
-			'Users' => \Cake\ORM\Association\HasMany::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\HasMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasMany::class,
 			'Data.Cities' => \Cake\ORM\Association\HasMany::class,
@@ -358,6 +356,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Cake\ORM\Association\HasMany::class,
 			'Queue.QueuedJobs' => \Cake\ORM\Association\HasMany::class,
 			'Ratings.Ratings' => \Cake\ORM\Association\HasMany::class,
+			'Roles' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\HasMany::class,
@@ -371,14 +370,13 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\HasMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasMany::class,
+			'Users' => \Cake\ORM\Association\HasMany::class,
 		])
 	);
 
 	override(
 		\Cake\ORM\Table::hasOne(0),
 		map([
-			'Roles' => \Cake\ORM\Association\HasOne::class,
-			'Users' => \Cake\ORM\Association\HasOne::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\HasOne::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasOne::class,
 			'Data.Cities' => \Cake\ORM\Association\HasOne::class,
@@ -402,6 +400,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Cake\ORM\Association\HasOne::class,
 			'Queue.QueuedJobs' => \Cake\ORM\Association\HasOne::class,
 			'Ratings.Ratings' => \Cake\ORM\Association\HasOne::class,
+			'Roles' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\HasOne::class,
@@ -415,14 +414,13 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\HasOne::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasOne::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasOne::class,
+			'Users' => \Cake\ORM\Association\HasOne::class,
 		])
 	);
 
 	override(
 		\Cake\ORM\TableRegistry::get(0),
 		map([
-			'Roles' => \App\Model\Table\RolesTable::class,
-			'Users' => \App\Model\Table\UsersTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -446,6 +444,7 @@ namespace PHPSTORM_META {
 			'Queue.QueueProcesses' => \Queue\Model\Table\QueueProcessesTable::class,
 			'Queue.QueuedJobs' => \Queue\Model\Table\QueuedJobsTable::class,
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
+			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
 			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
@@ -459,6 +458,7 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Users' => \App\Model\Table\UsersTable::class,
 		])
 	);
 
@@ -519,20 +519,7 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\View\View::loadHelper(0),
 		map([
-			'Breadcrumbs' => \Cake\View\Helper\BreadcrumbsHelper::class,
-			'Flash' => \Cake\View\Helper\FlashHelper::class,
-			'Form' => \App\View\Helper\FormHelper::class,
-			'Html' => \Cake\View\Helper\HtmlHelper::class,
-			'Number' => \Cake\View\Helper\NumberHelper::class,
-			'Paginator' => \Cake\View\Helper\PaginatorHelper::class,
-			'Rss' => \Cake\View\Helper\RssHelper::class,
-			'Session' => \Cake\View\Helper\SessionHelper::class,
-			'Text' => \Cake\View\Helper\TextHelper::class,
-			'Time' => \Cake\View\Helper\TimeHelper::class,
-			'Url' => \Cake\View\Helper\UrlHelper::class,
 			'App' => \App\View\Helper\AppHelper::class,
-			'Navigation' => \App\View\Helper\NavigationHelper::class,
-			'Sandbox' => \App\View\Helper\SandboxHelper::class,
 			'AssetCompress.AssetCompress' => \AssetCompress\View\Helper\AssetCompressHelper::class,
 			'Bake.Bake' => \Bake\View\Helper\BakeHelper::class,
 			'Bake.DocBlock' => \Bake\View\Helper\DocBlockHelper::class,
@@ -541,6 +528,7 @@ namespace PHPSTORM_META {
 			'BootstrapUI.Form' => \BootstrapUI\View\Helper\FormHelper::class,
 			'BootstrapUI.Html' => \BootstrapUI\View\Helper\HtmlHelper::class,
 			'BootstrapUI.Paginator' => \BootstrapUI\View\Helper\PaginatorHelper::class,
+			'Breadcrumbs' => \Cake\View\Helper\BreadcrumbsHelper::class,
 			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
 			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
@@ -550,16 +538,27 @@ namespace PHPSTORM_META {
 			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
 			'DebugKit.Tidy' => \DebugKit\View\Helper\TidyHelper::class,
 			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
+			'Flash' => \Cake\View\Helper\FlashHelper::class,
+			'Form' => \App\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
+			'Html' => \Cake\View\Helper\HtmlHelper::class,
 			'IdeHelper.DocBlock' => \IdeHelper\View\Helper\DocBlockHelper::class,
 			'Migrations.Migration' => \Migrations\View\Helper\MigrationHelper::class,
+			'Navigation' => \App\View\Helper\NavigationHelper::class,
+			'Number' => \Cake\View\Helper\NumberHelper::class,
+			'Paginator' => \Cake\View\Helper\PaginatorHelper::class,
 			'Queue.QueueProgress' => \Queue\View\Helper\QueueProgressHelper::class,
 			'Ratings.Rating' => \Ratings\View\Helper\RatingHelper::class,
+			'Rss' => \Cake\View\Helper\RssHelper::class,
+			'Sandbox' => \App\View\Helper\SandboxHelper::class,
 			'Sandbox.MediaEmbedBbcode' => \Sandbox\View\Helper\MediaEmbedBbcodeHelper::class,
 			'Search.Search' => \Search\View\Helper\SearchHelper::class,
-			'Tags.TagCloud' => \Tags\View\Helper\TagCloudHelper::class,
+			'Session' => \Cake\View\Helper\SessionHelper::class,
 			'Tags.Tag' => \Tags\View\Helper\TagHelper::class,
+			'Tags.TagCloud' => \Tags\View\Helper\TagCloudHelper::class,
 			'TestHelper.TestHelper' => \TestHelper\View\Helper\TestHelperHelper::class,
+			'Text' => \Cake\View\Helper\TextHelper::class,
+			'Time' => \Cake\View\Helper\TimeHelper::class,
 			'Tools.Common' => \Tools\View\Helper\CommonHelper::class,
 			'Tools.Form' => \Tools\View\Helper\FormHelper::class,
 			'Tools.Format' => \Tools\View\Helper\FormatHelper::class,
@@ -576,6 +575,7 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Url' => \Cake\View\Helper\UrlHelper::class,
 		])
 	);
 

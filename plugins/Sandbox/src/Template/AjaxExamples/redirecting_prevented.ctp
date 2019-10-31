@@ -5,7 +5,7 @@
 ?>
 
 <?php $this->append('script'); ?>
-<script type="text/javascript">
+<script>
 $(function() {
 	$('#example-container a').removeAttr('onclick');
 	$('#example-container a').click(function(e) {

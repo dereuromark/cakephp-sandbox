@@ -34,7 +34,7 @@ use Cake\Core\Configure;
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
 
-
+<?php $this->append('script'); ?>
 <script>
 $(function() {
 
@@ -62,3 +62,5 @@ $(function() {
 
 });
 </script>
+<?php $this->end(); ?>
+

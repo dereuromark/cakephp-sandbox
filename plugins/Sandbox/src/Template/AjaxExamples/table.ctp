@@ -60,6 +60,7 @@
 
 </div>
 
+<?php $this->append('script'); ?>
 <script>
     $(document).ready(function() {
         $('table.list a.ajax-delete').removeAttr('onclick').click(function(e) {
@@ -86,4 +87,4 @@
         });
     });
 </script>
-
+<?php $this->end(); ?>

@@ -5,6 +5,9 @@ use Cake\Event\EventManager;
 use Cake\Http\Response;
 use Cake\Http\ServerRequest;
 
+/**
+ * @deprecated ? Use Ajax.Ajax view instead?
+ */
 class AjaxView extends AppView {
 
 	/**
@@ -13,8 +16,6 @@ class AjaxView extends AppView {
 	public $layout = 'ajax';
 
 	/**
-	 * Constructor
-	 *
 	 * @param \Cake\Http\ServerRequest|null $request The request object.
 	 * @param \Cake\Http\Response|null $response The response object.
 	 * @param \Cake\Event\EventManager|null $eventManager Event manager object.

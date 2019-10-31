@@ -28,6 +28,7 @@
 
 </div>
 
+<?php $this->append('script'); ?>
 <script>
 	$(function() {
 		$(document).on('submit', '.ajax-form form', function(event) {
@@ -73,3 +74,4 @@
 	});
 
 </script>
+<?php $this->end(); ?>

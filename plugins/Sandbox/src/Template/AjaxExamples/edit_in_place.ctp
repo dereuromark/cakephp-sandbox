@@ -40,7 +40,7 @@
 
 </div>
 
-
+<?php $this->append('script'); ?>
 <script>
 $(function() {
 
@@ -71,3 +71,5 @@ $(function() {
 
 });
 </script>
+<?php $this->end(); ?>
+

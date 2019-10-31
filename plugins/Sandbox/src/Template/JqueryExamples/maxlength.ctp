@@ -7,7 +7,7 @@
 <?php echo $this->Html->css('/sandbox/jquery.maxlength/style', ['block' => true]) ?>
 
 <?php $this->append('script'); ?>
-<script type="text/javascript">
+<script>
 
 // wait for the DOM to be loaded
 $(document).ready(function() {
