@@ -63,6 +63,14 @@ return [
 		'scalarTypeHints' => false,
 	],
 
+	'DebugKit' => [
+		'panels' => [
+			'DebugKit.Packages' => false,
+			'DebugKit.Mail' => false,
+			'TinyAuth.Auth' => true,
+		],
+	],
+
 	'FormConfig' => [
 		'novalidate' => true,
 		'templates' => [
