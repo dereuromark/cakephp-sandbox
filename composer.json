@@ -41,7 +41,7 @@
 		"friendsofcake/cakepdf": "^3.0@dev",
 		"friendsofcake/bootstrap-ui": "dev-master",
 		"dereuromark/cakephp-cache": "dev-master",
-		"symfony/filesystem": "2.*",
+		"symfony/filesystem": "^2.0|^3.0",
 		"cakephp/chronos": "^1.0",
 		"friendsofcake/cakephp-csvview": "^3.2",
 		"friendsofcake/search": "dev-master",
