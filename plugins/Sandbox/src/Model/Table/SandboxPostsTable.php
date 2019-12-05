@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Cake\ORM\Query;
@@ -26,7 +27,7 @@ class SandboxPostsTable extends Table {
 	 */
 	public $actsAs = [
 		'Search.Search',
-		'Tags.Tag' => ['taggedCounter' => false]
+		'Tags.Tag' => ['taggedCounter' => false],
 	];
 
 	/**
@@ -37,15 +38,15 @@ class SandboxPostsTable extends Table {
 			'notEmpty' => [
 				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
-				'last' => true
-			]
+				'last' => true,
+			],
 		],
 		'content' => [
 			'notEmpty' => [
 				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
-				'last' => true
-			]
+				'last' => true,
+			],
 		],
 	];
 
@@ -65,7 +66,7 @@ class SandboxPostsTable extends Table {
 					}
 
 					return true;
-				}
+				},
 			]);
 
 		return $searchManager;

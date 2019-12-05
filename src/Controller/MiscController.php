@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 class MiscController extends AppController {
@@ -17,7 +18,7 @@ class MiscController extends AppController {
 		'3' => 'entity encode',
 		'4' => 'entity decode',
 		'5' => 'indent',
-		'6' => 'outdent'
+		'6' => 'outdent',
 	];
 
 	/**

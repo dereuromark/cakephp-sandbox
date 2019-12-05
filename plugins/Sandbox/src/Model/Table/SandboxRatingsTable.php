@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Ratings\Model\Table\RatingsTable;

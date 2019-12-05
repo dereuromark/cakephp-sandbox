@@ -14,11 +14,11 @@ return [
 	'Log' => [
 		'debug' => [
 			'scopes' => false,
-			'className' => 'DatabaseLog.Database'
+			'className' => 'DatabaseLog.Database',
 		],
 		'error' => [
 			'scopes' => false,
-			'className' => 'DatabaseLog.Database'
+			'className' => 'DatabaseLog.Database',
 		],
 		'404' => [
 			'className' => 'DatabaseLog.Database',
@@ -83,14 +83,14 @@ return [
 		'default' => [
 			'className' => 'Smtp',
 			'tls' => true,
-			'port' => 587
-		]
+			'port' => 587,
+		],
 	],
 
 	'Email' => [
 		'default' => [
-			'from' => null
-		]
+			'from' => null,
+		],
 	],
 
 	'IdeHelper' => [
@@ -104,7 +104,7 @@ return [
 	],
 
 	'Highlighter' => [
-		'highlighter' => 'Markup\Highlighter\JsHighlighter'
+		'highlighter' => 'Markup\Highlighter\JsHighlighter',
 	],
 
 	'Queue' => [

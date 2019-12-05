@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
@@ -55,7 +56,7 @@ class FeedExamplesController extends SandboxAppController {
 				'description' => Text::truncate($val['content']),
 				'dc:creator' => $val['User']['username'],
 				'pubDate' => $val['published'],
-				'content:encoded' => $content
+				'content:encoded' => $content,
 			];
 		}
 
@@ -68,15 +69,15 @@ class FeedExamplesController extends SandboxAppController {
 			'language' => 'en-en',
 			'image' => [
 				'url' => '/img/statics/logo_rss.png',
-				'link' => '/'
-			]
+				'link' => '/',
+			],
 		];
 
 		$data = [
 			'document' => [
 			],
 			'channel' => $channel,
-			'items' => $items
+			'items' => $items,
 		];
 		$this->set(['channel' => $data, '_serialize' => 'channel']);
 	}
@@ -102,7 +103,7 @@ class FeedExamplesController extends SandboxAppController {
 		$res = [];
 		foreach ($records as $k => $v) {
 			$v['User'] = [
-				'username' => 'Some user'
+				'username' => 'Some user',
 			];
 			$res[] = $v;
 		}

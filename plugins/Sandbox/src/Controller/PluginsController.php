@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
@@ -16,8 +17,8 @@ class PluginsController extends SandboxAppController {
 	 */
 	public $components = [
 		'RequestHandler' => [
-			'viewClassMap' => ['pdf' => 'CakePdf.Pdf']
-		]
+			'viewClassMap' => ['pdf' => 'CakePdf.Pdf'],
+		],
 	];
 
 	/**
@@ -97,13 +98,13 @@ class PluginsController extends SandboxAppController {
 			'options' => [
 				'print-media-type' => false,
 				'outline' => true,
-				'dpi' => 96
+				'dpi' => 96,
 			],
 			'margin' => [
 				'bottom' => 15,
 				'left' => 50,
 				'right' => 30,
-				'top' => 45
+				'top' => 45,
 			],
 			'orientation' => 'portrait',
 		];

@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Cake\ORM\Table;
@@ -33,7 +34,7 @@ class EventsTable extends Table {
 		$this->primaryKey('id');
 
 		$this->addBehavior('Calendar.Calendar', [
-			'field' => 'beginning'
+			'field' => 'beginning',
 		]);
 	}
 

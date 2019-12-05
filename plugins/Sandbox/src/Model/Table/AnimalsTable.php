@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use App\Model\Entity\Entity;
@@ -47,7 +48,7 @@ class AnimalsTable extends Table {
 				'last' => true,
 			])
 			->add('name', [
-				'unique' => ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'This animal already exists!']
+				'unique' => ['rule' => 'validateUnique', 'provider' => 'table', 'message' => 'This animal already exists!'],
 			])
 			->add('confirm', 'notEmpty', [
 				'rule' => function ($value, $context) {

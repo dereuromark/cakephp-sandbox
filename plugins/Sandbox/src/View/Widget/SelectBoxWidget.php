@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\View\Widget;
 
 use BootstrapUI\View\Helper\OptionsAwareTrait;

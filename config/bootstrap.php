@@ -173,7 +173,7 @@ DispatcherFactory::add('ControllerFactory');
 DispatcherFactory::add('Cache.Cache', [
 	'when' => function ($request, $response) {
 		return $request->is('get');
-	}
+	},
 ]);
 
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);

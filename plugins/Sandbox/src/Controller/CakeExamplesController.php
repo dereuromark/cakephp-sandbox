@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
@@ -44,14 +45,14 @@ class CakeExamplesController extends SandboxAppController {
 				'deep1' => ['deeper1a' => 'value1a', 'deeper2b' => 'value2b'],
 				'deep2' => ['deeper1', 'deeper2'],
 				'deep3' => 'stringX',
-			]
+			],
 		];
 		$mergeArray = [
 			'root' => [
 				'deep1' => ['deeper1a' => 'value1a', 'deeper3b' => 'value3b'],
 				'deep2' => ['deeper1', 'deeper3'],
 				'deep3' => 'stringY',
-			]
+			],
 		];
 
 		$type = $this->request->getQuery('type');

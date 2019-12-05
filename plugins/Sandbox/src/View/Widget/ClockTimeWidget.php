@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\View\Widget;
 
 use Cake\View\Form\ContextInterface;

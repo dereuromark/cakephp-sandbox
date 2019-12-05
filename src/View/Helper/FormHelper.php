@@ -1,4 +1,5 @@
 <?php
+
 namespace App\View\Helper;
 
 use BootstrapUI\View\Helper\FormHelper as BootstrapFormHelper;

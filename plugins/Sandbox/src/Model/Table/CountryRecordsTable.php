@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
@@ -33,7 +34,7 @@ class CountryRecordsTable extends Table {
 				'after' => true,
 				'mode' => 'or',
 				'comparison' => 'LIKE',
-				'field' => ['name', 'ori_name', 'iso2', 'iso3']
+				'field' => ['name', 'ori_name', 'iso2', 'iso3'],
 			]);
 	}
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Test\TestCase\Model\Table;
 
 use Cake\ORM\TableRegistry;
@@ -22,7 +23,7 @@ class EventsTableTest extends TestCase {
 	 * @var array
 	 */
 	public $fixtures = [
-		'plugin.Sandbox.Events'
+		'plugin.Sandbox.Events',
 	];
 
 	/**

@@ -17,7 +17,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 */
 	public $fixtures = [
 		'app.Users',
-		'app.Roles'
+		'app.Roles',
 	];
 
 	/**

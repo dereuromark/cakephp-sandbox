@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
@@ -19,8 +20,8 @@ class CsvController extends SandboxAppController {
 	 */
 	public $components = [
 		'RequestHandler' => [
-			'viewClassMap' => ['csv' => 'CsvView.Csv']
-		]
+			'viewClassMap' => ['csv' => 'CsvView.Csv'],
+		],
 	];
 
 	/**

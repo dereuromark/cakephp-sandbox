@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 /**
@@ -273,7 +274,7 @@ class ToolsExamplesController extends SandboxAppController {
 			'email' => 'E-Mail',
 			'geo' => 'Geo',
 			'market' => 'Market',
-			'card' => 'Vcard'
+			'card' => 'Vcard',
 		];
 
 		if ($this->request->is('post')) {

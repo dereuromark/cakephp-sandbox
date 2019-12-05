@@ -2,6 +2,7 @@
 /**
  * UserFixture
  */
+
 namespace App\Test\Fixture;
 
 use Cake\TestSuite\Fixture\TestFixture;
@@ -25,7 +26,7 @@ class UsersFixture extends TestFixture {
 		'email' => ['type' => 'string', 'null' => false, 'default' => null, 'length' => 80, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'],
 		'role_id' => ['type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2],
 		'_constraints' => ['primary' => ['type' => 'primary', 'columns' => ['id']]],
-		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM']
+		'_options' => ['charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM'],
 	];
 
 	/**
@@ -44,7 +45,7 @@ class UsersFixture extends TestFixture {
 			'username' => 'Lorem ipsum dolor sit amet',
 			'password' => 'Lorem ipsum dolor sit amet',
 			'email' => 'Lorem ipsum dolor sit amet',
-			'role_id' => 1
+			'role_id' => 1,
 		],
 	];
 

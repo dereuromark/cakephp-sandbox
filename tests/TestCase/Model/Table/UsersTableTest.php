@@ -1,4 +1,5 @@
 <?php
+
 namespace Test\TestCase\Model;
 
 use Cake\ORM\TableRegistry;
@@ -15,7 +16,7 @@ class UsersTableTest extends TestCase {
 	 * @var array
 	 */
 	public $fixtures = [
-		'app.Users'
+		'app.Users',
 	];
 
 	/**

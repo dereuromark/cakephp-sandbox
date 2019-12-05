@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use MediaEmbed\MediaEmbed;

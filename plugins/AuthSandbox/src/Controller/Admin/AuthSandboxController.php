@@ -1,4 +1,5 @@
 <?php
+
 namespace AuthSandbox\Controller\Admin;
 
 use AuthSandbox\Controller\AuthSandboxController as NormalAuthSandboxController;

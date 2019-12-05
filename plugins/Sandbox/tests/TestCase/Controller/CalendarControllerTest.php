@@ -15,7 +15,7 @@ class CalendarControllerTest extends IntegrationTestCase {
 	 */
 	public $fixtures = [
 		'plugin.Sandbox.Events',
-		'plugin.Data.States'
+		'plugin.Data.States',
 	];
 
 	/**

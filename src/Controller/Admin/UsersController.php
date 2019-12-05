@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
@@ -14,7 +15,7 @@ class UsersController extends AppController {
 	 */
 	public function index() {
 		$this->paginate = [
-			'contain' => ['Roles']
+			'contain' => ['Roles'],
 		];
 		$this->set('users', $this->paginate());
 	}

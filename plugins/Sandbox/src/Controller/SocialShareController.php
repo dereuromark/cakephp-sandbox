@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 class SocialShareController extends SandboxAppController {

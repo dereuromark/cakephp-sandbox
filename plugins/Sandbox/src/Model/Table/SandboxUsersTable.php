@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
@@ -18,15 +19,15 @@ class SandboxUsersTable extends Table {
 			'notEmpty' => [
 				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
-				'last' => true
-			]
+				'last' => true,
+			],
 		],
 		'email' => [
 			'email' => [
 				'rule' => ['email'],
 				'message' => 'Email invalid',
-				'last' => true
-			]
+				'last' => true,
+			],
 		],
 	];
 

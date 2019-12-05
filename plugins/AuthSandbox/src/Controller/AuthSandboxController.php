@@ -1,4 +1,5 @@
 <?php
+
 namespace AuthSandbox\Controller;
 
 use App\Controller\AppController;
@@ -46,11 +47,11 @@ class AuthSandboxController extends AppController {
 			'Tools.MultiColumn' => [
 				'fields' => [
 					'username' => 'login',
-					'password' => 'password'
+					'password' => 'password',
 				],
 				'columns' => ['username', 'email'],
-				'userModel' => 'Users'
-			]
+				'userModel' => 'Users',
+			],
 		]);
 
 		// Roles are defined in Roles table (and relationship linked in Users table)
@@ -60,19 +61,19 @@ class AuthSandboxController extends AppController {
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
-			'plugin' => 'AuthSandbox'
+			'plugin' => 'AuthSandbox',
 		]);
 		$this->Auth->config('loginRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'index',
-			'plugin' => 'AuthSandbox'
+			'plugin' => 'AuthSandbox',
 		]);
 		$this->Auth->config('logoutRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
-			'plugin' => 'AuthSandbox'
+			'plugin' => 'AuthSandbox',
 		]);
 		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
 	}

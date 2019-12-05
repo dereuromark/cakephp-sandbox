@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
@@ -48,7 +49,7 @@ class GeoExamplesController extends SandboxAppController {
 				'notEmpty' => [
 					'rule' => 'notBlank',
 					'message' => __('valErrMandatoryField'),
-					'last' => true
+					'last' => true,
 				]]);
 			$country = $this->Countries->patchEntity($country, $this->request->getData());
 

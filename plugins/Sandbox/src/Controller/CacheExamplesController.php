@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 /**
@@ -19,8 +20,8 @@ class CacheExamplesController extends SandboxAppController {
 			'actions' => [
 				'minute' => MINUTE,
 				'hour' => HOUR,
-				'someJson' => MINUTE
-			]
+				'someJson' => MINUTE,
+			],
 		]);
 	}
 

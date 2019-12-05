@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
@@ -175,7 +176,7 @@ class QueueExamplesController extends SandboxAppController {
 		$data = [];
 		if ($task === 'ProgressExample') {
 			$data = [
-				'duration' => 10
+				'duration' => 10,
 			];
 		}
 

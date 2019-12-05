@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Tools\Model\Table\Table;
@@ -32,26 +33,26 @@ class UsersTable extends Table {
 			'notEmpty' => [
 				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
-				'last' => true
+				'last' => true,
 			],
 			'isUnique' => [
 				'rule' => 'validateUnique',
 				'message' => 'Username already exists',
 				'last' => true,
-				'provider' => 'table'
+				'provider' => 'table',
 			],
 		],
 		'email' => [
 			'email' => [
 				'rule' => ['email'],
 				'message' => 'Email invalid',
-				'last' => true
+				'last' => true,
 			],
 			'unique' => [
 				'rule' => ['validateUnique'],
 				'message' => 'Email already exists',
 				'last' => true,
-				'provider' => 'table'
+				'provider' => 'table',
 			],
 		],
 	];

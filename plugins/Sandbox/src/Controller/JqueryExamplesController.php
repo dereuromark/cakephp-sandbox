@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
@@ -65,8 +66,8 @@ class JqueryExamplesController extends SandboxAppController {
 			$this->loadModel('Sandbox.Animals');
 			$items = $this->Animals->find('list', [
 					'conditions' => [
-						'name LIKE' => '%' . $this->request->getQuery('term') . '%'
-					]
+						'name LIKE' => '%' . $this->request->getQuery('term') . '%',
+					],
 			]);
 
 			$this->set('items', $items);

@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
@@ -133,7 +134,7 @@ class TagsController extends SandboxAppController {
 					'label' => 'X Y Z',
 					'slug' => 'X-Y-Z',
 				],
-			]
+			],
 		];
 
 		$this->set(compact('tags'));

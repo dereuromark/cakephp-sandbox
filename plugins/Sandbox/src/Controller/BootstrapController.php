@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
@@ -17,7 +18,7 @@ class BootstrapController extends SandboxAppController {
 	 * @var array
 	 */
 	public $helpers = [
-		'Flash' => ['className' => 'BootstrapUI.Flash']
+		'Flash' => ['className' => 'BootstrapUI.Flash'],
 	];
 
 	/**

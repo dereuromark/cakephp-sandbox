@@ -18,7 +18,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public $fixtures = [
 		'app.Users',
-		'app.Roles'
+		'app.Roles',
 	];
 
 	/**
@@ -52,7 +52,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testLoginLoggedIn() {
 		$data = [
-			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]]
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]],
 		];
 		$this->session($data);
 
@@ -82,7 +82,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
-			'pwd' => '123456'
+			'pwd' => '123456',
 		];
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
@@ -92,7 +92,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin', 'password' => '123456'
+			'login' => 'admin', 'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
@@ -106,7 +106,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
-			'pwd' => '123456'
+			'pwd' => '123456',
 		];
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
@@ -116,7 +116,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin@example.com', 'password' => '123456'
+			'login' => 'admin@example.com', 'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
@@ -130,7 +130,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$data = [
 			'username' => 'admin',
 			'email' => 'admin@example.com',
-			'pwd' => '123456'
+			'pwd' => '123456',
 		];
 		$this->Users = TableRegistry::get('Users');
 		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
@@ -140,7 +140,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		$this->Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin', 'password' => '123456'
+			'login' => 'admin', 'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
 		$this->assertResponseCode(302);
@@ -205,7 +205,7 @@ class AccountControllerTest extends IntegrationTestCase {
 
 		$data = [
 			'pwd' => '123456',
-			'pwd_repeat' => '123456'
+			'pwd_repeat' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'changePassword'], $data);
 
@@ -234,7 +234,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 */
 	public function testEdit() {
 		$data = [
-			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]]
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]],
 		];
 		$this->session($data);
 

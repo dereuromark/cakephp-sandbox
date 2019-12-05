@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Table;
 
 use Tools\Model\Table\Table;
@@ -29,8 +30,8 @@ class SandboxCategoriesTable extends Table {
 			'notEmpty' => [
 				'rule' => ['notBlank'],
 				'message' => 'Mandatory',
-				'last' => true
-			]
+				'last' => true,
+			],
 		],
 	];
 

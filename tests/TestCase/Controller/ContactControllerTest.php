@@ -14,7 +14,7 @@ class ContactControllerTest extends IntegrationTestCase {
 	 * @var array
 	 */
 	public $fixtures = [
-		'plugin.Captcha.Captchas'
+		'plugin.Captcha.Captchas',
 	];
 
 	/**
@@ -28,8 +28,8 @@ class ContactControllerTest extends IntegrationTestCase {
 		]);
 		$this->configRequest([
 			'environment' => [
-				'REMOTE_ADDR' => '127.0.0.1'
-			]
+				'REMOTE_ADDR' => '127.0.0.1',
+			],
 		]);
 	}
 

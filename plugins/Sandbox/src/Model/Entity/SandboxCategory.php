@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Model\Entity;
 
 use App\Model\Entity\Entity;
@@ -36,7 +37,7 @@ class SandboxCategory extends Entity {
 	 */
 	protected $_accessible = [
 		'*' => true,
-		'id' => false
+		'id' => false,
 	];
 
 }

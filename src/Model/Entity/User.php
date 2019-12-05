@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Entity;
 
 /**
@@ -49,7 +50,7 @@ class User extends Entity {
 	 * @var array
 	 */
 	protected $_hidden = [
-		'password'
+		'password',
 	];
 
 }

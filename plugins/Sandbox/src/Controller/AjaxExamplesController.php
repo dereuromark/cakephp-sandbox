@@ -1,4 +1,5 @@
 <?php
+
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
@@ -201,7 +202,7 @@ class AjaxExamplesController extends SandboxAppController {
 		if ($this->request->is('post')) {
 			$this->Users->getValidator()->add('state_id', 'numeric', [
 				'rule' => 'numeric',
-				'message' => 'Please select something'
+				'message' => 'Please select something',
 			]);
 			$user = $this->Users->patchEntity($user, $this->request->getData());
 		}

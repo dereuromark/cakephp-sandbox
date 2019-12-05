@@ -16,7 +16,7 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	public $fixtures = [
 		'app.Users',
 		'plugin.Sandbox.SandboxUsers',
-		'plugin.Sandbox.SandboxAnimals'
+		'plugin.Sandbox.SandboxAnimals',
 	];
 
 	/**

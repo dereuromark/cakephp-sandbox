@@ -26,14 +26,14 @@ return [
 	],
 
 	'Config' => [
-		'adminEmail' => 'youremail@host.de'
+		'adminEmail' => 'youremail@host.de',
 	],
 
 	'FormConfig' => [
 		'novalidate' => true,
 		'templates' => [
 			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		]
+		],
 	],
 
 	'Whoops' => [

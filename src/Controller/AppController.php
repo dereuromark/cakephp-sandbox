@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use Cake\Core\Configure;
@@ -51,31 +52,31 @@ class AppController extends Controller {
 				'Tools.MultiColumn' => [
 					'fields' => [
 						'username' => 'login',
-						'password' => 'password'
+						'password' => 'password',
 					],
 					'columns' => ['username', 'email'],
 					'userModel' => 'Users',
-				]
+				],
 			],
 			'authorize' => ['TinyAuth.Tiny' => []],
 			'logoutRedirect' => [
 				'plugin' => false,
 				'prefix' => false,
 				'controller' => 'Overview',
-				'action' => 'index'
+				'action' => 'index',
 			],
 			'loginRedirect' => [
 				'plugin' => false,
 				'prefix' => false,
 				'controller' => 'Account',
-				'action' => 'index'
+				'action' => 'index',
 			],
 			'loginAction' => [
 				'plugin' => false,
 				'prefix' => false,
 				'controller' => 'Account',
-				'action' => 'login'
-			]
+				'action' => 'login',
+			],
 		];
 		$this->Auth->config($config);
 

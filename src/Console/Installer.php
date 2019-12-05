@@ -12,6 +12,7 @@
  * @since     3.0.0
  * @license   http://www.opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Console;
 
 use Cake\Codeception\Console\Installer as CakeInstaller;
@@ -101,7 +102,7 @@ class Installer {
 			'tmp/cache/persistent',
 			'tmp/cache/views',
 			'tmp/sessions',
-			'tmp/tests'
+			'tmp/tests',
 		];
 
 		foreach ($paths as $path) {
