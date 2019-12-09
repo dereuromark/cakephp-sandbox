@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \MediaEmbed\Object\MediaObject $mediaObject
+ * @var array $hosts
  */
 ?>
 

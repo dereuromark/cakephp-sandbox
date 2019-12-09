@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var string[] $types
  */
 ?>
 <h2>Flash Messages</h2>

@@ -10,7 +10,7 @@ use ReflectionMethod;
 class SandboxAppController extends AppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

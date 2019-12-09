@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \Sandbox\Model\Entity\SandboxPost[] $posts
  * @var array $tags
+ * @var bool $_isSearch
  */
 ?>
 

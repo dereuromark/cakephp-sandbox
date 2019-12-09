@@ -7,7 +7,7 @@ use MediaEmbed\MediaEmbed;
 class MediaEmbedController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

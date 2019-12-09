@@ -5,7 +5,7 @@ namespace Sandbox\Controller;
 class SocialShareController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

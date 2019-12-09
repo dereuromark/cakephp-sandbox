@@ -12,7 +12,7 @@ namespace Sandbox\Controller;
 class ToolsExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 
@@ -222,6 +222,38 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('animal'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function datetime() {
+		$this->loadModel('Sandbox.SandboxUsers');
+
+		$entity = $this->SandboxUsers->newEmptyEntity();
+		$validator = $this->SandboxUsers->getValidator();
+		$validator->add('from', 'date');
+		$validator->add('to', [
+			'date' => [
+				'rule' => 'date'
+			],
+			'validateDate' => [
+				'rule' => ['validateDate', ['after' => 'from']],
+				'provider' => 'table',
+				'message' => '"to" must be after "from"',
+			],
+		]);
+
+		if ($this->Common->isPosted()) {
+			$entity = $this->SandboxUsers->patchEntity($entity, $this->request->getData());
+			if ($entity->getErrors()) {
+				$this->Flash->error('Not valid');
+			} else {
+				$this->Flash->success('Valid');
+			}
+		}
+
+		$this->set(compact('entity'));
 	}
 
 	/**

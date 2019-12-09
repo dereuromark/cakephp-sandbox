@@ -8,7 +8,7 @@ use Cake\Utility\Text;
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

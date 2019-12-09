@@ -22,6 +22,7 @@
 	<li><?php echo $this->Navigation->link('Typography', ['action' => 'typography'])?></li>
 	<li><?php echo $this->Navigation->link('Confirmable Forms', ['action' => 'confirmable'])?></li>
 	<li><?php echo $this->Navigation->link('Slugs', ['action' => 'slug'])?></li>
+	<li><?php echo $this->Navigation->link('Datetime validation', ['action' => 'datetime'])?></li>
 
 	<li><?php echo $this->Navigation->link('Format and Font Icons', ['action' => 'formatHelper'])?></li>
 	<li><?php echo $this->Navigation->link('QR Code', ['action' => 'qr'])?></li>

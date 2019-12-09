@@ -1,6 +1,9 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var string $expected
+ * @var string $result
+ * @var string $source
  */
 ?>
 <div class="source-link" style="float: right;">

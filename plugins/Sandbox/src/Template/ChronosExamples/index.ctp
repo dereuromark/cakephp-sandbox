@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \Cake\Chronos\ChronosInterface $now
  */
 use Cake\Chronos\Chronos;
 ?>
@@ -38,10 +39,11 @@ For example <code>1987-03-04</code>: Age <?php echo Chronos::create('1987', '03'
 echo $this->Form->input('birthday', ['type' => 'date', 'minYear' => date('Y') - 80, 'empty' => ['' => '']]);
 ?>
 <?php
-if (!empty($this->request->data['birthday'])) {
+$birthday = $this->request->getData('birthday');
+if ($birthday) {
 	echo '<h4>Result</h4>';
 
-	$birthdayString = $this->request->data['birthday']['year'] . '-' . $this->request->data['birthday']['month'] . '-' . $this->request->data['birthday']['day'];
+	$birthdayString = $birthday['year'] . '-' . $birthday['month'] . '-' . $birthday['day'];
 	if (strlen($birthdayString) === 10) {
 		$birthday = new Chronos($birthdayString);
 	} else {

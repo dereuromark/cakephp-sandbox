@@ -5,7 +5,7 @@ namespace Sandbox\Controller;
 class TryoutsController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

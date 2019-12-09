@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $states
+ * @var \App\Model\Entity\Entity $user
  */
 
 use Cake\Core\Configure;

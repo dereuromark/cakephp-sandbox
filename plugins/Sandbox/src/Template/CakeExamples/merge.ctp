@@ -1,6 +1,9 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $array
+ * @var array $mergeArray
+ * @var array $result
  */
 ?>
 <div class="source-link" style="float: right;">

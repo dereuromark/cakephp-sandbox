@@ -8,7 +8,7 @@ namespace Sandbox\Controller;
 class CacheExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 
@@ -22,6 +22,7 @@ class CacheExamplesController extends SandboxAppController {
 				'hour' => HOUR,
 				'someJson' => MINUTE,
 			],
+			'force' => true // To showcase also in debug mode locally
 		]);
 	}
 
@@ -57,7 +58,7 @@ class CacheExamplesController extends SandboxAppController {
 	 */
 	public function someJson() {
 		$something = [
-			'json' => 'this ddata is changed for 1 min',
+			'json' => 'this data is changed for 1 min',
 			'generated' => date(FORMAT_DB_DATETIME),
 		];
 

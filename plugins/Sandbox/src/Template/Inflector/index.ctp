@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $results
+ * @var string $string
  */
 ?>
 

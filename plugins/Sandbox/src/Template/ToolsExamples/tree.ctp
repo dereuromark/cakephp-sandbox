@@ -1,6 +1,9 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $array
+ * @var array $params
+ * @var array $tree
  */
 ?>
 

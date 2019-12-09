@@ -10,7 +10,7 @@ use Cake\Chronos\Chronos;
 class ChronosExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

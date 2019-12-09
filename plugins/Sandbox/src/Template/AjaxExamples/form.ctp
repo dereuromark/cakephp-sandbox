@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Entity $user
  */
 ?>
 <nav class="actions col-sm-4 col-xs-12">

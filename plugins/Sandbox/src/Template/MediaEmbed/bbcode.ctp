@@ -2,6 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \MediaEmbed\Object\MediaObject $mediaObject
+ * @var string $bbcode
+ * @var string $bbcodeExample
  */
 ?>
 

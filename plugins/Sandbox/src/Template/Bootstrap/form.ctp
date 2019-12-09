@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Entity $animal
  */
 ?>
 <h2>A basic form</h2>

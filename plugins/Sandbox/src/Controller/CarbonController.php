@@ -10,7 +10,7 @@ namespace Sandbox\Controller;
 class CarbonController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

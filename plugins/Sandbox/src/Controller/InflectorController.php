@@ -9,7 +9,7 @@ use ReflectionClass;
 class InflectorController extends AppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

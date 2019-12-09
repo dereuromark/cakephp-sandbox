@@ -8,7 +8,7 @@ namespace Sandbox\Controller;
 class JsExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

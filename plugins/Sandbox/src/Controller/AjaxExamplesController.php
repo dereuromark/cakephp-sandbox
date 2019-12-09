@@ -14,28 +14,23 @@ use Cake\Validation\Validation;
 class AjaxExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
-
-	/**
-	 * @var array
-	 */
-	public $components = ['Data.CountryStateHelper'];
-
-	/**
-	 * @var array
-	 */
-	public $helpers = ['Data.Data'];
 
 	/**
 	 * @return void
 	 */
 	public function initialize() {
-		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail'])) {
-			$this->components['Ajax.Ajax'] = [];
-		}
 		parent::initialize();
+
+		$this->loadComponent('Data.CountryStateHelper');
+
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail'])) {
+			$this->loadComponent('Ajax.Ajax');
+		}
+
+		$this->viewBuilder()->setHelpers(['Data.Data']);
 	}
 
 	/**

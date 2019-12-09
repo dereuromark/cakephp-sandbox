@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $someTestArray
  */
 ?>
 <h1>Some header</h1>

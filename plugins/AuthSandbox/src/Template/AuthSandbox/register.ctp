@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Entity $user
  */
 ?>
 <h2>Auth Sandbox</h2>

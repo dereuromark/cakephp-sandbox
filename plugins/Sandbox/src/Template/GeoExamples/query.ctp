@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \Data\Model\Entity\Country $country
+ * @var array $results
  */
 ?>
 <div class="page form">

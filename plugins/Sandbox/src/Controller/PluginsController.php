@@ -8,7 +8,7 @@ use Cake\Http\Exception\NotFoundException;
 class PluginsController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

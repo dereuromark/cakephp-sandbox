@@ -11,7 +11,7 @@ use MiniAsset\Filter\ScssFilter;
 class AssetCompressExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

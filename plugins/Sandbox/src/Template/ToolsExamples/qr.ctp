@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $result
+ * @var string[] $types
  */
 
 use Cake\Validation\Validation;

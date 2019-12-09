@@ -11,7 +11,7 @@ use Cake\I18n\Time;
 class CsvController extends SandboxAppController {
 
 	/**
-	 * @var string|bool
+	 * @var string|false
 	 */
 	public $modelClass = false;
 

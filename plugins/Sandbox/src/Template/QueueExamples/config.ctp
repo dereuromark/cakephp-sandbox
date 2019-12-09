@@ -4,6 +4,8 @@
  * @var \Queue\Model\Entity\QueuedJob[] $queuedJobs
  * @var \Queue\Model\Entity\QueuedJob $queuedJob
  * @var string[] $tasks
+ * @var int $length
+ * @var array $status
  */
 ?>
 

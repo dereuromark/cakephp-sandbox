@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $records
+ * @var array $result
  */
 ?>
 <h2>Bitmasks</h2>

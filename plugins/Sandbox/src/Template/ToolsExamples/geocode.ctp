@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var array $data
  */
 ?>
 <h2>Geocode with CakePHP</h2>

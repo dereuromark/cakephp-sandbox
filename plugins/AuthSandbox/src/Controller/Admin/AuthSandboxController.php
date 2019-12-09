@@ -6,6 +6,7 @@ use AuthSandbox\Controller\AuthSandboxController as NormalAuthSandboxController;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
+ * @property \Cake\ORM\Table $AuthSandbox
  */
 class AuthSandboxController extends NormalAuthSandboxController {
 

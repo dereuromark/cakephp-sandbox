@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var string[] $results
  */
 ?>
 <table class="table" id="inflections">

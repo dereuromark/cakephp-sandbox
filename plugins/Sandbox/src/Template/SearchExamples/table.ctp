@@ -1,6 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var bool $_isSearch
+ * @var array $countries
  */
 ?>
 

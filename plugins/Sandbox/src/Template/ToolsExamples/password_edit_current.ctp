@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var \App\Model\Entity\User $user
  */
 ?>
 
@@ -30,7 +31,6 @@
 	<?php echo $this->Form->submit(__('Submit'));?>
 	</fieldset>
 <?php echo $this->Form->end();?>
-</div>
 
 <h3>Info</h3>
 The password fields are optional, but as soon as the pwd field has content, both
