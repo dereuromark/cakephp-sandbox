@@ -1886,12 +1886,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "4cca537aa3c51361164454b300a1ec9c417a2d3c"
+                "reference": "05739ab54d956e0e31f8d71fbc9f3587d01cea37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/4cca537aa3c51361164454b300a1ec9c417a2d3c",
-                "reference": "4cca537aa3c51361164454b300a1ec9c417a2d3c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/05739ab54d956e0e31f8d71fbc9f3587d01cea37",
+                "reference": "05739ab54d956e0e31f8d71fbc9f3587d01cea37",
                 "shasum": ""
             },
             "require": {
@@ -1938,7 +1938,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2019-12-09T10:49:17+00:00"
+            "time": "2019-12-09T17:54:40+00:00"
         },
         {
             "name": "dereuromark/cakephp-whoops",

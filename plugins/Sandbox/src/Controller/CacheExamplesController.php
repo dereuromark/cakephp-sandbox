@@ -22,7 +22,7 @@ class CacheExamplesController extends SandboxAppController {
 				'hour' => HOUR,
 				'someJson' => MINUTE,
 			],
-			'force' => true // To showcase also in debug mode locally
+			'force' => true, // To showcase also in debug mode locally
 		]);
 	}
 
