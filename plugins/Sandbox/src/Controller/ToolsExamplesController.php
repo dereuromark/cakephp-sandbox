@@ -235,7 +235,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$validator->add('from', 'date');
 		$validator->add('to', [
 			'date' => [
-				'rule' => 'date'
+				'rule' => 'date',
 			],
 			'validateDate' => [
 				'rule' => ['validateDate', ['after' => 'from']],
