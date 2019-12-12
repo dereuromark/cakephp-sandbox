@@ -26,7 +26,7 @@ matrix:
       env: CODECOVERAGE=1 DEFAULT=0
 
 before_install:
-  - if [[ ${TRAVIS_PHP_VERSION} = "7.4" ]]; then pecl install gd ; fi
+  - if [[ ${TRAVIS_PHP_VERSION} != "7.4" && $CODECOVERAGE != 1 ]]; then phpenv config-rm xdebug.ini ; fi
 
 before_script:
   - composer install --prefer-source --no-interaction
