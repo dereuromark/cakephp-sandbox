@@ -17,7 +17,7 @@
 	],
 	"license": "MIT",
 	"require": {
-		"php": ">=5.6",
+		"php": ">=7.2",
 		"cakephp/plugin-installer": "*",
 		"cakephp/cakephp": "^3.8.0",
 		"mobiledetect/mobiledetectlib": "2.*",
@@ -108,8 +108,6 @@
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/ --extensions=php src/ tests/ config/ plugins/ webroot/",
 		"cs-fix": "phpcbf -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/ --extensions=php src/ tests/ config/ plugins/ webroot/",
-		"phpstan-setup-php56": "wget https://github.com/phpstan/phpstan-shim/raw/0.11.18/phpstan.phar",
-		"phpstan-php56": "php phpstan.phar analyse -c tests/phpstan.neon -l 1 src/ plugins/Sandbox/src plugins/AuthSandbox/src",
 		"phpstan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan-shim:^0.11 && mv composer.backup composer.json",
 		"phpstan": "phpstan analyse -c tests/phpstan.neon -l 1 src/ plugins/Sandbox/src plugins/AuthSandbox/src"
 	},
@@ -121,7 +119,7 @@
 		"preferred-install": "source",
 		"process-timeout": 900,
 		"platform": {
-			"php": "5.6"
+			"php": "7.2.12"
 		}
 	}
 }
