@@ -15,7 +15,7 @@ class PluginsController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = [
+	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => ['pdf' => 'CakePdf.Pdf'],
 		],

@@ -127,8 +127,8 @@ mkdir -p ./webroot/js/cjs/
 mkdir -p ./webroot/css/ccss/
 
 echo "### DB MIGRATION ###";
-bin/cake Migrations migrate -p Geo // and all other plugin migrations
-bin/cake Migrations migrate
+bin/cake migrations migrate -p Geo // and all other plugin migrations
+bin/cake migrations migrate
 
 echo "### ASSETS ###";
 bower install // or npm -i etc
@@ -136,7 +136,7 @@ bower install // or npm -i etc
 mkdir -p ./webroot/css/fonts
 cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
 
-bin/cake AssetCompress.AssetCompress build
+bin/cake asset_compress build
 
 echo "### CLEANUP ###";
 bin/cake clear cache
@@ -145,7 +145,7 @@ echo "### CACHE WARMING ###;
 bin/cake orm_cache build
 
 echo "### DONE ###";
-bin/cake Setup.MaintenanceMode deactivate</code>
+bin/cake maintenance_mode deactivate</code>
 </pre>
 
 <p>It should at least contain:</p>

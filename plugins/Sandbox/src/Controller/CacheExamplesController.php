@@ -15,7 +15,7 @@ class CacheExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		$this->loadComponent('Cache.Cache', [
 			'actions' => [
 				'minute' => MINUTE,

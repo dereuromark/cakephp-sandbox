@@ -2,7 +2,7 @@
 CakePHP 3 doesn't always have the best "beginner settings" preconfigured. It is often just optimized for speed by default.
 IMO that is not too clever, as beginners easily trip over that, whereas advanced users could easily "deactivate" it.
 <br/>
-So at the beginnning it should just work, and optimization should come later.
+So at the beginning it should just work, and optimization should come later.
 <br/><br/>
 To sum a few things up, this should help getting you started:
 
@@ -11,8 +11,10 @@ Set it to true in your app.php config so any field names that could be reserverd
 <pre><code>'quoteIdentifiers' => true
 </code></pre>
 
-<h3>Routing</h3>
-Use DashedRoute class as default for new CakePHP 3 apps. See <a href="/pages/best-practices#routing">here</a>.
-<br>
-It is going to be the default in 3.1+ anyway.
-
+<h3>Use Linux or Vagrant/Docker</h3>
+Don't try to work on Windows. There could be too many small pitfalls.
+Best to use a Vagrant Box or just a docker image to run your CakePHP app inside a Linux environment.
+<br><br>
+This way you have less bugs/side-effects that you will have a hard time with to decide whether they are framework related or not.
+<br><br>
+As a positive addition: Such an environment is then also case sensitive and therefore closer to production env.

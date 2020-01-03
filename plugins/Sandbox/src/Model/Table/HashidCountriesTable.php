@@ -16,7 +16,7 @@ class HashidCountriesTable extends CountriesTable {
 	 * @param array $config
 	 * @return void
 	 */
-	public function initialize(array $config) {
+	public function initialize(array $config): void {
 		$this->table('countries');
 
 		$config = [

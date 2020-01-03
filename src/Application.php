@@ -31,25 +31,24 @@ class Application extends BaseApplication {
 		if (PHP_SAPI === 'cli') {
 			$this->bootstrapCli();
 		}
+
 		$this->addPlugin('Tools');
 		$this->addPlugin('Setup');
 		//$this->addPlugin('Data');
-
 		//$this->addPlugin('Meta', ['bootstrap' => false]);
 		$this->addPlugin('Cache');
 		$this->addPlugin('AssetCompress');
 		//$this->addPlugin('SocialShare', ['bootstrap' => false]);
 		$this->addPlugin('TinyAuth', ['bootstrap' => false]);
-
 		$this->addPlugin('Calendar');
 		$this->addPlugin('Search');
 		$this->addPlugin('Geo');
 		$this->addPlugin('DatabaseLog');
 		$this->addPlugin('Queue');
 		//$this->addPlugin('Cake/Localized');
-
 		//$this->addPlugin('Tags');
 		//$this->addPlugin('Ratings');
+		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
 
 		// inside /plugins

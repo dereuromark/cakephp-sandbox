@@ -17,4 +17,4 @@ You can also add new content and or features this way.
 <h3>Here will soon be a list...</h3>
 ...of all the things that happens on this page
 <br/><br/>
-Mabye even some RSS feed to it.
+Maybe even some RSS feed to it.

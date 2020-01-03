@@ -24,7 +24,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(\Cake\Event\EventInterface $event) {
 		$this->_cssDir = Plugin::path('Sandbox') . 'files' . DS . 'AssetCompress' . DS;
 
 		parent::beforeFilter($event);

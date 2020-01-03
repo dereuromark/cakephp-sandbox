@@ -56,7 +56,7 @@ if (!empty($this->request->query['assets'])) {
 		<div id="header">
 			<h1><?php
 echo $description;
-?> <b>v3</b></h1>
+?> <b>v4</b></h1>
 		</div>
 		<div id="content">
 

@@ -18,12 +18,12 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Search.Prg' => ['actions' => ['table']]];
+	protected $components = ['Search.Prg' => ['actions' => ['table']]];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Data.Data'];
+	protected $helpers = ['Data.Data'];
 
 	/**
 	 * @return void

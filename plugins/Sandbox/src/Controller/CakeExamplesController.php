@@ -19,7 +19,7 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Markup.Highlighter'];
+	protected $helpers = ['Markup.Highlighter'];
 
 	/**
 	 * @return void

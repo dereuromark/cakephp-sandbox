@@ -37,7 +37,7 @@ class DateTimeWidget extends BasicWidget {
 	 * @return string A generated select box.
 	 * @throws \RuntimeException When option data is invalid.
 	 */
-	public function render(array $data, ContextInterface $context) {
+	public function render(array $data, ContextInterface $context): string {
 		$format = 'DD.MM.YYYY HH:mm';
 		if (!isset($data['second']) || $data['second']) {
 			$format .= ':ss';

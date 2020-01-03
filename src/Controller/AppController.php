@@ -17,13 +17,13 @@ class AppController extends Controller {
 	/**
 	 * @var array
 	 */
-	public $components = ['RequestHandler', 'Tools.Common',
+	protected $components = ['RequestHandler', 'Tools.Common',
 		'Flash.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Tools.Html', 'Tools.Url',
+	protected $helpers = ['Tools.Html', 'Tools.Url',
 		'Form' => [], // => ['className' => 'BootstrapUI.Form']
 		'Tools.Common', 'Flash.Flash', 'Tools.Format',
 		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress',

@@ -12,7 +12,7 @@ class SocialShareController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['SocialShare.SocialShare'];
+	protected $helpers = ['SocialShare.SocialShare'];
 
 	/**
 	 * @return void

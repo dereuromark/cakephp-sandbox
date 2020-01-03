@@ -20,7 +20,7 @@ class CountryRecordsTable extends Table {
 	 *
 	 * @return void
 	 */
-	public function initialize(array $config) {
+	public function initialize(array $config): void {
 		$this->table('countries');
 
 		parent::initialize($config);

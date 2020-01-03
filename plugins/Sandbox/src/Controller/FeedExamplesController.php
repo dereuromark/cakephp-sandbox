@@ -15,7 +15,7 @@ class FeedExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = [
+	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => [
 				'rss' => 'Feed.Rss']]];

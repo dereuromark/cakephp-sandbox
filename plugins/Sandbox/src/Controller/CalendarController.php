@@ -21,18 +21,18 @@ class CalendarController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Calendar.Calendar'];
+	protected $components = ['Calendar.Calendar'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Calendar.Calendar'];
+	protected $helpers = ['Calendar.Calendar'];
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 * @return \Cake\Http\Response|null
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(\Cake\Event\EventInterface $event) {
 		return parent::beforeFilter($event);
 	}
 

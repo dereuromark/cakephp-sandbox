@@ -26,6 +26,7 @@
 		"dereuromark/cakephp-shim": "dev-cake4 as 2.0.0",
 		"dereuromark/cakephp-tools": "dev-cake4 as 2.0.0",
 		"dereuromark/cakephp-setup": "dev-cake4",
+		"dereuromark/cakephp-markup": "dev-cake4",
 		"cakephp/migrations": "^3.0.0",
 		"markstory/asset_compress" : "^4.0.0",
 		"natxet/cssmin": "dev-master",

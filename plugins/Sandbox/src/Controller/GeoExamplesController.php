@@ -21,7 +21,7 @@ class GeoExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Geo.GoogleMap'];
+	protected $helpers = ['Geo.GoogleMap'];
 
 	/**
 	 * @return void

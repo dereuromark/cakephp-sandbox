@@ -19,17 +19,17 @@ class QueueExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = [];
+	protected $components = [];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = [];
+	protected $helpers = [];
 
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		parent::initialize();
 	}
 

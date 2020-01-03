@@ -15,12 +15,12 @@ class MenuController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Gourmet/KnpMenu.Menu'];
+	protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Gourmet/KnpMenu.Menu'];
+	protected $helpers = ['Gourmet/KnpMenu.Menu'];
 
 	/**
 	 * @return void

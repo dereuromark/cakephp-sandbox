@@ -16,7 +16,7 @@ class RatingsController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		parent::initialize();
 
 		// We fake a user / auth

@@ -12,7 +12,7 @@ class ExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Markup.Highlighter'];
+	protected $helpers = ['Markup.Highlighter'];
 
 	/**
 	 * Lists all actions available.

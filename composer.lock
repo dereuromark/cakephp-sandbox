@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d11b431d7cd6f58c0aeb07949b9d453",
+    "content-hash": "49149b3634e2187ca91232cf899b6264",
     "packages": [
         {
             "name": "aura/intl",
@@ -975,12 +975,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-feedback.git",
-                "reference": "5f379ecbe8c736a42f0e9d6abd92bd3750aa6938"
+                "reference": "b88c97040816ee7f1c8c4a91a17b4bd919d82910"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/5f379ecbe8c736a42f0e9d6abd92bd3750aa6938",
-                "reference": "5f379ecbe8c736a42f0e9d6abd92bd3750aa6938",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/b88c97040816ee7f1c8c4a91a17b4bd919d82910",
+                "reference": "b88c97040816ee7f1c8c4a91a17b4bd919d82910",
                 "shasum": ""
             },
             "require": {
@@ -1011,7 +1011,7 @@
             ],
             "description": "Feedback or bugreport (with screenshot!) tab option in your CakePHP application. Data can be posted directly to Mantis, E-mail, Github issues, filesystem, etc.",
             "homepage": "https://github.com/dereuromark/cakephp-feedback",
-            "time": "2020-01-02T23:51:44+00:00"
+            "time": "2020-01-02T23:58:04+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -1067,12 +1067,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "b60e4fff7e8a58b58f74979a26706dfb982a08f1"
+                "reference": "3adbeb9a4d2a3db058578e562e5fe11b1838bdde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/b60e4fff7e8a58b58f74979a26706dfb982a08f1",
-                "reference": "b60e4fff7e8a58b58f74979a26706dfb982a08f1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/3adbeb9a4d2a3db058578e562e5fe11b1838bdde",
+                "reference": "3adbeb9a4d2a3db058578e562e5fe11b1838bdde",
                 "shasum": ""
             },
             "require": {
@@ -1111,7 +1111,55 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2019-12-17T14:32:51+00:00"
+            "time": "2020-01-03T01:03:52+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-markup",
+            "version": "dev-cake4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-markup.git",
+                "reference": "2914d14eaae7111e6192ecde58d5332938f94001"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/2914d14eaae7111e6192ecde58d5332938f94001",
+                "reference": "2914d14eaae7111e6192ecde58d5332938f94001",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Markup\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "CakePHP plugin for markup (parsing and displaying)",
+            "homepage": "https://github.com/dereuromark/cakephp-markup",
+            "keywords": [
+                "cakephp",
+                "highlighting",
+                "markup",
+                "plugin"
+            ],
+            "time": "2020-01-03T01:51:14+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -4826,6 +4874,7 @@
         "dereuromark/cakephp-shim": 20,
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
+        "dereuromark/cakephp-markup": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,
         "dereuromark/cakephp-feed": 20,

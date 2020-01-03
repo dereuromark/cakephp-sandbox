@@ -13,7 +13,6 @@ It is one of the most powerful Frameworks for PHP.
 Framework means you don't have to write functions for every little task. The framework provides you with basic functionality which you can extend.<br/>
 <?php echo $this->Html->link('CakePHP', 'http://www.cakephp.org'); ?> is easier to learn than many other frameworks - and comes with very handy features.
 
-<p>
 <h2><?php echo __('Advantages') ?></h2>
 Using commonly known design patterns like MVC and ORM within the convention over configuration paradigm, CakePHP reduces development costs and helps developers write less code.
 <br/><br/>
@@ -39,10 +38,7 @@ echo $this->Html->nestedList($list, ['class' => 'features']);
 
 </ul>
 
-</p>
 
-
-<p>
 <h2><?php echo __('Interesting Links') ?></h2>
 Manual and Communities
 <?php
@@ -86,4 +82,3 @@ $list[] = $this->Html->link('Code-Snippets to test your application against XSS 
 
 echo $this->Html->nestedList($list, ['class' => 'links']);
 ?>
-</p>

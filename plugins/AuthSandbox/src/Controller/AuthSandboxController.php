@@ -22,18 +22,18 @@ class AuthSandboxController extends AppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['TinyAuth.AuthUser', 'Security', 'Csrf'];
+	protected $components = ['TinyAuth.AuthUser', 'Security', 'Csrf'];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['TinyAuth.AuthUser'];
+	protected $helpers = ['TinyAuth.AuthUser'];
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(\Cake\Event\EventInterface $event) {
 		parent::beforeFilter($event);
 
 		$this->_authSetup();

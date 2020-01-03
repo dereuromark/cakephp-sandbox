@@ -7,7 +7,7 @@
 Updated 2011/01
 
 <?php
-	$url = $this->Url->build('/cheat_sheets', true);
+	$url = $this->Url->build('/cheat_sheets', ['fullBase' => true]);
 ?>
 
 <style type="text/css">

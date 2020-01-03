@@ -18,7 +18,7 @@ class CsvController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = [
+	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => ['csv' => 'CsvView.Csv'],
 		],
@@ -27,7 +27,7 @@ class CsvController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Data.Data'];
+	protected $helpers = ['Data.Data'];
 
 	/**
 	 * List of all examples.

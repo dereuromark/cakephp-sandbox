@@ -17,7 +17,7 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = [
+	protected $helpers = [
 		'Flash' => ['className' => 'BootstrapUI.Flash'],
 	];
 
@@ -25,7 +25,7 @@ class BootstrapController extends SandboxAppController {
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(\Cake\Event\EventInterface $event) {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
 
