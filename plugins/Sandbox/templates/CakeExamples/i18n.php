@@ -10,13 +10,13 @@ $langDe = locale_get_display_name('de');
 ?>
 
 <div class="source-link" style="float: right;">
-<?php if ($this->request->session()->read('Config.language') === 'en') { ?>
+<?php if ($this->request->getSession()->read('Config.language') === 'en') { ?>
 	<b><?php echo $langEn; ?></b>
 <?php } else { ?>
 	<?php echo $this->Form->postLink($langEn, ['?' => ['lang' => 'en']], ['title' => __('Switch language')]); ?>
 <?php } ?>
  |
-<?php if ($this->request->session()->read('Config.language') === 'de') { ?>
+<?php if ($this->request->getSession()->read('Config.language') === 'de') { ?>
 	<b><?php echo $langDe; ?></b>
 <?php } else { ?>
 	<?php echo $this->Form->postLink($langDe, ['?' => ['lang' => 'de']], ['title' => __('Switch language')]); ?>
@@ -26,7 +26,7 @@ $langDe = locale_get_display_name('de');
 
 <h2>I18n</h2>
 <p>
-Current locale (<code><?php echo h('echo I18n::locale();'); ?></code>): <b><?php echo locale_get_display_name(I18n::locale(), I18n::locale());?> [<?php echo I18n::locale();?>]</b>
+Current locale (<code><?php echo h('echo I18n::getLocale();'); ?></code>): <b><?php echo locale_get_display_name(I18n::getLocale(), I18n::getLocale());?> [<?php echo I18n::getLocale();?>]</b>
 </p>
 
 <h3>
@@ -77,4 +77,4 @@ Note that the strtotime() call is <a href="http://php.net/manual/de/class.messag
 
 
 <h4>Debugging</h4>
-ICU version: <?php echo INTL_ICU_VERSION;?>
+ICU version: <?php echo INTL_ICU_VERSION;

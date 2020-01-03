@@ -86,7 +86,8 @@ if (!empty($result)) {
 	</div>
 	</fieldset>
 
-<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
+<?php echo $this->Form->submit(__('Submit'));
+echo $this->Form->end();?>
 </div>
 
 </div>
@@ -116,4 +117,4 @@ if (!empty($result)) {
 	});
 
 </script>
-<?php $this->end(); ?>
+<?php $this->end();

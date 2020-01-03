@@ -16,7 +16,7 @@ echo $this->Form->create();
 
 <h3>Now</h3>
 <?php
-printf("Now: %s", Chronos::now());
+printf('Now: %s', Chronos::now());
 ?>
 
 <br>
@@ -67,5 +67,4 @@ if ($birthday) {
 <?php
 echo $this->Form->submit();
 echo $this->Form->end();
-?>
 

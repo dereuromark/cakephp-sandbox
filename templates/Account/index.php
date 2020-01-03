@@ -9,7 +9,7 @@
 <h2>Your account</h2>
 
 	<p>
-Logged in as <b><?php echo h($this->request->session()->read('Auth.User.username')); ?></b>
+Logged in as <b><?php echo h($this->request->getSession()->read('Auth.User.username')); ?></b>
 	</p>
 
 <?php if (false) { ?>
@@ -19,7 +19,7 @@ Logged in as <b><?php echo h($this->request->session()->read('Auth.User.username
 <?php } ?>
 
 	<p>
-	<?php if ($this->request->session()->read('Auth.User.id')) { ?>
+	<?php if ($this->request->getSession()->read('Auth.User.id')) { ?>
 		<?php echo $this->Html->link('Log out', ['action' => 'logout'], ['class' => 'btn btn-danger']); ?>
 	<?php } ?>
 	</p>

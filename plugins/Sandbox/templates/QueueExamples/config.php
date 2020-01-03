@@ -18,8 +18,8 @@
 	<p>Just displaying some background infos about the current running queue.</p>
 	<ul>
 		<li>Current jobs waiting or still running in queue: <?php echo h($length); ?></li>
-		<li>Current running workers: <?php echo ($status ? $status['workers'] : '-'); ?></li>
-		<li>Last run: <?php echo ($status ? ($this->Time->nice($status['time'])) : '-'); ?></li>
+		<li>Current running workers: <?php echo $status ? $status['workers'] : '-'; ?></li>
+		<li>Last run: <?php echo $status ? ($this->Time->nice($status['time'])) : '-'; ?></li>
 	</ul>
 
 	<p>Note that multiple visitors trying out the queue would have to share the workers and their processing power.

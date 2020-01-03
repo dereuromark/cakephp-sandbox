@@ -2,8 +2,6 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
-
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
  */
@@ -25,7 +23,7 @@ class BootstrapController extends SandboxAppController {
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(\Cake\Event\EventInterface $event) {
+	public function beforeFilter(EventInterface $event) {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
 

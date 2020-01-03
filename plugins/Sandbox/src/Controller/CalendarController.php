@@ -2,7 +2,7 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\I18n\Time;
 
@@ -32,7 +32,7 @@ class CalendarController extends SandboxAppController {
 	 * @param \Cake\Event\EventInterface $event
 	 * @return \Cake\Http\Response|null
 	 */
-	public function beforeFilter(\Cake\Event\EventInterface $event) {
+	public function beforeFilter(EventInterface $event) {
 		return parent::beforeFilter($event);
 	}
 

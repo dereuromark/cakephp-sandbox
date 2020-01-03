@@ -71,5 +71,4 @@ $(function() {
 
 });
 </script>
-<?php $this->end(); ?>
-
+<?php $this->end();

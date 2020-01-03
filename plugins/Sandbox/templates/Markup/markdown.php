@@ -4,11 +4,11 @@
  */
 use Ciconia\Ciconia;
 use Ciconia\Extension\Gfm\FencedCodeBlockExtension;
-use Ciconia\Extension\Gfm\TaskListExtension;
 use Ciconia\Extension\Gfm\InlineStyleExtension;
-use Ciconia\Extension\Gfm\WhiteSpaceExtension;
 use Ciconia\Extension\Gfm\TableExtension;
+use Ciconia\Extension\Gfm\TaskListExtension;
 use Ciconia\Extension\Gfm\UrlAutoLinkExtension;
+use Ciconia\Extension\Gfm\WhiteSpaceExtension;
 ?>
 
 <h2>Markdown</h2>
@@ -92,7 +92,6 @@ $ciconia->removeExtension('paragraph');
 $ciconia->addExtension(new \Ciconia\Extension\Core\ParagraphExtension());
 $ciconia->removeExtension('header');
 $ciconia->addExtension(new \Ciconia\Extension\Core\HeaderExtension());
-
 
 $html = $ciconia->render($markdown, ['geshi' => true, 'nestedTagLevel' => 5]);
 echo pre(h($html));

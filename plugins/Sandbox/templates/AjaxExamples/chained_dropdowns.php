@@ -33,7 +33,8 @@ use Cake\Core\Configure;
 	Submit the form to see how validation kicks in and how it behaves with these two different options (required vs. no option available).
 	<br /><br />
 
-<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
+<?php echo $this->Form->submit(__('Submit'));
+echo $this->Form->end();?>
 </div>
 
 <?php $this->append('script'); ?>
@@ -64,5 +65,4 @@ $(function() {
 
 });
 </script>
-<?php $this->end(); ?>
-
+<?php $this->end();

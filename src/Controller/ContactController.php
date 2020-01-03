@@ -39,7 +39,7 @@ class ContactController extends AppController {
 		if (Configure::read('debug')) {
 			return;
 		}
-		$this->loadComponent('Csrf');
+
 		$this->loadComponent('Security');
 	}
 
@@ -71,7 +71,7 @@ class ContactController extends AppController {
 			$this->request->data = $this->request->getQuery();
 
 			# try to autofill fields
-			$user = (array)$this->request->session()->read('Auth.User');
+			$user = (array)$this->request->getSession()->read('Auth.User');
 			if (!empty($user['email'])) {
 				$this->request->data['email'] = $user['email'];
 			}

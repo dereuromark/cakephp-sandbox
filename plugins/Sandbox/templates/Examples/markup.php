@@ -63,7 +63,6 @@ $dataPrint = '<b>Wow</b>
 <input type="text"/>';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'html4strict']);
 
-
 $dataPrint = 'SELECT * FROM `telbuch_types`
 WHERE `user_name` = \'testmensch\'
 ORDER BY userid ASC LIMIT 0 , 30 ';

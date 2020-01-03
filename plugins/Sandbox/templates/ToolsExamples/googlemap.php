@@ -33,7 +33,7 @@
 		'div' => ['id' => 'someothers'],
 		'map' => [
 			'navOptions' => ['style' => 'SMALL'],
-			'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']]
+			'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']],
 	];
 	$result = $this->GoogleMapV3->map($options);
 	foreach ($data as $row) {
@@ -41,7 +41,7 @@
 			'lat' => $row['lat'],
 			'lng' => $row['lng'],
 			'title' => $row['name'],
-			'content' => 'User <b>' . $row['name'] . '</b><br />Some <i>info</i>'
+			'content' => 'User <b>' . $row['name'] . '</b><br />Some <i>info</i>',
 		];
 		if ($row['role'] === 'admin') {
 			$options['icon'] = $this->GoogleMapV3->iconSet('green', 'A');

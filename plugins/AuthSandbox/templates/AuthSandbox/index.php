@@ -17,8 +17,8 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 		<h3>Status</h3>
 		<?php
 		$status = ' a guest';
-		if ($this->request->session()->read('Auth.User.id')) {
-			$status = ' logged in as <b>' . $this->request->session()->read('Auth.User.username') . '</b> <span class="badge" title="' . h($role->name) . '">' . h($role->alias) . '</span>';
+		if ($this->request->getSession()->read('Auth.User.id')) {
+			$status = ' logged in as <b>' . $this->request->getSession()->read('Auth.User.username') . '</b> <span class="badge" title="' . h($role->name) . '">' . h($role->alias) . '</span>';
 		}
 
 		?>
@@ -26,10 +26,10 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 			You are <?php echo $status; ?>.
 		</p>
 		<p>
-		<?php if (!$this->request->session()->read('Auth.User.id')) { ?>
+		<?php if (!$this->request->getSession()->read('Auth.User.id')) { ?>
 			<?php echo $this->Html->link('Log in', ['action' => 'login'], ['class' => 'btn btn-success']); ?>
 		<?php } ?>
-		<?php if ($this->request->session()->read('Auth.User.id')) { ?>
+		<?php if ($this->request->getSession()->read('Auth.User.id')) { ?>
 			<?php echo $this->Html->link('Log out', ['action' => 'logout'], ['class' => 'btn btn-danger']); ?>
 		<?php } ?>
 		</p>

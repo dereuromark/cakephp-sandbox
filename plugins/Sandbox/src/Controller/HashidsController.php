@@ -3,7 +3,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\Event;
 
 /**
  * @property \Sandbox\Model\Table\HashidCountriesTable $HashidCountries
@@ -20,7 +19,7 @@ class HashidsController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function beforeFilter(\Cake\Event\EventInterface $event) {
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		Configure::write('Hashid.debug', false);

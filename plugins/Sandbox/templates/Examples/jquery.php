@@ -25,23 +25,23 @@ Additionally, this section shows how to integrate some of the really cool stuff 
 
 $examples2 = [];
 $examples2[] = [
-	'title'=>'Auto Preview',
-	'link'=>'autopreview',
-	'author'=>'Mark',
-	'user_id'=>'1',
-	'published'=>'August 2008',
-	'copyright'=>'s',
-	'copyright_link'=>'xx'
+	'title' => 'Auto Preview',
+	'link' => 'autopreview',
+	'author' => 'Mark',
+	'user_id' => '1',
+	'published' => 'August 2008',
+	'copyright' => 's',
+	'copyright_link' => 'xx',
 ];
 
 foreach ($examples as $example):
 ?>
 	<tr>
 		<td>
-			<?php echo $this->Html->link($example['JqueryExample']['title'], ['controller'=>'jquery_examples','action'=>$example['JqueryExample']['link']]); ?>
+			<?php echo $this->Html->link($example['JqueryExample']['title'], ['controller' => 'jquery_examples', 'action' => $example['JqueryExample']['link']]); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($example['User']['username'], '/user/'.$example['User']['id']); ?>
+			<?php echo $this->Html->link($example['User']['username'], '/user/' . $example['User']['id']); ?>
 		</td>
 		<td>
 			<?php echo $this->Datetime->niceDate($example['JqueryExample']['published']); ?>

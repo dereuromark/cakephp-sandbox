@@ -13,8 +13,6 @@ They mainly just need CSS assets added.
 <h3>PHP Libraries</h3>
 These are included using composer.
 
-<ul>
-	<li><a href="http://filp.github.io/whoops/" target="_blank">Whoops</a> as error handler and exception renderer is used for this. Make sure you are in debug mode for testing it :)</li>
-</ul>
-
-</div>
+	<p>
+		<i>Add your proposal as PR.</i>
+	</p>

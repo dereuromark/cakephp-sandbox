@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 <h3>Now</h3>
 <?php
-printf("Now: %s", Carbon::now());
+printf('Now: %s', Carbon::now());
 ?>
 
 
@@ -34,4 +34,4 @@ German (setlocale(LC_TIME, 'German');)
 	echo h('Carbon::now()->subDays(24)->diffForHumans();');
 	echo '<br/>';
 	echo Carbon::now()->subDays(24)->diffForHumans();
-?>
+

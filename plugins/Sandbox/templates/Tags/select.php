@@ -38,5 +38,4 @@ echo $this->Form->end();
 		tokenSeparators: [',']
 	})
 </script>
-<?php $this->end();?>
-
+<?php $this->end();

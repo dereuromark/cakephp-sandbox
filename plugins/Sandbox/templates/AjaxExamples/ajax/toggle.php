@@ -4,4 +4,4 @@
  * @var int $status
  */
 ?>
-<?php echo $this->Format->yesNo($status); ?>
+<?php echo $this->Format->yesNo($status);

@@ -8,14 +8,14 @@
 
 <h3><?php echo __('Public Lists')?></h3>
 <ul>
-	<li><?php echo $this->Html->link(__('Countries'), ['plugin' => 'data', 'controller' => 'countries', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('States'), ['plugin' => 'data', 'controller' => 'states', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Postal Codes'), ['plugin' => 'data', 'controller' => 'postal_codes', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Countries'), ['plugin' => 'Data', 'controller' => 'countries', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('States'), ['plugin' => 'Data', 'controller' => 'states', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Postal Codes'), ['plugin' => 'Data', 'controller' => 'postal_codes', 'action' => 'index'])?></li>
 
-	<li><?php echo $this->Html->link(__('Currencies'), ['plugin' => 'data', 'controller' => 'currencies', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Languages'), ['plugin' => 'data', 'controller' => 'languages', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Smileys'), ['plugin' => 'data', 'controller' => 'smileys', 'action' => 'index'])?></li>
-	<li><?php echo $this->Html->link(__('Mime Types'), ['plugin' => 'data', 'controller' => 'mime_types', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Currencies'), ['plugin' => 'Data', 'controller' => 'currencies', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Languages'), ['plugin' => 'Data', 'controller' => 'languages', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Smileys'), ['plugin' => 'Data', 'controller' => 'smileys', 'action' => 'index'])?></li>
+	<li><?php echo $this->Html->link(__('Mime Types'), ['plugin' => 'Data', 'controller' => 'mime_types', 'action' => 'index'])?></li>
 </ul>
 
 

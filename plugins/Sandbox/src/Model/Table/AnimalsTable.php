@@ -2,7 +2,7 @@
 
 namespace Sandbox\Model\Table;
 
-use App\Model\Entity\Entity;
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
@@ -37,7 +37,7 @@ class AnimalsTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(Validator $validator): \Cake\Validation\Validator {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->add('name', 'alphanumeric', [
 				'rule' => 'alphanumeric',
@@ -70,7 +70,7 @@ class AnimalsTable extends Table {
 	 */
 	public function buildRules(RulesChecker $rules): RulesChecker {
 		// Add a rule that is applied for create and update operations
-		$rules->add(function (Entity $entity, $options) {
+		$rules->add(function (EntityInterface $entity, $options) {
 			if ($entity->get('name') !== 'Mouse' && $entity->get('name') !== 'Cat') {
 				return false;
 			}

@@ -18,7 +18,7 @@
 
 <?php
 if (!$isRated) {
-    echo $this->Rating->control([
+	echo $this->Rating->control([
 		'item' => $post['id'],
 		'js' => true,
 	]);
@@ -31,7 +31,6 @@ if (!$isRated) {
 	echo '<p>For demo purposes:</p>';
 	echo $this->Form->postLink('Unrate', ['action' => 'unrate', $post['id']], ['class' => 'btn btn-warning']);
 }
-
 
 ?>
 
@@ -69,4 +68,4 @@ echo $this->Rating->display(3.25, ['steps' => 2]);
 </style>
 <?php
 echo $this->Rating->bar(8.5, 10);
-?>
+

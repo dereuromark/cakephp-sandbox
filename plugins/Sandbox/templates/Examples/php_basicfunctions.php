@@ -54,7 +54,7 @@ foreach ($vars as $var => $v)
 	} else {
 		echo '<td class="no">not isset</td>';
 	}
-	
+
 	echo '<td class="content">' . Debugger::exportVar($v) . '</td></tr>';
 }
 ?>

@@ -32,7 +32,7 @@ echo $this->Form->control('gender', ['type' => 'radio', 'options' => ['Male', 'F
 
 $options = [
 	'Value 1' => 'Multiple choices',
-	'Value 2' => 'Allowed'
+	'Value 2' => 'Allowed',
 ];
 echo $this->Form->control('options', ['type' => 'multicheckbox', 'options' => $options]);
 

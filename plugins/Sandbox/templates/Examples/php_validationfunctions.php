@@ -24,8 +24,6 @@ $vars[10] = '123string';	// integer with string
 $vars[11] = 1.21;
 $vars[12] = '1.21';
 
-
-
 $dataPrint = '$var1=0;
 $var2=\'0\';
 $var3=1;

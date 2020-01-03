@@ -28,7 +28,6 @@ echo $this->Form->control('multiple_checkboxes', ['multiple' => 'checkbox', 'opt
 
 echo $this->Form->control('multiple_selects', ['multiple' => true, 'options' => ['Young', 'Old', 'Hipster', 'Cool', 'Blue']]);
 
-
 echo '<div class="form-group">';
 echo $this->Form->control(__('Submit'), ['type' => 'submit']);
 echo '</div>';

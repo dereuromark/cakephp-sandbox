@@ -2,7 +2,7 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -28,7 +28,7 @@ class JqueryExamplesController extends SandboxAppController {
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeRender(Event $event) {
+	public function beforeRender(EventInterface $event) {
 		$this->set('jquery_plugins', $this->jqueryPlugins);
 
 		parent::beforeRender($event);

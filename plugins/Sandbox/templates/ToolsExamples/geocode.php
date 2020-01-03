@@ -26,4 +26,5 @@ Details (<?php echo h('$data[\'ExampleRecord\'][\'geocoder_result\']'); ?>):
 
 	?>
 	</fieldset>
-<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();
+<?php echo $this->Form->submit(__('Submit'));
+echo $this->Form->end();

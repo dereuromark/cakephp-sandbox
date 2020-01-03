@@ -17,7 +17,7 @@
 		echo $this->Form->create(null, ['valueSources' => 'query', 'url' => ['action' => 'table']]);
 
 		echo $this->Form->control('search', ['placeholder' => 'Wildcards: * and ?']);
-		echo $this->Form->control('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active', ]]);
+		echo $this->Form->control('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active']]);
 
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 

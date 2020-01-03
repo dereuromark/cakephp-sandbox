@@ -27,26 +27,26 @@ $m = $this->markerElements = [
 	],
 	[
 		'address' => '44.2,11.1',
-	]
+	],
 ];
 $markers = $this->GoogleMap->staticMarkers($m, ['color' => 'red', 'char' => 'C', 'shadow' => 'false']);
 
 $options = [
-	'markers' => $markers
+	'markers' => $markers,
 ];
 echo $this->GoogleMap->staticMap($options);
 ?>
 
 <h4>Dynamic Map</h4>
 <?php
-echo '<script src="'.$this->GoogleMap->apiUrl().'"></script>';
+echo '<script src="' . $this->GoogleMap->apiUrl() . '"></script>';
 
 $options = [
 	'zoom' => 5,
 	'type' => 'R',
 	'geolocate' => true,
 	'div' => ['id' => 'someothers'],
-	'map' => ['navOptions' => ['style' => 'SMALL'], 'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']]
+	'map' => ['navOptions' => ['style' => 'SMALL'], 'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']],
 ];
 $result = $this->GoogleMap->map($options);
 $this->GoogleMap->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMap->iconSet('green')]);

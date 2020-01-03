@@ -3,7 +3,7 @@
 namespace AuthSandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \TinyAuth\Controller\Component\AuthComponent $Auth
@@ -20,20 +20,23 @@ class AuthSandboxController extends AppController {
 	public $modelClass = 'Users';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $components = ['TinyAuth.AuthUser', 'Security', 'Csrf'];
+	public function initialize(): void {
+		parent::initialize();
 
-	/**
-	 * @var array
-	 */
-	protected $helpers = ['TinyAuth.AuthUser'];
+		$this->loadComponent('TinyAuth.AuthUser');
+		$this->loadComponent('Security');
+
+		$helpers = ['TinyAuth.AuthUser'];
+		$this->viewBuilder()->setHelpers($helpers);
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(\Cake\Event\EventInterface $event) {
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		$this->_authSetup();

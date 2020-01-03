@@ -15,28 +15,33 @@ use Tools\Controller\Controller;
 class AppController extends Controller {
 
 	/**
-	 * @var array
-	 */
-	protected $components = ['RequestHandler', 'Tools.Common',
-		'Flash.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
-
-	/**
-	 * @var array
-	 */
-	protected $helpers = ['Tools.Html', 'Tools.Url',
-		'Form' => [], // => ['className' => 'BootstrapUI.Form']
-		'Tools.Common', 'Flash.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress',
-		'Shim.Configure', 'Tools.Progress', 'Tools.Meter',
-	];
-
-	/**
 	 * @return void
 	 */
-	protected function _mergeControllerVars() {
-		parent::_mergeControllerVars();
+	public function initialize(): void {
+		parent::initialize();
 
-		$this->helpers['Form'] += (array)Configure::read('FormConfig');
+		$this->loadComponent('RequestHandler');
+		$this->loadComponent('Tools.Common');
+		$this->loadComponent('Flash.Flash');
+		$this->loadComponent('TinyAuth.Auth');
+		$this->loadComponent('TinyAuth.AuthUser');
+
+		$helpers = [
+			'Tools.Html',
+			'Tools.Url',
+			'Form' => (array)Configure::read('FormConfig'), // => ['className' => 'BootstrapUI.Form']
+			'Tools.Common',
+			'Flash.Flash',
+			'Tools.Format',
+			'Tools.Time',
+			'Tools.Number',
+			'TinyAuth.AuthUser',
+			'AssetCompress.AssetCompress',
+			'Shim.Configure',
+			'Tools.Progress',
+			'Tools.Meter',
+		];
+		$this->viewBuilder()->setHelpers($helpers);
 	}
 
 	/**

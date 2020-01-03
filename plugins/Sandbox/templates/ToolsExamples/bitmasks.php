@@ -36,7 +36,8 @@ Using the BitmaskedBehavior
 		echo $this->Form->control('flag', ['type' => 'select', 'multiple' => 'checkbox']);
 	?>
 	</fieldset>
-<?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
+<?php echo $this->Form->submit(__('Submit'));
+echo $this->Form->end();?>
 </div>
 
 <?php if (!empty($result)) { ?>

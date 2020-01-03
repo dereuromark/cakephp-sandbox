@@ -27,7 +27,7 @@ An interface to directly modify the data is planned, though.
 
 <h3><?php echo __('Countries'); ?></h3>
 <div>Key information: lat/lng, iso codes, zip code length/regexp, eu member, address_format, country_code, timezone</div>
-<?php echo $this->Html->link(__('View online'), ['plugin' => 'data', 'controller' => 'countries', 'action' => 'index']); ?>
+<?php echo $this->Html->link(__('View online'), ['plugin' => 'Data', 'controller' => 'countries', 'action' => 'index']); ?>
 <ul>
 <li><?php echo $this->Html->link('JSON', ['action' => 'countries', '_ext' => 'json']); ?></li>
 <li><?php echo $this->Html->link('XML', ['action' => 'countries', '_ext' => 'xml']); ?></li>
@@ -35,7 +35,7 @@ An interface to directly modify the data is planned, though.
 
 <h3><?php echo __('States'); ?></h3>
 <div>Key information: lat/lng, iso codes</div>
-<?php echo $this->Html->link(__('View online'), ['plugin' => 'data', 'controller' => 'states', 'action' => 'index']); ?>
+<?php echo $this->Html->link(__('View online'), ['plugin' => 'Data', 'controller' => 'states', 'action' => 'index']); ?>
 <ul>
 <li><?php echo $this->Html->link('JSON', ['action' => 'states', '_ext' => 'json']); ?></li>
 <li><?php echo $this->Html->link('XML', ['action' => 'states', '_ext' => 'xml']); ?></li>

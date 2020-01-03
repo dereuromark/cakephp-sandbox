@@ -12,4 +12,4 @@ compress them using minifier Filter classes on them.
 
 <h3>SASS and CakePHP</h3>
 
-<?php echo $this->element('Sandbox.actions'); ?>
+<?php echo $this->element('Sandbox.actions');

@@ -35,4 +35,4 @@ foreach ($countries as $country):
 <?php endforeach; ?>
 </table>
 
-<?php echo $this->element('Tools.pagination'); ?>
+<?php echo $this->element('Tools.pagination');

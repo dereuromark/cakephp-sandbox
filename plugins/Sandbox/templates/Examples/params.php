@@ -53,4 +53,4 @@ echo $this->Sandbox->pre($this->request->params['pass']);
 <b>$this->request-&gt;query</b>:
 <?php
 echo $this->Sandbox->pre($this->request->getQuery());
-?>
+

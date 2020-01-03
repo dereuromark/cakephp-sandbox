@@ -49,8 +49,6 @@ Lets run different tests - one for both string and const. present, and one for e
 $pageName = 'Translate String';
 define('LANG_TRANSLATE_STRING', $pageName);
 
-
-/** fixing some bug with the microtime timing */
 $timeStart = AppController::my_microtime();
 $timeEnd = AppController::my_microtime();
 
@@ -60,8 +58,6 @@ for ($i = 0;$i < 2;$i++) {
 for ($i = 0;$i < 2;$i++) {
 	$var = LANG_TRANSLATE_STRING_X;
 }
-
-
 
 ### .po string present, Constant MISSING ###
 
@@ -87,7 +83,6 @@ $timeEnd = AppController::my_microtime();
 $timeP2 = $timeEnd - $timeStart;
 $timeP2 = round(($timeP2 * 1000), 4);
 
-
 ### Constant present, .po string MISSING ###
 
 # versuch 1
@@ -112,9 +107,6 @@ $timeEnd = AppController::my_microtime();
 $timeC2 = $timeEnd - $timeStart;
 $timeC2 = round(($timeC2 * 1000), 4);
 
-
-
-
 ### Constant and .po string both present ###
 
 # versuch 1
@@ -138,9 +130,6 @@ for ($i = 0;$i < $int;$i++) {
 $timeEnd = AppController::my_microtime();
 $timeB2 = $timeEnd - $timeStart;
 $timeB2 = round(($timeB2 * 1000), 4);
-
-
-
 
 ?>
 

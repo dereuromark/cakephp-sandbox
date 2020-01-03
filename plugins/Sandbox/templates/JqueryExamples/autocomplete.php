@@ -13,8 +13,8 @@ echo $this->Form->create(null, [
 	'url' => [
 		'plugin' => 'sandbox',
 		'controller' => 'jquery_examples',
-		'action' => 'autocomplete'
-	]
+		'action' => 'autocomplete',
+	],
 ]);
 echo $this->Form->control('term', ['id' => 'jquery-example-input', 'label' => __('Search for an animal')]);
 echo $this->Form->submit(__('Save'));
@@ -55,4 +55,4 @@ echo $this->Form->end();
 		});
 	});
 	</script>
-<?php $this->end();?>
+<?php $this->end();

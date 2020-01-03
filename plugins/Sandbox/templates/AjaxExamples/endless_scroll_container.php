@@ -21,4 +21,4 @@ foreach ($countries as $country):
 	</div>
 <?php endforeach; ?>
 
-<?php echo $this->element('Tools.pagination'); ?>
+<?php echo $this->element('Tools.pagination');
