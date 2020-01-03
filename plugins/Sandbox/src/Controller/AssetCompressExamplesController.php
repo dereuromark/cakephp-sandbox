@@ -21,7 +21,7 @@ class AssetCompressExamplesController extends SandboxAppController {
 	protected $_cssDir;
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {

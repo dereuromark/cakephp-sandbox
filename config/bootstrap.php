@@ -38,7 +38,6 @@ use Cake\Cache\Cache;
 use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
 use Cake\Http\ServerRequest;
@@ -48,7 +47,6 @@ use Cake\I18n\FrozenTime;
 use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\TransportFactory;
-use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Tools\Mailer\Email;
@@ -164,18 +162,6 @@ ServerRequest::addDetector('tablet', function ($request) {
  * Inflector::rules('transliteration', ['/å/' => 'aa']);
  */
 
-/**
- * Connect middleware/dispatcher filters.
- */
-DispatcherFactory::add('Asset');
-DispatcherFactory::add('Routing');
-DispatcherFactory::add('ControllerFactory');
-DispatcherFactory::add('Cache.Cache', [
-	'when' => function ($request, $response) {
-		return $request->is('get');
-	},
-]);
-
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime
@@ -213,6 +199,7 @@ Date::setToStringFormat('dd.MM.YYYY');
  * Plugin::loadAll(); // Loads all plugins at once
  * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
  */
+/*
 Plugin::load('DebugKit', ['bootstrap' => true]);
 
 Plugin::load('Setup', ['bootstrap' => true]);
@@ -240,3 +227,4 @@ Plugin::load('CakeDto', ['bootstrap' => true]);
 if (Configure::read('debug')) {
 	Plugin::load('TestHelper', ['routes' => true]);
 }
+*/

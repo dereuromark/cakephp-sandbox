@@ -22,7 +22,7 @@ class BootstrapController extends SandboxAppController {
 	];
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {

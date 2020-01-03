@@ -21,7 +21,7 @@ class NavigationHelper extends Helper {
 	 * @return string
 	 */
 	public function link($link, $url, array $options = []) {
-		if ($url['action'] === $this->getView()->getRequest()->param('action')) {
+		if ($url['action'] === $this->getView()->getRequest()->getParam('action')) {
 			$options['class'] = !empty($options['class']) ? ($options['class'] . ' active') : 'active';
 		}
 

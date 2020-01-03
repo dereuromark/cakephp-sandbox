@@ -15,7 +15,7 @@ class DtoExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		TableRegistry::clear();

@@ -13,7 +13,7 @@ class CalendarControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'plugin.Sandbox.Events',
 		'plugin.Data.States',
 	];
@@ -21,14 +21,14 @@ class CalendarControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 	}
 
 	/**
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		TableRegistry::clear();

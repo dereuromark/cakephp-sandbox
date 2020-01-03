@@ -1,7 +1,7 @@
 parameters:
 	autoload_files:
-		- tests/bootstrap.php
-		- tmp/CodeCompletionCakeORM.php
+		- %rootDir%/../../../tests/bootstrap.php
+		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
 
 	excludes_analyse:
 		- src/Console/Installer.php

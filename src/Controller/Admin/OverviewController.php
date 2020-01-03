@@ -9,7 +9,7 @@ class OverviewController extends AppController {
 	/**
 	 * @var string|false
 	 */
-	public $modelClass = false;
+	public $modelClass = '';
 
 	/**
 	 * @return void

@@ -45,7 +45,7 @@ class SearchExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return \Cake\Http\Response|null
 	 */

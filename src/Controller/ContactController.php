@@ -14,7 +14,7 @@ class ContactController extends AppController {
 	/**
 	 * @var string|false
 	 */
-	public $modelClass = false;
+	public $modelClass = '';
 
 	/**
 	 * @var array
@@ -33,7 +33,7 @@ class ContactController extends AppController {
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		parent::initialize();
 
 		if (Configure::read('debug')) {

@@ -15,16 +15,21 @@ class UsersTableTest extends TestCase {
 	 *
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'app.Users',
 	];
+
+	/**
+	 * @var \App\Model\Table\UsersTable
+	 */
+	protected $Users;
 
 	/**
 	 * SetUp method
 	 *
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$this->Users = TableRegistry::get('Users');
 	}
@@ -34,7 +39,7 @@ class UsersTableTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->Users);
 
 		parent::tearDown();

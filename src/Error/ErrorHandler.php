@@ -2,7 +2,7 @@
 
 namespace App\Error;
 
-use CakephpWhoops\Error\WhoopsHandler;
+use Cake\Error\ErrorHandler as CoreErrorHandler;
 use Cake\Log\Log;
 use Exception;
 use Tools\Error\ErrorHandlerTrait;
@@ -12,7 +12,7 @@ use Tools\Error\ErrorHandlerTrait;
  *
  * Also uses Whoops error handling.
  */
-class ErrorHandler extends WhoopsHandler {
+class ErrorHandler extends CoreErrorHandler {
 
 	use ErrorHandlerTrait;
 

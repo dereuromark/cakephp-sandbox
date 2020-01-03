@@ -16,7 +16,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'app.Users',
 		'app.Roles',
 	];
@@ -24,14 +24,14 @@ class AccountControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 	}
 
 	/**
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		TableRegistry::clear();
@@ -41,6 +41,8 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogin() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['controller' => 'Account', 'action' => 'login']);
 
 		$this->assertResponseCode(200);

@@ -30,7 +30,7 @@ class AuthSandboxController extends AppController {
 	public $helpers = ['TinyAuth.AuthUser'];
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
 	public function beforeFilter(Event $event) {
@@ -43,7 +43,7 @@ class AuthSandboxController extends AppController {
 	 * @return void
 	 */
 	protected function _authSetup() {
-		$this->Auth->config('authenticate', [
+		$this->Auth->setConfig('authenticate', [
 			'Tools.MultiColumn' => [
 				'fields' => [
 					'username' => 'login',
@@ -55,27 +55,27 @@ class AuthSandboxController extends AppController {
 		]);
 
 		// Roles are defined in Roles table (and relationship linked in Users table)
-		$this->Auth->config('authorize', ['TinyAuth.Tiny']);
+		$this->Auth->setConfig('authorize', ['TinyAuth.Tiny']);
 
-		$this->Auth->config('loginAction', [
+		$this->Auth->setConfig('loginAction', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('loginRedirect', [
+		$this->Auth->setConfig('loginRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'index',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('logoutRedirect', [
+		$this->Auth->setConfig('logoutRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
+		$this->Auth->setConfig('authError', 'Did you really think you are allowed to see that?');
 	}
 
 	/**

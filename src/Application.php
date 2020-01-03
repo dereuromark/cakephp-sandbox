@@ -5,7 +5,10 @@ namespace App;
 use App\Error\Middleware\ErrorHandlerMiddleware;
 use App\Http\Middleware\HttpsMiddleware;
 use Cache\Routing\Middleware\CacheMiddleware;
+use Cake\Core\Configure;
+use Cake\Core\Exception\MissingPluginException;
 use Cake\Http\BaseApplication;
+use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Setup\Middleware\MaintenanceMiddleware;
@@ -21,11 +24,48 @@ class Application extends BaseApplication {
 	/**
 	 * @return void
 	 */
-	public function bootstrap() {
+	public function bootstrap(): void {
 		// Call parent to load bootstrap from files.
 		parent::bootstrap();
 
-		//$this->addPlugin('AssetCompress');
+		if (PHP_SAPI === 'cli') {
+			$this->bootstrapCli();
+		}
+		$this->addPlugin('Tools');
+		$this->addPlugin('Setup');
+		//$this->addPlugin('Data');
+
+		//$this->addPlugin('Meta', ['bootstrap' => false]);
+		$this->addPlugin('Cache');
+		$this->addPlugin('AssetCompress');
+		//$this->addPlugin('SocialShare', ['bootstrap' => false]);
+		$this->addPlugin('TinyAuth', ['bootstrap' => false]);
+
+		$this->addPlugin('Calendar');
+		$this->addPlugin('Search');
+		$this->addPlugin('Geo');
+		$this->addPlugin('DatabaseLog');
+		$this->addPlugin('Queue');
+		//$this->addPlugin('Cake/Localized');
+
+		//$this->addPlugin('Tags');
+		//$this->addPlugin('Ratings');
+		$this->addPlugin('Feedback');
+
+		// inside /plugins
+		$this->addPlugin('AuthSandbox');
+		$this->addPlugin('Sandbox');
+
+		if (Configure::read('debug')) {
+			$this->addPlugin('DebugKit');
+			try {
+				$this->addPlugin('TestHelper');
+			} catch (\Exception $exception) {
+				// This is OK live
+			}
+		}
+
+		// Load more plugins here
 	}
 
 	/**
@@ -34,7 +74,7 @@ class Application extends BaseApplication {
 	 * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
 	 * @return \Cake\Http\MiddlewareQueue The updated middleware.
 	 */
-	public function middleware($middlewareQueue) {
+	public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue {
 		$middlewareQueue
 			->add(MaintenanceMiddleware::class)
 
@@ -57,9 +97,24 @@ class Application extends BaseApplication {
 			->add(HttpsMiddleware::class)
 
 			// Apply routing
-			->add(RoutingMiddleware::class);
+			->add(new RoutingMiddleware($this));
 
 		return $middlewareQueue;
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function bootstrapCli() {
+		try {
+			$this->addPlugin('Bake');
+			$this->addPlugin('IdeHelper');
+		} catch (MissingPluginException $e) {
+			// Do not halt if the plugin is missing
+		}
+		$this->addPlugin('Migrations');
+
+		// Load more plugins here
 	}
 
 }

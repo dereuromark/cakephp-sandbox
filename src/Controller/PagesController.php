@@ -18,7 +18,7 @@ class PagesController extends AppController {
 	/**
 	 * @var string|false
 	 */
-	public $modelClass = false;
+	public $modelClass = '';
 
 	/**
 	 * Displays a view

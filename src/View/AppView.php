@@ -47,7 +47,7 @@ class AppView extends View {
 	 *
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		$this->loadHelper('Markup.Highlighter');
 	}
 

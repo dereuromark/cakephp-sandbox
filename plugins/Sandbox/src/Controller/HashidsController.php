@@ -16,7 +16,7 @@ class HashidsController extends SandboxAppController {
 	public $modelClass = 'Sandbox.HashidCountries';
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return void
 	 */

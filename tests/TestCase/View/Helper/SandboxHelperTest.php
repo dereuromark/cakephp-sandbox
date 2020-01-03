@@ -13,14 +13,14 @@ class SandboxHelperTest extends TestCase {
 	 *
 	 * @var \App\View\Helper\SandboxHelper
 	 */
-	public $SandboxHelper;
+	protected $SandboxHelper;
 
 	/**
 	 * setUp method
 	 *
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$view = new View();
 		$this->SandboxHelper = new SandboxHelper($view);
@@ -31,7 +31,7 @@ class SandboxHelperTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->SandboxHelper);
 
 		parent::tearDown();

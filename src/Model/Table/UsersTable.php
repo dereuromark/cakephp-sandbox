@@ -62,10 +62,10 @@ class UsersTable extends Table {
 	 *
 	 * @return void
 	 */
-	public function initialize(array $config) {
+	public function initialize(array $config): void {
 		$this->belongsTo('Roles');
 
-		$this->displayField('username');
+		$this->setDisplayField('username');
 
 		$this->addBehavior('Timestamp');
 	}

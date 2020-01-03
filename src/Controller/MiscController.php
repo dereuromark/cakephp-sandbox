@@ -7,7 +7,7 @@ class MiscController extends AppController {
 	/**
 	 * @var string|false
 	 */
-	public $modelClass = false;
+	public $modelClass = '';
 
 	/**
 	 * @var array

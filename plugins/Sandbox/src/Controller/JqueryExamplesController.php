@@ -25,7 +25,7 @@ class JqueryExamplesController extends SandboxAppController {
 	public $jqueryPlugins = ['media'];
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
 	public function beforeRender(Event $event) {

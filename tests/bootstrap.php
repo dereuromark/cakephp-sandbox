@@ -33,17 +33,17 @@ if (!getenv('db_class')) {
 	putenv('db_dsn=sqlite::memory:');
 }
 
-if (true || !WINDOWS) {
-	Cake\Datasource\ConnectionManager::drop('test');
-	Cake\Datasource\ConnectionManager::setConfig('test', [
-		'className' => 'Cake\Database\Connection',
-		'driver' => getenv('db_class'),
-		'dsn' => getenv('db_dsn'),
-		'database' => getenv('db_database'),
-		'username' => getenv('db_username'),
-		'password' => getenv('db_password'),
-		'timezone' => 'UTC',
-		'quoteIdentifiers' => true,
-		'cacheMetadata' => true,
-	]);
-}
+require ROOT . '/config/routes.php';
+
+Cake\Datasource\ConnectionManager::drop('test');
+Cake\Datasource\ConnectionManager::setConfig('test', [
+	'className' => 'Cake\Database\Connection',
+	'driver' => getenv('db_class') ?: null,
+	'dsn' => getenv('db_dsn') ?: null,
+	//'database' => getenv('db_database'),
+	//'username' => getenv('db_username'),
+	//'password' => getenv('db_password'),
+	'timezone' => 'UTC',
+	'quoteIdentifiers' => true,
+	'cacheMetadata' => true,
+]);

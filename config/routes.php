@@ -1,5 +1,4 @@
 <?php
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
@@ -42,9 +41,3 @@ Router::prefix('admin', function (RouteBuilder $routes) {
 	// or the admin route element.
 	$routes->fallbacks();
 });
-
-/**
- * Load all plugin routes.  See the Plugin documentation on
- * how to customize the loading of plugin routes.
- */
-Plugin::routes();

@@ -9,18 +9,16 @@ use Cake\View\View;
 class NavigationHelperTest extends TestCase {
 
 	/**
-	 * Test subject
-	 *
 	 * @var \App\View\Helper\NavigationHelper
 	 */
-	public $NavigationHelper;
+	protected $NavigationHelper;
 
 	/**
 	 * setUp method
 	 *
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$view = new View();
 		$this->NavigationHelper = new NavigationHelper($view);
@@ -31,7 +29,7 @@ class NavigationHelperTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->NavigationHelper);
 
 		parent::tearDown();
@@ -43,7 +41,7 @@ class NavigationHelperTest extends TestCase {
 	 * @return void
 	 */
 	public function testLink() {
-		$result = $this->NavigationHelper->link('foo', ['action' => 'foo']);
+		$result = $this->NavigationHelper->link('foo', ['controller' => 'MyController', 'action' => 'myAction']);
 		$this->assertNotEmpty($result);
 	}
 
