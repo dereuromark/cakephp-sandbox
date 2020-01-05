@@ -87,13 +87,15 @@ echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => '
  </div>
  </div>
 
-<?php echo $this->element('stats'); ?>
+<?php if (!$this->Configure->read('debug')) {
+	echo $this->element('stats');
+} ?>
 
 <?php echo $this->element('Feedback.sidebar');?>
 
 <?php
-if (!empty($this->request->query['assets'])) {
-	switch ($this->request->query['assets']) {
+if ($this->request->getQuery('assets')) {
+	switch ($this->request->getQuery('assets')) {
 		case 'bootstrap-alpha':
 			if (PHP_SAPI !== 'cli') {
 				echo $this->AssetCompress->script('js-combined');

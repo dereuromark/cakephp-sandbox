@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49149b3634e2187ca91232cf899b6264",
+    "content-hash": "b0a9b6ab012bc89865857bbbd158bcc4",
     "packages": [
         {
             "name": "aura/intl",
@@ -793,6 +793,56 @@
             "time": "2019-12-31T14:50:49+00:00"
         },
         {
+            "name": "dereuromark/cakephp-captcha",
+            "version": "dev-cake4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-captcha.git",
+                "reference": "b7f2dff0df6dc66f0b449d73a68c16af80719262"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/b7f2dff0df6dc66f0b449d73a68c16af80719262",
+                "reference": "b7f2dff0df6dc66f0b449d73a68c16af80719262",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "cakephp/migrations": "^3.0.0",
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Captcha\\": "src/",
+                    "Captcha\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A CakePHP plugin to integrate captchas.",
+            "homepage": "https://github.com/dereuromark/cakephp-captcha",
+            "keywords": [
+                "cakephp",
+                "captchas",
+                "plugin",
+                "security"
+            ],
+            "time": "2020-01-05T16:23:38+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-databaselog",
             "version": "dev-cake4",
             "source": {
@@ -975,12 +1025,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-feedback.git",
-                "reference": "b88c97040816ee7f1c8c4a91a17b4bd919d82910"
+                "reference": "3fd6b8b45018e28c0f2c42e27e92672219ef6519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/b88c97040816ee7f1c8c4a91a17b4bd919d82910",
-                "reference": "b88c97040816ee7f1c8c4a91a17b4bd919d82910",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/3fd6b8b45018e28c0f2c42e27e92672219ef6519",
+                "reference": "3fd6b8b45018e28c0f2c42e27e92672219ef6519",
                 "shasum": ""
             },
             "require": {
@@ -1011,7 +1061,7 @@
             ],
             "description": "Feedback or bugreport (with screenshot!) tab option in your CakePHP application. Data can be posted directly to Mantis, E-mail, Github issues, filesystem, etc.",
             "homepage": "https://github.com/dereuromark/cakephp-feedback",
-            "time": "2020-01-02T23:58:04+00:00"
+            "time": "2020-01-03T02:27:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -1283,12 +1333,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "1b5d0060ed5f5adc54477e351a95f4631303ae3c"
+                "reference": "fc343275a4eb856e06184b0f070ae9b6f552027b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/1b5d0060ed5f5adc54477e351a95f4631303ae3c",
-                "reference": "1b5d0060ed5f5adc54477e351a95f4631303ae3c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/fc343275a4eb856e06184b0f070ae9b6f552027b",
+                "reference": "fc343275a4eb856e06184b0f070ae9b6f552027b",
                 "shasum": ""
             },
             "require": {
@@ -1325,7 +1375,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2019-12-27T23:44:37+00:00"
+            "time": "2020-01-03T02:57:52+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -2862,12 +2912,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "df7eedbabd9135c67f4e458cfc40fe064d2fc2f7"
+                "reference": "7b3ca6c0a97381d391a1ffb4b8a789415cfe8607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/df7eedbabd9135c67f4e458cfc40fe064d2fc2f7",
-                "reference": "df7eedbabd9135c67f4e458cfc40fe064d2fc2f7",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/7b3ca6c0a97381d391a1ffb4b8a789415cfe8607",
+                "reference": "7b3ca6c0a97381d391a1ffb4b8a789415cfe8607",
                 "shasum": ""
             },
             "require": {
@@ -2929,7 +2979,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2020-01-02T08:19:48+00:00"
+            "time": "2020-01-03T23:12:36+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -4875,6 +4925,7 @@
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-setup": 20,
         "dereuromark/cakephp-markup": 20,
+        "dereuromark/cakephp-captcha": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,
         "dereuromark/cakephp-feed": 20,

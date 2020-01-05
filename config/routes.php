@@ -41,3 +41,11 @@ Router::prefix('admin', function (RouteBuilder $routes) {
 	// or the admin route element.
 	$routes->fallbacks();
 });
+
+// TMP
+Router::plugin('Data', function (RouteBuilder $routes) {
+	// Because you are in the admin scope,
+	// you do not need to include the /admin prefix
+	// or the admin route element.
+	$routes->fallbacks();
+});

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
+use Cake\Mailer\Mailer;
 use Tools\Form\ContactForm;
 use Tools\Mailer\Email;
 
@@ -68,16 +69,18 @@ class ContactController extends AppController {
 			}
 		} else {
 			// prepopulate form
-			$this->request->data = $this->request->getQuery();
+			$data = $this->request->getQuery();
 
 			# try to autofill fields
 			$user = (array)$this->request->getSession()->read('Auth.User');
 			if (!empty($user['email'])) {
-				$this->request->data['email'] = $user['email'];
+				$data['email'] = $user['email'];
 			}
 			if (!empty($user['username'])) {
-				$this->request->data['name'] = $user['username'];
+				$data['name'] = $user['username'];
 			}
+
+			$this->request = $this->request->withParsedBody($data);
 		}
 
 		$this->set(compact('contact'));
@@ -97,20 +100,20 @@ class ContactController extends AppController {
 
 		// Send email to Admin
 		Configure::write('Email.live', true);
-		$email = new Email();
-		$email->to($adminEmail, $adminName);
+		$email = new Mailer();
+		$email->setTo($adminEmail, $adminName);
 
-		$email->subject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
-		$email->template('contact');
-		$email->viewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
+		$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
+		$email->viewBuilder()->setTemplate('contact');
+		$email->setViewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
 		if ($email->send()) {
 			$this->Flash->success(__('contactSuccessfullySent {0}', $fromEmail));
 			return $this->redirect(['action' => 'index']);
 		}
 		if (Configure::read('debug')) {
-			$this->Flash->warning($email->getError());
+			//$this->Flash->warning($email->getError());
 		}
-		$this->log($email->getError());
+		//$this->log($email->getError());
 		$this->Flash->error(__('Contact Email could not be sent'));
 	}
 

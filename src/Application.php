@@ -45,6 +45,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('Geo');
 		$this->addPlugin('DatabaseLog');
 		$this->addPlugin('Queue');
+		$this->addPlugin('Captcha');
 		//$this->addPlugin('Cake/Localized');
 		//$this->addPlugin('Tags');
 		//$this->addPlugin('Ratings');
