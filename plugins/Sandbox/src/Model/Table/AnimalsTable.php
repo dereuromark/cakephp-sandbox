@@ -71,7 +71,8 @@ class AnimalsTable extends Table {
 	public function buildRules(RulesChecker $rules): RulesChecker {
 		// Add a rule that is applied for create and update operations
 		$rules->add(function (EntityInterface $entity, $options) {
-			if ($entity->get('name') !== 'Mouse' && $entity->get('name') !== 'Cat') {
+			$name = $entity->get('name');
+			if ($name !== 'Mouse' && $name !== 'Cat') {
 				return false;
 			}
 			return true;
