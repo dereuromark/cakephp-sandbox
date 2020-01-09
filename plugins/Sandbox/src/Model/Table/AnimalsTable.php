@@ -2,7 +2,7 @@
 
 namespace Sandbox\Model\Table;
 
-use App\Model\Entity\Entity;
+use Cake\Datasource\EntityInterface;
 use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
@@ -70,8 +70,9 @@ class AnimalsTable extends Table {
 	 */
 	public function buildRules(RulesChecker $rules) {
 		// Add a rule that is applied for create and update operations
-		$rules->add(function (Entity $entity, $options) {
-			if ($entity->get('name') !== 'Mouse' && $entity->get('name') !== 'Cat') {
+		$rules->add(function (EntityInterface $entity, $options) {
+			$name = $entity->get('name');
+			if ($name !== 'Mouse' && $name !== 'Cat') {
 				return false;
 			}
 			return true;
