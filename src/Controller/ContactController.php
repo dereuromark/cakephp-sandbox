@@ -5,7 +5,6 @@ namespace App\Controller;
 use Cake\Core\Configure;
 use Cake\Mailer\Mailer;
 use Tools\Form\ContactForm;
-use Tools\Mailer\Email;
 
 /**
  * @property \Captcha\Controller\Component\CaptchaComponent $Captcha

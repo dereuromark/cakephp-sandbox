@@ -9,8 +9,8 @@
 
 <h2>Some h2 header</h2>
 <ul>
-	<li>This uses the /View/PdfTest/pdf/pdf_test.ctp template</li>
-	<li>And the layout /View/Layouts/pdf/default.ctp</li>
+	<li>This uses the templates/PdfTest/pdf/pdf_test.php template</li>
+	<li>And the layout templates/layout/pdf/default.php</li>
 </ul>
 
 <h3>Some h3 header</h3>

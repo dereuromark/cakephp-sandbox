@@ -16,6 +16,8 @@ class CacheExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function initialize(): void {
+		parent::initialize();
+
 		$this->loadComponent('Cache.Cache', [
 			'actions' => [
 				'minute' => MINUTE,
@@ -58,7 +60,7 @@ class CacheExamplesController extends SandboxAppController {
 	 */
 	public function someJson() {
 		$something = [
-			'json' => 'this data is changed for 1 min',
+			'json' => 'This data is not changed for 1 min',
 			'generated' => date(FORMAT_DB_DATETIME),
 		];
 

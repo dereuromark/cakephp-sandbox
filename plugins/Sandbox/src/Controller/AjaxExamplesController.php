@@ -26,7 +26,7 @@ class AjaxExamplesController extends SandboxAppController {
 
 		$this->loadComponent('Data.CountryStateHelper');
 
-		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail'])) {
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'])) {
 			$this->loadComponent('Ajax.Ajax');
 		}
 
@@ -169,9 +169,11 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function tableDelete($id = null) {
+		$this->loadModel('Data.Countries');
+		$country = $this->Countries->get($id);
+
 		$false = false;
 		if ($false) {
-			$country = $this->Countries->get($id);
 			$this->Countries->delete($country);
 		}
 
@@ -223,7 +225,7 @@ class AjaxExamplesController extends SandboxAppController {
 			throw new NotFoundException();
 		}
 
-		$this->viewBuilder()->className('Ajax.Ajax');
+		$this->viewBuilder()->setClassName('Ajax.Ajax');
 
 		$this->loadModel('Data.States');
 		$states = $this->States->getListByCountry($id);

@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
@@ -28,15 +27,6 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		parent::setUp();
 
 		Router::extensions(['json']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		TableRegistry::clear();
 	}
 
 	/**

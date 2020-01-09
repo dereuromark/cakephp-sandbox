@@ -34,7 +34,8 @@ class Application extends BaseApplication {
 
 		$this->addPlugin('Tools');
 		$this->addPlugin('Setup');
-		//$this->addPlugin('Data');
+		$this->addPlugin('Data');
+		$this->addPlugin('Ajax');
 		//$this->addPlugin('Meta', ['bootstrap' => false]);
 		$this->addPlugin('Cache');
 		$this->addPlugin('AssetCompress');
@@ -46,6 +47,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('DatabaseLog');
 		$this->addPlugin('Queue');
 		$this->addPlugin('Captcha');
+		$this->addPlugin('CakeDto');
 		//$this->addPlugin('Cake/Localized');
 		//$this->addPlugin('Tags');
 		//$this->addPlugin('Ratings');

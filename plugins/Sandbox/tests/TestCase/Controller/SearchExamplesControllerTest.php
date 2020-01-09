@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
@@ -16,22 +15,6 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 	protected $fixtures = [
 		'plugin.Data.Countries',
 	];
-
-	/**
-	 * @return void
-	 */
-	public function setUp(): void {
-		parent::setUp();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		TableRegistry::clear();
-	}
 
 	/**
 	 * @return void

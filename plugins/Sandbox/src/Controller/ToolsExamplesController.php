@@ -30,7 +30,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function tree() {
-		$this->helpers[] = 'Tools.Tree';
+		$this->viewBuilder()->setHelpers(['Tools.Tree']);
 
 		$this->loadModel('Sandbox.SandboxCategories');
 
@@ -336,7 +336,7 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('types'));
-		$this->helpers[] = 'Tools.QrCode';
+		$this->viewBuilder()->setHelpers(['Tools.QrCode']);
 	}
 
 	/**
@@ -359,7 +359,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function gravatar() {
-		$this->helpers[] = 'Tools.Gravatar';
+		$this->viewBuilder()->setHelpers(['Tools.Gravatar']);
 	}
 
 	/**

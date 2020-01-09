@@ -8,9 +8,9 @@ use Cake\Utility\Text;
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
+	 * @var string
 	 */
-	public $modelClass = false;
+	public $modelClass = '';
 
 	/**
 	 * @var array
@@ -18,7 +18,10 @@ class FeedExamplesController extends SandboxAppController {
 	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => [
-				'rss' => 'Feed.Rss']]];
+				'rss' => 'Feed.Rss',
+			],
+		],
+	];
 
 	/**
 	 * List of all examples.
@@ -35,11 +38,11 @@ class FeedExamplesController extends SandboxAppController {
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function feed() {
-		if (empty($this->request->params['_ext']) || $this->request->params['_ext'] !== 'rss') {
-			throw new NotFoundException();
+		if ($this->getRequest()->getParam('_ext') !== 'rss') {
+			throw new NotFoundException('The URL requires .rss extension.');
 		}
 		// This is only needed without the viewClassMap setting for RequestHandler
-		//$this->viewBuilder()->className('Feed.Rss');
+		//$this->viewBuilder()->setClassName('Feed.Rss');
 
 		$news = $this->_feedData();
 

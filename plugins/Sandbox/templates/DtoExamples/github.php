@@ -47,7 +47,7 @@ echo $this->Html->css('Sandbox.highlighting/github.css');
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>
 
-<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.ctp'), ['lang' => 'php'])?>
+<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.php'), ['lang' => 'php'])?>
 
 	<h4>Resulting output</h4>
 	<?php echo $this->element('../DtoExamples/pr')?>

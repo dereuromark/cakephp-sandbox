@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
@@ -49,7 +50,7 @@ class SearchExamplesController extends SandboxAppController {
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function afterFilter(Event $event) {
+	public function afterFilter(EventInterface $event) {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {

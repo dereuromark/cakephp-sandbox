@@ -5,24 +5,22 @@ namespace Sandbox\Test\TestCase\Controller;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\BootstrapController Test Case
- *
- * @uses \Sandbox\Controller\MenuController
+ * @uses \Sandbox\Controller\QueueExamplesController
  */
-class MenuControllerTest extends IntegrationTestCase {
+class QueueExamplesControllerTest extends IntegrationTestCase {
 
 	/**
 	 * @var array
 	 */
 	protected $fixtures = [
-		'plugin.Sandbox.SandboxCategories',
+		'plugin.Queue.QueuedJobs',
 	];
 
 	/**
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'QueueExamples', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

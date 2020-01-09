@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
@@ -17,22 +16,6 @@ class CalendarControllerTest extends IntegrationTestCase {
 		'plugin.Sandbox.Events',
 		'plugin.Data.States',
 	];
-
-	/**
-	 * @return void
-	 */
-	public function setUp(): void {
-		parent::setUp();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		TableRegistry::clear();
-	}
 
 	/**
 	 * @return void

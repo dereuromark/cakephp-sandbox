@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
@@ -18,15 +17,6 @@ class FeedExamplesControllerTest extends IntegrationTestCase {
 		parent::setUp();
 
 		Router::extensions(['rss']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		TableRegistry::clear();
 	}
 
 	/**

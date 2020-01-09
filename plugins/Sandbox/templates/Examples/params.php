@@ -13,9 +13,9 @@ Test it with the following links:<br /><br />
 
 <br />
 <h2>Retrieving URL Information</h2>
-<b>$this->request->url</b>:
+<b>getPath() - former $this->request->url</b>:
 <?php
-echo $this->Sandbox->pre($this->request->url);
+echo $this->Sandbox->pre($this->request->getPath());
 ?>
 
 <br />
@@ -29,13 +29,13 @@ echo $this->Sandbox->pre($this->request->url);
 <br />
 <b>$this->request-&gt;params['controller']</b>:
 <?php
-echo $this->request->params['controller'];
+echo $this->request->getParam('controller');
 ?>
 
 <br />
 <b>$this->request-&gt;params['action']</b>:
 <?php
-echo $this->request->params['action'];
+echo $this->request->getParam('action');
 ?>
 
 
@@ -44,7 +44,7 @@ echo $this->request->params['action'];
 <b>$this->request-&gt;params['pass']</b>:
 <?php
 
-echo $this->Sandbox->pre($this->request->params['pass']);
+echo $this->Sandbox->pre($this->request->getParam('pass'));
 
 ?>
 

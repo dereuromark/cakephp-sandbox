@@ -2,6 +2,8 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Event\EventInterface;
+
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
  */

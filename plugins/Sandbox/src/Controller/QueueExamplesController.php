@@ -17,16 +17,6 @@ class QueueExamplesController extends SandboxAppController {
 	public $modelClass = 'Queue.QueuedJobs';
 
 	/**
-	 * @var array
-	 */
-	protected $components = [];
-
-	/**
-	 * @var array
-	 */
-	protected $helpers = [];
-
-	/**
 	 * @return void
 	 */
 	public function initialize(): void {
