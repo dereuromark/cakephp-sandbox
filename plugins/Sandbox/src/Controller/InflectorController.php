@@ -32,7 +32,7 @@ class InflectorController extends AppController {
 		}
 
 		if ($string) {
-			$r = new ReflectionClass('Cake\Utility\Inflector');
+			$r = new ReflectionClass(Inflector::class);
 			foreach ($r->getMethods() as $method) {
 				if (in_array($method->name, $this->_reflectExceptions, true)) {
 					continue;
