@@ -17,11 +17,6 @@ use Cake\Http\Exception\MethodNotAllowedException;
 class ExportController extends AppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = '';
-
-	/**
 	 * @var array
 	 */
 	public $components = ['Cache.Cache'];

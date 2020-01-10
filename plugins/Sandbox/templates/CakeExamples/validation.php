@@ -28,7 +28,7 @@ Furthermore the confirm fields needs to be checked.
 <br />
 This is all validation (on marshal).
 <br /><br />
-Domain rules are run separatly afterwards.
+Domain rules are run separately afterwards.
 The example one here checks if the data in name is equal to either "Mouse" or "Cat" and only then
 allows the rules to pass - and thus to save.
 <br /><br />

@@ -7,12 +7,6 @@ use Cake\Utility\Inflector;
 use ReflectionClass;
 
 class InflectorController extends AppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */

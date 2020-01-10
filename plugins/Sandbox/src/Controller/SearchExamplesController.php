@@ -2,7 +2,6 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
 use Cake\Event\EventInterface;
 
 /**

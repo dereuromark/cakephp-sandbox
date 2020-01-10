@@ -1555,12 +1555,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "f62a1619b31adc9d5c6149542bc8f432d947e393"
+                "reference": "e2331daa566570c2337740dc825829814b2d89ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/f62a1619b31adc9d5c6149542bc8f432d947e393",
-                "reference": "f62a1619b31adc9d5c6149542bc8f432d947e393",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/e2331daa566570c2337740dc825829814b2d89ca",
+                "reference": "e2331daa566570c2337740dc825829814b2d89ca",
                 "shasum": ""
             },
             "require": {
@@ -1607,7 +1607,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2019-12-30T12:10:02+00:00"
+            "time": "2020-01-09T22:46:03+00:00"
         },
         {
             "name": "dereuromark/media-embed",

@@ -6,12 +6,6 @@ namespace Sandbox\Controller;
  * @property \Gourmet\KnpMenu\Controller\Component\MenuComponent $Menu
  */
 class MenuController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */

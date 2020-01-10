@@ -8,11 +8,6 @@ use Cake\Utility\Text;
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string
-	 */
-	public $modelClass = '';
-
-	/**
 	 * @var array
 	 */
 	protected $components = [

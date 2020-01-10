@@ -8,11 +8,6 @@ namespace Sandbox\Controller;
 class CacheExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @return void
 	 */
 	public function initialize(): void {

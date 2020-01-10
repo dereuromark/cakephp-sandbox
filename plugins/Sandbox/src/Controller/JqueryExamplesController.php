@@ -10,11 +10,6 @@ use Cake\Event\EventInterface;
 class JqueryExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
 	protected $helpers = ['Markup.Highlighter'];

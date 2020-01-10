@@ -16,11 +16,6 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = '';
-
-	/**
 	 * Displays a view
 	 *
 	 * @return \Cake\Http\Response|null

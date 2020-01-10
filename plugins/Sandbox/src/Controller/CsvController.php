@@ -9,12 +9,6 @@ use Cake\I18n\Time;
  * @property \Data\Model\Table\CountriesTable $Countries
  */
 class CsvController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */

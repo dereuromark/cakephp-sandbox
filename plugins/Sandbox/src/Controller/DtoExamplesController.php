@@ -14,11 +14,6 @@ use Sandbox\Dto\Github\PullRequestDto;
 class DtoExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * List of all examples.
 	 *
 	 * @return void

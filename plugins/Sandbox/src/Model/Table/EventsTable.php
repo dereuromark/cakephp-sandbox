@@ -29,9 +29,8 @@ class EventsTable extends Table {
 	public function initialize(array $config): void {
 		parent::initialize($config);
 
-		$this->table('events');
-		$this->displayField('title');
-		$this->primaryKey('id');
+		$this->setTable('events');
+		$this->setDisplayField('title');
 
 		$this->addBehavior('Calendar.Calendar', [
 			'field' => 'beginning',

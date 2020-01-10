@@ -35,11 +35,11 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use App\Error\ErrorHandler;
 use Cake\Cache\Cache;
-use Cake\Error\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
+use Cake\Error\ConsoleErrorHandler;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
 use Cake\I18n\FrozenDate;
@@ -48,6 +48,7 @@ use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 use Cake\Utility\Security;
 use Tools\Mailer\Email;
 
@@ -162,6 +163,7 @@ ServerRequest::addDetector('tablet', function ($request) {
  * Inflector::rules('transliteration', ['/å/' => 'aa']);
  */
 
+Router::defaultRouteClass(DashedRoute::class);
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime

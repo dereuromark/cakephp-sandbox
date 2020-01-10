@@ -12,11 +12,6 @@ use Cake\Utility\Hash;
 class CakeExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
 	protected $helpers = ['Markup.Highlighter'];
@@ -56,6 +51,7 @@ class CakeExamplesController extends SandboxAppController {
 		];
 
 		$type = $this->request->getQuery('type');
+		$result = null;
 		if ($type) {
 			switch ($type) {
 				case 'hash':
@@ -101,7 +97,7 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * Test validation on marshal and rules on save.
 	 *
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function validation() {
 		$this->loadModel('Sandbox.Animals');
@@ -114,9 +110,11 @@ class CakeExamplesController extends SandboxAppController {
 			// Simulate $Animals->save($animal) call as we dont't want to really save here
 			if (!$animal->getErrors() & $this->Animals->checkRules($animal)) {
 				$this->Flash->success('Yeah, entry would have been saved.');
-			} else {
-				$this->Flash->error('Please correct your form content.');
+
+				return $this->redirect(['action' => 'validation']);
 			}
+
+			$this->Flash->error('Please correct your form content.');
 		}
 
 		$this->set(compact('animal'));

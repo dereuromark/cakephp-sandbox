@@ -38,7 +38,7 @@ class CaptchasControllerTest extends IntegrationTestCase {
 		$this->configRequest([
 			'environment' => [
 				'REMOTE_ADDR' => '1',
-			]
+			],
 		]);
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Captchas', 'action' => 'math']);
@@ -56,7 +56,7 @@ class CaptchasControllerTest extends IntegrationTestCase {
 		$this->configRequest([
 			'environment' => [
 				'REMOTE_ADDR' => '1',
-			]
+			],
 		]);
 
 		$data = [

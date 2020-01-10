@@ -3,12 +3,6 @@
 namespace Sandbox\Controller;
 
 class ExamplesController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */

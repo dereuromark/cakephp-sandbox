@@ -6,7 +6,6 @@
 <h2>CakePHP Plugin Examples</h2>
 
 
-
 <div class="row">
 	<div class="col-xs-6">
 		<h3>Own plugins</h3>
@@ -34,11 +33,6 @@
 		<h4>Geo plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Geocoding and CakePHP', ['controller' => 'GeoExamples', 'action' => 'index']); ?></li>
-		</ul>
-
-		<h4>Hashid plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('Hashids and CakePHP', ['controller' => 'Hashids', 'action' => 'index']); ?></li>
 		</ul>
 
 		<h4>Cache plugin</h4>
@@ -90,20 +84,24 @@
 			<li><?php echo $this->Html->link('CSV export and CakePHP', ['controller' => 'Csv', 'action' => 'index']); ?></li>
 		</ul>
 
+		<?php if (false) { ?>
 		<h4>AssetCompress plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('AssetCompress and CakePHP', ['controller' => 'AssetCompressExamples', 'action' => 'index']); ?></li>
 		</ul>
+		<?php } ?>
 
 		<h4>Markup plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Markup, e.g. syntax highlighting', ['controller' => 'Examples', 'action' => 'markup']); ?></li>
 		</ul>
 
+		<?php if (false) { ?>
 		<h4>SocialShare plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('SocialShare and CakePHP', ['controller' => 'SocialShare', 'action' => 'index']); ?></li>
 		</ul>
+		<?php } ?>
 
 		<h4>BootstrapUI plugin</h4>
 		<ul>
@@ -115,6 +113,7 @@
 			<li><?php echo $this->Html->link('Advanced Filtering in CakePHP', ['controller' => 'SearchExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<?php if (false) { ?>
 		<h4>KnpMenu plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Menu Building in CakePHP', ['controller' => 'Menu', 'action' => 'index']); ?></li>
@@ -124,7 +123,7 @@
 		<ul>
 			<li><?php echo $this->Html->link('PDF rendering in CakePHP', ['controller' => 'Plugins', 'action' => 'cakePdf']); ?></li>
 		</ul>
-
+		<?php } ?>
 
 		<h3>TODO</h3>
 		<ul>
@@ -135,4 +134,3 @@
 
 	</div>
 </div>
-

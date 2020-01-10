@@ -21,7 +21,7 @@ class CountryRecordsTable extends Table {
 	 * @return void
 	 */
 	public function initialize(array $config): void {
-		$this->table('countries');
+		$this->setTable('countries');
 
 		parent::initialize($config);
 

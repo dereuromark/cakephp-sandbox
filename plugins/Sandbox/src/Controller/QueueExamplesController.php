@@ -43,7 +43,7 @@ class QueueExamplesController extends SandboxAppController {
 
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
-		$queuedJob = $this->QueuedJobs->newEntity();
+		$queuedJob = $this->QueuedJobs->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			$queuedJob = $this->QueuedJobs->patchEntity($queuedJob, $this->request->getData());

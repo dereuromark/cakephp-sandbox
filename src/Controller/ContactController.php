@@ -12,11 +12,6 @@ use Tools\Form\ContactForm;
 class ContactController extends AppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = '';
-
-	/**
 	 * @var array
 	 */
 	public $components = [
