@@ -9,14 +9,19 @@ use Cake\Validation\Validator;
  * Events Model
  *
  * @method \Sandbox\Model\Entity\Event get($primaryKey, $options = [])
- * @method \Sandbox\Model\Entity\Event newEntity($data = null, array $options = [])
+ * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event[] newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])
+ * @method \Sandbox\Model\Entity\Event[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\Event findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event newEmptyEntity()
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
 class EventsTable extends Table {
 

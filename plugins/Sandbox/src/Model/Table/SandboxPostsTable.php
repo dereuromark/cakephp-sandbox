@@ -67,7 +67,7 @@ class SandboxPostsTable extends Table {
 					if ($args['tag'] === '-1') {
 						$query->find('untagged');
 					} else {
-						$query->find('tagged', $args);
+						$query->find('tagged', ['slug' => $args['tag']]);
 					}
 
 					return true;

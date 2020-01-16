@@ -53,6 +53,7 @@ class Application extends BaseApplication {
 		//$this->addPlugin('Ratings');
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
+		$this->addPlugin('Icings/Menu');
 
 		// inside /plugins
 		$this->addPlugin('AuthSandbox');

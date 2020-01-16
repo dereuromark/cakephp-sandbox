@@ -8,7 +8,7 @@ class MediaEmbedController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	protected $helpers = ['Gourmet/KnpMenu.Menu'];
+	//protected $helpers = ['Icings/Menu.Menu'];
 
 	/**
 	 * @return void

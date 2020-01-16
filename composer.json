@@ -19,7 +19,7 @@
 	"require": {
 		"php": ">=7.2",
 		"cakephp/plugin-installer": "*",
-		"cakephp/cakephp": "dev-master as 4.0.0",
+		"cakephp/cakephp": "dev-master as 4.0.2",
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-cake4",
 		"dereuromark/cakephp-geo": "dev-cake4",
@@ -39,6 +39,7 @@
 		"dereuromark/cakephp-cache": "dev-cake4",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
+		"icings/menu": "dev-master",
 		"friendsofcake/cakephp-csvview": "dev-cake-4.x",
 		"friendsofcake/search": "^6.0",
 		"dereuromark/cakephp-data": "dev-cake4",

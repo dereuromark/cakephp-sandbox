@@ -9,17 +9,20 @@ class MenuController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	protected $components = ['Gourmet/KnpMenu.Menu'];
+	//protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
 	 * @var array
 	 */
-	protected $helpers = ['Gourmet/KnpMenu.Menu'];
+	protected $helpers = ['Icings/Menu.Menu'];
 
 	/**
 	 * @return void
 	 */
 	public function index() {
+
+		return;
+
 		$menu = $this->Menu->get('my_menu');
 
 		$menu->addChild('Dashboard',

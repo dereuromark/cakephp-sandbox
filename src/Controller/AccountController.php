@@ -33,7 +33,7 @@ class AccountController extends AppController {
 		}
 
 		// Make sure people can't change the default users for security reasons
-		$action = $this->request->param('action');
+		$action = $this->request->getParam('action');
 		$user = $this->AuthUser->user('username');
 		if (in_array($action, ['edit', 'delete']) && in_array($user, ['user', 'mod', 'admin'])) {
 			$this->Flash->warning('This user is for demo purposes and protected');
