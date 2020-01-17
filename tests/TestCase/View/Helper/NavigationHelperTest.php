@@ -9,8 +9,6 @@ use Cake\View\View;
 class NavigationHelperTest extends TestCase {
 
 	/**
-	 * Test subject
-	 *
 	 * @var \App\View\Helper\NavigationHelper
 	 */
 	public $NavigationHelper;
@@ -43,8 +41,8 @@ class NavigationHelperTest extends TestCase {
 	 * @return void
 	 */
 	public function testLink() {
-		$result = $this->NavigationHelper->link('foo', ['action' => 'foo']);
-		$this->assertNotEmpty($result);
+		$result = $this->NavigationHelper->link('foo', ['controller' => 'MyController', 'action' => 'foo']);
+		$this->assertSame('<a href="/my-controller/foo">foo</a>', $result);
 	}
 
 }

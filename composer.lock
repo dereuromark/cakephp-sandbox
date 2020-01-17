@@ -1607,16 +1607,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "7bebeeb7abd7c77eca2c416f65ca813d29ff3e9d"
+                "reference": "584e242593df217a9a16b379408cbef8feafa121"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/7bebeeb7abd7c77eca2c416f65ca813d29ff3e9d",
-                "reference": "7bebeeb7abd7c77eca2c416f65ca813d29ff3e9d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/584e242593df217a9a16b379408cbef8feafa121",
+                "reference": "584e242593df217a9a16b379408cbef8feafa121",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.6",
+                "cakephp/cakephp": "^3.7",
                 "php": ">=5.6"
             },
             "require-dev": {
@@ -1655,7 +1655,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2020-01-16T23:27:47+00:00"
+            "time": "2020-01-17T00:07:05+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
