@@ -1,10 +1,10 @@
 parameters:
 	autoload_files:
-		- tests/bootstrap.php
-		- tmp/CodeCompletionCakeORM.php
+		- bootstrap.php
+		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
 
 	excludes_analyse:
-		- src/Console/Installer.php
+		- %rootDir%/../../../src/Console/Installer.php
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
