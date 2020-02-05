@@ -1,13 +1,12 @@
 {
 	"name": "dereuromark/cakephp-sandbox",
 	"description": "A CakePHP Sandbox App",
-	"minimum-stability": "dev",
-	"homepage" : "http://sandbox.dereuromark.de/",
+	"homepage" : "https://sandbox.dereuromark.de/",
 	"authors": [
 		{
 			"name": "Mark Scherer",
 			"email": "euromark@web.de",
-			"homepage": "http://www.dereuromark.de",
+			"homepage": "https://www.dereuromark.de",
 			"role" : "Project Manager"
 		}
 	],
@@ -18,17 +17,16 @@
 	],
 	"license": "MIT",
 	"require": {
-		"cakephp/cakephp" : "2.6.*",
-		"FriendsOfCake/Authenticate": "dev-master",
+		"cakephp/cakephp" : "2.10.*",
+		"friendsofcake/authenticate": "^1.0.0",
 		"markstory/asset_compress" : "2.x-dev",
 		"dereuromark/cakephp-tools" : "0.*",
 		"dereuromark/cakephp-setup" : "2.x-dev",
 		"dereuromark/cakephp-data" : "2.x-dev",
 		"markstory/geshi" : "0.*",
-		"CakeDC/search" : "dev-master",
+		"cakedc/search" : "dev-master",
 		"cakephp/datasources" : "dev-master",
-		"nesbot/Carbon": "dev-master",
-		"ceeram/cakepdf": "dev-master",
+		"nesbot/carbon": "dev-master",
 		"dereuromark/media-embed": "dev-master",
 		"kzykhys/ciconia": "dev-master",
 		"geshi/geshi": ">=1.0"
@@ -38,14 +36,6 @@
 		"dereuromark/cakephp-upgrade": "dev-master"
 	},
 	"minimum-stability" : "dev",
-	"repositories" : [{
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/search"
-		}, {
-			"type" : "vcs",
-			"url" : "https://github.com/dereuromark/Ciconia"
-		}
-	],
 	"config" : {
 		"vendor-dir" : "Vendor"
 	},
