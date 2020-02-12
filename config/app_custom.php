@@ -49,6 +49,20 @@ return [
 		],
 	],
 
+	'Feedback' => [
+		'stores' => [
+		],
+		'returnlink' => false,
+		'enableacceptterms' => true,
+		'enablecopybyemail' => false,
+		'termstext' => true,
+		'configuration' => [
+			'Filesystem' => [
+				'location' => ROOT . DS . 'tmp' . DS . 'feedback' . DS,
+			],
+		],
+	],
+
 	'Config' => [
 		'adminEmail' => null, // Set in your app_local.php
 	],

@@ -2,7 +2,7 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -10,14 +10,9 @@ use Cake\Event\Event;
 class JqueryExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
-	public $helpers = ['Markup.Highlighter'];
+	protected $helpers = ['Markup.Highlighter'];
 
 	/**
 	 * @var array
@@ -25,10 +20,10 @@ class JqueryExamplesController extends SandboxAppController {
 	public $jqueryPlugins = ['media'];
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeRender(Event $event) {
+	public function beforeRender(EventInterface $event) {
 		$this->set('jquery_plugins', $this->jqueryPlugins);
 
 		parent::beforeRender($event);

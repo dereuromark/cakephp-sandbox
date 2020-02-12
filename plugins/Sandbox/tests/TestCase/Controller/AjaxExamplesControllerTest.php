@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
@@ -16,27 +15,18 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
-		'plugin.Data.Countries',
+	protected $fixtures = [
+		//'plugin.Data.Countries',
 		'app.Users',
 	];
 
 	/**
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		Router::extensions(['json']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown() {
-		parent::tearDown();
-
-		TableRegistry::clear();
 	}
 
 	/**

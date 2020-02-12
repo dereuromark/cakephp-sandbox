@@ -2,7 +2,7 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
@@ -18,12 +18,12 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $components = ['Search.Prg' => ['actions' => ['table']]];
+	protected $components = ['Search.Prg' => ['actions' => ['table']]];
 
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Data.Data'];
+	protected $helpers = ['Data.Data'];
 
 	/**
 	 * @return void
@@ -45,11 +45,11 @@ class SearchExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function afterFilter(Event $event) {
+	public function afterFilter(EventInterface $event) {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {

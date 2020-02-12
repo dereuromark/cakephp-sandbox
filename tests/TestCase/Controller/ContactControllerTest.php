@@ -13,14 +13,14 @@ class ContactControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
-		'plugin.Captcha.Captchas',
+	protected $fixtures = [
+		//'plugin.Captcha.Captchas',
 	];
 
 	/**
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		$this->session([
@@ -36,7 +36,7 @@ class ContactControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		TableRegistry::clear();

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
 use Tools\Mailer\Email;
@@ -21,11 +21,11 @@ class AccountController extends AppController {
 	public $modelClass = 'Users';
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		if (Configure::read('debug')) {
@@ -33,7 +33,7 @@ class AccountController extends AppController {
 		}
 
 		// Make sure people can't change the default users for security reasons
-		$action = $this->request->param('action');
+		$action = $this->request->getParam('action');
 		$user = $this->AuthUser->user('username');
 		if (in_array($action, ['edit', 'delete']) && in_array($user, ['user', 'mod', 'admin'])) {
 			$this->Flash->warning('This user is for demo purposes and protected');
@@ -104,7 +104,7 @@ class AccountController extends AppController {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
 			} elseif (!empty($key)) {
 				$uid = $key['user_id'];
-				$this->request->session()->write('Auth.Tmp.id', $uid);
+				$this->request->getSession()->write('Auth.Tmp.id', $uid);
 				return $this->redirect(['action' => 'change_password']);
 			} else {
 				$this->Flash->error(__('Invalid Key'));
@@ -165,7 +165,7 @@ class AccountController extends AppController {
 			throw new NotFoundException('Disabled for live');
 		}
 
-		$uid = $this->request->session()->read('Auth.Tmp.id');
+		$uid = $this->request->getSession()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
 			return $this->redirect(['action' => 'lost_password']);
@@ -174,7 +174,7 @@ class AccountController extends AppController {
 
 		if ($this->request->getQuery('abort')) {
 			if (!empty($uid)) {
-				$this->request->session()->delete('Auth.Tmp');
+				$this->request->getSession()->delete('Auth.Tmp');
 			}
 			return $this->redirect(['action' => 'login']);
 		}
@@ -185,7 +185,7 @@ class AccountController extends AppController {
 
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
-				$this->request->session()->delete('Auth.Tmp');
+				$this->request->getSession()->delete('Auth.Tmp');
 				$username = $this->Users->field('username', ['id' => $uid]);
 				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
@@ -235,7 +235,7 @@ class AccountController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function edit() {
-		$uid = $this->request->session()->read('Auth.User.id');
+		$uid = $this->request->getSession()->read('Auth.User.id');
 		$user = $this->Users->get($uid);
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
@@ -265,7 +265,7 @@ class AccountController extends AppController {
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);
-		$uid = $this->request->session()->read('Auth.User.id');
+		$uid = $this->request->getSession()->read('Auth.User.id');
 		if (!$this->Users->delete($uid)) {
 			throw new InternalErrorException('Cannot delete user');
 		}

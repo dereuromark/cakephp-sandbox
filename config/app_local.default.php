@@ -26,7 +26,20 @@ return [
 	],
 
 	'Config' => [
-		'adminEmail' => 'youremail@host.de',
+		'adminEmail' => '',
+	],
+
+	'Email' => [
+		'default' => [
+			'from' => ''
+		]
+	],
+	'EmailTransport' => [
+		'default' => [
+			'host' => '',
+			'username' => '',
+			'password' => '',
+		]
 	],
 
 	'FormConfig' => [

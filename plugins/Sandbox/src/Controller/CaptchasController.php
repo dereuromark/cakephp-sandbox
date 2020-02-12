@@ -17,7 +17,7 @@ class CaptchasController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Captcha.Captcha'];
+	protected $helpers = ['Captcha.Captcha'];
 
 	/**
 	 * @return void

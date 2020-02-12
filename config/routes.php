@@ -1,8 +1,6 @@
 <?php
-use Cake\Core\Plugin;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
-use Cake\Routing\Route\DashedRoute;
 
 /**
  * The default class to use for all routes
@@ -11,7 +9,6 @@ use Cake\Routing\Route\DashedRoute;
  * inconsistently cased URLs when used with `:plugin`, `:controller` and
  * `:action` markers.
  */
-Router::defaultRouteClass(DashedRoute::class);
 
 Router::scope('/', function (RouteBuilder $routes) {
 
@@ -43,8 +40,10 @@ Router::prefix('admin', function (RouteBuilder $routes) {
 	$routes->fallbacks();
 });
 
-/**
- * Load all plugin routes.  See the Plugin documentation on
- * how to customize the loading of plugin routes.
- */
-Plugin::routes();
+// TMP
+Router::plugin('Data', function (RouteBuilder $routes) {
+	// Because you are in the admin scope,
+	// you do not need to include the /admin prefix
+	// or the admin route element.
+	$routes->fallbacks();
+});

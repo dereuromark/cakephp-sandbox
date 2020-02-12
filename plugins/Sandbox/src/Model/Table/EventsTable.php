@@ -9,14 +9,19 @@ use Cake\Validation\Validator;
  * Events Model
  *
  * @method \Sandbox\Model\Entity\Event get($primaryKey, $options = [])
- * @method \Sandbox\Model\Entity\Event newEntity($data = null, array $options = [])
+ * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event[] newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event[] patchEntities($entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event findOrCreate($search, callable $callback = null, $options = [])
+ * @method \Sandbox\Model\Entity\Event[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\Event findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event newEmptyEntity()
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
 class EventsTable extends Table {
 
@@ -26,12 +31,11 @@ class EventsTable extends Table {
 	 * @param array $config The configuration for the Table.
 	 * @return void
 	 */
-	public function initialize(array $config) {
+	public function initialize(array $config): void {
 		parent::initialize($config);
 
-		$this->table('events');
-		$this->displayField('title');
-		$this->primaryKey('id');
+		$this->setTable('events');
+		$this->setDisplayField('title');
 
 		$this->addBehavior('Calendar.Calendar', [
 			'field' => 'beginning',
@@ -44,7 +48,7 @@ class EventsTable extends Table {
 	 * @param \Cake\Validation\Validator $validator Validator instance.
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(Validator $validator) {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->integer('id')
 			->allowEmpty('id', 'create');

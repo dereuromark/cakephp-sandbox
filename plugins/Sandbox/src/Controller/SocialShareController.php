@@ -5,14 +5,9 @@ namespace Sandbox\Controller;
 class SocialShareController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
-	public $helpers = ['SocialShare.SocialShare'];
+	protected $helpers = ['SocialShare.SocialShare'];
 
 	/**
 	 * @return void

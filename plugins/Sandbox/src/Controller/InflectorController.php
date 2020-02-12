@@ -7,12 +7,6 @@ use Cake\Utility\Inflector;
 use ReflectionClass;
 
 class InflectorController extends AppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */
@@ -38,7 +32,7 @@ class InflectorController extends AppController {
 		}
 
 		if ($string) {
-			$r = new ReflectionClass('Cake\Utility\Inflector');
+			$r = new ReflectionClass(Inflector::class);
 			foreach ($r->getMethods() as $method) {
 				if (in_array($method->name, $this->_reflectExceptions, true)) {
 					continue;

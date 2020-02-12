@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Tools\Controller\Controller;
 
 /**
@@ -15,36 +15,41 @@ use Tools\Controller\Controller;
 class AppController extends Controller {
 
 	/**
-	 * @var array
-	 */
-	public $components = ['RequestHandler', 'Tools.Common',
-		'Flash.Flash', 'TinyAuth.Auth', 'TinyAuth.AuthUser'];
-
-	/**
-	 * @var array
-	 */
-	public $helpers = ['Tools.Html', 'Tools.Url',
-		'Form' => [], // => ['className' => 'BootstrapUI.Form']
-		'Tools.Common', 'Flash.Flash', 'Tools.Format',
-		'Tools.Time', 'Tools.Number', 'TinyAuth.AuthUser', 'AssetCompress.AssetCompress',
-		'Shim.Configure', 'Tools.Progress', 'Tools.Meter',
-	];
-
-	/**
 	 * @return void
 	 */
-	protected function _mergeControllerVars() {
-		parent::_mergeControllerVars();
+	public function initialize(): void {
+		parent::initialize();
 
-		$this->helpers['Form'] += (array)Configure::read('FormConfig');
+		$this->loadComponent('RequestHandler');
+		$this->loadComponent('Tools.Common');
+		$this->loadComponent('Flash.Flash');
+		$this->loadComponent('TinyAuth.Auth');
+		$this->loadComponent('TinyAuth.AuthUser');
+
+		$helpers = [
+			'Tools.Html',
+			'Tools.Url',
+			'Form' => (array)Configure::read('FormConfig'), // => ['className' => 'BootstrapUI.Form']
+			'Tools.Common',
+			'Flash.Flash',
+			'Tools.Format',
+			'Tools.Time',
+			'Tools.Number',
+			'TinyAuth.AuthUser',
+			'AssetCompress.AssetCompress',
+			'Shim.Configure',
+			'Tools.Progress',
+			'Tools.Meter',
+		];
+		$this->viewBuilder()->setHelpers($helpers);
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		$config = [
@@ -78,7 +83,7 @@ class AppController extends Controller {
 				'action' => 'login',
 			],
 		];
-		$this->Auth->config($config);
+		$this->Auth->setConfig($config);
 
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lost_password', 'register']];
@@ -87,19 +92,19 @@ class AppController extends Controller {
 		}
 
 		foreach ($allowed as $controller => $actions) {
-			if ($this->name === $controller && in_array($this->request->param('action'), $actions)) {
+			if ($this->name === $controller && in_array($this->request->getParam('action'), $actions, true)) {
 				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
-				return $this->redirect($this->Auth->config('loginRedirect'));
+				return $this->redirect($this->Auth->getConfig('loginRedirect'));
 			}
 		}
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function beforeRender(Event $event) {
+	public function beforeRender(EventInterface $event) {
 		parent::beforeRender($event);
 
 		$this->disableCache();

@@ -16,14 +16,14 @@ class RatingsController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		parent::initialize();
 
 		// We fake a user / auth
-		$uid = $this->request->session()->read('Tmp.User.id');
+		$uid = $this->request->getSession()->read('Tmp.User.id');
 		if (!$uid) {
 			$uid = time();
-			$this->request->session()->write('Tmp.User.id', $uid);
+			$this->request->getSession()->write('Tmp.User.id', $uid);
 		}
 
 		$this->loadComponent('Ratings.Rating', ['userId' => $uid, 'rateClass' => 'Sandbox.SandboxRatings']);
@@ -45,7 +45,7 @@ class RatingsController extends SandboxAppController {
 		$id = $record->id;
 		$this->set('post', $record);
 
-		$userId = $this->request->session()->read('Tmp.User.id');
+		$userId = $this->request->getSession()->read('Tmp.User.id');
 		$isRated = $this->SandboxPosts->isRatedBy($id, $userId)->first();
 		$this->set(compact('isRated'));
 	}
@@ -57,7 +57,7 @@ class RatingsController extends SandboxAppController {
 	 */
 	public function unrate($id = null) {
 		$this->request->allowMethod('post');
-		$uid = $this->request->session()->read('Tmp.User.id');
+		$uid = $this->request->getSession()->read('Tmp.User.id');
 		if (!$id || !$uid) {
 			$this->Flash->error('No ID given. Cannot delete rating.');
 			return $this->redirect($this->referer(['action' => 'index']));

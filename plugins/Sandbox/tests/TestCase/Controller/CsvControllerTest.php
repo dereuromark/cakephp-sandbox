@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\Routing\Router;
 use Tools\TestSuite\IntegrationTestCase;
 
@@ -14,26 +13,17 @@ class CsvControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'plugin.Data.Countries',
 	];
 
 	/**
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		Router::extensions(['csv']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown() {
-		parent::tearDown();
-
-		TableRegistry::clear();
 	}
 
 	/**

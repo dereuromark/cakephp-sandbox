@@ -15,14 +15,14 @@ class EventsTableTest extends TestCase {
 	 *
 	 * @var \Sandbox\Model\Table\EventsTable
 	 */
-	public $Events;
+	protected $Events;
 
 	/**
 	 * Fixtures
 	 *
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'plugin.Sandbox.Events',
 	];
 
@@ -31,7 +31,7 @@ class EventsTableTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 		$config = TableRegistry::exists('Events') ? [] : ['className' => 'Sandbox\Model\Table\EventsTable'];
 		$this->Events = TableRegistry::get('Events', $config);
@@ -40,7 +40,7 @@ class EventsTableTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		unset($this->Events);
 
 		parent::tearDown();

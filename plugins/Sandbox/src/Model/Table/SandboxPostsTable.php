@@ -11,14 +11,19 @@ use Tools\Model\Table\Table;
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @mixin \Tags\Model\Behavior\TagBehavior
  * @method \Sandbox\Model\Entity\SandboxPost get($primaryKey, $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost newEntity($data = null, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost newEntity(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[] newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost[] patchEntities($entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, callable $callback = null, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Search\Model\Behavior\SearchBehavior
+ * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()
+ * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
 class SandboxPostsTable extends Table {
 
@@ -62,7 +67,7 @@ class SandboxPostsTable extends Table {
 					if ($args['tag'] === '-1') {
 						$query->find('untagged');
 					} else {
-						$query->find('tagged', $args);
+						$query->find('tagged', ['slug' => $args['tag']]);
 					}
 
 					return true;

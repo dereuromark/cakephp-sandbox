@@ -30,6 +30,7 @@ before_script:
   - composer install --prefer-source --no-interaction
 
   - if [[ $DB == 'mysql' ]]; then mysql -e 'CREATE DATABASE cakephp_test;'; fi
+  - if [[ $CHECKS != 1 ]]; then composer require phpunit/phpunit:"^8.3"; fi
 
   - cp config/app.php config/app_local.php
 

@@ -4,27 +4,21 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Exception;
 use MiniAsset\Filter\ScssFilter;
 
 class AssetCompressExamplesController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var string|null
 	 */
 	protected $_cssDir;
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(EventInterface $event) {
 		$this->_cssDir = Plugin::path('Sandbox') . 'files' . DS . 'AssetCompress' . DS;
 
 		parent::beforeFilter($event);

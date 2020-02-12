@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\MethodNotAllowedException;
 
 /**
@@ -17,21 +17,16 @@ use Cake\Http\Exception\MethodNotAllowedException;
 class ExportController extends AppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
 	public $components = ['Cache.Cache'];
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return \Cake\Http\Response|null
 	 * @throws \Cake\Http\Exception\MethodNotAllowedException
 	 */
-	public function beforeFilter(Event $event) {
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		if (!$this->viewBuilder()->getClassName() || $this->viewBuilder()->getClassName() === 'View') {
@@ -44,10 +39,10 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @param \Cake\Event\Event $event
+	 * @param \Cake\Event\EventInterface $event
 	 * @return \Cake\Http\Response|null
 	 */
-	public function afterFilter(Event $event) {
+	public function afterFilter(EventInterface $event) {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {

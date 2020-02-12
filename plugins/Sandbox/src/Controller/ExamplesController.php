@@ -3,16 +3,10 @@
 namespace Sandbox\Controller;
 
 class ExamplesController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Markup.Highlighter'];
+	protected $helpers = ['Markup.Highlighter'];
 
 	/**
 	 * Lists all actions available.

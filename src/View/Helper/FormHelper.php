@@ -17,7 +17,7 @@ class FormHelper extends BootstrapFormHelper {
 	 *
 	 * @return string
 	 */
-	public function postLink($title, $url = null, array $options = []) {
+	public function postLink(string $title, $url = null, array $options = []): string {
 		if (isset($options['confirm'])) {
 			$options['data-confirm'] = h($options['confirm']);
 		}

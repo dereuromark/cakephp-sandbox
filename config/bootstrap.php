@@ -35,12 +35,11 @@ require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
 use App\Error\ErrorHandler;
 use Cake\Cache\Cache;
-use Cake\Console\ConsoleErrorHandler;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Core\Plugin;
 use Cake\Database\Type;
 use Cake\Datasource\ConnectionManager;
+use Cake\Error\ConsoleErrorHandler;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
 use Cake\I18n\FrozenDate;
@@ -48,10 +47,10 @@ use Cake\I18n\FrozenTime;
 use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\TransportFactory;
-use Cake\Routing\DispatcherFactory;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 use Cake\Utility\Security;
-use Tools\Mailer\Email;
+use Tools\Mailer\Mailer;
 
 /**
  * Read configuration file and inject configuration into various
@@ -138,7 +137,7 @@ if (!Configure::read('App.fullBaseUrl')) {
 Cache::setConfig(Configure::consume('Cache'));
 ConnectionManager::setConfig(Configure::consume('Datasources'));
 TransportFactory::setConfig(Configure::consume('EmailTransport'));
-Email::setConfig(Configure::consume('Email'));
+Mailer::setConfig(Configure::consume('Email'));
 Log::setConfig(Configure::consume('Log'));
 Security::setSalt(Configure::consume('Security.salt'));
 
@@ -164,18 +163,7 @@ ServerRequest::addDetector('tablet', function ($request) {
  * Inflector::rules('transliteration', ['/å/' => 'aa']);
  */
 
-/**
- * Connect middleware/dispatcher filters.
- */
-DispatcherFactory::add('Asset');
-DispatcherFactory::add('Routing');
-DispatcherFactory::add('ControllerFactory');
-DispatcherFactory::add('Cache.Cache', [
-	'when' => function ($request, $response) {
-		return $request->is('get');
-	},
-]);
-
+Router::defaultRouteClass(DashedRoute::class);
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime
@@ -213,6 +201,7 @@ Date::setToStringFormat('dd.MM.YYYY');
  * Plugin::loadAll(); // Loads all plugins at once
  * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
  */
+/*
 Plugin::load('DebugKit', ['bootstrap' => true]);
 
 Plugin::load('Setup', ['bootstrap' => true]);
@@ -240,3 +229,4 @@ Plugin::load('CakeDto', ['bootstrap' => true]);
 if (Configure::read('debug')) {
 	Plugin::load('TestHelper', ['routes' => true]);
 }
+*/

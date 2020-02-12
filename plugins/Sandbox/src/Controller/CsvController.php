@@ -9,16 +9,10 @@ use Cake\I18n\Time;
  * @property \Data\Model\Table\CountriesTable $Countries
  */
 class CsvController extends SandboxAppController {
-
-	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
 	/**
 	 * @var array
 	 */
-	public $components = [
+	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => ['csv' => 'CsvView.Csv'],
 		],
@@ -27,7 +21,7 @@ class CsvController extends SandboxAppController {
 	/**
 	 * @var array
 	 */
-	public $helpers = ['Data.Data'];
+	protected $helpers = ['Data.Data'];
 
 	/**
 	 * List of all examples.
@@ -44,7 +38,7 @@ class CsvController extends SandboxAppController {
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function simple() {
-		if (empty($this->request->params['_ext'])) {
+		if ($this->getRequest()->getParam('_ext') !== 'csv') {
 			throw new NotFoundException('We only want access via .csv extension, there is no normal view for it.');
 		}
 
@@ -80,7 +74,7 @@ class CsvController extends SandboxAppController {
 
 		$this->set(compact('countries'));
 
-		if (!empty($this->request->params['_ext'])) {
+		if ($this->getRequest()->getParam('_ext') === 'csv') {
 			Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 
 			$_serialize = 'countries';

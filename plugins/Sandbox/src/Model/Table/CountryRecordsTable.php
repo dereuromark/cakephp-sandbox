@@ -20,8 +20,8 @@ class CountryRecordsTable extends Table {
 	 *
 	 * @return void
 	 */
-	public function initialize(array $config) {
-		$this->table('countries');
+	public function initialize(array $config): void {
+		$this->setTable('countries');
 
 		parent::initialize($config);
 

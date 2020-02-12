@@ -2,7 +2,6 @@
 
 namespace AuthSandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Tools\TestSuite\IntegrationTestCase;
 
 /**
@@ -15,26 +14,10 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	public $fixtures = [
+	protected $fixtures = [
 		'app.Users',
 		'app.Roles',
 	];
-
-	/**
-	 * @return void
-	 */
-	public function setUp() {
-		parent::setUp();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown() {
-		parent::tearDown();
-
-		TableRegistry::clear();
-	}
 
 	/**
 	 * @return void

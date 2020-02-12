@@ -14,19 +14,14 @@ use Cake\Validation\Validation;
 class AjaxExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @return void
 	 */
-	public function initialize() {
+	public function initialize(): void {
 		parent::initialize();
 
 		$this->loadComponent('Data.CountryStateHelper');
 
-		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail'])) {
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'])) {
 			$this->loadComponent('Ajax.Ajax');
 		}
 
@@ -64,11 +59,11 @@ class AjaxExamplesController extends SandboxAppController {
 		if ($this->request->is(['post'])) {
 			// Simulate a DB save via session
 			$status = (bool)$this->request->getQuery('status');
-			$this->request->session()->write('AjaxToggle.status', $status);
+			$this->request->getSession()->write('AjaxToggle.status', $status);
 		}
 
 		// Read from DB (simulated)
-		$status = (bool)$this->request->session()->read('AjaxToggle.status');
+		$status = (bool)$this->request->getSession()->read('AjaxToggle.status');
 
 		$this->set(compact('status'));
 	}
@@ -169,9 +164,11 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function tableDelete($id = null) {
+		$this->loadModel('Data.Countries');
+		$country = $this->Countries->get($id);
+
 		$false = false;
 		if ($false) {
-			$country = $this->Countries->get($id);
 			$this->Countries->delete($country);
 		}
 
@@ -223,7 +220,7 @@ class AjaxExamplesController extends SandboxAppController {
 			throw new NotFoundException();
 		}
 
-		$this->viewBuilder()->className('Ajax.Ajax');
+		$this->viewBuilder()->setClassName('Ajax.Ajax');
 
 		$this->loadModel('Data.States');
 		$states = $this->States->getListByCountry($id);

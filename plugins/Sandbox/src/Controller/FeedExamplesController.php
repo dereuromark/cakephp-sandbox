@@ -8,17 +8,15 @@ use Cake\Utility\Text;
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @var array
 	 */
-	public $components = [
+	protected $components = [
 		'RequestHandler' => [
 			'viewClassMap' => [
-				'rss' => 'Feed.Rss']]];
+				'rss' => 'Feed.Rss',
+			],
+		],
+	];
 
 	/**
 	 * List of all examples.
@@ -35,17 +33,22 @@ class FeedExamplesController extends SandboxAppController {
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function feed() {
-		if (empty($this->request->params['_ext']) || $this->request->params['_ext'] !== 'rss') {
-			throw new NotFoundException();
+		if ($this->getRequest()->getParam('_ext') !== 'rss') {
+			throw new NotFoundException('The URL requires .rss extension.');
 		}
 		// This is only needed without the viewClassMap setting for RequestHandler
-		//$this->viewBuilder()->className('Feed.Rss');
+		//$this->viewBuilder()->setClassName('Feed.Rss');
 
 		$news = $this->_feedData();
 
 		$items = [];
 		foreach ($news as $key => $val) {
-			$content = nl2br(h($val['content']));
+			$description = h($val['content']);
+			// We render the content as mini-template to use helpers etc.
+			$this->viewBuilder()->setVar('text', $description)->disableAutoLayout();
+			// This is now HTML
+			$content = $this->createView()->render('/element/feed/element');
+
 			$link = ['action' => 'feedview', $val['id']];
 			$guidLink = ['action' => 'view', $val['id']];
 
@@ -53,9 +56,9 @@ class FeedExamplesController extends SandboxAppController {
 				'title' => $val['title'],
 				'link' => $link,
 				'guid' => ['url' => $guidLink, '@isPermaLink' => 'true'],
-				'description' => Text::truncate($val['content']),
 				'dc:creator' => $val['User']['username'],
 				'pubDate' => $val['published'],
+				'description' => Text::truncate($description, 200),
 				'content:encoded' => $content,
 			];
 		}
@@ -86,6 +89,13 @@ class FeedExamplesController extends SandboxAppController {
 	 * @return array
 	 */
 	protected function _feedData() {
+		$content = <<<TXT
+<u>Paragraph example text</u>
+
+Another paragraph.
+Two lines of it.
+TXT;
+
 		$records = [
 			[
 				'id' => 1,
@@ -96,10 +106,17 @@ class FeedExamplesController extends SandboxAppController {
 			[
 				'id' => 2,
 				'title' => 'Bar',
-				'content' => '<i>Italic text</b>',
+				'content' => '<i>Italic text X</b>',
 				'published' => '2012-07-04 11:12:13',
 			],
+			[
+				'id' => 3,
+				'title' => 'Xxx',
+				'content' => $content,
+				'published' => '2012-07-08 11:12:13',
+			],
 		];
+
 		$res = [];
 		foreach ($records as $k => $v) {
 			$v['User'] = [
@@ -112,14 +129,18 @@ class FeedExamplesController extends SandboxAppController {
 
 	/**
 	 * @param string|null $id
-	 * @return void
+	 *
+	 * @throws \Cake\Http\Exception\NotFoundException
+	 *
+	 * @return \Cake\Http\Response
 	 */
 	public function feedview($id = null) {
 		if (!$id) {
 			throw new NotFoundException();
 		}
-		$this->response->body('Example of web frontend for ' . $id);
-		$this->autoRender = false;
+
+		// Use a real template instead if needed
+		return $this->response->withStringBody('Example of web page for feed element ' . $id);
 	}
 
 }

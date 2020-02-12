@@ -3,7 +3,7 @@
 namespace AuthSandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Event\Event;
+use Cake\Event\EventInterface;
 
 /**
  * @property \TinyAuth\Controller\Component\AuthComponent $Auth
@@ -20,20 +20,23 @@ class AuthSandboxController extends AppController {
 	public $modelClass = 'Users';
 
 	/**
-	 * @var array
-	 */
-	public $components = ['TinyAuth.AuthUser', 'Security', 'Csrf'];
-
-	/**
-	 * @var array
-	 */
-	public $helpers = ['TinyAuth.AuthUser'];
-
-	/**
-	 * @param \Cake\Event\Event $event
 	 * @return void
 	 */
-	public function beforeFilter(Event $event) {
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->loadComponent('TinyAuth.AuthUser');
+		$this->loadComponent('Security');
+
+		$helpers = ['TinyAuth.AuthUser'];
+		$this->viewBuilder()->setHelpers($helpers);
+	}
+
+	/**
+	 * @param \Cake\Event\EventInterface $event
+	 * @return void
+	 */
+	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
 		$this->_authSetup();
@@ -43,7 +46,7 @@ class AuthSandboxController extends AppController {
 	 * @return void
 	 */
 	protected function _authSetup() {
-		$this->Auth->config('authenticate', [
+		$this->Auth->setConfig('authenticate', [
 			'Tools.MultiColumn' => [
 				'fields' => [
 					'username' => 'login',
@@ -55,27 +58,27 @@ class AuthSandboxController extends AppController {
 		]);
 
 		// Roles are defined in Roles table (and relationship linked in Users table)
-		$this->Auth->config('authorize', ['TinyAuth.Tiny']);
+		$this->Auth->setConfig('authorize', ['TinyAuth.Tiny']);
 
-		$this->Auth->config('loginAction', [
+		$this->Auth->setConfig('loginAction', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('loginRedirect', [
+		$this->Auth->setConfig('loginRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'index',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('logoutRedirect', [
+		$this->Auth->setConfig('logoutRedirect', [
 			'prefix' => false,
 			'controller' => 'AuthSandbox',
 			'action' => 'login',
 			'plugin' => 'AuthSandbox',
 		]);
-		$this->Auth->config('authError', 'Did you really think you are allowed to see that?');
+		$this->Auth->setConfig('authError', 'Did you really think you are allowed to see that?');
 	}
 
 	/**

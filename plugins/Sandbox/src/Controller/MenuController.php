@@ -6,26 +6,23 @@ namespace Sandbox\Controller;
  * @property \Gourmet\KnpMenu\Controller\Component\MenuComponent $Menu
  */
 class MenuController extends SandboxAppController {
-
 	/**
-	 * @var string|false
+	 * @var array
 	 */
-	public $modelClass = false;
+	//protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
 	 * @var array
 	 */
-	public $components = ['Gourmet/KnpMenu.Menu'];
-
-	/**
-	 * @var array
-	 */
-	public $helpers = ['Gourmet/KnpMenu.Menu'];
+	protected $helpers = ['Icings/Menu.Menu'];
 
 	/**
 	 * @return void
 	 */
 	public function index() {
+
+		return;
+
 		$menu = $this->Menu->get('my_menu');
 
 		$menu->addChild('Dashboard',

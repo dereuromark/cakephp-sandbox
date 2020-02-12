@@ -10,11 +10,6 @@ use Cake\Chronos\Chronos;
 class ChronosExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string|false
-	 */
-	public $modelClass = false;
-
-	/**
 	 * @return void
 	 */
 	public function index() {

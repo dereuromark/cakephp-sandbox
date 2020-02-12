@@ -2,7 +2,7 @@
 
 namespace App\Error\Middleware;
 
-use CakephpWhoops\Error\Middleware\WhoopsHandlerMiddleware;
+use Cake\Error\Middleware\ErrorHandlerMiddleware as CoreErrorHandlerMiddleware;
 use Cake\Log\Log;
 use Tools\Error\ErrorHandlerTrait;
 
@@ -11,7 +11,7 @@ use Tools\Error\ErrorHandlerTrait;
  *
  * Uses Whoops
  */
-class ErrorHandlerMiddleware extends WhoopsHandlerMiddleware {
+class ErrorHandlerMiddleware extends CoreErrorHandlerMiddleware {
 
 	use ErrorHandlerTrait;
 

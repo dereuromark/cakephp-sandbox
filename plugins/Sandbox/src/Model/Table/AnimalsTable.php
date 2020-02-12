@@ -25,7 +25,7 @@ class AnimalsTable extends Table {
 	 * @param array $config
 	 * @return void
 	 */
-	public function initialize(array $config) {
+	public function initialize(array $config): void {
 		$this->setTable('sandbox_animals');
 
 		//$this->addBehavior('Search.Searchable');
@@ -37,7 +37,7 @@ class AnimalsTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(Validator $validator) {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->add('name', 'alphanumeric', [
 				'rule' => 'alphanumeric',
@@ -68,7 +68,7 @@ class AnimalsTable extends Table {
 	 *
 	 * @return \Cake\ORM\RulesChecker
 	 */
-	public function buildRules(RulesChecker $rules) {
+	public function buildRules(RulesChecker $rules): RulesChecker {
 		// Add a rule that is applied for create and update operations
 		$rules->add(function (EntityInterface $entity, $options) {
 			$name = $entity->get('name');
