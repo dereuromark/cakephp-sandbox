@@ -9,10 +9,10 @@
 <div class="navbar-collapse collapse" id="navbar-main">
 	<ul class="nav navbar-nav">
 		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox"><span class="label label-warning">CakePHP 2.x</span> <span class="caret"></span></a>
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox"><span class="label label-danger">CakePHP 2.x</span> <span class="caret"></span></a>
 			<ul class="dropdown-menu" aria-labelledby="sandbox">
-				<li><a href="http://sandbox3.dereuromark.de/"><span class="label label-success">CakePHP 3.x</span></a></li>
-
+				<li><a href="https://sandbox3.dereuromark.de/"><span class="label label-warning">CakePHP 3.x</span></a></li>
+                <li><a href="https://sandbox4.dereuromark.de/"><span class="label label-success">CakePHP 4.x</span></a></li>
 			</ul>
 		</li>
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7011394ff2ab1df3ff732344c0a02d20",
+    "content-hash": "8702ed1b427d4d110fa0c266fa6a65ca",
     "packages": [
         {
             "name": "cakedc/search",
@@ -154,12 +154,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "71a969fe8408f3db5c0c35d420df3e23b37971de"
+                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/71a969fe8408f3db5c0c35d420df3e23b37971de",
-                "reference": "71a969fe8408f3db5c0c35d420df3e23b37971de",
+                "url": "https://api.github.com/repos/composer/installers/zipball/7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
+                "reference": "7d610d50aae61ae7ed6675e58efeabdf279bb5e3",
                 "shasum": ""
             },
             "require": {
@@ -262,6 +262,7 @@
                 "shopware",
                 "silverstripe",
                 "sydes",
+                "sylius",
                 "symfony",
                 "typo3",
                 "wordpress",
@@ -269,20 +270,20 @@
                 "zend",
                 "zikula"
             ],
-            "time": "2019-12-03T09:18:28+00:00"
+            "time": "2020-02-07T10:39:20+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
-            "version": "2.x-dev",
+            "version": "dev-cake2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "bd43a02683dac573b2ae201b975945c8be01fa76"
+                "reference": "4084d96cb55052e1b0d3a9f671e5de5e28001af8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/bd43a02683dac573b2ae201b975945c8be01fa76",
-                "reference": "bd43a02683dac573b2ae201b975945c8be01fa76",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/4084d96cb55052e1b0d3a9f671e5de5e28001af8",
+                "reference": "4084d96cb55052e1b0d3a9f671e5de5e28001af8",
                 "shasum": ""
             },
             "require": {
@@ -312,20 +313,20 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2015-05-18T18:12:02+00:00"
+            "time": "2018-04-19T20:26:49+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
-            "version": "2.x-dev",
+            "version": "dev-cake2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "3caa4605975aeb7d03a91855d4dc65777c9664a3"
+                "reference": "b77fff3246f2f9b8f12f3ec3692ae1e00b27c931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/3caa4605975aeb7d03a91855d4dc65777c9664a3",
-                "reference": "3caa4605975aeb7d03a91855d4dc65777c9664a3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/b77fff3246f2f9b8f12f3ec3692ae1e00b27c931",
+                "reference": "b77fff3246f2f9b8f12f3ec3692ae1e00b27c931",
                 "shasum": ""
             },
             "require": {
@@ -362,7 +363,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2019-12-23T21:07:37+00:00"
+            "time": "2018-04-19T20:24:18+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -474,12 +475,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b"
+                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b",
-                "reference": "4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
+                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
                 "shasum": ""
             },
             "require": {
@@ -519,7 +520,7 @@
                 "php",
                 "video"
             ],
-            "time": "2019-12-17T00:02:14+00:00"
+            "time": "2020-02-06T09:24:25+00:00"
         },
         {
             "name": "friendsofcake/authenticate",
@@ -806,12 +807,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d340ae6e2f4dd4f0da90b9c4745548ab0c9bade2"
+                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d340ae6e2f4dd4f0da90b9c4745548ab0c9bade2",
-                "reference": "d340ae6e2f4dd4f0da90b9c4745548ab0c9bade2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/912dff66d2690ca66abddb9b291a1df5f371d3b4",
+                "reference": "912dff66d2690ca66abddb9b291a1df5f371d3b4",
                 "shasum": ""
             },
             "require": {
@@ -868,7 +869,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-01-29T20:52:45+00:00"
+            "time": "2020-02-07T15:25:46+00:00"
         },
         {
             "name": "symfony/console",
@@ -1040,12 +1041,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "2558be605f3be78a876551f823850d7616389b00"
+                "reference": "b40717fdc075762d03133cad5dab93c6102f6b23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/2558be605f3be78a876551f823850d7616389b00",
-                "reference": "2558be605f3be78a876551f823850d7616389b00",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/b40717fdc075762d03133cad5dab93c6102f6b23",
+                "reference": "b40717fdc075762d03133cad5dab93c6102f6b23",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1110,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-04T07:41:44+00:00"
+            "time": "2020-02-09T07:48:01+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -1117,12 +1118,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "50c101c6e7147d3284a945f71eb0959bd5736f1b"
+                "reference": "14ba2b69357d4f4a0ff4c7a0234d0a483bb6a8b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/50c101c6e7147d3284a945f71eb0959bd5736f1b",
-                "reference": "50c101c6e7147d3284a945f71eb0959bd5736f1b",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/14ba2b69357d4f4a0ff4c7a0234d0a483bb6a8b4",
+                "reference": "14ba2b69357d4f4a0ff4c7a0234d0a483bb6a8b4",
                 "shasum": ""
             },
             "require": {
@@ -1166,20 +1167,20 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2020-01-04T14:08:26+00:00"
+            "time": "2020-02-10T10:54:33+00:00"
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.4.7",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "a691852adbf7518370332fd7921292d8dad34e7e"
+                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/a691852adbf7518370332fd7921292d8dad34e7e",
-                "reference": "a691852adbf7518370332fd7921292d8dad34e7e",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/a3801f5facf187a28cc2cae7b98a540c36406dc4",
+                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4",
                 "shasum": ""
             },
             "require": {
@@ -1215,7 +1216,7 @@
                 "clean",
                 "php"
             ],
-            "time": "2020-01-27T08:58:33+00:00"
+            "time": "2020-02-06T21:46:48+00:00"
         },
         {
             "name": "voku/stop-words",
