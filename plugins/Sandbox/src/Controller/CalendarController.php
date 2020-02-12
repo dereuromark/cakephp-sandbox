@@ -100,7 +100,7 @@ class CalendarController extends SandboxAppController {
 				'beginning' => new Time(mktime(mt_rand(8, 22), 0, 0, $options['month'], mt_rand(1, 28), $options['year'])),
 			]);
 			if (!$this->Events->save($event)) {
-				throw new InternalErrorException('Cannot save Event - ' . print_r($event->errors()));
+				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));
 			}
 		}
 	}

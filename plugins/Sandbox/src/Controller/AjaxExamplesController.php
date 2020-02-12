@@ -239,7 +239,7 @@ class AjaxExamplesController extends SandboxAppController {
 
 		if ($this->request->is(['post', 'put', 'patch'])) {
 			$user = $this->Users->patchEntity($user, $this->request->getData());
-			if (!$user->errors()) {
+			if (!$user->getErrors()) {
 				$this->Flash->success('Simulated save.');
 				return $this->redirect(['action' => 'form']);
 			}
