@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "c46238303a3bd8a711c90c503dd1f12ba3656ebe"
+                "reference": "7b4da838e78c3ee9c81091c3f86d5f467b59a552"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c46238303a3bd8a711c90c503dd1f12ba3656ebe",
-                "reference": "c46238303a3bd8a711c90c503dd1f12ba3656ebe",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/7b4da838e78c3ee9c81091c3f86d5f467b59a552",
+                "reference": "7b4da838e78c3ee9c81091c3f86d5f467b59a552",
                 "shasum": ""
             },
             "require": {
@@ -145,27 +145,27 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-02-03T17:24:40+00:00"
+            "time": "2020-02-10T15:39:10+00:00"
         },
         {
             "name": "cakephp/chronos",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "779054d4c7ca88fc086b2cdd1f02aaf0df9ccb01"
+                "reference": "e1044d27cabf12d19097b436001aa96a3c2e4b0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/779054d4c7ca88fc086b2cdd1f02aaf0df9ccb01",
-                "reference": "779054d4c7ca88fc086b2cdd1f02aaf0df9ccb01",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/e1044d27cabf12d19097b436001aa96a3c2e4b0a",
+                "reference": "e1044d27cabf12d19097b436001aa96a3c2e4b0a",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2"
             },
             "require-dev": {
-                "cakephp/cakephp-codesniffer": "dev-next",
+                "cakephp/cakephp-codesniffer": "^4.0",
                 "phpbench/phpbench": "^1.0@dev",
                 "phpunit/phpunit": "^8.0"
             },
@@ -200,7 +200,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-12-01T01:32:36+00:00"
+            "time": "2020-02-08T02:38:43+00:00"
         },
         {
             "name": "cakephp/debug_kit",
@@ -418,12 +418,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "f4762ef0216ae435ab053f68e5bcdff966cf8d4f"
+                "reference": "4d74f5ba957468afe124849ceaf38c2fcf5b871a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/f4762ef0216ae435ab053f68e5bcdff966cf8d4f",
-                "reference": "f4762ef0216ae435ab053f68e5bcdff966cf8d4f",
+                "url": "https://api.github.com/repos/composer/composer/zipball/4d74f5ba957468afe124849ceaf38c2fcf5b871a",
+                "reference": "4d74f5ba957468afe124849ceaf38c2fcf5b871a",
                 "shasum": ""
             },
             "require": {
@@ -445,8 +445,8 @@
                 "symfony/console": "2.8.38"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "phpunit/phpunit-mock-objects": "^2.3 || ^3.0"
+                "phpspec/prophecy": "^1.10",
+                "symfony/phpunit-bridge": "^3.4"
             },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
@@ -490,7 +490,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-02-04T11:58:34+00:00"
+            "time": "2020-02-12T09:23:03+00:00"
         },
         {
             "name": "composer/semver",
@@ -1620,12 +1620,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b"
+                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b",
-                "reference": "4cd6650a072b6ce4d70e2c9f35b930aafdc49b8b",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
+                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
                 "shasum": ""
             },
             "require": {
@@ -1665,7 +1665,7 @@
                 "php",
                 "video"
             ],
-            "time": "2019-12-17T00:02:14+00:00"
+            "time": "2020-02-06T09:24:25+00:00"
         },
         {
             "name": "dompdf/dompdf",
@@ -1735,16 +1735,16 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "3.0.0-beta",
+            "version": "3.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "c1bd2adcce74ad5beaeba031996a160af537446a"
+                "reference": "29c81cde514a5403424147cd3bd46e75bceb1b70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/c1bd2adcce74ad5beaeba031996a160af537446a",
-                "reference": "c1bd2adcce74ad5beaeba031996a160af537446a",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/29c81cde514a5403424147cd3bd46e75bceb1b70",
+                "reference": "29c81cde514a5403424147cd3bd46e75bceb1b70",
                 "shasum": ""
             },
             "require": {
@@ -1776,13 +1776,13 @@
                     "homepage": "https://github.com/friendsofcake/bootstrap-ui/graphs/contributors"
                 }
             ],
-            "description": "Bootstrap 3 support for CakePHP",
+            "description": "Bootstrap support for CakePHP",
             "homepage": "http://github.com/friendsofcake/bootstrap-ui",
             "keywords": [
                 "bootstrap",
                 "cakephp"
             ],
-            "time": "2019-12-25T13:01:22+00:00"
+            "time": "2020-02-11T14:16:01+00:00"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
@@ -4236,16 +4236,16 @@
         },
         {
             "name": "twig/markdown-extra",
-            "version": "v3.0.1",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/markdown-extra.git",
-                "reference": "e3f6eb3f65eb2c165451c8417d918fb96fbd6d4d"
+                "reference": "c9d09a12024febcb6976886794d095a31f1ce6fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/markdown-extra/zipball/e3f6eb3f65eb2c165451c8417d918fb96fbd6d4d",
-                "reference": "e3f6eb3f65eb2c165451c8417d918fb96fbd6d4d",
+                "url": "https://api.github.com/repos/twigphp/markdown-extra/zipball/c9d09a12024febcb6976886794d095a31f1ce6fa",
+                "reference": "c9d09a12024febcb6976886794d095a31f1ce6fa",
                 "shasum": ""
             },
             "require": {
@@ -4289,20 +4289,20 @@
                 "markdown",
                 "twig"
             ],
-            "time": "2019-12-28T07:09:27+00:00"
+            "time": "2020-01-01T17:11:09+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.0.1",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "28f856a4c57eeb24485916e8a68403f41a133616"
+                "reference": "3b88ccd180a6b61ebb517aea3b1a8906762a1dc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/28f856a4c57eeb24485916e8a68403f41a133616",
-                "reference": "28f856a4c57eeb24485916e8a68403f41a133616",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3b88ccd180a6b61ebb517aea3b1a8906762a1dc2",
+                "reference": "3b88ccd180a6b61ebb517aea3b1a8906762a1dc2",
                 "shasum": ""
             },
             "require": {
@@ -4351,20 +4351,20 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-12-28T07:17:28+00:00"
+            "time": "2020-02-11T15:33:47+00:00"
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.4.7",
+            "version": "1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "a691852adbf7518370332fd7921292d8dad34e7e"
+                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/a691852adbf7518370332fd7921292d8dad34e7e",
-                "reference": "a691852adbf7518370332fd7921292d8dad34e7e",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/a3801f5facf187a28cc2cae7b98a540c36406dc4",
+                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4",
                 "shasum": ""
             },
             "require": {
@@ -4400,7 +4400,7 @@
                 "clean",
                 "php"
             ],
-            "time": "2020-01-27T08:58:33+00:00"
+            "time": "2020-02-06T21:46:48+00:00"
         },
         {
             "name": "voku/stop-words",
