@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 class ExamplesController extends SandboxAppController {
+
 	/**
 	 * @var array
 	 */

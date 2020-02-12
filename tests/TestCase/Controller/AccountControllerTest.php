@@ -3,7 +3,7 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\ORM\TableRegistry;
-use Tools\TestSuite\IntegrationTestCase;
+use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AccountController Test Case
@@ -72,7 +72,10 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginPostInvalidData() {
-		$this->post(['controller' => 'Account', 'action' => 'login']);
+		$this->disableErrorHandlerMiddleware();
+
+		$data = [];
+		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}

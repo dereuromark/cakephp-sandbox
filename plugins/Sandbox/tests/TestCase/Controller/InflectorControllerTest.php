@@ -10,19 +10,19 @@ use Cake\TestSuite\TestCase;
  *
  * @uses \Sandbox\Controller\InflectorController
  */
-class InflectorControllerTest extends TestCase
-{
-    use IntegrationTestTrait;
+class InflectorControllerTest extends TestCase {
 
-    /**
-     * @return void
-     */
-    public function testIndex(): void {
+	use IntegrationTestTrait;
+
+	/**
+	 * @return void
+	 */
+	public function testIndex(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-    }
+	}
 
 	/**
 	 * @return void

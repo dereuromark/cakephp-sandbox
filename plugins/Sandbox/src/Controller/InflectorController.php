@@ -7,8 +7,9 @@ use Cake\Utility\Inflector;
 use ReflectionClass;
 
 class InflectorController extends AppController {
+
 	/**
-	 * @var array
+	 * @var string[]
 	 */
 	protected $_reflectExceptions = [
 		'_cache',

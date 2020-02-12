@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Mailer\Mailer;
 use Tools\Form\ContactForm;
+use Tools\Mailer\Mailer;
 
 /**
  * @property \Captcha\Controller\Component\CaptchaComponent $Captcha
@@ -93,7 +93,7 @@ class ContactController extends AppController {
 		$adminName = Configure::read('Config.adminName');
 
 		// Send email to Admin
-		Configure::write('Email.live', true);
+		//Configure::write('Email.live', true);
 		$email = new Mailer();
 		$email->setTo($adminEmail, $adminName);
 

@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use MediaEmbed\MediaEmbed;
 
 class MediaEmbedController extends SandboxAppController {
+
 	/**
 	 * @var array
 	 */

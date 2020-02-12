@@ -3,7 +3,7 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Routing\Router;
-use Tools\TestSuite\IntegrationTestCase;
+use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AjaxExamplesController Test Case

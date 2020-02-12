@@ -2,7 +2,7 @@
 
 namespace AuthSandbox\Test\TestCase\Controller;
 
-use Tools\TestSuite\IntegrationTestCase;
+use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * App\Controller\AuthSandboxController Test Case

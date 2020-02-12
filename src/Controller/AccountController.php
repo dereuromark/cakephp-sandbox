@@ -59,11 +59,11 @@ class AccountController extends AppController {
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error('Wrong username/email or password');
-			$this->request->data['password'] = '';
+			//$this->request->data['password'] = '';
 		} else {
 			$username = $this->request->getQuery('username');
 			if ($username) {
-				$this->request->data['login'] = $username;
+				$this->request = $this->request->withData('login', $username);
 			}
 		}
 	}

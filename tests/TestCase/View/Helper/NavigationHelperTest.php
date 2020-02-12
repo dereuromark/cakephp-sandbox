@@ -3,6 +3,9 @@
 namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\NavigationHelper;
+use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\RouteBuilder;
+use Cake\Routing\Router;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
@@ -22,6 +25,10 @@ class NavigationHelperTest extends TestCase {
 		parent::setUp();
 		$view = new View();
 		$this->NavigationHelper = new NavigationHelper($view);
+
+		Router::scope('/', function (RouteBuilder $routes) {
+			$routes->fallbacks(DashedRoute::class);
+		});
 	}
 
 	/**

@@ -9,6 +9,7 @@ use Exception;
 use MiniAsset\Filter\ScssFilter;
 
 class AssetCompressExamplesController extends SandboxAppController {
+
 	/**
 	 * @var string|null
 	 */

@@ -2,7 +2,7 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Tools\TestSuite\IntegrationTestCase;
+use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * @uses \Sandbox\Controller\CalendarController

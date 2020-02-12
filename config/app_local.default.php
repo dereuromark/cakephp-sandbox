@@ -31,15 +31,15 @@ return [
 
 	'Email' => [
 		'default' => [
-			'from' => ''
-		]
+			'from' => '',
+		],
 	],
 	'EmailTransport' => [
 		'default' => [
 			'host' => '',
 			'username' => '',
 			'password' => '',
-		]
+		],
 	],
 
 	'FormConfig' => [

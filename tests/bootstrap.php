@@ -1,6 +1,8 @@
 <?php
 
 use Cake\Log\Log;
+use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/bootstrap.php';
@@ -32,6 +34,8 @@ if (!getenv('db_class')) {
 	putenv('db_class=Cake\Database\Driver\Sqlite');
 	putenv('db_dsn=sqlite::memory:');
 }
+
+Router::defaultRouteClass(DashedRoute::class);
 
 require ROOT . '/config/routes.php';
 

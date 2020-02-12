@@ -2,8 +2,9 @@
 
 namespace App\Test\TestCase\Controller;
 
+use Cake\Core\Configure;
 use Cake\ORM\TableRegistry;
-use Tools\TestSuite\IntegrationTestCase;
+use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * @uses \App\Controller\ContactController
@@ -23,6 +24,8 @@ class ContactControllerTest extends IntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
+		$this->skipIf(true || env('REMOTE_ADDR') && env('REMOTE_ADDR') !== '127.0.0.1');
+
 		$this->session([
 			'id' => '123',
 		]);
@@ -31,6 +34,10 @@ class ContactControllerTest extends IntegrationTestCase {
 				'REMOTE_ADDR' => '127.0.0.1',
 			],
 		]);
+
+		Configure::write('Email.live', false);
+
+		$this->disableErrorHandlerMiddleware();
 	}
 
 	/**
