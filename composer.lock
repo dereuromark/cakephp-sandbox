@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fc15e14b8c560ed8f1e6d8e8c874ba8",
+    "content-hash": "3ef394acefd03a8e38de0cfed9351985",
     "packages": [
         {
             "name": "aura/intl",
@@ -51,6 +51,54 @@
                 "localization"
             ],
             "time": "2017-01-20T05:00:11+00:00"
+        },
+        {
+            "name": "cakephp/bake",
+            "version": "2.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/bake.git",
+                "reference": "113502b5687026adf158fde3132354f4dcd49ed4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/113502b5687026adf158fde3132354f4dcd49ed4",
+                "reference": "113502b5687026adf158fde3132354f4dcd49ed4",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0",
+                "cakephp/plugin-installer": "^1.0",
+                "php": ">=7.2",
+                "wyrihaximus/twig-view": "^5.0.1"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^4.0",
+                "phpunit/phpunit": "~8.5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Bake\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakePHP Community",
+                    "homepage": "https://github.com/cakephp/bake/graphs/contributors"
+                }
+            ],
+            "description": "Bake plugin for CakePHP",
+            "homepage": "https://github.com/cakephp/bake",
+            "keywords": [
+                "bake",
+                "cakephp"
+            ],
+            "time": "2020-01-06T15:41:13+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -4562,54 +4610,6 @@
         }
     ],
     "packages-dev": [
-        {
-            "name": "cakephp/bake",
-            "version": "2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/bake.git",
-                "reference": "113502b5687026adf158fde3132354f4dcd49ed4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/113502b5687026adf158fde3132354f4dcd49ed4",
-                "reference": "113502b5687026adf158fde3132354f4dcd49ed4",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "^4.0",
-                "cakephp/plugin-installer": "^1.0",
-                "php": ">=7.2",
-                "wyrihaximus/twig-view": "^5.0.1"
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "^4.0",
-                "phpunit/phpunit": "~8.5.0"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Bake\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "CakePHP Community",
-                    "homepage": "https://github.com/cakephp/bake/graphs/contributors"
-                }
-            ],
-            "description": "Bake plugin for CakePHP",
-            "homepage": "https://github.com/cakephp/bake",
-            "keywords": [
-                "bake",
-                "cakephp"
-            ],
-            "time": "2020-01-06T15:41:13+00:00"
-        },
         {
             "name": "dereuromark/cakephp-ide-helper",
             "version": "dev-cake4",
