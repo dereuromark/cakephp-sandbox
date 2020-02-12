@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c02edde599807b6c7112f6899003fecd",
+    "content-hash": "0fc15e14b8c560ed8f1e6d8e8c874ba8",
     "packages": [
         {
             "name": "aura/intl",
@@ -264,16 +264,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "3.0.0-beta2",
+            "version": "dev-4.x-table-finder-exception",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "4cc2222dbde87fa6827d76ede01e13ce3ff5c78f"
+                "reference": "06f26da3d5421dc39e5a6ba5cad9ec8cffaac990"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/4cc2222dbde87fa6827d76ede01e13ce3ff5c78f",
-                "reference": "4cc2222dbde87fa6827d76ede01e13ce3ff5c78f",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/06f26da3d5421dc39e5a6ba5cad9ec8cffaac990",
+                "reference": "06f26da3d5421dc39e5a6ba5cad9ec8cffaac990",
                 "shasum": ""
             },
             "require": {
@@ -285,7 +285,7 @@
             "require-dev": {
                 "cakephp/bake": "^2.0",
                 "cakephp/cakephp": "^4.0",
-                "cakephp/cakephp-codesniffer": "dev-next",
+                "cakephp/cakephp-codesniffer": "^4.0",
                 "phpunit/phpunit": "^8.0"
             },
             "suggest": {
@@ -313,7 +313,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2019-12-18T08:16:53+00:00"
+            "time": "2020-02-12T09:42:43+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -5166,6 +5166,12 @@
             "alias_normalized": "2.0.0.0",
             "version": "dev-cake4",
             "package": "dereuromark/cakephp-tools"
+        },
+        {
+            "alias": "3.0.0",
+            "alias_normalized": "3.0.0.0",
+            "version": "dev-4.x-table-finder-exception",
+            "package": "cakephp/migrations"
         }
     ],
     "minimum-stability": "dev",
@@ -5178,6 +5184,7 @@
         "dereuromark/cakephp-setup": 20,
         "dereuromark/cakephp-markup": 20,
         "dereuromark/cakephp-captcha": 20,
+        "cakephp/migrations": 20,
         "natxet/cssmin": 20,
         "linkorb/jsmin-php": 20,
         "dereuromark/cakephp-feed": 20,
