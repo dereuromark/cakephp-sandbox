@@ -81,7 +81,7 @@ class CalendarController extends SandboxAppController {
 
 		$count = mt_rand(3, 8);
 		for ($i = 0; $i < $count; $i++) {
-			$config = $this->Events->connection()->config();
+			$config = $this->Events->getConnection()->config();
 			$driver = $config['driver'];
 			$random = strpos($driver, 'Sqlite') !== false ? 'RANDOM()' : 'RAND()';
 
