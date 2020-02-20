@@ -26,7 +26,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
 	$routes->connect('/admin', ['prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index']);
 
-	//$routes->connect('/translate', array('plugin' => 'translate', 'controller' => 'translate_groups', 'action' => 'overview'));
+	//$routes->connect('/translate', array('plugin' => 'Translate', 'controller' => 'TranslateGroups', 'action' => 'overview'));
 
 	/**
 	 * ...and connect the rest of 'Pages' controller's URLs.

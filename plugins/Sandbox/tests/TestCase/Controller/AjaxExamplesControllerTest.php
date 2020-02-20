@@ -106,9 +106,15 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-		//$flashMessage = '<div class="message error">Form not yet valid.</div>';
-		$flashMessageJsonPiece = '"_message":[{"type":"error","message":"Form not yet valid."';
-		$this->assertResponseContains($flashMessageJsonPiece);
+		$errorPart = '<div class=\"invalid-feedback\">';
+
+		$this->assertResponseContains($errorPart);
+
+		$result = $this->_response->getHeader('X-Flash');
+		$expected = [
+			'{"flash":[{"message":"Form not yet valid.","type":"error","params":[]}]}'
+		];
+		$this->assertSame($expected, $result);
 	}
 
 	/**
