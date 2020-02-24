@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3ef394acefd03a8e38de0cfed9351985",
+    "content-hash": "7ba186ab1d2560d39f17b56f038fa328",
     "packages": [
         {
             "name": "aura/intl",
@@ -106,12 +106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "dc79293b1e3e0eaa7de647a553d7a4d504002374"
+                "reference": "9d097f442bd67dd8869be2e87f42660c7f332b87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/dc79293b1e3e0eaa7de647a553d7a4d504002374",
-                "reference": "dc79293b1e3e0eaa7de647a553d7a4d504002374",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/9d097f442bd67dd8869be2e87f42660c7f332b87",
+                "reference": "9d097f442bd67dd8869be2e87f42660c7f332b87",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-02-22T20:39:55+00:00"
+            "time": "2020-02-24T18:46:51+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -4951,6 +4951,45 @@
                 "php"
             ],
             "time": "2019-11-08T13:50:10+00:00"
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "0.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
+                "reference": "ca5f2b7cf81c6d8fba74f9576970399c5817e03b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.12-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "time": "2020-02-16T14:00:29+00:00"
         },
         {
             "name": "psy/psysh",

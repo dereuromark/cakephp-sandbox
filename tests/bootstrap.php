@@ -39,6 +39,8 @@ Router::defaultRouteClass(DashedRoute::class);
 
 require ROOT . '/config/routes.php';
 
+require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
+
 Cake\Datasource\ConnectionManager::drop('test');
 Cake\Datasource\ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
