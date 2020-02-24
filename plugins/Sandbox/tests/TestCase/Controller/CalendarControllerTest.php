@@ -21,6 +21,8 @@ class CalendarControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
@@ -31,6 +33,8 @@ class CalendarControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'view', 1]);
 
 		$this->assertResponseCode(200);

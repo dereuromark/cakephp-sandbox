@@ -13,10 +13,15 @@ use Shim\TestSuite\IntegrationTestCase;
 class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 	/**
+	 * @var bool
+	 */
+	protected $disableErrorHandlerMiddleware = true;
+
+	/**
 	 * @var array
 	 */
 	protected $fixtures = [
-		//'plugin.Data.Countries',
+		'plugin.Data.Countries',
 		'app.Users',
 	];
 
@@ -135,9 +140,12 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-		//$flashMessage = '<div class="message success">Simulated save.</div>';
-		$flashMessageJsonPiece = '"_message":[{"type":"success","message":"Simulated save."';
-		$this->assertResponseContains($flashMessageJsonPiece);
+
+		$result = $this->_response->getHeader('X-Flash');
+		$expected = [
+			'{"flash":[{"message":"Simulated save.","type":"success","params":[]}]}'
+		];
+		$this->assertSame($expected, $result);
 	}
 
 	/**
@@ -154,6 +162,8 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testPagination() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'pagination']);
 
 		$this->assertResponseCode(200);
