@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
-use Tools\Mailer\Email;
+use Cake\Mailer\Email;
 use Tools\View\Helper\ObfuscateHelper;
 
 /**

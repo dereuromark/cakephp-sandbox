@@ -106,12 +106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "cbbccbaedbc63d7ee6e7bfb53715b08d9ac0862a"
+                "reference": "dc79293b1e3e0eaa7de647a553d7a4d504002374"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/cbbccbaedbc63d7ee6e7bfb53715b08d9ac0862a",
-                "reference": "cbbccbaedbc63d7ee6e7bfb53715b08d9ac0862a",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/dc79293b1e3e0eaa7de647a553d7a4d504002374",
+                "reference": "dc79293b1e3e0eaa7de647a553d7a4d504002374",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-02-20T07:12:55+00:00"
+            "time": "2020-02-22T20:39:55+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1220,12 +1220,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "3adbeb9a4d2a3db058578e562e5fe11b1838bdde"
+                "reference": "aede1e23fb6849ff9d48d30237b07a3804c15dca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/3adbeb9a4d2a3db058578e562e5fe11b1838bdde",
-                "reference": "3adbeb9a4d2a3db058578e562e5fe11b1838bdde",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/aede1e23fb6849ff9d48d30237b07a3804c15dca",
+                "reference": "aede1e23fb6849ff9d48d30237b07a3804c15dca",
                 "shasum": ""
             },
             "require": {
@@ -1234,8 +1234,13 @@
                 "willdurand/geocoder": "^4.2"
             },
             "require-dev": {
-                "cakephp/cakephp": "4.x-dev as 4.0.0",
-                "fig-r/psr2r-sniffer": "dev-master"
+                "cakephp/cakephp": "^4.0.0",
+                "dereuromark/cakephp-tools": "dev-cake4 as 2.0.0",
+                "ext-intl": "*",
+                "ext-json": "*",
+                "fig-r/psr2r-sniffer": "dev-master",
+                "geocoder-php/google-maps-provider": "^4.4.0",
+                "php-http/cakephp-adapter": "dev-cake4"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -1264,7 +1269,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2020-01-03T01:03:52+00:00"
+            "time": "2020-02-24T14:16:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -1668,12 +1673,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd"
+                "reference": "d15e775529e24d158205d31a8bb849e8252e733d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
-                "reference": "f1037ddddf414b56d3bfa646365bf48bc5d3bcbd",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/d15e775529e24d158205d31a8bb849e8252e733d",
+                "reference": "d15e775529e24d158205d31a8bb849e8252e733d",
                 "shasum": ""
             },
             "require": {
@@ -1713,20 +1718,20 @@
                 "php",
                 "video"
             ],
-            "time": "2020-02-06T09:24:25+00:00"
+            "time": "2020-02-20T21:04:29+00:00"
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v0.8.4",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005"
+                "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/8f49b3b01693f51037dd50da81090beba1b5c005",
-                "reference": "8f49b3b01693f51037dd50da81090beba1b5c005",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/6782abfc090b132134cd6cea0ec6d76f0fce2c56",
+                "reference": "6782abfc090b132134cd6cea0ec6d76f0fce2c56",
                 "shasum": ""
             },
             "require": {
@@ -1779,7 +1784,7 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
-            "time": "2020-01-20T17:00:46+00:00"
+            "time": "2020-02-20T03:52:51+00:00"
         },
         {
             "name": "friendsofcake/bootstrap-ui",
@@ -4616,19 +4621,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "1f464cd6ffef1fd0b55e4e8c7ebc14329cb4b789"
+                "reference": "904fb34d1e3f45f82a1c72d9dcdd72ae018e115d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1f464cd6ffef1fd0b55e4e8c7ebc14329cb4b789",
-                "reference": "1f464cd6ffef1fd0b55e4e8c7ebc14329cb4b789",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/904fb34d1e3f45f82a1c72d9dcdd72ae018e115d",
+                "reference": "904fb34d1e3f45f82a1c72d9dcdd72ae018e115d",
                 "shasum": ""
             },
             "require": {
                 "cakephp/bake": "^2.0.3",
                 "cakephp/cakephp": "^4.0.2",
                 "php": ">=7.2",
-                "sebastian/diff": "^3.0.0",
+                "sebastian/diff": "^3.0.0|^4.0.0",
                 "squizlabs/php_codesniffer": "^3.5.2"
             },
             "require-dev": {
@@ -4674,7 +4679,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2020-01-15T01:23:11+00:00"
+            "time": "2020-02-24T15:42:57+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",

@@ -117,7 +117,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$result = $this->_response->getHeader('X-Flash');
 		$expected = [
-			'{"flash":[{"message":"Form not yet valid.","type":"error","params":[]}]}'
+			'{"flash":[{"message":"Form not yet valid.","type":"error","params":[]}]}',
 		];
 		$this->assertSame($expected, $result);
 	}
@@ -143,7 +143,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$result = $this->_response->getHeader('X-Flash');
 		$expected = [
-			'{"flash":[{"message":"Simulated save.","type":"success","params":[]}]}'
+			'{"flash":[{"message":"Simulated save.","type":"success","params":[]}]}',
 		];
 		$this->assertSame($expected, $result);
 	}

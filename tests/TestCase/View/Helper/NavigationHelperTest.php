@@ -3,9 +3,9 @@
 namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\NavigationHelper;
-use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
+use Cake\Routing\Route\DashedRoute;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
