@@ -6,10 +6,10 @@
 $this->loadHelper('Geo.GoogleMap');
 ?>
 <nav class="actions col-md-3 col-sm-4 col-xs-12">
-    <ul class="side-nav nav nav-pills nav-stacked">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List {0}', __('Events')), $this->Calendar->calendarUrlArray(['action' => 'index'], $event->beginning)) ?> </li>
-    </ul>
+	<ul class="side-nav nav nav-pills nav-stacked">
+		<li class="heading"><?= __('Actions') ?></li>
+		<li><?= $this->Html->link(__('List {0}', __('Events')), $this->Calendar->calendarUrlArray(['action' => 'index'], $event->beginning)) ?> </li>
+	</ul>
 </nav>
 <div class="contactAds view col-md-9 col-sm-8 col-xs-12">
 	<h2><?= h($event->title ?: __('Event')) ?></h2>
