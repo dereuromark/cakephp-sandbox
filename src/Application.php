@@ -58,6 +58,7 @@ class Application extends BaseApplication {
 		// inside /plugins
 		$this->addPlugin('AuthSandbox');
 		$this->addPlugin('Sandbox');
+		$this->addPlugin('Expose');
 
 		if (Configure::read('debug')) {
 			$this->addPlugin('DebugKit');
