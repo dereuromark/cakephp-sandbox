@@ -10,6 +10,18 @@ use Cake\I18n\FrozenTime;
 class ExposeExamplesController extends SandboxAppController {
 
 	/**
+	 * @var array
+	 */
+	public $paginate = [
+		'order' => [
+			'name' => 'ASC',
+		],
+		'sortWhitelist' => [
+			'name',
+		],
+	];
+
+	/**
 	 * @var string
 	 */
 	protected $modelClass = 'Sandbox.ExposedUsers';

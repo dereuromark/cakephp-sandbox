@@ -16,11 +16,11 @@
 		<table class="table list">
 			<thead>
 				<tr>
-					<th><?= $this->Paginator->sort('id') ?></th>
-					<th><?= $this->Paginator->sort('uuid') ?></th>
+					<th><?='ID' ?></th>
+					<th><?= 'UUID' ?></th>
 					<th><?= $this->Paginator->sort('name') ?></th>
-					<th><?= $this->Paginator->sort('created') ?></th>
-					<th><?= $this->Paginator->sort('modified') ?></th>
+					<th><?= __('Created') ?></th>
+					<th><?= __('Modified') ?></th>
 				</tr>
 			</thead>
 			<tbody>
