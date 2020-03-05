@@ -24,9 +24,9 @@
 		"mobiledetect/mobiledetectlib": "2.*",
 		"dereuromark/cakephp-tinyauth": "dev-cake4",
 		"dereuromark/cakephp-geo": "dev-cake4",
-		"dereuromark/cakephp-shim": "dev-cake4 as 2.0.0",
-		"dereuromark/cakephp-tools": "dev-cake4 as 2.0.0",
-		"dereuromark/cakephp-setup": "dev-cake4",
+		"dereuromark/cakephp-shim": "dev-master as 2.0.0",
+		"dereuromark/cakephp-tools": "dev-master as 2.0.0",
+		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-cake4",
 		"dereuromark/cakephp-captcha": "dev-cake4",
 		"cakephp/migrations": "dev-4.x-table-finder-exception as 3.0.0",
@@ -60,8 +60,8 @@
 		"psy/psysh": "@stable",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^0.12.11",
-		"dereuromark/cakephp-ide-helper": "dev-cake4",
-		"dereuromark/cakephp-test-helper": "dev-cake4"
+		"dereuromark/cakephp-ide-helper": "dev-master",
+		"dereuromark/cakephp-test-helper": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
@@ -112,12 +112,6 @@
 	},
 	"minimum-stability": "dev",
 	"prefer-stable": true,
-	"repositories": [
-		{
-			"type": "git",
-			"url": "git@github.com:dereuromark/cakephp-expose.git"
-		}
-	],
 	"config": {
 		"preferred-install": "source",
 		"process-timeout": 900,

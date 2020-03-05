@@ -10,7 +10,7 @@
 	<h3><?= __('Exposed Users') ?></h3>
 
 	<p>Note: The <code>id</code> column would normally not be visible here at all. This is only for demo purposes.</p>
-	<p>Also: You want to disallow sorting by <code>id</code>, <code>created</code>, <code>modified</code> if you do not want to expose the order of entry.</p>
+	<p>Also: You want to disallow sorting by <code>id</code>, <code>created</code>, <code>modified</code> if you do not want to expose the order of entry (using <code>sortWhitelist</code>).</p>
 
 	<div class="table-responsive">
 		<table class="table list">
