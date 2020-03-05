@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "538c7f262d71c4d2a41933bfc9e67870",
+    "content-hash": "dda8694ea5f265e6e5800c41d1c178eb",
     "packages": [
         {
             "name": "aura/intl",
@@ -313,16 +313,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "dev-4.x-table-finder-exception",
+            "version": "4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "06f26da3d5421dc39e5a6ba5cad9ec8cffaac990"
+                "reference": "875513dca5f77c062b8d64d2a04a46aa8f625ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/06f26da3d5421dc39e5a6ba5cad9ec8cffaac990",
-                "reference": "06f26da3d5421dc39e5a6ba5cad9ec8cffaac990",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/875513dca5f77c062b8d64d2a04a46aa8f625ebb",
+                "reference": "875513dca5f77c062b8d64d2a04a46aa8f625ebb",
                 "shasum": ""
             },
             "require": {
@@ -362,7 +362,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2020-02-12T09:42:43+00:00"
+            "time": "2020-02-13T10:22:27+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -897,12 +897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "61e74e47de630591132aeca638611e847e6c8e29"
+                "reference": "7cd5e090e6e5917417fc3f625808f098491830b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/61e74e47de630591132aeca638611e847e6c8e29",
-                "reference": "61e74e47de630591132aeca638611e847e6c8e29",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/7cd5e090e6e5917417fc3f625808f098491830b3",
+                "reference": "7cd5e090e6e5917417fc3f625808f098491830b3",
                 "shasum": ""
             },
             "require": {
@@ -942,7 +942,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2020-03-05T22:43:49+00:00"
+            "time": "2020-03-05T22:48:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -5267,7 +5267,7 @@
         {
             "alias": "3.0.0",
             "alias_normalized": "3.0.0.0",
-            "version": "dev-4.x-table-finder-exception",
+            "version": "4.9999999.9999999.9999999-dev",
             "package": "cakephp/migrations"
         }
     ],

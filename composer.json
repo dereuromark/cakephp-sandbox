@@ -29,7 +29,7 @@
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-cake4",
 		"dereuromark/cakephp-captcha": "dev-cake4",
-		"cakephp/migrations": "dev-4.x-table-finder-exception as 3.0.0",
+		"cakephp/migrations": "4.x-dev as 3.0.0",
 		"markstory/asset_compress" : "^4.0.0",
 		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
