@@ -73,8 +73,7 @@ class ExposeExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function users()
-	{
+	public function users() {
 		$exposedUsers = $this->paginate($this->ExposedUsers);
 
 		$this->set(compact('exposedUsers'));
@@ -86,8 +85,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
 	 *@return \Cake\Http\Response|null
 	 */
-	public function view($uuid = null)
-	{
+	public function view($uuid = null) {
 		// Instead of primary key `id` and ->get($id) we work on `uuid` field now for public access
 		$field = $this->ExposedUsers->getExposedKey();
 		$exposedUser = $this->ExposedUsers->find('exposed', [$field => $uuid])->firstOrFail();

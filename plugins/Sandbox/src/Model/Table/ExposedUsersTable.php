@@ -1,11 +1,11 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Sandbox\Model\Table;
 
 use Cake\ORM\RulesChecker;
-use Tools\Model\Table\Table;
 use Cake\Validation\Validator;
+use Tools\Model\Table\Table;
 
 /**
  * ExposedUsers Model
@@ -36,55 +36,53 @@ class ExposedUsersTable extends Table {
 		'name' => 'ASC',
 	];
 
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config): void
-    {
-        parent::initialize($config);
+	/**
+	 * Initialize method
+	 *
+	 * @param array $config The configuration for the Table.
+	 * @return void
+	 */
+	public function initialize(array $config): void {
+		parent::initialize($config);
 
-        $this->setTable('exposed_users');
-        $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
+		$this->setTable('exposed_users');
+		$this->setDisplayField('name');
+		$this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
-        $this->addBehavior('Expose.Expose');
-    }
+		$this->addBehavior('Timestamp');
+		$this->addBehavior('Expose.Expose');
+	}
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator): Validator
-    {
-        $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
+	/**
+	 * Default validation rules.
+	 *
+	 * @param \Cake\Validation\Validator $validator Validator instance.
+	 * @return \Cake\Validation\Validator
+	 */
+	public function validationDefault(Validator $validator): Validator {
+		$validator
+			->integer('id')
+			->allowEmptyString('id', null, 'create');
 
-        $validator
-            ->uuid('uuid')
-            ->notEmptyString('uuid');
+		$validator
+			->uuid('uuid')
+			->notEmptyString('uuid');
 
-        return $validator;
-    }
+		return $validator;
+	}
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-    	// We do this using DB constraint.
-        //$rules->add($rules->isUnique(['uuid']));
+	/**
+	 * Returns a rules checker object that will be used for validating
+	 * application integrity.
+	 *
+	 * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+	 * @return \Cake\ORM\RulesChecker
+	 */
+	public function buildRules(RulesChecker $rules): RulesChecker {
+		// We do this using DB constraint.
+		//$rules->add($rules->isUnique(['uuid']));
 
-        return $rules;
-    }
+		return $rules;
+	}
+
 }
