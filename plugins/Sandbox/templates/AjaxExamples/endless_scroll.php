@@ -11,19 +11,19 @@
 		var $container = $('#pagination-container');
 
 		$container.infiniteScroll({
-            path: '.next a',
-            append: '.country-item',
-            status: '.scroller-status',
-            hideNav: '.paging',
-				navSelector: '.paging', // selector for the paged navigation
-				nextSelector: '.next a', // selector for the NEXT link (to page 2)
-				itemSelector: '.country-item', // selector for all items you'll retrieve
-				debug: true,
-				dataType: 'html',
-				loading: {
-					finishedMsg: 'No more posts to load!',
-					img: 'https://miftyisbored.com/wp-tutorials/cakephp-infinite-scroll/img/spinner.gif'
-				}
+			path: '.next a',
+			append: '.country-item',
+			status: '.scroller-status',
+			hideNav: '.paging',
+			navSelector: '.paging', // selector for the paged navigation
+			nextSelector: '.next a', // selector for the NEXT link (to page 2)
+			itemSelector: '.country-item', // selector for all items you'll retrieve
+			debug: true,
+			dataType: 'html',
+			loading: {
+				finishedMsg: 'No more posts to load!',
+				img: 'https://miftyisbored.com/wp-tutorials/cakephp-infinite-scroll/img/spinner.gif'
+			}
 		});
 
 		$('.paging-description').hide();

@@ -56,18 +56,18 @@ $(function() {
 		}
 	});
 
-    $('#email').editable({
+	$('#email').editable({
 		mode: 'inline',
-        type: 'text',
-        pk: 1,
-        url: '<?php echo $this->Url->build(['action' => 'editInPlaceEmail', '_ext' => 'json']); ?>',
-        title: '<?php echo __('Enter new email'); ?>',
-        success: function(response, newValue) {
-            if (response.error) {
-                return response.error;  //msg will be shown in editable form
-            }
-        }
-    });
+		type: 'text',
+		pk: 1,
+		url: '<?php echo $this->Url->build(['action' => 'editInPlaceEmail', '_ext' => 'json']); ?>',
+		title: '<?php echo __('Enter new email'); ?>',
+		success: function(response, newValue) {
+			if (response.error) {
+				return response.error;  //msg will be shown in editable form
+			}
+		}
+	});
 
 });
 </script>

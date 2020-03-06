@@ -62,29 +62,29 @@
 
 <?php $this->append('script'); ?>
 <script>
-    $(document).ready(function() {
-        $('table.list a.ajax-delete').removeAttr('onclick').click(function(e) {
-            e.preventDefault();
+	$(document).ready(function() {
+		$('table.list a.ajax-delete').removeAttr('onclick').click(function(e) {
+			e.preventDefault();
 
-            var confirmMessage = $(this).data('confirm');
-            if (confirmMessage && !confirm(confirmMessage)) {
-                return false;
-            }
-            var form = $(this).prev();
-            var url = $(form).attr("action");
-            var tr = $(this).closest('tr');
-            url = url + '.json';
-            $.post(url).success(function(res) {
-                if (res.error) {
-                    alert(res.error);
-                    return false;
-                }
-                tr.fadeOut(600);
-            }).error(function() {
-                alert("Error");
-            });
-            return false;
-        });
-    });
+			var confirmMessage = $(this).data('confirm');
+			if (confirmMessage && !confirm(confirmMessage)) {
+				return false;
+			}
+			var form = $(this).prev();
+			var url = $(form).attr("action");
+			var tr = $(this).closest('tr');
+			url = url + '.json';
+			$.post(url).success(function(res) {
+				if (res.error) {
+					alert(res.error);
+					return false;
+				}
+				tr.fadeOut(600);
+			}).error(function() {
+				alert("Error");
+			});
+			return false;
+		});
+	});
 </script>
 <?php $this->end();

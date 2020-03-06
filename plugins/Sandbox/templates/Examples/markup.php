@@ -106,7 +106,7 @@ hello world
 
 > markdown is so cool
 
-    so are code segments
+	so are code segments
 
 1. one thing (yeah!)
 2. two thing `i can write code`, and `more` wipee!';

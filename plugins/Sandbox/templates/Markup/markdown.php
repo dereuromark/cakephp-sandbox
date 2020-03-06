@@ -38,9 +38,9 @@ Paragraph *foo bar* x
 
 1. foo
 
-    ```
-    Code?
-    ```
+	```
+	Code?
+	```
 
 2. bar
 

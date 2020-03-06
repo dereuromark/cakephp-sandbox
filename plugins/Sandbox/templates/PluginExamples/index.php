@@ -75,6 +75,11 @@
 			<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Expose Plugin (NEW)</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Expose entities through UUIDs to obfuscate primary key info', ['controller' => 'ExposeExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 	</div>
 	<div class="col-xs-6">
 		<h3>Other plugins</h3>
