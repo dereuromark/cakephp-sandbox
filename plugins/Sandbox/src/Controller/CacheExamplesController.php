@@ -24,7 +24,7 @@ class CacheExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function index() {
 		$actions = $this->_getActions($this);
@@ -34,14 +34,14 @@ class CacheExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function minute() {
 		$this->Flash->info('Will be cached for a minute!');
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function hour() {
 		$this->Flash->info('Will be cached for an hour!');

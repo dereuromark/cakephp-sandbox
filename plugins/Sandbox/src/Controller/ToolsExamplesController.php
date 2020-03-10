@@ -255,12 +255,12 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function progress() {
-		$value = $this->request->getQuery('value');
+		$value = (int)$this->request->getQuery('value');
 		if ($value < 0 || $value > 1) {
 			$value = null;
 		}
 
-		$length = $this->request->getQuery('length');
+		$length = (int)$this->request->getQuery('length');
 		if ($length < 3 || $length > 60) {
 			$length = null;
 		}
@@ -273,13 +273,13 @@ class ToolsExamplesController extends SandboxAppController {
 	 */
 	public function meter() {
 		$value = $this->request->getQuery('value');
-		$max = $this->request->getQuery('max');
-		$min = $this->request->getQuery('min');
+		$max = (int)$this->request->getQuery('max');
+		$min = (int)$this->request->getQuery('min');
 		if ($max <= $min) {
 			$max = $min = null;
 		}
 
-		$length = $this->request->getQuery('length');
+		$length = (int)$this->request->getQuery('length');
 		if ($length < 3 || $length > 60) {
 			$length = null;
 		}
@@ -305,24 +305,24 @@ class ToolsExamplesController extends SandboxAppController {
 		];
 
 		if ($this->request->is('post')) {
-			switch ($this->request->data['type']) {
+			switch ($this->request->getData('type')) {
 				case 'url':
 				case 'tel':
 				case 'email':
 				case 'geo':
 				case 'market':
-					$result = str_replace([PHP_EOL, "\n"], ' ', $this->request->data['content']);
+					$result = str_replace([PHP_EOL, "\n"], ' ', $this->request->getData('content'));
 					break;
 				case 'card':
-					$result = $this->request->data['Card'];
+					$result = $this->request->getData('Card');
 					$result['birthday'] = $result['birthday']['year'] . '-' . $result['birthday']['month'] . '-' . $result['birthday']['day'];
 
 					break;
 				case 'sms':
-					$result = [$this->request->data['Sms']['number'], $this->request->data['Sms']['content']];
+					$result = [$this->request->getData('Sms.number'), $this->request->getData('Sms.content')];
 					break;
 				case 'text':
-					$result = $this->request->data['content'];
+					$result = $this->request->getData('content');
 					break;
 				default:
 					$result = null;
@@ -369,7 +369,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function typography() {
-		$this->Common->loadHelper(['Tools.Typography']);
+		$this->viewBuilder()->setHelpers(['Tools.Typography']);
 	}
 
 	/**

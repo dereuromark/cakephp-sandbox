@@ -57,7 +57,7 @@ class CalendarController extends SandboxAppController {
 
 	/**
 	 * @param string|null $id
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function view($id = null) {
 		$event = $this->Events->get($id);
@@ -79,25 +79,26 @@ class CalendarController extends SandboxAppController {
 
 		$this->loadModel('Data.States');
 
-		$count = mt_rand(3, 8);
+		$count = random_int(3, 8);
 		for ($i = 0; $i < $count; $i++) {
 			$config = $this->Events->getConnection()->config();
 			$driver = $config['driver'];
 			$random = strpos($driver, 'Sqlite') !== false ? 'RANDOM()' : 'RAND()';
 
-			$states = $this->States
+			/** @var \Data\Model\Entity\State $state */
+			$state = $this->States
 				->find()
 				->where(['abbr !=' => '', 'lat !=' => 0, 'lng !=' => 0])
 				->order($random)
-				->first();
+				->firstOrFail();
 
 			$event = $this->Events->newEntity([
-				'title' => $this->_getRandomWord(mt_rand(10, 20)),
-				'lat' => $states->lat,
-				'lng' => $states->lng,
-				'location' => $states->name,
-				'description' => 'Some cool event @ ' . $states->abbr,
-				'beginning' => new Time(mktime(mt_rand(8, 22), 0, 0, $options['month'], mt_rand(1, 28), $options['year'])),
+				'title' => $this->_getRandomWord(random_int(10, 20)),
+				'lat' => $state->lat,
+				'lng' => $state->lng,
+				'location' => $state->name,
+				'description' => 'Some cool event @ ' . $state->abbr,
+				'beginning' => new Time(mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year'])),
 			]);
 			if (!$this->Events->save($event)) {
 				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));

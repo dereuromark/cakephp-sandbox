@@ -28,7 +28,7 @@ class ConsoleShell extends Shell {
 	/**
 	 * Start the shell and interactive console.
 	 *
-	 * @return int|null
+	 * @return int|null|void
 	 */
 	public function main() {
 		if (!class_exists('Psy\Shell')) {
@@ -64,7 +64,7 @@ class ConsoleShell extends Shell {
 	 */
 	public function getOptionParser(): ConsoleOptionParser {
 		$parser = new ConsoleOptionParser('console', false);
-		$parser->description(
+		$parser->setDescription(
 			'This shell provides a REPL that you can use to interact ' .
 			'with your application in an interactive fashion. You can use ' .
 			'it to run adhoc queries with your models, or experiment ' .

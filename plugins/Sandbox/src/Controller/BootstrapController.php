@@ -82,7 +82,7 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * Show how posted forms behave and how to set default values.
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function formPost() {
 		$animal = $this->Animals->newEmptyEntity();
@@ -110,7 +110,7 @@ class BootstrapController extends SandboxAppController {
 	 * Show flash message output.
 	 *
 	 * @param string|null $type
-	 * @return \Cake\Http\Response|void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function flash($type = null) {
 		$types = ['error', 'warning', 'success', 'info'];

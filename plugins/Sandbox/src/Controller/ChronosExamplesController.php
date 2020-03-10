@@ -14,8 +14,8 @@ class ChronosExamplesController extends SandboxAppController {
 	 */
 	public function index() {
 		$referenceString = null;
-		if (!empty($this->request->data['now'])) {
-			$referenceString = $this->request->data['now']['year'] . '-' . $this->request->data['now']['month'] . '-' . $this->request->data['now']['day'];
+		if ($this->request->getData('now')) {
+			$referenceString = $this->request->getData('now.year') . '-' . $this->request->getData('now.month') . '-' . $this->request->getData('now.day');
 		}
 
 		if (strlen($referenceString) !== 10) {

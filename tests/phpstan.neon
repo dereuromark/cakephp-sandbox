@@ -11,3 +11,4 @@ parameters:
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
+		- '#Call to an undefined method .+ExposedUsersTable::getExposedKey\(\).#'

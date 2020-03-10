@@ -11,7 +11,7 @@ use App\Controller\AppController;
 class UsersController extends AppController {
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function index() {
 		$this->paginate = [
@@ -21,7 +21,7 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function add() {
 		$user = $this->Users->newEmptyEntity();
@@ -42,7 +42,7 @@ class UsersController extends AppController {
 
 	/**
 	 * @param int|null $id
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function edit($id = null) {
 		$user = $this->Users->get($id);
@@ -71,6 +71,7 @@ class UsersController extends AppController {
 
 		$this->Users->delete($user);
 		$this->Flash->success(__('User deleted'));
+
 		return $this->redirect(['action' => 'index']);
 	}
 

@@ -23,7 +23,7 @@ class ExportController extends AppController {
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\MethodNotAllowedException
 	 */
 	public function beforeFilter(EventInterface $event) {
@@ -40,13 +40,13 @@ class ExportController extends AppController {
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function afterFilter(EventInterface $event) {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {
-			$this->response->download($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
+			$this->response = $this->response->withDownload($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
 		}
 	}
 
@@ -57,7 +57,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function countries() {
 		$this->loadModel('Data.Countries');
@@ -70,7 +70,7 @@ class ExportController extends AppController {
 	/**
 	 * maybe with countries directly?
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function states() {
 		$this->loadModel('Data.States');
@@ -81,7 +81,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function currencies() {
 		$this->loadModel('Data.Currencies');
@@ -92,7 +92,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function languages() {
 		$this->loadModel('Data.Languages');
@@ -103,7 +103,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function continents() {
 		$this->loadModel('Data.Continents');
@@ -114,7 +114,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function postalCodes() {
 		$this->loadModel('Data.PostalCodes');
@@ -125,7 +125,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function mimeTypes() {
 	}

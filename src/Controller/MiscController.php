@@ -33,7 +33,7 @@ class MiscController extends AppController {
 			if (array_key_exists((string)$this->request->data['Form']['type'], $this->types)) {
 				$this->Flash->success($this->types[(string)$this->request->data['Form']['type']] . ' done');
 			} else {
-				$this->Flash->warning($this->types[(string)$this->request->data['Form']['type']] . ' not successfull');
+				$this->Flash->warning($this->types[(string)$this->request->data['Form']['type']] . ' not successful');
 			}
 		}
 

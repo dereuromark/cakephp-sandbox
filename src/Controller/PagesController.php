@@ -18,7 +18,7 @@ class PagesController extends AppController {
 	/**
 	 * Displays a view
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException If not found.
 	 * @throws \Cake\View\Exception\MissingTemplateException in debug mode.
 	 */

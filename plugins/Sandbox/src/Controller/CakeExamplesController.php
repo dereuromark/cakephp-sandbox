@@ -73,7 +73,7 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function i18n() {
 		// Make sure we have defaults set to I18n if language has been switched previously

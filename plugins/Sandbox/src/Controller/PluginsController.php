@@ -43,7 +43,7 @@ class PluginsController extends SandboxAppController {
 	 *
 	 * @param string|null $engineSlug
 	 * @throws \Cake\Http\Exception\NotFoundException
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function pdfTest($engineSlug = null) {
 		// This is just so save actions and use this method for all engine tests
@@ -65,8 +65,8 @@ class PluginsController extends SandboxAppController {
 			$engine = $engines[$engineSlug];
 			$this->_setPdfConfig($engine);
 		} else {
-			$this->viewBuilder()->templatePath('Plugins' . DS . 'pdf');
-			$this->viewBuilder()->layoutPath('pdf');
+			$this->viewBuilder()->setTemplatePath('Plugins' . DS . 'pdf');
+			$this->viewBuilder()->setLayoutPath('pdf');
 		}
 
 		// Setting dynamic config settings

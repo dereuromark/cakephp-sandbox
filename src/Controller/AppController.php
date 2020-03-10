@@ -47,7 +47,7 @@ class AppController extends Controller {
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
@@ -102,7 +102,7 @@ class AppController extends Controller {
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function beforeRender(EventInterface $event) {
 		parent::beforeRender($event);

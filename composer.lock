@@ -106,12 +106,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "ad12d2ad155a0313ffbb5a281363fade556d20ac"
+                "reference": "6d9aaea8213254b05c156b968240377cb26c350f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ad12d2ad155a0313ffbb5a281363fade556d20ac",
-                "reference": "ad12d2ad155a0313ffbb5a281363fade556d20ac",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/6d9aaea8213254b05c156b968240377cb26c350f",
+                "reference": "6d9aaea8213254b05c156b968240377cb26c350f",
                 "shasum": ""
             },
             "require": {
@@ -193,7 +193,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-03-04T02:16:20+00:00"
+            "time": "2020-03-09T18:35:21+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1079,12 +1079,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "8bba3f41965cef9b91bb7ca2be14494082f1c897"
+                "reference": "0f6b414cb42de923acc68e118aee6dc318901ef7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/8bba3f41965cef9b91bb7ca2be14494082f1c897",
-                "reference": "8bba3f41965cef9b91bb7ca2be14494082f1c897",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/0f6b414cb42de923acc68e118aee6dc318901ef7",
+                "reference": "0f6b414cb42de923acc68e118aee6dc318901ef7",
                 "shasum": ""
             },
             "require": {
@@ -1124,7 +1124,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-03-05T20:46:23+00:00"
+            "time": "2020-03-09T13:45:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1379,12 +1379,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "db7608277f55447bb31be169277f2b5740538b1a"
+                "reference": "4917329fce7dea8152a78e04d161cee31a1f2027"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/db7608277f55447bb31be169277f2b5740538b1a",
-                "reference": "db7608277f55447bb31be169277f2b5740538b1a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/4917329fce7dea8152a78e04d161cee31a1f2027",
+                "reference": "4917329fce7dea8152a78e04d161cee31a1f2027",
                 "shasum": ""
             },
             "require": {
@@ -1434,7 +1434,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2020-03-05T22:26:04+00:00"
+            "time": "2020-03-07T15:55:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -4461,16 +4461,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4"
+                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/a3801f5facf187a28cc2cae7b98a540c36406dc4",
-                "reference": "a3801f5facf187a28cc2cae7b98a540c36406dc4",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/9fd2b224c71448b5f84aef9d499a1428d79776a2",
+                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2",
                 "shasum": ""
             },
             "require": {
@@ -4506,7 +4506,7 @@
                 "clean",
                 "php"
             ],
-            "time": "2020-02-06T21:46:48+00:00"
+            "time": "2020-03-06T02:47:42+00:00"
         },
         {
             "name": "voku/stop-words",
@@ -4615,12 +4615,12 @@
             "version": "5.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/WyriHaximus/TwigView.git",
+                "url": "https://github.com/cakephp/legacy-twig-view.git",
                 "reference": "ec1d3091d56a0da9b1756692fa0bf99846a4eb20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/TwigView/zipball/ec1d3091d56a0da9b1756692fa0bf99846a4eb20",
+                "url": "https://api.github.com/repos/cakephp/legacy-twig-view/zipball/ec1d3091d56a0da9b1756692fa0bf99846a4eb20",
                 "reference": "ec1d3091d56a0da9b1756692fa0bf99846a4eb20",
                 "shasum": ""
             },
@@ -4740,12 +4740,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-test-helper.git",
-                "reference": "e7d9dec734fc6922829d2c050ecc40d22c47ba62"
+                "reference": "641e0e526fc081caa1235635815ec3c7d7492dc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/e7d9dec734fc6922829d2c050ecc40d22c47ba62",
-                "reference": "e7d9dec734fc6922829d2c050ecc40d22c47ba62",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/641e0e526fc081caa1235635815ec3c7d7492dc9",
+                "reference": "641e0e526fc081caa1235635815ec3c7d7492dc9",
                 "shasum": ""
             },
             "require": {
@@ -4784,7 +4784,7 @@
                 "setup",
                 "tests"
             ],
-            "time": "2020-03-05T22:40:04+00:00"
+            "time": "2020-03-09T13:02:05+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

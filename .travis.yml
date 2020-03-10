@@ -38,7 +38,7 @@ script:
   - if [[ $DEFAULT == 1 ]]; then composer test-setup && composer test; fi
 
   - if [[ $CHECKS == 1 ]]; then bin/cake dto generate -p Sandbox -v -d ; fi
-  - if [[ $CHECKS == 1 ]]; then bin/cake code_completion generate && composer phpstan ; fi
+  - if [[ $CHECKS == 1 ]]; then bin/cake code_completion generate && composer stan ; fi
   - if [[ $CHECKS == 1 ]]; then composer cs-check ; fi
 
   - if [[ $CODECOVERAGE == 1 ]]; then composer test-setup && composer test --coverage-clover=clover.xml || true; fi

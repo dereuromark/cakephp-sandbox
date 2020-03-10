@@ -83,7 +83,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @param string|null $uuid Exposed UUID.
 	 *
 	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-	 *@return \Cake\Http\Response|null
+	 *@return \Cake\Http\Response|null|void
 	 */
 	public function view($uuid = null) {
 		// Instead of primary key `id` and ->get($id) we work on `uuid` field now for public access

@@ -36,7 +36,7 @@ class QueueExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function scheduling() {
 		$tasks = ['Example' => 'Example', 'ProgressExample' => 'ProgressExample'];
@@ -48,7 +48,7 @@ class QueueExamplesController extends SandboxAppController {
 		if ($this->request->is('post')) {
 			$queuedJob = $this->QueuedJobs->patchEntity($queuedJob, $this->request->getData());
 			$notBefore = $queuedJob->notbefore;
-			$task = $queuedJob->task; // $job_type?
+			$task = $queuedJob->job_type;
 
 			if (!$task || !isset($tasks[$task])) {
 				$queuedJob->setError('task', 'Required field.');
@@ -81,7 +81,7 @@ class QueueExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function config() {
 		$this->loadModel('Queue.QueueProcesses');

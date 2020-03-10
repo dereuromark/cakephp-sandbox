@@ -26,7 +26,7 @@ class CaptchasController extends SandboxAppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function math() {
 		$animal = $this->Animals->newEmptyEntity();

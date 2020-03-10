@@ -23,7 +23,7 @@ class AccountController extends AppController {
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
@@ -42,7 +42,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function login() {
 		$userId = $this->Auth->user('id');
@@ -75,12 +75,13 @@ class AccountController extends AppController {
 		$whereTo = $this->Auth->logout();
 
 		$this->Flash->success(__('You are now logged out.'));
+
 		return $this->redirect($whereTo);
 	}
 
 	/**
 	 * @param string|null $key
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function lostPassword($key = null) {
@@ -91,7 +92,7 @@ class AccountController extends AppController {
 		$user = $this->Users->newEmptyEntity();
 
 		if ($this->Common->isPosted()) {
-			$keyToCheck = $this->request->data('Form.key');
+			$keyToCheck = $this->request->getData('Form.key');
 		} elseif (!empty($key)) {
 			$keyToCheck = $key;
 		}
@@ -122,11 +123,11 @@ class AccountController extends AppController {
 
 				// Valid user found to this email address
 				if (!empty($res)) {
-					$uid = $res['User']['id'];
+					$uid = $res['id'];
 					$this->loadModel('Tools.Tokens');
 					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
-						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['User']['username']) . ' | ' . $cCode;
+						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['username']) . ' | ' . $cCode;
 						$this->Flash->info($debugMessage);
 					}
 
@@ -134,12 +135,12 @@ class AccountController extends AppController {
 					Configure::write('Email.live', true);
 
 					$email = new Email();
-					$email->to($res['User']['email'], $res['User']['username']);
-					$email->subject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
-					$email->template('lost_password');
-					$email->viewVars(compact('cCode'));
+					$email->setTo($res['email'], $res['username']);
+					$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
+					$email->setTemplate('lost_password');
+					$email->setViewVars(compact('cCode'));
 					if ($email->send()) {
-						$userEmail = h(ObfuscateHelper::hideEmail($res['User']['email']));
+						$userEmail = h(ObfuscateHelper::hideEmail($res['email']));
 
 						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
@@ -157,7 +158,7 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 */
 	public function changePassword() {
@@ -176,31 +177,33 @@ class AccountController extends AppController {
 			if (!empty($uid)) {
 				$this->request->getSession()->delete('Auth.Tmp');
 			}
+
 			return $this->redirect(['action' => 'login']);
 		}
 
 		$this->Users->addBehavior('Tools.Passwordable', []);
 		if ($this->Common->isPosted()) {
-			$user = $this->Users->patchEntity($user, $this->request->getData(), ['fields' => ['pwd', 'pwd_repeat']]);
+			$user = $this->Users->patchEntity($user, $this->request->getData());
 
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('new pw saved - you may now log in'));
 				$this->request->getSession()->delete('Auth.Tmp');
 				$username = $this->Users->field('username', ['id' => $uid]);
+
 				return $this->redirect(['action' => 'login', '?' => ['username' => $username]]);
 			}
 			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['pwd']);
-			unset($this->request->data['pwd_repeat']);
+			//unset($this->request->data['pwd']);
+			//unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function register() {
 		if (!Configure::read('debug')) {
@@ -209,30 +212,32 @@ class AccountController extends AppController {
 
 		$this->Users->addBehavior('Tools.Passwordable', []);
 
+		$user = $this->Users->newEmptyEntity();
 		if ($this->Common->isPosted()) {
-			$this->request->data['User']['role_id'] = Configure::read('Role.user');
-			$user = $this->Users->save($this->request->data);
+			$data = $this->request->getData();
+			$data['role_id'] = Configure::read('Role.user');
+			$user = $this->Users->patchEntity($user, $data);
 			if ($user) {
 				$this->Flash->success(__('Account created'));
-				$this->Auth->setUser($user['User']);
+				$this->Auth->setUser($user);
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
 			}
 			$this->Flash->error(__('formContainsErrors'));
 
 			# pw should not be passed to the view again for security reasons
-			unset($this->request->data['User']['pwd']);
-			unset($this->request->data['User']['pwd_repeat']);
+			//unset($this->request->data['pwd']);
+			//unset($this->request->data['pwd_repeat']);
 		}
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function index() {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function edit() {
 		$uid = $this->request->getSession()->read('Auth.User.id');
@@ -252,24 +257,28 @@ class AccountController extends AppController {
 			$this->Flash->error(__('formContainsErrors'));
 
 			// Pwd should not be passed to the view again for security reasons.
-			unset($this->request->data['pwd']);
-			unset($this->request->data['pwd_repeat']);
+			//unset($this->request->data['pwd']);
+			//unset($this->request->data['pwd_repeat']);
 		}
 
 		$this->set(compact('user'));
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\InternalErrorException
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);
 		$uid = $this->request->getSession()->read('Auth.User.id');
-		if (!$this->Users->delete($uid)) {
+
+		$user = $this->Users->get($uid);
+		if (!$this->Users->delete($user)) {
 			throw new InternalErrorException('Cannot delete user');
 		}
+
 		$this->Flash->success('Account deleted');
+
 		return $this->redirect(['action' => 'logout']);
 	}
 

@@ -53,7 +53,7 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * AjaxExamplesController::toggle()
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function toggle() {
 		if ($this->request->is(['post'])) {
@@ -231,7 +231,7 @@ class AjaxExamplesController extends SandboxAppController {
 	/**
 	 * Show how AJAX plugin can work with forms just as normal PRG behavior would.
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function form() {
 		$this->loadModel('Users');
@@ -253,7 +253,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved:
 	 * It will requestAction() the redirect instead of actually redirecting.
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function redirecting() {
 		if ($this->request->is('post')) {
@@ -269,7 +269,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * Show how redirecting works when AJAX is involved using Ajax component and view class.
 	 * It will not follow the redirect, but instead return it along with messages sent.
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function redirectingPrevented() {
 		if ($this->request->is('post')) {
