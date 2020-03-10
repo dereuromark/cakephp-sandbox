@@ -13,6 +13,8 @@ chmod +x bin/cake
 
 bin/cake maintenance_mode activate
 
+bin/cake queue end all
+
 mkdir -p tmp
 mkdir -p logs
 mkdir -p webroot/js/cjs/
