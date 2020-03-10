@@ -123,7 +123,9 @@ class AccountController extends AppController {
 				/** @var \App\Model\Entity\User|null $res */
 				$res = $this->Users->find('first', [
 					'fields' => ['username', 'id', 'email'],
-					'conditions' => ['email' => $this->request->getData('Form.login')]
+					'conditions' => [
+						'email' => $this->request->getData('Form.login'),
+					],
 				]);
 
 				// Valid user found to this email address
