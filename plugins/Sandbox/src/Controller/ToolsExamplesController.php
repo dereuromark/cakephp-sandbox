@@ -376,6 +376,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return \App\Model\Entity\User
 	 */
 	protected function getDemoUser() {
+		/** @var \App\Model\Entity\User|null $user */
 		$user = $this->Users->find()->where(['username' => 'demo'])->first();
 		if ($user) {
 			return $user;

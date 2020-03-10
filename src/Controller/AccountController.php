@@ -99,35 +99,40 @@ class AccountController extends AppController {
 
 		if (!empty($keyToCheck)) {
 			$this->loadModel('Tools.Tokens');
-			$key = $this->Tokens->useKey('reset_pwd', $keyToCheck);
+			$token = $this->Tokens->useKey('reset_pwd', $keyToCheck);
 
-			if (!empty($key) && $key['used'] == 1) {
+			if ($token && $token->used == 1) {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
-			} elseif (!empty($key)) {
-				$uid = $key['user_id'];
+			} elseif ($token) {
+				$uid = $token->user_id;
 				$this->request->getSession()->write('Auth.Tmp.id', $uid);
 				return $this->redirect(['action' => 'change_password']);
-			} else {
-				$this->Flash->error(__('Invalid Key'));
 			}
-		} elseif (!empty($this->request->data['Form']['login'])) {
+
+			$this->Flash->error(__('Invalid Key'));
+
+		} elseif ($this->request->getData('Form.login')) {
 			//$this->Users->addBehavior('Tools.Captcha');
 			unset($this->Users->validate['email']['isUnique']);
 			//$this->Users->set($this->request->data);
+			$data = $this->request->getData('Form');
 
+			$user = $this->Users->patchEntity($user, $data);
 			// Validate basic email scheme and captcha input.
-			if ($this->Users->validates()) {
+			if (!$user->getErrors()) {
+				/** @var \App\Model\Entity\User|null $res */
 				$res = $this->Users->find('first', [
 					'fields' => ['username', 'id', 'email'],
-					'conditions' => ['email' => $this->request->data['Form']['login']]]);
+					'conditions' => ['email' => $this->request->getData('Form.login')]
+				]);
 
 				// Valid user found to this email address
-				if (!empty($res)) {
-					$uid = $res['id'];
+				if ($res) {
+					$uid = $res->id;
 					$this->loadModel('Tools.Tokens');
 					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
-						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res['username']) . ' | ' . $cCode;
+						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res->username) . ' | ' . $cCode;
 						$this->Flash->info($debugMessage);
 					}
 
@@ -135,12 +140,12 @@ class AccountController extends AppController {
 					Configure::write('Email.live', true);
 
 					$email = new Email();
-					$email->setTo($res['email'], $res['username']);
+					$email->setTo($res->email, $res->username);
 					$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$email->setTemplate('lost_password');
 					$email->setViewVars(compact('cCode'));
 					if ($email->send()) {
-						$userEmail = h(ObfuscateHelper::hideEmail($res['email']));
+						$userEmail = h(ObfuscateHelper::hideEmail($res->email));
 
 						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
 						$this->Flash->success(__('In a third step you will then be able to change your password.'));
@@ -149,7 +154,7 @@ class AccountController extends AppController {
 					}
 					return $this->redirect(['action' => 'lost_password']);
 				}
-				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->data['Form']['login']));
+				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->getData('Form.login')));
 			}
 		}
 

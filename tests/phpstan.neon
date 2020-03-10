@@ -8,7 +8,11 @@ parameters:
 		- %rootDir%/../../../src/Error/ErrorHandler.php
 		- %rootDir%/../../../src/Error/Middleware/ErrorHandlerMiddleware.php
 		- %rootDir%/../../../plugins/Sandbox/src/Model/Table/SandboxRatingsTable.php
+		- %rootDir%/../../../plugins/Sandbox/src/Controller/RatingsController.php
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
 		- '#Call to an undefined method .+ExposedUsersTable::getExposedKey\(\).#'
+		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
+		- '#Access to protected property .+ServerRequest::\$data#'
+		- '#Call to an undefined method .+Email::set.+#'

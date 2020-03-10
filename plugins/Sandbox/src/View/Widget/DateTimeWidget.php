@@ -15,7 +15,7 @@ use DateTime;
 class DateTimeWidget extends BasicWidget {
 
 	/**
-	 * @var \App\View\AppView
+	 * @var \Cake\View\View
 	 */
 	protected $view;
 
