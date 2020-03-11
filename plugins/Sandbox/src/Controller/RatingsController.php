@@ -33,7 +33,7 @@ class RatingsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-		$record = $this->SandboxPosts->find('first');
+		$record = $this->SandboxPosts->find()->first();
 		if (!$record) {
 			$data = [
 				'title' => 'First Post',

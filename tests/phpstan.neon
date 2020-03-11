@@ -7,8 +7,6 @@ parameters:
 		- %rootDir%/../../../src/Console/Installer.php
 		- %rootDir%/../../../src/Error/ErrorHandler.php
 		- %rootDir%/../../../src/Error/Middleware/ErrorHandlerMiddleware.php
-		- %rootDir%/../../../plugins/Sandbox/src/Model/Table/SandboxRatingsTable.php
-		- %rootDir%/../../../plugins/Sandbox/src/Controller/RatingsController.php
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
