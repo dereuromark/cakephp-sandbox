@@ -2,8 +2,8 @@
 
 namespace Sandbox\Service\Calculator;
 
-class PostService
-{
+class PostService {
+
 	/**
 	 * Counts an array as example of some business logic.
 	 *

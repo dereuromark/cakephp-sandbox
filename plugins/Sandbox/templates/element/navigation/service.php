@@ -16,7 +16,7 @@
 </p>
 
 <ul class="side-nav nav nav-pills nav-stacked">
-	<li class="heading"><?= __('Tools Examples') ?></li>
+	<li class="heading"><?= __('CakeServiceLayer Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 
 	<li><?php echo $this->Navigation->link('Demo Post Service', ['action' => 'posts'])?></li>
