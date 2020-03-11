@@ -3,6 +3,13 @@
 namespace PHPSTORM_META {
 
 	override(
+		\Burzum\CakeServiceLayer\Service\ServiceAwareTrait::loadService(0),
+		map([
+			'Sandbox.Calculator/Post' => \Sandbox\Service\Calculator\PostService::class,
+		])
+	);
+
+	override(
 		\Cake\Controller\Controller::loadComponent(0),
 		map([
 			'Ajax.Ajax' => \Ajax\Controller\Component\AjaxComponent::class,
@@ -38,6 +45,7 @@ namespace PHPSTORM_META {
 			'AuthSandbox' => \Cake\Http\BaseApplication::class,
 			'Bake' => \Cake\Http\BaseApplication::class,
 			'BootstrapUI' => \Cake\Http\BaseApplication::class,
+			'Burzum/CakeServiceLayer' => \Cake\Http\BaseApplication::class,
 			'Cache' => \Cake\Http\BaseApplication::class,
 			'CakeDto' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
@@ -56,10 +64,12 @@ namespace PHPSTORM_META {
 			'Markup' => \Cake\Http\BaseApplication::class,
 			'Migrations' => \Cake\Http\BaseApplication::class,
 			'Queue' => \Cake\Http\BaseApplication::class,
+			'Ratings' => \Cake\Http\BaseApplication::class,
 			'Sandbox' => \Cake\Http\BaseApplication::class,
 			'Search' => \Cake\Http\BaseApplication::class,
 			'Setup' => \Cake\Http\BaseApplication::class,
 			'Shim' => \Cake\Http\BaseApplication::class,
+			'StateMachine' => \Cake\Http\BaseApplication::class,
 			'StateMachineSandbox' => \Cake\Http\BaseApplication::class,
 			'Tags' => \Cake\Http\BaseApplication::class,
 			'TestHelper' => \Cake\Http\BaseApplication::class,
@@ -132,6 +142,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
+			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
@@ -190,6 +201,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
+			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
@@ -259,6 +271,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\BelongsToMany::class,
+			'Sandbox.SandboxRatings' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsToMany::class,
 			'Users' => \Cake\ORM\Association\BelongsToMany::class,
@@ -299,6 +312,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\BelongsTo::class,
+			'Sandbox.SandboxRatings' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\BelongsTo::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsTo::class,
 			'Users' => \Cake\ORM\Association\BelongsTo::class,
@@ -348,6 +362,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\HasMany::class,
+			'Sandbox.SandboxRatings' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\HasMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasMany::class,
 			'Users' => \Cake\ORM\Association\HasMany::class,
@@ -388,6 +403,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\HasOne::class,
+			'Sandbox.SandboxRatings' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\HasOne::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasOne::class,
 			'Users' => \Cake\ORM\Association\HasOne::class,
@@ -428,6 +444,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
+			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
@@ -502,6 +519,7 @@ namespace PHPSTORM_META {
 		'Sandbox.Sandbox::action',
 		'Sandbox.SandboxApp::action',
 		'Sandbox.SearchExamples::action',
+		'Sandbox.ServiceExamples::action',
 		'Sandbox.SocialShare::action',
 		'Sandbox.Tags::action',
 		'Sandbox.ToolsExamples::action',
@@ -554,6 +572,7 @@ namespace PHPSTORM_META {
 			'Sandbox.navigation/media_embed' => \Cake\View\View::class,
 			'Sandbox.navigation/queue' => \Cake\View\View::class,
 			'Sandbox.navigation/search' => \Cake\View\View::class,
+			'Sandbox.navigation/service' => \Cake\View\View::class,
 			'Sandbox.navigation/tags' => \Cake\View\View::class,
 			'Sandbox.navigation/tools' => \Cake\View\View::class,
 			'TestHelper.test_cases' => \Cake\View\View::class,

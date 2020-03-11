@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Datasource\EntityInterface $exposedUser
+ * @var \Sandbox\Model\Entity\ExposedUser $exposedUser
  */
 ?>
 <div class="row">

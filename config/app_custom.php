@@ -111,6 +111,12 @@ return [
 		'annotators' => [
 			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
 		],
+		'generatorTasks' => [
+			\Burzum\CakeServiceLayer\Generator\Task\ServiceTask::class
+		],
+		'classAnnotatorTasks' => [
+			\Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask::class
+		],
 		'includedPlugins' => [
 			'Sandbox',
 			'AuthSandbox',

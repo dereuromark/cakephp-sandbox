@@ -6,6 +6,7 @@ use Cake\I18n\FrozenTime;
 
 /**
  * @property \Sandbox\Model\Table\ExposedUsersTable $ExposedUsers
+ * @method \Sandbox\Model\Entity\ExposedUser[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class ExposeExamplesController extends SandboxAppController {
 

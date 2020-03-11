@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Cake\Datasource\EntityInterface[]|\Cake\Collection\CollectionInterface $exposedUsers
+ * @var \Sandbox\Model\Entity\ExposedUser[]|\Cake\Collection\CollectionInterface $exposedUsers
  */
 ?>
 <div class="exposedUsers index content">

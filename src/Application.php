@@ -54,11 +54,11 @@ class Application extends BaseApplication {
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
 		$this->addPlugin('Icings/Menu');
+		$this->addPlugin('Expose');
 
 		// inside /plugins
 		$this->addPlugin('AuthSandbox');
 		$this->addPlugin('Sandbox');
-		$this->addPlugin('Expose');
 
 		if (Configure::read('debug')) {
 			$this->addPlugin('DebugKit');
