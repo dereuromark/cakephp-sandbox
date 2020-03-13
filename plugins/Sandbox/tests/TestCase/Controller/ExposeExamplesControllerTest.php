@@ -8,10 +8,10 @@ use Shim\TestSuite\IntegrationTestCase;
 /**
  * @uses \Sandbox\Controller\ExamplesController
  */
-class ExamplesControllerTest extends IntegrationTestCase {
+class ExposeExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var string[]
 	 */
 	protected $fixtures = [
 		'plugin.Sandbox.ExposedUsers',
