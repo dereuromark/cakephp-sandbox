@@ -33,7 +33,14 @@ class ExposeExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		//$this->viewBuilder()->setHelpers(['Expose.Expose']);
+		$config = [
+			'actions' => [
+				'superimposedIndex',
+				'superimposedView',
+			],
+			'modifyResult' => true,
+		];
+		$this->loadComponent('Expose.Superimpose', $config);
 	}
 
 	/**
@@ -90,6 +97,28 @@ class ExposeExamplesController extends SandboxAppController {
 		// Instead of primary key `id` and ->get($id) we work on `uuid` field now for public access
 		$field = $this->ExposedUsers->getExposedKey();
 		$exposedUser = $this->ExposedUsers->find('exposed', [$field => $uuid])->firstOrFail();
+
+		$this->set('exposedUser', $exposedUser);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function superimposedIndex() {
+		$exposedUsers = $this->paginate($this->ExposedUsers);
+
+		$this->set(compact('exposedUsers'));
+	}
+
+	/**
+	 * @param string|null $uuid Exposed UUID.
+	 *
+	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+	 *@return \Cake\Http\Response|null|void
+	 */
+	public function superimposedView($id = null) {
+		// We can reuse the baked code thanks to the uuid being superimposed over the same key
+		$exposedUser = $this->ExposedUsers->get($id);
 
 		$this->set('exposedUser', $exposedUser);
 	}

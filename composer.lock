@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burzum/cakephp-service-layer.git",
-                "reference": "49cc4fdbe51348651ec9f4fbfdaa9d689f460f04"
+                "reference": "4d0b048be045766ff82432c67e4ccd792038742f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/49cc4fdbe51348651ec9f4fbfdaa9d689f460f04",
-                "reference": "49cc4fdbe51348651ec9f4fbfdaa9d689f460f04",
+                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/4d0b048be045766ff82432c67e4ccd792038742f",
+                "reference": "4d0b048be045766ff82432c67e4ccd792038742f",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 }
             ],
             "description": "Service layer and domain / business model implementation for CakePHP",
-            "time": "2020-03-11T18:04:22+00:00"
+            "time": "2020-03-11T18:52:00+00:00"
         },
         {
             "name": "cakephp/bake",
@@ -153,12 +153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "40109b1d52558d8250e9f5ba59d7023714e11247"
+                "reference": "ac4beeb1ded583654eba68d58fcb230f1df980f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/40109b1d52558d8250e9f5ba59d7023714e11247",
-                "reference": "40109b1d52558d8250e9f5ba59d7023714e11247",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ac4beeb1ded583654eba68d58fcb230f1df980f7",
+                "reference": "ac4beeb1ded583654eba68d58fcb230f1df980f7",
                 "shasum": ""
             },
             "require": {
@@ -240,7 +240,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-03-11T15:37:42+00:00"
+            "time": "2020-03-13T12:57:56+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -510,16 +510,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.0",
+            "version": "1.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "472c917b2a083ec7d2fa25c55fd099d1300e2515"
+                "reference": "b912a45da3e2b22f5cb5a23e441b697a295ba011"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/472c917b2a083ec7d2fa25c55fd099d1300e2515",
-                "reference": "472c917b2a083ec7d2fa25c55fd099d1300e2515",
+                "url": "https://api.github.com/repos/composer/composer/zipball/b912a45da3e2b22f5cb5a23e441b697a295ba011",
+                "reference": "b912a45da3e2b22f5cb5a23e441b697a295ba011",
                 "shasum": ""
             },
             "require": {
@@ -586,7 +586,17 @@
                 "dependency",
                 "package"
             ],
-            "time": "2020-03-10T13:08:05+00:00"
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-03-13T19:34:27+00:00"
         },
         {
             "name": "composer/semver",
@@ -1126,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "0f6b414cb42de923acc68e118aee6dc318901ef7"
+                "reference": "c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/0f6b414cb42de923acc68e118aee6dc318901ef7",
-                "reference": "0f6b414cb42de923acc68e118aee6dc318901ef7",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18",
+                "reference": "c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18",
                 "shasum": ""
             },
             "require": {
@@ -1171,7 +1181,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-03-09T13:45:24+00:00"
+            "time": "2020-03-13T20:38:51+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -4656,16 +4666,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.4.9",
+            "version": "1.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2"
+                "reference": "240e93829a5f985fab0984a6e55ae5e26b78a334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/9fd2b224c71448b5f84aef9d499a1428d79776a2",
-                "reference": "9fd2b224c71448b5f84aef9d499a1428d79776a2",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/240e93829a5f985fab0984a6e55ae5e26b78a334",
+                "reference": "240e93829a5f985fab0984a6e55ae5e26b78a334",
                 "shasum": ""
             },
             "require": {
@@ -4701,7 +4711,25 @@
                 "clean",
                 "php"
             ],
-            "time": "2020-03-06T02:47:42+00:00"
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/moelleken",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/voku",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/voku",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-ascii",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-03-13T01:23:26+00:00"
         },
         {
             "name": "voku/stop-words",
@@ -4869,12 +4897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "9f227714f6654891cb197d08ad07b9faaf513e68"
+                "reference": "1137ac35edefe53e6635c962e8efbb17adf7bc35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/9f227714f6654891cb197d08ad07b9faaf513e68",
-                "reference": "9f227714f6654891cb197d08ad07b9faaf513e68",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1137ac35edefe53e6635c962e8efbb17adf7bc35",
+                "reference": "1137ac35edefe53e6635c962e8efbb17adf7bc35",
                 "shasum": ""
             },
             "require": {
@@ -4927,7 +4955,13 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2020-02-24T15:28:50+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/dereuromark",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-03-11T18:51:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
