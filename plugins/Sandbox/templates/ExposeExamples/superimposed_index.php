@@ -7,7 +7,7 @@
 <div class="exposedUsers index content">
 	<?= $this->Html->link(__('Overview'), ['action' => 'index'], ['class' => 'button float-right']) ?>
 
-	<h3><?= __('Exposed Users') ?></h3>
+	<h3><?= __('Exposed Users through superimposition') ?></h3>
 
 	<p>These are default CRUD actions (as Bake would generate).</p>
 

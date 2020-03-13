@@ -1,3 +1,11 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+if (!$this->Configure->read('App.stats')) {
+	return;
+}
+?>
 <script type="text/javascript">
 	var _paq = _paq || [];
 	// tracker methods like "setCustomDimension" should be called before "trackPageView"

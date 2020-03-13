@@ -70,6 +70,7 @@ return [
 	'App' => [
 		'monitorHeaders' => 1,
 		'defaultOutputTimezone' => 'Europe/Berlin',
+		'stats' => false,
 	],
 
 	'CakeDto' => [
