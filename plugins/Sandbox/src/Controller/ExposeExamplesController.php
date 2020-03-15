@@ -116,9 +116,9 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
 	 *@return \Cake\Http\Response|null|void
 	 */
-	public function superimposedView($id = null) {
+	public function superimposedView($uuid = null) {
 		// We can reuse the baked code thanks to the uuid being superimposed over the same key
-		$exposedUser = $this->ExposedUsers->get($id);
+		$exposedUser = $this->ExposedUsers->get($uuid);
 
 		$this->set('exposedUser', $exposedUser);
 	}

@@ -100,15 +100,12 @@ class ContactController extends AppController {
 		$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('contact via form'));
 		$email->viewBuilder()->setTemplate('contact');
 		$email->setViewVars(compact('message', 'subject', 'fromEmail', 'fromName'));
-		if ($email->send()) {
-			$this->Flash->success(__('contactSuccessfullySent {0}', $fromEmail));
-			return $this->redirect(['action' => 'index']);
-		}
-		if (Configure::read('debug')) {
-			//$this->Flash->warning($email->getError());
-		}
-		//$this->log($email->getError());
-		$this->Flash->error(__('Contact Email could not be sent'));
+		$email->send();
+
+		$this->Flash->success(__('contactSuccessfullySent {0}', $fromEmail));
+		//$this->Flash->error(__('Contact Email could not be sent'));
+
+		return $this->redirect(['action' => 'index']);
 	}
 
 }

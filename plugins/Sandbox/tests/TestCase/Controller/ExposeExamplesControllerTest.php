@@ -54,8 +54,7 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function testSuperimposedIndex()
-	{
+	public function testSuperimposedIndex() {
 		$this->disableErrorHandlerMiddleware();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ExposeExamples', 'action' => 'superimposedIndex']);
@@ -78,4 +77,5 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
+
 }

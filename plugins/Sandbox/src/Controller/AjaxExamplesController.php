@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Validation\Validation;
 
@@ -167,8 +168,7 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->loadModel('Data.Countries');
 		$country = $this->Countries->get($id);
 
-		$false = false;
-		if ($false) {
+		if (Configure::read('deleteForReal')) {
 			$this->Countries->delete($country);
 		}
 
@@ -215,7 +215,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 */
 	public function countryStates() {
 		$this->request->allowMethod('ajax');
-		$id = $this->request->getQuery('id');
+		$id = (int)$this->request->getQuery('id');
 		if (!$id) {
 			throw new NotFoundException();
 		}

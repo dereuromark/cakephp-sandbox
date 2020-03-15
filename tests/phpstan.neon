@@ -11,6 +11,8 @@ parameters:
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
 		- '#Call to an undefined method .+ExposedUsersTable::getExposedKey\(\).#'
+		- '#Call to an undefined method .+SandboxPostsTable::.+\(\).#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Access to protected property .+ServerRequest::\$data#'
 		- '#Call to an undefined method .+Email::set.+#'
+		- '#Parameter \#1 \$middleware of method Cake\\Http\\MiddlewareQueue::add\(\) expects .+.#'

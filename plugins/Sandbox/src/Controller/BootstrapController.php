@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 
 /**
@@ -89,8 +90,7 @@ class BootstrapController extends SandboxAppController {
 
 		if ($this->request->is(['post', 'put'])) {
 			// Save form data
-			$result = false;
-			if ($result) {
+			if (Configure::read('saveForReal')) {
 				$this->Flash->success('Saved and redirected');
 				return $this->redirect(['action' => 'formPost']);
 			}

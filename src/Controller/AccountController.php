@@ -146,16 +146,17 @@ class AccountController extends AppController {
 					$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$email->setTemplate('lost_password');
 					$email->setViewVars(compact('cCode'));
-					if ($email->send()) {
-						$userEmail = h(ObfuscateHelper::hideEmail($res->email));
+					$email->send();
 
-						$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
-						$this->Flash->success(__('In a third step you will then be able to change your password.'));
-					} else {
-						$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
-					}
+					$userEmail = h(ObfuscateHelper::hideEmail($res->email));
+
+					$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
+					$this->Flash->success(__('In a third step you will then be able to change your password.'));
+					//$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
+
 					return $this->redirect(['action' => 'lost_password']);
 				}
+
 				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->getData('Form.login')));
 			}
 		}
@@ -224,7 +225,7 @@ class AccountController extends AppController {
 			$data = $this->request->getData();
 			$data['role_id'] = Configure::read('Role.user');
 			$user = $this->Users->patchEntity($user, $data);
-			if ($user) {
+			if (!$user->getErrors()) {
 				$this->Flash->success(__('Account created'));
 				$this->Auth->setUser($user);
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
