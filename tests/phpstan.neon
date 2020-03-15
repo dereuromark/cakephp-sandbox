@@ -15,4 +15,3 @@ parameters:
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Access to protected property .+ServerRequest::\$data#'
 		- '#Call to an undefined method .+Email::set.+#'
-		- '#Parameter \#1 \$middleware of method Cake\\Http\\MiddlewareQueue::add\(\) expects .+.#'
