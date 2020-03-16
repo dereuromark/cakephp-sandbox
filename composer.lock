@@ -954,12 +954,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "7cd5e090e6e5917417fc3f625808f098491830b3"
+                "reference": "b2c3d5c6df4d50d22a54c39efff8df102a397742"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/7cd5e090e6e5917417fc3f625808f098491830b3",
-                "reference": "7cd5e090e6e5917417fc3f625808f098491830b3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/b2c3d5c6df4d50d22a54c39efff8df102a397742",
+                "reference": "b2c3d5c6df4d50d22a54c39efff8df102a397742",
                 "shasum": ""
             },
             "require": {
@@ -999,7 +999,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2020-03-05T22:48:27+00:00"
+            "time": "2020-03-16T19:15:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1007,12 +1007,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "2eeb21dc0f7af0e018809ab2888596a85f678d65"
+                "reference": "bce82f9375c761dd2a80b5900115676e5c9cec9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/2eeb21dc0f7af0e018809ab2888596a85f678d65",
-                "reference": "2eeb21dc0f7af0e018809ab2888596a85f678d65",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/bce82f9375c761dd2a80b5900115676e5c9cec9d",
+                "reference": "bce82f9375c761dd2a80b5900115676e5c9cec9d",
                 "shasum": ""
             },
             "require": {
@@ -1063,7 +1063,7 @@
                 "logs",
                 "plugin"
             ],
-            "time": "2020-01-17T01:45:47+00:00"
+            "time": "2020-03-16T18:52:41+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -1388,12 +1388,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "431c1dfb648270488d2459970d8a1dbf3796674f"
+                "reference": "ebfc03cd7d0470e9ad9594975a1988eb871ebd11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/431c1dfb648270488d2459970d8a1dbf3796674f",
-                "reference": "431c1dfb648270488d2459970d8a1dbf3796674f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/ebfc03cd7d0470e9ad9594975a1988eb871ebd11",
+                "reference": "ebfc03cd7d0470e9ad9594975a1988eb871ebd11",
                 "shasum": ""
             },
             "require": {
@@ -1428,7 +1428,7 @@
                 "markup",
                 "plugin"
             ],
-            "time": "2020-01-08T15:55:18+00:00"
+            "time": "2020-03-16T19:09:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
