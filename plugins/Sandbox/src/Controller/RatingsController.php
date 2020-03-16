@@ -11,7 +11,7 @@ class RatingsController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.SandboxPosts';
+	protected $modelClass = 'Sandbox.SandboxPosts';
 
 	/**
 	 * @return void

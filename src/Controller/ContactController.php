@@ -12,24 +12,13 @@ use Tools\Mailer\Mailer;
 class ContactController extends AppController {
 
 	/**
-	 * @var array
-	 */
-	public $components = [
-		'Captcha.Captcha',
-	];
-
-	/**
-	 * @var array
-	 */
-	public $helpers = [
-		'Tools.Obfuscate', 'Captcha.Captcha',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
+
+		$this->loadComponent('Captcha.Captcha');
+		$this->viewBuilder()->setHelpers(['Tools.Obfuscate', 'Captcha.Captcha']);
 
 		if (Configure::read('debug')) {
 			return;

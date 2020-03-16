@@ -11,18 +11,17 @@ use Cake\I18n\Time;
 class CsvController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $components = [
-		'RequestHandler' => [
-			'viewClassMap' => ['csv' => 'CsvView.Csv'],
-		],
-	];
+	public function initialize(): void
+	{
+		parent::initialize();
 
-	/**
-	 * @var array
-	 */
-	protected $helpers = ['Data.Data'];
+		$this->components()->unload('RequestHandler');
+		$this->loadComponent('RequestHandler', ['viewClassMap' => ['csv' => 'CsvView.Csv']]);
+
+		$this->viewBuilder()->setHelpers(['Data.Data']);
+	}
 
 	/**
 	 * List of all examples.

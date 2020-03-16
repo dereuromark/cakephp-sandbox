@@ -5,9 +5,9 @@ namespace App\Controller;
 class MiscController extends AppController {
 
 	/**
-	 * @var array
+	 * @var string[]
 	 */
-	public $types = [
+	protected $types = [
 		'1' => 'html encode',
 		'2' => 'html decode',
 		'3' => 'entity encode',

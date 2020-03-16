@@ -16,17 +16,18 @@ class CalendarController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.Events';
+	protected $modelClass = 'Sandbox.Events';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $components = ['Calendar.Calendar'];
+	public function initialize(): void {
+		parent::initialize();
 
-	/**
-	 * @var array
-	 */
-	protected $helpers = ['Calendar.Calendar'];
+		$this->loadComponent('Calendar.Calendar');
+
+		$this->viewBuilder()->setHelpers(['Calendar.Calendar']);
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event

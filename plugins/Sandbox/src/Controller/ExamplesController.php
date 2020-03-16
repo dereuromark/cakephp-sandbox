@@ -5,9 +5,13 @@ namespace Sandbox\Controller;
 class ExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['Markup.Highlighter'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['Markup.Highlighter']);
+	}
 
 	/**
 	 * Lists all actions available.

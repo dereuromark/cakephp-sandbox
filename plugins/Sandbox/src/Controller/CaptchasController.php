@@ -12,12 +12,16 @@ class CaptchasController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.Animals';
+	protected $modelClass = 'Sandbox.Animals';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['Captcha.Captcha'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['Captcha.Captcha']);
+	}
 
 	/**
 	 * @return void

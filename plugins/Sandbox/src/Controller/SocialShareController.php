@@ -5,9 +5,13 @@ namespace Sandbox\Controller;
 class SocialShareController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['SocialShare.SocialShare'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['SocialShare.SocialShare']);
+	}
 
 	/**
 	 * @return void

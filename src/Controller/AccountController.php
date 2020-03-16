@@ -18,7 +18,7 @@ class AccountController extends AppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Users';
+	protected $modelClass = 'Users';
 
 	/**
 	 * @param \Cake\Event\EventInterface $event

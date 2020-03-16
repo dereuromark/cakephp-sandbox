@@ -17,9 +17,13 @@ use Cake\Http\Exception\MethodNotAllowedException;
 class ExportController extends AppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	public $components = ['Cache.Cache'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->loadComponent('Cache.Cache');
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event

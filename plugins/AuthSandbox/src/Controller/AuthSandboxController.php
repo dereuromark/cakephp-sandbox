@@ -17,7 +17,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Users';
+	protected $modelClass = 'Users';
 
 	/**
 	 * @return void

@@ -8,15 +8,18 @@ use Cake\Utility\Text;
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $components = [
-		'RequestHandler' => [
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->components()->unload('RequestHandler');
+		$this->loadComponent('RequestHandler', [
 			'viewClassMap' => [
 				'rss' => 'Feed.Rss',
 			],
-		],
-	];
+		]);
+	}
 
 	/**
 	 * List of all examples.

@@ -16,12 +16,16 @@ class GeoExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Data.Countries';
+	protected $modelClass = 'Data.Countries';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['Geo.GoogleMap'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['Geo.GoogleMap']);
+	}
 
 	/**
 	 * @return void

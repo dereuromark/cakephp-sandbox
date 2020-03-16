@@ -14,7 +14,7 @@ class QueueExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Queue.QueuedJobs';
+	protected $modelClass = 'Queue.QueuedJobs';
 
 	/**
 	 * @return void

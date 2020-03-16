@@ -12,9 +12,13 @@ use Cake\Utility\Hash;
 class CakeExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['Markup.Highlighter'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['Markup.Highlighter']);
+	}
 
 	/**
 	 * @return void

@@ -13,9 +13,13 @@ class MenuController extends SandboxAppController {
 	//protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = ['Icings/Menu.Menu'];
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->viewBuilder()->setHelpers(['Icings/Menu.Menu']);
+	}
 
 	/**
 	 * @return void

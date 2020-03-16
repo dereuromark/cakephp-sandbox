@@ -13,14 +13,19 @@ class BootstrapController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.Animals';
+	protected $modelClass = 'Sandbox.Animals';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $helpers = [
-		'Flash' => ['className' => 'BootstrapUI.Flash'],
-	];
+	public function initialize(): void {
+		parent::initialize();
+
+		$helpers = [
+			'Flash' => ['className' => 'BootstrapUI.Flash'],
+		];
+		$this->viewBuilder()->setHelpers($helpers);
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
@@ -30,7 +35,7 @@ class BootstrapController extends SandboxAppController {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
 
-		unset($this->helpers['Flash.Flash']);
+		//unset($this->helpers['Flash.Flash']);
 
 		parent::beforeFilter($event);
 	}
@@ -60,9 +65,9 @@ class BootstrapController extends SandboxAppController {
 		$animal = $this->Animals->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
-		$this->request->data['discovered'] = '';
-		$this->request->data['published'] = '';
-		$this->request->data['time'] = '';
+		//$this->request->data['discovered'] = '';
+		//$this->request->data['published'] = '';
+		//$this->request->data['time'] = '';
 
 		$this->set(compact('animal'));
 	}

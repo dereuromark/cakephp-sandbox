@@ -14,7 +14,7 @@ class ServiceExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = '';
+	protected $modelClass = '';
 
 	/**
 	 * @return void

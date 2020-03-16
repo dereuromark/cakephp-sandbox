@@ -13,17 +13,20 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.CountryRecords';
+	protected $modelClass = 'Sandbox.CountryRecords';
 
 	/**
-	 * @var array
+	 * @return void
 	 */
-	protected $components = ['Search.Prg' => ['actions' => ['table']]];
+	public function initialize(): void {
+		parent::initialize();
 
-	/**
-	 * @var array
-	 */
-	protected $helpers = ['Data.Data'];
+		$this->loadComponent('Search.Prg', [
+			'actions' => ['table']
+		]);
+
+		$this->viewBuilder()->setHelpers(['Data.Data']);
+	}
 
 	/**
 	 * @return void

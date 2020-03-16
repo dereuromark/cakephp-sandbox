@@ -15,7 +15,7 @@ class TagsController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	public $modelClass = 'Sandbox.SandboxCategories';
+	protected $modelClass = 'Sandbox.SandboxCategories';
 
 	/**
 	 * @return void
