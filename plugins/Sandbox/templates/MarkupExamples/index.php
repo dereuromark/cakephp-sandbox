@@ -13,9 +13,8 @@
 	<li><?php echo $this->Html->link('Highlighting thought PHP or JS', ['action' => 'markup'])?></li>
 </ul>
 
-<h3>Code transformation</h3>
+<h3>Code Transformation</h3>
 
-<p>From BBCode, Markdown, ... to HTML</p>
+<p>Parsing from BBCode, Markdown, ... to HTML</p>
 ...
-
 

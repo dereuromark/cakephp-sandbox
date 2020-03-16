@@ -70,6 +70,11 @@
 			<li><?php echo $this->Html->link('Tagging in CakePHP', ['controller' => 'Tags', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Markup plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Markup, e.g. syntax highlighting', ['controller' => 'MarkupExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>CakeDto Plugin (NEW)</h4>
 		<ul>
 			<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
@@ -100,11 +105,6 @@
 			<li><?php echo $this->Html->link('AssetCompress and CakePHP', ['controller' => 'AssetCompressExamples', 'action' => 'index']); ?></li>
 		</ul>
 		<?php } ?>
-
-		<h4>Markup plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('Markup, e.g. syntax highlighting', ['controller' => 'Examples', 'action' => 'markup']); ?></li>
-		</ul>
 
 		<?php if (false) { ?>
 		<h4>SocialShare plugin</h4>
