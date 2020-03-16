@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burzum/cakephp-service-layer.git",
-                "reference": "4d0b048be045766ff82432c67e4ccd792038742f"
+                "reference": "160eec3828d8f736e4273d51f08566ae743ec4f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/4d0b048be045766ff82432c67e4ccd792038742f",
-                "reference": "4d0b048be045766ff82432c67e4ccd792038742f",
+                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/160eec3828d8f736e4273d51f08566ae743ec4f1",
+                "reference": "160eec3828d8f736e4273d51f08566ae743ec4f1",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 }
             ],
             "description": "Service layer and domain / business model implementation for CakePHP",
-            "time": "2020-03-11T18:52:00+00:00"
+            "time": "2020-03-14T17:13:15+00:00"
         },
         {
             "name": "cakephp/bake",
@@ -153,12 +153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "ac4beeb1ded583654eba68d58fcb230f1df980f7"
+                "reference": "abc86ab74c1e675288bf5a52714e44edbd2e38f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ac4beeb1ded583654eba68d58fcb230f1df980f7",
-                "reference": "ac4beeb1ded583654eba68d58fcb230f1df980f7",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/abc86ab74c1e675288bf5a52714e44edbd2e38f0",
+                "reference": "abc86ab74c1e675288bf5a52714e44edbd2e38f0",
                 "shasum": ""
             },
             "require": {
@@ -240,7 +240,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-03-13T12:57:56+00:00"
+            "time": "2020-03-15T02:14:47+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -819,12 +819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "567a7bd514f832fbc0fe7f5ca3c22d8184329fed"
+                "reference": "ba5905c5da51879bcf4b24714e6bc7c532d85ca1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/567a7bd514f832fbc0fe7f5ca3c22d8184329fed",
-                "reference": "567a7bd514f832fbc0fe7f5ca3c22d8184329fed",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/ba5905c5da51879bcf4b24714e6bc7c532d85ca1",
+                "reference": "ba5905c5da51879bcf4b24714e6bc7c532d85ca1",
                 "shasum": ""
             },
             "require": {
@@ -847,7 +847,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2020-01-15T02:27:04+00:00"
+            "time": "2020-03-15T23:56:06+00:00"
         },
         {
             "name": "dereuromark/cakephp-calendar",
@@ -1136,12 +1136,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18"
+                "reference": "b0068ee46dccff2124ddb827f4661f037e90a334"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18",
-                "reference": "c34e6a7566a65cd1f34d8f98c8c471a6c5e0ea18",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/b0068ee46dccff2124ddb827f4661f037e90a334",
+                "reference": "b0068ee46dccff2124ddb827f4661f037e90a334",
                 "shasum": ""
             },
             "require": {
@@ -1181,7 +1181,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-03-13T20:38:51+00:00"
+            "time": "2020-03-13T21:47:33+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1436,12 +1436,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "4917329fce7dea8152a78e04d161cee31a1f2027"
+                "reference": "74f0c421633f32cedc8c12a0fd663ee8011f5100"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/4917329fce7dea8152a78e04d161cee31a1f2027",
-                "reference": "4917329fce7dea8152a78e04d161cee31a1f2027",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/74f0c421633f32cedc8c12a0fd663ee8011f5100",
+                "reference": "74f0c421633f32cedc8c12a0fd663ee8011f5100",
                 "shasum": ""
             },
             "require": {
@@ -1491,7 +1491,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2020-03-07T15:55:03+00:00"
+            "time": "2020-03-14T22:09:06+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1558,12 +1558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "fa15e6c2f8269bd096d510f9c6c1b5bf520b2dff"
+                "reference": "0509c6fa6329cf42ca2f32801ba55af1e420b18c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/fa15e6c2f8269bd096d510f9c6c1b5bf520b2dff",
-                "reference": "fa15e6c2f8269bd096d510f9c6c1b5bf520b2dff",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/0509c6fa6329cf42ca2f32801ba55af1e420b18c",
+                "reference": "0509c6fa6329cf42ca2f32801ba55af1e420b18c",
                 "shasum": ""
             },
             "require": {
@@ -1603,7 +1603,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2020-03-05T22:12:49+00:00"
+            "time": "2020-03-16T00:13:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -1661,12 +1661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "463badcf536c06eb1fb30cc2cbe839d19f4e1692"
+                "reference": "7359a619049b15cfbd5730f59b4a01533519bff6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/463badcf536c06eb1fb30cc2cbe839d19f4e1692",
-                "reference": "463badcf536c06eb1fb30cc2cbe839d19f4e1692",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/7359a619049b15cfbd5730f59b4a01533519bff6",
+                "reference": "7359a619049b15cfbd5730f59b4a01533519bff6",
                 "shasum": ""
             },
             "require": {
@@ -1718,7 +1718,7 @@
                 "tagging",
                 "tags"
             ],
-            "time": "2020-01-15T15:20:26+00:00"
+            "time": "2020-03-15T23:44:09+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -5275,32 +5275,31 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.9.12",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "90da7f37568aee36b116a030c5f99c915267edd4"
+                "reference": "e361c8b7e5114534078e0ce04ddc442b39018a3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/90da7f37568aee36b116a030c5f99c915267edd4",
-                "reference": "90da7f37568aee36b116a030c5f99c915267edd4",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/e361c8b7e5114534078e0ce04ddc442b39018a3c",
+                "reference": "e361c8b7e5114534078e0ce04ddc442b39018a3c",
                 "shasum": ""
             },
             "require": {
                 "dnoegel/php-xdg-base-dir": "0.1.*",
                 "ext-json": "*",
                 "ext-tokenizer": "*",
-                "jakub-onderka/php-console-highlighter": "0.3.*|0.4.*",
-                "nikic/php-parser": "~1.3|~2.0|~3.0|~4.0",
-                "php": ">=5.4.0",
-                "symfony/console": "~2.3.10|^2.4.2|~3.0|~4.0|~5.0",
-                "symfony/var-dumper": "~2.7|~3.0|~4.0|~5.0"
+                "jakub-onderka/php-console-highlighter": "0.4.*|0.3.*",
+                "nikic/php-parser": "~4.0|~3.0|~2.0|~1.3",
+                "php": "^8.0 || ^7.0 || ^5.5.9",
+                "symfony/console": "~5.0|~4.0|~3.0|^2.4.2|~2.3.10",
+                "symfony/var-dumper": "~5.0|~4.0|~3.0|~2.7"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.2",
-                "hoa/console": "~2.15|~3.16",
-                "phpunit/phpunit": "~4.8.35|~5.0|~6.0|~7.0"
+                "hoa/console": "~3.16|~2.15"
             },
             "suggest": {
                 "ext-pcntl": "Enabling the PCNTL extension makes PsySH a lot happier :)",
@@ -5315,7 +5314,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-develop": "0.9.x-dev"
+                    "dev-master": "0.10.x-dev"
                 }
             },
             "autoload": {
@@ -5345,7 +5344,7 @@
                 "interactive",
                 "shell"
             ],
-            "time": "2019-12-06T14:19:43+00:00"
+            "time": "2020-03-15T22:52:37+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
