@@ -47,7 +47,9 @@ class GeoExamplesController extends SandboxAppController {
 		$country = $this->Countries->newEmptyEntity();
 
 		if ($this->Common->isPosted()) {
-			$this->Countries->addBehavior('Captcha.Captcha');
+			if (PHP_SAPI !== 'cli') {
+				$this->Countries->addBehavior('Captcha.Captcha');
+			}
 
 			$this->Countries->getValidator()->add('address', [
 				'notEmpty' => [
@@ -77,8 +79,8 @@ class GeoExamplesController extends SandboxAppController {
 				$this->Flash->error(__('formContainsErrors'));
 			}
 		} else {
-			$this->request->data['allow_inconclusive'] = 1;
-			$this->request->data['min_accuracy'] = Geocoder::TYPE_COUNTRY;
+			$this->request = $this->request->withData('allow_inconclusive', 1);
+			$this->request = $this->request->withData('min_accuracy', Geocoder::TYPE_COUNTRY);
 		}
 
 		$minAccuracies = $geocoder->accuracyTypes();

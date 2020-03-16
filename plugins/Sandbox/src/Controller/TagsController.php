@@ -187,7 +187,7 @@ class TagsController extends SandboxAppController {
 
 		$postEntities = $this->SandboxPosts->newEntities($posts);
 
-		$this->SandboxPosts->saveMany($postEntities);
+		$this->SandboxPosts->saveManyOrFail($postEntities);
 	}
 
 }

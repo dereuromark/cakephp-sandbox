@@ -12,14 +12,7 @@ class AnimalsTable extends Table {
 	/**
 	 * @var array
 	 */
-	public $order = ['name' => 'ASC'];
-
-	/**
-	 * @var array
-	 */
-	public $filterArgs = [
-		'search' => ['type' => 'like', 'field' => ['name']],
-	];
+	protected $order = ['name' => 'ASC'];
 
 	/**
 	 * @param array $config
@@ -28,7 +21,6 @@ class AnimalsTable extends Table {
 	public function initialize(array $config): void {
 		$this->setTable('sandbox_animals');
 
-		//$this->addBehavior('Search.Searchable');
 		parent::initialize($config);
 	}
 

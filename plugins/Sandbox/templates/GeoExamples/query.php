@@ -17,8 +17,10 @@
 		echo $this->Form->control('min_accuracy', []);
 
 		// To prevent DDOS or alike
-		$this->loadHelper('Captcha.Captcha');
-		echo $this->Captcha->render();
+		if (PHP_SAPI !== 'cli') {
+			$this->loadHelper('Captcha.Captcha');
+			echo $this->Captcha->render();
+		}
 	?>
 	</fieldset>
 	<?php echo $this->Form->submit(__('Submit')); ?>

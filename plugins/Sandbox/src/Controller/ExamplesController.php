@@ -5,15 +5,6 @@ namespace Sandbox\Controller;
 class ExamplesController extends SandboxAppController {
 
 	/**
-	 * @return void
-	 */
-	public function initialize(): void {
-		parent::initialize();
-
-		$this->viewBuilder()->setHelpers(['Markup.Highlighter']);
-	}
-
-	/**
 	 * Lists all actions available.
 	 *
 	 * @return void
@@ -22,13 +13,6 @@ class ExamplesController extends SandboxAppController {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
-	}
-
-	/**
-	 * @return \Cake\Http\Response|null|void
-	 */
-	public function markup() {
-		//throw new NotFoundException('Currently disabled because they cannot provide a stable composer tag.');
 	}
 
 	/**

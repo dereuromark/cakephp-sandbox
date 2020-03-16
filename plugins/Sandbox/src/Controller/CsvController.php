@@ -13,8 +13,7 @@ class CsvController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize(): void
-	{
+	public function initialize(): void {
 		parent::initialize();
 
 		$this->components()->unload('RequestHandler');

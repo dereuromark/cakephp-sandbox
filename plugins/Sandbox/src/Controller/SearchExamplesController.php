@@ -22,7 +22,7 @@ class SearchExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		$this->loadComponent('Search.Prg', [
-			'actions' => ['table']
+			'actions' => ['table'],
 		]);
 
 		$this->viewBuilder()->setHelpers(['Data.Data']);

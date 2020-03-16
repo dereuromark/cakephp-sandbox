@@ -36,8 +36,7 @@ class SandboxPostsFixture extends TestFixture {
 	 */
 	public $records = [
 		[
-			'id' => 1,
-			'tile' => 'Lorem ipsum dolor sit amet',
+			'title' => 'Lorem ipsum dolor sit amet',
 			'slug' => 'Lorem ipsum dolor sit amet',
 			'content' => 'Lorem ipsum dolor sit amet',
 			'rating_count' => 1,

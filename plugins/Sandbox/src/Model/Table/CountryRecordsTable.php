@@ -13,7 +13,7 @@ class CountryRecordsTable extends Table {
 	/**
 	 * @var array
 	 */
-	public $order = ['sort' => 'DESC', 'name' => 'ASC'];
+	protected $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
 	/**
 	 * @param array $config
@@ -34,7 +34,7 @@ class CountryRecordsTable extends Table {
 				'after' => true,
 				'mode' => 'or',
 				'comparison' => 'LIKE',
-				'field' => ['name', 'ori_name', 'iso2', 'iso3'],
+				'fields' => ['name', 'ori_name', 'iso2', 'iso3'],
 			]);
 	}
 

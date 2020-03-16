@@ -31,6 +31,7 @@ class SandboxPostsTable extends Table {
 	 * @var array
 	 */
 	public $actsAs = [
+		'Tools.Slugged',
 		'Search.Search',
 		'Tags.Tag' => ['taggedCounter' => false],
 	];
