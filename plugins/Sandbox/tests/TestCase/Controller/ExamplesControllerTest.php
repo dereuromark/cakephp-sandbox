@@ -12,8 +12,18 @@ class ExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function testMarkup() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'markup']);
+	public function testIndex() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMessages() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'messages']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
