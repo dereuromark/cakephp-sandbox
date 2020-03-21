@@ -1181,12 +1181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "7973bfc73bcd3990d1cd2d33e8f59eb46aa7002c"
+                "reference": "c74a27972d781dd6abbb2ce53685247c63deefba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/7973bfc73bcd3990d1cd2d33e8f59eb46aa7002c",
-                "reference": "7973bfc73bcd3990d1cd2d33e8f59eb46aa7002c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/c74a27972d781dd6abbb2ce53685247c63deefba",
+                "reference": "c74a27972d781dd6abbb2ce53685247c63deefba",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1229,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-03-21T19:17:06+00:00"
+            "time": "2020-03-21T19:46:29+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
