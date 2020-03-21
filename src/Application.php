@@ -113,11 +113,14 @@ class Application extends BaseApplication {
 		try {
 			$this->addPlugin('IdeHelper');
 			$this->addPlugin('Bake');
+
+			$this->addPlugin('ModelGraph');
+
 		} catch (MissingPluginException $e) {
 			// Do not halt if the plugin is missing
 		}
-		$this->addPlugin('Migrations');
 
+		$this->addPlugin('Migrations');
 		// Load more plugins here
 	}
 

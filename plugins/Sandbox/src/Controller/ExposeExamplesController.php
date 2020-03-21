@@ -2,7 +2,9 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Database\Type;
 use Cake\I18n\FrozenTime;
+use Expose\Database\Type\ShortUuidType;
 
 /**
  * @property \Sandbox\Model\Table\ExposedUsersTable $ExposedUsers
@@ -32,6 +34,13 @@ class ExposeExamplesController extends SandboxAppController {
 	 */
 	public function initialize(): void {
 		parent::initialize();
+
+		if ($this->request->getQuery('short') !== null) {
+			$this->request->getSession()->write('Expose.short', (bool)$this->request->getQuery('short'));
+		}
+		if ($this->request->getSession()->read('Expose.short')) {
+			Type::map('binaryuuid', ShortUuidType::class);
+		}
 
 		$config = [
 			'actions' => [

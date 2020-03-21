@@ -8,6 +8,15 @@
 
 <a href="https://github.com/dereuromark/cakephp-expose" target="_blank">[Source]</a>
 
+<div style="float: right">
+	<p>The database field type is <code>binary</code> with a length of 16 (byte).</p>
+	<p>UUID shortening enabled: <?php echo $this->Format->yesNo($this->request->getSession()->read('Expose.short'))?></p>
+	<p>You can switch the database Type class used here:</p>
+	<?php echo $this->Html->link('BinaryUuid', ['?' => ['short' => false]], ['class' => 'btn btn-default']); ?>
+	<?php echo $this->Html->link('ShortUuid', ['?' => ['short' => true]], ['class' => 'btn btn-primary']); ?>
+</div>
+
+
 <h3>Table overview</h3>
 <p>
 <?php echo $this->Html->link('List all exposed users in paginated list', ['action' => 'users']); ?>
@@ -18,7 +27,7 @@
 <p>The following are ordered by name:</p>
 <ul>
 	<?php foreach ($exposedUsers as $exposedId => $exposedUser) { ?>
-	<li><?php echo $this->Html->link($exposedUser, ['action' => 'view', $exposedId]); ?></li>
+	<li><?php echo $this->Html->link($exposedUser, ['action' => 'view', $exposedId]); ?> [ID <?php echo h($exposedId); ?>]</li>
 	<?php } ?>
 </ul>
 

@@ -57,9 +57,11 @@
 		"dereuromark/media-embed": "dev-master",
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-cake4",
-		"dereuromark/cakephp-dto": "dev-cake4 as 1.0.0"
+		"dereuromark/cakephp-dto": "dev-cake4 as 1.0.0",
+		"brick/math": "^0.8.14"
 	},
 	"require-dev": {
+		"dereuromark/cakephp-model-graph": "dev-master",
 		"psy/psysh": "@stable",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^0.12.11",
@@ -83,6 +85,12 @@
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:dereuromark/cakephp-model-graph.git"
+		}
+	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
