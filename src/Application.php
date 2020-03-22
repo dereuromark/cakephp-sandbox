@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Error\Middleware\ErrorHandlerMiddleware;
-use App\Http\Middleware\HttpsMiddleware;
+use App\Http\Middleware\RedirectMiddleware;
 use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
@@ -98,7 +98,7 @@ class Application extends BaseApplication {
 				},
 			]))
 
-			->add(HttpsMiddleware::class)
+			->add(RedirectMiddleware::class)
 
 			// Apply routing
 			->add(new RoutingMiddleware($this));
