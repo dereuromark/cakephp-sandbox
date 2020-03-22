@@ -4946,12 +4946,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "eaae56daf5cec35c41fe0beb4eec62e96c1e4726"
+                "reference": "f51daaf21c9197e280e5d7729899ececd82f0070"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/eaae56daf5cec35c41fe0beb4eec62e96c1e4726",
-                "reference": "eaae56daf5cec35c41fe0beb4eec62e96c1e4726",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/f51daaf21c9197e280e5d7729899ececd82f0070",
+                "reference": "f51daaf21c9197e280e5d7729899ececd82f0070",
                 "shasum": ""
             },
             "require": {
@@ -5010,7 +5010,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-20T00:02:02+00:00"
+            "time": "2020-03-22T14:31:04+00:00"
         },
         {
             "name": "dereuromark/cakephp-model-graph",
@@ -5018,12 +5018,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:dereuromark/cakephp-model-graph.git",
-                "reference": "9ef62f56f237341cb05c46142aecbb87873caab4"
+                "reference": "8a34c171d39f72755d5c2cb316fb2a79b3f810ba"
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
                 "php": ">=7.2",
-                "phpdocumentor/graphviz": "1.*"
+                "phpdocumentor/graphviz": "^1.0"
             },
             "require-dev": {
                 "dereuromark/cakephp-shim": "^2.0.0",
@@ -5093,7 +5093,7 @@
                 "issues": "https://github.com/mamchenkov/CakePHP-GraphViz-Models/issues",
                 "source": "https://github.com/mamchenkov/CakePHP-GraphViz-Models"
             },
-            "time": "2020-03-18T23:38:23+00:00"
+            "time": "2020-03-22T14:35:32+00:00"
         },
         {
             "name": "dereuromark/cakephp-test-helper",
