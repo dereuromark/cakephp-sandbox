@@ -4,8 +4,8 @@ namespace App\Controller\Component;
 
 use Cake\Controller\Component\PaginatorComponent as CorePaginatorComponent;
 use Cake\Datasource\QueryInterface;
-use Cake\Http\Exception\NotFoundException;
 use Cake\Datasource\ResultSetInterface;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Exception\RedirectException;
 use Cake\Routing\Router;
 
@@ -23,23 +23,24 @@ class PaginatorComponent extends CorePaginatorComponent {
 	 *
 	 * @return \Cake\Datasource\ResultSetInterface Query results
 	 */
-    public function paginate(object $object, array $settings = []): ResultSetInterface {
-        try {
-            $resultSet = parent::paginate($object, $settings);
-        } catch (NotFoundException $exception) {
-            $query = null;
-            if ($object instanceof QueryInterface) {
-                $query = $object;
-                $object = $query->getRepository();
-            }
-            $alias = $object->getAlias();
-            $pageCount = $this->getController()->getRequest()->getAttribute('paging')[$alias]['pageCount'];
-            $lastPage = $pageCount > 1 ? $pageCount : null;
-            $url = Router::url(['?' => ['page' => $lastPage] + $this->getController()->getRequest()->getQuery()], true);
+	public function paginate(object $object, array $settings = []): ResultSetInterface {
+		try {
+			$resultSet = parent::paginate($object, $settings);
+		} catch (NotFoundException $exception) {
+			$query = null;
+			if ($object instanceof QueryInterface) {
+				$query = $object;
+				$object = $query->getRepository();
+			}
+			$alias = $object->getAlias();
+			$pageCount = $this->getController()->getRequest()->getAttribute('paging')[$alias]['pageCount'];
+			$lastPage = $pageCount > 1 ? $pageCount : null;
+			$url = Router::url(['?' => ['page' => $lastPage] + $this->getController()->getRequest()->getQuery()], true);
 
 			throw new RedirectException($url);
-        }
+		}
 
-        return $resultSet;
-    }
+		return $resultSet;
+	}
+
 }
