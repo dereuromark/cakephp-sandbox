@@ -85,12 +85,6 @@
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
-	"repositories": [
-		{
-			"type": "git",
-			"url": "git@github.com:dereuromark/cakephp-model-graph.git"
-		}
-	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
