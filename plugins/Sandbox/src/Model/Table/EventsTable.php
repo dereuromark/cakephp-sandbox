@@ -50,34 +50,30 @@ class EventsTable extends Table {
 	 */
 	public function validationDefault(Validator $validator): Validator {
 		$validator
-			->integer('id')
-			->allowEmpty('id', 'create');
-
-		$validator
 			->requirePresence('title', 'create')
-			->notEmpty('title');
+			->notEmptyString('title');
 
 		$validator
-			->allowEmpty('location');
+			->allowEmptyString('location');
 
 		$validator
 			->numeric('lat')
-			->allowEmpty('lat');
+			->allowEmptyString('lat');
 
 		$validator
 			->numeric('lng')
-			->allowEmpty('lng');
+			->allowEmptyString('lng');
 
 		$validator
-			->allowEmpty('description');
+			->allowEmptyString('description');
 
 		$validator
 			->dateTime('beginning')
-			->allowEmpty('beginning');
+			->allowEmptyDateTime('beginning');
 
 		$validator
 			->dateTime('end')
-			->allowEmpty('end');
+			->allowEmptyDateTime('end');
 
 		return $validator;
 	}

@@ -4,8 +4,8 @@ These are the basic steps to get the repo to run locally.
 
 ### Dependencies
 
-* CakePHP 3.x via composer
-* Plugins via composer
+* CakePHP core and plugins via composer
+* NPM or bower for assets
 
 ### Installation
 
@@ -28,7 +28,7 @@ bin/cake migrations migrate
 ```
 
 But it is easier to run the quick command here doing it all at once:
-``` 
+```
 ./setup
 ```
 Everything should be up and running.
@@ -72,7 +72,12 @@ If you want to use those to log in check the Auth sandbox part.
 * Use the Sandbox plugin to create more sandbox functionality
 * Submit your changes via PR (pull request).
 
-The tests should pass: `php phpunit.phar`
+The tests should pass: `composer test`
+
+PHPStan is
+```
+composer stan
+```
 
 Please make sure the coding style is fine for your changes via
 ```

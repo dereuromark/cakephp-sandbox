@@ -61,12 +61,10 @@ class ExposedUsersTable extends Table {
 	 */
 	public function validationDefault(Validator $validator): Validator {
 		$validator
-			->integer('id')
-			->allowEmptyString('id', null, 'create');
-
-		$validator
-			->uuid('uuid')
-			->notEmptyString('uuid');
+			->add('some_field', 'valid', [
+				'rule' => 'alphanumeric',
+				'message' => __('Only alphanumeric chars are allowed.'),
+			]);
 
 		return $validator;
 	}

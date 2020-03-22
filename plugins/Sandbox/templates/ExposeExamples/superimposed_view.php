@@ -9,6 +9,7 @@
 		<div class="side-nav">
 			<h4 class="heading"><?= __('Actions') ?></h4>
 			<?= $this->Html->link(__('Back'), ['action' => 'superimposedIndex'], ['class' => 'button float-right']) ?>
+			<?= $this->Html->link(__('Edit'), ['action' => 'superimposedEdit', $exposedUser->id], ['class' => 'button float-right']) ?>
 		</div>
 	</aside>
 	<div class="column-responsive column-80">

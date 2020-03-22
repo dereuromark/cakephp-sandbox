@@ -47,6 +47,7 @@ class ExposeExamplesController extends SandboxAppController {
 			'actions' => [
 				'superimposedIndex',
 				'superimposedView',
+				'superimposedEdit',
 			],
 			'modifyResult' => true,
 		];
@@ -129,6 +130,30 @@ class ExposeExamplesController extends SandboxAppController {
 	public function superimposedView($uuid = null) {
 		// We can reuse the baked code thanks to the uuid being superimposed over the same key
 		$exposedUser = $this->ExposedUsers->get($uuid);
+
+		$this->set('exposedUser', $exposedUser);
+	}
+
+	/**
+	 * @param string|null $uuid Exposed UUID.
+	 *
+	 * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+	 *@return \Cake\Http\Response|null|void
+	 */
+	public function superimposedEdit($uuid = null) {
+		// We can reuse the baked code thanks to the uuid being superimposed over the same key
+		$exposedUser = $this->ExposedUsers->get($uuid);
+
+		if ($this->request->is(['post', 'put'])) {
+			$exposedUser = $this->ExposedUsers->patchEntity($exposedUser, $this->request->getData(), ['fields' => 'some_field']);
+			if (!$exposedUser->getErrors()) {
+				$this->Flash->success('OK');
+
+				return $this->redirect(['action' => 'superimposedView', $exposedUser->id]);
+			}
+
+			$this->Flash->error('Validation errors');
+		}
 
 		$this->set('exposedUser', $exposedUser);
 	}
