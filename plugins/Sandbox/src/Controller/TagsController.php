@@ -8,7 +8,7 @@ use Cake\Utility\Hash;
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
  * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
- * @property \Search\Controller\Component\PrgComponent $Prg
+ * @property \Search\Controller\Component\SearchComponent $Search
  */
 class TagsController extends SandboxAppController {
 
@@ -30,7 +30,7 @@ class TagsController extends SandboxAppController {
 			$this->request->getSession()->write('Tmp.User.id', $uid);
 		}
 
-		$this->loadComponent('Search.Prg', [
+		$this->loadComponent('Search.Search', [
 			'actions' => ['search'],
 			'modelClass' => 'Sandbox.SandboxPosts',
 		]);

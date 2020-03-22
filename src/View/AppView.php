@@ -37,6 +37,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\MeterHelper $Meter
  * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  * @property \Expose\View\Helper\ExposeHelper $Expose
+ * @property \Icings\Menu\View\Helper\MenuHelper $Menu
  */
 class AppView extends View {
 

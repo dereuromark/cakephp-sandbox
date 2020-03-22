@@ -122,6 +122,8 @@ return [
 			'Sandbox',
 			'AuthSandbox',
 		],
+		'typeMap' => [
+		],
 	],
 
 	'Highlighter' => [

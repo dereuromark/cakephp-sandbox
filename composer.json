@@ -43,7 +43,7 @@
 		"cakephp/chronos": "^2.0",
 		"icings/menu": "dev-master",
 		"friendsofcake/cakephp-csvview": "dev-cake-4.x",
-		"friendsofcake/search": "dev-cake-4.x as 6.0",
+		"friendsofcake/search": "dev-master as 6.0",
 		"dereuromark/cakephp-data": "dev-cake4",
 		"dereuromark/cakephp-calendar": "dev-cake4",
 		"dereuromark/cakephp-flash": "dev-cake4",
@@ -108,7 +108,7 @@
 			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/"
 		],
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
-		"annotations": "bin/cake annotations all && bin/cake annotations all -p Sandbox && bin/cake annotations all -p AuthSandbox",
+		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox",
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "php phpunit.phar",
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-8.5.1.phar && mv phpunit-8.5.1.phar phpunit.phar || true",

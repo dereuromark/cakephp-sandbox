@@ -7,6 +7,7 @@ use Cake\Event\EventInterface;
 /**
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
  * @property \Search\Controller\Component\PrgComponent $Prg
+ * @property \Search\Controller\Component\SearchComponent $Search
  */
 class SearchExamplesController extends SandboxAppController {
 
@@ -21,7 +22,7 @@ class SearchExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->loadComponent('Search.Prg', [
+		$this->loadComponent('Search.Search', [
 			'actions' => ['table'],
 		]);
 

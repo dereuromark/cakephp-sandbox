@@ -24,6 +24,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @mixin \Tools\Model\Behavior\SluggedBehavior
  */
 class SandboxPostsTable extends Table {
 

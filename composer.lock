@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "446e7dc845fa0c63192ce2faf0e44ba0",
+    "content-hash": "0b38232030c86a021a7593aa4e11b5c2",
     "packages": [
         {
             "name": "aura/intl",
@@ -150,12 +150,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "c52665bd8db4fdb2a0330f1ecdcf274ffad6bddf"
+                "reference": "8d5c8a5a4f8b5976b220ff0ea8a47107359d9043"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/c52665bd8db4fdb2a0330f1ecdcf274ffad6bddf",
-                "reference": "c52665bd8db4fdb2a0330f1ecdcf274ffad6bddf",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/8d5c8a5a4f8b5976b220ff0ea8a47107359d9043",
+                "reference": "8d5c8a5a4f8b5976b220ff0ea8a47107359d9043",
                 "shasum": ""
             },
             "require": {
@@ -190,7 +190,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2020-03-17T14:32:20+00:00"
+            "time": "2020-03-22T02:23:48+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -1181,12 +1181,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "c74a27972d781dd6abbb2ce53685247c63deefba"
+                "reference": "0122873b661bcfacab87953014f186a30eb72961"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/c74a27972d781dd6abbb2ce53685247c63deefba",
-                "reference": "c74a27972d781dd6abbb2ce53685247c63deefba",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/0122873b661bcfacab87953014f186a30eb72961",
+                "reference": "0122873b661bcfacab87953014f186a30eb72961",
                 "shasum": ""
             },
             "require": {
@@ -1229,7 +1229,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-03-21T19:46:29+00:00"
+            "time": "2020-03-22T01:29:45+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -2130,16 +2130,16 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "dev-cake-4.x",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "c0acef3ed79807d2d32640397e9d429f5a063463"
+                "reference": "fc2012d360f73aa843851c3711412827b5532a88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/c0acef3ed79807d2d32640397e9d429f5a063463",
-                "reference": "c0acef3ed79807d2d32640397e9d429f5a063463",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/fc2012d360f73aa843851c3711412827b5532a88",
+                "reference": "fc2012d360f73aa843851c3711412827b5532a88",
                 "shasum": ""
             },
             "require": {
@@ -2147,6 +2147,7 @@
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^4.0",
+                "muffin/webservice": "^3.0",
                 "phpunit/phpunit": "~8.5.0"
             },
             "type": "cakephp-plugin",
@@ -2178,7 +2179,7 @@
                 "prg",
                 "search"
             ],
-            "time": "2020-03-17T13:58:09+00:00"
+            "time": "2020-03-22T14:21:36+00:00"
         },
         {
             "name": "icings/menu",
@@ -5653,7 +5654,7 @@
         {
             "alias": "6.0",
             "alias_normalized": "6.0.0.0",
-            "version": "dev-cake-4.x",
+            "version": "9999999-dev",
             "package": "friendsofcake/search"
         },
         {

@@ -6,6 +6,7 @@ use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * @uses \Sandbox\Controller\ExamplesController
+ * @uses \Sandbox\Controller\PluginsController
  */
 class PluginsControllerTest extends IntegrationTestCase {
 
