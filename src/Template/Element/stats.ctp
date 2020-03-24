@@ -4,7 +4,7 @@
 	_paq.push(['trackPageView']);
 	_paq.push(['enableLinkTracking']);
 	(function() {
-		var u="//sandbox.dereuromark.de/visit_stats/";
+		var u="//<?php echo env('HTTP_HOST') ?>/visit_stats/";
 		_paq.push(['setTrackerUrl', u+'piwik.php']);
 		_paq.push(['setSiteId', '1']);
 		var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
