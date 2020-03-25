@@ -109,7 +109,7 @@
 		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox",
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "php phpunit.phar",
-		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-8.5.1.phar && mv phpunit-8.5.1.phar phpunit.phar || true",
+		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-8.5.2.phar && mv phpunit-8.5.2.phar phpunit.phar || true",
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/,/templates/ --extensions=php src/ tests/ config/ plugins/ webroot/",
 		"cs-fix": "phpcbf -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/,/templates/ --extensions=php src/ tests/ config/ plugins/ webroot/",
