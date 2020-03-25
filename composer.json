@@ -58,7 +58,11 @@
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-cake4",
 		"dereuromark/cakephp-dto": "dev-cake4 as 1.0.0",
-		"brick/math": "^0.8.14"
+		"brick/math": "^0.8.14",
+		"php-http/cakephp-adapter": "0.3.x-dev",
+		"php-http/message": "^1.8.0",
+		"geocoder-php/provider-implementation": "^1.0",
+		"geocoder-php/google-maps-provider": "^4.4.0"
 	},
 	"require-dev": {
 		"dereuromark/cakephp-model-graph": "dev-master",

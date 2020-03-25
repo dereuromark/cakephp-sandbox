@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0bae6be8ae9493ac66122a6cd08e9e5c",
+    "content-hash": "680af3ed93a0e6c04377e4785d9100d4",
     "packages": [
         {
             "name": "aura/intl",
@@ -198,12 +198,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "eda8197653039f398a93d64a48e3438dcea72877"
+                "reference": "8de055e0cacefbe81bf492b9481b0d74144ca9f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/eda8197653039f398a93d64a48e3438dcea72877",
-                "reference": "eda8197653039f398a93d64a48e3438dcea72877",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/8de055e0cacefbe81bf492b9481b0d74144ca9f5",
+                "reference": "8de055e0cacefbe81bf492b9481b0d74144ca9f5",
                 "shasum": ""
             },
             "require": {
@@ -285,7 +285,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-03-19T14:39:48+00:00"
+            "time": "2020-03-25T09:37:36+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -496,6 +496,58 @@
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
             "time": "2019-11-12T10:21:19+00:00"
+        },
+        {
+            "name": "clue/stream-filter",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clue/php-stream-filter.git",
+                "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
+                "reference": "5a58cc30a8bd6a4eb8f856adf61dd3e013f53f71",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0 || ^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Clue\\StreamFilter\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Lück",
+                    "email": "christian@lueck.tv"
+                }
+            ],
+            "description": "A simple and modern approach to stream filtering in PHP",
+            "homepage": "https://github.com/clue/php-stream-filter",
+            "keywords": [
+                "bucket brigade",
+                "callback",
+                "filter",
+                "php_user_filter",
+                "stream",
+                "stream_filter_append",
+                "stream_filter_register"
+            ],
+            "time": "2019-04-09T12:31:48+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -814,12 +866,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ajax.git",
-                "reference": "743c75615d3b3474de28afbe60862c629b2f3e39"
+                "reference": "d8c9f33c96088c1872a0109fbf0ecd35fbf13af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/743c75615d3b3474de28afbe60862c629b2f3e39",
-                "reference": "743c75615d3b3474de28afbe60862c629b2f3e39",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/d8c9f33c96088c1872a0109fbf0ecd35fbf13af3",
+                "reference": "d8c9f33c96088c1872a0109fbf0ecd35fbf13af3",
                 "shasum": ""
             },
             "require": {
@@ -856,7 +908,7 @@
                 "plugin",
                 "view"
             ],
-            "time": "2020-03-17T23:38:41+00:00"
+            "time": "2020-03-24T18:22:53+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
@@ -999,12 +1051,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "35329d8bf45c9eb578a148f26955975f97644a76"
+                "reference": "111aa7ce6995d742d0947e1d7c45fd3e46a353d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/35329d8bf45c9eb578a148f26955975f97644a76",
-                "reference": "35329d8bf45c9eb578a148f26955975f97644a76",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/111aa7ce6995d742d0947e1d7c45fd3e46a353d3",
+                "reference": "111aa7ce6995d742d0947e1d7c45fd3e46a353d3",
                 "shasum": ""
             },
             "require": {
@@ -1044,7 +1096,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2020-03-18T22:07:16+00:00"
+            "time": "2020-03-24T13:31:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1052,12 +1104,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "3c2d37980dc1fb4b91cb1308ced7cb65b084a5c7"
+                "reference": "c02aa79429d6d4f04a266c86ded2799b8398c49c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/3c2d37980dc1fb4b91cb1308ced7cb65b084a5c7",
-                "reference": "3c2d37980dc1fb4b91cb1308ced7cb65b084a5c7",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/c02aa79429d6d4f04a266c86ded2799b8398c49c",
+                "reference": "c02aa79429d6d4f04a266c86ded2799b8398c49c",
                 "shasum": ""
             },
             "require": {
@@ -1067,7 +1119,7 @@
             "require-dev": {
                 "dereuromark/cakephp-tools": "^2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master",
-                "friendsofcake/search": "^6.0.0"
+                "friendsofcake/search": "dev-master as 6.0.0"
             },
             "suggest": {
                 "cakephp/migrations": "For migrations to run."
@@ -1108,7 +1160,7 @@
                 "logs",
                 "plugin"
             ],
-            "time": "2020-03-20T14:51:55+00:00"
+            "time": "2020-03-24T15:27:31+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -1379,27 +1431,28 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "8e51fc33709a8ac5c0aa8793c79cd9310df7c61d"
+                "reference": "e7401720a1e1d51ae803749238ba872dfc84339f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/8e51fc33709a8ac5c0aa8793c79cd9310df7c61d",
-                "reference": "8e51fc33709a8ac5c0aa8793c79cd9310df7c61d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/e7401720a1e1d51ae803749238ba872dfc84339f",
+                "reference": "e7401720a1e1d51ae803749238ba872dfc84339f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/orm": "^4.0",
-                "php": ">=7.2",
-                "willdurand/geocoder": "^4.2"
+                "cakephp/cakephp": "^4.0.0",
+                "php": ">=7.2"
             },
             "require-dev": {
-                "cakephp/cakephp": "^4.0.0",
                 "dereuromark/cakephp-tools": "^2.0.0",
                 "ext-intl": "*",
                 "ext-json": "*",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "geocoder-php/google-maps-provider": "^4.4.0",
-                "php-http/cakephp-adapter": "dev-cake4"
+                "geocoder-php/nominatim-provider": "^5.1",
+                "geocoder-php/provider-implementation": "^1.0",
+                "php-http/cakephp-adapter": "0.3.x-dev",
+                "php-http/message": "^1.8.0"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -1428,7 +1481,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2020-03-18T22:54:20+00:00"
+            "time": "2020-03-25T02:08:29+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -1484,12 +1537,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "4e85a2ae97df4e94d3a1e3de6c2ffabfeb123d55"
+                "reference": "41c3aa7298fc09f6d11f9eb1b4ff97e10d78ff41"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/4e85a2ae97df4e94d3a1e3de6c2ffabfeb123d55",
-                "reference": "4e85a2ae97df4e94d3a1e3de6c2ffabfeb123d55",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/41c3aa7298fc09f6d11f9eb1b4ff97e10d78ff41",
+                "reference": "41c3aa7298fc09f6d11f9eb1b4ff97e10d78ff41",
                 "shasum": ""
             },
             "require": {
@@ -1539,7 +1592,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2020-03-20T14:51:24+00:00"
+            "time": "2020-03-24T15:30:43+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -2180,6 +2233,124 @@
                 "search"
             ],
             "time": "2020-03-23T07:07:13+00:00"
+        },
+        {
+            "name": "geocoder-php/common-http",
+            "version": "4.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geocoder-php/php-common-http.git",
+                "reference": "8e666f89d0b87121595ec2f5134a9f54bf4b0cd2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geocoder-php/php-common-http/zipball/8e666f89d0b87121595ec2f5134a9f54bf4b0cd2",
+                "reference": "8e666f89d0b87121595ec2f5134a9f54bf4b0cd2",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "php-http/client-implementation": "^1.0",
+                "php-http/discovery": "^1.4",
+                "php-http/httplug": "^1.0 || ^2.0",
+                "php-http/message-factory": "^1.0.2",
+                "psr/http-message": "^1.0",
+                "psr/http-message-implementation": "^1.0",
+                "willdurand/geocoder": "^4.0"
+            },
+            "require-dev": {
+                "nyholm/psr7": "^0.2.2",
+                "php-http/message": "^1.0",
+                "php-http/mock-client": "^1.0",
+                "phpunit/phpunit": "6.3.*",
+                "symfony/stopwatch": "~2.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Geocoder\\Http\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                }
+            ],
+            "description": "Common files for HTTP based Geocoders",
+            "homepage": "http://geocoder-php.org",
+            "keywords": [
+                "http geocoder"
+            ],
+            "time": "2018-11-15T22:27:27+00:00"
+        },
+        {
+            "name": "geocoder-php/google-maps-provider",
+            "version": "4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geocoder-php/google-maps-provider.git",
+                "reference": "307ca3590b67d23d0658808bb3615f2be3154eee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geocoder-php/google-maps-provider/zipball/307ca3590b67d23d0658808bb3615f2be3154eee",
+                "reference": "307ca3590b67d23d0658808bb3615f2be3154eee",
+                "shasum": ""
+            },
+            "require": {
+                "geocoder-php/common-http": "^4.0",
+                "php": "^7.0",
+                "willdurand/geocoder": "^4.0"
+            },
+            "provide": {
+                "geocoder-php/provider-implementation": "1.0"
+            },
+            "require-dev": {
+                "geocoder-php/provider-integration-tests": "^1.0",
+                "php-http/curl-client": "^1.7",
+                "php-http/message": "^1.0",
+                "phpunit/phpunit": "^6.5 || ^7.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Geocoder\\Provider\\GoogleMaps\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William DURAND",
+                    "email": "william.durand1@gmail.com"
+                }
+            ],
+            "description": "Geocoder GoogleMaps adapter",
+            "homepage": "http://geocoder-php.org/Geocoder/",
+            "time": "2019-04-26T20:17:17+00:00"
         },
         {
             "name": "icings/menu",
@@ -3144,6 +3315,358 @@
             "description": "A library to read, parse and export to PDF SVG files.",
             "homepage": "https://github.com/PhenX/php-svg-lib",
             "time": "2019-09-11T20:02:13+00:00"
+        },
+        {
+            "name": "php-http/cakephp-adapter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/cakephp-adapter.git",
+                "reference": "97ef26baf5451cd1b1eac0409eff1f3fcc5c6ef9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/cakephp-adapter/zipball/97ef26baf5451cd1b1eac0409eff1f3fcc5c6ef9",
+                "reference": "97ef26baf5451cd1b1eac0409eff1f3fcc5c6ef9",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0",
+                "php": "^7.2",
+                "php-http/discovery": "^1.0",
+                "php-http/httplug": "^2.0"
+            },
+            "provide": {
+                "php-http/client-implementation": "1.0"
+            },
+            "require-dev": {
+                "php-http/client-integration-tests": "^0.6",
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Adapter\\Cake\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Joel Wurtz",
+                    "email": "joel.wurtz@gmail.com"
+                }
+            ],
+            "description": "Cake adapter for PHP-HTTP",
+            "homepage": "http://httplug.io",
+            "keywords": [
+                "cake",
+                "cakephp",
+                "http",
+                "httplug"
+            ],
+            "time": "2020-03-24T23:25:59+00:00"
+        },
+        {
+            "name": "php-http/discovery",
+            "version": "1.7.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/discovery.git",
+                "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/82dbef649ccffd8e4f22e1953c3a5265992b83c0",
+                "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "conflict": {
+                "nyholm/psr7": "<1.0"
+            },
+            "require-dev": {
+                "akeneo/phpspec-skip-example-extension": "^4.0",
+                "php-http/httplug": "^1.0 || ^2.0",
+                "php-http/message-factory": "^1.0",
+                "phpspec/phpspec": "^5.1",
+                "puli/composer-plugin": "1.0.0-beta10"
+            },
+            "suggest": {
+                "php-http/message": "Allow to use Guzzle, Diactoros or Slim Framework factories",
+                "puli/composer-plugin": "Sets up Puli which is recommended for Discovery to work. Check http://docs.php-http.org/en/latest/discovery.html for more details."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Discovery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Finds installed HTTPlug implementations and PSR-7 message factories",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "adapter",
+                "client",
+                "discovery",
+                "factory",
+                "http",
+                "message",
+                "psr7"
+            ],
+            "time": "2020-01-03T11:25:47+00:00"
+        },
+        {
+            "name": "php-http/httplug",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/httplug.git",
+                "reference": "72d2b129a48f0490d55b7f89be0d6aa0597ffb06"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/httplug/zipball/72d2b129a48f0490d55b7f89be0d6aa0597ffb06",
+                "reference": "72d2b129a48f0490d55b7f89be0d6aa0597ffb06",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "php-http/promise": "^1.0",
+                "psr/http-client": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "require-dev": {
+                "friends-of-phpspec/phpspec-code-coverage": "^4.1",
+                "phpspec/phpspec": "^4.3.4|^5.0|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Client\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric GELOEN",
+                    "email": "geloen.eric@gmail.com"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "HTTPlug, the HTTP client abstraction for PHP",
+            "homepage": "http://httplug.io",
+            "keywords": [
+                "client",
+                "http"
+            ],
+            "time": "2019-12-27T10:07:11+00:00"
+        },
+        {
+            "name": "php-http/message",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/message.git",
+                "reference": "ce8f43ac1e294b54aabf5808515c3554a19c1e1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/message/zipball/ce8f43ac1e294b54aabf5808515c3554a19c1e1c",
+                "reference": "ce8f43ac1e294b54aabf5808515c3554a19c1e1c",
+                "shasum": ""
+            },
+            "require": {
+                "clue/stream-filter": "^1.4",
+                "php": "^7.1",
+                "php-http/message-factory": "^1.0.2",
+                "psr/http-message": "^1.0"
+            },
+            "provide": {
+                "php-http/message-factory-implementation": "1.0"
+            },
+            "require-dev": {
+                "akeneo/phpspec-skip-example-extension": "^1.0",
+                "coduo/phpspec-data-provider-extension": "^1.0",
+                "ext-zlib": "*",
+                "guzzlehttp/psr7": "^1.0",
+                "henrikbjorn/phpspec-code-coverage": "^1.0",
+                "phpspec/phpspec": "^2.4",
+                "slim/slim": "^3.0",
+                "zendframework/zend-diactoros": "^1.0"
+            },
+            "suggest": {
+                "ext-zlib": "Used with compressor/decompressor streams",
+                "guzzlehttp/psr7": "Used with Guzzle PSR-7 Factories",
+                "slim/slim": "Used with Slim Framework PSR-7 implementation",
+                "zendframework/zend-diactoros": "Used with Diactoros Factories"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Message\\": "src/"
+                },
+                "files": [
+                    "src/filters.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "HTTP Message related tools",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "http",
+                "message",
+                "psr-7"
+            ],
+            "time": "2019-08-05T06:55:08+00:00"
+        },
+        {
+            "name": "php-http/message-factory",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/message-factory.git",
+                "reference": "a478cb11f66a6ac48d8954216cfed9aa06a501a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/message-factory/zipball/a478cb11f66a6ac48d8954216cfed9aa06a501a1",
+                "reference": "a478cb11f66a6ac48d8954216cfed9aa06a501a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Factory interfaces for PSR-7 HTTP Message",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "stream",
+                "uri"
+            ],
+            "time": "2015-12-19T14:08:53+00:00"
+        },
+        {
+            "name": "php-http/promise",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/promise.git",
+                "reference": "dc494cdc9d7160b9a09bd5573272195242ce7980"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/promise/zipball/dc494cdc9d7160b9a09bd5573272195242ce7980",
+                "reference": "dc494cdc9d7160b9a09bd5573272195242ce7980",
+                "shasum": ""
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "^1.0",
+                "phpspec/phpspec": "^2.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Promise\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                },
+                {
+                    "name": "Joel Wurtz",
+                    "email": "joel.wurtz@gmail.com"
+                }
+            ],
+            "description": "Promise used for asynchronous HTTP requests",
+            "homepage": "http://httplug.io",
+            "keywords": [
+                "promise"
+            ],
+            "time": "2016-01-26T13:27:02+00:00"
         },
         {
             "name": "phpdocumentor/graphviz",
@@ -4946,12 +5469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "f51daaf21c9197e280e5d7729899ececd82f0070"
+                "reference": "c4cec3e5668c3da2fadc9da6e63755d25256ef6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/f51daaf21c9197e280e5d7729899ececd82f0070",
-                "reference": "f51daaf21c9197e280e5d7729899ececd82f0070",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/c4cec3e5668c3da2fadc9da6e63755d25256ef6a",
+                "reference": "c4cec3e5668c3da2fadc9da6e63755d25256ef6a",
                 "shasum": ""
             },
             "require": {
@@ -5010,7 +5533,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-03-22T14:31:04+00:00"
+            "time": "2020-03-24T14:47:14+00:00"
         },
         {
             "name": "dereuromark/cakephp-model-graph",
@@ -5672,6 +6195,7 @@
         "dereuromark/cakephp-expose": 20,
         "dereuromark/cakephp-ratings": 20,
         "dereuromark/cakephp-dto": 20,
+        "php-http/cakephp-adapter": 20,
         "dereuromark/cakephp-model-graph": 20,
         "psy/psysh": 0,
         "fig-r/psr2r-sniffer": 20,
