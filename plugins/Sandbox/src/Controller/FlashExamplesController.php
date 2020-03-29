@@ -76,4 +76,5 @@ class FlashExamplesController extends SandboxAppController {
 			return $this->redirect(['action' => 'ajax', '?' => ['now' => $now]]);
 		}
 	}
+
 }
