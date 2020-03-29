@@ -25,8 +25,7 @@ class ExamplesControllerTest extends IntegrationTestCase {
 	public function testMessages() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'messages']);
 
-		$this->assertResponseCode(200);
-		$this->assertNoRedirect();
+		$this->assertResponseCode(301);
 	}
 
 }

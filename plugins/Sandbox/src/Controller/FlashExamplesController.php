@@ -2,10 +2,23 @@
 
 namespace Sandbox\Controller;
 
+use Tools\Utility\Text;
+
 /**
- * @property \App\Model\Table\UsersTable $Users
+ * @property \Ajax\Controller\Component\AjaxComponent $Ajax
  */
 class FlashExamplesController extends SandboxAppController {
+
+	/**
+	 * @return void
+	 */
+	public function initialize(): void {
+		parent::initialize();
+
+		if (in_array($this->request->getParam('action'), ['ajaxPlugin'], true)) {
+			$this->loadComponent('Ajax.Ajax');
+		}
+	}
 
 	/**
 	 * List of all examples.
@@ -35,8 +48,32 @@ class FlashExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function ajax() {
+		// We simulate some action
+		if ($this->request->is('post')) {
+			$now = date(FORMAT_DB_DATETIME);
+			$this->Flash->transientSuccess('All right, we did it now (' . $now . ')!');
+
+			$this->set(compact('now'));
+		}
+	}
+
+	/**
+	 * Using Ajax plugin to be able to use redirects and dont re-render the page.
+	 *
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function ajaxPlugin() {
+		// We simulate some action
+		if ($this->request->is('post')) {
+			$now = date(FORMAT_DB_DATETIME);
+			$this->Flash->transientSuccess('All right, we did it now (' . $now . ')!');
+			$now = Text::slug($now);
+
+			// We can only use returns here if we use Ajax plugin to prevent the redirect.
+			return $this->redirect(['action' => 'ajax', '?' => ['now' => $now]]);
+		}
 	}
 }
