@@ -20,7 +20,8 @@
 <h3>Example with AJAX</h3>
 <ul>
 	<li><?php echo $this->Html->link('AJAX Buttons', ['action' => 'ajax']); ?></li>
-	<li><?php echo $this->Html->link('AJAX Forms', ['controller' => 'AjaxExamples', 'action' => 'form']); ?></li>
+	<li><?php echo $this->Html->link('AJAX Buttons with Ajax Plugin', ['action' => 'ajaxPlugin']); ?></li>
+	<li><?php echo $this->Html->link('AJAX Forms with Ajax Plugin', ['controller' => 'AjaxExamples', 'action' => 'form']); ?></li>
 </ul>
 
 </div>
