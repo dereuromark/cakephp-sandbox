@@ -10,14 +10,16 @@
 </p>
 
 <h3>Examples</h3>
-<?php echo $this->element('Sandbox.actions'); ?>
 
-<h3>All flash message types</h3>
-	...
+<ul>
+	<li><?php echo $this->Html->link('All flash message types', ['action' => 'messages']); ?></li>
+	<li><?php echo $this->Html->link('Ordered types', ['action' => 'messagesOrdered']); ?></li>
+</ul>
+
 
 <h3>Example with AJAX</h3>
 <ul>
-	<li><?php echo $this->Html->link('...', ['action' => 'ajax']); ?></li>
+	<li><?php echo $this->Html->link('AJAX Forms', ['controller' => 'AjaxExamples', 'action' => 'form']); ?></li>
 </ul>
 
 </div>

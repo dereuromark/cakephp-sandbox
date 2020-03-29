@@ -16,8 +16,8 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	/**
- * @return void
- */
+	 * @return void
+	 */
 	public function params() {
 	}
 
@@ -34,14 +34,10 @@ class ExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null
 	 */
 	public function messages() {
-		$this->Flash->message('An error occured somewhere - mabye', 'error');
-		$this->Flash->message('This is a warning...', 'warning');
-		$this->Flash->message('This is a second very interesting warning', 'warning');
-		$this->Flash->message('Good Job :) You did it', 'success');
-		$this->Flash->message('I am a info message for you', 'info');
+		return $this->redirect(['controller' => 'FlashExamples', 'action' => 'index'], 301);
 	}
 
 }

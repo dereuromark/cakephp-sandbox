@@ -46,7 +46,7 @@
 		"friendsofcake/search": "dev-master as 6.0",
 		"dereuromark/cakephp-data": "dev-cake4",
 		"dereuromark/cakephp-calendar": "dev-cake4",
-		"dereuromark/cakephp-flash": "dev-cake4",
+		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-cake4",
 		"cakephp/debug_kit": "^4.0.0",
 		"tecnickcom/tcpdf": "^6.2",

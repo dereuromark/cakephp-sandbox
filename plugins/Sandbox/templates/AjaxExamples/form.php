@@ -42,19 +42,22 @@ echo $this->Form->end();?>
 				type: form.attr('method'),
 				url: form.attr('action'),
 				data: form.serialize()
-			}).done(function(response) {
+			}).done(function(response, textStatus, xhr) {
+				var flash = xhr.getResponseHeader("X-Flash");
+				var messages = JSON.parse(flash);
+
 				// Flash message
-				$('.flash-messages').remove();
-				if (response._message) {
+				$('.ajax-flash-messages').remove();
+				if (messages) {
 					var flashMessages = '';
 					// Display the error
-					response._message.forEach(function(message) {
-						flashMessages += '<div class="flash-messages">';
-						if (message.type == 'error') {
-							flashMessages += '<div class="message error">' + message.message + '</div>';
+					$.each(messages, function(index, message) {
+						flashMessages += '<div class="ajax-flash-messages">';
+						if (message.type === 'error') {
+							flashMessages += '<div class="alert alert-danger">' + message.message + '</div>';
 						}
-						if (message.type == 'success') {
-							flashMessages += '<div class="message success">' + message.message + '</div>';
+						if (message.type === 'success') {
+							flashMessages += '<div class="alert alert-success">' + message.message + '</div>';
 						}
 						flashMessages += '</div>';
 					});
