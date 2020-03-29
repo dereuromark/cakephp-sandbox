@@ -6,7 +6,6 @@ use Cake\ORM\TableRegistry;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
- * @uses \Sandbox\Controller\ExamplesController
  * @uses \Sandbox\Controller\ExposeExamplesController
  */
 class ExposeExamplesControllerTest extends IntegrationTestCase {

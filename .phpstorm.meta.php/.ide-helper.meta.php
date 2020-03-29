@@ -23,7 +23,7 @@ namespace PHPSTORM_META {
 			'Expose.Superimpose' => \Expose\Controller\Component\SuperimposeComponent::class,
 			'Flash' => \Cake\Controller\Component\FlashComponent::class,
 			'FormProtection' => \Cake\Controller\Component\FormProtectionComponent::class,
-			'Paginator' => \Cake\Controller\Component\PaginatorComponent::class,
+			'Paginator' => \App\Controller\Component\PaginatorComponent::class,
 			'RequestHandler' => \Cake\Controller\Component\RequestHandlerComponent::class,
 			'Search.Search' => \Search\Controller\Component\SearchComponent::class,
 			'Security' => \Cake\Controller\Component\SecurityComponent::class,
