@@ -13,7 +13,7 @@
 
 <ul>
 	<li><?php echo $this->Html->link('All flash message types', ['action' => 'messages']); ?></li>
-	<li><?php echo $this->Html->link('Ordered types', ['action' => 'messagesOrdered']); ?></li>
+	<li><?php echo $this->Html->link('Grouped types', ['action' => 'messageGroups']); ?></li>
 </ul>
 
 
