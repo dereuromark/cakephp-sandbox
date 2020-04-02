@@ -22,6 +22,13 @@ class TwigExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+		$myText = <<<TXT
+This is a short sentence.
+
+But this is a longer one, so it needs its own paragraph. Awesome, right?
+TXT;
+
+		$this->set(compact('myText'));
 	}
 
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{{ Html.charset()|raw }}
+
+	<title>
+		{{ __('myTwigExample') }}
+		{{ this.fetch('title')|raw }}
+	</title>
+
+	{{ Html.meta('icon')|raw }}
+
+	{{ Html.script('app')|raw }}
+
+	{{ this.fetch('meta')|raw }}
+	{{ this.fetch('css')|raw }}
+	{{ this.fetch('script')|raw }}
+</head>
+<body>
+<header>
+	{{ this.fetch('header')|raw }}
+</header>
+
+{{ Flash.render()|raw }}
+
+<section>
+
+	<h1>{{ this.fetch('title')|raw }}</h1>
+
+	{{ this.fetch('content')|raw }}
+</section>
+
+<footer>
+	{{ this.fetch('footer')|raw }}
+</footer>
+</body>
+</html>

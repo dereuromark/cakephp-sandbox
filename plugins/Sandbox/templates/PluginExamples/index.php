@@ -89,6 +89,11 @@
 	<div class="col-xs-6">
 		<h3>Other plugins</h3>
 
+		<h4>TwigView plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Twig templating in CakePHP', ['controller' => 'TwigExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>CsvView plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('CSV export and CakePHP', ['controller' => 'Csv', 'action' => 'index']); ?></li>

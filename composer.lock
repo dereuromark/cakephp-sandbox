@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "805eafdbcbf6df81ea6d36f8ed269c41",
+    "content-hash": "1621b1e91009362ce5c8fdbb41c5799e",
     "packages": [
         {
             "name": "aura/intl",
@@ -920,16 +920,16 @@
         },
         {
             "name": "dereuromark/cakephp-ajax",
-            "version": "dev-cake4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ajax.git",
-                "reference": "d8c9f33c96088c1872a0109fbf0ecd35fbf13af3"
+                "reference": "34f1c7572855b1dce333e55db581ed517e79c94d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/d8c9f33c96088c1872a0109fbf0ecd35fbf13af3",
-                "reference": "d8c9f33c96088c1872a0109fbf0ecd35fbf13af3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/34f1c7572855b1dce333e55db581ed517e79c94d",
+                "reference": "34f1c7572855b1dce333e55db581ed517e79c94d",
                 "shasum": ""
             },
             "require": {
@@ -966,7 +966,7 @@
                 "plugin",
                 "view"
             ],
-            "time": "2020-03-24T18:22:53+00:00"
+            "time": "2020-03-30T00:07:21+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
