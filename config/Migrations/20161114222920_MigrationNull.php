@@ -3,22 +3,22 @@ use Migrations\AbstractMigration;
 
 class MigrationNull extends AbstractMigration
 {
-    /**
-     * Change Method.
-     *
-     * More information on this method is available here:
-     * http://docs.phinx.org/en/latest/migrations.html#the-change-method
-     * @return void
-     */
-    public function change()
-    {
-        $table = $this->table('sandbox_categories');
-        $table->changeColumn('name', 'string', [
-            'default' => null,
-            'limit' => 180,
-            'null' => false,
-        ]);
-        $table->update();
+	/**
+	 * Change Method.
+	 *
+	 * More information on this method is available here:
+	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 * @return void
+	 */
+	public function change()
+	{
+		$table = $this->table('sandbox_categories');
+		$table->changeColumn('name', 'string', [
+			'default' => null,
+			'limit' => 180,
+			'null' => false,
+		]);
+		$table->update();
 
 		$table = $this->table('sandbox_posts');
 		$table->changeColumn('title', 'string', [
@@ -38,5 +38,5 @@ class MigrationNull extends AbstractMigration
 			'null' => false,
 		]);
 		$table->update();
-    }
+	}
 }

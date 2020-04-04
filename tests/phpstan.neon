@@ -14,4 +14,4 @@ parameters:
 		- '#Call to an undefined method .+SandboxPostsTable::.+\(\).#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Access to protected property .+ServerRequest::\$data#'
-		- '#Call to an undefined method .+Email::set.+#'
+		- '#Call to an undefined method .+Mailer::set.+#'

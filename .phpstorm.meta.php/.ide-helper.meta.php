@@ -29,6 +29,8 @@ namespace PHPSTORM_META {
 			'Security' => \Cake\Controller\Component\SecurityComponent::class,
 			'Setup.Setup' => \Setup\Controller\Component\SetupComponent::class,
 			'TestHelper.Plugins' => \TestHelper\Controller\Component\PluginsComponent::class,
+			'TestHelper.TestFixtures' => \TestHelper\Controller\Component\TestFixturesComponent::class,
+			'TestHelper.TestGenerator' => \TestHelper\Controller\Component\TestGeneratorComponent::class,
 			'TestHelper.TestRunner' => \TestHelper\Controller\Component\TestRunnerComponent::class,
 			'TinyAuth.Auth' => \TinyAuth\Controller\Component\AuthComponent::class,
 			'TinyAuth.AuthUser' => \TinyAuth\Controller\Component\AuthUserComponent::class,
@@ -49,6 +51,7 @@ namespace PHPSTORM_META {
 			'BootstrapUI' => \Cake\Http\BaseApplication::class,
 			'Burzum/CakeServiceLayer' => \Cake\Http\BaseApplication::class,
 			'Cache' => \Cake\Http\BaseApplication::class,
+			'Cake/TwigView' => \Cake\Http\BaseApplication::class,
 			'CakeDto' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
 			'Captcha' => \Cake\Http\BaseApplication::class,
@@ -78,7 +81,6 @@ namespace PHPSTORM_META {
 			'TestHelper' => \Cake\Http\BaseApplication::class,
 			'TinyAuth' => \Cake\Http\BaseApplication::class,
 			'Tools' => \Cake\Http\BaseApplication::class,
-			'WyriHaximus/TwigView' => \Cake\Http\BaseApplication::class,
 		])
 	);
 
@@ -508,6 +510,7 @@ namespace PHPSTORM_META {
 		'Sandbox.ExposeExamples::action',
 		'Sandbox.FeedExamples::action',
 		'Sandbox.FeedbackExamples::action',
+		'Sandbox.FlashExamples::action',
 		'Sandbox.GeoExamples::action',
 		'Sandbox.Inflector::action',
 		'Sandbox.JqueryExamples::action',
@@ -527,11 +530,13 @@ namespace PHPSTORM_META {
 		'Sandbox.Tags::action',
 		'Sandbox.ToolsExamples::action',
 		'Sandbox.Tryouts::action',
+		'Sandbox.TwigExamples::action',
 		'Setup.Backend::action',
 		'Setup.Database::action',
 		'Setup.Setup::action',
 		'TestHelper.Plugins::action',
 		'TestHelper.TestCases::action',
+		'TestHelper.TestFixtures::action',
 		'TestHelper.TestHelper::action',
 		'Tools.ShuntRequest::action',
 		'Users::action'
@@ -547,6 +552,7 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\View\View::element(0),
 		map([
+			'Cake/TwigView.twig_panel' => \Cake\View\View::class,
 			'Data.States/search' => \Cake\View\View::class,
 			'DatabaseLog.paging' => \Cake\View\View::class,
 			'DatabaseLog.search' => \Cake\View\View::class,
@@ -584,7 +590,6 @@ namespace PHPSTORM_META {
 			'TestHelper.url' => \Cake\View\View::class,
 			'TinyAuth.auth_panel' => \Cake\View\View::class,
 			'Tools.pagination' => \Cake\View\View::class,
-			'WyriHaximus/TwigView.twig_panel' => \Cake\View\View::class,
 			'flash/default' => \Cake\View\View::class,
 			'flash/error' => \Cake\View\View::class,
 			'flash/info' => \Cake\View\View::class,
@@ -651,6 +656,39 @@ namespace PHPSTORM_META {
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
 			'Url' => \Cake\View\Helper\UrlHelper::class,
 		])
+	);
+
+	expectedArguments(
+		\Migrations\AbstractMigration::table(0),
+		0,
+		'captchas',
+		'continents',
+		'countries',
+		'currencies',
+		'database_logs',
+		'events',
+		'exposed_users',
+		'languages',
+		'queue_processes',
+		'queued_jobs',
+		'roles',
+		'sandbox_animals',
+		'sandbox_categories',
+		'sandbox_posts',
+		'sandbox_ratings',
+		'sandbox_users',
+		'social_profiles',
+		'state_machine_item_state_history',
+		'state_machine_item_states',
+		'state_machine_items',
+		'state_machine_locks',
+		'state_machine_processes',
+		'state_machine_timeouts',
+		'state_machine_transition_logs',
+		'states',
+		'tags_tagged',
+		'tags_tags',
+		'users',
 	);
 
 	override(
