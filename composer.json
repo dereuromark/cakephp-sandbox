@@ -67,7 +67,6 @@
 	},
 	"require-dev": {
 		"dereuromark/cakephp-model-graph": "dev-master",
-		"psy/psysh": "@stable",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^0.12.11",
 		"dereuromark/cakephp-ide-helper": "dev-master",
