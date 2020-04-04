@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
-use Cake\Mailer\Email;
+use Cake\Mailer\Mailer;
 use Tools\View\Helper\ObfuscateHelper;
 
 /**
@@ -121,12 +121,12 @@ class AccountController extends AppController {
 			// Validate basic email scheme and captcha input.
 			if (!$user->getErrors()) {
 				/** @var \App\Model\Entity\User|null $res */
-				$res = $this->Users->find('first', [
+				$res = $this->Users->find('all', [
 					'fields' => ['username', 'id', 'email'],
 					'conditions' => [
 						'email' => $this->request->getData('Form.login'),
 					],
-				]);
+				])->first();
 
 				// Valid user found to this email address
 				if ($res) {
@@ -141,12 +141,12 @@ class AccountController extends AppController {
 					// Send email
 					Configure::write('Email.live', true);
 
-					$email = new Email();
+					$email = new Mailer();
 					$email->setTo($res->email, $res->username);
 					$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
 					$email->setTemplate('lost_password');
 					$email->setViewVars(compact('cCode'));
-					$email->send();
+					$email->deliver();
 
 					$userEmail = h(ObfuscateHelper::hideEmail($res->email));
 

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{{ Html.charset()|raw }}
+	{{ helper_Html_charset()|raw }}
 
 	<title>
 		{{ __('myTwigExample') }}
 		{{ this.fetch('title')|raw }}
 	</title>
 
-	{{ Html.meta('icon')|raw }}
+	{{ helper_Html_meta('icon')|raw }}
 
-	{{ Html.script('app')|raw }}
+	{{ helper_Html_script('app')|raw }}
 
 	{{ this.fetch('meta')|raw }}
 	{{ this.fetch('css')|raw }}
@@ -21,7 +21,7 @@
 	{{ this.fetch('header')|raw }}
 </header>
 
-{{ Flash.render()|raw }}
+{{ helper_Flash_render()|raw }}
 
 <section>
 

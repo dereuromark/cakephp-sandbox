@@ -142,7 +142,7 @@ echo "### CLEANUP ###";
 bin/cake clear cache
 
 echo "### CACHE WARMING ###;
-bin/cake orm_cache build
+bin/cake schema_cache build
 
 echo "### DONE ###";
 bin/cake maintenance_mode deactivate</code>
