@@ -23,6 +23,10 @@ class BootstrapController extends SandboxAppController {
 
 		$helpers = [
 			'Flash' => ['className' => 'BootstrapUI.Flash'],
+			'Breadcrumbs' => ['className' => 'BootstrapUI.Breadcrumbs'],
+			'Form' => ['className' => 'BootstrapUI.Form'],
+			//'Html' => ['className' => 'BootstrapUI.Html'],
+			'Paginator' => ['className' => 'BootstrapUI.Paginator'],
 		];
 		$this->viewBuilder()->setHelpers($helpers);
 	}
@@ -32,8 +36,8 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function beforeFilter(EventInterface $event) {
-		$this->components()->unload('Flash');
-		$this->loadComponent('Flash');
+		//$this->components()->unload('Flash');
+		//$this->loadComponent('Flash');
 
 		parent::beforeFilter($event);
 	}

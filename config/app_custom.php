@@ -109,6 +109,11 @@ return [
 	],
 
 	'IdeHelper' => [
+		'plugins' => [
+			'Ratings',
+			'Tags',
+			'Meta',
+		],
 		'annotators' => [
 			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
 		],

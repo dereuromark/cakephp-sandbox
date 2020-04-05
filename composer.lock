@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65020b76d3c963e1bc9fc2da62a78f5b",
+    "content-hash": "7070e1e5624d457e44f2e99ee9bcf93d",
     "packages": [
         {
             "name": "aura/intl",
@@ -1589,6 +1589,49 @@
                 "plugin"
             ],
             "time": "2020-03-16T19:09:01+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-meta",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-meta.git",
+                "reference": "34b41b2b3c4e3fcce4546ddc02ce8814df1c2b62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-meta/zipball/34b41b2b3c4e3fcce4546ddc02ce8814df1c2b62",
+                "reference": "34b41b2b3c4e3fcce4546ddc02ce8814df1c2b62",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^4.0.0",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Meta\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Meta plugin for CakePHP",
+            "homepage": "https://github.com/dereuromark/cakephp-meta",
+            "keywords": [
+                "cakephp",
+                "canonical",
+                "meta",
+                "plugin",
+                "seo",
+                "view"
+            ],
+            "time": "2020-01-08T22:31:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -5603,12 +5646,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "8dd8df9dd2e1473ca4b747aea0faf13ad9a6f0d2"
+                "reference": "b80d75a6250264cc2122dbe491a25410067d2961"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/8dd8df9dd2e1473ca4b747aea0faf13ad9a6f0d2",
-                "reference": "8dd8df9dd2e1473ca4b747aea0faf13ad9a6f0d2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b80d75a6250264cc2122dbe491a25410067d2961",
+                "reference": "b80d75a6250264cc2122dbe491a25410067d2961",
                 "shasum": ""
             },
             "require": {
@@ -5667,7 +5710,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-04-03T17:04:38+00:00"
+            "time": "2020-04-05T00:55:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-model-graph",
@@ -6335,6 +6378,7 @@
         "dereuromark/cakephp-feed": 20,
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-queue": 20,
+        "dereuromark/cakephp-meta": 20,
         "dereuromark/cakephp-cache": 20,
         "symfony/filesystem": 0,
         "icings/menu": 20,
