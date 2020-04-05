@@ -118,12 +118,10 @@
 		</ul>
 		<?php } ?>
 
-		<?php if (false) { ?>
 		<h4>BootstrapUI plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Bootstrap and CakePHP', ['controller' => 'Bootstrap', 'action' => 'index']); ?></li>
 		</ul>
-		<?php } ?>
 
 		<h4>Search plugin</h4>
 		<ul>

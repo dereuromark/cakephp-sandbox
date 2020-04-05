@@ -51,6 +51,7 @@ class Application extends BaseApplication {
 		//$this->addPlugin('Cake/Localized');
 		//$this->addPlugin('Tags');
 		//$this->addPlugin('Ratings');
+		$this->addPlugin('BootstrapUI');
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
 		$this->addPlugin('Icings/Menu');

@@ -7,9 +7,7 @@ $description = 'CakePHP Sandbox App';
 <!DOCTYPE html>
 <html>
 <head>
-	<?php
-echo $this->Html->charset();
-?>
+<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo h($description); ?>:
 		<?php echo $this->fetch('title'); ?>

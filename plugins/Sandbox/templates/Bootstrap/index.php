@@ -8,10 +8,9 @@
 	<a href="https://github.com/FriendsOfCake/bootstrap-ui" target="_blank">[BootstrapUi Plugin]</a>
 </p>
 
-<h3>Bootstrap V3</h3>
+<p>Using boostrap v4</p>
+(Technically, this site is still using BSv3.. work in progress)
+
+<h3>Examples</h3>
 
 <?php echo $this->element('Sandbox.actions'); ?>
-
-<h3>Bootstrap V4 (experimental!)</h3>
-
-<?php echo $this->element('Sandbox.actions', ['arguments' => ['assets' => 'bootstrap-alpha']]);

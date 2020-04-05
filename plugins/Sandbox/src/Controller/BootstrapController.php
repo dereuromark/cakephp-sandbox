@@ -35,8 +35,6 @@ class BootstrapController extends SandboxAppController {
 		$this->components()->unload('Flash');
 		$this->loadComponent('Flash');
 
-		//unset($this->helpers['Flash.Flash']);
-
 		parent::beforeFilter($event);
 	}
 
@@ -54,6 +52,12 @@ class BootstrapController extends SandboxAppController {
 	 */
 	public function form() {
 		$animal = $this->Animals->newEmptyEntity();
+
+		if ($this->request->is('post')) {
+			foreach ($this->request->getData() as $field => $value) {
+				$animal->setError($field, 'A demo error');
+			}
+		}
 
 		$this->set(compact('animal'));
 	}
@@ -79,8 +83,8 @@ class BootstrapController extends SandboxAppController {
 		$animal = $this->Animals->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
-		$this->request->data['time'] = '';
-		$this->request->data['time_with_seconds'] = '';
+		$animal->time = '';
+		$animal->time_with_seconds = '';
 
 		$this->set(compact('animal'));
 	}
@@ -104,8 +108,8 @@ class BootstrapController extends SandboxAppController {
 		} else {
 			// Here we can set the form defaults, including the ones coming from DB
 
-			$this->request->data['multiple_checkboxes'] = [1, 3, 5];
-			$this->request->data['multiple_selects'] = [2, 4];
+			$animal->multiple_checkboxes = [1, 3, 5];
+			$animal->multiple_selects = [2, 4];
 		}
 
 		$this->set(compact('animal'));

@@ -3,9 +3,11 @@
 namespace Sandbox\View\Widget;
 
 use Cake\View\Form\ContextInterface;
+use Cake\View\StringTemplate;
 use Cake\View\View;
 use Cake\View\Widget\BasicWidget;
 use DateTime;
+use DateTimeInterface;
 
 /**
  * Class DateTimeWidget
@@ -23,7 +25,7 @@ class DateTimeWidget extends BasicWidget {
 	 * @param \Cake\View\StringTemplate $templates Templates list.
 	 * @param \Cake\View\View $view
 	 */
-	public function __construct($templates, View $view) {
+	public function __construct(StringTemplate $templates, View $view) {
 		parent::__construct($templates);
 
 		$this->view = $view;
@@ -68,7 +70,7 @@ class DateTimeWidget extends BasicWidget {
 			}
 		}
 
-		$value = $data['val'] ? $data['val']->format($displayFormat) : '';
+		$value = $data['val'] && ($data['val'] instanceof DateTimeInterface) ? $data['val']->format($displayFormat) : '';
 		if ($value && !empty($data['required'])) {
 			$value = new DateTime();
 		}

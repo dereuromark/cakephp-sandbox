@@ -12,11 +12,13 @@ class TwigExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->setClassName(TwigView::class);
-		$this->viewBuilder()->setLayout('Sandbox.default');
+		if ($this->request->getParam('action') !== 'index') {
+			$this->viewBuilder()->setClassName(TwigView::class);
+			$this->viewBuilder()->setLayout('Sandbox.default');
 
-		// Still needed for now?
-		$this->viewBuilder()->setHelpers(['Flash', 'Text', 'Html', 'Url']);
+			// Still needed for now?
+			$this->viewBuilder()->setHelpers(['Flash', 'Text', 'Html', 'Url']);
+		}
 	}
 
 	/**
@@ -25,6 +27,12 @@ class TwigExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function basic() {
 		$myText = <<<TXT
 This is a short sentence.
 

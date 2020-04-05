@@ -14,4 +14,4 @@ echo $this->Html->link('HTML', ['action' => 'flash', 'html'], ['class' => 'btn b
 ?>
 
 <br><br>
-<p>Note that multi (stackable) messages are only supported in CakePHP 3.1+ or using the Flash Plugin functionality.</p>
+<p>Note that multi (stackable) messages are supported, if you need more flexibility check out the <a href="https://github.com/dereuromark/cakephp-flash" target="_blank">Flash plugin</a>.</p>
