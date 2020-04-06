@@ -87,8 +87,8 @@ class BootstrapController extends SandboxAppController {
 		$animal = $this->Animals->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
-		$animal->time = '';
-		$animal->time_with_seconds = '';
+		$animal->set('time', '');
+		$animal->set('time_with_seconds', '');
 
 		$this->set(compact('animal'));
 	}
@@ -111,9 +111,8 @@ class BootstrapController extends SandboxAppController {
 
 		} else {
 			// Here we can set the form defaults, including the ones coming from DB
-
-			$animal->multiple_checkboxes = [1, 3, 5];
-			$animal->multiple_selects = [2, 4];
+			$animal->set('multiple_checkboxes', [1, 3, 5]);
+			$animal->set('multiple_selects', [2, 4]);
 		}
 
 		$this->set(compact('animal'));
