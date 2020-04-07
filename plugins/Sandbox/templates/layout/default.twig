@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	{{ helper_Html_charset()|raw }}
+	{{ helper_Html_charset() }}
 
 	<title>
 		{{ __('myTwigExample') }}
-		{{ _view.fetch('title')|raw }}
+		{{ fetch('title') }}
 	</title>
 
-	{{ helper_Html_meta('icon')|raw }}
+	{{ helper_Html_meta('icon') }}
 
-	{{ helper_Html_script('app')|raw }}
+	{{ helper_Html_script('app') }}
 
-	{{ _view.fetch('meta')|raw }}
-	{{ _view.fetch('css')|raw }}
-	{{ _view.fetch('script')|raw }}
+	{{ fetch('meta') }}
+	{{ fetch('css') }}
+	{{ fetch('script') }}
 </head>
 <body>
 <header>
-	{{ _view.fetch('header')|raw }}
+	{{ fetch('header') }}
 </header>
 
-{{ helper_Flash_render()|raw }}
+{{ helper_Flash_render() }}
 
 <section>
 
-	<h1>{{ _view.fetch('title')|raw }}</h1>
+	<h1>{{ fetch('title') }}</h1>
 
-	{{ _view.fetch('content')|raw }}
+	{{ fetch('content') }}
 </section>
 
 <footer>
-	{{ _view.fetch('footer')|raw }}
+	{{ fetch('footer') }}
 </footer>
 </body>
 </html>
