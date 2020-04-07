@@ -52,7 +52,7 @@ return [
 	'Feedback' => [
 		'stores' => [
 		],
-		'returnlink' => false,
+		'returnlink' => true,
 		'enableacceptterms' => true,
 		'enablecopybyemail' => false,
 		'termstext' => true,
