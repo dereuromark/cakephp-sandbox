@@ -92,12 +92,7 @@ class Application extends BaseApplication {
 			->add(AssetMiddleware::class)
 
 			// Handle cached files
-			->add(new CacheMiddleware([
-				'when' => function ($request, $response) {
-					/** @var \Cake\Http\ServerRequest $request */
-					return $request->is('get');
-				},
-			]))
+			->add(CacheMiddleware::class)
 
 			->add(RedirectMiddleware::class)
 
