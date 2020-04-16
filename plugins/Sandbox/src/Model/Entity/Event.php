@@ -23,6 +23,8 @@ use App\Model\Entity\Entity;
  * @method string getDescriptionOrFail()
  * @method \Cake\I18n\FrozenTime getBeginningOrFail()
  * @method \Cake\I18n\FrozenTime getEndOrFail()
+ * @property-read string|null $coordinates
+ * @method string getCoordinatesOrFail()
  */
 class Event extends Entity {
 
@@ -39,5 +41,28 @@ class Event extends Entity {
 		'*' => true,
 		'id' => false,
 	];
+
+	/**
+	 * @var string[]
+	 */
+	protected $_virtual = [
+		'coordinates',
+	];
+
+	/**
+	 * Demo to showcase virtual fields, here just lat/lng combination.
+	 *
+	 * Always make sure those are nullable, or in some rare cases
+	 * throw exception here if necessary.
+	 *
+	 * @return string|null
+	 */
+	protected function _getCoordinates(): ?string {
+		if ($this->lat === null || $this->lng === null) {
+			return null;
+		}
+
+		return $this->lat . '/' . $this->lng;
+	}
 
 }
