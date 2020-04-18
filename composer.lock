@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7696638952360066172c2b354a1eebe",
+    "content-hash": "19e496427c9caf6c3d2555ab994e2c98",
     "packages": [
         {
             "name": "aura/intl",
@@ -659,16 +659,6 @@
                 "certificate",
                 "ssl",
                 "tls"
-            ],
-            "funding": [
-                {
-                    "url": "https://packagist.com",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-04-08T08:27:21+00:00"
         },
@@ -1393,16 +1383,16 @@
         },
         {
             "name": "dereuromark/cakephp-feedback",
-            "version": "dev-cake4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-feedback.git",
-                "reference": "f7c0cd01a9e776b90a0c339dc2982a60c00398d2"
+                "reference": "c35310e53f9162c1ed567b1e649f0b2ab95ce159"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/f7c0cd01a9e776b90a0c339dc2982a60c00398d2",
-                "reference": "f7c0cd01a9e776b90a0c339dc2982a60c00398d2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-feedback/zipball/c35310e53f9162c1ed567b1e649f0b2ab95ce159",
+                "reference": "c35310e53f9162c1ed567b1e649f0b2ab95ce159",
                 "shasum": ""
             },
             "require": {
@@ -1433,7 +1423,7 @@
             ],
             "description": "Feedback or bugreport (with screenshot!) tab option in your CakePHP application. Data can be posted directly to Mantis, E-mail, Github issues, filesystem, etc.",
             "homepage": "https://github.com/dereuromark/cakephp-feedback",
-            "time": "2020-04-07T20:35:27+00:00"
+            "time": "2020-04-16T23:29:41+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -1702,12 +1692,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "cc5e19325a6f0f06eb58291458a908e244f7d63a"
+                "reference": "2e2a642a3640f6740822be20ae1bee54f12e7632"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/cc5e19325a6f0f06eb58291458a908e244f7d63a",
-                "reference": "cc5e19325a6f0f06eb58291458a908e244f7d63a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/2e2a642a3640f6740822be20ae1bee54f12e7632",
+                "reference": "2e2a642a3640f6740822be20ae1bee54f12e7632",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1743,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2020-04-16T22:25:00+00:00"
+            "time": "2020-04-16T23:19:59+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -1984,12 +1974,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "f3b11b6e3b71165a9a34809bfa32230172155e44"
+                "reference": "764a00ca3c8bb894a1ab2f6b2071cc30ad75119c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/f3b11b6e3b71165a9a34809bfa32230172155e44",
-                "reference": "f3b11b6e3b71165a9a34809bfa32230172155e44",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/764a00ca3c8bb894a1ab2f6b2071cc30ad75119c",
+                "reference": "764a00ca3c8bb894a1ab2f6b2071cc30ad75119c",
                 "shasum": ""
             },
             "require": {
@@ -2036,7 +2026,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-04-10T02:41:24+00:00"
+            "time": "2020-04-16T23:17:09+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -2996,12 +2986,6 @@
                 "autoloading",
                 "laminas",
                 "zf"
-            ],
-            "funding": [
-                {
-                    "url": "https://funding.communitybridge.org/projects/laminas-project",
-                    "type": "community_bridge"
-                }
             ],
             "time": "2020-04-03T16:01:00+00:00"
         },
@@ -4650,20 +4634,6 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -4740,20 +4710,6 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-30T11:42:42+00:00"
         },
         {
@@ -4804,20 +4760,6 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -4867,20 +4809,6 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -4938,20 +4866,6 @@
                 "ctype",
                 "polyfill",
                 "portable"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-02-27T09:26:54+00:00"
         },
@@ -5012,20 +4926,6 @@
                 "portable",
                 "shim"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-09T19:04:49+00:00"
         },
         {
@@ -5084,20 +4984,6 @@
                 "portable",
                 "shim"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-02-27T09:26:54+00:00"
         },
         {
@@ -5147,20 +5033,6 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         },
         {
@@ -5448,24 +5320,6 @@
                 "ascii",
                 "clean",
                 "php"
-            ],
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/moelleken",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/voku",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/voku",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-ascii",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-03-13T01:23:26+00:00"
         },
@@ -5918,20 +5772,6 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "funding": [
-                {
-                    "url": "https://github.com/ondrejmirtes",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/phpstan",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-22T16:51:47+00:00"
         },
         {
@@ -6130,20 +5970,6 @@
                 "debug",
                 "dump"
             ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-03-27T16:56:45+00:00"
         }
     ],
@@ -6248,6 +6074,5 @@
     "platform-dev": [],
     "platform-overrides": {
         "php": "7.2.12"
-    },
-    "plugin-api-version": "1.1.0"
+    }
 }
