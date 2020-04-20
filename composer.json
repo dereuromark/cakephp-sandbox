@@ -45,7 +45,7 @@
 		"icings/menu": "dev-master",
 		"friendsofcake/cakephp-csvview": "dev-cake-4.x",
 		"friendsofcake/search": "dev-master as 6.0",
-		"dereuromark/cakephp-data": "dev-cake4",
+		"dereuromark/cakephp-data": "dev-master",
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
@@ -92,6 +92,7 @@
 		}
 	},
 	"scripts": {
+		"post-update-cmd": "bin/cake phpstorm generate",
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
 		"migrate": [

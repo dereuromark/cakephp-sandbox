@@ -37,7 +37,7 @@ use App\Error\ErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Database\Type;
+use Cake\Database\TypeFactory;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ConsoleErrorHandler;
 use Cake\Http\ServerRequest;
@@ -171,13 +171,13 @@ FrozenTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateT
 Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 FrozenDate::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
-Type::build('time')
+TypeFactory::build('time')
 	->useImmutable()->setLocaleFormat('HH:mm:ss');
-Type::build('date')
+TypeFactory::build('date')
 	->useImmutable()->setLocaleFormat('dd.MM.YYYY');
-Type::build('datetime')
+TypeFactory::build('datetime')
 	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
-Type::build('timestamp')
+TypeFactory::build('timestamp')
 	->useImmutable();
 /*
 Type::build('time')
@@ -193,40 +193,4 @@ FrozenDate::setToStringFormat('dd.MM.YYYY');
 Date::setToStringFormat('dd.MM.YYYY');
  */
 
-/**
- * Plugins need to be loaded manually, you can either load them one by one or all of them in a single call
- * Uncomment one of the lines below, as you need. make sure you read the documentation on Plugin to use more
- * advanced ways of loading plugins
- *
- * Plugin::loadAll(); // Loads all plugins at once
- * Plugin::load('DebugKit'); //Loads a single plugin named DebugKit
- */
-/*
-Plugin::load('DebugKit', ['bootstrap' => true]);
-
-Plugin::load('Setup', ['bootstrap' => true]);
-Plugin::load('Tools', ['bootstrap' => true]);
-Plugin::load('Data', ['routes' => true]);
-Plugin::load('Setup', ['bootstrap' => true]);
-Plugin::load('Sandbox', ['routes' => true]);
-Plugin::load('AuthSandbox', ['routes' => true]);
-Plugin::load('AssetCompress', ['bootstrap' => true]);
-Plugin::load('BootstrapUI');
-Plugin::load('Search');
-Plugin::load('Geo');
-Plugin::load('Ratings');
-Plugin::load('Tags');
-Plugin::load('TinyAuth');
-Plugin::load('Queue', ['routes' => true, 'bootstrap' => true]);
-Plugin::load('Feedback', ['routes' => true, 'bootstrap' => true]);
-
-Plugin::load('CakePdf', ['routes' => true]);
-Plugin::load('Cache', ['routes' => true]);
-Plugin::load('Captcha', ['bootstrap' => true, 'routes' => true]);
-Plugin::load('DatabaseLog', ['bootstrap' => true, 'routes' => true]);
-Plugin::load('CakeDto', ['bootstrap' => true]);
-
-if (Configure::read('debug')) {
-	Plugin::load('TestHelper', ['routes' => true]);
-}
-*/
+//TypeFactory::map()...;
