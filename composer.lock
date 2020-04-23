@@ -1152,12 +1152,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "0256caed802b0b485a33420b4849f7e17f757523"
+                "reference": "bd6e240e49e994a75316e593ccd8b70001477d71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/0256caed802b0b485a33420b4849f7e17f757523",
-                "reference": "0256caed802b0b485a33420b4849f7e17f757523",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/bd6e240e49e994a75316e593ccd8b70001477d71",
+                "reference": "bd6e240e49e994a75316e593ccd8b70001477d71",
                 "shasum": ""
             },
             "require": {
@@ -1208,7 +1208,7 @@
                 "logs",
                 "plugin"
             ],
-            "time": "2020-04-10T02:40:00+00:00"
+            "time": "2020-04-23T22:16:59+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -5500,16 +5500,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper-extra.git",
-                "reference": "85605abd5861bdd8c244531198c988174a91ceb1"
+                "reference": "9def088698526076b9396933081e317923889344"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper-extra/zipball/85605abd5861bdd8c244531198c988174a91ceb1",
-                "reference": "85605abd5861bdd8c244531198c988174a91ceb1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper-extra/zipball/9def088698526076b9396933081e317923889344",
+                "reference": "9def088698526076b9396933081e317923889344",
                 "shasum": ""
             },
             "require": {
-                "dereuromark/cakephp-ide-helper": "^1.2.0",
+                "dereuromark/cakephp-ide-helper": "^1.3.0",
                 "php": ">=7.2"
             },
             "require-dev": {
@@ -5554,7 +5554,7 @@
                 "phpstorm",
                 "plugin"
             ],
-            "time": "2020-04-20T17:12:26+00:00"
+            "time": "2020-04-23T10:19:22+00:00"
         },
         {
             "name": "dereuromark/cakephp-model-graph",

@@ -94,6 +94,24 @@ return [
 		'align' => 'horizontal',
 	],
 
+	'Format' => [
+		'iconNamespaces' => [
+			'fa',
+			'glyphicon',
+		],
+		'fontPath' => ROOT . DS . 'node_modules/font-awesome/scss/_variables.scss', // For FormatIconTask
+		'fontIcons' => [
+			'see' => 'fa fa-eye',
+			'details' => 'fa fa-chevron-right',
+			'admin' => 'fa fa-shield',
+			'login' => 'fa fa-sign-in',
+			'logout' => 'fa fa-sign-out',
+			'translate' => 'fa fa-language',
+			'prev' => 'fa fa-arrow-left',
+			'next' => 'fa fa-arrow-right',
+		],
+	],
+
 	'EmailTransport' => [
 		'default' => [
 			'className' => 'Smtp',
@@ -119,6 +137,7 @@ return [
 		],
 		'generatorTasks' => [
 			\Burzum\CakeServiceLayer\Generator\Task\ServiceTask::class,
+			\IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task::class,
 		],
 		'classAnnotatorTasks' => [
 			\Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask::class,
