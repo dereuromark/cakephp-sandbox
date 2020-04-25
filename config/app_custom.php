@@ -22,7 +22,7 @@ return [
 		],
 		'404' => [
 			'className' => 'DatabaseLog.Database',
-			'type' => '404',
+			'file' => '404',
 			'levels' => ['error'],
 			'scopes' => ['404'],
 		],

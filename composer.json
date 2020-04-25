@@ -29,7 +29,7 @@
 		"dereuromark/cakephp-tools": "dev-master as 2.0.0",
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
-		"dereuromark/cakephp-captcha": "dev-cake4",
+		"dereuromark/cakephp-captcha": "dev-master",
 		"cakephp/migrations": "4.x-dev as 3.0.0",
 		"markstory/asset_compress" : "^4.0.0",
 		"natxet/cssmin": "dev-master",

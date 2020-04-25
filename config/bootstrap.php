@@ -33,7 +33,6 @@ require ROOT . DS . 'vendor' . DS . 'autoload.php';
  */
 require CORE_PATH . 'config' . DS . 'bootstrap.php';
 
-use App\Error\ErrorHandler;
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
@@ -50,6 +49,7 @@ use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Utility\Security;
+use Tools\Error\ErrorHandler;
 use Tools\Mailer\Mailer;
 
 /**

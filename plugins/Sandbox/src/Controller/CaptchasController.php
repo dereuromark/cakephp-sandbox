@@ -20,7 +20,7 @@ class CaptchasController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->setHelpers(['Captcha.Captcha']);
+		$this->viewBuilder()->setHelpers(['Captcha.Captcha' => ['ext' => 'png']]);
 	}
 
 	/**
