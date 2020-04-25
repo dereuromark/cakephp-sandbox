@@ -105,9 +105,9 @@ ini_set('intl.default_locale', 'en');
  */
 $isCli = PHP_SAPI === 'cli';
 if ($isCli) {
-	(new ConsoleErrorHandler(Configure::consume('Error')))->register();
+	(new ConsoleErrorHandler(Configure::read('Error')))->register();
 } else {
-	(new ErrorHandler(Configure::consume('Error')))->register();
+	(new ErrorHandler(Configure::read('Error')))->register();
 }
 
 // Include the CLI bootstrap overrides.
