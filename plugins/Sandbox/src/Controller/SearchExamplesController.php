@@ -6,7 +6,6 @@ use Cake\Event\EventInterface;
 
 /**
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
- * @property \Search\Controller\Component\PrgComponent $Prg
  * @property \Search\Controller\Component\SearchComponent $Search
  */
 class SearchExamplesController extends SandboxAppController {
@@ -42,7 +41,8 @@ class SearchExamplesController extends SandboxAppController {
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
 
-		$countries = $this->paginate($this->CountryRecords->find('search', ['search' => $this->request->getQuery()]));
+		$query = $this->CountryRecords->find('search', ['search' => $this->request->getQuery()]);
+		$countries = $this->paginate($query)->toArray();
 
 		$this->set(compact('countries'));
 		$this->set('_serialize', ['countries']);
