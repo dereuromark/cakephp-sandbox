@@ -75,6 +75,8 @@ namespace PHPSTORM_META {
 		argumentsSet('cacheEngines')
 	);
 
+	exitPoint(\Cake\Console\ConsoleIo::abort());
+
 	override(
 		\Cake\Controller\Controller::loadComponent(0),
 		map([
@@ -281,13 +283,6 @@ namespace PHPSTORM_META {
 		'pass',
 		'plugin',
 		'prefix'
-	);
-
-	override(
-		\Cake\Mailer\MailerAwareTrait::getMailer(0),
-		map([
-
-		])
 	);
 
 	override(
@@ -606,26 +601,103 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Cake\Routing\Router::pathUrl(),
 		0,
-		argumentsSet('paths')
+		argumentsSet('routePaths')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyArray(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyDate(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyDateTime(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyFile(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyFor(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyString(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::allowEmptyTime(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyArray(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyDate(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyDateTime(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyFile(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyString(),
+		2,
+		argumentsSet('validationWhen')
+	);
+
+	expectedArguments(
+		\Cake\Validation\Validator::notEmptyTime(),
+		2,
+		argumentsSet('validationWhen')
 	);
 
 	expectedArguments(
 		\Cake\Validation\Validator::requirePresence(),
 		1,
-		'create',
-		'update'
+		argumentsSet('validationWhen')
 	);
 
 	expectedArguments(
 		\Cake\View\Helper\HtmlHelper::linkFromPath(),
 		1,
-		argumentsSet('paths')
+		argumentsSet('routePaths')
 	);
 
 	expectedArguments(
 		\Cake\View\Helper\UrlHelper::buildFromPath(),
 		0,
-		argumentsSet('paths')
+		argumentsSet('routePaths')
 	);
 
 	expectedArguments(
@@ -1987,7 +2059,7 @@ namespace PHPSTORM_META {
 		'Could not create directory to save feedbacks in. Please provide write rights to webserver user on directory: ',
 		'Could not create directory to save screenshots in. Please provide write rights to webserver user on directory: ',
 		'Could not find that file',
-		'Could not geocode \'{0}\'',
+		'Could not geocode \'\'{0}\'\'',
 		'Could not retrieve url with \'{0}\'',
 		'Could not save tmp file for attachment in mail',
 		'Custom action',
@@ -2260,6 +2332,12 @@ namespace PHPSTORM_META {
 		'argv'
 	);
 
+	expectedArguments(
+		\urlArray(),
+		0,
+		argumentsSet('routePaths')
+	);
+
 	registerArgumentsSet(
 		'cacheEngines',
 		'_cake_core_',
@@ -2268,7 +2346,7 @@ namespace PHPSTORM_META {
 	);
 
 	registerArgumentsSet(
-		'paths',
+		'routePaths',
 		'Account::changePassword',
 		'Account::delete',
 		'Account::edit',
@@ -2620,8 +2698,7 @@ namespace PHPSTORM_META {
 		'states',
 		'tags_tagged',
 		'tags_tags',
-		'users',
-		'uuid16_test_rows'
+		'users'
 	);
 
 	registerArgumentsSet(
@@ -2654,6 +2731,12 @@ namespace PHPSTORM_META {
 		'uuid',
 		'varbinary',
 		'year'
+	);
+
+	registerArgumentsSet(
+		'validationWhen',
+		'create',
+		'update'
 	);
 
 }
