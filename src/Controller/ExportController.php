@@ -22,7 +22,7 @@ class ExportController extends AppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		//$this->loadComponent('Cache.Cache');
+		$this->loadComponent('Cache.Cache');
 	}
 
 	/**

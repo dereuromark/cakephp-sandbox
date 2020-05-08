@@ -975,12 +975,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "681d2dac106252fd9db4adde6e209fe6d9663de0"
+                "reference": "eae115289f6c14b439207fff5c69d53b3813405e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/681d2dac106252fd9db4adde6e209fe6d9663de0",
-                "reference": "681d2dac106252fd9db4adde6e209fe6d9663de0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/eae115289f6c14b439207fff5c69d53b3813405e",
+                "reference": "eae115289f6c14b439207fff5c69d53b3813405e",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1003,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2020-04-11T18:31:24+00:00"
+            "time": "2020-05-08T20:57:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-calendar",
