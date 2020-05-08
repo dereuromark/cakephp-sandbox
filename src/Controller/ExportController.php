@@ -65,7 +65,7 @@ class ExportController extends AppController {
 	 */
 	public function countries() {
 		$this->loadModel('Data.Countries');
-		$countries = $this->Countries->find('all', ['fields' => []]);
+		$countries = $this->Countries->find('all')->toArray();
 
 		$this->set(compact('countries'));
 		$this->set('_serialize', ['countries']);
@@ -78,7 +78,7 @@ class ExportController extends AppController {
 	 */
 	public function states() {
 		$this->loadModel('Data.States');
-		$states = $this->States->find('all', ['fields' => []]);
+		$states = $this->States->find('all')->toArray();
 
 		$this->set(compact('states'));
 		$this->set('_serialize', ['states']);
@@ -89,7 +89,7 @@ class ExportController extends AppController {
 	 */
 	public function currencies() {
 		$this->loadModel('Data.Currencies');
-		$currencies = $this->Currencies->find('all', ['fields' => []]);
+		$currencies = $this->Currencies->find('all')->toArray();
 
 		$this->set(compact('currencies'));
 		$this->set('_serialize', ['currencies']);
@@ -100,7 +100,7 @@ class ExportController extends AppController {
 	 */
 	public function languages() {
 		$this->loadModel('Data.Languages');
-		$languages = $this->Languages->find('all', ['fields' => []]);
+		$languages = $this->Languages->find('all')->toArray();
 
 		$this->set(compact('languages'));
 		$this->set('_serialize', ['languages']);
@@ -111,7 +111,7 @@ class ExportController extends AppController {
 	 */
 	public function continents() {
 		$this->loadModel('Data.Continents');
-		$continents = $this->Continents->find('all', ['fields' => []]);
+		$continents = $this->Continents->find('all')->toArray();
 
 		$this->set(compact('continents'));
 		$this->set('_serialize', ['continents']);
@@ -122,7 +122,7 @@ class ExportController extends AppController {
 	 */
 	public function postalCodes() {
 		$this->loadModel('Data.PostalCodes');
-		$postalCodes = $this->PostalCodes->find('all', ['fields' => []]);
+		$postalCodes = $this->PostalCodes->find('all')->toArray();
 
 		$this->set(compact('postalCodes'));
 		$this->set('_serialize', ['postalCodes']);
