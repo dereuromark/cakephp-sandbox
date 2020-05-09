@@ -112,6 +112,11 @@ return [
 		],
 	],
 
+	'CacheConfig' => [
+		'check' => null,
+		'engine' => 'default',
+	],
+
 	'EmailTransport' => [
 		'default' => [
 			'className' => 'Smtp',
