@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "2e21cccb76b15411bdad7634d0a3737d621301d9"
+                "reference": "8b696abf1c3dcae6486064fa73fb8abbca853b31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2e21cccb76b15411bdad7634d0a3737d621301d9",
-                "reference": "2e21cccb76b15411bdad7634d0a3737d621301d9",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/8b696abf1c3dcae6486064fa73fb8abbca853b31",
+                "reference": "8b696abf1c3dcae6486064fa73fb8abbca853b31",
                 "shasum": ""
             },
             "require": {
@@ -287,7 +287,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-05-08T13:52:41+00:00"
+            "time": "2020-05-10T04:07:01+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -410,12 +410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "63f3dfc4bc123c14b164fe5425c92fcd0b069bde"
+                "reference": "52751471808f60239562480ef18a5475344223ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/63f3dfc4bc123c14b164fe5425c92fcd0b069bde",
-                "reference": "63f3dfc4bc123c14b164fe5425c92fcd0b069bde",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/52751471808f60239562480ef18a5475344223ff",
+                "reference": "52751471808f60239562480ef18a5475344223ff",
                 "shasum": ""
             },
             "require": {
@@ -456,7 +456,7 @@
                 "cakephp",
                 "migrations"
             ],
-            "time": "2020-05-02T05:06:50+00:00"
+            "time": "2020-05-09T17:41:37+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -975,12 +975,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "4d398ae43bc213fc420aa79944e0c0110c247be6"
+                "reference": "1e122b2467885ad622d43b6032adf78d3bac949e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/4d398ae43bc213fc420aa79944e0c0110c247be6",
-                "reference": "4d398ae43bc213fc420aa79944e0c0110c247be6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/1e122b2467885ad622d43b6032adf78d3bac949e",
+                "reference": "1e122b2467885ad622d43b6032adf78d3bac949e",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1003,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2020-05-09T14:16:15+00:00"
+            "time": "2020-05-09T14:57:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-calendar",
@@ -5949,16 +5949,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.23",
+            "version": "0.12.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "71e529efced79e055fa8318b692e7f7d03ea4e75"
+                "reference": "823a120fea50b68742b2be2285818202ecce511e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/71e529efced79e055fa8318b692e7f7d03ea4e75",
-                "reference": "71e529efced79e055fa8318b692e7f7d03ea4e75",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/823a120fea50b68742b2be2285818202ecce511e",
+                "reference": "823a120fea50b68742b2be2285818202ecce511e",
                 "shasum": ""
             },
             "require": {
@@ -6001,7 +6001,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-05T12:55:44+00:00"
+            "time": "2020-05-10T14:25:55+00:00"
         },
         {
             "name": "psy/psysh",
