@@ -19,13 +19,11 @@ class InflectorController extends AppController {
 	];
 
 	/**
-	 * InflectorsController::show()
-	 *
 	 * @return void
 	 */
 	public function index() {
 		$results = [];
-		$string = false;
+		$string = null;
 		if ($this->request->is('post')) {
 			$string = $this->request->getData('string');
 		} elseif ($this->request->getQuery('string')) {
