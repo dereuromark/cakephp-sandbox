@@ -1,5 +1,5 @@
 # CakePHP Sandbox App
-[![Build Status](https://api.travis-ci.org/dereuromark/cakephp-sandbox.svg?branch=master)](https://travis-ci.org/dereuromark/cakephp-sandbox)
+[![Build Status](https://travis-ci.com/dereuromark/cakephp-sandbox.svg?branch=master)](https://travis-ci.com/dereuromark/cakephp-sandbox)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dereuromark/cakephp-sandbox/master.svg)](https://codecov.io/github/dereuromark/cakephp-sandbox)
 [![License](https://poser.pugx.org/dereuromark/cakephp-sandbox/license.svg)](https://packagist.org/packages/dereuromark/cakephp-sandbox)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
