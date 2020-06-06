@@ -1,4 +1,6 @@
 parameters:
+	checkMissingIterableValueType: false
+
 	autoload_files:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
