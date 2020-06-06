@@ -116,7 +116,7 @@
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/,/templates/ --extensions=php src/ tests/ config/ plugins/ webroot/",
 		"cs-fix": "phpcbf -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/config/Migrations/,/webroot/assets/,/plugins/Sandbox/src/Dto/,/templates/ --extensions=php src/ tests/ config/ plugins/ webroot/",
-		"stan": "phpstan analyse -c tests/phpstan.neon -l 5 src/ plugins/Sandbox/src plugins/AuthSandbox/src/"
+		"stan": "phpstan analyse -c tests/phpstan.neon -l 6 src/ plugins/Sandbox/src plugins/AuthSandbox/src/"
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
