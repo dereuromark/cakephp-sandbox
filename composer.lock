@@ -151,12 +151,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "4bda2f888b74efcad971c6b42e480d109c496051"
+                "reference": "3824074738919913dcaf34638ae67727bea7631f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/4bda2f888b74efcad971c6b42e480d109c496051",
-                "reference": "4bda2f888b74efcad971c6b42e480d109c496051",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/3824074738919913dcaf34638ae67727bea7631f",
+                "reference": "3824074738919913dcaf34638ae67727bea7631f",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +191,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2020-06-05T18:26:52+00:00"
+            "time": "2020-06-06T01:15:34+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "a2be9f3567a6bf9d6bcccde5f6585c7a66da2ad8"
+                "reference": "ff1ed12cd208f363323b79391d270a06a580b3ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a2be9f3567a6bf9d6bcccde5f6585c7a66da2ad8",
-                "reference": "a2be9f3567a6bf9d6bcccde5f6585c7a66da2ad8",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ff1ed12cd208f363323b79391d270a06a580b3ef",
+                "reference": "ff1ed12cd208f363323b79391d270a06a580b3ef",
                 "shasum": ""
             },
             "require": {
@@ -287,7 +287,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-06-02T20:01:54+00:00"
+            "time": "2020-06-18T08:24:40+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -346,16 +346,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "4.1.3",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "a0b70d14cd31d89d9fb0622baa781dd6b8056695"
+                "reference": "940a0214947e85bbaa0724acfda852f64831f04f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/a0b70d14cd31d89d9fb0622baa781dd6b8056695",
-                "reference": "a0b70d14cd31d89d9fb0622baa781dd6b8056695",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/940a0214947e85bbaa0724acfda852f64831f04f",
+                "reference": "940a0214947e85bbaa0724acfda852f64831f04f",
                 "shasum": ""
             },
             "require": {
@@ -402,7 +402,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2020-05-31T20:46:24+00:00"
+            "time": "2020-06-10T01:37:18+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -505,12 +505,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/twig-view.git",
-                "reference": "c5d6f038dcb326968524a6f4a1e88676130258ba"
+                "reference": "0753c95cba04e4d2f36e59153f86c3e067964b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/twig-view/zipball/c5d6f038dcb326968524a6f4a1e88676130258ba",
-                "reference": "c5d6f038dcb326968524a6f4a1e88676130258ba",
+                "url": "https://api.github.com/repos/cakephp/twig-view/zipball/0753c95cba04e4d2f36e59153f86c3e067964b2e",
+                "reference": "0753c95cba04e4d2f36e59153f86c3e067964b2e",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                 "twig",
                 "view"
             ],
-            "time": "2020-05-01T03:06:15+00:00"
+            "time": "2020-06-11T04:34:03+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -2180,16 +2180,16 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "3.0.0-beta4",
+            "version": "3.0.0-beta5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "35b83c0c36302bd8a91ce806e8103f363539fe06"
+                "reference": "a47b7fe484a2a5031b3316da16773323d7892ba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/35b83c0c36302bd8a91ce806e8103f363539fe06",
-                "reference": "35b83c0c36302bd8a91ce806e8103f363539fe06",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/a47b7fe484a2a5031b3316da16773323d7892ba8",
+                "reference": "a47b7fe484a2a5031b3316da16773323d7892ba8",
                 "shasum": ""
             },
             "require": {
@@ -2227,7 +2227,7 @@
                 "bootstrap",
                 "cakephp"
             ],
-            "time": "2020-05-28T12:10:36+00:00"
+            "time": "2020-06-17T12:53:45+00:00"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
@@ -2309,12 +2309,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "cb1566a7efcffe5b7fffe817e7bd0cbf0121ad3d"
+                "reference": "50a8c3f0be64b47a49f71d092e815a4f775687e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/cb1566a7efcffe5b7fffe817e7bd0cbf0121ad3d",
-                "reference": "cb1566a7efcffe5b7fffe817e7bd0cbf0121ad3d",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/50a8c3f0be64b47a49f71d092e815a4f775687e1",
+                "reference": "50a8c3f0be64b47a49f71d092e815a4f775687e1",
                 "shasum": ""
             },
             "require": {
@@ -2354,7 +2354,7 @@
                 "prg",
                 "search"
             ],
-            "time": "2020-04-18T17:54:29+00:00"
+            "time": "2020-06-14T17:02:50+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -2480,12 +2480,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/icings/menu.git",
-                "reference": "1ec0f3a04d72536db07f3363fe89113d99cfb1dd"
+                "reference": "6799251dfce02e68a193d434d2049fe4050889cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/icings/menu/zipball/1ec0f3a04d72536db07f3363fe89113d99cfb1dd",
-                "reference": "1ec0f3a04d72536db07f3363fe89113d99cfb1dd",
+                "url": "https://api.github.com/repos/icings/menu/zipball/6799251dfce02e68a193d434d2049fe4050889cd",
+                "reference": "6799251dfce02e68a193d434d2049fe4050889cd",
                 "shasum": ""
             },
             "require": {
@@ -2520,7 +2520,7 @@
                 "knp-menu",
                 "menu"
             ],
-            "time": "2020-04-16T19:00:29+00:00"
+            "time": "2020-06-06T10:56:12+00:00"
         },
         {
             "name": "jasny/twig-extensions",
@@ -2584,16 +2584,16 @@
         },
         {
             "name": "jbroadway/urlify",
-            "version": "1.2.1-stable",
+            "version": "1.2.2-stable",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jbroadway/urlify.git",
-                "reference": "fa8f433622c6527c7d32d505370a236f77e33941"
+                "reference": "9b227e8548f16268cef55b5eb5d659a801fa824b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jbroadway/urlify/zipball/fa8f433622c6527c7d32d505370a236f77e33941",
-                "reference": "fa8f433622c6527c7d32d505370a236f77e33941",
+                "url": "https://api.github.com/repos/jbroadway/urlify/zipball/9b227e8548f16268cef55b5eb5d659a801fa824b",
+                "reference": "9b227e8548f16268cef55b5eb5d659a801fa824b",
                 "shasum": ""
             },
             "require": {
@@ -2639,7 +2639,7 @@
                 "url",
                 "urlify"
             ],
-            "time": "2020-06-01T20:59:39+00:00"
+            "time": "2020-06-14T17:15:34+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -3518,16 +3518,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.7.4",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0"
+                "reference": "10d9019f393773345aedc0dc79e7fd678da874ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/82dbef649ccffd8e4f22e1953c3a5265992b83c0",
-                "reference": "82dbef649ccffd8e4f22e1953c3a5265992b83c0",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/10d9019f393773345aedc0dc79e7fd678da874ee",
+                "reference": "10d9019f393773345aedc0dc79e7fd678da874ee",
                 "shasum": ""
             },
             "require": {
@@ -3579,7 +3579,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-01-03T11:25:47+00:00"
+            "time": "2020-06-14T10:44:12+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -4636,7 +4636,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -4716,16 +4716,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "00bed125812716d09b163f0727ef33bb49bf3448"
+                "reference": "34ac555a3627e324b660e318daa07572e1140123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/00bed125812716d09b163f0727ef33bb49bf3448",
-                "reference": "00bed125812716d09b163f0727ef33bb49bf3448",
+                "url": "https://api.github.com/repos/symfony/console/zipball/34ac555a3627e324b660e318daa07572e1140123",
+                "reference": "34ac555a3627e324b660e318daa07572e1140123",
                 "shasum": ""
             },
             "require": {
@@ -4805,7 +4805,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-30T20:35:19+00:00"
+            "time": "2020-06-15T12:59:21+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -4869,7 +4869,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -4933,7 +4933,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -5440,7 +5440,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -5576,16 +5576,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "90c2a5103f07feb19069379f3abdcdbacc7753a9"
+                "reference": "ac70459db781108db7c6d8981dd31ce0e29e3298"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/90c2a5103f07feb19069379f3abdcdbacc7753a9",
-                "reference": "90c2a5103f07feb19069379f3abdcdbacc7753a9",
+                "url": "https://api.github.com/repos/symfony/string/zipball/ac70459db781108db7c6d8981dd31ce0e29e3298",
+                "reference": "ac70459db781108db7c6d8981dd31ce0e29e3298",
                 "shasum": ""
             },
             "require": {
@@ -5657,7 +5657,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-20T17:43:50+00:00"
+            "time": "2020-06-11T12:16:36+00:00"
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -5842,16 +5842,16 @@
         },
         {
             "name": "voku/portable-ascii",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "e7f9bd5deff09a57318f9b900ab33a05acfcf4d3"
+                "reference": "618631dc601d8eb6ea0a9fbf654ec82f066c4e97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/e7f9bd5deff09a57318f9b900ab33a05acfcf4d3",
-                "reference": "e7f9bd5deff09a57318f9b900ab33a05acfcf4d3",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/618631dc601d8eb6ea0a9fbf654ec82f066c4e97",
+                "reference": "618631dc601d8eb6ea0a9fbf654ec82f066c4e97",
                 "shasum": ""
             },
             "require": {
@@ -5904,7 +5904,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-26T06:40:44+00:00"
+            "time": "2020-06-15T23:49:30+00:00"
         },
         {
             "name": "voku/stop-words",
@@ -6389,16 +6389,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.25",
+            "version": "0.12.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "9619551d68b2d4c0d681a8df73f3c847c798ee64"
+                "reference": "9771daaf6b95c6313b908d0bcdee0afcd51f838a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9619551d68b2d4c0d681a8df73f3c847c798ee64",
-                "reference": "9619551d68b2d4c0d681a8df73f3c847c798ee64",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9771daaf6b95c6313b908d0bcdee0afcd51f838a",
+                "reference": "9771daaf6b95c6313b908d0bcdee0afcd51f838a",
                 "shasum": ""
             },
             "require": {
@@ -6441,7 +6441,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-10T20:36:16+00:00"
+            "time": "2020-06-14T14:10:59+00:00"
         },
         {
             "name": "psy/psysh",
@@ -6568,7 +6568,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
