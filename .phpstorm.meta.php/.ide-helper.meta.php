@@ -267,8 +267,22 @@ namespace PHPSTORM_META {
 		\Cake\Datasource\QueryInterface::find(0),
 		map([
 			'all' => \Cake\ORM\Query::class,
+			'calendar' => \Cake\ORM\Query::class,
+			'children' => \Cake\ORM\Query::class,
+			'cloud' => \Cake\ORM\Query::class,
+			'distance' => \Cake\ORM\Query::class,
+			'exposed' => \Cake\ORM\Query::class,
+			'exposedList' => \Cake\ORM\Query::class,
 			'list' => \Cake\ORM\Query::class,
+			'path' => \Cake\ORM\Query::class,
+			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
+			'search' => \Cake\ORM\Query::class,
+			'slugged' => \Cake\ORM\Query::class,
+			'tagged' => \Cake\ORM\Query::class,
 			'threaded' => \Cake\ORM\Query::class,
+			'treeList' => \Cake\ORM\Query::class,
+			'untagged' => \Cake\ORM\Query::class,
 		])
 	);
 
@@ -288,8 +302,22 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Association::find(0),
 		map([
 			'all' => \Cake\ORM\Query::class,
+			'calendar' => \Cake\ORM\Query::class,
+			'children' => \Cake\ORM\Query::class,
+			'cloud' => \Cake\ORM\Query::class,
+			'distance' => \Cake\ORM\Query::class,
+			'exposed' => \Cake\ORM\Query::class,
+			'exposedList' => \Cake\ORM\Query::class,
 			'list' => \Cake\ORM\Query::class,
+			'path' => \Cake\ORM\Query::class,
+			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
+			'search' => \Cake\ORM\Query::class,
+			'slugged' => \Cake\ORM\Query::class,
+			'tagged' => \Cake\ORM\Query::class,
 			'threaded' => \Cake\ORM\Query::class,
+			'treeList' => \Cake\ORM\Query::class,
+			'untagged' => \Cake\ORM\Query::class,
 		])
 	);
 
@@ -460,8 +488,22 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::find(0),
 		map([
 			'all' => \Cake\ORM\Query::class,
+			'calendar' => \Cake\ORM\Query::class,
+			'children' => \Cake\ORM\Query::class,
+			'cloud' => \Cake\ORM\Query::class,
+			'distance' => \Cake\ORM\Query::class,
+			'exposed' => \Cake\ORM\Query::class,
+			'exposedList' => \Cake\ORM\Query::class,
 			'list' => \Cake\ORM\Query::class,
+			'path' => \Cake\ORM\Query::class,
+			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
+			'search' => \Cake\ORM\Query::class,
+			'slugged' => \Cake\ORM\Query::class,
+			'tagged' => \Cake\ORM\Query::class,
 			'threaded' => \Cake\ORM\Query::class,
+			'treeList' => \Cake\ORM\Query::class,
+			'untagged' => \Cake\ORM\Query::class,
 		])
 	);
 
