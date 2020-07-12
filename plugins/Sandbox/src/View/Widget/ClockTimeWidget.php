@@ -17,12 +17,13 @@ class ClockTimeWidget extends DateTimeWidget {
 	 *
 	 * @param array $data Data to render with.
 	 * @param \Cake\View\Form\ContextInterface $context The current form context.
-	 * @return string A generated select box.
 	 * @throws \RuntimeException When option data is invalid.
+	 * @return string A generated select box.
 	 */
 	public function render(array $data, ContextInterface $context): string {
 		if (!empty($data['second'])) {
 			$data['type'] = 'time';
+
 			return parent::render($data, $context);
 		}
 

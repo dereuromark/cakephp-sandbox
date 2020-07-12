@@ -32,8 +32,8 @@ class FeedExamplesController extends SandboxAppController {
 	/**
 	 * Main RSS example.
 	 *
-	 * @return void
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return void
 	 */
 	public function feed() {
 		if ($this->getRequest()->getParam('_ext') !== 'rss') {
@@ -127,6 +127,7 @@ TXT;
 			];
 			$res[] = $v;
 		}
+
 		return $res;
 	}
 

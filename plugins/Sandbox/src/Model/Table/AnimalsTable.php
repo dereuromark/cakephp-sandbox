@@ -52,6 +52,7 @@ class AnimalsTable extends Table {
 				'allowEmpty' => false,
 				'last' => true,
 			]);
+
 		return $validator;
 	}
 
@@ -67,6 +68,7 @@ class AnimalsTable extends Table {
 			if ($name !== 'Mouse' && $name !== 'Cat') {
 				return false;
 			}
+
 			return true;
 		});
 

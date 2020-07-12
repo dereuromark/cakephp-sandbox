@@ -27,6 +27,7 @@ class ErrorHandlerMiddleware extends CoreErrorHandlerMiddleware {
 		if ($this->is404($exception, $request)) {
 			$level = LOG_ERR;
 			Log::write($level, $this->getMessage($request, $exception), ['404']);
+
 			return;
 		}
 

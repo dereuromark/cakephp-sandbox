@@ -37,6 +37,7 @@ class AccountController extends AppController {
 		$user = $this->AuthUser->user('username');
 		if (in_array($action, ['edit', 'delete']) && in_array($user, ['user', 'mod', 'admin'])) {
 			$this->Flash->warning('This user is for demo purposes and protected');
+
 			return $this->redirect($this->referer(['action' => 'index']));
 		}
 	}
@@ -81,8 +82,8 @@ class AccountController extends AppController {
 
 	/**
 	 * @param string|null $key
-	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function lostPassword($key = null) {
 		if (!Configure::read('debug')) {
@@ -106,6 +107,7 @@ class AccountController extends AppController {
 			} elseif ($token) {
 				$uid = $token->user_id;
 				$this->request->getSession()->write('Auth.Tmp.id', $uid);
+
 				return $this->redirect(['action' => 'change_password']);
 			}
 
@@ -166,8 +168,8 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function changePassword() {
 		if (!Configure::read('debug')) {
@@ -177,6 +179,7 @@ class AccountController extends AppController {
 		$uid = $this->request->getSession()->read('Auth.Tmp.id');
 		if (empty($uid)) {
 			$this->Flash->error(__('You have to find your account first and click on the link in the email you receive afterwards'));
+
 			return $this->redirect(['action' => 'lost_password']);
 		}
 		$user = $this->Users->get($uid);
@@ -228,6 +231,7 @@ class AccountController extends AppController {
 			if (!$user->getErrors()) {
 				$this->Flash->success(__('Account created'));
 				$this->Auth->setUser($user);
+
 				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
 			}
 			$this->Flash->error(__('formContainsErrors'));
@@ -273,8 +277,8 @@ class AccountController extends AppController {
 	}
 
 	/**
-	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\InternalErrorException
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);

@@ -12,7 +12,7 @@ use Cake\Event\EventInterface;
  */
 class AuthSandboxController extends AppController {
 
-	const ROLE_USER = 4;
+	public const ROLE_USER = 4;
 
 	/**
 	 * @var string
@@ -99,6 +99,7 @@ class AuthSandboxController extends AppController {
 			$user = $this->Auth->identify();
 			if ($user) {
 				$this->Auth->setUser($user);
+
 				return $this->redirect($this->Auth->redirectUrl());
 			}
 			$this->Flash->error(__('Username or password is incorrect'));

@@ -33,8 +33,8 @@ class CsvController extends SandboxAppController {
 	/**
 	 * Simple CSV
 	 *
-	 * @return void
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return void
 	 */
 	public function simple() {
 		if ($this->getRequest()->getParam('_ext') !== 'csv') {
@@ -68,6 +68,7 @@ class CsvController extends SandboxAppController {
 		foreach ($countries as $country) {
 			$country->iso2 = null;
 			$country->modified = null;
+
 			break;
 		}
 

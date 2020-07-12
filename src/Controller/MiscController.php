@@ -57,6 +57,7 @@ class MiscController extends AppController {
 		switch ($type) {
 			case '1':
 				$text = h($text);
+
 				break;
 			case '2':
 				$text = hDec($text);
@@ -64,9 +65,11 @@ class MiscController extends AppController {
 				break;
 			case '3':
 				$text = ent($text);
+
 				break;
 			case '4':
 				$text = entDec($text);
+
 				break;
 			case '5':
 				$pieces = explode(NL, $text);
@@ -74,6 +77,7 @@ class MiscController extends AppController {
 					$pieces[$key] = TB . $val;
 				}
 				$text = implode(NL, $pieces);
+
 				break;
 			case '6':
 				$pieces = explode(NL, $text);
@@ -81,8 +85,10 @@ class MiscController extends AppController {
 					$pieces[$key] = mb_substr($val, 0, 1) === TB ? mb_substr($val, 1) : $val;
 				}
 				$text = implode(NL, $pieces);
+
 				break;
 		}
+
 		return $text;
 	}
 
@@ -95,6 +101,7 @@ class MiscController extends AppController {
 		if (mb_strpos($text, '&gt;') !== false || mb_strpos($text, '&lt;') || mb_strpos($text, '&amp;') || mb_strpos($text, '&quot;')) { // || mb_strpos($text, '&#39;')
 			return 2;
 		}
+
 		return 1;
 	}
 

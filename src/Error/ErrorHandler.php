@@ -27,8 +27,10 @@ class ErrorHandler extends CoreErrorHandler {
 		if ($this->is404($exception)) {
 			$level = LOG_ERR;
 			Log::write($level, $this->_getMessage($exception), ['404']);
+
 			return false;
 		}
+
 		return parent::_logException($exception);
 	}
 

@@ -312,6 +312,7 @@ class ToolsExamplesController extends SandboxAppController {
 				case 'geo':
 				case 'market':
 					$result = str_replace([PHP_EOL, "\n"], ' ', $this->request->getData('content'));
+
 					break;
 				case 'card':
 					$result = $this->request->getData('Card');
@@ -320,9 +321,11 @@ class ToolsExamplesController extends SandboxAppController {
 					break;
 				case 'sms':
 					$result = [$this->request->getData('Sms.number'), $this->request->getData('Sms.content')];
+
 					break;
 				case 'text':
 					$result = $this->request->getData('content');
+
 					break;
 				default:
 					$result = null;

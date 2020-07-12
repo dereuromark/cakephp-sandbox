@@ -105,6 +105,7 @@ class BootstrapController extends SandboxAppController {
 			// Save form data
 			if (Configure::read('saveForReal')) {
 				$this->Flash->success('Saved and redirected');
+
 				return $this->redirect(['action' => 'formPost']);
 			}
 			$this->Flash->error('Not saved - for demo purposes');

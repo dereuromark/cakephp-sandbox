@@ -95,9 +95,8 @@ class QueueExamplesController extends SandboxAppController {
 	/**
 	 * @param int|null $id
 	 *
-	 * @return \Cake\Http\Response|null
-	 *
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return \Cake\Http\Response|null
 	 */
 	public function cancelJob($id = null) {
 		$this->request->allowMethod('post');

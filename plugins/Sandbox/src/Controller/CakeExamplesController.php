@@ -61,12 +61,15 @@ class CakeExamplesController extends SandboxAppController {
 			switch ($type) {
 				case 'hash':
 					$result = Hash::merge($array, $mergeArray);
+
 					break;
 				case 'array_merge':
 					$result = array_merge($array, $mergeArray);
+
 					break;
 				case 'array_merge_recursive':
 					$result = array_merge_recursive($array, $mergeArray);
+
 					break;
 				default:
 					throw new NotFoundException('Invalid merge type');
@@ -95,6 +98,7 @@ class CakeExamplesController extends SandboxAppController {
 			I18n::setLocale($lang);
 			$lang = locale_get_display_name($lang) . ' [' . strtoupper($lang) . ']';
 			$this->Flash->success(__('Language switched to {0}.', h($lang)), ['escape' => false]);
+
 			return $this->redirect(['action' => 'i18n']);
 		}
 	}

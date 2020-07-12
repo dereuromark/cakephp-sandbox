@@ -8,9 +8,9 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link      http://cakephp.org CakePHP(tm) Project
- * @since     3.0.0
- * @license   http://www.opensource.org/licenses/mit-license.php MIT License
+ * @link http://cakephp.org CakePHP(tm) Project
+ * @since 3.0.0
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 namespace App\Shell;
@@ -41,6 +41,7 @@ class ConsoleShell extends Shell {
 			$this->err('');
 			$this->err('<info>$ php composer.phar require --dev psy/psysh</info>');
 			$this->err('');
+
 			return static::CODE_ERROR;
 		}
 
@@ -72,6 +73,7 @@ class ConsoleShell extends Shell {
 			"\n\n" .
 			'You will need to have psysh installed for this Shell to work.'
 		);
+
 		return $parser;
 	}
 

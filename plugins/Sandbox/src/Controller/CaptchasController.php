@@ -43,6 +43,7 @@ class CaptchasController extends SandboxAppController {
 
 				// Remove again
 				$this->Animals->delete($animal);
+
 				return $this->redirect(['action' => 'index']);
 			}
 			$this->Flash->error(__('The animal could not be saved. Please, try again.'));

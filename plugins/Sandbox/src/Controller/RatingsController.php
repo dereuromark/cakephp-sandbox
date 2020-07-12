@@ -60,12 +60,14 @@ class RatingsController extends SandboxAppController {
 		$uid = $this->request->getSession()->read('Tmp.User.id');
 		if (!$id || !$uid) {
 			$this->Flash->error('No ID given. Cannot delete rating.');
+
 			return $this->redirect($this->referer(['action' => 'index']));
 		}
 
 		$this->SandboxPosts->removeRating($id, $uid);
 
 		$this->Flash->success('Rating resetted.');
+
 		return $this->redirect($this->referer(['action' => 'index']));
 	}
 

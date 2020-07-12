@@ -70,8 +70,8 @@ class CalendarController extends SandboxAppController {
 
 	/**
 	 * @param array $options
-	 * @return void
 	 * @throws \Cake\Http\Exception\InternalErrorException
+	 * @return void
 	 */
 	protected function _populateDemoData(array $options) {
 		if ($this->Events->find('calendar', $options)->count()) {
@@ -114,6 +114,7 @@ class CalendarController extends SandboxAppController {
 	protected function _getRandomWord($length = 10) {
 		$word = array_merge(range('a', 'z'), [' ']);
 		shuffle($word);
+
 		return ucwords(substr(implode($word), 0, $length));
 	}
 

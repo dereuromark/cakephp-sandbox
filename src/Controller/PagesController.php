@@ -18,9 +18,9 @@ class PagesController extends AppController {
 	/**
 	 * Displays a view
 	 *
-	 * @return \Cake\Http\Response|null|void
 	 * @throws \Cake\Http\Exception\NotFoundException If not found.
 	 * @throws \Cake\View\Exception\MissingTemplateException in debug mode.
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function display() {
 		$path = func_get_args();
@@ -45,6 +45,7 @@ class PagesController extends AppController {
 			if (Configure::read('debug')) {
 				throw $e;
 			}
+
 			throw new NotFoundException();
 		}
 	}

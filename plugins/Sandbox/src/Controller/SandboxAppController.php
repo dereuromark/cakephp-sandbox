@@ -29,6 +29,7 @@ class SandboxAppController extends AppController {
 				unset($actions[$key]);
 			}
 		}
+
 		return $actions;
 	}
 

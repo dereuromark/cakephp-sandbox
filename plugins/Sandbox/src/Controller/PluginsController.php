@@ -57,6 +57,7 @@ class PluginsController extends SandboxAppController {
 		if (!empty($engineSlug)) {
 			if (!Configure::read('debug') && $engineSlug === 'wk') {
 				$this->Flash->error('This engine does not work on this server right now, try locally');
+
 				return $this->redirect(['action' => 'cakePdf']);
 			}
 

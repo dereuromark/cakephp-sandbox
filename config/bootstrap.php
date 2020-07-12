@@ -7,10 +7,10 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @since         0.10.8
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ * @copyright Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link http://cakephp.org CakePHP(tm) Project
+ * @since 0.10.8
+ * @license http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
 /**
@@ -46,8 +46,8 @@ use Cake\I18n\FrozenTime;
 use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\TransportFactory;
-use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
+use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Tools\Error\ErrorHandler;
 use Tools\Mailer\Mailer;
@@ -146,10 +146,12 @@ Security::setSalt(Configure::consume('Security.salt'));
  */
 ServerRequest::addDetector('mobile', function ($request) {
 	$detector = new \Detection\MobileDetect();
+
 	return $detector->isMobile();
 });
 ServerRequest::addDetector('tablet', function ($request) {
 	$detector = new \Detection\MobileDetect();
+
 	return $detector->isTablet();
 });
 

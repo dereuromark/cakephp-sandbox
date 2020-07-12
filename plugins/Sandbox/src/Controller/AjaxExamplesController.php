@@ -210,8 +210,8 @@ class AjaxExamplesController extends SandboxAppController {
 	 *
 	 * This method provides the AJAX data chained_dropdowns() needs.
 	 *
-	 * @return void
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return void
 	 */
 	public function countryStates() {
 		$this->request->allowMethod('ajax');
@@ -241,6 +241,7 @@ class AjaxExamplesController extends SandboxAppController {
 			$user = $this->Users->patchEntity($user, $this->request->getData());
 			if (!$user->getErrors()) {
 				$this->Flash->success('Simulated save.');
+
 				return $this->redirect(['action' => 'form']);
 			}
 			$this->Flash->error('Form not yet valid.');
@@ -261,6 +262,7 @@ class AjaxExamplesController extends SandboxAppController {
 			if (!$this->request->is('ajax')) {
 				$this->Flash->success('Yeah, that was a normal POST and redirect (PRG).');
 			}
+
 			return $this->redirect(['action' => 'index']);
 		}
 	}
