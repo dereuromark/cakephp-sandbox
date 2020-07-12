@@ -44,8 +44,10 @@ class SandboxHelperTest extends TestCase {
 	 */
 	public function testPre() {
 		$result = $this->SandboxHelper->pre('Foo <Bar>');
-		$expected = '<pre>&#039;Foo &lt;Bar&gt;&#039;</pre>';
-		$this->assertSame($expected, $result);
+		$expected = '&#039;Foo &lt;Bar&gt;&#039;';
+		$this->assertStringStartsWith('<pre>', $result);
+		$this->assertTextContains($expected, $result);
+		$this->assertStringEndsWith('</pre>', $result);
 	}
 
 }
