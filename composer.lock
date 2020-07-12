@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14a08d394d6b9d99d11cd9c4e0ee2eb3",
+    "content-hash": "837a20510c13189a448f2bee806c9066",
     "packages": [
         {
             "name": "aura/intl",
@@ -6964,7 +6964,7 @@
             "package": "dereuromark/cakephp-ide-helper"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
         "cakephp/cakephp": 20,
@@ -6983,6 +6983,7 @@
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-queue": 20,
         "dereuromark/cakephp-meta": 20,
+        "friendsofcake/bootstrap-ui": 10,
         "dereuromark/cakephp-cache": 20,
         "symfony/filesystem": 0,
         "icings/menu": 20,

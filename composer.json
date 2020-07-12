@@ -39,7 +39,7 @@
 		"dereuromark/cakephp-ajax" : "dev-master",
 		"dereuromark/cakephp-queue": "dev-master",
 		"dereuromark/cakephp-meta": "dev-master",
-		"friendsofcake/bootstrap-ui": "^3.0",
+		"friendsofcake/bootstrap-ui": "^3.0@beta",
 		"dereuromark/cakephp-cache": "dev-master",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
@@ -122,7 +122,6 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
-	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"config": {
 		"preferred-install": "source",
