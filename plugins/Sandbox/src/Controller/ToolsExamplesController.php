@@ -2,9 +2,11 @@
 
 namespace Sandbox\Controller;
 
+use Sandbox\Model\Entity\BitmaskedRecord;
+
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
- * @property \Sandbox\Model\Table\BitmaskRecordsTable $BitmaskRecords
+ * @property \Sandbox\Model\Table\BitmaskedRecordsTable $BitmaskedRecords
  * @property \Sandbox\Model\Table\SandboxUsersTable $SandboxUsers
  * @property \App\Model\Table\UsersTable $Users
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -83,23 +85,36 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	public function _bitmasks() {
-		$flags = [
-			'1' => 'Apple',
-			'2' => 'Peach',
-			'4' => 'Banana',
-			'8' => 'Lemon',
-			'16' => 'Coconut',
-		];
-		$this->loadModel('Sandbox.BitmaskRecords');
-		$this->BitmaskRecords->behaviors()->load('Tools.Bitmasked', ['field' => 'flag', 'bits' => $flags]);
+	public function bitmasks() {
+		$this->loadModel('Sandbox.BitmaskedRecords');
 
-		$records = $this->BitmaskRecords->find('all');
-
-		if ($this->request->is('post')) {
+		$required = (bool)$this->request->getQuery('required');
+		$flags = BitmaskedRecord::flags();
+		if (!$required) {
+			$field = 'flag_optional';
+		} else {
+			$field = 'flag_required';
 		}
 
-		$this->set(compact('records', 'flags'));
+		$config = ['field' => $field, 'bits' => $flags, 'mappedField' => 'flags'];
+		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked',  $config);
+
+		$records = $this->BitmaskedRecords->find()->all()->toArray();
+		$this->autoSeed($records);
+
+		$bitmaskedRecord = $this->BitmaskedRecords->newEmptyEntity();
+		if ($this->request->is('post')) {
+			$bitmaskedRecord = $this->BitmaskedRecords->patchEntity($bitmaskedRecord, $this->request->getData());
+
+			if ($bitmaskedRecord->getErrors()) {
+				$this->Flash->error(__('Form contains errors'));
+			} else {
+				$message = 'Flag value `' . $bitmaskedRecord->$field . '` would now be stored.';
+				$this->Flash->success($message);
+			}
+		}
+
+		$this->set(compact('field', 'records', 'flags', 'bitmaskedRecord', 'required'));
 	}
 
 	/**
@@ -397,6 +412,41 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->Users->removeBehavior('Passwordable');
 
 		return $user;
+	}
+
+	/**
+	 * @param array $records
+	 *
+	 * @return void
+	 */
+	protected function autoSeed(array $records): void
+	{
+		if (!$records) {
+			$records = [];
+			$records[] = $this->BitmaskedRecords->newEntity([
+				'name' => 'Careful',
+				'flags' => [
+					BitmaskedRecord::STATUS_FLAGGED,
+				],
+			]);
+			$records[] = $this->BitmaskedRecords->newEntity([
+				'name' => 'I am promoted',
+				'flags' => [
+					BitmaskedRecord::STATUS_APPROVED,
+					BitmaskedRecord::STATUS_FEATURED,
+				],
+			]);
+			$records[] = $this->BitmaskedRecords->newEntity([
+				'name' => 'I am a bit more important',
+				'flags' => [
+					BitmaskedRecord::STATUS_APPROVED,
+					BitmaskedRecord::STATUS_FEATURED,
+					BitmaskedRecord::STATUS_IMPORTANT,
+				],
+			]);
+
+			$this->BitmaskedRecords->saveManyOrFail($records);
+		}
 	}
 
 }

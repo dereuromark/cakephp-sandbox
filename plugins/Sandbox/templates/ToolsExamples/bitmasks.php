@@ -1,57 +1,56 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array $records
- * @var array $result
+ * @var \Sandbox\Model\Entity\BitmaskedRecord[] $records
+ * @var array $flags
+ * @var \Sandbox\Model\Entity\BitmaskedRecord $bitmaskedRecord
+ * @var bool $required
+ * @var string $field
  */
 ?>
 <h2>Bitmasks</h2>
-Using the BitmaskedBehavior
+	<p>Using the BitmaskedBehavior of Tools plugin.</p>
+
+<p><?php echo $this->Html->link('Optional (nullable) field', ['?' => ['required' => false]]); ?> | <?php echo $this->Html->link('Required (not nullable) field', ['?' => ['required' => true]]); ?></p>
 
 <h3>Table</h3>
+<p>Some example records stored in DB</p>
+
 <table class="table list">
 <tr>
 	<th>Id</th>
 	<th>Name</th>
-	<th>Flag (bitmasked)</th>
+	<th>Flags raw (bitmasked)</th>
+	<th>Flags (array)</th>
 </tr>
 <?php foreach ($records as $record) { ?>
 <tr>
-	<td><?php echo h($record['BitmaskRecord']['id']); ?></td>
-	<td><?php echo h($record['BitmaskRecord']['name']); ?></td>
-	<td><?php echo pre($record['BitmaskRecord']['flag']); ?></td>
+	<td><?php echo h($record->id); ?></td>
+	<td><?php echo h($record->name); ?></td>
+	<td><?php echo h($record->$field); ?></td>
+	<td><ul><?php
+		foreach ($record->flags as $flag) {
+			echo '<li>' . $flag . ' (' . $record::flags($flag) . ')</li>';
+		} ?></ul>
+	</td>
 </tr>
 <?php } ?>
 </table>
 
-
-<h3>sss</h3>
+<h3>Demo for <?php echo $required ? 'not nullable' : 'nullable'; ?> bitmask field</h3>
 
 <div class="page form">
-<?php echo $this->Form->create();?>
+<?php echo $this->Form->create($bitmaskedRecord);?>
 	<fieldset>
  		<legend><?php echo __('Add {0}', __('Entry')); ?></legend>
 	<?php
-		echo $this->Form->control('name', []);
-		echo $this->Form->control('flag', ['type' => 'select', 'multiple' => 'checkbox']);
+		echo $this->Form->control('name');
+		echo $this->Form->control('flags', ['type' => 'select', 'multiple' => 'checkbox']);
+
+		// When using mappedField, one needs to manually include error handling
+		echo $this->Form->error($field);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit'));
 echo $this->Form->end();?>
 </div>
-
-<?php if (!empty($result)) { ?>
-<h3>Result</h3>
-<?php
-foreach ($result as $key => $value) {
-	echo pre($value['from']);
-	echo pre($value['to']);
-	echo BR;
-}
-echo '<pre>';
-foreach ($result as $key => $value) {
-	echo $value['sql'] . PHP_EOL;
-}
-echo '</pre>';
-?>
-<?php }

@@ -2,6 +2,66 @@
 // @link https://confluence.jetbrains.com/display/PhpStorm/PhpStorm+Advanced+Metadata
 namespace PHPSTORM_META {
 
+	expectedArguments(
+		\App\Model\Entity\User::get(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::getError(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::getInvalidField(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::getOriginal(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::has(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::hasValue(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::isDirty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::isEmpty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::setDirty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\User::setError(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\User')
+	);
+
 	override(
 		\Burzum\CakeServiceLayer\Service\ServiceAwareTrait::loadService(0),
 		map([
@@ -247,7 +307,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
 			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
-			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
+			'Sandbox.BitmaskedRecords' => \Sandbox\Model\Table\BitmaskedRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
 			'Sandbox.Events' => \Sandbox\Model\Table\EventsTable::class,
 			'Sandbox.ExampleRecords' => \Sandbox\Model\Table\ExampleRecordsTable::class,
@@ -321,6 +381,66 @@ namespace PHPSTORM_META {
 		])
 	);
 
+	expectedArguments(
+		\Cake\ORM\Entity::get(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::getError(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::getOriginal(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::has(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::hasValue(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::isDirty(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::isEmpty(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::setDirty(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
+	expectedArguments(
+		\Cake\ORM\Entity::setError(),
+		0,
+		argumentsSet('entityFields:Cake\ORM\Entity')
+	);
+
 	override(
 		\Cake\ORM\Locator\LocatorInterface::get(0),
 		map([
@@ -349,7 +469,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
 			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
-			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
+			'Sandbox.BitmaskedRecords' => \Sandbox\Model\Table\BitmaskedRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
 			'Sandbox.Events' => \Sandbox\Model\Table\EventsTable::class,
 			'Sandbox.ExampleRecords' => \Sandbox\Model\Table\ExampleRecordsTable::class,
@@ -424,7 +544,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Cake\ORM\Association\BelongsToMany::class,
 			'Roles' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\BelongsToMany::class,
-			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\BelongsToMany::class,
+			'Sandbox.BitmaskedRecords' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.Events' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.ExampleRecords' => \Cake\ORM\Association\BelongsToMany::class,
@@ -468,7 +588,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Cake\ORM\Association\BelongsTo::class,
 			'Roles' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\BelongsTo::class,
-			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\BelongsTo::class,
+			'Sandbox.BitmaskedRecords' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.Events' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.ExampleRecords' => \Cake\ORM\Association\BelongsTo::class,
@@ -535,7 +655,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Cake\ORM\Association\HasMany::class,
 			'Roles' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\HasMany::class,
-			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\HasMany::class,
+			'Sandbox.BitmaskedRecords' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.Events' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.ExampleRecords' => \Cake\ORM\Association\HasMany::class,
@@ -579,7 +699,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Cake\ORM\Association\HasOne::class,
 			'Roles' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.Animals' => \Cake\ORM\Association\HasOne::class,
-			'Sandbox.BitmaskRecords' => \Cake\ORM\Association\HasOne::class,
+			'Sandbox.BitmaskedRecords' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.CountryRecords' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.Events' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.ExampleRecords' => \Cake\ORM\Association\HasOne::class,
@@ -623,7 +743,7 @@ namespace PHPSTORM_META {
 			'Ratings.Ratings' => \Ratings\Model\Table\RatingsTable::class,
 			'Roles' => \App\Model\Table\RolesTable::class,
 			'Sandbox.Animals' => \Sandbox\Model\Table\AnimalsTable::class,
-			'Sandbox.BitmaskRecords' => \Sandbox\Model\Table\BitmaskRecordsTable::class,
+			'Sandbox.BitmaskedRecords' => \Sandbox\Model\Table\BitmaskedRecordsTable::class,
 			'Sandbox.CountryRecords' => \Sandbox\Model\Table\CountryRecordsTable::class,
 			'Sandbox.Events' => \Sandbox\Model\Table\EventsTable::class,
 			'Sandbox.ExampleRecords' => \Sandbox\Model\Table\ExampleRecordsTable::class,
@@ -673,9 +793,6 @@ namespace PHPSTORM_META {
 		'core.Datatypes',
 		'core.DateKeys',
 		'core.FeaturedTags',
-		'core.Groups',
-		'core.GroupsMembers',
-		'core.GroupsTranslations',
 		'core.Members',
 		'core.MenuLinkTrees',
 		'core.NumberTrees',
@@ -686,6 +803,9 @@ namespace PHPSTORM_META {
 		'core.Posts',
 		'core.Products',
 		'core.Profiles',
+		'core.Sections',
+		'core.SectionsMembers',
+		'core.SectionsTranslations',
 		'core.Sessions',
 		'core.SiteArticles',
 		'core.SiteArticlesTags',
@@ -778,6 +898,7 @@ namespace PHPSTORM_META {
 		'plugin.Ratings.Posts',
 		'plugin.Ratings.Ratings',
 		'plugin.Ratings.Users',
+		'plugin.Sandbox.BitmaskedRecords',
 		'plugin.Sandbox.Events',
 		'plugin.Sandbox.ExposedUsers',
 		'plugin.Sandbox.SandboxAnimals',
@@ -1113,6 +1234,366 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
+		\Captcha\Model\Entity\Captcha::get(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::getError(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::getOriginal(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::has(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::hasValue(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::isDirty(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::isEmpty(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::setDirty(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Captcha\Model\Entity\Captcha::setError(),
+		0,
+		argumentsSet('entityFields:Captcha\Model\Entity\Captcha')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::get(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::getError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::getOriginal(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::has(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::hasValue(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::isDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::isEmpty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::setDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Country::setError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Country')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::get(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::getError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::getOriginal(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::has(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::hasValue(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::isDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::isEmpty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::setDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Currency::setError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Currency')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::get(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::getError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::getOriginal(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::has(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::hasValue(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::isDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::isEmpty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::setDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\Language::setError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\Language')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::get(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::getError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::getOriginal(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::has(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::hasValue(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::isDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::isEmpty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::setDirty(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\Data\Model\Entity\State::setError(),
+		0,
+		argumentsSet('entityFields:Data\Model\Entity\State')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::get(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::getError(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::getInvalidField(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::getOriginal(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::has(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::hasValue(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::isDirty(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::isEmpty(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::setDirty(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
+		\DatabaseLog\Model\Entity\DatabaseLog::setError(),
+		0,
+		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog')
+	);
+
+	expectedArguments(
 		\Migrations\AbstractMigration::table(),
 		0,
 		argumentsSet('tableNames')
@@ -1173,6 +1654,126 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::get(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::getError(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::getOriginal(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::has(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::hasValue(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::isDirty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::isEmpty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::setDirty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueueProcess::setError(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueueProcess')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::get(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::getError(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::getOriginal(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::has(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::hasValue(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::isDirty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::isEmpty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::setDirty(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
+		\Queue\Model\Entity\QueuedJob::setError(),
+		0,
+		argumentsSet('entityFields:Queue\Model\Entity\QueuedJob')
+	);
+
+	expectedArguments(
 		\Queue\Model\Table\QueuedJobsTable::createJob(),
 		0,
 		'CostsExample',
@@ -1202,6 +1803,426 @@ namespace PHPSTORM_META {
 		'RetryExample',
 		'SuperExample',
 		'UniqueExample'
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\BitmaskedRecord::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\BitmaskedRecord')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Event::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Event')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\ExposedUser::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCategory::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxPost::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::get(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::getError(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::getOriginal(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::has(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::hasValue(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::isDirty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::isEmpty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::setDirty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tag::setError(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tag')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::get(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::getError(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::getOriginal(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::has(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::hasValue(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::isDirty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::isEmpty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::setDirty(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
+	);
+
+	expectedArguments(
+		\Tags\Model\Entity\Tagged::setError(),
+		0,
+		argumentsSet('entityFields:Tags\Model\Entity\Tagged')
 	);
 
 	expectedArguments(
@@ -2479,11 +3500,14 @@ namespace PHPSTORM_META {
 		\env(),
 		0,
 		'CGI_MODE',
+		'COMPOSER_BINARY',
+		'COMPOSER_ORIGINAL_INIS',
 		'CONTENT_LENGTH',
 		'CONTENT_TYPE',
 		'DOCUMENT_ROOT',
 		'DOCUMENT_URI',
 		'GATEWAY_INTERFACE',
+		'GIT_ASKPASS',
 		'HOME',
 		'HTTPS',
 		'HTTP_ACCEPT',
@@ -2512,6 +3536,7 @@ namespace PHPSTORM_META {
 		'OLDPWD',
 		'PATH',
 		'PATH_TRANSLATED',
+		'PHP_BINARY',
 		'PHP_SELF',
 		'PWD',
 		'QUERY_STRING',
@@ -2536,6 +3561,7 @@ namespace PHPSTORM_META {
 		'SSH_TTY',
 		'TERM',
 		'USER',
+		'XDEBUG_HANDLER_SETTINGS',
 		'XDG_RUNTIME_DIR',
 		'XDG_SESSION_ID',
 		'argc',
@@ -2553,6 +3579,225 @@ namespace PHPSTORM_META {
 		'_cake_core_',
 		'_cake_model_',
 		'default'
+	);
+
+	registerArgumentsSet(
+		'entityFields:App\Model\Entity\User',
+		'active',
+		'created',
+		'email',
+		'id',
+		'last_login',
+		'logins',
+		'modified',
+		'password',
+		'role_id',
+		'username'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Cake\ORM\Entity',
+		'created',
+		'email',
+		'id',
+		'modified',
+		'password',
+		'role_id',
+		'slug',
+		'username'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Captcha\Model\Entity\Captcha',
+		'created',
+		'id',
+		'image',
+		'ip',
+		'result',
+		'session_id',
+		'used'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Data\Model\Entity\Country',
+		'address_format',
+		'country_code',
+		'eu_member',
+		'id',
+		'iso2',
+		'iso3',
+		'lat',
+		'lng',
+		'modified',
+		'name',
+		'ori_name',
+		'sort',
+		'special',
+		'status',
+		'zip_length',
+		'zip_regexp'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Data\Model\Entity\Currency',
+		'active',
+		'base',
+		'code',
+		'decimal_places',
+		'id',
+		'modified',
+		'name',
+		'symbol_left',
+		'symbol_right',
+		'value'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Data\Model\Entity\Language',
+		'code',
+		'id',
+		'iso2',
+		'iso3',
+		'locale',
+		'locale_fallback',
+		'modified',
+		'name',
+		'ori_name',
+		'sort',
+		'status'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Data\Model\Entity\State',
+		'abbr',
+		'country_id',
+		'id',
+		'lat',
+		'lng',
+		'modified',
+		'name'
+	);
+
+	registerArgumentsSet(
+		'entityFields:DatabaseLog\Model\Entity\DatabaseLog',
+		'context',
+		'count',
+		'created',
+		'hostname',
+		'id',
+		'ip',
+		'message',
+		'refer',
+		'summary',
+		'type',
+		'uri',
+		'user_agent'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Queue\Model\Entity\QueueProcess',
+		'created',
+		'id',
+		'modified',
+		'pid',
+		'server',
+		'terminate',
+		'workerkey'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Queue\Model\Entity\QueuedJob',
+		'completed',
+		'created',
+		'data',
+		'failed',
+		'failure_message',
+		'fetched',
+		'id',
+		'job_group',
+		'job_type',
+		'notbefore',
+		'priority',
+		'progress',
+		'reference',
+		'status',
+		'workerkey'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\BitmaskedRecord',
+		'created',
+		'flag_optional',
+		'flag_required',
+		'id',
+		'modified',
+		'name'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\Event',
+		'beginning',
+		'description',
+		'end',
+		'id',
+		'lat',
+		'lng',
+		'location',
+		'title'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\ExposedUser',
+		'created',
+		'id',
+		'modified',
+		'name',
+		'uuid'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\SandboxCategory',
+		'created',
+		'description',
+		'id',
+		'lft',
+		'modified',
+		'name',
+		'parent_id',
+		'rght',
+		'status'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\SandboxPost',
+		'content',
+		'created',
+		'id',
+		'modified',
+		'rating_count',
+		'rating_sum',
+		'title'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Tags\Model\Entity\Tag',
+		'counter',
+		'created',
+		'id',
+		'label',
+		'modified',
+		'namespace',
+		'slug'
+	);
+
+	registerArgumentsSet(
+		'entityFields:Tags\Model\Entity\Tagged',
+		'created',
+		'fk_id',
+		'fk_model',
+		'id',
+		'modified',
+		'tag_id'
 	);
 
 	registerArgumentsSet(
@@ -2749,6 +3994,11 @@ namespace PHPSTORM_META {
 		'Sandbox.AjaxExamples::toggle',
 		'Sandbox.AssetCompressExamples::index',
 		'Sandbox.AssetCompressExamples::sass',
+		'Sandbox.BitmaskedRecords::add',
+		'Sandbox.BitmaskedRecords::delete',
+		'Sandbox.BitmaskedRecords::edit',
+		'Sandbox.BitmaskedRecords::index',
+		'Sandbox.BitmaskedRecords::view',
 		'Sandbox.Bootstrap::flash',
 		'Sandbox.Bootstrap::form',
 		'Sandbox.Bootstrap::formPost',
@@ -2832,8 +4082,8 @@ namespace PHPSTORM_META {
 		'Sandbox.Tags::index',
 		'Sandbox.Tags::search',
 		'Sandbox.Tags::select',
-		'Sandbox.ToolsExamples::_bitmasks',
 		'Sandbox.ToolsExamples::_diff',
+		'Sandbox.ToolsExamples::bitmasks',
 		'Sandbox.ToolsExamples::confirmable',
 		'Sandbox.ToolsExamples::datetime',
 		'Sandbox.ToolsExamples::formatHelper',
@@ -2881,6 +4131,7 @@ namespace PHPSTORM_META {
 
 	registerArgumentsSet(
 		'tableNames',
+		'bitmasked_records',
 		'captchas',
 		'continents',
 		'countries',
@@ -2938,6 +4189,7 @@ namespace PHPSTORM_META {
 		'text',
 		'time',
 		'timestamp',
+		'tinyinteger',
 		'uuid',
 		'varbinary',
 		'year'
