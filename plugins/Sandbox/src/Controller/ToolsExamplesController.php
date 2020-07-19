@@ -97,7 +97,7 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$config = ['field' => $field, 'bits' => $flags, 'mappedField' => 'flags'];
-		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked',  $config);
+		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
 		$records = $this->BitmaskedRecords->find()->all()->toArray();
 		$this->autoSeed($records);
@@ -419,30 +419,23 @@ class ToolsExamplesController extends SandboxAppController {
 	 *
 	 * @return void
 	 */
-	protected function autoSeed(array $records): void
-	{
+	protected function autoSeed(array $records): void {
 		if (!$records) {
 			$records = [];
 			$records[] = $this->BitmaskedRecords->newEntity([
 				'name' => 'Careful',
-				'flags' => [
-					BitmaskedRecord::STATUS_FLAGGED,
-				],
+				'flag_optional' => BitmaskedRecord::STATUS_FLAGGED,
+				'flag_required' => BitmaskedRecord::STATUS_FLAGGED,
 			]);
 			$records[] = $this->BitmaskedRecords->newEntity([
 				'name' => 'I am promoted',
-				'flags' => [
-					BitmaskedRecord::STATUS_APPROVED,
-					BitmaskedRecord::STATUS_FEATURED,
-				],
+				'flag_optional' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED,
+				'flag_required' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED,
 			]);
 			$records[] = $this->BitmaskedRecords->newEntity([
 				'name' => 'I am a bit more important',
-				'flags' => [
-					BitmaskedRecord::STATUS_APPROVED,
-					BitmaskedRecord::STATUS_FEATURED,
-					BitmaskedRecord::STATUS_IMPORTANT,
-				],
+				'flag_optional' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT,
+				'flag_required' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT,
 			]);
 
 			$this->BitmaskedRecords->saveManyOrFail($records);

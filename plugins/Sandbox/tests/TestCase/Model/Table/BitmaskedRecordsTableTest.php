@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Sandbox\Test\TestCase\Model\Table;
 
@@ -9,55 +9,53 @@ use Sandbox\Model\Table\BitmaskedRecordsTable;
 /**
  * Sandbox\Model\Table\BitmaskedRecordsTable Test Case
  */
-class BitmaskedRecordsTableTest extends TestCase
-{
-    /**
-     * Test subject
-     *
-     * @var \Sandbox\Model\Table\BitmaskedRecordsTable
-     */
-    protected $BitmaskedRecords;
+class BitmaskedRecordsTableTest extends TestCase {
 
-    /**
-     * Fixtures
-     *
-     * @var array
-     */
-    protected $fixtures = [
-        'plugin.Sandbox.BitmaskedRecords',
-    ];
+	/**
+	 * Test subject
+	 *
+	 * @var \Sandbox\Model\Table\BitmaskedRecordsTable
+	 */
+	protected $BitmaskedRecords;
 
-    /**
-     * setUp method
-     *
-     * @return void
-     */
-    public function setUp(): void
-    {
-        parent::setUp();
-        $config = $this->getTableLocator()->exists('BitmaskedRecords') ? [] : ['className' => BitmaskedRecordsTable::class];
-        $this->BitmaskedRecords = $this->getTableLocator()->get('BitmaskedRecords', $config);
-    }
+	/**
+	 * Fixtures
+	 *
+	 * @var array
+	 */
+	protected $fixtures = [
+		'plugin.Sandbox.BitmaskedRecords',
+	];
 
-    /**
-     * tearDown method
-     *
-     * @return void
-     */
-    public function tearDown(): void
-    {
-        unset($this->BitmaskedRecords);
+	/**
+	 * setUp method
+	 *
+	 * @return void
+	 */
+	public function setUp(): void {
+		parent::setUp();
+		$config = $this->getTableLocator()->exists('BitmaskedRecords') ? [] : ['className' => BitmaskedRecordsTable::class];
+		$this->BitmaskedRecords = $this->getTableLocator()->get('BitmaskedRecords', $config);
+	}
 
-        parent::tearDown();
-    }
+	/**
+	 * tearDown method
+	 *
+	 * @return void
+	 */
+	public function tearDown(): void {
+		unset($this->BitmaskedRecords);
 
-    /**
-     * Test validationDefault method
-     *
-     * @return void
-     */
-    public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
+		parent::tearDown();
+	}
+
+	/**
+	 * Test validationDefault method
+	 *
+	 * @return void
+	 */
+	public function testValidationDefault(): void {
+		$this->markTestIncomplete('Not implemented yet.');
+	}
+
 }

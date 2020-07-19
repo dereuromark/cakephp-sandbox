@@ -1,10 +1,8 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Sandbox\Model\Table;
 
-use Cake\ORM\Query;
-use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -27,51 +25,50 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class BitmaskedRecordsTable extends Table
-{
-    /**
-     * Initialize method
-     *
-     * @param array $config The configuration for the Table.
-     * @return void
-     */
-    public function initialize(array $config): void
-    {
-        parent::initialize($config);
+class BitmaskedRecordsTable extends Table {
 
-        $this->setTable('bitmasked_records');
-        $this->setDisplayField('name');
-        $this->setPrimaryKey('id');
+	/**
+	 * Initialize method
+	 *
+	 * @param array $config The configuration for the Table.
+	 * @return void
+	 */
+	public function initialize(array $config): void {
+		parent::initialize($config);
 
-        $this->addBehavior('Timestamp');
-    }
+		$this->setTable('bitmasked_records');
+		$this->setDisplayField('name');
+		$this->setPrimaryKey('id');
 
-    /**
-     * Default validation rules.
-     *
-     * @param \Cake\Validation\Validator $validator Validator instance.
-     * @return \Cake\Validation\Validator
-     */
-    public function validationDefault(Validator $validator): Validator
-    {
-        $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
+		$this->addBehavior('Timestamp');
+	}
 
-        $validator
-            ->scalar('name')
-            ->maxLength('name', 100)
-            ->requirePresence('name', 'create')
-            ->notEmptyString('name');
+	/**
+	 * Default validation rules.
+	 *
+	 * @param \Cake\Validation\Validator $validator Validator instance.
+	 * @return \Cake\Validation\Validator
+	 */
+	public function validationDefault(Validator $validator): Validator {
+		$validator
+			->integer('id')
+			->allowEmptyString('id', null, 'create');
 
-        $validator
-            ->integer('flag_optional')
-            ->allowEmptyString('flag_optional');
+		$validator
+			->scalar('name')
+			->maxLength('name', 100)
+			->requirePresence('name', 'create')
+			->notEmptyString('name');
 
-        $validator
-            ->integer('flag_required')
-            ->notEmptyString('flag_required');
+		$validator
+			->integer('flag_optional')
+			->allowEmptyString('flag_optional');
 
-        return $validator;
-    }
+		$validator
+			->integer('flag_required')
+			->notEmptyString('flag_required');
+
+		return $validator;
+	}
+
 }

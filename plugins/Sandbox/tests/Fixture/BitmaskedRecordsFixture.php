@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Sandbox\Test\Fixture;
 
@@ -8,13 +8,13 @@ use Cake\TestSuite\Fixture\TestFixture;
 /**
  * BitmaskedRecordsFixture
  */
-class BitmaskedRecordsFixture extends TestFixture
-{
-    /**
-     * Fields
-     *
-     * @var array
-     */
+class BitmaskedRecordsFixture extends TestFixture {
+
+	/**
+	 * Fields
+	 *
+	 * @var array
+	 */
     // phpcs:disable
     public $fields = [
         'id' => ['type' => 'integer', 'length' => null, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
@@ -32,23 +32,23 @@ class BitmaskedRecordsFixture extends TestFixture
         ],
     ];
     // phpcs:enable
-    /**
-     * Init method
-     *
-     * @return void
-     */
-    public function init(): void
-    {
-        $this->records = [
-            [
-                'id' => 1,
-                'name' => 'Lorem ipsum dolor sit amet',
-                'flag_optional' => 1,
-                'flag_required' => 1,
-                'created' => '2020-07-08 11:01:34',
-                'modified' => '2020-07-08 11:01:34',
-            ],
-        ];
-        parent::init();
-    }
+	/**
+	 * Init method
+	 *
+	 * @return void
+	 */
+	public function init(): void {
+		$this->records = [
+			[
+				'id' => 1,
+				'name' => 'Lorem ipsum dolor sit amet',
+				'flag_optional' => 1,
+				'flag_required' => 1,
+				'created' => '2020-07-08 11:01:34',
+				'modified' => '2020-07-08 11:01:34',
+			],
+		];
+		parent::init();
+	}
+
 }
