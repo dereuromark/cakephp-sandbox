@@ -10,10 +10,13 @@
 
 <div style="float: right">
 	<p>The database field type is <code>binary</code> with a length of 16 (byte).</p>
-	<p>UUID shortening enabled: <?php echo $this->Format->yesNo($this->request->getSession()->read('Expose.short'))?></p>
+	<p>
+		UUID shortening enabled: <?php echo $this->Format->yesNo($this->request->getSession()->read('Expose.short'))?>
+		<?php echo $this->request->getSession()->read('Expose.short') ? '(display with char length of 22)' : '(display with char length of 36)'; ?>
+	</p>
 	<p>You can switch the database Type class used here:</p>
-	<?php echo $this->Html->link('BinaryUuid', ['?' => ['short' => false]], ['class' => 'btn btn-default']); ?>
-	<?php echo $this->Html->link('ShortUuid', ['?' => ['short' => true]], ['class' => 'btn btn-primary']); ?>
+	<?php echo $this->Html->link('BinaryUuid (char 36)', ['?' => ['short' => false]], ['class' => 'btn btn-default']); ?>
+	<?php echo $this->Html->link('ShortUuid (char 22)', ['?' => ['short' => true]], ['class' => 'btn btn-primary']); ?>
 </div>
 
 
