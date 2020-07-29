@@ -57,5 +57,10 @@ foreach ($posts as $post):
 <?php echo $this->element('Tools.pagination'); ?>
 
 	<p>Note the "- all without any tag -" filter using the <code>find('untagged')</code> finder.</p>
+	<p>
+		You can also try or/and tag filtering:
+		<?php echo $this->Html->link('Motivating or Detailed', ['?' => ['tag'=> 'motivating,detailed'] + $this->request->getQuery()]); ?>,
+		<?php echo $this->Html->link('Motivating and Detailed', ['?' => ['tag'=> 'motivating+detailed'] + $this->request->getQuery()]); ?>
+	</p>
 
 </div>
