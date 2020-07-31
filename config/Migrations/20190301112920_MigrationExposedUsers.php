@@ -20,8 +20,7 @@ class MigrationExposedUsers extends AbstractMigration
 		]);
 
 		// This is the field the plugin needs per entity to work
-		$table->addColumn('uuid', 'binary', [
-			'limit' => 16,
+		$table->addColumn('uuid', 'binaryuuid', [
 			'default' => null,
 			'null' => false, // Add it as true for existing entities first, then fill/populate, then set to false afterwards.
 		]);
