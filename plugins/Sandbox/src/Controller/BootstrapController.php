@@ -140,4 +140,13 @@ class BootstrapController extends SandboxAppController {
 		}
 	}
 
+	/**
+	 * Show post links
+	 *
+	 * @param string|null $type
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function postLink($type = null) {
+	}
+
 }
