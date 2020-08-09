@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "6d6bc34529c27f0d552956fa0c0523a023b9c534"
+                "reference": "94ab7ac1b1e82a48bfec6c01b8ce603b01cb76a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/6d6bc34529c27f0d552956fa0c0523a023b9c534",
-                "reference": "6d6bc34529c27f0d552956fa0c0523a023b9c534",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/94ab7ac1b1e82a48bfec6c01b8ce603b01cb76a0",
+                "reference": "94ab7ac1b1e82a48bfec6c01b8ce603b01cb76a0",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-08-04T05:00:58+00:00"
+            "time": "2020-08-09T01:12:00+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1143,12 +1143,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "4e8ec73adb7891d7ab989e40c39907db3e788b9f"
+                "reference": "5da8860644dbb60529e55f882eda1127332ada9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/4e8ec73adb7891d7ab989e40c39907db3e788b9f",
-                "reference": "4e8ec73adb7891d7ab989e40c39907db3e788b9f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/5da8860644dbb60529e55f882eda1127332ada9d",
+                "reference": "5da8860644dbb60529e55f882eda1127332ada9d",
                 "shasum": ""
             },
             "require": {
@@ -1189,7 +1189,7 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2020-06-29T09:35:19+00:00"
+            "time": "2020-08-06T11:00:21+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1525,12 +1525,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "032217eb986a5827cc13e0313e12c7658526a3f0"
+                "reference": "c2ec2576aa303cf5e1ddc275fd488b457cdf7978"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/032217eb986a5827cc13e0313e12c7658526a3f0",
-                "reference": "032217eb986a5827cc13e0313e12c7658526a3f0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/c2ec2576aa303cf5e1ddc275fd488b457cdf7978",
+                "reference": "c2ec2576aa303cf5e1ddc275fd488b457cdf7978",
                 "shasum": ""
             },
             "require": {
@@ -1575,7 +1575,7 @@
                 "maps",
                 "plugin"
             ],
-            "time": "2020-06-28T12:07:31+00:00"
+            "time": "2020-08-06T11:02:19+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -1631,12 +1631,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-meta.git",
-                "reference": "35a9c7a3e13a91cb525992c6d3c8a417e03a3c64"
+                "reference": "cbfc70db48b97a411974cde2840a046c041654d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-meta/zipball/35a9c7a3e13a91cb525992c6d3c8a417e03a3c64",
-                "reference": "35a9c7a3e13a91cb525992c6d3c8a417e03a3c64",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-meta/zipball/cbfc70db48b97a411974cde2840a046c041654d0",
+                "reference": "cbfc70db48b97a411974cde2840a046c041654d0",
                 "shasum": ""
             },
             "require": {
@@ -1666,7 +1666,7 @@
                 "seo",
                 "view"
             ],
-            "time": "2020-06-28T12:24:07+00:00"
+            "time": "2020-08-07T13:19:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -1674,12 +1674,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "d31e2616a986f1b10320c7927916dc14de67ec86"
+                "reference": "41feb01a33e4cec64e9611c9dfb04af280a2b024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/d31e2616a986f1b10320c7927916dc14de67ec86",
-                "reference": "d31e2616a986f1b10320c7927916dc14de67ec86",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/41feb01a33e4cec64e9611c9dfb04af280a2b024",
+                "reference": "41feb01a33e4cec64e9611c9dfb04af280a2b024",
                 "shasum": ""
             },
             "require": {
@@ -1728,7 +1728,7 @@
                 "deferred tasks",
                 "queue"
             ],
-            "time": "2020-07-19T14:15:57+00:00"
+            "time": "2020-08-06T11:00:20+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -1736,12 +1736,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "3fa0fcaeac49219f85c3d738d53c27681795929a"
+                "reference": "3c5280d178b97658077975f15b064b18fe52a79e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/3fa0fcaeac49219f85c3d738d53c27681795929a",
-                "reference": "3fa0fcaeac49219f85c3d738d53c27681795929a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/3c5280d178b97658077975f15b064b18fe52a79e",
+                "reference": "3c5280d178b97658077975f15b064b18fe52a79e",
                 "shasum": ""
             },
             "require": {
@@ -1787,7 +1787,7 @@
                 "plugin",
                 "ratings"
             ],
-            "time": "2020-06-28T12:46:07+00:00"
+            "time": "2020-08-09T09:44:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -1795,12 +1795,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "b0c169e1cc7459ec9ffbcfaf6c2c4d12ed6eb74d"
+                "reference": "36db4b1947129161ac2638b6a4cc6f73f9a705d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/b0c169e1cc7459ec9ffbcfaf6c2c4d12ed6eb74d",
-                "reference": "b0c169e1cc7459ec9ffbcfaf6c2c4d12ed6eb74d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/36db4b1947129161ac2638b6a4cc6f73f9a705d5",
+                "reference": "36db4b1947129161ac2638b6a4cc6f73f9a705d5",
                 "shasum": ""
             },
             "require": {
@@ -1841,7 +1841,7 @@
                 "setup",
                 "templates"
             ],
-            "time": "2020-06-28T13:09:18+00:00"
+            "time": "2020-08-09T09:44:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -1849,12 +1849,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "f1edd815bb7e103cd1ffff8ab92d462b38be1c0e"
+                "reference": "ccb8d3fc5e459d5ac2839fead2d69a86f3f4c852"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/f1edd815bb7e103cd1ffff8ab92d462b38be1c0e",
-                "reference": "f1edd815bb7e103cd1ffff8ab92d462b38be1c0e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/ccb8d3fc5e459d5ac2839fead2d69a86f3f4c852",
+                "reference": "ccb8d3fc5e459d5ac2839fead2d69a86f3f4c852",
                 "shasum": ""
             },
             "require": {
@@ -1891,7 +1891,7 @@
                 "plugin",
                 "shim"
             ],
-            "time": "2020-07-12T14:07:21+00:00"
+            "time": "2020-08-09T09:43:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -1964,12 +1964,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "f502ae46f2fd1726350b4f26f08d4703e2fc2ae1"
+                "reference": "7e78359548be696dc8888d1af802cd3990676ab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/f502ae46f2fd1726350b4f26f08d4703e2fc2ae1",
-                "reference": "f502ae46f2fd1726350b4f26f08d4703e2fc2ae1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/7e78359548be696dc8888d1af802cd3990676ab9",
+                "reference": "7e78359548be696dc8888d1af802cd3990676ab9",
                 "shasum": ""
             },
             "require": {
@@ -2011,7 +2011,7 @@
                 "roles",
                 "tinyauth"
             ],
-            "time": "2020-06-28T12:52:30+00:00"
+            "time": "2020-08-06T11:35:04+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -2019,12 +2019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "50d64f7aa98c1ea1e38668a66b5c16e9d6d7355b"
+                "reference": "ea411a14ff3944665e02d136260994b5850437e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/50d64f7aa98c1ea1e38668a66b5c16e9d6d7355b",
-                "reference": "50d64f7aa98c1ea1e38668a66b5c16e9d6d7355b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/ea411a14ff3944665e02d136260994b5850437e4",
+                "reference": "ea411a14ff3944665e02d136260994b5850437e4",
                 "shasum": ""
             },
             "require": {
@@ -2071,7 +2071,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-07-19T13:43:42+00:00"
+            "time": "2020-08-09T09:44:50+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -2255,12 +2255,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/cakephp-csvview.git",
-                "reference": "6253f8987f4f55974048be7b14c3e5101ab9ac7b"
+                "reference": "63bdf30a1beac7e7077cbc43ace9ad373af4826b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/6253f8987f4f55974048be7b14c3e5101ab9ac7b",
-                "reference": "6253f8987f4f55974048be7b14c3e5101ab9ac7b",
+                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/63bdf30a1beac7e7077cbc43ace9ad373af4826b",
+                "reference": "63bdf30a1beac7e7077cbc43ace9ad373af4826b",
                 "shasum": ""
             },
             "require": {
@@ -2321,7 +2321,7 @@
                 "export",
                 "view"
             ],
-            "time": "2020-05-16T05:59:10+00:00"
+            "time": "2020-08-06T14:25:17+00:00"
         },
         {
             "name": "friendsofcake/search",
@@ -4283,16 +4283,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "ce3c5618d1da3a3e9796dc97ce31c1b97a77c07d"
+                "reference": "dd6607115169b1f5cf6e8307d1eadc97723cdd7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/ce3c5618d1da3a3e9796dc97ce31c1b97a77c07d",
-                "reference": "ce3c5618d1da3a3e9796dc97ce31c1b97a77c07d",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/dd6607115169b1f5cf6e8307d1eadc97723cdd7e",
+                "reference": "dd6607115169b1f5cf6e8307d1eadc97723cdd7e",
                 "shasum": ""
             },
             "require": {
-                "cakephp/collection": "^4.0",
                 "cakephp/database": "^4.0",
                 "php": ">=7.2",
                 "psr/container": "^1.0",
@@ -4358,7 +4357,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2020-08-04T03:37:07+00:00"
+            "time": "2020-08-07T08:42:42+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -5781,16 +5780,16 @@
         },
         {
             "name": "twig/markdown-extra",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/markdown-extra.git",
-                "reference": "32db423d2d359bd46591a3a8ac0cdc5935a394fc"
+                "reference": "1fe798d559665b64bda4b08eda10793427d7e3bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/markdown-extra/zipball/32db423d2d359bd46591a3a8ac0cdc5935a394fc",
-                "reference": "32db423d2d359bd46591a3a8ac0cdc5935a394fc",
+                "url": "https://api.github.com/repos/twigphp/markdown-extra/zipball/1fe798d559665b64bda4b08eda10793427d7e3bc",
+                "reference": "1fe798d559665b64bda4b08eda10793427d7e3bc",
                 "shasum": ""
             },
             "require": {
@@ -5836,18 +5835,6 @@
             ],
             "funding": [
                 {
-                    "url": "https://certification.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://live.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://symfony.com/cloud/",
-                    "type": "custom"
-                },
-                {
                     "url": "https://github.com/fabpot",
                     "type": "github"
                 },
@@ -5856,20 +5843,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-21T09:56:39+00:00"
+            "time": "2020-08-05T14:54:08+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "582bdbdc173027ebfba3c93dc750a40b8f9ebc02"
+                "reference": "9b76b1535483cdf4edf01bb787b0217b62bd68a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/582bdbdc173027ebfba3c93dc750a40b8f9ebc02",
-                "reference": "582bdbdc173027ebfba3c93dc750a40b8f9ebc02",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/9b76b1535483cdf4edf01bb787b0217b62bd68a5",
+                "reference": "9b76b1535483cdf4edf01bb787b0217b62bd68a5",
                 "shasum": ""
             },
             "require": {
@@ -5920,18 +5907,6 @@
             ],
             "funding": [
                 {
-                    "url": "https://certification.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://live.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://symfony.com/cloud/",
-                    "type": "custom"
-                },
-                {
                     "url": "https://github.com/fabpot",
                     "type": "github"
                 },
@@ -5940,7 +5915,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-05T13:18:14+00:00"
+            "time": "2020-08-05T15:13:19+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -6122,12 +6097,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "6079a5dbb240a7724bf3d3a30f19639548bdcebd"
+                "reference": "923a3ef71bd7751ae6df8beaac3789d784812965"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/6079a5dbb240a7724bf3d3a30f19639548bdcebd",
-                "reference": "6079a5dbb240a7724bf3d3a30f19639548bdcebd",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/923a3ef71bd7751ae6df8beaac3789d784812965",
+                "reference": "923a3ef71bd7751ae6df8beaac3789d784812965",
                 "shasum": ""
             },
             "require": {
@@ -6188,7 +6163,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-26T19:02:40+00:00"
+            "time": "2020-08-07T14:05:35+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -6548,16 +6523,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.35",
+            "version": "0.12.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "5230eb31d546e4df7aa725894d17436cb8afd5df"
+                "reference": "eaeff985e395ff4e7aebf3251a43fca6c9be1af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5230eb31d546e4df7aa725894d17436cb8afd5df",
-                "reference": "5230eb31d546e4df7aa725894d17436cb8afd5df",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/eaeff985e395ff4e7aebf3251a43fca6c9be1af3",
+                "reference": "eaeff985e395ff4e7aebf3251a43fca6c9be1af3",
                 "shasum": ""
             },
             "require": {
@@ -6600,7 +6575,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-04T09:48:39+00:00"
+            "time": "2020-08-05T09:29:40+00:00"
         },
         {
             "name": "psy/psysh",
