@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76921d02d91b7699d603b7d4039d3374",
+    "content-hash": "3f7de544fc9d3145df9163b795cc7538",
     "packages": [
         {
             "name": "aura/intl",
@@ -199,12 +199,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "1047294498f345179c5457ae60cde6aa70f329a0"
+                "reference": "bf9299fa98f129841166986f070016bc098b4006"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1047294498f345179c5457ae60cde6aa70f329a0",
-                "reference": "1047294498f345179c5457ae60cde6aa70f329a0",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bf9299fa98f129841166986f070016bc098b4006",
+                "reference": "bf9299fa98f129841166986f070016bc098b4006",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-08-13T01:30:32+00:00"
+            "time": "2020-08-15T00:17:43+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2019,12 +2019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "dbf2571799f5fd8e8dfd6d937071fd1e7eac0308"
+                "reference": "ddc4ffff8c68cba3c14e70fd8a27149253f6caea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/dbf2571799f5fd8e8dfd6d937071fd1e7eac0308",
-                "reference": "dbf2571799f5fd8e8dfd6d937071fd1e7eac0308",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/ddc4ffff8c68cba3c14e70fd8a27149253f6caea",
+                "reference": "ddc4ffff8c68cba3c14e70fd8a27149253f6caea",
                 "shasum": ""
             },
             "require": {
@@ -2071,7 +2071,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-08-13T07:19:26+00:00"
+            "time": "2020-08-14T10:25:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -2308,16 +2308,16 @@
         },
         {
             "name": "friendsofcake/cakephp-csvview",
-            "version": "dev-cake-4.x",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/cakephp-csvview.git",
-                "reference": "63bdf30a1beac7e7077cbc43ace9ad373af4826b"
+                "reference": "a46b677860ff467e2e435de8bf17af8af1bffdc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/63bdf30a1beac7e7077cbc43ace9ad373af4826b",
-                "reference": "63bdf30a1beac7e7077cbc43ace9ad373af4826b",
+                "url": "https://api.github.com/repos/FriendsOfCake/cakephp-csvview/zipball/a46b677860ff467e2e435de8bf17af8af1bffdc5",
+                "reference": "a46b677860ff467e2e435de8bf17af8af1bffdc5",
                 "shasum": ""
             },
             "require": {
@@ -2378,7 +2378,7 @@
                 "export",
                 "view"
             ],
-            "time": "2020-08-06T14:25:17+00:00"
+            "time": "2020-08-06T14:38:13+00:00"
         },
         {
             "name": "friendsofcake/search",
@@ -3239,22 +3239,24 @@
         },
         {
             "name": "markstory/asset_compress",
-            "version": "4.0.2",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/asset_compress.git",
-                "reference": "c4892b9aadbd4ee20b405bd6d750677a9dc99b07"
+                "reference": "f04e1d976b265073a698ee7ea92c382a47e9f4f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/c4892b9aadbd4ee20b405bd6d750677a9dc99b07",
-                "reference": "c4892b9aadbd4ee20b405bd6d750677a9dc99b07",
+                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/f04e1d976b265073a698ee7ea92c382a47e9f4f2",
+                "reference": "f04e1d976b265073a698ee7ea92c382a47e9f4f2",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
                 "markstory/mini-asset": ">=1.4.0 <2.0.0",
-                "php": ">=7.2.0"
+                "php": ">=7.2.0",
+                "psr/http-server-handler": "^1.0",
+                "psr/http-server-middleware": "^1.0"
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^4.0",
@@ -3294,7 +3296,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2020-03-18T01:44:42+00:00"
+            "time": "2020-08-15T02:32:36+00:00"
         },
         {
             "name": "markstory/mini-asset",
@@ -4340,12 +4342,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "0a9e61cebba6e8e36b328d75eeafa0e51dc7e28d"
+                "reference": "05902f4a90790ce9db195954e608d5a43d4d6a7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/0a9e61cebba6e8e36b328d75eeafa0e51dc7e28d",
-                "reference": "0a9e61cebba6e8e36b328d75eeafa0e51dc7e28d",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/05902f4a90790ce9db195954e608d5a43d4d6a7d",
+                "reference": "05902f4a90790ce9db195954e608d5a43d4d6a7d",
                 "shasum": ""
             },
             "require": {
@@ -4414,7 +4416,7 @@
                 "migrations",
                 "phinx"
             ],
-            "time": "2020-08-11T07:00:03+00:00"
+            "time": "2020-08-15T07:42:40+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -7034,12 +7036,11 @@
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-queue": 20,
         "dereuromark/cakephp-meta": 20,
-        "friendsofcake/bootstrap-ui": 10,
+        "friendsofcake/bootstrap-ui": 5,
         "dereuromark/cakephp-cache": 20,
         "dereuromark/cakephp-translate": 20,
         "symfony/filesystem": 0,
         "icings/menu": 20,
-        "friendsofcake/cakephp-csvview": 20,
         "friendsofcake/search": 20,
         "dereuromark/cakephp-data": 20,
         "dereuromark/cakephp-calendar": 20,
