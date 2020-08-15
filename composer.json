@@ -41,6 +41,7 @@
 		"dereuromark/cakephp-meta": "dev-master",
 		"friendsofcake/bootstrap-ui": "^3.0@beta",
 		"dereuromark/cakephp-cache": "dev-master",
+		"dereuromark/cakephp-translate": "dev-cake4",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
 		"icings/menu": "dev-master",
