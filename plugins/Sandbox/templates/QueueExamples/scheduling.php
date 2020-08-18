@@ -27,7 +27,7 @@ $this->loadHelper('Queue.QueueProgress');
 	<fieldset>
 		<legend><?php echo __('Select a task to run'); ?></legend>
 		<?php
-		echo $this->Form->control('task', ['options' => $tasks]);
+		echo $this->Form->control('job_type', ['options' => $tasks]);
 
 		echo '<p>Current (server) time: ' . (new \Cake\I18n\FrozenTime()) . '</>';
 
