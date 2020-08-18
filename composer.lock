@@ -54,16 +54,16 @@
         },
         {
             "name": "brick/math",
-            "version": "0.8.15",
+            "version": "0.8.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd"
+                "reference": "edffaf98c06459b11dc1843e499bfea2aaf78754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/9b08d412b9da9455b210459ff71414de7e6241cd",
-                "reference": "9b08d412b9da9455b210459ff71414de7e6241cd",
+                "url": "https://api.github.com/repos/brick/math/zipball/edffaf98c06459b11dc1843e499bfea2aaf78754",
+                "reference": "edffaf98c06459b11dc1843e499bfea2aaf78754",
                 "shasum": ""
             },
             "require": {
@@ -96,7 +96,13 @@
                 "brick",
                 "math"
             ],
-            "time": "2020-04-15T15:59:35+00:00"
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/brick/math",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-08-18T08:59:30+00:00"
         },
         {
             "name": "burzum/cakephp-service-layer",
@@ -151,12 +157,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "16d2816740eae69abf94873e93a1dc14300eed07"
+                "reference": "9ad0b9c9234ec5eb1eb3da0d85d727e08898ba6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/16d2816740eae69abf94873e93a1dc14300eed07",
-                "reference": "16d2816740eae69abf94873e93a1dc14300eed07",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/9ad0b9c9234ec5eb1eb3da0d85d727e08898ba6b",
+                "reference": "9ad0b9c9234ec5eb1eb3da0d85d727e08898ba6b",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +197,7 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2020-08-03T02:08:17+00:00"
+            "time": "2020-08-17T08:02:58+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -199,12 +205,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "bf9299fa98f129841166986f070016bc098b4006"
+                "reference": "b2115d89507134f09fa3b29024e7ac34272e70a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bf9299fa98f129841166986f070016bc098b4006",
-                "reference": "bf9299fa98f129841166986f070016bc098b4006",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b2115d89507134f09fa3b29024e7ac34272e70a8",
+                "reference": "b2115d89507134f09fa3b29024e7ac34272e70a8",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +294,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-08-15T00:17:43+00:00"
+            "time": "2020-08-17T21:33:59+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -347,16 +353,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "6ca239b0ec403a4b0632e3a294a1e2b39ba5c57c"
+                "reference": "98eba199a847ddaae7f2fcfcb0f4df873fa71adf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/6ca239b0ec403a4b0632e3a294a1e2b39ba5c57c",
-                "reference": "6ca239b0ec403a4b0632e3a294a1e2b39ba5c57c",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/98eba199a847ddaae7f2fcfcb0f4df873fa71adf",
+                "reference": "98eba199a847ddaae7f2fcfcb0f4df873fa71adf",
                 "shasum": ""
             },
             "require": {
@@ -403,7 +409,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2020-07-29T15:31:40+00:00"
+            "time": "2020-08-11T20:21:51+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -2019,12 +2025,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "ddc4ffff8c68cba3c14e70fd8a27149253f6caea"
+                "reference": "8395a4c662ddcbb504467e00f6be1d95c2f40524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/ddc4ffff8c68cba3c14e70fd8a27149253f6caea",
-                "reference": "ddc4ffff8c68cba3c14e70fd8a27149253f6caea",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/8395a4c662ddcbb504467e00f6be1d95c2f40524",
+                "reference": "8395a4c662ddcbb504467e00f6be1d95c2f40524",
                 "shasum": ""
             },
             "require": {
@@ -2071,7 +2077,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-08-14T10:25:01+00:00"
+            "time": "2020-08-17T13:32:32+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -2836,20 +2842,20 @@
         },
         {
             "name": "knplabs/knp-menu",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "254fb64d545f087451cc197a7fa5d47e03ffb038"
+                "reference": "9996764bc4bdc4381ecdc4617817de23948f0cdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/254fb64d545f087451cc197a7fa5d47e03ffb038",
-                "reference": "254fb64d545f087451cc197a7fa5d47e03ffb038",
+                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/9996764bc4bdc4381ecdc4617817de23948f0cdb",
+                "reference": "9996764bc4bdc4381ecdc4617817de23948f0cdb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": "^7.2 || ^8.0"
             },
             "conflict": {
                 "twig/twig": "<1.40 || >=2,<2.9"
@@ -2900,7 +2906,7 @@
                 "menu",
                 "tree"
             ],
-            "time": "2020-04-22T14:37:23+00:00"
+            "time": "2020-08-15T08:01:46+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -3239,16 +3245,16 @@
         },
         {
             "name": "markstory/asset_compress",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markstory/asset_compress.git",
-                "reference": "f04e1d976b265073a698ee7ea92c382a47e9f4f2"
+                "reference": "a4c86b7587293ada43e2e3708cf6191b3bda6583"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/f04e1d976b265073a698ee7ea92c382a47e9f4f2",
-                "reference": "f04e1d976b265073a698ee7ea92c382a47e9f4f2",
+                "url": "https://api.github.com/repos/markstory/asset_compress/zipball/a4c86b7587293ada43e2e3708cf6191b3bda6583",
+                "reference": "a4c86b7587293ada43e2e3708cf6191b3bda6583",
                 "shasum": ""
             },
             "require": {
@@ -3296,7 +3302,7 @@
                 "minifier",
                 "sass"
             ],
-            "time": "2020-08-15T02:32:36+00:00"
+            "time": "2020-08-16T16:05:23+00:00"
         },
         {
             "name": "markstory/mini-asset",
