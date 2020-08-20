@@ -1,5 +1,5 @@
 <h2>Beginner Tips</h2>
-CakePHP 3 doesn't always have the best "beginner settings" preconfigured. It is often just optimized for speed by default.
+CakePHP doesn't always have the best "beginner settings" preconfigured. It is often just optimized for speed by default.
 IMO that is not too clever, as beginners easily trip over that, whereas advanced users could easily "deactivate" it.
 <br/>
 So at the beginning it should just work, and optimization should come later.
