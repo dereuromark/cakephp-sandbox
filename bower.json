@@ -2,8 +2,8 @@
   "name": "sandbox",
   "version": "1.0.0",
   "dependencies": {
-    "bootstrap": "~3.3",
-    "bootstrapv4": "bootstrap#v4.0.0-alpha.2",
+    "bootstrap": "~3.4",
+    "bootstrapv4": "bootstrap#v4.5.2",
     "jquery": "~1.12",
     "font-awesome": "latest",
     "jquery-ui": "~1.11",
