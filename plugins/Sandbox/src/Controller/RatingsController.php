@@ -33,6 +33,7 @@ class RatingsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+		/** @var \Sandbox\Model\Entity\SandboxPost|null $record */
 		$record = $this->SandboxPosts->find()->first();
 		if (!$record) {
 			$data = [
@@ -40,7 +41,7 @@ class RatingsController extends SandboxAppController {
 				'content' => 'A first content',
 			];
 			$post = $this->SandboxPosts->newEntity($data);
-			$record = $this->SandboxPosts->save($post);
+			$record = $this->SandboxPosts->saveOrFail($post);
 		}
 		$id = $record->id;
 		$this->set('post', $record);

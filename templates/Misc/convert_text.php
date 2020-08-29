@@ -29,10 +29,10 @@ Use this converter to get the text in the appropriate format.
 <?php
 echo $this->Form->control('Form.result', ['type' => 'textarea', 'class' => 'halfSize']);
 
-if (!empty($this->request->data) && !empty($this->request->data['Form']['result'])) {
+if ($this->request->getData('Form.result')) {
 	echo '<div class="">';
 	echo '<label>Result h()ed</label>';
-	echo nl2br(h($this->request->data['Form']['result']));
+	echo nl2br(h($this->request->getData('Form.result')));
 	echo '</div>';
 	/*
 	echo '<br class="clear">';

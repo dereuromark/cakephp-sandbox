@@ -1,7 +1,9 @@
 parameters:
+	level: 6
+
 	checkMissingIterableValueType: false
 
-	autoload_files:
+	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
 
@@ -13,5 +15,6 @@ parameters:
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
-		- '#Access to protected property .+ServerRequest::\$data#'
+		- '#Cannot cast array\|string\|null to string#'
+		- '#Cannot cast array\|string\|null to int#'
 		- '#Call to an undefined method .+Mailer::set.+#'

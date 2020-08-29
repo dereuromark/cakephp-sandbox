@@ -7,6 +7,7 @@ use Cake\Core\Plugin;
 use Cake\Event\EventInterface;
 use Exception;
 use MiniAsset\Filter\ScssFilter;
+use RuntimeException;
 
 class AssetCompressExamplesController extends SandboxAppController {
 
@@ -48,6 +49,9 @@ class AssetCompressExamplesController extends SandboxAppController {
 		$filter->settings($settings);
 
 		$source = file_get_contents($this->_cssDir . 'test.scss');
+		if (!$source) {
+			throw new RuntimeException('Cannot read test.scss file.');
+		}
 
 		try {
 			$result = $filter->input($this->_cssDir . 'test.scss', $source);
@@ -56,6 +60,9 @@ class AssetCompressExamplesController extends SandboxAppController {
 			$result = [];
 		}
 		$expected = file_get_contents($this->_cssDir . 'compiled_scss.css');
+		if (!$expected) {
+			throw new RuntimeException('Cannot read compiled_scss.scss file.');
+		}
 		if (!$result) {
 			$result = $expected;
 			$expected = null;

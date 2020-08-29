@@ -29,11 +29,12 @@ class MiscController extends AppController {
 	 */
 	public function convertText() {
 		if ($this->Common->isPosted()) {
-			$this->request->data['Form']['result'] = $this->_process($this->request->data['Form']['text'], $this->request->data['Form']['type']);
-			if (array_key_exists((string)$this->request->data['Form']['type'], $this->types)) {
-				$this->Flash->success($this->types[(string)$this->request->data['Form']['type']] . ' done');
+			$data = $this->request->getData();
+			$data['Form']['result'] = $this->_process($data['Form']['text'], $data['Form']['type']);
+			if (array_key_exists((string)$data['Form']['type'], $this->types)) {
+				$this->Flash->success($this->types[(string)$data['Form']['type']] . ' done');
 			} else {
-				$this->Flash->warning($this->types[(string)$this->request->data['Form']['type']] . ' not successful');
+				$this->Flash->warning($this->types[(string)$data['Form']['type']] . ' not successful');
 			}
 		}
 
@@ -43,7 +44,7 @@ class MiscController extends AppController {
 
 	/**
 	 * @param string $text
-	 * @param string|null $type
+	 * @param string|int|null $type
 	 *
 	 * @return string
 	 */
@@ -51,7 +52,7 @@ class MiscController extends AppController {
 		if (empty($type)) {
 			# auto detect
 			$type = $this->_autoDetect($text);
-			$this->request->data['Form']['type'] = $type;
+			//$data['Form']['type'] = $type;
 			//return $text;
 }
 		switch ($type) {
@@ -72,7 +73,7 @@ class MiscController extends AppController {
 
 				break;
 			case '5':
-				$pieces = explode(NL, $text);
+				$pieces = explode(NL, $text) ?: [];
 				foreach ($pieces as $key => $val) {
 					$pieces[$key] = TB . $val;
 				}
@@ -80,7 +81,7 @@ class MiscController extends AppController {
 
 				break;
 			case '6':
-				$pieces = explode(NL, $text);
+				$pieces = explode(NL, $text) ?: [];
 				foreach ($pieces as $key => $val) {
 					$pieces[$key] = mb_substr($val, 0, 1) === TB ? mb_substr($val, 1) : $val;
 				}

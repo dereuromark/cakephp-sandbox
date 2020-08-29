@@ -28,7 +28,7 @@ class DtoExamplesController extends SandboxAppController {
 	 */
 	public function github() {
 		$file = Plugin::path('Sandbox') . 'files' . DS . 'Github' . DS . 'demo_pr.json';
-		$simulatedDataFromGitHubApi = json_decode(file_get_contents($file), true);
+		$simulatedDataFromGitHubApi = json_decode(file_get_contents($file) ?: '', true);
 
 		$pullRequestDto = PullRequestDto::create($simulatedDataFromGitHubApi, true, PullRequestDto::TYPE_UNDERSCORED);
 

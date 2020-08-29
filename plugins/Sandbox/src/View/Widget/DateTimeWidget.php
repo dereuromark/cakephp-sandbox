@@ -72,7 +72,7 @@ class DateTimeWidget extends BasicWidget {
 
 		$value = $data['val'] && ($data['val'] instanceof DateTimeInterface) ? $data['val']->format($displayFormat) : '';
 		if ($value && !empty($data['required'])) {
-			$value = new DateTime();
+			$value = (new DateTime())->format($displayFormat);
 		}
 
 		$id = $data['id'];

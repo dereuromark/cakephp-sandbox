@@ -53,16 +53,16 @@ class User extends Entity {
 		'password',
 	];
 
-	const FIELD_ID = 'id';
-	const FIELD_USERNAME = 'username';
-	const FIELD_EMAIL = 'email';
-	const FIELD_PASSWORD = 'password';
-	const FIELD_LOGINS = 'logins';
-	const FIELD_ACTIVE = 'active';
-	const FIELD_ROLE_ID = 'role_id';
-	const FIELD_CREATED = 'created';
-	const FIELD_MODIFIED = 'modified';
-	const FIELD_LAST_LOGIN = 'last_login';
-	const FIELD_ROLE = 'role';
+	public const FIELD_ID = 'id';
+	public const FIELD_USERNAME = 'username';
+	public const FIELD_EMAIL = 'email';
+	public const FIELD_PASSWORD = 'password';
+	public const FIELD_LOGINS = 'logins';
+	public const FIELD_ACTIVE = 'active';
+	public const FIELD_ROLE_ID = 'role_id';
+	public const FIELD_CREATED = 'created';
+	public const FIELD_MODIFIED = 'modified';
+	public const FIELD_LAST_LOGIN = 'last_login';
+	public const FIELD_ROLE = 'role';
 
 }

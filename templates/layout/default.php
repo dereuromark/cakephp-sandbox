@@ -16,8 +16,8 @@ $description = 'CakePHP Sandbox App';
 <?php
 echo $this->Html->meta('icon');
 echo $this->fetch('meta');
-if (!empty($this->request->query['assets'])) {
-	switch ($this->request->query['assets']) {
+if ($this->request->getQuery('assets')) {
+	switch ($this->request->getQuery('assets')) {
 		case 'bootstrap-alpha':
 			if (PHP_SAPI !== 'cli') {
 				echo $this->AssetCompress->css('bootstrap-alpha');

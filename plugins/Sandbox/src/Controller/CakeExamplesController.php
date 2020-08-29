@@ -93,7 +93,7 @@ class CakeExamplesController extends SandboxAppController {
 
 		// Language switcher
 		if ($this->request->is('post')) {
-			$lang = $this->request->getQuery('lang');
+			$lang = (string)$this->request->getQuery('lang');
 			$this->request->getSession()->write('Config.language', $lang);
 			I18n::setLocale($lang);
 			$lang = locale_get_display_name($lang) . ' [' . strtoupper($lang) . ']';
