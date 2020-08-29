@@ -1027,12 +1027,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-cache.git",
-                "reference": "71a61f61955d3f3d579955faccffd8e219259d5d"
+                "reference": "00512b60e561b431559c6bfae33117c0cf2d1fb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/71a61f61955d3f3d579955faccffd8e219259d5d",
-                "reference": "71a61f61955d3f3d579955faccffd8e219259d5d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-cache/zipball/00512b60e561b431559c6bfae33117c0cf2d1fb9",
+                "reference": "00512b60e561b431559c6bfae33117c0cf2d1fb9",
                 "shasum": ""
             },
             "require": {
@@ -1055,7 +1055,7 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
-            "time": "2020-06-28T12:08:04+00:00"
+            "time": "2020-08-29T12:16:15+00:00"
         },
         {
             "name": "dereuromark/cakephp-calendar",
@@ -2039,12 +2039,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "65c8f319ef8deee4cd2398b3456eeed5038bddc3"
+                "reference": "7758c95eaf39129f346b9c7d497796518d605ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/65c8f319ef8deee4cd2398b3456eeed5038bddc3",
-                "reference": "65c8f319ef8deee4cd2398b3456eeed5038bddc3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/7758c95eaf39129f346b9c7d497796518d605ab1",
+                "reference": "7758c95eaf39129f346b9c7d497796518d605ab1",
                 "shasum": ""
             },
             "require": {
@@ -2091,7 +2091,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-08-27T12:39:44+00:00"
+            "time": "2020-08-29T11:39:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
