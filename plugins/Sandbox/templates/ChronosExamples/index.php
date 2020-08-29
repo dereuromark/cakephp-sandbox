@@ -36,16 +36,18 @@ For example <code>1987-03-04</code>: Age <?php echo Chronos::create('1987', '03'
 
 <h3>Check your birthday or age</h3>
 <?php
-echo $this->Form->input('birthday', ['type' => 'date', 'minYear' => date('Y') - 80, 'empty' => ['' => '']]);
+echo $this->Form->control('birthday', ['type' => 'date', 'minYear' => date('Y') - 80, 'empty' => ['' => '']]);
 ?>
 <?php
 $birthday = $this->request->getData('birthday');
 if ($birthday) {
 	echo '<h4>Result</h4>';
 
-	$birthdayString = $birthday['year'] . '-' . $birthday['month'] . '-' . $birthday['day'];
-	if (strlen($birthdayString) === 10) {
-		$birthday = new Chronos($birthdayString);
+	if (is_array($birthday)) {
+		$birthday = $birthday['year'] . '-' . $birthday['month'] . '-' . $birthday['day'];
+	}
+	if (strlen($birthday) === 10) {
+		$birthday = new Chronos($birthday);
 	} else {
 		$birthday = null;
 	}
