@@ -10,7 +10,7 @@
 	<a href="https://github.com/dereuromark/cakephp-tags" target="_blank">[Tags Plugin]</a>
 </p>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Tagging in CakePHP') ?></li>
 	<li><?php echo $this->Navigation->link('Simple string', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Select2 Multiple select', ['action' => 'select'])?></li>

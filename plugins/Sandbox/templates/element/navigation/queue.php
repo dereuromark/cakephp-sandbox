@@ -13,7 +13,7 @@
 <h3>Background Processing</h3>
 <p>Using the queue and cronjob functionality you can easily offload some longer running tasks into a background process.</p>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Scheduling', ['action' => 'scheduling'])?></li>

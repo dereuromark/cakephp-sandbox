@@ -12,7 +12,7 @@ use DateTimeInterface;
 /**
  * Class DateTimeWidget
  *
- * Requires bootstrap datetimepicker and moment (localisation) js dependencies.
+ * Requires bootstrap datetimepicker and moment (localisation) JS dependencies.
  */
 class DateTimeWidget extends BasicWidget {
 
@@ -95,7 +95,9 @@ class DateTimeWidget extends BasicWidget {
 		return '
 			<div class="input-group date" id="datetimepicker-' . h($id) . '">
 				<input type="text" class="form-control" value="' . $value . '" name="' . h($data['name']) . '" />
-				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+				<div class="input-group-append">
+					<span class="input-group-text"><span class="fa fa-calendar"></span>
+				</div>
 			</div>';
 	}
 

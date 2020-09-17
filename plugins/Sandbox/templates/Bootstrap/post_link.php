@@ -4,6 +4,10 @@
  * @var App\Model\Entity\Entity $animal
  */
 ?>
+
+<div class="row">
+	<div class="col-md-12">
+
 <h2>Post Links</h2>
 
 <p>POST button demo using <?php echo h('$this->Form->postLink()');?>.</p>
@@ -30,3 +34,6 @@ echo $this->Form->postLink(
 </p>
 
 <p>Both use normal links and a JS form to post to the same action.</p>
+
+	</div>
+</div>

@@ -4,7 +4,7 @@
  */
 ?>
 <div class="row">
-<div class="col-xs-12">
+<div class="col-12">
 
 <h2>Your account</h2>
 

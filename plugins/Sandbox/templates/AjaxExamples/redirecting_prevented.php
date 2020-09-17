@@ -33,6 +33,7 @@ $(function() {
 </script>
 <?php $this->end(); ?>
 
+<?php $this->append('css'); ?>
 <style>
 .toggle img.icon {
 	cursor: pointer;
@@ -43,11 +44,12 @@ $(function() {
 }
 
 </style>
+<?php $this->end(); ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 <h2><?php echo __('Redirecting');?> and AJAX - Using Ajax Plugin</h2>
 
 <p>

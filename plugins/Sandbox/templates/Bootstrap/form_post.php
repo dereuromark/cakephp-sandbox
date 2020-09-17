@@ -4,6 +4,10 @@
  * @var \App\Model\Entity\Entity $animal
  */
 ?>
+
+<div class="row">
+	<div class="col-md-12">
+
 <h2>Posting forms, invalidation and keeping changes</h2>
 
 <?php
@@ -24,3 +28,5 @@ echo $this->Form->end();
 
 <p>Note the break point, when you resize the browser. It will automatically jump from horizontal to non-horizontal at some point.</p>
 
+	</div>
+</div>

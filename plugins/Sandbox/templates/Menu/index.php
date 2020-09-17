@@ -16,8 +16,11 @@
 <p>Notes:
 It seems that the "active" part does only work with the exact URL (here <code><?php echo h($this->Url->build(['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']));?></code>), not with the same action and just other passed params or query strings.</p>
 
+<?php $this->append('css'); ?>
 <style>
 	#content li.active {
 		font-weight: bold;
 	}
 </style>
+<?php $this->end(); ?>
+

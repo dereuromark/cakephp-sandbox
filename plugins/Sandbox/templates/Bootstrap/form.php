@@ -4,7 +4,11 @@
  * @var \App\Model\Entity\Entity $animal
  */
 ?>
-<h2>A basic form</h2>
+
+<div class="row">
+	<div class="col-md-12">
+
+		<h2>A basic form</h2>
 
 <fieldset>
 <?php
@@ -30,3 +34,6 @@ echo $this->Form->end();
 </fieldset>
 
 <p>Note the break point, when you resize the browser. It will automatically jump from horizontal to non-horizontal at some point.</p>
+
+	</div>
+</div>

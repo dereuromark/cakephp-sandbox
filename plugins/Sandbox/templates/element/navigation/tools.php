@@ -10,7 +10,7 @@
 	<a href="https://github.com/dereuromark/cakephp-tools" target="_blank">[Tools Plugin]</a>
 </p>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Tools Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 

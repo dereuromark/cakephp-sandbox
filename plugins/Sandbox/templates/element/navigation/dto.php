@@ -13,7 +13,7 @@
 <h3>DTOs</h3>
 <p>Using Data Transfer Objects you can more easily work with all kind of array like data.</p>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Github API demo', ['action' => 'github'])?></li>

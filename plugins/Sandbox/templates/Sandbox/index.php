@@ -4,17 +4,19 @@
  */
 ?>
 
-<nav class="actions col-md-3 col-sm-4 col-xs-12">
-	<ul class="side-nav nav nav-pills nav-stacked">
+<div class="row">
+
+<nav class="actions col-md-3 col-sm-4 col-12">
+	<ul class="side-nav nav nav-pills nav-stacked flex-column">
 		<li class="heading"><?= __('Actions') ?></li>
 	</ul>
 </nav>
-<div class="contactAds view col-md-9 col-sm-8 col-xs-12">
+<div class="contactAds view col-md-9 col-sm-8 col-12">
 
 <h2>Sandbox</h2>
 
 <div class="row">
-	<div class="col-sm-6 col-xs-12">
+	<div class="col-sm-6 col-12">
 
 <h3>CakePHP Core</h3>
 Code @ github: <a href="https://github.com/cakephp/cakephp" target="_blank">CakePHP 3.x</a>
@@ -35,7 +37,7 @@ Some of the plugins from the <a href="https://github.com/FriendsOfCake/awesome-c
 
 
 	</div>
-	<div class="col-sm-6 col-xs-12">
+	<div class="col-sm-6 col-12">
 
 <h3>PHP Libraries</h3>
 <ul>
@@ -56,4 +58,7 @@ Playing around...
 </ul>
 
 	</div>
+</div>
+
+</div>
 </div>

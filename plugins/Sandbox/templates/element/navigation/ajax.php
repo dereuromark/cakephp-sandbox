@@ -3,13 +3,13 @@
  * @var \App\View\AppView $this
  */
 ?>
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
 	<li><?= $this->Html->link(__('Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
 	<li><?= $this->Html->link(__('Ajax Plugin'), ['controller' => 'AjaxExamples', 'action' => 'index']) ?></li>
 </ul>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Using CakePHP Core only') ?></li>
 	<li><?php echo $this->Navigation->link('Simple JSON response', ['action' => 'simple'])?></li>
 	<li><?php echo $this->Navigation->link('Pagination', ['action' => 'pagination'])?></li>
@@ -17,7 +17,7 @@
 	<li><?php echo $this->Navigation->link('Redirecting', ['action' => 'redirecting'])?></li>
 </ul>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Using Ajax Plugin') ?></li>
 	<li><?php echo $this->Navigation->link('Toggle', ['action' => 'toggle'])?></li>
 	<li><?php echo $this->Navigation->link('Buttons/Delete', ['action' => 'table'])?></li>

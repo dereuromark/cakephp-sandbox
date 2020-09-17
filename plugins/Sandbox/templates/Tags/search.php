@@ -7,10 +7,10 @@
  */
 ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tags'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 	<div class="search-box pull-right" style="margin-bottom: 10px;">
 		<?php
@@ -22,7 +22,7 @@
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 		if (!empty($_isSearch)) {
 			echo ' ';
-			echo $this->Html->link(__('Reset'), ['action' => 'search', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-default']);
+			echo $this->Html->link(__('Reset'), ['action' => 'search', '?' => array_intersect_key($this->request->getQuery(), array_flip(['sort', 'direction']))], ['class' => 'btn btn-secondary']);
 		}
 
 		echo $this->Form->end();

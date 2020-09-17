@@ -4,7 +4,7 @@
  */
 ?>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-12">
 
 <h2>Export</h2>
 This is the export interface where you can get the current version of the tables.<br/>
@@ -15,7 +15,7 @@ An interface to directly modify the data is planned, though.
 </div>
 
 <div class="row">
-	<div class="col-md-6 col-xs-12">
+	<div class="col-md-6 col-12">
 
 <h3><?php echo __('Continents'); ?></h3>
 <div>Key information: lat/lng</div>
@@ -45,7 +45,7 @@ An interface to directly modify the data is planned, though.
 TODO
 	</div>
 
-	<div class="col-md-6 col-xs-12">
+	<div class="col-md-6 col-12">
 
 <h3><?php echo __('Currencies'); ?></h3>
 <div>Key information: iso codes, current value, base currency, symbol</div>

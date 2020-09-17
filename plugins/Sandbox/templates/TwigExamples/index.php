@@ -3,9 +3,9 @@
  * @var \App\View\AppView $this
  */
 ?>
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 	<h2>CakePHP and Twig templating</h2>
 	<p>Using <a href="https://github.com/cakephp/twig-view" target="_blank">TwigView plugin</a></p>

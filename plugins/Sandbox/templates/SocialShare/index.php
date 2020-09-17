@@ -18,7 +18,7 @@ The icons are part of "font awesome" and therefore available in all sizes thanks
 <ul class="list-unstyled">
 <?php foreach ($services as $service) { ?>
 	<li style="margin-bottom: 4px; margin-top: 4px;">
-		<?php echo $this->SocialShare->fa($service, null, ['text' => 'Demo Share!', 'class' => 'btn btn-default btn-xs']);?> (<?php echo h($service); ?>)
+		<?php echo $this->SocialShare->fa($service, null, ['text' => 'Demo Share!', 'class' => 'btn btn-secondary']);?> (<?php echo h($service); ?>)
 	</li>
 <?php } ?>
 </ul>

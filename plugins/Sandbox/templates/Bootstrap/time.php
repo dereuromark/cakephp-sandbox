@@ -4,6 +4,10 @@
  * @var App\Model\Entity\Entity $animal
  */
 ?>
+
+<div class="row">
+	<div class="col-md-12">
+
 <h2>Working with time inputs</h2>
 
 <?php
@@ -28,3 +32,7 @@ echo $this->Form->end();
 ?>
 
 <p>With seconds involved it falls back to the default one</p>
+
+
+	</div>
+</div>

@@ -5,7 +5,7 @@
  */
 ?>
 <div class="row">
-<div class="col-xs-12">
+<div class="col-12">
 <?php echo $this->Form->create($user); ?>
 	<fieldset>
 		<legend><?php echo __('Account information'); ?></legend>
@@ -30,7 +30,7 @@
 </div>
 
 <div class="row">
-<div class="actions col-xs-12">
+<div class="actions col-12">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 

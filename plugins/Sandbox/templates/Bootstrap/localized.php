@@ -4,6 +4,10 @@
  * @var App\Model\Entity\Entity $animal
  */
 ?>
+
+<div class="row">
+	<div class="col-md-12">
+
 <h2>A localized form (German)</h2>
 <p>Currently, mainly the date(time) fields have been localized.</p>
 
@@ -31,4 +35,5 @@ echo $this->Form->end();
 ?>
 
 
-<h2></h2>
+	</div>
+</div>

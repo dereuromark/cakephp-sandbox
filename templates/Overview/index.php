@@ -5,15 +5,17 @@
 ?>
 
 <h2>Welcome</h2>
-This is a private website contributing to CakePHP.
+<p>This is a private website contributing to CakePHP.
 I always found it difficult so "imagine" specific code snippets without demo/examples.
 This site combines useful code snippets with their live result.
+</p>
 
 <div class="row">
 	<div class="col-sm-6">
 		<h3>Conventions &amp; help for CakePHP Newbies</h3>
 		<ul>
 			<li><?php echo $this->Html->link('Discover CakePHP Conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index']); ?></li>
+			<li><?php echo $this->Html->link('Beginner tips', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'beginner-tips']); ?></li>
 			<li><?php echo $this->Html->link('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices']); ?></li>
 		</ul>
 	</div>

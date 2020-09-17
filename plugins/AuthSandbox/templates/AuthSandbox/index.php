@@ -5,7 +5,7 @@
  */
 ?>
 <div class="row">
-	<div class="col-xs-12">
+	<div class="col-12">
 
 
 <h2>Auth Sandbox</h2>
@@ -39,9 +39,9 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 		<h3>Roles and access credentials</h3>
 		<ul>
 			<li>not logged in (no role)</li>
-			<li><span class="badge">user</span> username: user, pwd: 123</li>
-			<li><span class="badge">mod</span> username: mod, pwd: 123</li>
-			<li><span class="badge">admin</span> username: admin, pwd: 123</li>
+			<li><span class="badge badge-info">user</span> username: user, pwd: 123</li>
+			<li><span class="badge badge-info">mod</span> username: mod, pwd: 123</li>
+			<li><span class="badge badge-info">admin</span> username: admin, pwd: 123</li>
 		</ul>
 
 

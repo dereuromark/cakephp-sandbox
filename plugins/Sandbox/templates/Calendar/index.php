@@ -40,7 +40,7 @@
 </div>
 
 
-
+<?php $this->append('css'); ?>
 <style>
 	table.calendar {
 		width: 100%;
@@ -92,3 +92,5 @@
 
 
 </style>
+<?php $this->end(); ?>
+

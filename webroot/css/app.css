@@ -1,5 +1,5 @@
 #header {
-	margin-top: 70px;
+	margin-top: 20px;
 }
 
 #navigation {
@@ -17,6 +17,15 @@ progress, meter {
 
 
 /* custom bootstrap overwrites */
+
+
+h3, .h3 {
+	font-size: 1.6rem;
+}
+
+h4 .h4 {
+	font-size: 1.4rem;
+}
 
 input[type="submit"], button, .button {
 	-moz-border-bottom-colors: none;
@@ -70,7 +79,7 @@ div.date select.form-control {
 	margin-bottom: 2px;
 }
 
-/* boostrap end */
+/* bootstrap end */
 
 th > a.asc:after {
 	content: " \f0dd";
@@ -79,6 +88,10 @@ th > a.asc:after {
 th > a.desc:after {
 	content: " \f0de";
 	font-family: FontAwesome;
+}
+
+a {
+	color: #337ab7;
 }
 
 ul.side-nav {
@@ -92,4 +105,38 @@ ul.side-nav li.heading {
 
 ul.side-nav li a.active {
 	color: orange;
+}
+
+.navbar-default {
+	background-color: #f8f8f8;
+	border-color: #e7e7e7;
+}
+
+.well {
+	position: relative;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	min-width: 0;
+	word-wrap: break-word;
+	background-color: #fff;
+	background-clip: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+	margin-bottom: 10px;
+}
+
+pre {
+	display: block;
+	padding: 9.5px;
+	margin: 0 0 10px;
+	font-size: 13px;
+	line-height: 1.42857143;
+	color: #333333;
+	word-break: break-all;
+	word-wrap: break-word;
+	background-color: #f5f5f5;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 }

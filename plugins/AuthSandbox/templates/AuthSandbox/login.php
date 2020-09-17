@@ -21,7 +21,7 @@ echo $this->Form->control('password', ['autocomplete' => 'off']);
 <div class="col-md-offset-2 col-md-6">
 	<?php echo $this->Form->button(__('Log me in'), ['class' => 'btn btn-success']);?>
 
-	<?php echo $this->Html->link(__('Register'), ['action' => 'register'], ['class' => 'btn btn-default']);?>
+	<?php echo $this->Html->link(__('Register'), ['action' => 'register'], ['class' => 'btn btn-secondary']);?>
 </div>
 <?php echo $this->Form->end(); ?>
 </div>

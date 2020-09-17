@@ -42,6 +42,7 @@
 		"friendsofcake/bootstrap-ui": "^3.0@RC",
 		"dereuromark/cakephp-cache": "dev-master",
 		"dereuromark/cakephp-translate": "dev-cake4",
+		"admad/cakephp-hybridauth": "dev-master",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
 		"icings/menu": "dev-master",
@@ -94,6 +95,12 @@
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:dereuromark/CakePHP-HybridAuth.git"
+		}
+	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",

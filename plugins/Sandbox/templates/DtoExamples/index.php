@@ -5,10 +5,10 @@
  */
 ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/dto'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 <h3>Basic Usage</h3>
 	<p>The most common use cases are usually</p>

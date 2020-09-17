@@ -15,7 +15,7 @@
 	But this way the business logic is more cleanly encapsulated.
 </p>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('CakeServiceLayer Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 

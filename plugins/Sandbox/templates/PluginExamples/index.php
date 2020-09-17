@@ -7,7 +7,7 @@
 
 
 <div class="row">
-	<div class="col-xs-6">
+	<div class="col-6">
 		<h3>Own plugins</h3>
 
 		<h4>Tools plugin</h4>
@@ -86,7 +86,7 @@
 		</ul>
 
 	</div>
-	<div class="col-xs-6">
+	<div class="col-6">
 		<h3>Other plugins</h3>
 
 		<h4>TwigView plugin</h4>

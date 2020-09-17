@@ -5,10 +5,10 @@
  */
 ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tags'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 <h3>Tag Cloud</h3>
 

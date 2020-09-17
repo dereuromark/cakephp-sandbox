@@ -44,7 +44,9 @@ class ClockTimeWidget extends DateTimeWidget {
 		return '
 			<div class="input-group date clockpicker" id="timepicker-' . h($data['id']) . '">
 				<input type="text" class="form-control" value="' . $value . '" name="' . h($data['name']) . '" />
-				<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span>
+				<div class="input-group-append">
+					<span class="input-group-text"><span class="fa fa-clock-o"></span>
+				</div>
 			</div>';
 	}
 

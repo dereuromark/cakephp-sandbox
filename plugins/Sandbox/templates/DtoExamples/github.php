@@ -14,10 +14,10 @@ echo $this->Html->css('Sandbox.highlighting/github.css');
 <script src="https://highlightjs.org/static/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/dto'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 	<h3>Github Demo</h3>
 	<p>In cases where you pull API data from foreign webservices as JSON, you convert it to array form and use that everywhere. This can get quite messy, with lots of nesting and complexity.</p>

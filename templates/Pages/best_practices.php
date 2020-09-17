@@ -5,7 +5,7 @@
  */
 ?>
 <h2>Best practices</h2>
-DOs and DONT's of common CakePHP problems.
+<p>DOs and DONT's of common CakePHP problems.</p>
 
 <h3>Config</h3>
 The easiest approach for the beginning is a local config file that is not under version control per environment/server.
@@ -36,7 +36,8 @@ Check this applications's config folder on how it is done.
 </p>
 
 <h3>Routing</h3>
-Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'])?>) as default one:
+
+<p>Best to use the DashedRoute class (see <?php echo $this->Html->link('conventions', ['plugin' => 'Sandbox', 'controller' => 'Conventions', 'action' => 'index'])?>) as default one:</p>
 <pre><code>use Cake\Routing\Route\DashedRoute;
 
 Router::defaultRouteClass(DashedRoute::class);
@@ -47,17 +48,18 @@ This way your URLs are `my-prefix/my-plugin/controller-name/action-name` whereas
 'controller' => 'ControllerName', // camelCased
 'action' => 'actionName' // camelBacked
 </code></pre>
-The idea of CakePHP 3.x is to inflect internally as less as possible.
+
+<p>The idea of CakePHP 3.x is to inflect internally as less as possible.</p>
 
 <h3>URLs</h3>
 Use array URLs wherever possible, this saves you a lot of trouble once you actually want to customize the routing:
 <pre><code>// URL /my-controller/my-action
 echo $this->Html->link($title, ['controller' => 'MyController', 'action' => 'myAction']);
 </code></pre>
-You can then alter the URLs via Routing and all those URLs change cleanly.
-The speed issue can be neglected compared to the advantages of the flexibility.
+<p>You can then alter the URLs via Routing and all those URLs change cleanly.
+The speed issue can be neglected compared to the advantages of the flexibility.</p>
 
-You can also use "named routes", of course (`['_name' => 'admin:account:password']`). This centralizes the arrays into the routes config.
+<p>You can also use "named routes", of course (`['_name' => 'admin:account:password']`). This centralizes the arrays into the routes config.</p>
 
 <h3>Don't sanitize the heck out your data</h3>
 Use Sanitization wisely, and not blindly.<br/>
@@ -91,14 +93,16 @@ So I would change the scopes to false here for all default listeners:
 <p>Another very useful addition is to log 404s separately from actual (internal) errors happening using <a href="https://github.com/dereuromark/cakephp-tools/blob/master/docs/Error/ErrorHandler.md">Tools.ErrorHandler</a>.</p>
 
 <h3>Use AJAX wisely</h3>
+<p>
 Don't over-ajaxify your views. It can easily create complications and become error-prone.
 Use it wisely where it makes sense.
-<br>
+</p>
+<p>
 Also always try to provide a non-JS fallback solution in case the JS breaks or cannot work properly in some browsers.
 It might also be a good idea for search engines to properly pick up your site content (e.g. when using pagination and AJAX).
-<br><br>
-So the smart approach is: First code the non-JS functionality. And then you can add JS-functionality for it on top.
-In case the JS breaks, the non-js part can take over without users being unable to proceed.
+</p>
+<p>So the smart approach is: First code the non-JS functionality. And then you can add JS-functionality for it on top.
+	In case the JS breaks, the non-js part can take over without users being unable to proceed.</p>
 
 <h3>Deployment</h3>
 <p>You should automate your deployment process, e.g. via basic deploy.sh file.

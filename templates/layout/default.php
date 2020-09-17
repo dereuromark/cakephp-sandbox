@@ -36,54 +36,47 @@ if ($this->request->getQuery('assets')) {
 ?>
 </head>
 <body>
- <div class="container">
-	 <div class="row">
-	<div class="col-xs-12">
 
 	<?php
-		$navigation = [
-		];
+	echo $this->element('navigation');
 	?>
 
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-        <?php echo $this->element('navigation'); ?>
-		</div>
-    </div>
+	<div class="container">
 
 		<div id="header">
-			<h1><?php
-echo $description;
-?> <b>v4</b></h1>
 		</div>
 		<div id="content">
 
-			<?php
+				<?php
 
-echo $this->Flash->render();
-?>
+	echo $this->Flash->render();
+	?>
 
-			<div class="row">
-			<?php
-				echo $this->fetch('content');
-			?>
-			</div>
+				<div class="row">
+					<div class="col-12">
+				<?php
+					$content = $this->fetch('content');
+					if (preg_match('#^\s*<nav #', $content)) {
+						$content = '<div class="row">' . $content . '</div>';
+					}
+					echo $content;
+				?>
+					</div>
+				</div>
 
 		</div>
 
-		<hr />
+			<hr />
 
 		<div id="footer" class="">
 
-		<div style="float: right;">Running on CakePHP <?php echo $this->Configure->version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
+			<div style="float: right;">Running on CakePHP <?php echo $this->Configure->version(); ?> / PHP <?php echo substr(phpversion(), 0, 3);?></div>
 
-			Author: dereuromark and <a href="https://github.com/dereuromark/cakephp-sandbox/graphs/contributors">contributors</a> | Code: <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
-echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => 'index']);
-?>
+				Author: dereuromark and <a href="https://github.com/dereuromark/cakephp-sandbox/graphs/contributors">contributors</a> | Code: <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> | <?php
+	echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => 'index']);
+	?>
 		</div>
 	</div>
- </div>
- </div>
 
 <?php if (!$this->Configure->read('debug')) {
 	echo $this->element('stats');

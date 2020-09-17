@@ -9,10 +9,10 @@
 $this->loadHelper('Queue.QueueProgress');
 ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/queue'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 	<h3>Scheduling</h3>
 	<p>Sometimes you also want to trigger something with a bit of delay</p>

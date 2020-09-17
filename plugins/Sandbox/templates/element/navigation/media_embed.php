@@ -4,7 +4,7 @@
  */
 ?>
 
-<ul class="side-nav nav nav-pills nav-stacked">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('MediaEmbed') ?></li>
 	<li><?php echo $this->Navigation->link('Parsing', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('BBCode Example', ['action' => 'bbcode'])?></li>

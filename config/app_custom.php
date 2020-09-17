@@ -97,7 +97,7 @@ return [
 	'Format' => [
 		'iconNamespaces' => [
 			'fa',
-			'glyphicon',
+			//'glyphicon',
 		],
 		'fontPath' => ROOT . DS . 'node_modules/font-awesome/scss/_variables.scss', // For FormatIconTask
 		'fontIcons' => [

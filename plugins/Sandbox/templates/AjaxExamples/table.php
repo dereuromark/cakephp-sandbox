@@ -4,10 +4,10 @@
  * @var \Data\Model\Entity\Country[] $countries
  */
 ?>
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 
 <div class="ajax-form">
 <h2>AJAX Buttons: Deleting in tables</h2>
@@ -37,7 +37,7 @@
 					<?php echo h($country['iso2']); ?>
 				</td>
 				<td class="actions">
-					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country['id']], ['class' => 'btn btn-default ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country['name'])]); ?>
+					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country['id']], ['class' => 'btn btn-secondary ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country['name'])]); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

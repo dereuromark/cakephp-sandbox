@@ -7,10 +7,10 @@
  */
 ?>
 
-<nav class="actions col-md-3 col-sm-4 col-xs-12">
+<nav class="actions col-md-3 col-sm-4 col-12">
 	<?php echo $this->element('navigation/media_embed'); ?>
 </nav>
-<div class="col-md-9 col-sm-8 col-xs-12">
+<div class="col-md-9 col-sm-8 col-12">
 
 	<h2>MediaEmbed</h2>
 

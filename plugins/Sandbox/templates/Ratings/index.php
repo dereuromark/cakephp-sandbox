@@ -54,6 +54,7 @@ echo $this->Rating->display(3.25, ['steps' => 2]);
 <h4>Bar Rating</h4>
 <p>Similar to percentage, here 8.5 of 10:</p>
 
+<?php $this->append('css'); ?>
 <style>
 	.bar-rating {
 		background-color: #0b58a2;
@@ -66,6 +67,8 @@ echo $this->Rating->display(3.25, ['steps' => 2]);
 		margin-left: 10px;
 	}
 </style>
+<?php $this->end(); ?>
+
 <?php
 echo $this->Rating->bar(8.5, 10);
 

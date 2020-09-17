@@ -33,6 +33,7 @@ $(function() {
 </script>
 <?php $this->end(); ?>
 
+<?php $this->append('css'); ?>
 <style>
 .toggle i.icon {
 	cursor: pointer;
@@ -44,11 +45,12 @@ $(function() {
 }
 
 </style>
+<?php $this->end(); ?>
 
-<nav class="actions col-sm-4 col-xs-12">
+<nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
-<div class="page index col-sm-8 col-xs-12">
+<div class="page index col-sm-8 col-12">
 <h2><?php echo __('Toggles');?> via AJAX</h2>
 
 	<div class="alert alert-info" role="alert">
