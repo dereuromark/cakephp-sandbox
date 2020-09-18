@@ -37,6 +37,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\MeterHelper $Meter
  * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  * @property \Icings\Menu\View\Helper\MenuHelper $Menu
+ * @property \BootstrapUI\View\Helper\PaginatorHelper $Paginator
  */
 class AppView extends View {
 
@@ -50,6 +51,7 @@ class AppView extends View {
 	 */
 	public function initialize(): void {
 		$this->loadHelper('Markup.Highlighter');
+		$this->loadHelper('BootstrapUI.Paginator');
 	}
 
 }
