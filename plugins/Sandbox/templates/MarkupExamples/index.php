@@ -16,5 +16,9 @@
 <h3>Code Transformation</h3>
 
 <p>Parsing from BBCode, Markdown, ... to HTML</p>
-...
+
+<ul>
+	<li><?php echo $this->Html->link('Bbcode', ['action' => 'bbcode'])?></li>
+	<li><?php echo $this->Html->link('Markdown', ['action' => 'markdown'])?></li>
+</ul>
 

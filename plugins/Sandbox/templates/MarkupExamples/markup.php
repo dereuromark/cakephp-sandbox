@@ -10,7 +10,7 @@ if ($this->request->getQuery('dark')) {
 echo $this->Html->css($file);
 ?>
 
-<script src="https://highlightjs.org/static/highlight.pack.js"></script>
+<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -29,9 +29,8 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 2. parameter: Array with lang key: What kind of Code (PHP, SQL, CSS, JS etc)<br />
 </p>
 
-The following examples are configured to use the `JsHighlighter`.
+<p>The following examples are configured to use the `JsHighlighter`.</p>
 
-<h3>Some Examples - what you can do with it</h3>
 <?php
 $dataPrint = 'div.paging {
 	background:#fff;
@@ -57,11 +56,6 @@ $dataPrint = 'function toggleMe(id) {
 	return true;
 }';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
-
-$dataPrint = '<b>Wow</b>
-<u> Underline text</u>
-<input type="text"/>';
-echo $this->Highlighter->highlight($dataPrint, ['lang' => 'html4strict']);
 
 $dataPrint = 'SELECT * FROM `telbuch_types`
 WHERE `user_name` = \'testmensch\'

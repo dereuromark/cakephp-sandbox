@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93d136c74527569ad943104a0456c6eb",
+    "content-hash": "336984b2c63d2f0204e2054d27fe6627",
     "packages": [
         {
             "name": "admad/cakephp-hybridauth",
@@ -238,12 +238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "e7f181500bd1852090b962a1c1590ab1d8bb2ace"
+                "reference": "4c08454822f1b90005a019e298bc7d637f8429bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e7f181500bd1852090b962a1c1590ab1d8bb2ace",
-                "reference": "e7f181500bd1852090b962a1c1590ab1d8bb2ace",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4c08454822f1b90005a019e298bc7d637f8429bd",
+                "reference": "4c08454822f1b90005a019e298bc7d637f8429bd",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +327,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-09-11T01:52:53+00:00"
+            "time": "2020-09-18T02:19:51+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1393,12 +1393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "49bba055f7d5659dca7e5a00f112886b6d231385"
+                "reference": "89079f081942e0b59b574219ad32ac54dfbcb42f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/49bba055f7d5659dca7e5a00f112886b6d231385",
-                "reference": "49bba055f7d5659dca7e5a00f112886b6d231385",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/89079f081942e0b59b574219ad32ac54dfbcb42f",
+                "reference": "89079f081942e0b59b574219ad32ac54dfbcb42f",
                 "shasum": ""
             },
             "require": {
@@ -1441,7 +1441,7 @@
                 "obfuscate",
                 "uuid"
             ],
-            "time": "2020-08-10T11:01:10+00:00"
+            "time": "2020-09-18T18:45:07+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1646,16 +1646,16 @@
         },
         {
             "name": "dereuromark/cakephp-markup",
-            "version": "dev-master",
+            "version": "dev-bbcode-markdown",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "d082ce07702aebf6a9952470cd2f9e5d369211e5"
+                "reference": "a74b7a024620f31a7c38fa56fe3170bd98ded2f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/d082ce07702aebf6a9952470cd2f9e5d369211e5",
-                "reference": "d082ce07702aebf6a9952470cd2f9e5d369211e5",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/a74b7a024620f31a7c38fa56fe3170bd98ded2f0",
+                "reference": "a74b7a024620f31a7c38fa56fe3170bd98ded2f0",
                 "shasum": ""
             },
             "require": {
@@ -1663,7 +1663,10 @@
                 "php": ">=7.2"
             },
             "require-dev": {
-                "fig-r/psr2r-sniffer": "dev-master"
+                "dereuromark/media-embed": "^0.5",
+                "fig-r/psr2r-sniffer": "dev-master",
+                "league/commonmark": "^1.5",
+                "mjohnson/decoda": "^6.12"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -1690,7 +1693,7 @@
                 "markup",
                 "plugin"
             ],
-            "time": "2020-06-28T12:24:37+00:00"
+            "time": "2020-09-19T00:42:21+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -2086,12 +2089,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "7758c95eaf39129f346b9c7d497796518d605ab1"
+                "reference": "dd216cee76598008a0f702932168efc9473084be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/7758c95eaf39129f346b9c7d497796518d605ab1",
-                "reference": "7758c95eaf39129f346b9c7d497796518d605ab1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/dd216cee76598008a0f702932168efc9473084be",
+                "reference": "dd216cee76598008a0f702932168efc9473084be",
                 "shasum": ""
             },
             "require": {
@@ -2138,7 +2141,7 @@
                 "tools",
                 "utils"
             ],
-            "time": "2020-08-29T11:39:48+00:00"
+            "time": "2020-09-18T12:32:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -3349,6 +3352,101 @@
             "time": "2019-12-01T15:25:43+00:00"
         },
         {
+            "name": "league/commonmark",
+            "version": "1.5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "45832dfed6007b984c0d40addfac48d403dc6432"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/45832dfed6007b984c0d40addfac48d403dc6432",
+                "reference": "45832dfed6007b984c0d40addfac48d403dc6432",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "scrutinizer/ocular": "1.7.*"
+            },
+            "require-dev": {
+                "cebe/markdown": "~1.0",
+                "commonmark/commonmark.js": "0.29.2",
+                "erusev/parsedown": "~1.0",
+                "ext-json": "*",
+                "github/gfm": "0.29.0",
+                "michelf/php-markdown": "~1.4",
+                "mikehaertl/php-shellcommand": "^1.4",
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.2",
+                "scrutinizer/ocular": "^1.5",
+                "symfony/finder": "^4.2"
+            },
+            "bin": [
+                "bin/commonmark"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\CommonMark\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and Github-Flavored Markdown (GFM)",
+            "homepage": "https://commonmark.thephpleague.com",
+            "keywords": [
+                "commonmark",
+                "flavored",
+                "gfm",
+                "github",
+                "github-flavored",
+                "markdown",
+                "md",
+                "parser"
+            ],
+            "funding": [
+                {
+                    "url": "https://enjoy.gitstore.app/repositories/thephpleague/commonmark",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.colinodell.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.paypal.me/colinpodell/10.00",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/colinodell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/colinodell",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/commonmark",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-09-13T14:44:46+00:00"
+        },
+        {
             "name": "linkorb/jsmin-php",
             "version": "dev-master",
             "source": {
@@ -3530,6 +3628,60 @@
                 "sass"
             ],
             "time": "2020-08-18T21:39:38+00:00"
+        },
+        {
+            "name": "mjohnson/decoda",
+            "version": "6.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milesj/decoda.git",
+                "reference": "9817fd5abbd742384f59831d8a5953b01803b45d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milesj/decoda/zipball/9817fd5abbd742384f59831d8a5953b01803b45d",
+                "reference": "9817fd5abbd742384f59831d8a5953b01803b45d",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8|^7.5"
+            },
+            "suggest": {
+                "ext-memcached": "Cache data using Memcache",
+                "ext-redis": "Cache data using Redis"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Decoda": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Miles Johnson",
+                    "homepage": "http://milesj.me"
+                }
+            ],
+            "description": "A lightweight lexical string parser for BBCode styled markup.",
+            "homepage": "http://milesj.me/code/php/decoda",
+            "keywords": [
+                "HOOK",
+                "bbcode",
+                "decoda",
+                "filter",
+                "lexer",
+                "markup",
+                "parser"
+            ],
+            "time": "2019-01-16T04:52:14+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

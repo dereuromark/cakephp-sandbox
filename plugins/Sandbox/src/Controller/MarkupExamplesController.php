@@ -29,11 +29,17 @@ class MarkupExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @see http://fontawesome.io/
-	 *
 	 * @return void
 	 */
 	public function markdown() {
+		$this->viewBuilder()->addHelper('Markup.Markdown');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function bbcode() {
+		$this->viewBuilder()->addHelper('Markup.Bbcode');
 	}
 
 }
