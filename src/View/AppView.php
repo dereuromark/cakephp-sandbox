@@ -38,6 +38,8 @@ use Cake\View\View;
  * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  * @property \Icings\Menu\View\Helper\MenuHelper $Menu
  * @property \BootstrapUI\View\Helper\PaginatorHelper $Paginator
+ * @property \Markup\View\Helper\BbcodeHelper $Bbcode
+ * @property \Markup\View\Helper\MarkdownHelper $Markdown
  */
 class AppView extends View {
 

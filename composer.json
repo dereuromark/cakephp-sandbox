@@ -28,7 +28,7 @@
 		"dereuromark/cakephp-shim": "dev-master as 2.0.0",
 		"dereuromark/cakephp-tools": "dev-master as 2.0.0",
 		"dereuromark/cakephp-setup": "dev-master",
-		"dereuromark/cakephp-markup": "dev-bbcode-markdown",
+		"dereuromark/cakephp-markup": "dev-master",
 		"dereuromark/cakephp-captcha": "dev-master",
 		"cakephp/migrations": "^3.0.0",
 		"robmorgan/phinx": "dev-master as 0.12.2",

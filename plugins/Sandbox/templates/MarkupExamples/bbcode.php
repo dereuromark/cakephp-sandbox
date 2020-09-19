@@ -19,21 +19,33 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 <h3>Examples</h3>
 <p>The following examples are configured to use the `DecodaBbcode` engine.</p>
 
-<pre><?php
+<div class="code-snippet"><?php
 	$text = <<<TXT
 Some [b]bold[/b] text and also some [i]italic[/i].
 TXT;
 echo $this->Bbcode->convert($text);
-	?></pre>
+	?></div>
 
-<pre><?php
-	$text = '# hello world
-
-you can write text [url=http://example.com]with links[/url].
+<div class="code-snippet"><?php
+	$text = '[h1]hello world[/h1]
+You can write text [url=http://example.com]with links[/url].
 
 Here is a video embed:
 [video=youtube]slDY7PguRfI[/video]';
 echo $this->Bbcode->convert($text);
-	?></pre>
+	?></div>
+
+<div class="code-snippet"><?php
+	$text = <<<TXT
+An [abbr="my abbreviation"]abbreviation[/abbr], e.g. [abbr="National Aeronautics and Space Administration"]NASA[/abbr].
+
+Also lets
+[quote]quote something :)[/quote]
+Because that's how it is done.
+TXT;
+
+	echo $this->Bbcode->convert($text);
+	?></div>
+
 
 <p>You can register your own custom converter filters, see docs for details.</p>
