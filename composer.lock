@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "336984b2c63d2f0204e2054d27fe6627",
+    "content-hash": "38a4b95ece35df8e46fe707e99ba1654",
     "packages": [
         {
             "name": "admad/cakephp-hybridauth",
@@ -1646,16 +1646,16 @@
         },
         {
             "name": "dereuromark/cakephp-markup",
-            "version": "dev-bbcode-markdown",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "a74b7a024620f31a7c38fa56fe3170bd98ded2f0"
+                "reference": "fa77e0c4cb1b85411819c9effb8f99f94f1b12f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/a74b7a024620f31a7c38fa56fe3170bd98ded2f0",
-                "reference": "a74b7a024620f31a7c38fa56fe3170bd98ded2f0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/fa77e0c4cb1b85411819c9effb8f99f94f1b12f4",
+                "reference": "fa77e0c4cb1b85411819c9effb8f99f94f1b12f4",
                 "shasum": ""
             },
             "require": {
@@ -1693,7 +1693,7 @@
                 "markup",
                 "plugin"
             ],
-            "time": "2020-09-19T00:42:21+00:00"
+            "time": "2020-09-19T14:29:22+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -6973,16 +6973,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.9.1",
+            "version": "v4.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28"
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/88e519766fc58bd46b8265561fb79b54e2e00b28",
-                "reference": "88e519766fc58bd46b8265561fb79b54e2e00b28",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c13d05035deff45f1230ca68bd7d74d621762d9",
+                "reference": "1c13d05035deff45f1230ca68bd7d74d621762d9",
                 "shasum": ""
             },
             "require": {
@@ -7021,7 +7021,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-08-30T16:15:20+00:00"
+            "time": "2020-09-19T14:52:48+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
