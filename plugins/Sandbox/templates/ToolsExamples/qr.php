@@ -24,7 +24,7 @@ Just write it via keyboard, scan it and send it.
 
 if (!empty($result)) {
 		$this->QrCode->setSize(300);
-		if ($this->request->data['type'] === 'card') {
+		if ($this->request->getData('type') === 'card') {
 			if (!Validation::date($result['birthday'])) {
 				unset($result['birthday']);
 			}
@@ -35,7 +35,7 @@ if (!empty($result)) {
 			}
 			$string = $this->QrCode->formatCard($result);
 		} else {
-			$string = $this->QrCode->formatText($result, $this->request->data['type']);
+			$string = $this->QrCode->formatText($result, $this->request->getData('type'));
 		}
 
 		echo $this->QrCode->image($string);
