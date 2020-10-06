@@ -42,7 +42,6 @@
 		"friendsofcake/bootstrap-ui": "^3.0@RC",
 		"dereuromark/cakephp-cache": "dev-master",
 		"dereuromark/cakephp-translate": "dev-cake4",
-		"admad/cakephp-hybridauth": "dev-master",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
 		"icings/menu": "dev-master",
@@ -84,7 +83,8 @@
 		"psr-4": {
 			"App\\": "src/",
 			"Sandbox\\": "plugins/Sandbox/src/",
-			"AuthSandbox\\": "plugins/AuthSandbox/src/"
+			"AuthSandbox\\": "plugins/AuthSandbox/src/",
+			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/"
 		}
 	},
 	"autoload-dev": {
@@ -92,17 +92,12 @@
 			"App\\Test\\": "tests/",
 			"Sandbox\\Test\\": "plugins/Sandbox/tests/",
 			"AuthSandbox\\Test\\": "plugins/AuthSandbox/tests/",
+			"StateMachineSandbox\\Test\\": "plugins/StateMachineSandbox/tests/",
 			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests/",
 			"Captcha\\Test\\": "./vendor/dereuromark/cakephp-captcha/tests/",
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
-	"repositories": [
-		{
-			"type": "git",
-			"url": "git@github.com:dereuromark/CakePHP-HybridAuth.git"
-		}
-	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
