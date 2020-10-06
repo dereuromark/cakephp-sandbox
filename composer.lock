@@ -238,12 +238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "ae6747dda639025f89cefa650ced62f66e9fd4df"
+                "reference": "d54bd7572581023c57ca751dd4780cb61c6e3e35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ae6747dda639025f89cefa650ced62f66e9fd4df",
-                "reference": "ae6747dda639025f89cefa650ced62f66e9fd4df",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/d54bd7572581023c57ca751dd4780cb61c6e3e35",
+                "reference": "d54bd7572581023c57ca751dd4780cb61c6e3e35",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +327,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-10-05T14:42:27+00:00"
+            "time": "2020-10-06T03:54:42+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -5112,12 +5112,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/cakephp-statemachine.git",
-                "reference": "246b702cd80a01cd1d0b5c07a89940c52e6c60e1"
+                "reference": "e34c4475eae3982643bfc45ecd42552feb103d1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/246b702cd80a01cd1d0b5c07a89940c52e6c60e1",
-                "reference": "246b702cd80a01cd1d0b5c07a89940c52e6c60e1",
+                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/e34c4475eae3982643bfc45ecd42552feb103d1d",
+                "reference": "e34c4475eae3982643bfc45ecd42552feb103d1d",
                 "shasum": ""
             },
             "require": {
@@ -5152,7 +5152,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2020-10-04T22:02:57+00:00"
+            "time": "2020-10-05T22:38:53+00:00"
         },
         {
             "name": "symfony/config",
@@ -6658,12 +6658,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "53452055e4836653bf11b077001b2542883e3442"
+                "reference": "c07db5f000e6e06f0726f1afbd3185e2dbfafae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/53452055e4836653bf11b077001b2542883e3442",
-                "reference": "53452055e4836653bf11b077001b2542883e3442",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/c07db5f000e6e06f0726f1afbd3185e2dbfafae5",
+                "reference": "c07db5f000e6e06f0726f1afbd3185e2dbfafae5",
                 "shasum": ""
             },
             "require": {
@@ -6724,7 +6724,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-10-02T09:14:06+00:00"
+            "time": "2020-10-05T19:29:45+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
