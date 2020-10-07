@@ -18,7 +18,6 @@ class StateMachineSandboxController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function index() {
-
 	}
 
 }
