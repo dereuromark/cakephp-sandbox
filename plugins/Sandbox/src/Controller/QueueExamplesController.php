@@ -63,7 +63,7 @@ class QueueExamplesController extends SandboxAppController {
 			}
 
 			if (!$queuedJob->getErrors()) {
-				if ($this->scheduleDelayedDemo($task, $notBefore)) {
+				if ($notBefore && $this->scheduleDelayedDemo($task, $notBefore)) {
 					$rel = Time::relLengthOfTime($notBefore);
 					if (!is_string($rel)) {
 						throw new RuntimeException('Expected string result');
@@ -110,7 +110,7 @@ class QueueExamplesController extends SandboxAppController {
 
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
-		if (strpos($job->reference, '-' . $sid) === false) {
+		if (strpos((string)$job->reference, '-' . $sid) === false) {
 			throw new NotFoundException();
 		}
 

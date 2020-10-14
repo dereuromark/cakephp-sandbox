@@ -32,7 +32,7 @@ class PaginatorComponent extends CorePaginatorComponent {
 				$query = $object;
 				$object = $query->getRepository();
 			}
-			$alias = $object->getAlias();
+			$alias = $object ? $object->getAlias() : '';
 			$pageCount = $this->getController()->getRequest()->getAttribute('paging')[$alias]['pageCount'];
 			$lastPage = $pageCount > 1 ? $pageCount : null;
 			$url = Router::url(['?' => ['page' => $lastPage] + (array)$this->getController()->getRequest()->getQuery()], true);

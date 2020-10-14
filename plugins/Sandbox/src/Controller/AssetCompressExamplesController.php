@@ -59,13 +59,13 @@ class AssetCompressExamplesController extends SandboxAppController {
 			$this->Flash->error('SASS Parsing error: ' . $e->getMessage());
 			$result = [];
 		}
-		$expected = file_get_contents($this->_cssDir . 'compiled_scss.css');
+		$expected = file_get_contents($this->_cssDir . 'compiled_scss.css') ?: '';
 		if (!$expected) {
 			throw new RuntimeException('Cannot read compiled_scss.scss file.');
 		}
 		if (!$result) {
 			$result = $expected;
-			$expected = null;
+			$expected = '';
 		}
 
 		$result = trim(str_replace("\r\n", "\n", $result));

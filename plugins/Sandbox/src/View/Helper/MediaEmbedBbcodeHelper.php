@@ -29,7 +29,7 @@ class MediaEmbedBbcodeHelper extends Helper {
 	public function prepareForOutput($string): string {
 		$string = $this->Text->autoParagraph(h($string));
 
-		return preg_replace_callback('/\[video=?(.*?)\](.*?)\[\/video\]/is', [$this, '_finalizeVideo'], $string);
+		return (string)preg_replace_callback('/\[video=?(.*?)\](.*?)\[\/video\]/is', [$this, '_finalizeVideo'], $string);
 	}
 
 	/**

@@ -34,7 +34,7 @@ class CalendarController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index($year = null, $month = null) {
-		$this->Calendar->init($year, $month, 5);
+		$this->Calendar->init((string)$year, (string)$month, 5);
 
 		$options = [
 			'year' => $this->Calendar->year(),

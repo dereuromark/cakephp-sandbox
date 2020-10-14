@@ -4,17 +4,17 @@
 [![License](https://poser.pugx.org/dereuromark/cakephp-sandbox/license.svg)](https://packagist.org/packages/dereuromark/cakephp-sandbox)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
-[![PHPStan](https://img.shields.io/badge/phpstan-level%207-brightgreen.svg?style=flat)](https://phpstan.org/)
+[![PHPStan](https://img.shields.io/badge/phpstan-level%208-brightgreen.svg?style=flat)](https://phpstan.org/)
 
 A sandbox app to showcase CakePHP features and tools as well as provide a sandbox for tryouts.
 
 This branch is for **CakePHP 4.x**. For deprecated 3.x/2.x ones, please use the corresponding branch.
 
 * Check it out live: https://sandbox.dereuromark.de
-* Author: Mark Scherer alias dereuromark
+* Author: Mark Scherer aka dereuromark
 
 ### Key Features
-- Plugin showcasings
+- Plugin showcases
 - Whoops as error renderer for development (debug true)
 - Logging to a paginated and searchable DB solution instead of plain files
 
