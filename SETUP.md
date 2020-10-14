@@ -36,6 +36,9 @@ Everything should be up and running.
 Consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
 
+Note: You need to install the assets yourself somehow. You can also look into `build.sh` and how the deployment script handles it.
+In the end you just have to get them installed somehow for the AssetCompress plugin to pick them up.
+
 #### Use CakeBox as VM
 Hot tip: Using [CakeBox](https://github.com/alt3/cakebox) is the fast way to get it working on any OS.
 Just follow the docs there, log in and create a project:
