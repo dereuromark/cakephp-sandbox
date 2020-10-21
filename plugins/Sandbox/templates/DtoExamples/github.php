@@ -42,7 +42,7 @@ echo $this->Html->css('Sandbox.highlighting/github.css');
 
 	<h4>dd($pullRequestDto) result</h4>
 	<p>Using debug() or dd() we can easily show what the DTO contains:</p>
-<?php echo $this->Highlighter->highlight(Debugger::exportVar($pullRequestDto, 9), ['lang' => 'php'])?>
+<pre><code><?php echo Debugger::printVar($pullRequestDto, [], false)?></code></pre>
 
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>

@@ -86,7 +86,7 @@ class AppController extends Controller {
 		$this->Auth->setConfig($config);
 
 		// Make sure you can't access login etc when already logged in
-		$allowed = ['Account' => ['login', 'lost_password', 'register']];
+		$allowed = ['Account' => ['login', 'lostPassword', 'register']];
 		if (!$this->AuthUser->id()) {
 			return null;
 		}

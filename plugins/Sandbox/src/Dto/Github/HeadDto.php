@@ -16,10 +16,10 @@ namespace Sandbox\Dto\Github;
  */
 class HeadDto extends \CakeDto\Dto\AbstractDto {
 
-	const FIELD_REF = 'ref';
-	const FIELD_SHA = 'sha';
-	const FIELD_USER = 'user';
-	const FIELD_REPO = 'repo';
+	public const FIELD_REF = 'ref';
+	public const FIELD_SHA = 'sha';
+	public const FIELD_USER = 'user';
+	public const FIELD_REPO = 'repo';
 
 	/**
 	 * @var string
@@ -120,7 +120,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setRef($ref) {
+	public function setRef(string $ref) {
 		$this->ref = $ref;
 		$this->_touchedFields[self::FIELD_REF] = true;
 
@@ -130,14 +130,14 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getRef() {
+	public function getRef(): string {
 		return $this->ref;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasRef() {
+	public function hasRef(): bool {
 		return $this->ref !== null;
 	}
 
@@ -146,7 +146,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setSha($sha) {
+	public function setSha(string $sha) {
 		$this->sha = $sha;
 		$this->_touchedFields[self::FIELD_SHA] = true;
 
@@ -156,14 +156,14 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getSha() {
+	public function getSha(): string {
 		return $this->sha;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasSha() {
+	public function hasSha(): bool {
 		return $this->sha !== null;
 	}
 
@@ -182,14 +182,14 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\UserDto
 	 */
-	public function getUser() {
+	public function getUser(): \Sandbox\Dto\Github\UserDto {
 		return $this->user;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasUser() {
+	public function hasUser(): bool {
 		return $this->user !== null;
 	}
 
@@ -208,14 +208,14 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return \Sandbox\Dto\Github\RepoDto
 	 */
-	public function getRepo() {
+	public function getRepo(): \Sandbox\Dto\Github\RepoDto {
 		return $this->repo;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasRepo() {
+	public function hasRepo(): bool {
 		return $this->repo !== null;
 	}
 

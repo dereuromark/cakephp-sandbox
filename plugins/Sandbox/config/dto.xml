@@ -7,7 +7,7 @@
 	<!-- Generate via: bin/cake dto generate -p Sandbox -->
 
 	<!-- We only outline the fields we need/want -->
-	
+
 	<dto name="Github/PullRequest">
 		<field name="url" type="string" required="true"/>
 		<field name="number" type="int" required="true"/>

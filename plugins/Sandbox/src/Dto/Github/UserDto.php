@@ -15,9 +15,9 @@ namespace Sandbox\Dto\Github;
  */
 class UserDto extends \CakeDto\Dto\AbstractDto {
 
-	const FIELD_LOGIN = 'login';
-	const FIELD_HTML_URL = 'html_url';
-	const FIELD_TYPE = 'type';
+	public const FIELD_LOGIN = 'login';
+	public const FIELD_HTML_URL = 'html_url';
+	public const FIELD_TYPE = 'type';
 
 	/**
 	 * @var string
@@ -99,7 +99,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setLogin($login) {
+	public function setLogin(string $login) {
 		$this->login = $login;
 		$this->_touchedFields[self::FIELD_LOGIN] = true;
 
@@ -109,14 +109,14 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getLogin() {
+	public function getLogin(): string {
 		return $this->login;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasLogin() {
+	public function hasLogin(): bool {
 		return $this->login !== null;
 	}
 
@@ -125,7 +125,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHtml_url($html_url) {
+	public function setHtml_url(string $html_url) {
 		$this->html_url = $html_url;
 		$this->_touchedFields[self::FIELD_HTML_URL] = true;
 
@@ -135,14 +135,14 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getHtml_url() {
+	public function getHtml_url(): string {
 		return $this->html_url;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasHtml_url() {
+	public function hasHtml_url(): bool {
 		return $this->html_url !== null;
 	}
 
@@ -151,7 +151,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setType($type) {
+	public function setType(string $type) {
 		$this->type = $type;
 		$this->_touchedFields[self::FIELD_TYPE] = true;
 
@@ -161,14 +161,14 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getType() {
+	public function getType(): string {
 		return $this->type;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasType() {
+	public function hasType(): bool {
 		return $this->type !== null;
 	}
 

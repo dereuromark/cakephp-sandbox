@@ -14,8 +14,8 @@ namespace Sandbox\Dto\Github;
  */
 class LabelDto extends \CakeDto\Dto\AbstractDto {
 
-	const FIELD_NAME = 'name';
-	const FIELD_COLOR = 'color';
+	public const FIELD_NAME = 'name';
+	public const FIELD_COLOR = 'color';
 
 	/**
 	 * @var string|null
@@ -78,7 +78,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setName($name) {
+	public function setName(?string $name) {
 		$this->name = $name;
 		$this->_touchedFields[self::FIELD_NAME] = true;
 
@@ -88,7 +88,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string|null
 	 */
-	public function getName() {
+	public function getName(): ?string {
 		return $this->name;
 	}
 
@@ -97,7 +97,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return string
 	 */
-	public function getNameOrFail() {
+	public function getNameOrFail(): string {
 		if (!isset($this->name)) {
 			throw new \RuntimeException('Value not set for field `name` (expected to be not null)');
 		}
@@ -108,7 +108,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return bool
 	 */
-	public function hasName() {
+	public function hasName(): bool {
 		return $this->name !== null;
 	}
 
@@ -117,7 +117,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setColor($color) {
+	public function setColor(?string $color) {
 		$this->color = $color;
 		$this->_touchedFields[self::FIELD_COLOR] = true;
 
@@ -127,7 +127,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string|null
 	 */
-	public function getColor() {
+	public function getColor(): ?string {
 		return $this->color;
 	}
 
@@ -136,7 +136,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @return string
 	 */
-	public function getColorOrFail() {
+	public function getColorOrFail(): string {
 		if (!isset($this->color)) {
 			throw new \RuntimeException('Value not set for field `color` (expected to be not null)');
 		}
@@ -147,7 +147,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return bool
 	 */
-	public function hasColor() {
+	public function hasColor(): bool {
 		return $this->color !== null;
 	}
 
