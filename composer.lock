@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ba546a64aa4c8d7f141afeb1e8c3586",
+    "content-hash": "58e6beac41c309fe405fd41145ac3889",
     "packages": [
         {
             "name": "aura/intl",
@@ -4870,17 +4870,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/cakephp-statemachine.git",
-                "reference": "43383f061e3aba399af419b112c9e3774e201bd3"
+                "reference": "7e3923109fb1f9332b1334d31370fc07a7275255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/43383f061e3aba399af419b112c9e3774e201bd3",
-                "reference": "43383f061e3aba399af419b112c9e3774e201bd3",
+                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/7e3923109fb1f9332b1334d31370fc07a7275255",
+                "reference": "7e3923109fb1f9332b1334d31370fc07a7275255",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
-                "dereuromark/cakephp-dto": "^1.0",
+                "dereuromark/cakephp-dto": "^1.1",
                 "dereuromark/cakephp-tools": "^2.0",
                 "php": ">=7.2",
                 "phpdocumentor/graphviz": "^1.0.4"
@@ -4910,7 +4910,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2020-10-11T14:15:32+00:00"
+            "time": "2020-10-22T00:34:03+00:00"
         },
         {
             "name": "symfony/config",
@@ -7265,8 +7265,8 @@
             "package": "cakephp/twig-view"
         },
         {
-            "alias": "1.0.0",
-            "alias_normalized": "1.0.0.0",
+            "alias": "1.1.0",
+            "alias_normalized": "1.1.0.0",
             "version": "9999999-dev",
             "package": "dereuromark/cakephp-dto"
         },
