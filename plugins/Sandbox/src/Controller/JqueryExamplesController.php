@@ -15,15 +15,6 @@ class JqueryExamplesController extends SandboxAppController {
 	protected $jqueryPlugins = ['media'];
 
 	/**
-	 * @return void
-	 */
-	public function initialize(): void {
-		parent::initialize();
-
-		$this->viewBuilder()->setHelpers(['Markup.Highlighter']);
-	}
-
-	/**
 	 * @param \Cake\Event\EventInterface $event
 	 * @return void
 	 */

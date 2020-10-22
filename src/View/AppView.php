@@ -52,7 +52,7 @@ class AppView extends View {
 	 * @return void
 	 */
 	public function initialize(): void {
-		$this->loadHelper('Markup.Highlighter');
+		$this->loadHelper('Markup.Highlighter', ['prefix' => '']);
 		$this->loadHelper('BootstrapUI.Paginator');
 	}
 

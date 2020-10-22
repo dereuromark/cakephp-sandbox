@@ -11,7 +11,7 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 
 echo $this->Html->css('Sandbox.highlighting/github.css');
 ?>
-<script src="https://highlightjs.org/static/highlight.pack.js"></script>
+<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 <nav class="actions col-sm-4 col-12">
@@ -47,7 +47,7 @@ echo $this->Html->css('Sandbox.highlighting/github.css');
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>
 
-<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.php'), ['lang' => 'php'])?>
+<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.php'), ['lang' => 'php-template'])?>
 
 	<h4>Resulting output</h4>
 	<?php echo $this->element('../DtoExamples/pr')?>

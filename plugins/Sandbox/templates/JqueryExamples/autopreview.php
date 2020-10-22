@@ -4,6 +4,12 @@
  */
 ?>
 
+<?php
+echo $this->Html->css('Sandbox.highlighting/github.css');
+?>
+<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <?php $this->append('script'); ?>
 <script type="text/javascript">
 
@@ -52,7 +58,7 @@ $dataPrint = '$(document).ready(function() {
 });';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'javascript']);
 ?>
-Notice: Due to security issues i did not allow html content. that would be so if you change the following line:
+Notice: Due to security issues I did not allow HTML content. that would be so if you change the following line:
 <?php
 $dataPrint = '		$("p").text(value);
 	/* into */

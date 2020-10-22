@@ -4,6 +4,12 @@
  */
 ?>
 
+<?php
+echo $this->Html->css('Sandbox.highlighting/github.css');
+?>
+<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <h2>BBcode to HTML</h2>
 <a href="https://github.com/dereuromark/cakephp-markup" target="_blank">[Markup Plugin]</a>
 
@@ -11,8 +17,8 @@
 To begin with, the lines you need to display code:
 </p>
 <?php
-$dataPrint = '$bbcodeText = ...' . PHP_EOL;
-$dataPrint .= 'echo $this->Bbcode->convert($bbcodeText)';
+$dataPrint = '$bbcodeText = ...;' . PHP_EOL;
+$dataPrint .= 'echo $this->Bbcode->convert($bbcodeText);';
 echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 ?>
 

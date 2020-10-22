@@ -14,15 +14,6 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize(): void {
-		parent::initialize();
-
-		$this->viewBuilder()->setHelpers(['Markup.Highlighter']);
-	}
-
-	/**
-	 * @return void
-	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
