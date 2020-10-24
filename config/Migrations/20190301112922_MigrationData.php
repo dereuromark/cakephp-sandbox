@@ -38,7 +38,7 @@ class MigrationData extends AbstractMigration
 			])
 			->update();
 
-		$this->table('continents')
+		$this->table('countries')
 			->changeColumn('lat', 'float', [
 				'comment' => 'latitude',
 				'default' => null,
