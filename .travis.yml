@@ -25,6 +25,7 @@ matrix:
 
 before_install:
   - if [[ $CODECOVERAGE != 1 ]]; then phpenv config-rm xdebug.ini ; fi
+  - composer selfupdate --2
 
 before_script:
   - composer install --prefer-source --no-interaction
