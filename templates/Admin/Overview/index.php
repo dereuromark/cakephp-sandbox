@@ -10,6 +10,7 @@
 
 		<h3><?php echo __('Public Lists')?></h3>
 		<ul>
+			<li><?php echo $this->Html->link(__('Continents'), ['plugin' => 'Data', 'controller' => 'Continents', 'action' => 'index'])?></li>
 			<li><?php echo $this->Html->link(__('Countries'), ['plugin' => 'Data', 'controller' => 'Countries', 'action' => 'index'])?></li>
 			<li><?php echo $this->Html->link(__('States'), ['plugin' => 'Data', 'controller' => 'States', 'action' => 'index'])?></li>
 			<li><?php echo $this->Html->link(__('Postal Codes'), ['plugin' => 'Data', 'controller' => 'PostalCodes', 'action' => 'index'])?></li>

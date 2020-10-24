@@ -100,7 +100,6 @@
 	},
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
-		"post-autoload-dump": "Cake\\Composer\\Installer\\PluginInstaller::postAutoloadDump",
 		"migrate": [
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
