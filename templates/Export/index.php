@@ -17,9 +17,9 @@ An interface to directly modify the data is planned, though.
 <div class="row">
 	<div class="col-md-6 col-12">
 
-<h3><?php echo __('Continents'); ?></h3>
-<div>Key information: lat/lng</div>
-<?php //echo $this->Html->link(__('View online'), array('plugin'=>'tools', 'controller'=>'continents', 'action'=>'index')); ?>
+<h3><?php echo __('Continents'); ?>/<?php echo __('Regions');?></h3>
+<div>Key information: code, nested regions and subregions as tree</div>
+<?php echo $this->Html->link(__('View online'), ['plugin'=>'Data', 'controller' => 'Continents', 'action' => 'index']); ?>
 <ul>
 <li><?php echo $this->Html->link('JSON', ['action' => 'continents', '_ext' => 'json']); ?></li>
 <li><?php echo $this->Html->link('XML', ['action' => 'continents', '_ext' => 'xml']); ?></li>
