@@ -484,7 +484,6 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		return isset($this->labels[$key]);
 	}
 
-
 	/**
 	 * @param string|int $key
 	 * @param \Sandbox\Dto\Github\LabelDto $label
