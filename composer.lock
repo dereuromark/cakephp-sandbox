@@ -50,6 +50,10 @@
                 "l10n",
                 "localization"
             ],
+            "support": {
+                "issues": "https://github.com/auraphp/Aura.Intl/issues",
+                "source": "https://github.com/auraphp/Aura.Intl/tree/3.x"
+            },
             "time": "2017-01-20T05:00:11+00:00"
         },
         {
@@ -96,6 +100,10 @@
                 "brick",
                 "math"
             ],
+            "support": {
+                "issues": "https://github.com/brick/math/issues",
+                "source": "https://github.com/brick/math/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://tidelift.com/funding/github/packagist/brick/math",
@@ -128,6 +136,7 @@
                 "phpstan/phpstan": "^0.12.14",
                 "phpunit/phpunit": "^8.5.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -149,6 +158,10 @@
                 }
             ],
             "description": "Service layer and domain / business model implementation for CakePHP",
+            "support": {
+                "issues": "https://github.com/burzum/cakephp-service-layer/issues",
+                "source": "https://github.com/burzum/cakephp-service-layer/tree/2.1.1"
+            },
             "time": "2020-09-07T08:12:20+00:00"
         },
         {
@@ -157,12 +170,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "22f20b5991e09bd7edf41193ac4ea625bfaf1484"
+                "reference": "f1c297c4e903a15188389011b93ce46119849d01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/22f20b5991e09bd7edf41193ac4ea625bfaf1484",
-                "reference": "22f20b5991e09bd7edf41193ac4ea625bfaf1484",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/f1c297c4e903a15188389011b93ce46119849d01",
+                "reference": "f1c297c4e903a15188389011b93ce46119849d01",
                 "shasum": ""
             },
             "require": {
@@ -175,6 +188,7 @@
                 "cakephp/debug_kit": "^4.1",
                 "phpunit/phpunit": "~8.5.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -197,7 +211,13 @@
                 "bake",
                 "cakephp"
             ],
-            "time": "2020-10-19T15:17:33+00:00"
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/bake/issues",
+                "source": "https://github.com/cakephp/bake"
+            },
+            "time": "2020-10-23T01:17:19+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -205,12 +225,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "b7bd1cd81f07fbfe2c7c3ad7b9e1e5dae3fe61c3"
+                "reference": "29163cb8f360bf9304f72aba4ab735dfcce90977"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b7bd1cd81f07fbfe2c7c3ad7b9e1e5dae3fe61c3",
-                "reference": "b7bd1cd81f07fbfe2c7c3ad7b9e1e5dae3fe61c3",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/29163cb8f360bf9304f72aba4ab735dfcce90977",
+                "reference": "29163cb8f360bf9304f72aba4ab735dfcce90977",
                 "shasum": ""
             },
             "require": {
@@ -258,6 +278,7 @@
                 "lib-ICU": "The intl PHP library, to use Text::transliterate() or Text::slug()",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -294,7 +315,13 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2020-10-20T23:13:01+00:00"
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/cakephp/issues",
+                "source": "https://github.com/cakephp/cakephp"
+            },
+            "time": "2020-10-22T01:17:24+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -349,6 +376,11 @@
                 "datetime",
                 "time"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/chronos/issues",
+                "source": "https://github.com/cakephp/chronos"
+            },
             "time": "2020-08-22T02:42:12+00:00"
         },
         {
@@ -409,6 +441,12 @@
                 "debug",
                 "kit"
             ],
+            "support": {
+                "forum": "http://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/debug_kit/issues",
+                "source": "https://github.com/cakephp/debug_kit"
+            },
             "time": "2020-10-08T06:09:00+00:00"
         },
         {
@@ -463,30 +501,40 @@
                 "cakephp",
                 "migrations"
             ],
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/migrations/issues",
+                "source": "https://github.com/cakephp/migrations"
+            },
             "time": "2020-05-10T22:26:04+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/plugin-installer.git",
-                "reference": "3be2ea116603341b196592053e973f4abe71e8b2"
+                "reference": "549548a7aa308ecee4059c2d10a7d8d5d1002602"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/3be2ea116603341b196592053e973f4abe71e8b2",
-                "reference": "3be2ea116603341b196592053e973f4abe71e8b2",
+                "url": "https://api.github.com/repos/cakephp/plugin-installer/zipball/549548a7aa308ecee4059c2d10a7d8d5d1002602",
+                "reference": "549548a7aa308ecee4059c2d10a7d8d5d1002602",
                 "shasum": ""
             },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "dev-master",
-                "composer/composer": "^1.0",
-                "phpunit/phpunit": "^4.8|^5.7|^6.0"
+            "require": {
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": ">=7.2.0"
             },
-            "type": "composer-installer",
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^4.1",
+                "composer/composer": "^2.0@RC",
+                "phpunit/phpunit": "^8.5 || ^9.3"
+            },
+            "type": "composer-plugin",
             "extra": {
-                "class": "Cake\\Composer\\Installer\\PluginInstaller"
+                "class": "Cake\\Composer\\Plugin"
             },
             "autoload": {
                 "psr-4": {
@@ -504,7 +552,11 @@
                 }
             ],
             "description": "A composer installer for CakePHP 3.0+ plugins.",
-            "time": "2019-11-12T10:21:19+00:00"
+            "support": {
+                "issues": "https://github.com/cakephp/plugin-installer/issues",
+                "source": "https://github.com/cakephp/plugin-installer/tree/1.3.0"
+            },
+            "time": "2020-10-24T07:29:47+00:00"
         },
         {
             "name": "cakephp/twig-view",
@@ -512,18 +564,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/twig-view.git",
-                "reference": "52514833414cc44a2490b0c4d416ccb42774ec84"
+                "reference": "0fdd5771c7165b9843a2c07e00b81e85d5c90860"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/twig-view/zipball/52514833414cc44a2490b0c4d416ccb42774ec84",
-                "reference": "52514833414cc44a2490b0c4d416ccb42774ec84",
+                "url": "https://api.github.com/repos/cakephp/twig-view/zipball/0fdd5771c7165b9843a2c07e00b81e85d5c90860",
+                "reference": "0fdd5771c7165b9843a2c07e00b81e85d5c90860",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
                 "jasny/twig-extensions": "^1.3",
-                "php": "^7.2",
+                "php": ">=7.2",
                 "twig/markdown-extra": "^3.0",
                 "twig/twig": "^3.0"
             },
@@ -535,8 +587,9 @@
                 "cakephp/debug_kit": "^4.0",
                 "michelf/php-markdown": "^1.9",
                 "mikey179/vfsstream": "^1.6",
-                "phpunit/phpunit": "^8.5"
+                "phpunit/phpunit": "^8.5 || ^9.3"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -560,7 +613,13 @@
                 "twig",
                 "view"
             ],
-            "time": "2020-08-21T09:09:53+00:00"
+            "support": {
+                "forum": "https://stackoverflow.com/tags/cakephp",
+                "irc": "irc://irc.freenode.org/cakephp",
+                "issues": "https://github.com/cakephp/twig-view/issues",
+                "source": "https://github.com/cakephp/twig-view"
+            },
+            "time": "2020-10-24T01:47:54+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -612,6 +671,10 @@
                 "stream_filter_append",
                 "stream_filter_register"
             ],
+            "support": {
+                "issues": "https://github.com/clue/php-stream-filter/issues",
+                "source": "https://github.com/clue/php-stream-filter/tree/v1.5.0"
+            },
             "funding": [
                 {
                     "url": "https://clue.engineering/support",
@@ -678,6 +741,11 @@
                 "ssl",
                 "tls"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/ca-bundle/issues",
+                "source": "https://github.com/composer/ca-bundle/tree/1.2.8"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -696,16 +764,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "1.10.15",
+            "version": "1.10.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "547c9ee73fe26c77af09a0ea16419176b1cdbd12"
+                "reference": "217f0272673c72087862c40cf91ac07eb438d778"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/547c9ee73fe26c77af09a0ea16419176b1cdbd12",
-                "reference": "547c9ee73fe26c77af09a0ea16419176b1cdbd12",
+                "url": "https://api.github.com/repos/composer/composer/zipball/217f0272673c72087862c40cf91ac07eb438d778",
+                "reference": "217f0272673c72087862c40cf91ac07eb438d778",
                 "shasum": ""
             },
             "require": {
@@ -772,6 +840,11 @@
                 "dependency",
                 "package"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/composer/issues",
+                "source": "https://github.com/composer/composer/tree/1.10.16"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -786,7 +859,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-13T13:59:09+00:00"
+            "time": "2020-10-24T07:55:59+00:00"
         },
         {
             "name": "composer/semver",
@@ -847,6 +920,11 @@
                 "validation",
                 "versioning"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/semver/issues",
+                "source": "https://github.com/composer/semver/tree/1.7.1"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -921,6 +999,11 @@
                 "spdx",
                 "validator"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/spdx-licenses/issues",
+                "source": "https://github.com/composer/spdx-licenses/tree/1.5.4"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -939,16 +1022,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "ebd27a9866ae8254e873866f795491f02418c5a5"
+                "reference": "6e076a124f7ee146f2487554a94b6a19a74887ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/ebd27a9866ae8254e873866f795491f02418c5a5",
-                "reference": "ebd27a9866ae8254e873866f795491f02418c5a5",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/6e076a124f7ee146f2487554a94b6a19a74887ba",
+                "reference": "6e076a124f7ee146f2487554a94b6a19a74887ba",
                 "shasum": ""
             },
             "require": {
@@ -979,6 +1062,11 @@
                 "Xdebug",
                 "performance"
             ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/xdebug-handler/issues",
+                "source": "https://github.com/composer/xdebug-handler/tree/1.4.4"
+            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -993,7 +1081,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-19T10:27:58+00:00"
+            "time": "2020-10-24T12:39:10+00:00"
         },
         {
             "name": "dereuromark/cakephp-ajax",
@@ -1017,6 +1105,7 @@
                 "dereuromark/cakephp-tools": "^2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1043,6 +1132,10 @@
                 "plugin",
                 "view"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-ajax/issues",
+                "source": "https://github.com/dereuromark/cakephp-ajax"
+            },
             "time": "2020-08-26T08:56:26+00:00"
         },
         {
@@ -1068,6 +1161,7 @@
                 "dereuromark/cakephp-tools": "^2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1079,6 +1173,10 @@
                 "MIT"
             ],
             "description": "Cache plugin for CakePHP",
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-cache/issues",
+                "source": "https://github.com/dereuromark/cakephp-cache"
+            },
             "time": "2020-08-29T12:16:15+00:00"
         },
         {
@@ -1102,6 +1200,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1129,6 +1228,10 @@
                 "helper",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-calendar/issues",
+                "source": "https://github.com/dereuromark/cakephp-calendar"
+            },
             "time": "2020-06-28T12:16:24+00:00"
         },
         {
@@ -1153,6 +1256,7 @@
                 "cakephp/migrations": "^3.0.0@beta",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1179,6 +1283,10 @@
                 "plugin",
                 "security"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
+                "source": "https://github.com/dereuromark/cakephp-captcha"
+            },
             "time": "2020-10-03T11:43:01+00:00"
         },
         {
@@ -1187,12 +1295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "10e398e96af2111f94c2f78f0506b3531231ff04"
+                "reference": "acde36446ed01079c551874fc721c1474275e5ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/10e398e96af2111f94c2f78f0506b3531231ff04",
-                "reference": "10e398e96af2111f94c2f78f0506b3531231ff04",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/acde36446ed01079c551874fc721c1474275e5ef",
+                "reference": "acde36446ed01079c551874fc721c1474275e5ef",
                 "shasum": ""
             },
             "require": {
@@ -1208,6 +1316,7 @@
                 "willdurand/geocoder": "^4.2.2",
                 "yangqi/htmldom": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1234,7 +1343,11 @@
                 "geo",
                 "plugin"
             ],
-            "time": "2020-10-21T14:05:17+00:00"
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-data/issues",
+                "source": "https://github.com/dereuromark/cakephp-data"
+            },
+            "time": "2020-10-23T17:33:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1262,6 +1375,7 @@
             "suggest": {
                 "cakephp/migrations": "For migrations to run."
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1298,6 +1412,10 @@
                 "logs",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
+                "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
+            },
             "time": "2020-10-12T16:01:47+00:00"
         },
         {
@@ -1329,6 +1447,7 @@
             "suggest": {
                 "nette/neon": "^2.4 if you want to add a NEON file engine instead of XML."
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1363,6 +1482,10 @@
                 "dto",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-dto/issues",
+                "source": "https://github.com/dereuromark/cakephp-dto/"
+            },
             "time": "2020-10-21T23:19:14+00:00"
         },
         {
@@ -1389,6 +1512,7 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "keiko/uuid-shortener": "^0.3.2"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1419,6 +1543,10 @@
                 "obfuscate",
                 "uuid"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-expose/issues",
+                "source": "https://github.com/dereuromark/cakephp-expose/"
+            },
             "time": "2020-09-18T18:45:07+00:00"
         },
         {
@@ -1442,6 +1570,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1469,6 +1598,10 @@
                 "rss",
                 "view"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-feed/issues",
+                "source": "https://github.com/dereuromark/cakephp-feed"
+            },
             "time": "2020-06-28T13:09:56+00:00"
         },
         {
@@ -1491,6 +1624,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1513,6 +1647,10 @@
             ],
             "description": "Feedback or bugreport (with screenshot!) tab option in your CakePHP application. Data can be posted directly to Mantis, E-mail, Github issues, filesystem, etc.",
             "homepage": "https://github.com/dereuromark/cakephp-feedback",
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-feedback/issues",
+                "source": "https://github.com/dereuromark/cakephp-feedback/tree/1.0.0"
+            },
             "time": "2020-09-11T09:39:25+00:00"
         },
         {
@@ -1537,6 +1675,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1562,6 +1701,10 @@
                 "messages",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-flash/issues",
+                "source": "https://github.com/dereuromark/cakephp-flash"
+            },
             "time": "2020-08-27T09:43:46+00:00"
         },
         {
@@ -1593,6 +1736,7 @@
                 "php-http/cakephp-adapter": "0.3.x-dev",
                 "php-http/message": "^1.8.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1620,6 +1764,10 @@
                 "maps",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-geo/issues",
+                "source": "https://github.com/dereuromark/cakephp-geo"
+            },
             "time": "2020-08-06T11:02:19+00:00"
         },
         {
@@ -1646,6 +1794,7 @@
                 "league/commonmark": "^1.5",
                 "mjohnson/decoda": "^6.12"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1671,6 +1820,10 @@
                 "markup",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-markup/issues",
+                "source": "https://github.com/dereuromark/cakephp-markup"
+            },
             "time": "2020-09-20T22:01:18+00:00"
         },
         {
@@ -1694,6 +1847,7 @@
             "require-dev": {
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1714,6 +1868,10 @@
                 "seo",
                 "view"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-meta/issues",
+                "source": "https://github.com/dereuromark/cakephp-meta/tree/master"
+            },
             "time": "2020-08-07T13:19:03+00:00"
         },
         {
@@ -1745,6 +1903,7 @@
                 "dereuromark/cakephp-tools": "For the QueueEmailTask (if you don't write your own task here). Also for admin backend.",
                 "friendsofcake/search": "For admin backend and filtering of current jobs."
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1776,6 +1935,10 @@
                 "deferred tasks",
                 "queue"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-queue/issues",
+                "source": "https://github.com/dereuromark/cakephp-queue"
+            },
             "time": "2020-10-18T13:53:30+00:00"
         },
         {
@@ -1803,6 +1966,7 @@
             "suggest": {
                 "cakephp/migrations": "For migrations to run."
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1835,6 +1999,11 @@
                 "plugin",
                 "ratings"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-ratings/issues",
+                "source": "https://github.com/dereuromark/cakephp-ratings",
+                "wiki": "https://github.com/dereuromark/cakephp-ratings/blob/master/docs"
+            },
             "time": "2020-08-09T12:12:08+00:00"
         },
         {
@@ -1860,6 +2029,7 @@
                 "dereuromark/cakephp-tools": "^2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1889,6 +2059,10 @@
                 "setup",
                 "templates"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-setup/issues",
+                "source": "https://github.com/dereuromark/cakephp-setup"
+            },
             "time": "2020-09-16T12:33:12+00:00"
         },
         {
@@ -1913,6 +2087,7 @@
                 "dereuromark/cakephp-ide-helper": "^1.6.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1939,6 +2114,10 @@
                 "plugin",
                 "shim"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-shim/issues",
+                "source": "https://github.com/dereuromark/cakephp-shim"
+            },
             "time": "2020-10-06T22:55:33+00:00"
         },
         {
@@ -1965,6 +2144,7 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "robmorgan/phinx": "^0.12"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2004,6 +2184,10 @@
                 "tagging",
                 "tags"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-tags/issues",
+                "source": "https://github.com/dereuromark/cakephp-tags"
+            },
             "time": "2020-10-03T11:44:12+00:00"
         },
         {
@@ -2032,6 +2216,7 @@
                 "dereuromark/composer-prefer-lowest": "^0.1.3",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2059,6 +2244,10 @@
                 "roles",
                 "tinyauth"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
+                "source": "https://github.com/dereuromark/cakephp-tinyauth"
+            },
             "time": "2020-10-01T22:04:52+00:00"
         },
         {
@@ -2089,6 +2278,7 @@
             "suggest": {
                 "yangqi/htmldom": "For HtmlDom usage"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2119,6 +2309,10 @@
                 "tools",
                 "utils"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-tools/issues",
+                "source": "https://github.com/dereuromark/cakephp-tools"
+            },
             "time": "2020-10-20T23:25:38+00:00"
         },
         {
@@ -2176,6 +2370,10 @@
                 "i18n",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-translate/issues",
+                "source": "https://github.com/dereuromark/cakephp-translate"
+            },
             "time": "2020-08-09T16:14:27+00:00"
         },
         {
@@ -2200,6 +2398,7 @@
                 "fig-r/psr2r-sniffer": "^0.6",
                 "sebastian/diff": "@stable"
             },
+            "default-branch": true,
             "bin": [
                 "bin/generate-docs"
             ],
@@ -2229,6 +2428,10 @@
                 "php",
                 "video"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/media-embed/issues",
+                "source": "https://github.com/dereuromark/media-embed/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://github.com/dereuromark",
@@ -2303,6 +2506,10 @@
             ],
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
+            "support": {
+                "issues": "https://github.com/dompdf/dompdf/issues",
+                "source": "https://github.com/dompdf/dompdf/tree/master"
+            },
             "time": "2020-08-30T22:54:22+00:00"
         },
         {
@@ -2355,6 +2562,10 @@
                 "cakephp",
                 "front-end"
             ],
+            "support": {
+                "issues": "http://github.com/friendsofcake/bootstrap-ui/issues",
+                "source": "http://github.com/friendsofcake/bootstrap-ui"
+            },
             "time": "2020-08-23T14:35:55+00:00"
         },
         {
@@ -2429,6 +2640,10 @@
                 "export",
                 "view"
             ],
+            "support": {
+                "issues": "https://github.com/friendsofcake/cakephp-csvview/issues",
+                "source": "https://github.com/friendsofcake/cakephp-csvview"
+            },
             "time": "2020-08-06T14:38:13+00:00"
         },
         {
@@ -2453,6 +2668,7 @@
                 "muffin/webservice": "^3.0@beta",
                 "phpunit/phpunit": "~8.5.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2482,6 +2698,10 @@
                 "prg",
                 "search"
             ],
+            "support": {
+                "issues": "https://github.com/FriendsOfCake/search/issues",
+                "source": "https://github.com/FriendsOfCake/search"
+            },
             "time": "2020-10-17T12:28:21+00:00"
         },
         {
@@ -2544,6 +2764,9 @@
             "keywords": [
                 "http geocoder"
             ],
+            "support": {
+                "source": "https://github.com/geocoder-php/php-common-http/tree/4.3.0"
+            },
             "time": "2020-07-04T13:18:10+00:00"
         },
         {
@@ -2600,6 +2823,9 @@
             ],
             "description": "Geocoder GoogleMaps adapter",
             "homepage": "http://geocoder-php.org/Geocoder/",
+            "support": {
+                "source": "https://github.com/geocoder-php/google-maps-provider/tree/master"
+            },
             "time": "2020-07-04T13:18:10+00:00"
         },
         {
@@ -2625,6 +2851,7 @@
                 "cakephp/cakephp-codesniffer": "^4.0",
                 "phpunit/phpunit": "~8.5.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2648,6 +2875,10 @@
                 "knp-menu",
                 "menu"
             ],
+            "support": {
+                "issues": "https://github.com/icings/menu/issues",
+                "source": "https://github.com/icings/menu/tree/master"
+            },
             "time": "2020-09-10T11:48:24+00:00"
         },
         {
@@ -2708,6 +2939,10 @@
                 "text",
                 "time"
             ],
+            "support": {
+                "issues": "https://github.com/jasny/twig-extensions/issues",
+                "source": "https://github.com/jasny/twig-extensions"
+            },
             "time": "2019-12-10T16:04:23+00:00"
         },
         {
@@ -2767,6 +3002,10 @@
                 "url",
                 "urlify"
             ],
+            "support": {
+                "issues": "https://github.com/jbroadway/urlify/issues",
+                "source": "https://github.com/jbroadway/urlify/tree/master"
+            },
             "time": "2020-06-14T17:15:34+00:00"
         },
         {
@@ -2817,6 +3056,10 @@
                 "highlight",
                 "sql"
             ],
+            "support": {
+                "issues": "https://github.com/jdorn/sql-formatter/issues",
+                "source": "https://github.com/jdorn/sql-formatter/tree/master"
+            },
             "time": "2014-01-12T16:20:24+00:00"
         },
         {
@@ -2883,6 +3126,10 @@
                 "json",
                 "schema"
             ],
+            "support": {
+                "issues": "https://github.com/justinrainbow/json-schema/issues",
+                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.10"
+            },
             "time": "2020-05-27T16:41:55+00:00"
         },
         {
@@ -2951,6 +3198,10 @@
                 "menu",
                 "tree"
             ],
+            "support": {
+                "issues": "https://github.com/KnpLabs/KnpMenu/issues",
+                "source": "https://github.com/KnpLabs/KnpMenu/tree/master"
+            },
             "time": "2020-08-15T08:01:46+00:00"
         },
         {
@@ -3036,6 +3287,14 @@
                 "psr-17",
                 "psr-7"
             ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-diactoros/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-diactoros/issues",
+                "rss": "https://github.com/laminas/laminas-diactoros/releases.atom",
+                "source": "https://github.com/laminas/laminas-diactoros"
+            },
             "funding": [
                 {
                     "url": "https://funding.communitybridge.org/projects/laminas-project",
@@ -3101,6 +3360,14 @@
                 "psr-15",
                 "psr-7"
             ],
+            "support": {
+                "chat": "https://laminas.dev/chat",
+                "docs": "https://docs.laminas.dev/laminas-httphandlerrunner/",
+                "forum": "https://discourse.laminas.dev",
+                "issues": "https://github.com/laminas/laminas-httphandlerrunner/issues",
+                "rss": "https://github.com/laminas/laminas-httphandlerrunner/releases.atom",
+                "source": "https://github.com/laminas/laminas-httphandlerrunner"
+            },
             "funding": [
                 {
                     "url": "https://funding.communitybridge.org/projects/laminas-project",
@@ -3155,6 +3422,12 @@
                 "laminas",
                 "zf"
             ],
+            "support": {
+                "forum": "https://discourse.laminas.dev/",
+                "issues": "https://github.com/laminas/laminas-zendframework-bridge/issues",
+                "rss": "https://github.com/laminas/laminas-zendframework-bridge/releases.atom",
+                "source": "https://github.com/laminas/laminas-zendframework-bridge"
+            },
             "funding": [
                 {
                     "url": "https://funding.communitybridge.org/projects/laminas-project",
@@ -3222,6 +3495,10 @@
                 "php",
                 "terminal"
             ],
+            "support": {
+                "issues": "https://github.com/thephpleague/climate/issues",
+                "source": "https://github.com/thephpleague/climate/tree/3.6.0"
+            },
             "time": "2020-10-04T16:02:59+00:00"
         },
         {
@@ -3291,6 +3568,12 @@
                 "md",
                 "parser"
             ],
+            "support": {
+                "docs": "https://commonmark.thephpleague.com/",
+                "issues": "https://github.com/thephpleague/commonmark/issues",
+                "rss": "https://github.com/thephpleague/commonmark/releases.atom",
+                "source": "https://github.com/thephpleague/commonmark"
+            },
             "funding": [
                 {
                     "url": "https://enjoy.gitstore.app/repositories/thephpleague/commonmark",
@@ -3336,6 +3619,7 @@
             "require": {
                 "php": ">=5.0.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
@@ -3350,7 +3634,7 @@
                 {
                     "name": "Joost Faassen",
                     "email": "j.faassen@linkorb.com",
-                    "role": "Packaging for Composer"
+                    "role": "Packaging for composer"
                 },
                 {
                     "name": "Douglas Crockford",
@@ -3374,6 +3658,10 @@
                 "jsmin",
                 "minify"
             ],
+            "support": {
+                "issues": "https://github.com/linkorb/jsmin-php/issues",
+                "source": "https://github.com/linkorb/jsmin-php/tree/master"
+            },
             "time": "2014-03-04T21:29:41+00:00"
         },
         {
@@ -3435,6 +3723,10 @@
                 "minifier",
                 "sass"
             ],
+            "support": {
+                "issues": "https://github.com/markstory/asset_compress/issues",
+                "source": "https://github.com/markstory/asset_compress"
+            },
             "time": "2020-08-16T16:05:23+00:00"
         },
         {
@@ -3500,6 +3792,10 @@
                 "psr7",
                 "sass"
             ],
+            "support": {
+                "issues": "https://github.com/markstory/mini-asset/issues",
+                "source": "https://github.com/markstory/mini-asset"
+            },
             "time": "2020-08-18T21:39:38+00:00"
         },
         {
@@ -3554,6 +3850,10 @@
                 "markup",
                 "parser"
             ],
+            "support": {
+                "issues": "https://github.com/milesj/decoda/issues",
+                "source": "https://github.com/milesj/decoda"
+            },
             "time": "2019-01-16T04:52:14+00:00"
         },
         {
@@ -3606,10 +3906,14 @@
                 "mobile detector",
                 "php mobile detect"
             ],
+            "support": {
+                "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/2.8.34"
+            },
             "time": "2019-09-18T18:44:20+00:00"
         },
         {
-            "name": "natxet/CssMin",
+            "name": "natxet/cssmin",
             "version": "dev-master",
             "source": {
                 "type": "git",
@@ -3625,6 +3929,7 @@
             "require": {
                 "php": ">=5.0"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3653,6 +3958,10 @@
                 "css",
                 "minify"
             ],
+            "support": {
+                "issues": "https://github.com/natxet/CssMin/issues",
+                "source": "https://github.com/natxet/CssMin/tree/v3.0.6"
+            },
             "time": "2018-01-09T11:15:01+00:00"
         },
         {
@@ -3690,6 +3999,10 @@
             ],
             "description": "A library to read, parse, export and make subsets of different types of font files.",
             "homepage": "https://github.com/PhenX/php-font-lib",
+            "support": {
+                "issues": "https://github.com/PhenX/php-font-lib/issues",
+                "source": "https://github.com/PhenX/php-font-lib/tree/0.5.2"
+            },
             "time": "2020-03-08T15:31:32+00:00"
         },
         {
@@ -3730,6 +4043,10 @@
             ],
             "description": "A library to read, parse and export to PDF SVG files.",
             "homepage": "https://github.com/PhenX/php-svg-lib",
+            "support": {
+                "issues": "https://github.com/PhenX/php-svg-lib/issues",
+                "source": "https://github.com/PhenX/php-svg-lib/tree/master"
+            },
             "time": "2019-09-11T20:02:13+00:00"
         },
         {
@@ -3758,6 +4075,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^8.5"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3787,6 +4105,10 @@
                 "http",
                 "httplug"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/cakephp-adapter/issues",
+                "source": "https://github.com/php-http/cakephp-adapter/tree/0.3.0"
+            },
             "time": "2020-04-10T02:17:59+00:00"
         },
         {
@@ -3852,6 +4174,10 @@
                 "message",
                 "psr7"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/discovery/issues",
+                "source": "https://github.com/php-http/discovery/tree/1.12.0"
+            },
             "time": "2020-09-22T13:31:04+00:00"
         },
         {
@@ -3910,6 +4236,10 @@
                 "client",
                 "http"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/httplug/issues",
+                "source": "https://github.com/php-http/httplug/tree/master"
+            },
             "time": "2020-07-13T15:43:23+00:00"
         },
         {
@@ -3983,6 +4313,10 @@
                 "message",
                 "psr-7"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/message/issues",
+                "source": "https://github.com/php-http/message/tree/1.9.1"
+            },
             "time": "2020-10-13T06:21:08+00:00"
         },
         {
@@ -4033,6 +4367,10 @@
                 "stream",
                 "uri"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/message-factory/issues",
+                "source": "https://github.com/php-http/message-factory/tree/master"
+            },
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
@@ -4086,6 +4424,10 @@
             "keywords": [
                 "promise"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/promise/issues",
+                "source": "https://github.com/php-http/promise/tree/1.1.0"
+            },
             "time": "2020-07-07T09:29:14+00:00"
         },
         {
@@ -4127,6 +4469,10 @@
                     "email": "mike.vanriel@naenius.com"
                 }
             ],
+            "support": {
+                "issues": "https://github.com/phpDocumentor/GraphViz/issues",
+                "source": "https://github.com/phpDocumentor/GraphViz/tree/master"
+            },
             "time": "2016-02-02T13:00:08+00:00"
         },
         {
@@ -4176,6 +4522,10 @@
                 "container-interop",
                 "psr"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/container/issues",
+                "source": "https://github.com/php-fig/container/tree/master"
+            },
             "time": "2017-02-14T16:28:37+00:00"
         },
         {
@@ -4225,6 +4575,9 @@
                 "psr",
                 "psr-18"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-client/tree/master"
+            },
             "time": "2020-06-29T06:28:15+00:00"
         },
         {
@@ -4277,6 +4630,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-factory/tree/master"
+            },
             "time": "2019-04-30T12:38:16+00:00"
         },
         {
@@ -4327,6 +4683,9 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/http-message/tree/master"
+            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -4380,6 +4739,10 @@
                 "response",
                 "server"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-server-handler/issues",
+                "source": "https://github.com/php-fig/http-server-handler/tree/master"
+            },
             "time": "2018-10-30T16:46:14+00:00"
         },
         {
@@ -4433,6 +4796,10 @@
                 "request",
                 "response"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig/http-server-middleware/issues",
+                "source": "https://github.com/php-fig/http-server-middleware/tree/master"
+            },
             "time": "2018-10-30T17:12:04+00:00"
         },
         {
@@ -4480,6 +4847,9 @@
                 "psr",
                 "psr-3"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/log/tree/1.1.3"
+            },
             "time": "2020-03-23T09:12:05+00:00"
         },
         {
@@ -4528,6 +4898,9 @@
                 "psr-16",
                 "simple-cache"
             ],
+            "support": {
+                "source": "https://github.com/php-fig/simple-cache/tree/master"
+            },
             "time": "2017-10-23T01:57:42+00:00"
         },
         {
@@ -4564,6 +4937,7 @@
                 "ext-pdo": "PDO extension is needed",
                 "symfony/yaml": "Install if using YAML configuration format"
             },
+            "default-branch": true,
             "bin": [
                 "bin/phinx"
             ],
@@ -4610,6 +4984,10 @@
                 "migrations",
                 "phinx"
             ],
+            "support": {
+                "issues": "https://github.com/cakephp/phinx/issues",
+                "source": "https://github.com/cakephp/phinx/tree/master"
+            },
             "time": "2020-10-20T22:13:08+00:00"
         },
         {
@@ -4655,6 +5033,10 @@
                 "parser",
                 "stylesheet"
             ],
+            "support": {
+                "issues": "https://github.com/sabberworm/PHP-CSS-Parser/issues",
+                "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.3.1"
+            },
             "time": "2020-06-01T09:10:00+00:00"
         },
         {
@@ -4711,6 +5093,10 @@
                 "unidiff",
                 "unified diff"
             ],
+            "support": {
+                "issues": "https://github.com/sebastianbergmann/diff/issues",
+                "source": "https://github.com/sebastianbergmann/diff/tree/master"
+            },
             "time": "2019-02-04T06:01:07+00:00"
         },
         {
@@ -4759,6 +5145,10 @@
                 "input",
                 "prompt"
             ],
+            "support": {
+                "issues": "https://github.com/Seldaek/cli-prompt/issues",
+                "source": "https://github.com/Seldaek/cli-prompt/tree/master"
+            },
             "time": "2017-03-18T11:32:45+00:00"
         },
         {
@@ -4808,6 +5198,10 @@
                 "parser",
                 "validator"
             ],
+            "support": {
+                "issues": "https://github.com/Seldaek/jsonlint/issues",
+                "source": "https://github.com/Seldaek/jsonlint/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://github.com/Seldaek",
@@ -4862,6 +5256,10 @@
             "keywords": [
                 "phar"
             ],
+            "support": {
+                "issues": "https://github.com/Seldaek/phar-utils/issues",
+                "source": "https://github.com/Seldaek/phar-utils/tree/master"
+            },
             "time": "2020-07-07T18:42:57+00:00"
         },
         {
@@ -4892,6 +5290,7 @@
                 "phpunit/phpunit": "^8.5",
                 "spryker/code-sniffer": "@stable"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -4910,6 +5309,10 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
+            "support": {
+                "issues": "https://github.com/spryker/cakephp-statemachine/issues",
+                "source": "https://github.com/spryker/cakephp-statemachine/tree/master"
+            },
             "time": "2020-10-22T00:34:03+00:00"
         },
         {
@@ -4976,6 +5379,9 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/config/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5069,6 +5475,9 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/console/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5083,7 +5492,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-18T14:27:32+00:00"
+            "time": "2020-10-07T15:23:00+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5133,6 +5542,9 @@
             ],
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5197,6 +5609,9 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/filesystem/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5260,6 +5675,9 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5278,16 +5696,16 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
-                "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/aed596913b70fae57be53d86faa2e9ef85a2297b",
+                "reference": "aed596913b70fae57be53d86faa2e9ef85a2297b",
                 "shasum": ""
             },
             "require": {
@@ -5299,7 +5717,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5336,6 +5754,9 @@
                 "polyfill",
                 "portable"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5350,20 +5771,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-grapheme.git",
-                "reference": "b740103edbdcc39602239ee8860f0f45a8eb9aa5"
+                "reference": "64fbe93b02024763359aea2bc81af05086c6af82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/b740103edbdcc39602239ee8860f0f45a8eb9aa5",
-                "reference": "b740103edbdcc39602239ee8860f0f45a8eb9aa5",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-grapheme/zipball/64fbe93b02024763359aea2bc81af05086c6af82",
+                "reference": "64fbe93b02024763359aea2bc81af05086c6af82",
                 "shasum": ""
             },
             "require": {
@@ -5375,7 +5796,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5414,6 +5835,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-grapheme/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5428,20 +5852,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-normalizer.git",
-                "reference": "37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e"
+                "reference": "8db0ae7936b42feb370840cf24de1a144fb0ef27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e",
-                "reference": "37078a8dd4a2a1e9ab0231af7c6cb671b2ed5a7e",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-normalizer/zipball/8db0ae7936b42feb370840cf24de1a144fb0ef27",
+                "reference": "8db0ae7936b42feb370840cf24de1a144fb0ef27",
                 "shasum": ""
             },
             "require": {
@@ -5453,7 +5877,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5495,6 +5919,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-intl-normalizer/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5509,20 +5936,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a"
+                "reference": "b5f7b932ee6fa802fc792eabd77c4c88084517ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
-                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b5f7b932ee6fa802fc792eabd77c4c88084517ce",
+                "reference": "b5f7b932ee6fa802fc792eabd77c4c88084517ce",
                 "shasum": ""
             },
             "require": {
@@ -5534,7 +5961,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5572,6 +5999,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5586,20 +6016,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca"
+                "reference": "9d920e3218205554171b2503bb3e4a1366824a16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
-                "reference": "fffa1a52a023e782cdcc221d781fe1ec8f87fcca",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/9d920e3218205554171b2503bb3e4a1366824a16",
+                "reference": "9d920e3218205554171b2503bb3e4a1366824a16",
                 "shasum": ""
             },
             "require": {
@@ -5608,7 +6038,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5648,6 +6078,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5662,20 +6095,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.18.1",
+            "version": "v1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "d87d5766cbf48d72388a9f6b85f280c8ad51f981"
+                "reference": "f54ef00f4678f348f133097fa8c3701d197ff44d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/d87d5766cbf48d72388a9f6b85f280c8ad51f981",
-                "reference": "d87d5766cbf48d72388a9f6b85f280c8ad51f981",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/f54ef00f4678f348f133097fa8c3701d197ff44d",
+                "reference": "f54ef00f4678f348f133097fa8c3701d197ff44d",
                 "shasum": ""
             },
             "require": {
@@ -5684,7 +6117,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.19-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -5728,6 +6161,9 @@
                 "portable",
                 "shim"
             ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.19.0"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5742,7 +6178,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-14T12:35:20+00:00"
+            "time": "2020-10-23T09:01:57+00:00"
         },
         {
             "name": "symfony/process",
@@ -5792,6 +6228,9 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/process/tree/5.1"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5868,6 +6307,9 @@
                 "interoperability",
                 "standards"
             ],
+            "support": {
+                "source": "https://github.com/symfony/service-contracts/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -5953,6 +6395,9 @@
                 "utf-8",
                 "utf8"
             ],
+            "support": {
+                "source": "https://github.com/symfony/string/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -6029,6 +6474,10 @@
                 "pdf417",
                 "qrcode"
             ],
+            "support": {
+                "issues": "https://github.com/tecnickcom/TCPDF/issues",
+                "source": "https://github.com/tecnickcom/TCPDF/tree/6.3.5"
+            },
             "time": "2020-02-14T14:20:12+00:00"
         },
         {
@@ -6086,6 +6535,9 @@
                 "markdown",
                 "twig"
             ],
+            "support": {
+                "source": "https://github.com/twigphp/markdown-extra/tree/v3.1.0"
+            },
             "funding": [
                 {
                     "url": "https://github.com/fabpot",
@@ -6158,6 +6610,10 @@
             "keywords": [
                 "templating"
             ],
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/v3.1.0"
+            },
             "funding": [
                 {
                     "url": "https://github.com/fabpot",
@@ -6216,6 +6672,10 @@
                 "clean",
                 "php"
             ],
+            "support": {
+                "issues": "https://github.com/voku/portable-ascii/issues",
+                "source": "https://github.com/voku/portable-ascii/tree/master"
+            },
             "funding": [
                 {
                     "url": "https://www.paypal.me/moelleken",
@@ -6281,6 +6741,10 @@
                 "stop words",
                 "stop-words"
             ],
+            "support": {
+                "issues": "https://github.com/voku/stop-words/issues",
+                "source": "https://github.com/voku/stop-words/tree/master"
+            },
             "time": "2018-11-23T01:37:27+00:00"
         },
         {
@@ -6340,6 +6804,9 @@
                 "geocoding",
                 "geoip"
             ],
+            "support": {
+                "source": "https://github.com/geocoder-php/php-common/tree/4.3.0"
+            },
             "time": "2020-07-04T13:18:10+00:00"
         }
     ],
@@ -6408,6 +6875,10 @@
                 "stylecheck",
                 "tests"
             ],
+            "support": {
+                "issues": "https://github.com/dealerdirect/phpcodesniffer-composer-installer/issues",
+                "source": "https://github.com/dealerdirect/phpcodesniffer-composer-installer"
+            },
             "time": "2020-06-25T14:57:39+00:00"
         },
         {
@@ -6416,12 +6887,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "1098d6a54d04bfd00c21aaf83537c8ff3ae3de6d"
+                "reference": "f275bf018c850d40015cc1b4d38206608a8f33d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1098d6a54d04bfd00c21aaf83537c8ff3ae3de6d",
-                "reference": "1098d6a54d04bfd00c21aaf83537c8ff3ae3de6d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/f275bf018c850d40015cc1b4d38206608a8f33d3",
+                "reference": "f275bf018c850d40015cc1b4d38206608a8f33d3",
                 "shasum": ""
             },
             "require": {
@@ -6437,6 +6908,7 @@
                 "dereuromark/cakephp-shim": "dev-master as 2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "extra": {
                 "branch-alias": {
@@ -6476,13 +6948,17 @@
                 "phpstorm",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-ide-helper/issues",
+                "source": "https://github.com/dereuromark/cakephp-ide-helper/"
+            },
             "funding": [
                 {
                     "url": "https://github.com/dereuromark",
                     "type": "github"
                 }
             ],
-            "time": "2020-10-21T13:54:25+00:00"
+            "time": "2020-10-23T08:43:11+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -6506,6 +6982,7 @@
                 "dereuromark/cakephp-tools": "^2.0.1",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "extra": {
                 "branch-alias": {
@@ -6544,6 +7021,10 @@
                 "phpstorm",
                 "plugin"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-ide-helper-extra/issues",
+                "source": "https://github.com/dereuromark/cakephp-ide-helper-extra/"
+            },
             "time": "2020-06-28T12:05:10+00:00"
         },
         {
@@ -6569,6 +7050,7 @@
                 "dereuromark/cakephp-shim": "^2.0.0",
                 "fig-r/psr2r-sniffer": "dev-master"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -6601,6 +7083,10 @@
                 "graphviz",
                 "model"
             ],
+            "support": {
+                "issues": "https://github.com/mamchenkov/CakePHP-GraphViz-Models/issues",
+                "source": "https://github.com/mamchenkov/CakePHP-GraphViz-Models"
+            },
             "time": "2020-03-22T14:35:32+00:00"
         },
         {
@@ -6626,6 +7112,7 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "sebastian/diff": "^3.0.2 || ^4.0.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -6654,6 +7141,10 @@
                 "setup",
                 "tests"
             ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-test-helper/issues",
+                "source": "https://github.com/dereuromark/cakephp-test-helper/tree/master"
+            },
             "time": "2020-10-21T13:54:09+00:00"
         },
         {
@@ -6687,6 +7178,10 @@
                 "MIT"
             ],
             "description": "implementation of xdg base directory specification for php",
+            "support": {
+                "issues": "https://github.com/dnoegel/php-xdg-base-dir/issues",
+                "source": "https://github.com/dnoegel/php-xdg-base-dir/tree/v0.1.1"
+            },
             "time": "2019-12-04T15:06:13+00:00"
         },
         {
@@ -6711,6 +7206,7 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12"
             },
+            "default-branch": true,
             "bin": [
                 "bin/tokenize",
                 "bin/sniff"
@@ -6737,6 +7233,10 @@
                 "codesniffer",
                 "cs"
             ],
+            "support": {
+                "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
+                "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
+            },
             "time": "2020-10-01T22:17:18+00:00"
         },
         {
@@ -6789,6 +7289,10 @@
                 "parser",
                 "php"
             ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.10.2"
+            },
             "time": "2020-09-26T10:30:38+00:00"
         },
         {
@@ -6838,20 +7342,24 @@
                 "MIT"
             ],
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
+            "support": {
+                "issues": "https://github.com/phpstan/phpdoc-parser/issues",
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/master"
+            },
             "time": "2020-08-03T20:32:43+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.50",
+            "version": "0.12.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "b8248f9c81265af75d6d969ca3252aaf3e998f3a"
+                "reference": "b430527cd7b956324bcd554fb85a5e2fd43177d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b8248f9c81265af75d6d969ca3252aaf3e998f3a",
-                "reference": "b8248f9c81265af75d6d969ca3252aaf3e998f3a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/b430527cd7b956324bcd554fb85a5e2fd43177d6",
+                "reference": "b430527cd7b956324bcd554fb85a5e2fd43177d6",
                 "shasum": ""
             },
             "require": {
@@ -6880,6 +7388,10 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
+            "support": {
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.51"
+            },
             "funding": [
                 {
                     "url": "https://github.com/ondrejmirtes",
@@ -6894,7 +7406,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-16T12:22:23+00:00"
+            "time": "2020-10-23T11:58:04+00:00"
         },
         {
             "name": "psy/psysh",
@@ -6966,6 +7478,10 @@
                 "interactive",
                 "shell"
             ],
+            "support": {
+                "issues": "https://github.com/bobthecow/psysh/issues",
+                "source": "https://github.com/bobthecow/psysh/tree/master"
+            },
             "time": "2020-05-03T19:32:03+00:00"
         },
         {
@@ -7013,6 +7529,10 @@
                 "MIT"
             ],
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
+            "support": {
+                "issues": "https://github.com/slevomat/coding-standard/issues",
+                "source": "https://github.com/slevomat/coding-standard/tree/6.4.1"
+            },
             "funding": [
                 {
                     "url": "https://github.com/kukulich",
@@ -7077,20 +7597,24 @@
                 "phpcs",
                 "standards"
             ],
+            "support": {
+                "issues": "https://github.com/spryker/code-sniffer/issues",
+                "source": "https://github.com/spryker/code-sniffer"
+            },
             "time": "2020-08-18T08:04:03+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.6",
+            "version": "3.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "e97627871a7eab2f70e59166072a6b767d5834e0"
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e97627871a7eab2f70e59166072a6b767d5834e0",
-                "reference": "e97627871a7eab2f70e59166072a6b767d5834e0",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
                 "shasum": ""
             },
             "require": {
@@ -7128,7 +7652,12 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-08-10T04:50:15+00:00"
+            "support": {
+                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
+                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
+                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
+            },
+            "time": "2020-10-23T02:01:07+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -7204,6 +7733,9 @@
                 "debug",
                 "dump"
             ],
+            "support": {
+                "source": "https://github.com/symfony/var-dumper/tree/v5.1.7"
+            },
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -7223,58 +7755,58 @@
     ],
     "aliases": [
         {
-            "alias": "4.1.0",
-            "alias_normalized": "4.1.0.0",
-            "version": "9999999-dev",
-            "package": "cakephp/cakephp"
-        },
-        {
-            "alias": "2.1.0",
-            "alias_normalized": "2.1.0.0",
-            "version": "9999999-dev",
-            "package": "cakephp/bake"
-        },
-        {
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0",
-            "version": "9999999-dev",
-            "package": "dereuromark/cakephp-shim"
-        },
-        {
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0",
-            "version": "9999999-dev",
-            "package": "dereuromark/cakephp-tools"
-        },
-        {
-            "alias": "0.12.2",
-            "alias_normalized": "0.12.2.0",
-            "version": "9999999-dev",
-            "package": "robmorgan/phinx"
-        },
-        {
-            "alias": "6.0",
-            "alias_normalized": "6.0.0.0",
-            "version": "9999999-dev",
-            "package": "friendsofcake/search"
-        },
-        {
-            "alias": "1.0",
-            "alias_normalized": "1.0.0.0",
-            "version": "9999999-dev",
-            "package": "cakephp/twig-view"
-        },
-        {
-            "alias": "1.1.0",
-            "alias_normalized": "1.1.0.0",
-            "version": "9999999-dev",
-            "package": "dereuromark/cakephp-dto"
-        },
-        {
+            "package": "dereuromark/cakephp-ide-helper",
+            "version": "dev-master",
             "alias": "1.4.0",
-            "alias_normalized": "1.4.0.0",
-            "version": "9999999-dev",
-            "package": "dereuromark/cakephp-ide-helper"
+            "alias_normalized": "1.4.0.0"
+        },
+        {
+            "package": "cakephp/bake",
+            "version": "dev-master",
+            "alias": "2.1.0",
+            "alias_normalized": "2.1.0.0"
+        },
+        {
+            "package": "friendsofcake/search",
+            "version": "dev-master",
+            "alias": "6.0",
+            "alias_normalized": "6.0.0.0"
+        },
+        {
+            "package": "robmorgan/phinx",
+            "version": "dev-master",
+            "alias": "0.12.2",
+            "alias_normalized": "0.12.2.0"
+        },
+        {
+            "package": "dereuromark/cakephp-shim",
+            "version": "dev-master",
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0"
+        },
+        {
+            "package": "cakephp/twig-view",
+            "version": "dev-master",
+            "alias": "1.0",
+            "alias_normalized": "1.0.0.0"
+        },
+        {
+            "package": "cakephp/cakephp",
+            "version": "dev-master",
+            "alias": "4.1.0",
+            "alias_normalized": "4.1.0.0"
+        },
+        {
+            "package": "dereuromark/cakephp-tools",
+            "version": "dev-master",
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0"
+        },
+        {
+            "package": "dereuromark/cakephp-dto",
+            "version": "dev-master",
+            "alias": "1.1.0",
+            "alias_normalized": "1.1.0.0"
         }
     ],
     "minimum-stability": "stable",
@@ -7331,5 +7863,5 @@
     "platform-overrides": {
         "php": "7.2.12"
     },
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
