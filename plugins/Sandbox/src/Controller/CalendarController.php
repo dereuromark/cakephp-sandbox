@@ -80,7 +80,7 @@ class CalendarController extends SandboxAppController {
 			/** @var \Data\Model\Entity\State $state */
 			$state = $this->States
 				->find()
-				->where(['abbr !=' => '', 'lat !=' => 0, 'lng !=' => 0])
+				->where(['code !=' => '', 'lat IS NOT' => null, 'lng IS NOT' => null])
 				->order($random)
 				->firstOrFail();
 
@@ -89,7 +89,7 @@ class CalendarController extends SandboxAppController {
 				'lat' => $state->lat,
 				'lng' => $state->lng,
 				'location' => $state->name,
-				'description' => 'Some cool event @ ' . $state->abbr,
+				'description' => 'Some cool event @ ' . $state->code,
 				'beginning' => new Time(mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year'])),
 			]);
 			if (!$this->Events->save($event)) {
