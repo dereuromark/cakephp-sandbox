@@ -4,7 +4,7 @@ These are the basic steps to get the repo to run locally.
 
 ### Dependencies
 
-* CakePHP core and plugins via composer
+* CakePHP core and plugins via composer (v2)
 * NPM or bower for assets
 
 ### Installation
@@ -24,7 +24,7 @@ Manually you can run the following commands one by one:
 
 ```
 composer install
-bin/cake migrations migrate
+composer migrate
 ```
 
 But it is easier to run the quick command here doing it all at once:
@@ -62,7 +62,7 @@ Then inside the vagrant machine navigate to `/Apps/sandbox.local/` and execute
 In case you want to check out the admin area (`/admin`), you want to create an admin user.
 You can do that via command line:
 ```
-bin/cake setup.user create yourname yourpassword
+bin/cake user create yourname yourpassword
 ```
 
 For the role select `1` (=admin) manually, and confirm the save operation. You should now be able to log in.
