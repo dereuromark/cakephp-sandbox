@@ -26,7 +26,7 @@ An interface to directly modify the data is planned, though.
 </ul>
 
 <h3><?php echo __('Countries'); ?></h3>
-<div>Key information: lat/lng, iso codes, zip code length/regexp, eu member, address_format, country_code, timezone</div>
+<div>Key information: lat/lng, ISO codes, zip code length/regexp, eu member, address_format, country_code, timezone</div>
 <?php echo $this->Html->link(__('View online'), ['plugin' => 'Data', 'controller' => 'countries', 'action' => 'index']); ?>
 <ul>
 <li><?php echo $this->Html->link('JSON', ['action' => 'countries', '_ext' => 'json']); ?></li>
