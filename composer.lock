@@ -1241,12 +1241,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "0d1682193d464d3b81429cd4e31179e898f024ec"
+                "reference": "ee5c4e13d47315ed8cecfb3ad185f74907889ca6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/0d1682193d464d3b81429cd4e31179e898f024ec",
-                "reference": "0d1682193d464d3b81429cd4e31179e898f024ec",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/ee5c4e13d47315ed8cecfb3ad185f74907889ca6",
+                "reference": "ee5c4e13d47315ed8cecfb3ad185f74907889ca6",
                 "shasum": ""
             },
             "require": {
@@ -1288,7 +1288,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2020-11-07T01:31:42+00:00"
+            "time": "2020-11-07T01:58:17+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
