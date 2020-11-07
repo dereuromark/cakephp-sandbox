@@ -4,9 +4,6 @@ namespace Sandbox\Controller;
 
 use Cake\Chronos\Chronos;
 
-/**
- * Start page controller.
- */
 class ChronosExamplesController extends SandboxAppController {
 
 	/**

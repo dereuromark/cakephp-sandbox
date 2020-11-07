@@ -52,7 +52,7 @@
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
 		"cakephp/debug_kit": "^4.0.0",
-		"cakephp/twig-view": "dev-master as 1.0",
+		"cakephp/twig-view": "dev-master as 1.1.1",
 		"tecnickcom/tcpdf": "^6.2",
 		"dompdf/dompdf": "^0.8.0",
 		"burzum/cakephp-service-layer": "dev-master",

@@ -25,4 +25,5 @@ $this->loadHelper('Captcha.Captcha');
 <h3>Captcha plugin examples</h3>
 <ul>
 	<li><?php echo $this->Html->link('Show captchas in action', ['action' => 'math'])?></li>
+	<li><?php echo $this->Html->link('Show passive captchas with model-less form', ['action' => 'modelLess'])?></li>
 </ul>

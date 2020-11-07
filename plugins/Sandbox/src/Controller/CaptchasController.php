@@ -2,10 +2,11 @@
 
 namespace Sandbox\Controller;
 
+use Tools\Form\ContactForm;
+
 /**
- * Start page controller.
- *
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Captcha\Controller\Component\CaptchaComponent $Captcha
  */
 class CaptchasController extends SandboxAppController {
 
@@ -20,6 +21,7 @@ class CaptchasController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
+		$this->loadComponent('Captcha.Captcha', ['actions' => ['math']]);
 		$this->viewBuilder()->setHelpers(['Captcha.Captcha' => ['ext' => 'png']]);
 	}
 
@@ -35,20 +37,40 @@ class CaptchasController extends SandboxAppController {
 	public function math() {
 		$animal = $this->Animals->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$this->Animals->addBehavior('Captcha.Captcha');
-
 			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
-			if ($this->Animals->save($animal)) {
+			if (!$animal->getErrors()) {
 				$this->Flash->success(__('The animal has been saved.'));
 
-				// Remove again
-				$this->Animals->delete($animal);
-
-				return $this->redirect(['action' => 'index']);
+				return $this->redirect(['action' => 'math']);
 			}
 			$this->Flash->error(__('The animal could not be saved. Please, try again.'));
 		}
 		$this->set(compact('animal'));
+	}
+
+	/**
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function modelLess() {
+		$contact = new ContactForm();
+
+		// For this example we simplify the demo form
+		$contact->getValidator()
+			->remove('email')
+			->remove('subject');
+
+		if ($this->request->is('post')) {
+			$this->Captcha->addValidation($contact->getValidator(), 'Passive');
+
+			if ($contact->execute($this->request->getData())) {
+				$this->Flash->success(__('All right!'));
+
+				return $this->redirect(['action' => 'modelLess']);
+			}
+			$this->Flash->error(__('Oh no. Please, try again.'));
+		}
+
+		$this->set(compact('contact'));
 	}
 
 }

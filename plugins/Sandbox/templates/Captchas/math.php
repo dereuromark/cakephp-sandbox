@@ -22,7 +22,7 @@
 	<?= $this->Form->end() ?>
 
 	<br><br>
-	<p>Note: You can only save "Mouse" or "Cat" as animals for this demo!</p>
+	<p>Note: There is also a 2 second min-time by default! If you (as bot) do it too fast, this is also punished.</p>
 
 <h3>Key Goals</h3>
 <ul>
