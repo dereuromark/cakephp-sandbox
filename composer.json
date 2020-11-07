@@ -1,16 +1,16 @@
 {
 	"name": "dereuromark/cakephp-sandbox",
 	"description": "A CakePHP Sandbox App",
-	"homepage" : "https://sandbox.dereuromark.de/",
+	"homepage": "https://sandbox.dereuromark.de/",
 	"authors": [
 		{
 			"name": "Mark Scherer",
 			"email": "dereuromark@web.de",
 			"homepage": "https://www.dereuromark.de",
-			"role" : "Project Manager"
+			"role": "Project Manager"
 		}
 	],
-	"keywords" : [
+	"keywords": [
 		"CakePHP",
 		"Plugin",
 		"Sandbox"
@@ -29,13 +29,13 @@
 		"cakephp/migrations": "^2.0.0",
 		"drmonkeyninja/cakephp-social-share": "dev-master",
 		"gourmet/knp-menu": "dev-master",
-		"markstory/asset_compress" : "^3.4.1",
+		"markstory/asset_compress": "^3.4.1",
 		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
-		"dereuromark/cakephp-data" : "dev-master",
-		"dereuromark/cakephp-captcha" : "dev-master",
-		"dereuromark/cakephp-feed" : "dev-master",
-		"dereuromark/cakephp-ajax" : "dev-master",
+		"dereuromark/cakephp-data": "dev-master",
+		"dereuromark/cakephp-captcha": "dev-master",
+		"dereuromark/cakephp-feed": "dev-master",
+		"dereuromark/cakephp-ajax": "dev-master",
 		"dereuromark/cakephp-queue": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"friendsofcake/cakepdf": "^3.0@dev",
