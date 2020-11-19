@@ -10,13 +10,13 @@ namespace Sandbox\Dto\Github;
  * Github/User DTO
  *
  * @property string $login
- * @property string $html_url
+ * @property string $htmlUrl
  * @property string $type
  */
 class UserDto extends \CakeDto\Dto\AbstractDto {
 
 	public const FIELD_LOGIN = 'login';
-	public const FIELD_HTML_URL = 'html_url';
+	public const FIELD_HTML_URL = 'htmlUrl';
 	public const FIELD_TYPE = 'type';
 
 	/**
@@ -27,7 +27,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @var string
 	 */
-	protected $html_url;
+	protected $htmlUrl;
 
 	/**
 	 * @var string
@@ -52,8 +52,8 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 			'serializable' => false,
 			'toArray' => false,
 		],
-		'html_url' => [
-			'name' => 'html_url',
+		'htmlUrl' => [
+			'name' => 'htmlUrl',
 			'type' => 'string',
 			'required' => true,
 			'defaultValue' => null,
@@ -84,12 +84,12 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	protected $_keyMap = [
 		'underscored' => [
 			'login' => 'login',
-			'html_url' => 'html_url',
+			'html_url' => 'htmlUrl',
 			'type' => 'type',
 		],
 		'dashed' => [
 			'login' => 'login',
-			'html-url' => 'html_url',
+			'html-url' => 'htmlUrl',
 			'type' => 'type',
 		],
 	];
@@ -121,12 +121,12 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string $html_url
+	 * @param string $htmlUrl
 	 *
 	 * @return $this
 	 */
-	public function setHtml_url(string $html_url) {
-		$this->html_url = $html_url;
+	public function setHtmlUrl(string $htmlUrl) {
+		$this->htmlUrl = $htmlUrl;
 		$this->_touchedFields[self::FIELD_HTML_URL] = true;
 
 		return $this;
@@ -135,15 +135,15 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @return string
 	 */
-	public function getHtml_url(): string {
-		return $this->html_url;
+	public function getHtmlUrl(): string {
+		return $this->htmlUrl;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasHtml_url(): bool {
-		return $this->html_url !== null;
+	public function hasHtmlUrl(): bool {
+		return $this->htmlUrl !== null;
 	}
 
 	/**

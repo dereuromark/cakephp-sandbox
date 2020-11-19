@@ -23,7 +23,7 @@
 
 	<dto name="Github/User">
 		<field name="login" type="string" required="true"/>
-		<field name="html_url" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
 		<field name="type" type="string" required="true"/>
 	</dto>
 
@@ -48,7 +48,7 @@
 
 	<dto name="Github/Repo">
 		<field name="name" type="string" required="true"/>
-		<field name="html_url" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
 		<field name="private" type="bool" required="true"/>
 		<field name="owner" type="Github/User" required="true"/>
 	</dto>

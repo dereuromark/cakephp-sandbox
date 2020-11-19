@@ -1425,12 +1425,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "65e1d7f501100fbd9e0e6c97f0db35a1e9cc8479"
+                "reference": "d14200b86b6075cc871ce6f7ca18b5189ca09f05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/65e1d7f501100fbd9e0e6c97f0db35a1e9cc8479",
-                "reference": "65e1d7f501100fbd9e0e6c97f0db35a1e9cc8479",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/d14200b86b6075cc871ce6f7ca18b5189ca09f05",
+                "reference": "d14200b86b6075cc871ce6f7ca18b5189ca09f05",
                 "shasum": ""
             },
             "require": {
@@ -1487,7 +1487,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2020-10-21T23:19:14+00:00"
+            "time": "2020-11-19T20:24:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
