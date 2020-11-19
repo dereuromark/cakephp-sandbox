@@ -15,7 +15,7 @@ namespace Sandbox\Dto\Github;
  * @property string $title
  * @property string $body
  * @property \Sandbox\Dto\Github\UserDto $user
- * @property \Cake\I18n\FrozenTime $createdAt
+ * @property string $createdAt
  * @property \Sandbox\Dto\Github\LabelDto[] $labels
  * @property \Sandbox\Dto\Github\HeadDto|null $head
  * @property \Sandbox\Dto\Github\BaseDto|null $base
@@ -64,7 +64,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	protected $user;
 
 	/**
-	 * @var \Cake\I18n\FrozenTime
+	 * @var string
 	 */
 	protected $createdAt;
 
@@ -163,7 +163,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'createdAt' => [
 			'name' => 'createdAt',
-			'type' => '\Cake\I18n\FrozenTime',
+			'type' => 'string',
 			'required' => true,
 			'defaultValue' => null,
 			'dto' => null,
@@ -172,7 +172,6 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'key' => null,
 			'serializable' => false,
 			'toArray' => false,
-			'isClass' => true,
 		],
 		'labels' => [
 			'name' => 'labels',
@@ -402,11 +401,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param \Cake\I18n\FrozenTime $createdAt
+	 * @param string $createdAt
 	 *
 	 * @return $this
 	 */
-	public function setCreatedAt(\Cake\I18n\FrozenTime $createdAt) {
+	public function setCreatedAt(string $createdAt) {
 		$this->createdAt = $createdAt;
 		$this->_touchedFields[self::FIELD_CREATED_AT] = true;
 
@@ -414,9 +413,9 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @return \Cake\I18n\FrozenTime
+	 * @return string
 	 */
-	public function getCreatedAt(): \Cake\I18n\FrozenTime {
+	public function getCreatedAt(): string {
 		return $this->createdAt;
 	}
 
