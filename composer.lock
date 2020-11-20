@@ -226,12 +226,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "3ed2428b911d6f5e76e6a96df843db846c922e03"
+                "reference": "464814b536e16f5a358b75f8c754c5a58f4de26e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3ed2428b911d6f5e76e6a96df843db846c922e03",
-                "reference": "3ed2428b911d6f5e76e6a96df843db846c922e03",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/464814b536e16f5a358b75f8c754c5a58f4de26e",
+                "reference": "464814b536e16f5a358b75f8c754c5a58f4de26e",
                 "shasum": ""
             },
             "require": {
@@ -322,7 +322,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2020-11-18T01:04:14+00:00"
+            "time": "2020-11-20T19:20:20+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1425,17 +1425,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "d14200b86b6075cc871ce6f7ca18b5189ca09f05"
+                "reference": "432e8eba3ddc78101c6bb6fffa0fd0c16da2043a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/d14200b86b6075cc871ce6f7ca18b5189ca09f05",
-                "reference": "d14200b86b6075cc871ce6f7ca18b5189ca09f05",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/432e8eba3ddc78101c6bb6fffa0fd0c16da2043a",
+                "reference": "432e8eba3ddc78101c6bb6fffa0fd0c16da2043a",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^4.0.1",
                 "cakephp/twig-view": "^1.0.0",
+                "ext-json": "*",
                 "php": ">=7.2",
                 "sebastian/diff": "^3.0.2 || ^4.0.0"
             },
@@ -1443,7 +1444,8 @@
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "fig-r/psr2r-sniffer": "dev-master",
-                "nette/neon": "^2.4 || ^3.2"
+                "nette/neon": "^2.4 || ^3.2",
+                "phpunit/phpunit": "^8.5 || ^9.5"
             },
             "suggest": {
                 "nette/neon": "^2.4 if you want to add a NEON file engine instead of XML."
@@ -1487,7 +1489,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2020-11-19T20:24:55+00:00"
+            "time": "2020-11-20T20:09:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -2657,12 +2659,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "ee0b26fe50f3064cc91e79f767aa7de84dba661b"
+                "reference": "55cad9704fba97c2fff84d90169417f6ab0c5c8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/ee0b26fe50f3064cc91e79f767aa7de84dba661b",
-                "reference": "ee0b26fe50f3064cc91e79f767aa7de84dba661b",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/55cad9704fba97c2fff84d90169417f6ab0c5c8a",
+                "reference": "55cad9704fba97c2fff84d90169417f6ab0c5c8a",
                 "shasum": ""
             },
             "require": {
@@ -2709,7 +2711,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2020-11-09T12:19:15+00:00"
+            "time": "2020-11-20T20:12:57+00:00"
         },
         {
             "name": "geocoder-php/common-http",

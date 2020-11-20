@@ -15,7 +15,7 @@
 		<field name="title" type="string" required="true"/>
 		<field name="body" type="string" required="true"/>
 		<field name="user" type="Github/User" required="true"/>
-		<field name="createdAt" type="string" required="true"/>
+		<field name="createdAt" type="\Cake\I18n\FrozenTime" required="true"/>
 		<field name="labels" type="Github/Label[]" associative="true" key="name"/>
 		<field name="head" type="Github/Head"/>
 		<field name="base" type="Github/Base"/>

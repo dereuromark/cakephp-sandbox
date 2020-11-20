@@ -15,7 +15,7 @@ namespace Sandbox\Dto\Github;
  * @property string $title
  * @property string $body
  * @property \Sandbox\Dto\Github\UserDto $user
- * @property string $createdAt
+ * @property \Cake\I18n\FrozenTime $createdAt
  * @property \Sandbox\Dto\Github\LabelDto[] $labels
  * @property \Sandbox\Dto\Github\HeadDto|null $head
  * @property \Sandbox\Dto\Github\BaseDto|null $base
@@ -64,7 +64,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	protected $user;
 
 	/**
-	 * @var string
+	 * @var \Cake\I18n\FrozenTime
 	 */
 	protected $createdAt;
 
@@ -98,8 +98,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'number' => [
 			'name' => 'number',
@@ -110,8 +110,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'state' => [
 			'name' => 'state',
@@ -122,8 +122,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'title' => [
 			'name' => 'title',
@@ -134,8 +134,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'body' => [
 			'name' => 'body',
@@ -146,8 +146,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'user' => [
 			'name' => 'user',
@@ -158,20 +158,21 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'createdAt' => [
 			'name' => 'createdAt',
-			'type' => 'string',
+			'type' => '\Cake\I18n\FrozenTime',
 			'required' => true,
 			'defaultValue' => null,
 			'dto' => null,
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
+			'isClass' => true,
 		],
 		'labels' => [
 			'name' => 'labels',
@@ -182,8 +183,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'defaultValue' => null,
 			'dto' => null,
 			'collectionType' => 'array',
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 			'singularType' => '\Sandbox\Dto\Github\LabelDto',
 			'singularNullable' => false,
 			'singularTypeHint' => '\Sandbox\Dto\Github\LabelDto',
@@ -197,8 +198,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'base' => [
 			'name' => 'base',
@@ -209,8 +210,8 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 	];
 
@@ -401,11 +402,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string $createdAt
+	 * @param \Cake\I18n\FrozenTime $createdAt
 	 *
 	 * @return $this
 	 */
-	public function setCreatedAt(string $createdAt) {
+	public function setCreatedAt(\Cake\I18n\FrozenTime $createdAt) {
 		$this->createdAt = $createdAt;
 		$this->_touchedFields[self::FIELD_CREATED_AT] = true;
 
@@ -413,9 +414,9 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @return string
+	 * @return \Cake\I18n\FrozenTime
 	 */
-	public function getCreatedAt(): string {
+	public function getCreatedAt(): \Cake\I18n\FrozenTime {
 		return $this->createdAt;
 	}
 

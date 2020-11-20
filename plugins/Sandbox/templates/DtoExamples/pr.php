@@ -9,7 +9,6 @@
 	<?php foreach ($pullRequestDto->getLabels() as $label) { ?>
 		<span class="badge" style="background-color: #<?php echo h($label->getColor()); ?>"><?php echo h($label->getName()); ?></span>
 	<?php } ?>
-	<div><small>Created: <?php echo $pullRequestDto->getCreatedAt(); ?></small></div>
 </p>
 <p>
 	Head: <?php echo h($pullRequestDto->getHead()->getRef()) . ':' . $pullRequestDto->getHead()->getSha(); ?>
@@ -17,4 +16,6 @@
 	<br>
 	Base: <?php echo h($pullRequestDto->getBase()->getRef()) . ':' . $pullRequestDto->getBase()->getSha(); ?>
 		by <?php echo h($pullRequestDto->getBase()->getUser()->getLogin()) ?>
+	<br>
+	<span><small>Created: <?php echo $pullRequestDto->getCreatedAt(); ?></small></span>
 </p>

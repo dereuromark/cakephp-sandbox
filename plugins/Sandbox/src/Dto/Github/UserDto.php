@@ -49,8 +49,8 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -61,8 +61,8 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 		'type' => [
 			'name' => 'type',
@@ -73,8 +73,8 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 			'collectionType' => null,
 			'associative' => false,
 			'key' => null,
-			'serializable' => false,
-			'toArray' => false,
+			'serialize' => null,
+			'factory' => null,
 		],
 	];
 
