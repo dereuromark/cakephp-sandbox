@@ -16,6 +16,16 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
+	public function initialize(): void {
+		parent::initialize();
+		$this->loadComponent('Tools.RefererRedirect', [
+			'actions' => ['fakeEdit'],
+		]);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
@@ -364,6 +374,33 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function timeline() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function redirectTest() {
+	}
+
+	/**
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function fakeEdit() {
+		$this->loadModel('Sandbox.SandboxCategories');
+		$this->SandboxCategories->getValidator()->add('description', 'notBlank', ['rule' => 'notBlank']);
+
+		$sandboxCategory = $this->SandboxCategories->newEmptyEntity();
+
+		if ($this->request->is('post')) {
+			$sandboxCategory = $this->SandboxCategories->patchEntity($sandboxCategory, $this->request->getData());
+			if (!$sandboxCategory->getErrors()) {
+				$this->Flash->success('OK');
+
+				return $this->redirect(['action' => 'redirectTest']); // Note the missing query strings here for the default
+			}
+		}
+
+		$this->set((compact('sandboxCategory')));
 	}
 
 	/**
