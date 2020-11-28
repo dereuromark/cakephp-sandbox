@@ -48,6 +48,8 @@
 				<li><?php echo $this->Html->link(__('Translations'), ['admin' => false, 'plugin' => 'Translate', 'controller' => 'Translate', 'action' => 'index'])?></li>
 			<?php } ?>
 
+			<li><?php echo $this->Html->link(__('Setup'), ['prefix' => 'Admin', 'plugin' => 'Setup', 'controller' => 'Setup'])?></li>
+			<li><?php echo $this->Html->link(__('Tools'), ['prefix' => 'Admin', 'plugin' => 'Tools', 'controller' => 'Tools'])?></li>
 			<li><?php echo $this->Html->link(__('Queue'), ['prefix' => 'Admin', 'plugin' => 'Queue', 'controller' => 'Queue'])?></li>
 			<li><?php echo $this->Html->link(__('Logs'), ['prefix' => 'Admin', 'plugin' => 'DatabaseLog', 'controller' => 'Logs'])?></li>
 		</ul>
