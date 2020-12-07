@@ -23,12 +23,6 @@ class MigrationTimezones extends AbstractMigration {
 				'limit' => 100,
 				'null' => false,
 			])
-			->addColumn('country_code', 'string', [
-				'comment' => 'ISO_3166-2',
-				'default' => null,
-				'limit' => 2,
-				'null' => false,
-			])
 			->addColumn('offset', 'string', [
 				'default' => null,
 				'limit' => 10,
@@ -43,6 +37,12 @@ class MigrationTimezones extends AbstractMigration {
 				'default' => null,
 				'limit' => 100,
 				'null' => false,
+			])
+			->addColumn('country_code', 'string', [
+				'comment' => 'ISO_3166-2',
+				'default' => null,
+				'limit' => 2,
+				'null' => true,
 			])
 			->addColumn('active', 'boolean', [
 				'default' => false,
@@ -69,6 +69,11 @@ class MigrationTimezones extends AbstractMigration {
 			->addColumn('notes', 'string', [
 				'default' => null,
 				'limit' => 190,
+				'null' => true,
+			])
+			->addColumn('linked_id', 'integer', [
+				'default' => null,
+				'limit' => null,
 				'null' => true,
 			])
 			->addColumn('created', 'datetime', [
