@@ -2208,12 +2208,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "1853cfd0774ffb9808b38a55f0270cff2eb51b35"
+                "reference": "0185f9256f9f44bc7ec729c5d008af2a664c4091"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/1853cfd0774ffb9808b38a55f0270cff2eb51b35",
-                "reference": "1853cfd0774ffb9808b38a55f0270cff2eb51b35",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/0185f9256f9f44bc7ec729c5d008af2a664c4091",
+                "reference": "0185f9256f9f44bc7ec729c5d008af2a664c4091",
                 "shasum": ""
             },
             "require": {
@@ -2261,7 +2261,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
                 "source": "https://github.com/dereuromark/cakephp-tinyauth"
             },
-            "time": "2020-11-11T11:41:47+00:00"
+            "time": "2020-12-06T19:17:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -4971,12 +4971,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "a51af6512c7753d2a1d3efbe1bb6c03b06bd1b3a"
+                "reference": "8228e64e98b95461f01aa9ddf6a1939ffd21b3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/a51af6512c7753d2a1d3efbe1bb6c03b06bd1b3a",
-                "reference": "a51af6512c7753d2a1d3efbe1bb6c03b06bd1b3a",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/8228e64e98b95461f01aa9ddf6a1939ffd21b3b0",
+                "reference": "8228e64e98b95461f01aa9ddf6a1939ffd21b3b0",
                 "shasum": ""
             },
             "require": {
@@ -5050,7 +5050,7 @@
                 "issues": "https://github.com/cakephp/phinx/issues",
                 "source": "https://github.com/cakephp/phinx/tree/master"
             },
-            "time": "2020-12-02T01:22:09+00:00"
+            "time": "2020-12-05T22:18:56+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -6931,12 +6931,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "df8c5027bedbd608dc3465d2465ba277f011099e"
+                "reference": "2bd84936f71a63f6f97834ed85f1851f983da71b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/df8c5027bedbd608dc3465d2465ba277f011099e",
-                "reference": "df8c5027bedbd608dc3465d2465ba277f011099e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/2bd84936f71a63f6f97834ed85f1851f983da71b",
+                "reference": "2bd84936f71a63f6f97834ed85f1851f983da71b",
                 "shasum": ""
             },
             "require": {
@@ -7002,7 +7002,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-12-03T00:09:28+00:00"
+            "time": "2020-12-05T18:31:23+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
