@@ -1,17 +1,18 @@
 <?php
+
 use Migrations\AbstractMigration;
 
-class MigrationExposedUsers extends AbstractMigration
-{
+class MigrationExposedUsers extends AbstractMigration {
+
 	/**
 	 * Change Method.
 	 *
 	 * More information on this method is available here:
 	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 *
 	 * @return void
 	 */
-	public function change()
-	{
+	public function change() {
 		$table = $this->table('exposed_users');
 		$table->addColumn('name', 'string', [
 			'default' => null,
@@ -39,4 +40,5 @@ class MigrationExposedUsers extends AbstractMigration
 
 		$table->create();
 	}
+
 }

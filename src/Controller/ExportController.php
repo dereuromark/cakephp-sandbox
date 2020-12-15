@@ -131,6 +131,17 @@ class ExportController extends AppController {
 	/**
 	 * @return \Cake\Http\Response|null|void
 	 */
+	public function timezones() {
+		$this->loadModel('Data.Timezones');
+		$timezones = $this->Timezones->find('all')->toArray();
+
+		$this->set(compact('timezones'));
+		$this->set('_serialize', ['timezones']);
+	}
+
+	/**
+	 * @return \Cake\Http\Response|null|void
+	 */
 	public function mimeTypes() {
 	}
 

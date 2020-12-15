@@ -20,7 +20,6 @@ class Init extends AbstractMigration {
 	 * @return void
 	 */
 	public function down() {
-
 	}
 
 }

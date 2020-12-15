@@ -179,7 +179,6 @@ SQL;
 	 * @return void
 	 */
 	public function down() {
-
 	}
 
 }

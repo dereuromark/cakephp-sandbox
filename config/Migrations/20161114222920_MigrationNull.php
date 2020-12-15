@@ -1,17 +1,18 @@
 <?php
+
 use Migrations\AbstractMigration;
 
-class MigrationNull extends AbstractMigration
-{
+class MigrationNull extends AbstractMigration {
+
 	/**
 	 * Change Method.
 	 *
 	 * More information on this method is available here:
 	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 *
 	 * @return void
 	 */
-	public function change()
-	{
+	public function change() {
 		$table = $this->table('sandbox_categories');
 		$table->changeColumn('name', 'string', [
 			'default' => null,
@@ -39,4 +40,5 @@ class MigrationNull extends AbstractMigration
 		]);
 		$table->update();
 	}
+
 }

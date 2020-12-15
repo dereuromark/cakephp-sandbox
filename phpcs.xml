@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="app">
+	<config name="installed_paths" value="../../fig-r/psr2r-sniffer"/>
+
+	<arg value="nps"/>
+
+	<file>src/</file>
+	<file>config/</file>
+	<file>tests/</file>
+	<file>plugins/</file>
+	<file>webroot/</file>
+
+	<exclude-pattern>\.git</exclude-pattern>
+	<exclude-pattern>/*/tmp/</exclude-pattern>
+	<exclude-pattern>/webroot/assets/</exclude-pattern>
+	<exclude-pattern>/plugins/Sandbox/src/Dto/</exclude-pattern>
+	<exclude-pattern>/templates/</exclude-pattern>
+
+	<rule ref="PSR2R"/>
+
+	<rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+		<exclude-pattern>*/config/Migrations/*</exclude-pattern>
+	</rule>
+	<rule ref="PSR2R.Classes.ClassFileName.NoMatch">
+		<exclude-pattern>*/config/Migrations/*</exclude-pattern>
+	</rule>
+
+</ruleset>

@@ -1,17 +1,18 @@
 <?php
+
 use Migrations\AbstractMigration;
 
-class MigrationBitmasked extends AbstractMigration
-{
+class MigrationBitmasked extends AbstractMigration {
+
 	/**
 	 * Change Method.
 	 *
 	 * More information on this method is available here:
 	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 *
 	 * @return void
 	 */
-	public function change()
-	{
+	public function change() {
 		$table = $this->table('bitmasked_records');
 		$table->addColumn('name', 'string', [
 			'default' => null,
@@ -41,4 +42,5 @@ class MigrationBitmasked extends AbstractMigration
 
 		$table->create();
 	}
+
 }

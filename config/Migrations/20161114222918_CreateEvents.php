@@ -1,17 +1,18 @@
 <?php
+
 use Migrations\AbstractMigration;
 
-class CreateEvents extends AbstractMigration
-{
+class CreateEvents extends AbstractMigration {
+
 	/**
 	 * Change Method.
 	 *
 	 * More information on this method is available here:
 	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 *
 	 * @return void
 	 */
-	public function change()
-	{
+	public function change() {
 		$table = $this->table('events');
 		$table->addColumn('title', 'string', [
 			'default' => null,
@@ -49,4 +50,5 @@ class CreateEvents extends AbstractMigration
 		]);
 		$table->create();
 	}
+
 }

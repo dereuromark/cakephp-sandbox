@@ -1,17 +1,18 @@
 <?php
+
 use Migrations\AbstractMigration;
 
-class MigrationData extends AbstractMigration
-{
+class MigrationData extends AbstractMigration {
+
 	/**
 	 * Change Method.
 	 *
 	 * More information on this method is available here:
 	 * http://docs.phinx.org/en/latest/migrations.html#the-change-method
+	 *
 	 * @return void
 	 */
-	public function change()
-	{
+	public function change() {
 		$this->table('continents')
 			->addColumn('code', 'string', [
 				'default' => null,
@@ -60,4 +61,5 @@ class MigrationData extends AbstractMigration
 			])
 			->update();
 	}
+
 }
