@@ -57,6 +57,9 @@ jobs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
         restore-keys: ${{ runner.os }}-composer-
 
+    - name: Prepare config
+      run: cp config/app.php config/app_local.php
+
     - name: Composer install --no-progress --prefer-dist --optimize-autoloader
       run: |
         composer --version
