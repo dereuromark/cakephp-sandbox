@@ -1,5 +1,5 @@
 # CakePHP Sandbox App
-[![Build Status](https://travis-ci.com/dereuromark/cakephp-sandbox.svg?branch=master)](https://travis-ci.com/dereuromark/cakephp-sandbox)
+[![CI](https://github.com/dereuromark/cakephp-sandbox/workflows/CI/badge.svg?branch=master)](https://github.com/dereuromark/cakephp-sandbox/actions?query=workflow%3ACI+branch%3Amaster)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dereuromark/cakephp-sandbox/master.svg)](https://codecov.io/github/dereuromark/cakephp-sandbox)
 [![License](https://poser.pugx.org/dereuromark/cakephp-sandbox/license.svg)](https://packagist.org/packages/dereuromark/cakephp-sandbox)
 [![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.2-8892BF.svg)](https://php.net/)
@@ -11,11 +11,11 @@ A sandbox app to showcase CakePHP features and tools as well as provide a sandbo
 This branch is for **CakePHP 4.x**. For deprecated 3.x/2.x ones, please use the corresponding branch.
 
 * Check it out live: https://sandbox.dereuromark.de
-* Author: Mark Scherer aka dereuromark
+* Author: Mark Scherer a.k.a dereuromark
 
 ### Key Features
 - Plugin showcases
-- Whoops as error renderer for development (debug true)
+- Custom exception handling with a special treatment for 404s.
 - Logging to a paginated and searchable DB solution instead of plain files
 
 ### Where to find the code

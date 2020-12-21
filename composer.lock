@@ -1252,12 +1252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "f5db2833d48fa0d4fa4fb66055fc93b28fa612fa"
+                "reference": "038508f8f81900ff20a00629c8c1c7f6c857be22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/f5db2833d48fa0d4fa4fb66055fc93b28fa612fa",
-                "reference": "f5db2833d48fa0d4fa4fb66055fc93b28fa612fa",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/038508f8f81900ff20a00629c8c1c7f6c857be22",
+                "reference": "038508f8f81900ff20a00629c8c1c7f6c857be22",
                 "shasum": ""
             },
             "require": {
@@ -1304,7 +1304,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2020-12-15T11:06:22+00:00"
+            "time": "2020-12-21T04:37:53+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1619,12 +1619,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-flash.git",
-                "reference": "0463b386a84b07a713d42ca20f8fa82acccec87c"
+                "reference": "599f4c6c56883c92fe5df1efb4eba0fe4aa3106b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-flash/zipball/0463b386a84b07a713d42ca20f8fa82acccec87c",
-                "reference": "0463b386a84b07a713d42ca20f8fa82acccec87c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-flash/zipball/599f4c6c56883c92fe5df1efb4eba0fe4aa3106b",
+                "reference": "599f4c6c56883c92fe5df1efb4eba0fe4aa3106b",
                 "shasum": ""
             },
             "require": {
@@ -1666,7 +1666,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-flash/issues",
                 "source": "https://github.com/dereuromark/cakephp-flash"
             },
-            "time": "2020-12-12T17:38:09+00:00"
+            "time": "2020-12-21T12:28:59+00:00"
         },
         {
             "name": "dereuromark/cakephp-geo",
@@ -1841,12 +1841,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "ae9cef5eef69467c272d7b56e508136a5c068bbb"
+                "reference": "e856c04b5060ad3ea199d8d9df0f5a067ffdab06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/ae9cef5eef69467c272d7b56e508136a5c068bbb",
-                "reference": "ae9cef5eef69467c272d7b56e508136a5c068bbb",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/e856c04b5060ad3ea199d8d9df0f5a067ffdab06",
+                "reference": "e856c04b5060ad3ea199d8d9df0f5a067ffdab06",
                 "shasum": ""
             },
             "require": {
@@ -1901,7 +1901,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-queue/issues",
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
-            "time": "2020-12-20T16:29:01+00:00"
+            "time": "2020-12-21T04:37:53+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -7425,16 +7425,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.63",
+            "version": "0.12.64",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c97ec4754bd53099a06c24847bd2870b99966b6a"
+                "reference": "23eb1cb7ae125f45f1d0e48051bcf67a9a9b08aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c97ec4754bd53099a06c24847bd2870b99966b6a",
-                "reference": "c97ec4754bd53099a06c24847bd2870b99966b6a",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/23eb1cb7ae125f45f1d0e48051bcf67a9a9b08aa",
+                "reference": "23eb1cb7ae125f45f1d0e48051bcf67a9a9b08aa",
                 "shasum": ""
             },
             "require": {
@@ -7465,7 +7465,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.63"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.64"
             },
             "funding": [
                 {
@@ -7481,7 +7481,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-15T16:37:16+00:00"
+            "time": "2020-12-21T11:59:02+00:00"
         },
         {
             "name": "psy/psysh",
