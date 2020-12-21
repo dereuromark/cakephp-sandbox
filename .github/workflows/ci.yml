@@ -74,7 +74,7 @@ jobs:
         if [[ ${{ matrix.db-type }} == 'sqlite' ]]; then export DB_URL='sqlite:///:memory:'; fi
         if [[ ${{ matrix.db-type }} == 'mysql' ]]; then export DB_URL='mysql://root:root@127.0.0.1/cakephp'; fi
         if [[ ${{ matrix.db-type }} == 'pgsql' ]]; then export DB_URL='postgres://postgres:postgres@127.0.0.1/postgres'; fi
-        if [[ ${{ matrix.php-version }} == '7.4']]; then
+        if [[ ${{ matrix.php-version }} == '7.4' ]]; then
           vendor/bin/phpunit --coverage-clover=coverage.xml
         else
           vendor/bin/phpunit
@@ -128,6 +128,9 @@ jobs:
 
     - name: Run phpstan
       run: vendor/bin/phpstan analyse --error-format=github
+
+    - name: Composer phpunit phar
+      run: composer test-setup
 
     - name: Run phpstan tests
       run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github
