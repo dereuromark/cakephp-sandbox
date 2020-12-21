@@ -80,9 +80,9 @@ jobs:
         if [[ ${{ matrix.db-type }} == 'mysql' ]]; then export DB_URL='mysql://root:root@127.0.0.1/cakephp'; fi
         if [[ ${{ matrix.db-type }} == 'pgsql' ]]; then export DB_URL='postgres://postgres:postgres@127.0.0.1/postgres'; fi
         if [[ ${{ matrix.php-version }} == '7.4' ]]; then
-          vendor/bin/phpunit --coverage-clover=coverage.xml
+          composer test-coverage
         else
-          vendor/bin/phpunit
+          composer test
         fi
 
     - name: Validate prefer-lowest

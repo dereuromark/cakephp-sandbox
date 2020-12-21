@@ -21,3 +21,4 @@ _*
 /config/Migrations/schema-dump-default.lock
 /node_modules/
 .phpunit.result.cache
+/coverage.xml
