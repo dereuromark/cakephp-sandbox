@@ -2615,12 +2615,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "64b400e6351ddfb1f5f860dd6d741f04287b474e"
+                "reference": "2523851645c706df0c08e92b02ec1e74a3007b04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/64b400e6351ddfb1f5f860dd6d741f04287b474e",
-                "reference": "64b400e6351ddfb1f5f860dd6d741f04287b474e",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/2523851645c706df0c08e92b02ec1e74a3007b04",
+                "reference": "2523851645c706df0c08e92b02ec1e74a3007b04",
                 "shasum": ""
             },
             "require": {
@@ -2667,7 +2667,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2020-11-26T17:38:06+00:00"
+            "time": "2020-12-21T14:14:22+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -5365,12 +5365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/cakephp-statemachine.git",
-                "reference": "85a285b06be03cabe13da5a25c8aa3b1a7000aa0"
+                "reference": "4d0f37a12ff968cc0941c2b92c1ec82b2d8f3931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/85a285b06be03cabe13da5a25c8aa3b1a7000aa0",
-                "reference": "85a285b06be03cabe13da5a25c8aa3b1a7000aa0",
+                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/4d0f37a12ff968cc0941c2b92c1ec82b2d8f3931",
+                "reference": "4d0f37a12ff968cc0941c2b92c1ec82b2d8f3931",
                 "shasum": ""
             },
             "require": {
@@ -5408,9 +5408,9 @@
             "description": "CakePHP StateMachine Plugin",
             "support": {
                 "issues": "https://github.com/spryker/cakephp-statemachine/issues",
-                "source": "https://github.com/spryker/cakephp-statemachine/tree/1.0.2"
+                "source": "https://github.com/spryker/cakephp-statemachine/tree/master"
             },
-            "time": "2020-12-02T16:29:08+00:00"
+            "time": "2020-12-21T12:52:18+00:00"
         },
         {
             "name": "symfony/config",

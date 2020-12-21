@@ -14,11 +14,9 @@ jobs:
       matrix:
         php-version: ['7.2', '7.4']
         db-type: [sqlite, mysql, pgsql]
-        prefer-lowest: ['']
         include:
           - php-version: '7.2'
             db-type: 'sqlite'
-            prefer-lowest: 'prefer-lowest'
 
     services:
       postgres:
@@ -60,16 +58,8 @@ jobs:
     - name: Prepare config
       run: cp config/app.php config/app_local.php
 
-    - name: Composer install --no-progress --prefer-dist --optimize-autoloader
-      run: |
-        composer --version
-        if ${{ matrix.prefer-lowest == 'prefer-lowest' }}
-        then
-          composer update --prefer-lowest --prefer-stable
-        else
-          composer install --no-progress --prefer-dist --optimize-autoloader
-        fi
-        if ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then composer require --dev -W dereuromark/composer-prefer-lowest:dev-master; fi
+    - name: Composer install
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
 
     - name: Composer phpunit phar
       run: composer test-setup
@@ -84,9 +74,6 @@ jobs:
         else
           composer test
         fi
-
-    - name: Validate prefer-lowest
-      run: if ${{ matrix.prefer-lowest == 'prefer-lowest' }}; then vendor/bin/validate-prefer-lowest -m; fi
 
     - name: Code Coverage Report
       if: success() && matrix.php-version == '7.4'
