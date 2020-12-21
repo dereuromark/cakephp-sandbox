@@ -1,20 +1,16 @@
 parameters:
-	level: 8
+	level: 1
+
+	paths:
+		- TestCase/
+		- %rootDir%/../../../plugins/Sandbox/tests/TestCase/
+		- %rootDir%/../../../plugins/AuthSandbox/tests/TestCase/
 
 	checkMissingIterableValueType: false
 
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
-
-	excludes_analyse:
-		- %rootDir%/../../../src/Console/Installer.php
-		- %rootDir%/../../../src/Error/ErrorHandler.php
-		- %rootDir%/../../../src/Error/Middleware/ErrorHandlerMiddleware.php
+		- %rootDir%/../../../phpunit.phar
 
 	ignoreErrors:
-		- '#Constant \w+ not found\.#'
-		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
-		- '#Cannot cast array\|string\|null to string#'
-		- '#Cannot cast array\|string\|null to int#'
-		- '#Call to an undefined method .+Mailer::set.+#'

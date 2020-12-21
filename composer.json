@@ -121,7 +121,8 @@
 		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs --extensions=php",
 		"cs-fix": "phpcbf --extensions=php",
-		"stan": "phpstan analyse -c tests/phpstan.neon src/ plugins/Sandbox/src/ plugins/AuthSandbox/src/"
+		"stan": "phpstan analyse",
+		"stan-tests": "phpstan analyse -c tests/phpstan.neon"
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"

@@ -126,11 +126,11 @@ jobs:
     - name: Code completion generate
       run: bin/cake code_completion generate
 
-    - name: Composer phpstan setup
-      run: composer stan-setup
-
     - name: Run phpstan
       run: vendor/bin/phpstan analyse --error-format=github
+
+    - name: Run phpstan tests
+      run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github
 
     - name: Run phpcs
       run: composer cs-check

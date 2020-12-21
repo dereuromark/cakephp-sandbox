@@ -13,6 +13,7 @@ use Cake\Http\Exception\MethodNotAllowedException;
  * @property \Data\Model\Table\LanguagesTable $Languages
  * @property \Data\Model\Table\ContinentsTable $Continents
  * @property \Data\Model\Table\PostalCodesTable $PostalCodes
+ * @property \Data\Model\Table\TimezonesTable $Timezones
  */
 class ExportController extends AppController {
 

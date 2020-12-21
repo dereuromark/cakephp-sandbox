@@ -3,7 +3,8 @@
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\InternalErrorException;
-use Cake\I18n\Time;
+use Cake\I18n\FrozenTime;
+use RuntimeException;
 
 /**
  * @property \Sandbox\Model\Table\EventsTable $Events
@@ -84,13 +85,17 @@ class CalendarController extends SandboxAppController {
 				->order($random)
 				->firstOrFail();
 
+			$time = mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year']);
+			if (!$time) {
+				throw new RuntimeException('Invalid time');
+			}
 			$event = $this->Events->newEntity([
 				'title' => $this->_getRandomWord(random_int(10, 20)),
 				'lat' => $state->lat,
 				'lng' => $state->lng,
 				'location' => $state->name,
 				'description' => 'Some cool event @ ' . $state->code,
-				'beginning' => new Time(mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year'])),
+				'beginning' => new FrozenTime($time),
 			]);
 			if (!$this->Events->save($event)) {
 				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));
