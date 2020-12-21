@@ -11,6 +11,5 @@ parameters:
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
-		- %rootDir%/../../../phpunit.phar
 
 	ignoreErrors:

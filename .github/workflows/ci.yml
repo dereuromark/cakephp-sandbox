@@ -70,9 +70,9 @@ jobs:
         if [[ ${{ matrix.db-type }} == 'mysql' ]]; then export DB_URL='mysql://root:root@127.0.0.1/cakephp'; fi
         if [[ ${{ matrix.db-type }} == 'pgsql' ]]; then export DB_URL='postgres://postgres:postgres@127.0.0.1/postgres'; fi
         if [[ ${{ matrix.php-version }} == '7.4' && ${{ matrix.db-type }} == 'mysql' ]]; then
-          composer require --dev phpunit/phpunit:"^8.5" && vendor/bin/phpunit --coverage-clover=coverage.xml
+          vendor/bin/phpunit --coverage-clover=coverage.xml
         else
-          composer test
+          vendor/bin/phpunit
         fi
 
     - name: Code Coverage Report
@@ -120,9 +120,6 @@ jobs:
 
     - name: Run phpstan
       run: vendor/bin/phpstan analyse --error-format=github
-
-    - name: Composer phpunit phar
-      run: composer test-setup
 
     - name: Run phpstan tests
       run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github

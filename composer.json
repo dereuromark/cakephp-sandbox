@@ -77,7 +77,8 @@
 		"dereuromark/cakephp-ide-helper": "dev-master as 1.4.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
-		"psy/psysh": "@stable"
+		"psy/psysh": "@stable",
+		"phpunit/phpunit": "^8.5 || ^9.3"
 	},
 	"autoload": {
 		"psr-4": {
@@ -116,9 +117,8 @@
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
 		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox",
 		"dto": "bin/cake dto generate -p Sandbox",
-		"test": "php phpunit.phar",
-		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-8.5.2.phar && mv phpunit-8.5.2.phar phpunit.phar || true",
-		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
+		"test": "phpunit",
+		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs --extensions=php",
 		"cs-fix": "phpcbf --extensions=php",
 		"stan": "phpstan analyse",
