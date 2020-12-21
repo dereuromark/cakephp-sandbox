@@ -118,7 +118,7 @@
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "php phpunit.phar",
 		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-8.5.2.phar && mv phpunit-8.5.2.phar phpunit.phar || true",
-		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover coverage.xml",
+		"test-coverage": "php phpunit.phar --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
 		"cs-check": "phpcs --extensions=php",
 		"cs-fix": "phpcbf --extensions=php",
 		"stan": "phpstan analyse",
