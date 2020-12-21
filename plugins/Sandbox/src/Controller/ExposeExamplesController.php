@@ -93,7 +93,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function users() {
-		$exposedUsers = $this->paginate($this->ExposedUsers);
+		$exposedUsers = $this->paginate($this->ExposedUsers)->toArray();
 
 		$this->set(compact('exposedUsers'));
 	}
@@ -116,7 +116,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function superimposedIndex() {
-		$exposedUsers = $this->paginate($this->ExposedUsers);
+		$exposedUsers = $this->paginate($this->ExposedUsers)->toArray();
 
 		$this->set(compact('exposedUsers'));
 	}

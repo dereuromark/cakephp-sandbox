@@ -62,7 +62,7 @@ class CsvController extends SandboxAppController {
 	public function pagination() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate('Countries')->toArray();
 
 		// Just to showcase how nullable date(time)s work we remove the dates from the first row
 		foreach ($countries as $country) {

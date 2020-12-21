@@ -83,7 +83,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function pagination() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate('Countries')->toArray();
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -99,7 +99,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function endlessScroll() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate('Countries')->toArray();
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -154,7 +154,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function table() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate('Countries')->toArray();
 		$this->set(compact('countries'));
 	}
 

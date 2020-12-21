@@ -114,11 +114,14 @@ jobs:
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
         restore-keys: ${{ runner.os }}-composer-
 
+    - name: Composer install
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+
     - name: DTO check
       run: bin/cake dto generate -p Sandbox -v -d
 
     - name: Code completion generate
-      run: bin/cake code_completion generate &&
+      run: bin/cake code_completion generate
 
     - name: Composer phpstan setup
       run: composer stan-setup

@@ -83,7 +83,7 @@ class TagsController extends SandboxAppController {
 
 		$query = $this->SandboxPosts->find('search', ['search' => $this->request->getQuery()])->contain(['Tags']);
 
-		$posts = $this->paginate($query);
+		$posts = $this->paginate($query)->toArray();
 
 		$tags = $this->SandboxPosts->Tagged->find()->distinct(['Tags.slug', 'Tags.label'])->contain(['Tags'])->toArray();
 		$tags = Hash::combine($tags, '{n}.tag.slug', '{n}.tag.label');
