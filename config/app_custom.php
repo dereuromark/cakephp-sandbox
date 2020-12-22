@@ -49,6 +49,37 @@ return [
 		],
 	],
 
+	'DatabaseLog' => [
+		'datasource' => 'default',
+		'limit' => 99999,
+		'maxLength' => '-1 month',
+		'monitor' => [
+			'cli-error',
+			'cli-warning',
+			'error',
+			'warning',
+			'notice',
+		],
+		'monitorCallback' => function (\Cake\Event\EventInterface $event) {
+			/** @var \DatabaseLog\Model\Table\DatabaseLogsTable $logsTable */
+			$logsTable = $event->getSubject();
+
+			/* @var \DatabaseLog\Model\Entity\DatabaseLog[] $logs */
+			$logs = $event->getData('logs');
+
+			$content = '';
+			foreach ($logs as $log) {
+				$content .= $logsTable->format($log);
+			}
+
+			$mailer = new \Tools\Mailer\Mailer();
+			$mailer->setTo(\Cake\Core\Configure::read('Config.adminEmail'));
+			$subject = count($logs) . ' new error log entries';
+			$mailer->setSubject($subject);
+			$mailer->deliver($content);
+		},
+	],
+
 	'Feedback' => [
 		'stores' => [
 		],
