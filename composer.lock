@@ -1312,12 +1312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "c6cdcf79398c3f64d3ddffc9d00a3d1a8493acd6"
+                "reference": "d888ebfad091cb2d780acbb1bbce5f71613dfbaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/c6cdcf79398c3f64d3ddffc9d00a3d1a8493acd6",
-                "reference": "c6cdcf79398c3f64d3ddffc9d00a3d1a8493acd6",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/d888ebfad091cb2d780acbb1bbce5f71613dfbaf",
+                "reference": "d888ebfad091cb2d780acbb1bbce5f71613dfbaf",
                 "shasum": ""
             },
             "require": {
@@ -1373,7 +1373,7 @@
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2020-12-14T00:57:24+00:00"
+            "time": "2020-12-22T14:50:35+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
