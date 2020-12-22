@@ -5,3 +5,4 @@ Disallow: /images/
 Disallow: /media/
 Disallow: /tmp/
 Disallow: /*/delete/
+Disallow: /sandbox/hashids/
