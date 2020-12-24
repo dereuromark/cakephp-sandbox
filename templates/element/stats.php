@@ -8,7 +8,6 @@ if (!$this->Configure->read('App.stats')) {
 ?>
 <script type="text/javascript">
 	var _paq = _paq || [];
-	// tracker methods like "setCustomDimension" should be called before "trackPageView"
 	_paq.push(['trackPageView']);
 	_paq.push(['enableLinkTracking']);
 	(function() {
