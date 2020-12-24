@@ -22,11 +22,12 @@ class MigrationCountryTimezones extends AbstractMigration {
 				'limit' => 255,
 				'null' => true,
 			])
-			->changeColumn('country_code', 'phone_code', [
+			->changeColumn('country_code', 'string', [
 				'default' => null,
 				'limit' => 20,
 				'null' => true,
 			])
+			->renameColumn('country_code', 'phone_code')
 			->update();
 	}
 
