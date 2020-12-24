@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "ef6f30be22ab65bc7da4f20a615979b13fd9e859"
+                "reference": "4854befb18033deb33d2efc2833dd4e5dd0d420c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ef6f30be22ab65bc7da4f20a615979b13fd9e859",
-                "reference": "ef6f30be22ab65bc7da4f20a615979b13fd9e859",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4854befb18033deb33d2efc2833dd4e5dd0d420c",
+                "reference": "4854befb18033deb33d2efc2833dd4e5dd0d420c",
                 "shasum": ""
             },
             "require": {
@@ -272,7 +272,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2020-12-22T16:24:10+00:00"
+            "time": "2020-12-24T15:29:37+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1252,12 +1252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "14121f9d39c33c3bc0fe45b9a83639824cc25004"
+                "reference": "33b6f4e13e575a633a94f89af43efcd0f9aece47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/14121f9d39c33c3bc0fe45b9a83639824cc25004",
-                "reference": "14121f9d39c33c3bc0fe45b9a83639824cc25004",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/33b6f4e13e575a633a94f89af43efcd0f9aece47",
+                "reference": "33b6f4e13e575a633a94f89af43efcd0f9aece47",
                 "shasum": ""
             },
             "require": {
@@ -1304,7 +1304,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2020-12-23T17:28:14+00:00"
+            "time": "2020-12-24T15:55:26+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
