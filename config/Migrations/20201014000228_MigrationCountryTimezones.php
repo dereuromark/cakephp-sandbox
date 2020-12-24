@@ -27,7 +27,7 @@ class MigrationCountryTimezones extends AbstractMigration {
 				'limit' => 20,
 				'null' => true,
 			])
-			->create();
+			->update();
 	}
 
 }
