@@ -37,8 +37,7 @@
 	<th><?php echo $this->Paginator->sort('ori_name', __('Original Name'));?></th>
 	<th><?php echo $this->Paginator->sort('iso2');?></th>
 	<th><?php echo $this->Paginator->sort('iso3');?></th>
-	<th><?php echo $this->Paginator->sort('country_code');?></th>
-	<th><?php echo $this->Paginator->sort('zip_length', null, ['direction' => 'desc']);?></th>
+	<th><?php echo $this->Paginator->sort('phone_code');?></th>
 </tr>
 <?php
 foreach ($countries as $country):
@@ -60,14 +59,7 @@ foreach ($countries as $country):
 			<?php echo $country['iso3']; ?>
 		</td>
 		<td>
-			<?php echo '+' . $country['country_code']; ?>
-		</td>
-		<td>
-			<?php if (!empty($country['zip_length'])) {
-				echo $country['zip_length'];
-			} else {
-				echo '--';
-			} ?>
+			<?php echo '+' . $country['phone_code']; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
