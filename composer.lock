@@ -1252,12 +1252,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "33b6f4e13e575a633a94f89af43efcd0f9aece47"
+                "reference": "93dbcfaa9873d425e3bb9832c3e329320b124d83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/33b6f4e13e575a633a94f89af43efcd0f9aece47",
-                "reference": "33b6f4e13e575a633a94f89af43efcd0f9aece47",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/93dbcfaa9873d425e3bb9832c3e329320b124d83",
+                "reference": "93dbcfaa9873d425e3bb9832c3e329320b124d83",
                 "shasum": ""
             },
             "require": {
@@ -1304,7 +1304,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2020-12-24T15:55:26+00:00"
+            "time": "2020-12-25T20:03:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -1841,12 +1841,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "e856c04b5060ad3ea199d8d9df0f5a067ffdab06"
+                "reference": "1ac7abefbd9163a110bfbb6e3b386e28eac997f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/e856c04b5060ad3ea199d8d9df0f5a067ffdab06",
-                "reference": "e856c04b5060ad3ea199d8d9df0f5a067ffdab06",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/1ac7abefbd9163a110bfbb6e3b386e28eac997f4",
+                "reference": "1ac7abefbd9163a110bfbb6e3b386e28eac997f4",
                 "shasum": ""
             },
             "require": {
@@ -1901,7 +1901,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-queue/issues",
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
-            "time": "2020-12-21T04:37:53+00:00"
+            "time": "2020-12-25T18:36:16+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
