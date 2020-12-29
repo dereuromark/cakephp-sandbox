@@ -49,6 +49,14 @@ return [
 		],
 	],
 
+	'Session' => [
+		//'defaults' => 'database',
+		'timeout' => 60000,
+		'ini' => [
+			'session.cookie_lifetime' => WEEK,
+		],
+	],
+
 	'DatabaseLog' => [
 		'datasource' => 'default',
 		'limit' => 99999,
