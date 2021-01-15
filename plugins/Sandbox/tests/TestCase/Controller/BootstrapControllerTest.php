@@ -5,8 +5,6 @@ namespace Sandbox\Test\TestCase\Controller;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\BootstrapController Test Case
- *
  * @uses \Sandbox\Controller\BootstrapController
  */
 class BootstrapControllerTest extends IntegrationTestCase {
@@ -20,8 +18,6 @@ class BootstrapControllerTest extends IntegrationTestCase {
 	];
 
 	/**
-	 * Test index method
-	 *
 	 * @return void
 	 */
 	public function testIndex() {

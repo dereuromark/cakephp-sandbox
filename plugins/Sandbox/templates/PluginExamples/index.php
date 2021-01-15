@@ -128,12 +128,12 @@
 			<li><?php echo $this->Html->link('Advanced Filtering in CakePHP', ['controller' => 'SearchExamples', 'action' => 'index']); ?></li>
 		</ul>
 
-		<?php if (false) { ?>
-		<h4>KnpMenu plugin</h4>
+		<h4>Menu plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Menu Building in CakePHP', ['controller' => 'Menu', 'action' => 'index']); ?></li>
 		</ul>
 
+		<?php if (false) { ?>
 		<h4>CakePdf plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('PDF rendering in CakePHP', ['controller' => 'Plugins', 'action' => 'cakePdf']); ?></li>

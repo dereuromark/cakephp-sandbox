@@ -44,7 +44,7 @@
 		"dereuromark/cakephp-translate": "dev-cake4",
 		"symfony/filesystem": "@stable",
 		"cakephp/chronos": "^2.0",
-		"icings/menu": "dev-master",
+		"icings/menu": "^4.0",
 		"friendsofcake/cakephp-csvview": "^4.0.0",
 		"friendsofcake/search": "dev-master as 6.0",
 		"dereuromark/cakephp-data": "dev-master",
@@ -61,6 +61,7 @@
 		"dereuromark/media-embed": "dev-master",
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
+		"dereuromark/cakephp-menu": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 1.2.0",
 		"brick/math": "^0.9.0",
 		"php-http/cakephp-adapter": "0.3.x-dev",
@@ -99,6 +100,12 @@
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:dereuromark/cakephp-menu.git"
+		}
+	],
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"migrate": [

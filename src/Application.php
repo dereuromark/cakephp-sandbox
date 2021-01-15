@@ -55,6 +55,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
 		$this->addPlugin('Icings/Menu');
+		$this->addPlugin('Menu');
 		$this->addPlugin('Expose');
 
 		// inside /plugins

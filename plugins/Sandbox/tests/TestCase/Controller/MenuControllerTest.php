@@ -5,8 +5,6 @@ namespace Sandbox\Test\TestCase\Controller;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\BootstrapController Test Case
- *
  * @uses \Sandbox\Controller\MenuController
  */
 class MenuControllerTest extends IntegrationTestCase {
@@ -22,8 +20,6 @@ class MenuControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$this->skipIf(true, 'FIXME');
-
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Menu', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
