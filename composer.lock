@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ddf9eae28044574819906cdd72e473e",
+    "content-hash": "3281ee8d3de00846c21fdc5ab69e5d61",
     "packages": [
         {
             "name": "brick/math",
@@ -1794,7 +1794,7 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:dereuromark/cakephp-menu.git",
-                "reference": "bdc87d0766e5e7d00c03f0263b8c7bb3d6ab94d5"
+                "reference": "b0552955710f41fa9e19f8d97934ee1ecce473b1"
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
@@ -1825,13 +1825,16 @@
                     "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml"
                 ],
                 "cs-check": [
-                    "phpcs -v -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
+                    "phpcs -s -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
                 ],
                 "cs-fix": [
-                    "phpcbf -v --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
+                    "phpcbf -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
                 ],
-                "phpstan": [
-                    "phpstan analyze src/ -l 7"
+                "stan": [
+                    "phpstan analyze src/"
+                ],
+                "stan-setup": [
+                    "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^0.12 && mv composer.backup composer.json"
                 ]
             },
             "license": [
@@ -1850,7 +1853,7 @@
                 }
             ],
             "description": "CakePHP Menu Plugin",
-            "time": "2021-01-15T16:14:37+00:00"
+            "time": "2021-01-15T19:17:57+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -2345,16 +2348,16 @@
         },
         {
             "name": "dereuromark/cakephp-translate",
-            "version": "dev-cake4",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-translate.git",
-                "reference": "74a8eeebf218e56289e5634f093b4cc9582a32ac"
+                "reference": "429df2c6d295de1af8c6e8f8eb9806e44121f3e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/74a8eeebf218e56289e5634f093b4cc9582a32ac",
-                "reference": "74a8eeebf218e56289e5634f093b4cc9582a32ac",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/429df2c6d295de1af8c6e8f8eb9806e44121f3e7",
+                "reference": "429df2c6d295de1af8c6e8f8eb9806e44121f3e7",
                 "shasum": ""
             },
             "require": {
@@ -2373,6 +2376,7 @@
                 "dereuromark/cakephp-queue": "To use background processing for e.g. PO file import",
                 "yandex/translate-api": "Free Translation API Alternative"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2402,7 +2406,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-translate/issues",
                 "source": "https://github.com/dereuromark/cakephp-translate"
             },
-            "time": "2020-11-15T02:49:59+00:00"
+            "time": "2021-01-15T19:28:44+00:00"
         },
         {
             "name": "dereuromark/media-embed",
