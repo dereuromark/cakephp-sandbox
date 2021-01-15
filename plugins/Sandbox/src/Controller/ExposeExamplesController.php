@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Database\Type;
+use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\FrozenTime;
 use Expose\Database\Type\ShortUuidType;
 
@@ -105,6 +106,10 @@ class ExposeExamplesController extends SandboxAppController {
 	 *@return \Cake\Http\Response|null|void
 	 */
 	public function view($uuid = null) {
+		if (!$uuid) {
+			throw new NotFoundException();
+		}
+
 		// Instead of primary key `id` and ->get($id) we work on `uuid` field now for public access
 		$field = $this->ExposedUsers->getExposedKey();
 		$exposedUser = $this->ExposedUsers->find('exposed', [$field => $uuid])->firstOrFail();
