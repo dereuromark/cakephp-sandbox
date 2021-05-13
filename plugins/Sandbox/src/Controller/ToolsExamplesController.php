@@ -10,6 +10,7 @@ use Sandbox\Model\Entity\BitmaskedRecord;
  * @property \Sandbox\Model\Table\SandboxUsersTable $SandboxUsers
  * @property \App\Model\Table\UsersTable $Users
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Tools\Controller\Component\RefererRedirectComponent $RefererRedirect
  */
 class ToolsExamplesController extends SandboxAppController {
 

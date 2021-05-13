@@ -66,6 +66,7 @@ namespace PHPSTORM_META {
 		\Burzum\CakeServiceLayer\Service\ServiceAwareTrait::loadService(0),
 		map([
 			'Sandbox.Calculator/Post' => \Sandbox\Service\Calculator\PostService::class,
+			'Sandbox.Localized/Validation' => \Sandbox\Service\Localized\ValidationService::class,
 		])
 	);
 
@@ -251,6 +252,7 @@ namespace PHPSTORM_META {
 			'BootstrapUI' => \Cake\Http\BaseApplication::class,
 			'Burzum/CakeServiceLayer' => \Cake\Http\BaseApplication::class,
 			'Cache' => \Cake\Http\BaseApplication::class,
+			'Cake/Localized' => \Cake\Http\BaseApplication::class,
 			'Cake/TwigView' => \Cake\Http\BaseApplication::class,
 			'CakeDto' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
@@ -268,6 +270,7 @@ namespace PHPSTORM_META {
 			'IdeHelper' => \Cake\Http\BaseApplication::class,
 			'IdeHelperExtra' => \Cake\Http\BaseApplication::class,
 			'Markup' => \Cake\Http\BaseApplication::class,
+			'Menu' => \Cake\Http\BaseApplication::class,
 			'Meta' => \Cake\Http\BaseApplication::class,
 			'Migrations' => \Cake\Http\BaseApplication::class,
 			'ModelGraph' => \Cake\Http\BaseApplication::class,
@@ -1195,15 +1198,14 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Cake\View\Helper\FormHelper::control(),
 		0,
+		'abbr',
 		'active',
 		'address_format',
 		'alias',
 		'base',
 		'beginning',
 		'code',
-		'command',
 		'completed',
-		'condition',
 		'content',
 		'context',
 		'count',
@@ -1217,10 +1219,7 @@ namespace PHPSTORM_META {
 		'description',
 		'email',
 		'end',
-		'error_message',
 		'eu_member',
-		'event',
-		'expires',
 		'failed',
 		'failure_message',
 		'fetched',
@@ -1231,10 +1230,8 @@ namespace PHPSTORM_META {
 		'foreign_key',
 		'hostname',
 		'id',
-		'identifier',
 		'image',
 		'ip',
-		'is_error',
 		'iso2',
 		'iso3',
 		'job_group',
@@ -1248,7 +1245,6 @@ namespace PHPSTORM_META {
 		'locale',
 		'locale_fallback',
 		'location',
-		'locked',
 		'logins',
 		'message',
 		'model',
@@ -1260,13 +1256,11 @@ namespace PHPSTORM_META {
 		'offset',
 		'offset_dst',
 		'ori_name',
-		'params',
 		'parent_id',
 		'password',
 		'phone_code',
 		'pid',
 		'priority',
-		'process',
 		'progress',
 		'rating_count',
 		'rating_sum',
@@ -1279,23 +1273,14 @@ namespace PHPSTORM_META {
 		'session_id',
 		'slug',
 		'sort',
-		'source_state',
 		'special',
-		'state',
-		'state_machine',
-		'state_machine_item_id',
-		'state_machine_item_state_id',
-		'state_machine_process_id',
-		'state_machine_transition_log_id',
 		'status',
 		'summary',
 		'symbol_left',
 		'symbol_right',
 		'tag_id',
-		'target_state',
 		'terminate',
-		'timeout',
-		'timezone_offset',
+		'timezone',
 		'title',
 		'type',
 		'uri',
@@ -1407,6 +1392,7 @@ namespace PHPSTORM_META {
 			'Markup.Bbcode' => \Markup\View\Helper\BbcodeHelper::class,
 			'Markup.Highlighter' => \Markup\View\Helper\HighlighterHelper::class,
 			'Markup.Markdown' => \Markup\View\Helper\MarkdownHelper::class,
+			'Menu.Menu' => \Menu\View\Helper\MenuHelper::class,
 			'Meta.Meta' => \Meta\View\Helper\MetaHelper::class,
 			'Migrations.Migration' => \Migrations\View\Helper\MigrationHelper::class,
 			'Navigation' => \App\View\Helper\NavigationHelper::class,
@@ -1479,6 +1465,7 @@ namespace PHPSTORM_META {
 		'Markup.Bbcode',
 		'Markup.Highlighter',
 		'Markup.Markdown',
+		'Menu.Menu',
 		'Meta.Meta',
 		'Migrations.Migration',
 		'Navigation',
@@ -2526,366 +2513,6 @@ namespace PHPSTORM_META {
 		\Sandbox\Model\Entity\SandboxPost::setError(),
 		0,
 		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxPost')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItem::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineItemState::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineLock::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineProcess::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTimeout::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::get(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::getError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::getInvalidField(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::getOriginal(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::has(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::hasValue(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::isDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::isEmpty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::setDirty(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
-	);
-
-	expectedArguments(
-		\StateMachine\Model\Entity\StateMachineTransitionLog::setError(),
-		0,
-		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
 	);
 
 	expectedArguments(
@@ -4026,6 +3653,7 @@ namespace PHPSTORM_META {
 		'bootstrap_u_i',
 		'cache',
 		'cake',
+		'cake/localized',
 		'cake/twig_view',
 		'cake_dto',
 		'calendar',
@@ -4039,6 +3667,7 @@ namespace PHPSTORM_META {
 		'icings/menu',
 		'ide_helper',
 		'markup',
+		'menu',
 		'meta',
 		'migrations',
 		'model_graph',
@@ -4059,18 +3688,45 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\__d(),
 		1,
+		' - no priority - ',
+		' of ',
+		'%.2f GB',
+		'%.2f MB',
+		'%.2f TB',
+		'%d Byte',
+		'%d KB',
+		'%d day',
+		'%d hour',
+		'%d minute',
+		'%d month',
+		'%d second',
+		'%d week',
+		'%d year',
+		'%s GB',
+		'%s KB',
+		'%s MB',
+		'%s TB',
+		'%s ago',
 		'A copy of your submitted feedback:',
 		'Aborted after too many trials with \'{0}\'',
 		'Account deleted',
 		'Account not active yet',
 		'Account temporarily locked',
 		'Accuracy not good enough ({0} instead of at least {1})',
+		'Actions',
 		'Active',
 		'Add {0}',
 		'Address \'{0}\' has been geocoded',
 		'All',
+		'An Internal Error Has Occurred',
+		'An Internal Error Has Occurred.',
 		'Anonymous',
 		'Approved',
+		'April',
+		'Are you sure you want to delete',
+		'Are you sure you want to delete # %s?',
+		'August',
+		'CSRF token mismatch.',
 		'Cancel',
 		'Captcha',
 		'Captcha incorrect',
@@ -4086,30 +3742,39 @@ namespace PHPSTORM_META {
 		'Custom action',
 		'Day',
 		'Days',
+		'December',
 		'Delay necessary for \'{0}\'',
 		'Delay necessary for address \'{0}\'',
+		'Delete',
+		'Delete %s',
 		'Dictionary {0} not found',
 		'Donate',
 		'Done',
 		'E-mail me a copy',
 		'Edit',
+		'Edit %s',
 		'Email not active yet',
 		'Engine {0} not available',
 		'Engine {0} not found',
 		'Enter your address',
+		'Error',
+		'Error in field %s',
 		'Error saving feedback.',
 		'Expectation not reached (we have {0} instead of at least one of {1})',
 		'Failed geocode parsing of \'{0}\'',
 		'Failed reverseGeocode parsing of \'{0}\'',
 		'Feb',
+		'February',
 		'Feedback location not found: ',
 		'Feedback or suggestion',
 		'Feedback submitted',
 		'Flagged',
+		'Friday',
 		'Generated Link',
 		'Get directions',
 		'Hide this tab completely.',
 		'Highlight something',
+		'Home',
 		'Hour',
 		'Hours',
 		'House',
@@ -4121,6 +3786,7 @@ namespace PHPSTORM_META {
 		'In {0}',
 		'Inconclusive result (total of {0})',
 		'Inter',
+		'Invalid %s',
 		'Invalid Key',
 		'Invalid Rating',
 		'Invalid Record',
@@ -4130,19 +3796,27 @@ namespace PHPSTORM_META {
 		'Invalid rate.',
 		'Invalid rating mode %s.',
 		'January',
+		'July',
+		'June',
 		'Language',
+		'List',
+		'List %s',
 		'List {0}',
 		'Map',
 		'Map cannot be displayed!',
+		'March',
 		'Master Password',
 		'May',
 		'Meta Type invalid',
 		'Method not found in Feedbackstore model:',
 		'Minute',
 		'Minutes',
+		'Missing CSRF token cookie',
 		'Module {0} not installed',
+		'Monday',
 		'Month',
 		'Months',
+		'New %s',
 		'New Line',
 		'No',
 		'No config file found. Please create one: ',
@@ -4150,24 +3824,32 @@ namespace PHPSTORM_META {
 		'No screenshot found',
 		'No way',
 		'None',
+		'Not Found',
 		'November',
+		'October',
+		'On %s %s',
 		'Page %page% of %pages%, showing {0}urrent% records out of {1}ount% total',
+		'Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}',
 		'Password',
 		'Percent',
+		'Please correct errors below.',
 		'Please enable cookies',
 		'Published',
 		'Qlogin',
 		'Qlogins',
 		'Rate!',
 		'Reason',
+		'Related %s',
 		'Reset {0}',
 		'Revert',
 		'Saturday',
+		'Scaffold :: ',
 		'Second',
 		'Seconds',
 		'Selection',
 		'Semicolon',
 		'Send your feedback or bugreport!',
+		'September',
 		'Space',
 		'Subject',
 		'Submit',
@@ -4177,21 +3859,43 @@ namespace PHPSTORM_META {
 		'Sure?',
 		'Tabulator',
 		'Thank you. Your feedback was saved.',
+		'The %1$s has been %2$s',
+		'The %1$s with id: %2$s has been deleted.',
 		'The behavior "Containable", if used together with "CustomFinds" needs to be loaded before.',
+		'The count does not match {0}{1}',
 		'The day after tomorrow',
 		'The day before yesterday',
 		'The prefix {0} is not specified.',
+		'The provided value is invalid',
+		'The requested address %s was not found on this server.',
+		'The requested address {0} was not found on this server.',
+		'The requested file contains `..` and will not be read.',
+		'The requested file was not found',
+		'There was an error deleting the %1$s with id: %2$s',
+		'This field cannot be left blank',
+		'This field cannot be left empty',
+		'This field is required',
 		'This function is only available with filesystem save method',
+		'This value does not exist',
+		'This value is already in use',
+		'Thursday',
 		'Today',
+		'Today, %s',
 		'Tomorrow',
+		'Tomorrow, %s',
 		'Too many trials - abort',
 		'Tue',
 		'Tuesday',
 		'Unknown Error',
+		'View',
+		'View %s',
 		'View your feedback on:',
+		'Wednesday',
 		'When you submit, a screenshot (of only this website) will be taken to aid us in processing your feedback or bugreport.',
 		'Yes',
 		'Yesterday',
+		'Yesterday, %s',
+		'You are not authorized to access that location.',
 		'You can not vote on your own records',
 		'You have already rated this record',
 		'You have already rated.',
@@ -4203,9 +3907,19 @@ namespace PHPSTORM_META {
 		'Your rate was successful.',
 		'a {0} b {1} c {0} {1} {0} {1} {2} h {3}',
 		'a {0} b {1} c {2} {3} {4} {5} {6} h {7}',
+		'abday',
+		'abmon',
+		'about a day ago',
+		'about a minute ago',
+		'about a month ago',
+		'about a second ago',
+		'about a week ago',
+		'about a year ago',
+		'about an hour ago',
 		'active',
 		'added',
 		'alreadyVoted',
+		'am_pm',
 		'and',
 		'by',
 		'by System',
@@ -4221,21 +3935,39 @@ namespace PHPSTORM_META {
 		'captchaTip',
 		'color',
 		'consentThis',
+		'd_fmt',
+		'd_t_fmt',
+		'day',
+		'days',
 		'deleted',
 		'dissentThis',
 		'e {0} f',
 		'e {0} f {1} g',
 		'e {0} f {1} g {2}',
 		'eight',
+		'empty',
 		'first',
 		'five',
 		'for use in an external mail client',
 		'four',
+		'high',
+		'in %s',
+		'in about a day',
+		'in about a minute',
+		'in about a month',
+		'in about a second',
+		'in about a week',
+		'in about a year',
+		'in about an hour',
 		'in {0}',
 		'invalid date',
 		'invalidLoginCredentials',
+		'just now',
 		'justNow',
 		'last',
+		'low',
+		'medium',
+		'mon',
 		'next',
 		'nine',
 		'noNext',
@@ -4243,18 +3975,39 @@ namespace PHPSTORM_META {
 		'notAvailable',
 		'o\'clock',
 		'of',
+		'on %s',
 		'one',
+		'p:%d Bytes',
+		'p:%d days',
+		'p:%d hours',
+		'p:%d minutes',
+		'p:%d months',
+		'p:%d seconds',
+		'p:%d weeks',
+		'p:%d years',
+		'p:{0,number,integer} Bytes',
+		'p:{0} days',
+		'p:{0} hours',
+		'p:{0} minutes',
+		'p:{0} months',
+		'p:{0} seconds',
+		'p:{0} weeks',
+		'p:{0} years',
 		'prev',
 		'previous',
 		'prio',
 		'publishedAlready',
 		'publishedNotYet',
 		'publishedToday',
+		'saved',
 		'seven',
 		'six',
+		't_fmt',
+		't_fmt_ampm',
 		'ten',
 		'this',
 		'three',
+		'today',
 		'two',
 		'until',
 		'updated',
@@ -4277,24 +4030,85 @@ namespace PHPSTORM_META {
 		'zodiacScorpio',
 		'zodiacTaurus',
 		'zodiacVirgo',
+		'{0,number,#,###.##} GB',
+		'{0,number,#,###.##} KB',
+		'{0,number,#,###.##} MB',
+		'{0,number,#,###.##} TB',
+		'{0,number,integer} Byte',
 		'{0} NOT removed',
+		'{0} after',
 		'{0} ago',
-		'{0} removed'
+		'{0} before',
+		'{0} day',
+		'{0} from now',
+		'{0} hour',
+		'{0} minute',
+		'{0} month',
+		'{0} removed',
+		'{0} second',
+		'{0} week',
+		'{0} year'
 	);
 
 	expectedArguments(
 		\env(),
 		0,
+		'BASH_PROFILE',
+		'BIND_DNSSEC_VALIDATE',
+		'BIND_DNS_RESOLVER',
+		'BIND_EXPIRY_TIME',
+		'BIND_LOG_DNS_QUERIES',
+		'BIND_MAX_CACHE_TIME',
+		'BIND_REFRESH_TIME',
+		'BIND_RETRY_TIME',
+		'BIND_TTL_TIME',
 		'CGI_MODE',
 		'COMPOSER_BINARY',
+		'COMPOSER_MEMORY_LIMIT',
 		'COMPOSER_ORIGINAL_INIS',
 		'CONTENT_LENGTH',
 		'CONTENT_TYPE',
+		'DEBUG_COMPOSE_ENTRYPOINT',
+		'DEBUG_ENTRYPOINT',
+		'DEVILBOX_PATH',
+		'DEVILBOX_UI_ENABLE',
+		'DEVILBOX_UI_PASSWORD',
+		'DEVILBOX_UI_PROTECT',
+		'DEVILBOX_UI_SSL_CN',
+		'DEVILBOX_VENDOR_PHPMYADMIN_AUTOLOGIN',
+		'DEVILBOX_VENDOR_PHPPGADMIN_AUTOLOGIN',
+		'DISABLE_MODULES',
+		'DNS_CHECK_TIMEOUT',
+		'DOCKER_LOGS',
 		'DOCUMENT_ROOT',
 		'DOCUMENT_URI',
+		'ENABLE_MAIL',
+		'ENABLE_MODULES',
+		'EXTRA_HOSTS',
+		'FORWARD_PORTS_TO_LOCALHOST',
 		'GATEWAY_INTERFACE',
 		'GIT_ASKPASS',
+		'GPG_KEYS',
 		'HOME',
+		'HOSTNAME',
+		'HOST_PATH_BACKUPDIR',
+		'HOST_PATH_HTTPD_DATADIR',
+		'HOST_PATH_SSH_DIR',
+		'HOST_PORT_BIND',
+		'HOST_PORT_HTTPD',
+		'HOST_PORT_HTTPD_SSL',
+		'HOST_PORT_MEMCD',
+		'HOST_PORT_MONGO',
+		'HOST_PORT_MYSQL',
+		'HOST_PORT_PGSQL',
+		'HOST_PORT_REDIS',
+		'HTTPD_DOCROOT_DIR',
+		'HTTPD_NGINX_WORKER_CONNECTIONS',
+		'HTTPD_NGINX_WORKER_PROCESSES',
+		'HTTPD_SERVER',
+		'HTTPD_TEMPLATE_DIR',
+		'HTTPD_TIMEOUT_TO_PHP_FPM',
+		'HTTPD_VHOST_SSL_TYPE',
 		'HTTPS',
 		'HTTP_ACCEPT',
 		'HTTP_ACCEPT_ENCODING',
@@ -4303,30 +4117,56 @@ namespace PHPSTORM_META {
 		'HTTP_COOKIE',
 		'HTTP_HOST',
 		'HTTP_USER_AGENT',
-		'JAVA_HOME',
-		'LANG',
+		'INFOPATH',
 		'LANGUAGE',
-		'LC_ADDRESS',
-		'LC_IDENTIFICATION',
-		'LC_MEASUREMENT',
-		'LC_MONETARY',
-		'LC_NAME',
-		'LC_NUMERIC',
-		'LC_PAPER',
-		'LC_TELEPHONE',
-		'LESSCLOSE',
-		'LESSOPEN',
-		'LOGNAME',
+		'LC_ALL',
+		'LOCAL_LISTEN_ADDR',
 		'LS_COLORS',
-		'MAIL',
+		'MANPATH',
+		'MOUNT_OPTIONS',
+		'MYSQL_BACKUP_HOST',
+		'MYSQL_BACKUP_PASS',
+		'MYSQL_BACKUP_USER',
+		'MYSQL_ROOT_PASSWORD',
+		'MYSQL_SERVER',
+		'MY_GID',
+		'MY_GROUP',
+		'MY_UID',
+		'MY_USER',
+		'NEW_GID',
+		'NEW_UID',
+		'NVM_BIN',
+		'NVM_CD_FLAGS',
+		'NVM_DIR',
+		'NVM_INC',
 		'OLDPWD',
+		'ORACLE_HOME',
 		'PATH',
 		'PATH_TRANSLATED',
+		'PGSQL_HOST_AUTH_METHOD',
+		'PGSQL_ROOT_PASSWORD',
+		'PGSQL_ROOT_USER',
+		'PGSQL_SERVER',
+		'PHPIZE_DEPS',
+		'PHP_ASC_URL',
 		'PHP_BINARY',
+		'PHP_CFLAGS',
+		'PHP_CPPFLAGS',
+		'PHP_EXTRA_CONFIGURE_ARGS',
+		'PHP_INI_DIR',
+		'PHP_LDFLAGS',
+		'PHP_MAIL_CATCH_ALL',
+		'PHP_MODULES_DISABLE',
+		'PHP_MODULES_ENABLE',
 		'PHP_SELF',
+		'PHP_SERVER',
+		'PHP_SHA256',
+		'PHP_URL',
+		'PHP_VERSION',
 		'PWD',
 		'QUERY_STRING',
 		'REDIRECT_STATUS',
+		'REDIS_ARGS',
 		'REMOTE_ADDR',
 		'REMOTE_PORT',
 		'REQUEST_METHOD',
@@ -4339,17 +4179,12 @@ namespace PHPSTORM_META {
 		'SERVER_NAME',
 		'SERVER_PORT',
 		'SERVER_PROTOCOL',
-		'SHELL',
 		'SHLVL',
-		'SSH_AUTH_SOCK',
-		'SSH_CLIENT',
-		'SSH_CONNECTION',
-		'SSH_TTY',
 		'TERM',
-		'USER',
+		'TIMEZONE',
+		'TLD_SUFFIX',
+		'VIPSHOME',
 		'XDEBUG_HANDLER_SETTINGS',
-		'XDG_RUNTIME_DIR',
-		'XDG_SESSION_ID',
 		'argc',
 		'argv'
 	);
@@ -4369,21 +4204,14 @@ namespace PHPSTORM_META {
 
 	registerArgumentsSet(
 		'columnNames',
-		'access_token',
+		'abbr',
 		'active',
-		'additional_uuid',
 		'address_format',
 		'alias',
 		'base',
 		'beginning',
-		'birth_date',
 		'code',
-		'command',
-		'comment',
 		'completed',
-		'condition',
-		'confirmed',
-		'confirmed_by',
 		'content',
 		'context',
 		'count',
@@ -4394,46 +4222,28 @@ namespace PHPSTORM_META {
 		'created',
 		'data',
 		'decimal_places',
-		'default',
 		'description',
 		'email',
-		'email_verified',
 		'end',
-		'engine',
-		'error_message',
 		'eu_member',
-		'event',
-		'expires',
 		'failed',
 		'failure_message',
 		'fetched',
-		'first_name',
 		'fk_id',
 		'fk_model',
 		'flag_optional',
 		'flag_required',
-		'flags',
 		'foreign_key',
-		'from',
-		'full_name',
-		'gender',
 		'hostname',
 		'id',
-		'identifier',
 		'image',
 		'ip',
-		'is_error',
-		'is_html',
 		'iso2',
 		'iso3',
 		'job_group',
 		'job_type',
-		'key',
 		'label',
-		'language_id',
-		'last_import',
 		'last_login',
-		'last_name',
 		'lat',
 		'lft',
 		'linked_id',
@@ -4441,7 +4251,6 @@ namespace PHPSTORM_META {
 		'locale',
 		'locale_fallback',
 		'location',
-		'locked',
 		'logins',
 		'message',
 		'model',
@@ -4453,26 +4262,16 @@ namespace PHPSTORM_META {
 		'offset',
 		'offset_dst',
 		'ori_name',
-		'params',
 		'parent_id',
 		'password',
-		'path',
 		'phone_code',
-		'picture_url',
 		'pid',
-		'plural',
-		'plural_2',
-		'primary',
-		'prio',
 		'priority',
-		'process',
 		'progress',
-		'provider',
 		'rating_count',
 		'rating_sum',
 		'refer',
 		'reference',
-		'references',
 		'result',
 		'rght',
 		'role_id',
@@ -4480,29 +4279,15 @@ namespace PHPSTORM_META {
 		'session_id',
 		'slug',
 		'sort',
-		'source_state',
 		'special',
-		'state',
-		'state_machine',
-		'state_machine_item_id',
-		'state_machine_item_state_id',
-		'state_machine_process_id',
-		'state_machine_transition_log_id',
 		'status',
 		'summary',
 		'symbol_left',
 		'symbol_right',
 		'tag_id',
-		'target_state',
 		'terminate',
-		'timeout',
-		'timezone_offset',
+		'timezone',
 		'title',
-		'to',
-		'translate_domain_id',
-		'translate_language_id',
-		'translate_project_id',
-		'translate_string_id',
 		'type',
 		'uri',
 		'used',
@@ -4681,6 +4466,7 @@ namespace PHPSTORM_META {
 		'plugins.BootstrapUI',
 		'plugins.Burzum/CakeServiceLayer',
 		'plugins.Cache',
+		'plugins.Cake/Localized',
 		'plugins.Cake/TwigView',
 		'plugins.CakeDto',
 		'plugins.Calendar',
@@ -4698,6 +4484,7 @@ namespace PHPSTORM_META {
 		'plugins.IdeHelper',
 		'plugins.IdeHelperExtra',
 		'plugins.Markup',
+		'plugins.Menu',
 		'plugins.Meta',
 		'plugins.Migrations',
 		'plugins.ModelGraph',
@@ -4782,7 +4569,7 @@ namespace PHPSTORM_META {
 		'sort',
 		'special',
 		'status',
-		'timezone_offset',
+		'timezone',
 		'zip_length',
 		'zip_regexp'
 	);
@@ -4818,7 +4605,7 @@ namespace PHPSTORM_META {
 
 	registerArgumentsSet(
 		'entityFields:Data\Model\Entity\State',
-		'code',
+		'abbr',
 		'country_id',
 		'id',
 		'lat',
@@ -4944,69 +4731,6 @@ namespace PHPSTORM_META {
 		'rating_count',
 		'rating_sum',
 		'title'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineItem',
-		'id',
-		'identifier',
-		'process',
-		'state',
-		'state_machine',
-		'state_machine_transition_log_id'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineItemState',
-		'description',
-		'id',
-		'name',
-		'state_machine_process_id'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineLock',
-		'created',
-		'expires',
-		'id',
-		'identifier'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineProcess',
-		'created',
-		'id',
-		'modified',
-		'name',
-		'state_machine'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineTimeout',
-		'event',
-		'id',
-		'identifier',
-		'state_machine_item_state_id',
-		'state_machine_process_id',
-		'timeout'
-	);
-
-	registerArgumentsSet(
-		'entityFields:StateMachine\Model\Entity\StateMachineTransitionLog',
-		'command',
-		'condition',
-		'created',
-		'error_message',
-		'event',
-		'id',
-		'identifier',
-		'is_error',
-		'locked',
-		'params',
-		'source_state',
-		'state_machine_item_id',
-		'state_machine_process_id',
-		'target_state'
 	);
 
 	registerArgumentsSet(
@@ -5293,6 +5017,7 @@ namespace PHPSTORM_META {
 		'Sandbox.JqueryExamples::maxlength',
 		'Sandbox.JsExamples::datepicker',
 		'Sandbox.JsExamples::index',
+		'Sandbox.Localized::index',
 		'Sandbox.MarkupExamples::bbcode',
 		'Sandbox.MarkupExamples::index',
 		'Sandbox.MarkupExamples::markdown',
@@ -5385,6 +5110,7 @@ namespace PHPSTORM_META {
 		'TestHelper.Plugins::index',
 		'TestHelper.Plugins::recommended',
 		'TestHelper.TestCases::behavior',
+		'TestHelper.TestCases::command',
 		'TestHelper.TestCases::component',
 		'TestHelper.TestCases::controller',
 		'TestHelper.TestCases::coverage',
@@ -5421,27 +5147,11 @@ namespace PHPSTORM_META {
 		'sandbox_posts',
 		'sandbox_ratings',
 		'sandbox_users',
-		'social_profiles',
-		'state_machine_item_state_history',
-		'state_machine_item_states',
-		'state_machine_items',
-		'state_machine_locks',
-		'state_machine_processes',
-		'state_machine_timeouts',
-		'state_machine_transition_logs',
 		'states',
 		'tags_tagged',
 		'tags_tags',
 		'timezones',
-		'translate_api_translations',
-		'translate_domains',
-		'translate_languages',
-		'translate_projects',
-		'translate_strings',
-		'translate_terms',
-		'users',
-		'uuid_users',
-		'uuids'
+		'users'
 	);
 
 	registerArgumentsSet(

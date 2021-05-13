@@ -69,7 +69,8 @@
 		"geocoder-php/provider-implementation": "^1.0",
 		"geocoder-php/google-maps-provider": "^4.4.0",
 		"league/commonmark": "^1.5",
-		"mjohnson/decoda": "^6.12"
+		"mjohnson/decoda": "^6.12",
+		"cakephp/localized": "dev-master as 4.0"
 	},
 	"require-dev": {
 		"dereuromark/cakephp-model-graph": "dev-master",

@@ -48,9 +48,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('Queue');
 		$this->addPlugin('Captcha');
 		$this->addPlugin('CakeDto');
-		//$this->addPlugin('Cake/Localized');
-		//$this->addPlugin('Tags');
-		//$this->addPlugin('Ratings');
+		$this->addPlugin('Cake/Localized');
 		$this->addPlugin('BootstrapUI');
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
