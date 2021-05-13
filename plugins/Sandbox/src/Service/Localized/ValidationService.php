@@ -3,6 +3,7 @@
 namespace Sandbox\Service\Localized;
 
 use DirectoryIterator;
+use RuntimeException;
 
 class ValidationService {
 
@@ -27,7 +28,7 @@ class ValidationService {
 				continue;
 			}
 
-			$available[$matches[1]] = $this->extractDetails($file->getRealPath());
+			$available[$matches[1]] = $this->extractDetails((string)$file->getRealPath());
 		}
 
 		ksort($available);
@@ -37,11 +38,15 @@ class ValidationService {
 
 	/**
 	 * @param string $path
-	 *
+	 * @throws \RuntimeException
 	 * @return array
 	 */
 	protected function extractDetails(string $path): array {
 		$content = file_get_contents($path);
+		if ($content === false) {
+			throw new RuntimeException('Cannot open file ' . $path);
+		}
+
 		preg_match_all('/public static function (\w+)\(/', $content, $matches);
 		if (!$matches) {
 			return [];

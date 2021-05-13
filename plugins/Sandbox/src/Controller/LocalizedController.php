@@ -8,8 +8,7 @@ use Burzum\CakeServiceLayer\Service\ServiceAwareTrait;
  * @property \App\Model\Table\UsersTable $Users
  * @property \Sandbox\Service\Localized\ValidationService $Validation
  */
-class LocalizedController extends SandboxAppController
-{
+class LocalizedController extends SandboxAppController {
 
 	use ServiceAwareTrait;
 
@@ -21,8 +20,7 @@ class LocalizedController extends SandboxAppController
 	/**
 	 * @return void
 	 */
-	public function index()
-	{
+	public function index() {
 		$this->loadService('Sandbox.Localized/Validation');
 		$available = $this->Validation->getAvailable();
 
