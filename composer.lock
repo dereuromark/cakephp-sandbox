@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3281ee8d3de00846c21fdc5ab69e5d61",
+    "content-hash": "8c989c2bf6269f3d2bbea346d301530f",
     "packages": [
         {
             "name": "brick/math",
@@ -1907,8 +1907,14 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:dereuromark/cakephp-menu.git",
-                "reference": "b0552955710f41fa9e19f8d97934ee1ecce473b1"
+                "url": "https://github.com/dereuromark/cakephp-menu.git",
+                "reference": "f1bac25850dfbd18ea047daac6faf7a8d318eb54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/f1bac25850dfbd18ea047daac6faf7a8d318eb54",
+                "reference": "f1bac25850dfbd18ea047daac6faf7a8d318eb54",
+                "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^4.0",
@@ -1926,31 +1932,7 @@
                     "Menu\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Menu\\Test\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "test-coverage": [
-                    "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml"
-                ],
-                "cs-check": [
-                    "phpcs -s -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
-                ],
-                "cs-fix": [
-                    "phpcbf -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --extensions=php src/ tests/"
-                ],
-                "stan": [
-                    "phpstan analyze src/"
-                ],
-                "stan-setup": [
-                    "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^0.12 && mv composer.backup composer.json"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1967,7 +1949,11 @@
                 }
             ],
             "description": "CakePHP Menu Plugin",
-            "time": "2021-01-15T19:17:57+00:00"
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-menu/issues",
+                "source": "https://github.com/dereuromark/cakephp-menu/tree/master"
+            },
+            "time": "2021-05-13T12:09:14+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
