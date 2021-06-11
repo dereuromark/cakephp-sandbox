@@ -27,7 +27,7 @@ $this->loadHelper('Queue.QueueProgress');
 	<fieldset>
 		<legend><?php echo __('Select a task to run'); ?></legend>
 		<?php
-		echo $this->Form->control('job_type', ['options' => $tasks]);
+		echo $this->Form->control('job_task', ['options' => $tasks]);
 
 		echo '<p>Current (server) time: ' . (new \Cake\I18n\FrozenTime()) . '</>';
 
@@ -44,7 +44,7 @@ $this->loadHelper('Queue.QueueProgress');
 		<ul>
 			<?php foreach ($queuedJobs as $queuedJob) { ?>
 				<li>
-					<b><?php echo h($queuedJob->job_type); ?></b>: scheduled to start at <?php echo $this->Time->nice($queuedJob->notbefore); ?>
+					<b><?php echo h($queuedJob->job_task); ?></b>: scheduled to start at <?php echo $this->Time->nice($queuedJob->notbefore); ?>
 					<?php if (!$queuedJob->fetched) {
 						echo $this->Form->postLink($this->Format->icon('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
 					} ?>

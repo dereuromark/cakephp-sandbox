@@ -26,7 +26,7 @@
 	This can mean with low number of workers that in peak usage time frames some jobs will take longer to start running.</p>
 
 	<p>In the background the following cronjob is configured via crontab:</p>
-	<pre>*/1 * * * * cd /var/www/sandbox && bin/cake queue runworker -q</pre>
+	<pre>*/1 * * * * cd /var/www/sandbox && bin/cake queue run -q</pre>
 	<p>This starts a new worker of max 2 minutes every minute, creating a total availability of 2 workers in average.</p>
 
 </div>

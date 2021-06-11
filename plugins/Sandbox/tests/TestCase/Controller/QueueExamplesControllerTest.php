@@ -83,7 +83,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 		$queuedJobs = TableRegistry::getTableLocator()->get('Queue.QueuedJobs');
 		/** @var \Queue\Model\Entity\QueuedJob $queuedJob */
 		$queuedJob = $queuedJobs->find()->orderDesc('id')->firstOrFail();
-		$this->assertSame('ProgressExample', $queuedJob->job_type);
+		$this->assertSame('ProgressExample', $queuedJob->job_task);
 	}
 
 }

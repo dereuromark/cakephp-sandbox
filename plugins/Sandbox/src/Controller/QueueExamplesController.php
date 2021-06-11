@@ -40,7 +40,7 @@ class QueueExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function scheduling() {
-		$tasks = ['Example' => 'Example', 'ProgressExample' => 'ProgressExample'];
+		$tasks = ['Queue.Example' => 'Queue.Example', 'Queue.ProgressExample' => 'Queue.ProgressExample'];
 
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
@@ -49,7 +49,7 @@ class QueueExamplesController extends SandboxAppController {
 		if ($this->request->is('post')) {
 			$queuedJob = $this->QueuedJobs->patchEntity($queuedJob, $this->request->getData());
 			$notBefore = $queuedJob->notbefore;
-			$task = $queuedJob->job_type;
+			$task = $queuedJob->job_task;
 
 			if (!$task || !isset($tasks[$task])) {
 				$queuedJob->setError('task', 'Required field.');
@@ -135,19 +135,19 @@ class QueueExamplesController extends SandboxAppController {
 
 		$seconds = 20;
 		$reference = 'demo-' . $sid;
-		if ($this->QueuedJobs->isQueued($reference, 'ProgressExample')) {
+		if ($this->QueuedJobs->isQueued($reference, 'Queue.ProgressExample')) {
 			$this->Flash->error('Job already running or scheduled. Refresh the page for details.');
 
 			return $this->redirect($this->referer(['action' => 'index']));
 		}
 
 		$this->QueuedJobs->createJob(
-			'ProgressExample',
+			'Queue.ProgressExample',
 			['duration' => $seconds],
 			['reference' => $reference]
 		);
 
-		$this->Flash->success('Queued: ProgressExample with ' . $seconds . 's long job.');
+		$this->Flash->success('Queued: Queue.ProgressExample with ' . $seconds . 's long job.');
 
 		return $this->redirect($this->referer(['action' => 'index']));
 	}
@@ -157,7 +157,7 @@ class QueueExamplesController extends SandboxAppController {
 	 * @param \Cake\I18n\FrozenTime $notBefore
 	 * @return bool
 	 */
-	protected function scheduleDelayedDemo($task, $notBefore) {
+	protected function scheduleDelayedDemo(string $task, $notBefore) {
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
 
@@ -168,7 +168,7 @@ class QueueExamplesController extends SandboxAppController {
 		}
 
 		$data = [];
-		if ($task === 'ProgressExample') {
+		if ($task === 'Queue.ProgressExample') {
 			$data = [
 				'duration' => 10,
 			];
