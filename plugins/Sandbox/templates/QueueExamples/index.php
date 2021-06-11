@@ -37,7 +37,7 @@ $this->loadHelper('Queue.QueueProgress');
 	<ul>
 		<?php foreach ($queuedJobs as $queuedJob) { ?>
 		<li>
-			<?php echo h($queuedJob->job_type); ?>: <?php echo $this->Number->toPercentage($queuedJob->progress, 0, ['multiply' => true]); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
+			<?php echo h($queuedJob->job_task); ?>: <?php echo $this->Number->toPercentage($queuedJob->progress, 0, ['multiply' => true]); ?> (Status: <code><?php echo h($queuedJob->status) ?: 'n/a'; ?></code>)
 			<br>
 			<?php echo $this->QueueProgress->htmlProgressBar($queuedJob, $this->QueueProgress->progressBar($queuedJob, 30)); ?>
 		</li>

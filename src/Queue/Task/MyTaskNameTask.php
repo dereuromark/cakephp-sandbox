@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Shell\Task;
+namespace App\Queue\Task;
 
-use Queue\Shell\Task\QueueTask;
+use Queue\Queue\Task;
 
-class QueueMyTaskNameTask extends QueueTask {
+class MyTaskNameTask extends Task {
 
 	/**
 	 * @param array $data

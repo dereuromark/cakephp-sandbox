@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Test\TestCase\Shell\Task;
+namespace App\Test\TestCase\Queue\Task;
 
-use App\Shell\Task\QueueMyTaskNameTask;
+use App\Queue\Task\MyTaskNameTask;
 use Cake\TestSuite\TestCase;
 
-class QueueMyTaskNameTaskTest extends TestCase {
+class MyTaskNameTaskTest extends TestCase {
 
 	/**
 	 * @var string[]
@@ -19,7 +19,7 @@ class QueueMyTaskNameTaskTest extends TestCase {
 	 * @return void
 	 */
 	public function testRun(): void {
-		$task = new QueueMyTaskNameTask();
+		$task = new MyTaskNameTask();
 		$data = [];
 
 		//TODO
