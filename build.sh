@@ -13,7 +13,7 @@ chmod +x bin/cake
 
 bin/cake maintenance_mode activate
 
-bin/cake queue end all
+bin/cake queue worker end all
 
 mkdir -p tmp
 mkdir -p logs
