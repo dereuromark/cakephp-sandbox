@@ -37,7 +37,7 @@
 		"linkorb/jsmin-php": "dev-master",
 		"dereuromark/cakephp-feed": "dev-master",
 		"dereuromark/cakephp-ajax": "dev-master",
-		"dereuromark/cakephp-queue": "dev-commands",
+		"dereuromark/cakephp-queue": "dev-master",
 		"dereuromark/cakephp-meta": "dev-master",
 		"friendsofcake/bootstrap-ui": "^3.0@RC",
 		"dereuromark/cakephp-cache": "dev-master",
