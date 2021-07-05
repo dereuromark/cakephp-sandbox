@@ -48,15 +48,12 @@ $options = [
 	'div' => ['id' => 'someothers'],
 	'map' => ['navOptions' => ['style' => 'SMALL'], 'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']],
 ];
-$result = $this->GoogleMap->map($options);
+echo $this->GoogleMap->map($options);
+
 $this->GoogleMap->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Marker', 'content' => 'Some Html-<b>Content</b>', 'icon' => $this->GoogleMap->iconSet('green')]);
-
 $this->GoogleMap->addMarker(['lat' => 47.69847, 'lng' => 11.9514, 'title' => 'Marker2', 'content' => 'Some more Html-<b>Content</b>', 'icon' => $this->GoogleMap->iconSet('green', 'E')]);
-
 $this->GoogleMap->addMarker(['lat' => 47.19847, 'lng' => 11.1514, 'title' => 'Marker3']);
-
-$result .= $this->GoogleMap->script();
-echo $result;
+$this->GoogleMap->finalize();
 ?>
 
 <p>The green icons have some HTML window content which will show upon click.</p>
