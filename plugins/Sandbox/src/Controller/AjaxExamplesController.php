@@ -200,7 +200,7 @@ class AjaxExamplesController extends SandboxAppController {
 			$user = $this->Users->patchEntity($user, $this->request->getData());
 		}
 
-		$this->CountryStateHelper->provideData(false, 'User');
+		$this->CountryStateHelper->provideData(false);
 		$this->set(compact('user'));
 	}
 
