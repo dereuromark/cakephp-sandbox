@@ -1,18 +1,18 @@
 {
-  "name": "sandbox",
-  "version": "1.0.0",
-  "dependencies": {
-    "bootstrap": "^4.5.2",
-    "jquery": "~1.12",
-    "font-awesome": "^4.7",
-    "jquery-ui": "~1.11",
-    "eonasdan-bootstrap-datetimepicker": "latest",
-    "moment": "latest",
-    "clockpicker": "latest",
-    "bootstrap-star-rating": "^4.0.3",
-    "jquery-infinite-scroll": "^3.0",
-    "select2": "^4.0.5",
-    "x-editable": "^1.5.1"
-  },
-  "private": true
+	"name": "sandbox",
+	"version": "1.0.0",
+	"dependencies": {
+		"bootstrap": "^4.5.2",
+		"jquery": "~1.12",
+		"font-awesome": "^4.7",
+		"jquery-ui": "~1.11",
+		"eonasdan-bootstrap-datetimepicker": "latest",
+		"moment": "latest",
+		"clockpicker": "latest",
+		"bootstrap-star-rating": "^4.0.3",
+		"jquery-infinite-scroll": "^3.0",
+		"select2": "^4.0.5",
+		"x-editable": "^1.5.1"
+	},
+	"private": true
 }

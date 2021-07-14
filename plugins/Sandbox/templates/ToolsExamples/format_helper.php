@@ -47,6 +47,8 @@ echo $this->Format->thumbs(0);
 ?>
 </div>
 
+	<br><br>
+
 <h3>Font Icons</h3>
 <code style="display: block;">
 	<?php
@@ -64,8 +66,26 @@ echo '<br>';
 echo $this->Format->fontIcon('anchor', ['spin' => true]);
 ?>
 
+	<br><br>
 
-<h3>Other</h3>
+	<h3>New: Bootstrap Icons</h3>
+
+<code style="display: block;">
+	<?php
+	$text = <<<TEXT
+<?php echo \$this->Format->icon('info-circle-fill', ['iconNamespace' => 'bi']); ?>
+TEXT;
+	echo nl2br(h($text));
+	?>
+</code>
+
+	<?php
+	echo $this->Format->icon('info-circle-fill', ['iconNamespace' => 'bi']);
+	?>
+
+	<br><br>
+
+	<h3>Other</h3>
 <code style="display: block;">
 	<?php
 	$text = <<<TEXT
@@ -82,6 +102,7 @@ echo '<br>';
 echo $this->Format->ok('Me not so much', 0)
 ?>
 
+	<br><br>
 
 <h3>Array to Table</h3>
 <code style="display: block;">
