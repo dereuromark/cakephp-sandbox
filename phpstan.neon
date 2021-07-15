@@ -21,5 +21,4 @@ parameters:
 		- '#Constant \w+ not found\.#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Cannot cast array\|string\|null to string#'
-		- '#Cannot cast array\|string\|null to int#'
 		- '#Call to an undefined method .+Mailer::set.+#'
