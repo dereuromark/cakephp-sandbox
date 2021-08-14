@@ -68,7 +68,7 @@
 		"php-http/message": "^1.8.0",
 		"geocoder-php/provider-implementation": "^1.0",
 		"geocoder-php/google-maps-provider": "^4.4.0",
-		"league/commonmark": "^1.5",
+		"league/commonmark": "^2.0",
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "dev-master as 4.0"
 	},
