@@ -80,7 +80,7 @@
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"psy/psysh": "@stable",
-		"phpunit/phpunit": "^8.5 || ^9.3"
+		"phpunit/phpunit": "^9.5"
 	},
 	"autoload": {
 		"psr-4": {

@@ -3,14 +3,6 @@
 
 set -o pipefail
 
-echo "### INSTALL/UPDATE ###";
-[ ! -f composer.phar ] && curl -sS https://getcomposer.org/installer | php
-php composer.phar selfupdate
-
-[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit.phar
-
-git pull
-
 php composer.phar install
 
 [ ! -f config/app_local.php ] && cp config/app_local.default.php config/app_local.php && echo "ERROR: DB credentials missing, enter them now and run again!" && exit 1
