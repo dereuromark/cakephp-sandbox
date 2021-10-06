@@ -18,6 +18,10 @@ RENAME TABLE `country_provinces` TO  `states`;
 SQL;
 
 		$this->query($content);
+
+		$table = $this->table('States');
+		$table->renameColumn('abbr', 'code');
+		$table->update();
 	}
 
 }
