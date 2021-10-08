@@ -525,7 +525,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 * @return \Sandbox\Dto\Github\HeadDto
 	 */
 	public function getHeadOrFail(): \Sandbox\Dto\Github\HeadDto {
-		if (!isset($this->head)) {
+		if ($this->head === null) {
 			throw new \RuntimeException('Value not set for field `head` (expected to be not null)');
 		}
 
@@ -564,7 +564,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 * @return \Sandbox\Dto\Github\BaseDto
 	 */
 	public function getBaseOrFail(): \Sandbox\Dto\Github\BaseDto {
-		if (!isset($this->base)) {
+		if ($this->base === null) {
 			throw new \RuntimeException('Value not set for field `base` (expected to be not null)');
 		}
 

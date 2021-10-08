@@ -98,7 +98,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 * @return string
 	 */
 	public function getNameOrFail(): string {
-		if (!isset($this->name)) {
+		if ($this->name === null) {
 			throw new \RuntimeException('Value not set for field `name` (expected to be not null)');
 		}
 
@@ -137,7 +137,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 * @return string
 	 */
 	public function getColorOrFail(): string {
-		if (!isset($this->color)) {
+		if ($this->color === null) {
 			throw new \RuntimeException('Value not set for field `color` (expected to be not null)');
 		}
 
