@@ -185,9 +185,7 @@ class AccountController extends AppController {
 		$user = $this->Users->get($uid);
 
 		if ($this->request->getQuery('abort')) {
-			if (!empty($uid)) {
-				$this->request->getSession()->delete('Auth.Tmp');
-			}
+			$this->request->getSession()->delete('Auth.Tmp');
 
 			return $this->redirect(['action' => 'login']);
 		}

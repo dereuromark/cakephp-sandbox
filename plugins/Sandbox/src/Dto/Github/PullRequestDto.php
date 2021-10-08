@@ -490,7 +490,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 * @return $this
 	 */
 	public function addLabel($key, \Sandbox\Dto\Github\LabelDto $label) {
-		if (!isset($this->labels)) {
+		if ($this->labels === null) {
 			$this->labels = [];
 		}
 

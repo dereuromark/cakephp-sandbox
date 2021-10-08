@@ -11,7 +11,7 @@ use Tools\Model\Table\Table;
 class CountryRecordsTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<int|string, mixed>|string|null
 	 */
 	protected $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
