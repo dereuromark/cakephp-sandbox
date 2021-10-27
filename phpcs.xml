@@ -10,7 +10,7 @@
 	<file>plugins/</file>
 	<file>webroot/</file>
 
-	<exclude-pattern>\.git</exclude-pattern>
+	<exclude-pattern>\.git/</exclude-pattern>
 	<exclude-pattern>/*/tmp/</exclude-pattern>
 	<exclude-pattern>/webroot/assets/</exclude-pattern>
 	<exclude-pattern>/plugins/Sandbox/src/Dto/</exclude-pattern>
