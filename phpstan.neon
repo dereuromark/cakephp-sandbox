@@ -1,4 +1,5 @@
 includes:
+    - vendor/cakedc/cakephp-phpstan/extension.neon
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
