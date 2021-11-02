@@ -43,7 +43,7 @@ class Event extends Entity {
 	];
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	protected $_virtual = [
 		'coordinates',

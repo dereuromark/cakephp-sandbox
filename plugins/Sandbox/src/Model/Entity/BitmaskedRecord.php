@@ -34,7 +34,7 @@ class BitmaskedRecord extends Entity {
 	/**
 	 * @param int|null $value
 	 *
-	 * @return string[]|string|null
+	 * @return array<string>|string|null
 	 */
 	public static function flags($value = null) {
 		$options = [
@@ -47,9 +47,24 @@ class BitmaskedRecord extends Entity {
 		return parent::enum($value, $options);
 	}
 
+	/**
+	 * @var int
+	 */
 	public const STATUS_IMPORTANT = 1;
+
+	/**
+	 * @var int
+	 */
 	public const STATUS_FEATURED = 2;
+
+	/**
+	 * @var int
+	 */
 	public const STATUS_APPROVED = 4;
+
+	/**
+	 * @var int
+	 */
 	public const STATUS_FLAGGED = 8;
 
 }

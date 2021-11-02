@@ -8,7 +8,7 @@ use Cake\TestSuite\TestCase;
 class MyTaskNameTaskTest extends TestCase {
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	public $fixtures = [
 		'plugin.Queue.QueuedJobs',

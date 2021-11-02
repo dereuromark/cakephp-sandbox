@@ -9,7 +9,7 @@ use ReflectionClass;
 class InflectorController extends AppController {
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	protected $_reflectExceptions = [
 		'_cache',

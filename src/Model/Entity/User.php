@@ -47,22 +47,65 @@ class User extends Entity {
 	/**
 	 * Fields that are excluded from JSON versions of the entity.
 	 *
-	 * @var string[]
+	 * @var array<string>
 	 */
 	protected $_hidden = [
 		'password',
 	];
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_ID = 'id';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_USERNAME = 'username';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_EMAIL = 'email';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_PASSWORD = 'password';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_LOGINS = 'logins';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_ACTIVE = 'active';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_ROLE_ID = 'role_id';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_CREATED = 'created';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_MODIFIED = 'modified';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_LAST_LOGIN = 'last_login';
+
+	/**
+	 * @var string
+	 */
 	public const FIELD_ROLE = 'role';
 
 }

@@ -12,11 +12,11 @@ use Tools\Model\Table\Table;
  *
  * @method \Sandbox\Model\Entity\ExposedUser newEmptyEntity()
  * @method \Sandbox\Model\Entity\ExposedUser newEntity(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\ExposedUser[] newEntities(array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\ExposedUser> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\ExposedUser[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\ExposedUser> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])

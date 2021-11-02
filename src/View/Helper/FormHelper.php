@@ -12,7 +12,7 @@ class FormHelper extends BootstrapFormHelper {
 
 	/**
 	 * @param string $title
-	 * @param string|array|null $url
+	 * @param array|string|null $url
 	 * @param array $options
 	 *
 	 * @return string

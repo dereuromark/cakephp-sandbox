@@ -144,7 +144,7 @@ class QueueExamplesController extends SandboxAppController {
 		$this->QueuedJobs->createJob(
 			'Queue.ProgressExample',
 			['duration' => $seconds],
-			['reference' => $reference]
+			['reference' => $reference],
 		);
 
 		$this->Flash->success('Queued: Queue.ProgressExample with ' . $seconds . 's long job.');
@@ -177,7 +177,7 @@ class QueueExamplesController extends SandboxAppController {
 		$this->QueuedJobs->createJob(
 			$task,
 			$data,
-			['reference' => $reference, 'notBefore' => $notBefore]
+			['reference' => $reference, 'notBefore' => $notBefore],
 		);
 
 		return true;

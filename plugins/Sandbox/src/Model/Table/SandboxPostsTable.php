@@ -12,11 +12,11 @@ use Tools\Model\Table\Table;
  * @mixin \Tags\Model\Behavior\TagBehavior
  * @method \Sandbox\Model\Entity\SandboxPost get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost newEntity(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost[] newEntities(array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxPost> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxPost> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Search\Model\Behavior\SearchBehavior
  * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()

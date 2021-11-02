@@ -1,5 +1,4 @@
 includes:
-    - vendor/cakedc/cakephp-phpstan/extension.neon
     - vendor/phpstan/phpstan/conf/bleedingEdge.neon
 
 parameters:
@@ -16,7 +15,7 @@ parameters:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
 
-	excludes_analyse:
+	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php
 		- %rootDir%/../../../src/Error/ErrorHandler.php
 		- %rootDir%/../../../src/Error/Middleware/ErrorHandlerMiddleware.php

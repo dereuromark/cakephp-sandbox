@@ -12,6 +12,9 @@ use Cake\Event\EventInterface;
  */
 class AuthSandboxController extends AppController {
 
+	/**
+	 * @var int
+	 */
 	public const ROLE_USER = 4;
 
 	/**

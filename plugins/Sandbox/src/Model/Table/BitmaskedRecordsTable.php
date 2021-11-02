@@ -11,11 +11,11 @@ use Cake\Validation\Validator;
  *
  * @method \Sandbox\Model\Entity\BitmaskedRecord newEmptyEntity()
  * @method \Sandbox\Model\Entity\BitmaskedRecord newEntity(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[] newEntities(array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\BitmaskedRecord> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\BitmaskedRecord> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])

@@ -11,7 +11,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class ExposeExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var string[]
+	 * @var array<string>
 	 */
 	protected $fixtures = [
 		'plugin.Sandbox.ExposedUsers',

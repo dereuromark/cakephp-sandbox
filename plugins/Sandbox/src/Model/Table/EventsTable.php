@@ -10,10 +10,10 @@ use Cake\Validation\Validator;
  *
  * @method \Sandbox\Model\Entity\Event get($primaryKey, $options = [])
  * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event[] newEntities(array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\Event> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])

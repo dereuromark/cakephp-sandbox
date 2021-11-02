@@ -26,7 +26,7 @@ class RedirectMiddleware implements MiddlewareInterface {
 		} catch (RedirectException $e) {
 			return new RedirectResponse(
 				$e->getMessage(),
-				(int)$e->getCode()
+				(int)$e->getCode(),
 			);
 		}
 
