@@ -49,12 +49,13 @@ class MiscController extends AppController {
 	 * @return string
 	 */
 	protected function _process($text, $type = null) {
-		if (empty($type)) {
+		if (!$type) {
 			# auto detect
 			$type = $this->_autoDetect($text);
 			//$data['Form']['type'] = $type;
 			//return $text;
-}
+		}
+
 		switch ($type) {
 			case '1':
 				$text = h($text);
