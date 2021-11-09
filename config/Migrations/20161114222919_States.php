@@ -19,7 +19,7 @@ SQL;
 
 		$this->query($content);
 
-		$table = $this->table('States');
+		$table = $this->table('states');
 		$table->renameColumn('abbr', 'code');
 		$table->update();
 	}
