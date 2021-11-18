@@ -26,7 +26,7 @@ class CalendarController extends SandboxAppController {
 
 		$this->loadComponent('Calendar.Calendar');
 
-		$this->viewBuilder()->setHelpers(['Calendar.Calendar']);
+		$this->viewBuilder()->addHelpers(['Calendar.Calendar']);
 	}
 
 	/**

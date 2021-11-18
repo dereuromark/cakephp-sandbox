@@ -22,7 +22,7 @@ class CaptchasController extends SandboxAppController {
 		parent::initialize();
 
 		$this->loadComponent('Captcha.Captcha', ['actions' => ['math']]);
-		$this->viewBuilder()->setHelpers(['Captcha.Captcha' => ['ext' => 'png']]);
+		$this->viewBuilder()->addHelpers(['Captcha.Captcha' => ['ext' => 'png']]);
 	}
 
 	/**

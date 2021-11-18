@@ -19,7 +19,7 @@ class CsvController extends SandboxAppController {
 		$this->components()->unload('RequestHandler');
 		$this->loadComponent('RequestHandler', ['viewClassMap' => ['csv' => 'CsvView.Csv']]);
 
-		$this->viewBuilder()->setHelpers(['Data.Data']);
+		$this->viewBuilder()->addHelpers(['Data.Data']);
 	}
 
 	/**

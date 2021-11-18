@@ -175,6 +175,7 @@ return [
 			'Tags',
 			'Meta',
 		],
+		'arrayAsGenerics' => true,
 		'annotators' => [
 			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
 		],

@@ -26,7 +26,7 @@ class AjaxExamplesController extends SandboxAppController {
 			$this->loadComponent('Ajax.Ajax');
 		}
 
-		$this->viewBuilder()->setHelpers(['Data.Data']);
+		$this->viewBuilder()->addHelper('Data.Data');
 	}
 
 	/**

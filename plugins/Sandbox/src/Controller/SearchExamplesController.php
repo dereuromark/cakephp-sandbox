@@ -25,7 +25,7 @@ class SearchExamplesController extends SandboxAppController {
 			'actions' => ['table'],
 		]);
 
-		$this->viewBuilder()->setHelpers(['Data.Data']);
+		$this->viewBuilder()->addHelpers(['Data.Data']);
 	}
 
 	/**
