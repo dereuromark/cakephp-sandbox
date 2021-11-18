@@ -14,8 +14,6 @@ use Tools\Controller\Controller;
  */
 class AppController extends Controller {
 
-	use ViewVarsTrait;
-
 	/**
 	 * @return void
 	 */

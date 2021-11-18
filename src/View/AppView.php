@@ -86,7 +86,7 @@ class AppView extends View {
 	 * @param array<string, mixed> $config
 	 * @return void
 	 */
-	protected function addHelper(string $helper, array $config = []) {
+	protected function addHelper(string $helper, array $config = []): void {
 		[$plugin, $name] = pluginSplit($helper);
 		if ($plugin) {
 			$config['class'] = $helper;

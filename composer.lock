@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c428d2c5a0045825267b89f270f80aa3",
+    "content-hash": "97ffc4dcd2f08525b51a9d54f40bd2d4",
     "packages": [
         {
             "name": "brick/math",
@@ -2268,16 +2268,16 @@
         },
         {
             "name": "dereuromark/cakephp-shim",
-            "version": "dev-4.x-view-vars-helpers",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "b08cfd934cf3ecdf253d1c3ec1944fc037885b15"
+                "reference": "ed364cd2ff768f1027f92cbd33487a06e4f5e72e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/b08cfd934cf3ecdf253d1c3ec1944fc037885b15",
-                "reference": "b08cfd934cf3ecdf253d1c3ec1944fc037885b15",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/ed364cd2ff768f1027f92cbd33487a06e4f5e72e",
+                "reference": "ed364cd2ff768f1027f92cbd33487a06e4f5e72e",
                 "shasum": ""
             },
             "require": {
@@ -2289,6 +2289,7 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "phpunit/phpunit": "^9.5"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2319,7 +2320,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2021-11-18T02:39:08+00:00"
+            "time": "2021-11-09T01:14:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -10447,7 +10448,7 @@
         },
         {
             "package": "dereuromark/cakephp-shim",
-            "version": "dev-4.x-view-vars-helpers",
+            "version": "9999999-dev",
             "alias": "2.0.0",
             "alias_normalized": "2.0.0.0"
         },
