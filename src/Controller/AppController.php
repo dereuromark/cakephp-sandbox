@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
-use Shim\View\ViewVarsTrait;
 use Tools\Controller\Controller;
 
 /**
