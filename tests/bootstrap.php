@@ -1,5 +1,6 @@
 <?php
 
+use Cake\Core\Configure;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
@@ -52,4 +53,9 @@ Cake\Datasource\ConnectionManager::setConfig('test', [
 	'timezone' => 'UTC',
 	'quoteIdentifiers' => true,
 	'cacheMetadata' => true,
+]);
+
+Configure::write('Error.ignoredDeprecationPaths', [
+	'src/TestSuite/Fixture/FixtureInjector.php',
+	'vendor/*',
 ]);

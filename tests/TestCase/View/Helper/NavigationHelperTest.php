@@ -26,7 +26,7 @@ class NavigationHelperTest extends TestCase {
 		$view = new View();
 		$this->NavigationHelper = new NavigationHelper($view);
 
-		Router::scope('/', function (RouteBuilder $routes) {
+		Router::createRouteBuilder('/')->scope('/', function (RouteBuilder $routes) {
 			$routes->fallbacks(DashedRoute::class);
 		});
 	}

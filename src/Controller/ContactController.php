@@ -18,7 +18,7 @@ class ContactController extends AppController {
 		parent::initialize();
 
 		$this->loadComponent('Captcha.Captcha');
-		$this->viewBuilder()->setHelpers(['Tools.Obfuscate', 'Captcha.Captcha']);
+		$this->viewBuilder()->addHelpers(['Tools.Obfuscate', 'Captcha.Captcha']);
 
 		if (Configure::read('debug')) {
 			return;

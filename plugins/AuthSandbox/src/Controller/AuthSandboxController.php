@@ -32,7 +32,7 @@ class AuthSandboxController extends AppController {
 		$this->loadComponent('Security');
 
 		$helpers = ['TinyAuth.AuthUser'];
-		$this->viewBuilder()->setHelpers($helpers);
+		$this->viewBuilder()->addHelpers($helpers);
 	}
 
 	/**

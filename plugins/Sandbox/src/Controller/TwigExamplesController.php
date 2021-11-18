@@ -17,7 +17,7 @@ class TwigExamplesController extends SandboxAppController {
 			$this->viewBuilder()->setLayout('Sandbox.default');
 
 			// Still needed for now?
-			$this->viewBuilder()->setHelpers(['Flash', 'Text', 'Html', 'Url']);
+			$this->viewBuilder()->addHelpers(['Flash', 'Text', 'Html', 'Url']);
 		}
 	}
 

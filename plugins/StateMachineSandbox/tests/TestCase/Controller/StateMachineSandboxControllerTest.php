@@ -9,6 +9,7 @@ use Shim\TestSuite\IntegrationTestCase;
  * App\Controller\AjaxExamplesController Test Case
  *
  * @uses \Sandbox\Controller\AjaxExamplesController
+ * @uses \StateMachineSandbox\Controller\StateMachineSandboxController
  */
 class StateMachineSandboxControllerTest extends IntegrationTestCase {
 

@@ -21,7 +21,7 @@ class ExposeExamplesController extends SandboxAppController {
 		'order' => [
 			'name' => 'ASC',
 		],
-		'sortWhitelist' => [
+		'sortableFields' => [
 			'name',
 		],
 	];

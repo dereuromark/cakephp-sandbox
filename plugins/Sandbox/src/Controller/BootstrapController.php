@@ -28,7 +28,7 @@ class BootstrapController extends SandboxAppController {
 			//'Html' => ['className' => 'BootstrapUI.Html'],
 			//'Paginator' => ['className' => 'BootstrapUI.Paginator'],
 		];
-		$this->viewBuilder()->setHelpers($helpers);
+		$this->viewBuilder()->addHelpers($helpers);
 	}
 
 	/**

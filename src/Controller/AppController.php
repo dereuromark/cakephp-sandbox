@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use Cake\Core\Configure;
 use Cake\Event\EventInterface;
+use Shim\View\ViewVarsTrait;
 use Tools\Controller\Controller;
 
 /**
@@ -13,6 +13,8 @@ use Tools\Controller\Controller;
  * @property \TinyAuth\Controller\Component\AuthComponent $Auth
  */
 class AppController extends Controller {
+
+	use ViewVarsTrait;
 
 	/**
 	 * @return void
@@ -25,23 +27,6 @@ class AppController extends Controller {
 		$this->loadComponent('Flash.Flash');
 		$this->loadComponent('TinyAuth.Auth');
 		$this->loadComponent('TinyAuth.AuthUser');
-
-		$helpers = [
-			'Tools.Html',
-			'Tools.Url',
-			'Form' => (array)Configure::read('FormConfig'), // => ['className' => 'BootstrapUI.Form']
-			'Tools.Common',
-			'Flash.Flash',
-			'Tools.Format',
-			'Tools.Time',
-			'Tools.Number',
-			'TinyAuth.AuthUser',
-			'AssetCompress.AssetCompress',
-			'Shim.Configure',
-			'Tools.Progress',
-			'Tools.Meter',
-		];
-		$this->viewBuilder()->setHelpers($helpers);
 	}
 
 	/**

@@ -18,7 +18,7 @@ class MenuController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->setHelpers(['Icings/Menu.Menu']);
+		$this->viewBuilder()->addHelpers(['Icings/Menu.Menu']);
 	}
 
 	/**

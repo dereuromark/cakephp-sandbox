@@ -2,6 +2,7 @@
 
 namespace App\View;
 
+use Cake\Core\Configure;
 use Cake\View\View;
 
 /**
@@ -40,6 +41,7 @@ use Cake\View\View;
  * @property \BootstrapUI\View\Helper\PaginatorHelper $Paginator
  * @property \Markup\View\Helper\BbcodeHelper $Bbcode
  * @property \Markup\View\Helper\MarkdownHelper $Markdown
+ * @property \Tools\View\Helper\TextHelper $Text
  */
 class AppView extends View {
 
@@ -52,8 +54,46 @@ class AppView extends View {
 	 * @return void
 	 */
 	public function initialize(): void {
-		$this->loadHelper('Markup.Highlighter', ['prefix' => '']);
-		$this->loadHelper('BootstrapUI.Paginator');
+		$this->addHelper('Tools.Time', ['engine' => 'Tools\Utility\FrozenTime', 'outputTimezone' => 'Europe/Berlin']);
+		$this->addHelper('Tools.Number');
+		$this->addHelper('Tools.Text');
+
+		$this->addHelper('Form', (array)Configure::read('FormConfig')); // => ['className' => 'BootstrapUI.Form'])
+
+		$this->addHelper('Tools.Html');
+		$this->addHelper('Tools.Url');
+
+		$this->addHelper('Markup.Highlighter', ['prefix' => '']);
+		$this->addHelper('BootstrapUI.Paginator');
+
+		$helpers = [
+			'Tools.Common',
+			'Flash.Flash',
+			'Tools.Format',
+			'Tools.Progress',
+			'Tools.Meter',
+			'TinyAuth.AuthUser',
+			'AssetCompress.AssetCompress',
+			'Shim.Configure',
+		];
+		foreach ($helpers as $helper) {
+			$this->addHelper($helper);
+		}
+	}
+
+	/**
+	 * @param string $helper
+	 * @param array<string, mixed> $config
+	 * @return void
+	 */
+	protected function addHelper(string $helper, array $config = []) {
+		[$plugin, $name] = pluginSplit($helper);
+		if ($plugin) {
+			$config['class'] = $helper;
+			$config['config'] = $config;
+		}
+
+		$this->helpers[$name] = $config;
 	}
 
 }

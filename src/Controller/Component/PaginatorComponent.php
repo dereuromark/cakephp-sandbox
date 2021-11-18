@@ -9,6 +9,9 @@ use Cake\Http\Exception\NotFoundException;
 use Cake\Routing\Exception\RedirectException;
 use Cake\Routing\Router;
 
+/**
+ * @method \App\Controller\AppController getController()
+ */
 class PaginatorComponent extends CorePaginatorComponent {
 
 	/**

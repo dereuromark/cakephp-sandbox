@@ -10,7 +10,7 @@ class SocialShareController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->setHelpers(['SocialShare.SocialShare']);
+		$this->viewBuilder()->addHelpers(['SocialShare.SocialShare']);
 	}
 
 	/**
