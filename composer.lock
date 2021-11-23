@@ -2461,12 +2461,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "ad3ef6fdf7f5981e526c4f7133801c5f6fb3a28e"
+                "reference": "1bd5dc9de676b6784f8ed8321dc8ad024e6db0a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/ad3ef6fdf7f5981e526c4f7133801c5f6fb3a28e",
-                "reference": "ad3ef6fdf7f5981e526c4f7133801c5f6fb3a28e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/1bd5dc9de676b6784f8ed8321dc8ad024e6db0a1",
+                "reference": "1bd5dc9de676b6784f8ed8321dc8ad024e6db0a1",
                 "shasum": ""
             },
             "require": {
@@ -2519,7 +2519,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2021-11-17T23:07:44+00:00"
+            "time": "2021-11-23T23:55:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",

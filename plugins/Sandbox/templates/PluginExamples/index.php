@@ -75,12 +75,12 @@
 			<li><?php echo $this->Html->link('Markup, e.g. syntax highlighting', ['controller' => 'MarkupExamples', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>CakeDto Plugin (NEW)</h4>
+		<h4>CakeDto Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>Expose Plugin (NEW)</h4>
+		<h4>Expose Plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Expose entities through UUIDs to obfuscate primary key info', ['controller' => 'ExposeExamples', 'action' => 'index']); ?></li>
 		</ul>
@@ -88,6 +88,11 @@
 	</div>
 	<div class="col-6">
 		<h3>Other plugins</h3>
+
+		<h4>StateMachine plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('StateMachine Examples', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
+		</ul>
 
 		<h4>TwigView plugin</h4>
 		<ul>
