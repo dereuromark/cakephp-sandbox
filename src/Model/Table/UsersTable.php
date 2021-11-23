@@ -26,11 +26,6 @@ use Tools\Model\Table\Table;
 class UsersTable extends Table {
 
 	/**
-	 * @var string
-	 */
-	public $displayField = 'username';
-
-	/**
 	 * @var array
 	 */
 	public $validate = [

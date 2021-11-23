@@ -59,7 +59,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 		$queuedJobs = TableRegistry::getTableLocator()->get('Queue.QueuedJobs');
 		$queuedJob = $queuedJobs->newEntity([
 			'job_task' => 'Queue.ProgressExample',
-			'reference' => 'demo-',
+			'reference' => 'demo-cli',
 		]);
 		$queuedJobs->saveOrFail($queuedJob);
 

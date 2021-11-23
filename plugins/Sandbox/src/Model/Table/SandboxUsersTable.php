@@ -7,11 +7,6 @@ use Tools\Model\Table\Table;
 class SandboxUsersTable extends Table {
 
 	/**
-	 * @var string
-	 */
-	public $displayField = 'username';
-
-	/**
 	 * @var array
 	 */
 	public $validate = [
@@ -30,5 +25,14 @@ class SandboxUsersTable extends Table {
 			],
 		],
 	];
+
+	/**
+	 * @param array $config
+	 *
+	 * @return void
+	 */
+	public function initialize(array $config): void {
+		$this->setDisplayField('username');
+	}
 
 }

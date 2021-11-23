@@ -13,6 +13,7 @@
 		<p>A classical example is a workflow:</p>
 		<ul>
 			<li>Order Management (Checkout, Payment, Delivery, Refund)</li>
+			<li>Multi-step registration processes</li>
 			<li>Complex processes for clear human interaction</li>
 		</ul>
 
@@ -25,6 +26,8 @@
 			<li>Repeating chain of tasks</li>
 		</ul>
 
+		<h2>Demo</h2>
+		<?php echo $this->Html->linkFromPath('Event-Registration', 'StateMachineSandbox.RegistrationDemo::index'); ?>
 
 	</div>
 

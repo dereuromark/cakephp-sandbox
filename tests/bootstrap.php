@@ -59,3 +59,8 @@ Configure::write('Error.ignoredDeprecationPaths', [
 	'src/TestSuite/Fixture/FixtureInjector.php',
 	'vendor/*',
 ]);
+
+// Fixate sessionid early on, as php7.2+
+// does not allow the sessionid to be set after stdout
+// has been written to.
+session_id('cli');

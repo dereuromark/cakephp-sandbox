@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<statemachine xmlns="app:registration-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="app:registration-01 ../../../../../vendor/spryker/cakephp-statemachine/config/state-machine-01.xsd">
+
+    <process name="Registration01" main="true">
+        <states>
+            <state name="init" display="registration started"/>
+
+			<state name="waiting for approval"/>
+			<state name="approved"/>
+
+			<state name="waiting for payment"/>
+			<state name="payment received"/>
+
+			<state name="confirmation sent"/>
+			<state name="done"/>
+        </states>
+
+        <transitions>
+			<transition happy="true" condition="Registration/CheckApproval">
+				<source>init</source>
+				<target>approved</target>
+				<event>check approval</event>
+			</transition>
+			<transition>
+				<source>init</source>
+				<target>waiting for approval</target>
+				<event>check approval</event>
+			</transition>
+
+			<transition>
+				<source>waiting for approval</source>
+				<target>approved</target>
+				<event>approve</event>
+			</transition>
+
+			<transition happy="true">
+				<source>approved</source>
+				<target>waiting for payment</target>
+				<event>initialize payment</event>
+			</transition>
+
+			<transition happy="true">
+				<source>waiting for payment</source>
+				<target>payment received</target>
+				<event>confirm payment</event>
+			</transition>
+
+			<transition happy="true">
+				<source>payment received</source>
+				<target>confirmation sent</target>
+				<event>send confirmation</event>
+			</transition>
+
+			<transition happy="true">
+				<source>confirmation sent</source>
+				<target>done</target>
+				<event>complete registration</event>
+			</transition>
+
+        </transitions>
+
+        <events>
+			<event name="check approval" manual="true" onEnter="true"/>
+			<event name="approve" manual="true"/>
+
+			<event name="confirm payment" manual="true"/>
+			<event name="initialize payment" manual="true" onEnter="true" command="Registration/InitializePayment"/>
+
+			<event name="send confirmation" manual="true" onEnter="true" command="Registration/SendConfirmation"/>
+			<event name="complete registration" manual="true" onEnter="true" command="Registration/Complete"/>
+        </events>
+
+    </process>
+
+</statemachine>
