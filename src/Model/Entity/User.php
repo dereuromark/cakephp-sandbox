@@ -15,7 +15,7 @@ namespace App\Model\Entity;
  * @property \Cake\I18n\FrozenTime $created
  * @property \Cake\I18n\FrozenTime $modified
  * @property \Cake\I18n\FrozenTime|null $last_login
- * @property \Cake\ORM\Entity $role
+ * @property \App\Model\Entity\Role $role
  * @method int getIdOrFail()
  * @method bool getActiveOrFail()
  * @method \Cake\I18n\FrozenTime getLastLoginOrFail()
@@ -26,7 +26,7 @@ namespace App\Model\Entity;
  * @method string getPasswordOrFail()
  * @method string getEmailOrFail()
  * @method int getRoleIdOrFail()
- * @method \Cake\ORM\Entity getRoleOrFail()
+ * @method \App\Model\Entity\Role getRoleOrFail()
  */
 class User extends Entity {
 

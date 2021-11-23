@@ -399,6 +399,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \StateMachine\Model\Table\StateMachineProcessesTable::class,
 			'StateMachine.StateMachineTimeouts' => \StateMachine\Model\Table\StateMachineTimeoutsTable::class,
 			'StateMachine.StateMachineTransitionLogs' => \StateMachine\Model\Table\StateMachineTransitionLogsTable::class,
+			'StateMachineSandbox.Registrations' => \StateMachineSandbox\Model\Table\RegistrationsTable::class,
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
@@ -569,6 +570,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \StateMachine\Model\Table\StateMachineProcessesTable::class,
 			'StateMachine.StateMachineTimeouts' => \StateMachine\Model\Table\StateMachineTimeoutsTable::class,
 			'StateMachine.StateMachineTransitionLogs' => \StateMachine\Model\Table\StateMachineTransitionLogsTable::class,
+			'StateMachineSandbox.Registrations' => \StateMachineSandbox\Model\Table\RegistrationsTable::class,
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
@@ -621,6 +623,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \StateMachine\Model\Table\StateMachineProcessesTable::class,
 			'StateMachine.StateMachineTimeouts' => \StateMachine\Model\Table\StateMachineTimeoutsTable::class,
 			'StateMachine.StateMachineTransitionLogs' => \StateMachine\Model\Table\StateMachineTransitionLogsTable::class,
+			'StateMachineSandbox.Registrations' => \StateMachineSandbox\Model\Table\RegistrationsTable::class,
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
@@ -704,6 +707,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \Cake\ORM\Association\BelongsToMany::class,
 			'StateMachine.StateMachineTimeouts' => \Cake\ORM\Association\BelongsToMany::class,
 			'StateMachine.StateMachineTransitionLogs' => \Cake\ORM\Association\BelongsToMany::class,
+			'StateMachineSandbox.Registrations' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsToMany::class,
@@ -756,6 +760,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \Cake\ORM\Association\BelongsTo::class,
 			'StateMachine.StateMachineTimeouts' => \Cake\ORM\Association\BelongsTo::class,
 			'StateMachine.StateMachineTransitionLogs' => \Cake\ORM\Association\BelongsTo::class,
+			'StateMachineSandbox.Registrations' => \Cake\ORM\Association\BelongsTo::class,
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsTo::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsTo::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsTo::class,
@@ -831,6 +836,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \Cake\ORM\Association\HasMany::class,
 			'StateMachine.StateMachineTimeouts' => \Cake\ORM\Association\HasMany::class,
 			'StateMachine.StateMachineTransitionLogs' => \Cake\ORM\Association\HasMany::class,
+			'StateMachineSandbox.Registrations' => \Cake\ORM\Association\HasMany::class,
 			'Tags.Tagged' => \Cake\ORM\Association\HasMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasMany::class,
@@ -883,6 +889,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \Cake\ORM\Association\HasOne::class,
 			'StateMachine.StateMachineTimeouts' => \Cake\ORM\Association\HasOne::class,
 			'StateMachine.StateMachineTransitionLogs' => \Cake\ORM\Association\HasOne::class,
+			'StateMachineSandbox.Registrations' => \Cake\ORM\Association\HasOne::class,
 			'Tags.Tagged' => \Cake\ORM\Association\HasOne::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasOne::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasOne::class,
@@ -966,6 +973,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachineProcesses' => \StateMachine\Model\Table\StateMachineProcessesTable::class,
 			'StateMachine.StateMachineTimeouts' => \StateMachine\Model\Table\StateMachineTimeoutsTable::class,
 			'StateMachine.StateMachineTransitionLogs' => \StateMachine\Model\Table\StateMachineTransitionLogsTable::class,
+			'StateMachineSandbox.Registrations' => \StateMachineSandbox\Model\Table\RegistrationsTable::class,
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
@@ -1143,6 +1151,7 @@ namespace PHPSTORM_META {
 		'plugin.StateMachine.StateMachineProcesses',
 		'plugin.StateMachine.StateMachineTimeouts',
 		'plugin.StateMachine.StateMachineTransitionLogs',
+		'plugin.StateMachineSandbox.Registrations',
 		'plugin.Tags.Buns',
 		'plugin.Tags.CounterlessMuffins',
 		'plugin.Tags.Muffins',
@@ -1409,6 +1418,7 @@ namespace PHPSTORM_META {
 		'Sandbox.navigation/service',
 		'Sandbox.navigation/tags',
 		'Sandbox.navigation/tools',
+		'StateMachineSandbox.navigation/registration',
 		'TestHelper.test_cases',
 		'TestHelper.url',
 		'TinyAuth.auth_panel',
@@ -2578,6 +2588,66 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::get(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::getError(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::has(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachineSandbox\Model\Entity\Registration::setError(),
+		0,
+		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
 		\Tags\Model\Entity\Tag::get(),
 		0,
 		argumentsSet('entityFields:Tags\Model\Entity\Tag')
@@ -3698,8 +3768,10 @@ namespace PHPSTORM_META {
 		'IdeHelper',
 		'IdeHelper.annotators',
 		'IdeHelper.annotators.IdeHelper\Annotator\EntityAnnotator',
+		'IdeHelper.arrayAsGenerics',
 		'IdeHelper.classAnnotatorTasks',
 		'IdeHelper.generatorTasks',
+		'IdeHelper.illuminatorTasks',
 		'IdeHelper.includedPlugins',
 		'IdeHelper.plugins',
 		'IdeHelper.typeMap',
@@ -3721,6 +3793,11 @@ namespace PHPSTORM_META {
 		'Shim',
 		'Shim.deprecationType',
 		'Shim.deprecations',
+		'StateMachine',
+		'StateMachine.graphAdapter',
+		'StateMachine.handlers',
+		'StateMachine.map',
+		'StateMachine.pathToXml',
 		'Whoops',
 		'Whoops.editor',
 		'Whoops.serverBasePath',
@@ -3844,6 +3921,7 @@ namespace PHPSTORM_META {
 		'states',
 		'status',
 		'timezone',
+		'timezone_offset_string',
 		'timezones',
 		'zip_length',
 		'zip_regexp'
@@ -3908,6 +3986,8 @@ namespace PHPSTORM_META {
 		'notes',
 		'offset',
 		'offset_dst',
+		'offset_dst_string',
+		'offset_string',
 		'type'
 	);
 
@@ -3972,6 +4052,7 @@ namespace PHPSTORM_META {
 	registerArgumentsSet(
 		'entityFields:Sandbox\Model\Entity\Event',
 		'beginning',
+		'coordinates',
 		'description',
 		'end',
 		'id',
@@ -4014,6 +4095,17 @@ namespace PHPSTORM_META {
 		'tagged',
 		'tags',
 		'title'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachineSandbox\Model\Entity\Registration',
+		'created',
+		'id',
+		'modified',
+		'session_id',
+		'status',
+		'user',
+		'user_id'
 	);
 
 	registerArgumentsSet(
@@ -5198,6 +5290,16 @@ namespace PHPSTORM_META {
 		'StateMachine.Admin/StateMachineTransitionLogs::view',
 		'StateMachine.Admin/Trigger::event',
 		'StateMachine.Admin/Trigger::eventForNewItem',
+		'StateMachineSandbox.RegistrationDemo::adminPanel',
+		'StateMachineSandbox.RegistrationDemo::index',
+		'StateMachineSandbox.RegistrationDemo::moderatorPanel',
+		'StateMachineSandbox.RegistrationDemo::process',
+		'StateMachineSandbox.RegistrationDemo::register',
+		'StateMachineSandbox.Registrations::add',
+		'StateMachineSandbox.Registrations::delete',
+		'StateMachineSandbox.Registrations::edit',
+		'StateMachineSandbox.Registrations::index',
+		'StateMachineSandbox.Registrations::view',
 		'StateMachineSandbox.StateMachineSandbox::index',
 		'TestHelper.Plugins::index',
 		'TestHelper.Plugins::recommended',
@@ -5233,6 +5335,7 @@ namespace PHPSTORM_META {
 		'languages',
 		'queue_processes',
 		'queued_jobs',
+		'registrations',
 		'roles',
 		'sandbox_animals',
 		'sandbox_categories',

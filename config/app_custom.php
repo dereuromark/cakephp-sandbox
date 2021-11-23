@@ -1,4 +1,8 @@
 <?php
+
+use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
+use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
+
 $debug = false;
 if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
 	$debug = true;
@@ -124,6 +128,16 @@ return [
 		],
 	],
 
+	'StateMachine' => [
+		'graphAdapter' => PhpDocumentorGraphAdapter::class,
+		'handlers' => [
+			RegistrationStateMachineHandler::class,
+		],
+		'map' => [
+		],
+		'pathToXml' => ROOT . DS . 'plugins' . DS . 'StateMachineSandbox' . DS . 'config' . DS . 'StateMachines' . DS,
+	],
+
 	'FormConfig' => [
 		'novalidate' => true,
 		'templates' => [
@@ -185,6 +199,9 @@ return [
 		],
 		'classAnnotatorTasks' => [
 			\Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask::class,
+		],
+		'illuminatorTasks' => [
+			\StateMachine\Illuminator\Task\StateTask::class,
 		],
 		'includedPlugins' => [
 			'Sandbox',

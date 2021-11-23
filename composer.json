@@ -105,6 +105,7 @@
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"migrate": [
+			"bin/cake migrations migrate -p StateMachine",
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate -p Queue",
