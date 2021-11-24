@@ -6049,12 +6049,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/cakephp-statemachine.git",
-                "reference": "261ce0f93c554855064d5ac73fb1c3b719d7f09a"
+                "reference": "3bfa2f73c9382fc4616bc8ab3b3a13a2c2cf973f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/261ce0f93c554855064d5ac73fb1c3b719d7f09a",
-                "reference": "261ce0f93c554855064d5ac73fb1c3b719d7f09a",
+                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/3bfa2f73c9382fc4616bc8ab3b3a13a2c2cf973f",
+                "reference": "3bfa2f73c9382fc4616bc8ab3b3a13a2c2cf973f",
                 "shasum": ""
             },
             "require": {
@@ -6094,7 +6094,7 @@
                 "issues": "https://github.com/spryker/cakephp-statemachine/issues",
                 "source": "https://github.com/spryker/cakephp-statemachine/tree/master"
             },
-            "time": "2021-11-23T19:28:53+00:00"
+            "time": "2021-11-24T11:14:45+00:00"
         },
         {
             "name": "symfony/config",
@@ -7032,16 +7032,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v5.3.11",
+            "version": "v5.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "6c99204de85d04ca17f16c466fc61896960b0636"
+                "reference": "e498803a6e95ede78e9d5646ad32a2255c033a6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/6c99204de85d04ca17f16c466fc61896960b0636",
-                "reference": "6c99204de85d04ca17f16c466fc61896960b0636",
+                "url": "https://api.github.com/repos/symfony/process/zipball/e498803a6e95ede78e9d5646ad32a2255c033a6a",
+                "reference": "e498803a6e95ede78e9d5646ad32a2255c033a6a",
                 "shasum": ""
             },
             "require": {
@@ -7074,7 +7074,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v5.3.11"
+                "source": "https://github.com/symfony/process/tree/v5.3.12"
             },
             "funding": [
                 {
@@ -7090,7 +7090,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-17T12:16:12+00:00"
+            "time": "2021-11-22T22:39:13+00:00"
         },
         {
             "name": "symfony/service-contracts",

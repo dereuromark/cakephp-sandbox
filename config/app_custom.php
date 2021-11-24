@@ -202,6 +202,7 @@ return [
 		],
 		'illuminatorTasks' => [
 			\StateMachine\Illuminator\Task\StateTask::class,
+			\StateMachine\Illuminator\Task\EventTask::class,
 		],
 		'includedPlugins' => [
 			'Sandbox',

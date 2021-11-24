@@ -7,6 +7,10 @@
 
 <h1>State Machines in (Cake)PHP</h1>
 
+<p>
+	Using the Spryker <a href="https://github.com/spryker/cakephp-statemachine" target="_blank">StateMachine plugin</a>.
+</p>
+
 <div class="row">
 	<div class="col-12">
 		<h2>Workflow</h2>
