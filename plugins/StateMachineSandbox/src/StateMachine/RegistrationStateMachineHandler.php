@@ -62,6 +62,26 @@ class RegistrationStateMachineHandler implements StateMachineHandlerInterface {
 	public const EVENT_CONFIRM_PAYMENT = 'confirm payment';
 
 	/**
+	 * @var string
+	 */
+	public const EVENT_CHECK_APPROVAL = 'check approval';
+
+	/**
+	 * @var string
+	 */
+	public const EVENT_INITIALIZE_PAYMENT = 'initialize payment';
+
+	/**
+	 * @var string
+	 */
+	public const EVENT_SEND_CONFIRMATION = 'send confirmation';
+
+	/**
+	 * @var string
+	 */
+	public const EVENT_COMPLETE_REGISTRATION = 'complete registration';
+
+	/**
 	 * {@inheritDoc]
 	 *
 	 * @return array<string>

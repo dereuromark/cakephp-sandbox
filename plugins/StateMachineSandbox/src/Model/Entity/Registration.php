@@ -69,4 +69,9 @@ class Registration extends Entity {
 	 */
 	public const FIELD_USER = 'user';
 
+	/**
+	 * @var string
+	 */
+	public const FIELD_REGISTRATION_STATE = 'registration_state';
+
 }
