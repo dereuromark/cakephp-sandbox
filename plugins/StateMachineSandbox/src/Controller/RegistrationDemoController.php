@@ -32,8 +32,7 @@ class RegistrationDemoController extends AppController {
 		$this->loadModel('Users');
 		$users = $this->Users->find()
 			->select(['Users.id', 'Users.username'])
-			->contain(['Roles'])
-			->where(['Roles.alias IN' => ['user', 'mod']])
+			->where(['Users.username IN' => ['user', 'mod']])
 			->find('list')
 			->toArray();
 
