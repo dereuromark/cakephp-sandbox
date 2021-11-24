@@ -10,11 +10,11 @@
 	<?php echo $this->element('navigation/registration'); ?>
 </nav>
 <div class="col-12 col-sm-8">
-	<h2>Process</h2>
+	<h1>Process</h1>
 
 	<?php foreach ($registrations as $registration) { ?>
 
-	<h3>Registration for `<?php echo h($registration->user->username); ?>`</h3>
+	<h2>Registration for `<?php echo h($registration->user->username); ?>`</h2>
 	<ul>
 		<li>Registration status: <b><?php echo h($registration->status); ?></b></li>
 		<li>Detailed state (internal): `<?php echo h($registration->registration_state->state) ;?>`</li>

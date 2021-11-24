@@ -146,7 +146,38 @@ class RegistrationDemoController extends AppController {
 			return $this->redirect(['action' => 'adminPanel']);
 		}
 
+		$this->provideAutoReleaseInfos($registrations);
+		$this->provideQueuedJobs($registrations);
+
 		$this->set(compact('registrations'));
+	}
+
+	/**
+	 * @param array<\StateMachineSandbox\Model\Entity\Registration> $registrations
+	 * @return void
+	 */
+	protected function provideAutoReleaseInfos(array $registrations): void {
+		$timeoutsTable = $this->getTableLocator()->get('StateMachine.StateMachineTimeouts');
+		$timeouts = $timeoutsTable->find()
+			->all()->toArray();
+
+		$this->set(compact('timeouts'));
+	}
+
+	/**
+	 * @param array<\StateMachineSandbox\Model\Entity\Registration> $registrations
+	 * @return void
+	 */
+	protected function provideQueuedJobs(array $registrations): void {
+		$jobTypes = [
+			'StateMachineSandbox.SimulatePaymentResult',
+		];
+		$queuedJobsTable = $this->getTableLocator()->get('Queue.QueuedJobs');
+		$queuedJobs = $queuedJobsTable->find()
+			->where(['job_task IN' => $jobTypes, 'completed IS' => null])
+			->all()->toArray();
+
+		$this->set(compact('queuedJobs'));
 	}
 
 }

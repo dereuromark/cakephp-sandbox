@@ -9,7 +9,7 @@
 	<?php echo $this->element('navigation/registration'); ?>
 </nav>
 <div class="col-12 col-sm-8">
-	<h2>Workflow</h2>
+	<h1>Workflow</h1>
 	<ul>
 		<li>A user wants to sign up for a workshop/event</li>
 		<li>Once registered, he needs to pay his ticket and is then approved for the workshop</li>

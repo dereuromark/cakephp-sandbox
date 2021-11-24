@@ -10,10 +10,66 @@
 	<?php echo $this->element('navigation/registration'); ?>
 </nav>
 <div class="col-12 col-sm-8">
-	<h2>Admin Panel</h2>
+	<h1>Admin Panel</h1>
 	<p>Here you can manually invoke certain events where needed or remove registrations.</p>
 	<p>Note: The payment confirmation gets triggered via background job 1 min after the request. If you don't want to wait that long, you can press the blue button beforehand to manually invoke this event.</p>
 
+	<?php if (!empty($timeouts)) { ?>
+		<h2><?php echo count($timeouts) ?> timeout(s) running</h2>
+		<ul>
+			<?php foreach ($timeouts as $timeout) { ?>
+				<li>
+					RG <?php echo h($timeout->identifier); ?>: <?php echo h($timeout->event); ?> (<?php echo $this->Time ->nice($timeout->timeout); ?>)
+					<div>
+						<small>
+							Supposed to execute: <?php echo $this->Time->relLengthOfTime($timeout->timeout); ?>
+						</small>
+					</div>
+				</li>
+			<?php } ?>
+		</ul>
+
+	<?php } ?>
+
+	<?php if (!empty($queuedJobs)) { ?>
+		<h2><?php echo count($queuedJobs) ?> job(s) running</h2>
+		<ul>
+			<?php foreach ($queuedJobs as $queuedJob) { ?>
+				<li>
+					<?php echo h($queuedJob->job_task); ?>
+					:
+					<?php
+					$status = $queuedJob->fetched ? 'running' : 'queued';
+					if ($queuedJob->failure_message) {
+						$status = '<span style="color: red">errored</span>';
+					}
+					echo $status;
+					?>
+					(<?php echo $queuedJob->fetched ? 'started ' . $this->Time->nice($queuedJob->fetched) : 'not started'; ?>)
+
+					<?php if (!$queuedJob->fetched && $queuedJob->notbefore) {
+						echo '<br>Delay: ' . $this->QueueProgress->timeoutProgressBar($queuedJob, 8);
+					} ?>
+
+					<?php if ($queuedJob->notbefore && $queuedJob->notbefore->isFuture()) {
+						echo '<div><small>';
+						echo $this->Time->relLengthOfTime($queuedJob->notbefore);
+						echo '</small></div>';
+					} ?>
+
+					<?php if ($queuedJob->fetched && !$queuedJob->failed && !$queuedJob->failure_message) {
+						echo '<br>' . $this->QueueProgress->progressBar($queuedJob, 18);
+					} ?>
+
+					<?php if ($queuedJob->failed) {
+						echo '<div class="error inline-message">Failed! ' . $this->Queue->failureStatus($queuedJob) . '.<br>' . h($this->Text->truncate($queuedJob->failure_message, 200)) . '';
+					} ?>
+				</li>
+			<?php } ?>
+		</ul>
+	<?php } ?>
+
+	<h2>Registrations</h2>
 	<?php foreach ($registrations as $registration) { ?>
 
 		<h3>Registration for `<?php echo h($registration->user->username); ?>`</h3>

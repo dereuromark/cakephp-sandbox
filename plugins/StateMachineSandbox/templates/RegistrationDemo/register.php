@@ -11,7 +11,7 @@
 	<?php echo $this->element('navigation/registration'); ?>
 </nav>
 <div class="col-12 col-sm-8">
-	<h2>Register</h2>
+	<h1>Register</h1>
 	<p>Explanation: A user needs approval in our demo, a mod registration directly continues.</p>
 
 	<?php echo $this->Form->create($registration);?>

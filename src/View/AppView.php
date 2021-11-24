@@ -63,6 +63,8 @@ class AppView extends View {
 		$this->addHelper('Tools.Html');
 		$this->addHelper('Tools.Url');
 
+		$this->addHelper('Queue.QueueProgress');
+
 		$this->addHelper('Markup.Highlighter', ['prefix' => '']);
 		$this->addHelper('BootstrapUI.Paginator');
 

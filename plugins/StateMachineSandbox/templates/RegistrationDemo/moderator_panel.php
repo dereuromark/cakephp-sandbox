@@ -10,9 +10,10 @@
 	<?php echo $this->element('navigation/registration'); ?>
 </nav>
 <div class="col-12 col-sm-8">
-	<h2>Approve guest registrations</h2>
+	<h1>Approve guest registrations</h1>
 	<p>All non-moderator registrations require approval by a moderator in our demo.</p>
 
+	<h2>Registrations</h2>
 	<?php foreach ($registrations as $registration) { ?>
 
 		<h3>Registration for `<?php echo h($registration->user->username); ?>`</h3>
