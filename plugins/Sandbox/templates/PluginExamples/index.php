@@ -91,7 +91,7 @@
 
 		<h4>StateMachine plugin <i>(NEW)</i></h4>
 		<ul>
-			<li><?php echo $this->Html->link('StateMachine Examples', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
+			<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
 		</ul>
 
 		<h4>TwigView plugin</h4>
