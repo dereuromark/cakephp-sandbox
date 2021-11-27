@@ -86,6 +86,20 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
+	 * @param string $name
+	 *
+	 * @throws \RuntimeException If value is not present.
+	 *
+	 * @return $this
+	 */
+	public function setNameOrFail(string $name) {
+		$this->name = $name;
+		$this->_touchedFields[self::FIELD_NAME] = true;
+
+		return $this;
+	}
+
+	/**
 	 * @return string|null
 	 */
 	public function getName(): ?string {
@@ -118,6 +132,20 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 * @return $this
 	 */
 	public function setColor(?string $color) {
+		$this->color = $color;
+		$this->_touchedFields[self::FIELD_COLOR] = true;
+
+		return $this;
+	}
+
+	/**
+	 * @param string $color
+	 *
+	 * @throws \RuntimeException If value is not present.
+	 *
+	 * @return $this
+	 */
+	public function setColorOrFail(string $color) {
 		$this->color = $color;
 		$this->_touchedFields[self::FIELD_COLOR] = true;
 

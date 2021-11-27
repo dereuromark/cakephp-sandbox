@@ -513,6 +513,20 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
+	 * @param \Sandbox\Dto\Github\HeadDto $head
+	 *
+	 * @throws \RuntimeException If value is not present.
+	 *
+	 * @return $this
+	 */
+	public function setHeadOrFail(\Sandbox\Dto\Github\HeadDto $head) {
+		$this->head = $head;
+		$this->_touchedFields[self::FIELD_HEAD] = true;
+
+		return $this;
+	}
+
+	/**
 	 * @return \Sandbox\Dto\Github\HeadDto|null
 	 */
 	public function getHead(): ?\Sandbox\Dto\Github\HeadDto {
@@ -545,6 +559,20 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 * @return $this
 	 */
 	public function setBase(?\Sandbox\Dto\Github\BaseDto $base) {
+		$this->base = $base;
+		$this->_touchedFields[self::FIELD_BASE] = true;
+
+		return $this;
+	}
+
+	/**
+	 * @param \Sandbox\Dto\Github\BaseDto $base
+	 *
+	 * @throws \RuntimeException If value is not present.
+	 *
+	 * @return $this
+	 */
+	public function setBaseOrFail(\Sandbox\Dto\Github\BaseDto $base) {
 		$this->base = $base;
 		$this->_touchedFields[self::FIELD_BASE] = true;
 
