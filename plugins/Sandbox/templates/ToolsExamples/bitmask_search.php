@@ -66,7 +66,7 @@
 </table>
 
 <h3>SQL query</h3>
-For example/demo purposes here the query it runs as per sour filter selection above:
+For example/demo purposes here the query it runs as per your filter selection above:
 <div>
 	<?php echo SqlFormatter::format($sql); ?>
 </div>
