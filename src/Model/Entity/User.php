@@ -27,6 +27,17 @@ namespace App\Model\Entity;
  * @method string getEmailOrFail()
  * @method int getRoleIdOrFail()
  * @method \App\Model\Entity\Role getRoleOrFail()
+ * @method $this setIdOrFail(int $value)
+ * @method $this setActiveOrFail(bool $value)
+ * @method $this setLastLoginOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setLoginsOrFail(int $value)
+ * @method $this setUsernameOrFail(string $value)
+ * @method $this setPasswordOrFail(string $value)
+ * @method $this setEmailOrFail(string $value)
+ * @method $this setRoleIdOrFail(int $value)
+ * @method $this setRoleOrFail(\App\Model\Entity\Role $value)
  */
 class User extends Entity {
 

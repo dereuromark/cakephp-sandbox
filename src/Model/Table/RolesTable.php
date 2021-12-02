@@ -18,6 +18,8 @@ use Tools\Model\Table\Table;
  * @method \App\Model\Entity\Role[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Role[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Role[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RolesTable extends Table {
 

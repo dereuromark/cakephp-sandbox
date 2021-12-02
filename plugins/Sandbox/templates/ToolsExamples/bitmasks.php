@@ -37,7 +37,7 @@
 <?php } ?>
 </table>
 
-<h3>Demo for <?php echo $required ? 'not nullable' : 'nullable'; ?> bitmask field</h3>
+<h3>Demo for <?php echo $required ? 'not nullable' : 'nullable'; ?> bitmask field `<?php echo h($field) ;?>`</h3>
 
 <div class="page form">
 <?php echo $this->Form->create($bitmaskedRecord);?>

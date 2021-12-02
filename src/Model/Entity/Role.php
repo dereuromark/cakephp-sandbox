@@ -15,6 +15,14 @@ namespace App\Model\Entity;
  * @method string getAliasOrFail()
  * @method \Cake\I18n\FrozenTime getCreatedOrFail()
  * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @property array<\App\Model\Entity\User> $users
+ * @method array<\App\Model\Entity\User> getUsersOrFail()
+ * @method $this setIdOrFail(int $value)
+ * @method $this setNameOrFail(string $value)
+ * @method $this setAliasOrFail(string $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setUsersOrFail(array $value)
  */
 class Role extends Entity {
 

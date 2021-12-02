@@ -3,10 +3,10 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity as CoreEntity;
-use Shim\Model\Entity\GetTrait;
+use Shim\Model\Entity\GetSetTrait;
 
 class Entity extends CoreEntity {
 
-	use GetTrait;
+	use GetSetTrait;
 
 }
