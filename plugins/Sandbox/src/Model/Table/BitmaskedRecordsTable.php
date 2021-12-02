@@ -41,6 +41,10 @@ class BitmaskedRecordsTable extends Table {
 		$this->setPrimaryKey('id');
 
 		$this->addBehavior('Timestamp');
+		$this->addBehavior('Search.Search');
+
+		$this->searchManager()
+			->finder('flags', ['fields' => ['flag_required'], 'finder' => 'bits', 'map' => ['bits' => 'flags']]);
 	}
 
 	/**

@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 
 /**
@@ -21,6 +22,11 @@ class ToolsExamplesController extends SandboxAppController {
 		parent::initialize();
 		$this->loadComponent('Tools.RefererRedirect', [
 			'actions' => ['fakeEdit'],
+		]);
+
+		$this->loadComponent('Search.Search', [
+			'actions' => ['bitmaskSearch'],
+			'queryStringWhitelist' => ['type'],
 		]);
 	}
 
@@ -92,8 +98,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * //TODO
-	 *
 	 * @return void
 	 */
 	public function bitmasks() {
@@ -110,6 +114,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$config = ['field' => $field, 'bits' => $flags, 'mappedField' => 'flags'];
 		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
+		// Just to have demo data
 		$records = $this->BitmaskedRecords->find()->all()->toArray();
 		$this->autoSeed($records);
 
@@ -126,6 +131,38 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('field', 'records', 'flags', 'bitmaskedRecord', 'required'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function bitmaskSearch() {
+		$this->loadModel('Sandbox.BitmaskedRecords');
+
+		$flags = BitmaskedRecord::flags();
+		$type = $this->request->getQuery('type') ?: null;
+		$config = [
+			'field' => 'flag_required',
+			'bits' => $flags,
+			'mappedField' => 'flags',
+			'type' => 'contain', //($type !== 'multiOr' && $type !== 'multiAnd') ? 'contain' : 'exact',
+			'containMode' => $type === 'multiAnd' ? 'and' : 'or',
+		];
+		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
+
+		$query = $this->BitmaskedRecords->find('search', ['search' => $this->request->getQuery()]);
+		$bitmaskedRecords = $this->paginate($query)->toArray();
+
+		// Just to have demo data
+		if (!$bitmaskedRecords) {
+			$records = $this->BitmaskedRecords->find()->all()->toArray();
+			$this->autoSeed($records);
+		}
+
+		if ($type !== 'multiOr' && $type !== 'multiAnd') {
+			$flags[0] = ' - n/a (no flags) - ';
+		}
+		$this->set(compact('bitmaskedRecords', 'flags', 'type'));
 	}
 
 	/**
@@ -475,8 +512,20 @@ class ToolsExamplesController extends SandboxAppController {
 				'flag_optional' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT,
 				'flag_required' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT,
 			]);
+			$records[] = $this->BitmaskedRecords->newEntity([
+				'name' => 'I have no flags',
+				'flag_optional' => 0,
+				'flag_required' => 0,
+			]);
+			$records[] = $this->BitmaskedRecords->newEntity([
+				'name' => 'I am everything',
+				'flag_optional' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT | BitmaskedRecord::STATUS_FLAGGED,
+				'flag_required' => BitmaskedRecord::STATUS_APPROVED | BitmaskedRecord::STATUS_FEATURED | BitmaskedRecord::STATUS_IMPORTANT | BitmaskedRecord::STATUS_FLAGGED,
+			]);
 
 			$this->BitmaskedRecords->saveManyOrFail($records);
+
+			throw new RuntimeException('Auto Seed done, please refresh page.');
 		}
 	}
 
