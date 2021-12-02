@@ -55,7 +55,7 @@
 <tr>
 	<td><?php echo h($bitmaskedRecord->id); ?></td>
 	<td><?php echo h($bitmaskedRecord->name); ?></td>
-	<td><?php echo h($bitmaskedRecord->field_required); ?></td>
+	<td><?php echo h($bitmaskedRecord->flag_required); ?></td>
 	<td><ul><?php
 		foreach ($bitmaskedRecord->flags as $flag) {
 			echo '<li>' . $flag . ' (' . $bitmaskedRecord::flags($flag) . ')</li>';
