@@ -23,8 +23,19 @@
 		}
 		?>
 	</fieldset>
-	<?php echo $this->Form->submit(__('Search'));
-	echo $this->Form->end();?>
+	<div class="form-group row buttons">
+		<label class="col-form-label col-md-2" for="flags"></label>
+		<div class="col-md-10">
+		<p>
+		<?php echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
+		if ($this->Search->isSearch()) {
+			echo ' ' . $this->Html->link('Reset', ['?' => ['type' => $type]], ['class' => 'btn btn-secondary']);
+		}
+		?>
+		</p>
+		</div>
+	</div>
+	<?php echo $this->Form->end();?>
 </div>
 
 

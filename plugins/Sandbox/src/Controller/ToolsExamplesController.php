@@ -27,6 +27,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->loadComponent('Search.Search', [
 			'actions' => ['bitmaskSearch'],
 			'queryStringWhitelist' => ['type'],
+			'modelClass' => 'Tools.BitmaskedRecords',
 		]);
 	}
 
