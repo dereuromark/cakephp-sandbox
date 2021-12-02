@@ -153,6 +153,8 @@ class ToolsExamplesController extends SandboxAppController {
 		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
 		$query = $this->BitmaskedRecords->find('search', ['search' => $this->request->getQuery()]);
+		$sql = (string)$query;
+
 		$bitmaskedRecords = $this->paginate($query)->toArray();
 
 		// Just to have demo data
@@ -164,7 +166,7 @@ class ToolsExamplesController extends SandboxAppController {
 		if ($type !== 'multiOr' && $type !== 'multiAnd') {
 			$flags[0] = ' - n/a (no flags) - ';
 		}
-		$this->set(compact('bitmaskedRecords', 'flags', 'type'));
+		$this->set(compact('bitmaskedRecords', 'flags', 'type', 'sql'));
 	}
 
 	/**

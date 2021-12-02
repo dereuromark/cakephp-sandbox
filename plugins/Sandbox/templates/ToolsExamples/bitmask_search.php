@@ -5,6 +5,7 @@
  * @var string|null $type
  * @var array $flags
  * @var \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Collection\CollectionInterface $bitmaskedRecords
+ * @var string $sql
  */
 ?>
 <h2>Bitmasks</h2>
@@ -63,3 +64,10 @@
 </tr>
 <?php } ?>
 </table>
+
+<h3>SQL query</h3>
+For example/demo purposes here the query it runs as per sour filter selection above:
+<div>
+	<?php echo SqlFormatter::format($sql); ?>
+</div>
+
