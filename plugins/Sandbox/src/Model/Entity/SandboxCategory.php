@@ -23,6 +23,15 @@ use App\Model\Entity\Entity;
  * @method int getRghtOrFail()
  * @method \Cake\I18n\FrozenTime getCreatedOrFail()
  * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method $this setIdOrFail(int $value)
+ * @method $this setParentIdOrFail(int $value)
+ * @method $this setNameOrFail(string $value)
+ * @method $this setDescriptionOrFail(string $value)
+ * @method $this setStatusOrFail(int $value)
+ * @method $this setLftOrFail(int $value)
+ * @method $this setRghtOrFail(int $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
  */
 class SandboxCategory extends Entity {
 

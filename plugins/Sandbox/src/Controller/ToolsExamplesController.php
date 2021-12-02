@@ -12,6 +12,7 @@ use Sandbox\Model\Entity\BitmaskedRecord;
  * @property \App\Model\Table\UsersTable $Users
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
  * @property \Tools\Controller\Component\RefererRedirectComponent $RefererRedirect
+ * @property \Search\Controller\Component\SearchComponent $Search
  */
 class ToolsExamplesController extends SandboxAppController {
 

@@ -24,6 +24,15 @@ use App\Model\Entity\Entity;
  * @method \Cake\I18n\FrozenTime getModifiedOrFail()
  * @method array<\Tags\Model\Entity\Tagged> getTaggedOrFail()
  * @method array<\Tags\Model\Entity\Tag> getTagsOrFail()
+ * @method $this setIdOrFail(int $value)
+ * @method $this setTitleOrFail(string $value)
+ * @method $this setContentOrFail(string $value)
+ * @method $this setRatingCountOrFail(int $value)
+ * @method $this setRatingSumOrFail(int $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setTaggedOrFail(array $value)
+ * @method $this setTagsOrFail(array $value)
  */
 class SandboxPost extends Entity {
 

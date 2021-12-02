@@ -24,6 +24,7 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class BitmaskedRecordsTable extends Table {
 

@@ -25,6 +25,15 @@ use App\Model\Entity\Entity;
  * @method \Cake\I18n\FrozenTime getEndOrFail()
  * @property-read string|null $coordinates
  * @method string getCoordinatesOrFail()
+ * @method $this setIdOrFail(int $value)
+ * @method $this setTitleOrFail(string $value)
+ * @method $this setLocationOrFail(string $value)
+ * @method $this setLatOrFail(float $value)
+ * @method $this setLngOrFail(float $value)
+ * @method $this setDescriptionOrFail(string $value)
+ * @method $this setBeginningOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setEndOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setCoordinatesOrFail(string $value)
  */
 class Event extends Entity {
 

@@ -4,6 +4,7 @@
  * @var \Sandbox\Model\Entity\BitmaskedRecord[] $records
  * @var string|null $type
  * @var array $flags
+ * @var \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Collection\CollectionInterface $bitmaskedRecords
  */
 ?>
 <h2>Bitmasks</h2>

@@ -42,6 +42,8 @@ use Cake\View\View;
  * @property \Markup\View\Helper\BbcodeHelper $Bbcode
  * @property \Markup\View\Helper\MarkdownHelper $Markdown
  * @property \Tools\View\Helper\TextHelper $Text
+ * @property \Queue\View\Helper\QueueHelper $Queue
+ * @property \Search\View\Helper\SearchHelper $Search
  */
 class AppView extends View {
 
