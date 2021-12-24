@@ -126,6 +126,9 @@ class ToolsExamplesController extends SandboxAppController {
 
 			if ($bitmaskedRecord->getErrors()) {
 				$this->Flash->error(__('Form contains errors'));
+
+				$bitmaskedRecord->setError('flags', $bitmaskedRecord->getError($field));
+
 			} else {
 				$message = 'Flag value `' . $bitmaskedRecord->$field . '` would now be stored.';
 				$this->Flash->success($message);

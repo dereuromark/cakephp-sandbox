@@ -47,8 +47,9 @@
 		echo $this->Form->control('name');
 		echo $this->Form->control('flags', ['type' => 'select', 'multiple' => 'checkbox']);
 
-		// When using mappedField, one needs to manually include error handling
-		echo $this->Form->error($field);
+		// When using mappedField, one needs to manually include error handling or use
+	    // $bitmaskedRecord->setError('flags', $bitmaskedRecord->getError($field)); error mapping in the controller
+		//echo $this->Form->error($field);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit'));
