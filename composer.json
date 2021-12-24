@@ -137,6 +137,10 @@
 		"process-timeout": 900,
 		"platform": {
 			"php": "7.4.11"
+		},
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"cakephp/plugin-installer": true
 		}
 	}
 }

@@ -3,6 +3,66 @@
 namespace PHPSTORM_META {
 
 	expectedArguments(
+		\App\Model\Entity\Role::get(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::getError(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::getInvalidField(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::getOriginal(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::has(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::hasValue(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::isDirty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::isEmpty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::setDirty(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
+		\App\Model\Entity\Role::setError(),
+		0,
+		argumentsSet('entityFields:App\Model\Entity\Role')
+	);
+
+	expectedArguments(
 		\App\Model\Entity\User::get(),
 		0,
 		argumentsSet('entityFields:App\Model\Entity\User')
@@ -137,6 +197,15 @@ namespace PHPSTORM_META {
 	);
 
 	exitPoint(\Cake\Console\ConsoleIo::abort());
+
+	override(
+		\Cake\Console\ConsoleIo::helper(0),
+		map([
+			'BazBaz' => \App\Shell\Helper\BazBazHelper::class,
+			'Progress' => \Cake\Shell\Helper\ProgressHelper::class,
+			'Table' => \Cake\Shell\Helper\TableHelper::class,
+		])
+	);
 
 	expectedArguments(
 		\Cake\Controller\ComponentRegistry::unload(),
@@ -1275,7 +1344,9 @@ namespace PHPSTORM_META {
 		'base',
 		'beginning',
 		'code',
+		'command',
 		'completed',
+		'condition',
 		'content',
 		'context',
 		'count',
@@ -1289,7 +1360,10 @@ namespace PHPSTORM_META {
 		'description',
 		'email',
 		'end',
+		'error_message',
 		'eu_member',
+		'event',
+		'expires',
 		'failed',
 		'failure_message',
 		'fetched',
@@ -1300,8 +1374,10 @@ namespace PHPSTORM_META {
 		'foreign_key',
 		'hostname',
 		'id',
+		'identifier',
 		'image',
 		'ip',
+		'is_error',
 		'iso2',
 		'iso3',
 		'job_group',
@@ -1315,6 +1391,7 @@ namespace PHPSTORM_META {
 		'locale',
 		'locale_fallback',
 		'location',
+		'locked',
 		'logins',
 		'message',
 		'model',
@@ -1326,11 +1403,13 @@ namespace PHPSTORM_META {
 		'offset',
 		'offset_dst',
 		'ori_name',
+		'params',
 		'parent_id',
 		'password',
 		'phone_code',
 		'pid',
 		'priority',
+		'process',
 		'progress',
 		'rating_count',
 		'rating_sum',
@@ -1343,13 +1422,22 @@ namespace PHPSTORM_META {
 		'session_id',
 		'slug',
 		'sort',
+		'source_state',
 		'special',
+		'state',
+		'state_machine',
+		'state_machine_item_id',
+		'state_machine_item_state_id',
+		'state_machine_process_id',
+		'state_machine_transition_log_id',
 		'status',
 		'summary',
 		'symbol_left',
 		'symbol_right',
 		'tag_id',
+		'target_state',
 		'terminate',
+		'timeout',
 		'timezone',
 		'title',
 		'type',
@@ -2268,7 +2356,8 @@ namespace PHPSTORM_META {
 		'Queue.ProgressExample',
 		'Queue.RetryExample',
 		'Queue.SuperExample',
-		'Queue.UniqueExample'
+		'Queue.UniqueExample',
+		'StateMachineSandbox.SimulatePaymentResult'
 	);
 
 	expectedArguments(
@@ -2284,7 +2373,8 @@ namespace PHPSTORM_META {
 		'Queue.ProgressExample',
 		'Queue.RetryExample',
 		'Queue.SuperExample',
-		'Queue.UniqueExample'
+		'Queue.UniqueExample',
+		'StateMachineSandbox.SimulatePaymentResult'
 	);
 
 	expectedArguments(
@@ -2645,6 +2735,426 @@ namespace PHPSTORM_META {
 		\StateMachineSandbox\Model\Entity\Registration::setError(),
 		0,
 		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItem::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItem')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemState::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemState')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineItemStateLog::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineItemStateLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineLock::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineLock')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineProcess::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineProcess')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTimeout::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTimeout')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::get(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::getError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::getInvalidField(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::getOriginal(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::has(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::hasValue(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::isDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::isEmpty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::setDirty(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
+	);
+
+	expectedArguments(
+		\StateMachine\Model\Entity\StateMachineTransitionLog::setError(),
+		0,
+		argumentsSet('entityFields:StateMachine\Model\Entity\StateMachineTransitionLog')
 	);
 
 	expectedArguments(
@@ -3424,7 +3934,6 @@ namespace PHPSTORM_META {
 		'FORWARD_PORTS_TO_LOCALHOST',
 		'GATEWAY_INTERFACE',
 		'GIT_ASKPASS',
-		'GPG_KEYS',
 		'HOME',
 		'HOSTNAME',
 		'HOST_PATH_BACKUPDIR',
@@ -3486,7 +3995,6 @@ namespace PHPSTORM_META {
 		'PGSQL_ROOT_USER',
 		'PGSQL_SERVER',
 		'PHPIZE_DEPS',
-		'PHP_ASC_URL',
 		'PHP_BINARY',
 		'PHP_CFLAGS',
 		'PHP_CPPFLAGS',
@@ -3498,8 +4006,6 @@ namespace PHPSTORM_META {
 		'PHP_MODULES_ENABLE',
 		'PHP_SELF',
 		'PHP_SERVER',
-		'PHP_SHA256',
-		'PHP_URL',
 		'PHP_VERSION',
 		'PWD',
 		'QUERY_STRING',
@@ -3522,7 +4028,6 @@ namespace PHPSTORM_META {
 		'TERM',
 		'TIMEZONE',
 		'TLD_SUFFIX',
-		'VIPSHOME',
 		'argc',
 		'argv'
 	);
@@ -3548,7 +4053,9 @@ namespace PHPSTORM_META {
 		'base',
 		'beginning',
 		'code',
+		'command',
 		'completed',
+		'condition',
 		'content',
 		'context',
 		'count',
@@ -3562,7 +4069,10 @@ namespace PHPSTORM_META {
 		'description',
 		'email',
 		'end',
+		'error_message',
 		'eu_member',
+		'event',
+		'expires',
 		'failed',
 		'failure_message',
 		'fetched',
@@ -3573,8 +4083,10 @@ namespace PHPSTORM_META {
 		'foreign_key',
 		'hostname',
 		'id',
+		'identifier',
 		'image',
 		'ip',
+		'is_error',
 		'iso2',
 		'iso3',
 		'job_group',
@@ -3588,6 +4100,7 @@ namespace PHPSTORM_META {
 		'locale',
 		'locale_fallback',
 		'location',
+		'locked',
 		'logins',
 		'message',
 		'model',
@@ -3599,11 +4112,13 @@ namespace PHPSTORM_META {
 		'offset',
 		'offset_dst',
 		'ori_name',
+		'params',
 		'parent_id',
 		'password',
 		'phone_code',
 		'pid',
 		'priority',
+		'process',
 		'progress',
 		'rating_count',
 		'rating_sum',
@@ -3616,13 +4131,22 @@ namespace PHPSTORM_META {
 		'session_id',
 		'slug',
 		'sort',
+		'source_state',
 		'special',
+		'state',
+		'state_machine',
+		'state_machine_item_id',
+		'state_machine_item_state_id',
+		'state_machine_process_id',
+		'state_machine_transition_log_id',
 		'status',
 		'summary',
 		'symbol_left',
 		'symbol_right',
 		'tag_id',
+		'target_state',
 		'terminate',
+		'timeout',
 		'timezone',
 		'title',
 		'type',
@@ -3846,6 +4370,16 @@ namespace PHPSTORM_META {
 		'plugins.TinyAuth',
 		'plugins.Tools',
 		'plugins.Translate'
+	);
+
+	registerArgumentsSet(
+		'entityFields:App\Model\Entity\Role',
+		'alias',
+		'created',
+		'id',
+		'modified',
+		'name',
+		'users'
 	);
 
 	registerArgumentsSet(
@@ -4102,10 +4636,93 @@ namespace PHPSTORM_META {
 		'created',
 		'id',
 		'modified',
+		'registration_state',
 		'session_id',
 		'status',
 		'user',
 		'user_id'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineItem',
+		'id',
+		'identifier',
+		'process',
+		'state',
+		'state_machine',
+		'state_machine_transition_log',
+		'state_machine_transition_log_id'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineItemState',
+		'description',
+		'id',
+		'name',
+		'state_machine_item_state_logs',
+		'state_machine_process',
+		'state_machine_process_id',
+		'state_machine_timeouts'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineItemStateLog',
+		'created',
+		'id',
+		'identifier',
+		'state_machine_item_state',
+		'state_machine_item_state_id'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineLock',
+		'created',
+		'expires',
+		'id',
+		'identifier'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineProcess',
+		'created',
+		'id',
+		'modified',
+		'name',
+		'state_machine',
+		'state_machine_item_states',
+		'state_machine_timeouts',
+		'state_machine_transition_logs'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineTimeout',
+		'event',
+		'id',
+		'identifier',
+		'state_machine_item_state',
+		'state_machine_item_state_id',
+		'state_machine_process',
+		'state_machine_process_id',
+		'timeout'
+	);
+
+	registerArgumentsSet(
+		'entityFields:StateMachine\Model\Entity\StateMachineTransitionLog',
+		'command',
+		'condition',
+		'created',
+		'error_message',
+		'event',
+		'id',
+		'identifier',
+		'is_error',
+		'locked',
+		'params',
+		'source_state',
+		'state_machine_item_id',
+		'state_machine_process',
+		'state_machine_process_id',
+		'target_state'
 	);
 
 	registerArgumentsSet(
@@ -5232,6 +5849,7 @@ namespace PHPSTORM_META {
 		'Sandbox.Tags::search',
 		'Sandbox.Tags::select',
 		'Sandbox.ToolsExamples::_diff',
+		'Sandbox.ToolsExamples::bitmaskSearch',
 		'Sandbox.ToolsExamples::bitmasks',
 		'Sandbox.ToolsExamples::confirmable',
 		'Sandbox.ToolsExamples::datetime',
@@ -5295,9 +5913,7 @@ namespace PHPSTORM_META {
 		'StateMachineSandbox.RegistrationDemo::moderatorPanel',
 		'StateMachineSandbox.RegistrationDemo::process',
 		'StateMachineSandbox.RegistrationDemo::register',
-		'StateMachineSandbox.Registrations::add',
 		'StateMachineSandbox.Registrations::delete',
-		'StateMachineSandbox.Registrations::edit',
 		'StateMachineSandbox.Registrations::index',
 		'StateMachineSandbox.Registrations::view',
 		'StateMachineSandbox.StateMachineSandbox::index',
@@ -5342,6 +5958,13 @@ namespace PHPSTORM_META {
 		'sandbox_posts',
 		'sandbox_ratings',
 		'sandbox_users',
+		'state_machine_item_state_logs',
+		'state_machine_item_states',
+		'state_machine_items',
+		'state_machine_locks',
+		'state_machine_processes',
+		'state_machine_timeouts',
+		'state_machine_transition_logs',
 		'states',
 		'tags_tagged',
 		'tags_tags',

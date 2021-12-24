@@ -219,16 +219,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.3.2",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "bc44fd0a383592c5bf52eab17b25fbd9d929b851"
+                "reference": "9bfef5659088c446b2f7bdb612cc321d83779287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/bc44fd0a383592c5bf52eab17b25fbd9d929b851",
-                "reference": "bc44fd0a383592c5bf52eab17b25fbd9d929b851",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/9bfef5659088c446b2f7bdb612cc321d83779287",
+                "reference": "9bfef5659088c446b2f7bdb612cc321d83779287",
                 "shasum": ""
             },
             "require": {
@@ -319,7 +319,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2021-11-26T19:47:23+00:00"
+            "time": "2021-12-17T16:07:12+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -382,16 +382,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "4.6.0",
+            "version": "4.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "2635f89f35c2c7752a955972b38c60e3a2193452"
+                "reference": "6de421f1ed67bbf2b47985b9c81be2940a7eba87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/2635f89f35c2c7752a955972b38c60e3a2193452",
-                "reference": "2635f89f35c2c7752a955972b38c60e3a2193452",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/6de421f1ed67bbf2b47985b9c81be2940a7eba87",
+                "reference": "6de421f1ed67bbf2b47985b9c81be2940a7eba87",
                 "shasum": ""
             },
             "require": {
@@ -444,7 +444,7 @@
                 "issues": "https://github.com/cakephp/debug_kit/issues",
                 "source": "https://github.com/cakephp/debug_kit"
             },
-            "time": "2021-12-13T21:45:42+00:00"
+            "time": "2021-12-18T04:44:00+00:00"
         },
         {
             "name": "cakephp/localized",
@@ -815,21 +815,22 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.1.14",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "cd28fc05b0c9d3beaf58b57018725c4dc15a6446"
+                "reference": "bbc265e16561ab8e0f5e7cac395ea72640251f0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/cd28fc05b0c9d3beaf58b57018725c4dc15a6446",
-                "reference": "cd28fc05b0c9d3beaf58b57018725c4dc15a6446",
+                "url": "https://api.github.com/repos/composer/composer/zipball/bbc265e16561ab8e0f5e7cac395ea72640251f0c",
+                "reference": "bbc265e16561ab8e0f5e7cac395ea72640251f0c",
                 "shasum": ""
             },
             "require": {
                 "composer/ca-bundle": "^1.0",
                 "composer/metadata-minifier": "^1.0",
+                "composer/pcre": "^1.0",
                 "composer/semver": "^3.0",
                 "composer/spdx-licenses": "^1.2",
                 "composer/xdebug-handler": "^2.0",
@@ -859,7 +860,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.1-dev"
+                    "dev-main": "2.2-dev"
                 }
             },
             "autoload": {
@@ -893,7 +894,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
-                "source": "https://github.com/composer/composer/tree/2.1.14"
+                "source": "https://github.com/composer/composer/tree/2.2.1"
             },
             "funding": [
                 {
@@ -909,7 +910,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-30T09:51:43+00:00"
+            "time": "2021-12-22T21:21:31+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -2348,12 +2349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "0c2372a74ce4c54e44243ea624ee946d0cc3eed6"
+                "reference": "4a9e98051ff32dbae485bdf3366ed6436d9c3813"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/0c2372a74ce4c54e44243ea624ee946d0cc3eed6",
-                "reference": "0c2372a74ce4c54e44243ea624ee946d0cc3eed6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/4a9e98051ff32dbae485bdf3366ed6436d9c3813",
+                "reference": "4a9e98051ff32dbae485bdf3366ed6436d9c3813",
                 "shasum": ""
             },
             "require": {
@@ -2396,7 +2397,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2021-12-01T23:53:27+00:00"
+            "time": "2021-12-22T15:32:08+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -3733,16 +3734,16 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf"
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
-                "reference": "bf180a382393e7db5c1e8d0f2ec0c4af9c724baf",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/88bf037259869891afce6504cacc4f8a07b24d0f",
+                "reference": "88bf037259869891afce6504cacc4f8a07b24d0f",
                 "shasum": ""
             },
             "require": {
@@ -3791,7 +3792,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-09-03T17:53:30+00:00"
+            "time": "2021-12-21T14:34:37+00:00"
         },
         {
             "name": "league/climate",
@@ -4698,20 +4699,23 @@
         },
         {
             "name": "phenx/php-font-lib",
-            "version": "0.5.2",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/PhenX/php-font-lib.git",
-                "reference": "ca6ad461f032145fff5971b5985e5af9e7fa88d8"
+                "url": "https://github.com/dompdf/php-font-lib.git",
+                "reference": "dd448ad1ce34c63d09baccd05415e361300c35b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/ca6ad461f032145fff5971b5985e5af9e7fa88d8",
-                "reference": "ca6ad461f032145fff5971b5985e5af9e7fa88d8",
+                "url": "https://api.github.com/repos/dompdf/php-font-lib/zipball/dd448ad1ce34c63d09baccd05415e361300c35b4",
+                "reference": "dd448ad1ce34c63d09baccd05415e361300c35b4",
                 "shasum": ""
             },
+            "require": {
+                "ext-mbstring": "*"
+            },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5 || ^6 || ^7"
+                "symfony/phpunit-bridge": "^3 || ^4 || ^5"
             },
             "type": "library",
             "autoload": {
@@ -4732,10 +4736,10 @@
             "description": "A library to read, parse, export and make subsets of different types of font files.",
             "homepage": "https://github.com/PhenX/php-font-lib",
             "support": {
-                "issues": "https://github.com/PhenX/php-font-lib/issues",
-                "source": "https://github.com/PhenX/php-font-lib/tree/0.5.2"
+                "issues": "https://github.com/dompdf/php-font-lib/issues",
+                "source": "https://github.com/dompdf/php-font-lib/tree/0.5.4"
             },
-            "time": "2020-03-08T15:31:32+00:00"
+            "time": "2021-12-17T19:44:54+00:00"
         },
         {
             "name": "phenx/php-svg-lib",
@@ -5747,12 +5751,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "9380acc3662a984cf724c9cb2876eae334bca57e"
+                "reference": "468c635ef8aeacd0ab69d0640aea408598c27038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/9380acc3662a984cf724c9cb2876eae334bca57e",
-                "reference": "9380acc3662a984cf724c9cb2876eae334bca57e",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/468c635ef8aeacd0ab69d0640aea408598c27038",
+                "reference": "468c635ef8aeacd0ab69d0640aea408598c27038",
                 "shasum": ""
             },
             "require": {
@@ -5826,7 +5830,7 @@
                 "issues": "https://github.com/cakephp/phinx/issues",
                 "source": "https://github.com/cakephp/phinx/tree/master"
             },
-            "time": "2021-12-04T21:03:25+00:00"
+            "time": "2021-12-22T15:11:19+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -7850,12 +7854,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "b07f8812a44667ba21f0e9bdd52b3073af5f516e"
+                "reference": "e1dd9985c22ba268e449198db7b560b05c1ef0f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b07f8812a44667ba21f0e9bdd52b3073af5f516e",
-                "reference": "b07f8812a44667ba21f0e9bdd52b3073af5f516e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/e1dd9985c22ba268e449198db7b560b05c1ef0f1",
+                "reference": "e1dd9985c22ba268e449198db7b560b05c1ef0f1",
                 "shasum": ""
             },
             "require": {
@@ -7922,7 +7926,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-23T16:06:13+00:00"
+            "time": "2021-12-24T15:22:22+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -8254,9 +8258,6 @@
             },
             "require": {
                 "php": "^7.1 || ^8.0"
-            },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0",
@@ -10602,5 +10603,5 @@
     "platform-overrides": {
         "php": "7.4.11"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
