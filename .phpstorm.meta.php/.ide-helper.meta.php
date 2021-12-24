@@ -201,7 +201,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\Console\ConsoleIo::helper(0),
 		map([
-			'BazBaz' => \App\Shell\Helper\BazBazHelper::class,
 			'Progress' => \Cake\Shell\Helper\ProgressHelper::class,
 			'Table' => \Cake\Shell\Helper\TableHelper::class,
 		])
