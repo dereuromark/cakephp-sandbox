@@ -7,11 +7,6 @@ use MediaEmbed\MediaEmbed;
 class MediaEmbedController extends SandboxAppController {
 
 	/**
-	 * @var array
-	 */
-	//protected $helpers = ['Icings/Menu.Menu'];
-
-	/**
 	 * @return void
 	 */
 	public function index() {

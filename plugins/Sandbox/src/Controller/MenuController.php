@@ -7,9 +7,6 @@ namespace Sandbox\Controller;
  */
 class MenuController extends SandboxAppController {
 
-	/**
-	 * @var array
-	 */
 	//protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
