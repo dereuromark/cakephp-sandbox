@@ -1717,12 +1717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-expose.git",
-                "reference": "9713090c9a50eee6bd84abb39e204a4c642c6484"
+                "reference": "ebc65b74f8dce97ae4844a653a28a8508a2dbc4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/9713090c9a50eee6bd84abb39e204a4c642c6484",
-                "reference": "9713090c9a50eee6bd84abb39e204a4c642c6484",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-expose/zipball/ebc65b74f8dce97ae4844a653a28a8508a2dbc4e",
+                "reference": "ebc65b74f8dce97ae4844a653a28a8508a2dbc4e",
                 "shasum": ""
             },
             "require": {
@@ -1733,7 +1733,7 @@
                 "brick/math": "^0.9.1",
                 "ext-bcmath": "*",
                 "fig-r/psr2r-sniffer": "dev-master",
-                "keiko/uuid-shortener": "^0.5.0",
+                "keiko/uuid-shortener": "^0.6.0",
                 "phpunit/phpunit": "^9.5"
             },
             "default-branch": true,
@@ -1771,7 +1771,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-expose/issues",
                 "source": "https://github.com/dereuromark/cakephp-expose/"
             },
-            "time": "2022-01-13T00:08:01+00:00"
+            "time": "2022-07-20T13:54:18+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -1942,12 +1942,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "5347780fafa83eccb8dc7432d1560cfa300c82a1"
+                "reference": "8993ba6def0992187567215e310a9c51f8e29c51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/5347780fafa83eccb8dc7432d1560cfa300c82a1",
-                "reference": "5347780fafa83eccb8dc7432d1560cfa300c82a1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/8993ba6def0992187567215e310a9c51f8e29c51",
+                "reference": "8993ba6def0992187567215e310a9c51f8e29c51",
                 "shasum": ""
             },
             "require": {
@@ -1998,7 +1998,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2022-02-20T02:52:09+00:00"
+            "time": "2022-07-20T14:20:02+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
