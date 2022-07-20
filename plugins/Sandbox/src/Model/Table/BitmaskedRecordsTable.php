@@ -18,10 +18,10 @@ use Cake\Validation\Validator;
  * @method array<\Sandbox\Model\Entity\BitmaskedRecord> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord>|false saveMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord> saveManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord>|false deleteMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord> deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Search\Model\Behavior\SearchBehavior

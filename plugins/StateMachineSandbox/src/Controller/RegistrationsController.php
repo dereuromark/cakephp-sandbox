@@ -8,7 +8,7 @@ use Cake\Http\Exception\NotFoundException;
 
 /**
  * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- * @method \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration> paginate($object = null, array $settings = [])
  * @property \StateMachine\Model\Table\StateMachineTransitionLogsTable $StateMachineTransitionLogs
  * @property \StateMachine\Model\Table\StateMachineItemStateLogsTable $StateMachineItemStateLogs
  */

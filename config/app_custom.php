@@ -15,6 +15,10 @@ return [
 		'salt' => '0ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
 	],
 
+	'Error' => [
+		'logger' => \Tools\Error\ErrorLogger::class,
+	],
+
 	'Log' => [
 		'debug' => [
 			'scopes' => false,

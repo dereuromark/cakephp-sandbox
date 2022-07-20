@@ -38,7 +38,8 @@ use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Database\TypeFactory;
 use Cake\Datasource\ConnectionManager;
-use Cake\Error\ConsoleErrorHandler;
+use Cake\Error\ErrorTrap;
+use Cake\Error\ExceptionTrap;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
 use Cake\I18n\FrozenDate;
@@ -49,7 +50,6 @@ use Cake\Mailer\TransportFactory;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
-use Tools\Error\ErrorHandler;
 use Tools\Mailer\Mailer;
 
 /**
@@ -103,14 +103,11 @@ ini_set('intl.default_locale', 'en');
 /**
  * Register application error and exception handlers.
  */
-$isCli = PHP_SAPI === 'cli';
-if ($isCli) {
-	(new ConsoleErrorHandler(Configure::read('Error')))->register();
-} else {
-	(new ErrorHandler(Configure::read('Error')))->register();
-}
+(new ErrorTrap(Configure::read('Error')))->register();
+(new ExceptionTrap(Configure::read('Error')))->register();
 
 // Include the CLI bootstrap overrides.
+$isCli = PHP_SAPI === 'cli';
 if ($isCli) {
 	require __DIR__ . '/bootstrap_cli.php';
 }

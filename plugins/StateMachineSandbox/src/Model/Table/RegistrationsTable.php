@@ -27,10 +27,10 @@ use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
  * @method array<\StateMachineSandbox\Model\Entity\Registration> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \StateMachineSandbox\Model\Entity\Registration|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \StateMachineSandbox\Model\Entity\Registration saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration>|false saveMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration> saveManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration>|false deleteMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration> deleteManyOrFail(iterable $entities, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @property \StateMachine\Model\Table\StateMachineItemsTable&\Cake\ORM\Association\HasOne $RegistrationStates
