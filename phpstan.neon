@@ -10,8 +10,6 @@ parameters:
 		- plugins/Sandbox/src/
 		- plugins/AuthSandbox/src/
 
-	checkMissingIterableValueType: false
-
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
 		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
@@ -26,3 +24,5 @@ parameters:
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Cannot cast array\|string\|null to string#'
 		- '#Call to an undefined method .+Mailer::set.+#'
+		- '#Access to an undefined property Cake\\ORM\\BehaviorRegistry::\$.+#'
+		- '#Property .+ type has no value type specified in iterable type array.#'

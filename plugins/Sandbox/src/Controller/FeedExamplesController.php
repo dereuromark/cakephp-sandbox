@@ -89,7 +89,7 @@ class FeedExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return array
+	 * @return array<mixed>
 	 */
 	protected function _feedData() {
 		$content = <<<TXT

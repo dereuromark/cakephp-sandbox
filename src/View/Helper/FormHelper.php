@@ -12,8 +12,8 @@ class FormHelper extends BootstrapFormHelper {
 
 	/**
 	 * @param string $title
-	 * @param array|string|null $url
-	 * @param array $options
+	 * @param array<mixed>|string|null $url
+	 * @param array<string, mixed> $options
 	 *
 	 * @return string
 	 */

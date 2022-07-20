@@ -497,7 +497,7 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param array $records
+	 * @param array<\Sandbox\Model\Entity\BitmaskedRecord> $records
 	 *
 	 * @return void
 	 */

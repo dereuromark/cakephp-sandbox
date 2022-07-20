@@ -9,7 +9,7 @@ class SandboxHelper extends Helper {
 
 	/**
 	 * @param string $input the input-string
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string the manipulated string
 	 */
 	public function pre($input, array $options = []) {

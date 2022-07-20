@@ -26,7 +26,7 @@ use Tools\Model\Table\Table;
 class UsersTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $validate = [
 		'username' => [
@@ -58,7 +58,7 @@ class UsersTable extends Table {
 	];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */

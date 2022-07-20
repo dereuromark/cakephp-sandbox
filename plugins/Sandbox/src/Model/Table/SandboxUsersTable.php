@@ -7,7 +7,7 @@ use Tools\Model\Table\Table;
 class SandboxUsersTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $validate = [
 		'username' => [
@@ -27,7 +27,7 @@ class SandboxUsersTable extends Table {
 	];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */

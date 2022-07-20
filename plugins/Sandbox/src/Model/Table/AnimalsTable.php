@@ -15,7 +15,7 @@ class AnimalsTable extends Table {
 	protected $order = ['name' => 'ASC'];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 * @return void
 	 */
 	public function initialize(array $config): void {

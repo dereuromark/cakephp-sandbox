@@ -8,7 +8,7 @@ use RuntimeException;
 class ValidationService {
 
 	/**
-	 * @return array
+	 * @return array<string, array<string>>
 	 */
 	public function getAvailable(): array {
 		$path = ROOT . DS . 'vendor/cakephp/localized/src/Validation/';
@@ -28,7 +28,7 @@ class ValidationService {
 				continue;
 			}
 
-			$available[$matches[1]] = $this->extractDetails((string)$file->getRealPath());
+			$available[(string)$matches[1]] = $this->extractDetails((string)$file->getRealPath());
 		}
 
 		ksort($available);
@@ -39,7 +39,7 @@ class ValidationService {
 	/**
 	 * @param string $path
 	 * @throws \RuntimeException
-	 * @return array
+	 * @return array<string>
 	 */
 	protected function extractDetails(string $path): array {
 		$content = file_get_contents($path);

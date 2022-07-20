@@ -10,14 +10,14 @@ use Cake\View\Helper;
 class NavigationHelper extends Helper {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
-	public $helpers = ['Html'];
+	protected $helpers = ['Html'];
 
 	/**
 	 * @param string $link
-	 * @param array $url
-	 * @param array $options
+	 * @param array<mixed> $url
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function link($link, $url, array $options = []) {

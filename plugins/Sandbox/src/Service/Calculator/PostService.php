@@ -7,7 +7,7 @@ class PostService {
 	/**
 	 * Counts an array as example of some business logic.
 	 *
-	 * @param array $array
+	 * @param array<mixed> $array
 	 *
 	 * @return int
 	 */

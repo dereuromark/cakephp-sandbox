@@ -19,7 +19,7 @@ class PaginatorComponent extends CorePaginatorComponent {
 	 * If pageCount not available, then use first page.
 	 *
 	 * @param \Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface $object The table or query to paginate.
-	 * @param array $settings The settings/configuration used for pagination.
+	 * @param array<string, mixed> $settings The settings/configuration used for pagination.
 	 *
 	 * @throws \Cake\Http\Exception\NotFoundException
 	 * @throws \Cake\Routing\Exception\RedirectException

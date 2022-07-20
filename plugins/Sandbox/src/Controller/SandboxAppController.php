@@ -11,7 +11,7 @@ class SandboxAppController extends AppController {
 
 	/**
 	 * @param \Cake\Controller\Controller $Controller
-	 * @return array
+	 * @return array<string>
 	 */
 	protected function _getActions(Controller $Controller): array {
 		$class = new ReflectionClass($Controller);

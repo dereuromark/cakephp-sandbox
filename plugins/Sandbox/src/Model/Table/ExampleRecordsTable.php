@@ -12,7 +12,7 @@ class ExampleRecordsTable extends Table {
 	public $records = [];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 */
 	public function __construct(array $config = []) {
 		parent::__construct($config);

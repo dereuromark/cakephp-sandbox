@@ -10,7 +10,7 @@ use Cake\Event\EventInterface;
 class JqueryExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected $jqueryPlugins = ['media'];
 

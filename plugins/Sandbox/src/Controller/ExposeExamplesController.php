@@ -2,7 +2,7 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Database\Type;
+use Cake\Database\TypeFactory;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\FrozenTime;
 use Expose\Database\Type\ShortUuidType;
@@ -15,7 +15,7 @@ use Expose\Database\Type\ShortUuidType;
 class ExposeExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $paginate = [
 		'order' => [
@@ -41,7 +41,7 @@ class ExposeExamplesController extends SandboxAppController {
 			$this->request->getSession()->write('Expose.short', (bool)$this->request->getQuery('short'));
 		}
 		if ($this->request->getSession()->read('Expose.short')) {
-			Type::map('binaryuuid', ShortUuidType::class);
+			TypeFactory::map('binaryuuid', ShortUuidType::class);
 		}
 
 		$config = [

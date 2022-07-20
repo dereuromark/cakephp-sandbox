@@ -61,7 +61,7 @@ class CalendarController extends SandboxAppController {
 	}
 
 	/**
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @throws \Cake\Http\Exception\InternalErrorException
 	 * @return void
 	 */

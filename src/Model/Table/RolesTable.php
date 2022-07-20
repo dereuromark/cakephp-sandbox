@@ -24,7 +24,7 @@ use Tools\Model\Table\Table;
 class RolesTable extends Table {
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */

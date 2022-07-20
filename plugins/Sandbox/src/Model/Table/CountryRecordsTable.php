@@ -16,7 +16,7 @@ class CountryRecordsTable extends Table {
 	protected $order = ['sort' => 'DESC', 'name' => 'ASC'];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */

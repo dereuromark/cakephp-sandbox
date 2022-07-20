@@ -11,7 +11,7 @@ use MediaEmbed\MediaEmbed;
 class MediaEmbedBbcodeHelper extends Helper {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	protected $helpers = [
 		'Text',
@@ -33,10 +33,10 @@ class MediaEmbedBbcodeHelper extends Helper {
 	}
 
 	/**
-	 * @param array $params
+	 * @param array<string> $params
 	 * @return string
 	 */
-	protected function _finalizeVideo($params) {
+	protected function _finalizeVideo(array $params) {
 		if (!isset($this->MediaEmbed)) {
 			$this->MediaEmbed = new MediaEmbed();
 		}
