@@ -29,7 +29,7 @@ use Tools\Model\Table\Table;
 class SandboxPostsTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $actsAs = [
 		'Tools.Slugged',
@@ -38,7 +38,7 @@ class SandboxPostsTable extends Table {
 	];
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $validate = [
 		'title' => [

@@ -7,7 +7,7 @@ use Tools\Model\Table\Table;
 class ExampleRecordsTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $records = [];
 

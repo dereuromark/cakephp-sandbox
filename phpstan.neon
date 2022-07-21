@@ -25,4 +25,3 @@ parameters:
 		- '#Cannot cast array\|string\|null to string#'
 		- '#Call to an undefined method .+Mailer::set.+#'
 		- '#Access to an undefined property Cake\\ORM\\BehaviorRegistry::\$.+#'
-		- '#Property .+ type has no value type specified in iterable type array.#'

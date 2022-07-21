@@ -23,12 +23,12 @@ use Tools\Model\Table\Table;
 class SandboxCategoriesTable extends Table {
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $actsAs = ['Tree'];
 
 	/**
-	 * @var array
+	 * @var array<mixed>
 	 */
 	public $validate = [
 		'name' => [
