@@ -188,7 +188,6 @@ return [
 	],
 
 	'IdeHelper' => [
-		'arrayAsGenerics' => true,
 		'plugins' => [
 			'Ratings',
 			'Tags',
