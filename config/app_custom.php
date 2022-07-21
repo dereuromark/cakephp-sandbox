@@ -155,7 +155,7 @@ return [
 			'fa',
 			//'glyphicon',
 		],
-		'fontPath' => ROOT . DS . 'node_modules/font-awesome/scss/_variables.scss', // For FormatIconTask
+		'fontPath' => ROOT . DS . 'webroot/assets/font-awesome/scss/_variables.scss', // For FormatIconTask
 		'fontIcons' => [
 			'see' => 'fa fa-eye',
 			'details' => 'fa fa-chevron-right',
