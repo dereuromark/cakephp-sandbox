@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\Event[]|\Cake\Collection\CollectionInterface $events
+ * @var iterable<\Sandbox\Model\Entity\Event> $events
  */
 ?>
 <div class="page index">
@@ -15,8 +15,8 @@
 <?php
 	$iconE = $this->Format->icon('calendar', ['title' => __('Event')]);
 	foreach ($events as $event) {
-		$content = $iconE . ' ' . $this->Html->link($event['title'], ['action' => 'view', $event['id'], \Cake\Utility\Text::slug($event['title'])]);
-		$this->Calendar->addRow($event['beginning'], $content, ['class' => 'event']);
+		$content = $iconE . ' ' . $this->Html->link($event->title, ['action' => 'view', $event->id, \Cake\Utility\Text::slug($event->title)]);
+		$this->Calendar->addRow($event->beginning, $content, ['class' => 'event']);
 	}
 
 	echo $this->Calendar->render();

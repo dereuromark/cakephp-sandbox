@@ -4,7 +4,7 @@
  * @var \Sandbox\Model\Entity\BitmaskedRecord[] $records
  * @var string|null $type
  * @var array $flags
- * @var \Sandbox\Model\Entity\BitmaskedRecord[]|\Cake\Collection\CollectionInterface $bitmaskedRecords
+ * @var iterable<\Sandbox\Model\Entity\BitmaskedRecord> $bitmaskedRecords
  * @var string $sql
  */
 ?>

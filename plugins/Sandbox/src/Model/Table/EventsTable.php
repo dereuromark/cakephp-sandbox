@@ -18,10 +18,10 @@ use Cake\Validation\Validator;
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
  * @method \Sandbox\Model\Entity\Event newEmptyEntity()
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\Sandbox\Model\Entity\Event>|false saveMany(iterable $entities, $options = [])
+ * @method iterable<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable $entities, $options = [])
+ * @method iterable<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, $options = [])
+ * @method iterable<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, $options = [])
  */
 class EventsTable extends Table {
 
