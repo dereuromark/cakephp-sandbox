@@ -6,7 +6,7 @@ use App\Controller\AppController;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
- * @method iterable<\App\Model\Entity\User> paginate($object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> paginate($object = null, array $settings = [])
  */
 class UsersController extends AppController {
 

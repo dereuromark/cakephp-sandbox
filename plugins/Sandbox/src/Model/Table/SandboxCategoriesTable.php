@@ -15,10 +15,10 @@ use Tools\Model\Table\Table;
  * @method array<\Sandbox\Model\Entity\SandboxCategory> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory newEmptyEntity()
- * @method iterable<\Sandbox\Model\Entity\SandboxCategory>|false saveMany(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxCategory> saveManyOrFail(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false saveMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> saveManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable $entities, $options = [])
  */
 class SandboxCategoriesTable extends Table {
 

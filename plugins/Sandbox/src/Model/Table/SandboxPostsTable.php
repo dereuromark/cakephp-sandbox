@@ -20,10 +20,10 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, ?callable $callback = null, $options = [])
  * @mixin \Search\Model\Behavior\SearchBehavior
  * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()
- * @method iterable<\Sandbox\Model\Entity\SandboxPost>|false saveMany(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxPost> saveManyOrFail(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable $entities, $options = [])
- * @method iterable<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false saveMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> saveManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, $options = [])
  * @mixin \Tools\Model\Behavior\SluggedBehavior
  */
 class SandboxPostsTable extends Table {

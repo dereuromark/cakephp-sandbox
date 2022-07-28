@@ -14,10 +14,10 @@ use Tools\Model\Table\Table;
  * @method array<\App\Model\Entity\Role> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \App\Model\Entity\Role findOrCreate($search, ?callable $callback = null, $options = [])
  * @method \App\Model\Entity\Role newEmptyEntity()
- * @method iterable<\App\Model\Entity\Role>|false saveMany(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\Role> saveManyOrFail(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\Role>|false deleteMany(iterable $entities, $options = [])
- * @method iterable<\App\Model\Entity\Role> deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role>|false saveMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role> saveManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role>|false deleteMany(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role> deleteManyOrFail(iterable $entities, $options = [])
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
