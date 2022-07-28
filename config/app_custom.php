@@ -194,7 +194,7 @@ return [
 			'Meta',
 		],
 		'arrayAsGenerics' => true,
-		'objectAsGenerics'=> true,
+		'objectAsGenerics' => true,
 		'templateCollectionObject' => 'iterable',
 		'annotators' => [
 			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
