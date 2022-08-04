@@ -64,6 +64,8 @@ class Event extends Entity {
 	 * Always make sure those are nullable, or in some rare cases
 	 * throw exception here if necessary.
 	 *
+	 * @see \Sandbox\Model\Entity\Event::$coordinates
+	 *
 	 * @return string|null
 	 */
 	protected function _getCoordinates(): ?string {
