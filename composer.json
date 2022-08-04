@@ -133,7 +133,7 @@
 	},
 	"prefer-stable": true,
 	"config": {
-		"preferred-install": "source",
+		"preferred-install": "dist",
 		"process-timeout": 900,
 		"platform": {
 			"php": "7.4.11"
