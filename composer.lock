@@ -1590,12 +1590,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "e9858218d666ca0574e14f5e4041af9de8482504"
+                "reference": "ebcf0b54be8f1a5e86890acc7884a85f02794b71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/e9858218d666ca0574e14f5e4041af9de8482504",
-                "reference": "e9858218d666ca0574e14f5e4041af9de8482504",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/ebcf0b54be8f1a5e86890acc7884a85f02794b71",
+                "reference": "ebcf0b54be8f1a5e86890acc7884a85f02794b71",
                 "shasum": ""
             },
             "require": {
@@ -1643,7 +1643,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2022-08-05T12:44:23+00:00"
+            "time": "2022-10-04T21:20:13+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -8039,12 +8039,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "a868b1cc297d8c95a00d2ebf0b5f5ef67d9b0046"
+                "reference": "feea9f1340aa83c71c33edb40ef0753c73a03e3c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/a868b1cc297d8c95a00d2ebf0b5f5ef67d9b0046",
-                "reference": "a868b1cc297d8c95a00d2ebf0b5f5ef67d9b0046",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/feea9f1340aa83c71c33edb40ef0753c73a03e3c",
+                "reference": "feea9f1340aa83c71c33edb40ef0753c73a03e3c",
                 "shasum": ""
             },
             "require": {
@@ -8112,7 +8112,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-21T00:03:28+00:00"
+            "time": "2022-10-04T21:40:40+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
