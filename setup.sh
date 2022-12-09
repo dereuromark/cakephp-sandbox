@@ -24,7 +24,7 @@ bower install
 ttembed-js ./webroot/assets/font-awesome/fonts/fontawesome-webfont.ttf
 
 mkdir -p ./webroot/css/fonts
-cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
+cp -R ./webroot/assets/bootstrap-icons/font/fonts/* ./webroot/css/fonts/
 cp -R ./webroot/assets/font-awesome/fonts/* ./webroot/css/fonts/
 
 echo "### CLEANUP ###";

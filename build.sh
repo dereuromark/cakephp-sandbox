@@ -28,7 +28,7 @@ bower install --allow-root
 npm i
 
 mkdir -p webroot/css/fonts
-cp -R webroot/assets/bootstrap/dist/fonts/* webroot/css/fonts/
+cp -R webroot/assets/bootstrap-icons/font/fonts/* webroot/css/fonts/
 cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/
 
 cp -R node_modules/bootstrap-icons webroot/assets/

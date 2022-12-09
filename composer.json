@@ -114,8 +114,9 @@
 		"assets": [
 			"npm i",
 			"cp -R node_modules/* webroot/assets/",
-			"cp -R webroot/assets/bootstrap/dist/fonts/* webroot/css/fonts/",
-			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/"
+			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/",
+			"cp -R node_modules/bootstrap-icons webroot/assets/",
+			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/"
 		],
 		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
 		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox",
