@@ -67,8 +67,11 @@ echo $this->Format->fontIcon('anchor', ['spin' => true]);
 ?>
 
 	<br><br>
+	<p>Note: Use <a href="https://github.com/dereuromark/cakephp-ide-helper-extra" target="_blank">IdeHelperExtra plugin</a> to get autocomplete for all icons</p>
 
-	<h3>New: Bootstrap Icons</h3>
+	<br>
+
+	<h3>Bootstrap Icons</h3>
 
 <code style="display: block;">
 	<?php
@@ -83,7 +86,11 @@ TEXT;
 	echo $this->Format->icon('info-circle-fill', ['iconNamespace' => 'bi']);
 	?>
 
+
 	<br><br>
+	<p>Note: Use <a href="https://github.com/dereuromark/cakephp-ide-helper-extra" target="_blank">IdeHelperExtra plugin</a> to get autocomplete for all icons</p>
+
+	<br>
 
 	<h3>Other</h3>
 <code style="display: block;">
