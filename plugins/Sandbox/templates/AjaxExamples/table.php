@@ -28,16 +28,16 @@
 			?>
 			<tr>
 				<td>
-					<?php echo $this->Data->countryIcon($country['iso2']); ?>
+					<?php echo $this->Data->countryIcon($country->iso2); ?>
 				</td>
 				<td>
-					<?php echo h($country['name']); ?>
+					<?php echo h($country->name); ?>
 				</td>
 				<td>
-					<?php echo h($country['iso2']); ?>
+					<?php echo h($country->iso2); ?>
 				</td>
 				<td class="actions">
-					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country['id']], ['class' => 'btn btn-secondary ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country['name'])]); ?>
+					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country->id], ['class' => 'btn btn-secondary ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country->name)]); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

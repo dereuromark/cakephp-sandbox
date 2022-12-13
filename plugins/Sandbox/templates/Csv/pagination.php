@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array $countries
+ * @var array<\Data\Model\Entity\Country> $countries
  */
 ?>
 <div class="page index">
@@ -20,19 +20,19 @@
 			?>
 			<tr>
 				<td>
-					<?php echo $this->Data->countryIcon($country['iso2']); ?>
+					<?php echo $this->Data->countryIcon($country->iso2); ?>
 				</td>
 				<td>
-					<?php echo h($country['name']); ?>
+					<?php echo h($country->name); ?>
 				</td>
 				<td>
-					<?php echo h($country['iso2']); ?>
+					<?php echo h($country->iso2); ?>
 				</td>
 				<td>
-					<?php echo h($country['iso3']); ?>
+					<?php echo h($country->iso3); ?>
 				</td>
 				<td>
-					<?php echo $this->Time->nice($country['modified']); ?>
+					<?php echo $this->Time->nice($country->modified); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

@@ -6300,12 +6300,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/cakephp-statemachine.git",
-                "reference": "81b6ca3c9fddf5dbacc8d863f4096f77a9d6c4c5"
+                "reference": "0ada54c3c6ccec3622f77b7f3a990d2a4fefa58a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/81b6ca3c9fddf5dbacc8d863f4096f77a9d6c4c5",
-                "reference": "81b6ca3c9fddf5dbacc8d863f4096f77a9d6c4c5",
+                "url": "https://api.github.com/repos/spryker/cakephp-statemachine/zipball/0ada54c3c6ccec3622f77b7f3a990d2a4fefa58a",
+                "reference": "0ada54c3c6ccec3622f77b7f3a990d2a4fefa58a",
                 "shasum": ""
             },
             "require": {
@@ -6344,9 +6344,9 @@
             "description": "CakePHP StateMachine Plugin",
             "support": {
                 "issues": "https://github.com/spryker/cakephp-statemachine/issues",
-                "source": "https://github.com/spryker/cakephp-statemachine/tree/master"
+                "source": "https://github.com/spryker/cakephp-statemachine/tree/1.3.1"
             },
-            "time": "2022-10-04T16:01:57+00:00"
+            "time": "2022-12-12T14:40:41+00:00"
         },
         {
             "name": "symfony/config",
@@ -7502,16 +7502,16 @@
         },
         {
             "name": "tecnickcom/tcpdf",
-            "version": "6.6.0",
+            "version": "6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "154bba45ffc9c2a049aa9e21501d02472b24deb4"
+                "reference": "a336b531f6f6b5487fca0caf034a671d4e60df5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/154bba45ffc9c2a049aa9e21501d02472b24deb4",
-                "reference": "154bba45ffc9c2a049aa9e21501d02472b24deb4",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/a336b531f6f6b5487fca0caf034a671d4e60df5c",
+                "reference": "a336b531f6f6b5487fca0caf034a671d4e60df5c",
                 "shasum": ""
             },
             "require": {
@@ -7562,7 +7562,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tecnickcom/TCPDF/issues",
-                "source": "https://github.com/tecnickcom/TCPDF/tree/6.6.0"
+                "source": "https://github.com/tecnickcom/TCPDF/tree/v"
             },
             "funding": [
                 {
@@ -7570,7 +7570,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2022-12-06T09:28:13+00:00"
+            "time": "2022-12-12T14:42:28+00:00"
         },
         {
             "name": "twig/markdown-extra",
@@ -8123,12 +8123,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper-extra.git",
-                "reference": "c3f6888f6fb0c55601987b9d9106ac6302a0ee4d"
+                "reference": "8621fe8853aa3d9827786f3063f2c4ccae057be0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper-extra/zipball/c3f6888f6fb0c55601987b9d9106ac6302a0ee4d",
-                "reference": "c3f6888f6fb0c55601987b9d9106ac6302a0ee4d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper-extra/zipball/8621fe8853aa3d9827786f3063f2c4ccae057be0",
+                "reference": "8621fe8853aa3d9827786f3063f2c4ccae057be0",
                 "shasum": ""
             },
             "require": {
@@ -8184,7 +8184,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-ide-helper-extra/issues",
                 "source": "https://github.com/dereuromark/cakephp-ide-helper-extra/"
             },
-            "time": "2022-09-02T14:10:08+00:00"
+            "time": "2022-12-12T22:05:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-model-graph",
@@ -8606,16 +8606,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.13.1",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "aac44118344d197e6d5f7c6cee91885f0a89acdd"
+                "reference": "6ff970a7101acfe99b3048e4bbfbc094e55c5b04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/aac44118344d197e6d5f7c6cee91885f0a89acdd",
-                "reference": "aac44118344d197e6d5f7c6cee91885f0a89acdd",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6ff970a7101acfe99b3048e4bbfbc094e55c5b04",
+                "reference": "6ff970a7101acfe99b3048e4bbfbc094e55c5b04",
                 "shasum": ""
             },
             "require": {
@@ -8645,22 +8645,22 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.13.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.15.0"
             },
-            "time": "2022-11-20T08:52:26+00:00"
+            "time": "2022-12-07T16:12:39+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.2",
+            "version": "1.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "d6fdf01c53978b6429f1393ba4afeca39cc68afa"
+                "reference": "709999b91448d4f2bb07daffffedc889b33e461c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d6fdf01c53978b6429f1393ba4afeca39cc68afa",
-                "reference": "d6fdf01c53978b6429f1393ba4afeca39cc68afa",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/709999b91448d4f2bb07daffffedc889b33e461c",
+                "reference": "709999b91448d4f2bb07daffffedc889b33e461c",
                 "shasum": ""
             },
             "require": {
@@ -8690,7 +8690,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.2"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.3"
             },
             "funding": [
                 {
@@ -8706,20 +8706,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-10T09:56:11+00:00"
+            "time": "2022-12-13T10:28:10+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "9.2.19",
+            "version": "9.2.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c77b56b63e3d2031bd8997fcec43c1925ae46559"
+                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c77b56b63e3d2031bd8997fcec43c1925ae46559",
-                "reference": "c77b56b63e3d2031bd8997fcec43c1925ae46559",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/af7463c955007de36db0c5e26d03e2f933c2e980",
+                "reference": "af7463c955007de36db0c5e26d03e2f933c2e980",
                 "shasum": ""
             },
             "require": {
@@ -8775,7 +8775,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.19"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.20"
             },
             "funding": [
                 {
@@ -8783,7 +8783,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-18T07:47:47+00:00"
+            "time": "2022-12-13T07:49:28+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -10104,32 +10104,32 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "8.6.4",
+            "version": "8.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "8a02c83e59c3230a2a4367b29956a2f2b56e3a24"
+                "reference": "326d195209d196be02f8c2a0034529262fc7ffcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/8a02c83e59c3230a2a4367b29956a2f2b56e3a24",
-                "reference": "8a02c83e59c3230a2a4367b29956a2f2b56e3a24",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/326d195209d196be02f8c2a0034529262fc7ffcc",
+                "reference": "326d195209d196be02f8c2a0034529262fc7ffcc",
                 "shasum": ""
             },
             "require": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.6.2 || ^0.7",
                 "php": "^7.2 || ^8.0",
-                "phpstan/phpdoc-parser": ">=1.11.0 <1.14.0",
+                "phpstan/phpdoc-parser": ">=1.15.0 <1.16.0",
                 "squizlabs/php_codesniffer": "^3.7.1"
             },
             "require-dev": {
                 "phing/phing": "2.17.4",
                 "php-parallel-lint/php-parallel-lint": "1.3.2",
-                "phpstan/phpstan": "1.4.10|1.9.2",
-                "phpstan/phpstan-deprecation-rules": "1.0.0",
-                "phpstan/phpstan-phpunit": "1.0.0|1.2.2",
+                "phpstan/phpstan": "1.4.10|1.9.3",
+                "phpstan/phpstan-deprecation-rules": "1.1.0",
+                "phpstan/phpstan-phpunit": "1.0.0|1.3.1",
                 "phpstan/phpstan-strict-rules": "1.4.4",
-                "phpunit/phpunit": "7.5.20|8.5.21|9.5.26"
+                "phpunit/phpunit": "7.5.20|8.5.21|9.5.27"
             },
             "type": "phpcodesniffer-standard",
             "extra": {
@@ -10153,7 +10153,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/8.6.4"
+                "source": "https://github.com/slevomat/coding-standard/tree/8.7.0"
             },
             "funding": [
                 {
@@ -10165,7 +10165,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-14T09:26:24+00:00"
+            "time": "2022-12-13T15:02:08+00:00"
         },
         {
             "name": "spryker/code-sniffer",
