@@ -4,6 +4,11 @@
  * @var string $name
  * @var array $icons
  */
+
+$iconCount = 0;
+foreach ($icons as $iconSet) {
+	$iconCount += count($iconSet);
+}
 ?>
 
 <nav class="actions col-sm-4 col-12">
@@ -15,7 +20,7 @@
 
 	<h3><?php echo h(ucfirst($name)); ?></h3>
 
-	<p><?php echo count($icons); ?> icons in this set.</p>
+	<p><?php echo $iconCount; ?> icons in this set.</p>
 
 	<?php foreach ($icons as $iconSet) { ?>
 	<div class="row">
