@@ -112,7 +112,7 @@
 			"bin/cake migrations migrate"
 		],
 		"assets": [
-			"npm i",
+			"npm i --from-lockfile",
 			"cp -R node_modules/* webroot/assets/",
 			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/",
 			"cp -R webroot/assets/fontawesome-free/webfonts webroot/css/",

@@ -25,14 +25,7 @@ php composer.phar migrate --no-interaction
 
 echo "### ASSETS ###";
 bower install --allow-root
-npm i
-
-mkdir -p webroot/css/fonts
-cp -R webroot/assets/bootstrap-icons/font/fonts/* webroot/css/fonts/
-cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/
-
-cp -R node_modules/bootstrap-icons webroot/assets/
-cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/
+COMPOSER_ALLOW_SUPERUSER=1 composer assets
 
 bin/cake asset_compress build
 

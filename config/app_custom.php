@@ -5,7 +5,6 @@ use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 use Tools\View\Icon\BootstrapIcon;
 use Tools\View\Icon\FeatherIcon;
 use Tools\View\Icon\FontAwesome4Icon;
-use Tools\View\Icon\FontAwesome5Icon;
 use Tools\View\Icon\FontAwesome6Icon;
 use Tools\View\Icon\MaterialIcon;
 
