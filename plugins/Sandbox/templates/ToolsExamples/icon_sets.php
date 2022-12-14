@@ -15,6 +15,8 @@
 
 	<h3><?php echo h(ucfirst($name)); ?></h3>
 
+	<p><?php echo count($icons); ?> icons in this set.</p>
+
 	<?php foreach ($icons as $iconSet) { ?>
 	<div class="row">
 		<?php foreach ($iconSet as $icon) { ?>
