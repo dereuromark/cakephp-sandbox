@@ -2,6 +2,12 @@
 
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
+use Tools\View\Icon\BootstrapIcon;
+use Tools\View\Icon\FeatherIcon;
+use Tools\View\Icon\FontAwesome4Icon;
+use Tools\View\Icon\FontAwesome5Icon;
+use Tools\View\Icon\FontAwesome6Icon;
+use Tools\View\Icon\MaterialIcon;
 
 $debug = false;
 if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
@@ -168,6 +174,36 @@ return [
 		],
 	],
 
+	'Icon' => [
+		'sets' => [
+			'fa4' => FontAwesome4Icon::class,
+			'fa6' => FontAwesome6Icon::class,
+			'bs' => BootstrapIcon::class,
+			'material' => MaterialIcon::class,
+			'feather' => FeatherIcon::class,
+		],
+		// For being able to parse the available icons
+		'paths' => [
+			'fa4' => WWW_ROOT . 'assets/font-awesome/less/variables.less',
+			'fa6' => WWW_ROOT . 'assets/fontawesome-free/metadata/icons.json',
+			'bs' => WWW_ROOT . 'assets/bootstrap-icons/font/bootstrap-icons.json',
+			'material' => WWW_ROOT . 'assets/material-symbols/index.d.ts',
+			'feather' => WWW_ROOT . 'assets/feather-icons/dist/icons.json',
+		],
+		'map' => [
+			'see' => 'fa:eye',
+			'details' => 'fa:chevron-right',
+			'admin' => 'fa:shield',
+			'login' => 'fa:sign-in',
+			'logout' => 'fa:sign-out',
+			'translate' => 'fa:language',
+			'prev' => 'fa:arrow-left',
+			'next' => 'fa:arrow-right',
+			'foo' => 'feather:zoom-in',
+			'bar' => 'material:zoom_out',
+		],
+	],
+
 	'CacheConfig' => [
 		'check' => null,
 		'engine' => 'default',
@@ -202,6 +238,7 @@ return [
 		'generatorTasks' => [
 			\Burzum\CakeServiceLayer\Generator\Task\ServiceTask::class,
 			\IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task::class,
+			\IdeHelperExtra\Tools\Generator\Task\IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [
 			\Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask::class,

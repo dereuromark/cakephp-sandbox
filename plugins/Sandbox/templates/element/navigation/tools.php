@@ -25,7 +25,7 @@
 	<li><?php echo $this->Navigation->link('Datetime validation', ['action' => 'datetime'])?></li>
 
 	<li><?php echo $this->Navigation->link('Format and Font Icons', ['action' => 'formatHelper'])?></li>
-	<li><?php echo $this->Navigation->link('Icons', ['action' => 'icons'])?></li>
+	<li><?php echo $this->Navigation->link('Icons', ['action' => 'icons'], ['class' => $this->getRequest()->getParam('action') === 'iconSets' ? 'active' : null])?></li>
 
 	<li><?php echo $this->Navigation->link('QR Code', ['action' => 'qr'])?></li>
 	<li><?php echo $this->Navigation->link('Gravatar images', ['action' => 'gravatar'])?></li>

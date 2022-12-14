@@ -2,8 +2,11 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
+use Tools\View\Icon\IconCollection;
 
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
@@ -411,6 +414,31 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function formatHelper() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function icons() {
+	}
+
+	/**
+	 * @param string|null $name
+	 *
+	 * @return void
+	 */
+	public function iconSets(?string $name = null) {
+		$config = (array)Configure::read('Icon');
+		if (!$name || !isset($config['sets'][$name])) {
+			throw new NotFoundException('No such icon set');
+		}
+
+		$config['sets'] = [
+			$name => $config['sets'][$name],
+		];
+
+		$icons = (new IconCollection($config))->names();
+		$this->set(compact('icons', 'name'));
 	}
 
 	/**
