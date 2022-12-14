@@ -2626,12 +2626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "1ef0c422672c3d3f265cc6a14f6666f8b11c176a"
+                "reference": "9b4e30f83e0e89cf5b7afcae73a74c9166905ebf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/1ef0c422672c3d3f265cc6a14f6666f8b11c176a",
-                "reference": "1ef0c422672c3d3f265cc6a14f6666f8b11c176a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/9b4e30f83e0e89cf5b7afcae73a74c9166905ebf",
+                "reference": "9b4e30f83e0e89cf5b7afcae73a74c9166905ebf",
                 "shasum": ""
             },
             "require": {
@@ -2684,7 +2684,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2022-12-14T13:38:11+00:00"
+            "time": "2022-12-14T18:05:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -10169,16 +10169,16 @@
         },
         {
             "name": "spryker/code-sniffer",
-            "version": "0.17.14",
+            "version": "0.17.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spryker/code-sniffer.git",
-                "reference": "4daed6a3ad7cda5c5b4c95a6cf4cb765d7ab1089"
+                "reference": "9f28d1e0e86c092569ad9aae436b111b7de07cd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spryker/code-sniffer/zipball/4daed6a3ad7cda5c5b4c95a6cf4cb765d7ab1089",
-                "reference": "4daed6a3ad7cda5c5b4c95a6cf4cb765d7ab1089",
+                "url": "https://api.github.com/repos/spryker/code-sniffer/zipball/9f28d1e0e86c092569ad9aae436b111b7de07cd1",
+                "reference": "9f28d1e0e86c092569ad9aae436b111b7de07cd1",
                 "shasum": ""
             },
             "require": {
@@ -10223,7 +10223,7 @@
                 "issues": "https://github.com/spryker/code-sniffer/issues",
                 "source": "https://github.com/spryker/code-sniffer"
             },
-            "time": "2022-11-10T18:45:06+00:00"
+            "time": "2022-12-09T15:29:12+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
