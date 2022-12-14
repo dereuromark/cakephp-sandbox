@@ -17,6 +17,7 @@ _*
 /webroot/js/cjs
 /webroot/css/ccss
 /webroot/css/fonts
+/webroot/css/webfonts
 /webroot/coverage/
 /config/Migrations/schema-dump-default.lock
 /node_modules/
