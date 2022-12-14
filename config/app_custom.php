@@ -175,19 +175,27 @@ return [
 
 	'Icon' => [
 		'sets' => [
-			'fa4' => FontAwesome4Icon::class,
-			'fa6' => FontAwesome6Icon::class,
-			'bs' => BootstrapIcon::class,
-			'material' => MaterialIcon::class,
-			'feather' => FeatherIcon::class,
-		],
-		// For being able to parse the available icons
-		'paths' => [
-			'fa4' => WWW_ROOT . 'assets/font-awesome/less/variables.less',
-			'fa6' => WWW_ROOT . 'assets/fontawesome-free/metadata/icons.json',
-			'bs' => WWW_ROOT . 'assets/bootstrap-icons/font/bootstrap-icons.json',
-			'material' => WWW_ROOT . 'assets/material-symbols/index.d.ts',
-			'feather' => WWW_ROOT . 'assets/feather-icons/dist/icons.json',
+			'fa4' => [
+				'class' => FontAwesome4Icon::class,
+				'path' => WWW_ROOT . 'assets/font-awesome/less/variables.less',
+			],
+			'fa6' => [
+				'class' => FontAwesome6Icon::class,
+				'path' => WWW_ROOT . 'assets/fontawesome-free/metadata/icons.json',
+			],
+			'bs' => [
+				'class' => BootstrapIcon::class,
+				'path' => WWW_ROOT . 'assets/bootstrap-icons/font/bootstrap-icons.json',
+			],
+			'material' => [
+				'class' => MaterialIcon::class,
+				'path' => WWW_ROOT . 'assets/material-symbols/index.d.ts',
+				'namespace' => 'material-symbols-outlined',
+			],
+			'feather' => [
+				'class' => FeatherIcon::class,
+				'path' => WWW_ROOT . 'assets/feather-icons/dist/icons.json',
+			],
 		],
 		'map' => [
 			'see' => 'fa:eye',
