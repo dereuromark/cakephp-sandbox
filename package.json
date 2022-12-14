@@ -1,4 +1,6 @@
 {
+	"name": "sandbox",
+	"version": "1.0.0",
 	"dependencies": {
 		"@popperjs/core": "^2.9.2",
 		"font-awesome": "^4.7.0",
