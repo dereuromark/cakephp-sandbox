@@ -19,7 +19,7 @@
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'fa' => \Tools\View\Helper\Icon\FontAwesomeIcon::class,
+			'fa' => \Tools\View\Helper\Icon\FontAwesome4Icon::class,
 		],
 	],
 TEXT;
