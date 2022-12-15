@@ -10,10 +10,10 @@ echo $this->Html->css('/sandbox/fontello/css/webfont');
 <h3>Setup</h3>
 echo $this->Html->css('/sandbox/fontello/css/webfont');
 
-<h3>Nice <?php echo $this->Format->fontIcon('play'); ?> font-icons</h3>
+<h3>Nice font-icons</h3>
 See <a href="http://fontello.com/">fontello.com</a>
 <br /><br />
-Note: Some of the effects below are possible due to the already included font-awesome css.
+Note: Some effects below are possible due to the already included font-awesome css.
 
 <h3>Using <?php echo h('<i>');?>-tag with style font size</h3>
 <i class="icon-clouds"></i> icon-clouds

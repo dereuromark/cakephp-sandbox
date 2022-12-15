@@ -206,8 +206,6 @@ return [
 			'translate' => 'fa:language',
 			'prev' => 'fa:arrow-left',
 			'next' => 'fa:arrow-right',
-			'foo' => 'feather:zoom-in',
-			'bar' => 'material:zoom_out',
 		],
 	],
 
