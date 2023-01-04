@@ -50,6 +50,7 @@ use Cake\Mailer\TransportFactory;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
+use Detection\MobileDetect;
 use Tools\Mailer\Mailer;
 
 /**
@@ -142,12 +143,12 @@ Security::setSalt(Configure::consume('Security.salt'));
  * Setup detectors for mobile and tablet.
  */
 ServerRequest::addDetector('mobile', function ($request) {
-	$detector = new \Detection\MobileDetect();
+	$detector = new MobileDetect();
 
 	return $detector->isMobile();
 });
 ServerRequest::addDetector('tablet', function ($request) {
-	$detector = new \Detection\MobileDetect();
+	$detector = new MobileDetect();
 
 	return $detector->isTablet();
 });

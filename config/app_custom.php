@@ -1,7 +1,19 @@
 <?php
 
+use Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask;
+use Burzum\CakeServiceLayer\Generator\Task\ServiceTask;
+use Cake\Core\Configure;
+use Cake\Event\EventInterface;
+use IdeHelper\Annotator\EntityAnnotator;
+use IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task;
+use IdeHelperExtra\Tools\Generator\Task\IconRenderTask;
+use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
+use StateMachine\Illuminator\Task\EventTask;
+use StateMachine\Illuminator\Task\StateTask;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
+use Tools\Error\ErrorLogger;
+use Tools\Mailer\Mailer;
 use Tools\View\Icon\BootstrapIcon;
 use Tools\View\Icon\FeatherIcon;
 use Tools\View\Icon\FontAwesome4Icon;
@@ -21,7 +33,7 @@ return [
 	],
 
 	'Error' => [
-		'logger' => \Tools\Error\ErrorLogger::class,
+		'logger' => ErrorLogger::class,
 	],
 
 	'Log' => [
@@ -81,7 +93,7 @@ return [
 			'warning',
 			'notice',
 		],
-		'monitorCallback' => function (\Cake\Event\EventInterface $event) {
+		'monitorCallback' => function (EventInterface $event) {
 			/** @var \DatabaseLog\Model\Table\DatabaseLogsTable $logsTable */
 			$logsTable = $event->getSubject();
 
@@ -93,8 +105,8 @@ return [
 				$content .= $logsTable->format($log);
 			}
 
-			$mailer = new \Tools\Mailer\Mailer();
-			$mailer->setTo(\Cake\Core\Configure::read('Config.adminEmail'));
+			$mailer = new Mailer();
+			$mailer->setTo(Configure::read('Config.adminEmail'));
 			$subject = count($logs) . ' new error log entries';
 			$mailer->setSubject($subject);
 			$mailer->deliver($content);
@@ -238,19 +250,19 @@ return [
 		'objectAsGenerics' => true,
 		'templateCollectionObject' => 'iterable',
 		'annotators' => [
-			\IdeHelper\Annotator\EntityAnnotator::class => \Shim\Annotator\EntityAnnotator::class,
+			EntityAnnotator::class => ShimEntityAnnotator::class,
 		],
 		'generatorTasks' => [
-			\Burzum\CakeServiceLayer\Generator\Task\ServiceTask::class,
-			\IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task::class,
-			\IdeHelperExtra\Tools\Generator\Task\IconRenderTask::class,
+			ServiceTask::class,
+			FormatIconFontAwesome4Task::class,
+			IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [
-			\Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask::class,
+			ServiceAwareClassAnnotatorTask::class,
 		],
 		'illuminatorTasks' => [
-			\StateMachine\Illuminator\Task\StateTask::class,
-			\StateMachine\Illuminator\Task\EventTask::class,
+			StateTask::class,
+			EventTask::class,
 		],
 		'includedPlugins' => [
 			'Sandbox',

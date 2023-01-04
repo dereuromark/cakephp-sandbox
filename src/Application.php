@@ -10,6 +10,7 @@ use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
+use Exception;
 use Setup\Middleware\MaintenanceMiddleware;
 use Tools\Error\Middleware\ErrorHandlerMiddleware;
 
@@ -66,7 +67,7 @@ class Application extends BaseApplication {
 			$this->addPlugin('DebugKit');
 			try {
 				$this->addPlugin('TestHelper');
-			} catch (\Exception $exception) {
+			} catch (Exception $exception) {
 				// This is OK live
 			}
 		}
