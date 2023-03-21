@@ -2,7 +2,9 @@
 
 namespace StateMachineSandbox\Queue\Task;
 
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Datasource\ModelAwareTrait;
+use Cake\Http\Exception\NotFoundException;
 use Queue\Queue\Task;
 use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;
@@ -24,7 +26,12 @@ class SimulatePaymentResultTask extends Task {
 	 */
 	public function run(array $data, int $jobId): void {
 		$this->loadModel('StateMachineSandbox.Registrations');
-		$registration = $this->Registrations->get($data['id'], ['contain' => ['RegistrationStates']]);
+		try {
+			$registration = $this->Registrations->get($data['id'], ['contain' => ['RegistrationStates']]);
+		} catch (RecordNotFoundException $e) {
+			// Someone already removed the registration, for demo we can ignore
+			return;
+		}
 
 		$stateMachineFacade = new StateMachineFacade();
 		$itemDto = new ItemDto();

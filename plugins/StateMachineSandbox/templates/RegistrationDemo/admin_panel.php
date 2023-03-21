@@ -63,6 +63,8 @@
 
 					<?php if ($queuedJob->failed) {
 						echo '<div class="error inline-message">Failed! ' . $this->Queue->failureStatus($queuedJob) . '.<br>' . h($this->Text->truncate($queuedJob->failure_message, 200)) . '';
+
+						echo '<div>' . $this->Form->postLink('Remove', ['action' => 'removeJob', $queuedJob->id]) . '</div>';
 					} ?>
 				</li>
 			<?php } ?>
@@ -85,4 +87,12 @@
 		<p><?php echo $this->Form->postLink('Remove', ['controller' => 'Registrations', 'action' => 'delete', $registration->id], ['confirm' => __('Are you sure you want to delete # {0}?', $registration->id), 'class' => 'btn btn-danger']); ?> (demo only)</p>
 
 	<?php } ?>
+
+
+	<h2>Background processing</h2>
+	<p>
+	In the background crontab is triggering the state machine conditions and timeouts every minute:
+	</p>
+	<code><pre>* * * * * cd /sandbox && bin/cake state_machine check_conditions Registration -q
+* * * * * cd /sandbox && bin/cake state_machine check_timeouts Registration -q</pre></code>
 </div>

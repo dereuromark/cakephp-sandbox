@@ -153,6 +153,25 @@ class RegistrationDemoController extends AppController {
 	}
 
 	/**
+	 * @param int|null $id
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function removeJob($id = null) {
+		$jobType = 'StateMachineSandbox.SimulatePaymentResult';
+		$queuedJobsTable = $this->getTableLocator()->get('Queue.QueuedJobs');
+		$queuedJob = $queuedJobsTable->get($id);
+		if ($queuedJob->completed || $queuedJob->job_type !== $jobType || strpos($queuedJob->reference, 'registration-') !== 0) {
+			throw new NotFoundException('Invalid queue job ID');
+		}
+		$queuedJobsTable->deleteOrFail($queuedJob);
+
+		$this->Flash->success('Job removed');
+
+		return $this->redirect(['action' => 'adminPanel']);
+	}
+
+	/**
 	 * @param array<\StateMachineSandbox\Model\Entity\Registration> $registrations
 	 * @return void
 	 */
@@ -169,12 +188,20 @@ class RegistrationDemoController extends AppController {
 	 * @return void
 	 */
 	protected function provideQueuedJobs(array $registrations): void {
+		$references = [];
+		foreach ($registrations as $registration) {
+			$references[] = 'registration-' . $registration->id;
+		}
+		if (!$references) {
+			return;
+		}
+
 		$jobTypes = [
 			'StateMachineSandbox.SimulatePaymentResult',
 		];
 		$queuedJobsTable = $this->getTableLocator()->get('Queue.QueuedJobs');
 		$queuedJobs = $queuedJobsTable->find()
-			->where(['job_task IN' => $jobTypes, 'completed IS' => null])
+			->where(['job_task IN' => $jobTypes, 'completed IS' => null, 'reference IN' => $references])
 			->all()->toArray();
 
 		$this->set(compact('queuedJobs'));
