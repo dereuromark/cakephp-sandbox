@@ -88,6 +88,8 @@
 
 	<?php } ?>
 
+	<h2>Logs</h2>
+	<p>Every single transition (or try thereof) is logged. For simplicity those are now not shown here.</p>
 
 	<h2>Background processing</h2>
 	<p>
