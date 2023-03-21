@@ -48,5 +48,6 @@
 		The state machine above is written in <a href="https://github.com/dereuromark/cakephp-sandbox/blob/master/plugins/StateMachineSandbox/config/StateMachines/Registration/Registration01.xml" target="_blank">XML</a>.
 		It also shows the commands and conditions that directly link to <a href="https://github.com/dereuromark/cakephp-sandbox/tree/master/plugins/StateMachineSandbox/src/StateMachine" target="_blank">PHP code</a>.
 	</p>
+	<p>For more technical details, follow <?php echo $this->Html->link('the linked docs', ['controller' => 'StateMachineSandbox']); ?> to the CakePHP plugin itself.</p>
 
 </div>
