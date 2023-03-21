@@ -142,7 +142,8 @@
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
-			"cakephp/plugin-installer": true
+			"cakephp/plugin-installer": true,
+			"php-http/discovery": true
 		}
 	}
 }
