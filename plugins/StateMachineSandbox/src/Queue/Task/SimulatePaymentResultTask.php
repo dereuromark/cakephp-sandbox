@@ -4,7 +4,6 @@ namespace StateMachineSandbox\Queue\Task;
 
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\Datasource\ModelAwareTrait;
-use Cake\Http\Exception\NotFoundException;
 use Queue\Queue\Task;
 use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;

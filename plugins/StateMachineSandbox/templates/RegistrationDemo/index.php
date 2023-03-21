@@ -43,4 +43,10 @@
 
 	<p>A real life example can often be 10-20x larger in complexity.</p>
 
+	<h2>Code behind it</h2>
+	<p>
+		The state machine above is written in <a href="https://github.com/dereuromark/cakephp-sandbox/blob/master/plugins/StateMachineSandbox/config/StateMachines/Registration/Registration01.xml" target="_blank">XML</a>.
+		It also shows the commands and conditions that directly link to <a href="https://github.com/dereuromark/cakephp-sandbox/tree/master/plugins/StateMachineSandbox/src/StateMachine" target="_blank">PHP code</a>.
+	</p>
+
 </div>
