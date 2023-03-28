@@ -7,6 +7,7 @@ use Cake\Event\EventInterface;
 use IdeHelper\Annotator\EntityAnnotator;
 use IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task;
 use IdeHelperExtra\Tools\Generator\Task\IconRenderTask;
+use Queue\Utility\JsonSerializer;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
@@ -277,6 +278,7 @@ return [
 	],
 
 	'Queue' => [
+		'serializerClass' => JsonSerializer::class,
 		'sleeptime' => 5,
 		'gcprob' => 10,
 		'maxworkers' => 3,

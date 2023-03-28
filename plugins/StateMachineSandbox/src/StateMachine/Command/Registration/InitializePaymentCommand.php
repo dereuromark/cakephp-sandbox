@@ -4,15 +4,15 @@ namespace StateMachineSandbox\StateMachine\Command\Registration;
 
 use Cake\Datasource\ModelAwareTrait;
 use Cake\I18n\FrozenTime;
+use Queue\Model\Table\QueuedJobsTable;
 use StateMachine\Dependency\StateMachineCommandInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 
-/**
- * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
- */
 class InitializePaymentCommand implements StateMachineCommandInterface {
 
 	use ModelAwareTrait;
+
+	protected QueuedJobsTable $QueuedJobs;
 
 	/**
 	 * @param \StateMachine\Dto\StateMachine\ItemDto $itemDto

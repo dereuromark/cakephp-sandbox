@@ -6,14 +6,14 @@ use Cake\Datasource\ModelAwareTrait;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use StateMachine\Dependency\StateMachineConditionInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
+use StateMachineSandbox\Model\Table\RegistrationsTable;
 
-/**
- * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- */
 class CheckApprovalCondition implements StateMachineConditionInterface {
 
 	use ModelAwareTrait;
 	use LocatorAwareTrait;
+
+	protected RegistrationsTable $Registrations;
 
 	/**
 	 * @param \StateMachine\Dto\StateMachine\ItemDto $itemDto

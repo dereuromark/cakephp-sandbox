@@ -89,12 +89,12 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$this->Users = TableRegistry::get('Users');
-		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user);
+		$Users = TableRegistry::get('Users');
+		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
+		$user = $Users->newEntity($data);
+		$result = $Users->save($user);
 		$this->assertTrue((bool)$result);
-		$this->Users->removeBehavior('Passwordable');
+		$Users->removeBehavior('Passwordable');
 
 		$data = [
 			'login' => 'admin', 'password' => '123456',
@@ -113,12 +113,12 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$this->Users = TableRegistry::get('Users');
-		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user);
+		$Users = TableRegistry::get('Users');
+		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
+		$user = $Users->newEntity($data);
+		$result = $Users->save($user);
 		$this->assertTrue((bool)$result);
-		$this->Users->removeBehavior('Passwordable');
+		$Users->removeBehavior('Passwordable');
 
 		$data = [
 			'login' => 'admin@example.com', 'password' => '123456',
@@ -137,12 +137,12 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$this->Users = TableRegistry::get('Users');
-		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $this->Users->newEntity($data);
-		$result = $this->Users->save($user);
+		$Users = TableRegistry::get('Users');
+		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
+		$user = $Users->newEntity($data);
+		$result = $Users->save($user);
 		$this->assertTrue((bool)$result);
-		$this->Users->removeBehavior('Passwordable');
+		$Users->removeBehavior('Passwordable');
 
 		$data = [
 			'login' => 'admin', 'password' => '123456',
@@ -202,8 +202,8 @@ class AccountControllerTest extends IntegrationTestCase {
 	public function testChangePasswordPost() {
 		$this->skipIf(true); // not needed right now
 
-		$this->Users = TableRegistry::get('Users');
-		$username = $this->Users->field('username');
+		$Users = TableRegistry::get('Users');
+		$username = $Users->field('username');
 
 		$session = ['Auth' => ['Tmp' => ['id' => '1']]];
 		$this->session($session);
