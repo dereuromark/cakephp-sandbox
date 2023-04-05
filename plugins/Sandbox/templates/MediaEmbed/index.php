@@ -33,7 +33,7 @@ if (!empty($mediaObject)) {
 ?>
 <h3>Result</h3>
 	<p>
-		Type: <b><?php echo h($mediaObject->stub('name')); ?></b> | ID: <b><?php echo h($mediaObject->id()); ?></b>
+		Type: <b><?php echo h($mediaObject->name()); ?></b> | ID: <b><?php echo h($mediaObject->id()); ?></b>
 	</p>
 
 	<p>
@@ -45,9 +45,9 @@ if (!empty($mediaObject)) {
 
 	<h4>Details</h4>
 	<?php
-		$stub = $mediaObject->stub();
+		$debugInfo = $mediaObject->__debugInfo();
 	?>
-	<pre><?php echo h(print_r($stub, true)); ?></pre>
+	<pre><?php echo h(print_r($debugInfo, true)); ?></pre>
 <?php
 }
 ?>
