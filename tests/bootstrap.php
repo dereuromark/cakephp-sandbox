@@ -1,6 +1,8 @@
 <?php
 
 use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
+use Cake\Filesystem\Folder;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
@@ -24,7 +26,7 @@ foreach ($logs as $log) {
 	] + $config);
 }
 
-$Tmp = new Cake\Filesystem\Folder(TMP);
+$Tmp = new Folder(TMP);
 $Tmp->create(TMP . 'cache/models', 0770);
 $Tmp->create(TMP . 'cache/persistent', 0770);
 $Tmp->create(TMP . 'cache/views', 0770);
@@ -42,8 +44,8 @@ require ROOT . '/config/routes.php';
 
 require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
 
-Cake\Datasource\ConnectionManager::drop('test');
-Cake\Datasource\ConnectionManager::setConfig('test', [
+ConnectionManager::drop('test');
+ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
 	'driver' => getenv('db_class') ?: null,
 	'dsn' => getenv('db_dsn') ?: null,

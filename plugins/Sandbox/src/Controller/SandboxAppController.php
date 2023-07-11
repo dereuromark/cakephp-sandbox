@@ -20,7 +20,9 @@ class SandboxAppController extends AppController {
 		foreach ($methods as $method) {
 			$actions[] = $method->getName();
 		}
-		$parentMethods = get_class_methods(get_parent_class($Controller));
+		/** @var class-string $parentClass */
+		$parentClass = get_parent_class($Controller);
+		$parentMethods = get_class_methods($parentClass);
 		$parentMethods[] = 'index';
 
 		$actions = array_diff($actions, $parentMethods);
