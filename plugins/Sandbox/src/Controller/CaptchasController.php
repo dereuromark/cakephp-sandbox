@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Tools\Form\ContactForm;
 
 /**
@@ -35,6 +36,10 @@ class CaptchasController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function math() {
+		if ($this->request->getQuery('max')) {
+			Configure::write('Captcha.maxPerUser', (int)$this->request->getQuery('max'));
+		}
+
 		$animal = $this->Animals->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
