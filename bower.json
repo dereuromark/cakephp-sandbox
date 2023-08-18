@@ -6,7 +6,7 @@
 		"jquery": "~1.12",
 		"font-awesome": "^4.7",
 		"jquery-ui": "~1.11",
-		"eonasdan-bootstrap-datetimepicker": "latest",
+		"eonasdan-bootstrap-datetimepicker": "^4.*",
 		"moment": "latest",
 		"clockpicker": "latest",
 		"bootstrap-star-rating": "^4.0.3",
