@@ -36,8 +36,12 @@ class CaptchasController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function math() {
-		if ($this->request->getQuery('max')) {
-			Configure::write('Captcha.maxPerUser', (int)$this->request->getQuery('max'));
+		if ($this->request->getQuery('reset')) {
+			$this->Captcha->resetFor(env('REMOTE_ADDR'));
+
+			$this->Flash->success('Resetted, now you can try again.');
+
+			return $this->redirect(['action' => 'math']);
 		}
 
 		$animal = $this->Animals->newEmptyEntity();

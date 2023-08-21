@@ -299,6 +299,10 @@ return [
 		'deprecationType' => E_USER_NOTICE,
 	],
 
+	'Captcha' => [
+		'maxPerUser' => 5,
+	],
+
 	'Geocoder' => [
 		'apiKey' => '',
 	],

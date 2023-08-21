@@ -25,9 +25,9 @@
 	<p>Note:</p>
 	<ul>
 		<li>There is also a 2 second min-time by default! If you (as bot) do it too fast, this is also invalidated.</li>
-		<li>The `Captcha.maxPerUser` value sets a flood limit (currently <?php echo h((string)$this->Configure->read('Captcha.maxPerUser') ?: 1000); ?>) to avoid such attempts.</li>
+		<li>The `Captcha.maxPerUser` value sets a flood limit (currently <?php echo h((string)$this->Configure->readOrFail('Captcha.maxPerUser')); ?>) to avoid such attempts.</li>
 	</ul>
-	<p>For testing purposes you can adjust the `maxPerUser` value here using query string `?max=...`: <?php echo $this->Html->link('Adjust to 10', ['action' => 'math', '?' => ['max' => '10']])?></p>
+	<p>For testing purposes you can reset the DB for your user using query string `?reset=1`: <?php echo $this->Html->link('Reset', ['action' => 'math', '?' => ['reset' => '1']])?>. Then you have again those tries.</p>
 
 <h3>Key Goals</h3>
 <ul>

@@ -221,16 +221,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "4.4.16",
+            "version": "4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f68c3c6f24d65cb869cceaa8975f2ca2e1d0f5b7"
+                "reference": "9ff254d6d60720089dec1e10aa1907e24e39a98e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f68c3c6f24d65cb869cceaa8975f2ca2e1d0f5b7",
-                "reference": "f68c3c6f24d65cb869cceaa8975f2ca2e1d0f5b7",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/9ff254d6d60720089dec1e10aa1907e24e39a98e",
+                "reference": "9ff254d6d60720089dec1e10aa1907e24e39a98e",
                 "shasum": ""
             },
             "require": {
@@ -329,7 +329,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-08-05T15:33:05+00:00"
+            "time": "2023-08-20T02:36:22+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1541,12 +1541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "f309da52131fa53338b222416cb467f4011b5395"
+                "reference": "bbcb52794779347dbe06808e7ee49386de901d12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/f309da52131fa53338b222416cb467f4011b5395",
-                "reference": "f309da52131fa53338b222416cb467f4011b5395",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/bbcb52794779347dbe06808e7ee49386de901d12",
+                "reference": "bbcb52794779347dbe06808e7ee49386de901d12",
                 "shasum": ""
             },
             "require": {
@@ -1589,7 +1589,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2023-08-13T18:09:47+00:00"
+            "time": "2023-08-21T16:30:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -9046,16 +9046,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.10",
+            "version": "9.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a6d351645c3fe5a30f5e86be6577d946af65a328"
+                "reference": "810500e92855eba8a7a5319ae913be2da6f957b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a6d351645c3fe5a30f5e86be6577d946af65a328",
-                "reference": "a6d351645c3fe5a30f5e86be6577d946af65a328",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/810500e92855eba8a7a5319ae913be2da6f957b0",
+                "reference": "810500e92855eba8a7a5319ae913be2da6f957b0",
                 "shasum": ""
             },
             "require": {
@@ -9129,7 +9129,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.10"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.11"
             },
             "funding": [
                 {
@@ -9145,7 +9145,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-07-10T04:04:23+00:00"
+            "time": "2023-08-19T07:10:56+00:00"
         },
         {
             "name": "psy/psysh",
