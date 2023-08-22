@@ -2,7 +2,6 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Core\Configure;
 use Tools\Form\ContactForm;
 
 /**
