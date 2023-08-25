@@ -1541,12 +1541,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "46751e3f19b8afdaf93fe5d73c7451d4c36eefbd"
+                "reference": "bd36b3e347f4fea218091b7f010fb17b4f0fa4b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/46751e3f19b8afdaf93fe5d73c7451d4c36eefbd",
-                "reference": "46751e3f19b8afdaf93fe5d73c7451d4c36eefbd",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/bd36b3e347f4fea218091b7f010fb17b4f0fa4b3",
+                "reference": "bd36b3e347f4fea218091b7f010fb17b4f0fa4b3",
                 "shasum": ""
             },
             "require": {
@@ -1589,7 +1589,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2023-08-24T00:48:27+00:00"
+            "time": "2023-08-24T22:55:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -8665,16 +8665,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.30",
+            "version": "1.10.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "2910afdd3fe33e5afd71c09f3fb0d0845b48c410"
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2910afdd3fe33e5afd71c09f3fb0d0845b48c410",
-                "reference": "2910afdd3fe33e5afd71c09f3fb0d0845b48c410",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
+                "reference": "c47e47d3ab03137c0e121e77c4d2cb58672f6d44",
                 "shasum": ""
             },
             "require": {
@@ -8723,7 +8723,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-22T13:48:25+00:00"
+            "time": "2023-08-24T21:54:50+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
