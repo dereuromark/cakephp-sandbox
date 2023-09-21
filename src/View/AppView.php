@@ -57,7 +57,7 @@ class AppView extends View {
 	 * @return void
 	 */
 	public function initialize(): void {
-		$this->addHelper('Tools.Time', ['engine' => 'Tools\Utility\FrozenTime', 'outputTimezone' => 'Europe/Berlin']);
+		$this->addHelper('Tools.Time', ['outputTimezone' => 'Europe/Berlin']);
 		$this->addHelper('Tools.Number');
 		$this->addHelper('Tools.Text');
 
@@ -88,21 +88,6 @@ class AppView extends View {
 		foreach ($helpers as $helper) {
 			$this->addHelper($helper);
 		}
-	}
-
-	/**
-	 * @param string $helper
-	 * @param array<string, mixed> $config
-	 * @return void
-	 */
-	protected function addHelper(string $helper, array $config = []): void {
-		[$plugin, $name] = pluginSplit($helper);
-		if ($plugin) {
-			$config['class'] = $helper;
-			$config['config'] = $config;
-		}
-
-		$this->helpers[$name] = $config;
 	}
 
 }
