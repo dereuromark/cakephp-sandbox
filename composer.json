@@ -45,7 +45,7 @@
 		"cakephp/chronos": "^2.0",
 		"icings/menu": "^4.0",
 		"friendsofcake/cakephp-csvview": "^4.0.0",
-		"friendsofcake/search": "dev-master as 6.0",
+		"friendsofcake/search": "^6.0.0",
 		"dereuromark/cakephp-data": "dev-master",
 		"dereuromark/cakephp-calendar": "dev-master",
 		"dereuromark/cakephp-flash": "dev-master",
