@@ -54,6 +54,21 @@ use Detection\MobileDetect;
 use Tools\Mailer\Mailer;
 
 /**
+ * Load global functions.
+ */
+require CAKE . 'functions.php';
+
+if (!defined('SECOND')) {
+	define('SECOND', 1);
+	define('MINUTE', 60);
+	define('HOUR', 3600);
+	define('DAY', 86400);
+	define('WEEK', 604800);
+	define('MONTH', 2592000);
+	define('YEAR', 31536000);
+}
+
+/**
  * Read configuration file and inject configuration into various
  * CakePHP classes.
  *
@@ -172,20 +187,19 @@ Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 FrozenDate::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
 TypeFactory::build('time')
-	->useImmutable()->setLocaleFormat('HH:mm:ss');
+	->setLocaleFormat('HH:mm:ss');
 TypeFactory::build('date')
-	->useImmutable()->setLocaleFormat('dd.MM.YYYY');
+	->setLocaleFormat('dd.MM.YYYY');
 TypeFactory::build('datetime')
-	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
-TypeFactory::build('timestamp')
-	->useImmutable();
+	->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
+TypeFactory::build('timestamp');
 /*
 Type::build('time')
-	->useImmutable()->setLocaleFormat('HH:mm:ss');
+	->setLocaleFormat('HH:mm:ss');
 Type::build('date')
-	->useImmutable()->setLocaleFormat('dd.MM.YYYY');
+	->setLocaleFormat('dd.MM.YYYY');
 Type::build('datetime')
-	->useImmutable()->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
+	->setLocaleFormat('dd.MM.YYYY HH:mm:ss');
 
 FrozenTime::setToStringFormat('dd.MM.YYYY HH:mm:ss');
 Time::setToStringFormat('dd.MM.YYYY HH:mm:ss');

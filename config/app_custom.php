@@ -255,7 +255,7 @@ return [
 		],
 		'generatorTasks' => [
 			ServiceTask::class,
-			FormatIconFontAwesome4Task::class,
+			//FormatIconFontAwesome4Task::class,
 			IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [

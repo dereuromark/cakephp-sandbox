@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0fb139ba74b9fa75abe62c5539428b8",
+    "content-hash": "476dfd92b0ff76d373cfd8ffb5fae01e",
     "packages": [
         {
             "name": "brick/math",
@@ -1721,12 +1721,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "99707bf057e810e8a5bed9191ef2ec59debb88f8"
+                "reference": "1424a354e2d9fb66ece682b316cbd8cb68e64b0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/99707bf057e810e8a5bed9191ef2ec59debb88f8",
-                "reference": "99707bf057e810e8a5bed9191ef2ec59debb88f8",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/1424a354e2d9fb66ece682b316cbd8cb68e64b0f",
+                "reference": "1424a354e2d9fb66ece682b316cbd8cb68e64b0f",
                 "shasum": ""
             },
             "require": {
@@ -1784,7 +1784,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2023-09-21T09:45:02+00:00"
+            "time": "2023-09-21T12:57:09+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -9693,6 +9693,12 @@
     ],
     "aliases": [
         {
+            "package": "cakephp/cakephp",
+            "version": "5.9999999.9999999.9999999-dev",
+            "alias": "5.0.0",
+            "alias_normalized": "5.0.0.0"
+        },
+        {
             "package": "dereuromark/cakephp-dto",
             "version": "dev-cake5",
             "alias": "2.0.0",
@@ -9720,6 +9726,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-shim": 20,

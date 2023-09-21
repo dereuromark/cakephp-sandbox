@@ -19,7 +19,6 @@ class AppController extends Controller {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->loadComponent('RequestHandler');
 		$this->loadComponent('Tools.Common');
 		$this->loadComponent('Flash.Flash');
 		$this->loadComponent('TinyAuth.Auth');

@@ -20,7 +20,7 @@
 		"php": ">=8.1",
 		"spryker/cakephp-statemachine": "dev-cake5",
 		"cakephp/plugin-installer": "^2.0.1",
-		"cakephp/cakephp": "^5.0.0",
+		"cakephp/cakephp": "5.x-dev as 5.0.0",
 		"cakephp/bake": "^3.0.2",
 		"mobiledetect/mobiledetectlib": "3.*",
 		"dereuromark/cakephp-tinyauth": "dev-cake5",
