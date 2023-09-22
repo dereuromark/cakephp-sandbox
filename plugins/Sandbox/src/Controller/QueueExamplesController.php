@@ -4,7 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
-use Tools\Utility\Time;
+use Tools\Utility\DateTime;
 
 /**
  * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
@@ -64,7 +64,7 @@ class QueueExamplesController extends SandboxAppController {
 
 			if (!$queuedJob->getErrors()) {
 				if ($notBefore && $this->scheduleDelayedDemo($task, $notBefore)) {
-					$rel = Time::relLengthOfTime($notBefore);
+					$rel = DateTime::relLengthOfTime($notBefore);
 					if (!is_string($rel)) {
 						throw new RuntimeException('Expected string result');
 					}

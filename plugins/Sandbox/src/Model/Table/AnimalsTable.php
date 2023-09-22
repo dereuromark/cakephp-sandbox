@@ -10,9 +10,9 @@ use Tools\Model\Table\Table;
 class AnimalsTable extends Table {
 
 	/**
-	 * @var array<int|string, mixed>|string|null
+	 * @var array<int|string, mixed>
 	 */
-	protected $order = ['name' => 'ASC'];
+	protected array $order = ['name' => 'ASC'];
 
 	/**
 	 * @param array<string, mixed> $config

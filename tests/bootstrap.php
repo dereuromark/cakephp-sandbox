@@ -2,7 +2,7 @@
 
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
-use Cake\Filesystem\Folder;
+use Shim\Filesystem\Folder;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;

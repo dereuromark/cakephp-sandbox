@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use Cake\Routing\Exception\RedirectException;
+use Cake\Http\Exception\RedirectException;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

@@ -32,7 +32,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @var array<string, array<string, mixed>>
 	 */
-	protected $_metadata = [
+	protected array $_metadata = [
 		'name' => [
 			'name' => 'name',
 			'type' => 'string',
@@ -62,7 +62,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	* @var array<string, array<string, string>>
 	*/
-	protected $_keyMap = [
+	protected array $_keyMap = [
 		'underscored' => [
 			'name' => 'name',
 			'color' => 'color',

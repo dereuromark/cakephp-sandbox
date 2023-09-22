@@ -24,6 +24,5 @@ parameters:
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
-		- '#Cannot cast array\|string\|null to string#'
 		- '#Call to an undefined method .+Mailer::set.+#'
 		- '#Access to an undefined property Cake\\ORM\\BehaviorRegistry::\$.+#'

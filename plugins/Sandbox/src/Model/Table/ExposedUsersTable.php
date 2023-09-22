@@ -30,9 +30,9 @@ use Tools\Model\Table\Table;
 class ExposedUsersTable extends Table {
 
 	/**
-	 * @var array<int|string, mixed>|string|null
+	 * @var array<int|string, mixed>
 	 */
-	protected $order = [
+	protected array $order = [
 		'name' => 'ASC',
 	];
 

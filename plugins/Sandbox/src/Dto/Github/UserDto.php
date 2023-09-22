@@ -39,7 +39,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @var array<string, array<string, mixed>>
 	 */
-	protected $_metadata = [
+	protected array $_metadata = [
 		'login' => [
 			'name' => 'login',
 			'type' => 'string',
@@ -81,7 +81,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	* @var array<string, array<string, string>>
 	*/
-	protected $_keyMap = [
+	protected array $_keyMap = [
 		'underscored' => [
 			'login' => 'login',
 			'html_url' => 'htmlUrl',
