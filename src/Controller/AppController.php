@@ -21,9 +21,9 @@ class AppController extends Controller {
 
 		$this->loadComponent('Tools.Common');
 		$this->loadComponent('Flash.Flash');
-		$this->loadComponent('TinyAuth.Auth');
-		$this->loadComponent('TinyAuth.AuthUser');
-	}
+        $this->loadComponent('TinyAuth.Auth');
+        $this->loadComponent('TinyAuth.AuthUser');
+    }
 
 	/**
 	 * @param \Cake\Event\EventInterface $event

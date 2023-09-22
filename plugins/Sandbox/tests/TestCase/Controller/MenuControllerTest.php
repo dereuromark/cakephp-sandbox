@@ -12,7 +12,7 @@ class MenuControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Sandbox.SandboxCategories',
 	];
 

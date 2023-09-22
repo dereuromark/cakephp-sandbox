@@ -34,7 +34,7 @@ class RolesFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = [
+	public array $records = [
 		[
 			'id' => 1,
 			'name' => 'Admin',

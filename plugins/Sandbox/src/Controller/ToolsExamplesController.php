@@ -158,7 +158,7 @@ class ToolsExamplesController extends SandboxAppController {
 		];
 		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
-		$query = $this->BitmaskedRecords->find('search', ['search' => $this->request->getQuery()]);
+		$query = $this->BitmaskedRecords->find('search', search: $this->request->getQuery());
 		$sql = (string)$query;
 
 		$bitmaskedRecords = $this->paginate($query)->toArray();

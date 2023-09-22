@@ -12,7 +12,7 @@ class CaptchasControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Captcha.Captchas',
 		'plugin.Sandbox.SandboxAnimals',
 	];

@@ -39,7 +39,7 @@ class SandboxCategoriesFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = [
+	public array $records = [
 		[
 			'id' => 1,
 			'parent_id' => 1,

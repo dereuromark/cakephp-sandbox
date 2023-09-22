@@ -10,8 +10,8 @@ use App\Model\Entity\Entity;
  * @property string $content
  * @property int $rating_count
  * @property int $rating_sum
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  * @property array<\Tags\Model\Entity\Tagged> $tagged
  * @property array<\Tags\Model\Entity\Tag> $tags
  * @property string $tag_list !
@@ -20,8 +20,8 @@ use App\Model\Entity\Entity;
  * @method string getContentOrFail()
  * @method int getRatingCountOrFail()
  * @method int getRatingSumOrFail()
- * @method \Cake\I18n\FrozenTime getCreatedOrFail()
- * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method \Cake\I18n\DateTime getCreatedOrFail()
+ * @method \Cake\I18n\DateTime getModifiedOrFail()
  * @method array<\Tags\Model\Entity\Tagged> getTaggedOrFail()
  * @method array<\Tags\Model\Entity\Tag> getTagsOrFail()
  * @method $this setIdOrFail(int $value)
@@ -29,8 +29,8 @@ use App\Model\Entity\Entity;
  * @method $this setContentOrFail(string $value)
  * @method $this setRatingCountOrFail(int $value)
  * @method $this setRatingSumOrFail(int $value)
- * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
- * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\DateTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
  * @method $this setTaggedOrFail(array $value)
  * @method $this setTagsOrFail(array $value)
  */
@@ -45,7 +45,7 @@ class SandboxPost extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];

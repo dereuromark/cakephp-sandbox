@@ -12,8 +12,8 @@ use Tools\Model\Entity\Entity;
  * @property string $name
  * @property int|null $flag_optional
  * @property int $flag_required
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  */
 class BitmaskedRecord extends Entity {
 
@@ -26,7 +26,7 @@ class BitmaskedRecord extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];

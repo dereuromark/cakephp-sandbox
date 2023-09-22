@@ -82,7 +82,7 @@ class CalendarController extends SandboxAppController {
 			$state = $this->States
 				->find()
 				->where(['code !=' => '', 'lat IS NOT' => null, 'lng IS NOT' => null])
-				->order($random)
+				->orderBy($random)
 				->firstOrFail();
 
 			$time = mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year']);
@@ -95,7 +95,7 @@ class CalendarController extends SandboxAppController {
 				'lng' => $state->lng,
 				'location' => $state->name,
 				'description' => 'Some cool event @ ' . $state->code,
-				'beginning' => new FrozenTime($time),
+				'beginning' => new \Cake\I18n\DateTime($time),
 			]);
 			if (!$this->Events->save($event)) {
 				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));

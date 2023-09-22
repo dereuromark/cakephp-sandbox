@@ -41,7 +41,7 @@ class SearchExamplesController extends SandboxAppController {
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
 
-		$query = $this->CountryRecords->find('search', ['search' => $this->request->getQuery()]);
+		$query = $this->CountryRecords->find('search', search: $this->request->getQuery());
 		$countries = $this->paginate($query)->toArray();
 
 		$this->set(compact('countries'));

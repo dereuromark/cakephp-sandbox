@@ -21,7 +21,7 @@ class StateMachineSandboxControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'app.Users',
 	];
 

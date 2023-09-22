@@ -123,12 +123,11 @@ class AccountController extends AppController {
 			// Validate basic email scheme and captcha input.
 			if (!$user->getErrors()) {
 				/** @var \App\Model\Entity\User|null $res */
-				$res = $this->Users->find('all', [
-					'fields' => ['username', 'id', 'email'],
-					'conditions' => [
+				$res = $this->Users->find('all',
+    fields: ['username', 'id', 'email'],
+    conditions: [
 						'email' => $this->request->getData('Form.login'),
-					],
-				])->first();
+					])->first();
 
 				// Valid user found to this email address
 				if ($res) {

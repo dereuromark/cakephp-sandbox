@@ -18,7 +18,7 @@ class RegistrationsTableTest extends TestCase {
 	/**
 	 * @var array<string>
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.StateMachineSandbox.Registrations',
 		'app.Users',
 	];

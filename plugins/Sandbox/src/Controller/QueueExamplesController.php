@@ -153,11 +153,11 @@ class QueueExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param string $task
-	 * @param \Cake\I18n\FrozenTime $notBefore
-	 * @return bool
-	 */
-	protected function scheduleDelayedDemo(string $task, $notBefore) {
+  * @param string $task
+  * @param \Cake\I18n\DateTime $notBefore
+  * @return bool
+  */
+ protected function scheduleDelayedDemo(string $task, $notBefore) {
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
 

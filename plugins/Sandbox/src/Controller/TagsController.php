@@ -81,7 +81,7 @@ class TagsController extends SandboxAppController {
 		$this->loadModel('Sandbox.SandboxPosts');
 		$this->ensurePostsDemoData();
 
-		$query = $this->SandboxPosts->find('search', ['search' => $this->request->getQuery()])->contain(['Tags']);
+		$query = $this->SandboxPosts->find('search', search: $this->request->getQuery())->contain(['Tags']);
 
 		$posts = $this->paginate($query)->toArray();
 

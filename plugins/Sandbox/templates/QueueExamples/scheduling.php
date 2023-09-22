@@ -29,9 +29,9 @@ $this->loadHelper('Queue.QueueProgress');
 		<?php
 		echo $this->Form->control('job_task', ['options' => $tasks]);
 
-		echo '<p>Current (server) time: ' . (new \Cake\I18n\FrozenTime()) . '</>';
+		echo '<p>Current (server) time: ' . (new \Cake\I18n\DateTime()) . '</>';
 
-		echo $this->Form->control('notbefore', ['type' => 'text', 'default' => (new \Cake\I18n\FrozenTime())->addMinutes(5)]);
+		echo $this->Form->control('notbefore', ['type' => 'text', 'default' => (new \Cake\I18n\DateTime())->addMinutes(5)]);
 
 		?>
 	</fieldset>

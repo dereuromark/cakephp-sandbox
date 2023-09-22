@@ -10,7 +10,7 @@ class MyTaskNameTaskTest extends TestCase {
 	/**
 	 * @var array<string>
 	 */
-	public $fixtures = [
+	public array $fixtures = [
 		'plugin.Queue.QueuedJobs',
 		'plugin.Queue.QueueProcesses',
 	];

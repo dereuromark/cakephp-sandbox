@@ -18,7 +18,7 @@ class TagsControllerTest extends TestCase {
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Sandbox.SandboxCategories',
 		'plugin.Sandbox.SandboxPosts',
 		'plugin.Tags.Tags',
