@@ -2,16 +2,20 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Datasource\ModelAwareTrait;
+
 /**
  * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Ratings\Controller\Component\RatingComponent $Rating
  */
 class RatingsController extends SandboxAppController {
 
+	use ModelAwareTrait;
+
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.SandboxPosts';
+	protected ?string $defaultTable = 'Sandbox.SandboxPosts';
 
 	/**
 	 * @return void

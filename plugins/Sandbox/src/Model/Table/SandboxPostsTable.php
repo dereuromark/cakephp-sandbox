@@ -2,7 +2,7 @@
 
 namespace Sandbox\Model\Table;
 
-use Cake\ORM\Query;
+use Cake\ORM\Query\SelectQuery;
 use Tools\Model\Table\Table;
 
 /**
@@ -65,7 +65,7 @@ class SandboxPostsTable extends Table {
 		$searchManager
 			->like('title', ['before' => true, 'after' => true])
 			->callback('tag', [
-				'callback' => function (Query $query, array $args, $manager) {
+				'callback' => function (SelectQuery $query, array $args, $manager) {
 					if ($args['tag'] === '-1') {
 						$query->find('untagged');
 					} else {

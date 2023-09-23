@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\Time;
+use CsvView\View\CsvView;
 
 /**
  * @property \Data\Model\Table\CountriesTable $Countries
@@ -11,13 +12,17 @@ use Cake\I18n\Time;
 class CsvController extends SandboxAppController {
 
 	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return [CsvView::class];
+	}
+
+	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
-
-		$this->components()->unload('RequestHandler');
-		$this->loadComponent('RequestHandler', ['viewClassMap' => ['csv' => 'CsvView.Csv']]);
 
 		$this->viewBuilder()->addHelpers(['Data.Data']);
 	}
@@ -47,11 +52,12 @@ class CsvController extends SandboxAppController {
 			['you', 'and', 'me'],
 		];
 
-		$_serialize = 'data';
-		$_enclosure = '"';
-		$_newline = '\r\n';
+		$serialize = 'data';
+		$enclosure = '"';
+		$newline = '\r\n';
 
-		$this->set(compact('data', '_serialize', '_enclosure', '_newline'));
+		$this->set(compact('data'));
+		$this->viewBuilder()->setOptions(compact('serialize', 'enclosure', 'newline'));
 	}
 
 	/**
@@ -60,9 +66,9 @@ class CsvController extends SandboxAppController {
 	 * @return void
 	 */
 	public function pagination() {
-		$this->loadModel('Data.Countries');
+		$Countries = $this->fetchTable('Data.Countries');
 
-		$countries = $this->paginate('Countries')->toArray();
+		$countries = $this->paginate($Countries);
 
 		// Just to showcase how nullable date(time)s work we remove the dates from the first row
 		foreach ($countries as $country) {
@@ -77,12 +83,12 @@ class CsvController extends SandboxAppController {
 		if ($this->getRequest()->getParam('_ext') === 'csv') {
 			Time::setToStringFormat('yyyy-MM-dd HH:mm:ss');
 
-			$_serialize = 'countries';
-			$_null = '';
-			$_header = ['Name', 'ISO2', 'ISO3', 'Modified'];
-			$_extract = ['name', 'iso2', 'iso3', 'modified'];
+			$serialize = 'countries';
+			$null = '';
+			$header = ['Name', 'ISO2', 'ISO3', 'Modified'];
+			$extract = ['name', 'iso2', 'iso3', 'modified'];
 
-			$this->set(compact('_serialize', '_header', '_extract', '_null'));
+			$this->viewBuilder()->setOptions(compact('serialize', 'header', 'extract', 'null'));
 		}
 
 		if ($this->request->getQuery('download')) {

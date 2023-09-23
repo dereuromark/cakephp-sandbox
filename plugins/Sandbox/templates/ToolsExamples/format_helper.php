@@ -76,14 +76,14 @@ echo $this->Format->fontIcon('anchor', ['spin' => true]);
 <code style="display: block;">
 	<?php
 	$text = <<<TEXT
-<?php echo \$this->Format->icon('info-circle-fill', ['iconNamespace' => 'bi']); ?>
+<?php echo \$this->Icon->render('info-circle-fill', ['iconNamespace' => 'bi']); ?>
 TEXT;
 	echo nl2br(h($text));
 	?>
 </code>
 
 	<?php
-	echo $this->Format->icon('info-circle-fill', ['iconNamespace' => 'bi']);
+	echo $this->Icon->render('info-circle-fill', ['iconNamespace' => 'bi']);
 	?>
 
 

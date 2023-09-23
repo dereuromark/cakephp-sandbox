@@ -5,18 +5,18 @@
 ?>
 <header class="container navbar navbar-default navbar-expand navbar-light flex-column flex-md-row bd-navbar">
 	<a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Sandbox" style="padding-right: 10px">
-		CakePHP Sandbox App v4
+		CakePHP Sandbox App v5
 	</a>
 
 	<div class="navbar-nav-scroll">
 		<ul class="navbar-nav bd-navbar-nav flex-row">
 			<li class="nav-item dropdown">
 				<a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-					<span class="badge badge-success">CakePHP 4.x</span> <span class="caret"></span>
+					<span class="badge badge-success">CakePHP 5.x</span> <span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="sandbox">
-					<li class="nav-item"><a class="nav-link" href="https://sandbox3.dereuromark.de/"><span class="badge badge-warning">CakePHP 3.x</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="https://sandbox2.dereuromark.de/"><span class="badge badge-danger">CakePHP 2.x</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://sandbox4.dereuromark.de/"><span class="badge badge-warning">CakePHP 4.x</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://sandbox3.dereuromark.de/"><span class="badge badge-danger">CakePHP 3.x</span></a></li>
 				</ul>
 			</li>
 

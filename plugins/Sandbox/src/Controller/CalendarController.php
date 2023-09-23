@@ -2,21 +2,27 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\InternalErrorException;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use RuntimeException;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Sandbox\Model\Table\EventsTable $Events
  * @property \Data\Model\Table\StatesTable $States
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
+#[\AllowDynamicProperties]
 class CalendarController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.Events';
+	protected ?string $defaultTable = 'Sandbox.Events';
 
 	/**
 	 * @return void
@@ -95,10 +101,10 @@ class CalendarController extends SandboxAppController {
 				'lng' => $state->lng,
 				'location' => $state->name,
 				'description' => 'Some cool event @ ' . $state->code,
-				'beginning' => new \Cake\I18n\DateTime($time),
+				'beginning' => new DateTime($time),
 			]);
 			if (!$this->Events->save($event)) {
-				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));
+				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors(), true));
 			}
 		}
 	}

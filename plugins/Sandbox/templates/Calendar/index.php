@@ -13,7 +13,7 @@
 
 
 <?php
-	$iconE = $this->Format->icon('calendar', ['title' => __('Event')]);
+	$iconE = $this->Icon->render('calendar', ['title' => __('Event')]);
 	foreach ($events as $event) {
 		$content = $iconE . ' ' . $this->Html->link($event->title, ['action' => 'view', $event->id, \Cake\Utility\Text::slug($event->title)]);
 		$this->Calendar->addRow($event->beginning, $content, ['class' => 'event']);

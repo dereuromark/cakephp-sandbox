@@ -100,15 +100,15 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function validation() {
-		$this->loadModel('Sandbox.Animals');
+		$Animals = $this->fetchTable('Sandbox.Animals');
 
-		$animal = $this->Animals->newEmptyEntity();
+		$animal = $Animals->newEmptyEntity();
 
 		if ($this->request->is('post')) {
-			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
+			$animal = $Animals->patchEntity($animal, $this->request->getData());
 
-			// Simulate $Animals->save($animal) call as we dont't want to really save here
-			if (!$animal->getErrors() & $this->Animals->checkRules($animal)) {
+			// Simulate $Animals->save($animal) call as we don't want to really save here
+			if (!$animal->getErrors() & $Animals->checkRules($animal)) {
 				$this->Flash->success('Yeah, entry would have been saved.');
 
 				return $this->redirect(['action' => 'validation']);

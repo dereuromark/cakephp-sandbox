@@ -20,7 +20,7 @@ class AuthSandboxController extends AppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Users';
+	protected ?string $modelClass = 'Users';
 
 	/**
 	 * @return void
@@ -29,7 +29,7 @@ class AuthSandboxController extends AppController {
 		parent::initialize();
 
 		$this->loadComponent('TinyAuth.AuthUser');
-		$this->loadComponent('Security');
+		//$this->loadComponent('Security');
 
 		$helpers = ['TinyAuth.AuthUser'];
 		$this->viewBuilder()->addHelpers($helpers);

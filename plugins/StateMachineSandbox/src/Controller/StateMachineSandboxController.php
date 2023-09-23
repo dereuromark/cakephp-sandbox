@@ -12,7 +12,7 @@ class StateMachineSandboxController extends AppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Users';
+	protected ?string $modelClass = 'Users';
 
 	/**
 	 * @return \Cake\Http\Response|null|void

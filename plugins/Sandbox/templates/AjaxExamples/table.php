@@ -18,7 +18,7 @@
 
 	<table class="table list" width="100%">
 		<tr>
-			<th><?php echo $this->Paginator->sort('sort', $this->Format->icon('filter'), ['escape' => false]);?></th>
+			<th><?php echo $this->Paginator->sort('sort', $this->Icon->render('filter'), ['escape' => false]);?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
 			<th><?php echo $this->Paginator->sort('iso2');?></th>
 			<th><?php echo __('Actions'); ?></th>
@@ -37,7 +37,7 @@
 					<?php echo h($country->iso2); ?>
 				</td>
 				<td class="actions">
-					<?php echo $this->Form->postLink($this->Format->icon('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country->id], ['class' => 'btn btn-secondary ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country->name)]); ?>
+					<?php echo $this->Form->postLink($this->Icon->render('delete') . ' ' . __('Delete'), ['action' => 'tableDelete', $country->id], ['class' => 'btn btn-secondary ajax-delete', 'escapeTitle' => false, 'confirm' => __('Are you sure you want to delete # {0}?', $country->name)]); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

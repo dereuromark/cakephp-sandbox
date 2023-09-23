@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use AllowDynamicProperties;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\MethodNotAllowedException;
+use Cake\Http\Response;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
@@ -15,7 +19,11 @@ use Cake\Http\Exception\MethodNotAllowedException;
  * @property \Data\Model\Table\PostalCodesTable $PostalCodes
  * @property \Data\Model\Table\TimezonesTable $Timezones
  */
+#[AllowDynamicProperties]
 class ExportController extends AppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @return void
@@ -45,14 +53,16 @@ class ExportController extends AppController {
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
-	 * @return \Cake\Http\Response|null|void
+	 * @return \Cake\Http\Response|null
 	 */
-	public function afterFilter(EventInterface $event) {
+	public function afterFilter(EventInterface $event): ?Response {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {
 			$this->response = $this->response->withDownload($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
 		}
+
+        return null;
 	}
 
 	/**

@@ -20,16 +20,16 @@ class JsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function datepicker() {
-		$this->loadModel('Sandbox.Animals');
+		$Animals = $this->fetchTable('Sandbox.Animals');
 
-		$animal = $this->Animals->newEmptyEntity();
+		$animal = $Animals->newEmptyEntity();
 
-		$this->Animals
+		$Animals
 			->getValidator()
 			->date('created');
 
 		if ($this->request->is('post')) {
-			$animal = $this->Animals->patchEntity($animal, $this->request->getData(), ['fields' => ['created']]);
+			$animal = $Animals->patchEntity($animal, $this->request->getData(), ['fields' => ['created']]);
 
 			if (!$animal->getErrors()) {
 				$this->Flash->success('All good, valid date :)');

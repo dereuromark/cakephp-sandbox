@@ -42,8 +42,7 @@ use Cake\Error\ErrorTrap;
 use Cake\Error\ExceptionTrap;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
-use Cake\I18n\FrozenDate;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use Cake\I18n\Time;
 use Cake\Log\Log;
 use Cake\Mailer\TransportFactory;
@@ -182,9 +181,9 @@ Router::defaultRouteClass(DashedRoute::class);
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
 Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime
-\Cake\I18n\DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateTime
+DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateTime
 Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
-\Cake\I18n\Date::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
+Date::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
 TypeFactory::build('time')
 	->setLocaleFormat('HH:mm:ss');

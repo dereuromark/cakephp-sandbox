@@ -3,19 +3,25 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
  * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Search\Controller\Component\SearchComponent $Search
  */
+#[\AllowDynamicProperties]
 class TagsController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.SandboxCategories';
+	protected ?string $defaultTable = 'Sandbox.SandboxCategories';
 
 	/**
 	 * @return void
@@ -83,7 +89,7 @@ class TagsController extends SandboxAppController {
 
 		$query = $this->SandboxPosts->find('search', search: $this->request->getQuery())->contain(['Tags']);
 
-		$posts = $this->paginate($query)->toArray();
+		$posts = $this->paginate($query);
 
 		$tags = $this->SandboxPosts->Tagged->find()->distinct(['Tags.slug', 'Tags.label'])->contain(['Tags'])->toArray();
 		$tags = Hash::combine($tags, '{n}.tag.slug', '{n}.tag.label');

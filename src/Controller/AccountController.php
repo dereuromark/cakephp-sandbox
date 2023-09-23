@@ -2,18 +2,25 @@
 
 namespace App\Controller;
 
+use AllowDynamicProperties;
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Mailer\Mailer;
+use Shim\Datasource\LegacyModelAwareTrait;
 use Tools\View\Helper\ObfuscateHelper;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
  * @property \Tools\Model\Table\TokensTable $Tokens
  */
+#[AllowDynamicProperties]
 class AccountController extends AppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
@@ -123,11 +130,13 @@ class AccountController extends AppController {
 			// Validate basic email scheme and captcha input.
 			if (!$user->getErrors()) {
 				/** @var \App\Model\Entity\User|null $res */
-				$res = $this->Users->find('all',
-    fields: ['username', 'id', 'email'],
-    conditions: [
+				$res = $this->Users->find(
+					'all',
+					fields: ['username', 'id', 'email'],
+					conditions: [
 						'email' => $this->request->getData('Form.login'),
-					])->first();
+					],
+				)->first();
 
 				// Valid user found to this email address
 				if ($res) {

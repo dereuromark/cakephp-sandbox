@@ -15,7 +15,7 @@ class LocalizedController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Users';
+	protected ?string $defaultTable = 'Users';
 
 	/**
 	 * @return void

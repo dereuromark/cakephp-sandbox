@@ -3,17 +3,23 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
  */
+#[\AllowDynamicProperties]
 class BootstrapController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.Animals';
+	protected ?string $defaultTable = 'Sandbox.Animals';
 
 	/**
 	 * @return void

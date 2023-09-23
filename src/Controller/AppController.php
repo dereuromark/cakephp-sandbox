@@ -21,9 +21,9 @@ class AppController extends Controller {
 
 		$this->loadComponent('Tools.Common');
 		$this->loadComponent('Flash.Flash');
-        $this->loadComponent('TinyAuth.Auth');
-        $this->loadComponent('TinyAuth.AuthUser');
-    }
+		$this->loadComponent('TinyAuth.Auth');
+		$this->loadComponent('TinyAuth.AuthUser');
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
@@ -64,7 +64,8 @@ class AppController extends Controller {
 				'action' => 'login',
 			],
 		];
-		$this->Auth->setConfig($config);
+		//$config += $this->Auth->getConfig();
+		//$this->Auth->setConfig($config);
 
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lostPassword', 'register']];
