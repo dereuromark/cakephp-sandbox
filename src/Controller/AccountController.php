@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use AllowDynamicProperties;
 use Cake\Core\Configure;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
@@ -16,7 +15,7 @@ use Tools\View\Helper\ObfuscateHelper;
  * @property \App\Model\Table\UsersTable $Users
  * @property \Tools\Model\Table\TokensTable $Tokens
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class AccountController extends AppController {
 
 	use ModelAwareTrait;

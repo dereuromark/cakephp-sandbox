@@ -111,9 +111,10 @@ class CalendarController extends SandboxAppController {
 
 	/**
 	 * @param int $length
+	 *
 	 * @return string
 	 */
-	protected function _getRandomWord($length = 10) {
+	protected function _getRandomWord(int $length = 10): string {
 		$word = array_merge(range('a', 'z'), [' ']);
 		shuffle($word);
 

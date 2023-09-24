@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
-use AllowDynamicProperties;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\MethodNotAllowedException;
 use Cake\Http\Response;
+use Cake\View\JsonView;
+use Cake\View\XmlView;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -19,11 +20,18 @@ use Shim\Datasource\LegacyModelAwareTrait;
  * @property \Data\Model\Table\PostalCodesTable $PostalCodes
  * @property \Data\Model\Table\TimezonesTable $Timezones
  */
-#[AllowDynamicProperties]
+#[\AllowDynamicProperties]
 class ExportController extends AppController {
 
 	use ModelAwareTrait;
 	use LegacyModelAwareTrait;
+
+	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return [JsonView::class, XmlView::class];
+	}
 
 	/**
 	 * @return void
@@ -62,7 +70,7 @@ class ExportController extends AppController {
 			$this->response = $this->response->withDownload($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
 		}
 
-        return null;
+		return null;
 	}
 
 	/**
@@ -125,7 +133,8 @@ class ExportController extends AppController {
 		$continents = $this->Continents->find('all')->toArray();
 
 		$this->set(compact('continents'));
-		$this->set('_serialize', ['continents']);
+		$serialize = 'continents';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
