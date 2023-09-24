@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\EventInterface;
+use Cake\View\JsonView;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -13,6 +14,13 @@ class JqueryExamplesController extends SandboxAppController {
 	 * @var array<string>
 	 */
 	protected $jqueryPlugins = ['media'];
+
+	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return [JsonView::class];
+	}
 
 	/**
 	 * @param \Cake\Event\EventInterface $event
@@ -59,7 +67,9 @@ class JqueryExamplesController extends SandboxAppController {
 					]);
 
 			$this->set('items', $items);
-			$this->set('_serialize', ['items']);
+			//$this->set('_serialize', ['items']);
+			$serialize = 'items';
+			$this->viewBuilder()->setOptions(compact('serialize'));
 		}
 	}
 

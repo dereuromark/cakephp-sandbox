@@ -2,10 +2,19 @@
 
 namespace Sandbox\Controller;
 
+use Cake\View\JsonView;
+
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
  */
 class CacheExamplesController extends SandboxAppController {
+
+	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return [JsonView::class];
+	}
 
 	/**
 	 * @return void
@@ -60,7 +69,9 @@ class CacheExamplesController extends SandboxAppController {
 		];
 
 		$this->set(compact('something'));
-		$this->set('_serialize', ['something']);
+		//$this->set('_serialize', ['something']);
+		$serialize = 'something';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 }

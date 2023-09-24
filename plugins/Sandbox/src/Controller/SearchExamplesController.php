@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Response;
+use Cake\View\JsonView;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -21,6 +22,13 @@ class SearchExamplesController extends SandboxAppController {
 	 * @var string
 	 */
 	protected ?string $defaultTable = 'Sandbox.CountryRecords';
+
+	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return [JsonView::class];
+	}
 
 	/**
 	 * @return void
@@ -52,7 +60,9 @@ class SearchExamplesController extends SandboxAppController {
 		$countries = $this->paginate($query);
 
 		$this->set(compact('countries'));
-		$this->set('_serialize', ['countries']);
+		//$this->set('_serialize', ['countries']);
+		$serialize = 'countries';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**

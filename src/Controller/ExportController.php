@@ -87,7 +87,8 @@ class ExportController extends AppController {
 		$countries = $this->Countries->find('all')->toArray();
 
 		$this->set(compact('countries'));
-		$this->set('_serialize', ['countries']);
+		$serialize = 'countries';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
@@ -100,7 +101,8 @@ class ExportController extends AppController {
 		$states = $this->States->find('all')->toArray();
 
 		$this->set(compact('states'));
-		$this->set('_serialize', ['states']);
+		$serialize = 'states';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
@@ -111,7 +113,8 @@ class ExportController extends AppController {
 		$currencies = $this->Currencies->find('all')->toArray();
 
 		$this->set(compact('currencies'));
-		$this->set('_serialize', ['currencies']);
+		$serialize = 'currencies';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
@@ -122,7 +125,8 @@ class ExportController extends AppController {
 		$languages = $this->Languages->find('all')->toArray();
 
 		$this->set(compact('languages'));
-		$this->set('_serialize', ['languages']);
+		$serialize = 'languages';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
@@ -145,7 +149,8 @@ class ExportController extends AppController {
 		$postalCodes = $this->PostalCodes->find('all')->toArray();
 
 		$this->set(compact('postalCodes'));
-		$this->set('_serialize', ['postalCodes']);
+		$serialize = 'postalCodes';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
@@ -156,7 +161,8 @@ class ExportController extends AppController {
 		$timezones = $this->Timezones->find('all')->toArray();
 
 		$this->set(compact('timezones'));
-		$this->set('_serialize', ['timezones']);
+		$serialize = 'timezones';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**
