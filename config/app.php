@@ -10,7 +10,7 @@ return [
 	 * Development Mode:
 	 * true: Errors and warnings shown.
 	 */
-	'debug' => true,
+	'debug' => false,
 
 	/**
 	 * Configure basic information about the application.
