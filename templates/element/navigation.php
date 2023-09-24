@@ -12,10 +12,10 @@
 		<ul class="navbar-nav bd-navbar-nav flex-row">
 			<li class="nav-item dropdown">
 				<a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
-					<span class="badge badge-success">CakePHP 5.x</span> <span class="caret"></span>
+					<span class="badge badge-warning">CakePHP 4.x</span> <span class="caret"></span>
 				</a>
 				<ul class="dropdown-menu" aria-labelledby="sandbox">
-					<li class="nav-item"><a class="nav-link" href="https://sandbox4.dereuromark.de/"><span class="badge badge-warning">CakePHP 4.x</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="https://sandbox4.dereuromark.de/"><span class="badge badge-success">CakePHP 5.x</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="https://sandbox3.dereuromark.de/"><span class="badge badge-danger">CakePHP 3.x</span></a></li>
 				</ul>
 			</li>
