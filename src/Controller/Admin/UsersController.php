@@ -17,7 +17,7 @@ class UsersController extends AppController {
 		$this->paginate = [
 			'contain' => ['Roles'],
 		];
-		$this->set('users', $this->paginate()->toArray());
+		$this->set('users', $this->paginate());
 	}
 
 	/**

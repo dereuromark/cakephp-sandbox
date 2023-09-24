@@ -2,21 +2,27 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\InternalErrorException;
-use Cake\I18n\FrozenTime;
+use Cake\I18n\DateTime;
 use RuntimeException;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Sandbox\Model\Table\EventsTable $Events
  * @property \Data\Model\Table\StatesTable $States
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
+#[\AllowDynamicProperties]
 class CalendarController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.Events';
+	protected ?string $defaultTable = 'Sandbox.Events';
 
 	/**
 	 * @return void
@@ -82,7 +88,7 @@ class CalendarController extends SandboxAppController {
 			$state = $this->States
 				->find()
 				->where(['code !=' => '', 'lat IS NOT' => null, 'lng IS NOT' => null])
-				->order($random)
+				->orderBy($random)
 				->firstOrFail();
 
 			$time = mktime(random_int(8, 22), 0, 0, $options['month'], random_int(1, 28), $options['year']);
@@ -95,19 +101,20 @@ class CalendarController extends SandboxAppController {
 				'lng' => $state->lng,
 				'location' => $state->name,
 				'description' => 'Some cool event @ ' . $state->code,
-				'beginning' => new FrozenTime($time),
+				'beginning' => new DateTime($time),
 			]);
 			if (!$this->Events->save($event)) {
-				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors()));
+				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors(), true));
 			}
 		}
 	}
 
 	/**
 	 * @param int $length
+	 *
 	 * @return string
 	 */
-	protected function _getRandomWord($length = 10) {
+	protected function _getRandomWord(int $length = 10): string {
 		$word = array_merge(range('a', 'z'), [' ']);
 		shuffle($word);
 

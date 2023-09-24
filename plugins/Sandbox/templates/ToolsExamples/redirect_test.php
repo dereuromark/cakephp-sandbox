@@ -24,7 +24,7 @@
 
 	<p>
 	<?php echo $this->Html->link(
-		$this->Format->icon('edit') . ' Edit demo category',
+		$this->Icon->render('edit') . ' Edit demo category',
 		['action' => 'fakeEdit', 1, '?' => ['ref' => $this->getRequest()->getRequestTarget()]],
 		['escape' => false]
 	); ?>

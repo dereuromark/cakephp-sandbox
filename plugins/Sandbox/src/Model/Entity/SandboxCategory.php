@@ -12,8 +12,8 @@ use App\Model\Entity\Entity;
  * @property int|null $status
  * @property int|null $lft
  * @property int|null $rght
- * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  * @method int getIdOrFail()
  * @method int getParentIdOrFail()
  * @method string getNameOrFail()
@@ -21,8 +21,8 @@ use App\Model\Entity\Entity;
  * @method int getStatusOrFail()
  * @method int getLftOrFail()
  * @method int getRghtOrFail()
- * @method \Cake\I18n\FrozenTime getCreatedOrFail()
- * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method \Cake\I18n\DateTime getCreatedOrFail()
+ * @method \Cake\I18n\DateTime getModifiedOrFail()
  * @method $this setIdOrFail(int $value)
  * @method $this setParentIdOrFail(int $value)
  * @method $this setNameOrFail(string $value)
@@ -30,8 +30,8 @@ use App\Model\Entity\Entity;
  * @method $this setStatusOrFail(int $value)
  * @method $this setLftOrFail(int $value)
  * @method $this setRghtOrFail(int $value)
- * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
- * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\DateTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
  */
 class SandboxCategory extends Entity {
 
@@ -44,7 +44,7 @@ class SandboxCategory extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];

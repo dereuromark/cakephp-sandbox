@@ -12,15 +12,15 @@ namespace App\Model\Entity;
  * @property int $logins
  * @property bool $active
  * @property int $role_id
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
- * @property \Cake\I18n\FrozenTime|null $last_login
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
+ * @property \Cake\I18n\DateTime|null $last_login
  * @property \App\Model\Entity\Role $role
  * @method int getIdOrFail()
  * @method bool getActiveOrFail()
- * @method \Cake\I18n\FrozenTime getLastLoginOrFail()
- * @method \Cake\I18n\FrozenTime getCreatedOrFail()
- * @method \Cake\I18n\FrozenTime getModifiedOrFail()
+ * @method \Cake\I18n\DateTime getLastLoginOrFail()
+ * @method \Cake\I18n\DateTime getCreatedOrFail()
+ * @method \Cake\I18n\DateTime getModifiedOrFail()
  * @method int getLoginsOrFail()
  * @method string getUsernameOrFail()
  * @method string getPasswordOrFail()
@@ -29,9 +29,9 @@ namespace App\Model\Entity;
  * @method \App\Model\Entity\Role getRoleOrFail()
  * @method $this setIdOrFail(int $value)
  * @method $this setActiveOrFail(bool $value)
- * @method $this setLastLoginOrFail(\Cake\I18n\FrozenTime $value)
- * @method $this setCreatedOrFail(\Cake\I18n\FrozenTime $value)
- * @method $this setModifiedOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setLastLoginOrFail(\Cake\I18n\DateTime $value)
+ * @method $this setCreatedOrFail(\Cake\I18n\DateTime $value)
+ * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
  * @method $this setLoginsOrFail(int $value)
  * @method $this setUsernameOrFail(string $value)
  * @method $this setPasswordOrFail(string $value)
@@ -50,7 +50,7 @@ class User extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];
@@ -60,7 +60,7 @@ class User extends Entity {
 	 *
 	 * @var array<string>
 	 */
-	protected $_hidden = [
+	protected array $_hidden = [
 		'password',
 	];
 

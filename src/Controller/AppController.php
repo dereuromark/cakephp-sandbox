@@ -19,7 +19,6 @@ class AppController extends Controller {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->loadComponent('RequestHandler');
 		$this->loadComponent('Tools.Common');
 		$this->loadComponent('Flash.Flash');
 		$this->loadComponent('TinyAuth.Auth');
@@ -65,7 +64,8 @@ class AppController extends Controller {
 				'action' => 'login',
 			],
 		];
-		$this->Auth->setConfig($config);
+		//$config += $this->Auth->getConfig();
+		//$this->Auth->setConfig($config);
 
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lostPassword', 'register']];

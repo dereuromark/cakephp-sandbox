@@ -4,21 +4,15 @@ namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
 use Cake\Utility\Text;
+use Feed\View\RssView;
 
 class FeedExamplesController extends SandboxAppController {
 
 	/**
-	 * @return void
+	 * @return string[]
 	 */
-	public function initialize(): void {
-		parent::initialize();
-
-		$this->components()->unload('RequestHandler');
-		$this->loadComponent('RequestHandler', [
-			'viewClassMap' => [
-				'rss' => 'Feed.Rss',
-			],
-		]);
+	public function viewClasses(): array {
+		return [RssView::class];
 	}
 
 	/**

@@ -28,7 +28,7 @@ class AjaxView extends CakeAjaxView {
 	 * @inheritDoc
 	 */
 	public function initialize(): void {
-		$this->helpers[] = 'Tools.Format';
+		$this->helpers['Format'] = ['className' => 'Tools.Format'];
 
 		parent::initialize();
 	}

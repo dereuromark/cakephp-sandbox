@@ -2,20 +2,26 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
-use Tools\Utility\Time;
+use Shim\Datasource\LegacyModelAwareTrait;
+use Tools\Utility\DateTime;
 
 /**
  * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
  * @property \Queue\Model\Table\QueueProcessesTable $QueueProcesses
  */
+#[\AllowDynamicProperties]
 class QueueExamplesController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Queue.QueuedJobs';
+	protected ?string $defaultTable = 'Queue.QueuedJobs';
 
 	/**
 	 * @return void
@@ -58,13 +64,13 @@ class QueueExamplesController extends SandboxAppController {
 				$queuedJob->setError('notbefore', 'Invalid value. Must be a date/time in the near future.');
 			}
 
-			if ($notBefore && $notBefore->subDay()->isFuture()) {
+			if ($notBefore && $notBefore->subDays(1)->isFuture()) {
 				$queuedJob->setError('notbefore', 'Too far in the future. Max 1 day.');
 			}
 
 			if (!$queuedJob->getErrors()) {
 				if ($notBefore && $this->scheduleDelayedDemo($task, $notBefore)) {
-					$rel = Time::relLengthOfTime($notBefore);
+					$rel = DateTime::relLengthOfTime($notBefore);
 					if (!is_string($rel)) {
 						throw new RuntimeException('Expected string result');
 					}
@@ -153,10 +159,10 @@ class QueueExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param string $task
-	 * @param \Cake\I18n\FrozenTime $notBefore
-	 * @return bool
-	 */
+  * @param string $task
+  * @param \Cake\I18n\DateTime $notBefore
+  * @return bool
+  */
 	protected function scheduleDelayedDemo(string $task, $notBefore) {
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();

@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $uuid
  * @property string $name
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  */
 class ExposedUser extends Entity {
 
@@ -25,7 +25,7 @@ class ExposedUser extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'uuid' => false,
 		'id' => false,

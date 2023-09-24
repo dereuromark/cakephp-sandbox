@@ -12,7 +12,7 @@ class NavigationHelper extends Helper {
 	/**
 	 * @var array<mixed>
 	 */
-	protected $helpers = ['Html'];
+	protected array $helpers = ['Html'];
 
 	/**
 	 * @param string $link

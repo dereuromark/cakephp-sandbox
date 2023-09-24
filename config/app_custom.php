@@ -5,7 +5,6 @@ use Burzum\CakeServiceLayer\Generator\Task\ServiceTask;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use IdeHelper\Annotator\EntityAnnotator;
-use IdeHelperExtra\Tools\Generator\Task\FormatIconFontAwesome4Task;
 use IdeHelperExtra\Tools\Generator\Task\IconRenderTask;
 use Queue\Utility\JsonSerializer;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
@@ -255,7 +254,7 @@ return [
 		],
 		'generatorTasks' => [
 			ServiceTask::class,
-			FormatIconFontAwesome4Task::class,
+			//FormatIconFontAwesome4Task::class,
 			IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [

@@ -25,7 +25,7 @@ class InitializePaymentCommandTest extends TestCase {
 
 		$reference = 'registration-1';
 		/** @var \Queue\Model\Entity\QueuedJob $queuedJob */
-		$queuedJob = $this->getTableLocator()->get('Queue.QueuedJobs')->find()->orderDesc('id')->firstOrFail();
+		$queuedJob = $this->getTableLocator()->get('Queue.QueuedJobs')->find()->orderByDesc('id')->firstOrFail();
 		$this->assertSame($reference, $queuedJob->reference);
 	}
 

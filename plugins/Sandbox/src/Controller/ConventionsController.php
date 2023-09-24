@@ -10,7 +10,7 @@ class ConventionsController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Users';
+	protected ?string $defaultTable = 'Users';
 
 	/**
 	 * @see http://groups.google.com/group/cake-php/browse_thread/thread/6908dce4d55c1a5d

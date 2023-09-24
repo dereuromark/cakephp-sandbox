@@ -13,7 +13,7 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array<string>
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Sandbox.ExposedUsers',
 	];
 

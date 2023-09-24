@@ -29,9 +29,9 @@ $this->loadHelper('Queue.QueueProgress');
 		<?php
 		echo $this->Form->control('job_task', ['options' => $tasks]);
 
-		echo '<p>Current (server) time: ' . (new \Cake\I18n\FrozenTime()) . '</>';
+		echo '<p>Current (server) time: ' . (new \Cake\I18n\DateTime()) . '</>';
 
-		echo $this->Form->control('notbefore', ['type' => 'text', 'default' => (new \Cake\I18n\FrozenTime())->addMinutes(5)]);
+		echo $this->Form->control('notbefore', ['type' => 'text', 'default' => (new \Cake\I18n\DateTime())->addMinutes(5)]);
 
 		?>
 	</fieldset>
@@ -46,7 +46,7 @@ $this->loadHelper('Queue.QueueProgress');
 				<li>
 					<b><?php echo h($queuedJob->job_task); ?></b>: scheduled to start at <?php echo $this->Time->nice($queuedJob->notbefore); ?>
 					<?php if (!$queuedJob->fetched) {
-						echo $this->Form->postLink($this->Format->icon('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
+						echo $this->Form->postLink($this->Icon->render('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
 					} ?>
 					<?php if (!$queuedJob->fetched) {
 						echo '<br>';

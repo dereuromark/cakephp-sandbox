@@ -15,12 +15,12 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var bool
 	 */
-	protected $disableErrorHandlerMiddleware = true;
+	protected bool $disableErrorHandlerMiddleware = true;
 
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Data.Countries',
 		'app.Users',
 	];

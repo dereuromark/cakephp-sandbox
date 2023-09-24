@@ -36,9 +36,7 @@ class RegistrationsController extends AppController {
 	 * @return \Cake\Http\Response|null|void Renders view
 	 */
 	public function view($id = null) {
-		$registration = $this->Registrations->get($id, [
-			'contain' => ['Users', 'RegistrationStates' => 'StateMachineTransitionLogs'],
-		]);
+		$registration = $this->Registrations->get($id, contain: ['Users', 'RegistrationStates' => 'StateMachineTransitionLogs']);
 		if ($registration->session_id !== $this->request->getSession()->id()) {
 			throw new NotFoundException();
 		}

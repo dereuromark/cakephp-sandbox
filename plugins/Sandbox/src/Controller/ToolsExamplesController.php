@@ -3,9 +3,11 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
+use Shim\Datasource\LegacyModelAwareTrait;
 use Tools\View\Icon\IconCollection;
 
 /**
@@ -17,7 +19,11 @@ use Tools\View\Icon\IconCollection;
  * @property \Tools\Controller\Component\RefererRedirectComponent $RefererRedirect
  * @property \Search\Controller\Component\SearchComponent $Search
  */
+#[\AllowDynamicProperties]
 class ToolsExamplesController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @return void
@@ -158,13 +164,13 @@ class ToolsExamplesController extends SandboxAppController {
 		];
 		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
-		$query = $this->BitmaskedRecords->find('search', ['search' => $this->request->getQuery()]);
+		$query = $this->BitmaskedRecords->find('search', search: $this->request->getQuery());
 		$sql = (string)$query;
 
-		$bitmaskedRecords = $this->paginate($query)->toArray();
+		$bitmaskedRecords = $this->paginate($query);
 
 		// Just to have demo data
-		if (!$bitmaskedRecords) {
+		if (!$bitmaskedRecords->count()) {
 			$records = $this->BitmaskedRecords->find()->all()->toArray();
 			$this->autoSeed($records);
 		}

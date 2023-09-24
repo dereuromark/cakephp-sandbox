@@ -24,7 +24,7 @@ class ContactController extends AppController {
 			return;
 		}
 
-		$this->loadComponent('Security');
+		//$this->loadComponent('Security');
 	}
 
 	/**

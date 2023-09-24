@@ -13,7 +13,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Queue.QueuedJobs',
 		'plugin.Queue.QueueProcesses',
 	];
@@ -82,7 +82,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 
 		$queuedJobs = TableRegistry::getTableLocator()->get('Queue.QueuedJobs');
 		/** @var \Queue\Model\Entity\QueuedJob $queuedJob */
-		$queuedJob = $queuedJobs->find()->orderDesc('id')->firstOrFail();
+		$queuedJob = $queuedJobs->find()->orderByDesc('id')->firstOrFail();
 		$this->assertSame('Queue.ProgressExample', $queuedJob->job_task);
 	}
 

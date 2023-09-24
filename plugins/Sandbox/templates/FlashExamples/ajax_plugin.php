@@ -12,7 +12,7 @@ Let's simulate an action as button icon:
 </p>
 
 	<div class="form-container">
-		<?php echo $this->Form->postLink($this->Format->icon('save'), ['action' => 'ajax'], ['escapeTitle' => false]); ?>
+		<?php echo $this->Form->postLink($this->Icon->render('save'), ['action' => 'ajax'], ['escapeTitle' => false]); ?>
 	</div>
 
 	<div class="debug-container">

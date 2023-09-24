@@ -26,7 +26,7 @@ class SimulatePaymentResultTask extends Task {
 	public function run(array $data, int $jobId): void {
 		$this->loadModel('StateMachineSandbox.Registrations');
 		try {
-			$registration = $this->Registrations->get($data['id'], ['contain' => ['RegistrationStates']]);
+			$registration = $this->Registrations->get($data['id'], contain: ['RegistrationStates']);
 		} catch (RecordNotFoundException $e) {
 			// Someone already removed the registration, for demo we can ignore
 			return;

@@ -16,7 +16,7 @@ class GeoExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Data.Countries';
+	protected ?string $defaultTable = 'Data.Countries';
 
 	/**
 	 * @return void

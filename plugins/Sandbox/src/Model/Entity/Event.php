@@ -13,16 +13,16 @@ use App\Model\Entity\Entity;
  * @property float|null $lat
  * @property float|null $lng
  * @property string $description
- * @property \Cake\I18n\FrozenTime|null $beginning
- * @property \Cake\I18n\FrozenTime|null $end
+ * @property \Cake\I18n\DateTime|null $beginning
+ * @property \Cake\I18n\DateTime|null $end
  * @method int getIdOrFail()
  * @method string getTitleOrFail()
  * @method string getLocationOrFail()
  * @method float getLatOrFail()
  * @method float getLngOrFail()
  * @method string getDescriptionOrFail()
- * @method \Cake\I18n\FrozenTime getBeginningOrFail()
- * @method \Cake\I18n\FrozenTime getEndOrFail()
+ * @method \Cake\I18n\DateTime getBeginningOrFail()
+ * @method \Cake\I18n\DateTime getEndOrFail()
  * @property-read string|null $coordinates
  * @method string getCoordinatesOrFail()
  * @method $this setIdOrFail(int $value)
@@ -31,8 +31,8 @@ use App\Model\Entity\Entity;
  * @method $this setLatOrFail(float $value)
  * @method $this setLngOrFail(float $value)
  * @method $this setDescriptionOrFail(string $value)
- * @method $this setBeginningOrFail(\Cake\I18n\FrozenTime $value)
- * @method $this setEndOrFail(\Cake\I18n\FrozenTime $value)
+ * @method $this setBeginningOrFail(\Cake\I18n\DateTime $value)
+ * @method $this setEndOrFail(\Cake\I18n\DateTime $value)
  * @method $this setCoordinatesOrFail(string $value)
  */
 class Event extends Entity {
@@ -46,7 +46,7 @@ class Event extends Entity {
 	 *
 	 * @var array<string, bool>
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];
@@ -54,7 +54,7 @@ class Event extends Entity {
 	/**
 	 * @var array<string>
 	 */
-	protected $_virtual = [
+	protected array $_virtual = [
 		'coordinates',
 	];
 

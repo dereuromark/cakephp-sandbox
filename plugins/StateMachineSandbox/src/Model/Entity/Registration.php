@@ -12,8 +12,8 @@ use Cake\ORM\Entity;
  * @property string $session_id
  * @property int $user_id
  * @property string $status
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  *
  * @property \App\Model\Entity\User $user
  * @property \StateMachine\Model\Entity\StateMachineItem|null $registration_state
@@ -29,7 +29,7 @@ class Registration extends Entity {
 	 *
 	 * @var array
 	 */
-	protected $_accessible = [
+	protected array $_accessible = [
 		'*' => true,
 		'id' => false,
 	];

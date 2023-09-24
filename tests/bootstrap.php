@@ -2,10 +2,10 @@
 
 use Cake\Core\Configure;
 use Cake\Datasource\ConnectionManager;
-use Cake\Filesystem\Folder;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
+use Shim\Filesystem\Folder;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/bootstrap.php';

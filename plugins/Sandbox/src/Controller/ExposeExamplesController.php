@@ -15,9 +15,9 @@ use Expose\Database\Type\ShortUuidType;
 class ExposeExamplesController extends SandboxAppController {
 
 	/**
-	 * @var array<mixed>
+	 * @var array<string, mixed>
 	 */
-	public $paginate = [
+	public array $paginate = [
 		'order' => [
 			'name' => 'ASC',
 		],
@@ -29,7 +29,7 @@ class ExposeExamplesController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.ExposedUsers';
+	protected ?string $defaultTable = 'Sandbox.ExposedUsers';
 
 	/**
 	 * @return void
@@ -94,7 +94,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function users() {
-		$exposedUsers = $this->paginate($this->ExposedUsers)->toArray();
+		$exposedUsers = $this->paginate($this->ExposedUsers);
 
 		$this->set(compact('exposedUsers'));
 	}
@@ -121,7 +121,7 @@ class ExposeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function superimposedIndex() {
-		$exposedUsers = $this->paginate($this->ExposedUsers)->toArray();
+		$exposedUsers = $this->paginate($this->ExposedUsers);
 
 		$this->set(compact('exposedUsers'));
 	}

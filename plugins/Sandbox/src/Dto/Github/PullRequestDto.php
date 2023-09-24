@@ -88,7 +88,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @var array<string, array<string, mixed>>
 	 */
-	protected $_metadata = [
+	protected array $_metadata = [
 		'url' => [
 			'name' => 'url',
 			'type' => 'string',
@@ -218,7 +218,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	* @var array<string, array<string, string>>
 	*/
-	protected $_keyMap = [
+	protected array $_keyMap = [
 		'underscored' => [
 			'url' => 'url',
 			'number' => 'number',

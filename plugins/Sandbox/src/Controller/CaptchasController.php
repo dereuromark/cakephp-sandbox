@@ -13,7 +13,7 @@ class CaptchasController extends SandboxAppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Sandbox.Animals';
+	protected ?string $defaultTable = 'Sandbox.Animals';
 
 	/**
 	 * @return void

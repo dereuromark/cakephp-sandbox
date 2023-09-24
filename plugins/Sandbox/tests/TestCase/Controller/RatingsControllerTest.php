@@ -19,7 +19,7 @@ class RatingsControllerTest extends TestCase {
 	 *
 	 * @var array
 	 */
-	protected $fixtures = [
+	protected array $fixtures = [
 		'plugin.Sandbox.SandboxPosts',
 		'plugin.Sandbox.SandboxRatings',
 	];

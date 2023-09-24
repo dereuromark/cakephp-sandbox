@@ -8,13 +8,20 @@ use Cake\Http\Exception\NotFoundException;
 class PluginsController extends SandboxAppController {
 
 	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		return []; // TODO: PdfView::class
+	}
+
+	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->components()->unload('RequestHandler');
-		$this->loadComponent('RequestHandler', ['viewClassMap' => ['pdf' => 'CakePdf.Pdf']]);
+		//$this->components()->unload('RequestHandler');
+		//$this->loadComponent('RequestHandler', ['viewClassMap' => ['pdf' => 'CakePdf.Pdf']]);
 	}
 
 	/**

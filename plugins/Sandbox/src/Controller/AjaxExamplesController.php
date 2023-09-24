@@ -3,8 +3,10 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Validation\Validation;
+use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
@@ -12,7 +14,11 @@ use Cake\Validation\Validation;
  * @property \Data\Model\Table\StatesTable $States
  * @property \App\Model\Table\UsersTable $Users
  */
+#[\AllowDynamicProperties]
 class AjaxExamplesController extends SandboxAppController {
+
+	use ModelAwareTrait;
+	use LegacyModelAwareTrait;
 
 	/**
 	 * @return void
@@ -83,7 +89,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function pagination() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries')->toArray();
+		$countries = $this->paginate('Countries');
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -100,7 +106,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function endlessScroll() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries')->toArray();
+		$countries = $this->paginate('Countries');
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -155,7 +161,7 @@ class AjaxExamplesController extends SandboxAppController {
 	public function table() {
 		$this->loadModel('Data.Countries');
 
-		$countries = $this->paginate('Countries')->toArray();
+		$countries = $this->paginate('Countries');
 		$this->set(compact('countries'));
 	}
 

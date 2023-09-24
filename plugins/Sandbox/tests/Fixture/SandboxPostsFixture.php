@@ -34,7 +34,7 @@ class SandboxPostsFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = [
+	public array $records = [
 		[
 			'title' => 'Lorem ipsum dolor sit amet',
 			'slug' => 'Lorem ipsum dolor sit amet',

@@ -17,7 +17,7 @@ class RegistrationDemoController extends AppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'StateMachineSandbox.Registrations';
+	protected ?string $modelClass = 'StateMachineSandbox.Registrations';
 
 	/**
 	 * @return \Cake\Http\Response|null|void

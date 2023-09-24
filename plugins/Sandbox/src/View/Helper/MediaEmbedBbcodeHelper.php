@@ -13,7 +13,7 @@ class MediaEmbedBbcodeHelper extends Helper {
 	/**
 	 * @var array<mixed>
 	 */
-	protected $helpers = [
+	protected array $helpers = [
 		'Text',
 	];
 

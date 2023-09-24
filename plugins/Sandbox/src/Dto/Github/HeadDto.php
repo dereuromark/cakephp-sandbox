@@ -46,7 +46,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	 *
 	 * @var array<string, array<string, mixed>>
 	 */
-	protected $_metadata = [
+	protected array $_metadata = [
 		'ref' => [
 			'name' => 'ref',
 			'type' => 'string',
@@ -100,7 +100,7 @@ class HeadDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	* @var array<string, array<string, string>>
 	*/
-	protected $_keyMap = [
+	protected array $_keyMap = [
 		'underscored' => [
 			'ref' => 'ref',
 			'sha' => 'sha',

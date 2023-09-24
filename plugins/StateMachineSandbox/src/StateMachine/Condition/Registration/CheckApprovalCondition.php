@@ -24,7 +24,7 @@ class CheckApprovalCondition implements StateMachineConditionInterface {
 		$registrationId = $itemDto->getIdentifierOrFail();
 
 		$this->loadModel('StateMachineSandbox.Registrations');
-		$registration = $this->Registrations->get($registrationId, ['contain' => ['Users' => ['Roles']]]);
+		$registration = $this->Registrations->get($registrationId, contain: ['Users' => ['Roles']]);
 		if ($registration->user && $registration->user->role && $registration->user->role->alias === 'mod') {
 			return true;
 		}

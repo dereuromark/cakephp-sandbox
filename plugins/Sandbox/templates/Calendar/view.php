@@ -26,7 +26,7 @@ $this->loadHelper('Geo.GoogleMap');
 						$mapTo = ['to' => h($coordinatesTo), 'from' => '', 'zoom' => 13];
 
 						$url = $this->GoogleMap->mapUrl($mapTo);
-						echo $this->Html->link($this->Format->icon('map-o', ['title' => __('Map')]), $url, ['escape' => false, 'target' => '_blank']);
+						echo $this->Html->link($this->Icon->render('map-o', ['title' => __('Map')]), $url, ['escape' => false, 'target' => '_blank']);
 					}
 					?></p>
 

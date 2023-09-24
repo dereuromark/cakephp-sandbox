@@ -38,7 +38,7 @@ class SandboxUsersFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = [
+	public array $records = [
 		[
 			'id' => 1,
 			'created' => '2015-05-07 16:54:56',
