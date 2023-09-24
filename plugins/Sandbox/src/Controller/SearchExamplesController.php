@@ -6,6 +6,7 @@ use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Response;
 use Cake\View\JsonView;
+use Cake\View\XmlView;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -27,7 +28,7 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return string[]
 	 */
 	public function viewClasses(): array {
-		return [JsonView::class];
+		return [JsonView::class, XmlView::class];
 	}
 
 	/**
