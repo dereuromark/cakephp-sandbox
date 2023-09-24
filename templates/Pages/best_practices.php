@@ -49,7 +49,7 @@ This way your URLs are `my-prefix/my-plugin/controller-name/action-name` whereas
 'action' => 'actionName' // camelBacked
 </code></pre>
 
-<p>The idea of CakePHP 3.x is to inflect internally as less as possible.</p>
+<p>The idea of CakePHP 3.0+ is to inflect internally as less as possible.</p>
 
 <h3>URLs</h3>
 Use array URLs wherever possible, this saves you a lot of trouble once you actually want to customize the routing:
