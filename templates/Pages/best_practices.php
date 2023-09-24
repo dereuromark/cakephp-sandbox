@@ -78,14 +78,14 @@ to secure (stringish) output by escaping potentially dangerous chars:
 By default the log streams catch all, even scoped logs that should only go to those scoped listeners.
 As a result they are duplicated.
 <br/>
-So I would change the scopes to false here for all default listeners:
+So I would change the scopes to `null` here for all default listeners:
 <pre><code>// in your app.php config
 'Log' => [
 	'debug' => [
-		'scopes' => false,
+		'scopes' => null,
 	],
 	'error' => [
-		'scopes' => false,
+		'scopes' => null,
 	],
 	...
 ],
@@ -143,7 +143,7 @@ cp -R ./webroot/assets/bootstrap/dist/fonts/* ./webroot/css/fonts/
 bin/cake asset_compress build
 
 echo "### CLEANUP ###";
-bin/cake clear cache
+bin/cake cache clear_all
 
 echo "### CACHE WARMING ###;
 bin/cake schema_cache build
