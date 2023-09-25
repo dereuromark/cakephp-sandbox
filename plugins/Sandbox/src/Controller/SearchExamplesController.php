@@ -28,9 +28,9 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return string[]
 	 */
 	public function viewClasses(): array {
-        if (!$this->request->getParam('_ext')) {
-            return [];
-        }
+		if (!$this->request->getParam('_ext')) {
+			return [];
+		}
 
 		return [JsonView::class, XmlView::class];
 	}
