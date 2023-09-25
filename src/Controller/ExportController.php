@@ -30,6 +30,10 @@ class ExportController extends AppController {
 	 * @return string[]
 	 */
 	public function viewClasses(): array {
+        if (!$this->request->getParam('_ext')) {
+            return [];
+        }
+
 		return [JsonView::class, XmlView::class];
 	}
 
@@ -92,8 +96,6 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * maybe with countries directly?
-	 *
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function states() {
