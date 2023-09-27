@@ -60,7 +60,6 @@ ConnectionManager::setConfig('test', [
 ]);
 
 Configure::write('Error.ignoredDeprecationPaths', [
-	'src/TestSuite/Fixture/FixtureInjector.php',
 	'vendor/*',
 ]);
 
