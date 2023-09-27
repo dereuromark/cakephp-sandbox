@@ -38,14 +38,17 @@ return [
 
 	'Log' => [
 		'debug' => [
-			'scopes' => false,
+			'className' => 'File',
 			//'className' => 'DatabaseLog.Database',
+			'scopes' => false,
 		],
 		'error' => [
+			'className' => 'File',
+			//'className' => 'DatabaseLog.Database',
 			'scopes' => false,
-            //'className' => 'DatabaseLog.Database',
 		],
 		'404' => [
+			'className' => 'File',
             //'className' => 'DatabaseLog.Database',
 			'file' => '404',
 			'levels' => ['error'],

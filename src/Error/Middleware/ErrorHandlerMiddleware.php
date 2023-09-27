@@ -2,8 +2,10 @@
 
 namespace App\Error\Middleware;
 
+use Cake\Error\ExceptionTrap;
 use Cake\Error\Middleware\ErrorHandlerMiddleware as CoreErrorHandlerMiddleware;
 use Cake\Log\Log;
+use Cake\Routing\RoutingApplicationInterface;
 use Tools\Error\ErrorHandlerTrait;
 
 /**
@@ -14,6 +16,21 @@ use Tools\Error\ErrorHandlerTrait;
 class ErrorHandlerMiddleware extends CoreErrorHandlerMiddleware {
 
 	use ErrorHandlerTrait;
+
+	/**
+	 * Constructor
+	 *
+	 * @param \Cake\Error\ExceptionTrap|array $config The error handler instance
+	 *  or config array.
+	 * @param \Cake\Routing\RoutingApplicationInterface|null $app Application instance.
+	 */
+	public function __construct(ExceptionTrap|array $config = [], ?RoutingApplicationInterface $app = null)
+	{
+		debug($app);
+		dd($config);
+
+		parent::__construct($config, $app);
+	}
 
 	/**
 	 * Log an error for the exception if applicable.
