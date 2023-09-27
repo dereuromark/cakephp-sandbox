@@ -30,10 +30,8 @@
 		<ul>
 			<li><?php echo $this->Html->link(__('Feedback'), ['plugin' => 'Feedback', 'controller' => 'Feedback', 'action' => 'index'])?></li>
 
-			<li><?php echo $this->Html->link(__('Code Snippets'), ['controller' => 'CodeSnippets', 'action' => 'index'])?></li>
-			<li><?php echo $this->Html->link(__('Examples'), ['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
-			<li><?php echo $this->Html->link(__('Jquery Examples'), ['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
-			<li><?php echo $this->Html->link(__('Feedback'), ['plugin' => 'Feedback', 'controller' => 'Feedback', 'action' => 'index'])?></li>
+			<li><?php echo $this->Html->link(__('Examples'), ['prefix' => false, 'plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
+			<li><?php echo $this->Html->link(__('Jquery Examples'), ['prefix' => false, 'plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'index'])?></li>
 
 		</ul>
 

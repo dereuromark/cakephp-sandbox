@@ -12,13 +12,6 @@ use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
- * @property \Data\Model\Table\CountriesTable $Countries
- * @property \Data\Model\Table\StatesTable $States
- * @property \Data\Model\Table\CurrenciesTable $Currencies
- * @property \Data\Model\Table\LanguagesTable $Languages
- * @property \Data\Model\Table\ContinentsTable $Continents
- * @property \Data\Model\Table\PostalCodesTable $PostalCodes
- * @property \Data\Model\Table\TimezonesTable $Timezones
  */
 #[\AllowDynamicProperties]
 class ExportController extends AppController {

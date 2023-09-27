@@ -170,24 +170,6 @@ return [
 		'align' => 'horizontal',
 	],
 
-	'Format' => [
-		'iconNamespaces' => [
-			'fa',
-			//'glyphicon',
-		],
-		'fontPath' => ROOT . DS . 'webroot/assets/font-awesome/scss/_variables.scss', // For FormatIconTask
-		'fontIcons' => [
-			'see' => 'fa fa-eye',
-			'details' => 'fa fa-chevron-right',
-			'admin' => 'fa fa-shield',
-			'login' => 'fa fa-sign-in',
-			'logout' => 'fa fa-sign-out',
-			'translate' => 'fa fa-language',
-			'prev' => 'fa fa-arrow-left',
-			'next' => 'fa fa-arrow-right',
-		],
-	],
-
 	'Icon' => [
 		'sets' => [
 			'fa4' => [
@@ -213,14 +195,14 @@ return [
 			],
 		],
 		'map' => [
-			'see' => 'fa:eye',
-			'details' => 'fa:chevron-right',
-			'admin' => 'fa:shield',
-			'login' => 'fa:sign-in',
-			'logout' => 'fa:sign-out',
-			'translate' => 'fa:language',
-			'prev' => 'fa:arrow-left',
-			'next' => 'fa:arrow-right',
+			'see' => 'fa4:eye',
+			'details' => 'fa4:chevron-right',
+			'admin' => 'fa4:shield',
+			'login' => 'fa4:sign-in',
+			'logout' => 'fa4:sign-out',
+			'translate' => 'fa4:language',
+			'prev' => 'fa4:arrow-left',
+			'next' => 'fa4:arrow-right',
 		],
 	],
 

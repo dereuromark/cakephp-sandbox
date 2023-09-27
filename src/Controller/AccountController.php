@@ -13,7 +13,6 @@ use Tools\View\Helper\ObfuscateHelper;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
- * @property \Tools\Model\Table\TokensTable $Tokens
  */
 #[\AllowDynamicProperties]
 class AccountController extends AppController {
