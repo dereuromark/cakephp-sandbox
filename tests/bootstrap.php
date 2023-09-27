@@ -6,6 +6,7 @@ use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Shim\Filesystem\Folder;
+use Migrations\TestSuite\Migrator;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/bootstrap.php';
@@ -47,12 +48,13 @@ require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
 ConnectionManager::drop('test');
 ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
-	'driver' => getenv('db_class') ?: null,
+	'driver' => getenv('db_class') ?: 'Cake\Database\Driver\Sqlite',
 	'dsn' => getenv('db_dsn') ?: null,
-	//'database' => getenv('db_database'),
+	'database' => getenv('db_database') ?: TMP . 'debug_kit.sqlite',
 	//'username' => getenv('db_username'),
 	//'password' => getenv('db_password'),
 	'timezone' => 'UTC',
+    'encoding' => 'utf8',
 	'quoteIdentifiers' => true,
 	'cacheMetadata' => true,
 ]);
@@ -66,3 +68,5 @@ Configure::write('Error.ignoredDeprecationPaths', [
 // does not allow the sessionid to be set after stdout
 // has been written to.
 session_id('cli');
+
+//(new Migrator())->run();

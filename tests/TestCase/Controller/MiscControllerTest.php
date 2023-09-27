@@ -23,7 +23,7 @@ class MiscControllerTest extends IntegrationTestCase {
 	public function tearDown(): void {
 		parent::tearDown();
 
-		TableRegistry::clear();
+		//TableRegistry::clear();
 	}
 
 	/**
@@ -44,6 +44,8 @@ class MiscControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testConvertText() {
+        $this->disableErrorHandlerMiddleware();
+
 		$this->get(['controller' => 'Misc', 'action' => 'convertText']);
 
 		$this->assertResponseCode(200);

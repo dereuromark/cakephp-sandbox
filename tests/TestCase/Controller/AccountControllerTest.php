@@ -34,7 +34,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	public function tearDown(): void {
 		parent::tearDown();
 
-		TableRegistry::clear();
+		//TableRegistry::clear();
 	}
 
 	/**
