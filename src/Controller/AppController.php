@@ -35,7 +35,7 @@ class AppController extends Controller {
 
 		$config = [
 			'authenticate' => [
-				'Tools.MultiColumn' => [
+				'TinyAuth.MultiColumn' => [
 					'fields' => [
 						'username' => 'login',
 						'password' => 'password',
@@ -64,8 +64,8 @@ class AppController extends Controller {
 				'action' => 'login',
 			],
 		];
-		//$config += $this->Auth->getConfig();
-		//$this->Auth->setConfig($config);
+		$config += $this->Auth->getConfig();
+		$this->Auth->setConfig($config);
 
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lostPassword', 'register']];

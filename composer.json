@@ -73,7 +73,7 @@
 		"dereuromark/cakephp-ide-helper-extra": "dev-cake5",
 		"dereuromark/cakephp-test-helper": "dev-cake5",
 		"phpunit/phpunit": "^10.3",
-		"cakedc/cakephp-phpstan": "dev-3.next-cake5"
+		"cakedc/cakephp-phpstan": "^3.0.0"
 	},
 	"autoload": {
 		"psr-4": {

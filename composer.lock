@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "476dfd92b0ff76d373cfd8ffb5fae01e",
+    "content-hash": "1cbf05ae43f37405aac7d3662c585e15",
     "packages": [
         {
             "name": "brick/math",
@@ -1538,12 +1538,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "6cb3e1ca610d19409ff5a6d431a7c35f1d626157"
+                "reference": "e86d555c3dac1af6bba448b856739df634ea9c96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/6cb3e1ca610d19409ff5a6d431a7c35f1d626157",
-                "reference": "6cb3e1ca610d19409ff5a6d431a7c35f1d626157",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/e86d555c3dac1af6bba448b856739df634ea9c96",
+                "reference": "e86d555c3dac1af6bba448b856739df634ea9c96",
                 "shasum": ""
             },
             "require": {
@@ -1585,7 +1585,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2023-09-10T09:21:42+00:00"
+            "time": "2023-09-27T13:24:47+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -2504,12 +2504,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "7f586f70d67c9f5fd9bb5a27da39c13a5d973f19"
+                "reference": "d2a9857dbfe043761c6507e5042e6acb6c2709a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/7f586f70d67c9f5fd9bb5a27da39c13a5d973f19",
-                "reference": "7f586f70d67c9f5fd9bb5a27da39c13a5d973f19",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/d2a9857dbfe043761c6507e5042e6acb6c2709a0",
+                "reference": "d2a9857dbfe043761c6507e5042e6acb6c2709a0",
                 "shasum": ""
             },
             "require": {
@@ -2555,7 +2555,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
                 "source": "https://github.com/dereuromark/cakephp-tinyauth"
             },
-            "time": "2023-09-23T21:00:46+00:00"
+            "time": "2023-09-27T15:39:06+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -2563,12 +2563,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "1427c49f9e4e17e3ae16f065a1b33447d6c53f53"
+                "reference": "2333d6721e1fff70e34c9dedfdee5a5a79f9de84"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/1427c49f9e4e17e3ae16f065a1b33447d6c53f53",
-                "reference": "1427c49f9e4e17e3ae16f065a1b33447d6c53f53",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/2333d6721e1fff70e34c9dedfdee5a5a79f9de84",
+                "reference": "2333d6721e1fff70e34c9dedfdee5a5a79f9de84",
                 "shasum": ""
             },
             "require": {
@@ -2619,7 +2619,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2023-09-27T13:16:45+00:00"
+            "time": "2023-09-27T13:32:10+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -3257,16 +3257,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.12",
+            "version": "v5.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60"
+                "reference": "fbbe7e5d79f618997bc3332a6f49246036c45793"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
-                "reference": "ad87d5a5ca981228e0e205c2bc7dfb8e24559b60",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/fbbe7e5d79f618997bc3332a6f49246036c45793",
+                "reference": "fbbe7e5d79f618997bc3332a6f49246036c45793",
                 "shasum": ""
             },
             "require": {
@@ -3321,9 +3321,9 @@
             ],
             "support": {
                 "issues": "https://github.com/justinrainbow/json-schema/issues",
-                "source": "https://github.com/justinrainbow/json-schema/tree/5.2.12"
+                "source": "https://github.com/justinrainbow/json-schema/tree/v5.2.13"
             },
-            "time": "2022-04-13T08:02:27+00:00"
+            "time": "2023-09-26T02:20:38+00:00"
         },
         {
             "name": "knplabs/knp-menu",
@@ -7523,7 +7523,7 @@
     "packages-dev": [
         {
             "name": "cakedc/cakephp-phpstan",
-            "version": "dev-3.next-cake5",
+            "version": "3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/cakephp-phpstan.git",
@@ -7545,7 +7545,6 @@
                 "phpstan/phpstan-phpunit": "^1.0",
                 "phpunit/phpunit": "^10.1"
             },
-            "default-branch": true,
             "type": "phpstan-extension",
             "extra": {
                 "phpstan": {
@@ -9757,8 +9756,7 @@
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,
         "dereuromark/cakephp-ide-helper-extra": 20,
-        "dereuromark/cakephp-test-helper": 20,
-        "cakedc/cakephp-phpstan": 20
+        "dereuromark/cakephp-test-helper": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

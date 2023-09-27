@@ -12,7 +12,7 @@ class OverviewController extends AppController {
 	/**
 	 * @var string
 	 */
-	protected $modelClass = 'Users';
+	protected ?string $defaultTable = 'Users';
 
 	/**
 	 * @return void
