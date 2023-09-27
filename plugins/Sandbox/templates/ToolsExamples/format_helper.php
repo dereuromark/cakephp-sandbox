@@ -49,49 +49,6 @@ echo $this->Format->thumbs(0);
 
 	<br><br>
 
-<h3>Font Icons</h3>
-<code style="display: block;">
-	<?php
-	$text = <<<TEXT
-<?php echo \$this->Format->fontIcon('motorcycle'); ?>
-<?php echo \$this->Format->fontIcon('anchor', ['spin' => true]); ?>
-TEXT;
-	echo nl2br(h($text));
-	?>
-</code>
-
-<?php
-echo $this->Format->fontIcon('motorcycle');
-echo '<br>';
-echo $this->Format->fontIcon('anchor', ['spin' => true]);
-?>
-
-	<br><br>
-	<p>Note: Use <a href="https://github.com/dereuromark/cakephp-ide-helper-extra" target="_blank">IdeHelperExtra plugin</a> to get autocomplete for all icons</p>
-
-	<br>
-
-	<h3>Bootstrap Icons</h3>
-
-<code style="display: block;">
-	<?php
-	$text = <<<TEXT
-<?php echo \$this->Icon->render('info-circle-fill', ['iconNamespace' => 'bi']); ?>
-TEXT;
-	echo nl2br(h($text));
-	?>
-</code>
-
-	<?php
-	echo $this->Icon->render('info-circle-fill', ['iconNamespace' => 'bi']);
-	?>
-
-
-	<br><br>
-	<p>Note: Use <a href="https://github.com/dereuromark/cakephp-ide-helper-extra" target="_blank">IdeHelperExtra plugin</a> to get autocomplete for all icons</p>
-
-	<br>
-
 	<h3>Other</h3>
 <code style="display: block;">
 	<?php

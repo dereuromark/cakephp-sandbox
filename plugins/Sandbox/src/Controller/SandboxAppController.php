@@ -24,6 +24,11 @@ class SandboxAppController extends AppController {
 		$parentClass = get_parent_class($Controller);
 		$parentMethods = get_class_methods($parentClass);
 		$parentMethods[] = 'index';
+		$parentMethods[] = 'loadModel';
+		$parentMethods[] = 'fetchModel';
+		$parentMethods[] = 'modelFactory';
+		$parentMethods[] = 'setModelType';
+		$parentMethods[] = 'getModelType';
 
 		$actions = array_diff($actions, $parentMethods);
 		foreach ($actions as $key => $value) {
