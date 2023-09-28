@@ -25,7 +25,7 @@
 		"mobiledetect/mobiledetectlib": "3.*",
 		"dereuromark/cakephp-tinyauth": "dev-cake5",
 		"dereuromark/cakephp-geo": "dev-cake5",
-		"dereuromark/cakephp-shim": "dev-cake5 as 3.0.0",
+		"dereuromark/cakephp-shim": "dev-master as 3.0.0",
 		"dereuromark/cakephp-tools": "dev-cake5 as 3.0.0",
 		"dereuromark/cakephp-setup": "dev-cake5",
 		"dereuromark/cakephp-markup": "dev-cake5",
@@ -58,7 +58,7 @@
 		"dereuromark/media-embed": "dev-master",
 		"dereuromark/cakephp-expose": "dev-cake5",
 		"dereuromark/cakephp-ratings": "dev-cake5",
-		"dereuromark/cakephp-dto": "dev-cake5 as 2.0.0",
+		"dereuromark/cakephp-dto": "dev-master as 2.0.0",
 		"brick/math": "^0.11.0",
 		"php-http/cakephp-adapter": "^0.4.0",
 		"php-http/message": "^1.8.0",
@@ -69,8 +69,8 @@
 	"require-dev": {
 		"fig-r/psr2r-sniffer": "dev-next",
 		"phpstan/phpstan": "^1.0.0",
-		"dereuromark/cakephp-ide-helper": "dev-cake5 as 2.0.0",
-		"dereuromark/cakephp-ide-helper-extra": "dev-cake5",
+		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",
+		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-cake5",
 		"phpunit/phpunit": "^10.3",
 		"cakedc/cakephp-phpstan": "^3.0.0"
@@ -125,6 +125,12 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "git@github.com:dereuromark/cakephp-statemachine.git"
+		}
+	],
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"config": {
