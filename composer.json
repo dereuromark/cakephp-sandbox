@@ -112,8 +112,8 @@
 			"cp -R node_modules/bootstrap-icons webroot/assets/",
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/"
 		],
-		"setup": "bin/cake code_completion generate && bin/cake phpstorm generate",
-		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox",
+		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
+		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox && bin/cake annotate all -p StateMachineSandbox",
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "phpunit",
 		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",

@@ -252,6 +252,7 @@ return [
 		'includedPlugins' => [
 			'Sandbox',
 			'AuthSandbox',
+			'StateMachineSandbox',
 		],
 		'typeMap' => [
 		],

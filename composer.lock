@@ -167,12 +167,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "10690776c694be450fb4e188f478a8b161632a59"
+                "reference": "f2a9267f9c4ed941736218b413895547f9e329fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/10690776c694be450fb4e188f478a8b161632a59",
-                "reference": "10690776c694be450fb4e188f478a8b161632a59",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/f2a9267f9c4ed941736218b413895547f9e329fc",
+                "reference": "f2a9267f9c4ed941736218b413895547f9e329fc",
                 "shasum": ""
             },
             "require": {
@@ -215,7 +215,7 @@
                 "issues": "https://github.com/cakephp/bake/issues",
                 "source": "https://github.com/cakephp/bake"
             },
-            "time": "2023-09-27T20:16:40+00:00"
+            "time": "2023-09-27T23:13:20+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -1654,12 +1654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "a1e44e27aa42e5016f4c09a09d89aef12d4ec26b"
+                "reference": "103a7b0abd66ce40dfff91788ba7a1dd13a31384"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/a1e44e27aa42e5016f4c09a09d89aef12d4ec26b",
-                "reference": "a1e44e27aa42e5016f4c09a09d89aef12d4ec26b",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/103a7b0abd66ce40dfff91788ba7a1dd13a31384",
+                "reference": "103a7b0abd66ce40dfff91788ba7a1dd13a31384",
                 "shasum": ""
             },
             "require": {
@@ -1715,7 +1715,7 @@
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2023-09-24T16:48:56+00:00"
+            "time": "2023-09-28T00:32:17+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -7661,12 +7661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "05c8feda5809163c4d7cee08faf89fa3dab3844f"
+                "reference": "db6f631929028d651f343970bbeeca934d7214f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/05c8feda5809163c4d7cee08faf89fa3dab3844f",
-                "reference": "05c8feda5809163c4d7cee08faf89fa3dab3844f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/db6f631929028d651f343970bbeeca934d7214f4",
+                "reference": "db6f631929028d651f343970bbeeca934d7214f4",
                 "shasum": ""
             },
             "require": {
@@ -7728,7 +7728,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-24T13:48:22+00:00"
+            "time": "2023-09-27T20:34:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
