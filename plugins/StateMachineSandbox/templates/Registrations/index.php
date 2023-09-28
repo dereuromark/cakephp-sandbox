@@ -32,7 +32,7 @@
             <tbody>
                 <?php foreach ($registrations as $registration): ?>
                 <tr>
-                    <td><?= h($registration->user->username) ?></td>
+                    <td><?= $registration->user ? h($registration->user->username) : 'anonymous' ?></td>
                     <td><?= h($registration->status) ?></td>
                     <td><?= $this->Time->nice($registration->created) ?></td>
                     <td><?= $this->Time->nice($registration->modified) ?></td>

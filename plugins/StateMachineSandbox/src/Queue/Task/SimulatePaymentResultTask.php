@@ -24,9 +24,10 @@ class SimulatePaymentResultTask extends Task {
 	 * @return void
 	 */
 	public function run(array $data, int $jobId): void {
-		$this->loadModel('StateMachineSandbox.Registrations');
+		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
+		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
 		try {
-			$registration = $this->Registrations->get($data['id'], contain: ['RegistrationStates']);
+			$registration = $Registrations->get($data['id'], contain: ['RegistrationStates']);
 		} catch (RecordNotFoundException $e) {
 			// Someone already removed the registration, for demo we can ignore
 			return;
@@ -37,6 +38,7 @@ class SimulatePaymentResultTask extends Task {
 		$itemDto->setIdentifier($registration->id);
 		$itemDto->setStateMachineName(RegistrationStateMachineHandler::NAME);
 		$itemDto->setStateName(RegistrationStateMachineHandler::STATE_WAITING_FOR_PAYMENT);
+		assert($registration->registration_state !== null);
 		$itemDto->setProcessName($registration->registration_state->process);
 
 		$stateMachineFacade->triggerEvent(RegistrationStateMachineHandler::EVENT_CONFIRM_PAYMENT, $itemDto);

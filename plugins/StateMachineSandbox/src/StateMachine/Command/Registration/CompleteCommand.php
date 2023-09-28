@@ -6,9 +6,6 @@ use Cake\Datasource\ModelAwareTrait;
 use StateMachine\Dependency\StateMachineCommandInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 
-/**
- * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- */
 class CompleteCommand implements StateMachineCommandInterface {
 
 	use ModelAwareTrait;
@@ -21,11 +18,12 @@ class CompleteCommand implements StateMachineCommandInterface {
 	public function run(ItemDto $itemDto): void {
 		$registrationId = $itemDto->getIdentifierOrFail();
 
-		$this->loadModel('StateMachineSandbox.Registrations');
-		$registration = $this->Registrations->get($registrationId);
+		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
+		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
+		$registration = $Registrations->get($registrationId);
 		$registration->status = 'complete';
 
-		$this->Registrations->saveOrFail($registration);
+		$Registrations->saveOrFail($registration);
 	}
 
 }

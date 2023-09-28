@@ -6,11 +6,13 @@ parameters:
 	level: 8
 
 	checkGenericClassInNonGenericObjectType: false
+	treatPhpDocTypesAsCertain: false
 
 	paths:
 		- src/
 		- plugins/Sandbox/src/
 		- plugins/AuthSandbox/src/
+		- plugins/StateMachineSandbox/src/
 
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php

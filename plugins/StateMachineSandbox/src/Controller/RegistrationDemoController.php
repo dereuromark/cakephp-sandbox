@@ -3,6 +3,7 @@
 namespace StateMachineSandbox\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;
@@ -14,10 +15,12 @@ use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
  */
 class RegistrationDemoController extends AppController {
 
+	use ModelAwareTrait;
+
 	/**
 	 * @var string
 	 */
-	protected ?string $modelClass = 'StateMachineSandbox.Registrations';
+	protected ?string $defaultTable = 'StateMachineSandbox.Registrations';
 
 	/**
 	 * @return \Cake\Http\Response|null|void
@@ -29,8 +32,8 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function register() {
-		$this->loadModel('Users');
-		$users = $this->Users->find()
+		$Users = $this->fetchModel('Users');
+		$users = $Users->find()
 			->select(['Users.id', 'Users.username'])
 			->where(['Users.username IN' => ['user', 'mod']])
 			->find('list')
@@ -57,7 +60,8 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function process() {
-		$registrations = $this->Registrations->find()
+		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
+		$registrations = $Registrations->find()
 			->where(['session_id' => $this->request->getSession()->id()])
 			->contain(['Users', 'RegistrationStates'])
 			->all()
@@ -79,10 +83,10 @@ class RegistrationDemoController extends AppController {
 			->all()
 			->toArray();
 
-		if ($this->request->isPost()) {
+		if ($this->request->is('post')) {
 			$stateMachineFacade = new StateMachineFacade();
 			$itemDto = new ItemDto();
-			$itemDto->setIdentifier($id);
+			$itemDto->setIdentifier((int)$id);
 			$registrationEntity = null;
 			foreach ($registrations as $registration) {
 				if ($registration->id === (int)$id) {
@@ -97,6 +101,7 @@ class RegistrationDemoController extends AppController {
 
 			$itemDto->setStateMachineName(RegistrationStateMachineHandler::NAME);
 			$itemDto->setStateName(RegistrationStateMachineHandler::STATE_WAITING_FOR_APPROVAL);
+			assert($registrationEntity->registration_state !== null);
 			$itemDto->setProcessName($registrationEntity->registration_state->process);
 
 			$stateMachineFacade->triggerEvent(RegistrationStateMachineHandler::EVENT_APPROVE, $itemDto);
@@ -120,10 +125,10 @@ class RegistrationDemoController extends AppController {
 			->all()
 			->toArray();
 
-		if ($this->request->isPost()) {
+		if ($this->request->is('post')) {
 			$stateMachineFacade = new StateMachineFacade();
 			$itemDto = new ItemDto();
-			$itemDto->setIdentifier($id);
+			$itemDto->setIdentifier((int)$id);
 			$registrationEntity = null;
 			foreach ($registrations as $registration) {
 				if ($registration->id === (int)$id) {
@@ -161,7 +166,7 @@ class RegistrationDemoController extends AppController {
 		$jobType = 'StateMachineSandbox.SimulatePaymentResult';
 		$queuedJobsTable = $this->getTableLocator()->get('Queue.QueuedJobs');
 		$queuedJob = $queuedJobsTable->get($id);
-		if ($queuedJob->completed || $queuedJob->job_type !== $jobType || strpos($queuedJob->reference, 'registration-') !== 0) {
+		if ($queuedJob->completed || $queuedJob->job_task !== $jobType || strpos((string)$queuedJob->reference, 'registration-') !== 0) {
 			throw new NotFoundException('Invalid queue job ID');
 		}
 		$queuedJobsTable->deleteOrFail($queuedJob);
