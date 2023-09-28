@@ -1654,12 +1654,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "103a7b0abd66ce40dfff91788ba7a1dd13a31384"
+                "reference": "62166b87bf0a9e68f0eb5ab3a0845fb488c43248"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/103a7b0abd66ce40dfff91788ba7a1dd13a31384",
-                "reference": "103a7b0abd66ce40dfff91788ba7a1dd13a31384",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/62166b87bf0a9e68f0eb5ab3a0845fb488c43248",
+                "reference": "62166b87bf0a9e68f0eb5ab3a0845fb488c43248",
                 "shasum": ""
             },
             "require": {
@@ -1715,7 +1715,7 @@
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2023-09-28T00:32:17+00:00"
+            "time": "2023-09-28T14:36:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
@@ -2564,12 +2564,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "fcfa67c07acfd87c4832b0beaa9a4c9eafe6f8a0"
+                "reference": "fd042ac2c66ef80fe7d749b3d9086b9358b186ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/fcfa67c07acfd87c4832b0beaa9a4c9eafe6f8a0",
-                "reference": "fcfa67c07acfd87c4832b0beaa9a4c9eafe6f8a0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/fd042ac2c66ef80fe7d749b3d9086b9358b186ee",
+                "reference": "fd042ac2c66ef80fe7d749b3d9086b9358b186ee",
                 "shasum": ""
             },
             "require": {
@@ -2620,7 +2620,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2023-09-27T17:32:58+00:00"
+            "time": "2023-09-28T00:36:39+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -7661,12 +7661,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "db6f631929028d651f343970bbeeca934d7214f4"
+                "reference": "25925bd04babde81d9e4796eb5cc68d60375c4f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/db6f631929028d651f343970bbeeca934d7214f4",
-                "reference": "db6f631929028d651f343970bbeeca934d7214f4",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/25925bd04babde81d9e4796eb5cc68d60375c4f3",
+                "reference": "25925bd04babde81d9e4796eb5cc68d60375c4f3",
                 "shasum": ""
             },
             "require": {
@@ -7728,7 +7728,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-27T20:34:46+00:00"
+            "time": "2023-09-28T01:18:47+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -8859,16 +8859,16 @@
         },
         {
             "name": "sebastian/complexity",
-            "version": "3.0.1",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/complexity.git",
-                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a"
+                "reference": "68cfb347a44871f01e33ab0ef8215966432f6957"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/c70b73893e10757af9c6a48929fa6a333b56a97a",
-                "reference": "c70b73893e10757af9c6a48929fa6a333b56a97a",
+                "url": "https://api.github.com/repos/sebastianbergmann/complexity/zipball/68cfb347a44871f01e33ab0ef8215966432f6957",
+                "reference": "68cfb347a44871f01e33ab0ef8215966432f6957",
                 "shasum": ""
             },
             "require": {
@@ -8881,7 +8881,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-main": "3.1-dev"
                 }
             },
             "autoload": {
@@ -8905,7 +8905,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/complexity/issues",
                 "security": "https://github.com/sebastianbergmann/complexity/security/policy",
-                "source": "https://github.com/sebastianbergmann/complexity/tree/3.0.1"
+                "source": "https://github.com/sebastianbergmann/complexity/tree/3.1.0"
             },
             "funding": [
                 {
@@ -8913,7 +8913,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-08-31T09:55:53+00:00"
+            "time": "2023-09-28T11:50:59+00:00"
         },
         {
             "name": "sebastian/environment",
