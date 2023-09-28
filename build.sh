@@ -34,7 +34,7 @@ rm -rf tmp/cache/models/*
 rm -rf tmp/cache/persistent/*
 rm -rf tmp/cache/views/*
 
-bin/cake clear cache
+bin/cake cache clear_all
 bin/cake schema_cache build
 
 bin/cake maintenance_mode deactivate
