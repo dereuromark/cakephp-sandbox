@@ -43,13 +43,6 @@ return [
 		],
 	],
 
-	'FormConfig' => [
-		'novalidate' => true,
-		'templates' => [
-			'dateWidget' => '{{day}}{{month}}{{year}}{{hour}}{{minute}}{{second}}{{meridian}}',
-		],
-	],
-
 	'Whoops' => [
 		'editor' => true,
 		'serverBasePath' => '/home/vagrant/Apps/sandbox.local',
