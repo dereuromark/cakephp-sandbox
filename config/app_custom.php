@@ -22,7 +22,7 @@ use Tools\View\Icon\FontAwesome6Icon;
 use Tools\View\Icon\MaterialIcon;
 
 $debug = false;
-if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
+if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox4.local') {
 	$debug = true;
 }
 
