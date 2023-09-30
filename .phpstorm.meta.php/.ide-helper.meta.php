@@ -411,7 +411,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\Datasource\ModelAwareTrait::fetchModel(0),
 		map([
-			'Apples' => \App\Model\Table\ApplesTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -579,7 +578,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Locator\LocatorAwareTrait::fetchTable(0),
 		map([
-			'Apples' => \App\Model\Table\ApplesTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -631,7 +629,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Locator\LocatorInterface::get(0),
 		map([
-			'Apples' => \App\Model\Table\ApplesTable::class,
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
@@ -713,7 +710,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::belongToMany(0),
 		map([
-			'Apples' => \Cake\ORM\Association\BelongsToMany::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsToMany::class,
@@ -765,7 +761,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::belongsTo(0),
 		map([
-			'Apples' => \Cake\ORM\Association\BelongsTo::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsTo::class,
@@ -839,7 +834,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::hasMany(0),
 		map([
-			'Apples' => \Cake\ORM\Association\HasMany::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\HasMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasMany::class,
 			'Data.Cities' => \Cake\ORM\Association\HasMany::class,
@@ -891,7 +885,6 @@ namespace PHPSTORM_META {
 	override(
 		\Cake\ORM\Table::hasOne(0),
 		map([
-			'Apples' => \Cake\ORM\Association\HasOne::class,
 			'Captcha.Captchas' => \Cake\ORM\Association\HasOne::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasOne::class,
 			'Data.Cities' => \Cake\ORM\Association\HasOne::class,
@@ -979,7 +972,6 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Cake\TestSuite\TestCase::addFixture(),
 		0,
-		'app.Apples',
 		'app.Roles',
 		'app.Users',
 		'core.Articles',
@@ -1396,6 +1388,75 @@ namespace PHPSTORM_META {
 		argumentsSet('routePaths'),
 	);
 
+	override(
+		\Cake\View\View::addHelper(0),
+		map([
+			'App' => \App\View\Helper\AppHelper::class,
+			'AssetCompress.AssetCompress' => \AssetCompress\View\Helper\AssetCompressHelper::class,
+			'Bake.Bake' => \Bake\View\Helper\BakeHelper::class,
+			'Bake.DocBlock' => \Bake\View\Helper\DocBlockHelper::class,
+			'BootstrapUI.Breadcrumbs' => \BootstrapUI\View\Helper\BreadcrumbsHelper::class,
+			'BootstrapUI.Flash' => \BootstrapUI\View\Helper\FlashHelper::class,
+			'BootstrapUI.Form' => \BootstrapUI\View\Helper\FormHelper::class,
+			'BootstrapUI.Html' => \BootstrapUI\View\Helper\HtmlHelper::class,
+			'BootstrapUI.Paginator' => \BootstrapUI\View\Helper\PaginatorHelper::class,
+			'Breadcrumbs' => \Cake\View\Helper\BreadcrumbsHelper::class,
+			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
+			'Calendar.Calendar' => \Calendar\View\Helper\CalendarHelper::class,
+			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
+			'Data.Continent' => \Data\View\Helper\ContinentHelper::class,
+			'Data.Data' => \Data\View\Helper\DataHelper::class,
+			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
+			'DatabaseLog.Log' => \DatabaseLog\View\Helper\LogHelper::class,
+			'Flash' => \Cake\View\Helper\FlashHelper::class,
+			'Form' => \Cake\View\Helper\FormHelper::class,
+			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
+			'Html' => \Cake\View\Helper\HtmlHelper::class,
+			'Icings/Menu.Menu' => \Icings\Menu\View\Helper\MenuHelper::class,
+			'IdeHelper.DocBlock' => \IdeHelper\View\Helper\DocBlockHelper::class,
+			'Markup.Bbcode' => \Markup\View\Helper\BbcodeHelper::class,
+			'Markup.Highlighter' => \Markup\View\Helper\HighlighterHelper::class,
+			'Markup.Markdown' => \Markup\View\Helper\MarkdownHelper::class,
+			'Meta.Meta' => \Meta\View\Helper\MetaHelper::class,
+			'Migrations.Migration' => \Migrations\View\Helper\MigrationHelper::class,
+			'Navigation' => \App\View\Helper\NavigationHelper::class,
+			'Number' => \Cake\View\Helper\NumberHelper::class,
+			'Paginator' => \Cake\View\Helper\PaginatorHelper::class,
+			'Queue.Queue' => \Queue\View\Helper\QueueHelper::class,
+			'Queue.QueueProgress' => \Queue\View\Helper\QueueProgressHelper::class,
+			'Ratings.Rating' => \Ratings\View\Helper\RatingHelper::class,
+			'Sandbox' => \App\View\Helper\SandboxHelper::class,
+			'Sandbox.MediaEmbedBbcode' => \Sandbox\View\Helper\MediaEmbedBbcodeHelper::class,
+			'Search.Search' => \Search\View\Helper\SearchHelper::class,
+			'Setup.SetupBake' => \Setup\View\Helper\SetupBakeHelper::class,
+			'StateMachine.StateMachine' => \StateMachine\View\Helper\StateMachineHelper::class,
+			'Tags.Tag' => \Tags\View\Helper\TagHelper::class,
+			'Tags.TagCloud' => \Tags\View\Helper\TagCloudHelper::class,
+			'Text' => \Cake\View\Helper\TextHelper::class,
+			'Time' => \Cake\View\Helper\TimeHelper::class,
+			'TinyAuth.AuthUser' => \TinyAuth\View\Helper\AuthUserHelper::class,
+			'TinyAuth.Authentication' => \TinyAuth\View\Helper\AuthenticationHelper::class,
+			'Tools.Common' => \Tools\View\Helper\CommonHelper::class,
+			'Tools.Form' => \Tools\View\Helper\FormHelper::class,
+			'Tools.Format' => \Tools\View\Helper\FormatHelper::class,
+			'Tools.Gravatar' => \Tools\View\Helper\GravatarHelper::class,
+			'Tools.Html' => \Tools\View\Helper\HtmlHelper::class,
+			'Tools.Icon' => \Tools\View\Helper\IconHelper::class,
+			'Tools.Meter' => \Tools\View\Helper\MeterHelper::class,
+			'Tools.Number' => \Tools\View\Helper\NumberHelper::class,
+			'Tools.Obfuscate' => \Tools\View\Helper\ObfuscateHelper::class,
+			'Tools.Progress' => \Tools\View\Helper\ProgressHelper::class,
+			'Tools.QrCode' => \Tools\View\Helper\QrCodeHelper::class,
+			'Tools.Text' => \Tools\View\Helper\TextHelper::class,
+			'Tools.Time' => \Tools\View\Helper\TimeHelper::class,
+			'Tools.Timeline' => \Tools\View\Helper\TimelineHelper::class,
+			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
+			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
+			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Url' => \Cake\View\Helper\UrlHelper::class,
+		]),
+	);
+
 	expectedArguments(
 		\Cake\View\View::element(),
 		0,
@@ -1455,7 +1516,7 @@ namespace PHPSTORM_META {
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
 			'DatabaseLog.Log' => \DatabaseLog\View\Helper\LogHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
-			'Form' => \App\View\Helper\FormHelper::class,
+			'Form' => \Cake\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
 			'Html' => \Cake\View\Helper\HtmlHelper::class,
 			'Icings/Menu.Menu' => \Icings\Menu\View\Helper\MenuHelper::class,
@@ -2249,7 +2310,6 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Queue\Model\Table\QueuedJobsTable::createJob(),
 		0,
-		'FooBar',
 		'MyTaskName',
 		'Queue.CostsExample',
 		'Queue.Email',
@@ -2268,7 +2328,6 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Queue\Model\Table\QueuedJobsTable::isQueued(),
 		1,
-		'FooBar',
 		'MyTaskName',
 		'Queue.CostsExample',
 		'Queue.Email',
@@ -12465,11 +12524,6 @@ namespace PHPSTORM_META {
 		'Admin/Users::delete',
 		'Admin/Users::edit',
 		'Admin/Users::index',
-		'Apples::add',
-		'Apples::delete',
-		'Apples::edit',
-		'Apples::index',
-		'Apples::view',
 		'AuthSandbox.Admin/AuthSandbox::index',
 		'AuthSandbox.Admin/AuthSandbox::myPublicOne',
 		'AuthSandbox.AuthSandbox::forAll',
