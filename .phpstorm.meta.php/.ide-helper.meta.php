@@ -222,12 +222,16 @@ namespace PHPSTORM_META {
 		'FormProtection',
 		'LegacyAuth',
 		'Mobile',
+		'Plugins',
 		'Preparer',
 		'Rating',
 		'RefererRedirect',
 		'Search',
 		'Setup',
 		'Superimpose',
+		'TestFixtures',
+		'TestGenerator',
+		'TestRunner',
 		'Url',
 	);
 
@@ -247,6 +251,10 @@ namespace PHPSTORM_META {
 			'Ratings.Rating' => \Ratings\Controller\Component\RatingComponent::class,
 			'Search.Search' => \Search\Controller\Component\SearchComponent::class,
 			'Setup.Setup' => \Setup\Controller\Component\SetupComponent::class,
+			'TestHelper.Plugins' => \TestHelper\Controller\Component\PluginsComponent::class,
+			'TestHelper.TestFixtures' => \TestHelper\Controller\Component\TestFixturesComponent::class,
+			'TestHelper.TestGenerator' => \TestHelper\Controller\Component\TestGeneratorComponent::class,
+			'TestHelper.TestRunner' => \TestHelper\Controller\Component\TestRunnerComponent::class,
 			'TinyAuth.Auth' => \TinyAuth\Controller\Component\AuthComponent::class,
 			'TinyAuth.AuthUser' => \TinyAuth\Controller\Component\AuthUserComponent::class,
 			'TinyAuth.LegacyAuth' => \TinyAuth\Controller\Component\LegacyAuthComponent::class,
@@ -322,6 +330,7 @@ namespace PHPSTORM_META {
 			'Feed' => \Cake\Http\BaseApplication::class,
 			'Feedback' => \Cake\Http\BaseApplication::class,
 			'Flash' => \Cake\Http\BaseApplication::class,
+			'Foo' => \Cake\Http\BaseApplication::class,
 			'Geo' => \Cake\Http\BaseApplication::class,
 			'Icings/Menu' => \Cake\Http\BaseApplication::class,
 			'IdeHelper' => \Cake\Http\BaseApplication::class,
@@ -337,6 +346,7 @@ namespace PHPSTORM_META {
 			'Shim' => \Cake\Http\BaseApplication::class,
 			'StateMachine' => \Cake\Http\BaseApplication::class,
 			'StateMachineSandbox' => \Cake\Http\BaseApplication::class,
+			'SuperAdmin' => \Cake\Http\BaseApplication::class,
 			'Tags' => \Cake\Http\BaseApplication::class,
 			'TestHelper' => \Cake\Http\BaseApplication::class,
 			'TinyAuth' => \Cake\Http\BaseApplication::class,
@@ -404,6 +414,7 @@ namespace PHPSTORM_META {
 	expectedArguments(
 		\Cake\Datasource\ConnectionManager::get(),
 		0,
+		'debug_kit',
 		'default',
 		'test',
 	);
@@ -427,6 +438,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Data\Model\Table\StatesTable::class,
 			'Data.Timezones' => \Data\Model\Table\TimezonesTable::class,
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
+			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
+			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -472,6 +485,7 @@ namespace PHPSTORM_META {
 			'list' => \Cake\ORM\Query::class,
 			'path' => \Cake\ORM\Query::class,
 			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
 			'search' => \Cake\ORM\Query::class,
 			'slugged' => \Cake\ORM\Query::class,
 			'tagged' => \Cake\ORM\Query::class,
@@ -506,6 +520,7 @@ namespace PHPSTORM_META {
 			'list' => \Cake\ORM\Query::class,
 			'path' => \Cake\ORM\Query::class,
 			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
 			'search' => \Cake\ORM\Query::class,
 			'slugged' => \Cake\ORM\Query::class,
 			'tagged' => \Cake\ORM\Query::class,
@@ -594,6 +609,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Data\Model\Table\StatesTable::class,
 			'Data.Timezones' => \Data\Model\Table\TimezonesTable::class,
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
+			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
+			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -645,6 +662,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Data\Model\Table\StatesTable::class,
 			'Data.Timezones' => \Data\Model\Table\TimezonesTable::class,
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
+			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
+			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -684,6 +703,7 @@ namespace PHPSTORM_META {
 		'Captcha.Captcha',
 		'Captcha.PassiveCaptcha',
 		'CounterCache',
+		'DebugKit.Timed',
 		'Expose.Expose',
 		'Expose.Superimpose',
 		'Geo.Geocoder',
@@ -726,6 +746,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Timezones' => \Cake\ORM\Association\BelongsToMany::class,
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\BelongsToMany::class,
+			'DebugKit.Panels' => \Cake\ORM\Association\BelongsToMany::class,
+			'DebugKit.Requests' => \Cake\ORM\Association\BelongsToMany::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\BelongsToMany::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\BelongsToMany::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\BelongsToMany::class,
@@ -777,6 +799,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Timezones' => \Cake\ORM\Association\BelongsTo::class,
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\BelongsTo::class,
+			'DebugKit.Panels' => \Cake\ORM\Association\BelongsTo::class,
+			'DebugKit.Requests' => \Cake\ORM\Association\BelongsTo::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\BelongsTo::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\BelongsTo::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\BelongsTo::class,
@@ -822,6 +846,7 @@ namespace PHPSTORM_META {
 			'list' => \Cake\ORM\Query::class,
 			'path' => \Cake\ORM\Query::class,
 			'queued' => \Cake\ORM\Query::class,
+			'recent' => \Cake\ORM\Query::class,
 			'search' => \Cake\ORM\Query::class,
 			'slugged' => \Cake\ORM\Query::class,
 			'tagged' => \Cake\ORM\Query::class,
@@ -850,6 +875,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Cake\ORM\Association\HasMany::class,
 			'Data.Timezones' => \Cake\ORM\Association\HasMany::class,
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\HasMany::class,
+			'DebugKit.Panels' => \Cake\ORM\Association\HasMany::class,
+			'DebugKit.Requests' => \Cake\ORM\Association\HasMany::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\HasMany::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\HasMany::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\HasMany::class,
@@ -901,6 +928,8 @@ namespace PHPSTORM_META {
 			'Data.States' => \Cake\ORM\Association\HasOne::class,
 			'Data.Timezones' => \Cake\ORM\Association\HasOne::class,
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\HasOne::class,
+			'DebugKit.Panels' => \Cake\ORM\Association\HasOne::class,
+			'DebugKit.Requests' => \Cake\ORM\Association\HasOne::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\HasOne::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\HasOne::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\HasOne::class,
@@ -955,6 +984,7 @@ namespace PHPSTORM_META {
 		'String',
 		'Superimpose',
 		'Tag',
+		'Timed',
 		'Timestamp',
 		'Toggle',
 		'Translate',
@@ -1088,6 +1118,8 @@ namespace PHPSTORM_META {
 		'plugin.Data.Timezones',
 		'plugin.DatabaseLog.DatabaseLogs',
 		'plugin.DatabaseLog.Sessions',
+		'plugin.DebugKit.Panels',
+		'plugin.DebugKit.Requests',
 		'plugin.Expose.BinaryFieldRecords',
 		'plugin.Expose.CustomFieldRecords',
 		'plugin.Expose.ExistingRecords',
@@ -1149,6 +1181,7 @@ namespace PHPSTORM_META {
 		'plugin.Tags.UuidPosts',
 		'plugin.Tags.UuidTagged',
 		'plugin.Tags.UuidTags',
+		'plugin.TestHelper.Posts',
 		'plugin.TinyAuth.DatabaseRoles',
 		'plugin.TinyAuth.DatabaseRolesUsers',
 		'plugin.TinyAuth.DatabaseUserRoles',
@@ -1272,6 +1305,7 @@ namespace PHPSTORM_META {
 		'completed',
 		'condition',
 		'content',
+		'content_type',
 		'context',
 		'count',
 		'counter',
@@ -1282,6 +1316,7 @@ namespace PHPSTORM_META {
 		'data',
 		'decimal_places',
 		'description',
+		'element',
 		'email',
 		'end',
 		'error_message',
@@ -1317,6 +1352,7 @@ namespace PHPSTORM_META {
 		'locked',
 		'logins',
 		'message',
+		'method',
 		'model',
 		'modified',
 		'name',
@@ -1326,6 +1362,7 @@ namespace PHPSTORM_META {
 		'offset',
 		'offset_dst',
 		'ori_name',
+		'panel',
 		'params',
 		'parent_id',
 		'password',
@@ -1338,6 +1375,8 @@ namespace PHPSTORM_META {
 		'rating_sum',
 		'refer',
 		'reference',
+		'request_id',
+		'requested_at',
 		'result',
 		'rght',
 		'role_id',
@@ -1354,6 +1393,7 @@ namespace PHPSTORM_META {
 		'state_machine_process_id',
 		'state_machine_transition_log_id',
 		'status',
+		'status_code',
 		'summary',
 		'symbol_left',
 		'symbol_right',
@@ -1365,6 +1405,7 @@ namespace PHPSTORM_META {
 		'title',
 		'type',
 		'uri',
+		'url',
 		'used',
 		'user_agent',
 		'user_id',
@@ -1408,6 +1449,9 @@ namespace PHPSTORM_META {
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
 			'DatabaseLog.Log' => \DatabaseLog\View\Helper\LogHelper::class,
+			'DebugKit.Credentials' => \DebugKit\View\Helper\CredentialsHelper::class,
+			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
+			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
 			'Form' => \Cake\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
@@ -1432,6 +1476,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachine' => \StateMachine\View\Helper\StateMachineHelper::class,
 			'Tags.Tag' => \Tags\View\Helper\TagHelper::class,
 			'Tags.TagCloud' => \Tags\View\Helper\TagCloudHelper::class,
+			'TestHelper.TestHelper' => \TestHelper\View\Helper\TestHelperHelper::class,
 			'Text' => \Cake\View\Helper\TextHelper::class,
 			'Time' => \Cake\View\Helper\TimeHelper::class,
 			'TinyAuth.AuthUser' => \TinyAuth\View\Helper\AuthUserHelper::class,
@@ -1465,6 +1510,21 @@ namespace PHPSTORM_META {
 		'Data.States/search',
 		'DatabaseLog.paging',
 		'DatabaseLog.search',
+		'DebugKit.cache_panel',
+		'DebugKit.deprecations_panel',
+		'DebugKit.environment_panel',
+		'DebugKit.history_panel',
+		'DebugKit.include_panel',
+		'DebugKit.log_panel',
+		'DebugKit.mail_panel',
+		'DebugKit.packages_panel',
+		'DebugKit.preview_header',
+		'DebugKit.request_panel',
+		'DebugKit.routes_panel',
+		'DebugKit.session_panel',
+		'DebugKit.sql_log_panel',
+		'DebugKit.timer_panel',
+		'DebugKit.variables_panel',
 		'Feedback.pagination',
 		'Feedback.sidebar',
 		'Feedback.sidebar_modal',
@@ -1484,6 +1544,8 @@ namespace PHPSTORM_META {
 		'Sandbox.navigation/tags',
 		'Sandbox.navigation/tools',
 		'StateMachineSandbox.navigation/registration',
+		'TestHelper.test_cases',
+		'TestHelper.url',
 		'TinyAuth.auth_panel',
 		'Tools.pagination',
 		'flash/default',
@@ -1515,6 +1577,9 @@ namespace PHPSTORM_META {
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
 			'DatabaseLog.Log' => \DatabaseLog\View\Helper\LogHelper::class,
+			'DebugKit.Credentials' => \DebugKit\View\Helper\CredentialsHelper::class,
+			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
+			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
 			'Form' => \Cake\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
@@ -1539,6 +1604,7 @@ namespace PHPSTORM_META {
 			'StateMachine.StateMachine' => \StateMachine\View\Helper\StateMachineHelper::class,
 			'Tags.Tag' => \Tags\View\Helper\TagHelper::class,
 			'Tags.TagCloud' => \Tags\View\Helper\TagCloudHelper::class,
+			'TestHelper.TestHelper' => \TestHelper\View\Helper\TestHelperHelper::class,
 			'Text' => \Cake\View\Helper\TextHelper::class,
 			'Time' => \Cake\View\Helper\TimeHelper::class,
 			'TinyAuth.AuthUser' => \TinyAuth\View\Helper\AuthUserHelper::class,
@@ -1584,6 +1650,9 @@ namespace PHPSTORM_META {
 		'Data.Data',
 		'Data.MimeType',
 		'DatabaseLog.Log',
+		'DebugKit.Credentials',
+		'DebugKit.SimpleGraph',
+		'DebugKit.Toolbar',
 		'Flash',
 		'Form',
 		'Geo.GoogleMap',
@@ -1608,6 +1677,7 @@ namespace PHPSTORM_META {
 		'StateMachine.StateMachine',
 		'Tags.Tag',
 		'Tags.TagCloud',
+		'TestHelper.TestHelper',
 		'Text',
 		'Time',
 		'TinyAuth.AuthUser',
@@ -1636,6 +1706,9 @@ namespace PHPSTORM_META {
 		\Cake\View\ViewBuilder::setLayout(),
 		0,
 		'BootstrapUI.default',
+		'DebugKit.dashboard',
+		'DebugKit.mailer',
+		'DebugKit.toolbar',
 		'ajax',
 		'default',
 		'error',
@@ -2119,6 +2192,126 @@ namespace PHPSTORM_META {
 		\DatabaseLog\Model\Entity\DatabaseLog::setError(),
 		0,
 		argumentsSet('entityFields:DatabaseLog\Model\Entity\DatabaseLog'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::get(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::getError(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::getInvalidField(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::getOriginal(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::has(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::hasValue(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::isDirty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::isEmpty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::setDirty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Panel::setError(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Panel'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::get(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::getError(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::getInvalidField(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::getOriginal(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::has(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::hasValue(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::isDirty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::isEmpty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::setDirty(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\DebugKit\Model\Entity\Request::setError(),
+		0,
+		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
 	);
 
 	expectedArguments(
@@ -3467,8 +3660,10 @@ namespace PHPSTORM_META {
 		'captcha',
 		'data',
 		'database_log',
+		'debug_kit',
 		'expose',
 		'feedback',
+		'foo/barko',
 		'geo',
 		'icings/menu',
 		'ide_helper',
@@ -3484,6 +3679,7 @@ namespace PHPSTORM_META {
 		'state_machine',
 		'state_machine_sandbox',
 		'tags',
+		'test_helper',
 		'tiny_auth',
 		'tools',
 	);
@@ -4225,8 +4421,6 @@ namespace PHPSTORM_META {
 		'FormConfig',
 		'FormConfig.align',
 		'FormConfig.novalidate',
-		'FormConfig.templates',
-		'FormConfig.templates.dateWidget',
 		'Geocoder',
 		'Geocoder.apiKey',
 		'GoogleMap',
@@ -4322,6 +4516,7 @@ namespace PHPSTORM_META {
 		'plugins.Feed',
 		'plugins.Feedback',
 		'plugins.Flash',
+		'plugins.Foo',
 		'plugins.Geo',
 		'plugins.Icings/Menu',
 		'plugins.IdeHelper',
@@ -4337,6 +4532,7 @@ namespace PHPSTORM_META {
 		'plugins.Shim',
 		'plugins.StateMachine',
 		'plugins.StateMachineSandbox',
+		'plugins.SuperAdmin',
 		'plugins.Tags',
 		'plugins.TestHelper',
 		'plugins.TinyAuth',
@@ -4512,6 +4708,29 @@ namespace PHPSTORM_META {
 		'type',
 		'uri',
 		'user_agent',
+	);
+
+	registerArgumentsSet(
+		'entityFields:DebugKit\Model\Entity\Panel',
+		'content',
+		'element',
+		'id',
+		'panel',
+		'request',
+		'request_id',
+		'summary',
+		'title',
+	);
+
+	registerArgumentsSet(
+		'entityFields:DebugKit\Model\Entity\Request',
+		'content_type',
+		'id',
+		'method',
+		'panels',
+		'requested_at',
+		'status_code',
+		'url',
 	);
 
 	registerArgumentsSet(
@@ -12631,6 +12850,17 @@ namespace PHPSTORM_META {
 		'DatabaseLog.Admin/Logs::removeDuplicates',
 		'DatabaseLog.Admin/Logs::reset',
 		'DatabaseLog.Admin/Logs::view',
+		'DebugKit.Composer::checkDependencies',
+		'DebugKit.Dashboard::index',
+		'DebugKit.Dashboard::reset',
+		'DebugKit.MailPreview::email',
+		'DebugKit.MailPreview::index',
+		'DebugKit.MailPreview::sent',
+		'DebugKit.Panels::index',
+		'DebugKit.Panels::latestHistory',
+		'DebugKit.Panels::view',
+		'DebugKit.Requests::view',
+		'DebugKit.Toolbar::clearCache',
 		'Export::continents',
 		'Export::countries',
 		'Export::currencies',
@@ -12865,6 +13095,22 @@ namespace PHPSTORM_META {
 		'StateMachineSandbox.Registrations::index',
 		'StateMachineSandbox.Registrations::view',
 		'StateMachineSandbox.StateMachineSandbox::index',
+		'TestHelper.Plugins::index',
+		'TestHelper.Plugins::recommended',
+		'TestHelper.TestCases::behavior',
+		'TestHelper.TestCases::command',
+		'TestHelper.TestCases::component',
+		'TestHelper.TestCases::controller',
+		'TestHelper.TestCases::coverage',
+		'TestHelper.TestCases::entity',
+		'TestHelper.TestCases::helper',
+		'TestHelper.TestCases::run',
+		'TestHelper.TestCases::shell',
+		'TestHelper.TestCases::table',
+		'TestHelper.TestCases::task',
+		'TestHelper.TestFixtures::generate',
+		'TestHelper.TestFixtures::index',
+		'TestHelper.TestHelper::index',
 		'Tools.Admin/Icons::index',
 		'Tools.Admin/Tools::index',
 		'Tools.ShuntRequest::language',
