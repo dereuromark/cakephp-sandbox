@@ -6,7 +6,6 @@ use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Shim\Filesystem\Folder;
-use Migrations\TestSuite\Migrator;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 require dirname(__DIR__) . '/config/bootstrap.php';
@@ -54,7 +53,7 @@ ConnectionManager::setConfig('test', [
 	//'username' => getenv('db_username'),
 	//'password' => getenv('db_password'),
 	'timezone' => 'UTC',
-    'encoding' => 'utf8',
+	'encoding' => 'utf8',
 	'quoteIdentifiers' => true,
 	'cacheMetadata' => true,
 ]);

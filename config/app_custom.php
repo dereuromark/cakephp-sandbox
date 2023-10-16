@@ -49,7 +49,7 @@ return [
 		],
 		'404' => [
 			//'className' => 'File',
-            'className' => 'DatabaseLog.Database',
+			'className' => 'DatabaseLog.Database',
 			'file' => '404',
 			'levels' => ['error'],
 			'scopes' => ['404'],

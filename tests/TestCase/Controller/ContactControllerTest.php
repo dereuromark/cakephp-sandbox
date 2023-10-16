@@ -3,7 +3,6 @@
 namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
-use Cake\ORM\TableRegistry;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**

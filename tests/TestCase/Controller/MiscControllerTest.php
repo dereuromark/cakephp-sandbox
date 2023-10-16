@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -44,7 +43,7 @@ class MiscControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testConvertText() {
-        $this->disableErrorHandlerMiddleware();
+		$this->disableErrorHandlerMiddleware();
 
 		$this->get(['controller' => 'Misc', 'action' => 'convertText']);
 
