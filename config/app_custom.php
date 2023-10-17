@@ -197,6 +197,8 @@ return [
 			],
 		],
 		'map' => [
+			'yes' => 'fa4:check',
+			'no' => 'fa4:times',
 			'see' => 'fa4:eye',
 			'details' => 'fa4:chevron-right',
 			'admin' => 'fa4:shield',
@@ -206,6 +208,7 @@ return [
 			'prev' => 'fa4:arrow-left',
 			'next' => 'fa4:arrow-right',
 		],
+		'checkExistence' => true,
 	],
 
 	'CacheConfig' => [
