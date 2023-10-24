@@ -207,6 +207,7 @@ return [
 			'translate' => 'fa4:language',
 			'prev' => 'fa4:arrow-left',
 			'next' => 'fa4:arrow-right',
+			'chart-bar' => 'fa4:bar-chart',
 		],
 		'checkExistence' => true,
 	],
