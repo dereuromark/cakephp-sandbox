@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dcededa199924cd5da31fef20f78f26",
+    "content-hash": "42c869b0868861f8a3786ce25e44e3ca",
     "packages": [
         {
             "name": "brick/math",
@@ -224,12 +224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "b59723f191364358a720bb0ff827a03db44e7f69"
+                "reference": "1055f03f2bcdf43759fce03cc98ae36d214bd4aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b59723f191364358a720bb0ff827a03db44e7f69",
-                "reference": "b59723f191364358a720bb0ff827a03db44e7f69",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1055f03f2bcdf43759fce03cc98ae36d214bd4aa",
+                "reference": "1055f03f2bcdf43759fce03cc98ae36d214bd4aa",
                 "shasum": ""
             },
             "require": {
@@ -335,7 +335,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-10-29T13:41:25+00:00"
+            "time": "2023-11-02T14:09:29+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -6004,7 +6004,7 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@github.com:dereuromark/cakephp-statemachine.git",
+                "url": "https://github.com/dereuromark/cakephp-statemachine.git",
                 "reference": "370c1ec386563989011c07e644b50cda5d598f08"
             },
             "require": {

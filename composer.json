@@ -128,7 +128,7 @@
 	"repositories": [
 		{
 			"type": "git",
-			"url": "git@github.com:dereuromark/cakephp-statemachine.git"
+			"url": "https://github.com/dereuromark/cakephp-statemachine.git"
 		}
 	],
 	"prefer-stable": true,
