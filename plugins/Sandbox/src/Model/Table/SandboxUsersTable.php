@@ -2,6 +2,8 @@
 
 namespace Sandbox\Model\Table;
 
+use Cake\Database\Type\EnumType;
+use Sandbox\Model\Enum\UserStatus;
 use Tools\Model\Table\Table;
 
 class SandboxUsersTable extends Table {
@@ -32,6 +34,8 @@ class SandboxUsersTable extends Table {
 	 * @return void
 	 */
 	public function initialize(array $config): void {
+		$this->getSchema()->setColumnType('status', EnumType::from(UserStatus::class));
+
 		$this->setDisplayField('username');
 	}
 

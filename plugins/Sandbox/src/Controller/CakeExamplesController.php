@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Utility\Hash;
+use Sandbox\Model\Enum\UserStatus;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -18,6 +19,29 @@ class CakeExamplesController extends SandboxAppController {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function enums() {
+		if ($this->request->is(['post', 'put'])) {
+			$enum = UserStatus::from((int)$this->request->getData('status'));
+			$this->Flash->info('Value posted: `' . $this->request->getData('status') . '` (`' . $enum->label() . '`)');
+		}
+
+		$user = $this->fetchTable('Sandbox.SandboxUsers')->find()->first();
+		if (!$user) {
+			$user = $this->fetchTable('Sandbox.SandboxUsers')->newEntity([
+				'username' => 'Example',
+				'slug' => 'example',
+				'email' => 'example@example.de',
+				'password' => '',
+			]);
+			$this->fetchTable('Sandbox.SandboxUsers')->saveOrFail($user);
+		}
+
+		$this->set(compact('user'));
 	}
 
 	/**
