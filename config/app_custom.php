@@ -197,6 +197,8 @@ return [
 			],
 		],
 		'map' => [
+			'view' => 'fa4:eye',
+			'delete' => 'fa4:times',
 			'yes' => 'fa4:check',
 			'no' => 'fa4:times',
 			'see' => 'fa4:eye',
