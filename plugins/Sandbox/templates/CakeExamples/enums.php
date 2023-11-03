@@ -89,11 +89,10 @@ If you also want the human-readable string form, you can add a virtual field `st
 <p>json_decode() + patching an entity</p>
 <pre class="code-snippet"><?php
 	$array = json_decode($text, true);
-	$entity = new \Sandbox\Model\Entity\SandboxUser($array);
+	$entity = \Cake\ORM\TableRegistry::getTableLocator()->get('Sandbox.SandboxUsers')->newEntity($array);
 	echo print_r($entity, true);
 	?></pre>
 
 <p>
-	Here you can see that it is now just the scalar value. So be mindful about using patched data as such.
-	Don't assume the enum existence.
+	Here you can see that it is now a backed enum object again.
 </p>
