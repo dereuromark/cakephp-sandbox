@@ -20,6 +20,8 @@ class DecimalExamplesController extends SandboxAppController {
 				'username' => 'Demo',
 			]);
 			$this->fetchTable('Sandbox.SandboxProfiles')->saveOrFail($record);
+
+			return $this->redirect([]);
 		}
 
 		if ($this->request->is(['post', 'put'])) {
