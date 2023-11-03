@@ -185,6 +185,11 @@ DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateTim
 Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 Date::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
+TypeFactory::map(
+	'decimal',
+	\CakeDecimal\Database\Type\DecimalObjectType::class,
+);
+
 TypeFactory::build('time')
 	->setLocaleFormat('HH:mm:ss');
 TypeFactory::build('date')

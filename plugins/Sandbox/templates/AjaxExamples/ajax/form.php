@@ -13,5 +13,7 @@
 	?>
 	</fieldset>
 
-<?php echo $this->Form->submit(__('Submit'));
+<?php
+echo $this->Form->submit(__('Submit'));
 echo $this->Form->end();
+?>

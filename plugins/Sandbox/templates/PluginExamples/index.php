@@ -10,6 +10,21 @@
 	<div class="col-6">
 		<h3>Own plugins</h3>
 
+		<h4>CakeDecimal plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('Decimals and CakePHP', ['controller' => 'DecimalExamples', 'action' => 'index']); ?></li>
+		</ul>
+
+		<h4>Queue plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Queue and CakePHP', ['controller' => 'QueueExamples', 'action' => 'index']); ?></li>
+		</ul>
+
+		<h4>CakeDto Plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Tools plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Examples', ['controller' => 'ToolsExamples', 'action' => 'index']); ?></li>
@@ -50,11 +65,6 @@
 			<li><?php echo $this->Html->link('Captchas in CakePHP', ['controller' => 'Captchas', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>Queue plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('Queue and CakePHP', ['controller' => 'QueueExamples', 'action' => 'index']); ?></li>
-		</ul>
-
 		<h4>Feedback plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Feedback', ['controller' => 'FeedbackExamples', 'action' => 'index']); ?></li>
@@ -73,11 +83,6 @@
 		<h4>Markup plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Markup, e.g. syntax highlighting', ['controller' => 'MarkupExamples', 'action' => 'index']); ?></li>
-		</ul>
-
-		<h4>CakeDto Plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
 		</ul>
 
 		<h4>Expose Plugin</h4>
