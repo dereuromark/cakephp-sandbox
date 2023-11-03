@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42c869b0868861f8a3786ce25e44e3ca",
+    "content-hash": "9df9e614c35ddb9cc7e782de8e843158",
     "packages": [
         {
             "name": "brick/math",
@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burzum/cakephp-service-layer.git",
-                "reference": "ab00262765b3eda9dba78c0eab9495daa4245534"
+                "reference": "fbcdc2d1a98aa2953737c17a961acacbc3db3124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/ab00262765b3eda9dba78c0eab9495daa4245534",
-                "reference": "ab00262765b3eda9dba78c0eab9495daa4245534",
+                "url": "https://api.github.com/repos/burzum/cakephp-service-layer/zipball/fbcdc2d1a98aa2953737c17a961acacbc3db3124",
+                "reference": "fbcdc2d1a98aa2953737c17a961acacbc3db3124",
                 "shasum": ""
             },
             "require": {
@@ -158,9 +158,9 @@
             "description": "Service layer and domain / business model implementation for CakePHP",
             "support": {
                 "issues": "https://github.com/burzum/cakephp-service-layer/issues",
-                "source": "https://github.com/burzum/cakephp-service-layer/tree/cake5"
+                "source": "https://github.com/burzum/cakephp-service-layer/tree/3.0.0"
             },
-            "time": "2023-09-28T22:08:45+00:00"
+            "time": "2023-11-03T12:04:06+00:00"
         },
         {
             "name": "cakephp/bake",
@@ -168,12 +168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "369cfb1b8bc65a015409ec12a62f95d8f75c3d92"
+                "reference": "75dbf8013d3aa71be7b015bb4c631c398abc3980"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/369cfb1b8bc65a015409ec12a62f95d8f75c3d92",
-                "reference": "369cfb1b8bc65a015409ec12a62f95d8f75c3d92",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/75dbf8013d3aa71be7b015bb4c631c398abc3980",
+                "reference": "75dbf8013d3aa71be7b015bb4c631c398abc3980",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
                 "issues": "https://github.com/cakephp/bake/issues",
                 "source": "https://github.com/cakephp/bake"
             },
-            "time": "2023-11-02T15:55:09+00:00"
+            "time": "2023-11-03T11:50:32+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -1726,6 +1726,48 @@
             "time": "2023-10-09T14:01:18+00:00"
         },
         {
+            "name": "dereuromark/cakephp-decimal",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-decimal.git",
+                "reference": "77872a9e0d006db842a75d2f6e0e5436e74507f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-decimal/zipball/77872a9e0d006db842a75d2f6e0e5436e74507f5",
+                "reference": "77872a9e0d006db842a75d2f6e0e5436e74507f5",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.0.0",
+                "php": ">=8.1",
+                "php-collective/decimal-object": "^1.0.0"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-next",
+                "phpunit/phpunit": "^10.2"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakeDecimal\\": "src/",
+                    "CakeDecimal\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "CakePHP plugin for decimal handling via value object. Provides DecimalType class.",
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-decimal/issues",
+                "source": "https://github.com/dereuromark/cakephp-decimal/tree/2.0.0"
+            },
+            "time": "2023-10-10T12:52:39+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-dto",
             "version": "dev-master",
             "source": {
@@ -2399,12 +2441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "ffd0b7e715037dc296ee1a511ff5b2671bf224e0"
+                "reference": "fadc979c062a7fdee65e2d1feea5133f39e4dbae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/ffd0b7e715037dc296ee1a511ff5b2671bf224e0",
-                "reference": "ffd0b7e715037dc296ee1a511ff5b2671bf224e0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/fadc979c062a7fdee65e2d1feea5133f39e4dbae",
+                "reference": "fadc979c062a7fdee65e2d1feea5133f39e4dbae",
                 "shasum": ""
             },
             "require": {
@@ -2447,7 +2489,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2023-11-01T21:55:17+00:00"
+            "time": "2023-11-03T12:35:06+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -4641,6 +4683,62 @@
                 "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.0"
             },
             "time": "2022-09-06T12:16:56+00:00"
+        },
+        {
+            "name": "php-collective/decimal-object",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/decimal-object.git",
+                "reference": "b075a659d3d248bbff7f0aa3a0885de146d8174f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/decimal-object/zipball/b075a659d3d248bbff7f0aa3a0885de146d8174f",
+                "reference": "b075a659d3d248bbff7f0aa3a0885de146d8174f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-json": "*",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^1.0.0",
+                "phpunit/phpunit": "^10.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpCollective\\DecimalObject\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The PHP Collective",
+                    "homepage": "https://github.com/php-collective"
+                },
+                {
+                    "name": "Spryker Systems GmbH",
+                    "homepage": "https://spryker.com"
+                }
+            ],
+            "description": "PHP decimal handling as value object",
+            "support": {
+                "issues": "https://github.com/php-collective/decimal-object/issues",
+                "source": "https://github.com/php-collective/decimal-object/tree/1.0.0"
+            },
+            "time": "2023-10-10T12:49:38+00:00"
         },
         {
             "name": "php-http/cakephp-adapter",
@@ -7707,12 +7805,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "b358e250bebfd47c86735d24703cb891c5fba4c6"
+                "reference": "b9a476b822aa3488907893f0c55256884a716e7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b358e250bebfd47c86735d24703cb891c5fba4c6",
-                "reference": "b358e250bebfd47c86735d24703cb891c5fba4c6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b9a476b822aa3488907893f0c55256884a716e7e",
+                "reference": "b9a476b822aa3488907893f0c55256884a716e7e",
                 "shasum": ""
             },
             "require": {
@@ -7775,7 +7873,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-03T03:04:07+00:00"
+            "time": "2023-11-03T12:25:18+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -9815,6 +9913,7 @@
         "dereuromark/cakephp-expose": 20,
         "dereuromark/cakephp-ratings": 20,
         "dereuromark/cakephp-dto": 20,
+        "dereuromark/cakephp-decimal": 20,
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,
         "dereuromark/cakephp-ide-helper-extra": 20,

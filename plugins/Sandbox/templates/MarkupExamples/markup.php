@@ -3,15 +3,17 @@
  * @var \App\View\AppView $this
  */
 if ($this->request->getQuery('dark')) {
-	$file = '//highlightjs.org/static/demo/styles/hybrid.css';
+	$theme = 'github-dark';
 } else {
-	$file = 'Sandbox.highlighting/github.css';
+	$theme = 'github';
 }
-echo $this->Html->css($file);
 ?>
 
-<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<?php $this->append('script'); ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/<?php echo $theme; ?>.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<?php $this->end(); ?>
 
 
 <h2>Highlighter - Text Highlighting:</h2>

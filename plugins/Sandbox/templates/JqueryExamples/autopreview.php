@@ -4,11 +4,12 @@
  */
 ?>
 
-<?php
-echo $this->Html->css('Sandbox.highlighting/github.css');
-?>
-<script src="https://highlightjs.org/static/highlight.site.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<?php $this->append('script'); ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script>hljs.highlightAll();</script>
+<?php $this->end(); ?>
 
 <?php $this->append('script'); ?>
 <script type="text/javascript">

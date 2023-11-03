@@ -8,6 +8,13 @@ use Cake\Core\Plugin;
 
 ?>
 
+<?php $this->append('script'); ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script>hljs.highlightAll();</script>
+<?php $this->end(); ?>
+
 <h2>Enums</h2>
 <p>
 With CakePHP 5 we can now use more native (backed) enums in our apps. They map to a string or int type usually in your DB.
