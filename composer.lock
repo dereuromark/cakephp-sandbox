@@ -168,12 +168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "18486ac5fe73d9e7653b23bc784946956d7e8e17"
+                "reference": "369cfb1b8bc65a015409ec12a62f95d8f75c3d92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/18486ac5fe73d9e7653b23bc784946956d7e8e17",
-                "reference": "18486ac5fe73d9e7653b23bc784946956d7e8e17",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/369cfb1b8bc65a015409ec12a62f95d8f75c3d92",
+                "reference": "369cfb1b8bc65a015409ec12a62f95d8f75c3d92",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
                 "issues": "https://github.com/cakephp/bake/issues",
                 "source": "https://github.com/cakephp/bake"
             },
-            "time": "2023-11-01T09:28:07+00:00"
+            "time": "2023-11-02T15:55:09+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -224,12 +224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "1055f03f2bcdf43759fce03cc98ae36d214bd4aa"
+                "reference": "cbb502200fc3d58bdb5c57cc88958484423635eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1055f03f2bcdf43759fce03cc98ae36d214bd4aa",
-                "reference": "1055f03f2bcdf43759fce03cc98ae36d214bd4aa",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/cbb502200fc3d58bdb5c57cc88958484423635eb",
+                "reference": "cbb502200fc3d58bdb5c57cc88958484423635eb",
                 "shasum": ""
             },
             "require": {
@@ -335,7 +335,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-11-02T14:09:29+00:00"
+            "time": "2023-11-03T02:55:59+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2201,12 +2201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "f59e1e7794536a5d86fd809dadeaa6036315cd23"
+                "reference": "22c7b54e79205206d7991ca8170273df67ad6afd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/f59e1e7794536a5d86fd809dadeaa6036315cd23",
-                "reference": "f59e1e7794536a5d86fd809dadeaa6036315cd23",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/22c7b54e79205206d7991ca8170273df67ad6afd",
+                "reference": "22c7b54e79205206d7991ca8170273df67ad6afd",
                 "shasum": ""
             },
             "require": {
@@ -2265,7 +2265,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-queue/issues",
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
-            "time": "2023-10-25T15:53:58+00:00"
+            "time": "2023-11-03T03:24:10+00:00"
         },
         {
             "name": "dereuromark/cakephp-ratings",
@@ -7707,16 +7707,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "8b3447d5f0b043393576b468cc0f7f9bf16b2e85"
+                "reference": "b358e250bebfd47c86735d24703cb891c5fba4c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/8b3447d5f0b043393576b468cc0f7f9bf16b2e85",
-                "reference": "8b3447d5f0b043393576b468cc0f7f9bf16b2e85",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/b358e250bebfd47c86735d24703cb891c5fba4c6",
+                "reference": "b358e250bebfd47c86735d24703cb891c5fba4c6",
                 "shasum": ""
             },
             "require": {
-                "cakephp/bake": "^3.0.1",
+                "cakephp/bake": "^3.0.4",
                 "cakephp/cakephp": "^5.0.0",
                 "php": ">=8.1",
                 "phpstan/phpdoc-parser": "^1.7",
@@ -7775,7 +7775,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-10-26T10:03:43+00:00"
+            "time": "2023-11-03T03:04:07+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",

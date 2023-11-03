@@ -3,16 +3,24 @@
  * @var \App\View\AppView $this
  * @var \Sandbox\Model\Entity\SandboxUser $user
  */
+
+use Cake\Core\Plugin;
+
 ?>
 
 <h2>Enums</h2>
 <p>
-With CakePHP 5 we can now use more native (backed) enums in our apps.
+With CakePHP 5 we can now use more native (backed) enums in our apps. They map to a string or int type usually in your DB.
 </p>
 
-<p>Let's use the `UserStatus` backed enum (int values and string labels) as it can be found in source code to test it.</p>
+<p>
+	Let's use the `UserStatus` backed enum (int values and string labels) to test it. It can be found in source code for details.
+	We use a tinyint(2) column in the database for the `status` field.
+</p>
 
-<p>First, lets use ::cases() to list all possible enum cases:</p>
+<pre class="code-snippet"><?php echo h(file_get_contents(Plugin::path('Sandbox') . 'src/Model/Enum/UserStatus.php')); ?></pre>
+
+<p>Now lets use `::cases()` to list all possible enum cases:</p>
 <ul>
  <?php
  $cases = \Sandbox\Model\Enum\UserStatus::cases();
@@ -29,6 +37,8 @@ With CakePHP 5 we can now use more native (backed) enums in our apps.
 }?>
 
 <h3>In DB and Forms</h3>
+<p>When used in forms, CakePHP form helper will automatically extract those to display as dropdown.</p>
+
 <p>For it to work, we need to assign the database table field to enum type:</p>
 
 <div><pre class="code-snippet"><?php
