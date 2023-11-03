@@ -27,7 +27,7 @@ class InitializePaymentCommand implements StateMachineCommandInterface {
 		$this->QueuedJobs->createJob(
 			'StateMachineSandbox.SimulatePaymentResult',
 			['id' => $registrationId],
-			['reference' => $reference, 'notBefore' => (new FrozenTime())->addMinute()],
+			['reference' => $reference, 'notBefore' => (new FrozenTime())->addMinutes(1)],
 		);
 	}
 
