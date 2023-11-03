@@ -47,7 +47,18 @@ TXT;
 <h4>
 <?php echo h($user->username); ?>
 </h4>
-<p>Status: <?php echo h($user->status->label()); ?></p>
+
+<pre class="code-snippet"><?php
+	echo print_r($user, true);
+	?></pre>
+
+<p>
+	Unfortunately, enums cannot implement Stringable.
+	So here we need to always manually do the respective string output.
+</p>
+
+<h4><?php echo h('$user->status->label()');?></h4>
+<p>Status: <b><?php echo h($user->status->label()); ?></b></p>
 
 
 <h4>Submit a form</h4>
@@ -55,3 +66,34 @@ TXT;
 <?php echo $this->Form->control('status'); ?>
 <?php echo $this->Form->submit(); ?>
 <?php echo $this->Form->end(); ?>
+
+<br>
+
+<h3>Serialization</h3>
+<p>
+When serializing, the actual (DB) value (in this case int) is used:
+</p>
+
+<h4>json_encode() of the entity containing the enum</h4>
+
+<pre class="code-snippet"><?php
+	$text = json_encode($user, JSON_PRETTY_PRINT);
+	echo h($text);
+	?></pre>
+
+<p>
+If you also want the human-readable string form, you can add a virtual field `status_string` etc that would include this in the dataset.
+</p>
+
+<h4>Unserialize</h4>
+<p>json_decode() + patching an entity</p>
+<pre class="code-snippet"><?php
+	$array = json_decode($text, true);
+	$entity = new \Sandbox\Model\Entity\SandboxUser($array);
+	echo print_r($entity, true);
+	?></pre>
+
+<p>
+	Here you can see that it is now just the scalar value. So be mindful about using patched data as such.
+	Don't assume the enum existence.
+</p>
