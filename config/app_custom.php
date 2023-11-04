@@ -116,6 +116,11 @@ return [
 		},
 	],
 
+	'Migrations' => [
+		'unsigned_primary_keys' => true,
+		'column_null_default' => true,
+	],
+
 	'Feedback' => [
 		'stores' => [
 		],

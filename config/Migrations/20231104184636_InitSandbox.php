@@ -74,7 +74,7 @@ class InitSandbox extends AbstractMigration {
 			])
 			->addColumn('image', 'binary', [
 				'default' => null,
-				'limit' => null,
+				'limit' => 255,
 				'null' => true,
 			])
 			->addColumn('result', 'string', [
