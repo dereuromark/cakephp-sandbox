@@ -24,11 +24,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `bitmasked_records` (
 									 `id` int(11) NOT NULL,
 									 `name` varchar(100) NOT NULL,
-									 `flag_optional` int(10) DEFAULT NULL,
-									 `flag_required` int(10) NOT NULL,
+									 `flag_optional` int(11) DEFAULT NULL,
+									 `flag_required` int(11) NOT NULL,
 									 `created` datetime NOT NULL,
 									 `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -40,25 +40,11 @@ CREATE TABLE `captchas` (
 							`id` int(11) NOT NULL,
 							`session_id` varchar(255) NOT NULL,
 							`ip` varchar(255) NOT NULL,
-							`image` blob DEFAULT NULL,
+							`image` binary(255) DEFAULT NULL,
 							`result` varchar(255) DEFAULT NULL,
 							`created` datetime DEFAULT NULL,
 							`used` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `captcha_phinxlog`
---
-
-CREATE TABLE `captcha_phinxlog` (
-									`version` bigint(20) NOT NULL,
-									`migration_name` varchar(100) DEFAULT NULL,
-									`start_time` timestamp NULL DEFAULT NULL,
-									`end_time` timestamp NULL DEFAULT NULL,
-									`breakpoint` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,16 +53,16 @@ CREATE TABLE `captcha_phinxlog` (
 --
 
 CREATE TABLE `continents` (
-							  `id` int(10) UNSIGNED NOT NULL,
+							  `id` int(11) UNSIGNED NOT NULL,
 							  `name` varchar(64) NOT NULL,
 							  `ori_name` varchar(64) NOT NULL,
-							  `parent_id` int(10) UNSIGNED DEFAULT NULL,
-							  `lft` int(10) UNSIGNED DEFAULT NULL,
-							  `rght` int(10) UNSIGNED DEFAULT NULL,
-							  `status` tinyint(2) UNSIGNED NOT NULL DEFAULT 0,
+							  `parent_id` int(11) UNSIGNED DEFAULT NULL,
+							  `lft` int(11) UNSIGNED DEFAULT NULL,
+							  `rght` int(11) UNSIGNED DEFAULT NULL,
+							  `status` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
 							  `modified` datetime NOT NULL,
 							  `code` varchar(2) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -85,24 +71,24 @@ CREATE TABLE `continents` (
 --
 
 CREATE TABLE `countries` (
-							 `id` int(10) UNSIGNED NOT NULL,
+							 `id` int(11) UNSIGNED NOT NULL,
 							 `name` varchar(64) NOT NULL,
 							 `ori_name` varchar(64) NOT NULL,
 							 `iso2` varchar(2) NOT NULL,
 							 `iso3` varchar(3) NOT NULL,
-							 `eu_member` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'Member of the EU',
+							 `eu_member` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'Member of the EU',
 							 `special` varchar(40) NOT NULL,
-							 `zip_length` tinyint(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'if > 0 validate on this length',
+							 `zip_length` tinyint(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'if > 0 validate on this length',
 							 `zip_regexp` varchar(255) NOT NULL,
-							 `sort` int(10) UNSIGNED NOT NULL DEFAULT 0,
+							 `sort` int(11) UNSIGNED NOT NULL DEFAULT 0,
 							 `lat` float(10,6) DEFAULT NULL COMMENT 'latitude',
   `lng` float(10,6) DEFAULT NULL COMMENT 'longitude',
   `address_format` varchar(255) NOT NULL,
-  `status` tinyint(2) UNSIGNED NOT NULL DEFAULT 0,
+  `status` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
   `modified` datetime NOT NULL,
   `timezone` varchar(255) DEFAULT NULL,
   `phone_code` varchar(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -111,17 +97,17 @@ CREATE TABLE `countries` (
 --
 
 CREATE TABLE `currencies` (
-							  `id` int(10) UNSIGNED NOT NULL,
+							  `id` int(11) UNSIGNED NOT NULL,
 							  `name` varchar(255) NOT NULL DEFAULT '',
 							  `code` char(3) NOT NULL DEFAULT '',
 							  `symbol_left` varchar(12) DEFAULT '',
 							  `symbol_right` varchar(12) DEFAULT '',
 							  `decimal_places` char(1) DEFAULT '',
 							  `value` float(9,4) DEFAULT 0.0000,
-  `base` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT 'is base currency',
-  `active` tinyint(1) UNSIGNED NOT NULL DEFAULT 0,
+  `base` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'is base currency',
+  `active` tinyint(1) NOT NULL DEFAULT 0,
   `modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -131,32 +117,18 @@ CREATE TABLE `currencies` (
 
 CREATE TABLE `database_logs` (
 								 `id` int(11) NOT NULL,
-								 `type` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `summary` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `message` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `context` text CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+								 `type` varchar(50) NOT NULL,
+								 `summary` varchar(255) NOT NULL,
+								 `message` text NOT NULL,
+								 `context` text DEFAULT NULL,
 								 `created` datetime NOT NULL,
 								 `ip` varchar(100) DEFAULT NULL,
 								 `hostname` varchar(100) DEFAULT NULL,
 								 `uri` text DEFAULT NULL,
-								 `refer` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-								 `user_agent` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-								 `count` int(10) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `database_log_phinxlog`
---
-
-CREATE TABLE `database_log_phinxlog` (
-										 `version` bigint(20) NOT NULL,
-										 `migration_name` varchar(100) DEFAULT NULL,
-										 `start_time` timestamp NULL DEFAULT NULL,
-										 `end_time` timestamp NULL DEFAULT NULL,
-										 `breakpoint` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+								 `refer` varchar(255) DEFAULT NULL,
+								 `user_agent` varchar(255) DEFAULT NULL,
+								 `count` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -173,7 +145,7 @@ CREATE TABLE `events` (
 						  `description` text NOT NULL,
 						  `beginning` datetime DEFAULT NULL,
 						  `end` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -187,7 +159,7 @@ CREATE TABLE `exposed_users` (
 								 `uuid` binary(16) NOT NULL,
 								 `created` datetime NOT NULL,
 								 `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -196,7 +168,7 @@ CREATE TABLE `exposed_users` (
 --
 
 CREATE TABLE `languages` (
-							 `id` int(10) UNSIGNED NOT NULL,
+							 `id` int(11) UNSIGNED NOT NULL,
 							 `name` varchar(40) NOT NULL,
 							 `ori_name` varchar(40) NOT NULL,
 							 `code` varchar(6) NOT NULL,
@@ -204,10 +176,10 @@ CREATE TABLE `languages` (
 							 `iso2` char(2) NOT NULL,
 							 `locale` varchar(30) NOT NULL,
 							 `locale_fallback` varchar(30) NOT NULL,
-							 `status` tinyint(2) UNSIGNED NOT NULL DEFAULT 0,
-							 `sort` int(10) UNSIGNED NOT NULL DEFAULT 0,
+							 `status` tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
+							 `sort` int(11) UNSIGNED NOT NULL DEFAULT 0,
 							 `modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -221,7 +193,7 @@ CREATE TABLE `phinxlog` (
 							`start_time` timestamp NULL DEFAULT NULL,
 							`end_time` timestamp NULL DEFAULT NULL,
 							`breakpoint` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -231,10 +203,10 @@ CREATE TABLE `phinxlog` (
 
 CREATE TABLE `queued_jobs` (
 							   `id` int(11) NOT NULL,
-							   `job_task` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+							   `job_task` varchar(90) NOT NULL,
 							   `data` text DEFAULT NULL,
-							   `job_group` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-							   `reference` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+							   `job_group` varchar(255) DEFAULT NULL,
+							   `reference` varchar(255) DEFAULT NULL,
 							   `created` datetime NOT NULL,
 							   `notbefore` datetime DEFAULT NULL,
 							   `fetched` datetime DEFAULT NULL,
@@ -242,24 +214,10 @@ CREATE TABLE `queued_jobs` (
 							   `progress` float DEFAULT NULL,
 							   `attempts` int(11) NOT NULL DEFAULT 0,
 							   `failure_message` text DEFAULT NULL,
-							   `workerkey` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-							   `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-							   `priority` int(3) NOT NULL DEFAULT 5
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `queue_phinxlog`
---
-
-CREATE TABLE `queue_phinxlog` (
-								  `version` bigint(20) NOT NULL,
-								  `migration_name` varchar(100) DEFAULT NULL,
-								  `start_time` timestamp NULL DEFAULT NULL,
-								  `end_time` timestamp NULL DEFAULT NULL,
-								  `breakpoint` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+							   `workerkey` varchar(45) DEFAULT NULL,
+							   `status` varchar(255) DEFAULT NULL,
+							   `priority` int(11) NOT NULL DEFAULT 5
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -269,13 +227,13 @@ CREATE TABLE `queue_phinxlog` (
 
 CREATE TABLE `queue_processes` (
 								   `id` int(11) NOT NULL,
-								   `pid` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+								   `pid` varchar(40) NOT NULL,
 								   `created` datetime NOT NULL,
 								   `modified` datetime NOT NULL,
 								   `terminate` tinyint(1) NOT NULL DEFAULT 0,
-								   `server` varchar(90) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-								   `workerkey` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+								   `server` varchar(90) DEFAULT NULL,
+								   `workerkey` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -290,7 +248,7 @@ CREATE TABLE `registrations` (
 								 `status` varchar(100) NOT NULL DEFAULT 'pending',
 								 `created` datetime NOT NULL,
 								 `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -299,12 +257,12 @@ CREATE TABLE `registrations` (
 --
 
 CREATE TABLE `roles` (
-						 `id` int(10) UNSIGNED NOT NULL,
+						 `id` int(11) UNSIGNED NOT NULL,
 						 `name` varchar(64) NOT NULL DEFAULT '',
 						 `alias` varchar(20) NOT NULL,
 						 `created` datetime NOT NULL,
 						 `modified` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -313,11 +271,11 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `sandbox_animals` (
-								   `id` int(10) UNSIGNED NOT NULL,
+								   `id` int(11) UNSIGNED NOT NULL,
 								   `name` varchar(100) NOT NULL,
 								   `created` datetime NOT NULL,
 								   `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -326,16 +284,16 @@ CREATE TABLE `sandbox_animals` (
 --
 
 CREATE TABLE `sandbox_categories` (
-									  `id` int(10) UNSIGNED NOT NULL,
-									  `parent_id` int(10) DEFAULT NULL,
+									  `id` int(11) UNSIGNED NOT NULL,
+									  `parent_id` int(11) DEFAULT NULL,
 									  `name` varchar(180) NOT NULL,
-									  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-									  `status` int(2) UNSIGNED DEFAULT NULL,
-									  `lft` int(10) UNSIGNED DEFAULT NULL,
-									  `rght` int(10) UNSIGNED DEFAULT NULL,
+									  `description` text NOT NULL,
+									  `status` int(11) UNSIGNED DEFAULT NULL,
+									  `lft` int(11) UNSIGNED DEFAULT NULL,
+									  `rght` int(11) UNSIGNED DEFAULT NULL,
 									  `created` datetime DEFAULT NULL,
 									  `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -344,14 +302,14 @@ CREATE TABLE `sandbox_categories` (
 --
 
 CREATE TABLE `sandbox_posts` (
-								 `id` int(10) UNSIGNED NOT NULL,
+								 `id` int(11) UNSIGNED NOT NULL,
 								 `title` varchar(180) NOT NULL,
 								 `content` text NOT NULL,
-								 `rating_count` int(10) UNSIGNED NOT NULL DEFAULT 0,
-								 `rating_sum` int(10) UNSIGNED NOT NULL DEFAULT 0,
+								 `rating_count` int(11) UNSIGNED NOT NULL DEFAULT 0,
+								 `rating_sum` int(11) UNSIGNED NOT NULL DEFAULT 0,
 								 `created` datetime DEFAULT NULL,
 								 `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -364,7 +322,7 @@ CREATE TABLE `sandbox_profiles` (
 									`username` varchar(255) NOT NULL,
 									`balance` decimal(10,2) NOT NULL DEFAULT 0.00,
 									`extra` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -373,14 +331,14 @@ CREATE TABLE `sandbox_profiles` (
 --
 
 CREATE TABLE `sandbox_ratings` (
-								   `id` int(10) NOT NULL,
-								   `user_id` int(10) DEFAULT NULL,
-								   `foreign_key` int(10) DEFAULT NULL,
+								   `id` int(11) NOT NULL,
+								   `user_id` int(11) DEFAULT NULL,
+								   `foreign_key` int(11) DEFAULT NULL,
 								   `model` varchar(255) DEFAULT NULL,
 								   `value` float(8,4) NOT NULL DEFAULT 0.0000,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -392,13 +350,13 @@ CREATE TABLE `sandbox_users` (
 								 `id` int(11) NOT NULL,
 								 `created` datetime DEFAULT NULL,
 								 `modified` datetime DEFAULT NULL,
-								 `username` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `slug` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `email` varchar(80) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-								 `role_id` tinyint(2) NOT NULL DEFAULT 0,
+								 `username` varchar(30) NOT NULL,
+								 `slug` varchar(255) NOT NULL,
+								 `password` varchar(255) NOT NULL,
+								 `email` varchar(80) NOT NULL,
+								 `role_id` tinyint(4) NOT NULL DEFAULT 0,
 								 `status` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -407,28 +365,14 @@ CREATE TABLE `sandbox_users` (
 --
 
 CREATE TABLE `states` (
-						  `id` int(10) UNSIGNED NOT NULL,
-						  `country_id` int(10) UNSIGNED NOT NULL DEFAULT 0,
+						  `id` int(11) UNSIGNED NOT NULL,
+						  `country_id` int(11) UNSIGNED NOT NULL DEFAULT 0,
 						  `code` varchar(3) NOT NULL,
 						  `name` varchar(40) NOT NULL,
 						  `lat` float(10,6) NOT NULL DEFAULT 0.000000,
   `lng` float(10,6) NOT NULL DEFAULT 0.000000,
   `modified` datetime DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tags_phinxlog`
---
-
-CREATE TABLE `tags_phinxlog` (
-								 `version` bigint(20) NOT NULL,
-								 `migration_name` varchar(100) DEFAULT NULL,
-								 `start_time` timestamp NULL DEFAULT NULL,
-								 `end_time` timestamp NULL DEFAULT NULL,
-								 `breakpoint` tinyint(1) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -443,7 +387,7 @@ CREATE TABLE `tags_tagged` (
 							   `fk_model` varchar(255) NOT NULL,
 							   `created` datetime NOT NULL,
 							   `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -459,7 +403,7 @@ CREATE TABLE `tags_tags` (
 							 `counter` int(11) UNSIGNED NOT NULL DEFAULT 0,
 							 `created` datetime DEFAULT NULL,
 							 `modified` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -482,7 +426,7 @@ CREATE TABLE `timezones` (
   `linked_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -496,12 +440,12 @@ CREATE TABLE `users` (
 						 `last_login` datetime DEFAULT NULL,
 						 `created` datetime NOT NULL,
 						 `modified` datetime NOT NULL,
-						 `logins` int(10) UNSIGNED NOT NULL DEFAULT 0,
+						 `logins` int(11) UNSIGNED NOT NULL DEFAULT 0,
 						 `username` varchar(30) NOT NULL,
 						 `password` varchar(255) NOT NULL,
 						 `email` varchar(80) NOT NULL,
-						 `role_id` tinyint(2) NOT NULL DEFAULT 0
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+						 `role_id` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -518,12 +462,6 @@ ALTER TABLE `bitmasked_records`
 --
 ALTER TABLE `captchas`
 	ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `captcha_phinxlog`
---
-ALTER TABLE `captcha_phinxlog`
-	ADD PRIMARY KEY (`version`);
 
 --
 -- Indexes for table `continents`
@@ -548,12 +486,6 @@ ALTER TABLE `currencies`
 --
 ALTER TABLE `database_logs`
 	ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `database_log_phinxlog`
---
-ALTER TABLE `database_log_phinxlog`
-	ADD PRIMARY KEY (`version`);
 
 --
 -- Indexes for table `events`
@@ -585,12 +517,6 @@ ALTER TABLE `phinxlog`
 --
 ALTER TABLE `queued_jobs`
 	ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `queue_phinxlog`
---
-ALTER TABLE `queue_phinxlog`
-	ADD PRIMARY KEY (`version`);
 
 --
 -- Indexes for table `queue_processes`
@@ -658,12 +584,6 @@ ALTER TABLE `states`
 	ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tags_phinxlog`
---
-ALTER TABLE `tags_phinxlog`
-	ADD PRIMARY KEY (`version`);
-
---
 -- Indexes for table `tags_tagged`
 --
 ALTER TABLE `tags_tagged`
@@ -709,19 +629,19 @@ ALTER TABLE `captchas`
 -- AUTO_INCREMENT for table `continents`
 --
 ALTER TABLE `continents`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `countries`
 --
 ALTER TABLE `countries`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `database_logs`
@@ -745,7 +665,7 @@ ALTER TABLE `exposed_users`
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `queued_jobs`
@@ -769,25 +689,25 @@ ALTER TABLE `registrations`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sandbox_animals`
 --
 ALTER TABLE `sandbox_animals`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sandbox_categories`
 --
 ALTER TABLE `sandbox_categories`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sandbox_posts`
 --
 ALTER TABLE `sandbox_posts`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sandbox_profiles`
@@ -799,7 +719,7 @@ ALTER TABLE `sandbox_profiles`
 -- AUTO_INCREMENT for table `sandbox_ratings`
 --
 ALTER TABLE `sandbox_ratings`
-	MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sandbox_users`
@@ -811,7 +731,7 @@ ALTER TABLE `sandbox_users`
 -- AUTO_INCREMENT for table `states`
 --
 ALTER TABLE `states`
-	MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+	MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tags_tagged`
