@@ -58,7 +58,7 @@ return [
 
 	'Datasources' => [
 		'default' => [
-			'host' => 'localhost',
+			'host' => '127.0.0.1',
 			'username' => 'root',
 			'password' => '',
 			'database' => '', // Set in your app_local.php
@@ -69,7 +69,7 @@ return [
 		 * The test connection is used during the test suite.
 		 */
 		'test' => [
-			'host' => 'localhost',
+			'host' => '127.0.0.1',
 			'username' => 'root',
 			'password' => '',
 			'database' => '', // Set in your app_local.php

@@ -31,7 +31,7 @@ class UsersTableTest extends TestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		$this->Users = TableRegistry::get('Users');
+		$this->Users = TableRegistry::getTableLocator()->get('Users');
 	}
 
 	/**

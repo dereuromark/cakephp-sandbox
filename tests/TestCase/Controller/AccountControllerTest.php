@@ -89,7 +89,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$Users = TableRegistry::get('Users');
+		$Users = TableRegistry::getTableLocator()->get('Users');
 		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		$user = $Users->newEntity($data);
 		$result = $Users->save($user);
@@ -113,7 +113,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$Users = TableRegistry::get('Users');
+		$Users = TableRegistry::getTableLocator()->get('Users');
 		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		$user = $Users->newEntity($data);
 		$result = $Users->save($user);
@@ -137,7 +137,7 @@ class AccountControllerTest extends IntegrationTestCase {
 			'email' => 'admin@example.com',
 			'pwd' => '123456',
 		];
-		$Users = TableRegistry::get('Users');
+		$Users = TableRegistry::getTableLocator()->get('Users');
 		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		$user = $Users->newEntity($data);
 		$result = $Users->save($user);
@@ -202,7 +202,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	public function testChangePasswordPost() {
 		$this->skipIf(true); // not needed right now
 
-		$Users = TableRegistry::get('Users');
+		$Users = TableRegistry::getTableLocator()->get('Users');
 		$username = $Users->field('username');
 
 		$session = ['Auth' => ['Tmp' => ['id' => '1']]];

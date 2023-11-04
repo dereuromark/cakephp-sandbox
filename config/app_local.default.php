@@ -9,8 +9,6 @@ return [
 
 	'Datasources' => [
 		'default' => [
-			'host' => 'localhost',
-			'username' => 'root',
 			'password' => '',
 			'database' => 'cake_sandbox',
 		],
@@ -19,8 +17,6 @@ return [
 		 * The test connection is used during the test suite.
 		 */
 		'test' => [
-			'host' => 'localhost',
-			'username' => 'root',
 			'password' => '',
 			'database' => 'cake_test',
 		],
