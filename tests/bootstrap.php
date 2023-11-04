@@ -67,4 +67,4 @@ Configure::write('Error.ignoredDeprecationPaths', [
 // has been written to.
 session_id('cli');
 
-//(new Migrator())->run();
+(new \Migrations\TestSuite\Migrator())->run();
