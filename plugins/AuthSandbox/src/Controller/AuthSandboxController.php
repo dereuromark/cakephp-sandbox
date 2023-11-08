@@ -3,6 +3,7 @@
 namespace AuthSandbox\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 
 /**
@@ -10,17 +11,15 @@ use Cake\Event\EventInterface;
  * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
  * @property \App\Model\Table\UsersTable $Users
  */
+#[\AllowDynamicProperties]
 class AuthSandboxController extends AppController {
+
+	use ModelAwareTrait;
 
 	/**
 	 * @var int
 	 */
 	public const ROLE_USER = 4;
-
-	/**
-	 * @var string
-	 */
-	protected ?string $modelClass = 'Users';
 
 	/**
 	 * @return void
@@ -33,6 +32,8 @@ class AuthSandboxController extends AppController {
 
 		$helpers = ['TinyAuth.AuthUser'];
 		$this->viewBuilder()->addHelpers($helpers);
+
+		$this->Users = $this->fetchTable('Users');
 	}
 
 	/**

@@ -17,7 +17,7 @@ class ExposeExamplesController extends SandboxAppController {
 	/**
 	 * @var array<string, mixed>
 	 */
-	public array $paginate = [
+	protected array $paginate = [
 		'order' => [
 			'name' => 'ASC',
 		],

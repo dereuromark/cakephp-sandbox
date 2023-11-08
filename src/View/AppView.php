@@ -61,7 +61,7 @@ class AppView extends View {
 		$this->addHelper('Tools.Number');
 		$this->addHelper('Tools.Text');
 
-		$this->addHelper('Form', (array)Configure::read('FormConfig')); // => ['className' => 'BootstrapUI.Form'])
+		$this->addHelper('Form', (array)Configure::read('FormConfig'));
 
 		$this->addHelper('Tools.Html');
 		$this->addHelper('Tools.Url');

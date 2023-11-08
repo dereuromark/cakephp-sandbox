@@ -2,7 +2,7 @@
 	"name": "sandbox",
 	"version": "1.0.0",
 	"dependencies": {
-		"bootstrap": "^4.5.2",
+		"bootstrap": "^5.0.0",
 		"jquery": "~1.12",
 		"font-awesome": "^4.7",
 		"jquery-ui": "~1.11",
