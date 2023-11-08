@@ -21,13 +21,10 @@ class RegistrationsController extends AppController {
 	 * @return \Cake\Http\Response|null|void Renders view
 	 */
 	public function index() {
-		$this->paginate = [
-			'contain' => ['Users', 'RegistrationStates'],
-			'conditions' => [
-				'session_id' => $this->request->getSession()->id(),
-			],
-		];
-		$registrations = $this->paginate($this->Registrations);
+		$query = $this->Registrations->find()->where([
+			'session_id' => $this->request->getSession()->id(),
+		])->contain(['Users', 'RegistrationStates']);
+		$registrations = $this->paginate($query);
 
 		$this->set(compact('registrations'));
 	}
