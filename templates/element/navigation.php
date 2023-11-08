@@ -11,18 +11,18 @@
 	<div class="navbar-nav-scroll">
 		<ul class="navbar-nav bd-navbar-nav flex-row">
 			<li class="nav-item dropdown">
-				<a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+				<a class="nav-item nav-link dropdown-toggle" id="cakephp-version" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
 					<span class="badge badge-success">CakePHP 5.x</span> <span class="caret"></span>
 				</a>
-				<ul class="dropdown-menu" aria-labelledby="sandbox">
-                    <li class="nav-item"><a class="nav-link" href="https://sandbox4.dereuromark.de/"><span class="badge badge-warning">CakePHP 4.x</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="https://sandbox3.dereuromark.de/"><span class="badge badge-danger">CakePHP 3.x</span></a></li>
+				<ul class="dropdown-menu" aria-labelledby="cakephp-version">
+                    <li class="nav-item"><a class="dropdown-item nav-link" href="https://sandbox4.dereuromark.de/"><span class="badge badge-warning">CakePHP 4.x</span></a></li>
+                    <li class="nav-item"><a class="dropdown-item  nav-link" href="https://sandbox3.dereuromark.de/"><span class="badge badge-danger">CakePHP 3.x</span></a></li>
 				</ul>
 			</li>
 
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="basics">Basics <span class="caret"></span></a>
-				<ul class="dropdown-menu" aria-labelledby="sandbox">
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="basics">Basics <span class="caret"></span></a>
+				<ul class="dropdown-menu" aria-labelledby="basics">
 					<li class="nav-item"><?php echo $this->Html->linkReset('Conventions', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Conventions', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('Inflector', ['plugin' => 'Sandbox', 'controller' => 'Inflector', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 
@@ -35,7 +35,7 @@
 				</ul>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
+				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="sandbox">Sandbox <span class="caret"></span></a>
 				<ul class="dropdown-menu" aria-labelledby="sandbox">
 					<li class="nav-item"><?php echo $this->Html->linkReset('Overview', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Sandbox', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="dropdown-divider"></li>
