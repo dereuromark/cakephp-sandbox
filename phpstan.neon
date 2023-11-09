@@ -28,3 +28,4 @@ parameters:
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Call to an undefined method .+Mailer::set.+#'
 		- '#Access to an undefined property Cake\\ORM\\BehaviorRegistry::\$.+#'
+		- '#Dead catch - .+RecordNotFoundException is never thrown in the try block.#'

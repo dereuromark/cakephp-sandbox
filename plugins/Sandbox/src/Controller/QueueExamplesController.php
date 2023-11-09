@@ -6,7 +6,7 @@ use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
 use Shim\Datasource\LegacyModelAwareTrait;
-use Tools\I18n\Datetime;
+use Tools\I18n\DateTime;
 
 /**
  * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
