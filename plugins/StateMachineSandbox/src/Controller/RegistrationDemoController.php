@@ -60,6 +60,7 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function process() {
+		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
 		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
 		$registrations = $Registrations->find()
 			->contain(['Users', 'RegistrationStates'])
