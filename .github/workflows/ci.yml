@@ -118,6 +118,8 @@ jobs:
 
     - name: Run phpstan tests
       run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github
+      env:
+        DEBUG: true
 
     - name: Run phpcs
       run: composer cs-check
