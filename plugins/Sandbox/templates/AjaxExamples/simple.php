@@ -16,10 +16,7 @@ $(function() {
 				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 			},
 			success: function(response) {
-				if (response.result) {
-					var result = response.result;
-					$('#result-container').html(result.now);
-				}
+				$('#result-container').html(response.now);
 			},
 			error: function(e) {
 				alert("An error occurred: " + e.responseText.message);
