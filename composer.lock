@@ -2441,12 +2441,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "a3f880eddf74b7ba6f28c7319a43e52d4b84171e"
+                "reference": "4ab92c11945d7c630603db9379e0b472740c9632"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/a3f880eddf74b7ba6f28c7319a43e52d4b84171e",
-                "reference": "a3f880eddf74b7ba6f28c7319a43e52d4b84171e",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/4ab92c11945d7c630603db9379e0b472740c9632",
+                "reference": "4ab92c11945d7c630603db9379e0b472740c9632",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2489,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2023-11-08T14:33:49+00:00"
+            "time": "2023-11-08T15:06:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -6103,7 +6103,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "370c1ec386563989011c07e644b50cda5d598f08"
+                "reference": "a0c326ccf4c4d570e48d2c180a564c7d31059013"
             },
             "require": {
                 "cakephp/cakephp": "^5.0.0",
@@ -6171,7 +6171,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2023-09-28T22:58:43+00:00"
+            "time": "2023-11-09T03:07:03+00:00"
         },
         {
             "name": "symfony/config",

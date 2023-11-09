@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Test\TestCase\Model\Table;
 
 use Cake\TestSuite\TestCase;
+use Sandbox\Model\Enum\UserStatus;
 use Sandbox\Model\Table\SandboxUsersTable;
 
 /**
@@ -28,8 +29,6 @@ class SandboxUsersTableTest extends TestCase {
 	];
 
 	/**
-	 * setUp method
-	 *
 	 * @return void
 	 */
 	protected function setUp(): void {
@@ -39,14 +38,21 @@ class SandboxUsersTableTest extends TestCase {
 	}
 
 	/**
-	 * tearDown method
-	 *
 	 * @return void
 	 */
 	protected function tearDown(): void {
 		unset($this->SandboxUsers);
 
 		parent::tearDown();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFind(): void {
+		/** @var \App\Model\Entity\User $user */
+		$user = $this->SandboxUsers->find()->firstOrFail();
+		$this->assertInstanceOf(UserStatus::class, $user->status);
 	}
 
 }

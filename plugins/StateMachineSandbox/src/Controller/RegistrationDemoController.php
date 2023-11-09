@@ -62,8 +62,8 @@ class RegistrationDemoController extends AppController {
 	public function process() {
 		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
 		$registrations = $Registrations->find()
-			->where(['session_id' => $this->request->getSession()->id()])
 			->contain(['Users', 'RegistrationStates'])
+			->where(['session_id' => $this->request->getSession()->id()])
 			->all()
 			->toArray();
 
