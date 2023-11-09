@@ -58,6 +58,9 @@ jobs:
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+    - name: Assets install
+      run: npm install -g bower && bower install --allow-root
+
     - name: Run PHPUnit
       run: |
         if [[ ${{ matrix.db-type }} == 'sqlite' ]]; then export DB_URL='sqlite:///:memory:'; fi
@@ -103,9 +106,6 @@ jobs:
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
-
-    - name: Assets install
-      run: bower install --allow-root
 
     - name: DTO check
       run: bin/cake dto generate -p Sandbox -v -d
