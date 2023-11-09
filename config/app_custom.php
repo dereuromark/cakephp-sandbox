@@ -26,7 +26,7 @@ if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
 }
 
 return [
-	'debug' => $debug,
+	'debug' => filter_var(env('DEBUG', $debug), FILTER_VALIDATE_BOOLEAN),,
 
 	'Security' => [
 		'salt' => '0ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
