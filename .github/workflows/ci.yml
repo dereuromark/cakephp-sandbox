@@ -59,7 +59,7 @@ jobs:
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
     - name: Assets install
-      run: npm install -g bower && bower install --allow-root
+      run: npm install -g bower && bower install --allow-root && composer assets
 
     - name: Run PHPUnit
       run: |
