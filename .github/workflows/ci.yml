@@ -104,6 +104,9 @@ jobs:
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+    - name: Assets install
+      run: bower install --allow-root
+
     - name: DTO check
       run: bin/cake dto generate -p Sandbox -v -d
 
