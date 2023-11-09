@@ -53,7 +53,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Prepare config
-      run: cp config/app.php config/app_local.php
+      run: touch config/app_local.php && echo "<?php" > config/app_local.php
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
@@ -102,7 +102,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Prepare config
-      run: touch config/app_local.php && "<?php" > config/app_local.php
+      run: touch config/app_local.php && echo "<?php" > config/app_local.php
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
