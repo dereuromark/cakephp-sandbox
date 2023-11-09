@@ -111,15 +111,13 @@ jobs:
       run: bin/cake dto generate -p Sandbox -v -d
 
     - name: Code completion generate
-      run: bin/cake code_completion generate
+      run: bin/cake generate code_completion
 
     - name: Run phpstan
       run: vendor/bin/phpstan analyse --error-format=github
 
     - name: Run phpstan tests
       run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github
-      env:
-        DEBUG: true
 
     - name: Run phpcs
       run: composer cs-check
