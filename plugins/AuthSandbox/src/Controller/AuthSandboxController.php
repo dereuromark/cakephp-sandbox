@@ -51,7 +51,7 @@ class AuthSandboxController extends AppController {
 	 */
 	protected function _authSetup() {
 		$this->Auth->setConfig('authenticate', [
-			'Tools.MultiColumn' => [
+			'TinyAuth.MultiColumn' => [
 				'fields' => [
 					'username' => 'login',
 					'password' => 'password',

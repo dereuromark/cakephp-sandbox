@@ -27,6 +27,7 @@ Use this converter to get the text in the appropriate format.
 
 <h2>Result</h2>
 <?php
+echo $this->Form->create();
 echo $this->Form->control('Form.result', ['type' => 'textarea', 'class' => 'halfSize']);
 
 if ($this->request->getData('Form.result')) {

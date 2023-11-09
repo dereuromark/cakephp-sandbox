@@ -5,8 +5,6 @@ use Migrations\AbstractMigration;
 
 class InitSandbox extends AbstractMigration {
 
-	public bool $autoId = false;
-
 	/**
 	 * Up Method.
 	 *
@@ -16,14 +14,6 @@ class InitSandbox extends AbstractMigration {
 	 */
 	public function up(): void {
 		$this->table('bitmasked_records')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 100,
@@ -54,14 +44,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('captchas')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('session_id', 'string', [
 				'default' => null,
 				'limit' => 255,
@@ -95,14 +77,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('continents')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 64,
@@ -150,14 +124,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('countries')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 64,
@@ -252,14 +218,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('currencies')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => '',
 				'limit' => 255,
@@ -311,14 +269,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('database_logs')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('type', 'string', [
 				'default' => null,
 				'limit' => 50,
@@ -378,14 +328,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('events')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('title', 'string', [
 				'default' => null,
 				'limit' => 200,
@@ -426,14 +368,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('exposed_users')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 100,
@@ -466,14 +400,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('languages')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 40,
@@ -529,14 +455,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('queue_processes')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('pid', 'string', [
 				'default' => null,
 				'limit' => 40,
@@ -589,14 +507,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('queued_jobs')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('job_task', 'string', [
 				'default' => null,
 				'limit' => 90,
@@ -673,14 +583,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('registrations')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('session_id', 'string', [
 				'default' => null,
 				'limit' => 100,
@@ -710,14 +612,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('roles')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => '',
 				'limit' => 64,
@@ -741,14 +635,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_animals')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 100,
@@ -767,14 +653,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_categories')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('parent_id', 'integer', [
 				'default' => null,
 				'limit' => null,
@@ -822,14 +700,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_posts')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('title', 'string', [
 				'default' => null,
 				'limit' => 180,
@@ -865,14 +735,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_profiles')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('username', 'string', [
 				'default' => null,
 				'limit' => 255,
@@ -895,14 +757,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_ratings')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('user_id', 'integer', [
 				'default' => null,
 				'limit' => null,
@@ -967,14 +821,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('sandbox_users')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('created', 'datetime', [
 				'default' => null,
 				'limit' => null,
@@ -1020,14 +866,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('states')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('country_id', 'integer', [
 				'default' => '0',
 				'limit' => null,
@@ -1066,14 +904,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('tags_tagged')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('tag_id', 'integer', [
 				'default' => null,
 				'limit' => null,
@@ -1115,14 +945,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('tags_tags')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('namespace', 'string', [
 				'default' => null,
 				'limit' => 255,
@@ -1167,14 +989,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('timezones')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('name', 'string', [
 				'default' => null,
 				'limit' => 100,
@@ -1249,14 +1063,6 @@ class InitSandbox extends AbstractMigration {
 			->create();
 
 		$this->table('users')
-			->addColumn('id', 'integer', [
-				'autoIncrement' => true,
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addPrimaryKey(['id'])
 			->addColumn('active', 'boolean', [
 				'default' => false,
 				'limit' => null,
