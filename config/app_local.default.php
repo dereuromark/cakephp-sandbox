@@ -1,7 +1,7 @@
 <?php
 
 return [
-	//'debug' => true,
+	//'debug' => filter_var(env('DEBUG', true), FILTER_VALIDATE_BOOLEAN),
 
 	'Security' => [
 		'salt' => '9ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
