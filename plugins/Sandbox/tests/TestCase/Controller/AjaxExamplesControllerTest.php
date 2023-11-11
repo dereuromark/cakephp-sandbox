@@ -111,8 +111,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-		$errorPart = '<div class=\"invalid-feedback\">';
-
+		$errorPart = 'required is-invalid';
 		$this->assertResponseContains($errorPart);
 
 		$result = $this->_response->getHeader('X-Flash');

@@ -1,42 +1,36 @@
 <?php
+declare(strict_types=1);
 
-use Phinx\Migration\AbstractMigration;
+use Migrations\AbstractSeed;
 
-class Countries extends AbstractMigration {
+/**
+ * Init seed.
+ */
+class InitSeed extends AbstractSeed {
 
 	/**
-	 * Migrate Up.
+	 * Run Method.
+	 *
+	 * Write your database seeder using this method.
+	 *
+	 * More information on writing seeds is available here:
+	 * https://book.cakephp.org/phinx/0/en/seeding.html
 	 *
 	 * @return void
 	 */
-	public function up() {
-		$content = <<<SQL
-CREATE TABLE IF NOT EXISTS `countries` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `ori_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `iso2` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
-  `iso3` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-  `country_code` int(4) unsigned NOT NULL DEFAULT '0',
-  `eu_member` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Member of the EU',
-  `special` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `zip_length` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'if > 0 validate on this length',
-  `zip_regexp` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `sort` int(10) unsigned NOT NULL DEFAULT '0',
-  `lat` float(10,6) NOT NULL DEFAULT '0.000000' COMMENT 'forGoogleMap',
-  `lng` float(10,6) NOT NULL DEFAULT '0.000000' COMMENT 'forGoogleMap',
-  `address_format` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=246 ;
+	public function run(): void {
+		$sql = <<<'SQL'
+INSERT INTO `users` (`id`, `active`, `last_login`, `created`, `modified`, `logins`, `username`, `password`, `email`, `role_id`) VALUES
+(1, 1, NULL, '2015-02-16 09:56:56', '2015-02-16 09:56:56', 0, 'user', '$2y$10$wo7.YGG1t8JStBooeqBEMeVsL/HgTJ8dJ6M6U1MtoZpZZgtS893W.', '', 4),
+(2, 1, NULL, '2015-02-16 10:00:32', '2015-02-16 10:00:32', 0, 'admin', '$2y$10$9Zo2pVUHZiPpo0tzMCm9nOnMUWeMPFAcixOh4ppPcJPPLnw9NAAHm', '', 1),
+(3, 1, NULL, '2015-02-16 10:00:38', '2015-02-16 10:00:38', 0, 'mod', '$2y$10$C1Y0PhjcdQ1QR9ZwQ8VwiuF0E/FS7jSEdblVJKTgWWHK8vm2VaBfi', '', 3);
+SQL;
+		$this->execute($sql);
 
---
--- Daten für Tabelle `countries`
---
+		$countries = <<<'SQL'
 
-INSERT INTO `countries` (`id`, `name`, `ori_name`, `iso2`, `iso3`, `country_code`, `eu_member`, `special`, `zip_length`, `zip_regexp`, `sort`, `lat`, `lng`, `address_format`, `status`, `modified`) VALUES
-(1, 'Deutschland', 'Deutschland', 'DE', 'DEU', 49, 1, '', 5, '', 3, 51.165691, 10.451526, ':name :street_address D-:postcode :city :country', 1, '2010-06-06 00:19:04'),
+INSERT INTO `countries` (`id`, `name`, `ori_name`, `iso2`, `iso3`, `phone_code`, `eu_member`, `special`, `zip_length`, `zip_regexp`, `sort`, `lat`, `lng`, `address_format`, `status`, `modified`) VALUES
+		(1, 'Deutschland', 'Deutschland', 'DE', 'DEU', 49, 1, '', 5, '', 3, 51.165691, 10.451526, ':name :street_address D-:postcode :city :country', 1, '2010-06-06 00:19:04'),
 (2, 'Österreich', 'Österreich', 'AT', 'AUT', 43, 1, '', 0, '', 2, 47.516232, 14.550072, '', 1, '2010-06-06 00:19:04'),
 (3, 'Schweiz', 'Schweiz', 'CH', 'CHE', 41, 0, '', 0, '', 1, 46.818188, 8.227512, '', 1, '2010-06-06 00:19:04'),
 (4, 'Belgien', 'Belgium', 'BE', 'BEL', 32, 1, '', 0, '', 0, 50.503887, 4.469936, '', 1, '2010-06-06 00:19:09'),
@@ -277,178 +271,254 @@ INSERT INTO `countries` (`id`, `name`, `ori_name`, `iso2`, `iso3`, `country_code
 (243, 'Südafrika', '', 'ZA', 'ZAF', 0, 0, '', 0, '', 0, -30.559483, 22.937506, '', 1, '2010-06-06 00:19:52'),
 (244, 'Sambia', '', 'ZM', 'ZMB', 0, 0, '', 0, '', 0, -13.133897, 27.849333, '', 1, '2010-06-06 00:19:47'),
 (245, 'Simbabwe', '', 'ZW', 'ZWE', 0, 0, '', 0, '', 0, -19.015438, 29.154858, '', 1, '2010-06-06 00:19:50');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `country_provinces`
---
-
-DROP TABLE IF EXISTS `country_provinces`;
-CREATE TABLE IF NOT EXISTS `country_provinces` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `country_id` int(10) unsigned NOT NULL DEFAULT '0',
-  `abbr` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
-  `lat` float(10,6) NOT NULL DEFAULT '0.000000',
-  `lng` float(10,6) NOT NULL DEFAULT '0.000000',
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=138 ;
-
---
--- Daten für Tabelle `country_provinces`
---
-
-INSERT INTO `country_provinces` (`id`, `country_id`, `abbr`, `name`, `lat`, `lng`, `modified`) VALUES
-(1, 1, 'BAY', 'Bayern', 48.790447, 11.497889, '2009-11-27 04:10:31'),
-(2, 1, 'BBG', 'Brandenburg', 52.408417, 12.562492, '2009-11-27 04:10:32'),
-(3, 1, 'BER', 'Berlin', 52.523403, 13.411400, '2009-11-27 04:10:31'),
-(4, 1, 'BRE', 'Bremen', 53.074982, 8.807081, '2009-11-27 04:10:32'),
-(5, 1, 'BW', 'Baden-Württemberg', 48.661606, 9.350134, '2009-11-27 04:10:31'),
-(6, 1, 'HES', 'Hessen', 50.652050, 9.162438, '2009-11-27 04:10:38'),
-(7, 1, 'HH', 'Hamburg', 53.553406, 9.992196, '2009-11-27 04:10:37'),
-(8, 1, 'MVP', 'Mecklenburg-Vorp.', 0.000000, 0.000000, '0000-00-00 00:00:00'),
-(9, 1, 'NDS', 'Niedersachsen', 52.636703, 9.845076, '2009-11-27 04:10:49'),
-(10, 1, 'NRW', 'Nordrhein-Westfalen', 51.433235, 7.661594, '2009-11-27 04:10:49'),
-(11, 1, 'RPF', 'Rheinland-Pfalz', 50.118347, 7.308953, '2009-11-27 04:10:53'),
-(12, 1, 'SAA', 'Saarland', 49.396423, 7.022961, '2009-11-27 04:10:53'),
-(13, 1, 'SAC', 'Sachsen', 49.289822, 10.660182, '2009-11-27 04:10:54'),
-(14, 1, 'SAN', 'Sachsen-Anhalt', 51.950264, 11.692274, '2009-11-27 04:10:54'),
-(15, 1, 'SLH', 'Schleswig-Holstein', 54.219368, 9.696117, '2009-11-27 04:10:55'),
-(16, 1, 'THÜ', 'Thüringen', 51.010990, 10.845346, '2009-11-27 04:10:57'),
-(17, 2, 'BU', 'Burgenland', 47.153717, 16.268881, '2009-11-27 04:10:33'),
-(18, 2, 'KA', 'Kärnten', 46.722202, 14.180588, '2009-11-27 04:10:40'),
-(19, 2, 'NI', 'Niederösterreich', 48.108078, 15.804956, '2009-11-27 04:10:49'),
-(20, 2, 'OB', 'Oberösterreich', 48.025852, 13.972366, '2009-11-27 04:10:50'),
-(21, 2, 'VO', 'Vorarlberg', 47.249744, 9.979737, '2009-11-27 04:10:59'),
-(22, 2, 'ST', 'Steiermark', 47.264900, 14.893930, '2009-11-27 04:10:56'),
-(23, 2, 'SA', 'Salzburg', 47.800499, 13.044410, '2009-11-27 04:10:54'),
-(24, 2, 'TI', 'Tirol', 47.253742, 11.601487, '2009-11-27 04:10:58'),
-(25, 2, 'VI', 'Wien', 48.209206, 16.372778, '2009-11-27 04:11:00'),
-(26, 3, 'AA', 'Aargau', 47.387665, 8.255429, '2009-11-27 04:10:28'),
-(27, 3, 'AP', 'Appenzell', 47.330769, 9.411039, '2009-11-27 04:10:29'),
-(28, 3, 'BE', 'Bern', 46.947998, 7.448148, '2009-11-27 04:10:32'),
-(29, 3, 'BA', 'Basel', 47.559616, 7.580611, '2009-11-27 04:10:31'),
-(30, 3, 'FR', 'Fribourg', 46.802502, 7.151281, '2009-11-27 04:10:36'),
-(31, 3, 'GE', 'Genève', 46.203812, 6.139959, '2009-11-27 04:10:36'),
-(32, 3, 'GL', 'Glarus', 46.973629, 9.050393, '2009-11-27 04:10:37'),
-(33, 3, 'GR', 'Graubünden', 46.656986, 9.578026, '2009-11-27 04:10:37'),
-(34, 3, 'JU', 'Jura', 47.344448, 7.143061, '2009-11-27 04:10:39'),
-(35, 3, 'LU', 'Luzern', 47.045654, 8.308236, '2009-11-27 04:10:43'),
-(36, 3, 'NE', 'Neuchâtel', 46.992004, 6.930921, '2009-11-27 04:10:47'),
-(37, 3, 'NI', 'Nidwalden', 46.926701, 8.384998, '2009-11-27 04:10:48'),
-(38, 3, 'OB', 'Obwalden', 46.877857, 8.251249, '2009-11-27 04:10:51'),
-(39, 3, 'ST', 'St. Gallen', 47.426483, 9.376052, '2009-11-27 04:10:56'),
-(40, 3, 'SC', 'Schaffhausen', 47.697552, 8.635027, '2009-11-27 04:10:54'),
-(41, 3, 'SO', 'Solothurn', 47.206959, 7.533312, '2009-11-27 04:10:55'),
-(42, 3, 'SY', 'Schwyz', 47.020992, 8.653514, '2009-11-27 04:10:55'),
-(43, 3, 'TH', 'Thurgau', 47.596081, 9.152323, '2009-11-27 04:10:57'),
-(44, 3, 'TI', 'Ticino', 46.331734, 8.800453, '2009-11-27 04:10:58'),
-(45, 3, 'UR', 'Uri', 46.773865, 8.602515, '2009-11-27 04:10:58'),
-(46, 3, 'VA', 'Vaud', 46.561314, 6.536765, '2009-11-27 04:10:59'),
-(47, 3, 'VL', 'Valais', 46.190460, 7.544923, '2009-11-27 04:10:59'),
-(48, 3, 'ZG', 'Zug', 47.166191, 8.515414, '2009-11-27 04:11:01'),
-(49, 3, 'ZU', 'Zürich', 47.369022, 8.538033, '2009-11-27 04:11:01'),
-(50, 8, '', 'Aquitaine', 44.700222, -0.299578, '2009-11-27 04:10:30'),
-(51, 8, '', 'Auvergne', 45.703270, 3.344854, '2009-11-27 04:10:30'),
-(52, 8, '', 'Basse-Normandie', 48.878845, -0.515749, '2009-11-27 04:10:31'),
-(53, 8, '', 'Bourgogne', 47.052505, 4.383722, '2009-11-27 04:10:32'),
-(54, 8, '', 'Bretagne', 48.202045, -2.932644, '2009-11-27 04:10:33'),
-(55, 8, '', 'Centre', 47.751568, 1.675063, '2009-11-27 04:10:33'),
-(56, 8, '', 'Champagne-Ardenne', 48.793407, 4.472525, '2009-11-27 04:10:34'),
-(57, 8, '', 'Corse', 42.039604, 9.012893, '2009-11-27 04:10:34'),
-(58, 8, '', 'Franche-Comté', 47.134319, 6.022302, '2009-11-27 04:10:36'),
-(59, 8, '', 'Haute-Normandie', 49.524639, 0.882833, '2009-11-27 04:10:38'),
-(60, 8, '', 'Île-de-France', 48.849918, 2.637041, '2009-11-27 04:10:39'),
-(61, 8, '', 'Languedoc-Roussillon', 43.591236, 3.258363, '2009-11-27 04:10:40'),
-(62, 8, '', 'Limousin', 45.893223, 1.569602, '2009-11-27 04:10:41'),
-(63, 8, '', 'Lorraine', 48.874424, 6.208093, '2009-11-27 04:10:42'),
-(64, 8, '', 'Midi-Pyrénées', 44.085941, 1.520862, '2009-11-27 04:10:46'),
-(65, 8, '', 'Nord-Pas-de-Calais', 50.480114, 2.793726, '2009-11-27 04:10:49'),
-(66, 8, '', 'Région Pays de la Loire', 47.763283, -0.329969, '2009-11-27 04:10:52'),
-(67, 8, '', 'Picardie', 49.663612, 2.528073, '2009-11-27 04:10:52'),
-(68, 8, '', 'Poitou-Charentes', 45.903553, -0.309184, '2009-11-27 04:10:52'),
-(69, 8, '', 'Provence-Alpes-Côte d''Azur', 43.935169, 6.067919, '2009-11-27 04:10:52'),
-(70, 8, '', 'Rhône-Alpes', 45.169579, 5.450282, '2009-11-27 04:10:53'),
-(71, 8, '', 'Alsace', 48.318180, 7.441624, '2009-11-27 04:10:29'),
-(72, 9, '', 'England', 52.019028, -0.770427, '2009-11-27 04:10:35'),
-(73, 9, '', 'Northern Ireland', 54.787716, -6.492314, '2009-11-27 04:10:50'),
-(74, 9, '', 'Scotland', 56.490669, -4.202646, '2009-11-27 04:10:55'),
-(75, 9, '', 'Wales', 52.469978, -3.830377, '2009-11-27 04:11:00'),
-(76, 8, '', 'Territoires d''outre-mer', 48.553864, 2.415917, '2009-11-27 04:10:57'),
-(77, 8, '', 'Départements d''outre-mer', 0.000000, 0.000000, '0000-00-00 00:00:00'),
-(78, 31, '', 'Alaska', 63.588753, -154.493057, '2009-11-27 04:10:29'),
-(79, 31, '', 'Alabama', 32.318230, -86.902298, '2009-11-27 04:10:29'),
-(80, 31, '', 'Arkansas', 35.201050, -91.831833, '2009-11-27 04:10:30'),
-(81, 31, '', 'Arizona', 34.048927, -111.093735, '2009-11-27 04:10:30'),
-(82, 31, '', 'California', 36.778259, -119.417931, '2009-11-27 04:10:33'),
-(83, 31, '', 'Colorado', 39.550053, -105.782066, '2009-11-27 04:10:34'),
-(84, 31, '', 'Connecticut', 41.603222, -73.087746, '2009-11-27 04:10:34'),
-(85, 31, '', 'District of Columbia', 38.905987, -77.033417, '2009-11-27 04:10:35'),
-(86, 31, '', 'Delaware', 38.910831, -75.527672, '2009-11-27 04:10:35'),
-(87, 31, '', 'Florida', 27.664827, -81.515755, '2009-11-27 04:10:36'),
-(88, 31, '', 'Georgia', 32.157436, -82.907120, '2009-11-27 04:10:37'),
-(89, 31, '', 'Hawaii', 19.898682, -155.665863, '2009-11-27 04:10:38'),
-(90, 31, '', 'Iowa', 41.878002, -93.097702, '2009-11-27 04:10:39'),
-(91, 31, '', 'Idaho', 44.068203, -114.742043, '2009-11-27 04:10:38'),
-(92, 31, '', 'Illinois', 40.633125, -89.398529, '2009-11-27 04:10:39'),
-(93, 31, '', 'Indiana', 40.551216, -85.602364, '2009-11-27 04:10:39'),
-(94, 31, '', 'Kansas', 39.011902, -98.484245, '2009-11-27 04:10:40'),
-(95, 31, '', 'Kentucky', 37.839333, -84.270020, '2009-11-27 04:10:40'),
-(96, 31, '', 'Louisiana', 31.244823, -92.145027, '2009-11-27 04:10:42'),
-(97, 31, '', 'Massachusetts', 42.407211, -71.382439, '2009-11-27 04:10:45'),
-(98, 31, '', 'Maryland', 39.045753, -76.641273, '2009-11-27 04:10:44'),
-(99, 31, '', 'Maine', 45.253784, -69.445473, '2009-11-27 04:10:43'),
-(100, 31, '', 'Michigan', 44.314842, -85.602364, '2009-11-27 04:10:45'),
-(101, 31, '', 'Minnesota', 46.729553, -94.685898, '2009-11-27 04:10:46'),
-(102, 31, '', 'Missouri', 37.964252, -91.831833, '2009-11-27 04:10:46'),
-(103, 31, '', 'Mississippi', 32.354668, -89.398529, '2009-11-27 04:10:46'),
-(104, 31, '', 'Montana', 46.879681, -110.362564, '2009-11-27 04:10:46'),
-(105, 31, '', 'North Carolina', 35.759575, -79.019302, '2009-11-27 04:10:50'),
-(106, 31, '', 'North Dakota', 47.551495, -101.002014, '2009-11-27 04:10:50'),
-(107, 31, '', 'Nebraska', 41.492538, -99.901810, '2009-11-27 04:10:47'),
-(108, 31, '', 'New Hampshire', 43.193851, -71.572395, '2009-11-27 04:10:47'),
-(109, 31, '', 'New Jersey', 40.058323, -74.405663, '2009-11-27 04:10:48'),
-(110, 31, '', 'New Mexico', 34.972729, -105.032364, '2009-11-27 04:10:48'),
-(111, 31, '', 'Nevada', 38.802608, -116.419388, '2009-11-27 04:10:47'),
-(112, 31, '', 'New York', 40.714268, -74.005974, '2009-11-27 04:10:48'),
-(113, 31, '', 'Ohio', 40.417286, -82.907120, '2009-11-27 04:10:51'),
-(114, 31, '', 'Oklahoma', 35.007751, -97.092880, '2009-11-27 04:10:51'),
-(115, 31, '', 'Oregon', 43.804134, -120.554199, '2009-11-27 04:10:51'),
-(116, 31, '', 'Pennsylvania', 41.203323, -77.194527, '2009-11-27 04:10:52'),
-(117, 31, '', 'Rhode Island', 41.580093, -71.477432, '2009-11-27 04:10:53'),
-(118, 31, '', 'South Carolina', 33.836082, -81.163727, '2009-11-27 04:10:56'),
-(119, 31, '', 'South Dakota', 43.969517, -99.901810, '2009-11-27 04:10:56'),
-(120, 31, '', 'Tennessee', 35.517490, -86.580444, '2009-11-27 04:10:56'),
-(121, 31, '', 'Texas', 31.968599, -99.901810, '2009-11-27 04:10:57'),
-(122, 31, '', 'Utah', 39.320980, -111.093735, '2009-11-27 04:10:58'),
-(123, 31, '', 'Virginia', 37.431572, -78.656891, '2009-11-27 04:10:59'),
-(124, 31, '', 'Vermont', 44.558804, -72.577843, '2009-11-27 04:10:59'),
-(125, 31, '', 'Washington', 38.905987, -77.033417, '2009-11-27 04:11:00'),
-(126, 31, '', 'Wisconsin', 43.784439, -88.787865, '2009-11-27 04:11:01'),
-(127, 31, '', 'West Virginia', 38.597626, -80.454903, '2009-11-27 04:11:00'),
-(128, 31, '', 'Wyoming', 43.075970, -107.290283, '2009-11-27 04:11:01'),
-(129, 2, '212', '111', 46.940460, 7.456940, '2009-11-27 04:10:27'),
-(131, 2, 'er', 'er', 47.531155, 15.511158, '2009-11-27 04:10:35'),
-(132, 2, '44', '44', 46.940460, 7.456940, '2009-11-27 04:10:27'),
-(133, 2, '121', '1212', 46.940460, 7.456940, '2009-11-27 04:10:27'),
-(134, 2, '777', '777', 46.940460, 7.456940, '2009-11-27 04:10:28'),
-(135, 2, '888', '888', 46.940460, 7.456940, '2009-11-27 04:10:28'),
-(136, 2, '444', '444', 46.940460, 7.456940, '2009-11-27 04:10:28'),
-(137, 2, '666', '666', 46.940460, 7.456940, '2009-11-27 03:52:48');
-
 SQL;
+		$this->execute($countries);
 
-		$this->query($content);
-	}
+		$sql = <<<SQL
 
-	/**
-	 * Migrate Down.
-	 *
-	 * @return void
-	 */
-	public function down() {
+INSERT INTO `currencies` (`id`, `name`, `code`, `symbol_left`, `symbol_right`, `decimal_places`, `value`, `base`, `active`, `modified`) VALUES
+(1, 'US Dollar', 'USD', '$', '', '2', 1.4146, 0, 1, '2011-07-16 15:12:33'),
+(2, 'Euro', 'EUR', '€', '', '2', 1.0000, 1, 1, '2009-11-23 12:45:15'),
+(3, 'British Pounds', 'GBP', '£', '', '2', 0.8775, 0, 1, '2011-07-16 15:12:33'),
+(4, 'Schweizer Franken', 'CHF', '', 'Fr.', '2', 1.1577, 0, 1, '2011-07-16 15:12:33'),
+(5, 'Australien Dollar', 'AUD', '', '', '2', 1.3264, 0, 0, '2011-07-16 15:12:33'),
+(6, 'Canadian Dollar', 'CAD', '', '', '2', 1.3549, 0, 0, '2011-07-16 15:12:33'),
+(7, 'Japanese Yen', 'JPY', '', '', '2', 111.9700, 0, 0, '2011-07-16 15:12:33'),
+(9, 'Mexican Peso', 'MXN', '', '', '2', 16.5510, 0, 0, '2011-07-16 15:12:33'),
+(10, 'Norwegian Krone', 'NOK', '', '', '2', 7.8665, 0, 0, '2011-07-16 15:12:33'),
+(11, 'Swedish Krona', 'SEK', '', '', '2', 9.2121, 0, 0, '2011-07-16 15:12:33'),
+(12, 'Bitcoin', 'BTC', '', 'BTC', '2', 0.1011, 0, 1, '2011-07-16 15:16:23');
+SQL;
+		$this->execute($sql);
+
+		$sql = <<<SQL
+INSERT INTO `languages` (`id`, `name`, `ori_name`, `code`, `iso3`, `iso2`, `locale`, `locale_fallback`, `status`, `sort`, `modified`) VALUES
+(1, 'Afrikaans', 'Afrikaans', 'af', '', '', 'afr', 'afr', 0, 0, '2011-07-17 15:23:08'),
+(2, 'Arabic', 'Arabic', 'ar', '', '', 'ara', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(3, 'Arabic (U.A.E.)', 'Arabic (U.A.E.)', 'ar', '', '', 'ar_ae', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(4, 'Arabic (Bahrain)', 'Arabic (Bahrain)', 'ar', '', '', 'ar_bh', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(5, 'Arabic (Algeria)', 'Arabic (Algeria)', 'ar', '', '', 'ar_dz', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(6, 'Arabic (Egypt)', 'Arabic (Egypt)', 'ar', '', '', 'ar_eg', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(7, 'Arabic (Iraq)', 'Arabic (Iraq)', 'ar', '', '', 'ar_iq', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(8, 'Arabic (Jordan)', 'Arabic (Jordan)', 'ar', '', '', 'ar_jo', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(9, 'Arabic (Kuwait)', 'Arabic (Kuwait)', 'ar', '', '', 'ar_kw', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(10, 'Arabic (Lebanon)', 'Arabic (Lebanon)', 'ar', '', '', 'ar_lb', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(11, 'Arabic (Libya)', 'Arabic (Libya)', 'ar', '', '', 'ar_ly', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(12, 'Arabic (Morocco)', 'Arabic (Morocco)', 'ar', '', '', 'ar_ma', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(13, 'Arabic (Oman)', 'Arabic (Oman)', 'ar', '', '', 'ar_om', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(14, 'Arabic (Qatar)', 'Arabic (Qatar)', 'ar', '', '', 'ar_qa', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(15, 'Arabic (Saudi Arabia)', 'Arabic (Saudi Arabia)', 'ar', '', '', 'ar_sa', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(16, 'Arabic (Syria)', 'Arabic (Syria)', 'ar', '', '', 'ar_sy', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(17, 'Arabic (Tunisia)', 'Arabic (Tunisia)', 'ar', '', '', 'ar_tn', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(18, 'Arabic (Yemen)', 'Arabic (Yemen)', 'ar', '', '', 'ar_ye', 'ara', 0, 0, '2011-07-17 15:23:08'),
+(19, 'Byelorussian', 'Byelorussian', 'be', '', '', 'bel', 'bel', 0, 0, '2011-07-17 15:23:08'),
+(20, 'Bulgarian', 'Bulgarian', 'bg', '', '', 'bul', 'bul', 0, 0, '2011-07-17 15:23:08'),
+(21, 'Bosnian', 'Bosnian', 'bs', '', '', 'bos', 'bos', 0, 0, '2011-07-17 15:23:08'),
+(22, 'Catalan', 'Catalan', 'ca', '', '', 'cat', 'cat', 0, 0, '2011-07-17 15:23:08'),
+(23, 'Czech', 'Czech', 'cs', '', '', 'cze', 'cze', 0, 0, '2011-07-17 15:23:08'),
+(24, 'Danish', 'Danish', 'da', '', '', 'dan', 'dan', 0, 0, '2011-07-17 15:23:08'),
+(25, 'German (Standard)', 'German (Standard)', 'de', '', '', 'deu', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(26, 'German (Austria)', 'German (Austria)', 'de', '', '', 'de_at', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(27, 'German (Swiss)', 'German (Swiss)', 'de', '', '', 'de_ch', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(28, 'German (Germany)', 'German (Germany)', 'de', '', '', 'de_de', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(29, 'German (Liechtenstein)', 'German (Liechtenstein)', 'de', '', '', 'de_li', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(30, 'German (Luxembourg)', 'German (Luxembourg)', 'de', '', '', 'de_lu', 'deu', 0, 0, '2011-07-17 15:23:08'),
+(31, 'Greek', 'Greek', 'el', '', '', 'gre', 'gre', 0, 0, '2011-07-17 15:23:08'),
+(32, 'English', 'English', 'en', '', '', 'eng', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(33, 'English (Australian)', 'English (Australian)', 'en', '', '', 'en_au', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(34, 'English (Belize)', 'English (Belize)', 'en', '', '', 'en_bz', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(35, 'English (Canadian)', 'English (Canadian)', 'en', '', '', 'en_ca', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(36, 'English (British)', 'English (British)', 'en', '', '', 'en_gb', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(37, 'English (Ireland)', 'English (Ireland)', 'en', '', '', 'en_ie', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(38, 'English (Jamaica)', 'English (Jamaica)', 'en', '', '', 'en_jm', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(39, 'English (New Zealand)', 'English (New Zealand)', 'en', '', '', 'en_nz', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(40, 'English (Trinidad)', 'English (Trinidad)', 'en', '', '', 'en_tt', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(41, 'English (United States)', 'English (United States)', 'en', '', '', 'en_us', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(42, 'English (South Africa)', 'English (South Africa)', 'en', '', '', 'en_za', 'eng', 0, 0, '2011-07-17 15:23:08'),
+(43, 'Spanish (Spain - Traditional)', 'Spanish (Spain - Traditional)', 'es', '', '', 'spa', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(44, 'Spanish (Argentina)', 'Spanish (Argentina)', 'es', '', '', 'es_ar', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(45, 'Spanish (Bolivia)', 'Spanish (Bolivia)', 'es', '', '', 'es_bo', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(46, 'Spanish (Chile)', 'Spanish (Chile)', 'es', '', '', 'es_cl', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(47, 'Spanish (Colombia)', 'Spanish (Colombia)', 'es', '', '', 'es_co', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(48, 'Spanish (Costa Rica)', 'Spanish (Costa Rica)', 'es', '', '', 'es_cr', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(49, 'Spanish (Dominican Republic)', 'Spanish (Dominican Republic)', 'es', '', '', 'es_do', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(50, 'Spanish (Ecuador)', 'Spanish (Ecuador)', 'es', '', '', 'es_ec', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(51, 'Spanish (Spain)', 'Spanish (Spain)', 'es', '', '', 'es_es', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(52, 'Spanish (Guatemala)', 'Spanish (Guatemala)', 'es', '', '', 'es_gt', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(53, 'Spanish (Honduras)', 'Spanish (Honduras)', 'es', '', '', 'es_hn', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(54, 'Spanish (Mexican)', 'Spanish (Mexican)', 'es', '', '', 'es_mx', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(55, 'Spanish (Nicaragua)', 'Spanish (Nicaragua)', 'es', '', '', 'es_ni', 'spa', 0, 0, '2011-07-17 15:23:08'),
+(56, 'Spanish (Panama)', 'Spanish (Panama)', 'es', '', '', 'es_pa', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(57, 'Spanish (Peru)', 'Spanish (Peru)', 'es', '', '', 'es_pe', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(58, 'Spanish (Puerto Rico)', 'Spanish (Puerto Rico)', 'es', '', '', 'es_pr', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(59, 'Spanish (Paraguay)', 'Spanish (Paraguay)', 'es', '', '', 'es_py', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(60, 'Spanish (El Salvador)', 'Spanish (El Salvador)', 'es', '', '', 'es_sv', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(61, 'Spanish (Uruguay)', 'Spanish (Uruguay)', 'es', '', '', 'es_uy', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(62, 'Spanish (Venezuela)', 'Spanish (Venezuela)', 'es', '', '', 'es_ve', 'spa', 0, 0, '2011-07-17 15:23:09'),
+(63, 'Estonian', 'Estonian', 'et', '', '', 'est', 'est', 0, 0, '2011-07-17 15:23:09'),
+(64, 'Basque', 'Basque', 'eu', '', '', 'baq', 'baq', 0, 0, '2011-07-17 15:23:09'),
+(65, 'Farsi', 'Farsi', 'fa', '', '', 'per', 'per', 0, 0, '2011-07-17 15:23:09'),
+(66, 'Finnish', 'Finnish', 'fi', '', '', 'fin', 'fin', 0, 0, '2011-07-17 15:23:09'),
+(67, 'Faeroese', 'Faeroese', 'fo', '', '', 'fao', 'fao', 0, 0, '2011-07-17 15:23:09'),
+(68, 'French (Standard)', 'French (Standard)', 'fr', '', '', 'fre', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(69, 'French (Belgium)', 'French (Belgium)', 'fr', '', '', 'fr_be', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(70, 'French (Canadian)', 'French (Canadian)', 'fr', '', '', 'fr_ca', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(71, 'French (Swiss)', 'French (Swiss)', 'fr', '', '', 'fr_ch', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(72, 'French (France)', 'French (France)', 'fr', '', '', 'fr_fr', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(73, 'French (Luxembourg)', 'French (Luxembourg)', 'fr', '', '', 'fr_lu', 'fre', 0, 0, '2011-07-17 15:23:09'),
+(74, 'Irish', 'Irish', 'ga', '', '', 'gle', 'gle', 0, 0, '2011-07-17 15:23:09'),
+(75, 'Gaelic (Scots)', 'Gaelic (Scots)', 'gd', '', '', 'gla', 'gla', 0, 0, '2011-07-17 15:23:09'),
+(76, 'Gaelic (Irish)', 'Gaelic (Irish)', 'gd', '', '', 'gd_ie', 'gla', 0, 0, '2011-07-17 15:23:09'),
+(77, 'Galician', 'Galician', 'gl', '', '', 'glg', 'glg', 0, 0, '2011-07-17 15:23:09'),
+(78, 'Hebrew', 'Hebrew', 'he', '', '', 'heb', 'heb', 0, 0, '2011-07-17 15:23:09'),
+(79, 'Hindi', 'Hindi', 'hi', '', '', 'hin', 'hin', 0, 0, '2011-07-17 15:23:09'),
+(80, 'Croatian', 'Croatian', 'hr', '', '', 'hrv', 'hrv', 0, 0, '2011-07-17 15:23:09'),
+(81, 'Hungarian', 'Hungarian', 'hu', '', '', 'hun', 'hun', 0, 0, '2011-07-17 15:23:09'),
+(82, 'Armenian - Armenia', 'Armenian - Armenia', 'hy', '', '', 'hye', 'hye', 0, 0, '2011-07-17 15:23:09'),
+(83, 'Indonesian', 'Indonesian', 'id', '', '', 'ind', 'ind', 0, 0, '2011-07-17 15:23:09'),
+(84, 'Icelandic', 'Icelandic', 'is', '', '', 'ice', 'ice', 0, 0, '2011-07-17 15:23:09'),
+(85, 'Italian', 'Italian', 'it', '', '', 'ita', 'ita', 0, 0, '2011-07-17 15:23:09'),
+(86, 'Italian (Swiss) ', 'Italian (Swiss) ', 'it', '', '', 'it_ch', 'ita', 0, 0, '2011-07-17 15:23:09'),
+(87, 'Japanese', 'Japanese', 'ja', '', '', 'jpn', 'jpn', 0, 0, '2011-07-17 15:23:09'),
+(88, 'Korean', 'Korean', 'ko', '', '', 'kor', 'kor', 0, 0, '2011-07-17 15:23:09'),
+(89, 'Korea (North)', 'Korea (North)', 'ko', '', '', 'ko_kp', 'kor', 0, 0, '2011-07-17 15:23:09'),
+(90, 'Korea (South)', 'Korea (South)', 'ko', '', '', 'ko_kr', 'kor', 0, 0, '2011-07-17 15:23:09'),
+(91, 'Russian', 'Russian', 'ru', '', '', 'koi8_r', 'rus', 0, 0, '2011-07-17 15:23:09'),
+(92, 'Lithuanian', 'Lithuanian', 'lt', '', '', 'lit', 'lit', 0, 0, '2011-07-17 15:23:09'),
+(93, 'Latvian', 'Latvian', 'lv', '', '', 'lav', 'lav', 0, 0, '2011-07-17 15:23:09'),
+(94, 'FYRO Macedonian', 'FYRO Macedonian', 'mk', '', '', 'mk', 'mac', 0, 0, '2011-07-17 15:23:09'),
+(95, 'Macedonian', 'Macedonian', 'mk', '', '', 'mk_mk', 'mac', 0, 0, '2011-07-17 15:23:09'),
+(96, 'Malaysian', 'Malaysian', 'ms', '', '', 'may', 'may', 0, 0, '2011-07-17 15:23:09'),
+(97, 'Maltese', 'Maltese', 'mt', '', '', 'mlt', 'mlt', 0, 0, '2011-07-17 15:23:09'),
+(98, 'Dutch (Standard)', 'Dutch (Standard)', 'nl', '', '', 'dut', 'dut', 0, 0, '2011-07-17 15:23:09'),
+(99, 'Norwegian Bokmal', 'Norwegian Bokmal', 'no', '', '', 'nob', 'nor', 0, 0, '2011-07-17 15:23:09'),
+(100, 'Dutch (Belgium)', 'Dutch (Belgium)', 'nl', '', '', 'nl_be', 'dut', 0, 0, '2011-07-17 15:23:09'),
+(101, 'Norwegian Nynorsk', 'Norwegian Nynorsk', 'no', '', '', 'nno', 'nor', 0, 0, '2011-07-17 15:23:09'),
+(102, 'Norwegian', 'Norwegian', 'no', '', '', 'nor', 'nor', 0, 0, '2011-07-17 15:23:09'),
+(103, 'Polish', 'Polish', 'pl', '', '', 'pol', 'pol', 0, 0, '2011-07-17 15:23:09'),
+(104, 'Portuguese (Portugal)', 'Portuguese (Portugal)', 'pt', '', '', 'por', 'por', 0, 0, '2011-07-17 15:23:09'),
+(105, 'Portuguese (Brazil)', 'Portuguese (Brazil)', 'pt', '', '', 'pt_br', 'por', 0, 0, '2011-07-17 15:23:09'),
+(106, 'Rhaeto-Romanic', 'Rhaeto-Romanic', 'rm', '', '', 'roh', 'roh', 0, 0, '2011-07-17 15:23:09'),
+(107, 'Romanian', 'Romanian', 'ro', '', '', 'rum', 'rum', 0, 0, '2011-07-17 15:23:09'),
+(108, 'Romanian (Moldavia)', 'Romanian (Moldavia)', 'ro', '', '', 'ro_mo', 'rum', 0, 0, '2011-07-17 15:23:09'),
+(109, 'Russian', 'Russian', 'ru', '', '', 'rus', 'rus', 0, 0, '2011-07-17 15:23:09'),
+(110, 'Russian (Moldavia)', 'Russian (Moldavia)', 'ru', '', '', 'ru_mo', 'rus', 0, 0, '2011-07-17 15:23:09'),
+(111, 'Sorbian', 'Sorbian', 'sb', '', '', 'wen', 'wen', 0, 0, '2011-07-17 15:23:09'),
+(112, 'Slovak', 'Slovak', 'sk', '', '', 'slo', 'slo', 0, 0, '2011-07-17 15:23:09'),
+(113, 'Slovenian', 'Slovenian', 'sl', '', '', 'slv', 'slv', 0, 0, '2011-07-17 15:23:09'),
+(114, 'Albanian', 'Albanian', 'sq', '', '', 'alb', 'alb', 0, 0, '2011-07-17 15:23:09'),
+(115, 'Serbian', 'Serbian', 'sr', '', '', 'scc', 'scc', 0, 0, '2011-07-17 15:23:09'),
+(116, 'Swedish', 'Swedish', 'sv', '', '', 'swe', 'swe', 0, 0, '2011-07-17 15:23:09'),
+(117, 'Swedish (Finland)', 'Swedish (Finland)', 'sv', '', '', 'sv_fi', 'swe', 0, 0, '2011-07-17 15:23:09'),
+(118, 'Sutu', 'Sutu', '', '', '', 'sx', 'sx', 0, 0, '2011-07-17 15:23:09'),
+(119, 'Sami (Lappish)', 'Sami (Lappish)', 'sz', '', '', 'smi', 'smi', 0, 0, '2011-07-17 15:23:09'),
+(120, 'Thai', 'Thai', 'th', '', '', 'tha', 'tha', 0, 0, '2011-07-17 15:23:09'),
+(121, 'Tswana', 'Tswana', 'tn', '', '', 'tsn', 'tsn', 0, 0, '2011-07-17 15:23:09'),
+(122, 'Turkish', 'Turkish', 'tr', '', '', 'tur', 'tur', 0, 0, '2011-07-17 15:23:09'),
+(123, 'Tsonga', 'Tsonga', 'ts', '', '', 'tso', 'tso', 0, 0, '2011-07-17 15:23:09'),
+(124, 'Ukrainian', 'Ukrainian', 'uk', '', '', 'ukr', 'ukr', 0, 0, '2011-07-17 15:23:09'),
+(125, 'Urdu', 'Urdu', 'ur', '', '', 'urd', 'urd', 0, 0, '2011-07-17 15:23:09'),
+(126, 'Venda', 'Venda', 've', '', '', 'ven', 'ven', 0, 0, '2011-07-17 15:23:09'),
+(127, 'Vietnamese', 'Vietnamese', 'vi', '', '', 'vie', 'vie', 0, 0, '2011-07-17 15:23:09'),
+(128, 'Welsh', 'Welsh', 'cy', '', '', 'cym', 'cym', 0, 0, '2011-07-17 15:23:09'),
+(129, 'Xhosa', 'Xhosa', 'xh', '', '', 'xho', 'xho', 0, 0, '2011-07-17 15:23:09'),
+(130, 'Yiddish', 'Yiddish', 'yi', '', '', 'yid', 'yid', 0, 0, '2011-07-17 15:23:09'),
+(131, 'Chinese', 'Chinese', 'zh', '', '', 'chi', 'chi', 0, 0, '2011-07-17 15:23:09'),
+(132, 'Chinese (PRC)', 'Chinese (PRC)', 'zh', '', '', 'zh_cn', 'chi', 0, 0, '2011-07-17 15:23:09'),
+(133, 'Chinese (Hong Kong)', 'Chinese (Hong Kong)', 'zh', '', '', 'zh_hk', 'chi', 0, 0, '2011-07-17 15:23:09'),
+(134, 'Chinese (Singapore)', 'Chinese (Singapore)', 'zh', '', '', 'zh_sg', 'chi', 0, 0, '2011-07-17 15:23:09'),
+(135, 'Chinese (Taiwan)', 'Chinese (Taiwan)', 'zh', '', '', 'zh_tw', 'chi', 0, 0, '2011-07-17 15:23:09'),
+(136, 'Zulu', 'Zulu', 'zu', '', '', 'zul', 'zul', 0, 0, '2011-07-17 15:23:09');
+SQL;
+		$this->execute($sql);
+
+		$sql = <<<SQL
+INSERT INTO `continents` (`id`, `name`, `ori_name`, `parent_id`, `lft`, `rght`, `status`, `modified`) VALUES
+(1, 'Eurasia', '', 0, 1, 6, 0, '2011-07-15 19:55:33'),
+(2, 'Europe', '', 1, 2, 3, 0, '2011-07-15 19:55:40'),
+(3, 'Asia', '', 1, 4, 5, 0, '2011-07-15 19:55:47'),
+(4, 'America', '', 0, 7, 12, 0, '2011-07-15 19:56:06'),
+(5, 'South America', '', 4, 8, 9, 0, '2011-07-15 19:56:16'),
+(6, 'North America', '', 4, 10, 11, 0, '2011-07-15 19:56:22'),
+(7, 'Antarctica', '', 0, 13, 14, 0, '2011-07-15 19:56:39'),
+(8, 'Australia', '', 0, 15, 16, 0, '2011-07-15 19:56:48');
+SQL;
+		$this->execute($sql);
+
+		$sql = <<<SQL
+INSERT INTO `roles` (`id`, `name`, `alias`, `created`, `modified`) VALUES
+(1, 'Admin', 'admin', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'Moderator', 'mod', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'User', 'user', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(14, 'Guest', 'guest', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 'Super-Admin', 'superadmin', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+SQL;
+		$this->execute($sql);
+
+		$sql = <<<SQL
+INSERT INTO `sandbox_categories` (`id`, `parent_id`, `name`, `description`, `status`, `lft`, `rght`, `created`, `modified`) VALUES
+(1, NULL, 'Alpha', 'First One', NULL, 1, 2, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(2, NULL, 'Beta', 'Second One', NULL, 3, 8, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(3, NULL, 'Gamma', 'Third One', NULL, 9, 10, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(4, NULL, 'Delta', 'Forth One', NULL, 11, 14, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(5, 2, 'Child of 2nd one', 'Fifth One', NULL, 4, 7, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(6, 5, 'Child of child', 'Sixth One', NULL, 5, 6, '2015-05-21 10:14:01', '2015-05-21 10:14:01'),
+(7, 4, 'Child of 4th one', 'Seventh One', NULL, 12, 13, '2015-05-21 10:14:01', '2015-05-21 10:14:01');
+SQL;
+		$this->execute($sql);
+
+		return;
+
+		$sql = <<<SQL
+INSERT INTO `sandbox_animals` (`id`, `name`, `created`, `modified`) VALUES
+(1, 'Alpaca', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Armadillo', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 'Badger', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 'Butterfly', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 'Cheetah', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 'Chicken', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 'Dog', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 'Dragonfly', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 'Eagle', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, 'Elephant', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 'Frog', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(12, 'Fox', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 'Giraffe', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(14, 'Goat', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(15, 'Hawk', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(16, 'Hornet', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(17, 'Ibex', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(18, 'Ibis', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(19, 'Jackal', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(20, 'Jellyfish', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(21, 'Koala', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(22, 'Kookabura', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(23, 'Lion', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(24, 'Llama', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(25, 'Mantis', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(26, 'Meerkat', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(27, 'Narwhal', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(28, 'Newt', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(29, 'Octopus', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(30, 'Ostrich', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(31, 'Parrot', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(32, 'Penguin', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(33, 'Quetzal', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(34, 'Quail', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(35, 'Raven', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(36, 'Rhinoceros', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(37, 'Scorpion', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(38, 'Snake', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(39, 'Tiger', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(40, 'Toad', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(41, 'Viper', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(42, 'Vulture', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(43, 'Wasp', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(44, 'Whale', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(45, 'Yak', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(46, 'Zebra', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+SQL;
+		$this->execute($sql);
 	}
 
 }

@@ -25,6 +25,7 @@ class SimulatePaymentResultTaskTest extends TestCase {
 	];
 
 	/**
+	 * @doesNotPerformAssertions
 	 * @return void
 	 */
 	public function testRun(): void {

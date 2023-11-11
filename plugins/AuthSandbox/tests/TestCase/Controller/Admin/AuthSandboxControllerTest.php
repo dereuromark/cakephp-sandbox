@@ -23,6 +23,8 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 1]]]);
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
@@ -36,6 +38,8 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndexNotAuthenticated() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(302);
@@ -48,6 +52,8 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndexNotAllowed() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]]);
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 

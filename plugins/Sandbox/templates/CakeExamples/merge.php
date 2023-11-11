@@ -48,10 +48,6 @@ echo pre(h($mergeArray));
 <h3>Notes</h3>
 <ul>
 <li>
-am() is useful if some arrays can be simple strings. This avoids notices thrown. This is irrevelant when it's clear
-that the input is an array.
-</li>
-<li>
 array_merge_recursive() is value oriented. It ignores keys and merge-adds values regardless if they already exist.
 </li>
 <li>

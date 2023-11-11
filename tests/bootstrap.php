@@ -67,4 +67,10 @@ Configure::write('Error.ignoredDeprecationPaths', [
 // has been written to.
 session_id('cli');
 
-//(new Migrator())->run();
+(new \Migrations\TestSuite\Migrator())->runMany([
+	['connection' => 'test'],
+	['plugin' => 'StateMachine'],
+	['plugin' => 'Tags'],
+	['plugin' => 'Captcha'],
+	['plugin' => 'Queue'],
+]);

@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.1', '8.2']
+        php-version: ['8.1', '8.3']
         db-type: [sqlite, mysql, pgsql]
         include:
           - php-version: '8.1'
@@ -53,10 +53,13 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Prepare config
-      run: cp config/app.php config/app_local.php
+      run: cp config/app_local.ci.php config/app_local.php
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Assets install
+      run: npm install -g bower && bower install --allow-root && composer assets
 
     - name: Run PHPUnit
       run: |
@@ -99,7 +102,7 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Prepare config
-      run: cp config/app.php config/app_local.php
+      run: cp config/app_local.ci.php config/app_local.php
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
@@ -108,7 +111,7 @@ jobs:
       run: bin/cake dto generate -p Sandbox -v -d
 
     - name: Code completion generate
-      run: bin/cake code_completion generate
+      run: bin/cake generate code_completion
 
     - name: Run phpstan
       run: vendor/bin/phpstan analyse --error-format=github

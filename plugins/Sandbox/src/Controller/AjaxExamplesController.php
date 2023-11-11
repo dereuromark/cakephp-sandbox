@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Validation\Validation;
+use Cake\View\JsonView;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -19,6 +20,17 @@ class AjaxExamplesController extends SandboxAppController {
 
 	use ModelAwareTrait;
 	use LegacyModelAwareTrait;
+
+	/**
+	 * @return string[]
+	 */
+	public function viewClasses(): array {
+		if (!$this->request->getParam('_ext')) {
+			return [];
+		}
+
+		return [JsonView::class];
+	}
 
 	/**
 	 * @return void
@@ -53,7 +65,8 @@ class AjaxExamplesController extends SandboxAppController {
 			// Lets create current datetime
 			$now = date(FORMAT_DB_DATETIME);
 			$this->set('result', ['now' => $now]);
-			$this->set('_serialize', ['result']);
+			$serialize = 'result';
+			$this->viewBuilder()->setOptions(compact('serialize'));
 		}
 	}
 

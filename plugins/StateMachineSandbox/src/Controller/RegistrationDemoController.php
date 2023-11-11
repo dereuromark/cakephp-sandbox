@@ -60,10 +60,11 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function process() {
+		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
 		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
 		$registrations = $Registrations->find()
-			->where(['session_id' => $this->request->getSession()->id()])
 			->contain(['Users', 'RegistrationStates'])
+			->where(['session_id' => $this->request->getSession()->id()])
 			->all()
 			->toArray();
 
