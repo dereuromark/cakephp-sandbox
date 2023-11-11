@@ -70,4 +70,7 @@ session_id('cli');
 (new \Migrations\TestSuite\Migrator())->runMany([
 	['connection' => 'test'],
 	['plugin' => 'StateMachine'],
+	['plugin' => 'Tags'],
+	['plugin' => 'Captcha'],
+	['plugin' => 'Queue'],
 ]);

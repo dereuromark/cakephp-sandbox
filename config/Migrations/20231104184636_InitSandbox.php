@@ -43,39 +43,6 @@ class InitSandbox extends AbstractMigration {
 			])
 			->create();
 
-		$this->table('captchas')
-			->addColumn('session_id', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('ip', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('image', 'binary', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('result', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('created', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('used', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->create();
-
 		$this->table('continents')
 			->addColumn('name', 'string', [
 				'default' => null,
@@ -454,134 +421,6 @@ class InitSandbox extends AbstractMigration {
 			])
 			->create();
 
-		$this->table('queue_processes')
-			->addColumn('pid', 'string', [
-				'default' => null,
-				'limit' => 40,
-				'null' => false,
-			])
-			->addColumn('created', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-			])
-			->addColumn('modified', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-			])
-			->addColumn('terminate', 'boolean', [
-				'default' => false,
-				'limit' => null,
-				'null' => false,
-			])
-			->addColumn('server', 'string', [
-				'default' => null,
-				'limit' => 90,
-				'null' => true,
-			])
-			->addColumn('workerkey', 'string', [
-				'default' => null,
-				'limit' => 45,
-				'null' => false,
-			])
-			->addIndex(
-				[
-					'workerkey',
-				],
-				[
-					'name' => 'workerkey',
-					'unique' => true,
-				],
-			)
-			->addIndex(
-				[
-					'pid',
-					'server',
-				],
-				[
-					'name' => 'pid',
-					'unique' => true,
-				],
-			)
-			->create();
-
-		$this->table('queued_jobs')
-			->addColumn('job_task', 'string', [
-				'default' => null,
-				'limit' => 90,
-				'null' => false,
-			])
-			->addColumn('data', 'text', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('job_group', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('reference', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('created', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-			])
-			->addColumn('notbefore', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('fetched', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('completed', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('progress', 'float', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-				'signed' => true,
-			])
-			->addColumn('attempts', 'integer', [
-				'default' => '0',
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addColumn('failure_message', 'text', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('workerkey', 'string', [
-				'default' => null,
-				'limit' => 45,
-				'null' => true,
-			])
-			->addColumn('status', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('priority', 'integer', [
-				'default' => '5',
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->create();
-
 		$this->table('registrations')
 			->addColumn('session_id', 'string', [
 				'default' => null,
@@ -903,91 +742,6 @@ class InitSandbox extends AbstractMigration {
 			])
 			->create();
 
-		$this->table('tags_tagged')
-			->addColumn('tag_id', 'integer', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addColumn('fk_id', 'integer', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-				'signed' => true,
-			])
-			->addColumn('fk_model', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('created', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-			])
-			->addColumn('modified', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => false,
-			])
-			->addIndex(
-				[
-					'tag_id',
-					'fk_id',
-					'fk_model',
-				],
-				[
-					'name' => 'tag_id',
-					'unique' => true,
-				],
-			)
-			->create();
-
-		$this->table('tags_tags')
-			->addColumn('namespace', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => true,
-			])
-			->addColumn('slug', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('label', 'string', [
-				'default' => null,
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('counter', 'integer', [
-				'default' => '0',
-				'limit' => null,
-				'null' => false,
-				'signed' => false,
-			])
-			->addColumn('created', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addColumn('modified', 'datetime', [
-				'default' => null,
-				'limit' => null,
-				'null' => true,
-			])
-			->addIndex(
-				[
-					'slug',
-					'namespace',
-				],
-				[
-					'name' => 'slug',
-					'unique' => true,
-				],
-			)
-			->create();
-
 		$this->table('timezones')
 			->addColumn('name', 'string', [
 				'default' => null,
@@ -1150,7 +904,6 @@ class InitSandbox extends AbstractMigration {
 		*/
 
 		$this->table('bitmasked_records')->drop()->save();
-		$this->table('captchas')->drop()->save();
 		$this->table('continents')->drop()->save();
 		$this->table('countries')->drop()->save();
 		$this->table('currencies')->drop()->save();
@@ -1158,8 +911,6 @@ class InitSandbox extends AbstractMigration {
 		$this->table('events')->drop()->save();
 		$this->table('exposed_users')->drop()->save();
 		$this->table('languages')->drop()->save();
-		$this->table('queue_processes')->drop()->save();
-		$this->table('queued_jobs')->drop()->save();
 		$this->table('registrations')->drop()->save();
 		$this->table('roles')->drop()->save();
 		$this->table('sandbox_animals')->drop()->save();
@@ -1178,8 +929,6 @@ class InitSandbox extends AbstractMigration {
 		$this->table('state_machine_transition_logs')->drop()->save();
 		*/
 		$this->table('states')->drop()->save();
-		$this->table('tags_tagged')->drop()->save();
-		$this->table('tags_tags')->drop()->save();
 		$this->table('timezones')->drop()->save();
 		$this->table('users')->drop()->save();
 	}
