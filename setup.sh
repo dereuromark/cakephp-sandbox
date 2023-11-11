@@ -14,7 +14,13 @@ mkdir -p ./webroot/css/ccss/
 
 chmod +x bin/cake
 
-php composer.phar migrate
+echo "### START ###";
+bin/cake maintenance_mode activate
+
+bin/cake queue worker end all
+
+echo "### DB MIGRATION ###";
+COMPOSER_ALLOW_SUPERUSER=1 php composer.phar migrate
 
 echo "### ASSETS ###";
 #npm install -g bower
@@ -31,8 +37,14 @@ echo "### CLEANUP ###";
 rm -rf ./tmp/cache/models/*
 rm -rf ./tmp/cache/persistent/*
 
+bin/cake clear cache
+bin/cake schema_cache build
+
 echo "### IDE HELPER ###";
-php composer.phar setup
+COMPOSER_ALLOW_SUPERUSER=1 php composer.phar setup
+
+echo "### FINISH ###"
+bin/cake maintenance_mode deactivate
 
 echo "### DONE ###";
 
