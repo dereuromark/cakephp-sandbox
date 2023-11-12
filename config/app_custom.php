@@ -63,6 +63,7 @@ return [
 			'password' => '',
 			'database' => '', // Set in your app_local.php
 			'quoteIdentifiers' => true,
+			'url' => env('DB_URL', null),
 		],
 
 		/**
@@ -74,6 +75,7 @@ return [
 			'password' => '',
 			'database' => '', // Set in your app_local.php
 			'quoteIdentifiers' => true,
+			'url' => env('DB_URL', null),
 		],
 	],
 
