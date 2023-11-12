@@ -68,7 +68,7 @@
 		"cakephp/localized": "^5.0"
 	},
 	"require-dev": {
-		"robmorgan/phinx": "0.x-dev as 0.15.3",
+		"robmorgan/phinx": "dev-dereuromark-patch-1 as 0.15.3",
 		"fig-r/psr2r-sniffer": "dev-next",
 		"phpstan/phpstan": "^1.0.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",

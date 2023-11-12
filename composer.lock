@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "366d2d4f13ab9499062d12720d1083d6",
+    "content-hash": "25b374bf8e3d071df0fb0a99a9a056b4",
     "packages": [
         {
             "name": "brick/math",
@@ -5665,16 +5665,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "0.x-dev",
+            "version": "dev-dereuromark-patch-1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "bd578e72891b9cae4db3af6901ac11f9223228f4"
+                "reference": "036154a709b0bfe37254418f590a6f51e171aa89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/bd578e72891b9cae4db3af6901ac11f9223228f4",
-                "reference": "bd578e72891b9cae4db3af6901ac11f9223228f4",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/036154a709b0bfe37254418f590a6f51e171aa89",
+                "reference": "036154a709b0bfe37254418f590a6f51e171aa89",
                 "shasum": ""
             },
             "require": {
@@ -5697,7 +5697,6 @@
                 "ext-pdo": "PDO extension is needed",
                 "symfony/yaml": "Install if using YAML configuration format"
             },
-            "default-branch": true,
             "bin": [
                 "bin/phinx"
             ],
@@ -5746,9 +5745,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cakephp/phinx/issues",
-                "source": "https://github.com/cakephp/phinx/tree/0.x"
+                "source": "https://github.com/cakephp/phinx/tree/dereuromark-patch-1"
             },
-            "time": "2023-11-12T12:05:35+00:00"
+            "time": "2023-11-12T12:15:38+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -9884,7 +9883,7 @@
         },
         {
             "package": "robmorgan/phinx",
-            "version": "0.9999999.9999999.9999999-dev",
+            "version": "dev-dereuromark-patch-1",
             "alias": "0.15.3",
             "alias_normalized": "0.15.3.0"
         }
