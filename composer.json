@@ -20,7 +20,7 @@
 		"php": ">=8.1",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
-		"cakephp/cakephp": "5.x-dev as 5.0.0",
+		"cakephp/cakephp": "dev-5.x-fix-binary16 as 5.0.2",
 		"cakephp/bake": "3.x-dev as 3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
 		"dereuromark/cakephp-tinyauth": "dev-master",
@@ -68,6 +68,7 @@
 		"cakephp/localized": "^5.0"
 	},
 	"require-dev": {
+		"robmorgan/phinx": "0.x-dev as 0.15.3",
 		"fig-r/psr2r-sniffer": "dev-next",
 		"phpstan/phpstan": "^1.0.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",
