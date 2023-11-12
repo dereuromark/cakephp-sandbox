@@ -48,7 +48,7 @@ ConnectionManager::drop('test');
 ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
 	'driver' => getenv('db_class') ?: 'Cake\Database\Driver\Sqlite',
-	'dsn' => getenv('db_dsn') ?: null,
+	'url' => getenv('DB_URL') ?: null,
 	'database' => getenv('db_database') ?: TMP . 'debug_kit.sqlite',
 	//'username' => getenv('db_username'),
 	//'password' => getenv('db_password'),
