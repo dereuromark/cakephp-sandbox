@@ -462,21 +462,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/localized.git",
-                "reference": "5e26763f90b0f7730bf3903f97a73591c561f1a4"
+                "reference": "2e8a3aefce60a59e869e5270cc8eec70f6ae2a83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/localized/zipball/5e26763f90b0f7730bf3903f97a73591c561f1a4",
-                "reference": "5e26763f90b0f7730bf3903f97a73591c561f1a4",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/2e8a3aefce60a59e869e5270cc8eec70f6ae2a83",
+                "reference": "2e8a3aefce60a59e869e5270cc8eec70f6ae2a83",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "5.x-dev",
+                "cakephp/cakephp": "^5.0.1",
                 "php": ">=8.1"
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^5.0",
-                "phpunit/phpunit": "^9.5.16"
+                "phpunit/phpunit": "^10.2"
             },
             "type": "cakephp-plugin",
             "autoload": {
@@ -507,7 +507,7 @@
                 "issues": "https://github.com/cakephp/localized/issues",
                 "source": "https://github.com/cakephp/localized"
             },
-            "time": "2023-03-17T03:45:01+00:00"
+            "time": "2023-11-12T13:21:22+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -1598,12 +1598,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "7c80a12d35db60fec0d614ce2f1898d68420b5de"
+                "reference": "e9139d0f6b2e39009d03ad1f65770fbb239ee9bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/7c80a12d35db60fec0d614ce2f1898d68420b5de",
-                "reference": "7c80a12d35db60fec0d614ce2f1898d68420b5de",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/e9139d0f6b2e39009d03ad1f65770fbb239ee9bd",
+                "reference": "e9139d0f6b2e39009d03ad1f65770fbb239ee9bd",
                 "shasum": ""
             },
             "require": {
@@ -1652,7 +1652,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2023-11-10T04:04:14+00:00"
+            "time": "2023-11-13T07:59:49+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -2944,16 +2944,16 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "5.0.0",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "7ce12a72f498c15fd9eb15c3c02d965253b17c00"
+                "reference": "4d98010f76f33ce4148ebc0165a4e4179c63dfaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/7ce12a72f498c15fd9eb15c3c02d965253b17c00",
-                "reference": "7ce12a72f498c15fd9eb15c3c02d965253b17c00",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/4d98010f76f33ce4148ebc0165a4e4179c63dfaa",
+                "reference": "4d98010f76f33ce4148ebc0165a4e4179c63dfaa",
                 "shasum": ""
             },
             "require": {
@@ -2996,7 +2996,7 @@
                 "issues": "http://github.com/friendsofcake/bootstrap-ui/issues",
                 "source": "http://github.com/friendsofcake/bootstrap-ui"
             },
-            "time": "2023-09-13T16:21:18+00:00"
+            "time": "2023-11-12T13:26:33+00:00"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
