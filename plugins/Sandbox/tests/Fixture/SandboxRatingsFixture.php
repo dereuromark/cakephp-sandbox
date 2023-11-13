@@ -38,7 +38,6 @@ class SandboxRatingsFixture extends TestFixture {
 	 */
 	public array $records = [
 		[
-			'id' => 1,
 			'user_id' => 1,
 			'foreign_key' => 1, // first article
 			'model' => 'Articles',
@@ -46,7 +45,6 @@ class SandboxRatingsFixture extends TestFixture {
 			'created' => '2009-01-01 12:12:12',
 			'modified' => '2009-01-01 12:12:12'],
 		[
-			'id' => 2,
 			'user_id' => 1,
 			'foreign_key' => 1, // first post
 			'model' => 'Posts',
@@ -54,7 +52,6 @@ class SandboxRatingsFixture extends TestFixture {
 			'created' => '2009-01-01 12:12:12',
 			'modified' => '2009-01-01 12:12:12'],
 		[
-			'id' => 3,
 			'user_id' => 1,
 			'foreign_key' => 2, // second post
 			'model' => 'Posts',

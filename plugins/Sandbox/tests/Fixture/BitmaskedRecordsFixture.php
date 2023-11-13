@@ -40,7 +40,6 @@ class BitmaskedRecordsFixture extends TestFixture {
 	public function init(): void {
 		$this->records = [
 			[
-				'id' => 1,
 				'name' => 'Lorem ipsum dolor sit amet',
 				'flag_optional' => 1,
 				'flag_required' => 1,
