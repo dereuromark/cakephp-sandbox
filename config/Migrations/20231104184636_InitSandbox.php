@@ -305,13 +305,13 @@ class InitSandbox extends AbstractMigration {
 				'limit' => 200,
 				'null' => false,
 			])
-			->addColumn('lat', 'decimal', [
+			->addColumn('lat', 'float', [
 				'default' => null,
 				'limit' => null,
 				'null' => true,
 				'signed' => true,
 			])
-			->addColumn('lng', 'decimal', [
+			->addColumn('lng', 'float', [
 				'default' => null,
 				'limit' => null,
 				'null' => true,
