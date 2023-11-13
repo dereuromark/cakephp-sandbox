@@ -140,20 +140,16 @@ class InitSandbox extends AbstractMigration {
 				'null' => false,
 				'signed' => false,
 			])
-			->addColumn('lat', 'decimal', [
+			->addColumn('lat', 'float', [
 				'comment' => 'latitude',
 				'default' => null,
 				'null' => true,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
-			->addColumn('lng', 'decimal', [
+			->addColumn('lng', 'float', [
 				'comment' => 'longitude',
 				'default' => null,
 				'null' => true,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
 			->addColumn('address_format', 'string', [
@@ -721,18 +717,14 @@ class InitSandbox extends AbstractMigration {
 				'limit' => 40,
 				'null' => false,
 			])
-			->addColumn('lat', 'decimal', [
+			->addColumn('lat', 'float', [
 				'default' => '0.000000',
 				'null' => false,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
-			->addColumn('lng', 'decimal', [
+			->addColumn('lng', 'float', [
 				'default' => '0.000000',
 				'null' => false,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
 			->addColumn('modified', 'datetime', [
@@ -774,18 +766,14 @@ class InitSandbox extends AbstractMigration {
 				'limit' => null,
 				'null' => false,
 			])
-			->addColumn('lat', 'decimal', [
+			->addColumn('lat', 'float', [
 				'default' => null,
 				'null' => true,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
-			->addColumn('lng', 'decimal', [
+			->addColumn('lng', 'float', [
 				'default' => null,
 				'null' => true,
-				'precision' => 10,
-				'scale' => 6,
 				'signed' => true,
 			])
 			->addColumn('covered', 'string', [
