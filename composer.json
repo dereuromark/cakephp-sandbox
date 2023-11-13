@@ -133,7 +133,7 @@
 		}
 	],
 	"prefer-stable": true,
-	"minimum-stability": "dev",
+	"minimum-stability": "RC",
 	"config": {
 		"preferred-install": "dist",
 		"process-timeout": 900,

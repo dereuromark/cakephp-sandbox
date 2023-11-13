@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9df9e614c35ddb9cc7e782de8e843158",
+    "content-hash": "612d799ba99620f690b6ad08f0434faf",
     "packages": [
         {
             "name": "brick/math",
@@ -458,16 +458,16 @@
         },
         {
             "name": "cakephp/localized",
-            "version": "5.x-dev",
+            "version": "5.0.0-RC",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/localized.git",
-                "reference": "2e8a3aefce60a59e869e5270cc8eec70f6ae2a83"
+                "reference": "5554c19c38c082fe5b1ed08d601ba0938ad97a29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/localized/zipball/2e8a3aefce60a59e869e5270cc8eec70f6ae2a83",
-                "reference": "2e8a3aefce60a59e869e5270cc8eec70f6ae2a83",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/5554c19c38c082fe5b1ed08d601ba0938ad97a29",
+                "reference": "5554c19c38c082fe5b1ed08d601ba0938ad97a29",
                 "shasum": ""
             },
             "require": {
@@ -507,7 +507,7 @@
                 "issues": "https://github.com/cakephp/localized/issues",
                 "source": "https://github.com/cakephp/localized"
             },
-            "time": "2023-11-12T13:21:22+00:00"
+            "time": "2023-11-13T13:45:26+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -9883,7 +9883,7 @@
             "alias_normalized": "3.0.0.0"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "RC",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
         "cakephp/cakephp": 20,
