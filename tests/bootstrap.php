@@ -44,14 +44,14 @@ require ROOT . '/config/routes.php';
 
 require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
 
+// Ensure default test connection is defined
+if (!getenv('DB_URL')) {
+	putenv('DB_URL=sqlite:///:memory:');
+}
+
 ConnectionManager::drop('test');
 ConnectionManager::setConfig('test', [
-	'className' => 'Cake\Database\Connection',
-	'driver' => getenv('db_class') ?: 'Cake\Database\Driver\Sqlite',
 	'url' => getenv('DB_URL') ?: null,
-	'database' => getenv('db_database') ?: null,
-	//'username' => getenv('db_username'),
-	//'password' => getenv('db_password'),
 	'timezone' => 'UTC',
 	'encoding' => 'utf8',
 	'quoteIdentifiers' => true,
