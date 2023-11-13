@@ -40,7 +40,6 @@ class EventsFixture extends TestFixture {
 	 */
 	public array $records = [
 		[
-			'id' => 1,
 			'title' => 'Lorem ipsum dolor sit amet',
 			'location' => 'Lorem ipsum dolor sit amet',
 			'lat' => 1,

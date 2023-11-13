@@ -40,7 +40,6 @@ class RegistrationsFixture extends TestFixture {
 	public function init(): void {
 		$this->records = [
 			[
-				'id' => 1,
 				'session_id' => 'Lorem ipsum dolor sit amet',
 				'user_id' => 1,
 				'status' => 'Lorem ipsum dolor sit amet',
