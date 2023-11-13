@@ -64,6 +64,9 @@ return [
 			'database' => '', // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL', null),
+			'flags' => [
+				PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))",
+			],
 		],
 
 		/**
@@ -76,6 +79,9 @@ return [
 			'database' => '', // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL', null),
+			'flags' => [
+				PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))",
+			],
 		],
 	],
 
