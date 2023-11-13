@@ -210,7 +210,7 @@ class InitSandbox extends AbstractMigration {
 				'limit' => 1,
 				'null' => true,
 			])
-			->addColumn('value', 'float', [
+			->addColumn('value', 'decimal', [
 				'default' => '0.0000',
 				'null' => true,
 				'precision' => 9,
@@ -613,7 +613,7 @@ class InitSandbox extends AbstractMigration {
 				'limit' => 255,
 				'null' => true,
 			])
-			->addColumn('value', 'float', [
+			->addColumn('value', 'decimal', [
 				'default' => '0.0000',
 				'null' => false,
 				'precision' => 8,
