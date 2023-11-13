@@ -36,7 +36,6 @@ class UsersFixture extends TestFixture {
 	 */
 	public array $records = [
 		[
-			'id' => 1,
 			'active' => 1,
 			'last_login' => '2014-04-13 05:10:28',
 			'created' => '2014-04-13 05:10:28',

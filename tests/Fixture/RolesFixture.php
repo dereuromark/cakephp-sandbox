@@ -36,14 +36,12 @@ class RolesFixture extends TestFixture {
 	 */
 	public array $records = [
 		[
-			'id' => 1,
 			'name' => 'Admin',
 			'alias' => 'admin',
 			'created' => '2015-03-29 00:18:50',
 			'modified' => '2015-03-29 00:18:50'
 		],
 		[
-			'id' => 4,
 			'name' => 'User',
 			'alias' => 'user',
 			'created' => '2015-03-29 00:18:50',

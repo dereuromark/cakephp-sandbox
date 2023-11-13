@@ -25,7 +25,7 @@ if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {
 	$debug = true;
 }
 
-return [
+$config = [
 	'debug' => filter_var(env('DEBUG', $debug), FILTER_VALIDATE_BOOLEAN),
 
 	'Security' => [
@@ -65,7 +65,6 @@ return [
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
 			'flags' => [
-				PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))",
 			],
 		],
 
@@ -80,7 +79,6 @@ return [
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
 			'flags' => [
-				PDO::MYSQL_ATTR_INIT_COMMAND => "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))",
 			],
 		],
 	],
@@ -316,3 +314,10 @@ return [
 		'key' => '',
 	],
 ];
+
+if (str_contains(getenv('DB_URL'), 'mysql')) {
+	$config['Datasources']['default']['flags'][PDO::MYSQL_ATTR_INIT_COMMAND] = "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))";
+	$config['Datasources']['default']['test'][PDO::MYSQL_ATTR_INIT_COMMAND] = "SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''))";
+}
+
+return $config;
