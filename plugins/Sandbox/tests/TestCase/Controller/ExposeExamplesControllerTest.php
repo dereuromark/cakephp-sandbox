@@ -21,8 +21,6 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		debug(TableRegistry::getTableLocator()->get('Sandbox.ExposedUsers')->getSchema()->getColumn('uuid'));
-
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ExposeExamples', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
