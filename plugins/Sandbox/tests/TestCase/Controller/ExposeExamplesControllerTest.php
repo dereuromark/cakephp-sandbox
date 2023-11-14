@@ -53,6 +53,7 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 	}
+
 	/**
 	 * @return void
 	 */
