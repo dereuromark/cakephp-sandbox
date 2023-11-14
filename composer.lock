@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de1a36aed708cf47dc0204b78ef50be7",
+    "content-hash": "1acf8e330ade4ea7161f5e36be1657d5",
     "packages": [
         {
             "name": "brick/math",
@@ -220,16 +220,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.x-dev",
+            "version": "dev-5.x-fix-binary16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "4a47036b9330e95c14aba976b30a40c07a03d567"
+                "reference": "63683b8925eb23156da5420dbc2e5bb8b29f2673"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4a47036b9330e95c14aba976b30a40c07a03d567",
-                "reference": "4a47036b9330e95c14aba976b30a40c07a03d567",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/63683b8925eb23156da5420dbc2e5bb8b29f2673",
+                "reference": "63683b8925eb23156da5420dbc2e5bb8b29f2673",
                 "shasum": ""
             },
             "require": {
@@ -290,7 +290,6 @@
                 "lib-ICU": "To use locale-aware features in the I18n and Database packages",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -335,7 +334,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-11-14T03:52:28+00:00"
+            "time": "2023-11-14T15:34:00+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2071,12 +2070,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "5234491793f2974a82f8ff09b2c357f55660cacf"
+                "reference": "885d70f1d8c5d65baffd02e8780f9e9919ab46a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/5234491793f2974a82f8ff09b2c357f55660cacf",
-                "reference": "5234491793f2974a82f8ff09b2c357f55660cacf",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/885d70f1d8c5d65baffd02e8780f9e9919ab46a7",
+                "reference": "885d70f1d8c5d65baffd02e8780f9e9919ab46a7",
                 "shasum": ""
             },
             "require": {
@@ -2130,7 +2129,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2023-11-13T11:42:58+00:00"
+            "time": "2023-11-14T13:56:37+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -5666,16 +5665,16 @@
         },
         {
             "name": "robmorgan/phinx",
-            "version": "0.x-dev",
+            "version": "dev-dereuromark-patch-1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/phinx.git",
-                "reference": "e1be941bab6656ce0c395388bb686ec9872f88e9"
+                "reference": "feb86539e98a7c8789ed2d9a2aedc986518e858c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/e1be941bab6656ce0c395388bb686ec9872f88e9",
-                "reference": "e1be941bab6656ce0c395388bb686ec9872f88e9",
+                "url": "https://api.github.com/repos/cakephp/phinx/zipball/feb86539e98a7c8789ed2d9a2aedc986518e858c",
+                "reference": "feb86539e98a7c8789ed2d9a2aedc986518e858c",
                 "shasum": ""
             },
             "require": {
@@ -5698,7 +5697,6 @@
                 "ext-pdo": "PDO extension is needed",
                 "symfony/yaml": "Install if using YAML configuration format"
             },
-            "default-branch": true,
             "bin": [
                 "bin/phinx"
             ],
@@ -5747,9 +5745,9 @@
             ],
             "support": {
                 "issues": "https://github.com/cakephp/phinx/issues",
-                "source": "https://github.com/cakephp/phinx/tree/0.x"
+                "source": "https://github.com/cakephp/phinx/tree/dereuromark-patch-1"
             },
-            "time": "2023-11-14T13:32:38+00:00"
+            "time": "2023-11-14T15:37:15+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",
@@ -9855,7 +9853,7 @@
         },
         {
             "package": "cakephp/cakephp",
-            "version": "5.9999999.9999999.9999999-dev",
+            "version": "dev-5.x-fix-binary16",
             "alias": "5.0.2",
             "alias_normalized": "5.0.2.0"
         },
@@ -9885,7 +9883,7 @@
         },
         {
             "package": "robmorgan/phinx",
-            "version": "0.9999999.9999999.9999999-dev",
+            "version": "dev-dereuromark-patch-1",
             "alias": "0.15.3",
             "alias_normalized": "0.15.3.0"
         }
