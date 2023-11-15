@@ -118,7 +118,7 @@ The following file is an example sh script for a very very basic single server u
 
 <pre>
 <code>#!/bin/bash
-bin/cake Setup.MaintenanceMode activate
+bin/cake maintenance_mode activate
 
 echo "### CODE ###";
 git pull
@@ -162,4 +162,4 @@ bin/cake maintenance_mode deactivate</code>
 <p>Wrapping it with maintenance mode can help to avoid side effects for users currently on the website.</p>
 
 Note that the above script is after initial deployment.
-For a first checkout you will need to clone the repository and probably set up a few more things like your app_local.php.
+For a first checkout, you will need to clone the repository and probably set up a few more things like your app_local.php.
