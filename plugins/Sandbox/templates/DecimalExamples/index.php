@@ -44,7 +44,25 @@ $decimalAdded = $decimalOne + $decimalTwo;
 	<?php echo 'Actual value: ' . '<code>' . var_export($decimalAdded, true) . '</code>';?>
 </p>
 
+	<p>Now lets compare that with <code>0.3</code> somewhere:
+		<?php
+$code = <<<PHP
+\$balance = 0.30 - \$decimalAdded;
+\$positiveBalance = \$balance >= 0;  // We count 0 as OK
+
+PHP;
+echo $this->Highlighter->highlight($code, ['lang' => 'php']);
+?>
+	<p>
+		<?php
+		$balance = 0.3 - $decimalAdded;
+		$positiveBalance = $balance >= 0;  // We count 0 as OK
+		echo 'Positive balance: ' . ($positiveBalance ? 'YES' : 'NO');
+		?>
 	</p>
+
+		<h3>Value objects</h3>
+	<p>
 		So in order to have a better handling of those values, using strings is recommended.
 		But even strings are not easy to work with often. Using a value object can overcome also those issues and provide
 		a clear API.
@@ -71,11 +89,30 @@ PHP;
 		<?php echo 'Actual value: ' . '<code>' . h($decimalAdded) . '</code>';?>
 	</p>
 
-	<h3>Internal object result</h3>
+	<h4>Internal object result</h4>
 <?php
 echo $this->Highlighter->highlight(print_r($decimalAdded, true), ['lang' => 'php']);
 ?>
 	<p>It also keeps track of the scale and therefore on output will also give the correct (expected) precision/scale for each value if needed.</p>
+
+	<p>Now let's try the founds check again:</p>
+
+	<?php
+	$code = <<<PHP
+\$balance = Decimal::create('0.30')->subtract(\$decimalAdded);
+\$positiveBalance = !\$balance->isNegative(); // We count 0 as OK
+
+PHP;
+	echo $this->Highlighter->highlight($code, ['lang' => 'php']);
+	?>
+
+	<p>
+	<?php
+	$balance = Decimal::create('0.30')->subtract($decimalAdded);
+	$positiveBalance = !$balance->isNegative(); // We count 0 as OK
+	echo 'Positive balance: ' . ($positiveBalance ? 'YES' : 'NO');
+	?>
+	</p>
 
 
 	<p>See <a href="https://github.com/php-collective/decimal-object/tree/master/docs" target="_blank">this</a> for basic examples and API details.</p>
