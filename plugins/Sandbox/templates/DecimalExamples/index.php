@@ -18,7 +18,7 @@ use PhpCollective\DecimalObject\Decimal;
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/decimal'); ?>
 </nav>
-<p class="page index col-sm-8 col-12">
+<div class="page index col-sm-8 col-12">
 
 <h3>Basic Idea</h3>
 	<p>
