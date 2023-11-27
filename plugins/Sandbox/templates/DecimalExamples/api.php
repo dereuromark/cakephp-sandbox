@@ -18,7 +18,7 @@
 </nav>
 <div class="page index col-sm-8 col-12">
 
-	<h3>Full API Demo</h3>
+	<h3>API Demo</h3>
 
 	<p>Take value one and two and chose what operation to do on them.</p>
 
