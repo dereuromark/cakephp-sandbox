@@ -60,7 +60,7 @@
 		"dereuromark/cakephp-ratings": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 2.0.0",
 		"dereuromark/cakephp-decimal": "dev-master",
-		"brick/math": "^0.11.0",
+		"brick/math": "^0.12.0",
 		"php-http/cakephp-adapter": "^0.4.0",
 		"php-http/message": "^1.8.0",
 		"league/commonmark": "^2.0",

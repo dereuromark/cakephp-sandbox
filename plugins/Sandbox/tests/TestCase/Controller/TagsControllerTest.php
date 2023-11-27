@@ -64,6 +64,18 @@ class TagsControllerTest extends TestCase {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function testSearchFiltering(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Tags', 'action' => 'search', '?' => ['tag' => 'foo']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
 	 * Test cloud method
 	 *
 	 * @return void
