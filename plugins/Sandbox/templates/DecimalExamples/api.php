@@ -49,9 +49,9 @@
 	<h3>Result</h3>
 	<?php if ($result !== null) {
 		if ($result === false) {
-			$result = 'NO';
+			$result = 'false';
 		} elseif ($result === true) {
-			$result = 'YES';
+			$result = 'true';
 		}
 
  		echo $this->Highlighter->highlight(print_r($result, true), ['lang' => 'php']);
