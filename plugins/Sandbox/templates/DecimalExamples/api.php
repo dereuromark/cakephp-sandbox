@@ -55,6 +55,20 @@
 		}
 
  		echo $this->Highlighter->highlight(print_r($result, true), ['lang' => 'php']);
+	} else {
+		echo '<p>';
+		echo '---';
+		echo '</p>';
 	} ?>
+
+	<p>Some notes:</p>
+	<ul>
+		<li>multiply() by default adds the scales of each number.</li>
+		<li>
+			divide() requires a 2nd param scale, and right now the demo defaults to the max scale of the two numbers.
+			<br>
+			So <code>1</code> and <code>2</code> result in <code>0</code> as the scale of that result cuts of the decimal values.
+		</li>
+	</ul>
 
 </div>
