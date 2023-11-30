@@ -40,7 +40,7 @@ class DecimalExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function validation(?string $locale = null) {
-		if ($locale && preg_match('/^[a-z]{2}_[A-Z]{2}$/', $locale)) {
+		if ($locale && (strlen($locale) === 2 || preg_match('/^[a-z]{2}_[A-Z]{2}$/', $locale))) {
 			$this->Flash->info('Using locale ' . h($locale));
 
 			ini_set('intl.default_locale', $locale);
