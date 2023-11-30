@@ -23,7 +23,8 @@
 	<p>By default, it uses system locale (en), you can also switch to any other one:</p>
 	<ul>
 		<li><?php echo $this->Html->link('de_DE', ['action' => 'validation', 'de_DE', '?' => ['value' => $this->request->getQuery('value')]]); ?></li>
-		<li><?php echo $this->Html->link('en_US', ['action' => 'validation', 'en_US', '?' => ['value' => $this->request->getQuery('value')]]); ?></li>
+		<li><?php echo $this->Html->link('en', ['action' => 'validation', 'en', '?' => ['value' => $this->request->getQuery('value')]]); ?></li>
+		<li><?php echo $this->Html->link('es', ['action' => 'validation', 'es', '?' => ['value' => $this->request->getQuery('value')]]); ?></li>
 	</ul>
 
 	<p>We use the following validation rule to assert 2 decimal digits:</p>
