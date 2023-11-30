@@ -17,5 +17,6 @@
 	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Forms', ['action' => 'forms'])?></li>
+	<li><?php echo $this->Navigation->link('Validation', ['action' => 'forms'])?></li>
 	<li><?php echo $this->Navigation->link('API', ['action' => 'api'])?></li>
 </ul>
