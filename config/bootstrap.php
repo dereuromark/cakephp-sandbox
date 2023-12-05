@@ -39,7 +39,6 @@ use Cake\Core\Configure\Engine\PhpConfig;
 use Cake\Database\TypeFactory;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorTrap;
-use Cake\Error\ExceptionTrap;
 use Cake\Http\ServerRequest;
 use Cake\I18n\Date;
 use Cake\I18n\DateTime;
@@ -50,6 +49,7 @@ use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Detection\MobileDetect;
+use Tools\Error\ExceptionTrap;
 use Tools\Mailer\Mailer;
 
 /**
