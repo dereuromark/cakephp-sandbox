@@ -44,7 +44,9 @@ class DecimalExamplesController extends SandboxAppController {
 			$this->Flash->info('Using locale ' . h($locale));
 
 			ini_set('intl.default_locale', $locale);
-			TypeFactory::build('decimal')->useLocaleParser();
+			/** @var \Cake\Database\Type\DecimalType $decimalType */
+			$decimalType = TypeFactory::build('decimal');
+			$decimalType->useLocaleParser();
 		}
 
 		$record = $this->fetchTable('Sandbox.SandboxProfiles')->newEmptyEntity();
