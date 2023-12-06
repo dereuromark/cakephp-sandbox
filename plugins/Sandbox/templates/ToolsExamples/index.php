@@ -8,6 +8,6 @@
 
 <p><a href="https://github.com/dereuromark/cakephp-tools" target="_blank">[Source]</a></p>
 
-<?php echo $this->element('Sandbox.actions', ['exclude' => ['fakeEdit']]); ?>
+<?php echo $this->element('Sandbox.actions', ['exclude' => ['fakeEdit', 'iconSets']]); ?>
 
 </div>

@@ -431,11 +431,15 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @param string|null $name
 	 *
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function iconSets(?string $name = null) {
+		if (!$name) {
+			return $this->redirect(['action' => 'icons']);
+		}
+
 		$config = (array)Configure::read('Icon');
-		if (!$name || !isset($config['sets'][$name])) {
+		if (!isset($config['sets'][$name])) {
 			throw new NotFoundException('No such icon set');
 		}
 
