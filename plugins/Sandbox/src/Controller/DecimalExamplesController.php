@@ -37,6 +37,8 @@ class DecimalExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @param string|null $locale
+	 *
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function validation(?string $locale = null) {
