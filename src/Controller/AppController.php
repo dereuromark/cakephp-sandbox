@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
+use Shim\Controller\RedirectOutOfBoundsTrait;
 use Tools\Controller\Controller;
 
 /**
@@ -12,6 +13,8 @@ use Tools\Controller\Controller;
  * @property \TinyAuth\Controller\Component\AuthComponent $Auth
  */
 class AppController extends Controller {
+
+	use RedirectOutOfBoundsTrait;
 
 	/**
 	 * @return void

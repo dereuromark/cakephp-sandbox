@@ -16,23 +16,10 @@ $description = 'CakePHP Sandbox App';
 <?php
 echo $this->Html->meta('icon');
 echo $this->fetch('meta');
-if ($this->request->getQuery('assets')) {
-	switch ($this->request->getQuery('assets')) {
-		case 'bootstrap-alpha':
-			if (PHP_SAPI !== 'cli') {
-				echo $this->AssetCompress->css('bootstrap-alpha');
-			}
-			echo $this->fetch('css');
-		break;
-		default:
-			throw new \RuntimeException('Invalid asset type');
-	}
-} else {
-	if (PHP_SAPI !== 'cli') {
-		echo $this->AssetCompress->css('css-combined');
-	}
-	echo $this->fetch('css');
+if (PHP_SAPI !== 'cli') {
+	echo $this->AssetCompress->css('css-combined');
 }
+echo $this->fetch('css');
 ?>
 </head>
 <body>
@@ -85,20 +72,8 @@ if ($this->request->getQuery('assets')) {
 <?php echo $this->element('Feedback.sidebar');?>
 
 <?php
-if ($this->request->getQuery('assets')) {
-	switch ($this->request->getQuery('assets')) {
-		case 'bootstrap-alpha':
-			if (PHP_SAPI !== 'cli') {
-				echo $this->AssetCompress->script('js-combined');
-			}
-			break;
-		default:
-			throw new \RuntimeException('Invalid asset type');
-	}
-} else {
-	if (PHP_SAPI !== 'cli') {
-		echo $this->AssetCompress->script('js-combined');
-	}
+if (PHP_SAPI !== 'cli') {
+	echo $this->AssetCompress->script('js-combined');
 }
 ?>
 <?php echo $this->fetch('script'); ?>

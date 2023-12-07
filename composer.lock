@@ -229,12 +229,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "11fe113891acae7cfc24f6ea56dcd4dd278ee2d6"
+                "reference": "6a8198139a169ed4b8ccd23dfbe58d3efae92716"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/11fe113891acae7cfc24f6ea56dcd4dd278ee2d6",
-                "reference": "11fe113891acae7cfc24f6ea56dcd4dd278ee2d6",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/6a8198139a169ed4b8ccd23dfbe58d3efae92716",
+                "reference": "6a8198139a169ed4b8ccd23dfbe58d3efae92716",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-12-05T14:23:31+00:00"
+            "time": "2023-12-07T03:39:28+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2448,12 +2448,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "41a3a2cc7b3ca255ee6b228ee60004f483c00e29"
+                "reference": "7bdee457111de0a21074f5e3ede3d8120865d9a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/41a3a2cc7b3ca255ee6b228ee60004f483c00e29",
-                "reference": "41a3a2cc7b3ca255ee6b228ee60004f483c00e29",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/7bdee457111de0a21074f5e3ede3d8120865d9a9",
+                "reference": "7bdee457111de0a21074f5e3ede3d8120865d9a9",
                 "shasum": ""
             },
             "require": {
@@ -2496,7 +2496,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2023-12-05T23:09:30+00:00"
+            "time": "2023-12-07T08:43:17+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
