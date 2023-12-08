@@ -13018,7 +13018,6 @@ namespace PHPSTORM_META {
 		'Sandbox.SearchExamples::table',
 		'Sandbox.ServiceExamples::index',
 		'Sandbox.ServiceExamples::posts',
-		'Sandbox.SocialShare::index',
 		'Sandbox.Tags::cloud',
 		'Sandbox.Tags::index',
 		'Sandbox.Tags::search',

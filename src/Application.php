@@ -40,7 +40,6 @@ class Application extends BaseApplication {
 		//$this->addPlugin('Meta', ['bootstrap' => false]);
 		$this->addPlugin('Cache');
 		$this->addPlugin('AssetCompress');
-		//$this->addPlugin('SocialShare', ['bootstrap' => false]);
 		$this->addPlugin('TinyAuth', ['bootstrap' => false]);
 		$this->addPlugin('Calendar');
 		$this->addPlugin('Search');

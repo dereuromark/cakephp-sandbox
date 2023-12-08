@@ -121,13 +121,6 @@
 		</ul>
 		<?php } ?>
 
-		<?php if (false) { ?>
-		<h4>SocialShare plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('SocialShare and CakePHP', ['controller' => 'SocialShare', 'action' => 'index']); ?></li>
-		</ul>
-		<?php } ?>
-
 		<h4>BootstrapUI plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Bootstrap and CakePHP', ['controller' => 'Bootstrap', 'action' => 'index']); ?></li>
