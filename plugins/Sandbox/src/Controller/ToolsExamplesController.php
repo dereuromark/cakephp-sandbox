@@ -125,8 +125,8 @@ class ToolsExamplesController extends SandboxAppController {
 		$config = ['field' => $field, 'bits' => $flags, 'mappedField' => 'flags'];
 		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
 
-		// Just to have demo data
 		$records = $this->BitmaskedRecords->find()->all()->toArray();
+		// Just to have demo data
 		$this->autoSeed($records);
 
 		$bitmaskedRecord = $this->BitmaskedRecords->newEmptyEntity();
@@ -170,7 +170,7 @@ class ToolsExamplesController extends SandboxAppController {
 		$bitmaskedRecords = $this->paginate($query);
 
 		// Just to have demo data
-		if (!$bitmaskedRecords->count()) {
+		if (PHP_SAPI !== 'cli' && !$bitmaskedRecords->count()) {
 			$records = $this->BitmaskedRecords->find()->all()->toArray();
 			$this->autoSeed($records);
 		}
@@ -542,7 +542,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	protected function autoSeed(array $records): void {
-		if (!$records) {
+		if (PHP_SAPI !== 'cli' && !$records) {
 			$records = [];
 			$records[] = $this->BitmaskedRecords->newEntity([
 				'name' => 'Careful',

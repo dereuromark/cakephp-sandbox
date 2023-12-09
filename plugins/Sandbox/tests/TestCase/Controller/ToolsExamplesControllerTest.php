@@ -92,7 +92,33 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testMeter() {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'meter']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testBitmaskSearch() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmaskSearch']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testBitmasks() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmasks']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
