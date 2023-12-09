@@ -49,6 +49,27 @@ echo $this->Format->thumbs(0);
 
 	<br><br>
 
+	<code style="display: block;">
+		<?php
+		$text = <<<TEXT
+<?php echo \$this->Format->genderIcon(\$genderValue); ?>
+TEXT;
+		echo h($text);
+		?>
+	</code>
+
+	<div style="font-size: 18px;">
+		<?php
+		echo $this->Format->genderIcon(\Tools\View\Helper\FormatHelper::GENDER_FEMALE);
+		echo '<br>';
+		echo $this->Format->genderIcon(\Tools\View\Helper\FormatHelper::GENDER_MALE);
+		echo '<br>';
+		echo $this->Format->genderIcon(0);
+		?>
+	</div>
+
+	<br><br>
+
 	<h3>Other</h3>
 <code style="display: block;">
 	<?php
