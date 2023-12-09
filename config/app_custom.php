@@ -221,6 +221,8 @@ $config = [
 			'prev' => 'fa4:arrow-left',
 			'next' => 'fa4:arrow-right',
 			'chart-bar' => 'fa4:bar-chart',
+			'pro' => 'fa4:thumbs-up',
+			'contra' => 'fa4:thumbs-down',
 		],
 		'checkExistence' => true,
 	],
