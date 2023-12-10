@@ -11,12 +11,12 @@ use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
 use StateMachine\Illuminator\Task\StateTask;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
-use Template\Generator\Task\IconRenderTask;
-use Template\View\Icon\BootstrapIcon;
-use Template\View\Icon\FeatherIcon;
-use Template\View\Icon\FontAwesome4Icon;
-use Template\View\Icon\FontAwesome6Icon;
-use Template\View\Icon\MaterialIcon;
+use Templating\Generator\Task\IconRenderTask;
+use Templating\View\Icon\BootstrapIcon;
+use Templating\View\Icon\FeatherIcon;
+use Templating\View\Icon\FontAwesome4Icon;
+use Templating\View\Icon\FontAwesome6Icon;
+use Templating\View\Icon\MaterialIcon;
 use Tools\Error\ErrorLogger;
 use Tools\Mailer\Mailer;
 

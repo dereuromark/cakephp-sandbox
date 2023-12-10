@@ -5,7 +5,7 @@
 ?>
 
 <nav class="actions col-sm-4 col-12">
-	<?php echo $this->element('navigation/template'); ?>
+	<?php echo $this->element('navigation/templating'); ?>
 </nav>
 <div class="page index col-sm-8 col-12">
 
@@ -19,7 +19,7 @@
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'fa' => \Template\View\Helper\Icon\FontAwesome4Icon::class,
+			'fa' => \Templating\View\Helper\Icon\FontAwesome4Icon::class,
 		],
 	],
 TEXT;
@@ -65,7 +65,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'bs' => \Template\View\Helper\Icon\BootstrapIcon::class,
+			'bs' => \Templating\View\Helper\Icon\BootstrapIcon::class,
 		],
 	],
 TEXT;
@@ -104,7 +104,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'material' => \Template\View\Helper\Icon\MaterialIcon::class,
+			'material' => \Templating\View\Helper\Icon\MaterialIcon::class,
 		],
 	],
 TEXT;
@@ -146,7 +146,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'feather' => \Template\View\Helper\Icon\FeatherIcon::class,
+			'feather' => \Templating\View\Helper\Icon\FeatherIcon::class,
 		],
 	],
 TEXT;

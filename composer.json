@@ -67,7 +67,7 @@
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "^5.0",
 		"jdorn/sql-formatter": "@stable",
-		"dereuromark/cakephp-template": "dev-master"
+		"dereuromark/cakephp-templating": "dev-master"
 	},
 	"require-dev": {
 		"robmorgan/phinx": "0.x-dev as 0.15.3",

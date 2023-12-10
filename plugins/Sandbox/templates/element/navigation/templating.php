@@ -7,11 +7,11 @@
 
 <h2>Tools plugin</h2>
 <p>
-	<a href="https://github.com/dereuromark/cakephp-template" target="_blank">[Template Plugin]</a>
+	<a href="https://github.com/dereuromark/cakephp-templating" target="_blank">[Templating Plugin]</a>
 </p>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
-	<li class="heading"><?= __('Template Examples') ?></li>
+	<li class="heading"><?= __('Templating Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 
 	<li><?php echo $this->Navigation->link('(Font) Icons', ['action' => 'icons'], ['class' => $this->getRequest()->getParam('action') === 'iconSets' ? 'active' : null])?></li>

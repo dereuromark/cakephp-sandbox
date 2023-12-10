@@ -348,7 +348,7 @@ namespace PHPSTORM_META {
 			'StateMachineSandbox' => \Cake\Http\BaseApplication::class,
 			'SuperAdmin' => \Cake\Http\BaseApplication::class,
 			'Tags' => \Cake\Http\BaseApplication::class,
-			'Template' => \Cake\Http\BaseApplication::class,
+			'Templating' => \Cake\Http\BaseApplication::class,
 			'TestHelper' => \Cake\Http\BaseApplication::class,
 			'TinyAuth' => \Cake\Http\BaseApplication::class,
 			'Tools' => \Cake\Http\BaseApplication::class,
@@ -3501,7 +3501,7 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
-		\Template\View\Helper\IconHelper::render(),
+		\Templating\View\Helper\IconHelper::render(),
 		0,
 		argumentsSet('icons'),
 	);
@@ -4610,7 +4610,7 @@ namespace PHPSTORM_META {
 		'plugins.StateMachineSandbox',
 		'plugins.SuperAdmin',
 		'plugins.Tags',
-		'plugins.Template',
+		'plugins.Templating',
 		'plugins.TestHelper',
 		'plugins.TinyAuth',
 		'plugins.Tools',

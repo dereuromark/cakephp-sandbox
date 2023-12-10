@@ -5,7 +5,7 @@
 ?>
 
 <nav class="actions col-sm-4 col-12">
-	<?php echo $this->element('navigation/template'); ?>
+	<?php echo $this->element('navigation/templating'); ?>
 </nav>
 <div class="page index col-sm-8 col-12">
 
@@ -22,9 +22,9 @@
 	</code>
 
 	<?php
-	echo $this->Format->yesNo(1);
+	echo $this->IconSnippet->yesNo(1);
 	echo '<br>';
-	echo $this->Format->yesNo(0);
+	echo $this->IconSnippet->yesNo(0);
 	?>
 
 	<br><br>
@@ -41,9 +41,9 @@
 
 	<div style="font-size: 18px;">
 	<?php
-	echo $this->Format->thumbs(1);
+	echo $this->IconSnippet->thumbs(1);
 	echo '<br>';
-	echo $this->Format->thumbs(0);
+	echo $this->IconSnippet->thumbs(0);
 	?>
 	</div>
 

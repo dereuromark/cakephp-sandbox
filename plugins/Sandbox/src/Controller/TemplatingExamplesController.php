@@ -6,7 +6,7 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\NotFoundException;
 use Tools\View\Icon\IconCollection;
 
-class TemplateExamplesController extends SandboxAppController {
+class TemplatingExamplesController extends SandboxAppController {
 
 	/**
 	 * @return void

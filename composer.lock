@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49bbef38f12d58c1b8de0c96ec8b9d00",
+    "content-hash": "0a0be02e64b9547bc910fa4563cb2cff",
     "packages": [
         {
             "name": "brick/math",
@@ -2569,17 +2569,17 @@
             "time": "2023-11-27T21:18:08+00:00"
         },
         {
-            "name": "dereuromark/cakephp-template",
+            "name": "dereuromark/cakephp-templating",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dereuromark/cakephp-template.git",
-                "reference": "41fabc9ec536dba222fd167fa5271b57603929d2"
+                "url": "https://github.com/dereuromark/cakephp-templating.git",
+                "reference": "8ecf4ba6d85074ac0206cd541af63987f4647955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-template/zipball/41fabc9ec536dba222fd167fa5271b57603929d2",
-                "reference": "41fabc9ec536dba222fd167fa5271b57603929d2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/8ecf4ba6d85074ac0206cd541af63987f4647955",
+                "reference": "8ecf4ba6d85074ac0206cd541af63987f4647955",
                 "shasum": ""
             },
             "require": {
@@ -2596,7 +2596,7 @@
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
-                    "Template\\": "src/"
+                    "Templating\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2611,7 +2611,7 @@
                 }
             ],
             "description": "CakePHP plugin for markup (parsing and displaying)",
-            "homepage": "https://github.com/dereuromark/cakephp-template",
+            "homepage": "https://github.com/dereuromark/cakephp-templating",
             "keywords": [
                 "cakephp",
                 "highlighting",
@@ -2619,10 +2619,10 @@
                 "plugin"
             ],
             "support": {
-                "issues": "https://github.com/dereuromark/cakephp-template/issues",
-                "source": "https://github.com/dereuromark/cakephp-template"
+                "issues": "https://github.com/dereuromark/cakephp-templating/issues",
+                "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2023-12-10T09:52:20+00:00"
+            "time": "2023-12-10T14:49:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -2690,12 +2690,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "398f8435f7ae5ef0511e5c8af20b20f15368a83d"
+                "reference": "85a1f5f76a91a178e62e7ea67cb866b80d2ccc8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/398f8435f7ae5ef0511e5c8af20b20f15368a83d",
-                "reference": "398f8435f7ae5ef0511e5c8af20b20f15368a83d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/85a1f5f76a91a178e62e7ea67cb866b80d2ccc8d",
+                "reference": "85a1f5f76a91a178e62e7ea67cb866b80d2ccc8d",
                 "shasum": ""
             },
             "require": {
@@ -2747,7 +2747,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2023-12-10T10:09:57+00:00"
+            "time": "2023-12-10T14:55:45+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -10059,7 +10059,7 @@
         "dereuromark/cakephp-dto": 20,
         "dereuromark/cakephp-decimal": 20,
         "jdorn/sql-formatter": 0,
-        "dereuromark/cakephp-template": 20,
+        "dereuromark/cakephp-templating": 20,
         "robmorgan/phinx": 20,
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,
