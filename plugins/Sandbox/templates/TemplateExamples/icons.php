@@ -5,13 +5,13 @@
 ?>
 
 <nav class="actions col-sm-4 col-12">
-	<?php echo $this->element('navigation/tools'); ?>
+	<?php echo $this->element('navigation/template'); ?>
 </nav>
 <div class="page index col-sm-8 col-12">
 
 <h2>Icons</h2>
 
-	<p>Tip: Use <a href="https://github.com/dereuromark/cakephp-ide-helper-extra" target="_blank">IdeHelperExtra plugin</a> to get autocomplete for all icons</p>
+	<p>Tip: Use <a href="https://github.com/dereuromark/cakephp-ide-helper" target="_blank">IdeHelper plugin</a> to get autocomplete for all icons</p>
 
 	<h3>FontAwesome (v4)</h3>
 	Configure the icon set to be used in your `app.php`:
@@ -19,7 +19,7 @@
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'fa' => \Tools\View\Helper\Icon\FontAwesome4Icon::class,
+			'fa' => \Template\View\Helper\Icon\FontAwesome4Icon::class,
 		],
 	],
 TEXT;
@@ -65,7 +65,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'bs' => \Tools\View\Helper\Icon\BootstrapIcon::class,
+			'bs' => \Template\View\Helper\Icon\BootstrapIcon::class,
 		],
 	],
 TEXT;
@@ -104,7 +104,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'material' => \Tools\View\Helper\Icon\MaterialIcon::class,
+			'material' => \Template\View\Helper\Icon\MaterialIcon::class,
 		],
 	],
 TEXT;
@@ -146,7 +146,7 @@ TEXT;
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'feather' => \Tools\View\Helper\Icon\FeatherIcon::class,
+			'feather' => \Template\View\Helper\Icon\FeatherIcon::class,
 		],
 	],
 TEXT;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7a98d1c4e6c9598b207594315653262",
+    "content-hash": "49bbef38f12d58c1b8de0c96ec8b9d00",
     "packages": [
         {
             "name": "brick/math",
@@ -225,16 +225,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.x-dev",
+            "version": "5.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "110e857dcf3ea490657c9495b284b2190e86aa44"
+                "reference": "84174915611447d54639d35580d6e208f1a48e21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/110e857dcf3ea490657c9495b284b2190e86aa44",
-                "reference": "110e857dcf3ea490657c9495b284b2190e86aa44",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/84174915611447d54639d35580d6e208f1a48e21",
+                "reference": "84174915611447d54639d35580d6e208f1a48e21",
                 "shasum": ""
             },
             "require": {
@@ -295,7 +295,6 @@
                 "lib-ICU": "To use locale-aware features in the I18n and Database packages",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -340,7 +339,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2023-12-09T21:24:28+00:00"
+            "time": "2023-11-28T03:41:40+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2570,6 +2569,62 @@
             "time": "2023-11-27T21:18:08+00:00"
         },
         {
+            "name": "dereuromark/cakephp-template",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-template.git",
+                "reference": "41fabc9ec536dba222fd167fa5271b57603929d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-template/zipball/41fabc9ec536dba222fd167fa5271b57603929d2",
+                "reference": "41fabc9ec536dba222fd167fa5271b57603929d2",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.0.3",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "dereuromark/cakephp-ide-helper": "^2.0.2",
+                "ext-yaml": "*",
+                "fig-r/psr2r-sniffer": "dev-next",
+                "phpunit/phpunit": "^10.2"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Template\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "CakePHP plugin for markup (parsing and displaying)",
+            "homepage": "https://github.com/dereuromark/cakephp-template",
+            "keywords": [
+                "cakephp",
+                "highlighting",
+                "markup",
+                "plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-template/issues",
+                "source": "https://github.com/dereuromark/cakephp-template"
+            },
+            "time": "2023-12-10T09:52:20+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-tinyauth",
             "version": "dev-master",
             "source": {
@@ -2635,12 +2690,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "dfb15377a366ffa11aed068ae7c6a44002f26509"
+                "reference": "398f8435f7ae5ef0511e5c8af20b20f15368a83d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/dfb15377a366ffa11aed068ae7c6a44002f26509",
-                "reference": "dfb15377a366ffa11aed068ae7c6a44002f26509",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/398f8435f7ae5ef0511e5c8af20b20f15368a83d",
+                "reference": "398f8435f7ae5ef0511e5c8af20b20f15368a83d",
                 "shasum": ""
             },
             "require": {
@@ -2692,7 +2747,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2023-12-05T19:06:18+00:00"
+            "time": "2023-12-10T10:09:57+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -9942,12 +9997,6 @@
             "alias_normalized": "3.0.2.0"
         },
         {
-            "package": "cakephp/cakephp",
-            "version": "5.9999999.9999999.9999999-dev",
-            "alias": "5.0.2",
-            "alias_normalized": "5.0.2.0"
-        },
-        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -9981,7 +10030,6 @@
     "minimum-stability": "RC",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
-        "cakephp/cakephp": 20,
         "cakephp/bake": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
@@ -10011,6 +10059,7 @@
         "dereuromark/cakephp-dto": 20,
         "dereuromark/cakephp-decimal": 20,
         "jdorn/sql-formatter": 0,
+        "dereuromark/cakephp-template": 20,
         "robmorgan/phinx": 20,
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,

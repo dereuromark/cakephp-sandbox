@@ -15,6 +15,11 @@
 			<li><?php echo $this->Html->link('Decimals and CakePHP', ['controller' => 'DecimalExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Template plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('Template, Icons and HTML snippets', ['controller' => 'TemplateExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Queue plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Queue and CakePHP', ['controller' => 'QueueExamples', 'action' => 'index']); ?></li>

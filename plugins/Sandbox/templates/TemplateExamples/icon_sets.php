@@ -12,7 +12,7 @@ foreach ($icons as $iconSet) {
 ?>
 
 <nav class="actions col-sm-4 col-12">
-	<?php echo $this->element('navigation/tools'); ?>
+	<?php echo $this->element('navigation/template'); ?>
 </nav>
 <div class="page index col-sm-8 col-12">
 

@@ -14,11 +14,11 @@ use StateMachine\Illuminator\Task\StateTask;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 use Tools\Error\ErrorLogger;
 use Tools\Mailer\Mailer;
-use Tools\View\Icon\BootstrapIcon;
-use Tools\View\Icon\FeatherIcon;
-use Tools\View\Icon\FontAwesome4Icon;
-use Tools\View\Icon\FontAwesome6Icon;
-use Tools\View\Icon\MaterialIcon;
+use Template\View\Icon\BootstrapIcon;
+use Template\View\Icon\FeatherIcon;
+use Template\View\Icon\FontAwesome4Icon;
+use Template\View\Icon\FontAwesome6Icon;
+use Template\View\Icon\MaterialIcon;
 
 $debug = false;
 if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {

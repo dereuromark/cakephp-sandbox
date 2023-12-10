@@ -44,7 +44,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\TextHelper $Text
  * @property \Queue\View\Helper\QueueHelper $Queue
  * @property \Search\View\Helper\SearchHelper $Search
- * @property \Tools\View\Helper\IconHelper $Icon
+ * @property \Template\View\Helper\IconHelper $Icon
  */
 class AppView extends View {
 
@@ -78,9 +78,9 @@ class AppView extends View {
 			'Tools.Common',
 			'Flash.Flash',
 			'Tools.Format',
-			'Tools.Icon',
 			'Tools.Progress',
 			'Tools.Meter',
+			'Template.Icon',
 			'TinyAuth.AuthUser',
 			'AssetCompress.AssetCompress',
 			'Shim.Configure',

@@ -423,37 +423,6 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
-	 */
-	public function icons() {
-	}
-
-	/**
-	 * @param string|null $name
-	 *
-	 * @return \Cake\Http\Response|null|void
-	 */
-	public function iconSets(?string $name = null) {
-		if (!$name) {
-			return $this->redirect(['action' => 'icons']);
-		}
-
-		Configure::write('Icon.checkExistence', false);
-
-		$config = (array)Configure::read('Icon');
-		if (!isset($config['sets'][$name])) {
-			throw new NotFoundException('No such icon set');
-		}
-
-		$config['sets'] = [
-			$name => $config['sets'][$name],
-		];
-
-		$icons = (new IconCollection($config))->names();
-		$this->set(compact('icons', 'name'));
-	}
-
-	/**
 	 * Display a dynamic timeline.
 	 *
 	 * @return void
