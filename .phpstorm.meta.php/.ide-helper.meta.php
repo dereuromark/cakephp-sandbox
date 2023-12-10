@@ -319,6 +319,7 @@ namespace PHPSTORM_META {
 			'Cache' => \Cake\Http\BaseApplication::class,
 			'Cake/Localized' => \Cake\Http\BaseApplication::class,
 			'Cake/TwigView' => \Cake\Http\BaseApplication::class,
+			'CakeDecimal' => \Cake\Http\BaseApplication::class,
 			'CakeDto' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
 			'Captcha' => \Cake\Http\BaseApplication::class,
@@ -330,7 +331,6 @@ namespace PHPSTORM_META {
 			'Feed' => \Cake\Http\BaseApplication::class,
 			'Feedback' => \Cake\Http\BaseApplication::class,
 			'Flash' => \Cake\Http\BaseApplication::class,
-			'Foo' => \Cake\Http\BaseApplication::class,
 			'Geo' => \Cake\Http\BaseApplication::class,
 			'Icings/Menu' => \Cake\Http\BaseApplication::class,
 			'IdeHelper' => \Cake\Http\BaseApplication::class,
@@ -348,6 +348,7 @@ namespace PHPSTORM_META {
 			'StateMachineSandbox' => \Cake\Http\BaseApplication::class,
 			'SuperAdmin' => \Cake\Http\BaseApplication::class,
 			'Tags' => \Cake\Http\BaseApplication::class,
+			'Template' => \Cake\Http\BaseApplication::class,
 			'TestHelper' => \Cake\Http\BaseApplication::class,
 			'TinyAuth' => \Cake\Http\BaseApplication::class,
 			'Tools' => \Cake\Http\BaseApplication::class,
@@ -365,7 +366,7 @@ namespace PHPSTORM_META {
 			'date' => \Cake\Database\Type\DateType::class,
 			'datetime' => \Cake\Database\Type\DateTimeType::class,
 			'datetimefractional' => \Cake\Database\Type\DateTimeFractionalType::class,
-			'decimal' => \Cake\Database\Type\DecimalType::class,
+			'decimal' => \CakeDecimal\Database\Type\DecimalObjectType::class,
 			'float' => \Cake\Database\Type\FloatType::class,
 			'image' => \Captcha\Database\Type\ImageType::class,
 			'integer' => \Cake\Database\Type\IntegerType::class,
@@ -1453,7 +1454,7 @@ namespace PHPSTORM_META {
 			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
 			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
-			'Form' => \Cake\View\Helper\FormHelper::class,
+			'Form' => \App\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
 			'Html' => \Cake\View\Helper\HtmlHelper::class,
 			'Icings/Menu.Menu' => \Icings\Menu\View\Helper\MenuHelper::class,
@@ -1535,6 +1536,7 @@ namespace PHPSTORM_META {
 		'Sandbox.inflector/result-row',
 		'Sandbox.inflector/results',
 		'Sandbox.navigation/ajax',
+		'Sandbox.navigation/decimal',
 		'Sandbox.navigation/dto',
 		'Sandbox.navigation/localized',
 		'Sandbox.navigation/media_embed',
@@ -1542,7 +1544,9 @@ namespace PHPSTORM_META {
 		'Sandbox.navigation/search',
 		'Sandbox.navigation/service',
 		'Sandbox.navigation/tags',
+		'Sandbox.navigation/template',
 		'Sandbox.navigation/tools',
+		'Setup.l10n_panel',
 		'StateMachineSandbox.navigation/registration',
 		'TestHelper.test_cases',
 		'TestHelper.url',
@@ -1581,7 +1585,7 @@ namespace PHPSTORM_META {
 			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
 			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
-			'Form' => \Cake\View\Helper\FormHelper::class,
+			'Form' => \App\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
 			'Html' => \Cake\View\Helper\HtmlHelper::class,
 			'Icings/Menu.Menu' => \Icings\Menu\View\Helper\MenuHelper::class,
@@ -2837,6 +2841,66 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxUser::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxUser'),
+	);
+
+	expectedArguments(
 		\StateMachineSandbox\Model\Entity\Registration::get(),
 		0,
 		argumentsSet('entityFields:StateMachineSandbox\Model\Entity\Registration'),
@@ -3437,7 +3501,7 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
-		\Tools\View\Helper\IconHelper::render(),
+		\Template\View\Helper\IconHelper::render(),
 		0,
 		argumentsSet('icons'),
 	);
@@ -3663,7 +3727,6 @@ namespace PHPSTORM_META {
 		'debug_kit',
 		'expose',
 		'feedback',
-		'foo/barko',
 		'geo',
 		'icings/menu',
 		'ide_helper',
@@ -4214,6 +4277,7 @@ namespace PHPSTORM_META {
 		'address_format',
 		'alias',
 		'attempts',
+		'balance',
 		'base',
 		'beginning',
 		'code',
@@ -4237,6 +4301,7 @@ namespace PHPSTORM_META {
 		'eu_member',
 		'event',
 		'expires',
+		'extra',
 		'failure_message',
 		'fetched',
 		'fk_id',
@@ -4428,15 +4493,23 @@ namespace PHPSTORM_META {
 		'Highlighter',
 		'Highlighter.highlighter',
 		'Icon',
+		'Icon.checkExistence',
 		'Icon.map',
 		'Icon.map.admin',
+		'Icon.map.chart-bar',
+		'Icon.map.contra',
+		'Icon.map.delete',
 		'Icon.map.details',
 		'Icon.map.login',
 		'Icon.map.logout',
 		'Icon.map.next',
+		'Icon.map.no',
 		'Icon.map.prev',
+		'Icon.map.pro',
 		'Icon.map.see',
 		'Icon.map.translate',
+		'Icon.map.view',
+		'Icon.map.yes',
 		'Icon.sets',
 		'Icon.sets.bs',
 		'Icon.sets.bs.class',
@@ -4466,6 +4539,9 @@ namespace PHPSTORM_META {
 		'IdeHelper.plugins',
 		'IdeHelper.templateCollectionObject',
 		'IdeHelper.typeMap',
+		'Migrations',
+		'Migrations.column_null_default',
+		'Migrations.unsigned_primary_keys',
 		'Queue',
 		'Queue.cleanuptimeout',
 		'Queue.defaultworkerretries',
@@ -4505,6 +4581,7 @@ namespace PHPSTORM_META {
 		'plugins.Cache',
 		'plugins.Cake/Localized',
 		'plugins.Cake/TwigView',
+		'plugins.CakeDecimal',
 		'plugins.CakeDto',
 		'plugins.Calendar',
 		'plugins.Captcha',
@@ -4516,7 +4593,6 @@ namespace PHPSTORM_META {
 		'plugins.Feed',
 		'plugins.Feedback',
 		'plugins.Flash',
-		'plugins.Foo',
 		'plugins.Geo',
 		'plugins.Icings/Menu',
 		'plugins.IdeHelper',
@@ -4534,6 +4610,7 @@ namespace PHPSTORM_META {
 		'plugins.StateMachineSandbox',
 		'plugins.SuperAdmin',
 		'plugins.Tags',
+		'plugins.Template',
 		'plugins.TestHelper',
 		'plugins.TinyAuth',
 		'plugins.Tools',
@@ -4567,13 +4644,13 @@ namespace PHPSTORM_META {
 	registerArgumentsSet(
 		'entityFields:Cake\ORM\Entity',
 		'created',
-		'email',
+		'foreign_key',
 		'id',
+		'model',
 		'modified',
-		'password',
-		'role_id',
-		'slug',
-		'username',
+		'user',
+		'user_id',
+		'value',
 	);
 
 	registerArgumentsSet(
@@ -4821,6 +4898,19 @@ namespace PHPSTORM_META {
 		'tagged',
 		'tags',
 		'title',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\SandboxUser',
+		'created',
+		'email',
+		'id',
+		'modified',
+		'password',
+		'role_id',
+		'slug',
+		'status',
+		'username',
 	);
 
 	registerArgumentsSet(
@@ -7077,6 +7167,7 @@ namespace PHPSTORM_META {
 		'certificate',
 		'chain',
 		'chain-broken',
+		'chart-bar',
 		'check',
 		'check-circle',
 		'check-circle-o',
@@ -7122,6 +7213,7 @@ namespace PHPSTORM_META {
 		'compress',
 		'connectdevelop',
 		'contao',
+		'contra',
 		'copy',
 		'copyright',
 		'creative-commons',
@@ -7140,6 +7232,7 @@ namespace PHPSTORM_META {
 		'deaf',
 		'deafness',
 		'dedent',
+		'delete',
 		'delicious',
 		'desktop',
 		'details',
@@ -12407,6 +12500,7 @@ namespace PHPSTORM_META {
 		'neuter',
 		'newspaper-o',
 		'next',
+		'no',
 		'object-group',
 		'object-ungroup',
 		'odnoklassniki',
@@ -12456,6 +12550,7 @@ namespace PHPSTORM_META {
 		'power-off',
 		'prev',
 		'print',
+		'pro',
 		'product-hunt',
 		'puzzle-piece',
 		'qq',
@@ -12684,6 +12779,7 @@ namespace PHPSTORM_META {
 		'viadeo',
 		'viadeo-square',
 		'video-camera',
+		'view',
 		'vimeo',
 		'vimeo-square',
 		'vine',
@@ -12722,6 +12818,7 @@ namespace PHPSTORM_META {
 		'yc-square',
 		'yelp',
 		'yen',
+		'yes',
 		'yoast',
 		'youtube',
 		'youtube-play',
@@ -12946,6 +13043,7 @@ namespace PHPSTORM_META {
 		'Sandbox.CacheExamples::index',
 		'Sandbox.CacheExamples::minute',
 		'Sandbox.CacheExamples::someJson',
+		'Sandbox.CakeExamples::enums',
 		'Sandbox.CakeExamples::i18n',
 		'Sandbox.CakeExamples::index',
 		'Sandbox.CakeExamples::merge',
@@ -12961,6 +13059,10 @@ namespace PHPSTORM_META {
 		'Sandbox.Csv::index',
 		'Sandbox.Csv::pagination',
 		'Sandbox.Csv::simple',
+		'Sandbox.DecimalExamples::api',
+		'Sandbox.DecimalExamples::forms',
+		'Sandbox.DecimalExamples::index',
+		'Sandbox.DecimalExamples::validation',
 		'Sandbox.DtoExamples::github',
 		'Sandbox.DtoExamples::index',
 		'Sandbox.Examples::index',
@@ -13022,6 +13124,10 @@ namespace PHPSTORM_META {
 		'Sandbox.Tags::index',
 		'Sandbox.Tags::search',
 		'Sandbox.Tags::select',
+		'Sandbox.TemplateExamples::iconSets',
+		'Sandbox.TemplateExamples::iconSnippetHelper',
+		'Sandbox.TemplateExamples::icons',
+		'Sandbox.TemplateExamples::index',
 		'Sandbox.ToolsExamples::_diff',
 		'Sandbox.ToolsExamples::bitmaskSearch',
 		'Sandbox.ToolsExamples::bitmasks',
@@ -13030,8 +13136,6 @@ namespace PHPSTORM_META {
 		'Sandbox.ToolsExamples::fakeEdit',
 		'Sandbox.ToolsExamples::formatHelper',
 		'Sandbox.ToolsExamples::gravatar',
-		'Sandbox.ToolsExamples::iconSets',
-		'Sandbox.ToolsExamples::icons',
 		'Sandbox.ToolsExamples::index',
 		'Sandbox.ToolsExamples::meter',
 		'Sandbox.ToolsExamples::password',
@@ -13104,7 +13208,6 @@ namespace PHPSTORM_META {
 		'TestHelper.TestCases::entity',
 		'TestHelper.TestCases::helper',
 		'TestHelper.TestCases::run',
-		'TestHelper.TestCases::shell',
 		'TestHelper.TestCases::table',
 		'TestHelper.TestCases::task',
 		'TestHelper.TestFixtures::generate',
@@ -13133,6 +13236,7 @@ namespace PHPSTORM_META {
 		'sandbox_animals',
 		'sandbox_categories',
 		'sandbox_posts',
+		'sandbox_profiles',
 		'sandbox_ratings',
 		'sandbox_users',
 		'state_machine_item_state_logs',

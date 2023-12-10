@@ -5,20 +5,20 @@ use Burzum\CakeServiceLayer\Generator\Task\ServiceTask;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use IdeHelper\Annotator\EntityAnnotator;
-use IdeHelperExtra\Tools\Generator\Task\IconRenderTask;
 use Queue\Utility\JsonSerializer;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
 use StateMachine\Illuminator\Task\StateTask;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
-use Tools\Error\ErrorLogger;
-use Tools\Mailer\Mailer;
+use Template\Generator\Task\IconRenderTask;
 use Template\View\Icon\BootstrapIcon;
 use Template\View\Icon\FeatherIcon;
 use Template\View\Icon\FontAwesome4Icon;
 use Template\View\Icon\FontAwesome6Icon;
 use Template\View\Icon\MaterialIcon;
+use Tools\Error\ErrorLogger;
+use Tools\Mailer\Mailer;
 
 $debug = false;
 if (env('HTTP_HOST') === 'localhost' || env('HTTP_HOST') === 'sandbox.local') {

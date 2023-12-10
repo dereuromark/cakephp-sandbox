@@ -2,13 +2,10 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Core\Configure;
 use Cake\Datasource\ModelAwareTrait;
-use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 use Shim\Datasource\LegacyModelAwareTrait;
-use Tools\View\Icon\IconCollection;
 
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
