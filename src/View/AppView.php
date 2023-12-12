@@ -15,7 +15,7 @@ use Cake\View\View;
  * @property \App\View\Helper\AppHelper $App
  * @property \App\View\Helper\NavigationHelper $Navigation
  * @property \App\View\Helper\SandboxHelper $Sandbox
- * @property \Tools\View\Helper\HtmlHelper $Html
+ * @property \App\View\Helper\HtmlHelper $Html
  * @property \Tools\View\Helper\UrlHelper $Url
  * @property \App\View\Helper\FormHelper $Form
  * @property \Tools\View\Helper\CommonHelper $Common
@@ -63,8 +63,7 @@ class AppView extends View {
 		$this->addHelper('Tools.Text');
 
 		$this->addHelper('Form', (array)Configure::read('FormConfig'));
-
-		$this->addHelper('Tools.Html');
+		$this->addHelper('Html');
 		$this->addHelper('Tools.Url');
 
 		$this->addHelper('Queue.Queue');

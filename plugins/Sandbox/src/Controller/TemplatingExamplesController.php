@@ -20,6 +20,12 @@ class TemplatingExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
+	public function html() {
+	}
+
+	/**
+	 * @return void
+	 */
 	public function icons() {
 	}
 

@@ -15,7 +15,7 @@
 
 	<h3>FontAwesome (v4)</h3>
 	Configure the icon set to be used in your `app.php`:
-	<pre><?php
+	<?php
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
@@ -23,9 +23,9 @@
 		],
 	],
 TEXT;
-		echo $this->Format->pre($text);
+		echo $this->Highlighter->highlight($text, ['lang' => 'php']);
 		?>
-	</pre>
+
 
 	<code style="display: block;">
 		<?php
@@ -61,7 +61,7 @@ TEXT;
 
 	<h3>Boostrap</h3>
 	Configure the icon set to be used in your `app.php`:
-	<pre><?php
+	<?php
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
@@ -69,9 +69,9 @@ TEXT;
 		],
 	],
 TEXT;
-		echo $this->Format->pre($text);
+		echo $this->Highlighter->highlight($text, ['lang' => 'php']);
 		?>
-	</pre>
+
 
 	<code style="display: block;">
 		<?php
@@ -100,7 +100,7 @@ TEXT;
 	<h3>Material</h3>
 
 	Configure the icon set to be used in your `app.php`:
-	<pre><?php
+	<?php
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
@@ -108,9 +108,9 @@ TEXT;
 		],
 	],
 TEXT;
-		echo $this->Format->pre($text);
+		echo $this->Highlighter->highlight($text, ['lang' => 'php']);
 		?>
-	</pre>
+
 
 	<code style="display: block;">
 		<?php
@@ -142,7 +142,7 @@ TEXT;
 	<p>Note: This requires a JS snippet for the icons to get transformed.</p>
 
 	Configure the icon set to be used in your `app.php`:
-	<pre><?php
+	<?php
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
@@ -150,9 +150,8 @@ TEXT;
 		],
 	],
 TEXT;
-		echo $this->Format->pre($text);
+		echo $this->Highlighter->highlight($text, ['lang' => 'php']);
 		?>
-	</pre>
 
 	<code style="display: block;">
 		<?php
@@ -183,14 +182,14 @@ TEXT;
 	</script>
 
 	JS snippet:
-	<pre><?php
+	<?php
 		$text = <<<TEXT
 <script>
 	feather.replace();
 </script>
 TEXT;
-		echo $this->Format->pre($text);
+		echo $this->Highlighter->highlight($text, ['lang' => 'js']);
 		?>
-	</pre>
+
 
 </div>

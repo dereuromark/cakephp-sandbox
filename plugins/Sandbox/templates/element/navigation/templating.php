@@ -14,6 +14,7 @@
 	<li class="heading"><?= __('Templating Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 
+	<li><?php echo $this->Navigation->link('HTML snippets', ['action' => 'html'])?></li>
 	<li><?php echo $this->Navigation->link('(Font) Icons', ['action' => 'icons'], ['class' => $this->getRequest()->getParam('action') === 'iconSets' ? 'active' : null])?></li>
 	<li><?php echo $this->Navigation->link('Icon Snippets', ['action' => 'iconSnippetHelper'])?></li>
 </ul>
