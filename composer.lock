@@ -462,16 +462,16 @@
         },
         {
             "name": "cakephp/localized",
-            "version": "5.0.0-RC",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/localized.git",
-                "reference": "5554c19c38c082fe5b1ed08d601ba0938ad97a29"
+                "reference": "04247fd1fb7498eba38aa12e0f0367082d8ff6c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/localized/zipball/5554c19c38c082fe5b1ed08d601ba0938ad97a29",
-                "reference": "5554c19c38c082fe5b1ed08d601ba0938ad97a29",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/04247fd1fb7498eba38aa12e0f0367082d8ff6c6",
+                "reference": "04247fd1fb7498eba38aa12e0f0367082d8ff6c6",
                 "shasum": ""
             },
             "require": {
@@ -511,7 +511,7 @@
                 "issues": "https://github.com/cakephp/localized/issues",
                 "source": "https://github.com/cakephp/localized"
             },
-            "time": "2023-11-13T13:45:26+00:00"
+            "time": "2023-12-12T08:11:11+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -2386,12 +2386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "d9fa1955836fb33b319737118d4950c3bec5c950"
+                "reference": "8a9effcc953ef69adaa52820c49c9f4277323ae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/d9fa1955836fb33b319737118d4950c3bec5c950",
-                "reference": "d9fa1955836fb33b319737118d4950c3bec5c950",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/8a9effcc953ef69adaa52820c49c9f4277323ae5",
+                "reference": "8a9effcc953ef69adaa52820c49c9f4277323ae5",
                 "shasum": ""
             },
             "require": {
@@ -2401,6 +2401,7 @@
             "require-dev": {
                 "cakephp/bake": "^3.0.1",
                 "cakephp/debug_kit": "^5.0.1",
+                "cakephp/migrations": "^4.1.1",
                 "dereuromark/cakephp-tools": "^3.0.0",
                 "fig-r/psr2r-sniffer": "dev-next",
                 "phpunit/phpunit": "^10.2"
@@ -2439,7 +2440,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2023-12-11T21:56:35+00:00"
+            "time": "2023-12-12T18:06:19+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -2574,12 +2575,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-templating.git",
-                "reference": "4d10218dbe3304c90bd9c97879b461b8b9d576c8"
+                "reference": "5c33a8af16fc16d4f7e79d82fac014fc7cc96e57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/4d10218dbe3304c90bd9c97879b461b8b9d576c8",
-                "reference": "4d10218dbe3304c90bd9c97879b461b8b9d576c8",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/5c33a8af16fc16d4f7e79d82fac014fc7cc96e57",
+                "reference": "5c33a8af16fc16d4f7e79d82fac014fc7cc96e57",
                 "shasum": ""
             },
             "require": {
@@ -2622,7 +2623,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-templating/issues",
                 "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2023-12-12T01:17:30+00:00"
+            "time": "2023-12-12T01:48:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -8463,16 +8464,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.48",
+            "version": "1.10.49",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6"
+                "reference": "9367ba4c4f6ad53e9efb594d74a8941563caccf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
-                "reference": "087ed4b5f4a7a6e8f3bbdfbfe98ce5c181380bc6",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9367ba4c4f6ad53e9efb594d74a8941563caccf6",
+                "reference": "9367ba4c4f6ad53e9efb594d74a8941563caccf6",
                 "shasum": ""
             },
             "require": {
@@ -8521,7 +8522,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-08T14:34:28+00:00"
+            "time": "2023-12-12T10:05:12+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
