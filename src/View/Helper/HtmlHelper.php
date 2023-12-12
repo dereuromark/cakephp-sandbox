@@ -2,7 +2,7 @@
 
 namespace App\View\Helper;
 
-use Templating\View\Helper\HtmlTrait;
+use Templating\View\Helper\HtmlHelperTrait;
 use Tools\View\Helper\HtmlHelper as ToolsHtmlHelper;
 
 /**
@@ -10,6 +10,6 @@ use Tools\View\Helper\HtmlHelper as ToolsHtmlHelper;
  */
 class HtmlHelper extends ToolsHtmlHelper {
 
-	use HtmlTrait;
+	use HtmlHelperTrait;
 
 }

@@ -3,7 +3,7 @@
 namespace App\View\Helper;
 
 use BootstrapUI\View\Helper\FormHelper as BootstrapFormHelper;
-use Templating\View\Helper\FormTrait;
+use Templating\View\Helper\FormHelperTrait;
 
 /**
  * @property \Cake\View\Helper\UrlHelper $Url
@@ -11,7 +11,7 @@ use Templating\View\Helper\FormTrait;
  */
 class FormHelper extends BootstrapFormHelper {
 
-	use FormTrait;
+	use FormHelperTrait;
 
 	/**
 	 * @param string $title

@@ -2574,12 +2574,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-templating.git",
-                "reference": "4699530ed9990d72891ad9620432f019cc52a10a"
+                "reference": "4d10218dbe3304c90bd9c97879b461b8b9d576c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/4699530ed9990d72891ad9620432f019cc52a10a",
-                "reference": "4699530ed9990d72891ad9620432f019cc52a10a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/4d10218dbe3304c90bd9c97879b461b8b9d576c8",
+                "reference": "4d10218dbe3304c90bd9c97879b461b8b9d576c8",
                 "shasum": ""
             },
             "require": {
@@ -2622,7 +2622,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-templating/issues",
                 "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2023-12-12T00:53:18+00:00"
+            "time": "2023-12-12T01:17:30+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -6220,7 +6220,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "077758ab5bceb365b6336e84fdadcd7f9bed16d4"
+                "reference": "d4250e0730767c344a18ef71d5d9d31588e33c21"
             },
             "require": {
                 "cakephp/cakephp": "^5.0.0",
@@ -6288,7 +6288,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2023-12-11T21:16:16+00:00"
+            "time": "2023-12-12T01:01:10+00:00"
         },
         {
             "name": "symfony/config",
