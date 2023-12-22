@@ -75,6 +75,9 @@ class SandboxCleanup extends AbstractMigration {
 		 */
 	}
 
+	/**
+	 * @return void
+	 */
 	public function down(): void {
 	}
 
