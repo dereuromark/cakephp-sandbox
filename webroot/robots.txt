@@ -6,3 +6,5 @@ Disallow: /media/
 Disallow: /tmp/
 Disallow: /*/delete/
 Disallow: /sandbox/hashids/
+Disallow: /auth-sandbox/
+Disallow: /state-machine-sandbox/
