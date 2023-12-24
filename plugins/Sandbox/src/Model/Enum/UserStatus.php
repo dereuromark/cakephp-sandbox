@@ -2,7 +2,10 @@
 
 namespace Sandbox\Model\Enum;
 
-enum UserStatus: int
+use Cake\Database\Type\EnumLabelInterface;
+use Cake\Utility\Inflector;
+
+enum UserStatus: int implements EnumLabelInterface
 {
 	case INACTIVE = 0;
 	case ACTIVE = 1;
@@ -11,6 +14,6 @@ enum UserStatus: int
 	 * @return string
 	 */
 	public function label(): string {
-		return mb_strtolower($this->name);
+		return Inflector::humanize(mb_strtolower($this->name));
 	}
 }

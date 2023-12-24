@@ -14,10 +14,11 @@ class UsersController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function index() {
-		$this->paginate = [
-			'contain' => ['Roles'],
-		];
-		$this->set('users', $this->paginate());
+		$query = $this->Users->find()
+			->contain(['Roles']);
+		$users = $this->paginate($query);
+
+		$this->set('users', $users);
 	}
 
 	/**
