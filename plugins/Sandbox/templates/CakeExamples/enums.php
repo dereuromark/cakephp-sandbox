@@ -80,6 +80,15 @@ echo $this->Highlighter->highlight(print_r($user, true), ['lang' => 'php']);
 
 <br>
 
+<h4>Manuel form (without entity passed in)</h4>
+
+<?php echo $this->Form->create(); ?>
+<?php echo $this->Form->control('status', ['options' => \Sandbox\Model\Enum\UserStatus::options([\Sandbox\Model\Enum\UserStatus::DELETED, \Sandbox\Model\Enum\UserStatus::ACTIVE])]); ?>
+<?php echo $this->Form->submit(); ?>
+<?php echo $this->Form->end(); ?>
+
+<p>Note the order customization, as well.</p>
+
 <h3>Serialization</h3>
 <p>
 When serializing, the actual (DB) value (in this case int) is used:
