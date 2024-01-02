@@ -69,7 +69,6 @@ class CacheExamplesController extends SandboxAppController {
 		];
 
 		$this->set(compact('something'));
-		//$this->set('_serialize', ['something']);
 		$serialize = 'something';
 		$this->viewBuilder()->setOptions(compact('serialize'));
 	}

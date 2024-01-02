@@ -79,7 +79,9 @@ class FeedExamplesController extends SandboxAppController {
 			'channel' => $channel,
 			'items' => $items,
 		];
-		$this->set(['channel' => $data, '_serialize' => 'channel']);
+		$this->set(['channel' => $data]);
+		$serialize = 'channel';
+		$this->viewBuilder()->setOptions(compact('serialize'));
 	}
 
 	/**

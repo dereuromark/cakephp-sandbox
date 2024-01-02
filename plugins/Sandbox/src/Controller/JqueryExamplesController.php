@@ -67,7 +67,6 @@ class JqueryExamplesController extends SandboxAppController {
 					]);
 
 			$this->set('items', $items);
-			//$this->set('_serialize', ['items']);
 			$serialize = 'items';
 			$this->viewBuilder()->setOptions(compact('serialize'));
 		}
