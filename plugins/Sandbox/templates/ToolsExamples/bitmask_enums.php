@@ -31,7 +31,7 @@
 	<td><ul><?php
 		/** @var \BackedEnum&\Cake\Database\Type\EnumLabelInterface $flag */
 		foreach ($record->flags as $flag) {
-			echo '<li>' . $flag->value . ' (' . $flag->label() . ')</li>';
+			echo '<li>' . $flag->value . ' (' . $flag->label() . ')<br><code>' . print_r($flag, true) . '</code></br></li>';
 		} ?></ul>
 	</td>
 </tr>
