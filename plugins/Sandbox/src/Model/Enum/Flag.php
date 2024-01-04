@@ -6,13 +6,14 @@ use Cake\Database\Type\EnumLabelInterface;
 use Cake\Utility\Inflector;
 use Tools\Model\Enum\EnumOptionsTrait;
 
-enum UserStatus: int implements EnumLabelInterface
+enum Flag: int implements EnumLabelInterface
 {
 	use EnumOptionsTrait;
 
-	case Inactive = 0;
-	case Active = 1;
-	case Deleted = 2;
+	case Important = 1;
+	case Featured = 2;
+	case Approved = 4;
+	case Flagged = 8;
 
 	/**
 	 * @return string

@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Cake\Datasource\ModelAwareTrait;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
+use Sandbox\Model\Enum\Flag;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -176,6 +177,45 @@ class ToolsExamplesController extends SandboxAppController {
 			$flags[0] = ' - n/a (no flags) - ';
 		}
 		$this->set(compact('bitmaskedRecords', 'flags', 'type', 'sql'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function bitmaskEnums() {
+		$this->loadModel('Sandbox.BitmaskedRecords');
+
+		$required = (bool)$this->request->getQuery('required');
+		if (!$required) {
+			$field = 'flag_optional';
+		} else {
+			$field = 'flag_required';
+		}
+
+		$config = ['field' => $field, 'bits' => Flag::class, 'mappedField' => 'flags'];
+		$this->BitmaskedRecords->behaviors()->load('Tools.Bitmasked', $config);
+
+		$records = $this->BitmaskedRecords->find()->all()->toArray();
+		// Just to have demo data
+		$this->autoSeed($records);
+
+		$bitmaskedRecord = $this->BitmaskedRecords->newEmptyEntity();
+		if ($this->request->is('post')) {
+			$bitmaskedRecord = $this->BitmaskedRecords->patchEntity($bitmaskedRecord, $this->request->getData());
+
+			if ($bitmaskedRecord->getErrors()) {
+				$this->Flash->error(__('Form contains errors'));
+
+				$bitmaskedRecord->setError('flags', $bitmaskedRecord->getError($field));
+
+			} else {
+				$message = 'Flag value `' . $bitmaskedRecord->$field . '` would now be stored.';
+				$this->Flash->success($message);
+			}
+		}
+
+		$flags = $this->BitmaskedRecords->behaviors()->Bitmasked->getConfig('bits');
+		$this->set(compact('field', 'records', 'flags', 'bitmaskedRecord', 'required'));
 	}
 
 	/**

@@ -57,11 +57,6 @@ div.input {
   margin-bottom: 10px;
 }
 
-input[type=checkbox] {
-	width: auto;
-	height: auto;
-}
-
 .form-control.day, .form-control.month, .form-control.year, .form-control.hour, .form-control.minute, .form-control.second {
 	width: auto;
 }

@@ -398,16 +398,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "5.0.4",
+            "version": "5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "12dedc16d5055a754c40926e179f1573f07535c8"
+                "reference": "8cad9af0e515540eff158f9c0e76d4bc77d97553"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/12dedc16d5055a754c40926e179f1573f07535c8",
-                "reference": "12dedc16d5055a754c40926e179f1573f07535c8",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/8cad9af0e515540eff158f9c0e76d4bc77d97553",
+                "reference": "8cad9af0e515540eff158f9c0e76d4bc77d97553",
                 "shasum": ""
             },
             "require": {
@@ -418,7 +418,7 @@
             "require-dev": {
                 "cakephp/authorization": "^3.0",
                 "cakephp/cakephp-codesniffer": "^5.0",
-                "phpunit/phpunit": "^10.1.0"
+                "phpunit/phpunit": "^10.1.0 <=10.5.3"
             },
             "suggest": {
                 "ext-pdo_sqlite": "DebugKit needs to store panel data in a database. SQLite is simple and easy to use."
@@ -458,7 +458,7 @@
                 "issues": "https://github.com/cakephp/debug_kit/issues",
                 "source": "https://github.com/cakephp/debug_kit"
             },
-            "time": "2023-12-15T18:20:30+00:00"
+            "time": "2024-01-04T21:15:14+00:00"
         },
         {
             "name": "cakephp/localized",
@@ -2075,12 +2075,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "12368f0506237de3db8479215d19635f5b222e03"
+                "reference": "fb5dd9da51b3cf23ba1ff0a9e39084abbab0fb35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/12368f0506237de3db8479215d19635f5b222e03",
-                "reference": "12368f0506237de3db8479215d19635f5b222e03",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/fb5dd9da51b3cf23ba1ff0a9e39084abbab0fb35",
+                "reference": "fb5dd9da51b3cf23ba1ff0a9e39084abbab0fb35",
                 "shasum": ""
             },
             "require": {
@@ -2134,7 +2134,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2023-12-11T21:56:45+00:00"
+            "time": "2024-01-04T22:15:39+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -2386,12 +2386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "31fffe7d586a53ab760abb55239641482e16f6c3"
+                "reference": "e4bfd0b947fddb434b68c1a3af046cf98dea624b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/31fffe7d586a53ab760abb55239641482e16f6c3",
-                "reference": "31fffe7d586a53ab760abb55239641482e16f6c3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/e4bfd0b947fddb434b68c1a3af046cf98dea624b",
+                "reference": "e4bfd0b947fddb434b68c1a3af046cf98dea624b",
                 "shasum": ""
             },
             "require": {
@@ -2440,7 +2440,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2023-12-22T09:33:30+00:00"
+            "time": "2024-01-04T12:52:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -2691,12 +2691,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "a7be75a67fc20ffa5c4108f7c42930f749e17a47"
+                "reference": "edeeb2a1bc187520b970453b831b6f66e3e3d1ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/a7be75a67fc20ffa5c4108f7c42930f749e17a47",
-                "reference": "a7be75a67fc20ffa5c4108f7c42930f749e17a47",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/edeeb2a1bc187520b970453b831b6f66e3e3d1ad",
+                "reference": "edeeb2a1bc187520b970453b831b6f66e3e3d1ad",
                 "shasum": ""
             },
             "require": {
@@ -2748,7 +2748,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2023-12-25T12:38:48+00:00"
+            "time": "2024-01-04T21:59:51+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -3667,16 +3667,16 @@
         },
         {
             "name": "laminas/laminas-httphandlerrunner",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-httphandlerrunner.git",
-                "reference": "d3e84755a17e563b1c5f8290cbfb150210501a77"
+                "reference": "35a0ba92e940a2f9533754f5a56187fa321f7693"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-httphandlerrunner/zipball/d3e84755a17e563b1c5f8290cbfb150210501a77",
-                "reference": "d3e84755a17e563b1c5f8290cbfb150210501a77",
+                "url": "https://api.github.com/repos/laminas/laminas-httphandlerrunner/zipball/35a0ba92e940a2f9533754f5a56187fa321f7693",
+                "reference": "35a0ba92e940a2f9533754f5a56187fa321f7693",
                 "shasum": ""
             },
             "require": {
@@ -3687,10 +3687,10 @@
             },
             "require-dev": {
                 "laminas/laminas-coding-standard": "~2.5.0",
-                "laminas/laminas-diactoros": "^3.0.0",
-                "phpunit/phpunit": "^10.1.2",
+                "laminas/laminas-diactoros": "^3.3.0",
+                "phpunit/phpunit": "^10.5.5",
                 "psalm/plugin-phpunit": "^0.18.4",
-                "vimeo/psalm": "^5.11"
+                "vimeo/psalm": "^5.18"
             },
             "type": "library",
             "extra": {
@@ -3730,7 +3730,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2023-09-04T10:43:03+00:00"
+            "time": "2024-01-04T10:50:34+00:00"
         },
         {
             "name": "league/climate",
@@ -5127,16 +5127,16 @@
         },
         {
             "name": "php-http/promise",
-            "version": "1.2.1",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/promise.git",
-                "reference": "44a67cb59f708f826f3bec35f22030b3edb90119"
+                "reference": "2916a606d3b390f4e9e8e2b8dd68581508be0f07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/promise/zipball/44a67cb59f708f826f3bec35f22030b3edb90119",
-                "reference": "44a67cb59f708f826f3bec35f22030b3edb90119",
+                "url": "https://api.github.com/repos/php-http/promise/zipball/2916a606d3b390f4e9e8e2b8dd68581508be0f07",
+                "reference": "2916a606d3b390f4e9e8e2b8dd68581508be0f07",
                 "shasum": ""
             },
             "require": {
@@ -5173,9 +5173,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/promise/issues",
-                "source": "https://github.com/php-http/promise/tree/1.2.1"
+                "source": "https://github.com/php-http/promise/tree/1.3.0"
             },
-            "time": "2023-11-08T12:57:08+00:00"
+            "time": "2024-01-04T18:49:48+00:00"
         },
         {
             "name": "phpdocumentor/graphviz",
@@ -8355,22 +8355,22 @@
         },
         {
             "name": "php-collective/code-sniffer",
-            "version": "0.2.2",
+            "version": "0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "22fe1382b0674b65d1970be0bd727e154bbcd0af"
+                "reference": "d2019cd09c61e21819dc5bcc6a2fddad5b21c4b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/22fe1382b0674b65d1970be0bd727e154bbcd0af",
-                "reference": "22fe1382b0674b65d1970be0bd727e154bbcd0af",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/d2019cd09c61e21819dc5bcc6a2fddad5b21c4b5",
+                "reference": "d2019cd09c61e21819dc5bcc6a2fddad5b21c4b5",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
                 "slevomat/coding-standard": "^8.14.1",
-                "squizlabs/php_codesniffer": "^3.6.2"
+                "squizlabs/php_codesniffer": "^3.8.0"
             },
             "require-dev": {
                 "phpstan/phpstan": "^1.0.0",
@@ -8413,20 +8413,20 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2023-11-22T13:50:38+00:00"
+            "time": "2024-01-02T23:34:13+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.24.5",
+            "version": "1.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "fedf211ff14ec8381c9bf5714e33a7a552dd1acc"
+                "reference": "bd84b629c8de41aa2ae82c067c955e06f1b00240"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/fedf211ff14ec8381c9bf5714e33a7a552dd1acc",
-                "reference": "fedf211ff14ec8381c9bf5714e33a7a552dd1acc",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/bd84b629c8de41aa2ae82c067c955e06f1b00240",
+                "reference": "bd84b629c8de41aa2ae82c067c955e06f1b00240",
                 "shasum": ""
             },
             "require": {
@@ -8458,22 +8458,22 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.24.5"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.25.0"
             },
-            "time": "2023-12-16T09:33:33+00:00"
+            "time": "2024-01-04T17:06:16+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.50",
+            "version": "1.10.51",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "06a98513ac72c03e8366b5a0cb00750b487032e4"
+                "reference": "5082fa72dc13944578806ca1196a385818d8b077"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/06a98513ac72c03e8366b5a0cb00750b487032e4",
-                "reference": "06a98513ac72c03e8366b5a0cb00750b487032e4",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5082fa72dc13944578806ca1196a385818d8b077",
+                "reference": "5082fa72dc13944578806ca1196a385818d8b077",
                 "shasum": ""
             },
             "require": {
@@ -8522,7 +8522,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-13T10:59:42+00:00"
+            "time": "2024-01-04T21:16:30+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
