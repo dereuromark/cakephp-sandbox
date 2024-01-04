@@ -2,6 +2,7 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Sandbox\Model\Entity\BitmaskedRecord;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -115,10 +116,46 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
+	public function testBitmaskSearchFlag() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmaskSearch', '?' => ['flags' => BitmaskedRecord::STATUS_FEATURED]]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testBitmaskSearchFlagMulti() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmaskSearch', '?' => ['flags' => [BitmaskedRecord::STATUS_FEATURED, BitmaskedRecord::STATUS_FLAGGED]]]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testBitmasks() {
 		$this->disableErrorHandlerMiddleware();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmasks']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testBitmaskEnums() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'bitmaskEnums']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

@@ -2691,12 +2691,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "edeeb2a1bc187520b970453b831b6f66e3e3d1ad"
+                "reference": "bf151fc18872bef077f9c5f1697326d4280a85c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/edeeb2a1bc187520b970453b831b6f66e3e3d1ad",
-                "reference": "edeeb2a1bc187520b970453b831b6f66e3e3d1ad",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/bf151fc18872bef077f9c5f1697326d4280a85c9",
+                "reference": "bf151fc18872bef077f9c5f1697326d4280a85c9",
                 "shasum": ""
             },
             "require": {
@@ -2748,7 +2748,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2024-01-04T21:59:51+00:00"
+            "time": "2024-01-04T22:40:33+00:00"
         },
         {
             "name": "dereuromark/media-embed",
