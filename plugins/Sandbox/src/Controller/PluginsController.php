@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Exception\NotFoundException;
+use CakePdf\View\PdfView;
 
 class PluginsController extends SandboxAppController {
 
@@ -11,7 +12,11 @@ class PluginsController extends SandboxAppController {
 	 * @return string[]
 	 */
 	public function viewClasses(): array {
-		return []; // TODO: PdfView::class
+		if (!$this->request->getParam('_ext')) {
+			return [];
+		}
+
+		return [PdfView::class];
 	}
 
 	/**

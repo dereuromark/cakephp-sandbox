@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var array $someTestArray
  */
+$this->loadHelper('Templating.Icon');
 ?>
 <h1>Some header</h1>
 <p>A paragrah with <b>Bold text</b>!</p>

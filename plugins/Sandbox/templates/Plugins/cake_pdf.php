@@ -16,7 +16,7 @@ For details on how to use it see <a href="https://www.dereuromark.de/2014/04/08/
 <ul>
 	<li><b><?php echo $this->Html->link('The plain HTML template', ['action' => 'pdf_test']); ?></b></li>
 <?php foreach ($engines as $engine => $action) { ?>
-	<li><b><?php echo $this->Html->link($engine, ['action' => 'pdf_test', $action, '_ext' => 'pdf']); ?></b> | <?php echo $this->Html->link('Custom Download Filename', ['action' => 'pdf_test', $action, 'foo-bar', '_ext' => 'pdf']); ?> | <?php echo $this->Html->link('Force Download', ['action' => 'pdf_test', $action, '_ext' => 'pdf', '?' => ['download' => 1]]); ?></li>
+	<li><b><?php echo $this->Html->link($engine, ['action' => 'pdf_test', $action, '_ext' => 'pdf']); ?></b> | <?php echo $this->Html->link('Force Download', ['action' => 'pdf_test', $action, '_ext' => 'pdf', '?' => ['download' => 1]]); ?></li>
 <?php } ?>
 	<li>Mpdf has been removed as it was quite buggy</li>
 </ul>

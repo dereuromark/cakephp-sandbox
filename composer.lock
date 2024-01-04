@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a0be02e64b9547bc910fa4563cb2cff",
+    "content-hash": "d86f2b5a36787509cc8bb749896b0207",
     "packages": [
         {
             "name": "brick/math",
@@ -3059,6 +3059,54 @@
                 "source": "http://github.com/friendsofcake/bootstrap-ui"
             },
             "time": "2023-11-12T13:26:33+00:00"
+        },
+        {
+            "name": "friendsofcake/cakepdf",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfCake/CakePdf.git",
+                "reference": "aaf5138e1f2829b17b684d25f14db4ff8449ca84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/aaf5138e1f2829b17b684d25f14db4ff8449ca84",
+                "reference": "aaf5138e1f2829b17b684d25f14db4ff8449ca84",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.0.1",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^5.0",
+                "dompdf/dompdf": "^2.0",
+                "mpdf/mpdf": "^8.1.6",
+                "phpunit/phpunit": "^10.3",
+                "tecnickcom/tcpdf": "^6.3"
+            },
+            "suggest": {
+                "dompdf/dompdf": "If you wish to use the DomPdf engine",
+                "mpdf/mpdf": "If you wish to use the Mpdf engine",
+                "tecnickcom/tcpdf": "If you wish to use the Tcpdf engine"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakePdf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "CakePHP plugin for creating and/or rendering Pdfs, several Pdf engines supported.",
+            "homepage": "http://github.com/friendsofcake/CakePdf",
+            "support": {
+                "issues": "https://github.com/FriendsOfCake/CakePdf/issues",
+                "source": "https://github.com/FriendsOfCake/CakePdf/tree/5.0.0"
+            },
+            "time": "2023-10-03T08:38:04+00:00"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
