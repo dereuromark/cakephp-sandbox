@@ -61,6 +61,7 @@ class AppView extends View {
 		$this->addHelper('Tools.Time', ['outputTimezone' => 'Europe/Berlin']);
 		$this->addHelper('Tools.Number');
 		$this->addHelper('Tools.Text');
+		$this->addHelper('Data.Data');
 
 		$this->addHelper('Form', (array)Configure::read('FormConfig'));
 		$this->addHelper('Html');

@@ -28,7 +28,7 @@ class ValidationService {
 				continue;
 			}
 
-			$available[(string)$matches[1]] = $this->extractDetails((string)$file->getRealPath());
+			$available[strtoupper($matches[1])] = $this->extractDetails((string)$file->getRealPath());
 		}
 
 		ksort($available);
@@ -56,6 +56,50 @@ class ValidationService {
 		sort($methods);
 
 		return $methods;
+	}
+
+	/**
+	 * @param string|null $method
+	 *
+	 * @return array<string, string>
+	 */
+	public function getCodes(?string $method): array {
+		if (!$method) {
+			return [];
+		}
+
+		$available = $this->getAvailable();
+		$codes = [];
+		foreach ($available as $code => $list) {
+			if (in_array($method, $list, true)) {
+				$codes[$code] = $code;
+			}
+		}
+
+		return $codes;
+	}
+
+	/**
+	 * Get methods sorted by most usage DESC.
+	 *
+	 * @return array<string>
+	 */
+	public function getMethods(): array {
+		$available = $this->getAvailable();
+
+		$methods = [];
+		foreach ($available as $list) {
+			foreach ($list as $method) {
+				if (!isset($methods[$method])) {
+					$methods[$method] = 0;
+				}
+				$methods[$method] += 1;
+			}
+		}
+
+		arsort($methods);
+
+		return array_keys($methods);
 	}
 
 }

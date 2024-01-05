@@ -65,7 +65,7 @@
 		"php-http/message": "^1.8.0",
 		"league/commonmark": "^2.0",
 		"mjohnson/decoda": "^6.12",
-		"cakephp/localized": "^5.0",
+		"cakephp/localized": "5.x-dev",
 		"jdorn/sql-formatter": "@stable",
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0"

@@ -20,11 +20,13 @@
 	<?php foreach ($available as $code => $methods) { ?>
 		<tr>
 			<td>
+				<?php echo $this->Data->countryIcon($code); ?>
 				<?php echo h(strtoupper($code)); ?>
 			</td>
 			<td>
 				<?php foreach ($methods as $method) {
-					echo '<span class="badge">' . h($method) . '</span> ';
+					$html = \Templating\View\Html::create('<span class="badge badge-info">' . h($method) . '</span>');
+					echo $this->Html->link($html, ['action' => 'basic', '?' => ['code' => strtoupper($code), 'method' => $method]]) . ' ';
 				} ?>
 			</td>
 		</tr>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d86f2b5a36787509cc8bb749896b0207",
+    "content-hash": "f8621167bb2b920c43461deae8b78322",
     "packages": [
         {
             "name": "brick/math",
@@ -462,16 +462,16 @@
         },
         {
             "name": "cakephp/localized",
-            "version": "5.0.0",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/localized.git",
-                "reference": "04247fd1fb7498eba38aa12e0f0367082d8ff6c6"
+                "reference": "1cca24bc91c4b8a040576603b319d8d21e8c6143"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/localized/zipball/04247fd1fb7498eba38aa12e0f0367082d8ff6c6",
-                "reference": "04247fd1fb7498eba38aa12e0f0367082d8ff6c6",
+                "url": "https://api.github.com/repos/cakephp/localized/zipball/1cca24bc91c4b8a040576603b319d8d21e8c6143",
+                "reference": "1cca24bc91c4b8a040576603b319d8d21e8c6143",
                 "shasum": ""
             },
             "require": {
@@ -482,6 +482,7 @@
                 "cakephp/cakephp-codesniffer": "^5.0",
                 "phpunit/phpunit": "^10.2"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -511,7 +512,7 @@
                 "issues": "https://github.com/cakephp/localized/issues",
                 "source": "https://github.com/cakephp/localized"
             },
-            "time": "2023-12-12T08:11:11+00:00"
+            "time": "2024-01-05T12:55:55+00:00"
         },
         {
             "name": "cakephp/migrations",
@@ -8512,16 +8513,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.51",
+            "version": "1.10.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "5082fa72dc13944578806ca1196a385818d8b077"
+                "reference": "0cd0c330081d4f1e1d630701fe4f342c3b659685"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5082fa72dc13944578806ca1196a385818d8b077",
-                "reference": "5082fa72dc13944578806ca1196a385818d8b077",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/0cd0c330081d4f1e1d630701fe4f342c3b659685",
+                "reference": "0cd0c330081d4f1e1d630701fe4f342c3b659685",
                 "shasum": ""
             },
             "require": {
@@ -8570,7 +8571,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-04T21:16:30+00:00"
+            "time": "2024-01-05T09:51:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10107,6 +10108,7 @@
         "dereuromark/cakephp-ratings": 20,
         "dereuromark/cakephp-dto": 20,
         "dereuromark/cakephp-decimal": 20,
+        "cakephp/localized": 20,
         "jdorn/sql-formatter": 0,
         "dereuromark/cakephp-templating": 20,
         "robmorgan/phinx": 20,

@@ -146,6 +146,11 @@
 			<li><?php echo $this->Html->link('PDF rendering in CakePHP', ['controller' => 'Plugins', 'action' => 'cakePdf']); ?></li>
 		</ul>
 
+		<h4>Localized plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Localized validation in CakePHP', ['controller' => 'Localized', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h3>TODO</h3>
 		<ul>
 			<li>Wysiwyg</li>
