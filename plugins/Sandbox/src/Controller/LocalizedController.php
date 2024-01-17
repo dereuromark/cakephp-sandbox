@@ -37,6 +37,7 @@ class LocalizedController extends SandboxAppController {
 		$available = $this->Validation->getAvailable();
 		$methods = $this->Validation->getMethods();
 
+		/** @var string|null $method */
 		$method = $this->request->getQuery('method');
 		if ($method && !in_array($method, $methods, true)) {
 			throw new NotFoundException('This method does not exist');

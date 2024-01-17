@@ -16,7 +16,6 @@ parameters:
 
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
-		- %rootDir%/../../../tmp/CodeCompletionCakeORM.php
 
 	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php
