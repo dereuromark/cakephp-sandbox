@@ -58,10 +58,10 @@ $config = [
 
 	'Datasources' => [
 		'default' => [
-			'host' => '127.0.0.1',
-			'username' => 'root',
-			'password' => '',
-			'database' => '', // Set in your app_local.php
+			'host' => env('DB_HOST', '127.0.0.1'),
+			'username' => env('DB_USER', 'root'),
+			'password' => env('DB_PASSWORD', ''),
+			'database' => env('DB_DATABASE', ''), // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
 			'flags' => [
@@ -72,10 +72,10 @@ $config = [
 		 * The test connection is used during the test suite.
 		 */
 		'test' => [
-			'host' => '127.0.0.1',
-			'username' => 'root',
-			'password' => '',
-			'database' => '', // Set in your app_local.php
+			'host' => env('DB_HOST', '127.0.0.1'),
+			'username' => env('DB_USER', 'root'),
+			'password' => env('DB_PASSWORD', ''),
+			'database' => 'test', // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
 			'flags' => [

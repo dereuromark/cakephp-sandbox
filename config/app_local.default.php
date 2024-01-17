@@ -9,16 +9,16 @@ return [
 
 	'Datasources' => [
 		'default' => [
-			'password' => '',
-			'database' => 'cake_sandbox',
+			'password' => env('DB_PASSWORD', ''),
+			'database' => env('DB_DATABASE', 'sandbox_local'), // Set in your app_local.php
 		],
 
 		/**
 		 * The test connection is used during the test suite.
 		 */
 		'test' => [
-			'password' => '',
-			'database' => 'cake_test',
+			'password' => env('DB_PASSWORD', ''),
+			'database' => 'test',
 		],
 	],
 

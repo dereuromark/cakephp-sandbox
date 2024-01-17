@@ -27,4 +27,4 @@ Most of the example code can be found inside `/plugins/` directory:
 
 ### Installation
 
-Please see [SETUP.md](/SETUP.md)
+Please see [SETUP.md](SETUP.md)

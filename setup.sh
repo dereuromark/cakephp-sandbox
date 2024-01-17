@@ -26,6 +26,7 @@ echo "### ASSETS ###";
 #npm install -g bower
 #npm install -g ttembed-js
 bower install
+COMPOSER_ALLOW_SUPERUSER=1 php composer.phar assets
 
 ttembed-js ./webroot/assets/font-awesome/fonts/fontawesome-webfont.ttf
 
