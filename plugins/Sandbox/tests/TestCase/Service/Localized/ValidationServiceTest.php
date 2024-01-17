@@ -53,7 +53,7 @@ class ValidationServiceTest extends TestCase {
 		$result = $this->service->getAvailable();
 
 		$this->assertNotEmpty($result);
-		$this->assertNotEmpty($result['De']);
+		$this->assertNotEmpty($result['DE']);
 	}
 
 }
