@@ -90,7 +90,7 @@ So I would change the scopes to `null` here for all default listeners:
 	...
 ],
 </code></pre>
-<p>Another very useful addition is to log 404s separately from actual (internal) errors happening using <a href="https://github.com/dereuromark/cakephp-tools/blob/master/docs/Error/ErrorHandler.md">Tools.ErrorHandler</a>.</p>
+<p>Another very useful addition is to log 404s separately from actual (internal) errors happening using <a href="https://github.com/dereuromark/cakephp-tools/blob/master/docs/Error/ExcpetionTrap.md.md">Tools.ExcpetionTrap</a>.</p>
 
 <h3>Use AJAX wisely</h3>
 <p>
