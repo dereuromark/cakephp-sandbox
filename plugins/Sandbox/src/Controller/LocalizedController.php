@@ -3,8 +3,8 @@
 namespace Sandbox\Controller;
 
 use Burzum\CakeServiceLayer\Service\ServiceAwareTrait;
+use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Exception\NotImplementedException;
-use League\Container\Exception\NotFoundException;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
