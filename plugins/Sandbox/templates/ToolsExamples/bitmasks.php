@@ -44,12 +44,8 @@
 	<fieldset>
  		<legend><?php echo __('Add {0}', __('Entry')); ?></legend>
 	<?php
-		echo $this->Form->control('name');
+		echo $this->Form->control('name', ['required' => false]);
 		echo $this->Form->control('flags', ['type' => 'select', 'multiple' => 'checkbox']);
-
-		// When using mappedField, one needs to manually include error handling or use
-	    // $bitmaskedRecord->setError('flags', $bitmaskedRecord->getError($field)); error mapping in the controller
-		//echo $this->Form->error($field);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit'));
