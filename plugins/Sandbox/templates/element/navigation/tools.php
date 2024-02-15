@@ -14,6 +14,7 @@
 	<li class="heading"><?= __('Tools Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 
+	<li><?php echo $this->Navigation->link('Trim data input', ['action' => 'trim'])?></li>
 	<li><?php echo $this->Navigation->link('Password (create account)', ['action' => 'password'])?></li>
 	<li><?php echo $this->Navigation->link('Password Edit (edit account)', ['action' => 'passwordEdit'])?></li>
 	<li><?php echo $this->Navigation->link('Password Edit with current pwd', ['action' => 'passwordEditCurrent'])?></li>
