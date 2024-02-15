@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Datasource\ModelAwareTrait;
+use Cake\Event\EventInterface;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 use Sandbox\Model\Enum\Flag;
@@ -40,12 +41,49 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @param \Cake\Event\EventInterface $event
+	 *
+	 * @return \Cake\Http\Response|void|null
+	 */
+	public function beforeFilter(EventInterface $event) {
+		parent::beforeFilter($event);
+
+		if ($this->request->getQuery('notrim')) {
+			$this->Common->setConfig('notrim', true);
+		}
+	}
+
+	/**
 	 * @return void
 	 */
 	public function index() {
 		$actions = $this->_getActions($this);
 
 		$this->set(compact('actions'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function trim() {
+		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategory = $sandboxCategoriesTable->newEmptyEntity();
+
+		if ($this->request->getQuery('key')) {
+			$key = $this->request->getQuery('key');
+            $this->Flash->success(__d('sandbox', 'Query string value is `{0}`', $key));
+		}
+
+		if ($this->request->is(['post', 'put'])) {
+			$sandboxCategory = $sandboxCategoriesTable->patchEntity($sandboxCategory, $this->request->getData());
+			if ($sandboxCategory->hasErrors()) {
+				$this->Flash->error(__d('sandbox', 'Posted value is not yet valid, please fix the form.'));
+			} else {
+				$this->Flash->success(__d('sandbox', 'Posted value is `{0}`', $sandboxCategory->name));
+			}
+		}
+
+		$this->set(compact('sandboxCategory'));
 	}
 
 	/**
