@@ -48,6 +48,7 @@ class ToolsExamplesController extends SandboxAppController {
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
+		// Only to demo the difference of trim vs notrim in CommonComponent
 		if ($this->request->getQuery('notrim')) {
 			$this->Common->setConfig('notrim', true);
 		}
