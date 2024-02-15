@@ -43,7 +43,7 @@
 	<p><?php echo $this->Html->link("'key' => ' Some value '", ['?' => ['key' => ' Some value '] + $this->request->getQuery()]); ?></p>
 	<p>Notice how the data is trimmed.</p>
 
-	<h5>Whitespace only</h5>
+	<h5>Whitespace only (1 space)</h5>
 	<p><?php echo $this->Html->link("['key' => ' ']", ['?' => ['key' => ' '] + $this->request->getQuery()]); ?></p>
 	<p>Notice how this doesnt trigger the if clause (as it should not).</p>
 
