@@ -20,7 +20,7 @@
 	It ensures basic data integrity on request input in regards to emptiness.
 	<br>
 	This needs to happen in communication layer to ensure this for all other layers.
-	Can be skipped for edge cases using `DataPreparation.notrim` Configure setting.
+	Can be skipped for edge cases using `notrim` config on the component.
 </p>
 
 	<?php
