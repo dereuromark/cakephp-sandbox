@@ -30,7 +30,11 @@ if ($this->request->getData('key')) {}
 TXT;
 	echo $this->Highlighter->highlight($dataPrint, ['lang' => 'php']);
 	?>
-	<p>Imagine the behavior change if this was invoked for empty string that is actually just containing whitespace/noise.</p>
+	<p>
+		Imagine the behavior change if this was invoked for empty string that is actually just containing whitespace/noise.
+	<br>
+		The same for model validation rules that rely on not empty string input for the data to be saved to make sense .
+	</p>
 
 <h3>Form post Example</h3>
 <p>Try to pass validation rule notEmpty by adding whitespace (e.g. space) into the input (or before/after a string input).</p>
