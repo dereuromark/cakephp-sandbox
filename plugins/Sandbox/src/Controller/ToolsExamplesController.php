@@ -43,7 +43,7 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 *
-	 * @return \Cake\Http\Response|void|null
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
@@ -72,7 +72,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 		if ($this->request->getQuery('key')) {
 			$key = $this->request->getQuery('key');
-            $this->Flash->success(__d('sandbox', 'Query string value is `{0}`', $key));
+			$this->Flash->success(__d('sandbox', 'Query string value is `{0}`', $key));
 		}
 
 		if ($this->request->is(['post', 'put'])) {
