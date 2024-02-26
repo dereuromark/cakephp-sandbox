@@ -61,7 +61,7 @@ class RegistrationsTable extends Table {
 			'className' => 'StateMachine.StateMachineItems',
 			'foreignKey' => 'identifier',
 			'conditions' => ['RegistrationStates.state_machine' => 'Registration'],
-			'dependant' => true,
+			'dependent' => true,
 		]);
 	}
 
