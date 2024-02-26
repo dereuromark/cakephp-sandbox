@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "794fda20a4724ed9ce7099af2623a2da",
+    "content-hash": "44395423722ab9daccf6782c5226a24f",
     "packages": [
         {
             "name": "brick/math",
@@ -2013,12 +2013,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "840bd2cd21914c47deb50313cb475bf837d3a758"
+                "reference": "d91c76b8f1b5e25e78a2c235330998df2598880a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/840bd2cd21914c47deb50313cb475bf837d3a758",
-                "reference": "840bd2cd21914c47deb50313cb475bf837d3a758",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/d91c76b8f1b5e25e78a2c235330998df2598880a",
+                "reference": "d91c76b8f1b5e25e78a2c235330998df2598880a",
                 "shasum": ""
             },
             "require": {
@@ -2076,7 +2076,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2024-02-23T14:28:57+00:00"
+            "time": "2024-02-26T03:18:30+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -3130,20 +3130,21 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "7.0.0",
+            "version": "7.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "acf6cde0555383193549204ddd84de5b59460d2e"
+                "reference": "c75326b974ab963fcfc7daba88bcff4507c8684a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/acf6cde0555383193549204ddd84de5b59460d2e",
-                "reference": "acf6cde0555383193549204ddd84de5b59460d2e",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/c75326b974ab963fcfc7daba88bcff4507c8684a",
+                "reference": "c75326b974ab963fcfc7daba88bcff4507c8684a",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^5.0"
+                "cakephp/cakephp": "^5.0",
+                "php": ">=8.1"
             },
             "require-dev": {
                 "cakephp/bake": "^3.0",
@@ -3184,7 +3185,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2023-09-13T16:46:52+00:00"
+            "time": "2024-02-26T15:35:38+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -7884,16 +7885,16 @@
     "packages-dev": [
         {
             "name": "cakedc/cakephp-phpstan",
-            "version": "dev-3.next-cake5",
+            "version": "dev-issue/fix-phpstan-has-method-check",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/cakephp-phpstan.git",
-                "reference": "7f44da9b8c45b5d5f1afae0f1891818e3f813c36"
+                "reference": "e0843a2418f66a81848ef4981798d9deeb2d40fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/7f44da9b8c45b5d5f1afae0f1891818e3f813c36",
-                "reference": "7f44da9b8c45b5d5f1afae0f1891818e3f813c36",
+                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/e0843a2418f66a81848ef4981798d9deeb2d40fd",
+                "reference": "e0843a2418f66a81848ef4981798d9deeb2d40fd",
                 "shasum": ""
             },
             "require": {
@@ -7907,7 +7908,6 @@
                 "phpunit/phpunit": "^10.1",
                 "symplify/phpstan-rules": "^12.4"
             },
-            "default-branch": true,
             "type": "phpstan-extension",
             "extra": {
                 "phpstan": {
@@ -7935,9 +7935,9 @@
             "description": "CakePHP 5 plugin extension for PHPStan.",
             "support": {
                 "issues": "https://github.com/CakeDC/cakephp-phpstan/issues",
-                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/3.1.1"
+                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/issue/fix-phpstan-has-method-check"
             },
-            "time": "2024-02-23T17:11:00+00:00"
+            "time": "2024-02-26T18:12:13+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
