@@ -79,7 +79,7 @@
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^10.3",
-		"cakedc/cakephp-phpstan": "^3.0.0"
+		"cakedc/cakephp-phpstan": "dev-issue/fix-phpstan-has-method-check"
 	},
 	"autoload": {
 		"psr-4": {

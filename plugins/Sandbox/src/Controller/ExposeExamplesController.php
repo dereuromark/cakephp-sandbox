@@ -112,7 +112,7 @@ class ExposeExamplesController extends SandboxAppController {
 
 		// Instead of primary key `id` and ->get($id) we work on `uuid` field now for public access
 		$field = $this->ExposedUsers->getExposedKey();
-		$exposedUser = $this->ExposedUsers->find('exposed', [$field => $uuid])->firstOrFail();
+		$exposedUser = $this->ExposedUsers->find('exposed', ...[$field => $uuid])->firstOrFail();
 
 		$this->set('exposedUser', $exposedUser);
 	}
