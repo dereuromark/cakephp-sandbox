@@ -79,7 +79,7 @@
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^10.3",
-		"cakedc/cakephp-phpstan": "dev-issue/fix-phpstan-has-method-check"
+		"cakedc/cakephp-phpstan": "^3.1.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -95,8 +95,8 @@
 			"Sandbox\\Test\\": "plugins/Sandbox/tests/",
 			"AuthSandbox\\Test\\": "plugins/AuthSandbox/tests/",
 			"StateMachineSandbox\\Test\\": "plugins/StateMachineSandbox/tests/",
-			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests/",
-			"Captcha\\Test\\": "./vendor/dereuromark/cakephp-captcha/tests/",
+			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
+			"Captcha\\Test\\": "vendor/dereuromark/cakephp-captcha/tests/",
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
 		}
 	},

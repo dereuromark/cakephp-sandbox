@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "44395423722ab9daccf6782c5226a24f",
+    "content-hash": "dd8d2226788ba0f822fb858fbce6d3ad",
     "packages": [
         {
             "name": "brick/math",
@@ -7885,16 +7885,16 @@
     "packages-dev": [
         {
             "name": "cakedc/cakephp-phpstan",
-            "version": "dev-issue/fix-phpstan-has-method-check",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/cakephp-phpstan.git",
-                "reference": "99e3a4503153a5a87bfa44426056d15381ecb7f1"
+                "reference": "3ea916bf4a6bac6e42a2d9a8a35be98ff9567373"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/99e3a4503153a5a87bfa44426056d15381ecb7f1",
-                "reference": "99e3a4503153a5a87bfa44426056d15381ecb7f1",
+                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/3ea916bf4a6bac6e42a2d9a8a35be98ff9567373",
+                "reference": "3ea916bf4a6bac6e42a2d9a8a35be98ff9567373",
                 "shasum": ""
             },
             "require": {
@@ -7935,9 +7935,9 @@
             "description": "CakePHP 5 plugin extension for PHPStan.",
             "support": {
                 "issues": "https://github.com/CakeDC/cakephp-phpstan/issues",
-                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/issue/fix-phpstan-has-method-check"
+                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/3.1.2"
             },
-            "time": "2024-02-26T18:40:22+00:00"
+            "time": "2024-02-27T16:33:04+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -10161,8 +10161,7 @@
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,
         "dereuromark/cakephp-ide-helper-extra": 20,
-        "dereuromark/cakephp-test-helper": 20,
-        "cakedc/cakephp-phpstan": 20
+        "dereuromark/cakephp-test-helper": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
