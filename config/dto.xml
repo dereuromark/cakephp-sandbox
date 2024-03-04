@@ -594,7 +594,7 @@
 		<field name="title" type="string"/>
 		<field name="user" type="Test/Data/User"/>
 		<field name="body" type="string"/>
-		<field name="labels" type="Test/Data/Label[]" singular="label"/>
+		<field name="labels" type="Test/Data/Label[]" singular="label" associative="true" key="name"/>
 		<field name="milestone" type="Test/Data/Milestone"/>
 		<field name="activeLockReason" type="string"/>
 		<field name="createdAt" type="string"/>
@@ -603,9 +603,9 @@
 		<field name="mergedAt" type="string"/>
 		<field name="mergeCommitSha" type="string"/>
 		<field name="assignee" type="Test/Data/Assignee"/>
-		<field name="assignees" type="Test/Data/Assignee[]" singular="assignee"/>
-		<field name="requestedReviewers" type="Test/Data/RequestedReviewer[]" singular="requestedReviewer"/>
-		<field name="requestedTeams" type="Test/Data/RequestedTeam[]" singular="requestedTeam"/>
+		<field name="assignees" type="Test/Data/Assignee[]" singular="assignee" associative="true" key="login"/>
+		<field name="requestedReviewers" type="Test/Data/RequestedReviewer[]" singular="requestedReviewer" associative="true" key="login"/>
+		<field name="requestedTeams" type="Test/Data/RequestedTeam[]" singular="requestedTeam" associative="true" key="slug"/>
 		<field name="head" type="Test/Data/Head"/>
 		<field name="base" type="Test/Data/Base"/>
 		<field name="authorAssociation" type="string"/>
