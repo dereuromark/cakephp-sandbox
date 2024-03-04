@@ -4,6 +4,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="cakephp-dto https://github.com/dereuromark/cakephp-dto">
 
+
+	<!-- Generated from GitHub schema -->
+
 	<dto name="Test/Schema/SimpleUser">
 		<field name="name" type="string"/>
 		<field name="email" type="string"/>
@@ -26,6 +29,16 @@
 		<field name="type" type="string" required="true"/>
 		<field name="siteAdmin" type="bool" required="true"/>
 		<field name="starredAt" type="string"/>
+	</dto>
+
+	<dto name="Test/Schema/Label">
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="url" type="string" required="true"/>
+		<field name="name" type="string" required="true"/>
+		<field name="description" type="string"/>
+		<field name="color" type="string" required="true"/>
+		<field name="default" type="bool" required="true"/>
 	</dto>
 
 	<dto name="Test/Schema/Milestone">
@@ -244,7 +257,7 @@
 		<field name="title" type="string" required="true"/>
 		<field name="user" type="Test/Schema/SimpleUser" required="true"/>
 		<field name="body" type="string"/>
-		<field name="labels" type="array" required="true"/>
+		<field name="labels" type="Test/Schema/Label[]" required="true" singular="label" associative="true" key="name"/>
 		<field name="milestone" type="Test/Schema/Milestone"/>
 		<field name="activeLockReason" type="string"/>
 		<field name="createdAt" type="string" required="true"/>
@@ -277,8 +290,7 @@
 
 
 
-
-
+	<!-- Generated from GitHub example data -->
 
 	<dto name="Test/Data/User">
 		<field name="login" type="string"/>
@@ -566,5 +578,7 @@
 		<field name="deletions" type="int"/>
 		<field name="changedFiles" type="int"/>
 	</dto>
+
+
 
 </dtos>

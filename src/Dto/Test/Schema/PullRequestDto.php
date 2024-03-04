@@ -27,7 +27,7 @@ namespace App\Dto\Test\Schema;
  * @property string $title
  * @property \App\Dto\Test\Schema\SimpleUserDto $user
  * @property string|null $body
- * @property array $labels
+ * @property \App\Dto\Test\Schema\LabelDto[]|\ArrayObject $labels
  * @property \App\Dto\Test\Schema\MilestoneDto|null $milestone
  * @property string|null $activeLockReason
  * @property string $createdAt
@@ -198,7 +198,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	protected $body;
 
 	/**
-	 * @var array
+	 * @var \App\Dto\Test\Schema\LabelDto[]|\ArrayObject
 	 */
 	protected $labels;
 
@@ -566,15 +566,18 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'labels' => [
 			'name' => 'labels',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Schema\LabelDto[]|\ArrayObject',
 			'required' => true,
+			'associative' => true,
+			'key' => 'name',
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
+			'collectionType' => '\ArrayObject',
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Schema\LabelDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Schema\LabelDto',
 		],
 		'milestone' => [
 			'name' => 'milestone',
@@ -1514,11 +1517,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $labels
+	 * @param \App\Dto\Test\Schema\LabelDto[]|\ArrayObject $labels
 	 *
 	 * @return $this
 	 */
-	public function setLabels(array $labels) {
+	public function setLabels(\ArrayObject $labels) {
 		$this->labels = $labels;
 		$this->_touchedFields[self::FIELD_LABELS] = true;
 
@@ -1526,17 +1529,64 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @return array
+	 * @return \App\Dto\Test\Schema\LabelDto[]|\ArrayObject
 	 */
-	public function getLabels(): array {
+	public function getLabels(): \ArrayObject {
+		if ($this->labels === null) {
+			return new \ArrayObject([]);
+		}
+
 		return $this->labels;
+	}
+
+	/**
+	 * @param string|int $key
+	 *
+	 * @return \App\Dto\Test\Schema\LabelDto
+	 *
+	 * @throws \RuntimeException If value with this key is not set.
+	 */
+	public function getLabel($key): \App\Dto\Test\Schema\LabelDto {
+		if (!isset($this->labels[$key])) {
+			throw new \RuntimeException(sprintf('Value not set for field `labels` and key `%s` (expected to be not null)', $key));
+		}
+
+		return $this->labels[$key];
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function hasLabels(): bool {
-		return $this->labels !== null;
+		if ($this->labels === null) {
+			return false;
+		}
+
+		return $this->labels->count() > 0;
+	}
+
+	/**
+	 * @param string|int $key
+	 * @return bool
+	 */
+	public function hasLabel($key): bool {
+		return isset($this->labels[$key]);
+	}
+
+	/**
+	 * @param string|int $key
+	 * @param \App\Dto\Test\Schema\LabelDto $label
+	 * @return $this
+	 */
+	public function addLabel($key, \App\Dto\Test\Schema\LabelDto $label) {
+		if ($this->labels === null) {
+			$this->labels = new \ArrayObject([]);
+		}
+
+		$this->labels[$key] = $label;
+		$this->_touchedFields[self::FIELD_LABELS] = true;
+
+		return $this;
 	}
 
 	/**
