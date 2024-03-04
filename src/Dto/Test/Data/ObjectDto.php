@@ -36,7 +36,7 @@ namespace App\Dto\Test\Data;
  * @property string|null $mergedAt
  * @property string|null $mergeCommitSha
  * @property \App\Dto\Test\Data\AssigneeDto|null $assignee
- * @property \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject $assignees
+ * @property \App\Dto\Test\Data\AssigneeDto[] $assignees
  * @property \App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
  * @property \App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject $requestedTeams
  * @property \App\Dto\Test\Data\HeadDto|null $head
@@ -243,7 +243,7 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	protected $assignee;
 
 	/**
-	 * @var \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject
+	 * @var \App\Dto\Test\Data\AssigneeDto[]
 	 */
 	protected $assignees;
 
@@ -677,13 +677,13 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'assignees' => [
 			'name' => 'assignees',
-			'type' => '\App\Dto\Test\Data\AssigneeDto[]|\ArrayObject',
+			'type' => '\App\Dto\Test\Data\AssigneeDto[]',
 			'associative' => true,
 			'key' => 'login',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => '\ArrayObject',
+			'collectionType' => 'array',
 			'serialize' => null,
 			'factory' => null,
 			'singularType' => '\App\Dto\Test\Data\AssigneeDto',
@@ -2482,11 +2482,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject $assignees
+	 * @param \App\Dto\Test\Data\AssigneeDto[] $assignees
 	 *
 	 * @return $this
 	 */
-	public function setAssignees(\ArrayObject $assignees) {
+	public function setAssignees(array $assignees) {
 		$this->assignees = $assignees;
 		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
 
@@ -2494,11 +2494,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @return \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject
+	 * @return \App\Dto\Test\Data\AssigneeDto[]
 	 */
-	public function getAssignees(): \ArrayObject {
+	public function getAssignees(): array {
 		if ($this->assignees === null) {
-			return new \ArrayObject([]);
+			return [];
 		}
 
 		return $this->assignees;
@@ -2527,7 +2527,7 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 			return false;
 		}
 
-		return $this->assignees->count() > 0;
+		return count($this->assignees) > 0;
 	}
 
 	/**
@@ -2545,7 +2545,7 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function addAssignee($key, \App\Dto\Test\Data\AssigneeDto $assignee) {
 		if ($this->assignees === null) {
-			$this->assignees = new \ArrayObject([]);
+			$this->assignees = [];
 		}
 
 		$this->assignees[$key] = $assignee;

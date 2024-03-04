@@ -36,7 +36,7 @@ namespace App\Dto\Test\Schema;
  * @property string|null $mergedAt
  * @property string|null $mergeCommitSha
  * @property \App\Dto\Test\Schema\SimpleUserDto|null $assignee
- * @property \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject $assignees
+ * @property \App\Dto\Test\Schema\AssigneeDto[] $assignees
  * @property \App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
  * @property \App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject $requestedTeams
  * @property \App\Dto\Test\Schema\HeadDto $head
@@ -243,7 +243,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	protected $assignee;
 
 	/**
-	 * @var \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject
+	 * @var \App\Dto\Test\Schema\AssigneeDto[]
 	 */
 	protected $assignees;
 
@@ -677,13 +677,13 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'assignees' => [
 			'name' => 'assignees',
-			'type' => '\App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject',
+			'type' => '\App\Dto\Test\Schema\AssigneeDto[]',
 			'associative' => true,
 			'key' => 'login',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => '\ArrayObject',
+			'collectionType' => 'array',
 			'serialize' => null,
 			'factory' => null,
 			'singularType' => '\App\Dto\Test\Schema\AssigneeDto',
@@ -1969,11 +1969,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject $assignees
+	 * @param \App\Dto\Test\Schema\AssigneeDto[] $assignees
 	 *
 	 * @return $this
 	 */
-	public function setAssignees(\ArrayObject $assignees) {
+	public function setAssignees(array $assignees) {
 		$this->assignees = $assignees;
 		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
 
@@ -1981,11 +1981,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @return \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject
+	 * @return \App\Dto\Test\Schema\AssigneeDto[]
 	 */
-	public function getAssignees(): \ArrayObject {
+	public function getAssignees(): array {
 		if ($this->assignees === null) {
-			return new \ArrayObject([]);
+			return [];
 		}
 
 		return $this->assignees;
@@ -2014,7 +2014,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 			return false;
 		}
 
-		return $this->assignees->count() > 0;
+		return count($this->assignees) > 0;
 	}
 
 	/**
@@ -2032,7 +2032,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function addAssignee($key, \App\Dto\Test\Schema\AssigneeDto $assignee) {
 		if ($this->assignees === null) {
-			$this->assignees = new \ArrayObject([]);
+			$this->assignees = [];
 		}
 
 		$this->assignees[$key] = $assignee;
