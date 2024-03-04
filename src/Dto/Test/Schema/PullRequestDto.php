@@ -36,9 +36,9 @@ namespace App\Dto\Test\Schema;
  * @property string|null $mergedAt
  * @property string|null $mergeCommitSha
  * @property \App\Dto\Test\Schema\SimpleUserDto|null $assignee
- * @property array|null $assignees
- * @property array|null $requestedReviewers
- * @property array|null $requestedTeams
+ * @property \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject $assignees
+ * @property \App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
+ * @property \App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject $requestedTeams
  * @property \App\Dto\Test\Schema\HeadDto $head
  * @property \App\Dto\Test\Schema\BaseDto $base
  * @property string $authorAssociation
@@ -243,17 +243,17 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	protected $assignee;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject
 	 */
 	protected $assignees;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject
 	 */
 	protected $requestedReviewers;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject
 	 */
 	protected $requestedTeams;
 
@@ -677,39 +677,48 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'assignees' => [
 			'name' => 'assignees',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject',
+			'associative' => true,
+			'key' => 'login',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
+			'collectionType' => '\ArrayObject',
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Schema\AssigneeDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Schema\AssigneeDto',
 		],
 		'requestedReviewers' => [
 			'name' => 'requestedReviewers',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject',
+			'associative' => true,
+			'key' => 'login',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
+			'collectionType' => '\ArrayObject',
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Schema\RequestedReviewerDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Schema\RequestedReviewerDto',
 		],
 		'requestedTeams' => [
 			'name' => 'requestedTeams',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject',
+			'associative' => true,
+			'key' => 'slug',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
+			'collectionType' => '\ArrayObject',
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Schema\RequestedTeamDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Schema\RequestedTeamDto',
 		],
 		'head' => [
 			'name' => 'head',
@@ -1960,11 +1969,11 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array|null $assignees
+	 * @param \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject $assignees
 	 *
 	 * @return $this
 	 */
-	public function setAssignees(?array $assignees) {
+	public function setAssignees(\ArrayObject $assignees) {
 		$this->assignees = $assignees;
 		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
 
@@ -1972,52 +1981,72 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $assignees
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Schema\AssigneeDto[]|\ArrayObject
 	 */
-	public function setAssigneesOrFail(array $assignees) {
-		$this->assignees = $assignees;
-		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getAssignees(): ?array {
-		return $this->assignees;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getAssigneesOrFail(): array {
+	public function getAssignees(): \ArrayObject {
 		if ($this->assignees === null) {
-			throw new \RuntimeException('Value not set for field `assignees` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->assignees;
+	}
+
+	/**
+	 * @param string|int $key
+	 *
+	 * @return \App\Dto\Test\Schema\AssigneeDto
+	 *
+	 * @throws \RuntimeException If value with this key is not set.
+	 */
+	public function getAssignee($key): \App\Dto\Test\Schema\AssigneeDto {
+		if (!isset($this->assignees[$key])) {
+			throw new \RuntimeException(sprintf('Value not set for field `assignees` and key `%s` (expected to be not null)', $key));
+		}
+
+		return $this->assignees[$key];
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function hasAssignees(): bool {
-		return $this->assignees !== null;
+		if ($this->assignees === null) {
+			return false;
+		}
+
+		return $this->assignees->count() > 0;
 	}
 
 	/**
-	 * @param array|null $requestedReviewers
+	 * @param string|int $key
+	 * @return bool
+	 */
+	public function hasAssignee($key): bool {
+		return isset($this->assignees[$key]);
+	}
+
+	/**
+	 * @param string|int $key
+	 * @param \App\Dto\Test\Schema\AssigneeDto $assignee
+	 * @return $this
+	 */
+	public function addAssignee($key, \App\Dto\Test\Schema\AssigneeDto $assignee) {
+		if ($this->assignees === null) {
+			$this->assignees = new \ArrayObject([]);
+		}
+
+		$this->assignees[$key] = $assignee;
+		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
+
+		return $this;
+	}
+
+	/**
+	 * @param \App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
 	 *
 	 * @return $this
 	 */
-	public function setRequestedReviewers(?array $requestedReviewers) {
+	public function setRequestedReviewers(\ArrayObject $requestedReviewers) {
 		$this->requestedReviewers = $requestedReviewers;
 		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
 
@@ -2025,52 +2054,72 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $requestedReviewers
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Schema\RequestedReviewerDto[]|\ArrayObject
 	 */
-	public function setRequestedReviewersOrFail(array $requestedReviewers) {
-		$this->requestedReviewers = $requestedReviewers;
-		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getRequestedReviewers(): ?array {
-		return $this->requestedReviewers;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getRequestedReviewersOrFail(): array {
+	public function getRequestedReviewers(): \ArrayObject {
 		if ($this->requestedReviewers === null) {
-			throw new \RuntimeException('Value not set for field `requestedReviewers` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->requestedReviewers;
+	}
+
+	/**
+	 * @param string|int $key
+	 *
+	 * @return \App\Dto\Test\Schema\RequestedReviewerDto
+	 *
+	 * @throws \RuntimeException If value with this key is not set.
+	 */
+	public function getRequestedReviewer($key): \App\Dto\Test\Schema\RequestedReviewerDto {
+		if (!isset($this->requestedReviewers[$key])) {
+			throw new \RuntimeException(sprintf('Value not set for field `requestedReviewers` and key `%s` (expected to be not null)', $key));
+		}
+
+		return $this->requestedReviewers[$key];
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function hasRequestedReviewers(): bool {
-		return $this->requestedReviewers !== null;
+		if ($this->requestedReviewers === null) {
+			return false;
+		}
+
+		return $this->requestedReviewers->count() > 0;
 	}
 
 	/**
-	 * @param array|null $requestedTeams
+	 * @param string|int $key
+	 * @return bool
+	 */
+	public function hasRequestedReviewer($key): bool {
+		return isset($this->requestedReviewers[$key]);
+	}
+
+	/**
+	 * @param string|int $key
+	 * @param \App\Dto\Test\Schema\RequestedReviewerDto $requestedReviewer
+	 * @return $this
+	 */
+	public function addRequestedReviewer($key, \App\Dto\Test\Schema\RequestedReviewerDto $requestedReviewer) {
+		if ($this->requestedReviewers === null) {
+			$this->requestedReviewers = new \ArrayObject([]);
+		}
+
+		$this->requestedReviewers[$key] = $requestedReviewer;
+		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
+
+		return $this;
+	}
+
+	/**
+	 * @param \App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject $requestedTeams
 	 *
 	 * @return $this
 	 */
-	public function setRequestedTeams(?array $requestedTeams) {
+	public function setRequestedTeams(\ArrayObject $requestedTeams) {
 		$this->requestedTeams = $requestedTeams;
 		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
 
@@ -2078,44 +2127,64 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $requestedTeams
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Schema\RequestedTeamDto[]|\ArrayObject
 	 */
-	public function setRequestedTeamsOrFail(array $requestedTeams) {
-		$this->requestedTeams = $requestedTeams;
-		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getRequestedTeams(): ?array {
-		return $this->requestedTeams;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getRequestedTeamsOrFail(): array {
+	public function getRequestedTeams(): \ArrayObject {
 		if ($this->requestedTeams === null) {
-			throw new \RuntimeException('Value not set for field `requestedTeams` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->requestedTeams;
 	}
 
 	/**
+	 * @param string|int $key
+	 *
+	 * @return \App\Dto\Test\Schema\RequestedTeamDto
+	 *
+	 * @throws \RuntimeException If value with this key is not set.
+	 */
+	public function getRequestedTeam($key): \App\Dto\Test\Schema\RequestedTeamDto {
+		if (!isset($this->requestedTeams[$key])) {
+			throw new \RuntimeException(sprintf('Value not set for field `requestedTeams` and key `%s` (expected to be not null)', $key));
+		}
+
+		return $this->requestedTeams[$key];
+	}
+
+	/**
 	 * @return bool
 	 */
 	public function hasRequestedTeams(): bool {
-		return $this->requestedTeams !== null;
+		if ($this->requestedTeams === null) {
+			return false;
+		}
+
+		return $this->requestedTeams->count() > 0;
+	}
+
+	/**
+	 * @param string|int $key
+	 * @return bool
+	 */
+	public function hasRequestedTeam($key): bool {
+		return isset($this->requestedTeams[$key]);
+	}
+
+	/**
+	 * @param string|int $key
+	 * @param \App\Dto\Test\Schema\RequestedTeamDto $requestedTeam
+	 * @return $this
+	 */
+	public function addRequestedTeam($key, \App\Dto\Test\Schema\RequestedTeamDto $requestedTeam) {
+		if ($this->requestedTeams === null) {
+			$this->requestedTeams = new \ArrayObject([]);
+		}
+
+		$this->requestedTeams[$key] = $requestedTeam;
+		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
+
+		return $this;
 	}
 
 	/**
