@@ -1992,21 +1992,6 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param string|int $key
-	 *
-	 * @return \App\Dto\Test\Schema\AssigneeDto
-	 *
-	 * @throws \RuntimeException If value with this key is not set.
-	 */
-	public function getAssignee($key): \App\Dto\Test\Schema\AssigneeDto {
-		if (!isset($this->assignees[$key])) {
-			throw new \RuntimeException(sprintf('Value not set for field `assignees` and key `%s` (expected to be not null)', $key));
-		}
-
-		return $this->assignees[$key];
-	}
-
-	/**
 	 * @return bool
 	 */
 	public function hasAssignees(): bool {
@@ -2015,30 +2000,6 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		}
 
 		return count($this->assignees) > 0;
-	}
-
-	/**
-	 * @param string|int $key
-	 * @return bool
-	 */
-	public function hasAssignee($key): bool {
-		return isset($this->assignees[$key]);
-	}
-
-	/**
-	 * @param string|int $key
-	 * @param \App\Dto\Test\Schema\AssigneeDto $assignee
-	 * @return $this
-	 */
-	public function addAssignee($key, \App\Dto\Test\Schema\AssigneeDto $assignee) {
-		if ($this->assignees === null) {
-			$this->assignees = [];
-		}
-
-		$this->assignees[$key] = $assignee;
-		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
-
-		return $this;
 	}
 
 	/**
