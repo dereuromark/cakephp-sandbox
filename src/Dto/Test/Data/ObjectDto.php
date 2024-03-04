@@ -27,7 +27,7 @@ namespace App\Dto\Test\Data;
  * @property string|null $title
  * @property \App\Dto\Test\Data\UserDto|null $user
  * @property string|null $body
- * @property array|null $labels
+ * @property \App\Dto\Test\Data\LabelDto[]|\ArrayObject $labels
  * @property \App\Dto\Test\Data\MilestoneDto|null $milestone
  * @property string|null $activeLockReason
  * @property string|null $createdAt
@@ -36,9 +36,9 @@ namespace App\Dto\Test\Data;
  * @property string|null $mergedAt
  * @property string|null $mergeCommitSha
  * @property \App\Dto\Test\Data\AssigneeDto|null $assignee
- * @property array|null $assignees
- * @property array|null $requestedReviewers
- * @property array|null $requestedTeams
+ * @property \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject $assignees
+ * @property \App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
+ * @property \App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject $requestedTeams
  * @property \App\Dto\Test\Data\HeadDto|null $head
  * @property \App\Dto\Test\Data\BaseDto|null $base
  * @property string|null $authorAssociation
@@ -198,7 +198,7 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	protected $body;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Data\LabelDto[]|\ArrayObject
 	 */
 	protected $labels;
 
@@ -243,17 +243,17 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	protected $assignee;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject
 	 */
 	protected $assignees;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject
 	 */
 	protected $requestedReviewers;
 
 	/**
-	 * @var array|null
+	 * @var \App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject
 	 */
 	protected $requestedTeams;
 
@@ -566,15 +566,18 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'labels' => [
 			'name' => 'labels',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Data\LabelDto[]|\ArrayObject',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
+			'collectionType' => '\ArrayObject',
 			'associative' => false,
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Data\LabelDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Data\LabelDto',
 		],
 		'milestone' => [
 			'name' => 'milestone',
@@ -674,39 +677,48 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 		],
 		'assignees' => [
 			'name' => 'assignees',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Data\AssigneeDto[]|\ArrayObject',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
+			'collectionType' => '\ArrayObject',
 			'associative' => false,
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Data\AssigneeDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Data\AssigneeDto',
 		],
 		'requestedReviewers' => [
 			'name' => 'requestedReviewers',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
+			'collectionType' => '\ArrayObject',
 			'associative' => false,
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Data\RequestedReviewerDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Data\RequestedReviewerDto',
 		],
 		'requestedTeams' => [
 			'name' => 'requestedTeams',
-			'type' => 'array',
+			'type' => '\App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
-			'collectionType' => null,
+			'collectionType' => '\ArrayObject',
 			'associative' => false,
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'singularType' => '\App\Dto\Test\Data\RequestedTeamDto',
+			'singularNullable' => false,
+			'singularTypeHint' => '\App\Dto\Test\Data\RequestedTeamDto',
 		],
 		'head' => [
 			'name' => 'head',
@@ -1973,11 +1985,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array|null $labels
+	 * @param \App\Dto\Test\Data\LabelDto[]|\ArrayObject $labels
 	 *
 	 * @return $this
 	 */
-	public function setLabels(?array $labels) {
+	public function setLabels(\ArrayObject $labels) {
 		$this->labels = $labels;
 		$this->_touchedFields[self::FIELD_LABELS] = true;
 
@@ -1985,34 +1997,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $labels
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Data\LabelDto[]|\ArrayObject
 	 */
-	public function setLabelsOrFail(array $labels) {
-		$this->labels = $labels;
-		$this->_touchedFields[self::FIELD_LABELS] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getLabels(): ?array {
-		return $this->labels;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getLabelsOrFail(): array {
+	public function getLabels(): \ArrayObject {
 		if ($this->labels === null) {
-			throw new \RuntimeException('Value not set for field `labels` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->labels;
@@ -2022,7 +2011,25 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	 * @return bool
 	 */
 	public function hasLabels(): bool {
-		return $this->labels !== null;
+		if ($this->labels === null) {
+			return false;
+		}
+
+		return $this->labels->count() > 0;
+	}
+	/**
+	 * @param \App\Dto\Test\Data\LabelDto $label
+	 * @return $this
+	 */
+	public function addLabel(\App\Dto\Test\Data\LabelDto $label) {
+		if ($this->labels === null) {
+			$this->labels = new \ArrayObject([]);
+		}
+
+		$this->labels[] = $label;
+		$this->_touchedFields[self::FIELD_LABELS] = true;
+
+		return $this;
 	}
 
 	/**
@@ -2450,11 +2457,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array|null $assignees
+	 * @param \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject $assignees
 	 *
 	 * @return $this
 	 */
-	public function setAssignees(?array $assignees) {
+	public function setAssignees(\ArrayObject $assignees) {
 		$this->assignees = $assignees;
 		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
 
@@ -2462,34 +2469,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $assignees
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Data\AssigneeDto[]|\ArrayObject
 	 */
-	public function setAssigneesOrFail(array $assignees) {
-		$this->assignees = $assignees;
-		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getAssignees(): ?array {
-		return $this->assignees;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getAssigneesOrFail(): array {
+	public function getAssignees(): \ArrayObject {
 		if ($this->assignees === null) {
-			throw new \RuntimeException('Value not set for field `assignees` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->assignees;
@@ -2499,15 +2483,33 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	 * @return bool
 	 */
 	public function hasAssignees(): bool {
-		return $this->assignees !== null;
+		if ($this->assignees === null) {
+			return false;
+		}
+
+		return $this->assignees->count() > 0;
+	}
+	/**
+	 * @param \App\Dto\Test\Data\AssigneeDto $assignee
+	 * @return $this
+	 */
+	public function addAssignee(\App\Dto\Test\Data\AssigneeDto $assignee) {
+		if ($this->assignees === null) {
+			$this->assignees = new \ArrayObject([]);
+		}
+
+		$this->assignees[] = $assignee;
+		$this->_touchedFields[self::FIELD_ASSIGNEES] = true;
+
+		return $this;
 	}
 
 	/**
-	 * @param array|null $requestedReviewers
+	 * @param \App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject $requestedReviewers
 	 *
 	 * @return $this
 	 */
-	public function setRequestedReviewers(?array $requestedReviewers) {
+	public function setRequestedReviewers(\ArrayObject $requestedReviewers) {
 		$this->requestedReviewers = $requestedReviewers;
 		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
 
@@ -2515,34 +2517,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $requestedReviewers
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Data\RequestedReviewerDto[]|\ArrayObject
 	 */
-	public function setRequestedReviewersOrFail(array $requestedReviewers) {
-		$this->requestedReviewers = $requestedReviewers;
-		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getRequestedReviewers(): ?array {
-		return $this->requestedReviewers;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getRequestedReviewersOrFail(): array {
+	public function getRequestedReviewers(): \ArrayObject {
 		if ($this->requestedReviewers === null) {
-			throw new \RuntimeException('Value not set for field `requestedReviewers` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->requestedReviewers;
@@ -2552,15 +2531,33 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	 * @return bool
 	 */
 	public function hasRequestedReviewers(): bool {
-		return $this->requestedReviewers !== null;
+		if ($this->requestedReviewers === null) {
+			return false;
+		}
+
+		return $this->requestedReviewers->count() > 0;
+	}
+	/**
+	 * @param \App\Dto\Test\Data\RequestedReviewerDto $requestedReviewer
+	 * @return $this
+	 */
+	public function addRequestedReviewer(\App\Dto\Test\Data\RequestedReviewerDto $requestedReviewer) {
+		if ($this->requestedReviewers === null) {
+			$this->requestedReviewers = new \ArrayObject([]);
+		}
+
+		$this->requestedReviewers[] = $requestedReviewer;
+		$this->_touchedFields[self::FIELD_REQUESTED_REVIEWERS] = true;
+
+		return $this;
 	}
 
 	/**
-	 * @param array|null $requestedTeams
+	 * @param \App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject $requestedTeams
 	 *
 	 * @return $this
 	 */
-	public function setRequestedTeams(?array $requestedTeams) {
+	public function setRequestedTeams(\ArrayObject $requestedTeams) {
 		$this->requestedTeams = $requestedTeams;
 		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
 
@@ -2568,34 +2565,11 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	}
 
 	/**
-	 * @param array $requestedTeams
-	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
-	 * @return $this
+	 * @return \App\Dto\Test\Data\RequestedTeamDto[]|\ArrayObject
 	 */
-	public function setRequestedTeamsOrFail(array $requestedTeams) {
-		$this->requestedTeams = $requestedTeams;
-		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return array|null
-	 */
-	public function getRequestedTeams(): ?array {
-		return $this->requestedTeams;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return array
-	 */
-	public function getRequestedTeamsOrFail(): array {
+	public function getRequestedTeams(): \ArrayObject {
 		if ($this->requestedTeams === null) {
-			throw new \RuntimeException('Value not set for field `requestedTeams` (expected to be not null)');
+			return new \ArrayObject([]);
 		}
 
 		return $this->requestedTeams;
@@ -2605,7 +2579,25 @@ class ObjectDto extends \CakeDto\Dto\AbstractDto {
 	 * @return bool
 	 */
 	public function hasRequestedTeams(): bool {
-		return $this->requestedTeams !== null;
+		if ($this->requestedTeams === null) {
+			return false;
+		}
+
+		return $this->requestedTeams->count() > 0;
+	}
+	/**
+	 * @param \App\Dto\Test\Data\RequestedTeamDto $requestedTeam
+	 * @return $this
+	 */
+	public function addRequestedTeam(\App\Dto\Test\Data\RequestedTeamDto $requestedTeam) {
+		if ($this->requestedTeams === null) {
+			$this->requestedTeams = new \ArrayObject([]);
+		}
+
+		$this->requestedTeams[] = $requestedTeam;
+		$this->_touchedFields[self::FIELD_REQUESTED_TEAMS] = true;
+
+		return $this;
 	}
 
 	/**

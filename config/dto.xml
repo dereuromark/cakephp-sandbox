@@ -313,6 +313,16 @@
 		<field name="siteAdmin" type="bool"/>
 	</dto>
 
+	<dto name="Test/Data/Label">
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="name" type="string"/>
+		<field name="description" type="string"/>
+		<field name="color" type="string"/>
+		<field name="default" type="bool"/>
+	</dto>
+
 	<dto name="Test/Data/Creator">
 		<field name="login" type="string"/>
 		<field name="id" type="int"/>
@@ -372,6 +382,42 @@
 		<field name="receivedEventsUrl" type="string"/>
 		<field name="type" type="string"/>
 		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/RequestedReviewer">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/RequestedTeam">
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="name" type="string"/>
+		<field name="slug" type="string"/>
+		<field name="description" type="string"/>
+		<field name="privacy" type="string"/>
+		<field name="notificationSetting" type="string"/>
+		<field name="permission" type="string"/>
+		<field name="membersUrl" type="string"/>
+		<field name="repositoriesUrl" type="string"/>
 	</dto>
 
 	<dto name="Test/Data/Owner">
@@ -548,7 +594,7 @@
 		<field name="title" type="string"/>
 		<field name="user" type="Test/Data/User"/>
 		<field name="body" type="string"/>
-		<field name="labels" type="array"/>
+		<field name="labels" type="Test/Data/Label[]" singular="label"/>
 		<field name="milestone" type="Test/Data/Milestone"/>
 		<field name="activeLockReason" type="string"/>
 		<field name="createdAt" type="string"/>
@@ -557,9 +603,9 @@
 		<field name="mergedAt" type="string"/>
 		<field name="mergeCommitSha" type="string"/>
 		<field name="assignee" type="Test/Data/Assignee"/>
-		<field name="assignees" type="array"/>
-		<field name="requestedReviewers" type="array"/>
-		<field name="requestedTeams" type="array"/>
+		<field name="assignees" type="Test/Data/Assignee[]" singular="assignee"/>
+		<field name="requestedReviewers" type="Test/Data/RequestedReviewer[]" singular="requestedReviewer"/>
+		<field name="requestedTeams" type="Test/Data/RequestedTeam[]" singular="requestedTeam"/>
 		<field name="head" type="Test/Data/Head"/>
 		<field name="base" type="Test/Data/Base"/>
 		<field name="authorAssociation" type="string"/>
