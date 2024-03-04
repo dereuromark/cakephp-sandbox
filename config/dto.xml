@@ -1,0 +1,570 @@
+<?xml version="1.0"?>
+<dtos
+	xmlns="cakephp-dto"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="cakephp-dto https://github.com/dereuromark/cakephp-dto">
+
+	<dto name="Test/Schema/SimpleUser">
+		<field name="name" type="string"/>
+		<field name="email" type="string"/>
+		<field name="login" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="avatarUrl" type="string" required="true"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="followersUrl" type="string" required="true"/>
+		<field name="followingUrl" type="string" required="true"/>
+		<field name="gistsUrl" type="string" required="true"/>
+		<field name="starredUrl" type="string" required="true"/>
+		<field name="subscriptionsUrl" type="string" required="true"/>
+		<field name="organizationsUrl" type="string" required="true"/>
+		<field name="reposUrl" type="string" required="true"/>
+		<field name="eventsUrl" type="string" required="true"/>
+		<field name="receivedEventsUrl" type="string" required="true"/>
+		<field name="type" type="string" required="true"/>
+		<field name="siteAdmin" type="bool" required="true"/>
+		<field name="starredAt" type="string"/>
+	</dto>
+
+	<dto name="Test/Schema/Milestone">
+		<field name="url" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="labelsUrl" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="number" type="int" required="true"/>
+		<field name="state" type="string" required="true"/>
+		<field name="title" type="string" required="true"/>
+		<field name="description" type="string"/>
+		<field name="creator" type="Test/Schema/SimpleUser"/>
+		<field name="openIssues" type="int" required="true"/>
+		<field name="closedIssues" type="int" required="true"/>
+		<field name="createdAt" type="string" required="true"/>
+		<field name="updatedAt" type="string" required="true"/>
+		<field name="closedAt" type="string"/>
+		<field name="dueOn" type="string"/>
+	</dto>
+
+	<dto name="Test/Schema/Owner">
+		<field name="avatarUrl" type="string" required="true"/>
+		<field name="eventsUrl" type="string" required="true"/>
+		<field name="followersUrl" type="string" required="true"/>
+		<field name="followingUrl" type="string" required="true"/>
+		<field name="gistsUrl" type="string" required="true"/>
+		<field name="gravatarId" type="string"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="login" type="string" required="true"/>
+		<field name="organizationsUrl" type="string" required="true"/>
+		<field name="receivedEventsUrl" type="string" required="true"/>
+		<field name="reposUrl" type="string" required="true"/>
+		<field name="siteAdmin" type="bool" required="true"/>
+		<field name="starredUrl" type="string" required="true"/>
+		<field name="subscriptionsUrl" type="string" required="true"/>
+		<field name="type" type="string" required="true"/>
+		<field name="url" type="string" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/Permissions">
+		<field name="admin" type="bool" required="true"/>
+		<field name="maintain" type="bool"/>
+		<field name="push" type="bool" required="true"/>
+		<field name="triage" type="bool"/>
+		<field name="pull" type="bool" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/License">
+		<field name="key" type="string" required="true"/>
+		<field name="name" type="string" required="true"/>
+		<field name="url" type="string"/>
+		<field name="spdxId" type="string"/>
+		<field name="nodeId" type="string" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/Repo">
+		<field name="archiveUrl" type="string" required="true"/>
+		<field name="assigneesUrl" type="string" required="true"/>
+		<field name="blobsUrl" type="string" required="true"/>
+		<field name="branchesUrl" type="string" required="true"/>
+		<field name="collaboratorsUrl" type="string" required="true"/>
+		<field name="commentsUrl" type="string" required="true"/>
+		<field name="commitsUrl" type="string" required="true"/>
+		<field name="compareUrl" type="string" required="true"/>
+		<field name="contentsUrl" type="string" required="true"/>
+		<field name="contributorsUrl" type="string" required="true"/>
+		<field name="deploymentsUrl" type="string" required="true"/>
+		<field name="description" type="string"/>
+		<field name="downloadsUrl" type="string" required="true"/>
+		<field name="eventsUrl" type="string" required="true"/>
+		<field name="fork" type="bool" required="true"/>
+		<field name="forksUrl" type="string" required="true"/>
+		<field name="fullName" type="string" required="true"/>
+		<field name="gitCommitsUrl" type="string" required="true"/>
+		<field name="gitRefsUrl" type="string" required="true"/>
+		<field name="gitTagsUrl" type="string" required="true"/>
+		<field name="hooksUrl" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="isTemplate" type="bool"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="issueCommentUrl" type="string" required="true"/>
+		<field name="issueEventsUrl" type="string" required="true"/>
+		<field name="issuesUrl" type="string" required="true"/>
+		<field name="keysUrl" type="string" required="true"/>
+		<field name="labelsUrl" type="string" required="true"/>
+		<field name="languagesUrl" type="string" required="true"/>
+		<field name="mergesUrl" type="string" required="true"/>
+		<field name="milestonesUrl" type="string" required="true"/>
+		<field name="name" type="string" required="true"/>
+		<field name="notificationsUrl" type="string" required="true"/>
+		<field name="owner" type="Test/Schema/Owner" required="true"/>
+		<field name="private" type="bool" required="true"/>
+		<field name="pullsUrl" type="string" required="true"/>
+		<field name="releasesUrl" type="string" required="true"/>
+		<field name="stargazersUrl" type="string" required="true"/>
+		<field name="statusesUrl" type="string" required="true"/>
+		<field name="subscribersUrl" type="string" required="true"/>
+		<field name="subscriptionUrl" type="string" required="true"/>
+		<field name="tagsUrl" type="string" required="true"/>
+		<field name="teamsUrl" type="string" required="true"/>
+		<field name="treesUrl" type="string" required="true"/>
+		<field name="url" type="string" required="true"/>
+		<field name="cloneUrl" type="string" required="true"/>
+		<field name="defaultBranch" type="string" required="true"/>
+		<field name="forks" type="int" required="true"/>
+		<field name="forksCount" type="int" required="true"/>
+		<field name="gitUrl" type="string" required="true"/>
+		<field name="hasDownloads" type="bool" required="true"/>
+		<field name="hasIssues" type="bool" required="true"/>
+		<field name="hasProjects" type="bool" required="true"/>
+		<field name="hasWiki" type="bool" required="true"/>
+		<field name="hasPages" type="bool" required="true"/>
+		<field name="hasDiscussions" type="bool" required="true"/>
+		<field name="homepage" type="string"/>
+		<field name="language" type="string"/>
+		<field name="masterBranch" type="string"/>
+		<field name="archived" type="bool" required="true"/>
+		<field name="disabled" type="bool" required="true"/>
+		<field name="visibility" type="string"/>
+		<field name="mirrorUrl" type="string"/>
+		<field name="openIssues" type="int" required="true"/>
+		<field name="openIssuesCount" type="int" required="true"/>
+		<field name="permissions" type="Test/Schema/Permissions"/>
+		<field name="tempCloneToken" type="string"/>
+		<field name="allowMergeCommit" type="bool"/>
+		<field name="allowSquashMerge" type="bool"/>
+		<field name="allowRebaseMerge" type="bool"/>
+		<field name="license" type="Test/Schema/LicenseSimple"/>
+		<field name="pushedAt" type="string" required="true"/>
+		<field name="size" type="int" required="true"/>
+		<field name="sshUrl" type="string" required="true"/>
+		<field name="stargazersCount" type="int" required="true"/>
+		<field name="svnUrl" type="string" required="true"/>
+		<field name="topics" type="array"/>
+		<field name="watchers" type="int" required="true"/>
+		<field name="watchersCount" type="int" required="true"/>
+		<field name="createdAt" type="string" required="true"/>
+		<field name="updatedAt" type="string" required="true"/>
+		<field name="allowForking" type="bool"/>
+		<field name="webCommitSignoffRequired" type="bool"/>
+	</dto>
+
+	<dto name="Test/Schema/User">
+		<field name="avatarUrl" type="string" required="true"/>
+		<field name="eventsUrl" type="string" required="true"/>
+		<field name="followersUrl" type="string" required="true"/>
+		<field name="followingUrl" type="string" required="true"/>
+		<field name="gistsUrl" type="string" required="true"/>
+		<field name="gravatarId" type="string"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="login" type="string" required="true"/>
+		<field name="organizationsUrl" type="string" required="true"/>
+		<field name="receivedEventsUrl" type="string" required="true"/>
+		<field name="reposUrl" type="string" required="true"/>
+		<field name="siteAdmin" type="bool" required="true"/>
+		<field name="starredUrl" type="string" required="true"/>
+		<field name="subscriptionsUrl" type="string" required="true"/>
+		<field name="type" type="string" required="true"/>
+		<field name="url" type="string" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/Head">
+		<field name="label" type="string" required="true"/>
+		<field name="ref" type="string" required="true"/>
+		<field name="repo" type="Test/Schema/Repo"/>
+		<field name="sha" type="string" required="true"/>
+		<field name="user" type="Test/Schema/User" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/LicenseSimple">
+		<field name="key" type="string" required="true"/>
+		<field name="name" type="string" required="true"/>
+		<field name="url" type="string"/>
+		<field name="spdxId" type="string"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="htmlUrl" type="string"/>
+	</dto>
+
+	<dto name="Test/Schema/Base">
+		<field name="label" type="string" required="true"/>
+		<field name="ref" type="string" required="true"/>
+		<field name="repo" type="Test/Schema/Repo" required="true"/>
+		<field name="sha" type="string" required="true"/>
+		<field name="user" type="Test/Schema/User" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/AutoMerge">
+		<field name="enabledBy" type="Test/Schema/SimpleUser" required="true"/>
+		<field name="mergeMethod" type="string" required="true"/>
+		<field name="commitTitle" type="string" required="true"/>
+		<field name="commitMessage" type="string" required="true"/>
+	</dto>
+
+	<dto name="Test/Schema/PullRequest">
+		<field name="url" type="string" required="true"/>
+		<field name="id" type="int" required="true"/>
+		<field name="nodeId" type="string" required="true"/>
+		<field name="htmlUrl" type="string" required="true"/>
+		<field name="diffUrl" type="string" required="true"/>
+		<field name="patchUrl" type="string" required="true"/>
+		<field name="issueUrl" type="string" required="true"/>
+		<field name="commitsUrl" type="string" required="true"/>
+		<field name="reviewCommentsUrl" type="string" required="true"/>
+		<field name="reviewCommentUrl" type="string" required="true"/>
+		<field name="commentsUrl" type="string" required="true"/>
+		<field name="statusesUrl" type="string" required="true"/>
+		<field name="number" type="int" required="true"/>
+		<field name="state" type="string" required="true"/>
+		<field name="locked" type="bool" required="true"/>
+		<field name="title" type="string" required="true"/>
+		<field name="user" type="Test/Schema/SimpleUser" required="true"/>
+		<field name="body" type="string"/>
+		<field name="labels" type="array" required="true"/>
+		<field name="milestone" type="Test/Schema/Milestone"/>
+		<field name="activeLockReason" type="string"/>
+		<field name="createdAt" type="string" required="true"/>
+		<field name="updatedAt" type="string" required="true"/>
+		<field name="closedAt" type="string"/>
+		<field name="mergedAt" type="string"/>
+		<field name="mergeCommitSha" type="string"/>
+		<field name="assignee" type="Test/Schema/SimpleUser"/>
+		<field name="assignees" type="array"/>
+		<field name="requestedReviewers" type="array"/>
+		<field name="requestedTeams" type="array"/>
+		<field name="head" type="Test/Schema/Head" required="true"/>
+		<field name="base" type="Test/Schema/Base" required="true"/>
+		<field name="authorAssociation" type="string" required="true"/>
+		<field name="autoMerge" type="Test/Schema/AutoMerge"/>
+		<field name="draft" type="bool"/>
+		<field name="merged" type="bool" required="true"/>
+		<field name="mergeable" type="bool"/>
+		<field name="rebaseable" type="bool"/>
+		<field name="mergeableState" type="string" required="true"/>
+		<field name="mergedBy" type="Test/Schema/SimpleUser"/>
+		<field name="comments" type="int" required="true"/>
+		<field name="reviewComments" type="int" required="true"/>
+		<field name="maintainerCanModify" type="bool" required="true"/>
+		<field name="commits" type="int" required="true"/>
+		<field name="additions" type="int" required="true"/>
+		<field name="deletions" type="int" required="true"/>
+		<field name="changedFiles" type="int" required="true"/>
+	</dto>
+
+
+
+
+
+
+	<dto name="Test/Data/User">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/Creator">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/Milestone">
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="labelsUrl" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="number" type="int"/>
+		<field name="state" type="string"/>
+		<field name="title" type="string"/>
+		<field name="description" type="string"/>
+		<field name="creator" type="Test/Data/Creator"/>
+		<field name="openIssues" type="int"/>
+		<field name="closedIssues" type="int"/>
+		<field name="createdAt" type="string"/>
+		<field name="updatedAt" type="string"/>
+		<field name="closedAt" type="string"/>
+		<field name="dueOn" type="string"/>
+	</dto>
+
+	<dto name="Test/Data/Assignee">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/Owner">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/Permissions">
+		<field name="admin" type="bool"/>
+		<field name="push" type="bool"/>
+		<field name="pull" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/License">
+		<field name="key" type="string"/>
+		<field name="name" type="string"/>
+		<field name="url" type="string"/>
+		<field name="spdxId" type="string"/>
+		<field name="nodeId" type="string"/>
+	</dto>
+
+	<dto name="Test/Data/Repo">
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="name" type="string"/>
+		<field name="fullName" type="string"/>
+		<field name="owner" type="Test/Data/Owner"/>
+		<field name="private" type="bool"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="description" type="string"/>
+		<field name="fork" type="bool"/>
+		<field name="url" type="string"/>
+		<field name="archiveUrl" type="string"/>
+		<field name="assigneesUrl" type="string"/>
+		<field name="blobsUrl" type="string"/>
+		<field name="branchesUrl" type="string"/>
+		<field name="collaboratorsUrl" type="string"/>
+		<field name="commentsUrl" type="string"/>
+		<field name="commitsUrl" type="string"/>
+		<field name="compareUrl" type="string"/>
+		<field name="contentsUrl" type="string"/>
+		<field name="contributorsUrl" type="string"/>
+		<field name="deploymentsUrl" type="string"/>
+		<field name="downloadsUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="forksUrl" type="string"/>
+		<field name="gitCommitsUrl" type="string"/>
+		<field name="gitRefsUrl" type="string"/>
+		<field name="gitTagsUrl" type="string"/>
+		<field name="gitUrl" type="string"/>
+		<field name="issueCommentUrl" type="string"/>
+		<field name="issueEventsUrl" type="string"/>
+		<field name="issuesUrl" type="string"/>
+		<field name="keysUrl" type="string"/>
+		<field name="labelsUrl" type="string"/>
+		<field name="languagesUrl" type="string"/>
+		<field name="mergesUrl" type="string"/>
+		<field name="milestonesUrl" type="string"/>
+		<field name="notificationsUrl" type="string"/>
+		<field name="pullsUrl" type="string"/>
+		<field name="releasesUrl" type="string"/>
+		<field name="sshUrl" type="string"/>
+		<field name="stargazersUrl" type="string"/>
+		<field name="statusesUrl" type="string"/>
+		<field name="subscribersUrl" type="string"/>
+		<field name="subscriptionUrl" type="string"/>
+		<field name="tagsUrl" type="string"/>
+		<field name="teamsUrl" type="string"/>
+		<field name="treesUrl" type="string"/>
+		<field name="cloneUrl" type="string"/>
+		<field name="mirrorUrl" type="string"/>
+		<field name="hooksUrl" type="string"/>
+		<field name="svnUrl" type="string"/>
+		<field name="homepage" type="string"/>
+		<field name="language" type="mixed"/>
+		<field name="forksCount" type="int"/>
+		<field name="stargazersCount" type="int"/>
+		<field name="watchersCount" type="int"/>
+		<field name="size" type="int"/>
+		<field name="defaultBranch" type="string"/>
+		<field name="openIssuesCount" type="int"/>
+		<field name="topics" type="array"/>
+		<field name="hasIssues" type="bool"/>
+		<field name="hasProjects" type="bool"/>
+		<field name="hasWiki" type="bool"/>
+		<field name="hasPages" type="bool"/>
+		<field name="hasDownloads" type="bool"/>
+		<field name="hasDiscussions" type="bool"/>
+		<field name="archived" type="bool"/>
+		<field name="disabled" type="bool"/>
+		<field name="pushedAt" type="string"/>
+		<field name="createdAt" type="string"/>
+		<field name="updatedAt" type="string"/>
+		<field name="permissions" type="Test/Data/Permissions"/>
+		<field name="allowRebaseMerge" type="bool"/>
+		<field name="tempCloneToken" type="string"/>
+		<field name="allowSquashMerge" type="bool"/>
+		<field name="allowMergeCommit" type="bool"/>
+		<field name="forks" type="int"/>
+		<field name="openIssues" type="int"/>
+		<field name="license" type="Test/Data/License"/>
+		<field name="watchers" type="int"/>
+	</dto>
+
+	<dto name="Test/Data/Head">
+		<field name="label" type="string"/>
+		<field name="ref" type="string"/>
+		<field name="sha" type="string"/>
+		<field name="user" type="Test/Data/User"/>
+		<field name="repo" type="Test/Data/Repo"/>
+	</dto>
+
+	<dto name="Test/Data/Base">
+		<field name="label" type="string"/>
+		<field name="ref" type="string"/>
+		<field name="sha" type="string"/>
+		<field name="user" type="Test/Data/User"/>
+		<field name="repo" type="Test/Data/Repo"/>
+	</dto>
+
+	<dto name="Test/Data/MergedBy">
+		<field name="login" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="avatarUrl" type="string"/>
+		<field name="gravatarId" type="string"/>
+		<field name="url" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="followersUrl" type="string"/>
+		<field name="followingUrl" type="string"/>
+		<field name="gistsUrl" type="string"/>
+		<field name="starredUrl" type="string"/>
+		<field name="subscriptionsUrl" type="string"/>
+		<field name="organizationsUrl" type="string"/>
+		<field name="reposUrl" type="string"/>
+		<field name="eventsUrl" type="string"/>
+		<field name="receivedEventsUrl" type="string"/>
+		<field name="type" type="string"/>
+		<field name="siteAdmin" type="bool"/>
+	</dto>
+
+	<dto name="Test/Data/Object">
+		<field name="url" type="string"/>
+		<field name="id" type="int"/>
+		<field name="nodeId" type="string"/>
+		<field name="htmlUrl" type="string"/>
+		<field name="diffUrl" type="string"/>
+		<field name="patchUrl" type="string"/>
+		<field name="issueUrl" type="string"/>
+		<field name="commitsUrl" type="string"/>
+		<field name="reviewCommentsUrl" type="string"/>
+		<field name="reviewCommentUrl" type="string"/>
+		<field name="commentsUrl" type="string"/>
+		<field name="statusesUrl" type="string"/>
+		<field name="number" type="int"/>
+		<field name="state" type="string"/>
+		<field name="locked" type="bool"/>
+		<field name="title" type="string"/>
+		<field name="user" type="Test/Data/User"/>
+		<field name="body" type="string"/>
+		<field name="labels" type="array"/>
+		<field name="milestone" type="Test/Data/Milestone"/>
+		<field name="activeLockReason" type="string"/>
+		<field name="createdAt" type="string"/>
+		<field name="updatedAt" type="string"/>
+		<field name="closedAt" type="string"/>
+		<field name="mergedAt" type="string"/>
+		<field name="mergeCommitSha" type="string"/>
+		<field name="assignee" type="Test/Data/Assignee"/>
+		<field name="assignees" type="array"/>
+		<field name="requestedReviewers" type="array"/>
+		<field name="requestedTeams" type="array"/>
+		<field name="head" type="Test/Data/Head"/>
+		<field name="base" type="Test/Data/Base"/>
+		<field name="authorAssociation" type="string"/>
+		<field name="autoMerge" type="mixed"/>
+		<field name="draft" type="bool"/>
+		<field name="merged" type="bool"/>
+		<field name="mergeable" type="bool"/>
+		<field name="rebaseable" type="bool"/>
+		<field name="mergeableState" type="string"/>
+		<field name="mergedBy" type="Test/Data/MergedBy"/>
+		<field name="comments" type="int"/>
+		<field name="reviewComments" type="int"/>
+		<field name="maintainerCanModify" type="bool"/>
+		<field name="commits" type="int"/>
+		<field name="additions" type="int"/>
+		<field name="deletions" type="int"/>
+		<field name="changedFiles" type="int"/>
+	</dto>
+
+</dtos>
