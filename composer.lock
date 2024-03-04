@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd8d2226788ba0f822fb858fbce6d3ad",
+    "content-hash": "dfa1baa5b75ca24d4c39c8811c1ea777",
     "packages": [
         {
             "name": "brick/math",
@@ -173,12 +173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/bake.git",
-                "reference": "d4fa79c75ea9b44c43a4adae2f627bc5daaaa065"
+                "reference": "0c7f444f50edd9d28819b56f4a44606b9c6f70de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/bake/zipball/d4fa79c75ea9b44c43a4adae2f627bc5daaaa065",
-                "reference": "d4fa79c75ea9b44c43a4adae2f627bc5daaaa065",
+                "url": "https://api.github.com/repos/cakephp/bake/zipball/0c7f444f50edd9d28819b56f4a44606b9c6f70de",
+                "reference": "0c7f444f50edd9d28819b56f4a44606b9c6f70de",
                 "shasum": ""
             },
             "require": {
@@ -221,7 +221,7 @@
                 "issues": "https://github.com/cakephp/bake/issues",
                 "source": "https://github.com/cakephp/bake"
             },
-            "time": "2024-02-22T03:59:32+00:00"
+            "time": "2024-02-29T03:40:44+00:00"
         },
         {
             "name": "cakephp/cakephp",
@@ -519,23 +519,23 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.1.1",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "6967ac2dc17efc4658aaee35e96c94a618d4d453"
+                "reference": "2a5f996fb2accabf0635eb4125f369b542f2b943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/6967ac2dc17efc4658aaee35e96c94a618d4d453",
-                "reference": "6967ac2dc17efc4658aaee35e96c94a618d4d453",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/2a5f996fb2accabf0635eb4125f369b542f2b943",
+                "reference": "2a5f996fb2accabf0635eb4125f369b542f2b943",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cache": "^5.0",
                 "cakephp/orm": "^5.0",
                 "php": ">=8.1",
-                "robmorgan/phinx": "^0.15.3"
+                "robmorgan/phinx": "^0.15.3 || ^0.16.0"
             },
             "require-dev": {
                 "cakephp/bake": "^3.0",
@@ -575,7 +575,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2023-11-11T03:24:05+00:00"
+            "time": "2024-02-20T23:13:52+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -1484,12 +1484,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "c60f93d0cd0269588cb77e9216c518e54b4381c9"
+                "reference": "7abfdefafbd1110135e34995d67f703c275a1d13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/c60f93d0cd0269588cb77e9216c518e54b4381c9",
-                "reference": "c60f93d0cd0269588cb77e9216c518e54b4381c9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/7abfdefafbd1110135e34995d67f703c275a1d13",
+                "reference": "7abfdefafbd1110135e34995d67f703c275a1d13",
                 "shasum": ""
             },
             "require": {
@@ -1532,7 +1532,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2024-02-07T09:57:20+00:00"
+            "time": "2024-02-28T14:18:37+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -1711,16 +1711,16 @@
         },
         {
             "name": "dereuromark/cakephp-dto",
-            "version": "dev-master",
+            "version": "dev-generator",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "10b39d86a0c49fb59d16068be103a3bbb40b25a2"
+                "reference": "1eb32026ab9410084539403b0905f384298c2037"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/10b39d86a0c49fb59d16068be103a3bbb40b25a2",
-                "reference": "10b39d86a0c49fb59d16068be103a3bbb40b25a2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/1eb32026ab9410084539403b0905f384298c2037",
+                "reference": "1eb32026ab9410084539403b0905f384298c2037",
                 "shasum": ""
             },
             "require": {
@@ -1740,7 +1740,6 @@
             "suggest": {
                 "nette/neon": "If you want to add a NEON file engine instead of XML."
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -1772,6 +1771,7 @@
             "homepage": "https://github.com/dereuromark/cakephp-dto/",
             "keywords": [
                 "cakephp",
+                "dev",
                 "dto",
                 "plugin"
             ],
@@ -1779,7 +1779,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2024-02-07T09:57:47+00:00"
+            "time": "2024-03-04T03:40:38+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -2013,12 +2013,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "d91c76b8f1b5e25e78a2c235330998df2598880a"
+                "reference": "5e07fa761a868deb9b6e3cf6a397d60c7184d062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/d91c76b8f1b5e25e78a2c235330998df2598880a",
-                "reference": "d91c76b8f1b5e25e78a2c235330998df2598880a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/5e07fa761a868deb9b6e3cf6a397d60c7184d062",
+                "reference": "5e07fa761a868deb9b6e3cf6a397d60c7184d062",
                 "shasum": ""
             },
             "require": {
@@ -2076,7 +2076,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2024-02-26T03:18:30+00:00"
+            "time": "2024-02-28T18:47:52+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -2328,12 +2328,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "c5d72b214d55e3929bcb707078ab87f8068e262a"
+                "reference": "c59c1f4ffd6ca5fd3fb3b40a0e3947bbfe3c4244"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/c5d72b214d55e3929bcb707078ab87f8068e262a",
-                "reference": "c5d72b214d55e3929bcb707078ab87f8068e262a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/c59c1f4ffd6ca5fd3fb3b40a0e3947bbfe3c4244",
+                "reference": "c59c1f4ffd6ca5fd3fb3b40a0e3947bbfe3c4244",
                 "shasum": ""
             },
             "require": {
@@ -2382,7 +2382,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2024-02-23T17:16:50+00:00"
+            "time": "2024-02-29T02:41:45+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -2633,12 +2633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "67063a935a290211512f62857dba5ef0f357767c"
+                "reference": "761dd277ac4c8b8185d0357a4ad4b86969fc8bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/67063a935a290211512f62857dba5ef0f357767c",
-                "reference": "67063a935a290211512f62857dba5ef0f357767c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/761dd277ac4c8b8185d0357a4ad4b86969fc8bbf",
+                "reference": "761dd277ac4c8b8185d0357a4ad4b86969fc8bbf",
                 "shasum": ""
             },
             "require": {
@@ -2690,7 +2690,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2024-02-23T17:35:41+00:00"
+            "time": "2024-03-02T18:51:17+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -4505,21 +4505,21 @@
         },
         {
             "name": "mobiledetect/mobiledetectlib",
-            "version": "4.8.05",
+            "version": "4.8.06",
             "source": {
                 "type": "git",
                 "url": "https://github.com/serbanghita/Mobile-Detect.git",
-                "reference": "b7a8cdd70955ea6162269939914ba97fe36a154a"
+                "reference": "af088b54cecc13b3264edca7da93a89ba7aa2d9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/b7a8cdd70955ea6162269939914ba97fe36a154a",
-                "reference": "b7a8cdd70955ea6162269939914ba97fe36a154a",
+                "url": "https://api.github.com/repos/serbanghita/Mobile-Detect/zipball/af088b54cecc13b3264edca7da93a89ba7aa2d9e",
+                "reference": "af088b54cecc13b3264edca7da93a89ba7aa2d9e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.0",
-                "psr/simple-cache": "^3.0"
+                "psr/simple-cache": "^2 || ^3"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^v3.35.1",
@@ -4557,7 +4557,7 @@
             ],
             "support": {
                 "issues": "https://github.com/serbanghita/Mobile-Detect/issues",
-                "source": "https://github.com/serbanghita/Mobile-Detect/tree/4.8.05"
+                "source": "https://github.com/serbanghita/Mobile-Detect/tree/4.8.06"
             },
             "funding": [
                 {
@@ -4565,7 +4565,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-10T22:04:41+00:00"
+            "time": "2024-03-01T22:28:42+00:00"
         },
         {
             "name": "natxet/cssmin",
@@ -5804,16 +5804,16 @@
         },
         {
             "name": "sebastian/diff",
-            "version": "5.1.0",
+            "version": "5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "fbf413a49e54f6b9b17e12d900ac7f6101591b7f"
+                "reference": "c41e007b4b62af48218231d6c2275e4c9b975b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/fbf413a49e54f6b9b17e12d900ac7f6101591b7f",
-                "reference": "fbf413a49e54f6b9b17e12d900ac7f6101591b7f",
+                "url": "https://api.github.com/repos/sebastianbergmann/diff/zipball/c41e007b4b62af48218231d6c2275e4c9b975b2e",
+                "reference": "c41e007b4b62af48218231d6c2275e4c9b975b2e",
                 "shasum": ""
             },
             "require": {
@@ -5821,7 +5821,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "^10.0",
-                "symfony/process": "^4.2 || ^5"
+                "symfony/process": "^6.4"
             },
             "type": "library",
             "extra": {
@@ -5859,7 +5859,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/diff/issues",
                 "security": "https://github.com/sebastianbergmann/diff/security/policy",
-                "source": "https://github.com/sebastianbergmann/diff/tree/5.1.0"
+                "source": "https://github.com/sebastianbergmann/diff/tree/5.1.1"
             },
             "funding": [
                 {
@@ -5867,7 +5867,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-22T10:55:06+00:00"
+            "time": "2024-03-02T07:15:17+00:00"
         },
         {
             "name": "seld/cli-prompt",
@@ -8023,12 +8023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "e425560dbcb322adf27e82fab525e5461b21b015"
+                "reference": "4d627ff84a3699aebf3b47681b527f72102c96c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/e425560dbcb322adf27e82fab525e5461b21b015",
-                "reference": "e425560dbcb322adf27e82fab525e5461b21b015",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/4d627ff84a3699aebf3b47681b527f72102c96c8",
+                "reference": "4d627ff84a3699aebf3b47681b527f72102c96c8",
                 "shasum": ""
             },
             "require": {
@@ -8076,6 +8076,7 @@
                 "annotations",
                 "autocomplete",
                 "cakephp",
+                "dev",
                 "ide",
                 "phpdoc",
                 "phpstorm",
@@ -8091,7 +8092,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-02-14T13:46:56+00:00"
+            "time": "2024-03-03T22:14:08+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -8168,12 +8169,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-test-helper.git",
-                "reference": "8ce4399ed07d6b81e7a4be48574515782ad3403c"
+                "reference": "c283e32dae55594806ae910eb3e5e6f4ca1dddf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/8ce4399ed07d6b81e7a4be48574515782ad3403c",
-                "reference": "8ce4399ed07d6b81e7a4be48574515782ad3403c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/c283e32dae55594806ae910eb3e5e6f4ca1dddf9",
+                "reference": "c283e32dae55594806ae910eb3e5e6f4ca1dddf9",
                 "shasum": ""
             },
             "require": {
@@ -8209,7 +8210,7 @@
             "keywords": [
                 "cakephp",
                 "coverage",
-                "development",
+                "dev",
                 "generate",
                 "plugin",
                 "setup",
@@ -8219,7 +8220,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-test-helper/issues",
                 "source": "https://github.com/dereuromark/cakephp-test-helper/tree/master"
             },
-            "time": "2024-02-07T09:57:28+00:00"
+            "time": "2024-03-03T22:13:46+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
@@ -8339,20 +8340,21 @@
         },
         {
             "name": "phar-io/manifest",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "97803eca37d319dfa7826cc2437fc020857acb53"
+                "reference": "54750ef60c58e43759730615a392c31c80e23176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/97803eca37d319dfa7826cc2437fc020857acb53",
-                "reference": "97803eca37d319dfa7826cc2437fc020857acb53",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/54750ef60c58e43759730615a392c31c80e23176",
+                "reference": "54750ef60c58e43759730615a392c31c80e23176",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
+                "ext-libxml": "*",
                 "ext-phar": "*",
                 "ext-xmlwriter": "*",
                 "phar-io/version": "^3.0.1",
@@ -8393,9 +8395,15 @@
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
             "support": {
                 "issues": "https://github.com/phar-io/manifest/issues",
-                "source": "https://github.com/phar-io/manifest/tree/2.0.3"
+                "source": "https://github.com/phar-io/manifest/tree/2.0.4"
             },
-            "time": "2021-07-20T11:28:43+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/theseer",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-03-03T12:33:53+00:00"
         },
         {
             "name": "phar-io/version",
@@ -8621,16 +8629,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "10.1.11",
+            "version": "10.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "78c3b7625965c2513ee96569a4dbb62601784145"
+                "reference": "842f72662d6b9edda84c4b6f13885fd9cd53dc63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/78c3b7625965c2513ee96569a4dbb62601784145",
-                "reference": "78c3b7625965c2513ee96569a4dbb62601784145",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/842f72662d6b9edda84c4b6f13885fd9cd53dc63",
+                "reference": "842f72662d6b9edda84c4b6f13885fd9cd53dc63",
                 "shasum": ""
             },
             "require": {
@@ -8687,7 +8695,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.11"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/10.1.12"
             },
             "funding": [
                 {
@@ -8695,7 +8703,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-12-21T15:38:30+00:00"
+            "time": "2024-03-02T07:22:05+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -9043,16 +9051,16 @@
         },
         {
             "name": "sebastian/cli-parser",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/cli-parser.git",
-                "reference": "efdc130dbbbb8ef0b545a994fd811725c5282cae"
+                "reference": "c34583b87e7b7a8055bf6c450c2c77ce32a24084"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/efdc130dbbbb8ef0b545a994fd811725c5282cae",
-                "reference": "efdc130dbbbb8ef0b545a994fd811725c5282cae",
+                "url": "https://api.github.com/repos/sebastianbergmann/cli-parser/zipball/c34583b87e7b7a8055bf6c450c2c77ce32a24084",
+                "reference": "c34583b87e7b7a8055bf6c450c2c77ce32a24084",
                 "shasum": ""
             },
             "require": {
@@ -9087,7 +9095,8 @@
             "homepage": "https://github.com/sebastianbergmann/cli-parser",
             "support": {
                 "issues": "https://github.com/sebastianbergmann/cli-parser/issues",
-                "source": "https://github.com/sebastianbergmann/cli-parser/tree/2.0.0"
+                "security": "https://github.com/sebastianbergmann/cli-parser/security/policy",
+                "source": "https://github.com/sebastianbergmann/cli-parser/tree/2.0.1"
             },
             "funding": [
                 {
@@ -9095,7 +9104,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T06:58:15+00:00"
+            "time": "2024-03-02T07:12:49+00:00"
         },
         {
             "name": "sebastian/code-unit",
@@ -9409,16 +9418,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "5.1.1",
+            "version": "5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "64f51654862e0f5e318db7e9dcc2292c63cdbddc"
+                "reference": "955288482d97c19a372d3f31006ab3f37da47adf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/64f51654862e0f5e318db7e9dcc2292c63cdbddc",
-                "reference": "64f51654862e0f5e318db7e9dcc2292c63cdbddc",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/955288482d97c19a372d3f31006ab3f37da47adf",
+                "reference": "955288482d97c19a372d3f31006ab3f37da47adf",
                 "shasum": ""
             },
             "require": {
@@ -9475,7 +9484,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
                 "security": "https://github.com/sebastianbergmann/exporter/security/policy",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/5.1.1"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/5.1.2"
             },
             "funding": [
                 {
@@ -9483,20 +9492,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-24T13:22:09+00:00"
+            "time": "2024-03-02T07:17:12+00:00"
         },
         {
             "name": "sebastian/global-state",
-            "version": "6.0.1",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "7ea9ead78f6d380d2a667864c132c2f7b83055e4"
+                "reference": "987bafff24ecc4c9ac418cab1145b96dd6e9cbd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/7ea9ead78f6d380d2a667864c132c2f7b83055e4",
-                "reference": "7ea9ead78f6d380d2a667864c132c2f7b83055e4",
+                "url": "https://api.github.com/repos/sebastianbergmann/global-state/zipball/987bafff24ecc4c9ac418cab1145b96dd6e9cbd9",
+                "reference": "987bafff24ecc4c9ac418cab1145b96dd6e9cbd9",
                 "shasum": ""
             },
             "require": {
@@ -9530,14 +9539,14 @@
                 }
             ],
             "description": "Snapshotting of global state",
-            "homepage": "http://www.github.com/sebastianbergmann/global-state",
+            "homepage": "https://www.github.com/sebastianbergmann/global-state",
             "keywords": [
                 "global state"
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/global-state/issues",
                 "security": "https://github.com/sebastianbergmann/global-state/security/policy",
-                "source": "https://github.com/sebastianbergmann/global-state/tree/6.0.1"
+                "source": "https://github.com/sebastianbergmann/global-state/tree/6.0.2"
             },
             "funding": [
                 {
@@ -9545,7 +9554,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-07-19T07:19:23+00:00"
+            "time": "2024-03-02T07:19:19+00:00"
         },
         {
             "name": "sebastian/lines-of-code",
@@ -10036,16 +10045,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96"
+                "reference": "737eda637ed5e28c3413cb1ebe8bb52cbf1ca7a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
-                "reference": "b2ad5003ca10d4ee50a12da31de12a5774ba6b96",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/737eda637ed5e28c3413cb1ebe8bb52cbf1ca7a2",
+                "reference": "737eda637ed5e28c3413cb1ebe8bb52cbf1ca7a2",
                 "shasum": ""
             },
             "require": {
@@ -10074,7 +10083,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "support": {
                 "issues": "https://github.com/theseer/tokenizer/issues",
-                "source": "https://github.com/theseer/tokenizer/tree/1.2.2"
+                "source": "https://github.com/theseer/tokenizer/tree/1.2.3"
             },
             "funding": [
                 {
@@ -10082,7 +10091,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-20T00:12:19+00:00"
+            "time": "2024-03-03T12:36:25+00:00"
         }
     ],
     "aliases": [
@@ -10094,7 +10103,7 @@
         },
         {
             "package": "dereuromark/cakephp-dto",
-            "version": "9999999-dev",
+            "version": "dev-generator",
             "alias": "2.0.0",
             "alias_normalized": "2.0.0.0"
         },
