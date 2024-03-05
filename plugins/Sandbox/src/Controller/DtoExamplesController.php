@@ -35,4 +35,12 @@ class DtoExamplesController extends SandboxAppController {
 		$this->set(compact('pullRequestDto', 'file'));
 	}
 
+	/**
+	 * Live demo of generator.
+	 *
+	 * @return void
+	 */
+	public function generator() {
+	}
+
 }

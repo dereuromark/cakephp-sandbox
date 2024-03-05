@@ -17,4 +17,5 @@
 	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Github API demo', ['action' => 'github'])?></li>
+	<li><?php echo $this->Navigation->link('DTO schema generator', ['action' => 'generator'])?></li>
 </ul>

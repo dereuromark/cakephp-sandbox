@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Queue\Model\Entity\QueuedJob[] $queuedJobs
  */
 ?>
 
