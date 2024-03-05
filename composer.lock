@@ -1715,16 +1715,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "820ce43194fa5a54bf67e195fd8c69801f388d75"
+                "reference": "60dd308864983e3d50d72344049a1459265b3909"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/820ce43194fa5a54bf67e195fd8c69801f388d75",
-                "reference": "820ce43194fa5a54bf67e195fd8c69801f388d75",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/60dd308864983e3d50d72344049a1459265b3909",
+                "reference": "60dd308864983e3d50d72344049a1459265b3909",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^5.0.0",
+                "cakephp/cakephp": "^5.0.3",
                 "cakephp/twig-view": "^2.0.1",
                 "ext-json": "*",
                 "php": ">=8.1",
@@ -1780,7 +1780,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2024-03-04T23:37:32+00:00"
+            "time": "2024-03-05T12:39:36+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -8024,12 +8024,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "4d627ff84a3699aebf3b47681b527f72102c96c8"
+                "reference": "37887de5fbacdd3593e8a9288732d49909b090bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/4d627ff84a3699aebf3b47681b527f72102c96c8",
-                "reference": "4d627ff84a3699aebf3b47681b527f72102c96c8",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/37887de5fbacdd3593e8a9288732d49909b090bc",
+                "reference": "37887de5fbacdd3593e8a9288732d49909b090bc",
                 "shasum": ""
             },
             "require": {
@@ -8093,7 +8093,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-03T22:14:08+00:00"
+            "time": "2024-03-05T13:05:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
