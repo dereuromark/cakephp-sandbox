@@ -14,7 +14,7 @@ $this->loadHelper('Queue.QueueProgress');
 </nav>
 <div class="page index col-sm-8 col-12">
 
-	<h3>Scheduling</h3>
+	<h3>Delayed start</h3>
 	<p>Sometimes you also want to trigger something with a bit of delay</p>
 	<ul>
 		<li>Email sending with the option of "cancelling" within 1-2 minutes.</li>
@@ -62,5 +62,13 @@ $this->loadHelper('Queue.QueueProgress');
 			<?php } ?>
 		</ul>
 	<?php } ?>
+
+	<hr>
+
+	<h3>Cronjob like recurring schedule</h3>
+	<p>
+		If you are looking for scheduling certain background jobs: This plugin works flawlessly with <a href="https://github.com/dereuromark/cakephp-queue-scheduler" target="_blank">QueueScheduler plugin</a>.
+		It works similar to crontab, only from your backend and without the need to access the server directly.
+	</p>
 
 </div>
