@@ -43,6 +43,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('TinyAuth', ['bootstrap' => false]);
 		$this->addPlugin('Calendar');
 		$this->addPlugin('Search');
+		$this->addPlugin('Ratings');
 		$this->addPlugin('Geo');
 		$this->addPlugin('Templating');
 		$this->addPlugin('DatabaseLog');
