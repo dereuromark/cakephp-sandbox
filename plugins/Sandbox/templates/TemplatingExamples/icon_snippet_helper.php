@@ -47,4 +47,25 @@
 	?>
 	</div>
 
+	<br>
+
+	<code style="display: block;">
+		<?php
+		$text = <<<TEXT
+	<?php echo \$this->IconSnippet->neighbors(\$neighbors); ?>
+	TEXT;
+		echo h($text);
+		?>
+	</code>
+
+	<div style="font-size: 18px;">
+		<?php
+		$neighbors = [
+			'prev' => ['id' => 1, 'name' => 'One'],
+			'next' => ['id' => 3, 'name' => 'Three'],
+		];
+		echo $this->IconSnippet->neighbors($neighbors, 'name');
+		?>
+	</div>
+
 </div>

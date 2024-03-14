@@ -2264,12 +2264,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ratings.git",
-                "reference": "46c5adde4e6fb5a10485c2f69f44a5cc5a504f04"
+                "reference": "06806daf3abbb05a26faef07470b639c0ad2b54f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/46c5adde4e6fb5a10485c2f69f44a5cc5a504f04",
-                "reference": "46c5adde4e6fb5a10485c2f69f44a5cc5a504f04",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ratings/zipball/06806daf3abbb05a26faef07470b639c0ad2b54f",
+                "reference": "06806daf3abbb05a26faef07470b639c0ad2b54f",
                 "shasum": ""
             },
             "require": {
@@ -2322,7 +2322,7 @@
                 "source": "https://github.com/dereuromark/cakephp-ratings",
                 "wiki": "https://github.com/dereuromark/cakephp-ratings/blob/master/docs"
             },
-            "time": "2024-03-12T17:09:53+00:00"
+            "time": "2024-03-12T17:15:22+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -2519,12 +2519,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-templating.git",
-                "reference": "92c0e2f76a17b586a5e440ed99cb9dc568435352"
+                "reference": "8a80370bc241b5b1d48b5e9f3cad9d2050271be4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/92c0e2f76a17b586a5e440ed99cb9dc568435352",
-                "reference": "92c0e2f76a17b586a5e440ed99cb9dc568435352",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/8a80370bc241b5b1d48b5e9f3cad9d2050271be4",
+                "reference": "8a80370bc241b5b1d48b5e9f3cad9d2050271be4",
                 "shasum": ""
             },
             "require": {
@@ -2567,7 +2567,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-templating/issues",
                 "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2024-03-11T22:36:51+00:00"
+            "time": "2024-03-13T20:48:39+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -4101,16 +4101,16 @@
         },
         {
             "name": "league/container",
-            "version": "4.2.0",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "375d13cb828649599ef5d48a339c4af7a26cd0ab"
+                "reference": "ff346319ca1ff0e78277dc2311a42107cc1aab88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/375d13cb828649599ef5d48a339c4af7a26cd0ab",
-                "reference": "375d13cb828649599ef5d48a339c4af7a26cd0ab",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/ff346319ca1ff0e78277dc2311a42107cc1aab88",
+                "reference": "ff346319ca1ff0e78277dc2311a42107cc1aab88",
                 "shasum": ""
             },
             "require": {
@@ -4171,7 +4171,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/4.2.0"
+                "source": "https://github.com/thephpleague/container/tree/4.2.2"
             },
             "funding": [
                 {
@@ -4179,7 +4179,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-11-16T10:29:06+00:00"
+            "time": "2024-03-13T13:12:53+00:00"
         },
         {
             "name": "linkorb/jsmin-php",
@@ -8569,16 +8569,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.60",
+            "version": "1.10.62",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "95dcea7d6c628a3f2f56d091d8a0219485a86bbe"
+                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/95dcea7d6c628a3f2f56d091d8a0219485a86bbe",
-                "reference": "95dcea7d6c628a3f2f56d091d8a0219485a86bbe",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/cd5c8a1660ed3540b211407c77abf4af193a6af9",
+                "reference": "cd5c8a1660ed3540b211407c77abf4af193a6af9",
                 "shasum": ""
             },
             "require": {
@@ -8627,7 +8627,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-07T13:30:19+00:00"
+            "time": "2024-03-13T12:27:20+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10183,5 +10183,5 @@
     "platform-overrides": {
         "php": "8.1.11"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
