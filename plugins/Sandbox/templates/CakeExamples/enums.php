@@ -117,3 +117,8 @@ echo $this->Highlighter->highlight(print_r($entity, true), ['lang' => 'json']);
 <p>
 	Here you can see that it is now a backed enum object again.
 </p>
+
+<h4>More examples</h4>
+<ul>
+	<li><?php echo $this->Html->link('Validation', ['action' => 'enumValidation']);?></li>
+</ul>
