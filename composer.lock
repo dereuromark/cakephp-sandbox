@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd8d2226788ba0f822fb858fbce6d3ad",
+    "content-hash": "05692713f5105964e3224f5a83ae7c22",
     "packages": [
         {
             "name": "brick/math",
@@ -225,16 +225,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.0.6",
+            "version": "dev-5.x-enum-only-except",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "3f26c5bbbae99164852ba9607d11ff1b36fda1c9"
+                "reference": "c6b253c277fcda3607f3bb19342389fe9cb257b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3f26c5bbbae99164852ba9607d11ff1b36fda1c9",
-                "reference": "3f26c5bbbae99164852ba9607d11ff1b36fda1c9",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c6b253c277fcda3607f3bb19342389fe9cb257b9",
+                "reference": "c6b253c277fcda3607f3bb19342389fe9cb257b9",
                 "shasum": ""
             },
             "require": {
@@ -342,7 +342,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2024-03-09T03:36:26+00:00"
+            "time": "2024-03-16T17:56:37+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -10105,6 +10105,12 @@
             "alias_normalized": "3.0.2.0"
         },
         {
+            "package": "cakephp/cakephp",
+            "version": "dev-5.x-enum-only-except",
+            "alias": "5.0.6",
+            "alias_normalized": "5.0.6.0"
+        },
+        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -10138,6 +10144,7 @@
     "minimum-stability": "RC",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
+        "cakephp/cakephp": 20,
         "cakephp/bake": 20,
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-geo": 20,
