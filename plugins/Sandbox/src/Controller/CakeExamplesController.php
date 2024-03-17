@@ -22,7 +22,7 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function enums() {
 		if ($this->request->is(['post', 'put'])) {
@@ -39,6 +39,8 @@ class CakeExamplesController extends SandboxAppController {
 				'password' => '',
 			]);
 			$this->fetchTable('Sandbox.SandboxUsers')->saveOrFail($user);
+
+			return $this->redirect([]);
 		}
 
 		$this->set(compact('user'));
