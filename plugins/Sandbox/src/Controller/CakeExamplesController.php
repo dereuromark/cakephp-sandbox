@@ -63,7 +63,7 @@ class CakeExamplesController extends SandboxAppController {
 		if ($this->request->is(['post', 'put'])) {
 			$user = $table->patchEntity($user, $this->request->getData());
 			$value = $this->request->getData('status');
-			$label = UserStatus::tryFrom((int)$value)->label();
+			$label = UserStatus::tryFrom((int)$value)?->label();
 			if (!$user->getErrors()) {
 				$this->Flash->success('Value posted: `' . $value . '` (`' . $label . '`)');
 			} else {
