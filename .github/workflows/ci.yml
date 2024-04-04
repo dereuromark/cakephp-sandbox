@@ -87,7 +87,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        extensions: mbstring, intl
+        extensions: mbstring, intl, pdo_sqlite
         coverage: none
 
     - name: Get composer cache directory
@@ -104,11 +104,14 @@ jobs:
     - name: Prepare config
       run: cp config/app_local.ci.php config/app_local.php
 
+    - name: Prepare DB
+      run: export DB_URL='sqlite:///:memory:';
+
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
-    #- name: DTO check
-    #  run: bin/cake dto generate -p Sandbox -v -d
+    - name: DTO check
+      run: bin/cake dto generate -p Sandbox -v -d
 
     - name: Code completion generate
       run: bin/cake generate code_completion
