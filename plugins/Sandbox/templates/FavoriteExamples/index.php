@@ -37,5 +37,11 @@ $this->loadHelper('Queue.QueueProgress');
 		<br>the following examples will be using this account to "favorite" things.
 	</p>
 
+	<p>Note:
+	<br>
+	The following examples are single-user based for now, they dont include aggregation of the favorites (counter).
+		It should be possible to include that in the future demo, the plugin itself supports it.
+	</p>
+
 
 </div>
