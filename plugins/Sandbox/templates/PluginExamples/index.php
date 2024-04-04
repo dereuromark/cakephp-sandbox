@@ -10,14 +10,19 @@
 	<div class="col-6">
 		<h3>Own plugins</h3>
 
-		<h4>CakeDecimal plugin <i>(NEW)</i></h4>
+		<h4>CakeDecimal plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Decimals and CakePHP', ['controller' => 'DecimalExamples', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>Templating plugin <i>(NEW)</i></h4>
+		<h4>Templating plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Templating, (Font) icons and HTML snippets', ['controller' => 'TemplatingExamples', 'action' => 'index']); ?></li>
+		</ul>
+
+		<h4>Favorites plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>
 		</ul>
 
 		<h4>Queue plugin</h4>
@@ -99,7 +104,7 @@
 	<div class="col-6">
 		<h3>Other plugins</h3>
 
-		<h4>StateMachine plugin <i>(NEW)</i></h4>
+		<h4>StateMachine plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
 		</ul>
@@ -154,7 +159,7 @@
 		<h3>TODO</h3>
 		<ul>
 			<li>Wysiwyg</li>
-			<li>Like / Favorite</li>
+			<li>Comments</li>
 			<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
 		</ul>
 

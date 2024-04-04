@@ -1,7 +1,6 @@
 <?php
 
 use Cake\Core\Configure;
-use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
@@ -51,6 +50,7 @@ if (getenv('DB_URL') === 'sqlite:///:memory:') {
 	putenv('DB_DATABASE=' . TMP . 'debug_kit.sqlite');
 }
 
+/*
 ConnectionManager::drop('test');
 ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
@@ -62,6 +62,7 @@ ConnectionManager::setConfig('test', [
 	'quoteIdentifiers' => true,
 	'cacheMetadata' => true,
 ]);
+*/
 
 Configure::write('Error.ignoredDeprecationPaths', [
 	'vendor/*',
@@ -78,4 +79,5 @@ session_id('cli');
 	['plugin' => 'Tags'],
 	['plugin' => 'Captcha'],
 	['plugin' => 'Queue'],
+	['plugin' => 'Favorites'],
 ]);

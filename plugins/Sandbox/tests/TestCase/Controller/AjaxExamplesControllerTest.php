@@ -18,7 +18,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	protected bool $disableErrorHandlerMiddleware = true;
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'plugin.Data.Countries',

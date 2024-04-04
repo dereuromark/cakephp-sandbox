@@ -11,7 +11,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class QueueExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'plugin.Queue.QueuedJobs',

@@ -14,7 +14,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class AccountControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'app.Users',

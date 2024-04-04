@@ -10,7 +10,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class MenuControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxCategories',

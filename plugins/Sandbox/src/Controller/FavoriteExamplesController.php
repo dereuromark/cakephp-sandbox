@@ -19,6 +19,7 @@ class FavoriteExamplesController extends SandboxAppController {
 
 		$this->fetchTable('Sandbox.SandboxPosts')->ensureDemoData();
 
+		// Creating demo data
 		$user = $this->user();
 		// For demo purposes we use Configure instead of session
 		Configure::write('Auth.User.id', $user->id);
