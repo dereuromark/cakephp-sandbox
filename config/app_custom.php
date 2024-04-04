@@ -315,6 +315,16 @@ $config = [
 	'GoogleMap' => [
 		'key' => '',
 	],
+
+	'Favorites' => [
+		'models' => [
+			'StarPosts' => 'Sandbox.SandboxPosts',
+			'LikePosts' => 'Sandbox.SandboxPosts',
+			'FavoritePosts' => 'Sandbox.SandboxPosts',
+		],
+		'userModelClass' => 'Sandbox.SandboxUsers',
+		'icons' => \Favorites\View\Helper\FavoritesHelper::ICONS_GITHUB,
+	],
 ];
 
 if (str_contains((string)getenv('DB_URL'), 'mysql')) {

@@ -23,6 +23,8 @@
 		"cakephp/cakephp": "^5.0.3",
 		"cakephp/bake": "3.x-dev as 3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
+		"dereuromark/cakephp-favorites": "dev-master",
+		"dereuromark/cakephp-translate": "dev-master",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-shim": "dev-master as 3.1.0",
@@ -107,6 +109,7 @@
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate -p Queue",
+			"bin/cake migrations migrate -p Favorites",
 			"bin/cake migrations migrate -p StateMachine"
 		],
 		"assets": [

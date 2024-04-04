@@ -80,4 +80,41 @@ class SandboxPostsTable extends Table {
 		return $searchManager;
 	}
 
+	/**
+	 * @throws \Exception
+	 * @return void
+	 */
+	public function ensureDemoData(): void {
+		$hasRecords = (bool)$this->find()->where(['title' => 'Awesome Post'])->first();
+		if ($hasRecords) {
+			return;
+		}
+
+		$posts = [
+			[
+				'title' => 'Awesome Post',
+				'content' => '...',
+				'tag_list' => 'Shiny, New, Interesting',
+			],
+			[
+				'title' => 'Fun Story',
+				'content' => '...',
+				'tag_list' => 'Hip, Motivating',
+			],
+			[
+				'title' => 'Older Post',
+				'content' => '...',
+				'tag_list' => 'Detailed, Legacy, Motivating, Long',
+			],
+			[
+				'title' => 'Just a Post',
+				'content' => '...',
+			],
+		];
+
+		$postEntities = $this->newEntities($posts);
+
+		$this->saveManyOrFail($postEntities);
+	}
+
 }

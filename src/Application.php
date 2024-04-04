@@ -57,6 +57,8 @@ class Application extends BaseApplication {
 		$this->addPlugin('Icings/Menu');
 		//$this->addPlugin('Menu');
 		$this->addPlugin('Expose');
+		$this->addPlugin('Translate');
+		$this->addPlugin('Favorites');
 
 		// inside /plugins
 		$this->addPlugin('AuthSandbox');

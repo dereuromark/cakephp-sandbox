@@ -4,6 +4,7 @@ namespace App\View;
 
 use Cake\Core\Configure;
 use Cake\View\View;
+use Favorites\Utility\Config;
 
 /**
  * @property \AssetCompress\View\Helper\AssetCompressHelper $AssetCompress
@@ -46,6 +47,9 @@ use Cake\View\View;
  * @property \Search\View\Helper\SearchHelper $Search
  * @property \Templating\View\Helper\IconHelper $Icon
  * @property \Templating\View\Helper\IconSnippetHelper $IconSnippet
+ * @property \Favorites\View\Helper\StarsHelper $Stars
+ * @property \Favorites\View\Helper\LikesHelper $Likes
+ * @property \Favorites\View\Helper\FavoritesHelper $Favorites
  */
 class AppView extends View {
 
@@ -90,6 +94,10 @@ class AppView extends View {
 		foreach ($helpers as $helper) {
 			$this->addHelper($helper);
 		}
+
+		$this->addHelper('Favorites.Stars', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Favorites.Likes', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Favorites.Favorites', ['strategy' => Config::STRATEGY_ACTION]);
 	}
 
 }

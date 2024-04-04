@@ -20,16 +20,6 @@ class PluginsController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
-	 */
-	public function initialize(): void {
-		parent::initialize();
-
-		//$this->components()->unload('RequestHandler');
-		//$this->loadComponent('RequestHandler', ['viewClassMap' => ['pdf' => 'CakePdf.Pdf']]);
-	}
-
-	/**
 	 * Overview
 	 *
 	 * @return void
