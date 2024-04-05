@@ -83,6 +83,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Setup Service
+      run: |
+        sudo service mysql start
+        mysql -h 127.0.0.1 -u root -proot -e 'CREATE DATABASE cakephp;'
+
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
@@ -103,11 +108,6 @@ jobs:
 
     - name: Prepare config
       run: cp config/app_local.ci.php config/app_local.php
-
-    - name: Setup Service
-      run: |
-        sudo service mysql start
-        mysql -h 127.0.0.1 -u root -proot -e 'CREATE DATABASE cakephp;'
 
     - name: Prepare DB
       run: export DB_URL='mysql://root:root@127.0.0.1/cakephp'
