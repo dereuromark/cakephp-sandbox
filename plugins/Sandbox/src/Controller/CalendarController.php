@@ -82,7 +82,7 @@ class CalendarController extends SandboxAppController {
 		for ($i = 0; $i < $count; $i++) {
 			$config = $this->Events->getConnection()->config();
 			$driver = $config['driver'];
-			$random = strpos($driver, 'Sqlite') !== false ? 'RANDOM()' : 'RAND()';
+			$random = str_contains($driver, 'Mysql') ? 'RAND()' : 'RANDOM()';
 
 			/** @var \Data\Model\Entity\State $state */
 			$state = $this->States
