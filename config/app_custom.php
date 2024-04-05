@@ -92,6 +92,7 @@ $config = [
 	],
 
 	'DatabaseLog' => [
+		'disableAutoTable' => true,
 		'datasource' => 'default',
 		'limit' => 99999,
 		'maxLength' => '-1 month',
