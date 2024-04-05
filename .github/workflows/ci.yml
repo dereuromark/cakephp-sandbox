@@ -87,7 +87,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        extensions: mbstring, intl, pdo_sqlite
+        extensions: mbstring, intl, pdo_pgsql
         coverage: none
 
     - name: Get composer cache directory
@@ -105,7 +105,7 @@ jobs:
       run: cp config/app_local.ci.php config/app_local.php
 
     - name: Prepare DB
-      run: export DB_URL='sqlite:///:memory:';
+      run: export DB_URL='postgres://postgres:postgres@127.0.0.1/postgres'
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
