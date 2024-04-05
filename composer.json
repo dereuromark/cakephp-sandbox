@@ -17,12 +17,13 @@
 	],
 	"license": "MIT",
 	"require": {
-		"php": ">=8.1",
+		"php": ">=8.2",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
 		"cakephp/cakephp": "^5.0.3",
 		"cakephp/bake": "3.x-dev as 3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
+		"dereuromark/cakephp-comments": "dev-master",
 		"dereuromark/cakephp-favorites": "dev-master",
 		"dereuromark/cakephp-translate": "dev-master",
 		"dereuromark/cakephp-tinyauth": "dev-master",
@@ -71,7 +72,7 @@
 		"jdorn/sql-formatter": "@stable",
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
-		"symfony/http-client": "^6.4"
+		"symfony/http-client": "^6.4 || ^7.0"
 	},
 	"require-dev": {
 		"robmorgan/phinx": "0.x-dev as 0.15.3",
@@ -146,7 +147,7 @@
 		"preferred-install": "dist",
 		"process-timeout": 900,
 		"platform": {
-			"php": "8.1.11"
+			"php": "8.2.11"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
