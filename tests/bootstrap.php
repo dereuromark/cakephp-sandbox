@@ -1,6 +1,7 @@
 <?php
 
 use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
@@ -43,26 +44,26 @@ require ROOT . '/config/routes.php';
 
 require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
 
+
+
 // Ensure default test connection is defined
 if (getenv('DB_URL') === 'sqlite:///:memory:') {
 	putenv('DB_URL=');
 	putenv('DB_CLASS=' . 'Cake\Database\Driver\Sqlite');
 	putenv('DB_DATABASE=' . TMP . 'debug_kit.sqlite');
-}
 
-/*
-ConnectionManager::drop('test');
-ConnectionManager::setConfig('test', [
-	'className' => 'Cake\Database\Connection',
-	'driver' => getenv('DB_CLASS') ?: 'Cake\Database\Driver\Sqlite',
-	'database' => getenv('DB_DATABASE') ?: TMP . 'debug_kit.sqlite',
-	'url' => getenv('DB_URL') ?: null,
-	'timezone' => 'UTC',
-	'encoding' => 'utf8',
-	'quoteIdentifiers' => true,
-	'cacheMetadata' => true,
-]);
-*/
+	ConnectionManager::drop('test');
+	ConnectionManager::setConfig('test', [
+		'className' => 'Cake\Database\Connection',
+		'driver' => getenv('DB_CLASS') ?: 'Cake\Database\Driver\Sqlite',
+		'database' => getenv('DB_DATABASE') ?: TMP . 'debug_kit.sqlite',
+		'url' => getenv('DB_URL') ?: null,
+		'timezone' => 'UTC',
+		'encoding' => 'utf8',
+		'quoteIdentifiers' => true,
+		'cacheMetadata' => true,
+	]);
+}
 
 Configure::write('Error.ignoredDeprecationPaths', [
 	'vendor/*',
