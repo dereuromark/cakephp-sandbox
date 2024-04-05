@@ -6233,7 +6233,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "d4250e0730767c344a18ef71d5d9d31588e33c21"
+                "reference": "67b81a023c514e3cfb18771be53b38d0391c0c02"
             },
             "require": {
                 "cakephp/cakephp": "^5.0.0",
@@ -6301,7 +6301,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2023-12-12T01:01:10+00:00"
+            "time": "2024-04-05T01:02:36+00:00"
         },
         {
             "name": "symfony/config",
