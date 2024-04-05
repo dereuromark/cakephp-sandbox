@@ -2,7 +2,7 @@
 [![CI](https://github.com/dereuromark/cakephp-sandbox/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dereuromark/cakephp-sandbox/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Coverage Status](https://img.shields.io/codecov/c/github/dereuromark/cakephp-sandbox/master.svg)](https://codecov.io/github/dereuromark/cakephp-sandbox)
 [![License](https://poser.pugx.org/dereuromark/cakephp-sandbox/license.svg)](https://packagist.org/packages/dereuromark/cakephp-sandbox)
-[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/)
+[![Minimum PHP Version](http://img.shields.io/badge/php-%3E%3D%208.2-8892BF.svg)](https://php.net/)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 [![PHPStan](https://img.shields.io/badge/phpstan-level%208-brightgreen.svg?style=flat)](https://phpstan.org/)
 
