@@ -1851,12 +1851,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-favorites.git",
-                "reference": "ff6bfc549ddba3811c937368657d13520536d998"
+                "reference": "1b9c13321367a6f969b913ebb2d4d6b20d4b871c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/ff6bfc549ddba3811c937368657d13520536d998",
-                "reference": "ff6bfc549ddba3811c937368657d13520536d998",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/1b9c13321367a6f969b913ebb2d4d6b20d4b871c",
+                "reference": "1b9c13321367a6f969b913ebb2d4d6b20d4b871c",
                 "shasum": ""
             },
             "require": {
@@ -1904,7 +1904,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-favorites/issues",
                 "source": "https://github.com/dereuromark/cakephp-favorites/"
             },
-            "time": "2024-04-04T16:32:53+00:00"
+            "time": "2024-04-05T00:44:31+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
