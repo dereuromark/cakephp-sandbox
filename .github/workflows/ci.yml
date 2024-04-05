@@ -83,16 +83,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Setup Service
-      run: |
-        sudo service mysql start
-        mysql -h 127.0.0.1 -u root -proot -e 'CREATE DATABASE cakephp;'
-
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-        extensions: mbstring, intl, pdo_mysql
+        extensions: mbstring, intl, pdo_sqlite
         coverage: none
 
     - name: Get composer cache directory
@@ -110,7 +105,7 @@ jobs:
       run: cp config/app_local.ci.php config/app_local.php
 
     - name: Prepare DB
-      run: export DB_URL='mysql://root:root@127.0.0.1/cakephp'
+      run: export DB_URL='sqlite:///:memory:'
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader

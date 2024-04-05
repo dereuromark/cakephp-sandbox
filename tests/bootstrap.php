@@ -44,8 +44,6 @@ require ROOT . '/config/routes.php';
 
 require ROOT . '/vendor/dereuromark/cakephp-tools/config/bootstrap.php';
 
-
-
 // Ensure default test connection is defined
 if (getenv('DB_URL') === 'sqlite:///:memory:') {
 	putenv('DB_URL=');
