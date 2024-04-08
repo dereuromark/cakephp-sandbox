@@ -25,6 +25,11 @@
 			<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>Comments plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('Comment everything', ['controller' => 'CommentExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Queue plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Queue and CakePHP', ['controller' => 'QueueExamples', 'action' => 'index']); ?></li>

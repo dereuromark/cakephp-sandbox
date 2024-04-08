@@ -79,4 +79,5 @@ session_id('cli');
 	['plugin' => 'Captcha'],
 	['plugin' => 'Queue'],
 	['plugin' => 'Favorites'],
+	['plugin' => 'Comments'],
 ]);

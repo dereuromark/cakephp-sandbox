@@ -4,7 +4,6 @@
  * @var \Sandbox\Model\Entity\SandboxUser $user
  */
 
-$this->loadHelper('Queue.QueueProgress');
 ?>
 
 <nav class="actions col-sm-4 col-12">

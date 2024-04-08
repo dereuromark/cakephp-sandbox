@@ -44,6 +44,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('Calendar');
 		$this->addPlugin('Search');
 		$this->addPlugin('Ratings');
+		$this->addPlugin('Comments');
 		$this->addPlugin('Geo');
 		$this->addPlugin('Templating');
 		$this->addPlugin('DatabaseLog');

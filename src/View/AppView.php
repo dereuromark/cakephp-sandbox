@@ -98,6 +98,7 @@ class AppView extends View {
 		$this->addHelper('Favorites.Stars', ['strategy' => Config::STRATEGY_ACTION]);
 		$this->addHelper('Favorites.Likes', ['strategy' => Config::STRATEGY_ACTION]);
 		$this->addHelper('Favorites.Favorites', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Comments.Comments');
 	}
 
 }

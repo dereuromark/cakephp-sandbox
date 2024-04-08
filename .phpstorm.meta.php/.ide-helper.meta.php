@@ -216,12 +216,14 @@ namespace PHPSTORM_META {
 		'Calendar',
 		'Captcha',
 		'CheckHttpCache',
+		'Comment',
 		'Common',
 		'CountryStateHelper',
-		'Favorite',
+		'Favoriteable',
 		'Flash',
 		'FormProtection',
 		'LegacyAuth',
+		'Likeable',
 		'Mobile',
 		'Plugins',
 		'Preparer',
@@ -229,6 +231,7 @@ namespace PHPSTORM_META {
 		'RefererRedirect',
 		'Search',
 		'Setup',
+		'Starable',
 		'Superimpose',
 		'TestFixtures',
 		'TestGenerator',
@@ -246,9 +249,12 @@ namespace PHPSTORM_META {
 			'Captcha.Captcha' => \Captcha\Controller\Component\CaptchaComponent::class,
 			'Captcha.Preparer' => \Captcha\Controller\Component\PreparerComponent::class,
 			'CheckHttpCache' => \Cake\Controller\Component\CheckHttpCacheComponent::class,
+			'Comments.Comment' => \Comments\Controller\Component\CommentComponent::class,
 			'Data.CountryStateHelper' => \Data\Controller\Component\CountryStateHelperComponent::class,
 			'Expose.Superimpose' => \Expose\Controller\Component\SuperimposeComponent::class,
-			'Favorites.Favorite' => \Favorites\Controller\Component\FavoriteComponent::class,
+			'Favorites.Favoriteable' => \Favorites\Controller\Component\FavoriteableComponent::class,
+			'Favorites.Likeable' => \Favorites\Controller\Component\LikeableComponent::class,
+			'Favorites.Starable' => \Favorites\Controller\Component\StarableComponent::class,
 			'Flash' => \Cake\Controller\Component\FlashComponent::class,
 			'FormProtection' => \Cake\Controller\Component\FormProtectionComponent::class,
 			'Ratings.Rating' => \Ratings\Controller\Component\RatingComponent::class,
@@ -328,6 +334,7 @@ namespace PHPSTORM_META {
 			'CakePdf' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
 			'Captcha' => \Cake\Http\BaseApplication::class,
+			'Comments' => \Cake\Http\BaseApplication::class,
 			'CsvView' => \Cake\Http\BaseApplication::class,
 			'Data' => \Cake\Http\BaseApplication::class,
 			'DatabaseLog' => \Cake\Http\BaseApplication::class,
@@ -432,6 +439,7 @@ namespace PHPSTORM_META {
 		\Cake\Datasource\ModelAwareTrait::fetchModel(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -610,6 +618,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Locator\LocatorAwareTrait::fetchTable(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -670,6 +679,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Locator\LocatorInterface::get(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -732,6 +742,7 @@ namespace PHPSTORM_META {
 		'Calendar.Calendar',
 		'Captcha.Captcha',
 		'Captcha.PassiveCaptcha',
+		'Comments.Commentable',
 		'CounterCache',
 		'DebugKit.Timed',
 		'Expose.Expose',
@@ -765,6 +776,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::belongToMany(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsToMany::class,
+			'Comments.Comments' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Continents' => \Cake\ORM\Association\BelongsToMany::class,
@@ -825,6 +837,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::belongsTo(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsTo::class,
+			'Comments.Comments' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Continents' => \Cake\ORM\Association\BelongsTo::class,
@@ -908,6 +921,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::hasMany(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\HasMany::class,
+			'Comments.Comments' => \Cake\ORM\Association\HasMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasMany::class,
 			'Data.Cities' => \Cake\ORM\Association\HasMany::class,
 			'Data.Continents' => \Cake\ORM\Association\HasMany::class,
@@ -968,6 +982,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::hasOne(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\HasOne::class,
+			'Comments.Comments' => \Cake\ORM\Association\HasOne::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasOne::class,
 			'Data.Cities' => \Cake\ORM\Association\HasOne::class,
 			'Data.Continents' => \Cake\ORM\Association\HasOne::class,
@@ -1031,6 +1046,7 @@ namespace PHPSTORM_META {
 		'Bitmasked',
 		'Calendar',
 		'Captcha',
+		'Commentable',
 		'Confirmable',
 		'CounterCache',
 		'Encryption',
@@ -1168,6 +1184,9 @@ namespace PHPSTORM_META {
 		'plugin.Captcha.Captchas',
 		'plugin.Captcha.Comments',
 		'plugin.Captcha.Sessions',
+		'plugin.Comments.Comments',
+		'plugin.Comments.Posts',
+		'plugin.Comments.Users',
 		'plugin.Data.Addresses',
 		'plugin.Data.Cities',
 		'plugin.Data.Continents',
@@ -1227,6 +1246,7 @@ namespace PHPSTORM_META {
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxCategories',
 		'plugin.Sandbox.SandboxPosts',
+		'plugin.Sandbox.SandboxProfiles',
 		'plugin.Sandbox.SandboxRatings',
 		'plugin.Sandbox.SandboxUsers',
 		'plugin.Search.Articles',
@@ -1420,6 +1440,8 @@ namespace PHPSTORM_META {
 		'ip',
 		'is_error',
 		'is_html',
+		'is_private',
+		'is_spam',
 		'iso2',
 		'iso3',
 		'job_group',
@@ -1543,6 +1565,7 @@ namespace PHPSTORM_META {
 			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
 			'Calendar.Calendar' => \Calendar\View\Helper\CalendarHelper::class,
 			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
+			'Comments.Comments' => \Comments\View\Helper\CommentsHelper::class,
 			'Data.Continent' => \Data\View\Helper\ContinentHelper::class,
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
@@ -1641,10 +1664,12 @@ namespace PHPSTORM_META {
 		'Queue.search',
 		'Queue.yes_no',
 		'Sandbox.actions',
+		'Sandbox.comments/comments',
 		'Sandbox.feed/element',
 		'Sandbox.inflector/result-row',
 		'Sandbox.inflector/results',
 		'Sandbox.navigation/ajax',
+		'Sandbox.navigation/comments',
 		'Sandbox.navigation/decimal',
 		'Sandbox.navigation/dto',
 		'Sandbox.navigation/favorite',
@@ -1692,6 +1717,7 @@ namespace PHPSTORM_META {
 			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
 			'Calendar.Calendar' => \Calendar\View\Helper\CalendarHelper::class,
 			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
+			'Comments.Comments' => \Comments\View\Helper\CommentsHelper::class,
 			'Data.Continent' => \Data\View\Helper\ContinentHelper::class,
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
@@ -1774,6 +1800,7 @@ namespace PHPSTORM_META {
 		'CakeDto.Template',
 		'Calendar.Calendar',
 		'Captcha.Captcha',
+		'Comments.Comments',
 		'Data.Continent',
 		'Data.Data',
 		'Data.MimeType',
@@ -1909,6 +1936,66 @@ namespace PHPSTORM_META {
 		\Captcha\Model\Entity\Captcha::setError(),
 		0,
 		argumentsSet('entityFields:Captcha\Model\Entity\Captcha'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::get(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getError(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getOriginal(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::has(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::hasValue(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::isDirty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::isEmpty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::setDirty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::setError(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
 	);
 
 	expectedArguments(
@@ -4275,6 +4362,7 @@ namespace PHPSTORM_META {
 		'cake_dto',
 		'calendar',
 		'captcha',
+		'comments',
 		'data',
 		'database_log',
 		'debug_kit',
@@ -4877,6 +4965,8 @@ namespace PHPSTORM_META {
 		'ip',
 		'is_error',
 		'is_html',
+		'is_private',
+		'is_spam',
 		'iso2',
 		'iso3',
 		'job_group',
@@ -5031,10 +5121,13 @@ namespace PHPSTORM_META {
 		'CakeDto.strictTypes',
 		'Captcha',
 		'Captcha.maxPerUser',
+		'Comments',
+		'Comments.allowAnonymous',
 		'Config',
 		'Config.adminEmail',
 		'DatabaseLog',
 		'DatabaseLog.datasource',
+		'DatabaseLog.disableAutoTable',
 		'DatabaseLog.limit',
 		'DatabaseLog.maxLength',
 		'DatabaseLog.monitor',
@@ -5051,8 +5144,12 @@ namespace PHPSTORM_META {
 		'Error.skipLog',
 		'Error.trace',
 		'Favorites',
-		'Favorites.controllerModels',
-		'Favorites.controllerModels.Posts',
+		'Favorites.icons',
+		'Favorites.models',
+		'Favorites.models.FavoritePosts',
+		'Favorites.models.LikePosts',
+		'Favorites.models.StarPosts',
+		'Favorites.userModelClass',
 		'Feedback',
 		'Feedback.configuration',
 		'Feedback.configuration.Filesystem',
@@ -5074,6 +5171,7 @@ namespace PHPSTORM_META {
 		'Icon',
 		'Icon.checkExistence',
 		'Icon.map',
+		'Icon.map.add',
 		'Icon.map.admin',
 		'Icon.map.chart-bar',
 		'Icon.map.contra',
@@ -5165,6 +5263,7 @@ namespace PHPSTORM_META {
 		'plugins.CakePdf',
 		'plugins.Calendar',
 		'plugins.Captcha',
+		'plugins.Comments',
 		'plugins.CsvView',
 		'plugins.Data',
 		'plugins.DatabaseLog',
@@ -5244,6 +5343,26 @@ namespace PHPSTORM_META {
 		'result',
 		'session_id',
 		'used',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Comments\Model\Entity\Comment',
+		'child_comments',
+		'content',
+		'created',
+		'email',
+		'foreign_key',
+		'id',
+		'is_private',
+		'is_spam',
+		'model',
+		'modified',
+		'name',
+		'parent_comment',
+		'parent_id',
+		'title',
+		'user',
+		'user_id',
 	);
 
 	registerArgumentsSet(
@@ -5716,6 +5835,7 @@ namespace PHPSTORM_META {
 	registerArgumentsSet(
 		'icons',
 		'500px',
+		'add',
 		'address-book',
 		'address-book-o',
 		'address-card',
@@ -13079,6 +13199,12 @@ namespace PHPSTORM_META {
 		'CakeDto.Admin/Generate::index',
 		'CakeDto.Admin/Generate::schema',
 		'Captcha.Captcha::display',
+		'Comments.Admin/Comments::delete',
+		'Comments.Admin/Comments::edit',
+		'Comments.Admin/Comments::index',
+		'Comments.Admin/Comments::view',
+		'Comments.Comments::add',
+		'Comments.Comments::delete',
 		'Contact::index',
 		'Data.Admin/Addresses::add',
 		'Data.Admin/Addresses::delete',
@@ -13298,6 +13424,8 @@ namespace PHPSTORM_META {
 		'Sandbox.Captchas::math',
 		'Sandbox.Captchas::modelLess',
 		'Sandbox.ChronosExamples::index',
+		'Sandbox.CommentExamples::basic',
+		'Sandbox.CommentExamples::index',
 		'Sandbox.Conventions::index',
 		'Sandbox.Csv::index',
 		'Sandbox.Csv::pagination',
@@ -13518,6 +13646,7 @@ namespace PHPSTORM_META {
 		'tableNames',
 		'bitmasked_records',
 		'captchas',
+		'comments_comments',
 		'continents',
 		'countries',
 		'currencies',

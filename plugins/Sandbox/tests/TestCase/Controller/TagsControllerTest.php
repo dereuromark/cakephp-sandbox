@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Database\Driver\Mysql;
-use Cake\Database\Driver\Sqlserver;
 use Cake\Datasource\ConnectionManager;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;

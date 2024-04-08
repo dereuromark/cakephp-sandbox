@@ -209,6 +209,7 @@ $config = [
 			],
 		],
 		'map' => [
+			'add' => 'fa4:plus',
 			'view' => 'fa4:eye',
 			'delete' => 'fa4:times',
 			'yes' => 'fa4:check',
@@ -325,6 +326,10 @@ $config = [
 		],
 		'userModelClass' => 'Sandbox.SandboxUsers',
 		'icons' => \Favorites\View\Helper\FavoritesHelper::ICONS_GITHUB,
+	],
+
+	'Comments' => [
+		'allowAnonymous' => true,
 	],
 ];
 

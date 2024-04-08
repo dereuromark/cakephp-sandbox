@@ -11,7 +11,7 @@
 </p>
 
 <h3>"Favorites"</h3>
-<p>lets people express how they feel about some content. Make any model reactable in a minutes!</p>
+<p>lets people express how they feel about some content. Make any model reactable in minutes!</p>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
