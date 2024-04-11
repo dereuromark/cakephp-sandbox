@@ -15,6 +15,7 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
+	<li><?php echo $this->Navigation->link('Overview', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Star', ['action' => 'star'])?></li>
 	<li><?php echo $this->Navigation->link('Like', ['action' => 'like'])?></li>
 	<li><?php echo $this->Navigation->link('Favorite', ['action' => 'favorite'])?></li>

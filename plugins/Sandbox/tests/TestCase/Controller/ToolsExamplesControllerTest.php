@@ -62,16 +62,6 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function testQr() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'qr']);
-
-		$this->assertResponseCode(200);
-		$this->assertNoRedirect();
-	}
-
-	/**
-	 * @return void
-	 */
 	public function testGravatar() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'gravatar']);
 

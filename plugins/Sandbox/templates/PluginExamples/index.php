@@ -20,6 +20,11 @@
 			<li><?php echo $this->Html->link('Templating, (Font) icons and HTML snippets', ['controller' => 'TemplatingExamples', 'action' => 'index']); ?></li>
 		</ul>
 
+		<h4>QrCode plugin <i>(NEW)</i></h4>
+		<ul>
+			<li><?php echo $this->Html->link('QrCodes and CakePHP', ['controller' => 'QrCodeExamples', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>Favorites plugin <i>(NEW)</i></h4>
 		<ul>
 			<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>

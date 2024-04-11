@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7fe916afe24afe256de2131a01a210d6",
+    "content-hash": "786b4c447a9da34cda15cb21a71b4532",
     "packages": [
         {
             "name": "brick/math",
@@ -688,6 +688,165 @@
                 "source": "https://github.com/cakephp/twig-view"
             },
             "time": "2023-09-10T03:33:37+00:00"
+        },
+        {
+            "name": "chillerlan/php-qrcode",
+            "version": "5.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chillerlan/php-qrcode.git",
+                "reference": "da5bdb82c8755f54de112b271b402aaa8df53269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/da5bdb82c8755f54de112b271b402aaa8df53269",
+                "reference": "da5bdb82c8755f54de112b271b402aaa8df53269",
+                "shasum": ""
+            },
+            "require": {
+                "chillerlan/php-settings-container": "^2.1.4 || ^3.1",
+                "ext-mbstring": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "chillerlan/php-authenticator": "^4.1 || ^5.1",
+                "phan/phan": "^5.4",
+                "phpmd/phpmd": "^2.15",
+                "phpunit/phpunit": "^9.6",
+                "setasign/fpdf": "^1.8.2",
+                "squizlabs/php_codesniffer": "^3.8"
+            },
+            "suggest": {
+                "chillerlan/php-authenticator": "Yet another Google authenticator! Also creates URIs for mobile apps.",
+                "setasign/fpdf": "Required to use the QR FPDF output.",
+                "simple-icons/simple-icons": "SVG icons that you can use to embed as logos in the QR Code"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "chillerlan\\QRCode\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT",
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Kazuhiko Arase",
+                    "homepage": "https://github.com/kazuhikoarase/qrcode-generator"
+                },
+                {
+                    "name": "ZXing Authors",
+                    "homepage": "https://github.com/zxing/zxing"
+                },
+                {
+                    "name": "Ashot Khanamiryan",
+                    "homepage": "https://github.com/khanamiryan/php-qrcode-detector-decoder"
+                },
+                {
+                    "name": "Smiley",
+                    "email": "smiley@chillerlan.net",
+                    "homepage": "https://github.com/codemasher"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/chillerlan/php-qrcode/graphs/contributors"
+                }
+            ],
+            "description": "A QR code generator and reader with a user friendly API. PHP 7.4+",
+            "homepage": "https://github.com/chillerlan/php-qrcode",
+            "keywords": [
+                "phpqrcode",
+                "qr",
+                "qr code",
+                "qr-reader",
+                "qrcode",
+                "qrcode-generator",
+                "qrcode-reader"
+            ],
+            "support": {
+                "docs": "https://php-qrcode.readthedocs.io",
+                "issues": "https://github.com/chillerlan/php-qrcode/issues",
+                "source": "https://github.com/chillerlan/php-qrcode"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=WLYUNAT9ZTJZ4",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/codemasher",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2024-02-27T14:37:26+00:00"
+        },
+        {
+            "name": "chillerlan/php-settings-container",
+            "version": "3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chillerlan/php-settings-container.git",
+                "reference": "8f93648fac8e6bacac8e00a8d325eba4950295e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chillerlan/php-settings-container/zipball/8f93648fac8e6bacac8e00a8d325eba4950295e6",
+                "reference": "8f93648fac8e6bacac8e00a8d325eba4950295e6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phan/phan": "^5.4",
+                "phpmd/phpmd": "^2.15",
+                "phpunit/phpunit": "^10.5",
+                "squizlabs/php_codesniffer": "^3.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "chillerlan\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Smiley",
+                    "email": "smiley@chillerlan.net",
+                    "homepage": "https://github.com/codemasher"
+                }
+            ],
+            "description": "A container class for immutable settings objects. Not a DI container.",
+            "homepage": "https://github.com/chillerlan/php-settings-container",
+            "keywords": [
+                "Settings",
+                "configuration",
+                "container",
+                "helper"
+            ],
+            "support": {
+                "issues": "https://github.com/chillerlan/php-settings-container/issues",
+                "source": "https://github.com/chillerlan/php-settings-container"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/donate?hosted_button_id=WLYUNAT9ZTJZ4",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://ko-fi.com/codemasher",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2024-03-02T20:07:15+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -1541,12 +1700,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-comments.git",
-                "reference": "d3e498aab4b6cbe84d8135be63a86bdd3111e9c4"
+                "reference": "39da96f5dcf51544c3162d8c870664335c3ffd58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/d3e498aab4b6cbe84d8135be63a86bdd3111e9c4",
-                "reference": "d3e498aab4b6cbe84d8135be63a86bdd3111e9c4",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/39da96f5dcf51544c3162d8c870664335c3ffd58",
+                "reference": "39da96f5dcf51544c3162d8c870664335c3ffd58",
                 "shasum": ""
             },
             "require": {
@@ -1594,7 +1753,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-comments/issues",
                 "source": "https://github.com/dereuromark/cakephp-comments/"
             },
-            "time": "2024-04-08T02:02:26+00:00"
+            "time": "2024-04-08T12:58:12+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -1912,12 +2071,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-favorites.git",
-                "reference": "56977c608217529d706768d43bf631e2b360f8a6"
+                "reference": "af90156fbd5c637ba4710dcf256395746f8c4bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/56977c608217529d706768d43bf631e2b360f8a6",
-                "reference": "56977c608217529d706768d43bf631e2b360f8a6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/af90156fbd5c637ba4710dcf256395746f8c4bb1",
+                "reference": "af90156fbd5c637ba4710dcf256395746f8c4bb1",
                 "shasum": ""
             },
             "require": {
@@ -1965,7 +2124,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-favorites/issues",
                 "source": "https://github.com/dereuromark/cakephp-favorites/"
             },
-            "time": "2024-04-05T02:14:34+00:00"
+            "time": "2024-04-11T02:44:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -2308,6 +2467,66 @@
             "time": "2024-03-31T21:57:45+00:00"
         },
         {
+            "name": "dereuromark/cakephp-qrcode",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-qrcode.git",
+                "reference": "da8ac184aec091d267baea9a08d8f8ab0b08e389"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/da8ac184aec091d267baea9a08d8f8ab0b08e389",
+                "reference": "da8ac184aec091d267baea9a08d8f8ab0b08e389",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.0.0",
+                "chillerlan/php-qrcode": "^5.0",
+                "php": ">=8.1"
+            },
+            "require-dev": {
+                "fig-r/psr2r-sniffer": "dev-master",
+                "phpunit/phpunit": "^10.5"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "QrCode\\": "src/",
+                    "QrCode\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Other contributors",
+                    "homepage": "https://github.com/dereuromark/cakephp-qrcode/graphs/contributors",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CakePHP QR Code Plugin",
+            "homepage": "https://github.com/dereuromark/cakephp-qrcode/",
+            "keywords": [
+                "cakephp",
+                "plugin",
+                "qr code"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-qrcode/issues",
+                "source": "https://github.com/dereuromark/cakephp-qrcode/"
+            },
+            "time": "2024-04-11T14:41:21+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-queue",
             "version": "dev-master",
             "source": {
@@ -2642,12 +2861,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-templating.git",
-                "reference": "7fa606fe83547f3d7fbaa7502f494cb44406b039"
+                "reference": "485bf5d534ffa7db2f5dc7df3d94d964497de4f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/7fa606fe83547f3d7fbaa7502f494cb44406b039",
-                "reference": "7fa606fe83547f3d7fbaa7502f494cb44406b039",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/485bf5d534ffa7db2f5dc7df3d94d964497de4f8",
+                "reference": "485bf5d534ffa7db2f5dc7df3d94d964497de4f8",
                 "shasum": ""
             },
             "require": {
@@ -2690,7 +2909,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-templating/issues",
                 "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2024-03-14T08:44:40+00:00"
+            "time": "2024-04-09T00:07:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
@@ -2758,12 +2977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "1d5347772a305842445c554ef0ffe8557cc73e69"
+                "reference": "7d5a6a6bbd41a1f40379390f05b429204dd76d78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/1d5347772a305842445c554ef0ffe8557cc73e69",
-                "reference": "1d5347772a305842445c554ef0ffe8557cc73e69",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/7d5a6a6bbd41a1f40379390f05b429204dd76d78",
+                "reference": "7d5a6a6bbd41a1f40379390f05b429204dd76d78",
                 "shasum": ""
             },
             "require": {
@@ -2815,7 +3034,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2024-03-29T22:23:48+00:00"
+            "time": "2024-04-11T14:45:27+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -10358,6 +10577,7 @@
         "cakephp/localized": 20,
         "jdorn/sql-formatter": 0,
         "dereuromark/cakephp-templating": 20,
+        "dereuromark/cakephp-qrcode": 20,
         "robmorgan/phinx": 20,
         "fig-r/psr2r-sniffer": 20,
         "dereuromark/cakephp-ide-helper": 20,

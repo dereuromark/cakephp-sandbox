@@ -25,7 +25,7 @@ use Favorites\Utility\Config;
  * @property \Tools\View\Helper\NumberHelper $Number
  * @property \Data\View\Helper\DataHelper $Data
  * @property \Tools\View\Helper\GravatarHelper $Gravatar
- * @property \Tools\View\Helper\QrCodeHelper $QrCode
+ * @property \QrCode\View\Helper\QrCodeHelper $QrCode
  * @property \Tools\View\Helper\TreeHelper $Tree
  * @property \Ratings\View\Helper\RatingHelper $Rating
  * @property \Shim\View\Helper\ConfigureHelper $Configure
@@ -50,6 +50,7 @@ use Favorites\Utility\Config;
  * @property \Favorites\View\Helper\StarsHelper $Stars
  * @property \Favorites\View\Helper\LikesHelper $Likes
  * @property \Favorites\View\Helper\FavoritesHelper $Favorites
+ * @property \Comments\View\Helper\CommentsHelper $Comments
  */
 class AppView extends View {
 
@@ -99,6 +100,7 @@ class AppView extends View {
 		$this->addHelper('Favorites.Likes', ['strategy' => Config::STRATEGY_ACTION]);
 		$this->addHelper('Favorites.Favorites', ['strategy' => Config::STRATEGY_ACTION]);
 		$this->addHelper('Comments.Comments');
+		$this->addHelper('QrCode.QrCode');
 	}
 
 }
