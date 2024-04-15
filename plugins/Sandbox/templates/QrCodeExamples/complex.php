@@ -18,17 +18,18 @@
 	<p>Here we use a controller action to allow rendering also <?php echo strtoupper($ext);?> directly</p>
 
 	<div class="col-md-6" style="margin-bottom: 16px;">
+		<?php if ($result) { ?>
+		<h4>Result</h4>
 		<?php
-		if ($result) {
-			echo '<h4>Result</h4>';
-			echo $this->QrCode->$ext($result, $options);
-		}
+		echo $this->QrCode->$ext($result, $options);
 		?>
 
 		<details style="margin-top: 10px;">
 			<summary>Show text</summary>
 			<code><?php echo h($result); ?></code>
 		</details>
+
+		<?php } ?>
 	</div>
 
 	<h4>Generate QR Code</h4>
