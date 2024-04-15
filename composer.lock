@@ -2472,12 +2472,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-qrcode.git",
-                "reference": "84b6440c2437a0d8c3c14d6fd35928106069e263"
+                "reference": "539cdd02b7aeb411549778133db932a06ecf4e2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/84b6440c2437a0d8c3c14d6fd35928106069e263",
-                "reference": "84b6440c2437a0d8c3c14d6fd35928106069e263",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/539cdd02b7aeb411549778133db932a06ecf4e2a",
+                "reference": "539cdd02b7aeb411549778133db932a06ecf4e2a",
                 "shasum": ""
             },
             "require": {
@@ -2524,7 +2524,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-qrcode/issues",
                 "source": "https://github.com/dereuromark/cakephp-qrcode/"
             },
-            "time": "2024-04-15T17:02:17+00:00"
+            "time": "2024-04-15T17:37:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",

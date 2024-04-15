@@ -80,7 +80,7 @@
 		];
 		echo $this->Form->control('Wifi.type', ['options' => $types]);
 		echo $this->Form->control('Wifi.network', ['placeholder' => 'SSID']);
-		echo $this->Form->control('Wifi.key', ['placeholder' => 'Pwd must not contain ; characters']);
+		echo $this->Form->control('Wifi.key', ['placeholder' => 'Password']);
 		?>
 	</div>
 
