@@ -37,7 +37,7 @@
 	<p>Enter some text (URL, ...)</p>
 
 	<?php
-	echo $this->Form->control('type', ['options' => $types]);
+	echo $this->Form->control('type', ['options' => $types, 'default' => $this->request->getQuery('type')]);
 	echo $this->Form->control('size', ['options' => ['Auto']]);
 	?>
 
