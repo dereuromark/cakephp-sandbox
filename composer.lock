@@ -2472,12 +2472,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-qrcode.git",
-                "reference": "e85f1077d163456c8f5f887b0378e2f99b1be8d7"
+                "reference": "84b6440c2437a0d8c3c14d6fd35928106069e263"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/e85f1077d163456c8f5f887b0378e2f99b1be8d7",
-                "reference": "e85f1077d163456c8f5f887b0378e2f99b1be8d7",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/84b6440c2437a0d8c3c14d6fd35928106069e263",
+                "reference": "84b6440c2437a0d8c3c14d6fd35928106069e263",
                 "shasum": ""
             },
             "require": {
@@ -2524,7 +2524,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-qrcode/issues",
                 "source": "https://github.com/dereuromark/cakephp-qrcode/"
             },
-            "time": "2024-04-15T11:10:00+00:00"
+            "time": "2024-04-15T17:02:17+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -3295,16 +3295,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v2.0.5",
+            "version": "v2.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "502e966a0da0446dd6712ee4f678dc4736181fcb"
+                "reference": "ab0123052b42ad0867348f25df8c228f1ece8f14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/502e966a0da0446dd6712ee4f678dc4736181fcb",
-                "reference": "502e966a0da0446dd6712ee4f678dc4736181fcb",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/ab0123052b42ad0867348f25df8c228f1ece8f14",
+                "reference": "ab0123052b42ad0867348f25df8c228f1ece8f14",
                 "shasum": ""
             },
             "require": {
@@ -3351,9 +3351,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v2.0.5"
+                "source": "https://github.com/dompdf/dompdf/tree/v2.0.7"
             },
-            "time": "2024-04-11T11:59:08+00:00"
+            "time": "2024-04-15T12:40:33+00:00"
         },
         {
             "name": "friendsofcake/bootstrap-ui",
@@ -5278,16 +5278,16 @@
         },
         {
             "name": "phenx/php-svg-lib",
-            "version": "0.5.3",
+            "version": "0.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/php-svg-lib.git",
-                "reference": "0e46722c154726a5f9ac218197ccc28adba16fcf"
+                "reference": "46b25da81613a9cf43c83b2a8c2c1bdab27df691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/0e46722c154726a5f9ac218197ccc28adba16fcf",
-                "reference": "0e46722c154726a5f9ac218197ccc28adba16fcf",
+                "url": "https://api.github.com/repos/dompdf/php-svg-lib/zipball/46b25da81613a9cf43c83b2a8c2c1bdab27df691",
+                "reference": "46b25da81613a9cf43c83b2a8c2c1bdab27df691",
                 "shasum": ""
             },
             "require": {
@@ -5318,9 +5318,9 @@
             "homepage": "https://github.com/PhenX/php-svg-lib",
             "support": {
                 "issues": "https://github.com/dompdf/php-svg-lib/issues",
-                "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.3"
+                "source": "https://github.com/dompdf/php-svg-lib/tree/0.5.4"
             },
-            "time": "2024-02-23T20:39:24+00:00"
+            "time": "2024-04-08T12:52:34+00:00"
         },
         {
             "name": "php-collective/decimal-object",
