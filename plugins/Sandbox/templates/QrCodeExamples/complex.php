@@ -24,6 +24,11 @@
 			echo $this->QrCode->$ext($result, $options);
 		}
 		?>
+
+		<details style="margin-top: 10px;">
+			<summary>Show text</summary>
+			<code><?php echo h($result); ?></code>
+		</details>
 	</div>
 
 	<h4>Generate QR Code</h4>
