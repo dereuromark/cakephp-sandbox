@@ -49,7 +49,7 @@ class QrCodeExamplesController extends SandboxAppController {
 
 					break;
 				case 'wifi':
-					$result = $formatter->formatWifi($this->request->getData('Wifi.network'), $this->request->getData('Wifi.password'), $this->request->getData('Wifi.type'));
+					$result = $formatter->formatWifi($this->request->getData('Wifi.network'), $this->request->getData('Wifi.key'), $this->request->getData('Wifi.type'));
 
 					break;
 				case 'geo':
