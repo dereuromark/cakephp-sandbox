@@ -66,6 +66,17 @@
 
 		?>
 	</div>
+	<div id="wifiBox">
+		<?php
+		$types = [
+			'WPA' => 'WPA',
+			'WPE' => 'WPE',
+		];
+		echo $this->Form->control('Wifi.type', ['options' => $types]);
+		echo $this->Form->control('Wifi.network');
+		echo $this->Form->control('Wifi.password');
+		?>
+	</div>
 
 	<div class="col-md-offset-2 col-md-6">
 		<?php echo $this->Form->button(__('Go'), ['class' => 'btn btn-success']);?>
@@ -82,17 +93,25 @@
 
 			$("#type").change(function () {
 				var selvalue = $(this).val();
-				if (selvalue == 'card') {
+				if (selvalue === 'card') {
 					$("#textBox").hide(50);
 					$("#smsBox").hide(50);
+					$("#wifiBox").hide(50);
 					$("#cardBox").show(50);
-				} else if (selvalue == 'sms') {
+				} else if (selvalue === 'sms') {
 					$("#textBox").hide(50);
 					$("#cardBox").hide(50);
+					$("#wifiBox").hide(50);
 					$("#smsBox").show(50);
+				} else if (selvalue === 'wifi') {
+					$("#textBox").hide(50);
+					$("#cardBox").hide(50);
+					$("#smsBox").hide(50);
+					$("#wifiBox").show(50);
 				} else {
 					$("#cardBox").hide(50);
 					$("#smsBox").hide(50);
+					$("#wifiBox").hide(50);
 					$("#textBox").show(50);
 				}
 			}).change();

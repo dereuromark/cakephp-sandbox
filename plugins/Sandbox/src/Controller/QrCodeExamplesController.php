@@ -48,9 +48,12 @@ class QrCodeExamplesController extends SandboxAppController {
 					$result = $formatter->formatSms($this->request->getData('Sms.number'), $this->request->getData('Sms.content'));
 
 					break;
+				case 'wifi':
+					$result = $formatter->formatWifi($this->request->getData('Wifi.type'), $this->request->getData('Wifi.network'), $this->request->getData('Wifi.password'));
+
+					break;
 				case 'geo':
-					//TODO
-					$result = $this->request->getData('content');
+					$result = 'geo:' . str_replace(' ', '', $this->request->getData('content'));
 
 					break;
 			}

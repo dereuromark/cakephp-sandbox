@@ -1700,12 +1700,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-comments.git",
-                "reference": "39da96f5dcf51544c3162d8c870664335c3ffd58"
+                "reference": "b168f2ab6fc2b149e4b5eae33dac702cb77ee738"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/39da96f5dcf51544c3162d8c870664335c3ffd58",
-                "reference": "39da96f5dcf51544c3162d8c870664335c3ffd58",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/b168f2ab6fc2b149e4b5eae33dac702cb77ee738",
+                "reference": "b168f2ab6fc2b149e4b5eae33dac702cb77ee738",
                 "shasum": ""
             },
             "require": {
@@ -1753,7 +1753,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-comments/issues",
                 "source": "https://github.com/dereuromark/cakephp-comments/"
             },
-            "time": "2024-04-08T12:58:12+00:00"
+            "time": "2024-04-11T22:37:23+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
@@ -2071,12 +2071,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-favorites.git",
-                "reference": "c763fec507d211ac93ffdc6c7aeabc90a071f028"
+                "reference": "d42a4b9801225db94a4518d84c537998567d80ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/c763fec507d211ac93ffdc6c7aeabc90a071f028",
-                "reference": "c763fec507d211ac93ffdc6c7aeabc90a071f028",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-favorites/zipball/d42a4b9801225db94a4518d84c537998567d80ca",
+                "reference": "d42a4b9801225db94a4518d84c537998567d80ca",
                 "shasum": ""
             },
             "require": {
@@ -2124,7 +2124,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-favorites/issues",
                 "source": "https://github.com/dereuromark/cakephp-favorites/"
             },
-            "time": "2024-04-11T16:53:35+00:00"
+            "time": "2024-04-11T22:37:06+00:00"
         },
         {
             "name": "dereuromark/cakephp-feed",
@@ -2472,12 +2472,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-qrcode.git",
-                "reference": "9644cfb9c29b6737c549b702d322f0944f309895"
+                "reference": "e85f1077d163456c8f5f887b0378e2f99b1be8d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/9644cfb9c29b6737c549b702d322f0944f309895",
-                "reference": "9644cfb9c29b6737c549b702d322f0944f309895",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/e85f1077d163456c8f5f887b0378e2f99b1be8d7",
+                "reference": "e85f1077d163456c8f5f887b0378e2f99b1be8d7",
                 "shasum": ""
             },
             "require": {
@@ -2524,7 +2524,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-qrcode/issues",
                 "source": "https://github.com/dereuromark/cakephp-qrcode/"
             },
-            "time": "2024-04-11T18:06:48+00:00"
+            "time": "2024-04-15T11:10:00+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -3295,16 +3295,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v2.0.4",
+            "version": "v2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "093f2d9739cec57428e39ddadedfd4f3ae862c0f"
+                "reference": "502e966a0da0446dd6712ee4f678dc4736181fcb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/093f2d9739cec57428e39ddadedfd4f3ae862c0f",
-                "reference": "093f2d9739cec57428e39ddadedfd4f3ae862c0f",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/502e966a0da0446dd6712ee4f678dc4736181fcb",
+                "reference": "502e966a0da0446dd6712ee4f678dc4736181fcb",
                 "shasum": ""
             },
             "require": {
@@ -3312,7 +3312,7 @@
                 "ext-mbstring": "*",
                 "masterminds/html5": "^2.0",
                 "phenx/php-font-lib": ">=0.5.4 <1.0.0",
-                "phenx/php-svg-lib": ">=0.3.3 <1.0.0",
+                "phenx/php-svg-lib": ">=0.5.2 <1.0.0",
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
@@ -3351,9 +3351,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v2.0.4"
+                "source": "https://github.com/dompdf/dompdf/tree/v2.0.5"
             },
-            "time": "2023-12-12T20:19:39+00:00"
+            "time": "2024-04-11T11:59:08+00:00"
         },
         {
             "name": "friendsofcake/bootstrap-ui",
@@ -9358,16 +9358,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.17",
+            "version": "10.5.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c1f736a473d21957ead7e94fcc029f571895abf5"
+                "reference": "835df1709ac6c968ba34bf23f3c30e5d5a266de8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c1f736a473d21957ead7e94fcc029f571895abf5",
-                "reference": "c1f736a473d21957ead7e94fcc029f571895abf5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/835df1709ac6c968ba34bf23f3c30e5d5a266de8",
+                "reference": "835df1709ac6c968ba34bf23f3c30e5d5a266de8",
                 "shasum": ""
             },
             "require": {
@@ -9439,7 +9439,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.17"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.18"
             },
             "funding": [
                 {
@@ -9455,7 +9455,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-04-05T04:39:01+00:00"
+            "time": "2024-04-14T07:05:31+00:00"
         },
         {
             "name": "sebastian/cli-parser",
