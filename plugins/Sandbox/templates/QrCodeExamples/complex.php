@@ -78,8 +78,8 @@
 			'WPE' => 'WPE',
 		];
 		echo $this->Form->control('Wifi.type', ['options' => $types]);
-		echo $this->Form->control('Wifi.network');
-		echo $this->Form->control('Wifi.password');
+		echo $this->Form->control('Wifi.network', ['placeholder' => 'SSID']);
+		echo $this->Form->control('Wifi.password', ['placeholder' => 'Must not contain ; characters']);
 		?>
 	</div>
 
