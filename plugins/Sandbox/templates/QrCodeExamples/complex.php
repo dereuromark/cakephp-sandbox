@@ -28,7 +28,7 @@
 
 	<h4>Generate QR Code</h4>
 
-	<?php echo $this->Form->create();?>
+	<?php echo $this->Form->create(null, ['novalidate' => true]);?>
 	<p>Enter some text (URL, ...)</p>
 
 	<?php
