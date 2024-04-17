@@ -13,7 +13,8 @@ $(function() {
 		var form = $(this).prev();
 		var url = $(form).attr("action");
 
-		$.ajax({
+		var geturl;
+		geturl = $.ajax({
 			type: 'post',
 			url: url,
 			beforeSend: function(xhr) {
@@ -21,7 +22,10 @@ $(function() {
 				$('#example-target').html('...');
 			},
 			success: function(res) {
-				$('#example-target').html('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')' + "<br/><br/>Raw data:<br/>" + JSON.stringify(res));
+				var content = 'Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')' + "<br/><br/>Raw data:<br/>" + JSON.stringify(res);
+				content += "<br/><br/>Flash data in header X-Flash:<br/>" + geturl.getResponseHeader('X-Flash');
+
+				$('#example-target').html(content);
 			},
 			error: function(e) {
 				alert("Error");

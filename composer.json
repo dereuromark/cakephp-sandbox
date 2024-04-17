@@ -111,6 +111,7 @@
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate -p Queue",
+			"bin/cake migrations migrate -p Comments",
 			"bin/cake migrations migrate -p Favorites",
 			"bin/cake migrations migrate -p StateMachine"
 		],
