@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Burzum\CakeServiceLayer\Service\ServiceAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Exception\NotImplementedException;
+use Throwable;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
@@ -77,6 +78,10 @@ class LocalizedController extends SandboxAppController {
 				}
 			} catch (NotImplementedException $e) {
 				$this->Flash->error($e->getMessage());
+			} catch (Throwable $e) {
+				$message = $e->getMessage();
+				$message = str_replace(ROOT . DS, '', $message);
+				$this->Flash->error('Error in code: ' . $message);
 			}
 		}
 

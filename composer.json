@@ -77,7 +77,7 @@
 	},
 	"require-dev": {
 		"robmorgan/phinx": "0.x-dev as 0.15.3",
-		"fig-r/psr2r-sniffer": "dev-next",
+		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^1.0.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
