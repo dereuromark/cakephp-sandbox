@@ -44,6 +44,7 @@ class Application extends BaseApplication {
 		$this->addPlugin('Calendar');
 		$this->addPlugin('Search');
 		$this->addPlugin('Ratings');
+		$this->addPlugin('Comments');
 		$this->addPlugin('Geo');
 		$this->addPlugin('Templating');
 		$this->addPlugin('DatabaseLog');
@@ -55,8 +56,10 @@ class Application extends BaseApplication {
 		$this->addPlugin('Markup');
 		$this->addPlugin('Feedback');
 		$this->addPlugin('Icings/Menu');
-		//$this->addPlugin('Menu');
 		$this->addPlugin('Expose');
+		$this->addPlugin('Translate');
+		$this->addPlugin('Favorites');
+		$this->addPlugin('QrCode');
 
 		// inside /plugins
 		$this->addPlugin('AuthSandbox');

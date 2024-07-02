@@ -10,20 +10,20 @@ use Tools\Model\Table\Table;
  * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @mixin \Tags\Model\Behavior\TagBehavior
- * @method \Sandbox\Model\Entity\SandboxPost get($primaryKey, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxPost newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxPost> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxPost> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \Sandbox\Model\Entity\SandboxPost findOrCreate($search, ?callable $callback = null, array $options = [])
  * @mixin \Search\Model\Behavior\SearchBehavior
  * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false saveMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> saveManyOrFail(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, array $options = [])
  * @mixin \Tools\Model\Behavior\SluggedBehavior
  */
 class SandboxPostsTable extends Table {
@@ -31,7 +31,7 @@ class SandboxPostsTable extends Table {
 	/**
 	 * @var array<mixed>
 	 */
-	public $actsAs = [
+	public array $actsAs = [
 		'Tools.Slugged',
 		'Search.Search',
 		'Tags.Tag' => ['taggedCounter' => false],
@@ -78,6 +78,43 @@ class SandboxPostsTable extends Table {
 			]);
 
 		return $searchManager;
+	}
+
+	/**
+	 * @throws \Exception
+	 * @return void
+	 */
+	public function ensureDemoData(): void {
+		$hasRecords = (bool)$this->find()->where(['title' => 'Awesome Post'])->first();
+		if ($hasRecords) {
+			return;
+		}
+
+		$posts = [
+			[
+				'title' => 'Awesome Post',
+				'content' => '...',
+				'tag_list' => 'Shiny, New, Interesting',
+			],
+			[
+				'title' => 'Fun Story',
+				'content' => '...',
+				'tag_list' => 'Hip, Motivating',
+			],
+			[
+				'title' => 'Older Post',
+				'content' => '...',
+				'tag_list' => 'Detailed, Legacy, Motivating, Long',
+			],
+			[
+				'title' => 'Just a Post',
+				'content' => '...',
+			],
+		];
+
+		$postEntities = $this->newEntities($posts);
+
+		$this->saveManyOrFail($postEntities);
 	}
 
 }

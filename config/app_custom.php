@@ -92,6 +92,7 @@ $config = [
 	],
 
 	'DatabaseLog' => [
+		'disableAutoTable' => true,
 		'datasource' => 'default',
 		'limit' => 99999,
 		'maxLength' => '-1 month',
@@ -208,6 +209,7 @@ $config = [
 			],
 		],
 		'map' => [
+			'add' => 'fa4:plus',
 			'view' => 'fa4:eye',
 			'delete' => 'fa4:times',
 			'yes' => 'fa4:check',
@@ -314,6 +316,20 @@ $config = [
 
 	'GoogleMap' => [
 		'key' => '',
+	],
+
+	'Favorites' => [
+		'models' => [
+			'StarPosts' => 'Sandbox.SandboxPosts',
+			'LikePosts' => 'Sandbox.SandboxPosts',
+			'FavoritePosts' => 'Sandbox.SandboxPosts',
+		],
+		'userModelClass' => 'Sandbox.SandboxUsers',
+		'icons' => \Favorites\View\Helper\FavoritesHelper::ICONS_GITHUB,
+	],
+
+	'Comments' => [
+		'allowAnonymous' => true,
 	],
 ];
 

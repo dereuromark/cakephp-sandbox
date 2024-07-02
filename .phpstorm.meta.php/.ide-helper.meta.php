@@ -216,11 +216,14 @@ namespace PHPSTORM_META {
 		'Calendar',
 		'Captcha',
 		'CheckHttpCache',
+		'Comment',
 		'Common',
 		'CountryStateHelper',
+		'Favoriteable',
 		'Flash',
 		'FormProtection',
 		'LegacyAuth',
+		'Likeable',
 		'Mobile',
 		'Plugins',
 		'Preparer',
@@ -228,10 +231,12 @@ namespace PHPSTORM_META {
 		'RefererRedirect',
 		'Search',
 		'Setup',
+		'Starable',
 		'Superimpose',
 		'TestFixtures',
 		'TestGenerator',
 		'TestRunner',
+		'Translation',
 		'Url',
 	);
 
@@ -244,8 +249,12 @@ namespace PHPSTORM_META {
 			'Captcha.Captcha' => \Captcha\Controller\Component\CaptchaComponent::class,
 			'Captcha.Preparer' => \Captcha\Controller\Component\PreparerComponent::class,
 			'CheckHttpCache' => \Cake\Controller\Component\CheckHttpCacheComponent::class,
+			'Comments.Comment' => \Comments\Controller\Component\CommentComponent::class,
 			'Data.CountryStateHelper' => \Data\Controller\Component\CountryStateHelperComponent::class,
 			'Expose.Superimpose' => \Expose\Controller\Component\SuperimposeComponent::class,
+			'Favorites.Favoriteable' => \Favorites\Controller\Component\FavoriteableComponent::class,
+			'Favorites.Likeable' => \Favorites\Controller\Component\LikeableComponent::class,
+			'Favorites.Starable' => \Favorites\Controller\Component\StarableComponent::class,
 			'Flash' => \Cake\Controller\Component\FlashComponent::class,
 			'FormProtection' => \Cake\Controller\Component\FormProtectionComponent::class,
 			'Ratings.Rating' => \Ratings\Controller\Component\RatingComponent::class,
@@ -262,6 +271,7 @@ namespace PHPSTORM_META {
 			'Tools.Mobile' => \Tools\Controller\Component\MobileComponent::class,
 			'Tools.RefererRedirect' => \Tools\Controller\Component\RefererRedirectComponent::class,
 			'Tools.Url' => \Tools\Controller\Component\UrlComponent::class,
+			'Translate.Translation' => \Translate\Controller\Component\TranslationComponent::class,
 		]),
 	);
 
@@ -324,11 +334,13 @@ namespace PHPSTORM_META {
 			'CakePdf' => \Cake\Http\BaseApplication::class,
 			'Calendar' => \Cake\Http\BaseApplication::class,
 			'Captcha' => \Cake\Http\BaseApplication::class,
+			'Comments' => \Cake\Http\BaseApplication::class,
 			'CsvView' => \Cake\Http\BaseApplication::class,
 			'Data' => \Cake\Http\BaseApplication::class,
 			'DatabaseLog' => \Cake\Http\BaseApplication::class,
 			'DebugKit' => \Cake\Http\BaseApplication::class,
 			'Expose' => \Cake\Http\BaseApplication::class,
+			'Favorites' => \Cake\Http\BaseApplication::class,
 			'Feed' => \Cake\Http\BaseApplication::class,
 			'Feedback' => \Cake\Http\BaseApplication::class,
 			'Flash' => \Cake\Http\BaseApplication::class,
@@ -353,6 +365,7 @@ namespace PHPSTORM_META {
 			'TestHelper' => \Cake\Http\BaseApplication::class,
 			'TinyAuth' => \Cake\Http\BaseApplication::class,
 			'Tools' => \Cake\Http\BaseApplication::class,
+			'Translate' => \Cake\Http\BaseApplication::class,
 		]),
 	);
 
@@ -426,6 +439,7 @@ namespace PHPSTORM_META {
 		\Cake\Datasource\ModelAwareTrait::fetchModel(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -443,6 +457,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
 			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
 			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
+			'Favorites.Favorites' => \Favorites\Model\Table\FavoritesTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -471,6 +486,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Translate.TranslateApiTranslations' => \Translate\Model\Table\TranslateApiTranslationsTable::class,
+			'Translate.TranslateDomains' => \Translate\Model\Table\TranslateDomainsTable::class,
+			'Translate.TranslateLanguages' => \Translate\Model\Table\TranslateLanguagesTable::class,
+			'Translate.TranslateProjects' => \Translate\Model\Table\TranslateProjectsTable::class,
+			'Translate.TranslateStrings' => \Translate\Model\Table\TranslateStringsTable::class,
+			'Translate.TranslateTerms' => \Translate\Model\Table\TranslateTermsTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
 		]),
 	);
@@ -597,6 +618,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Locator\LocatorAwareTrait::fetchTable(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -614,6 +636,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
 			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
 			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
+			'Favorites.Favorites' => \Favorites\Model\Table\FavoritesTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -642,6 +665,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Translate.TranslateApiTranslations' => \Translate\Model\Table\TranslateApiTranslationsTable::class,
+			'Translate.TranslateDomains' => \Translate\Model\Table\TranslateDomainsTable::class,
+			'Translate.TranslateLanguages' => \Translate\Model\Table\TranslateLanguagesTable::class,
+			'Translate.TranslateProjects' => \Translate\Model\Table\TranslateProjectsTable::class,
+			'Translate.TranslateStrings' => \Translate\Model\Table\TranslateStringsTable::class,
+			'Translate.TranslateTerms' => \Translate\Model\Table\TranslateTermsTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
 		]),
 	);
@@ -650,6 +679,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Locator\LocatorInterface::get(0),
 		map([
 			'Captcha.Captchas' => \Captcha\Model\Table\CaptchasTable::class,
+			'Comments.Comments' => \Comments\Model\Table\CommentsTable::class,
 			'Data.Addresses' => \Data\Model\Table\AddressesTable::class,
 			'Data.Cities' => \Data\Model\Table\CitiesTable::class,
 			'Data.Continents' => \Data\Model\Table\ContinentsTable::class,
@@ -667,6 +697,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \DatabaseLog\Model\Table\DatabaseLogsTable::class,
 			'DebugKit.Panels' => \DebugKit\Model\Table\PanelsTable::class,
 			'DebugKit.Requests' => \DebugKit\Model\Table\RequestsTable::class,
+			'Favorites.Favorites' => \Favorites\Model\Table\FavoritesTable::class,
 			'Feedback.FeedbackItems' => \Feedback\Model\Table\FeedbackItemsTable::class,
 			'Feedback.Feedbackstore' => \Feedback\Model\Table\FeedbackstoreTable::class,
 			'Geo.GeocodedAddresses' => \Geo\Model\Table\GeocodedAddressesTable::class,
@@ -695,6 +726,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Tags\Model\Table\TaggedTable::class,
 			'Tags.Tags' => \Tags\Model\Table\TagsTable::class,
 			'Tools.Tokens' => \Tools\Model\Table\TokensTable::class,
+			'Translate.TranslateApiTranslations' => \Translate\Model\Table\TranslateApiTranslationsTable::class,
+			'Translate.TranslateDomains' => \Translate\Model\Table\TranslateDomainsTable::class,
+			'Translate.TranslateLanguages' => \Translate\Model\Table\TranslateLanguagesTable::class,
+			'Translate.TranslateProjects' => \Translate\Model\Table\TranslateProjectsTable::class,
+			'Translate.TranslateStrings' => \Translate\Model\Table\TranslateStringsTable::class,
+			'Translate.TranslateTerms' => \Translate\Model\Table\TranslateTermsTable::class,
 			'Users' => \App\Model\Table\UsersTable::class,
 		]),
 	);
@@ -705,10 +742,14 @@ namespace PHPSTORM_META {
 		'Calendar.Calendar',
 		'Captcha.Captcha',
 		'Captcha.PassiveCaptcha',
+		'Comments.Commentable',
 		'CounterCache',
 		'DebugKit.Timed',
 		'Expose.Expose',
 		'Expose.Superimpose',
+		'Favorites.Favoriteable',
+		'Favorites.Likeable',
+		'Favorites.Starable',
 		'Geo.Geocoder',
 		'Ratings.Ratable',
 		'Search.Search',
@@ -735,6 +776,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::belongToMany(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsToMany::class,
+			'Comments.Comments' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsToMany::class,
 			'Data.Continents' => \Cake\ORM\Association\BelongsToMany::class,
@@ -752,6 +794,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\BelongsToMany::class,
 			'DebugKit.Panels' => \Cake\ORM\Association\BelongsToMany::class,
 			'DebugKit.Requests' => \Cake\ORM\Association\BelongsToMany::class,
+			'Favorites.Favorites' => \Cake\ORM\Association\BelongsToMany::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\BelongsToMany::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\BelongsToMany::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\BelongsToMany::class,
@@ -780,6 +823,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsToMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateApiTranslations' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateDomains' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateLanguages' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateProjects' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateStrings' => \Cake\ORM\Association\BelongsToMany::class,
+			'Translate.TranslateTerms' => \Cake\ORM\Association\BelongsToMany::class,
 			'Users' => \Cake\ORM\Association\BelongsToMany::class,
 		]),
 	);
@@ -788,6 +837,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::belongsTo(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\BelongsTo::class,
+			'Comments.Comments' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Addresses' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Cities' => \Cake\ORM\Association\BelongsTo::class,
 			'Data.Continents' => \Cake\ORM\Association\BelongsTo::class,
@@ -805,6 +855,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\BelongsTo::class,
 			'DebugKit.Panels' => \Cake\ORM\Association\BelongsTo::class,
 			'DebugKit.Requests' => \Cake\ORM\Association\BelongsTo::class,
+			'Favorites.Favorites' => \Cake\ORM\Association\BelongsTo::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\BelongsTo::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\BelongsTo::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\BelongsTo::class,
@@ -833,6 +884,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\BelongsTo::class,
 			'Tags.Tags' => \Cake\ORM\Association\BelongsTo::class,
 			'Tools.Tokens' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateApiTranslations' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateDomains' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateLanguages' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateProjects' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateStrings' => \Cake\ORM\Association\BelongsTo::class,
+			'Translate.TranslateTerms' => \Cake\ORM\Association\BelongsTo::class,
 			'Users' => \Cake\ORM\Association\BelongsTo::class,
 		]),
 	);
@@ -864,6 +921,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::hasMany(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\HasMany::class,
+			'Comments.Comments' => \Cake\ORM\Association\HasMany::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasMany::class,
 			'Data.Cities' => \Cake\ORM\Association\HasMany::class,
 			'Data.Continents' => \Cake\ORM\Association\HasMany::class,
@@ -881,6 +939,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\HasMany::class,
 			'DebugKit.Panels' => \Cake\ORM\Association\HasMany::class,
 			'DebugKit.Requests' => \Cake\ORM\Association\HasMany::class,
+			'Favorites.Favorites' => \Cake\ORM\Association\HasMany::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\HasMany::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\HasMany::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\HasMany::class,
@@ -909,6 +968,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\HasMany::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasMany::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateApiTranslations' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateDomains' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateLanguages' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateProjects' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateStrings' => \Cake\ORM\Association\HasMany::class,
+			'Translate.TranslateTerms' => \Cake\ORM\Association\HasMany::class,
 			'Users' => \Cake\ORM\Association\HasMany::class,
 		]),
 	);
@@ -917,6 +982,7 @@ namespace PHPSTORM_META {
 		\Cake\ORM\Table::hasOne(0),
 		map([
 			'Captcha.Captchas' => \Cake\ORM\Association\HasOne::class,
+			'Comments.Comments' => \Cake\ORM\Association\HasOne::class,
 			'Data.Addresses' => \Cake\ORM\Association\HasOne::class,
 			'Data.Cities' => \Cake\ORM\Association\HasOne::class,
 			'Data.Continents' => \Cake\ORM\Association\HasOne::class,
@@ -934,6 +1000,7 @@ namespace PHPSTORM_META {
 			'DatabaseLog.DatabaseLogs' => \Cake\ORM\Association\HasOne::class,
 			'DebugKit.Panels' => \Cake\ORM\Association\HasOne::class,
 			'DebugKit.Requests' => \Cake\ORM\Association\HasOne::class,
+			'Favorites.Favorites' => \Cake\ORM\Association\HasOne::class,
 			'Feedback.FeedbackItems' => \Cake\ORM\Association\HasOne::class,
 			'Feedback.Feedbackstore' => \Cake\ORM\Association\HasOne::class,
 			'Geo.GeocodedAddresses' => \Cake\ORM\Association\HasOne::class,
@@ -962,6 +1029,12 @@ namespace PHPSTORM_META {
 			'Tags.Tagged' => \Cake\ORM\Association\HasOne::class,
 			'Tags.Tags' => \Cake\ORM\Association\HasOne::class,
 			'Tools.Tokens' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateApiTranslations' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateDomains' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateLanguages' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateProjects' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateStrings' => \Cake\ORM\Association\HasOne::class,
+			'Translate.TranslateTerms' => \Cake\ORM\Association\HasOne::class,
 			'Users' => \Cake\ORM\Association\HasOne::class,
 		]),
 	);
@@ -973,12 +1046,15 @@ namespace PHPSTORM_META {
 		'Bitmasked',
 		'Calendar',
 		'Captcha',
+		'Commentable',
 		'Confirmable',
 		'CounterCache',
 		'Encryption',
 		'Expose',
+		'Favoriteable',
 		'Geocoder',
 		'Jsonable',
+		'Likeable',
 		'Neighbor',
 		'PassiveCaptcha',
 		'Passwordable',
@@ -986,6 +1062,7 @@ namespace PHPSTORM_META {
 		'Reset',
 		'Search',
 		'Slugged',
+		'Starable',
 		'String',
 		'Superimpose',
 		'Tag',
@@ -1107,6 +1184,9 @@ namespace PHPSTORM_META {
 		'plugin.Captcha.Captchas',
 		'plugin.Captcha.Comments',
 		'plugin.Captcha.Sessions',
+		'plugin.Comments.Comments',
+		'plugin.Comments.Posts',
+		'plugin.Comments.Users',
 		'plugin.Data.Addresses',
 		'plugin.Data.Cities',
 		'plugin.Data.Continents',
@@ -1130,6 +1210,9 @@ namespace PHPSTORM_META {
 		'plugin.Expose.ExistingRecords',
 		'plugin.Expose.Posts',
 		'plugin.Expose.Users',
+		'plugin.Favorites.Favorites',
+		'plugin.Favorites.Posts',
+		'plugin.Favorites.Users',
 		'plugin.Feedback.FeedbackItems',
 		'plugin.Geo.Addresses',
 		'plugin.Geo.GeocodedAddresses',
@@ -1163,6 +1246,7 @@ namespace PHPSTORM_META {
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxCategories',
 		'plugin.Sandbox.SandboxPosts',
+		'plugin.Sandbox.SandboxProfiles',
 		'plugin.Sandbox.SandboxRatings',
 		'plugin.Sandbox.SandboxUsers',
 		'plugin.Search.Articles',
@@ -1210,6 +1294,13 @@ namespace PHPSTORM_META {
 		'plugin.Tools.ToggleAddresses',
 		'plugin.Tools.Tokens',
 		'plugin.Tools.ToolsUsers',
+		'plugin.Translate.TranslateApiTranslations',
+		'plugin.Translate.TranslateDomains',
+		'plugin.Translate.TranslateLanguages',
+		'plugin.Translate.TranslateProjects',
+		'plugin.Translate.TranslateStrings',
+		'plugin.Translate.TranslateTerms',
+		'plugin.Translate.Users',
 	);
 
 	expectedArguments(
@@ -1307,8 +1398,11 @@ namespace PHPSTORM_META {
 		'beginning',
 		'code',
 		'command',
+		'comment',
 		'completed',
 		'condition',
+		'confirmed',
+		'confirmed_by',
 		'content',
 		'content_type',
 		'context',
@@ -1320,10 +1414,12 @@ namespace PHPSTORM_META {
 		'created',
 		'data',
 		'decimal_places',
+		'default',
 		'description',
 		'element',
 		'email',
 		'end',
+		'engine',
 		'error_message',
 		'eu_member',
 		'event',
@@ -1334,18 +1430,26 @@ namespace PHPSTORM_META {
 		'fk_model',
 		'flag_optional',
 		'flag_required',
+		'flags',
 		'foreign_key',
+		'from',
 		'hostname',
 		'id',
 		'identifier',
 		'image',
 		'ip',
 		'is_error',
+		'is_html',
+		'is_private',
+		'is_spam',
 		'iso2',
 		'iso3',
 		'job_group',
 		'job_task',
+		'key',
 		'label',
+		'language_id',
+		'last_import',
 		'last_login',
 		'lat',
 		'lft',
@@ -1371,8 +1475,13 @@ namespace PHPSTORM_META {
 		'params',
 		'parent_id',
 		'password',
+		'path',
 		'phone_code',
 		'pid',
+		'plural',
+		'plural_2',
+		'primary',
+		'prio',
 		'priority',
 		'process',
 		'progress',
@@ -1380,6 +1489,7 @@ namespace PHPSTORM_META {
 		'rating_sum',
 		'refer',
 		'reference',
+		'references',
 		'request_id',
 		'requested_at',
 		'result',
@@ -1408,6 +1518,11 @@ namespace PHPSTORM_META {
 		'timeout',
 		'timezone',
 		'title',
+		'to',
+		'translate_domain_id',
+		'translate_language_id',
+		'translate_project_id',
+		'translate_string_id',
 		'type',
 		'uri',
 		'url',
@@ -1450,6 +1565,7 @@ namespace PHPSTORM_META {
 			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
 			'Calendar.Calendar' => \Calendar\View\Helper\CalendarHelper::class,
 			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
+			'Comments.Comments' => \Comments\View\Helper\CommentsHelper::class,
 			'Data.Continent' => \Data\View\Helper\ContinentHelper::class,
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
@@ -1457,6 +1573,9 @@ namespace PHPSTORM_META {
 			'DebugKit.Credentials' => \DebugKit\View\Helper\CredentialsHelper::class,
 			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
 			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
+			'Favorites.Favorites' => \Favorites\View\Helper\FavoritesHelper::class,
+			'Favorites.Likes' => \Favorites\View\Helper\LikesHelper::class,
+			'Favorites.Stars' => \Favorites\View\Helper\StarsHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
 			'Form' => \App\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
@@ -1508,6 +1627,7 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Translate.Translation' => \Translate\View\Helper\TranslationHelper::class,
 			'Url' => \Cake\View\Helper\UrlHelper::class,
 		]),
 	);
@@ -1535,6 +1655,7 @@ namespace PHPSTORM_META {
 		'DebugKit.sql_log_panel',
 		'DebugKit.timer_panel',
 		'DebugKit.variables_panel',
+		'Favorites.pagination',
 		'Feedback.pagination',
 		'Feedback.sidebar',
 		'Feedback.sidebar_modal',
@@ -1543,12 +1664,15 @@ namespace PHPSTORM_META {
 		'Queue.search',
 		'Queue.yes_no',
 		'Sandbox.actions',
+		'Sandbox.comments/comments',
 		'Sandbox.feed/element',
 		'Sandbox.inflector/result-row',
 		'Sandbox.inflector/results',
 		'Sandbox.navigation/ajax',
+		'Sandbox.navigation/comments',
 		'Sandbox.navigation/decimal',
 		'Sandbox.navigation/dto',
+		'Sandbox.navigation/favorite',
 		'Sandbox.navigation/localized',
 		'Sandbox.navigation/media_embed',
 		'Sandbox.navigation/queue',
@@ -1563,6 +1687,11 @@ namespace PHPSTORM_META {
 		'TestHelper.url',
 		'TinyAuth.auth_panel',
 		'Tools.pagination',
+		'Translate.coverage_table',
+		'Translate.pagination',
+		'Translate.project_switch',
+		'Translate.suggestions',
+		'Translate.yes_no',
 		'flash/default',
 		'flash/error',
 		'flash/info',
@@ -1588,6 +1717,7 @@ namespace PHPSTORM_META {
 			'CakeDto.Template' => \CakeDto\View\Helper\TemplateHelper::class,
 			'Calendar.Calendar' => \Calendar\View\Helper\CalendarHelper::class,
 			'Captcha.Captcha' => \Captcha\View\Helper\CaptchaHelper::class,
+			'Comments.Comments' => \Comments\View\Helper\CommentsHelper::class,
 			'Data.Continent' => \Data\View\Helper\ContinentHelper::class,
 			'Data.Data' => \Data\View\Helper\DataHelper::class,
 			'Data.MimeType' => \Data\View\Helper\MimeTypeHelper::class,
@@ -1595,6 +1725,9 @@ namespace PHPSTORM_META {
 			'DebugKit.Credentials' => \DebugKit\View\Helper\CredentialsHelper::class,
 			'DebugKit.SimpleGraph' => \DebugKit\View\Helper\SimpleGraphHelper::class,
 			'DebugKit.Toolbar' => \DebugKit\View\Helper\ToolbarHelper::class,
+			'Favorites.Favorites' => \Favorites\View\Helper\FavoritesHelper::class,
+			'Favorites.Likes' => \Favorites\View\Helper\LikesHelper::class,
+			'Favorites.Stars' => \Favorites\View\Helper\StarsHelper::class,
 			'Flash' => \Cake\View\Helper\FlashHelper::class,
 			'Form' => \App\View\Helper\FormHelper::class,
 			'Geo.GoogleMap' => \Geo\View\Helper\GoogleMapHelper::class,
@@ -1646,6 +1779,7 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Translate.Translation' => \Translate\View\Helper\TranslationHelper::class,
 			'Url' => \Cake\View\Helper\UrlHelper::class,
 		]),
 	);
@@ -1666,6 +1800,7 @@ namespace PHPSTORM_META {
 		'CakeDto.Template',
 		'Calendar.Calendar',
 		'Captcha.Captcha',
+		'Comments.Comments',
 		'Data.Continent',
 		'Data.Data',
 		'Data.MimeType',
@@ -1673,6 +1808,9 @@ namespace PHPSTORM_META {
 		'DebugKit.Credentials',
 		'DebugKit.SimpleGraph',
 		'DebugKit.Toolbar',
+		'Favorites.Favorites',
+		'Favorites.Likes',
+		'Favorites.Stars',
 		'Flash',
 		'Form',
 		'Geo.GoogleMap',
@@ -1724,6 +1862,7 @@ namespace PHPSTORM_META {
 		'Tools.Tree',
 		'Tools.Typography',
 		'Tools.Url',
+		'Translate.Translation',
 		'Url',
 	);
 
@@ -1797,6 +1936,66 @@ namespace PHPSTORM_META {
 		\Captcha\Model\Entity\Captcha::setError(),
 		0,
 		argumentsSet('entityFields:Captcha\Model\Entity\Captcha'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::get(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getError(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::getOriginal(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::has(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::hasValue(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::isDirty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::isEmpty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::setDirty(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
+	);
+
+	expectedArguments(
+		\Comments\Model\Entity\Comment::setError(),
+		0,
+		argumentsSet('entityFields:Comments\Model\Entity\Comment'),
 	);
 
 	expectedArguments(
@@ -2337,6 +2536,66 @@ namespace PHPSTORM_META {
 		\DebugKit\Model\Entity\Request::setError(),
 		0,
 		argumentsSet('entityFields:DebugKit\Model\Entity\Request'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::get(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::getError(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::getOriginal(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::has(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::hasValue(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::isDirty(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::isEmpty(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::setDirty(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
+	);
+
+	expectedArguments(
+		\Favorites\Model\Entity\Favorite::setError(),
+		0,
+		argumentsSet('entityFields:Favorites\Model\Entity\Favorite'),
 	);
 
 	expectedArguments(
@@ -3528,6 +3787,366 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateApiTranslation::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateApiTranslation'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateDomain::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateDomain'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateLanguage::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateLanguage'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateProject::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateProject'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateString::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateString'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::get(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::getError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::getOriginal(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::has(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::hasValue(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::isDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::isEmpty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::setDirty(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
+		\Translate\Model\Entity\TranslateTerm::setError(),
+		0,
+		argumentsSet('entityFields:Translate\Model\Entity\TranslateTerm'),
+	);
+
+	expectedArguments(
 		\__(),
 		0,
 		'%s could not be found.',
@@ -3743,10 +4362,12 @@ namespace PHPSTORM_META {
 		'cake_dto',
 		'calendar',
 		'captcha',
+		'comments',
 		'data',
 		'database_log',
 		'debug_kit',
 		'expose',
+		'favorites',
 		'feedback',
 		'geo',
 		'icings/menu',
@@ -3767,6 +4388,7 @@ namespace PHPSTORM_META {
 		'test_helper',
 		'tiny_auth',
 		'tools',
+		'translate',
 	);
 
 	expectedArguments(
@@ -4302,8 +4924,11 @@ namespace PHPSTORM_META {
 		'beginning',
 		'code',
 		'command',
+		'comment',
 		'completed',
 		'condition',
+		'confirmed',
+		'confirmed_by',
 		'content',
 		'context',
 		'count',
@@ -4314,9 +4939,11 @@ namespace PHPSTORM_META {
 		'created',
 		'data',
 		'decimal_places',
+		'default',
 		'description',
 		'email',
 		'end',
+		'engine',
 		'error_message',
 		'eu_member',
 		'event',
@@ -4328,18 +4955,26 @@ namespace PHPSTORM_META {
 		'fk_model',
 		'flag_optional',
 		'flag_required',
+		'flags',
 		'foreign_key',
+		'from',
 		'hostname',
 		'id',
 		'identifier',
 		'image',
 		'ip',
 		'is_error',
+		'is_html',
+		'is_private',
+		'is_spam',
 		'iso2',
 		'iso3',
 		'job_group',
 		'job_task',
+		'key',
 		'label',
+		'language_id',
+		'last_import',
 		'last_login',
 		'lat',
 		'lft',
@@ -4363,8 +4998,13 @@ namespace PHPSTORM_META {
 		'params',
 		'parent_id',
 		'password',
+		'path',
 		'phone_code',
 		'pid',
+		'plural',
+		'plural_2',
+		'primary',
+		'prio',
 		'priority',
 		'process',
 		'progress',
@@ -4372,6 +5012,7 @@ namespace PHPSTORM_META {
 		'rating_sum',
 		'refer',
 		'reference',
+		'references',
 		'result',
 		'rght',
 		'role_id',
@@ -4397,6 +5038,11 @@ namespace PHPSTORM_META {
 		'timeout',
 		'timezone',
 		'title',
+		'to',
+		'translate_domain_id',
+		'translate_language_id',
+		'translate_project_id',
+		'translate_string_id',
 		'type',
 		'uri',
 		'used',
@@ -4475,10 +5121,13 @@ namespace PHPSTORM_META {
 		'CakeDto.strictTypes',
 		'Captcha',
 		'Captcha.maxPerUser',
+		'Comments',
+		'Comments.allowAnonymous',
 		'Config',
 		'Config.adminEmail',
 		'DatabaseLog',
 		'DatabaseLog.datasource',
+		'DatabaseLog.disableAutoTable',
 		'DatabaseLog.limit',
 		'DatabaseLog.maxLength',
 		'DatabaseLog.monitor',
@@ -4494,6 +5143,13 @@ namespace PHPSTORM_META {
 		'Error.logger',
 		'Error.skipLog',
 		'Error.trace',
+		'Favorites',
+		'Favorites.icons',
+		'Favorites.models',
+		'Favorites.models.FavoritePosts',
+		'Favorites.models.LikePosts',
+		'Favorites.models.StarPosts',
+		'Favorites.userModelClass',
 		'Feedback',
 		'Feedback.configuration',
 		'Feedback.configuration.Filesystem',
@@ -4515,6 +5171,7 @@ namespace PHPSTORM_META {
 		'Icon',
 		'Icon.checkExistence',
 		'Icon.map',
+		'Icon.map.add',
 		'Icon.map.admin',
 		'Icon.map.chart-bar',
 		'Icon.map.contra',
@@ -4606,11 +5263,13 @@ namespace PHPSTORM_META {
 		'plugins.CakePdf',
 		'plugins.Calendar',
 		'plugins.Captcha',
+		'plugins.Comments',
 		'plugins.CsvView',
 		'plugins.Data',
 		'plugins.DatabaseLog',
 		'plugins.DebugKit',
 		'plugins.Expose',
+		'plugins.Favorites',
 		'plugins.Feed',
 		'plugins.Feedback',
 		'plugins.Flash',
@@ -4635,6 +5294,7 @@ namespace PHPSTORM_META {
 		'plugins.TestHelper',
 		'plugins.TinyAuth',
 		'plugins.Tools',
+		'plugins.Translate',
 	);
 
 	registerArgumentsSet(
@@ -4683,6 +5343,26 @@ namespace PHPSTORM_META {
 		'result',
 		'session_id',
 		'used',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Comments\Model\Entity\Comment',
+		'child_comments',
+		'content',
+		'created',
+		'email',
+		'foreign_key',
+		'id',
+		'is_private',
+		'is_spam',
+		'model',
+		'modified',
+		'name',
+		'parent_comment',
+		'parent_id',
+		'title',
+		'user',
+		'user_id',
 	);
 
 	registerArgumentsSet(
@@ -4829,6 +5509,17 @@ namespace PHPSTORM_META {
 		'requested_at',
 		'status_code',
 		'url',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Favorites\Model\Entity\Favorite',
+		'created',
+		'foreign_key',
+		'id',
+		'model',
+		'user',
+		'user_id',
+		'value',
 	);
 
 	registerArgumentsSet(
@@ -5051,8 +5742,100 @@ namespace PHPSTORM_META {
 	);
 
 	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateApiTranslation',
+		'created',
+		'engine',
+		'from',
+		'id',
+		'key',
+		'to',
+		'value',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateDomain',
+		'active',
+		'created',
+		'id',
+		'modified',
+		'name',
+		'path',
+		'prio',
+		'translate_project',
+		'translate_project_id',
+		'translate_strings',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateLanguage',
+		'active',
+		'base',
+		'id',
+		'iso2',
+		'language',
+		'language_id',
+		'locale',
+		'name',
+		'primary',
+		'translate_project',
+		'translate_project_id',
+		'translate_terms',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateProject',
+		'created',
+		'default',
+		'id',
+		'modified',
+		'name',
+		'status',
+		'translate_domains',
+		'type',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateString',
+		'active',
+		'comment',
+		'context',
+		'created',
+		'flags',
+		'id',
+		'is_html',
+		'last_import',
+		'modified',
+		'name',
+		'plural',
+		'references',
+		'translate_domain',
+		'translate_domain_id',
+		'translate_terms',
+		'user',
+		'user_id',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Translate\Model\Entity\TranslateTerm',
+		'comment',
+		'confirmed',
+		'confirmed_by',
+		'content',
+		'created',
+		'id',
+		'modified',
+		'plural_2',
+		'translate_language',
+		'translate_language_id',
+		'translate_string',
+		'translate_string_id',
+		'user_id',
+	);
+
+	registerArgumentsSet(
 		'icons',
 		'500px',
+		'add',
 		'address-book',
 		'address-book-o',
 		'address-card',
@@ -12416,6 +13199,12 @@ namespace PHPSTORM_META {
 		'CakeDto.Admin/Generate::index',
 		'CakeDto.Admin/Generate::schema',
 		'Captcha.Captcha::display',
+		'Comments.Admin/Comments::delete',
+		'Comments.Admin/Comments::edit',
+		'Comments.Admin/Comments::index',
+		'Comments.Admin/Comments::view',
+		'Comments.Comments::add',
+		'Comments.Comments::delete',
 		'Contact::index',
 		'Data.Admin/Addresses::add',
 		'Data.Admin/Addresses::delete',
@@ -12535,6 +13324,19 @@ namespace PHPSTORM_META {
 		'Export::states',
 		'Export::timezones',
 		'Expose.Admin/Expose::index',
+		'Favorites.Admin/Favorites::delete',
+		'Favorites.Admin/Favorites::index',
+		'Favorites.Admin/Favorites::listing',
+		'Favorites.Favorites::add',
+		'Favorites.Favorites::delete',
+		'Favorites.Favorites::remove',
+		'Favorites.Likes::delete',
+		'Favorites.Likes::dislike',
+		'Favorites.Likes::like',
+		'Favorites.Likes::remove',
+		'Favorites.Stars::delete',
+		'Favorites.Stars::star',
+		'Favorites.Stars::unstar',
 		'Feedback.Admin/Feedback::index',
 		'Feedback.Admin/Feedback::listing',
 		'Feedback.Admin/Feedback::remove',
@@ -12622,6 +13424,8 @@ namespace PHPSTORM_META {
 		'Sandbox.Captchas::math',
 		'Sandbox.Captchas::modelLess',
 		'Sandbox.ChronosExamples::index',
+		'Sandbox.CommentExamples::basic',
+		'Sandbox.CommentExamples::index',
 		'Sandbox.Conventions::index',
 		'Sandbox.Csv::index',
 		'Sandbox.Csv::pagination',
@@ -12644,6 +13448,10 @@ namespace PHPSTORM_META {
 		'Sandbox.ExposeExamples::superimposedView',
 		'Sandbox.ExposeExamples::users',
 		'Sandbox.ExposeExamples::view',
+		'Sandbox.FavoriteExamples::favorite',
+		'Sandbox.FavoriteExamples::index',
+		'Sandbox.FavoriteExamples::like',
+		'Sandbox.FavoriteExamples::star',
 		'Sandbox.FeedExamples::feed',
 		'Sandbox.FeedExamples::feedview',
 		'Sandbox.FeedExamples::index',
@@ -12788,18 +13596,64 @@ namespace PHPSTORM_META {
 		'Tools.Admin/Icons::index',
 		'Tools.Admin/Tools::index',
 		'Tools.ShuntRequest::language',
+		'Translate.Admin/Translate::bestPractice',
+		'Translate.Admin/Translate::convert',
+		'Translate.Admin/Translate::index',
+		'Translate.Admin/Translate::reset',
+		'Translate.Admin/Translate::translate',
+		'Translate.Admin/TranslateApiTranslations::add',
+		'Translate.Admin/TranslateApiTranslations::delete',
+		'Translate.Admin/TranslateApiTranslations::edit',
+		'Translate.Admin/TranslateApiTranslations::index',
+		'Translate.Admin/TranslateApiTranslations::view',
+		'Translate.Admin/TranslateDomains::add',
+		'Translate.Admin/TranslateDomains::delete',
+		'Translate.Admin/TranslateDomains::edit',
+		'Translate.Admin/TranslateDomains::index',
+		'Translate.Admin/TranslateDomains::view',
+		'Translate.Admin/TranslateLanguages::add',
+		'Translate.Admin/TranslateLanguages::delete',
+		'Translate.Admin/TranslateLanguages::edit',
+		'Translate.Admin/TranslateLanguages::fromLocale',
+		'Translate.Admin/TranslateLanguages::index',
+		'Translate.Admin/TranslateLanguages::toLocale',
+		'Translate.Admin/TranslateLanguages::view',
+		'Translate.Admin/TranslateProjects::add',
+		'Translate.Admin/TranslateProjects::delete',
+		'Translate.Admin/TranslateProjects::edit',
+		'Translate.Admin/TranslateProjects::index',
+		'Translate.Admin/TranslateProjects::reset',
+		'Translate.Admin/TranslateProjects::switchProject',
+		'Translate.Admin/TranslateProjects::view',
+		'Translate.Admin/TranslateStrings::add',
+		'Translate.Admin/TranslateStrings::delete',
+		'Translate.Admin/TranslateStrings::displayReference',
+		'Translate.Admin/TranslateStrings::dump',
+		'Translate.Admin/TranslateStrings::edit',
+		'Translate.Admin/TranslateStrings::extract',
+		'Translate.Admin/TranslateStrings::import',
+		'Translate.Admin/TranslateStrings::index',
+		'Translate.Admin/TranslateStrings::source',
+		'Translate.Admin/TranslateStrings::translate',
+		'Translate.Admin/TranslateStrings::view',
+		'Translate.Admin/TranslateTerms::delete',
+		'Translate.Admin/TranslateTerms::edit',
+		'Translate.Admin/TranslateTerms::index',
+		'Translate.Admin/TranslateTerms::view',
 	);
 
 	registerArgumentsSet(
 		'tableNames',
 		'bitmasked_records',
 		'captchas',
+		'comments_comments',
 		'continents',
 		'countries',
 		'currencies',
 		'database_logs',
 		'events',
 		'exposed_users',
+		'favorites_favorites',
 		'languages',
 		'queue_processes',
 		'queued_jobs',
@@ -12822,6 +13676,12 @@ namespace PHPSTORM_META {
 		'tags_tagged',
 		'tags_tags',
 		'timezones',
+		'translate_api_translations',
+		'translate_domains',
+		'translate_languages',
+		'translate_projects',
+		'translate_strings',
+		'translate_terms',
 		'users',
 	);
 

@@ -42,6 +42,9 @@ class AjaxExamplesController extends SandboxAppController {
 
 		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'])) {
 			$this->loadComponent('Ajax.Ajax');
+			if ($this->request->getQuery('no-header')) {
+				$this->Flash->setConfig('noSessionOnAjax', false);
+			}
 		}
 
 		$this->viewBuilder()->addHelper('Data.Data');

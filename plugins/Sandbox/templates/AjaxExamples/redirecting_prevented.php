@@ -13,7 +13,8 @@ $(function() {
 		var form = $(this).prev();
 		var url = $(form).attr("action");
 
-		$.ajax({
+		var geturl;
+		geturl = $.ajax({
 			type: 'post',
 			url: url,
 			beforeSend: function(xhr) {
@@ -21,7 +22,10 @@ $(function() {
 				$('#example-target').html('...');
 			},
 			success: function(res) {
-				$('#example-target').html('Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')' + "<br/><br/>Raw data:<br/>" + JSON.stringify(res));
+				var content = 'Redirect to: ' + res._redirect.url + ' (status code ' + res._redirect.status + ')' + "<br/><br/>Raw data:<br/>" + JSON.stringify(res);
+				content += "<br/><br/>Flash data in header X-Flash:<br/>" + geturl.getResponseHeader('X-Flash');
+
+				$('#example-target').html(content);
 			},
 			error: function(e) {
 				alert("Error");
@@ -69,6 +73,15 @@ the redirect URL and its status code to manually use it in your JS/jQuery code.
 	<small><i>The AJAX result (from the redirect) will go here</i></small>
 	</div>
 </div>
+
+	<hr>
+
+	<p>
+		Note:
+		The example above also uses Flash plugin which auto-adds the flash messages as <code>X-Flash</code> header to the response.
+		If you want to keep the flash messages in the payload, you can also disable the header part using `'noSessionOnAjax'` config set to false (see code).
+		<?php echo $this->Html->link('Not using header but payload', ['?' => ['no-header' => true]]); ?>
+	</p>
 
 </div>
 

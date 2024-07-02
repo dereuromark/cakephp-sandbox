@@ -11,7 +11,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class ContactControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		//'plugin.Captcha.Captchas',

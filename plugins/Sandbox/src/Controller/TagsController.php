@@ -85,7 +85,7 @@ class TagsController extends SandboxAppController {
 	 */
 	public function search() {
 		$this->loadModel('Sandbox.SandboxPosts');
-		$this->ensurePostsDemoData();
+		$this->SandboxPosts->ensureDemoData();
 
 		$query = $this->SandboxPosts->find('search', search: $this->request->getQuery())->contain(['Tags']);
 
@@ -144,56 +144,6 @@ class TagsController extends SandboxAppController {
 		];
 
 		$this->set(compact('tags'));
-	}
-
-	/**
-	 * TODO
-	 *
-	 * @return void
-	 */
-	protected function ensureDemoData() {
-		//$result = $this->SandboxCategories->Tags->find()->toArray();
-
-		$categories = $this->SandboxCategories->find()->all()->toArray();
-		foreach ($categories as $category) {
-
-		}
-	}
-
-	/**
-	 * @return void
-	 */
-	protected function ensurePostsDemoData() {
-		$hasRecords = (bool)$this->SandboxPosts->find()->where(['title' => 'Awesome Post'])->first();
-		if ($hasRecords) {
-			return;
-		}
-
-		$posts = [
-			[
-				'title' => 'Awesome Post',
-				'content' => '...',
-				'tag_list' => 'Shiny, New, Interesting',
-			],
-			[
-				'title' => 'Fun Story',
-				'content' => '...',
-				'tag_list' => 'Hip, Motivating',
-			],
-			[
-				'title' => 'Older Post',
-				'content' => '...',
-				'tag_list' => 'Detailed, Legacy, Motivating, Long',
-			],
-			[
-				'title' => 'Just a Post',
-				'content' => '...',
-			],
-		];
-
-		$postEntities = $this->SandboxPosts->newEntities($posts);
-
-		$this->SandboxPosts->saveManyOrFail($postEntities);
 	}
 
 }

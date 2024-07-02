@@ -447,54 +447,6 @@ class ToolsExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function qr() {
-		$types = [
-			'text' => 'Text',
-			'url' => 'Url',
-			'tel' => 'Phone Number',
-			'sms' => 'Text message',
-			'email' => 'E-Mail',
-			'geo' => 'Geo',
-			'market' => 'Market',
-			'card' => 'Vcard',
-		];
-
-		if ($this->request->is('post')) {
-			switch ($this->request->getData('type')) {
-				case 'url':
-				case 'tel':
-				case 'email':
-				case 'geo':
-				case 'market':
-					$result = str_replace([PHP_EOL, "\n"], ' ', $this->request->getData('content'));
-
-					break;
-				case 'card':
-					$result = $this->request->getData('Card');
-					$result['birthday'] = $result['birthday']['year'] . '-' . $result['birthday']['month'] . '-' . $result['birthday']['day'];
-
-					break;
-				case 'sms':
-					$result = [$this->request->getData('Sms.number'), $this->request->getData('Sms.content')];
-
-					break;
-				case 'text':
-					$result = $this->request->getData('content');
-
-					break;
-				default:
-					$result = null;
-			}
-			$this->set(compact('result'));
-		}
-
-		$this->set(compact('types'));
-		$this->viewBuilder()->addHelpers(['Tools.QrCode']);
-	}
-
-	/**
-	 * @return void
-	 */
 	public function formatHelper() {
 	}
 

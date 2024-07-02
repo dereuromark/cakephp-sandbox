@@ -8,20 +8,20 @@ use Cake\Validation\Validator;
 /**
  * Events Model
  *
- * @method \Sandbox\Model\Entity\Event get($primaryKey, $options = [])
+ * @method \Sandbox\Model\Entity\Event get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Event> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \Sandbox\Model\Entity\Event findOrCreate($search, ?callable $callback = null, array $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
- * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \Sandbox\Model\Entity\Event newEmptyEntity()
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, array $options = [])
  */
 class EventsTable extends Table {
 

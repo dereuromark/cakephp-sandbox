@@ -4,6 +4,7 @@ namespace App\View;
 
 use Cake\Core\Configure;
 use Cake\View\View;
+use Favorites\Utility\Config;
 
 /**
  * @property \AssetCompress\View\Helper\AssetCompressHelper $AssetCompress
@@ -24,7 +25,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\NumberHelper $Number
  * @property \Data\View\Helper\DataHelper $Data
  * @property \Tools\View\Helper\GravatarHelper $Gravatar
- * @property \Tools\View\Helper\QrCodeHelper $QrCode
+ * @property \QrCode\View\Helper\QrCodeHelper $QrCode
  * @property \Tools\View\Helper\TreeHelper $Tree
  * @property \Ratings\View\Helper\RatingHelper $Rating
  * @property \Shim\View\Helper\ConfigureHelper $Configure
@@ -46,6 +47,10 @@ use Cake\View\View;
  * @property \Search\View\Helper\SearchHelper $Search
  * @property \Templating\View\Helper\IconHelper $Icon
  * @property \Templating\View\Helper\IconSnippetHelper $IconSnippet
+ * @property \Favorites\View\Helper\StarsHelper $Stars
+ * @property \Favorites\View\Helper\LikesHelper $Likes
+ * @property \Favorites\View\Helper\FavoritesHelper $Favorites
+ * @property \Comments\View\Helper\CommentsHelper $Comments
  */
 class AppView extends View {
 
@@ -90,6 +95,12 @@ class AppView extends View {
 		foreach ($helpers as $helper) {
 			$this->addHelper($helper);
 		}
+
+		$this->addHelper('Favorites.Stars', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Favorites.Likes', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Favorites.Favorites', ['strategy' => Config::STRATEGY_ACTION]);
+		$this->addHelper('Comments.Comments');
+		$this->addHelper('QrCode.QrCode');
 	}
 
 }

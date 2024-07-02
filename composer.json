@@ -17,12 +17,15 @@
 	],
 	"license": "MIT",
 	"require": {
-		"php": ">=8.1",
+		"php": ">=8.2",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
-		"cakephp/cakephp": "dev-5.x-enum-only-except as 5.0.6",
+		"cakephp/cakephp": "^5.1.0@RC",
 		"cakephp/bake": "3.x-dev as 3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
+		"dereuromark/cakephp-comments": "dev-master",
+		"dereuromark/cakephp-favorites": "dev-master",
+		"dereuromark/cakephp-translate": "dev-master",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-shim": "dev-master as 3.1.0",
@@ -69,11 +72,12 @@
 		"jdorn/sql-formatter": "@stable",
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
-		"symfony/http-client": "^6.4"
+		"symfony/http-client": "^6.4 || ^7.0",
+		"dereuromark/cakephp-qrcode": "dev-master"
 	},
 	"require-dev": {
 		"robmorgan/phinx": "0.x-dev as 0.15.3",
-		"fig-r/psr2r-sniffer": "dev-next",
+		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^1.0.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
@@ -107,6 +111,8 @@
 			"bin/cake migrations migrate -p Captcha",
 			"bin/cake migrations migrate -p Tags",
 			"bin/cake migrations migrate -p Queue",
+			"bin/cake migrations migrate -p Comments",
+			"bin/cake migrations migrate -p Favorites",
 			"bin/cake migrations migrate -p StateMachine"
 		],
 		"assets": [
@@ -143,7 +149,7 @@
 		"preferred-install": "dist",
 		"process-timeout": 900,
 		"platform": {
-			"php": "8.1.11"
+			"php": "8.2.11"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,

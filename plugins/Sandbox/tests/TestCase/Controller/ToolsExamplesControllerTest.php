@@ -11,7 +11,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class ToolsExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'app.Users',
@@ -54,16 +54,6 @@ class ToolsExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function testPasswordEdit() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'passwordEdit']);
-
-		$this->assertResponseCode(200);
-		$this->assertNoRedirect();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testQr() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'ToolsExamples', 'action' => 'qr']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

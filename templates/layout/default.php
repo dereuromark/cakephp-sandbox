@@ -77,5 +77,6 @@ if (PHP_SAPI !== 'cli') {
 }
 ?>
 <?php echo $this->fetch('script'); ?>
+<?php echo $this->fetch('postLink') ?>
 </body>
 </html>

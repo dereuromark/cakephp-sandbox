@@ -10,7 +10,7 @@ use Shim\TestSuite\IntegrationTestCase;
 class SearchExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array
+	 * @var array<string>
 	 */
 	protected array $fixtures = [
 		'plugin.Data.Countries',
