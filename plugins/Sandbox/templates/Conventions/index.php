@@ -14,7 +14,7 @@ Bottom line: Controllers are plural, their tables plural as well, the entity is 
 </p>
 
 <h3>Class names and URLs</h3>
-It is recommended to use the "DashedRoute" (which is tbe default since 3.1 anyway).
+It is recommended to use the "DashedRoute" (which is the default since 3.1 anyway).
 
 <p>
 With a basic example, we take a closer look at the naming scheme in URLs:
