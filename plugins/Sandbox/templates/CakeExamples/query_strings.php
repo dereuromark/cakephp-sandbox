@@ -3,6 +3,13 @@
  * @var \App\View\AppView $this
  */
 ?>
+<?php $this->append('script'); ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script>hljs.highlightAll();</script>
+<?php $this->end(); ?>
+
 <div class="source-link" style="float: right;">
 <?php //echo $this->SourceCode->link(null, array('class' => 'btn btn-info')); ?>
 </div>
@@ -20,18 +27,9 @@ TEXT;
 echo $this->Highlighter->highlight($data, ['lang' => 'php']);
 ?>
 
+<p>
 So with the current implementation of how query strings (and named params) work, one should always assert the correct type first:
-
-<!--
-<?php
-echo time();
-?>
-!>
-
-```php
-dfsf<?php
-echo time(); ?>
-```
+</p>
 
 <?php
 $data = <<<'TEXT'
@@ -43,7 +41,6 @@ $result = 'string' . $this->request->getQuery('key'); // Dangerous without check
 TEXT;
 echo $this->Highlighter->highlight($data, ['lang' => 'php']);
 ?>
-I opened a <a href="https://github.com/cakephp/cakephp/issues/2223">ticket regarding this issue</a>.
 
 <h3>Demo/Example</h3>
 <?php
