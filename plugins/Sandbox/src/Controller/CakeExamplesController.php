@@ -2,9 +2,11 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Collection\Collection;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Utility\Hash;
+use Sandbox\Controller\Paginator\CollectionPaginator;
 use Sandbox\Model\Enum\UserStatus;
 
 /**
@@ -144,6 +146,46 @@ class CakeExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('animal'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function paginateNonDatabase() {
+		$items = [
+			[
+				'title' => 'One',
+			],
+			[
+				'title' => 'Two',
+			],
+			[
+				'title' => 'Three',
+			],
+			[
+				'title' => 'Four',
+			],
+			[
+				'title' => 'Five',
+			],
+			[
+				'title' => 'Six',
+			],
+		];
+		$collection = new Collection($items);
+
+		$paginator = new CollectionPaginator($this->request->getQuery() + ['limit' => 5]);
+		$results = $paginator->paginate($collection);
+
+		/*
+		$params = [
+			'count' => $collection->count(),
+			...
+		];
+		$results = new PaginatedResultSet($collection, $params);
+		*/
+
+		$this->set(compact('results'));
 	}
 
 }
