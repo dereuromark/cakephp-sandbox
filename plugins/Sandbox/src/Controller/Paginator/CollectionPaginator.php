@@ -12,6 +12,9 @@ class CollectionPaginator implements PaginatorInterface {
 
 	use InstanceConfigTrait;
 
+	/**
+	 * @var array<string, mixed>
+	 */
 	protected array $query;
 
 	/**
@@ -39,7 +42,7 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Calculated paging params.
 	 *
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected array $pagingParams = [
 		'limit' => null,
@@ -56,7 +59,7 @@ class CollectionPaginator implements PaginatorInterface {
 	];
 
 	/**
-	 * @param array $query Query parameters.
+	 * @param array<string, mixed> $query Query parameters.
 	 */
 	public function __construct(array $query) {
 		$this->query = $query;
@@ -64,8 +67,8 @@ class CollectionPaginator implements PaginatorInterface {
 
 	/**
 	 * @param \Cake\Collection\CollectionInterface $target
-	 * @param array $params
-	 * @param array $settings
+	 * @param array<string, mixed> $params
+	 * @param array<string, mixed> $settings
 	 *
 	 * @return \Cake\Datasource\Paging\PaginatedInterface
 	 */
@@ -83,11 +86,11 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Extract pagination data needed
 	 *
-	 * @param \Cake\Datasource\RepositoryInterface $collection The repository object.
+	 * @param \Cake\Collection\CollectionInterface $collection The repository object.
 	 * @param array<string, mixed> $params Request params
 	 * @param array<string, mixed> $settings The settings/configuration used for pagination.
 	 *
-	 * @return array
+	 * @return array<string, mixed>
 	 */
 	protected function extractData(CollectionInterface $collection, array $params, array $settings): array {
 		$defaults = $this->getDefaults($settings);
@@ -116,7 +119,7 @@ class CollectionPaginator implements PaginatorInterface {
 	 * which options/values can be set using request parameters.
 	 *
 	 * @param array<string, mixed> $params Request params.
-	 * @param array $settings The settings to merge with the request data.
+	 * @param array<string, mixed> $settings The settings to merge with the request data.
 	 * @return array<string, mixed> Array of merged options.
 	 */
 	protected function mergeOptions(array $params, array $settings): array {
@@ -193,7 +196,7 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Add "currentPage" and "pageCount" params.
 	 *
-	 * @param array $data Paginator data.
+	 * @param array<string, mixed> $data Paginator data.
 	 * @return void
 	 */
 	protected function addPageCountParams(array $data): void {
@@ -214,7 +217,7 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Add "start" and "end" params.
 	 *
-	 * @param array $data Paginator data.
+	 * @param array<string, mixed> $data Paginator data.
 	 * @return void
 	 */
 	protected function addStartEndParams(array $data): void {
@@ -232,7 +235,7 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Add "prevPage" and "nextPage" params.
 	 *
-	 * @param array $data Paging data.
+	 * @param array<string, mixed> $data Paging data.
 	 * @return void
 	 */
 	protected function addPrevNextParams(array $data): void {
@@ -251,8 +254,9 @@ class CollectionPaginator implements PaginatorInterface {
 	 * Since the query fetches an extra record, drop the last record if records
 	 * fetched exceeds the limit/per page.
 	 *
-	 * @param \Cake\Datasource\ResultSetInterface $items
-	 * @param array $pagingParams
+	 * @param \Cake\Collection\CollectionInterface $items
+	 * @param array<string, mixed> $pagingParams
+	 *
 	 * @return \Cake\Datasource\Paging\PaginatedInterface
 	 */
 	protected function buildPaginated(CollectionInterface $items, array $pagingParams): PaginatedInterface {
