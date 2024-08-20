@@ -1,16 +1,15 @@
 <?php
 
 namespace Sandbox\Controller\Paginator;
+
 use Cake\Collection\CollectionInterface;
 use Cake\Core\InstanceConfigTrait;
 use Cake\Datasource\Paging\PaginatedInterface;
 use Cake\Datasource\Paging\PaginatedResultSet;
 use Cake\Datasource\Paging\PaginatorInterface;
-use Cake\Datasource\RepositoryInterface;
-use Cake\Datasource\ResultSetInterface;
 
-class CollectionPaginator implements PaginatorInterface
-{
+class CollectionPaginator implements PaginatorInterface {
+
 	use InstanceConfigTrait;
 
 	protected array $query;
@@ -27,17 +26,6 @@ class CollectionPaginator implements PaginatorInterface
 	 * - `allowedParameters` - A list of parameters users are allowed to set using request
 	 *   parameters. Modifying this list will allow users to have more influence
 	 *   over pagination, be careful with what you permit.
-	 * - `sortableFields` - A list of fields which can be used for sorting. By
-	 *   default all table columns can be used for sorting. You can use this option
-	 *   to restrict sorting only by particular fields. If you want to allow
-	 *   sorting on either associated columns or calculated fields then you will
-	 *   have to explicity specify them (along with other fields). Using an empty
-	 *   array will disable sorting alltogether.
-	 * - `finder` - The table finder to use. Defaults to `all`.
-	 * - `scope` - If specified this scope will be used to get the paging options
-	 *   from the query params passed to paginate(). Scopes allow namespacing the
-	 *   paging options and allows paginating multiple models in the same action.
-	 *   Default `null`.
 	 *
 	 * @var array<string, mixed>
 	 */
@@ -67,21 +55,30 @@ class CollectionPaginator implements PaginatorInterface
 		'hasNextPage' => null,
 	];
 
-	public function __construct($query) {
+	/**
+	 * @param array $query Query parameters.
+	 */
+	public function __construct(array $query) {
 		$this->query = $query;
 	}
 
+	/**
+	 * @param \Cake\Collection\CollectionInterface $target
+	 * @param array $params
+	 * @param array $settings
+	 *
+	 * @return \Cake\Datasource\Paging\PaginatedInterface
+	 */
 	public function paginate(
-		mixed $collection,
+		mixed $target,
 		array $params = [],
-		array $settings = []
+		array $settings = [],
 	): PaginatedInterface {
-		$data = $this->extractData($collection, $params, $settings);
+		$data = $this->extractData($target, $params, $settings);
 		$pagingParams = $this->buildParams($data);
 
-		return $this->buildPaginated($collection, $pagingParams);
+		return $this->buildPaginated($target, $pagingParams);
 	}
-
 
 	/**
 	 * Extract pagination data needed
@@ -92,15 +89,15 @@ class CollectionPaginator implements PaginatorInterface
 	 *
 	 * @return array
 	 */
-	protected function extractData(CollectionInterface $collection, array $params, array $settings): array
-	{
+	protected function extractData(CollectionInterface $collection, array $params, array $settings): array {
 		$defaults = $this->getDefaults($settings);
 
 		$options = $defaults;
 		$params = $this->query + $params;
-		$options = $this->mergeOptions($params, $defaults);
+		$options = $this->mergeOptions($params, $options);
 		$options = $this->checkLimit($options);
 
+		$options['totalCount'] = $collection->count();
 		$options['page'] = max((int)$options['page'], 1);
 
 		return compact('defaults', 'options');
@@ -122,8 +119,7 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array $settings The settings to merge with the request data.
 	 * @return array<string, mixed> Array of merged options.
 	 */
-	protected function mergeOptions(array $params, array $settings): array
-	{
+	protected function mergeOptions(array $params, array $settings): array {
 		$params = array_intersect_key($params, array_flip($this->getConfig('allowedParameters')));
 
 		return array_merge($settings, $params);
@@ -135,8 +131,7 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array<string, mixed> $options An array of options with a limit key to be checked.
 	 * @return array<string, mixed> An array of options for pagination.
 	 */
-	protected function checkLimit(array $options): array
-	{
+	protected function checkLimit(array $options): array {
 		$options['limit'] = (int)$options['limit'];
 		if ($options['limit'] < 1) {
 			$options['limit'] = 1;
@@ -150,13 +145,11 @@ class CollectionPaginator implements PaginatorInterface
 	 * Get the settings for a $model. If there are no settings for a specific
 	 * repository, the general settings will be used.
 	 *
-	 * @param string $alias Model name to get settings for.
 	 * @param array<string, mixed> $settings The settings which is used for combining.
 	 * @return array<string, mixed> An array of pagination settings for a model,
 	 *   or the general settings.
 	 */
-	protected function getDefaults(array $settings): array
-	{
+	protected function getDefaults(array $settings): array {
 		$defaults = $this->getConfig();
 
 		$maxLimit = $settings['maxLimit'] ?? $defaults['maxLimit'];
@@ -179,9 +172,9 @@ class CollectionPaginator implements PaginatorInterface
 	 *  'defaults', 'alias'.
 	 * @return array<string, mixed> Paging params.
 	 */
-	protected function buildParams(array $data): array
-	{
+	protected function buildParams(array $data): array {
 		$this->pagingParams = [
+				'totalCount' => $data['options']['totalCount'],
 				'perPage' => $data['options']['limit'],
 				'requestedPage' => $data['options']['page'],
 			] + $this->pagingParams;
@@ -203,8 +196,7 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array $data Paginator data.
 	 * @return void
 	 */
-	protected function addPageCountParams(array $data): void
-	{
+	protected function addPageCountParams(array $data): void {
 		$page = $data['options']['page'];
 		$pageCount = null;
 
@@ -225,8 +217,7 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array $data Paginator data.
 	 * @return void
 	 */
-	protected function addStartEndParams(array $data): void
-	{
+	protected function addStartEndParams(array $data): void {
 		$start = $end = 0;
 
 		if ($this->pagingParams['count'] > 0) {
@@ -244,8 +235,7 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array $data Paging data.
 	 * @return void
 	 */
-	protected function addPrevNextParams(array $data): void
-	{
+	protected function addPrevNextParams(array $data): void {
 		$this->pagingParams['hasPrevPage'] = $this->pagingParams['currentPage'] > 1;
 		if ($this->pagingParams['totalCount'] === null) {
 			$this->pagingParams['hasNextPage'] = true;
@@ -265,12 +255,13 @@ class CollectionPaginator implements PaginatorInterface
 	 * @param array $pagingParams
 	 * @return \Cake\Datasource\Paging\PaginatedInterface
 	 */
-	protected function buildPaginated(CollectionInterface $items, array $pagingParams): PaginatedInterface
-	{
+	protected function buildPaginated(CollectionInterface $items, array $pagingParams): PaginatedInterface {
 		if (count($items) > $this->pagingParams['perPage']) {
-			$items = $items->take($this->pagingParams['perPage']);
+			$offset = $this->pagingParams['currentPage'] > 1 ? ($this->pagingParams['perPage'] * ($this->pagingParams['currentPage'] - 1)) : 0;
+			$items = $items->take($this->pagingParams['perPage'], $offset);
 		}
 
 		return new PaginatedResultSet($items, $pagingParams);
 	}
+
 }

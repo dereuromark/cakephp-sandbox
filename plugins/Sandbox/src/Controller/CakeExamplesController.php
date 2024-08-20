@@ -3,8 +3,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Collection\Collection;
-use Cake\Datasource\Paging\PaginatedResultSet;
-use Cake\Datasource\Paging\SimplePaginator;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Utility\Hash;
@@ -150,6 +148,9 @@ class CakeExamplesController extends SandboxAppController {
 		$this->set(compact('animal'));
 	}
 
+	/**
+	 * @return void
+	 */
 	public function paginateNonDatabase() {
 		$items = [
 			[
@@ -161,11 +162,19 @@ class CakeExamplesController extends SandboxAppController {
 			[
 				'title' => 'Three',
 			],
+			[
+				'title' => 'Four',
+			],
+			[
+				'title' => 'Five',
+			],
+			[
+				'title' => 'Six',
+			],
 		];
 		$collection = new Collection($items);
 
-		$paginator = new CollectionPaginator($this->request->getQuery());
-
+		$paginator = new CollectionPaginator($this->request->getQuery() + ['limit' => 5]);
 		$results = $paginator->paginate($collection);
 
 		/*
