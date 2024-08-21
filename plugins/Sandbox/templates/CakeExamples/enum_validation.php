@@ -34,8 +34,8 @@ CODE;
 ?>
 
 <h4>Submit a form</h4>
-<?php echo $this->Form->create($user); ?>
-<?php echo $this->Form->control('status'); ?>
+<?php echo $this->Form->create($user, ['novalidate' => true]); ?>
+<?php echo $this->Form->control('status', ['empty' => ' - please select - ']); ?>
 <?php echo $this->Form->submit(); ?>
 <?php echo $this->Form->end(); ?>
 
