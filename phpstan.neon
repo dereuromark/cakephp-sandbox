@@ -19,8 +19,6 @@ parameters:
 
 	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php
-		- %rootDir%/../../../src/Error/ErrorHandler.php
-		- %rootDir%/../../../src/Error/Middleware/ErrorHandlerMiddleware.php
 
 	ignoreErrors:
 		- '#Constant \w+ not found\.#'
