@@ -1710,12 +1710,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-comments.git",
-                "reference": "b168f2ab6fc2b149e4b5eae33dac702cb77ee738"
+                "reference": "9040b51e8a5651c57089d5807ace44d73ed61763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/b168f2ab6fc2b149e4b5eae33dac702cb77ee738",
-                "reference": "b168f2ab6fc2b149e4b5eae33dac702cb77ee738",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-comments/zipball/9040b51e8a5651c57089d5807ace44d73ed61763",
+                "reference": "9040b51e8a5651c57089d5807ace44d73ed61763",
                 "shasum": ""
             },
             "require": {
@@ -1763,7 +1763,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-comments/issues",
                 "source": "https://github.com/dereuromark/cakephp-comments/"
             },
-            "time": "2024-04-11T22:37:23+00:00"
+            "time": "2024-08-21T12:22:08+00:00"
         },
         {
             "name": "dereuromark/cakephp-data",
