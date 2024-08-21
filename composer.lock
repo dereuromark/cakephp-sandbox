@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d73644706b001d7cffd6443f01565531",
+    "content-hash": "e97514ba9029520dd6967a8f8a565c54",
     "packages": [
         {
             "name": "brick/math",
@@ -224,16 +224,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.1.0-RC2",
+            "version": "dev-enum-type-empty-string",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "1245c9924d720273ed8f2d8e1bc8580d72e09023"
+                "reference": "ad7d43ce3a93a8170f4520c63e35e7f7827fbcb5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1245c9924d720273ed8f2d8e1bc8580d72e09023",
-                "reference": "1245c9924d720273ed8f2d8e1bc8580d72e09023",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ad7d43ce3a93a8170f4520c63e35e7f7827fbcb5",
+                "reference": "ad7d43ce3a93a8170f4520c63e35e7f7827fbcb5",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2024-08-08T03:02:19+00:00"
+            "time": "2024-08-21T06:13:34+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2987,12 +2987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "a917b0d2bf2721a083d44b89c0ea53e0221c9db5"
+                "reference": "d1f1f0d01fbc1dcb847e80d447e592cdd3b7d683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/a917b0d2bf2721a083d44b89c0ea53e0221c9db5",
-                "reference": "a917b0d2bf2721a083d44b89c0ea53e0221c9db5",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/d1f1f0d01fbc1dcb847e80d447e592cdd3b7d683",
+                "reference": "d1f1f0d01fbc1dcb847e80d447e592cdd3b7d683",
                 "shasum": ""
             },
             "require": {
@@ -3044,7 +3044,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2024-06-27T12:43:08+00:00"
+            "time": "2024-08-21T12:10:33+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -10577,6 +10577,12 @@
     ],
     "aliases": [
         {
+            "package": "cakephp/cakephp",
+            "version": "dev-enum-type-empty-string",
+            "alias": "5.1.0",
+            "alias_normalized": "5.1.0.0"
+        },
+        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -10604,7 +10610,7 @@
     "minimum-stability": "RC",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
-        "cakephp/cakephp": 5,
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-comments": 20,
         "dereuromark/cakephp-favorites": 20,
         "dereuromark/cakephp-translate": 20,
