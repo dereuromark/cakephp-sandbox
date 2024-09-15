@@ -5,7 +5,7 @@
 ?>
 
 
-<h2>Tools plugin</h2>
+<h2>Templating plugin</h2>
 <p>
 	<a href="https://github.com/dereuromark/cakephp-templating" target="_blank">[Templating Plugin]</a>
 </p>

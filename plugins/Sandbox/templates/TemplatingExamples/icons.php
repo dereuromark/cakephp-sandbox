@@ -51,6 +51,21 @@ TEXT;
 	</p>
 
 	<p>FontAwesome also has quite powerful options for icons:</p>
+
+	<p>
+	<code style="display: block;">
+	<?php
+	$text = <<<TEXT
+<?php echo \$this->Icon->render('motorcycle', ['rotate' => 90]) ?>
+<?php echo \$this->Icon->render('anchor', ['spin' => true]) ?>
+TEXT;
+	echo nl2br(h($text));
+	?>
+	</code>
+	</p>
+
+	<p>results in:</p>
+
 	<p>
 	<?php
 	echo $this->Icon->render('motorcycle', ['rotate' => 90]) . ' (rotated 90 degrees)';
