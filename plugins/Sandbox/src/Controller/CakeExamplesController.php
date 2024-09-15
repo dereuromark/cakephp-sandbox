@@ -49,6 +49,32 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function enumValidation() {
+		$table = $this->fetchTable('Sandbox.SandboxUsers');
+		$table->getValidator()->add('status', 'validEnum', [
+			'rule' => ['enumOnly', [UserStatus::Active, UserStatus::Inactive]],
+			'message' => 'Invalid enum value.',
+		]);
+
+		$user = $table->newEmptyEntity();
+
+		if ($this->request->is(['post', 'put'])) {
+			$user = $table->patchEntity($user, $this->request->getData());
+			$value = $this->request->getData('status');
+			$label = UserStatus::tryFrom((int)$value)?->label();
+			if (!$user->getErrors()) {
+				$this->Flash->success('Value posted: `' . $value . '` (`' . $label . '`)');
+			} else {
+				$this->Flash->error('Value posted: `' . $value . '` (`' . $label . '`)');
+			}
+		}
+
+		$this->set(compact('user'));
+	}
+
+	/**
 	 * @return void
 	 */
 	public function queryStrings() {
