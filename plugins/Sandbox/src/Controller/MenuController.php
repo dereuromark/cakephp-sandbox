@@ -2,12 +2,7 @@
 
 namespace Sandbox\Controller;
 
-/**
- * @property \Icings\KnpMenu\Controller\Component\MenuComponent $Menu
- */
 class MenuController extends SandboxAppController {
-
-	//protected $components = ['Gourmet/KnpMenu.Menu'];
 
 	/**
 	 * @return void
