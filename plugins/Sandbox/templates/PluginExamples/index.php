@@ -169,7 +169,7 @@
 		<h3>TODO</h3>
 		<ul>
 			<li>Wysiwyg</li>
-			<li>Comments</li>
+			<li>QueueScheduler</li>
 			<li>... (see <a href="https://github.com/FriendsOfCake/awesome-cakephp" target="blank">awesome-cakephp</a>)</li>
 		</ul>
 

@@ -48,7 +48,7 @@ class ValidationService {
 		}
 
 		preg_match_all('/public static function (\w+)\(/', $content, $matches);
-		if (!$matches) {
+		if (empty($matches[1])) {
 			return [];
 		}
 

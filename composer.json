@@ -54,7 +54,7 @@
 		"cakephp/debug_kit": "^5.0.0",
 		"cakephp/twig-view": "^2.0.0",
 		"tecnickcom/tcpdf": "^6.2",
-		"dompdf/dompdf": "^2.0.0",
+		"dompdf/dompdf": "^3.0.0",
 		"willdurand/geocoder": "^4.6.0",
 		"geocoder-php/google-maps-provider": "^4.7.1",
 		"burzum/cakephp-service-layer": "dev-master",
