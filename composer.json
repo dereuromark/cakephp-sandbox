@@ -52,7 +52,7 @@
 		"dereuromark/cakephp-flash": "dev-master",
 		"dereuromark/cakephp-databaselog": "dev-master",
 		"cakephp/debug_kit": "^5.0.0",
-		"cakephp/twig-view": "^2.0.0",
+		"cakephp/twig-view": "^2.0.3",
 		"tecnickcom/tcpdf": "^6.2",
 		"dompdf/dompdf": "^3.0.0",
 		"willdurand/geocoder": "^4.6.0",
