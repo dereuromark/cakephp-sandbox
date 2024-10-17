@@ -6,6 +6,9 @@ use Cake\Datasource\ModelAwareTrait;
 use StateMachine\Dependency\StateMachineCommandInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 
+/**
+ * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
+ */
 class CompleteCommand implements StateMachineCommandInterface {
 
 	use ModelAwareTrait;

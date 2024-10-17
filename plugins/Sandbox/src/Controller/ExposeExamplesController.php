@@ -9,8 +9,11 @@ use Expose\Database\Type\ShortUuidType;
 
 /**
  * @property \Sandbox\Model\Table\ExposedUsersTable $ExposedUsers
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser> paginate($object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser><\Sandbox\Model\Entity\ExposedUser> paginate($object = null, array $settings = [])
  * @property \Expose\Controller\Component\SuperimposeComponent $Superimpose
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser><\Sandbox\Model\Entity\ExposedUser> paginate($object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser><\Sandbox\Model\Entity\ExposedUser> paginate($object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser><\Sandbox\Model\Entity\ExposedUser> paginate($object = null, array $settings = [])
  */
 class ExposeExamplesController extends SandboxAppController {
 

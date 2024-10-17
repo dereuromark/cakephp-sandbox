@@ -8,6 +8,9 @@ use Queue\Model\Table\QueuedJobsTable;
 use StateMachine\Dependency\StateMachineCommandInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 
+/**
+ * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
+ */
 class InitializePaymentCommand implements StateMachineCommandInterface {
 
 	use ModelAwareTrait;

@@ -10,7 +10,7 @@ use Tools\Model\Table\Table;
  * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @mixin \Tags\Model\Behavior\TagBehavior
- * @method \Sandbox\Model\Entity\SandboxPost get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Sandbox\Model\Entity\SandboxPost get(mixed $primaryKey, string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxPost newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxPost> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])

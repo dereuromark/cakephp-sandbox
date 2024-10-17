@@ -8,6 +8,9 @@ use StateMachine\Dependency\StateMachineConditionInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 use StateMachineSandbox\Model\Table\RegistrationsTable;
 
+/**
+ * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
+ */
 class CheckApprovalCondition implements StateMachineConditionInterface {
 
 	use ModelAwareTrait;

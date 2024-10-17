@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \StateMachineSandbox\Model\Entity\Registration[]|\Cake\Collection\CollectionInterface $registrations
+ * @var iterable<\StateMachineSandbox\Model\Entity\Registration> $registrations
  */
 
 ?>

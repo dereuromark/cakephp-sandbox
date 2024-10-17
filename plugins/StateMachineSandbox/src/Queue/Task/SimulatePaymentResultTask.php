@@ -10,6 +10,9 @@ use StateMachine\Dto\StateMachine\ItemDto;
 use StateMachineSandbox\Model\Table\RegistrationsTable;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 
+/**
+ * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
+ */
 class SimulatePaymentResultTask extends Task {
 
 	use ModelAwareTrait;

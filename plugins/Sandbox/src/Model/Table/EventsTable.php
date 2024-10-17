@@ -8,7 +8,7 @@ use Cake\Validation\Validator;
 /**
  * Events Model
  *
- * @method \Sandbox\Model\Entity\Event get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Sandbox\Model\Entity\Event get(mixed $primaryKey, string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Event> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])

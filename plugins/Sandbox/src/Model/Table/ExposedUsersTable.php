@@ -13,7 +13,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\ExposedUser newEmptyEntity()
  * @method \Sandbox\Model\Entity\ExposedUser newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\ExposedUser> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\ExposedUser get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Sandbox\Model\Entity\ExposedUser get(mixed $primaryKey, string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\ExposedUser findOrCreate($search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\ExposedUser> patchEntities(iterable $entities, array $data, array $options = [])

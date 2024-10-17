@@ -6,6 +6,10 @@ use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Sandbox\Model\Entity\SandboxUser;
 
+/**
+ * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
+ * @property \Comments\Controller\Component\CommentComponent $Comment
+ */
 class CommentExamplesController extends SandboxAppController {
 
 	protected ?string $defaultTable = 'Sandbox.SandboxPosts';
@@ -74,7 +78,9 @@ class CommentExamplesController extends SandboxAppController {
 				'email' => $sid . '@example.de',
 				'password' => '',
 			]);
-			$this->fetchTable('Sandbox.SandboxUsers')->saveOrFail($user);
+			if (PHP_SAPI !== 'cli') {
+				$this->fetchTable('Sandbox.SandboxUsers')->saveOrFail($user);
+			}
 		}
 
 		return $user;

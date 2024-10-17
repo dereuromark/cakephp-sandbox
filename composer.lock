@@ -2681,12 +2681,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "e1bff18a983a6cbef691a7816c177d092c5e179f"
+                "reference": "27fb433d75ffbdd21d38e379a5b841bed4cbef54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/e1bff18a983a6cbef691a7816c177d092c5e179f",
-                "reference": "e1bff18a983a6cbef691a7816c177d092c5e179f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/27fb433d75ffbdd21d38e379a5b841bed4cbef54",
+                "reference": "27fb433d75ffbdd21d38e379a5b841bed4cbef54",
                 "shasum": ""
             },
             "require": {
@@ -2736,7 +2736,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2024-10-01T22:29:02+00:00"
+            "time": "2024-10-17T01:26:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -2744,12 +2744,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "83cc015ab2c2fadae9a24cc2f14f583effba7ab8"
+                "reference": "a546fb09f079f2111ea4bae24088b628d0e74736"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/83cc015ab2c2fadae9a24cc2f14f583effba7ab8",
-                "reference": "83cc015ab2c2fadae9a24cc2f14f583effba7ab8",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/a546fb09f079f2111ea4bae24088b628d0e74736",
+                "reference": "a546fb09f079f2111ea4bae24088b628d0e74736",
                 "shasum": ""
             },
             "require": {
@@ -2792,7 +2792,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2024-09-25T00:11:47+00:00"
+            "time": "2024-10-16T13:32:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -4207,22 +4207,25 @@
         },
         {
             "name": "laminas/laminas-diactoros",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-diactoros.git",
-                "reference": "2cce7e77ca4c6c4183e9e8d4edeba483afc14487"
+                "reference": "143a16306602ce56b8b092a7914fef03c37f9ed2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/2cce7e77ca4c6c4183e9e8d4edeba483afc14487",
-                "reference": "2cce7e77ca4c6c4183e9e8d4edeba483afc14487",
+                "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/143a16306602ce56b8b092a7914fef03c37f9ed2",
+                "reference": "143a16306602ce56b8b092a7914fef03c37f9ed2",
                 "shasum": ""
             },
             "require": {
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0",
-                "psr/http-factory": "^1.0.2",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+                "psr/http-factory": "^1.1",
                 "psr/http-message": "^1.1 || ^2.0"
+            },
+            "conflict": {
+                "amphp/amp": "<2.6.4"
             },
             "provide": {
                 "psr/http-factory-implementation": "^1.0",
@@ -4236,9 +4239,9 @@
                 "http-interop/http-factory-tests": "^2.2.0",
                 "laminas/laminas-coding-standard": "~2.5.0",
                 "php-http/psr7-integration-tests": "^1.4.0",
-                "phpunit/phpunit": "^10.5.31",
+                "phpunit/phpunit": "^10.5.36",
                 "psalm/plugin-phpunit": "^0.19.0",
-                "vimeo/psalm": "^5.25.0"
+                "vimeo/psalm": "^5.26.1"
             },
             "type": "library",
             "extra": {
@@ -4288,7 +4291,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2024-09-11T00:55:07+00:00"
+            "time": "2024-10-14T11:59:49+00:00"
         },
         {
             "name": "laminas/laminas-httphandlerrunner",
@@ -8513,12 +8516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "63361286ed33b03bce28e925fff916dec488e3db"
+                "reference": "1a6b0a19075504d2935b5eb5302ec34e17c6d846"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/63361286ed33b03bce28e925fff916dec488e3db",
-                "reference": "63361286ed33b03bce28e925fff916dec488e3db",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1a6b0a19075504d2935b5eb5302ec34e17c6d846",
+                "reference": "1a6b0a19075504d2935b5eb5302ec34e17c6d846",
                 "shasum": ""
             },
             "require": {
@@ -8583,7 +8586,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-02T15:54:20+00:00"
+            "time": "2024-10-17T02:21:39+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -8951,16 +8954,16 @@
         },
         {
             "name": "php-collective/code-sniffer",
-            "version": "0.2.7",
+            "version": "0.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "b539c1213edf4abdc5db096001b684ee3b224079"
+                "reference": "f4467386fa3b325465051aee0ddb8f337048fe01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/b539c1213edf4abdc5db096001b684ee3b224079",
-                "reference": "b539c1213edf4abdc5db096001b684ee3b224079",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/f4467386fa3b325465051aee0ddb8f337048fe01",
+                "reference": "f4467386fa3b325465051aee0ddb8f337048fe01",
                 "shasum": ""
             },
             "require": {
@@ -9009,20 +9012,20 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2024-08-05T13:52:36+00:00"
+            "time": "2024-10-16T22:04:11+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.32.0",
+            "version": "1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4"
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
-                "reference": "6ca22b154efdd9e3c68c56f5d94670920a1c19a4",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/82a311fd3690fb2bf7b64d5c98f912b3dd746140",
+                "reference": "82a311fd3690fb2bf7b64d5c98f912b3dd746140",
                 "shasum": ""
             },
             "require": {
@@ -9054,9 +9057,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.32.0"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.33.0"
             },
-            "time": "2024-09-26T07:23:32+00:00"
+            "time": "2024-10-13T11:25:22+00:00"
         },
         {
             "name": "phpstan/phpstan",

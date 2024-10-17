@@ -7,6 +7,7 @@
  * @var string $alias
  * @var int $id
  * @var mixed $comments
+ * @var mixed $adminMode
  */
 ?>
 <div class="comments">
