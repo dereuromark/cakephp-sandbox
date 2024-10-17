@@ -8516,12 +8516,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "1a6b0a19075504d2935b5eb5302ec34e17c6d846"
+                "reference": "c9208407bd91ab3c2d2e8062892c6a9b2d0d232d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1a6b0a19075504d2935b5eb5302ec34e17c6d846",
-                "reference": "1a6b0a19075504d2935b5eb5302ec34e17c6d846",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/c9208407bd91ab3c2d2e8062892c6a9b2d0d232d",
+                "reference": "c9208407bd91ab3c2d2e8062892c6a9b2d0d232d",
                 "shasum": ""
             },
             "require": {
@@ -8586,7 +8586,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-17T02:21:39+00:00"
+            "time": "2024-10-17T10:04:05+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
