@@ -17,8 +17,6 @@ class ExampleRecordsTable extends Table {
 	public function __construct(array $config = []) {
 		parent::__construct($config);
 
-		//ConnectionManager::create('array', ['datasource' => 'Datasources.ArraySource']);
-
 		$this->records = [
 			[
 				'id' => 1,
