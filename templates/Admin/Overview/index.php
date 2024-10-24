@@ -38,6 +38,7 @@
 		<h3>Management</h3>
 		<ul>
 			<li><?php echo $this->Html->link(__('Users'), ['prefix' => 'Admin', 'controller' => 'Users'])?></li>
+			<li><?php echo $this->Html->link(__('Icons'), ['prefix' => 'Admin', 'plugin' => 'Templating', 'controller' => 'Icons'])?></li>
 		</ul>
 
 		<h3>System</h3>
