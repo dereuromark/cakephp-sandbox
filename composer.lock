@@ -1903,12 +1903,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-decimal.git",
-                "reference": "91f94e1106804ef14edcbfb7cbffe81efccb0013"
+                "reference": "a8bf435520bfa732c8be9b813b69b5e0efc558de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-decimal/zipball/91f94e1106804ef14edcbfb7cbffe81efccb0013",
-                "reference": "91f94e1106804ef14edcbfb7cbffe81efccb0013",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-decimal/zipball/a8bf435520bfa732c8be9b813b69b5e0efc558de",
+                "reference": "a8bf435520bfa732c8be9b813b69b5e0efc558de",
                 "shasum": ""
             },
             "require": {
@@ -1937,7 +1937,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-decimal/issues",
                 "source": "https://github.com/dereuromark/cakephp-decimal/tree/master"
             },
-            "time": "2024-10-23T13:16:38+00:00"
+            "time": "2024-10-24T16:29:23+00:00"
         },
         {
             "name": "dereuromark/cakephp-dto",
