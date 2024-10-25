@@ -237,7 +237,7 @@ class AccountController extends AppController {
 				$this->Flash->success(__('Account created'));
 				$this->Auth->setUser($user);
 
-				return $this->redirect(['controller' => 'overview', 'action' => 'index']);
+				return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 			}
 			$this->Flash->error(__('formContainsErrors'));
 
