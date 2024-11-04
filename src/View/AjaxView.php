@@ -24,11 +24,13 @@ use Cake\View\AjaxView as CakeAjaxView;
  */
 class AjaxView extends CakeAjaxView {
 
+	use AddHelperTrait;
+
 	/**
 	 * @inheritDoc
 	 */
 	public function initialize(): void {
-		$this->helpers['Format'] = ['className' => 'Tools.Format'];
+		$this->addHelpers();
 
 		parent::initialize();
 	}

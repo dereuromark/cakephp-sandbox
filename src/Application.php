@@ -33,7 +33,6 @@ class Application extends BaseApplication {
 			$this->bootstrapCli();
 		}
 
-
 		if (Configure::read('debug')) {
 			$this->addPlugin('DebugKit');
 			try {

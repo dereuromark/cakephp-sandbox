@@ -2,9 +2,7 @@
 
 namespace App\View;
 
-use Cake\Core\Configure;
 use Cake\View\View;
-use Favorites\Utility\Config;
 
 /**
  * @property \AssetCompress\View\Helper\AssetCompressHelper $AssetCompress
@@ -54,53 +52,15 @@ use Favorites\Utility\Config;
  */
 class AppView extends View {
 
+	use AddHelperTrait;
+
 	/**
-	 * Initialization hook method.
-	 *
-	 * For e.g. use this method to load a helper for all views:
-	 * `$this->loadHelper('Html');`
-	 *
 	 * @return void
 	 */
 	public function initialize(): void {
-		$this->addHelper('Tools.Time', ['outputTimezone' => 'Europe/Berlin']);
-		$this->addHelper('Tools.Number');
-		$this->addHelper('Tools.Text');
-		$this->addHelper('Data.Data');
+		$this->addHelpers();
 
-		$this->addHelper('Form', (array)Configure::read('FormConfig'));
-		$this->addHelper('Html');
-		$this->addHelper('Tools.Url');
-
-		$this->addHelper('Queue.Queue');
-		$this->addHelper('Queue.QueueProgress');
-
-		$this->addHelper('Search.Search');
-
-		$this->addHelper('Markup.Highlighter', ['prefix' => '']);
-		$this->addHelper('BootstrapUI.Paginator');
-
-		$helpers = [
-			'Tools.Common',
-			'Flash.Flash',
-			'Tools.Format',
-			'Tools.Progress',
-			'Tools.Meter',
-			'Templating.Icon',
-			'Templating.IconSnippet',
-			'TinyAuth.AuthUser',
-			'AssetCompress.AssetCompress',
-			'Shim.Configure',
-		];
-		foreach ($helpers as $helper) {
-			$this->addHelper($helper);
-		}
-
-		$this->addHelper('Favorites.Stars', ['strategy' => Config::STRATEGY_ACTION]);
-		$this->addHelper('Favorites.Likes', ['strategy' => Config::STRATEGY_ACTION]);
-		$this->addHelper('Favorites.Favorites', ['strategy' => Config::STRATEGY_ACTION]);
-		$this->addHelper('Comments.Comments');
-		$this->addHelper('QrCode.QrCode');
+		parent::initialize();
 	}
 
 }
