@@ -33,39 +33,6 @@ class Application extends BaseApplication {
 			$this->bootstrapCli();
 		}
 
-		$this->addPlugin('Tools');
-		$this->addPlugin('Setup');
-		$this->addPlugin('Data');
-		$this->addPlugin('Ajax');
-		//$this->addPlugin('Meta', ['bootstrap' => false]);
-		$this->addPlugin('Cache');
-		$this->addPlugin('AssetCompress');
-		$this->addPlugin('TinyAuth', ['bootstrap' => false]);
-		$this->addPlugin('Calendar');
-		$this->addPlugin('Search');
-		$this->addPlugin('Ratings');
-		$this->addPlugin('Comments');
-		$this->addPlugin('Geo');
-		$this->addPlugin('Templating');
-		$this->addPlugin('DatabaseLog');
-		$this->addPlugin('Queue');
-		$this->addPlugin('Captcha');
-		$this->addPlugin('CakeDto');
-		$this->addPlugin('Cake/Localized');
-		$this->addPlugin('BootstrapUI');
-		$this->addPlugin('Markup');
-		$this->addPlugin('Feedback');
-		$this->addPlugin('Icings/Menu');
-		$this->addPlugin('Expose');
-		$this->addPlugin('Translate');
-		$this->addPlugin('Favorites');
-		$this->addPlugin('QrCode');
-
-		// inside /plugins
-		$this->addPlugin('AuthSandbox');
-		$this->addPlugin('Sandbox');
-		$this->addPlugin('StateMachine');
-		$this->addPlugin('StateMachineSandbox');
 
 		if (Configure::read('debug')) {
 			$this->addPlugin('DebugKit');
@@ -121,9 +88,6 @@ class Application extends BaseApplication {
 		} catch (MissingPluginException $e) {
 			// Do not halt if the plugin is missing
 		}
-
-		$this->addPlugin('Migrations');
-		// Load more plugins here
 	}
 
 }

@@ -39,6 +39,7 @@ class AjaxExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		$this->loadComponent('Data.CountryStateHelper');
+		$this->loadComponent('Shim.RequestHandler');
 
 		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'])) {
 			$this->loadComponent('Ajax.Ajax');
