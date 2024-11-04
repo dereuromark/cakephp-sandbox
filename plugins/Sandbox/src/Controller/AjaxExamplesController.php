@@ -47,8 +47,6 @@ class AjaxExamplesController extends SandboxAppController {
 				$this->Flash->setConfig('noSessionOnAjax', false);
 			}
 		}
-
-		$this->viewBuilder()->addHelper('Data.Data');
 	}
 
 	/**
@@ -110,7 +108,6 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
-			$this->viewBuilder()->addHelper('BootstrapUI.Paginator');
 			$this->render('pagination_container');
 		}
 	}
