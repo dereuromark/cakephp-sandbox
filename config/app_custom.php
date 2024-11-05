@@ -161,6 +161,7 @@ $config = [
 			'DebugKit.Packages' => false,
 			'DebugKit.Mail' => false,
 			'TinyAuth.Auth' => true,
+			'Setup.L10n' => true,
 		],
 	],
 

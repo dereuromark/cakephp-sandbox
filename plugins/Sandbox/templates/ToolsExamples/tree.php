@@ -5,6 +5,9 @@
  * @var array $params
  * @var array $tree
  */
+
+use Brick\VarExporter\VarExporter;
+
 ?>
 
 <nav class="actions col-sm-4 col-12">
@@ -97,5 +100,45 @@ $callback = function($params) {
 
 echo $this->Tree->generate($tree, ['callback' => $callback, 'autoPath' => $autoPath]);
 ?>
+
+
+	<h3>Displaying a custom array</h3>
+	<p>
+		Using "children" elements, you can also make trees out of any array.
+	</p>
+
+	<pre>echo $this->Tree->generate($tree, ['maxDepth' => 1]); // 0 based</pre>
+
+	<?php
+	$treeData = [
+		[
+			'name' => 'Foo',
+			'children' => [
+				[
+					'name' => 'Bar',
+					'children' => [
+					],
+				],
+				[
+					'name' => 'Baz',
+					'children' => [
+						[
+							'name' => 'Baz Child',
+							'children' => []
+						],
+					],
+				],
+			],
+		],
+	];
+
+	echo $this->Tree->generate($treeData);
+	?>
+
+	<p>The data for this is:</p>
+	<?php
+	$array = '$data = ' . VarExporter::export($treeData, VarExporter::TRAILING_COMMA_IN_ARRAY) . ';';
+	echo $this->Highlighter->highlight($array, ['lang' => 'php']);
+	?>
 
 </div>

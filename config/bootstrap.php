@@ -180,9 +180,8 @@ ServerRequest::addDetector('tablet', function ($request) {
 Router::defaultRouteClass(DashedRoute::class);
 Router::extensions(['json', 'xml', 'csv', 'rss', 'pdf']);
 
-Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any mutable DateTime
+Time::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable Time
 DateTime::setToStringFormat('yyyy-MM-dd HH:mm:ss'); // For any immutable DateTime
-Date::setToStringFormat('yyyy-MM-dd'); // For any mutable Date
 Date::setToStringFormat('yyyy-MM-dd'); // For any immutable Date
 
 TypeFactory::build('time')
