@@ -5,6 +5,7 @@
  */
 
 use Cake\Core\Plugin;
+use Cake\Utility\Xml;
 
 ?>
 
@@ -65,7 +66,7 @@ echo $this->Highlighter->highlight(print_r($user, true), ['lang' => 'php']);
 
 <p>
 	Unfortunately, enums cannot implement Stringable.
-	So here we need to always manually do the respective string output.
+	So here we need to always manually call the respective string output.
 </p>
 
 <h4><?php echo h('$user->status->label()');?></h4>
@@ -117,6 +118,18 @@ echo $this->Highlighter->highlight(print_r($entity, true), ['lang' => 'json']);
 <p>
 	Here you can see that it is now a backed enum object again.
 </p>
+
+<h4>XML</h4>
+<?php
+$code = '$result = Xml::fromArray([\'user\' => $user], [\'pretty\' => true])->saveXML();';
+echo $this->Highlighter->highlight($code, ['lang' => 'php']);
+?>
+
+<?php
+$result = Xml::fromArray(['user' => $user], ['pretty' => true])->saveXML();
+echo $this->Highlighter->highlight($result, ['lang' => 'xml']);
+?>
+
 
 <h4>More examples</h4>
 <ul>
