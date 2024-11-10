@@ -107,13 +107,13 @@
 	"scripts": {
 		"post-install-cmd": "App\\Console\\Installer::postInstall",
 		"migrate": [
-			"bin/cake migrations migrate",
-			"bin/cake migrations migrate -p Captcha",
-			"bin/cake migrations migrate -p Tags",
-			"bin/cake migrations migrate -p Queue",
-			"bin/cake migrations migrate -p Comments",
-			"bin/cake migrations migrate -p Favorites",
-			"bin/cake migrations migrate -p StateMachine"
+			"bin/cake migrations migrate --no-lock",
+			"bin/cake migrations migrate -p Captcha --no-lock",
+			"bin/cake migrations migrate -p Tags --no-lock",
+			"bin/cake migrations migrate -p Queue --no-lock",
+			"bin/cake migrations migrate -p Comments --no-lock",
+			"bin/cake migrations migrate -p Favorites --no-lock",
+			"bin/cake migrations migrate -p StateMachine --no-lock"
 		],
 		"assets": [
 			"npm i --from-lockfile",
