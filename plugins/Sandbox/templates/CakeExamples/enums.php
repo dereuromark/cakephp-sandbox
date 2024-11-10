@@ -120,6 +120,8 @@ echo $this->Highlighter->highlight(print_r($entity, true), ['lang' => 'json']);
 </p>
 
 <h4>XML</h4>
+<p>Since CakePHP 5.1.2</p>
+
 <?php
 $code = '$result = Xml::fromArray([\'user\' => $user], [\'pretty\' => true])->saveXML();';
 echo $this->Highlighter->highlight($code, ['lang' => 'php']);
