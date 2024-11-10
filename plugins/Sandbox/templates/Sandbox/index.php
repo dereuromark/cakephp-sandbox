@@ -19,7 +19,7 @@
 	<div class="col-sm-6 col-12">
 
 <h3>CakePHP Core</h3>
-Code @ github: <a href="https://github.com/cakephp/cakephp" target="_blank">CakePHP 3.x</a>
+Latest code @ Github: <a href="https://github.com/cakephp/cakephp" target="_blank">CakePHP</a>
 <ul>
 <li><?php echo $this->Html->link('Core examples', ['controller' => 'CakeExamples', 'action' => 'index']); ?></li>
 </ul>
