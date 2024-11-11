@@ -78,12 +78,12 @@
 	"require-dev": {
 		"robmorgan/phinx": "^0.16.2",
 		"fig-r/psr2r-sniffer": "dev-master",
-		"phpstan/phpstan": "^1.0.0",
+		"phpstan/phpstan": "^2.0.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.0.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^11.3",
-		"cakedc/cakephp-phpstan": "^3.1.1"
+		"cakedc/cakephp-phpstan": "^4.0"
 	},
 	"autoload": {
 		"psr-4": {

@@ -5,9 +5,7 @@ includes:
 parameters:
 	level: 8
 
-	checkGenericClassInNonGenericObjectType: false
 	treatPhpDocTypesAsCertain: false
-	checkMissingIterableValueType: false
 
 	paths:
 		- src/
@@ -22,7 +20,8 @@ parameters:
 		- %rootDir%/../../../src/Console/Installer.php
 
 	ignoreErrors:
-		- '# with no value type specified in iterable type \w+#'
+		- identifier: missingType.generics
+		- identifier: missingType.iterableValue
 		- '#Constant \w+ not found\.#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Call to an undefined method .+Mailer::set.+#'

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56f736c4bc8001f68fb27f9c134070a8",
+    "content-hash": "f8d9cfc46985c58bd184f833bdb60190",
     "packages": [
         {
             "name": "brick/math",
@@ -4616,16 +4616,16 @@
         },
         {
             "name": "league/container",
-            "version": "4.2.3",
+            "version": "4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/container.git",
-                "reference": "72f9bebe7bd623007782a40f5ec305661ab706d8"
+                "reference": "7ea728b013b9a156c409c6f0fc3624071b742dec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/container/zipball/72f9bebe7bd623007782a40f5ec305661ab706d8",
-                "reference": "72f9bebe7bd623007782a40f5ec305661ab706d8",
+                "url": "https://api.github.com/repos/thephpleague/container/zipball/7ea728b013b9a156c409c6f0fc3624071b742dec",
+                "reference": "7ea728b013b9a156c409c6f0fc3624071b742dec",
                 "shasum": ""
             },
             "require": {
@@ -4686,7 +4686,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/container/issues",
-                "source": "https://github.com/thephpleague/container/tree/4.2.3"
+                "source": "https://github.com/thephpleague/container/tree/4.2.4"
             },
             "funding": [
                 {
@@ -4694,7 +4694,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-23T12:06:58+00:00"
+            "time": "2024-11-10T12:42:13+00:00"
         },
         {
             "name": "linkorb/jsmin-php",
@@ -8379,28 +8379,29 @@
     "packages-dev": [
         {
             "name": "cakedc/cakephp-phpstan",
-            "version": "3.2.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CakeDC/cakephp-phpstan.git",
-                "reference": "e7bb4a4afa11c52b1992156dccec27fd783239a4"
+                "reference": "dec811f201ae971503848bc6190ce42a9b41efa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/e7bb4a4afa11c52b1992156dccec27fd783239a4",
-                "reference": "e7bb4a4afa11c52b1992156dccec27fd783239a4",
+                "url": "https://api.github.com/repos/CakeDC/cakephp-phpstan/zipball/dec811f201ae971503848bc6190ce42a9b41efa5",
+                "reference": "dec811f201ae971503848bc6190ce42a9b41efa5",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^5.0",
                 "php": ">=8.1.0",
-                "phpstan/phpstan": "^1.12"
+                "phpstan/phpstan": "^2.0"
             },
             "require-dev": {
                 "cakephp/cakephp-codesniffer": "^5.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpunit/phpunit": "^10.1",
-                "symplify/phpstan-rules": "^12.4"
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^10.1"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -8429,9 +8430,9 @@
             "description": "CakePHP plugin extension for PHPStan.",
             "support": {
                 "issues": "https://github.com/CakeDC/cakephp-phpstan/issues",
-                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/3.2.0"
+                "source": "https://github.com/CakeDC/cakephp-phpstan/tree/4.0.0"
             },
-            "time": "2024-10-21T15:00:17+00:00"
+            "time": "2024-11-11T15:58:58+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -9064,20 +9065,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.8",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f6a60a4d66142b8156c9da923f1972657bc4748c"
+                "reference": "ab4e9b4415a5fc9e4d27f7fe16c8bc9d067dcd6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f6a60a4d66142b8156c9da923f1972657bc4748c",
-                "reference": "f6a60a4d66142b8156c9da923f1972657bc4748c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ab4e9b4415a5fc9e4d27f7fe16c8bc9d067dcd6d",
+                "reference": "ab4e9b4415a5fc9e4d27f7fe16c8bc9d067dcd6d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2|^8.0"
+                "php": "^7.4|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -9118,7 +9119,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-06T19:06:49+00:00"
+            "time": "2024-11-11T15:43:04+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

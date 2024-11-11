@@ -88,8 +88,6 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	/**
 	 * @param string $name
 	 *
-	 * @throws \RuntimeException If value is not present.
-	 *
 	 * @return $this
 	 */
 	public function setNameOrFail(string $name) {
@@ -140,8 +138,6 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 
 	/**
 	 * @param string $color
-	 *
-	 * @throws \RuntimeException If value is not present.
 	 *
 	 * @return $this
 	 */
