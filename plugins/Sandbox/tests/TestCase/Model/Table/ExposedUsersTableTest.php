@@ -36,7 +36,7 @@ class ExposedUsersTableTest extends TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$config = TableRegistry::getTableLocator()->exists('ExposedUsers') ? [] : ['className' => ExposedUsersTable::class];
-		$this->ExposedUsers = TableRegistry::getTableLocator()->get('ExposedUsers', $config);
+		$this->ExposedUsers = $this->fetchTable('ExposedUsers', $config);
 	}
 
 	/**

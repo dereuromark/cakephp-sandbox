@@ -2,7 +2,6 @@
 
 namespace App\Test\TestCase\Model\Table;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -31,7 +30,7 @@ class UsersTableTest extends TestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		$this->Users = TableRegistry::getTableLocator()->get('Users');
+		$this->Users = $this->fetchTable('Users');
 	}
 
 	/**

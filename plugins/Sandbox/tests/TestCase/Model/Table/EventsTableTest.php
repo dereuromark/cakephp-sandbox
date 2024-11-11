@@ -34,7 +34,7 @@ class EventsTableTest extends TestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$config = TableRegistry::getTableLocator()->exists('Events') ? [] : ['className' => 'Sandbox\Model\Table\EventsTable'];
-		$this->Events = TableRegistry::getTableLocator()->get('Events', $config);
+		$this->Events = $this->fetchTable('Events', $config);
 	}
 
 	/**

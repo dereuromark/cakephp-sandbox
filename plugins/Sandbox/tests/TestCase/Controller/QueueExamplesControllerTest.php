@@ -2,7 +2,6 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -56,7 +55,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 	public function testCancelJob() {
 		$this->disableErrorHandlerMiddleware();
 
-		$queuedJobs = TableRegistry::getTableLocator()->get('Queue.QueuedJobs');
+		$queuedJobs = $this->fetchTable('Queue.QueuedJobs');
 		$queuedJob = $queuedJobs->newEntity([
 			'job_task' => 'Queue.ProgressExample',
 			'reference' => 'demo-cli',
@@ -80,7 +79,7 @@ class QueueExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
 
-		$queuedJobs = TableRegistry::getTableLocator()->get('Queue.QueuedJobs');
+		$queuedJobs = $this->fetchTable('Queue.QueuedJobs');
 		/** @var \Queue\Model\Entity\QueuedJob $queuedJob */
 		$queuedJob = $queuedJobs->find()->orderByDesc('id')->firstOrFail();
 		$this->assertSame('Queue.ProgressExample', $queuedJob->job_task);
