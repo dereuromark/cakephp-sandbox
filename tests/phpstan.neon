@@ -6,8 +6,6 @@ parameters:
 		- %rootDir%/../../../plugins/Sandbox/tests/TestCase/
 		- %rootDir%/../../../plugins/AuthSandbox/tests/TestCase/
 
-	checkMissingIterableValueType: false
-
 	bootstrapFiles:
 		- %rootDir%/../../../tests/bootstrap.php
 
