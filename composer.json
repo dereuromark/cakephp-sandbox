@@ -72,7 +72,7 @@
 		"jdorn/sql-formatter": "@stable",
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
-		"symfony/http-client": "^6.4 || ^7.0",
+		"symfony/http-client": "^6.4 || ^7.1.8",
 		"dereuromark/cakephp-qrcode": "dev-master"
 	},
 	"require-dev": {
