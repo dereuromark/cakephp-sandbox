@@ -2,6 +2,7 @@
 
 namespace Sandbox\View\Widget;
 
+use Cake\I18n\Time;
 use Cake\View\Form\ContextInterface;
 use DateTime;
 
@@ -27,7 +28,7 @@ class ClockTimeWidget extends DateTimeWidget {
 			return parent::render($data, $context);
 		}
 
-		$value = $data['val'] ? $data['val']->format('H:i') : '';
+		$value = $data['val'] instanceof Time ? $data['val']->format('H:i') : $data['val'];
 		if ($value && !empty($data['required'])) {
 			$value = new DateTime();
 		}

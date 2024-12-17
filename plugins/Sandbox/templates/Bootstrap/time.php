@@ -27,6 +27,8 @@ echo $this->Form->control('time', ['type' => 'clockTime']);
 
 echo $this->Form->control('time_with_seconds', ['type' => 'clockTime', 'second' => true]);
 
+echo $this->Form->control(__('Submit'), ['type' => 'submit']);
+
 echo $this->Form->end();
 
 ?>

@@ -30,6 +30,7 @@ echo $this->Form->control('confirmed', ['type' => 'checkbox']);
 echo $this->Form->control('age', ['options' => ['Young', 'Old']]);
 //echo $this->Form->control('gender', ['type' => 'radio', 'options' => ['Male', 'Female']]);
 
+echo $this->Form->control(__('Submit'), ['type' => 'submit']);
 
 echo $this->Form->end();
 ?>

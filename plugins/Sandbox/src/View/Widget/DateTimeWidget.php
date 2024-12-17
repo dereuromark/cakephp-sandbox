@@ -70,7 +70,7 @@ class DateTimeWidget extends BasicWidget {
 			}
 		}
 
-		$value = $data['val'] && ($data['val'] instanceof DateTimeInterface) ? $data['val']->format($displayFormat) : '';
+		$value = ($data['val'] instanceof DateTimeInterface) ? $data['val']->format($displayFormat) : $data['val'];
 		if ($value && !empty($data['required'])) {
 			$value = (new DateTime())->format($displayFormat);
 		}
@@ -79,7 +79,7 @@ class DateTimeWidget extends BasicWidget {
 
 		$script = '
 			jQuery(function() {
-				$("#datetimepicker-' . h($id) . '").datetimepicker({
+				$("#datetimepicker-' . h($id) . ' input").datetimepicker({
 					sideBySide: true,
 					showTodayButton: true,
 					' . (empty($data['required']) ? 'showClear: true,' : '') . '
