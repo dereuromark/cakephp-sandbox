@@ -20,8 +20,6 @@ $this->Form->addWidget(
 );
 
 echo $this->Form->create($animal, ['align' => 'horizontal']);
-echo $this->Form->control('name');
-echo $this->Form->control('comment', ['type' => 'textarea']);
 echo $this->Form->control('discovered', ['type' => 'date', 'default' => true]);
 echo $this->Form->control('published', ['type' => 'datetime']);
 echo $this->Form->control('time', ['type' => 'time', 'second' => true]);
