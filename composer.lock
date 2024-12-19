@@ -2303,12 +2303,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "0d8ffb769c61a29dd6bdc2df6a2052afa2bb825b"
+                "reference": "527378adbb8d7732b750474ccd42a1bf5b19db8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/0d8ffb769c61a29dd6bdc2df6a2052afa2bb825b",
-                "reference": "0d8ffb769c61a29dd6bdc2df6a2052afa2bb825b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/527378adbb8d7732b750474ccd42a1bf5b19db8a",
+                "reference": "527378adbb8d7732b750474ccd42a1bf5b19db8a",
                 "shasum": ""
             },
             "require": {
@@ -2366,7 +2366,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2024-11-19T01:31:57+00:00"
+            "time": "2024-12-19T15:16:00+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",
@@ -4245,8 +4245,8 @@
             "type": "library",
             "extra": {
                 "laminas": {
-                    "config-provider": "Laminas\\Diactoros\\ConfigProvider",
-                    "module": "Laminas\\Diactoros"
+                    "module": "Laminas\\Diactoros",
+                    "config-provider": "Laminas\\Diactoros\\ConfigProvider"
                 }
             },
             "autoload": {
@@ -8570,12 +8570,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "8c1c1cfe35dd3316c43e0a4ea02b7ff238946333"
+                "reference": "69bfae71171999b7c28294c775a9e4476e2f1eb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/8c1c1cfe35dd3316c43e0a4ea02b7ff238946333",
-                "reference": "8c1c1cfe35dd3316c43e0a4ea02b7ff238946333",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/69bfae71171999b7c28294c775a9e4476e2f1eb3",
+                "reference": "69bfae71171999b7c28294c775a9e4476e2f1eb3",
                 "shasum": ""
             },
             "require": {
@@ -8639,7 +8639,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-29T12:07:49+00:00"
+            "time": "2024-12-19T15:20:05+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -9116,16 +9116,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "46b4d3529b12178112d9008337beda0cc2a1a6b4"
+                "reference": "50d276fc3bf1430ec315f2f109bbde2769821524"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/46b4d3529b12178112d9008337beda0cc2a1a6b4",
-                "reference": "46b4d3529b12178112d9008337beda0cc2a1a6b4",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/50d276fc3bf1430ec315f2f109bbde2769821524",
+                "reference": "50d276fc3bf1430ec315f2f109bbde2769821524",
                 "shasum": ""
             },
             "require": {
@@ -9170,7 +9170,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-28T22:19:37+00:00"
+            "time": "2024-12-17T17:14:01+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
