@@ -74,7 +74,7 @@ TEXT;
 	?>
 	</p>
 
-	<h3>Boostrap</h3>
+	<h3>Bootstrap</h3>
 	Configure the icon set to be used in your `app.php`:
 	<?php
 		$text = <<<TEXT
