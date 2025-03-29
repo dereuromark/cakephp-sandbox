@@ -22,7 +22,7 @@ $this->loadHelper('Templating.Icon');
 
 <p>$someTestArray[Foo][bar] content: <?php echo h($someTestArray['Foo']['bar']); ?></p>
 
-<hr style="clear: all;" />
+<hr style="clear: both;" />
 
 <table style="width: 100%;">
 	<tr><th>Table head</th><th>Table head two</th></tr>
