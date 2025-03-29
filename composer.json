@@ -20,7 +20,7 @@
 		"php": ">=8.2",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
-		"cakephp/cakephp": "^5.1.0",
+		"cakephp/cakephp": "^5.2.0",
 		"cakephp/bake": "^3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
 		"dereuromark/cakephp-comments": "dev-master",
@@ -65,7 +65,7 @@
 		"dereuromark/cakephp-ratings": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 2.0.0",
 		"dereuromark/cakephp-decimal": "dev-master",
-		"brick/math": "^0.12.0",
+		"brick/math": "^0.13.0",
 		"league/commonmark": "^2.0",
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "^5.0.1",
@@ -149,7 +149,7 @@
 		"preferred-install": "dist",
 		"process-timeout": 900,
 		"platform": {
-			"php": "8.2.11"
+			"php": "8.3.1"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
