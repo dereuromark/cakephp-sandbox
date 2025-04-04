@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0502b20cd7183e7231a540eda63e20fc",
+    "content-hash": "0debee8a2f6a5e9672207661e1f346dd",
     "packages": [
         {
             "name": "brick/math",
@@ -224,16 +224,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "5.2.0",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "8eb600bb67a545e2d108f9ae64146f094a39bb55"
+                "reference": "904e273c78b448ffa8b365df4f5ae1f2b8a13dbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/8eb600bb67a545e2d108f9ae64146f094a39bb55",
-                "reference": "8eb600bb67a545e2d108f9ae64146f094a39bb55",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/904e273c78b448ffa8b365df4f5ae1f2b8a13dbf",
+                "reference": "904e273c78b448ffa8b365df4f5ae1f2b8a13dbf",
                 "shasum": ""
             },
             "require": {
@@ -293,6 +293,7 @@
                 "ext-openssl": "To use Security::encrypt() or have secure CSRF token generation.",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -341,7 +342,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-03-29T17:20:53+00:00"
+            "time": "2025-04-03T16:37:26+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -10790,6 +10791,12 @@
     ],
     "aliases": [
         {
+            "package": "cakephp/cakephp",
+            "version": "5.9999999.9999999.9999999-dev",
+            "alias": "5.2.0",
+            "alias_normalized": "5.2.0.0"
+        },
+        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -10817,6 +10824,7 @@
     "minimum-stability": "RC",
     "stability-flags": {
         "spryker/cakephp-statemachine": 20,
+        "cakephp/cakephp": 20,
         "dereuromark/cakephp-comments": 20,
         "dereuromark/cakephp-favorites": 20,
         "dereuromark/cakephp-translate": 20,
