@@ -228,12 +228,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "904e273c78b448ffa8b365df4f5ae1f2b8a13dbf"
+                "reference": "085ee6d2706c2e1a88f0f59c6cd988d6d0c08f91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/904e273c78b448ffa8b365df4f5ae1f2b8a13dbf",
-                "reference": "904e273c78b448ffa8b365df4f5ae1f2b8a13dbf",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/085ee6d2706c2e1a88f0f59c6cd988d6d0c08f91",
+                "reference": "085ee6d2706c2e1a88f0f59c6cd988d6d0c08f91",
                 "shasum": ""
             },
             "require": {
@@ -342,7 +342,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-04-03T16:37:26+00:00"
+            "time": "2025-04-05T07:11:36+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1001,16 +1001,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.8.7",
+            "version": "2.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "fc06c099955929ac67270d169e8b5fb83ad53807"
+                "reference": "85ff84d6c5260ba21740a7c5c9a111890805d6e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/fc06c099955929ac67270d169e8b5fb83ad53807",
-                "reference": "fc06c099955929ac67270d169e8b5fb83ad53807",
+                "url": "https://api.github.com/repos/composer/composer/zipball/85ff84d6c5260ba21740a7c5c9a111890805d6e7",
+                "reference": "85ff84d6c5260ba21740a7c5c9a111890805d6e7",
                 "shasum": ""
             },
             "require": {
@@ -1095,7 +1095,7 @@
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
                 "security": "https://github.com/composer/composer/security/policy",
-                "source": "https://github.com/composer/composer/tree/2.8.7"
+                "source": "https://github.com/composer/composer/tree/2.8.8"
             },
             "funding": [
                 {
@@ -1111,7 +1111,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-03T14:26:28+00:00"
+            "time": "2025-04-04T14:56:46+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -2745,12 +2745,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "5bf4bbbeb4a8d8dc5157e899c0dbd35011816bf0"
+                "reference": "c851a87e16fa5a3ac08ad3c2b48d21e6d44d6da0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/5bf4bbbeb4a8d8dc5157e899c0dbd35011816bf0",
-                "reference": "5bf4bbbeb4a8d8dc5157e899c0dbd35011816bf0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/c851a87e16fa5a3ac08ad3c2b48d21e6d44d6da0",
+                "reference": "c851a87e16fa5a3ac08ad3c2b48d21e6d44d6da0",
                 "shasum": ""
             },
             "require": {
@@ -2793,7 +2793,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2025-04-03T15:42:04+00:00"
+            "time": "2025-04-05T09:42:11+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
@@ -3646,16 +3646,16 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "7.1.0",
+            "version": "7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "c75326b974ab963fcfc7daba88bcff4507c8684a"
+                "reference": "2b3df4171564ede8b5381c54891d4d98af2da2ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/c75326b974ab963fcfc7daba88bcff4507c8684a",
-                "reference": "c75326b974ab963fcfc7daba88bcff4507c8684a",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/2b3df4171564ede8b5381c54891d4d98af2da2ac",
+                "reference": "2b3df4171564ede8b5381c54891d4d98af2da2ac",
                 "shasum": ""
             },
             "require": {
@@ -3701,7 +3701,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2024-02-26T15:35:38+00:00"
+            "time": "2025-04-04T17:27:31+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -4069,16 +4069,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "6.4.0",
+            "version": "6.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jsonrainbow/json-schema.git",
-                "reference": "16b274cb469bc8165c59b76c283724a035d27f4c"
+                "reference": "35d262c94959571e8736db1e5c9bc36ab94ae900"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/16b274cb469bc8165c59b76c283724a035d27f4c",
-                "reference": "16b274cb469bc8165c59b76c283724a035d27f4c",
+                "url": "https://api.github.com/repos/jsonrainbow/json-schema/zipball/35d262c94959571e8736db1e5c9bc36ab94ae900",
+                "reference": "35d262c94959571e8736db1e5c9bc36ab94ae900",
                 "shasum": ""
             },
             "require": {
@@ -4138,9 +4138,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jsonrainbow/json-schema/issues",
-                "source": "https://github.com/jsonrainbow/json-schema/tree/6.4.0"
+                "source": "https://github.com/jsonrainbow/json-schema/tree/6.4.1"
             },
-            "time": "2025-04-01T18:50:59+00:00"
+            "time": "2025-04-04T13:08:07+00:00"
         },
         {
             "name": "knplabs/knp-menu",
@@ -10604,16 +10604,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.12.0",
+            "version": "3.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630"
+                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
-                "reference": "2d1b63db139c3c6ea0c927698e5160f8b3b8d630",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/ea16a1f3719783345febd3aab41beb55c8c84bfd",
+                "reference": "ea16a1f3719783345febd3aab41beb55c8c84bfd",
                 "shasum": ""
             },
             "require": {
@@ -10684,7 +10684,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-03-18T05:04:51+00:00"
+            "time": "2025-04-04T12:57:55+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
