@@ -88,7 +88,7 @@ class SearchExamplesController extends SandboxAppController {
 
 		// Trick to avoid it being counted as isSearch for default range
 		$queryParams = $this->request->getQuery();
-		if ($min && (int)$this->request->getQuery('price_min') === (int)$min->price && $max && (int)$this->request->getQuery('price_max') === (int)ceil($max->price)) {
+		if ($min && (int)$this->request->getQuery('price_min') === (int)$min->price && $max && (int)$this->request->getQuery('price_max') === (int)ceil((float)$max->price)) {
 			unset($queryParams['price_min']);
 			unset($queryParams['price_max']);
 		}

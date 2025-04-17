@@ -211,7 +211,7 @@
 					min: <?php echo (int)$min->price; ?>,
 					step: <?php echo (int)(ceil($max->price) / 100); ?>,
 					minRange: <?php echo (int)(ceil($max->price) / 10); ?>,
-					max: <?php echo (int)ceil($max->price) + 10; ?>,
+					max: <?php echo (int)ceil((float)$max->price); ?>,
 					create(event, ui) {
 						slider.find('.ui-slider-handle').append($('<div />'));
 						updateValues(val0, val1);
