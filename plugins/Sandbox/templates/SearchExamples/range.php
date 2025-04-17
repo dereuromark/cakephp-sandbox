@@ -180,6 +180,36 @@
 					}
 				}
 			}
+
+			.slider {
+				position: relative;
+				height: 8px;
+				background: #ddd; /* gray background */
+				border-radius: 4px;
+				margin: 40px 0;
+			}
+
+			.slider .ui-slider-range {
+				position: absolute;
+				background: #007bff; /* blue selected range */
+				height: 100%;
+				top: 0;
+				z-index: 1;
+				border-radius: 4px;
+			}
+
+			.slider .ui-slider-handle {
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 20px;
+				height: 20px;
+				background: #fff;
+				border: 2px solid #007bff;
+				border-radius: 50%;
+				cursor: pointer;
+				z-index: 2;
+			}
 		</style>
 		<?php $this->append('script'); ?>
 		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
@@ -200,11 +230,6 @@
 				let val0 = parseInt(input0.val()) || 1800;
 				let val1 = parseInt(input1.val()) || 7800;
 
-				let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-				svg.setAttribute('viewBox', '0 0 ' + width + ' 83');
-				slider.html(svg);
-				slider.append($('<div>').addClass('active').html(svg.cloneNode(true)));
-
 				slider.slider({
 					range: true,
 					values: [val0, val1],
@@ -213,7 +238,6 @@
 					minRange: <?php echo (int)(ceil($max->price) / 10); ?>,
 					max: <?php echo (int)ceil((float)$max->price); ?>,
 					create(event, ui) {
-						slider.find('.ui-slider-handle').append($('<div />'));
 						updateValues(val0, val1);
 						setCSSVars(slider);
 					},
