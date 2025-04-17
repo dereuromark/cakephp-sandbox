@@ -14,6 +14,7 @@ use Shim\Datasource\LegacyModelAwareTrait;
  * @property \Data\Model\Table\CountriesTable $Countries
  * @property \Data\Model\Table\StatesTable $States
  * @property \App\Model\Table\UsersTable $Users
+ * @property \Shim\Controller\Component\RequestHandlerComponent $RequestHandler
  */
 #[\AllowDynamicProperties]
 class AjaxExamplesController extends SandboxAppController {

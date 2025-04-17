@@ -14,7 +14,8 @@ parameters:
 		- plugins/StateMachineSandbox/src/
 
 	bootstrapFiles:
-		- %rootDir%/../../../tests/bootstrap.php
+		- %rootDir%/../../../config/bootstrap.php
+		- %rootDir%/../../../vendor/dereuromark/cakephp-tools/config/bootstrap.php
 
 	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php

@@ -41,9 +41,13 @@ class SearchExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->loadComponent('Search.Search', [
-			'actions' => ['table'],
-		]);
+		$config = [
+			'actions' => ['table', 'range'],
+		];
+		if ($this->request->getParam('action') === 'range') {
+			$config['modelClass'] = 'Sandbox.Products';
+		}
+		$this->loadComponent('Search.Search', $config);
 
 		$this->viewBuilder()->addHelpers(['Data.Data']);
 	}
@@ -67,6 +71,32 @@ class SearchExamplesController extends SandboxAppController {
 		$this->set(compact('countries'));
 		$serialize = 'countries';
 		$this->viewBuilder()->setOptions(compact('serialize'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function range() {
+		$productsTable = $this->fetchTable('Sandbox.Products');
+
+		$this->paginate['maxLimit'] = 10;
+
+		/** @var \Sandbox\Model\Entity\Product|null $min */
+		$min = $this->fetchTable('Sandbox.Products')->find()->orderByAsc('price')->first();
+		/** @var \Sandbox\Model\Entity\Product|null $max */
+		$max = $this->fetchTable('Sandbox.Products')->find()->orderByDesc('price')->first();
+
+		// Trick to avoid it being counted as isSearch for default range
+		$queryParams = $this->request->getQuery();
+		if ($min && (int)$this->request->getQuery('price_min') === (int)$min->price && $max && (int)$this->request->getQuery('price_max') === (int)ceil((float)$max->price)) {
+			unset($queryParams['price_min']);
+			unset($queryParams['price_max']);
+		}
+
+		$query = $productsTable->find('search', search: $queryParams);
+		$products = $this->paginate($query);
+
+		$this->set(compact('products', 'min', 'max'));
 	}
 
 	/**

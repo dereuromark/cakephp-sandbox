@@ -19,9 +19,9 @@ class AnimalsTable extends Table {
 	 * @return void
 	 */
 	public function initialize(array $config): void {
-		$this->setTable('sandbox_animals');
-
 		parent::initialize($config);
+
+		$this->setTable('sandbox_animals');
 	}
 
 	/**
