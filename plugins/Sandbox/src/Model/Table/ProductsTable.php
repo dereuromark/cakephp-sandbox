@@ -77,7 +77,7 @@ class ProductsTable extends Table {
 			->callback('price_max', [
 				'callback' => function (SelectQuery $query, array $args, $filter) {
 					$min = (int)$args['price_min'];
-					$max = (int)ceil((float)$args['price_max'] ?? null);
+					$max = (int)ceil((float)($args['price_max'] ?? null));
 
 					if (!$min && !$max || $max < $min) {
 						return false;
@@ -89,7 +89,7 @@ class ProductsTable extends Table {
 			->callback('price_min', [
 				'callback' => function (SelectQuery $query, array $args, $filter) {
 					$min = (int)$args['price_min'];
-					$max = (int)ceil((float)$args['price_max'] ?? null);
+					$max = (int)ceil((float)($args['price_max'] ?? null));
 					if (!$min && !$max || $max < $min) {
 						return false;
 					}
