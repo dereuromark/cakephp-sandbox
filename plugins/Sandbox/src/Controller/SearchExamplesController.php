@@ -50,6 +50,35 @@ class SearchExamplesController extends SandboxAppController {
 		$this->loadComponent('Search.Search', $config);
 
 		$this->viewBuilder()->addHelpers(['Data.Data']);
+
+		if ($this->request->getParam('action') === 'range') {
+			/** @var \Sandbox\Model\Entity\Product|null $minPrice */
+			$minPrice = $this->fetchTable('Sandbox.Products')->find()->orderByAsc('price')->first();
+			/** @var \Sandbox\Model\Entity\Product|null $maxPrice */
+			$maxPrice = $this->fetchTable('Sandbox.Products')->find()->orderByDesc('price')->first();
+
+			$callable = function ($value, array $params) use ($minPrice, $maxPrice): bool {
+				$minValue = $minPrice ? (int)$minPrice->price : 0;
+				$maxValue = $maxPrice ? (int)ceil((float)$maxPrice->price) : 0;
+
+				if (!$minPrice && !$maxPrice) {
+					return true;
+				}
+				if (empty($params['price_min']) || empty($params['price_max'])) {
+					return true;
+				}
+
+				if ((string)$minValue === $params['price_min'] && (string)$maxValue === $params['price_max']) {
+					return true;
+				}
+
+				return false;
+			};
+			$this->Search->setConfig('emptyValues', [
+				'price_min' => $callable,
+				'price_max' => $callable,
+			]);
+		}
 	}
 
 	/**

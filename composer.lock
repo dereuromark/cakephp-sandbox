@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0debee8a2f6a5e9672207661e1f346dd",
+    "content-hash": "a235622e8c30bba67fc953b84d0c5669",
     "packages": [
         {
             "name": "brick/math",
@@ -3646,16 +3646,16 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "7.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "2b3df4171564ede8b5381c54891d4d98af2da2ac"
+                "reference": "6d6ad249d9387dd7aab09e6f98bf1c26b2c66e2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/2b3df4171564ede8b5381c54891d4d98af2da2ac",
-                "reference": "2b3df4171564ede8b5381c54891d4d98af2da2ac",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/6d6ad249d9387dd7aab09e6f98bf1c26b2c66e2c",
+                "reference": "6d6ad249d9387dd7aab09e6f98bf1c26b2c66e2c",
                 "shasum": ""
             },
             "require": {
@@ -3668,6 +3668,7 @@
                 "cakephp/twig-view": "^2.0",
                 "phpunit/phpunit": "^10.1"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -3701,7 +3702,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2025-04-04T17:27:31+00:00"
+            "time": "2025-04-17T15:49:57+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -10818,6 +10819,12 @@
             "version": "9999999-dev",
             "alias": "3.0.0",
             "alias_normalized": "3.0.0.0"
+        },
+        {
+            "package": "friendsofcake/search",
+            "version": "9999999-dev",
+            "alias": "7.2.0",
+            "alias_normalized": "7.2.0.0"
         }
     ],
     "minimum-stability": "RC",
@@ -10856,6 +10863,7 @@
         "dereuromark/cakephp-translate": 20,
         "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
+        "friendsofcake/search": 20,
         "jdorn/sql-formatter": 0,
         "linkorb/jsmin-php": 20,
         "natxet/cssmin": 20,
