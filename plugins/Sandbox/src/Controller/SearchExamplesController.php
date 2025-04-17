@@ -42,7 +42,7 @@ class SearchExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		$this->loadComponent('Search.Search', [
-			'actions' => ['table'],
+			'actions' => ['table', 'range'],
 		]);
 
 		$this->viewBuilder()->addHelpers(['Data.Data']);
@@ -67,6 +67,23 @@ class SearchExamplesController extends SandboxAppController {
 		$this->set(compact('countries'));
 		$serialize = 'countries';
 		$this->viewBuilder()->setOptions(compact('serialize'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function range() {
+		$productsTable = $this->fetchTable('Sandbox.Products');
+
+		$this->paginate['maxLimit'] = 10;
+
+		$query = $productsTable->find('search', search: $this->request->getQuery());
+		$products = $this->paginate($query);
+
+		$min = $this->fetchTable('Sandbox.Products')->find()->orderByAsc('price')->first();
+		$max = $this->fetchTable('Sandbox.Products')->find()->orderByDesc('price')->first();
+
+		$this->set(compact('products', 'min', 'max'));
 	}
 
 	/**
