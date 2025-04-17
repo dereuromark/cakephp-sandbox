@@ -76,7 +76,14 @@ class ProductsTable extends Table {
 			->like('title', ['before' => true, 'after' => true])
 			->callback('price_max', [
 				'callback' => function (SelectQuery $query, array $args, $filter) {
-					return false;
+					$min = (int)$args['price_min'];
+					$max = (int)($args['price_max'] ?? null);
+
+					if (!$min && !$max || $max < $min) {
+						return false;
+					}
+
+					return true;
 				},
 			])
 			->callback('price_min', [
