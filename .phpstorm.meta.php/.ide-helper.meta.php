@@ -122,14 +122,6 @@ namespace PHPSTORM_META {
 		argumentsSet('entityFields:App\Model\Entity\User'),
 	);
 
-	override(
-		\Burzum\CakeServiceLayer\Service\ServiceAwareTrait::loadService(0),
-		map([
-			'Sandbox.Calculator/Post' => \Sandbox\Service\Calculator\PostService::class,
-			'Sandbox.Localized/Validation' => \Sandbox\Service\Localized\ValidationService::class,
-		]),
-	);
-
 	expectedArguments(
 		\Cake\Cache\Cache::add(),
 		2,
@@ -330,7 +322,6 @@ namespace PHPSTORM_META {
 			'AuthSandbox' => \Cake\Http\BaseApplication::class,
 			'Bake' => \Cake\Http\BaseApplication::class,
 			'BootstrapUI' => \Cake\Http\BaseApplication::class,
-			'Burzum/CakeServiceLayer' => \Cake\Http\BaseApplication::class,
 			'Cache' => \Cake\Http\BaseApplication::class,
 			'Cake/Localized' => \Cake\Http\BaseApplication::class,
 			'Cake/TwigView' => \Cake\Http\BaseApplication::class,
@@ -1761,7 +1752,6 @@ namespace PHPSTORM_META {
 		'Sandbox.navigation/qr_code',
 		'Sandbox.navigation/queue',
 		'Sandbox.navigation/search',
-		'Sandbox.navigation/service',
 		'Sandbox.navigation/tags',
 		'Sandbox.navigation/templating',
 		'Sandbox.navigation/tools',
@@ -2695,13 +2685,13 @@ namespace PHPSTORM_META {
 	);
 
 	expectedArguments(
-		\Migrations\AbstractMigration::table(),
+		\Migrations\BaseMigration::table(),
 		0,
 		argumentsSet('tableNames'),
 	);
 
 	expectedArguments(
-		\Migrations\AbstractSeed::table(),
+		\Migrations\BaseSeed::table(),
 		0,
 		argumentsSet('tableNames'),
 	);
@@ -2752,12 +2742,6 @@ namespace PHPSTORM_META {
 		\Migrations\Db\Table::renameColumn(),
 		1,
 		argumentsSet('columnNames'),
-	);
-
-	expectedArguments(
-		\Phinx\Seed\AbstractSeed::table(),
-		0,
-		argumentsSet('tableNames'),
 	);
 
 	expectedArguments(
@@ -3094,6 +3078,66 @@ namespace PHPSTORM_META {
 		\Sandbox\Model\Entity\ExposedUser::setError(),
 		0,
 		argumentsSet('entityFields:Sandbox\Model\Entity\ExposedUser'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\Product::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\Product'),
 	);
 
 	expectedArguments(
@@ -5071,7 +5115,6 @@ namespace PHPSTORM_META {
 		'plugins.AuthSandbox',
 		'plugins.Bake',
 		'plugins.BootstrapUI',
-		'plugins.Burzum/CakeServiceLayer',
 		'plugins.Cache',
 		'plugins.Cake/Localized',
 		'plugins.Cake/TwigView',
@@ -5401,6 +5444,15 @@ namespace PHPSTORM_META {
 		'modified',
 		'name',
 		'uuid',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\Product',
+		'created',
+		'id',
+		'modified',
+		'price',
+		'title',
 	);
 
 	registerArgumentsSet(
@@ -17960,11 +18012,6 @@ namespace PHPSTORM_META {
 		'Sandbox.Plugins::cakePdf',
 		'Sandbox.Plugins::index',
 		'Sandbox.Plugins::pdfTest',
-		'Sandbox.Products::add',
-		'Sandbox.Products::delete',
-		'Sandbox.Products::edit',
-		'Sandbox.Products::index',
-		'Sandbox.Products::view',
 		'Sandbox.QrCodeExamples::index',
 		'Sandbox.QrCodeExamples::png',
 		'Sandbox.QrCodeExamples::svg',
@@ -17979,8 +18026,6 @@ namespace PHPSTORM_META {
 		'Sandbox.SearchExamples::index',
 		'Sandbox.SearchExamples::range',
 		'Sandbox.SearchExamples::table',
-		'Sandbox.ServiceExamples::index',
-		'Sandbox.ServiceExamples::posts',
 		'Sandbox.Tags::cloud',
 		'Sandbox.Tags::index',
 		'Sandbox.Tags::search',
@@ -18017,21 +18062,19 @@ namespace PHPSTORM_META {
 		'Sandbox.TwigExamples::basic',
 		'Sandbox.TwigExamples::index',
 		'Setup.Admin/Backend::cache',
+		'Setup.Admin/Backend::cookies',
 		'Setup.Admin/Backend::database',
 		'Setup.Admin/Backend::env',
 		'Setup.Admin/Backend::ip',
+		'Setup.Admin/Backend::locales',
 		'Setup.Admin/Backend::phpinfo',
 		'Setup.Admin/Backend::session',
+		'Setup.Admin/Backend::system',
 		'Setup.Admin/Backend::typeMap',
-		'Setup.Admin/Configuration::database',
-		'Setup.Admin/Configuration::diskSpace',
 		'Setup.Admin/Configuration::index',
-		'Setup.Admin/Configuration::locales',
-		'Setup.Admin/Configuration::phpinfo',
-		'Setup.Admin/Configuration::session',
-		'Setup.Admin/Configuration::system',
 		'Setup.Admin/Database::foreignKeys',
 		'Setup.Admin/Setup::index',
+		'Setup.Admin/Setup::maintenance',
 		'Setup.Admin/Uptime::index',
 		'StateMachine.Admin/Graph::draw',
 		'StateMachine.Admin/StateMachine::index',
