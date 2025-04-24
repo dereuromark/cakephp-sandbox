@@ -2,9 +2,9 @@
 
 namespace Sandbox\Controller;
 
-use Burzum\CakeServiceLayer\Service\ServiceAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Exception\NotImplementedException;
+use Sandbox\Service\Localized\ValidationService;
 use Throwable;
 
 /**
@@ -13,30 +13,28 @@ use Throwable;
  */
 class LocalizedController extends SandboxAppController {
 
-	use ServiceAwareTrait;
-
 	/**
 	 * @var string
 	 */
 	protected ?string $defaultTable = 'Users';
 
 	/**
+	 * @param \Sandbox\Service\Localized\ValidationService $validationService
 	 * @return void
 	 */
-	public function index() {
-		$this->loadService('Sandbox.Localized/Validation');
-		$available = $this->Validation->getAvailable();
+	public function index(ValidationService $validationService) {
+		$available = $validationService->getAvailable();
 
 		$this->set(compact('available'));
 	}
 
 	/**
+	 * @param \Sandbox\Service\Localized\ValidationService $validationService
 	 * @return \Cake\Http\Response|null|void
 	 */
-	public function basic() {
-		$this->loadService('Sandbox.Localized/Validation');
-		$available = $this->Validation->getAvailable();
-		$methods = $this->Validation->getMethods();
+	public function basic(ValidationService $validationService) {
+		$available = $validationService->getAvailable();
+		$methods = $validationService->getMethods();
 
 		/** @var string|null $method */
 		$method = $this->request->getQuery('method');
@@ -44,7 +42,7 @@ class LocalizedController extends SandboxAppController {
 			throw new NotFoundException('This method does not exist');
 		}
 
-		$codes = $this->Validation->getCodes($method);
+		$codes = $validationService->getCodes($method);
 		$code = $this->request->getQuery('code');
 		if ($codes && $code && !in_array($code, $codes, true)) {
 			throw new NotFoundException('This country code does not exist');

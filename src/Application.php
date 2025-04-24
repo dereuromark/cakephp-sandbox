@@ -5,12 +5,14 @@ namespace App;
 use App\Http\Middleware\RedirectMiddleware;
 use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Core\Configure;
+use Cake\Core\ContainerInterface;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Exception;
+use League\Container\ReflectionContainer;
 use Setup\Middleware\MaintenanceMiddleware;
 use Tools\Error\Middleware\ErrorHandlerMiddleware;
 
@@ -72,6 +74,18 @@ class Application extends BaseApplication {
 			->add(new RoutingMiddleware($this));
 
 		return $middlewareQueue;
+	}
+
+	/**
+	 * Register application container services.
+	 *
+	 * @param \Cake\Core\ContainerInterface $container The Container to update.
+	 * @return void
+	 */
+	public function services(ContainerInterface $container): void {
+		$container->delegate(
+			new ReflectionContainer(true),
+		);
 	}
 
 	/**

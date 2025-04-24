@@ -1,7 +1,5 @@
 <?php
 
-use Burzum\CakeServiceLayer\Annotator\ClassAnnotatorTask\ServiceAwareClassAnnotatorTask;
-use Burzum\CakeServiceLayer\Generator\Task\ServiceTask;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use IdeHelper\Annotator\EntityAnnotator;
@@ -262,11 +260,9 @@ $config = [
 			EntityAnnotator::class => ShimEntityAnnotator::class,
 		],
 		'generatorTasks' => [
-			ServiceTask::class,
 			IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [
-			ServiceAwareClassAnnotatorTask::class,
 		],
 		'illuminatorTasks' => [
 			StateTask::class,

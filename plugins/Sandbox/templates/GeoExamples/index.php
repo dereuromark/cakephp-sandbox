@@ -21,7 +21,7 @@ Try it:
 
 <h4>Static Map</h4>
 <?php
-$m = $this->markerElements = [
+$m = [
 	[
 		'address' => '44.3,11.2',
 	],

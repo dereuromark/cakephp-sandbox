@@ -129,18 +129,6 @@
 			<li><?php echo $this->Html->link('CSV export and CakePHP', ['controller' => 'Csv', 'action' => 'index']); ?></li>
 		</ul>
 
-		<h4>CakeServiceLayer plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('CakePHP Service Layer', ['controller' => 'ServiceExamples', 'action' => 'index']); ?></li>
-		</ul>
-
-		<?php if (false) { ?>
-		<h4>AssetCompress plugin</h4>
-		<ul>
-			<li><?php echo $this->Html->link('AssetCompress and CakePHP', ['controller' => 'AssetCompressExamples', 'action' => 'index']); ?></li>
-		</ul>
-		<?php } ?>
-
 		<h4>BootstrapUI plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Bootstrap and CakePHP', ['controller' => 'Bootstrap', 'action' => 'index']); ?></li>
