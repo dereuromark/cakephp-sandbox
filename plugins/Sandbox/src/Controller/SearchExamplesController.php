@@ -131,16 +131,14 @@ class SearchExamplesController extends SandboxAppController {
 	/**
 	 * @param \Cake\Event\EventInterface $event
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return void
 	 */
-	public function afterFilter(EventInterface $event): ?Response {
+	public function afterFilter(EventInterface $event): void {
 		parent::afterFilter($event);
 
 		if ($this->request->getQuery('download')) {
 			$this->response = $this->response->withDownload($this->request->getParam('action') . '.' . $this->request->getParam('_ext'));
 		}
-
-		return null;
 	}
 
 }
