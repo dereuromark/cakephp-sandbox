@@ -5,7 +5,6 @@ namespace App\Controller;
 use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\MethodNotAllowedException;
-use Cake\Http\Response;
 use Cake\View\JsonView;
 use Cake\View\XmlView;
 use Shim\Datasource\LegacyModelAwareTrait;

@@ -1442,12 +1442,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ajax.git",
-                "reference": "04252ba9eeab5c63a0c591b67275a6fa6dbd5eb5"
+                "reference": "135a859a9c0a53b9b91e22b4fa433548a4f48763"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/04252ba9eeab5c63a0c591b67275a6fa6dbd5eb5",
-                "reference": "04252ba9eeab5c63a0c591b67275a6fa6dbd5eb5",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ajax/zipball/135a859a9c0a53b9b91e22b4fa433548a4f48763",
+                "reference": "135a859a9c0a53b9b91e22b4fa433548a4f48763",
                 "shasum": ""
             },
             "require": {
@@ -1491,7 +1491,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-ajax/issues",
                 "source": "https://github.com/dereuromark/cakephp-ajax"
             },
-            "time": "2025-05-01T11:49:07+00:00"
+            "time": "2025-05-01T12:42:15+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
@@ -1719,12 +1719,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "f8cafd808d91250174505071c2aa5d4dde9d375b"
+                "reference": "8ec4cba67edfc665c50c3bbc07fccd4a60a59319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/f8cafd808d91250174505071c2aa5d4dde9d375b",
-                "reference": "f8cafd808d91250174505071c2aa5d4dde9d375b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/8ec4cba67edfc665c50c3bbc07fccd4a60a59319",
+                "reference": "8ec4cba67edfc665c50c3bbc07fccd4a60a59319",
                 "shasum": ""
             },
             "require": {
@@ -1773,7 +1773,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2025-05-01T10:39:10+00:00"
+            "time": "2025-05-01T12:29:09+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
