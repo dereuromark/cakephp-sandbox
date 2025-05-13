@@ -15,8 +15,8 @@
 		<?php
 		echo $this->Form->create(null, ['valueSources' => 'query']);
 
-		echo $this->Form->control('search', ['placeholder' => 'Wildcards: * and ?']);
-		echo $this->Form->control('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active']]);
+		echo $this->Form->control('has_phone_code', ['options' => ['' => '- does not matter -', '0' => 'No', '1' => 'Yes']]);
+		echo $this->Form->control('phone_code', ['placeholder' => 'Wildcards supported']);
 
 		echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);
 		if ($this->Search->isSearch()) {
@@ -27,13 +27,17 @@
 		?>
 	</div>
 
-	<h2><?php echo __('Countries');?> table and Search functionality</h2
+	<h2><?php echo __('Countries');?> table and Search functionality</h2>
 
-<table class="table list">
+
+	<p>The URL and paginator cannot work with empty values directly, so if you want to filter by all with NULL values,
+		using <code>?has_phone_code=0</code> (or `no`, ...) can work here.</p>
+
+
+	<table class="table list">
 <tr>
 	<th><?php echo $this->Paginator->sort('sort', $this->Icon->render('filter'), ['escape' => false]);?></th>
 	<th><?php echo $this->Paginator->sort('name');?></th>
-	<th><?php echo $this->Paginator->sort('ori_name', __('Original Name'));?></th>
 	<th><?php echo $this->Paginator->sort('iso2');?></th>
 	<th><?php echo $this->Paginator->sort('iso3');?></th>
 	<th><?php echo $this->Paginator->sort('phone_code');?></th>
@@ -47,9 +51,6 @@ foreach ($countries as $country):
 		</td>
 		<td>
 			<?php echo h($country->name); ?>
-		</td>
-		<td>
-			<?php echo h($country->ori_name); ?>
 		</td>
 		<td>
 			<?php echo h($country->iso2); ?>

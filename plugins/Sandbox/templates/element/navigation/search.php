@@ -15,4 +15,5 @@
 	<li><?php echo $this->Navigation->link('Simple overview form', ['action' => 'index'])?></li>
 	<li><?php echo $this->Navigation->link('Table search form', ['action' => 'table'])?></li>
 	<li><?php echo $this->Navigation->link('Range search widget', ['action' => 'range'])?></li>
+	<li><?php echo $this->Navigation->link('Dealing with empty values', ['action' => 'emptyValues'])?></li>
 </ul>

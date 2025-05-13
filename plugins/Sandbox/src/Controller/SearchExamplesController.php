@@ -6,6 +6,7 @@ use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\View\JsonView;
 use Cake\View\XmlView;
+use Sandbox\Model\Filter\EmptyValuesTestFilterCollection;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
@@ -41,7 +42,7 @@ class SearchExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		$config = [
-			'actions' => ['table', 'range'],
+			'actions' => ['table', 'range', 'emptyValues'],
 		];
 		if ($this->request->getParam('action') === 'range') {
 			$config['modelClass'] = 'Sandbox.Products';
@@ -125,6 +126,22 @@ class SearchExamplesController extends SandboxAppController {
 		$products = $this->paginate($query);
 
 		$this->set(compact('products', 'min', 'max'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function emptyValues(): void {
+		$this->paginate['maxLimit'] = 999;
+
+		$this->CountryRecords->removeBehavior('Search');
+		$this->CountryRecords->addBehavior('Search.Search', [
+			'collectionClass' => EmptyValuesTestFilterCollection::class,
+		]);
+		$query = $this->CountryRecords->find('search', search: $this->request->getQuery());
+		$countries = $this->paginate($query);
+
+		$this->set(compact('countries'));
 	}
 
 	/**
