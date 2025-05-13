@@ -53,10 +53,10 @@ foreach ($countries as $country):
 			<?php echo h($country->ori_name); ?>
 		</td>
 		<td>
-			<?php echo $country->iso2; ?>
+			<?php echo h($country->iso2); ?>
 		</td>
 		<td>
-			<?php echo $country->iso3; ?>
+			<?php echo h($country->iso3); ?>
 		</td>
 		<td>
 			<?php echo $country->phone_code ? ('+' . h($country->phone_code)) : ''; ?>
