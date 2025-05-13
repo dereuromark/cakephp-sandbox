@@ -34,6 +34,7 @@ use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @property \StateMachine\Model\Table\StateMachineItemsTable&\Cake\ORM\Association\HasOne $RegistrationStates
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  */
 class RegistrationsTable extends Table {
 

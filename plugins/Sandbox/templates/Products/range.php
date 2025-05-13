@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var iterable<\Cake\Datasource\EntityInterface> $products
+ * @var iterable<\Sandbox\Model\Entity\Product> $products
  */
 ?>
 <div class="products index content">

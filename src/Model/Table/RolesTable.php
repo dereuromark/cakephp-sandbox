@@ -20,6 +20,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role> deleteManyOrFail(iterable $entities, array $options = [])
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  */
 class RolesTable extends Table {
 

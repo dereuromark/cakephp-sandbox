@@ -525,6 +525,23 @@ namespace PHPSTORM_META {
 		]),
 	);
 
+	override(
+		\Cake\Http\ServerRequest::getAttribute(0),
+		map([
+			'base' => 'string',
+			'cspScriptNonce' => 'string',
+			'cspStyleNonce' => 'string',
+			'csrfToken' => 'string',
+			'formTokenData' => 'array',
+			'here' => 'string',
+			'paging' => 'array',
+			'params' => 'array',
+			'route' => \Cake\Routing\Route\Route::class,
+			'session' => \Cake\Http\Session::class,
+			'webroot' => 'string',
+		]),
+	);
+
 	expectedArguments(
 		\Cake\Http\ServerRequest::getParam(),
 		0,
@@ -1700,6 +1717,7 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Translate.Form' => \Translate\View\Helper\FormHelper::class,
 			'Translate.Translation' => \Translate\View\Helper\TranslationHelper::class,
 			'Url' => \Cake\View\Helper\UrlHelper::class,
 		]),
@@ -1860,6 +1878,7 @@ namespace PHPSTORM_META {
 			'Tools.Tree' => \Tools\View\Helper\TreeHelper::class,
 			'Tools.Typography' => \Tools\View\Helper\TypographyHelper::class,
 			'Tools.Url' => \Tools\View\Helper\UrlHelper::class,
+			'Translate.Form' => \Translate\View\Helper\FormHelper::class,
 			'Translate.Translation' => \Translate\View\Helper\TranslationHelper::class,
 			'Url' => \Cake\View\Helper\UrlHelper::class,
 		]),
@@ -1948,6 +1967,7 @@ namespace PHPSTORM_META {
 		'Tools.Tree',
 		'Tools.Typography',
 		'Tools.Url',
+		'Translate.Form',
 		'Translate.Translation',
 		'Url',
 	);
@@ -1959,6 +1979,7 @@ namespace PHPSTORM_META {
 		'DebugKit.dashboard',
 		'DebugKit.mailer',
 		'DebugKit.toolbar',
+		'Translate.simple',
 		'ajax',
 		'default',
 		'error',
@@ -17901,6 +17922,7 @@ namespace PHPSTORM_META {
 		'Queue.Admin/QueueProcesses::index',
 		'Queue.Admin/QueueProcesses::terminate',
 		'Queue.Admin/QueueProcesses::view',
+		'Queue.Admin/QueuedJobs::clone',
 		'Queue.Admin/QueuedJobs::data',
 		'Queue.Admin/QueuedJobs::delete',
 		'Queue.Admin/QueuedJobs::edit',
@@ -18070,6 +18092,7 @@ namespace PHPSTORM_META {
 		'Setup.Admin/Backend::phpinfo',
 		'Setup.Admin/Backend::session',
 		'Setup.Admin/Backend::system',
+		'Setup.Admin/Backend::timezones',
 		'Setup.Admin/Backend::typeMap',
 		'Setup.Admin/Configuration::index',
 		'Setup.Admin/Database::foreignKeys',
@@ -18143,7 +18166,6 @@ namespace PHPSTORM_META {
 		'TestHelper.TestFixtures::index',
 		'TestHelper.TestHelper::index',
 		'Tools.Admin/Helper::bitmasks',
-		'Tools.Admin/Icons::index',
 		'Tools.Admin/Pages::index',
 		'Tools.Admin/Tools::index',
 		'Tools.ShuntRequest::language',
@@ -18191,6 +18213,10 @@ namespace PHPSTORM_META {
 		'Translate.Admin/TranslateTerms::edit',
 		'Translate.Admin/TranslateTerms::index',
 		'Translate.Admin/TranslateTerms::view',
+		'Translate.Translate::displayReference',
+		'Translate.Translate::index',
+		'Translate.Translate::translate',
+		'Translate.TranslateProjects::switchProject',
 	);
 
 	registerArgumentsSet(

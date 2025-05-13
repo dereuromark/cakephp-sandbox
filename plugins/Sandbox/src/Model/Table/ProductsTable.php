@@ -14,18 +14,19 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\Product newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Product> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Product get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \Sandbox\Model\Entity\Product findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \Sandbox\Model\Entity\Product findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\Product patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Product> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Product|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \Sandbox\Model\Entity\Product saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method iterable<\Sandbox\Model\Entity\Product>|\Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false saveMany(iterable $entities, array $options = [])
- * @method iterable<\Sandbox\Model\Entity\Product>|\Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> saveManyOrFail(iterable $entities, array $options = [])
- * @method iterable<\Sandbox\Model\Entity\Product>|\Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false deleteMany(iterable $entities, array $options = [])
- * @method iterable<\Sandbox\Model\Entity\Product>|\Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Search\Model\Behavior\SearchBehavior
+ * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  */
 class ProductsTable extends Table {
 

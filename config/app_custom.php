@@ -155,6 +155,7 @@ $config = [
 	],
 
 	'DebugKit' => [
+		'maxDepth' => 8,
 		'panels' => [
 			'DebugKit.Packages' => false,
 			'DebugKit.Mail' => false,

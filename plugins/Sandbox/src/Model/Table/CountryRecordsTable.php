@@ -7,6 +7,7 @@ use Tools\Model\Table\Table;
 /**
  * @method \Search\Manager searchManager()
  * @mixin \Search\Model\Behavior\SearchBehavior
+ * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior}>
  */
 class CountryRecordsTable extends Table {
 

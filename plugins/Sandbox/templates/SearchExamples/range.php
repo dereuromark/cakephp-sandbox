@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var bool $_isSearch
- * @var array<\Sandbox\Model\Entity\Product> $products
+ * @var iterable<\Sandbox\Model\Entity\Product> $products
  * @var \Sandbox\Model\Entity\Product $min
  * @var \Sandbox\Model\Entity\Product $max
  */

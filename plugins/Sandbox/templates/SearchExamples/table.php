@@ -59,7 +59,7 @@ foreach ($countries as $country):
 			<?php echo $country->iso3; ?>
 		</td>
 		<td>
-			<?php echo '+' . h($country->phone_code); ?>
+			<?php echo $country->phone_code ? ('+' . h($country->phone_code)) : ''; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

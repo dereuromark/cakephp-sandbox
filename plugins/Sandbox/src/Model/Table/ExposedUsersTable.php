@@ -26,6 +26,7 @@ use Tools\Model\Table\Table;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Expose\Model\Behavior\ExposeBehavior
+ * @extends \Tools\Model\Table\Table<array{Expose: \Expose\Model\Behavior\ExposeBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  */
 class ExposedUsersTable extends Table {
 

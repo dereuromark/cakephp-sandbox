@@ -25,6 +25,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, array $options = [])
  * @mixin \Tools\Model\Behavior\SluggedBehavior
+ * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}>
  */
 class SandboxPostsTable extends Table {
 
