@@ -30,7 +30,7 @@
 	<h2><?php echo __('Countries');?> table and Search functionality</h2>
 
 
-	<p>The URL and paginator cannot work with empty values directly, so if you want to filter by all with NULL values,
+	<p>The URL, the paginator and the search plugin cannot work with empty values directly, so if you want to filter by all with NULL values,
 		using <code>?has_phone_code=0</code> (or `no`, ...) can work here.</p>
 
 
