@@ -8,6 +8,8 @@ use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 use Sandbox\Model\Enum\Flag;
 use Shim\Datasource\LegacyModelAwareTrait;
+use Tools\I18n\Date;
+use Tools\Model\Entity\Entity;
 
 /**
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
@@ -456,6 +458,28 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function timeline() {
+		$firstNames = [
+			'Anna', 'Ben', 'Clara', 'David', 'Emma', 'Felix', 'Greta', 'Henry', 'Isabel', 'Jonas',
+			'Klara', 'Leo', 'Mia', 'Noah', 'Olivia', 'Paul', 'Quentin', 'Rosa', 'Sophia', 'Tim',
+		];
+
+		$event = new Entity([
+			'name' => 'Some cool event',
+			'from' => (new Date())->addDays(3),
+			'to' => (new Date())->addDays(6),
+		]);
+		$attendees = [];
+		for ($i = 0; $i < 7; $i++) {
+			$randomIndex = array_rand($firstNames);
+			$attendees[] = new Entity([
+				'name' => $firstNames[$randomIndex],
+				'role' => $i % 3 === 0 ? 'speaker' : 'attendee',
+				'from' => (new Date())->addDays(3 + mt_rand(-2, 2)),
+				'to' => (new Date())->addDays(7 + mt_rand(-1, 2)),
+			]);
+		}
+
+		$this->set(compact('event', 'attendees'));
 	}
 
 	/**
