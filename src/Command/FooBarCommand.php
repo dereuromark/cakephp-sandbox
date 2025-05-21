@@ -67,8 +67,8 @@ class FooBarCommand extends Command {
 					'DefaultController.php',
 				],
 				'Kernel.php',
-				(string)Html::create('<b>x</b>'),
-				UserStatus::Active->label(),
+				Html::create('<b>x</b>'),
+				UserStatus::Active,
 			],
 			'templates/' => [
 				'base.html.twig',
