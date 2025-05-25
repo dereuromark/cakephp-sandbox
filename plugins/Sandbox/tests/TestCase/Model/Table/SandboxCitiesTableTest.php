@@ -42,19 +42,18 @@ class SandboxCitiesTableTest extends TestCase {
 	}
 
 	/**
-	 * @uses \Sandbox\Model\Table\SandboxCitiesTable::validationDefault()
 	 * @return void
 	 */
-	public function testValidationDefault(): void {
-		$this->markTestIncomplete('Not implemented yet.');
-	}
+	public function testSave(): void {
+		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
+			'name' => 'Berlin',
+			'country_id' => 1,
+			'lat' => 52.5200,
+			'lng' => 13.4050,
+		]);
+		$this->fetchTable('Sandbox.SandboxCities')->saveOrFail($sandboxCity);
 
-	/**
-	 * @uses \Sandbox\Model\Table\SandboxCitiesTable::buildRules()
-	 * @return void
-	 */
-	public function testBuildRules(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->assertTrue((bool)$sandboxCity);
 	}
 
 }
