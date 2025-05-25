@@ -62,7 +62,7 @@ class CitiesSeed extends BaseSeed {
 		while (($data = fgetcsv($handle, 1000, ',', '"', '\\')) !== false) {
 			$row = array_combine($headers, $data);
 			if (empty($countries[$row['iso3']])) {
-				dd($row);
+				continue;
 			}
 			$map[$row['id']] = $countries[$row['iso3']];
 		}

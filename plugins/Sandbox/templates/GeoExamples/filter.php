@@ -42,16 +42,12 @@
 	<?php echo $this->Form->submit(__('Submit')); ?>
 <?php echo $this->Form->end();?>
 
-<div>
-<?php if (!empty($results)) { ?>
-<?php
-	echo pre($results);
-?>
-<?php } ?>
-</div>
-
 
 	<?php if ($sandboxCities) { ?>
+		<h3>Result</h3>
+
+		<p>Let's display the 10 closest cities or locations together with each distance:</p>
+
 	<div class="">
 		<table class="table table-sm table-striped">
 			<thead>
