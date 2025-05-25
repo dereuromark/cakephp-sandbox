@@ -20,7 +20,7 @@ class SandboxCitiesTableTest extends TestCase {
 	 */
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxCities',
-		'plugin.Sandbox.Countries',
+		'plugin.Data.Countries',
 	];
 
 	/**
