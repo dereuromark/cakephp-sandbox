@@ -46,7 +46,7 @@ class SandboxCitiesTableTest extends TestCase {
 	 */
 	public function testSave(): void {
 		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
-			'name' => 'Berlin',
+			'name' => 'My city',
 			'country_id' => 1,
 			'lat' => 52.5200,
 			'lng' => 13.4050,
