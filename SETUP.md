@@ -25,6 +25,7 @@ Manually you can run the following commands one by one:
 ```
 composer install
 composer migrate
+bin/cake migrations seed
 ```
 
 But it is easier to run the quick command here doing it all at once:

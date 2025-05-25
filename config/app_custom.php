@@ -312,6 +312,10 @@ $config = [
 		'apiKey' => '',
 	],
 
+	'Geo' => [
+		'spatial' => true,
+	],
+
 	'GoogleMap' => [
 		'key' => '',
 	],

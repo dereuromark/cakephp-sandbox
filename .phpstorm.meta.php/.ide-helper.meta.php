@@ -478,6 +478,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.Products' => \Sandbox\Model\Table\ProductsTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
+			'Sandbox.SandboxCities' => \Sandbox\Model\Table\SandboxCitiesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
 			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
@@ -675,6 +676,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.Products' => \Sandbox\Model\Table\ProductsTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
+			'Sandbox.SandboxCities' => \Sandbox\Model\Table\SandboxCitiesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
 			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
@@ -737,6 +739,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Sandbox\Model\Table\ExposedUsersTable::class,
 			'Sandbox.Products' => \Sandbox\Model\Table\ProductsTable::class,
 			'Sandbox.SandboxCategories' => \Sandbox\Model\Table\SandboxCategoriesTable::class,
+			'Sandbox.SandboxCities' => \Sandbox\Model\Table\SandboxCitiesTable::class,
 			'Sandbox.SandboxPosts' => \Sandbox\Model\Table\SandboxPostsTable::class,
 			'Sandbox.SandboxRatings' => \Sandbox\Model\Table\SandboxRatingsTable::class,
 			'Sandbox.SandboxUsers' => \Sandbox\Model\Table\SandboxUsersTable::class,
@@ -837,6 +840,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.Products' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\BelongsToMany::class,
+			'Sandbox.SandboxCities' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxRatings' => \Cake\ORM\Association\BelongsToMany::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\BelongsToMany::class,
@@ -899,6 +903,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.Products' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\BelongsTo::class,
+			'Sandbox.SandboxCities' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxRatings' => \Cake\ORM\Association\BelongsTo::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\BelongsTo::class,
@@ -1059,6 +1064,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.Products' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\HasMany::class,
+			'Sandbox.SandboxCities' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxRatings' => \Cake\ORM\Association\HasMany::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\HasMany::class,
@@ -1121,6 +1127,7 @@ namespace PHPSTORM_META {
 			'Sandbox.ExposedUsers' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.Products' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxCategories' => \Cake\ORM\Association\HasOne::class,
+			'Sandbox.SandboxCities' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxPosts' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxRatings' => \Cake\ORM\Association\HasOne::class,
 			'Sandbox.SandboxUsers' => \Cake\ORM\Association\HasOne::class,
@@ -1339,6 +1346,7 @@ namespace PHPSTORM_META {
 		'plugin.Sandbox.ExposedUsers',
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxCategories',
+		'plugin.Sandbox.SandboxCities',
 		'plugin.Sandbox.SandboxPosts',
 		'plugin.Sandbox.SandboxProducts',
 		'plugin.Sandbox.SandboxProfiles',
@@ -1509,6 +1517,7 @@ namespace PHPSTORM_META {
 		'content',
 		'content_type',
 		'context',
+		'coordinates',
 		'count',
 		'counter',
 		'country_code',
@@ -1765,6 +1774,7 @@ namespace PHPSTORM_META {
 		'Sandbox.navigation/decimal',
 		'Sandbox.navigation/dto',
 		'Sandbox.navigation/favorite',
+		'Sandbox.navigation/geo',
 		'Sandbox.navigation/localized',
 		'Sandbox.navigation/media_embed',
 		'Sandbox.navigation/qr_code',
@@ -3219,6 +3229,66 @@ namespace PHPSTORM_META {
 		\Sandbox\Model\Entity\SandboxCategory::setError(),
 		0,
 		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCategory'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::get(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::getError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::getInvalidField(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::getOriginal(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::has(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::hasValue(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::isDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::isEmpty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::setDirty(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
+	);
+
+	expectedArguments(
+		\Sandbox\Model\Entity\SandboxCity::setError(),
+		0,
+		argumentsSet('entityFields:Sandbox\Model\Entity\SandboxCity'),
 	);
 
 	expectedArguments(
@@ -4828,6 +4898,7 @@ namespace PHPSTORM_META {
 		'condition',
 		'content',
 		'context',
+		'coordinates',
 		'count',
 		'counter',
 		'country_code',
@@ -5013,6 +5084,7 @@ namespace PHPSTORM_META {
 		'DatabaseLog.monitor',
 		'DatabaseLog.monitorCallback',
 		'DebugKit',
+		'DebugKit.maxDepth',
 		'DebugKit.panels',
 		'DebugKit.panels.DebugKit.Mail',
 		'DebugKit.panels.DebugKit.Packages',
@@ -5043,6 +5115,8 @@ namespace PHPSTORM_META {
 		'FormConfig',
 		'FormConfig.align',
 		'FormConfig.novalidate',
+		'Geo',
+		'Geo.spatial',
 		'Geocoder',
 		'Geocoder.apiKey',
 		'GoogleMap',
@@ -5487,6 +5561,18 @@ namespace PHPSTORM_META {
 		'parent_id',
 		'rght',
 		'status',
+	);
+
+	registerArgumentsSet(
+		'entityFields:Sandbox\Model\Entity\SandboxCity',
+		'alias',
+		'coordinates',
+		'country',
+		'country_id',
+		'id',
+		'lat',
+		'lng',
+		'name',
 	);
 
 	registerArgumentsSet(
@@ -18011,7 +18097,9 @@ namespace PHPSTORM_META {
 		'Sandbox.FlashExamples::index',
 		'Sandbox.FlashExamples::messageGroups',
 		'Sandbox.FlashExamples::messages',
+		'Sandbox.GeoExamples::filter',
 		'Sandbox.GeoExamples::index',
+		'Sandbox.GeoExamples::maps',
 		'Sandbox.GeoExamples::query',
 		'Sandbox.Inflector::index',
 		'Sandbox.JqueryExamples::autocomplete',
@@ -18045,6 +18133,7 @@ namespace PHPSTORM_META {
 		'Sandbox.Ratings::index',
 		'Sandbox.Ratings::unrate',
 		'Sandbox.Sandbox::index',
+		'Sandbox.SearchExamples::emptyValues',
 		'Sandbox.SearchExamples::index',
 		'Sandbox.SearchExamples::range',
 		'Sandbox.SearchExamples::table',
@@ -18166,6 +18255,7 @@ namespace PHPSTORM_META {
 		'TestHelper.TestFixtures::index',
 		'TestHelper.TestHelper::index',
 		'Tools.Admin/Helper::bitmasks',
+		'Tools.Admin/Helper::chars',
 		'Tools.Admin/Pages::index',
 		'Tools.Admin/Tools::index',
 		'Tools.ShuntRequest::language',
@@ -18238,6 +18328,7 @@ namespace PHPSTORM_META {
 		'roles',
 		'sandbox_animals',
 		'sandbox_categories',
+		'sandbox_cities',
 		'sandbox_posts',
 		'sandbox_products',
 		'sandbox_profiles',

@@ -53,4 +53,26 @@ class GeoExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test query method
+	 *
+	 * @return void
+	 */
+	public function testFilter(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
+			'name' => 'Berlin',
+			'country_id' => 1,
+			'lat' => 52.5200,
+			'lng' => 13.4050,
+		]);
+		$this->fetchTable('Sandbox.SandboxCities')->saveOrFail($sandboxCity);
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'GeoExamples', 'action' => 'filter']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

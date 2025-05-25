@@ -31,9 +31,47 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-		$actions = $this->_getActions($this);
+	}
 
-		$this->set(compact('actions'));
+	/**
+	 * @return void
+	 */
+	public function maps() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function filter() {
+		$city = $this->fetchTable('Sandbox.SandboxCities')->find()
+			->contain(['Countries'])
+			->where(['SandboxCities.name' => 'Berlin'])
+			->firstOrFail();
+		$cities = [$city->id => $city->name . ', ' . $city->country->name . ' (' . $city->lat . ', ' . $city->lng . ')'];
+
+		$type = $this->request->getQuery('spatial') ? 'spatial' : 'distance';
+
+		$sandboxCities = [];
+		$sqlQuery = null;
+		if ($this->request->getData('city_id')) {
+			$this->fetchTable('Sandbox.SandboxCities')->addBehavior('Geo.Geocoder');
+			$city = $this->fetchTable('Sandbox.SandboxCities')->get($this->request->getData('city_id'));
+			$search = [
+				'lat' => $city->lat,
+				'lng' => $city->lng,
+				//'sort' => false,
+				'distance' => $this->request->getData('distance') ?: 100,
+			];
+			$query = $this->fetchTable('Sandbox.SandboxCities')
+				->find($type, ...$search)
+				->where(['SandboxCities.id !=' => $city->id])
+				->contain(['Countries'])
+				->limit(10);
+			$sqlQuery = (string)$query;
+			$sandboxCities = $query->all()->toArray();
+		}
+
+		$this->set(compact('cities', 'sandboxCities', 'sqlQuery'));
 	}
 
 	/**

@@ -3,10 +3,6 @@
  * @var \App\View\AppView $this
  */
 ?>
-<script type="text/javascript">
-
-</script>
-
 
 <h1>About "New Lines"</h1>
 Tip: Read the codesnippet for the CakePHP Reference to this topic.

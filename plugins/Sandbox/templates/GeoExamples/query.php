@@ -5,10 +5,23 @@
  * @var array $results
  */
 ?>
-<div class="page form">
+
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/geo'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
+
 <h2><?php echo __('Query {0}', __('Geo Data')); ?></h2>
 
-<?php echo $this->Form->create($country);?>
+
+
+	<h3>Geocoding lat/lng</h3>
+	Using the Geocoder behavior you can easily auto-geocode a posted address into the corresponding `lat` and `lng` fields on save.
+	<br><br>
+
+
+	<?php echo $this->Form->create($country);?>
 	<fieldset>
 		<legend><?php echo __('Enter Postal Code, City, Address or other Geo Data'); ?></legend>
 	<?php
@@ -25,7 +38,6 @@
 	</fieldset>
 	<?php echo $this->Form->submit(__('Submit')); ?>
 <?php echo $this->Form->end();?>
-</div>
 
 <div>
 <?php if ($results) { ?>
@@ -35,10 +47,4 @@
 <?php } ?>
 </div>
 
-
-<div class="actions">
-	<ul>
-
-		<li><?php echo $this->Html->link(__('Back'), ['action' => 'index']);?></li>
-	</ul>
 </div>
