@@ -9,7 +9,6 @@ class SandboxSpatial extends BaseMigration {
 	 */
 	public function up() {
 		// Skip for now
-		return;
 
 		// Step 1: Add coordinates column as nullable
 		$this->table('sandbox_cities')
