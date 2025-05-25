@@ -15,8 +15,7 @@
 		<?php echo $this->request->getSession()->read('Expose.short') ? '(display with char length of 22)' : '(display with char length of 36)'; ?>
 	</p>
 	<p>You can switch the database Type class used here:</p>
-	<?php echo $this->Html->link('BinaryUuid (char 36)', ['?' => ['short' => false]], ['class' => 'btn btn-secondary']); ?>
-	<?php echo $this->Html->link('ShortUuid (char 22)', ['?' => ['short' => true]], ['class' => 'btn btn-primary']); ?>
+^
 </div>
 
 
