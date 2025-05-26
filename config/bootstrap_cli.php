@@ -11,3 +11,8 @@ if (Configure::read('debug')) {
 	Configure::write('Log.error.className', 'File');
 	Configure::write('Log.404.className', 'File');
 }
+
+if (!Configure::read('App.fullBaseUrl')) {
+	$scheme = 'http' . (Configure::read('debug') ? '' : 's');
+	Configure::write('App.fullBaseUrl', $scheme . '://sandbox.dereuromark.de');
+}
