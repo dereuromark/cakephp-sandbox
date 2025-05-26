@@ -84,6 +84,7 @@ return [
 		'default' => [
 			'className' => 'File',
 			'path' => CACHE,
+			'duration' => '+1 year',
 		],
 
 		/**
@@ -91,12 +92,12 @@ return [
 		 * object listings, and translation cache files are stored with this
 		 * configuration.
 		 */
-		'_cake_core_' => [
+		'_cake_translations_' => [
 			'className' => 'File',
-			'prefix' => 'myapp_cake_core_',
+			'prefix' => 'myapp_cake_translations_',
 			'path' => CACHE . 'persistent/',
 			'serialize' => true,
-			'duration' => '+2 minutes',
+			'duration' => '+1 year',
 		],
 
 		/**
@@ -109,7 +110,7 @@ return [
 			'prefix' => 'myapp_cake_model_',
 			'path' => CACHE . 'models/',
 			'serialize' => true,
-			'duration' => '+2 minutes',
+			'duration' => '+1 year',
 		],
 	],
 
