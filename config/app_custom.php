@@ -164,6 +164,17 @@ $config = [
 		],
 	],
 
+	'Setup' => [
+		'Healthcheck' => [
+			'checks' => [
+					\Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck::class => [
+						'min' => 16,
+					],
+					// ...
+				] + \Setup\Healthcheck\HealthcheckCollector::defaultChecks(),
+		],
+	],
+
 	'StateMachine' => [
 		'graphAdapter' => PhpDocumentorGraphAdapter::class,
 		'handlers' => [

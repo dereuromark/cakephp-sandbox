@@ -37,7 +37,7 @@
 </div>
 
 <h3>Info</h3>
-<?php if ($action === 'register') { ?>
+<?php if ($action === 'password') { ?>
 The pwd and pwd_repeat fields are both mandatory.
 <?php } else { ?>
 The password fields are optional, but as soon as the pwd field has content, both
