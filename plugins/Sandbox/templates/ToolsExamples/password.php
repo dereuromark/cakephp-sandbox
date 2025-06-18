@@ -15,7 +15,7 @@
 
 <?php
 	$action = 'Register';
-	if ($this->request->getAttribute('params')['action'] === 'passwordEdit') {
+	if ($this->request->getParam('action') === 'passwordEdit') {
 		$action = 'Edit';
 	}
 ?>
@@ -37,7 +37,7 @@
 </div>
 
 <h3>Info</h3>
-<?php if ($action === 'password') { ?>
+<?php if ($action === 'Register') { ?>
 The pwd and pwd_repeat fields are both mandatory.
 <?php } else { ?>
 The password fields are optional, but as soon as the pwd field has content, both
