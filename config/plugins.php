@@ -1,16 +1,19 @@
 <?php
 
 return [
-	'Migrations' => ['onlyCli' => true],
+	'Migrations' => [
+		'onlyCli' => true,
+	],
 	'Shim' => [],
 	'Tools' => [],
 	'Setup' => [],
 	'Data' => [],
 	'Ajax' => [],
-	//'Meta', ['bootstrap' => false]);
 	'Cache' => [],
 	'AssetCompress' => [],
-	'TinyAuth' => ['bootstrap' => false],
+	'TinyAuth' => [
+		'bootstrap' => false,
+	],
 	'Calendar' => [],
 	'Search' => [],
 	'Ratings' => [],
@@ -30,10 +33,10 @@ return [
 	'Translate' => [],
 	'Favorites' => [],
 	'QrCode' => [],
-
-	// inside /plugins
 	'AuthSandbox' => [],
 	'Sandbox' => [],
 	'StateMachine' => [],
 	'StateMachineSandbox' => [],
+	'Crud' => [],
+	'CrudDemo' => [],
 ];
