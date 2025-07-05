@@ -72,7 +72,9 @@
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
 		"symfony/http-client": "^6.4 || ^7.1.8",
-		"dereuromark/cakephp-qrcode": "dev-master"
+		"dereuromark/cakephp-qrcode": "dev-master",
+		"friendsofcake/crud": "^7.2",
+		"friendsofcake/crud-view": "^0.51.1"
 	},
 	"require-dev": {
 		"robmorgan/phinx": "^0.16.2",
@@ -89,7 +91,8 @@
 			"App\\": "src/",
 			"Sandbox\\": "plugins/Sandbox/src/",
 			"AuthSandbox\\": "plugins/AuthSandbox/src/",
-			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/"
+			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/",
+			"CrudDemo\\": "plugins/CrudDemo/src/"
 		}
 	},
 	"autoload-dev": {
