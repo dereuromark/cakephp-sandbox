@@ -33,7 +33,7 @@
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"dereuromark/cakephp-captcha": "dev-master",
-		"cakephp/migrations": "^4.0.1",
+		"cakephp/migrations": "4.x-dev as 4.6.4",
 		"markstory/asset_compress": "^5.0.0",
 		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
