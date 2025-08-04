@@ -11,7 +11,7 @@ use Tools\Form\ContactForm;
 class CaptchasController extends SandboxAppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Sandbox.Animals';
 

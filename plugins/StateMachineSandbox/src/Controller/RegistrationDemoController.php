@@ -18,7 +18,7 @@ class RegistrationDemoController extends AppController {
 	use ModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'StateMachineSandbox.Registrations';
 

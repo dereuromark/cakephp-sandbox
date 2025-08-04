@@ -10,7 +10,7 @@ use App\Controller\AppController;
 class StateMachineSandboxController extends AppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Users';
 

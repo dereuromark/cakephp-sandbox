@@ -19,7 +19,7 @@ class QueueExamplesController extends SandboxAppController {
 	use LegacyModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Queue.QueuedJobs';
 

@@ -22,7 +22,7 @@ class AccountController extends AppController {
 	use LegacyModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Users';
 

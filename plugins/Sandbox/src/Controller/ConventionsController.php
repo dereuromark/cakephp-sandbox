@@ -8,7 +8,7 @@ namespace Sandbox\Controller;
 class ConventionsController extends SandboxAppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Users';
 

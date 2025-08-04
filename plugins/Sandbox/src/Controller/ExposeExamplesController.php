@@ -27,7 +27,7 @@ class ExposeExamplesController extends SandboxAppController {
 	];
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Sandbox.ExposedUsers';
 

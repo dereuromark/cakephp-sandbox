@@ -10,7 +10,7 @@ namespace App\Controller;
 class OverviewController extends AppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Users';
 

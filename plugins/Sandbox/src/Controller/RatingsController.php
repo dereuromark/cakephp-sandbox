@@ -13,7 +13,7 @@ class RatingsController extends SandboxAppController {
 	use ModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Sandbox.SandboxPosts';
 

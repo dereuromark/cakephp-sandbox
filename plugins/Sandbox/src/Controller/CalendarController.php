@@ -20,7 +20,7 @@ class CalendarController extends SandboxAppController {
 	use LegacyModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Sandbox.Events';
 

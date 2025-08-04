@@ -19,7 +19,7 @@ class TagsController extends SandboxAppController {
 	use LegacyModelAwareTrait;
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Sandbox.SandboxCategories';
 

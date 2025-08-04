@@ -14,7 +14,7 @@ use Geo\Geocoder\Geocoder;
 class GeoExamplesController extends SandboxAppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Data.Countries';
 

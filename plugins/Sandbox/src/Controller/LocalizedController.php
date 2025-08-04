@@ -14,7 +14,7 @@ use Throwable;
 class LocalizedController extends SandboxAppController {
 
 	/**
-	 * @var string
+	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'Users';
 
