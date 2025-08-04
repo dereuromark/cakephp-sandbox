@@ -39,3 +39,49 @@
 
 
 </div>
+
+<?php $this->append('script');?>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// Character counter for all textareas
+			// Wait a bit for the form to be fully rendered
+			setTimeout(function() {
+				// Add character counter to all textareas only
+				$('textarea').each(function() {
+					var $field = $(this);
+
+					// Skip if it's a date field or other special inputs
+					if ($field.hasClass('hasDatepicker') || $field.attr('readonly')) {
+						return;
+					}
+
+					// Create a unique counter ID based on field name or ID
+					var fieldId = $field.attr('id') || $field.attr('name') || 'field';
+					var counterId = 'charCount_' + fieldId.replace(/[\[\]\.]/g, '_');
+
+					// Add the counter div after the field's parent div (to handle CakePHP's form structure)
+					var $counterDiv = $('<div class="char-counter" style="text-align: right; color: #666; font-size: 0.9em; margin-bottom: 10px;">' +
+						'<span id="' + counterId + '">0</span> characters' +
+						'</div>');
+
+					// Insert counter after the form-group div
+					var $formGroup = $field.closest('.form-group');
+					if ($formGroup.length > 0) {
+						$formGroup.after($counterDiv);
+					} else {
+						$field.after($counterDiv);
+					}
+
+					// Bind input event
+					$field.on('input keyup paste', function() {
+						var charCount = $(this).val().length;
+						$('#' + counterId).text(charCount);
+					});
+
+					// Initialize counter
+					$('#' + counterId).text($field.val().length);
+				});
+			}, 100);
+		});
+	</script>
+<?php $this->end();
