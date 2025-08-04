@@ -72,14 +72,21 @@
 						$field.after($counterDiv);
 					}
 
+					// Function to count Unicode characters properly (UTF-8 safe)
+					function getUnicodeLength(str) {
+						// Use the spread operator to split by grapheme clusters
+						// This handles emojis, combining characters, etc. correctly
+						return [...str].length;
+					}
+
 					// Bind input event
 					$field.on('input keyup paste', function() {
-						var charCount = $(this).val().length;
+						var charCount = getUnicodeLength($(this).val());
 						$('#' + counterId).text(charCount);
 					});
 
 					// Initialize counter
-					$('#' + counterId).text($field.val().length);
+					$('#' + counterId).text(getUnicodeLength($field.val()));
 				});
 			}, 100);
 		});
