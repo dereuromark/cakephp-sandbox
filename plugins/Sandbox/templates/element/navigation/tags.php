@@ -16,4 +16,5 @@
 	<li><?php echo $this->Navigation->link('Select2 Multiple select', ['action' => 'select'])?></li>
 	<li><?php echo $this->Navigation->link('Filtering', ['action' => 'search'])?></li>
 	<li><?php echo $this->Navigation->link('Tag Cloud', ['action' => 'cloud'])?></li>
+	<li><?php echo $this->Navigation->link('Colors', ['action' => 'colors'])?></li>
 </ul>

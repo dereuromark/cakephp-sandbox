@@ -12,8 +12,8 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string|null $alias
  * @property int $country_id
- * @property float $lat
- * @property float $lng
+ * @property float|null $lat
+ * @property float|null $lng
  * @property string $coordinates
  *
  * @property \Data\Model\Entity\Country $country

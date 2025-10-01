@@ -146,4 +146,56 @@ class TagsController extends SandboxAppController {
 		$this->set(compact('tags'));
 	}
 
+	/**
+	 * @return void
+	 */
+	public function colors() {
+		$this->loadModel('Sandbox.SandboxCategories');
+
+		$category = $this->SandboxCategories->newEmptyEntity();
+		if ($this->request->is('post')) {
+			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
+			// Save here
+		} else {
+			$category->title = 'My title';
+			$category->tag_list = 'Red, Green, Blue';
+		}
+
+		// Simulated tags with colors for display
+		$tags = [
+			[
+				'id' => 1,
+				'label' => 'Important',
+				'slug' => 'important',
+				'color' => '#FF5733',
+			],
+			[
+				'id' => 2,
+				'label' => 'Feature',
+				'slug' => 'feature',
+				'color' => '#33C3FF',
+			],
+			[
+				'id' => 3,
+				'label' => 'Bug',
+				'slug' => 'bug',
+				'color' => '#FF3333',
+			],
+			[
+				'id' => 4,
+				'label' => 'Documentation',
+				'slug' => 'documentation',
+				'color' => '#33FF57',
+			],
+			[
+				'id' => 5,
+				'label' => 'Enhancement',
+				'slug' => 'enhancement',
+				'color' => '#9B59B6',
+			],
+		];
+
+		$this->set(compact('category', 'tags'));
+	}
+
 }

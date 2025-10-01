@@ -26,7 +26,7 @@
 		"dereuromark/cakephp-comments": "dev-master",
 		"dereuromark/cakephp-favorites": "dev-master",
 		"dereuromark/cakephp-translate": "dev-master",
-		"dereuromark/cakephp-tinyauth": "dev-master",
+		"dereuromark/cakephp-tinyauth": "^4.5.3",
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-shim": "dev-master as 3.1.0",
 		"dereuromark/cakephp-tools": "dev-master as 3.9.0",

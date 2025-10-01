@@ -49,6 +49,7 @@ use Cake\View\View;
  * @property \Favorites\View\Helper\LikesHelper $Likes
  * @property \Favorites\View\Helper\FavoritesHelper $Favorites
  * @property \Comments\View\Helper\CommentsHelper $Comments
+ * @property \Tools\View\Helper\TimelineHelper $Timeline
  */
 class AppView extends View {
 

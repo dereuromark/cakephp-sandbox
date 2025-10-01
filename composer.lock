@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "430384fc30fe0806de1dd1486b0581d9",
+    "content-hash": "f4c2d011d0b713631b2214914d68bc4a",
     "packages": [
         {
             "name": "brick/math",
@@ -2762,12 +2762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "7b3a20704b1bbb0e8e9899a6e3c6ba128c010066"
+                "reference": "ec8c984e1b5755e6a8275742eb51f6092f57db27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/7b3a20704b1bbb0e8e9899a6e3c6ba128c010066",
-                "reference": "7b3a20704b1bbb0e8e9899a6e3c6ba128c010066",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/ec8c984e1b5755e6a8275742eb51f6092f57db27",
+                "reference": "ec8c984e1b5755e6a8275742eb51f6092f57db27",
                 "shasum": ""
             },
             "require": {
@@ -2827,7 +2827,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tags/issues",
                 "source": "https://github.com/dereuromark/cakephp-tags"
             },
-            "time": "2025-10-01T00:20:50+00:00"
+            "time": "2025-10-01T09:22:49+00:00"
         },
         {
             "name": "dereuromark/cakephp-templating",
@@ -2887,16 +2887,16 @@
         },
         {
             "name": "dereuromark/cakephp-tinyauth",
-            "version": "dev-master",
+            "version": "4.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "73a22f1522a398abf1256fc15eb1901bf896924a"
+                "reference": "a9c61fb5bdd0cabebcca049a3b30b776b65f409a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/73a22f1522a398abf1256fc15eb1901bf896924a",
-                "reference": "73a22f1522a398abf1256fc15eb1901bf896924a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/a9c61fb5bdd0cabebcca049a3b30b776b65f409a",
+                "reference": "a9c61fb5bdd0cabebcca049a3b30b776b65f409a",
                 "shasum": ""
             },
             "require": {
@@ -2911,7 +2911,6 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2943,7 +2942,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
                 "source": "https://github.com/dereuromark/cakephp-tinyauth"
             },
-            "time": "2025-09-30T01:10:45+00:00"
+            "time": "2025-07-27T16:51:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -11137,7 +11136,6 @@
         "dereuromark/cakephp-tags": 20,
         "dereuromark/cakephp-templating": 20,
         "dereuromark/cakephp-test-helper": 20,
-        "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-translate": 20,
         "dereuromark/media-embed": 20,
