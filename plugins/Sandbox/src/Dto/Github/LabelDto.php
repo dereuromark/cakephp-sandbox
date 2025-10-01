@@ -6,15 +6,23 @@
 
 namespace Sandbox\Dto\Github;
 
+use CakeDto\Dto\AbstractDto;
+
 /**
  * Github/Label DTO
  *
  * @property string|null $name
  * @property string|null $color
  */
-class LabelDto extends \CakeDto\Dto\AbstractDto {
+class LabelDto extends AbstractDto {
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_NAME = 'name';
+	/**
+	 * @var string
+	 */
 	public const FIELD_COLOR = 'color';
 
 	/**
@@ -80,7 +88,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setName(?string $name) {
 		$this->name = $name;
-		$this->_touchedFields[self::FIELD_NAME] = true;
+		$this->_touchedFields[static::FIELD_NAME] = true;
 
 		return $this;
 	}
@@ -92,7 +100,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setNameOrFail(string $name) {
 		$this->name = $name;
-		$this->_touchedFields[self::FIELD_NAME] = true;
+		$this->_touchedFields[static::FIELD_NAME] = true;
 
 		return $this;
 	}
@@ -131,7 +139,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setColor(?string $color) {
 		$this->color = $color;
-		$this->_touchedFields[self::FIELD_COLOR] = true;
+		$this->_touchedFields[static::FIELD_COLOR] = true;
 
 		return $this;
 	}
@@ -143,7 +151,7 @@ class LabelDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setColorOrFail(string $color) {
 		$this->color = $color;
-		$this->_touchedFields[self::FIELD_COLOR] = true;
+		$this->_touchedFields[static::FIELD_COLOR] = true;
 
 		return $this;
 	}

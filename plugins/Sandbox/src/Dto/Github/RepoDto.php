@@ -6,6 +6,8 @@
 
 namespace Sandbox\Dto\Github;
 
+use CakeDto\Dto\AbstractDto;
+
 /**
  * Github/Repo DTO
  *
@@ -14,11 +16,23 @@ namespace Sandbox\Dto\Github;
  * @property bool $private
  * @property \Sandbox\Dto\Github\UserDto $owner
  */
-class RepoDto extends \CakeDto\Dto\AbstractDto {
+class RepoDto extends AbstractDto {
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_NAME = 'name';
+	/**
+	 * @var string
+	 */
 	public const FIELD_HTML_URL = 'htmlUrl';
+	/**
+	 * @var string
+	 */
 	public const FIELD_PRIVATE = 'private';
+	/**
+	 * @var string
+	 */
 	public const FIELD_OWNER = 'owner';
 
 	/**
@@ -122,7 +136,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setName(string $name) {
 		$this->name = $name;
-		$this->_touchedFields[self::FIELD_NAME] = true;
+		$this->_touchedFields[static::FIELD_NAME] = true;
 
 		return $this;
 	}
@@ -148,7 +162,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setHtmlUrl(string $htmlUrl) {
 		$this->htmlUrl = $htmlUrl;
-		$this->_touchedFields[self::FIELD_HTML_URL] = true;
+		$this->_touchedFields[static::FIELD_HTML_URL] = true;
 
 		return $this;
 	}
@@ -174,7 +188,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setPrivate(bool $private) {
 		$this->private = $private;
-		$this->_touchedFields[self::FIELD_PRIVATE] = true;
+		$this->_touchedFields[static::FIELD_PRIVATE] = true;
 
 		return $this;
 	}
@@ -200,7 +214,7 @@ class RepoDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setOwner(\Sandbox\Dto\Github\UserDto $owner) {
 		$this->owner = $owner;
-		$this->_touchedFields[self::FIELD_OWNER] = true;
+		$this->_touchedFields[static::FIELD_OWNER] = true;
 
 		return $this;
 	}

@@ -6,6 +6,8 @@
 
 namespace Sandbox\Dto\Github;
 
+use CakeDto\Dto\AbstractDto;
+
 /**
  * Github/Base DTO
  *
@@ -14,11 +16,23 @@ namespace Sandbox\Dto\Github;
  * @property \Sandbox\Dto\Github\UserDto $user
  * @property \Sandbox\Dto\Github\RepoDto $repo
  */
-class BaseDto extends \CakeDto\Dto\AbstractDto {
+class BaseDto extends AbstractDto {
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_REF = 'ref';
+	/**
+	 * @var string
+	 */
 	public const FIELD_SHA = 'sha';
+	/**
+	 * @var string
+	 */
 	public const FIELD_USER = 'user';
+	/**
+	 * @var string
+	 */
 	public const FIELD_REPO = 'repo';
 
 	/**
@@ -122,7 +136,7 @@ class BaseDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setRef(string $ref) {
 		$this->ref = $ref;
-		$this->_touchedFields[self::FIELD_REF] = true;
+		$this->_touchedFields[static::FIELD_REF] = true;
 
 		return $this;
 	}
@@ -148,7 +162,7 @@ class BaseDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setSha(string $sha) {
 		$this->sha = $sha;
-		$this->_touchedFields[self::FIELD_SHA] = true;
+		$this->_touchedFields[static::FIELD_SHA] = true;
 
 		return $this;
 	}
@@ -174,7 +188,7 @@ class BaseDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setUser(\Sandbox\Dto\Github\UserDto $user) {
 		$this->user = $user;
-		$this->_touchedFields[self::FIELD_USER] = true;
+		$this->_touchedFields[static::FIELD_USER] = true;
 
 		return $this;
 	}
@@ -200,7 +214,7 @@ class BaseDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setRepo(\Sandbox\Dto\Github\RepoDto $repo) {
 		$this->repo = $repo;
-		$this->_touchedFields[self::FIELD_REPO] = true;
+		$this->_touchedFields[static::FIELD_REPO] = true;
 
 		return $this;
 	}

@@ -6,6 +6,8 @@
 
 namespace Sandbox\Dto\Github;
 
+use CakeDto\Dto\AbstractDto;
+
 /**
  * Github/PullRequest DTO
  *
@@ -20,17 +22,47 @@ namespace Sandbox\Dto\Github;
  * @property \Sandbox\Dto\Github\HeadDto|null $head
  * @property \Sandbox\Dto\Github\BaseDto|null $base
  */
-class PullRequestDto extends \CakeDto\Dto\AbstractDto {
+class PullRequestDto extends AbstractDto {
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_URL = 'url';
+	/**
+	 * @var string
+	 */
 	public const FIELD_NUMBER = 'number';
+	/**
+	 * @var string
+	 */
 	public const FIELD_STATE = 'state';
+	/**
+	 * @var string
+	 */
 	public const FIELD_TITLE = 'title';
+	/**
+	 * @var string
+	 */
 	public const FIELD_BODY = 'body';
+	/**
+	 * @var string
+	 */
 	public const FIELD_USER = 'user';
+	/**
+	 * @var string
+	 */
 	public const FIELD_CREATED_AT = 'createdAt';
+	/**
+	 * @var string
+	 */
 	public const FIELD_LABELS = 'labels';
+	/**
+	 * @var string
+	 */
 	public const FIELD_HEAD = 'head';
+	/**
+	 * @var string
+	 */
 	public const FIELD_BASE = 'base';
 
 	/**
@@ -253,7 +285,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setUrl(string $url) {
 		$this->url = $url;
-		$this->_touchedFields[self::FIELD_URL] = true;
+		$this->_touchedFields[static::FIELD_URL] = true;
 
 		return $this;
 	}
@@ -279,7 +311,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setNumber(int $number) {
 		$this->number = $number;
-		$this->_touchedFields[self::FIELD_NUMBER] = true;
+		$this->_touchedFields[static::FIELD_NUMBER] = true;
 
 		return $this;
 	}
@@ -305,7 +337,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setState(string $state) {
 		$this->state = $state;
-		$this->_touchedFields[self::FIELD_STATE] = true;
+		$this->_touchedFields[static::FIELD_STATE] = true;
 
 		return $this;
 	}
@@ -331,7 +363,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setTitle(string $title) {
 		$this->title = $title;
-		$this->_touchedFields[self::FIELD_TITLE] = true;
+		$this->_touchedFields[static::FIELD_TITLE] = true;
 
 		return $this;
 	}
@@ -357,7 +389,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setBody(string $body) {
 		$this->body = $body;
-		$this->_touchedFields[self::FIELD_BODY] = true;
+		$this->_touchedFields[static::FIELD_BODY] = true;
 
 		return $this;
 	}
@@ -383,7 +415,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setUser(\Sandbox\Dto\Github\UserDto $user) {
 		$this->user = $user;
-		$this->_touchedFields[self::FIELD_USER] = true;
+		$this->_touchedFields[static::FIELD_USER] = true;
 
 		return $this;
 	}
@@ -409,7 +441,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setCreatedAt(\Cake\I18n\FrozenTime $createdAt) {
 		$this->createdAt = $createdAt;
-		$this->_touchedFields[self::FIELD_CREATED_AT] = true;
+		$this->_touchedFields[static::FIELD_CREATED_AT] = true;
 
 		return $this;
 	}
@@ -435,7 +467,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setLabels(array $labels) {
 		$this->labels = $labels;
-		$this->_touchedFields[self::FIELD_LABELS] = true;
+		$this->_touchedFields[static::FIELD_LABELS] = true;
 
 		return $this;
 	}
@@ -496,7 +528,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 		}
 
 		$this->labels[$key] = $label;
-		$this->_touchedFields[self::FIELD_LABELS] = true;
+		$this->_touchedFields[static::FIELD_LABELS] = true;
 
 		return $this;
 	}
@@ -508,7 +540,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setHead(?\Sandbox\Dto\Github\HeadDto $head) {
 		$this->head = $head;
-		$this->_touchedFields[self::FIELD_HEAD] = true;
+		$this->_touchedFields[static::FIELD_HEAD] = true;
 
 		return $this;
 	}
@@ -520,7 +552,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setHeadOrFail(\Sandbox\Dto\Github\HeadDto $head) {
 		$this->head = $head;
-		$this->_touchedFields[self::FIELD_HEAD] = true;
+		$this->_touchedFields[static::FIELD_HEAD] = true;
 
 		return $this;
 	}
@@ -559,7 +591,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setBase(?\Sandbox\Dto\Github\BaseDto $base) {
 		$this->base = $base;
-		$this->_touchedFields[self::FIELD_BASE] = true;
+		$this->_touchedFields[static::FIELD_BASE] = true;
 
 		return $this;
 	}
@@ -571,7 +603,7 @@ class PullRequestDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setBaseOrFail(\Sandbox\Dto\Github\BaseDto $base) {
 		$this->base = $base;
-		$this->_touchedFields[self::FIELD_BASE] = true;
+		$this->_touchedFields[static::FIELD_BASE] = true;
 
 		return $this;
 	}

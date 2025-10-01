@@ -6,6 +6,8 @@
 
 namespace Sandbox\Dto\Github;
 
+use CakeDto\Dto\AbstractDto;
+
 /**
  * Github/User DTO
  *
@@ -13,10 +15,19 @@ namespace Sandbox\Dto\Github;
  * @property string $htmlUrl
  * @property string $type
  */
-class UserDto extends \CakeDto\Dto\AbstractDto {
+class UserDto extends AbstractDto {
 
+	/**
+	 * @var string
+	 */
 	public const FIELD_LOGIN = 'login';
+	/**
+	 * @var string
+	 */
 	public const FIELD_HTML_URL = 'htmlUrl';
+	/**
+	 * @var string
+	 */
 	public const FIELD_TYPE = 'type';
 
 	/**
@@ -101,7 +112,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setLogin(string $login) {
 		$this->login = $login;
-		$this->_touchedFields[self::FIELD_LOGIN] = true;
+		$this->_touchedFields[static::FIELD_LOGIN] = true;
 
 		return $this;
 	}
@@ -127,7 +138,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setHtmlUrl(string $htmlUrl) {
 		$this->htmlUrl = $htmlUrl;
-		$this->_touchedFields[self::FIELD_HTML_URL] = true;
+		$this->_touchedFields[static::FIELD_HTML_URL] = true;
 
 		return $this;
 	}
@@ -153,7 +164,7 @@ class UserDto extends \CakeDto\Dto\AbstractDto {
 	 */
 	public function setType(string $type) {
 		$this->type = $type;
-		$this->_touchedFields[self::FIELD_TYPE] = true;
+		$this->_touchedFields[static::FIELD_TYPE] = true;
 
 		return $this;
 	}
