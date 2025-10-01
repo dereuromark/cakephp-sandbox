@@ -151,14 +151,37 @@ class TagsController extends SandboxAppController {
 	 */
 	public function colors() {
 		$this->loadModel('Sandbox.SandboxCategories');
+		$this->SandboxCategories->addBehavior('Tags.Tag', [
+			'inlineColorEditing' => true,
+			'taggedCounter' => false,
+		]);
 
 		$category = $this->SandboxCategories->newEmptyEntity();
 		if ($this->request->is('post')) {
 			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
-			// Save here
+			if (!$category->getErrors()) {
+				// We simulate save only
+				$this->Flash->success('Tags saved with colors!');
+
+				// Rebuild tag list from entity to show what was parsed
+				$tagList = [];
+				if ($category->tags) {
+					foreach ($category->tags as $tag) {
+						$tagString = $tag->label;
+						if ($tag->color) {
+							$tagString .= '@' . $tag->color;
+						}
+						$tagList[] = $tagString;
+					}
+				}
+				$category->tag_list = implode(', ', $tagList);
+				$this->request = $this->request->withData('tag_list', $category->tag_list);
+			} else {
+				$this->Flash->error('Could not save tags.');
+			}
 		} else {
-			$category->title = 'My title';
-			$category->tag_list = 'Red, Green, Blue';
+			$category->title = 'My Demo Category';
+			$category->tag_list = 'Urgent@red, Feature@blue, Documentation@green';
 		}
 
 		// Simulated tags with colors for display

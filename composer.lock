@@ -2762,12 +2762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "ec8c984e1b5755e6a8275742eb51f6092f57db27"
+                "reference": "643bc18eac87694b332f41781326349aa91a10cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/ec8c984e1b5755e6a8275742eb51f6092f57db27",
-                "reference": "ec8c984e1b5755e6a8275742eb51f6092f57db27",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/643bc18eac87694b332f41781326349aa91a10cb",
+                "reference": "643bc18eac87694b332f41781326349aa91a10cb",
                 "shasum": ""
             },
             "require": {
@@ -2827,7 +2827,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tags/issues",
                 "source": "https://github.com/dereuromark/cakephp-tags"
             },
-            "time": "2025-10-01T09:22:49+00:00"
+            "time": "2025-10-01T10:50:58+00:00"
         },
         {
             "name": "dereuromark/cakephp-templating",

@@ -116,19 +116,31 @@ $this->loadHelper('Tags.Tag');
 	</div>
 </div>
 
-<h4>Adding tags with color input in forms</h4>
+<h4>Inline Color Editing</h4>
 <p>
-	When creating or editing tags, you can now include a color picker input:
+	You can now add colors directly when typing tags using the <code>@</code> symbol followed by a color name or hex code:
 </p>
+
+<div class="alert alert-success mb-4">
+	<h5>Syntax Examples:</h5>
+	<ul class="mb-0">
+		<li><code>TagName@red</code> - Using named color (red, blue, green, yellow, orange, purple, pink, etc.)</li>
+		<li><code>TagName@#FF5733</code> - Using hex color code</li>
+		<li><code>TagName@FF5733</code> - Hex code without # also works</li>
+	</ul>
+</div>
 
 <?php
 echo $this->Form->create($category);
 echo $this->Form->control('title');
-echo $this->Tag->control(['help' => 'Use comma (,) for separation.']);
+echo $this->Tag->control([
+	'help' => 'Try: "Urgent@red, Feature@blue, Bug@orange, Documentation@#00FF00"',
+	'placeholder' => 'Enter tags with colors (e.g., Important@red, Note@#FFAA00)',
+]);
 echo '<div class="alert alert-info mt-3">';
-echo '<strong>Note:</strong> To add colors to tags, edit the tag directly in the Tags table with a color field (hex format like #FF5733).';
+echo '<strong>How it works:</strong> When you save, tags will be created with the specified colors automatically. Supported named colors include: red, green, blue, yellow, orange, purple, pink, brown, gray/grey, black, white, cyan, magenta, lime, navy, teal, olive, maroon, and aqua.';
 echo '</div>';
-echo $this->Form->submit('Save');
+echo $this->Form->submit('Save Tags');
 
 echo $this->Form->end();
 ?>
