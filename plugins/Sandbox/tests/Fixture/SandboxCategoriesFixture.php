@@ -14,8 +14,7 @@ class SandboxCategoriesFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	// @codingStandardsIgnoreStart
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'length' => 10, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
 		'parent_id' => ['type' => 'integer', 'length' => 10, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
 		'name' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -30,7 +29,7 @@ class SandboxCategoriesFixture extends TestFixture {
 		],
 		'_options' => [
 			'engine' => 'InnoDB',
-			'collation' => 'utf8_unicode_ci'
+			'collation' => 'utf8_unicode_ci',
 		],
 	];
 
@@ -48,8 +47,8 @@ class SandboxCategoriesFixture extends TestFixture {
 			'lft' => 1,
 			'rght' => 1,
 			'created' => '2015-05-20 20:50:45',
-			'modified' => '2015-05-20 20:50:45'
-		]
+			'modified' => '2015-05-20 20:50:45',
+		],
 	];
 
 }

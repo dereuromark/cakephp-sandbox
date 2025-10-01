@@ -94,7 +94,8 @@ class GeoExamplesController extends SandboxAppController {
 					'rule' => 'notBlank',
 					'message' => __('valErrMandatoryField'),
 					'last' => true,
-				]]);
+				],
+			]);
 			$country = $this->Countries->patchEntity($country, $this->request->getData());
 
 			$address = $this->request->getData('address');

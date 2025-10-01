@@ -96,7 +96,8 @@ class AccountControllerTest extends IntegrationTestCase {
 		$Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin', 'password' => '123456',
+			'login' => 'admin',
+			'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
@@ -120,7 +121,8 @@ class AccountControllerTest extends IntegrationTestCase {
 		$Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin@example.com', 'password' => '123456',
+			'login' => 'admin@example.com',
+			'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
@@ -144,7 +146,8 @@ class AccountControllerTest extends IntegrationTestCase {
 		$Users->removeBehavior('Passwordable');
 
 		$data = [
-			'login' => 'admin', 'password' => '123456',
+			'login' => 'admin',
+			'password' => '123456',
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
 		$this->assertResponseCode(302);

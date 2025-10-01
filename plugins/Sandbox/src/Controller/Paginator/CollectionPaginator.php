@@ -177,10 +177,10 @@ class CollectionPaginator implements PaginatorInterface {
 	 */
 	protected function buildParams(array $data): array {
 		$this->pagingParams = [
-				'totalCount' => $data['options']['totalCount'],
-				'perPage' => $data['options']['limit'],
-				'requestedPage' => $data['options']['page'],
-			] + $this->pagingParams;
+			'totalCount' => $data['options']['totalCount'],
+			'perPage' => $data['options']['limit'],
+			'requestedPage' => $data['options']['page'],
+		] + $this->pagingParams;
 
 		$this->addPageCountParams($data);
 		$this->addStartEndParams($data);

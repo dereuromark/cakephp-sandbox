@@ -15,23 +15,22 @@ class ExposedUsersFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-    // @codingStandardsIgnoreStart
-    public $fields = [
-        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'uuid' => ['type' => 'binaryuuid', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+	public array $fields = [
+		'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+		'uuid' => ['type' => 'binaryuuid', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
 		'name' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null],
-        'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
-        '_constraints' => [
-            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'uuid' => ['type' => 'unique', 'columns' => ['uuid'], 'length' => []],
-        ],
-        '_options' => [
-            'engine' => 'InnoDB',
-            'collation' => 'utf8_unicode_ci'
-        ],
-    ];
-    // @codingStandardsIgnoreEnd
+		'created' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+		'modified' => ['type' => 'datetime', 'length' => null, 'precision' => null, 'null' => false, 'default' => null, 'comment' => ''],
+		'_constraints' => [
+			'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+			'uuid' => ['type' => 'unique', 'columns' => ['uuid'], 'length' => []],
+		],
+		'_options' => [
+			'engine' => 'InnoDB',
+			'collation' => 'utf8_unicode_ci',
+		],
+	];
+	// @codingStandardsIgnoreEnd
 	/**
 	 * Init method
 	 *

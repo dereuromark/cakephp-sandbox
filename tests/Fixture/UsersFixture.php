@@ -14,7 +14,7 @@ class UsersFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'active' => ['type' => 'boolean', 'null' => false, 'default' => '0'],
 		'last_login' => ['type' => 'datetime', 'null' => true, 'default' => null],

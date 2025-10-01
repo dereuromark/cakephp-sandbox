@@ -63,7 +63,8 @@ class FeedExamplesController extends SandboxAppController {
 		$atomLink = ['action' => 'feed', '_ext' => 'rss'];
 
 		$channel = [
-			'title' => __('News/Updates') . '', 'link' => '/',
+			'title' => __('News/Updates') . '',
+			'link' => '/',
 			'atom:link' => ['@href' => $atomLink],
 			'description' => __('Most recent news articles'),
 			'language' => 'en-en',
@@ -74,8 +75,7 @@ class FeedExamplesController extends SandboxAppController {
 		];
 
 		$data = [
-			'document' => [
-			],
+			'document' => [],
 			'channel' => $channel,
 			'items' => $items,
 		];

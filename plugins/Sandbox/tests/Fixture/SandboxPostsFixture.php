@@ -14,8 +14,7 @@ class SandboxPostsFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	// @codingStandardsIgnoreStart
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
 		'title' => ['type' => 'string', 'length' => 30, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
 		'slug' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -42,8 +41,8 @@ class SandboxPostsFixture extends TestFixture {
 			'rating_count' => 1,
 			'rating_sum' => 1,
 			'created' => '2015-05-07 16:54:56',
-			'modified' => '2015-05-07 16:54:56'
-		]
+			'modified' => '2015-05-07 16:54:56',
+		],
 	];
 
 }

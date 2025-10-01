@@ -20,7 +20,7 @@ class SandboxRatingsFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'null' => false],
 		'user_id' => ['type' => 'integer', 'null' => true, 'default' => null],
 		'foreign_key' => ['type' => 'string', 'null' => true, 'default' => null],
@@ -43,20 +43,24 @@ class SandboxRatingsFixture extends TestFixture {
 			'model' => 'Articles',
 			'value' => 1,
 			'created' => '2009-01-01 12:12:12',
-			'modified' => '2009-01-01 12:12:12'],
+			'modified' => '2009-01-01 12:12:12',
+		],
 		[
 			'user_id' => 1,
 			'foreign_key' => 1, // first post
 			'model' => 'Posts',
 			'value' => 1,
 			'created' => '2009-01-01 12:12:12',
-			'modified' => '2009-01-01 12:12:12'],
+			'modified' => '2009-01-01 12:12:12',
+		],
 		[
 			'user_id' => 1,
 			'foreign_key' => 2, // second post
 			'model' => 'Posts',
 			'value' => 3,
 			'created' => '2009-01-01 12:12:12',
-			'modified' => '2009-01-01 12:12:12']];
+			'modified' => '2009-01-01 12:12:12',
+		],
+	];
 
 }

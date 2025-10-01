@@ -62,8 +62,7 @@ $config = [
 			'database' => env('DB_DATABASE', ''), // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
-			'flags' => [
-			],
+			'flags' => [],
 		],
 
 		/**
@@ -76,8 +75,7 @@ $config = [
 			'database' => 'test', // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
-			'flags' => [
-			],
+			'flags' => [],
 		],
 	],
 
@@ -127,8 +125,7 @@ $config = [
 	],
 
 	'Feedback' => [
-		'stores' => [
-		],
+		'stores' => [],
 		'returnlink' => true,
 		'enableacceptterms' => true,
 		'enablecopybyemail' => false,
@@ -167,11 +164,11 @@ $config = [
 	'Setup' => [
 		'Healthcheck' => [
 			'checks' => [
-					\Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck::class => [
-						'min' => 16,
-					],
+				\Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck::class => [
+					'min' => 16,
+				],
 					// ...
-				] + \Setup\Healthcheck\HealthcheckCollector::defaultChecks(),
+			] + \Setup\Healthcheck\HealthcheckCollector::defaultChecks(),
 		],
 	],
 
@@ -180,8 +177,7 @@ $config = [
 		'handlers' => [
 			RegistrationStateMachineHandler::class,
 		],
-		'map' => [
-		],
+		'map' => [],
 		'pathToXml' => ROOT . DS . 'plugins' . DS . 'StateMachineSandbox' . DS . 'config' . DS . 'StateMachines' . DS,
 	],
 
@@ -274,8 +270,7 @@ $config = [
 		'generatorTasks' => [
 			IconRenderTask::class,
 		],
-		'classAnnotatorTasks' => [
-		],
+		'classAnnotatorTasks' => [],
 		'illuminatorTasks' => [
 			StateTask::class,
 			EventTask::class,
@@ -285,8 +280,7 @@ $config = [
 			'AuthSandbox',
 			'StateMachineSandbox',
 		],
-		'typeMap' => [
-		],
+		'typeMap' => [],
 	],
 
 	'Highlighter' => [

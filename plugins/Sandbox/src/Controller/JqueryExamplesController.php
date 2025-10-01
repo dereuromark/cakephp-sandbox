@@ -63,8 +63,8 @@ class JqueryExamplesController extends SandboxAppController {
 		if ($this->request->is(['ajax'])) {
 			$Animals = $this->fetchTable('Sandbox.Animals');
 			$items = $Animals->find('list', conditions: [
-						'name LIKE' => '%' . (string)$this->request->getQuery('term') . '%',
-					]);
+				'name LIKE' => '%' . (string)$this->request->getQuery('term') . '%',
+			]);
 
 			$this->set('items', $items);
 			$serialize = 'items';

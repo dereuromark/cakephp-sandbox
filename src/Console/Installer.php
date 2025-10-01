@@ -36,7 +36,7 @@ class Installer {
 	public static function postInstall(Event $event) {
 		$io = $event->getIO();
 
-		$rootDir = dirname(dirname(__DIR__));
+		$rootDir = dirname(__DIR__, 2);
 
 		static::createAppConfig($rootDir, $io);
 		static::createWritableDirectories($rootDir, $io);

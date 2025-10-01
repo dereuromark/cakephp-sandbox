@@ -14,8 +14,7 @@ class SandboxAnimalsFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	// @codingStandardsIgnoreStart
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'name' => ['type' => 'string', 'length' => 100, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
 		'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
@@ -25,7 +24,7 @@ class SandboxAnimalsFixture extends TestFixture {
 		],
 		'_options' => [
 			'engine' => 'InnoDB',
-			'collation' => 'utf8_unicode_ci'
+			'collation' => 'utf8_unicode_ci',
 		],
 	];
 
@@ -38,8 +37,8 @@ class SandboxAnimalsFixture extends TestFixture {
 		[
 			'name' => 'Lorem ipsum dolor sit amet',
 			'created' => '2015-05-07 16:49:27',
-			'modified' => '2015-05-07 16:49:27'
-		]
+			'modified' => '2015-05-07 16:49:27',
+		],
 	];
 
 }

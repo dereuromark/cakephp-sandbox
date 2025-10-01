@@ -14,8 +14,7 @@ class RolesFixture extends TestFixture {
 	 *
 	 * @var array
 	 */
-	// @codingStandardsIgnoreStart
-	public $fields = [
+	public array $fields = [
 		'id' => ['type' => 'integer', 'null' => false, 'default' => null],
 		'name' => ['type' => 'string', 'length' => 64, 'null' => false, 'default' => '', 'comment' => '', 'precision' => null, 'fixed' => null],
 		'alias' => ['type' => 'string', 'length' => 20, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -25,7 +24,8 @@ class RolesFixture extends TestFixture {
 			'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
 		],
 		'_options' => [
-			'engine' => 'MyISAM', 'collation' => 'utf8_unicode_ci'
+			'engine' => 'MyISAM',
+			'collation' => 'utf8_unicode_ci',
 		],
 	];
 
@@ -39,13 +39,13 @@ class RolesFixture extends TestFixture {
 			'name' => 'Admin',
 			'alias' => 'admin',
 			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
+			'modified' => '2015-03-29 00:18:50',
 		],
 		[
 			'name' => 'User',
 			'alias' => 'user',
 			'created' => '2015-03-29 00:18:50',
-			'modified' => '2015-03-29 00:18:50'
+			'modified' => '2015-03-29 00:18:50',
 		],
 	];
 
