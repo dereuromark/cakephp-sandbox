@@ -69,7 +69,7 @@
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "^5.0.1",
 		"jdorn/sql-formatter": "@stable",
-		"dereuromark/cakephp-templating": "dev-svg-map",
+		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
 		"symfony/http-client": "^6.4 || ^7.1.8",
 		"dereuromark/cakephp-qrcode": "dev-master"
