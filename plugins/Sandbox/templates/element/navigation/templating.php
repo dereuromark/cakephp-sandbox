@@ -16,5 +16,6 @@
 
 	<li><?php echo $this->Navigation->link('HTML snippets', ['action' => 'html'])?></li>
 	<li><?php echo $this->Navigation->link('(Font) Icons', ['action' => 'icons'], ['class' => $this->getRequest()->getParam('action') === 'iconSets' ? 'active' : null])?></li>
+	<li><?php echo $this->Navigation->link('SVG Icons', ['action' => 'svgIcons'])?></li>
 	<li><?php echo $this->Navigation->link('Icon Snippets', ['action' => 'iconSnippetHelper'])?></li>
 </ul>

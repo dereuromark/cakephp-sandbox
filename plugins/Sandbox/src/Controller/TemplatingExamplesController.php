@@ -36,6 +36,12 @@ class TemplatingExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function svgIcons() {
+	}
+
+	/**
 	 * @param string|null $name
 	 *
 	 * @return \Cake\Http\Response|null|void
