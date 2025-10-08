@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f4c2d011d0b713631b2214914d68bc4a",
+    "content-hash": "56e1d4b2bfd3f82ee40df157d1ea8a00",
     "packages": [
         {
             "name": "brick/math",
@@ -2831,16 +2831,16 @@
         },
         {
             "name": "dereuromark/cakephp-templating",
-            "version": "dev-master",
+            "version": "dev-svg-map",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-templating.git",
-                "reference": "ec785a37b9b1003cb6769b0ebf3f4440d9d82f82"
+                "reference": "656f4583359a4a3bc049aac8a2bdee27db273e89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/ec785a37b9b1003cb6769b0ebf3f4440d9d82f82",
-                "reference": "ec785a37b9b1003cb6769b0ebf3f4440d9d82f82",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-templating/zipball/656f4583359a4a3bc049aac8a2bdee27db273e89",
+                "reference": "656f4583359a4a3bc049aac8a2bdee27db273e89",
                 "shasum": ""
             },
             "require": {
@@ -2853,7 +2853,6 @@
                 "fig-r/psr2r-sniffer": "dev-master",
                 "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2883,7 +2882,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-templating/issues",
                 "source": "https://github.com/dereuromark/cakephp-templating"
             },
-            "time": "2025-10-08T11:16:38+00:00"
+            "time": "2025-10-08T13:17:23+00:00"
         },
         {
             "name": "dereuromark/cakephp-tinyauth",

@@ -213,6 +213,7 @@ $config = [
 			'feather' => [
 				'class' => FeatherIcon::class,
 				'path' => WWW_ROOT . 'assets/feather-icons/dist/icons.json',
+				'svgPath' => WWW_ROOT . 'assets/feather-icons/dist/icons.json',
 			],
 		],
 		'map' => [
