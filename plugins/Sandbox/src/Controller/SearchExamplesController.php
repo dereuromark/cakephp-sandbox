@@ -2,22 +2,15 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\View\JsonView;
 use Cake\View\XmlView;
 use Sandbox\Model\Filter\EmptyValuesTestFilterCollection;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
- * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
  * @property \Search\Controller\Component\SearchComponent $Search
  */
-#[\AllowDynamicProperties]
 class SearchExamplesController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null
@@ -91,10 +84,12 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function table() {
+		$countryRecordsTable = $this->fetchTable();
+
 		// Make sure we can download all at once if we want to
 		$this->paginate['maxLimit'] = 999;
 
-		$query = $this->CountryRecords->find('search', search: $this->request->getQuery());
+		$query = $countryRecordsTable->find('search', search: $this->request->getQuery());
 		$countries = $this->paginate($query);
 
 		$this->set(compact('countries'));
@@ -132,13 +127,15 @@ class SearchExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function emptyValues(): void {
+		$countryRecordsTable = $this->fetchTable();
+
 		$this->paginate['maxLimit'] = 999;
 
-		$this->CountryRecords->removeBehavior('Search');
-		$this->CountryRecords->addBehavior('Search.Search', [
+		$countryRecordsTable->removeBehavior('Search');
+		$countryRecordsTable->addBehavior('Search.Search', [
 			'collectionClass' => EmptyValuesTestFilterCollection::class,
 		]);
-		$query = $this->CountryRecords->find('search', search: $this->request->getQuery());
+		$query = $countryRecordsTable->find('search', search: $this->request->getQuery());
 		$countries = $this->paginate($query);
 
 		$this->set(compact('countries'));

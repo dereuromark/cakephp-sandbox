@@ -3,20 +3,15 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Validation\Validation;
 use Cake\View\JsonView;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
  * @property \Shim\Controller\Component\RequestHandlerComponent $RequestHandler
  */
 class AjaxExamplesController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @return string[]

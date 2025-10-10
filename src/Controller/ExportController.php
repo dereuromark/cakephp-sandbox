@@ -2,20 +2,15 @@
 
 namespace App\Controller;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\MethodNotAllowedException;
 use Cake\View\JsonView;
 use Cake\View\XmlView;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
  */
 class ExportController extends AppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @return string[]

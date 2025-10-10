@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \Sandbox\Model\Entity\BitmaskedRecord[] $records
- * @var array $flags
  * @var \Sandbox\Model\Entity\BitmaskedRecord $bitmaskedRecord
  * @var bool $required
  * @var string $field

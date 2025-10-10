@@ -2,19 +2,11 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
-use Shim\Datasource\LegacyModelAwareTrait;
 use Tools\I18n\DateTime;
 
-/**
- * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
- */
 class QueueExamplesController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null
@@ -24,18 +16,13 @@ class QueueExamplesController extends SandboxAppController {
 	/**
 	 * @return void
 	 */
-	public function initialize(): void {
-		parent::initialize();
-	}
-
-	/**
-	 * @return void
-	 */
 	public function index() {
+		$queuedJobsTable = $this->fetchTable();
+
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
 
-		$queuedJobs = $this->QueuedJobs->find()->where(['reference LIKE' => 'demo-' . $sid, 'completed IS' => null])->all()->toArray();
+		$queuedJobs = $queuedJobsTable->find()->where(['reference LIKE' => 'demo-' . $sid, 'completed IS' => null])->all()->toArray();
 
 		$this->set(compact('queuedJobs'));
 	}
@@ -44,14 +31,15 @@ class QueueExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function scheduling() {
+		$queuedJobsTable = $this->fetchTable();
 		$tasks = ['Queue.Example' => 'Queue.Example', 'Queue.ProgressExample' => 'Queue.ProgressExample'];
 
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
-		$queuedJob = $this->QueuedJobs->newEmptyEntity();
+		$queuedJob = $queuedJobsTable->newEmptyEntity();
 
 		if ($this->request->is('post')) {
-			$queuedJob = $this->QueuedJobs->patchEntity($queuedJob, $this->request->getData());
+			$queuedJob = $queuedJobsTable->patchEntity($queuedJob, $this->request->getData());
 			$notBefore = $queuedJob->notbefore;
 			$task = $queuedJob->job_task;
 
@@ -84,7 +72,7 @@ class QueueExamplesController extends SandboxAppController {
 			}
 		}
 
-		$queuedJobs = $this->QueuedJobs->find()->where(['reference LIKE' => 'scheduling-' . $sid, 'completed IS' => null])->all()->toArray();
+		$queuedJobs = $queuedJobsTable->find()->where(['reference LIKE' => 'scheduling-' . $sid, 'completed IS' => null])->all()->toArray();
 
 		$this->set(compact('queuedJobs', 'queuedJob', 'tasks'));
 	}
@@ -96,7 +84,8 @@ class QueueExamplesController extends SandboxAppController {
 		$queueProcessesTable = $this->fetchTable('Queue.QueueProcesses');
 		$status = $queueProcessesTable->status();
 
-		$length = $this->QueuedJobs->getLength();
+		$queuedJobsTable = $this->fetchTable();
+		$length = $queuedJobsTable->getLength();
 
 		$this->set(compact('status', 'length'));
 	}
@@ -110,7 +99,8 @@ class QueueExamplesController extends SandboxAppController {
 	public function cancelJob($id = null) {
 		$this->request->allowMethod('post');
 
-		$job = $this->QueuedJobs->get($id);
+		$queuedJobsTable = $this->fetchTable();
+		$job = $queuedJobsTable->get($id);
 
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
@@ -121,7 +111,7 @@ class QueueExamplesController extends SandboxAppController {
 		if ($job->fetched) {
 			$this->Flash->error('Already started, can not be cancelled anymore.');
 		} else {
-			$this->QueuedJobs->delete($job);
+			$queuedJobsTable->delete($job);
 			$this->Flash->success('Job cancelled.');
 		}
 
@@ -134,18 +124,20 @@ class QueueExamplesController extends SandboxAppController {
 	public function scheduleDemo() {
 		$this->request->allowMethod('post');
 
+		$queuedJobsTable = $this->fetchTable();
+
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
 
 		$seconds = 20;
 		$reference = 'demo-' . $sid;
-		if ($this->QueuedJobs->isQueued($reference, 'Queue.ProgressExample')) {
+		if ($queuedJobsTable->isQueued($reference, 'Queue.ProgressExample')) {
 			$this->Flash->error('Job already running or scheduled. Refresh the page for details.');
 
 			return $this->redirect($this->referer(['action' => 'index']));
 		}
 
-		$this->QueuedJobs->createJob(
+		$queuedJobsTable->createJob(
 			'Queue.ProgressExample',
 			['duration' => $seconds],
 			['reference' => $reference],
@@ -162,12 +154,14 @@ class QueueExamplesController extends SandboxAppController {
   * @return bool
   */
 	protected function scheduleDelayedDemo(string $task, $notBefore) {
+		$queuedJobsTable = $this->fetchTable();
+
 		// For the demo we bind it to the user session to avoid other people testing it to have side-effects :)
 		$sid = $this->request->getSession()->id();
 
 		$reference = 'scheduling-' . $sid;
 
-		if ($this->QueuedJobs->isQueued($reference, $task)) {
+		if ($queuedJobsTable->isQueued($reference, $task)) {
 			return false;
 		}
 
@@ -178,7 +172,7 @@ class QueueExamplesController extends SandboxAppController {
 			];
 		}
 
-		$this->QueuedJobs->createJob(
+		$queuedJobsTable->createJob(
 			$task,
 			$data,
 			['reference' => $reference, 'notBefore' => $notBefore],

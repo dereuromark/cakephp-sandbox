@@ -124,3 +124,6 @@ jobs:
 
     - name: Run phpcs
       run: composer cs-check
+
+    - name: Run annotator
+      run:  bin/cake annotate all -r -d --ci

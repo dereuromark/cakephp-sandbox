@@ -4,18 +4,13 @@ declare(strict_types=1);
 namespace StateMachineSandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 
 /**
  * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
  * @method \Cake\Datasource\ResultSetInterface<\StateMachineSandbox\Model\Entity\Registration> paginate($object = null, array $settings = [])
- * @property \StateMachine\Model\Table\StateMachineTransitionLogsTable $StateMachineTransitionLogs
- * @property \StateMachine\Model\Table\StateMachineItemStateLogsTable $StateMachineItemStateLogs
  */
 class RegistrationsController extends AppController {
-
-	use ModelAwareTrait;
 
 	/**
 	 * @return \Cake\Http\Response|null|void Renders view
@@ -42,12 +37,12 @@ class RegistrationsController extends AppController {
 		}
 
 		/** @var \StateMachine\Model\Table\StateMachineTransitionLogsTable $StateMachineTransitionLogs */
-		$StateMachineTransitionLogs = $this->fetchModel('StateMachine.StateMachineTransitionLogs');
+		$StateMachineTransitionLogs = $this->fetchTable('StateMachine.StateMachineTransitionLogs');
 		assert($registration->registration_state !== null);
 		$logs = $StateMachineTransitionLogs->getLogs($registration->registration_state->id);
 
 		/** @var \StateMachine\Model\Table\StateMachineItemStateLogsTable $StateMachineItemStateLogs */
-		$StateMachineItemStateLogs = $this->fetchModel('StateMachine.StateMachineItemStateLogs');
+		$StateMachineItemStateLogs = $this->fetchTable('StateMachine.StateMachineItemStateLogs');
 		$history = $StateMachineItemStateLogs->getHistory($registration->registration_state);
 
 		$this->set(compact('registration', 'logs', 'history'));

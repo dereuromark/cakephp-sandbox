@@ -1,8 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Data\Model\Entity\City[] $cities
- * @var array $results
  * @var mixed $sqlQuery
  * @var iterable<\Sandbox\Model\Entity\SandboxCity> $sandboxCities
  */

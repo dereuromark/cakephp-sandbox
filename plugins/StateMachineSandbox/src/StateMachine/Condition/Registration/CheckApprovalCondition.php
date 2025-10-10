@@ -2,21 +2,13 @@
 
 namespace StateMachineSandbox\StateMachine\Condition\Registration;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use StateMachine\Dependency\StateMachineConditionInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
-use StateMachineSandbox\Model\Table\RegistrationsTable;
 
-/**
- * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- */
 class CheckApprovalCondition implements StateMachineConditionInterface {
 
-	use ModelAwareTrait;
 	use LocatorAwareTrait;
-
-	protected RegistrationsTable $Registrations;
 
 	/**
 	 * @param \StateMachine\Dto\StateMachine\ItemDto $itemDto
@@ -27,7 +19,7 @@ class CheckApprovalCondition implements StateMachineConditionInterface {
 		$registrationId = $itemDto->getIdentifierOrFail();
 
 		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
-		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
+		$Registrations = $this->fetchTable('StateMachineSandbox.Registrations');
 		$registration = $Registrations->get($registrationId, contain: ['Users' => ['Roles']]);
 		if ($registration->user && $registration->user->role && $registration->user->role->alias === 'mod') {
 			return true;

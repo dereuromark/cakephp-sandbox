@@ -5,7 +5,6 @@
  * @var float $max
  * @var float $min
  * @var int $length
- * @var bool $overflow
  */
 
 if ($value === null) {

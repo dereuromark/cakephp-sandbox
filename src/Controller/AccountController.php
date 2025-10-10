@@ -3,21 +3,16 @@
 namespace App\Controller;
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Mailer\Mailer;
-use Shim\Datasource\LegacyModelAwareTrait;
 use Tools\View\Helper\ObfuscateHelper;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
  */
 class AccountController extends AppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null

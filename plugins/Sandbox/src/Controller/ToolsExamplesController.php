@@ -2,24 +2,18 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 use Sandbox\Model\Enum\Flag;
-use Shim\Datasource\LegacyModelAwareTrait;
 use Tools\I18n\Date;
 use Tools\Model\Entity\Entity;
 
 /**
- * @property \App\Model\Table\UsersTable $Users
  * @property \Tools\Controller\Component\RefererRedirectComponent $RefererRedirect
  * @property \Search\Controller\Component\SearchComponent $Search
  */
 class ToolsExamplesController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @return void
@@ -532,22 +526,24 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return \App\Model\Entity\User
 	 */
 	protected function getDemoUser() {
+		$usersTable = $this->fetchTable('Users');
+
 		/** @var \App\Model\Entity\User|null $user */
-		$user = $this->Users->find()->where(['username' => 'demo'])->first();
+		$user = $usersTable->find()->where(['username' => 'demo'])->first();
 		if ($user) {
 			return $user;
 		}
 
-		$this->Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
+		$usersTable->addBehavior('Tools.Passwordable', ['confirm' => false]);
 		$data = [
 			'username' => 'demo',
 			'email' => 'demo@demo.de',
 			'pwd' => 'demo123',
 		];
-		$user = $this->Users->newEntity($data);
-		$this->Users->saveOrFail($user);
+		$user = $usersTable->newEntity($data);
+		$usersTable->saveOrFail($user);
 
-		$this->Users->removeBehavior('Passwordable');
+		$usersTable->removeBehavior('Passwordable');
 
 		return $user;
 	}

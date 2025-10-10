@@ -3,21 +3,12 @@
 namespace StateMachineSandbox\Queue\Task;
 
 use Cake\Datasource\Exception\RecordNotFoundException;
-use Cake\Datasource\ModelAwareTrait;
 use Queue\Queue\Task;
 use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;
-use StateMachineSandbox\Model\Table\RegistrationsTable;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 
-/**
- * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- */
 class SimulatePaymentResultTask extends Task {
-
-	use ModelAwareTrait;
-
-	protected RegistrationsTable $Registrations;
 
 	/**
 	 * We simulate an external ping/API-call to our website, confirming the payment.
@@ -28,7 +19,7 @@ class SimulatePaymentResultTask extends Task {
 	 */
 	public function run(array $data, int $jobId): void {
 		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
-		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
+		$Registrations = $this->fetchTable('StateMachineSandbox.Registrations');
 		try {
 			$registration = $Registrations->get($data['id'], contain: ['RegistrationStates']);
 		} catch (RecordNotFoundException $e) {

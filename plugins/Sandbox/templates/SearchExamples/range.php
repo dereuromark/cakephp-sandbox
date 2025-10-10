@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var bool $_isSearch
  * @var iterable<\Sandbox\Model\Entity\Product> $products
  * @var \Sandbox\Model\Entity\Product $min
  * @var \Sandbox\Model\Entity\Product $max

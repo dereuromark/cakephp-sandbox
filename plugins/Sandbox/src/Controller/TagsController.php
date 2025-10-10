@@ -3,17 +3,12 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Utility\Hash;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Search\Controller\Component\SearchComponent $Search
  */
 class TagsController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null
@@ -43,7 +38,7 @@ class TagsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable();
 
 		/** @var \Sandbox\Model\Entity\SandboxCategory $category */
 		$category = $sandboxCategoriesTable->newEmptyEntity();
@@ -63,7 +58,7 @@ class TagsController extends SandboxAppController {
 	 */
 	public function select() {
 		Configure::write('Tags.strategy', 'array');
-		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable();
 
 		$category = $sandboxCategoriesTable->newEmptyEntity();
 		if ($this->request->is('post')) {
@@ -102,7 +97,7 @@ class TagsController extends SandboxAppController {
 			'taggedCounter' => false,
 			'tagsCounter' => false,
 		]);
-		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable();
 		$sandboxCategoriesTable->addBehavior('Tags.Tag');
 		//$this->ensureDemoData();
 
@@ -147,7 +142,7 @@ class TagsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function colors() {
-		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable();
 		$sandboxCategoriesTable->addBehavior('Tags.Tag', [
 			'inlineColorEditing' => true,
 			'taggedCounter' => false,

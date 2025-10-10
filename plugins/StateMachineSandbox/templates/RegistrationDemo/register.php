@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \StateMachineSandbox\Model\Entity\Registration $registration
- * @var array<string> $users
  */
 
 ?>

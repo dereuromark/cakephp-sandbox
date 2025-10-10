@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\SandboxCategory $sandboxCategory
  */
 ?>
 
