@@ -13,9 +13,7 @@ use Tools\View\Helper\ObfuscateHelper;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
- * @property \Tools\Model\Table\TokensTable $Tokens
  */
-#[\AllowDynamicProperties]
 class AccountController extends AppController {
 
 	use ModelAwareTrait;
@@ -105,8 +103,8 @@ class AccountController extends AppController {
 		}
 
 		if (!empty($keyToCheck)) {
-			$this->loadModel('Tools.Tokens');
-			$token = $this->Tokens->useKey('reset_pwd', $keyToCheck);
+			$tokensTable = $this->fetchTable('Tools.Tokens');
+			$token = $tokensTable->useKey('reset_pwd', $keyToCheck);
 
 			if ($token && $token->used == 1) {
 				$this->Flash->warning(__('alreadyChangedYourPassword'));
@@ -140,8 +138,8 @@ class AccountController extends AppController {
 				// Valid user found to this email address
 				if ($res) {
 					$uid = $res->id;
-					$this->loadModel('Tools.Tokens');
-					$cCode = $this->Tokens->newKey('reset_pwd', null, $uid);
+					$tokensTable = $this->fetchTable('Tools.Tokens');
+					$cCode = $tokensTable->newKey('reset_pwd', null, $uid);
 					if (Configure::read('debug') > 0) {
 						$debugMessage = 'DEBUG MODE: Show activation key - ' . h($res->username) . ' | ' . $cCode;
 						$this->Flash->info($debugMessage);

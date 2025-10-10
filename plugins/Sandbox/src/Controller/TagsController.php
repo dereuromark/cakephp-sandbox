@@ -8,11 +8,8 @@ use Cake\Utility\Hash;
 use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
- * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
- * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Search\Controller\Component\SearchComponent $Search
  */
-#[\AllowDynamicProperties]
 class TagsController extends SandboxAppController {
 
 	use ModelAwareTrait;
@@ -46,12 +43,12 @@ class TagsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-		$this->loadModel('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
 
 		/** @var \Sandbox\Model\Entity\SandboxCategory $category */
-		$category = $this->SandboxCategories->newEmptyEntity();
+		$category = $sandboxCategoriesTable->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
+			$category = $sandboxCategoriesTable->patchEntity($category, $this->request->getData());
 			// Save here
 		} else {
 			$category->title = 'My title';
@@ -66,11 +63,11 @@ class TagsController extends SandboxAppController {
 	 */
 	public function select() {
 		Configure::write('Tags.strategy', 'array');
-		$this->loadModel('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
 
-		$category = $this->SandboxCategories->newEmptyEntity();
+		$category = $sandboxCategoriesTable->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
+			$category = $sandboxCategoriesTable->patchEntity($category, $this->request->getData());
 			// Save here
 		} else {
 			$category->title = 'My title';
@@ -84,14 +81,14 @@ class TagsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function search() {
-		$this->loadModel('Sandbox.SandboxPosts');
-		$this->SandboxPosts->ensureDemoData();
+		$sandboxPostsTable = $this->fetchTable('Sandbox.SandboxPosts');
+		$sandboxPostsTable->ensureDemoData();
 
-		$query = $this->SandboxPosts->find('search', search: $this->request->getQuery())->contain(['Tags']);
+		$query = $sandboxPostsTable->find('search', search: $this->request->getQuery())->contain(['Tags']);
 
 		$posts = $this->paginate($query);
 
-		$tags = $this->SandboxPosts->Tagged->find()->distinct(['Tags.slug', 'Tags.label'])->contain(['Tags'])->toArray();
+		$tags = $sandboxPostsTable->Tagged->find()->distinct(['Tags.slug', 'Tags.label'])->contain(['Tags'])->toArray();
 		$tags = Hash::combine($tags, '{n}.tag.slug', '{n}.tag.label');
 
 		$this->set(compact('posts', 'tags'));
@@ -105,8 +102,8 @@ class TagsController extends SandboxAppController {
 			'taggedCounter' => false,
 			'tagsCounter' => false,
 		]);
-		$this->loadModel('Sandbox.SandboxCategories');
-		$this->SandboxCategories->addBehavior('Tags.Tag');
+		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable->addBehavior('Tags.Tag');
 		//$this->ensureDemoData();
 
 		// Simulated data
@@ -150,15 +147,15 @@ class TagsController extends SandboxAppController {
 	 * @return void
 	 */
 	public function colors() {
-		$this->loadModel('Sandbox.SandboxCategories');
-		$this->SandboxCategories->addBehavior('Tags.Tag', [
+		$sandboxCategoriesTable = $this->fetchTable('Sandbox.SandboxCategories');
+		$sandboxCategoriesTable->addBehavior('Tags.Tag', [
 			'inlineColorEditing' => true,
 			'taggedCounter' => false,
 		]);
 
-		$category = $this->SandboxCategories->newEmptyEntity();
+		$category = $sandboxCategoriesTable->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$category = $this->SandboxCategories->patchEntity($category, $this->request->getData());
+			$category = $sandboxCategoriesTable->patchEntity($category, $this->request->getData());
 			if (!$category->getErrors()) {
 				// We simulate save only
 				$this->Flash->success('Tags saved with colors!');

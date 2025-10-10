@@ -10,9 +10,7 @@ use Tools\I18n\DateTime;
 
 /**
  * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
- * @property \Queue\Model\Table\QueueProcessesTable $QueueProcesses
  */
-#[\AllowDynamicProperties]
 class QueueExamplesController extends SandboxAppController {
 
 	use ModelAwareTrait;
@@ -95,8 +93,8 @@ class QueueExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function config() {
-		$this->loadModel('Queue.QueueProcesses');
-		$status = $this->QueueProcesses->status();
+		$queueProcessesTable = $this->fetchTable('Queue.QueueProcesses');
+		$status = $queueProcessesTable->status();
 
 		$length = $this->QueuedJobs->getLength();
 

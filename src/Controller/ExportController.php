@@ -11,15 +11,7 @@ use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Cache\Controller\Component\CacheComponent $Cache
- * @property \Data\Model\Table\CountriesTable $Countries
- * @property \Data\Model\Table\StatesTable $States
- * @property \Data\Model\Table\CurrenciesTable $Currencies
- * @property \Data\Model\Table\LanguagesTable $Languages
- * @property \Data\Model\Table\ContinentsTable $Continents
- * @property \Data\Model\Table\PostalCodesTable $PostalCodes
- * @property \Data\Model\Table\TimezonesTable $Timezones
  */
-#[\AllowDynamicProperties]
 class ExportController extends AppController {
 
 	use ModelAwareTrait;
@@ -84,8 +76,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function countries() {
-		$this->loadModel('Data.Countries');
-		$countries = $this->Countries->find('all')->toArray();
+		$countriesTable = $this->fetchTable('Data.Countries');
+		$countries = $countriesTable->find('all')->toArray();
 
 		$this->set(compact('countries'));
 		$serialize = 'countries';
@@ -96,8 +88,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function states() {
-		$this->loadModel('Data.States');
-		$states = $this->States->find('all')->toArray();
+		$statesTable = $this->fetchTable('Data.States');
+		$states = $statesTable->find('all')->toArray();
 
 		$this->set(compact('states'));
 		$serialize = 'states';
@@ -108,8 +100,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function currencies() {
-		$this->loadModel('Data.Currencies');
-		$currencies = $this->Currencies->find('all')->toArray();
+		$currenciesTable = $this->fetchTable('Data.Currencies');
+		$currencies = $currenciesTable->find('all')->toArray();
 
 		$this->set(compact('currencies'));
 		$serialize = 'currencies';
@@ -120,8 +112,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function languages() {
-		$this->loadModel('Data.Languages');
-		$languages = $this->Languages->find('all')->toArray();
+		$languagesTable = $this->fetchTable('Data.Languages');
+		$languages = $languagesTable->find('all')->toArray();
 
 		$this->set(compact('languages'));
 		$serialize = 'languages';
@@ -132,8 +124,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function continents() {
-		$this->loadModel('Data.Continents');
-		$continents = $this->Continents->find('all')->toArray();
+		$continentsTable = $this->fetchTable('Data.Continents');
+		$continents = $continentsTable->find('all')->toArray();
 
 		$this->set(compact('continents'));
 		$serialize = 'continents';
@@ -144,8 +136,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function postalCodes() {
-		$this->loadModel('Data.PostalCodes');
-		$postalCodes = $this->PostalCodes->find('all')->toArray();
+		$postalCodesTable = $this->fetchTable('Data.PostalCodes');
+		$postalCodes = $postalCodesTable->find('all')->toArray();
 
 		$this->set(compact('postalCodes'));
 		$serialize = 'postalCodes';
@@ -156,8 +148,8 @@ class ExportController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function timezones() {
-		$this->loadModel('Data.Timezones');
-		$timezones = $this->Timezones->find('all')->toArray();
+		$timezonesTable = $this->fetchTable('Data.Timezones');
+		$timezones = $timezonesTable->find('all')->toArray();
 
 		$this->set(compact('timezones'));
 		$serialize = 'timezones';

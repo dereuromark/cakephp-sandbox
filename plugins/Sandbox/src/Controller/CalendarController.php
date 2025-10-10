@@ -10,10 +10,8 @@ use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Sandbox\Model\Table\EventsTable $Events
- * @property \Data\Model\Table\StatesTable $States
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
-#[\AllowDynamicProperties]
 class CalendarController extends SandboxAppController {
 
 	use ModelAwareTrait;
@@ -76,7 +74,7 @@ class CalendarController extends SandboxAppController {
 			return;
 		}
 
-		$this->loadModel('Data.States');
+		$statesTable = $this->fetchTable('Data.States');
 
 		$count = random_int(3, 8);
 		for ($i = 0; $i < $count; $i++) {
@@ -85,7 +83,7 @@ class CalendarController extends SandboxAppController {
 			$random = str_contains($driver, 'Mysql') ? 'RAND()' : 'RANDOM()';
 
 			/** @var \Data\Model\Entity\State $state */
-			$state = $this->States
+			$state = $statesTable
 				->find()
 				->where(['code !=' => '', 'lat IS NOT' => null, 'lng IS NOT' => null])
 				->orderBy($random)
