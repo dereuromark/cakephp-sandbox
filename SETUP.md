@@ -16,32 +16,57 @@ git clone https://github.com/dereuromark/cakephp-sandbox.git
 
 Then:
 
-* Set up your `app_local.php` file in `/config`.
+* Set up your `app_local.php` file in `config/`.
 This will not be version-controlled. I use it for email setup, API keys and core salt value etc.
 * Make sure you are in debug mode (`true`).
 
-Manually you can run the following commands one by one:
+#### Use DDEV as VM
+Using [ddev](https://docs.ddev.com/en/stable/) is the recommended way for local development.
 
+Browse into your app directory in your console.
+
+Create a folder `.dev/`.
+Copy and paste the `config.yaml` from `.ddev.example/` into that new folder:
+```
+cp .ddev.example/config.yaml .ddev/config.yaml
+```
+You can also further customize as needed.
+
+Alternatively you can create the file fresh:
+```
+ddev config
+```
+
+Once the file is created, start the container(s):
+```
+ddev start
+```
+
+Once up and running, you can log into the container:
+```
+ddev ssh
+```
+
+Run the quick command here doing it all at once:
+```
+./setup
+```
+Everything should be up and running, including assets and seed (demo) data.
+
+You can also look into that file and just those commands manually, one by one, of course.
 ```
 composer install
 composer migrate
 bin/cake migrations seed
+...
 ```
 
-But it is easier to run the quick command here doing it all at once:
-```
-./setup
-```
-Everything should be up and running.
 
-Consider using a vhost setup to map the base path to `http://sandbox.local/`.
+#### Using Devilbox or custom
+If you are not using ddev, consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
 
-Note: You need to install the assets yourself somehow. You can also look into `build.sh` and how the deployment script handles it.
-In the end you just have to get them installed somehow for the AssetCompress plugin to pick them up.
-
-#### Use Devilbox as VM
-Hot tip: Using [Devilbox](https://github.com/cytopia/devilbox) is the fast way to get it working on any OS.
+Using [Devilbox](https://github.com/cytopia/devilbox) should also  be working on any OS.
 
 Just follow the [docs](https://github.com/cytopia/devilbox?tab=readme-ov-file#-quickstart) there.
 You need to adjust the `.env` file a bit, though.
@@ -73,7 +98,7 @@ And log in using
 
 Then inside container navigate to `sandbox/` and execute
 ```
-./install.sh
+./setup.sh
 ```
 
 Tip: Customize your `bash/bashrc.sh` file.
@@ -85,11 +110,6 @@ alias c='composer'
 cd sandbox
 ````
 This way you don't need to navigate inside anymore, it will auto-jump you to the repo root.
-
-#### Use Traefix and docker containers as VM
-See https://github.com/dereuromark/sandbox-docker?tab=readme-ov-file#installation
-
-Note: Requires HTTPS setup, but otherwise is quicker.
 
 ### Creating Admin User
 In case you want to check out the admin area (`/admin`), you want to create an admin user.
