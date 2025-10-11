@@ -26,7 +26,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Setup Service
       if: matrix.db-type == 'mysql'
@@ -109,6 +109,9 @@ jobs:
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
+
+    - name: Assets install
+      run: npm install -g bower && bower install --allow-root && composer assets
 
     - name: DTO check
       run: bin/cake dto generate -p Sandbox -v -d
