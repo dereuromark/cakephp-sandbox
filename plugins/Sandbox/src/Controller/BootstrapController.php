@@ -3,18 +3,9 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Event\EventInterface;
-use Shim\Datasource\LegacyModelAwareTrait;
 
-/**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
- */
-#[\AllowDynamicProperties]
 class BootstrapController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null
@@ -61,7 +52,8 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function form() {
-		$animal = $this->Animals->newEmptyEntity();
+		$animalsTable = $this->fetchTable();
+		$animal = $animalsTable->newEmptyEntity();
 
 		if ($this->request->is('post')) {
 			foreach ($this->request->getData() as $field => $value) {
@@ -76,7 +68,8 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function localized() {
-		$animal = $this->Animals->newEmptyEntity();
+		$animalsTable = $this->fetchTable();
+		$animal = $animalsTable->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
 		//$this->request->data['discovered'] = '';
@@ -90,7 +83,8 @@ class BootstrapController extends SandboxAppController {
 	 * @return void
 	 */
 	public function time() {
-		$animal = $this->Animals->newEmptyEntity();
+		$animalsTable = $this->fetchTable();
+		$animal = $animalsTable->newEmptyEntity();
 
 		// This hack is needed to prevent the forms from being autofilled with todays date
 		$animal->set('time', '');
@@ -105,7 +99,8 @@ class BootstrapController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function formPost() {
-		$animal = $this->Animals->newEmptyEntity();
+		$animalsTable = $this->fetchTable();
+		$animal = $animalsTable->newEmptyEntity();
 
 		if ($this->request->is(['post', 'put'])) {
 			// Save form data

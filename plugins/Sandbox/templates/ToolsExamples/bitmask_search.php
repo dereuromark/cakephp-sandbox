@@ -1,9 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\BitmaskedRecord[] $records
  * @var string|null $type
- * @var array $flags
  * @var iterable<\Sandbox\Model\Entity\BitmaskedRecord> $bitmaskedRecords
  * @var string $sql
  */

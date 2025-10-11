@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array $available
  * @var string|null $method
  * @var string|null $code
  * @var array $codes

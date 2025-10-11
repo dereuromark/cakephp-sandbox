@@ -3,24 +3,31 @@
 namespace StateMachineSandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 
-/**
- * @property \App\Model\Table\UsersTable $Users
- * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
- */
 class RegistrationDemoController extends AppController {
-
-	use ModelAwareTrait;
 
 	/**
 	 * @var string|null
 	 */
 	protected ?string $defaultTable = 'StateMachineSandbox.Registrations';
+
+	/**
+	 * @var \StateMachineSandbox\Model\Table\RegistrationsTable
+	 */
+	protected $Registrations;
+
+	/**
+	 * @return void
+	 */
+	public function initialize(): void {
+		parent::initialize();
+
+		$this->Registrations = $this->fetchTable();
+	}
 
 	/**
 	 * @return \Cake\Http\Response|null|void
@@ -32,7 +39,7 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function register() {
-		$Users = $this->fetchModel('Users');
+		$Users = $this->fetchTable('Users');
 		$users = $Users->find()
 			->select(['Users.id', 'Users.username'])
 			->where(['Users.username IN' => ['user', 'mod']])
@@ -61,7 +68,7 @@ class RegistrationDemoController extends AppController {
 	 */
 	public function process() {
 		/** @var \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations */
-		$Registrations = $this->fetchModel('StateMachineSandbox.Registrations');
+		$Registrations = $this->fetchTable('StateMachineSandbox.Registrations');
 		$registrations = $Registrations->find()
 			->contain(['Users', 'RegistrationStates'])
 			->where(['session_id' => $this->request->getSession()->id()])

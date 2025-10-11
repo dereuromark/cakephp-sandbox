@@ -2,22 +2,14 @@
 
 namespace Sandbox\Controller;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\InternalErrorException;
 use Cake\I18n\DateTime;
 use RuntimeException;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
- * @property \Sandbox\Model\Table\EventsTable $Events
- * @property \Data\Model\Table\StatesTable $States
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
  */
-#[\AllowDynamicProperties]
 class CalendarController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @var string|null
@@ -41,6 +33,8 @@ class CalendarController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index($year = null, $month = null) {
+		$eventsTable = $this->fetchTable();
+
 		$this->Calendar->init((string)$year, (string)$month, 5);
 
 		$options = [
@@ -49,7 +43,7 @@ class CalendarController extends SandboxAppController {
 		];
 		$this->_populateDemoData($options);
 
-		$events = $this->Events->find('calendar', $options);
+		$events = $eventsTable->find('calendar', $options);
 
 		$this->set(compact('events'));
 	}
@@ -59,7 +53,8 @@ class CalendarController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function view($id = null) {
-		$event = $this->Events->get($id);
+		$eventsTable = $this->fetchTable();
+		$event = $eventsTable->get($id);
 
 		$year = null;
 		$month = null;
@@ -72,20 +67,22 @@ class CalendarController extends SandboxAppController {
 	 * @return void
 	 */
 	protected function _populateDemoData(array $options) {
-		if ($this->Events->find('calendar', $options)->count()) {
+		$eventsTable = $this->fetchTable();
+
+		if ($eventsTable->find('calendar', $options)->count()) {
 			return;
 		}
 
-		$this->loadModel('Data.States');
+		$statesTable = $this->fetchTable('Data.States');
 
 		$count = random_int(3, 8);
 		for ($i = 0; $i < $count; $i++) {
-			$config = $this->Events->getConnection()->config();
+			$config = $eventsTable->getConnection()->config();
 			$driver = $config['driver'];
 			$random = str_contains($driver, 'Mysql') ? 'RAND()' : 'RANDOM()';
 
 			/** @var \Data\Model\Entity\State $state */
-			$state = $this->States
+			$state = $statesTable
 				->find()
 				->where(['code !=' => '', 'lat IS NOT' => null, 'lng IS NOT' => null])
 				->orderBy($random)
@@ -95,7 +92,7 @@ class CalendarController extends SandboxAppController {
 			if (!$time) {
 				throw new RuntimeException('Invalid time');
 			}
-			$event = $this->Events->newEntity([
+			$event = $eventsTable->newEntity([
 				'title' => $this->_getRandomWord(random_int(10, 20)),
 				'lat' => $state->lat,
 				'lng' => $state->lng,
@@ -103,7 +100,7 @@ class CalendarController extends SandboxAppController {
 				'description' => 'Some cool event @ ' . $state->code,
 				'beginning' => new DateTime($time),
 			]);
-			if (!$this->Events->save($event)) {
+			if (!$eventsTable->save($event)) {
 				throw new InternalErrorException('Cannot save Event - ' . print_r($event->getErrors(), true));
 			}
 		}

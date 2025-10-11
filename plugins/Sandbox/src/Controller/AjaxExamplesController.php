@@ -3,24 +3,15 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
-use Cake\Datasource\ModelAwareTrait;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Validation\Validation;
 use Cake\View\JsonView;
-use Shim\Datasource\LegacyModelAwareTrait;
 
 /**
  * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
- * @property \Data\Model\Table\CountriesTable $Countries
- * @property \Data\Model\Table\StatesTable $States
- * @property \App\Model\Table\UsersTable $Users
  * @property \Shim\Controller\Component\RequestHandlerComponent $RequestHandler
  */
-#[\AllowDynamicProperties]
 class AjaxExamplesController extends SandboxAppController {
-
-	use ModelAwareTrait;
-	use LegacyModelAwareTrait;
 
 	/**
 	 * @return string[]
@@ -103,9 +94,9 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function pagination() {
-		$this->loadModel('Data.Countries');
+		$countriesTable = $this->fetchTable('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate($countriesTable);
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -119,9 +110,9 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function endlessScroll() {
-		$this->loadModel('Data.Countries');
+		$countriesTable = $this->fetchTable('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate($countriesTable);
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
@@ -174,9 +165,9 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function table() {
-		$this->loadModel('Data.Countries');
+		$countriesTable = $this->fetchTable('Data.Countries');
 
-		$countries = $this->paginate('Countries');
+		$countries = $this->paginate($countriesTable);
 		$this->set(compact('countries'));
 	}
 
@@ -187,11 +178,11 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function tableDelete($id = null) {
-		$this->loadModel('Data.Countries');
-		$country = $this->Countries->get($id);
+		$countriesTable = $this->fetchTable('Data.Countries');
+		$country = $countriesTable->get($id);
 
 		if (Configure::read('deleteForReal')) {
-			$this->Countries->delete($country);
+			$countriesTable->delete($country);
 		}
 
 		$this->Flash->success('Deleted (simulated)!');
@@ -210,15 +201,15 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function chainedDropdowns() {
-		$this->loadModel('Users');
-		$user = $this->Users->newEmptyEntity();
+		$usersTable = $this->fetchTable('Users');
+		$user = $usersTable->newEmptyEntity();
 
 		if ($this->request->is('post')) {
-			$this->Users->getValidator()->add('state_id', 'numeric', [
+			$usersTable->getValidator()->add('state_id', 'numeric', [
 				'rule' => 'numeric',
 				'message' => 'Please select something',
 			]);
-			$user = $this->Users->patchEntity($user, $this->request->getData());
+			$user = $usersTable->patchEntity($user, $this->request->getData());
 		}
 
 		$this->CountryStateHelper->provideData(false);
@@ -244,8 +235,8 @@ class AjaxExamplesController extends SandboxAppController {
 
 		$this->viewBuilder()->setClassName('Ajax.Ajax');
 
-		$this->loadModel('Data.States');
-		$states = $this->States->getListByCountry($id);
+		$statesTable = $this->fetchTable('Data.States');
+		$states = $statesTable->getListByCountry($id);
 
 		$this->set(compact('states'));
 	}
@@ -256,11 +247,11 @@ class AjaxExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function form() {
-		$this->loadModel('Users');
-		$user = $this->Users->newEmptyEntity();
+		$usersTable = $this->fetchTable('Users');
+		$user = $usersTable->newEmptyEntity();
 
 		if ($this->request->is(['post', 'put', 'patch'])) {
-			$user = $this->Users->patchEntity($user, $this->request->getData());
+			$user = $usersTable->patchEntity($user, $this->request->getData());
 			if (!$user->getErrors()) {
 				$this->Flash->success('Simulated save.');
 

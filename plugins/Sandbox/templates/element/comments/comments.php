@@ -4,9 +4,6 @@
  * @var \Comments\Model\Entity\Comment $comment
  * @var array $commentsData
  * @var int|null $ownerId
- * @var string $alias
- * @var int $id
- * @var mixed $comments
  * @var mixed $adminMode
  */
 ?>

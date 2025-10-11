@@ -6,7 +6,7 @@ use Cake\ORM\Query\SelectQuery;
 use Tools\Model\Table\Table;
 
 /**
- * @mixin \Ratings\Model\Behavior\RatableBehavior
+ * @mixin \Ratings\Model\Behavior\RatableBehavior !
  * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @mixin \Tags\Model\Behavior\TagBehavior

@@ -2,20 +2,14 @@
 
 namespace StateMachineSandbox\StateMachine\Command\Registration;
 
-use Cake\Datasource\ModelAwareTrait;
 use Cake\I18n\DateTime;
-use Queue\Model\Table\QueuedJobsTable;
+use Cake\ORM\Locator\LocatorAwareTrait;
 use StateMachine\Dependency\StateMachineCommandInterface;
 use StateMachine\Dto\StateMachine\ItemDto;
 
-/**
- * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
- */
 class InitializePaymentCommand implements StateMachineCommandInterface {
 
-	use ModelAwareTrait;
-
-	protected QueuedJobsTable $QueuedJobs;
+	use LocatorAwareTrait;
 
 	/**
 	 * @param \StateMachine\Dto\StateMachine\ItemDto $itemDto
@@ -26,7 +20,7 @@ class InitializePaymentCommand implements StateMachineCommandInterface {
 		$registrationId = $itemDto->getIdentifierOrFail();
 
 		/** @var \Queue\Model\Table\QueuedJobsTable $QueuedJobs */
-		$QueuedJobs = $this->fetchModel('Queue.QueuedJobs');
+		$QueuedJobs = $this->fetchTable('Queue.QueuedJobs');
 		$reference = 'registration-' . $registrationId;
 		$QueuedJobs->createJob(
 			'StateMachineSandbox.SimulatePaymentResult',

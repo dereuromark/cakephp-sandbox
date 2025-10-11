@@ -9,7 +9,6 @@ use Throwable;
 
 /**
  * @property \App\Model\Table\UsersTable $Users
- * @property \Sandbox\Service\Localized\ValidationService $Validation
  */
 class LocalizedController extends SandboxAppController {
 

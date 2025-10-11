@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var bool $_isSearch
  * @var array<\Data\Model\Entity\Country> $countries
  */
 ?>

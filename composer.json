@@ -123,7 +123,7 @@
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
-		"annotate": "bin/cake annotate all && bin/cake annotate all -p Sandbox && bin/cake annotate all -p AuthSandbox && bin/cake annotate all -p StateMachineSandbox",
+		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p StateMachineSandbox",
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "phpunit",
 		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
