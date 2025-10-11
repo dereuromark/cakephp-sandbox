@@ -25,7 +25,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
 
-		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 1]]]);
+		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 2]]]);
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(200);

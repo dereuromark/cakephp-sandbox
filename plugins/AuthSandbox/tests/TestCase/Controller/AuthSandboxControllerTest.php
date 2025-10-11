@@ -43,6 +43,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForAll() {
+		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]];
+		$this->session($session);
+
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
 
 		$this->assertResponseCode(200);
@@ -53,6 +56,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForMods() {
+		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 3]]];
+		$this->session($session);
+
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
 
 		$this->assertResponseCode(200);

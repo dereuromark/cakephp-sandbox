@@ -36,8 +36,20 @@ class RolesFixture extends TestFixture {
 	 */
 	public array $records = [
 		[
+			'name' => 'Superadmin',
+			'alias' => 'superadmin',
+			'created' => '2015-03-29 00:18:50',
+			'modified' => '2015-03-29 00:18:50',
+		],
+		[
 			'name' => 'Admin',
 			'alias' => 'admin',
+			'created' => '2015-03-29 00:18:50',
+			'modified' => '2015-03-29 00:18:50',
+		],
+		[
+			'name' => 'Moderator',
+			'alias' => 'mod',
 			'created' => '2015-03-29 00:18:50',
 			'modified' => '2015-03-29 00:18:50',
 		],
