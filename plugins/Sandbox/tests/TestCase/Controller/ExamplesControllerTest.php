@@ -28,4 +28,34 @@ class ExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(301);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testParams() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'params']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPhpBasicfunctions() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'phpBasicfunctions']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPhpValidationfunctions() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Examples', 'action' => 'phpValidationfunctions']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

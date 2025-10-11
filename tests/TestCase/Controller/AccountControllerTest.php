@@ -39,6 +39,21 @@ class AccountControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
+	public function testIndex() {
+		$data = [
+			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]],
+		];
+		$this->session($data);
+
+		$this->get(['controller' => 'Account', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testLogin() {
 		$this->disableErrorHandlerMiddleware();
 

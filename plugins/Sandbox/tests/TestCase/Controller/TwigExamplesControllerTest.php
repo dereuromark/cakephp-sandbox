@@ -19,4 +19,14 @@ class TwigExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testBasic() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'TwigExamples', 'action' => 'basic']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

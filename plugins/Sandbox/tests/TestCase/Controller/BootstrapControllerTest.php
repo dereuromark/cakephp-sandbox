@@ -27,4 +27,44 @@ class BootstrapControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testFlash() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'flash']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testForm() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'form']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testLocalized() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'localized']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTime() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'time']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

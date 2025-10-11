@@ -21,6 +21,7 @@ class CakeExamplesControllerTest extends TestCase {
 	 */
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxAnimals',
+		'plugin.Sandbox.SandboxUsers',
 	];
 
 	/**
@@ -109,6 +110,42 @@ class CakeExamplesControllerTest extends TestCase {
 
 		$this->assertResponseCode(302);
 		$this->assertRedirect();
+	}
+
+	/**
+	 * Test enums method
+	 *
+	 * @return void
+	 */
+	public function testEnums(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'enums']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test enumValidation method
+	 *
+	 * @return void
+	 */
+	public function testEnumValidation(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'enumValidation']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test paginateNonDatabase method
+	 *
+	 * @return void
+	 */
+	public function testPaginateNonDatabase(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateNonDatabase']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
 	}
 
 }

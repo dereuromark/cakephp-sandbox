@@ -30,4 +30,24 @@ class PluginsControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testIndex() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Plugins', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPdfTest() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Plugins', 'action' => 'pdfTest']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

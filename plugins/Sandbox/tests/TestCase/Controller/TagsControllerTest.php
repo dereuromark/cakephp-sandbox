@@ -93,4 +93,16 @@ class TagsControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test colors method
+	 *
+	 * @return void
+	 */
+	public function testColors(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Tags', 'action' => 'colors']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

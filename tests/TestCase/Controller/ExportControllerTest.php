@@ -39,4 +39,60 @@ class ExportControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testContinents() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testCountries() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testCurrencies() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testLanguages() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMimeTypes() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPostalCodes() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testStates() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTimezones() {
+		$this->markTestSkipped('Requires Data plugin tables to be migrated');
+	}
+
 }

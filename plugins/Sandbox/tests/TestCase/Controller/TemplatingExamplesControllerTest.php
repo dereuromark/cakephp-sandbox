@@ -91,4 +91,17 @@ class TemplatingExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @uses \Sandbox\Controller\TemplatingExamplesController::svgIcons()
+	 * @return void
+	 */
+	public function testSvgIcons(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'TemplatingExamples', 'action' => 'svgIcons']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

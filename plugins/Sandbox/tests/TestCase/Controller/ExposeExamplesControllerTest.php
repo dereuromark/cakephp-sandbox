@@ -78,4 +78,19 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testSuperimposedEdit() {
+		$this->disableErrorHandlerMiddleware();
+
+		/** @var \Sandbox\Model\Entity\ExposedUser $user */
+		$user = $this->fetchTable('Sandbox.ExposedUsers')->find()->firstOrFail();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ExposeExamples', 'action' => 'superimposedEdit', $user->uuid]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

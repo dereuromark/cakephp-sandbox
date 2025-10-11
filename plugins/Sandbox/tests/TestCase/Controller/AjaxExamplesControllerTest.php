@@ -179,4 +179,54 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testChainedDropdowns() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'chainedDropdowns']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testEditInPlace() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'editInPlace']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testRedirecting() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'redirecting']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testRedirectingPrevented() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'redirectingPrevented']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTable() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'table']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }
