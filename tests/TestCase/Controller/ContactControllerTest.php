@@ -23,8 +23,6 @@ class ContactControllerTest extends IntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$this->skipIf(true || env('REMOTE_ADDR') && env('REMOTE_ADDR') !== '127.0.0.1');
-
 		$this->session([
 			'id' => '123',
 		]);
@@ -37,15 +35,6 @@ class ContactControllerTest extends IntegrationTestCase {
 		Configure::write('Email.live', false);
 
 		$this->disableErrorHandlerMiddleware();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		//TableRegistry::clear();
 	}
 
 	/**
@@ -66,6 +55,8 @@ class ContactControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndexPost() {
+		$this->skipIf(true, 'TODO');
+
 		$data = [
 			'name' => '',
 			'email' => '',
@@ -84,6 +75,8 @@ class ContactControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndexPostValid() {
+		$this->skipIf(true, 'TODO');
+
 		$data = [
 			'name' => 'Foo',
 			'email' => 'foo@bar.de',
