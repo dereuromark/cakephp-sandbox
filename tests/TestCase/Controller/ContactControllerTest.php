@@ -11,13 +11,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class ContactControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		//'plugin.Captcha.Captchas',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function setUp(): void {
@@ -33,6 +26,7 @@ class ContactControllerTest extends IntegrationTestCase {
 		]);
 
 		Configure::write('Email.live', false);
+		Configure::write('Config.adminEmail', 'admin@example.org');
 
 		$this->disableErrorHandlerMiddleware();
 	}
