@@ -13,13 +13,13 @@
 
 	<p>Tip: Use <a href="https://github.com/dereuromark/cakephp-ide-helper" target="_blank">IdeHelper plugin</a> to get autocomplete for all icons</p>
 
-	<h3>FontAwesome (v4)</h3>
+	<h3>FontAwesome 6</h3>
 	Configure the icon set to be used in your `app.php`:
 	<?php
 		$text = <<<TEXT
 	'Icon' => [
 		'sets' => [
-			'fa' => \Templating\View\Helper\Icon\FontAwesome4Icon::class,
+			'fa6' => \Templating\View\Helper\Icon\FontAwesome6Icon::class,
 		],
 	],
 TEXT;
@@ -40,7 +40,7 @@ TEXT;
 
 	<div class="float-right">
 		<p>
-			<?php echo $this->Html->link('Show all icons', ['action' => 'iconSets', 'fa4']); ?>
+			<?php echo $this->Html->link('Show all icons', ['action' => 'iconSets', 'fa6']); ?>
 		</p>
 	</div>
 

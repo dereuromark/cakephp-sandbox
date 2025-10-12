@@ -12,7 +12,6 @@ use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 use Templating\Generator\Task\IconRenderTask;
 use Templating\View\Icon\BootstrapIcon;
 use Templating\View\Icon\FeatherIcon;
-use Templating\View\Icon\FontAwesome4Icon;
 use Templating\View\Icon\FontAwesome6Icon;
 use Templating\View\Icon\MaterialIcon;
 use Tools\Error\ErrorLogger;
@@ -193,13 +192,9 @@ $config = [
 
 	'Icon' => [
 		'sets' => [
-			'fa4' => [
-				'class' => FontAwesome4Icon::class,
-				'path' => WWW_ROOT . 'assets/font-awesome/less/variables.less',
-			],
 			'fa6' => [
 				'class' => FontAwesome6Icon::class,
-				'path' => WWW_ROOT . 'assets/fontawesome-free/metadata/icons.json',
+				'path' => WWW_ROOT . 'assets/@fortawesome/fontawesome-free/metadata/icon-families.json',
 			],
 			'bs' => [
 				'class' => BootstrapIcon::class,
@@ -217,22 +212,22 @@ $config = [
 			],
 		],
 		'map' => [
-			'add' => 'fa4:plus',
-			'view' => 'fa4:eye',
-			'delete' => 'fa4:times',
-			'yes' => 'fa4:check',
-			'no' => 'fa4:times',
-			'see' => 'fa4:eye',
-			'details' => 'fa4:chevron-right',
-			'admin' => 'fa4:shield',
-			'login' => 'fa4:sign-in',
-			'logout' => 'fa4:sign-out',
-			'translate' => 'fa4:language',
-			'prev' => 'fa4:arrow-left',
-			'next' => 'fa4:arrow-right',
-			'chart-bar' => 'fa4:bar-chart',
-			'pro' => 'fa4:thumbs-up',
-			'contra' => 'fa4:thumbs-down',
+			'add' => 'fa6:plus',
+			'view' => 'fa6:eye',
+			'delete' => 'fa6:times',
+			'yes' => 'fa6:check',
+			'no' => 'fa6:times',
+			'see' => 'fa6:eye',
+			'details' => 'fa6:chevron-right',
+			'admin' => 'fa6:shield',
+			'login' => 'fa6:sign-in',
+			'logout' => 'fa6:sign-out',
+			'translate' => 'fa6:language',
+			'prev' => 'fa6:arrow-left',
+			'next' => 'fa6:arrow-right',
+			'chart-bar' => 'fa6:bar-chart',
+			'pro' => 'fa6:thumbs-up',
+			'contra' => 'fa6:thumbs-down',
 		],
 		'checkExistence' => true,
 	],

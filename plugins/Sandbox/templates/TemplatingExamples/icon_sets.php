@@ -36,10 +36,6 @@ foreach ($icons as $iconSet) {
 	</div>
 	<?php } ?>
 
-	<?php if ($name === 'fa6') { ?>
-		<link rel="stylesheet" href="/assets/fontawesome-free/css/solid.css"/>
-	<?php } ?>
-
 	<script src="/assets/feather-icons/dist/feather.js"></script>
 	<script>
 		feather.replace();

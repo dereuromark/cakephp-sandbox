@@ -23,22 +23,6 @@ class AccountControllerTest extends IntegrationTestCase {
 	/**
 	 * @return void
 	 */
-	public function setUp(): void {
-		parent::setUp();
-	}
-
-	/**
-	 * @return void
-	 */
-	public function tearDown(): void {
-		parent::tearDown();
-
-		//TableRegistry::clear();
-	}
-
-	/**
-	 * @return void
-	 */
 	public function testIndex() {
 		$data = [
 			'Auth' => ['User' => ['id' => 1, 'role_id' => 1]],
@@ -231,8 +215,8 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'changePassword'], $data);
 
-		if ($this->_response->statusCode() !== 302) {
-			debug($this->_response->body());
+		if ($this->_response->getStatusCode() !== 302) {
+			debug($this->_response->getBody()->getContents());
 		}
 
 		$this->assertResponseCode(302);
