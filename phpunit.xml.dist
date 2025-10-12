@@ -33,6 +33,7 @@
 			<directory suffix=".php">src/</directory>
 			<directory suffix=".php">plugins/Sandbox/src/</directory>
 			<directory suffix=".php">plugins/AuthSandbox/src/</directory>
+			<directory suffix=".php">plugins/StateMachineSandbox/src/</directory>
 		</include>
 	</source>
 </phpunit>
