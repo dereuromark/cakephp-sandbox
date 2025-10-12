@@ -116,9 +116,8 @@
 		"assets": [
 			"npm i --from-lockfile",
 			"cp -R node_modules/* webroot/assets/",
-			"cp -R webroot/assets/font-awesome/fonts/* webroot/css/fonts/",
-			"cp -R webroot/assets/fontawesome-free/webfonts webroot/css/",
-			"cp -R webroot/assets/fontawesome-free/webfonts webroot/css/ccss/",
+			"cp -R webroot/assets/@fortawesome/fontawesome-free/webfonts webroot/css/",
+			"cp -R webroot/assets/@fortawesome/fontawesome-free/webfonts webroot/css/ccss/",
 			"cp -R node_modules/bootstrap-icons webroot/assets/",
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/"
 		],

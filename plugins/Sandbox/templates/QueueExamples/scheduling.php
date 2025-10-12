@@ -46,7 +46,7 @@ $this->loadHelper('Queue.QueueProgress');
 				<li>
 					<b><?php echo h($queuedJob->job_task); ?></b>: scheduled to start at <?php echo $this->Time->nice($queuedJob->notbefore); ?>
 					<?php if (!$queuedJob->fetched) {
-						echo $this->Form->postLink($this->Icon->render('times', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
+						echo $this->Form->postLink($this->Icon->render('xmark', ['title' => 'Cancel (if not yet started)']), ['action' => 'cancelJob', $queuedJob->id], ['escape' => false, 'confirm' => 'Sure?']);
 					} ?>
 					<?php if (!$queuedJob->fetched) {
 						echo '<br>';
