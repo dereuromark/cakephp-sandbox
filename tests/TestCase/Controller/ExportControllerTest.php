@@ -166,7 +166,6 @@ class ExportControllerTest extends IntegrationTestCase {
 		$this->markTestSkipped('mimeTypes action not implemented');
 	}
 
-
 	/**
 	 * @return void
 	 */

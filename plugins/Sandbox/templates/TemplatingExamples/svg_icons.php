@@ -224,7 +224,7 @@ TEXT;
 		<div class="col-md-6">
 			<div class="alert alert-success">
 				<h5>JSON Map Mode</h5>
-				<ul>
+				<ul class="list-unstyled">
 					<li>✓ Single file read</li>
 					<li>✓ All icons loaded at once</li>
 					<li>✓ In-memory caching</li>
@@ -236,7 +236,7 @@ TEXT;
 		<div class="col-md-6">
 			<div class="alert alert-warning">
 				<h5>Individual Files Mode</h5>
-				<ul>
+				<ul class="list-unstyled">
 					<li>• Separate file per icon</li>
 					<li>• File I/O per icon</li>
 					<li>• Cache recommended</li>
