@@ -56,7 +56,8 @@ class CacheExamplesController extends SandboxAppController {
 		$this->Flash->info('Will be cached for an hour!');
 
 		$this->autoRender = false;
-		$this->render('minute');
+
+		return $this->render('minute');
 	}
 
 	/**

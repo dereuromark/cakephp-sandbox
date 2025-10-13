@@ -91,7 +91,7 @@ class AjaxExamplesController extends SandboxAppController {
 	 * The JS could probably be simplified or made more generic to be put
 	 * in a central location and used for all paginations across the website.
 	 *
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function pagination() {
 		$countriesTable = $this->fetchTable('Data.Countries');
@@ -100,14 +100,14 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
-			$this->render('pagination_container');
+			return $this->render('pagination_container');
 		}
 	}
 
 	/**
 	 * Using infinitescroll
 	 *
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function endlessScroll() {
 		$countriesTable = $this->fetchTable('Data.Countries');
@@ -116,7 +116,7 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->set(compact('countries'));
 
 		if ($this->request->is('ajax')) {
-			$this->render('endless_scroll_container');
+			return $this->render('endless_scroll_container');
 		}
 	}
 

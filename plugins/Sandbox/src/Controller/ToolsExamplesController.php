@@ -293,7 +293,7 @@ class ToolsExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function passwordEdit() {
 		$usersTable = $this->fetchTable('Users');
@@ -311,7 +311,8 @@ class ToolsExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('user'));
-		$this->render('password');
+
+		return $this->render('password');
 	}
 
 	/**

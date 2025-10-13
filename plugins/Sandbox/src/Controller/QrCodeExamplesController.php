@@ -20,7 +20,7 @@ class QrCodeExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function svg() {
 		$formatter = new Formatter();
@@ -61,16 +61,17 @@ class QrCodeExamplesController extends SandboxAppController {
 
 		$ext = $this->request->getParam('action') === 'png' ? 'png' : 'svg';
 		$this->set(compact('ext', 'types', 'result', 'options'));
-		$this->render('complex');
+
+		return $this->render('complex');
 	}
 
 	/**
-	 * @return void
+	 * @return \Cake\Http\Response|null|void
 	 */
 	public function png() {
 		$this->svg();
 
-		$this->render('complex');
+		return $this->render('complex');
 	}
 
 }

@@ -99,6 +99,7 @@ class DecimalExamplesController extends SandboxAppController {
 		if ($this->request->is(['post', 'put'])) {
 			$one = $this->request->getData('one');
 			$two = $this->request->getData('two');
+			/** @var string $operationKey */
 			$operationKey = $this->request->getData('operation');
 			if (!isset($operations[$operationKey])) {
 				$this->Flash->error('This operation does not exist');
