@@ -24,21 +24,27 @@ use Tools\Model\Table\Table;
 class SandboxCategoriesTable extends Table {
 
 	/**
-	 * @var array<mixed>
+	 * @param array<string, mixed> $config
+	 *
+	 * @return void
 	 */
-	public $actsAs = ['Tree'];
+	public function initialize(array $config): void {
+		parent::initialize($config);
+
+		$this->addBehavior('Tree');
+	}
 
 	/**
-	 * @var array<mixed>
+	 * @param \Cake\Validation\Validator $validator
+	 *
+	 * @return \Cake\Validation\Validator
 	 */
-	public $validate = [
-		'name' => [
-			'notEmpty' => [
-				'rule' => ['notBlank'],
-				'message' => 'Mandatory',
-				'last' => true,
-			],
-		],
-	];
+	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+		$validator
+			->requirePresence('name', 'create')
+			->notBlank('name', 'Mandatory');
+
+		return $validator;
+	}
 
 }

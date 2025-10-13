@@ -24,34 +24,33 @@ use Tools\Model\Table\Table;
 class SandboxUsersTable extends Table {
 
 	/**
-	 * @var array<mixed>
-	 */
-	public $validate = [
-		'username' => [
-			'notEmpty' => [
-				'rule' => ['notBlank'],
-				'message' => 'Mandatory',
-				'last' => true,
-			],
-		],
-		'email' => [
-			'email' => [
-				'rule' => ['email'],
-				'message' => 'Email invalid',
-				'last' => true,
-			],
-		],
-	];
-
-	/**
 	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */
 	public function initialize(array $config): void {
+		parent::initialize($config);
+
 		$this->getSchema()->setColumnType('status', EnumType::from(UserStatus::class));
 
 		$this->setDisplayField('username');
+	}
+
+	/**
+	 * @param \Cake\Validation\Validator $validator
+	 *
+	 * @return \Cake\Validation\Validator
+	 */
+	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+		$validator
+			->requirePresence('username', 'create')
+			->notBlank('username', 'Mandatory');
+
+		$validator
+			->requirePresence('email', 'create')
+			->email('email', false, 'Email invalid');
+
+		return $validator;
 	}
 
 }

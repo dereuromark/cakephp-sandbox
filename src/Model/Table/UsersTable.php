@@ -27,48 +27,45 @@ use Tools\Model\Table\Table;
 class UsersTable extends Table {
 
 	/**
-	 * @var array<mixed>
-	 */
-	public $validate = [
-		'username' => [
-			'notEmpty' => [
-				'rule' => ['notBlank'],
-				'message' => 'Mandatory',
-				'last' => true,
-			],
-			'isUnique' => [
-				'rule' => 'validateUnique',
-				'message' => 'Username already exists',
-				'last' => true,
-				'provider' => 'table',
-			],
-		],
-		'email' => [
-			'email' => [
-				'rule' => ['email'],
-				'message' => 'Email invalid',
-				'last' => true,
-			],
-			'unique' => [
-				'rule' => ['validateUnique'],
-				'message' => 'Email already exists',
-				'last' => true,
-				'provider' => 'table',
-			],
-		],
-	];
-
-	/**
 	 * @param array<string, mixed> $config
 	 *
 	 * @return void
 	 */
 	public function initialize(array $config): void {
+		parent::initialize($config);
+
 		$this->belongsTo('Roles');
 
 		$this->setDisplayField('username');
 
 		$this->addBehavior('Timestamp');
+	}
+
+	/**
+	 * @param \Cake\Validation\Validator $validator
+	 *
+	 * @return \Cake\Validation\Validator
+	 */
+	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+		$validator
+			->requirePresence('username', 'create')
+			->notBlank('username', 'Mandatory')
+			->add('username', 'unique', [
+				'rule' => 'validateUnique',
+				'provider' => 'table',
+				'message' => 'Username already exists',
+			]);
+
+		$validator
+			->requirePresence('email', 'create')
+			->email('email', false, 'Email invalid')
+			->add('email', 'unique', [
+				'rule' => 'validateUnique',
+				'provider' => 'table',
+				'message' => 'Email already exists',
+			]);
+
+		return $validator;
 	}
 
 }

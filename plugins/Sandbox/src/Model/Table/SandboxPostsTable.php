@@ -30,33 +30,34 @@ use Tools\Model\Table\Table;
 class SandboxPostsTable extends Table {
 
 	/**
-	 * @var array<mixed>
+	 * @param array<string, mixed> $config
+	 *
+	 * @return void
 	 */
-	public array $actsAs = [
-		'Tools.Slugged',
-		'Search.Search',
-		'Tags.Tag' => ['taggedCounter' => false],
-	];
+	public function initialize(array $config): void {
+		parent::initialize($config);
+
+		$this->addBehavior('Tools.Slugged');
+		$this->addBehavior('Search.Search');
+		$this->addBehavior('Tags.Tag', ['taggedCounter' => false]);
+	}
 
 	/**
-	 * @var array<mixed>
+	 * @param \Cake\Validation\Validator $validator
+	 *
+	 * @return \Cake\Validation\Validator
 	 */
-	public $validate = [
-		'title' => [
-			'notEmpty' => [
-				'rule' => ['notBlank'],
-				'message' => 'Mandatory',
-				'last' => true,
-			],
-		],
-		'content' => [
-			'notEmpty' => [
-				'rule' => ['notBlank'],
-				'message' => 'Mandatory',
-				'last' => true,
-			],
-		],
-	];
+	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+		$validator
+			->requirePresence('title', 'create')
+			->notBlank('title', 'Mandatory');
+
+		$validator
+			->requirePresence('content', 'create')
+			->notBlank('content', 'Mandatory');
+
+		return $validator;
+	}
 
 	/**
 	 * @return \Search\Manager
