@@ -72,7 +72,7 @@ class ExportController extends AppController {
 	 */
 	public function countries() {
 		$countriesTable = $this->fetchTable('Data.Countries');
-		$countries = $countriesTable->find('all')->toArray();
+		$countries = $countriesTable->find()->toArray();
 
 		$this->set(compact('countries'));
 		$serialize = 'countries';
@@ -84,7 +84,7 @@ class ExportController extends AppController {
 	 */
 	public function states() {
 		$statesTable = $this->fetchTable('Data.States');
-		$states = $statesTable->find('all')->toArray();
+		$states = $statesTable->find()->toArray();
 
 		$this->set(compact('states'));
 		$serialize = 'states';
@@ -96,7 +96,7 @@ class ExportController extends AppController {
 	 */
 	public function currencies() {
 		$currenciesTable = $this->fetchTable('Data.Currencies');
-		$currencies = $currenciesTable->find('all')->toArray();
+		$currencies = $currenciesTable->find()->toArray();
 
 		$this->set(compact('currencies'));
 		$serialize = 'currencies';
@@ -108,7 +108,7 @@ class ExportController extends AppController {
 	 */
 	public function languages() {
 		$languagesTable = $this->fetchTable('Data.Languages');
-		$languages = $languagesTable->find('all')->toArray();
+		$languages = $languagesTable->find()->toArray();
 
 		$this->set(compact('languages'));
 		$serialize = 'languages';
@@ -120,7 +120,7 @@ class ExportController extends AppController {
 	 */
 	public function continents() {
 		$continentsTable = $this->fetchTable('Data.Continents');
-		$continents = $continentsTable->find('all')->toArray();
+		$continents = $continentsTable->find()->toArray();
 
 		$this->set(compact('continents'));
 		$serialize = 'continents';
@@ -132,7 +132,7 @@ class ExportController extends AppController {
 	 */
 	public function postalCodes() {
 		$postalCodesTable = $this->fetchTable('Data.PostalCodes');
-		$postalCodes = $postalCodesTable->find('all')->toArray();
+		$postalCodes = $postalCodesTable->find()->toArray();
 
 		$this->set(compact('postalCodes'));
 		$serialize = 'postalCodes';
@@ -144,7 +144,7 @@ class ExportController extends AppController {
 	 */
 	public function timezones() {
 		$timezonesTable = $this->fetchTable('Data.Timezones');
-		$timezones = $timezonesTable->find('all')->toArray();
+		$timezones = $timezonesTable->find()->toArray();
 
 		$this->set(compact('timezones'));
 		$serialize = 'timezones';
