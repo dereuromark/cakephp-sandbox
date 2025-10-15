@@ -9,6 +9,7 @@ use Sandbox\Model\Filter\EmptyValuesTestFilterCollection;
 
 /**
  * @property \Search\Controller\Component\SearchComponent $Search
+ * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
  */
 class SearchExamplesController extends SandboxAppController {
 

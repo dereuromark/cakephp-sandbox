@@ -5,6 +5,9 @@ namespace Sandbox\Controller;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 
+/**
+ * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ */
 class BootstrapController extends SandboxAppController {
 
 	/**

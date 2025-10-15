@@ -114,6 +114,11 @@
 	<div class="col-6">
 		<h3>Other plugins</h3>
 
+		<h4>AuditStash plugin</h4>
+		<ul>
+			<li><?php echo $this->Html->link('Database Audit Trail with TablePersister', ['controller' => 'AuditStash', 'action' => 'index']); ?></li>
+		</ul>
+
 		<h4>StateMachine plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>

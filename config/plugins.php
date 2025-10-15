@@ -30,6 +30,7 @@ return [
 	'Translate' => [],
 	'Favorites' => [],
 	'QrCode' => [],
+	'AuditStash' => [],
 
 	// inside /plugins
 	'AuthSandbox' => [],

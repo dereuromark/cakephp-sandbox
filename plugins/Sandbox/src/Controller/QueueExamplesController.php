@@ -6,6 +6,9 @@ use Cake\Http\Exception\NotFoundException;
 use RuntimeException;
 use Tools\I18n\DateTime;
 
+/**
+ * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
+ */
 class QueueExamplesController extends SandboxAppController {
 
 	/**

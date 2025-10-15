@@ -72,7 +72,8 @@
 		"dereuromark/cakephp-templating": "dev-master",
 		"friendsofcake/cakepdf": "^5.0",
 		"symfony/http-client": "^6.4 || ^7.1.8",
-		"dereuromark/cakephp-qrcode": "dev-master"
+		"dereuromark/cakephp-qrcode": "dev-master",
+		"dereuromark/cakephp-audit-stash": "dev-master"
 	},
 	"require-dev": {
 		"fig-r/psr2r-sniffer": "dev-master",
@@ -138,6 +139,10 @@
 		{
 			"type": "git",
 			"url": "https://github.com/dereuromark/cakephp-statemachine.git"
+		},
+		{
+			"type": "git",
+			"url": "https://github.com/dereuromark/audit-stash.git"
 		}
 	],
 	"prefer-stable": true,

@@ -7,6 +7,7 @@ use Cake\Utility\Hash;
 
 /**
  * @property \Search\Controller\Component\SearchComponent $Search
+ * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
  */
 class TagsController extends SandboxAppController {
 

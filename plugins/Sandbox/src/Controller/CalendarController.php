@@ -8,6 +8,7 @@ use RuntimeException;
 
 /**
  * @property \Calendar\Controller\Component\CalendarComponent $Calendar
+ * @property \Sandbox\Model\Table\EventsTable $Events
  */
 class CalendarController extends SandboxAppController {
 
