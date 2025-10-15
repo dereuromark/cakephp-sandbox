@@ -1486,12 +1486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-audit-stash.git",
-                "reference": "989470201d5be938bf97fed4e9027f9aceca8a5c"
+                "reference": "264c4a97642fa649170184bf66baf53ce1595d2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/989470201d5be938bf97fed4e9027f9aceca8a5c",
-                "reference": "989470201d5be938bf97fed4e9027f9aceca8a5c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/264c4a97642fa649170184bf66baf53ce1595d2c",
+                "reference": "264c4a97642fa649170184bf66baf53ce1595d2c",
                 "shasum": ""
             },
             "require": {
@@ -1527,7 +1527,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-audit-stash/issues",
                 "source": "https://github.com/dereuromark/cakephp-audit-stash/tree/master"
             },
-            "time": "2025-10-15T21:02:22+00:00"
+            "time": "2025-10-15T21:40:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
