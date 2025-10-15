@@ -104,7 +104,7 @@
                     <h5>Configuration:</h5>
                     <ul>
                         <li>Plugin loaded in <code>config/plugins.php</code></li>
-                        <li>TablePersister configured in <code>config/app_local.php</code>:
+                        <li>TablePersister configured in <code>config/app(_custom).php</code>:
                             <pre><code>'AuditStash' => [
     'persister' => \AuditStash\Persister\TablePersister::class,
 ],</code></pre>

@@ -334,6 +334,10 @@ $config = [
 	'Comments' => [
 		'allowAnonymous' => true,
 	],
+
+	'AuditStash' => [
+		'persister' => \AuditStash\Persister\TablePersister::class,
+	],
 ];
 
 if (str_contains((string)getenv('DB_URL'), 'mysql')) {
