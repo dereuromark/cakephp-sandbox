@@ -12,6 +12,8 @@ use Cake\ORM\Entity;
  * @property string $title
  * @property string $content
  * @property string $status
+ * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime $modified
  */
 class SandboxArticle extends Entity {
 

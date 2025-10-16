@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Controller;
 
 use App\Model\Enum\AuditLogType;
+use Cake\I18n\DateTime;
 
 /**
  * AuditStash Controller
@@ -295,9 +296,8 @@ class AuditStashController extends SandboxAppController {
 	 * @return void
 	 */
 	protected function rotateOldLogs(): void {
-		$oneHourAgo = new \DateTime('-1 hour');
-
 		// Delete old audit logs
+		$oneHourAgo = new DateTime('-1 hour');
 		$auditLogsTable = $this->fetchTable('AuditLogs');
 		$deletedLogs = $auditLogsTable->deleteAll([
 			'source' => 'sandbox_articles',
@@ -305,10 +305,22 @@ class AuditStashController extends SandboxAppController {
 		]);
 
 		// Delete old articles
+		$oneHourAgo = new DateTime('-2 hour');
 		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
 		$deletedArticles = $sandboxArticlesTable->deleteAll([
 			'created <' => $oneHourAgo,
 		]);
+
+		if ($deletedLogs > 0 || $deletedArticles > 0) {
+			$this->log(
+				sprintf(
+					'Auto-rotated %d audit log(s) and %d article(s) older than 1 hour',
+					$deletedLogs,
+					$deletedArticles,
+				),
+				'info',
+			);
+		}
 	}
 
 }
