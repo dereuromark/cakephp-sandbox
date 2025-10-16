@@ -287,30 +287,28 @@ class AuditStashController extends SandboxAppController {
 	}
 
 	/**
-	 * Rotate old audit logs (delete logs older than 1 hour)
+	 * Rotate old audit logs and articles (delete older than 1 hour)
 	 *
 	 * This is called automatically on the index page for demo purposes
-	 * to keep the audit log table from growing indefinitely.
+	 * to keep the demo clean and prevent indefinite growth.
 	 *
 	 * @return void
 	 */
 	protected function rotateOldLogs(): void {
-		$auditLogsTable = $this->fetchTable('AuditLogs');
-
-		// Delete logs older than 1 hour for sandbox_articles
 		$oneHourAgo = new \DateTime('-1 hour');
 
-		$deleted = $auditLogsTable->deleteAll([
+		// Delete old audit logs
+		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$deletedLogs = $auditLogsTable->deleteAll([
 			'source' => 'sandbox_articles',
 			'created <' => $oneHourAgo,
 		]);
 
-		if ($deleted > 0) {
-			$this->log(
-				sprintf('Auto-rotated %d audit log(s) older than 1 hour', $deleted),
-				'info',
-			);
-		}
+		// Delete old articles
+		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
+		$deletedArticles = $sandboxArticlesTable->deleteAll([
+			'created <' => $oneHourAgo,
+		]);
 	}
 
 }

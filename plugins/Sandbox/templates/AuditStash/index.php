@@ -124,7 +124,7 @@
 
                     <h5>Demo Features:</h5>
                     <ul>
-                        <li><strong>Auto-Rotation:</strong> Logs older than 1 hour are automatically deleted on page load to keep the demo clean</li>
+                        <li><strong>Auto-Cleanup:</strong> Articles and audit logs older than 1 hour are automatically deleted on page load to keep the demo clean</li>
                         <li><strong>Type Safety:</strong> Audit log types use PHP enums for better IDE support and type checking</li>
                     </ul>
 
