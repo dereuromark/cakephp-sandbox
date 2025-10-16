@@ -113,7 +113,7 @@
 			"bin/cake migrations migrate -p Comments --no-lock",
 			"bin/cake migrations migrate -p Favorites --no-lock",
 			"bin/cake migrations migrate -p StateMachine --no-lock",
-			"bin/cake migrations migrate -p AuditLog --no-lock"
+			"bin/cake migrations migrate -p AuditStash --no-lock"
 		],
 		"assets": [
 			"npm i --from-lockfile",
