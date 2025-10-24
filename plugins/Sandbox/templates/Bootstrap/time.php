@@ -6,9 +6,12 @@
 ?>
 
 <div class="row">
-	<div class="col-md-12">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/bootstrap'); ?>
+</nav>
+<div class="page form col-sm-8 col-12">
 
-<h2>Working with time inputs</h2>
+<h3>Working with Time Inputs</h3>
 
 <?php
 
@@ -35,6 +38,5 @@ echo $this->Form->end();
 
 <p>With seconds involved it falls back to the default one</p>
 
-
-	</div>
+</div>
 </div>

@@ -5,6 +5,9 @@ namespace AuthSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Event\EventInterface;
 
+/**
+ * @property \App\Model\Table\UsersTable $Users
+ */
 class AuthSandboxController extends AppController {
 
 	/**

@@ -8,6 +8,9 @@ use StateMachine\Business\StateMachineFacade;
 use StateMachine\Dto\StateMachine\ItemDto;
 use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 
+/**
+ * @property \StateMachineSandbox\Model\Table\RegistrationsTable $Registrations
+ */
 class RegistrationDemoController extends AppController {
 
 	/**

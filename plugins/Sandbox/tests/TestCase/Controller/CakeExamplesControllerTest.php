@@ -148,4 +148,30 @@ class CakeExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test translateBehavior method
+	 *
+	 * @return void
+	 */
+	public function testTranslateBehavior(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'translateBehavior']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test translateBehavior method with locale parameter
+	 *
+	 * @return void
+	 */
+	public function testTranslateBehaviorWithLocale(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'translateBehavior', '?' => ['locale' => 'de']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

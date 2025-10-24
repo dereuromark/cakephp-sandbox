@@ -229,4 +229,54 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testEditInPlaceEmail() {
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
+
+		$data = [
+			'email' => 'test@example.com',
+		];
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'editInPlaceEmail'], $data);
+
+		$this->assertResponseCode(200);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTableDelete() {
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'tableDelete', 1]);
+
+		$this->assertResponseCode(200);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testCountryStates() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->configRequest([
+			'headers' => [
+				'X_REQUESTED_WITH' => 'XMLHttpRequest',
+			],
+		]);
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'countryStates', '?' => ['id' => 1]]);
+
+		$this->assertResponseCode(200);
+	}
+
 }

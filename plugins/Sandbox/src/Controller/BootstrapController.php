@@ -25,8 +25,8 @@ class BootstrapController extends SandboxAppController {
 			'Flash' => ['className' => 'BootstrapUI.Flash'],
 			'Breadcrumbs' => ['className' => 'BootstrapUI.Breadcrumbs'],
 			'Form' => ['className' => 'BootstrapUI.Form'],
-			//'Html' => ['className' => 'BootstrapUI.Html'],
-			//'Paginator' => ['className' => 'BootstrapUI.Paginator'],
+			'Html' => ['className' => 'BootstrapUI.Html'],
+			'Paginator' => ['className' => 'BootstrapUI.Paginator'],
 		];
 		$this->viewBuilder()->addHelpers($helpers);
 	}
@@ -151,6 +151,51 @@ class BootstrapController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function postLink($type = null) {
+	}
+
+	/**
+	 * Show HtmlHelper badges and icons
+	 *
+	 * @return void
+	 */
+	public function html() {
+	}
+
+	/**
+	 * Show pagination
+	 *
+	 * @return void
+	 */
+	public function pagination() {
+		$postsTable = $this->fetchTable('Sandbox.SandboxPosts');
+
+		// Ensure we have some data for pagination demo
+		if ($postsTable->find()->count() < 5) {
+			for ($i = 1; $i <= 25; $i++) {
+				$post = $postsTable->newEntity([
+					'title' => 'Post ' . $i,
+					'content' => 'This is sample content for post number ' . $i,
+					'published' => (bool)($i % 2),
+				]);
+				$postsTable->saveOrFail($post);
+			}
+		}
+
+		$this->paginate = [
+			'limit' => 5,
+		];
+
+		$posts = $this->paginate($postsTable);
+
+		$this->set(compact('posts'));
+	}
+
+	/**
+	 * Show breadcrumbs
+	 *
+	 * @return void
+	 */
+	public function breadcrumbs() {
 	}
 
 }

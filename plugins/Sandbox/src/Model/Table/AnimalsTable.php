@@ -7,6 +7,23 @@ use Cake\ORM\RulesChecker;
 use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
+/**
+ * Animals Model
+ *
+ * @method \Sandbox\Model\Entity\SandboxAnimal newEmptyEntity()
+ * @method \Sandbox\Model\Entity\SandboxAnimal newEntity(array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxAnimal> newEntities(array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Sandbox\Model\Entity\SandboxAnimal findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxAnimal> patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> deleteManyOrFail(iterable $entities, array $options = [])
+ */
 class AnimalsTable extends Table {
 
 	/**

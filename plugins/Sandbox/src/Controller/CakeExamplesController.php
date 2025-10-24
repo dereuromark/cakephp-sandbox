@@ -214,4 +214,71 @@ class CakeExamplesController extends SandboxAppController {
 		$this->set(compact('results'));
 	}
 
+	/**
+	 * @return void
+	 */
+	public function translateBehavior() {
+		$articlesTable = $this->fetchTable('Sandbox.DemoArticles');
+
+		// Get current locale from query string or default to 'en'
+		$locale = $this->request->getQuery('locale', 'en');
+
+		// Ensure sample data exists
+		$article = $this->_ensureDemoArticle();
+
+		// Set the locale before fetching - this tells TranslateBehavior which translation to use
+		I18n::setLocale($locale);
+
+		// Fetch article - TranslateBehavior will automatically return the translated version
+		$translatedArticle = $articlesTable->get($article->id);
+
+		$availableLocales = [
+			'en' => 'English',
+			'de' => 'Deutsch (German)',
+			'es' => 'Español (Spanish)',
+			'fr' => 'Français (French)',
+		];
+
+		$this->set(compact('article', 'translatedArticle', 'locale', 'availableLocales'));
+	}
+
+	/**
+	 * Ensure a demo article with translations exists
+	 *
+	 * @return \Sandbox\Model\Entity\DemoArticle
+	 */
+	protected function _ensureDemoArticle() {
+		$articlesTable = $this->fetchTable('Sandbox.DemoArticles');
+
+		$article = $articlesTable->find()
+			->where(['DemoArticles.status' => 'published'])
+			->first();
+
+		if (!$article) {
+			// Create article in English (default)
+			$article = $articlesTable->newEntity([
+				'title' => 'Welcome to CakePHP',
+				'content' => 'CakePHP is a rapid development framework for PHP that provides an extensible architecture for developing, maintaining, and deploying applications.',
+				'status' => 'published',
+				'_translations' => [
+					'de' => [
+						'title' => 'Willkommen bei CakePHP',
+						'content' => 'CakePHP ist ein Framework für die schnelle Entwicklung von PHP-Anwendungen, das eine erweiterbare Architektur für die Entwicklung, Wartung und Bereitstellung von Anwendungen bietet.',
+					],
+					'es' => [
+						'title' => 'Bienvenido a CakePHP',
+						'content' => 'CakePHP es un framework de desarrollo rápido para PHP que proporciona una arquitectura extensible para desarrollar, mantener e implementar aplicaciones.',
+					],
+					'fr' => [
+						'title' => 'Bienvenue sur CakePHP',
+						'content' => 'CakePHP est un framework de développement rapide pour PHP qui fournit une architecture extensible pour développer, maintenir et déployer des applications.',
+					],
+				],
+			]);
+			$articlesTable->saveOrFail($article);
+		}
+
+		return $article;
+	}
+
 }

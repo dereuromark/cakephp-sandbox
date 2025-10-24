@@ -6,9 +6,12 @@
 ?>
 
 <div class="row">
-	<div class="col-md-12">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/bootstrap'); ?>
+</nav>
+<div class="page form col-sm-8 col-12">
 
-		<h2>A basic form</h2>
+<h3>Basic Form (Horizontal Layout)</h3>
 
 <fieldset>
 <?php
@@ -35,5 +38,5 @@ echo $this->Form->end();
 
 <p>Note the break point, when you resize the browser. It will automatically jump from horizontal to non-horizontal at some point.</p>
 
-	</div>
+</div>
 </div>

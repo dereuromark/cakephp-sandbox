@@ -6,9 +6,12 @@
 ?>
 
 <div class="row">
-	<div class="col-md-12">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/bootstrap'); ?>
+</nav>
+<div class="page form col-sm-8 col-12">
 
-<h2>A localized form (German)</h2>
+<h3>Localized Form (German)</h3>
 <p>Currently, mainly the date(time) fields have been localized.</p>
 
 <?php
@@ -33,6 +36,5 @@ echo $this->Form->control(__('Submit'), ['type' => 'submit']);
 echo $this->Form->end();
 ?>
 
-
-	</div>
+</div>
 </div>

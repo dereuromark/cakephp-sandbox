@@ -72,4 +72,17 @@ class DecimalExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @uses \Sandbox\Controller\DecimalExamplesController::numberHelper()
+	 * @return void
+	 */
+	public function testNumberHelper(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'DecimalExamples', 'action' => 'numberHelper']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

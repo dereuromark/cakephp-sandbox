@@ -5,9 +5,12 @@
 ?>
 
 <div class="row">
-	<div class="col-md-12">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/bootstrap'); ?>
+</nav>
+<div class="page post-link col-sm-8 col-12">
 
-<h2>Post Links</h2>
+<h3>Post Links</h3>
 
 <p>POST button demo using <?php echo h('$this->Form->postLink()');?>.</p>
 
@@ -34,5 +37,5 @@ echo $this->Form->postLink(
 
 <p>Both use normal links and a JS form to post to the same action.</p>
 
-	</div>
+</div>
 </div>

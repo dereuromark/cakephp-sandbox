@@ -38,4 +38,22 @@ class RatingsControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test unrate method
+	 *
+	 * @return void
+	 */
+	public function testUnrate(): void {
+		$this->disableErrorHandlerMiddleware();
+		$this->enableRetainFlashMessages();
+
+		/** @var \Sandbox\Model\Entity\SandboxRating $rating */
+		$rating = $this->fetchTable('Sandbox.SandboxRatings')->find()->firstOrFail();
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Ratings', 'action' => 'unrate', $rating->id]);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['action' => 'index']);
+	}
+
 }

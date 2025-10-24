@@ -30,7 +30,7 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testUsers() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'ExposeExamples', 'action' => 'index']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'ExposeExamples', 'action' => 'users']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

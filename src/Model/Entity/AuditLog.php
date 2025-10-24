@@ -11,18 +11,20 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $transaction
  * @property \App\Model\Enum\AuditLogType $type
- * @property int $primary_key
+ * @property int|null $primary_key
  * @property string $source
  * @property string|null $display_value
  * @property string|null $original
  * @property string|null $changed
  * @property string|null $meta
- * @property \Cake\I18n\DateTime $created
+ * @property \Cake\I18n\DateTime|null $created
  *
  * @property array|null $original_data
  * @property array|null $changed_data
  * @property array|null $meta_data
- * @property array $changed_fields
+ * @property array<string> $changed_fields
+ * @property string|null $parent_source
+ * @property string|null $username
  */
 class AuditLog extends Entity {
 

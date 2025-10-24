@@ -15,6 +15,7 @@ class BootstrapControllerTest extends IntegrationTestCase {
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxUsers',
+		'plugin.Sandbox.SandboxPosts',
 	];
 
 	/**
@@ -62,6 +63,67 @@ class BootstrapControllerTest extends IntegrationTestCase {
 	 */
 	public function testTime() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'time']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormPost() {
+		$this->enableRetainFlashMessages();
+
+		$data = [
+			'name' => 'Test Animal',
+		];
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'formPost'], $data);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPostLink() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'postLink', 'confirm']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHtml() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'html']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPagination() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'pagination']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testBreadcrumbs() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Bootstrap', 'action' => 'breadcrumbs']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
