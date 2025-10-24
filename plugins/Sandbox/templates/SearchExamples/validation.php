@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var array<\Data\Model\Entity\Country> $countries
+ * @var \Sandbox\Form\CountrySearchForm $searchForm
  */
 ?>
 
@@ -12,7 +13,7 @@
 
 	<div class="search-box pull-right" style="margin-bottom: 10px;">
 		<?php
-		echo $this->Form->create(null, ['valueSources' => 'query']);
+		echo $this->Form->create($searchForm, ['valueSources' => ['query', 'data']]);
 
 		echo $this->Form->control('search', ['placeholder' => 'Wildcards: * and ?']);
 		echo $this->Form->control('status', ['options' => ['' => '- does not matter -', '0' => 'Inactive', '1' => 'Active']]);
@@ -26,7 +27,25 @@
 		?>
 	</div>
 
-	<h2><?php echo __('Countries');?> table and Search functionality</h2>
+	<h2><?php echo __('Countries');?> with Form Validation</h2>
+
+	<?php if ($searchForm->getErrors()): ?>
+	<div class="alert alert-danger">
+		<?php echo __('Please fix the validation errors below.'); ?>
+	</div>
+	<?php endif; ?>
+
+	<p>
+		This example demonstrates the <code>formClass</code> option for the SearchComponent.
+		The search form validates input using the Form class's validation rules:
+	</p>
+	<ul>
+		<li>Search term must be at least 3 characters (or empty)</li>
+		<li>Only "Active" status is allowed right now</li>
+	</ul>
+	<p>
+		Try searching with less than 3 characters or selecting "Inactive" status to see the validation errors.
+	</p>
 
 <table class="table list">
 <tr>
@@ -65,6 +84,4 @@ foreach ($countries as $country):
 
 <?php echo $this->element('Tools.pagination'); ?>
 
-	<p>Display filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->getQuery()]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->getQuery()]); ?></p>
-	<p>Download filtered result as <?php echo $this->Html->link('JSON', ['_ext' => 'json', '?' => $this->request->getQuery() + ['download' => 1]]); ?> | <?php echo $this->Html->link('XML', ['_ext' => 'xml', '?' => $this->request->getQuery() + ['download' => 1]]); ?></p>
 </div>

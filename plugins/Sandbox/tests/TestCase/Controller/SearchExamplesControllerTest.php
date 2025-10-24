@@ -57,4 +57,81 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testValidationGet() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationPostValid() {
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation'],
+			['search' => 'Germany'],
+		);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '?' => ['search' => 'Germany']]);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationPostInvalid() {
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation'],
+			['search' => 'ab'],
+		);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Search term must be at least 3 characters long');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationPostEmpty() {
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation'],
+			['search' => ''],
+		);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '?' => []]);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationPostInactiveStatusInvalid() {
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation'],
+			['status' => '0'],
+		);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('You can only search for active ones today');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationPostActiveStatusValid() {
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation'],
+			['status' => '1'],
+		);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '?' => ['status' => '1']]);
+	}
+
 }

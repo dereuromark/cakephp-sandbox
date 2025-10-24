@@ -36,10 +36,13 @@ class SearchExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		$config = [
-			'actions' => ['table', 'range', 'emptyValues'],
+			'actions' => ['table', 'range', 'emptyValues', 'validation'],
 		];
 		if ($this->request->getParam('action') === 'range') {
 			$config['modelClass'] = 'Sandbox.Products';
+		}
+		if ($this->request->getParam('action') === 'validation') {
+			$config['formClass'] = 'Sandbox.CountrySearch';
 		}
 		$this->loadComponent('Search.Search', $config);
 
@@ -136,6 +139,20 @@ class SearchExamplesController extends SandboxAppController {
 		$countryRecordsTable->addBehavior('Search.Search', [
 			'collectionClass' => EmptyValuesTestFilterCollection::class,
 		]);
+		$query = $countryRecordsTable->find('search', search: $this->request->getQuery());
+		$countries = $this->paginate($query);
+
+		$this->set(compact('countries'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function validation(): void {
+		$countryRecordsTable = $this->fetchTable();
+
+		$this->paginate['maxLimit'] = 999;
+
 		$query = $countryRecordsTable->find('search', search: $this->request->getQuery());
 		$countries = $this->paginate($query);
 
