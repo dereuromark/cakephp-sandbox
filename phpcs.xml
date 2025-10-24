@@ -24,4 +24,6 @@
 		<exclude-pattern>*/config/Migrations/*</exclude-pattern>
 	</rule>
 
+	<rule ref="PhpCollective.WhiteSpace.ConsistentIndent"/>
+
 </ruleset>
