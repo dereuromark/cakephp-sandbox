@@ -78,7 +78,7 @@
 		<?php foreach ($queries as $index => $query) { ?>
 			<div class="mb-3">
 				<strong>Query <?= $index + 1 ?>:</strong>
-				<small class="text-muted">(<?= number_format($query['took'] * 1000, 2) ?> ms)</small>
+				<small class="text-muted">(<?= number_format($query['took'], 1) ?> ms)</small>
 				<pre class="bg-light p-3 rounded"><code class="language-sql"><?= h($query['query']) ?></code></pre>
 			</div>
 		<?php } ?>

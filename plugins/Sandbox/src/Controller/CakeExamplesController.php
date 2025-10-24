@@ -229,7 +229,7 @@ class CakeExamplesController extends SandboxAppController {
 
 		// Set up query logging to show how translations work
 		$queries = [];
-		$this->_enableQueryLogging($articlesTable->getConnection(), $queries);
+		$this->_enableQueryLogging($queries);
 
 		// Set the locale before fetching - this tells TranslateBehavior which translation to use
 		I18n::setLocale($locale);
@@ -292,11 +292,12 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * Enable query logging for demonstration purposes
 	 *
-	 * @param \Cake\Database\Connection $connection Database connection
 	 * @param array $queries Array to store queries (passed by reference)
 	 * @return void
 	 */
-	protected function _enableQueryLogging($connection, array &$queries): void {
+	protected function _enableQueryLogging(array &$queries): void {
+		$articlesTable = $this->fetchTable('Sandbox.DemoArticles');
+		$connection = $articlesTable->getConnection();
 		$logger = new class ($queries) implements LoggerInterface {
 			/**
 			 * @param array<array<string, mixed>> $queries
@@ -314,9 +315,11 @@ class CakeExamplesController extends SandboxAppController {
 			 * @return void
 			 */
 			public function log($level, $message, array $context = []): void {
+				$took = $context['query']->getContext()['took'];
+
 				$this->queries[] = [
 					'query' => (string)$message,
-					'took' => $context['took'] ?? 0,
+					'took' => $took,
 				];
 			}
 
