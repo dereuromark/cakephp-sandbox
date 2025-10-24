@@ -6,6 +6,12 @@
  * @var array $result
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <div class="source-link" style="float: right;">
 <?php //echo $this->SourceCode->link(null, array('class' => 'btn btn-info')); ?>
 </div>
@@ -57,3 +63,5 @@ array_merge() is more key oriented. If the same key exists, it will be overwritt
 Hash::merge() is somewhere in the middle and behaves a little bit more key oriented while trying to keep values as well.
 </li>
 </ul>
+
+</div></div>

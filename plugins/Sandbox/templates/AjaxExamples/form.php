@@ -80,6 +80,6 @@ echo $this->Form->end();?>
 	});
 
 </script>
-<?php $this->end();
+<?php $this->end(); ?>
 </div>
 </div>

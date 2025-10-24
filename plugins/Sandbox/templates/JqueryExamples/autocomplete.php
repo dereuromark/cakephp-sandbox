@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/jquery'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <h1><?php echo __('Auto-complete');?></h1>
 
 <p>Type into the following input e.g. "Ko" etc and wait for a selection to appear.</p>
@@ -55,4 +61,6 @@ echo $this->Form->end();
 		});
 	});
 	</script>
-<?php $this->end();
+<?php $this->end(); ?>
+
+</div></div>

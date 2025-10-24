@@ -3,6 +3,11 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/markup'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <?php $this->append('script'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -56,3 +61,5 @@ TXT;
 
 
 <p>You can register your own custom converter filters, see docs for details.</p>
+
+</div></div>

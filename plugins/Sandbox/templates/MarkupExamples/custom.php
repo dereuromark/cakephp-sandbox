@@ -10,6 +10,11 @@ use Ciconia\Extension\Gfm\TaskListExtension;
 use Ciconia\Extension\Gfm\UrlAutoLinkExtension;
 use Ciconia\Extension\Gfm\WhiteSpaceExtension;
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/markup'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <h2>Markdown</h2>
 
@@ -97,3 +102,6 @@ $html = $ciconia->render($markdown, ['geshi' => true, 'nestedTagLevel' => 5]);
 echo pre(h($html));
 
 //echo $html;
+?>
+
+</div></div>

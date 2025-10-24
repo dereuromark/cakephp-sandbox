@@ -5,14 +5,10 @@
  */
 ?>
 <div class="row">
-	<aside class="column">
-		<div class="side-nav">
-			<h4 class="heading"><?= __('Actions') ?></h4>
-			<?= $this->Html->link(__('Back'), ['action' => 'superimposedIndex'], ['class' => 'button float-right']) ?>
-			<?= $this->Html->link(__('Edit'), ['action' => 'superimposedEdit', $exposedUser->id], ['class' => 'button float-right']) ?>
-		</div>
-	</aside>
-	<div class="column-responsive column-80">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/expose'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 		<div class="exposedUsers view content">
 			<h3><?= h($exposedUser->name) ?></h3>
 
@@ -34,5 +30,5 @@
 				</tr>
 			</table>
 		</div>
-	</div>
-</div>
+
+</div></div>

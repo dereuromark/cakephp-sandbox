@@ -8,6 +8,11 @@ $langEn = locale_get_display_name('en');
 $langDe = locale_get_display_name('de');
 
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <div class="source-link" style="float: right;">
 <?php if ($this->request->getSession()->read('Config.language') === 'en') { ?>
@@ -77,4 +82,6 @@ Note that the strtotime() call is <a href="http://php.net/manual/de/class.messag
 
 
 <h4>Debugging</h4>
-ICU version: <?php echo INTL_ICU_VERSION;
+ICU version: <?php echo INTL_ICU_VERSION; ?>
+
+</div></div>

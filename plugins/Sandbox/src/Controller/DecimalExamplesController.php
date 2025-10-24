@@ -126,4 +126,19 @@ class DecimalExamplesController extends SandboxAppController {
 		$this->set(compact('operations', 'result'));
 	}
 
+	/**
+	 * @return void
+	 */
+	public function numberHelper() {
+		// Sample decimal values for demonstration
+		$price = Decimal::create('1234.56');
+		$largePrice = Decimal::create('9876543.21');
+		$delta = Decimal::create('15.75');
+		$negativeDelta = Decimal::create('-8.25');
+		$percentage = Decimal::create('0.875');
+		$smallNumber = Decimal::create('0.005');
+
+		$this->set(compact('price', 'largePrice', 'delta', 'negativeDelta', 'percentage', 'smallNumber'));
+	}
+
 }

@@ -4,6 +4,12 @@
  * @var iterable<\Sandbox\Model\Entity\ExposedUser> $exposedUsers
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/expose'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <div class="exposedUsers index content">
 	<?= $this->Html->link(__('Overview'), ['action' => 'index'], ['class' => 'button float-right']) ?>
 
@@ -47,3 +53,5 @@
 		<p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
 	</div>
 </div>
+
+</div></div>

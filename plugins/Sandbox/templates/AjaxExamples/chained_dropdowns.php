@@ -66,4 +66,5 @@ $(function() {
 
 });
 </script>
-<?php $this->end();</div>
+<?php $this->end(); ?>
+</div>

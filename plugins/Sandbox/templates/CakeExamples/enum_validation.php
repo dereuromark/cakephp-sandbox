@@ -5,6 +5,11 @@
  */
 
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <?php $this->append('script'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -48,3 +53,5 @@ CODE;
 	Here you can see that now the "user" can only select "Active" and "Inactive". "Deleted" is not an allowed value for this form, even
 	though it is in the enum.
 </p>
+
+</div></div>

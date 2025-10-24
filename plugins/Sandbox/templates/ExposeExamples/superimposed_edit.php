@@ -4,6 +4,12 @@
  * @var \Sandbox\Model\Entity\ExposedUser $exposedUser
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/expose'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <div class="users form">
 	<h3><?= __('Exposed Users through superimposition') ?></h3>
 
@@ -16,8 +22,5 @@
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
 </div>
-<div class="actions">
-	<ul>
-		<li><?php echo $this->Html->link(__('List {0}', __('Users')), ['action' => 'superimposedIndex']);?></li>
-	</ul>
-</div>
+
+</div></div>

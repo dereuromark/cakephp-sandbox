@@ -4,6 +4,12 @@
  * @var string[] $exposedUsers !
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/expose'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <h2>CakePHP Expose Examples</h2>
 
 <a href="https://github.com/dereuromark/cakephp-expose" target="_blank">[Source]</a>
@@ -42,3 +48,5 @@
 <p>
 	<?php echo $this->Html->link('CRUD actions through superimposed exposure', ['action' => 'superimposedIndex']); ?>
 </p>
+
+</div></div>

@@ -3,6 +3,11 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/markup'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <h2>Markdown to HTML</h2>
 <a href="https://github.com/dereuromark/cakephp-markup" target="_blank">[Markup Plugin]</a>
@@ -53,3 +58,5 @@ TXT;
 	?></div>
 
 <p>You can register your own custom converter filters, see docs for details.</p>
+
+</div></div>

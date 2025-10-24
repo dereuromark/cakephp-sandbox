@@ -12,8 +12,10 @@ trait AddHelperTrait {
 	 */
 	public function addHelpers(): void {
 		$this->addHelper('Tools.Time', ['outputTimezone' => 'Europe/Berlin']);
-		$this->addHelper('Tools.Number');
 		$this->addHelper('Tools.Text');
+
+		$this->addHelper('CakeDecimal.Number');
+
 		$this->addHelper('Data.Data');
 
 		$this->addHelper('Form', (array)Configure::read('FormConfig'));

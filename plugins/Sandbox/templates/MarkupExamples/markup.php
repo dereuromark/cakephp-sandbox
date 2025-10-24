@@ -8,6 +8,11 @@ if ($this->request->getQuery('dark')) {
 	$theme = 'github';
 }
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/markup'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <?php $this->append('script'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/<?php echo $theme; ?>.min.css">
@@ -112,3 +117,5 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'markdown']);
 <p>
 <?php echo $this->Html->link('Dark Theme', ['?' => ['dark' => 1]]); ?> | More examples directly at <a href="https://highlightjs.org/static/demo/" target="_blank">highlightjs.org/static/demo</a>
 </p>
+
+</div></div>

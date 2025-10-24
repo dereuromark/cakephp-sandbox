@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/jquery'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <?php echo $this->Html->script('/sandbox/jquery.maxlength/jquery.maxlength', ['block' => true]) ?>
 <?php echo $this->Html->css('/sandbox/jquery.maxlength/style', ['block' => true]) ?>
 
@@ -26,3 +32,6 @@ echo $this->Form->control('comment', ['type' => 'textarea', 'maxlength' => '20',
 echo $this->Form->control('text', ['maxlength' => '20', 'id' => 'jquery-example-text']);
 echo $this->Form->submit('Submit Test');
 echo $this->Form->end();
+?>
+
+</div></div>

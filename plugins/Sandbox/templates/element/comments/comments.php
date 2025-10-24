@@ -25,7 +25,7 @@ jQuery(document).ready(function() {
 	}
 ?>
 
-	<div style="float: right" class="pull-right">
+	<div style="float: right" class="pull-end pull-right">
 		<?php echo $this->Html->link($this->Icon->render('add') . ' ' . __('Add {0}', __('Comment')), 'javascript:void(0)', ['escape' => false, 'title' => __('Add {0}', __('Comment')), 'id' => 'displayCommentForm'])?>
 	</div>
 <h5> (<?php echo count($commentsData); ?>)</h5>

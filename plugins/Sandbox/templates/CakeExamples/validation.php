@@ -4,6 +4,12 @@
  * @var \App\Model\Entity\Entity $animal
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <div class="form">
 <h2>Validation</h2>
 Test validation on marshal and rules on save.
@@ -36,3 +42,5 @@ Check it out yourself. Unfortunately, there is no feedback on the failing domain
 And it seems they run only when validation itself passed, so it is a two-step process.
 So I would recommend to skip them as much as possible, and shift all validation focus on
 the validation level (marshal) then.
+
+</div></div>

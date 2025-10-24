@@ -19,4 +19,5 @@
 	<li><?php echo $this->Navigation->link('Forms', ['action' => 'forms'])?></li>
 	<li><?php echo $this->Navigation->link('Validation', ['action' => 'validation'])?></li>
 	<li><?php echo $this->Navigation->link('API', ['action' => 'api'])?></li>
+	<li><?php echo $this->Navigation->link('NumberHelper', ['action' => 'numberHelper'])?></li>
 </ul>

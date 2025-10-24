@@ -20,7 +20,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\CommonHelper $Common
  * @property \Flash\View\Helper\FlashHelper $Flash
  * @property \Tools\View\Helper\TimeHelper $Time
- * @property \Tools\View\Helper\NumberHelper $Number
+ * @property \CakeDecimal\View\Helper\NumberHelper $Number
  * @property \Data\View\Helper\DataHelper $Data
  * @property \Tools\View\Helper\GravatarHelper $Gravatar
  * @property \QrCode\View\Helper\QrCodeHelper $QrCode

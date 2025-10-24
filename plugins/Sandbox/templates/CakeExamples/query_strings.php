@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <?php $this->append('script'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -56,3 +62,5 @@ echo $this->Highlighter->highlight($data, ['lang' => 'php']);
 
 <?php echo $this->Html->link('A simple array', ['action' => 'query_strings', '?' => ['key' => ['v1', 'v2']]]); ?>
 </p>
+
+</div></div>

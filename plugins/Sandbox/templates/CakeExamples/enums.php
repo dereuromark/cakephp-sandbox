@@ -8,6 +8,11 @@ use Cake\Core\Plugin;
 use Cake\Utility\Xml;
 
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/cake'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
 
 <?php $this->append('script'); ?>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -137,3 +142,5 @@ echo $this->Highlighter->highlight($result, ['lang' => 'xml']);
 <ul>
 	<li><?php echo $this->Html->link('Validation', ['action' => 'enumValidation']);?></li>
 </ul>
+
+</div></div>
