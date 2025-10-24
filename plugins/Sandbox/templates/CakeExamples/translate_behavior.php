@@ -4,6 +4,7 @@
  * @var \Sandbox\Model\Entity\DemoArticle $translatedArticle
  * @var string $locale
  * @var array<string, string> $availableLocales
+ * @var array<array<string, mixed>> $queries
  */
 ?>
 
@@ -62,6 +63,25 @@
 		<small class="text-muted">
 			<strong>Current Locale:</strong> <code><?= h($locale) ?></code>
 		</small>
+	</div>
+</div>
+
+<div class="card mb-4">
+	<div class="card-header bg-info text-white">
+		<h4 class="mb-0">
+			<?= $this->Html->icon('code') ?>
+			SQL Queries Executed
+		</h4>
+	</div>
+	<div class="card-body">
+		<p class="text-muted">These queries show how TranslateBehavior retrieves translated content using the shadow table:</p>
+		<?php foreach ($queries as $index => $query) { ?>
+			<div class="mb-3">
+				<strong>Query <?= $index + 1 ?>:</strong>
+				<small class="text-muted">(<?= number_format($query['took'] * 1000, 2) ?> ms)</small>
+				<pre class="bg-light p-3 rounded"><code class="language-sql"><?= h($query['query']) ?></code></pre>
+			</div>
+		<?php } ?>
 	</div>
 </div>
 

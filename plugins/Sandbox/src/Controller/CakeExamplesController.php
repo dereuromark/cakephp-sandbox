@@ -226,11 +226,28 @@ class CakeExamplesController extends SandboxAppController {
 		// Ensure sample data exists
 		$article = $this->_ensureDemoArticle();
 
+		// Set up query logging to show how translations work
+		$queries = [];
+		$this->_enableQueryLogging($articlesTable->getConnection(), $queries);
+
 		// Set the locale before fetching - this tells TranslateBehavior which translation to use
 		I18n::setLocale($locale);
 
 		// Fetch article - TranslateBehavior will automatically return the translated version
 		$translatedArticle = $articlesTable->get($article->id);
+
+		// Filter out schema introspection queries
+		$queries = array_values(array_filter($queries, function ($query) {
+			return stripos($query['query'], 'information_schema') === false
+				&& stripos($query['query'], 'SHOW FULL COLUMNS') === false
+				&& stripos($query['query'], 'SHOW INDEXES') === false
+				&& stripos($query['query'], 'SHOW TABLE STATUS') === false;
+		}));
+
+		// Format SQL queries for better readability
+		foreach ($queries as &$query) {
+			$query['query'] = $this->_formatSql($query['query']);
+		}
 
 		$availableLocales = [
 			'en' => 'English',
@@ -239,7 +256,7 @@ class CakeExamplesController extends SandboxAppController {
 			'fr' => 'Français (French)',
 		];
 
-		$this->set(compact('article', 'translatedArticle', 'locale', 'availableLocales'));
+		$this->set(compact('article', 'translatedArticle', 'locale', 'availableLocales', 'queries'));
 	}
 
 	/**
@@ -279,6 +296,53 @@ class CakeExamplesController extends SandboxAppController {
 		}
 
 		return $article;
+	}
+
+	/**
+	 * Enable query logging for demonstration purposes
+	 *
+	 * @param \Cake\Database\Connection $connection Database connection
+	 * @param array $queries Array to store queries (passed by reference)
+	 * @return void
+	 */
+	protected function _enableQueryLogging($connection, array &$queries): void {
+		$logger = new class ($queries) implements \Psr\Log\LoggerInterface {
+			private array $queries;
+
+			public function __construct(array &$queries) {
+				$this->queries = &$queries;
+			}
+
+			public function log($level, $message, array $context = []): void {
+				$this->queries[] = [
+					'query' => (string)$message,
+					'took' => $context['took'] ?? 0,
+				];
+			}
+
+			public function emergency($message, array $context = []): void { $this->log('emergency', $message, $context); }
+			public function alert($message, array $context = []): void { $this->log('alert', $message, $context); }
+			public function critical($message, array $context = []): void { $this->log('critical', $message, $context); }
+			public function error($message, array $context = []): void { $this->log('error', $message, $context); }
+			public function warning($message, array $context = []): void { $this->log('warning', $message, $context); }
+			public function notice($message, array $context = []): void { $this->log('notice', $message, $context); }
+			public function info($message, array $context = []): void { $this->log('info', $message, $context); }
+			public function debug($message, array $context = []): void { $this->log('debug', $message, $context); }
+		};
+
+		$connection->getDriver()->setLogger($logger);
+	}
+
+	/**
+	 * Format SQL query for better readability (using Doctrine SqlFormatter like DebugKit)
+	 *
+	 * @param string $sql SQL query
+	 * @return string Formatted SQL
+	 */
+	protected function _formatSql(string $sql): string {
+		$formatter = new \Doctrine\SqlFormatter\SqlFormatter(new \Doctrine\SqlFormatter\NullHighlighter());
+
+		return $formatter->format($sql);
 	}
 
 }

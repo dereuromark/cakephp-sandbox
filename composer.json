@@ -66,6 +66,7 @@
 		"dereuromark/cakephp-decimal": "dev-master",
 		"brick/math": "^0.14.0",
 		"league/commonmark": "^2.0",
+		"doctrine/sql-formatter": "^1.5.2",
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "^5.0.1",
 		"jdorn/sql-formatter": "@stable",
