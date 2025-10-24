@@ -26,7 +26,10 @@
 		?>
 	</div>
 
-	<h2><?php echo __('Countries');?> table and Search functionality</h2>
+	<div class="float-end" style="display: inline-block; min-width: 100px;">
+		<?php echo $this->Paginator->limitControl([10 => '10', 20 => '20', 50 => '50', 100 => '100'], null, ['label' => false]); ?>
+	</div>
+	<h2 style="margin: 0;"><?php echo __('Countries');?> table and Search functionality</h2>
 
 <table class="table list">
 <tr>
