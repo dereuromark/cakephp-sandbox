@@ -30,6 +30,7 @@
 	<li class="heading"><?= __('I18n & Behaviors') ?></li>
 	<li><?php echo $this->Navigation->link('I18n (Internationalization)', ['action' => 'i18n'])?></li>
 	<li><?php echo $this->Navigation->link('Translate Behavior', ['action' => 'translateBehavior'])?></li>
+	<li><?php echo $this->Navigation->link('Tree Behavior', ['controller' => 'ToolsExamples', 'action' => 'tree'])?> (via Tools)</li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">

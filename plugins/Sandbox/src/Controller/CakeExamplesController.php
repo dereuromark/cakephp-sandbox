@@ -6,6 +6,7 @@ use Cake\Collection\Collection;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Utility\Hash;
+use Psr\Log\LoggerInterface;
 use Sandbox\Controller\Paginator\CollectionPaginator;
 use Sandbox\Model\Enum\UserStatus;
 
@@ -236,18 +237,8 @@ class CakeExamplesController extends SandboxAppController {
 		// Fetch article - TranslateBehavior will automatically return the translated version
 		$translatedArticle = $articlesTable->get($article->id);
 
-		// Filter out schema introspection queries
-		$queries = array_values(array_filter($queries, function ($query) {
-			return stripos($query['query'], 'information_schema') === false
-				&& stripos($query['query'], 'SHOW FULL COLUMNS') === false
-				&& stripos($query['query'], 'SHOW INDEXES') === false
-				&& stripos($query['query'], 'SHOW TABLE STATUS') === false;
-		}));
-
-		// Format SQL queries for better readability
-		foreach ($queries as &$query) {
-			$query['query'] = $this->_formatSql($query['query']);
-		}
+		// Process queries: filter and format
+		$this->_processQueries($queries);
 
 		$availableLocales = [
 			'en' => 'English',
@@ -306,13 +297,22 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	protected function _enableQueryLogging($connection, array &$queries): void {
-		$logger = new class ($queries) implements \Psr\Log\LoggerInterface {
-			private array $queries;
-
-			public function __construct(array &$queries) {
-				$this->queries = &$queries;
+		$logger = new class ($queries) implements LoggerInterface {
+			/**
+			 * @param array<array<string, mixed>> $queries
+			 */
+			public function __construct(
+				protected array &$queries,
+			) {
 			}
 
+			/**
+			 * @param mixed $level
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @throws void
+			 * @return void
+			 */
 			public function log($level, $message, array $context = []): void {
 				$this->queries[] = [
 					'query' => (string)$message,
@@ -320,17 +320,101 @@ class CakeExamplesController extends SandboxAppController {
 				];
 			}
 
-			public function emergency($message, array $context = []): void { $this->log('emergency', $message, $context); }
-			public function alert($message, array $context = []): void { $this->log('alert', $message, $context); }
-			public function critical($message, array $context = []): void { $this->log('critical', $message, $context); }
-			public function error($message, array $context = []): void { $this->log('error', $message, $context); }
-			public function warning($message, array $context = []): void { $this->log('warning', $message, $context); }
-			public function notice($message, array $context = []): void { $this->log('notice', $message, $context); }
-			public function info($message, array $context = []): void { $this->log('info', $message, $context); }
-			public function debug($message, array $context = []): void { $this->log('debug', $message, $context); }
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function emergency($message, array $context = []): void {
+				$this->log('emergency', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function alert($message, array $context = []): void {
+				$this->log('alert', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function critical($message, array $context = []): void {
+				$this->log('critical', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function error($message, array $context = []): void {
+				$this->log('error', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function warning($message, array $context = []): void {
+				$this->log('warning', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function notice($message, array $context = []): void {
+				$this->log('notice', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function info($message, array $context = []): void {
+				$this->log('info', $message, $context);
+			}
+
+			/**
+			 * @param \Stringable|string $message
+			 * @param array<string, mixed> $context
+			 * @return void
+			 */
+			public function debug($message, array $context = []): void {
+				$this->log('debug', $message, $context);
+			}
 		};
 
 		$connection->getDriver()->setLogger($logger);
+	}
+
+	/**
+	 * Process queries: filter out schema introspection and format SQL
+	 *
+	 * @param array $queries Array of queries (passed by reference)
+	 * @return void
+	 */
+	protected function _processQueries(array &$queries): void {
+		// Filter out schema introspection queries
+		$queries = array_values(array_filter($queries, function ($query) {
+			return stripos($query['query'], 'information_schema') === false
+				&& stripos($query['query'], 'SHOW FULL COLUMNS') === false
+				&& stripos($query['query'], 'SHOW INDEXES') === false
+				&& stripos($query['query'], 'SHOW TABLE STATUS') === false;
+		}));
+
+		// Format SQL queries for better readability
+		foreach ($queries as &$query) {
+			$query['query'] = $this->_formatSql($query['query']);
+		}
 	}
 
 	/**
