@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/search'); ?>
 </nav>
@@ -24,5 +25,5 @@
 		echo $this->Form->end();
 		?>
 	</div>
-
+</div>
 </div>

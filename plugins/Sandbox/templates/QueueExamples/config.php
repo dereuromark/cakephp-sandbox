@@ -6,6 +6,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/queue'); ?>
 </nav>
@@ -26,4 +27,4 @@
 	<pre>*/1 * * * * cd /var/www/sandbox && bin/cake queue run -q</pre>
 	<p>This starts a new worker of max 2 minutes every minute, creating a total availability of 2 workers in average.</p>
 
-</div>
+</div></div>

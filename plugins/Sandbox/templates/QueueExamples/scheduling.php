@@ -9,6 +9,7 @@
 $this->loadHelper('Queue.QueueProgress');
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/queue'); ?>
 </nav>
@@ -71,4 +72,4 @@ $this->loadHelper('Queue.QueueProgress');
 		It works similar to crontab, only from your backend and without the need to access the server directly.
 	</p>
 
-</div>
+</div></div>

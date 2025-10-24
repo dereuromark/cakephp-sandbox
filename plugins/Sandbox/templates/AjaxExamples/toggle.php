@@ -46,7 +46,7 @@ $(function() {
 
 </style>
 <?php $this->end(); ?>
-
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -74,5 +74,5 @@ A simple AJAX toggle. Press F5 after you changed it to verify that the "simulate
 		Status/Active: <span class="toggle-element" id="example" data-value="<?php echo $status; ?>" data-rel="<?php echo $this->Url->build(['_ext' => 'json']); ?>"><?php echo $this->Format->yesNo($status); ?></span>
 	</div>
 </div>
-
+</div>
 </div>

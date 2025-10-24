@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/dto'); ?>
 </nav>
@@ -18,4 +19,4 @@
 
 	<p>See <a href="https://github.com/dereuromark/cakephp-dto/blob/master/docs/Examples.md" target="_blank">this</a> for some basic examples.</p>
 
-</div>
+</div></div>

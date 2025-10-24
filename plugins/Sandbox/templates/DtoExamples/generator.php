@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/dto'); ?>
 </nav>
@@ -14,4 +15,4 @@
 
 	<p><?php echo $this->Html->link('Try it out', ['prefix' => 'Admin', 'plugin' => 'CakeDto', 'controller' => 'Generate', 'action' => 'index']);?></p>
 
-</div>
+</div></div>

@@ -5,6 +5,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -30,4 +31,4 @@
 <h3>Explanations</h3>
 The "from" date must come before "to".
 
-</div>
+</div></div>

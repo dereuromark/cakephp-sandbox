@@ -6,7 +6,7 @@
  * @var \Sandbox\Model\Entity\Product $max
  */
 ?>
-
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/search'); ?>
 </nav>
@@ -424,5 +424,5 @@
 			<p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
 		</div>
 	</div>
-
+</div>
 </div>

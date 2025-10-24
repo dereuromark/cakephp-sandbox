@@ -28,7 +28,7 @@ $(function() {
 });
 </script>
 <?php $this->end(); ?>
-
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -47,5 +47,5 @@ We just need our `result.now` date value.
 <div id="result-container">
 <i>n/a</i>
 </div>
-
+</div>
 </div>

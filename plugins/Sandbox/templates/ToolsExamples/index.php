@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -48,4 +49,4 @@
 	<h3>I18n language switching</h3>
 	<p>Allows a quick language switch for your app</p>
 
-</div>
+</div></div>

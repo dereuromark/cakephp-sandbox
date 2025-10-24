@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -50,4 +51,4 @@ table td {
 	padding: 4px;
 }
 </style>
-<?php $this->end(); ?>
+<?php $this->end(); ?></div>

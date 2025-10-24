@@ -50,6 +50,7 @@ $(function() {
 </style>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -84,4 +85,4 @@ the redirect URL and its status code to manually use it in your JS/jQuery code.
 	</p>
 
 </div>
-
+</div>

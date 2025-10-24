@@ -23,6 +23,7 @@ $(document).ready(function() {
 </script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -58,4 +59,4 @@ You only need
 		<li>URL needs to be rewritten/updated to be in sync with current page - for a clean user experience</li>
 	</ul>
 
-</div>
+</div></div>

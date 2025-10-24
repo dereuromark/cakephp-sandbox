@@ -7,6 +7,7 @@
 $this->loadHelper('Queue.QueueProgress');
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/queue'); ?>
 </nav>
@@ -47,4 +48,4 @@ $this->loadHelper('Queue.QueueProgress');
 	</ul>
 	<?php } ?>
 
-</div>
+</div></div>

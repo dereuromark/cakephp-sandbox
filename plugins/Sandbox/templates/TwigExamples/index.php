@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 </nav>
 <div class="page index col-sm-8 col-12">
@@ -18,4 +19,4 @@
 		</li>
 	</ul>
 
-</div>
+</div></div>

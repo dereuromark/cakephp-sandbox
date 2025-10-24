@@ -5,6 +5,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -31,4 +32,4 @@ The confirm fields needs to be checked. This simple validation is added with a b
 <code><pre>$this->ModelName->addBehavior('Tools.Confirmable');
 </pre></code>
 
-</div>
+</div></div>

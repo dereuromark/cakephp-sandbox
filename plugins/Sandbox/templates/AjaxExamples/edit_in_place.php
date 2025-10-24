@@ -7,7 +7,7 @@
 
 <?php $this->Html->script('/assets/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js', ['block' => true]); ?>
 <?php $this->Html->css('/assets/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css', ['block' => true]); ?>
-
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -72,3 +72,4 @@ $(function() {
 });
 </script>
 <?php $this->end();
+</div>

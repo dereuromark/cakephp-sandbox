@@ -13,6 +13,7 @@
 <script>hljs.highlightAll();</script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/decimal'); ?>
 </nav>
@@ -63,4 +64,4 @@
 		<li>The form has novalidate true set to make sure it can always be posted, even if not yet valid.</li>
 	</ul>
 
-</div>
+</div></div>

@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/flash'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <h2>Flash messages and AJAX</h2>
 
 
@@ -71,4 +77,6 @@ Let's simulate an action as button icon:
 		});
 
 	</script>
-<?php $this->end();
+<?php $this->end(); ?>
+
+</div></div>

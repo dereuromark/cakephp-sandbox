@@ -17,6 +17,7 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 <script>hljs.highlightAll();</script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/dto'); ?>
 </nav>
@@ -67,4 +68,4 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 	</ul>
 
 
-</div>
+</div></div>

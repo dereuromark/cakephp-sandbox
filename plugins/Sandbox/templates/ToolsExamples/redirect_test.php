@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -38,4 +39,4 @@
 	<p>Also see how you can refresh the edit form and it still works. With hidden inputs you usually lose the value.</p>
 
 
-</div>
+</div></div>

@@ -3,6 +3,12 @@
  * @var \App\View\AppView $this
  */
 ?>
+<div class="row">
+<nav class="actions col-sm-4 col-12">
+	<?php echo $this->element('navigation/flash'); ?>
+</nav>
+<div class="page index col-sm-8 col-12">
+
 <h1>Message Groups</h1>
 <p>You can customize the grouping with the <code>types</code> config of the helper.</p>
 
@@ -34,3 +40,5 @@ $this->Flash->info(\'I am some info message for you\');';
 
 echo $this->Highlighter->highlight($codeHighlight, ['lang' => 'php']);
 ?>
+
+</div></div>

@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/templating'); ?>
 </nav>
@@ -31,4 +32,4 @@ TEXT;
 
 	<p>No escapeTitle necessary here anymore.</p>
 
-</div>
+</div></div>

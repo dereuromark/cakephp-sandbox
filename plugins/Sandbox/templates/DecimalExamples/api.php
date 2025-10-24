@@ -13,6 +13,7 @@
 <script>hljs.highlightAll();</script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/decimal'); ?>
 </nav>
@@ -71,4 +72,4 @@
 		</li>
 	</ul>
 
-</div>
+</div></div>

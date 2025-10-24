@@ -4,6 +4,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/geo'); ?>
 </nav>
@@ -50,4 +51,4 @@ $this->GoogleMap->finalize();
 
 <p>The green icons have some HTML window content which will show upon click.</p>
 
-</div>
+</div></div>

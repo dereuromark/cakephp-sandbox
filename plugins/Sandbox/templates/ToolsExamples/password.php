@@ -5,6 +5,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -44,4 +45,4 @@ The password fields are optional, but as soon as the pwd field has content, both
 are validated.
 <?php } ?>
 
-</div>
+</div></div>

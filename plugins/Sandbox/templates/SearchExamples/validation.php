@@ -5,7 +5,7 @@
  * @var \Sandbox\Form\CountrySearchForm $searchForm
  */
 ?>
-
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/search'); ?>
 </nav>
@@ -83,5 +83,5 @@ foreach ($countries as $country):
 </table>
 
 <?php echo $this->element('Tools.pagination'); ?>
-
+</div>
 </div>

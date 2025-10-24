@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Entity $user
  */
 ?>
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/ajax'); ?>
 </nav>
@@ -80,3 +81,5 @@ echo $this->Form->end();?>
 
 </script>
 <?php $this->end();
+</div>
+</div>

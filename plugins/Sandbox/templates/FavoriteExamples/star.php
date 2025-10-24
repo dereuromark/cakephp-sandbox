@@ -5,6 +5,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/favorite'); ?>
 </nav>
@@ -28,4 +29,4 @@
 	}
 	?>
 
-</div>
+</div></div>

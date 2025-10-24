@@ -12,6 +12,7 @@
 <script>hljs.highlightAll();</script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/decimal'); ?>
 </nav>
@@ -65,4 +66,4 @@ echo $this->Highlighter->highlight($code, ['lang' => 'php']);
 	echo $this->Form->end();
 	?>
 
-</div>
+</div></div>

@@ -10,6 +10,7 @@ use Brick\VarExporter\VarExporter;
 
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -149,4 +150,4 @@ use Brick\VarExporter\VarExporter;
 	echo $this->Highlighter->highlight($array, ['lang' => 'php']);
 	?>
 
-</div>
+</div></div>

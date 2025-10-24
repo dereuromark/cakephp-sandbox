@@ -14,6 +14,7 @@ use PhpCollective\DecimalObject\Decimal;
 <script>hljs.highlightAll();</script>
 <?php $this->end(); ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/decimal'); ?>
 </nav>
@@ -116,4 +117,4 @@ PHP;
 
 	<p>See <a href="https://github.com/php-collective/decimal-object/tree/master/docs" target="_blank">this</a> for basic examples and API details.</p>
 
-</div>
+</div></div>

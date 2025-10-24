@@ -5,6 +5,7 @@
  */
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/comments'); ?>
 </nav>
@@ -36,4 +37,4 @@
 	echo $this->element('comments/comments', ['alias' => 'SandboxPosts', 'id' => $sandboxPost->id]);
 	?>
 
-</div>
+</div></div>

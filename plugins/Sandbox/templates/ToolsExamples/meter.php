@@ -22,6 +22,7 @@ if ($max === null) {
 
 ?>
 
+<div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('navigation/tools'); ?>
 </nav>
@@ -70,4 +71,4 @@ echo $this->Form->end();
 ?>
 
 
-</div>
+</div></div>
