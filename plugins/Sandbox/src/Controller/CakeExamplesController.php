@@ -6,6 +6,8 @@ use Cake\Collection\Collection;
 use Cake\Http\Exception\NotFoundException;
 use Cake\I18n\I18n;
 use Cake\Utility\Hash;
+use Doctrine\SqlFormatter\NullHighlighter;
+use Doctrine\SqlFormatter\SqlFormatter;
 use Psr\Log\LoggerInterface;
 use Sandbox\Controller\Paginator\CollectionPaginator;
 use Sandbox\Model\Enum\UserStatus;
@@ -308,6 +310,9 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param mixed $level
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function log(mixed $level, string|\Stringable $message, array $context = []): void {
@@ -322,6 +327,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function emergency(string|\Stringable $message, array $context = []): void {
@@ -329,6 +336,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function alert(string|\Stringable $message, array $context = []): void {
@@ -336,6 +345,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function critical(string|\Stringable $message, array $context = []): void {
@@ -343,6 +354,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function error(string|\Stringable $message, array $context = []): void {
@@ -350,6 +363,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function warning(string|\Stringable $message, array $context = []): void {
@@ -357,6 +372,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function notice(string|\Stringable $message, array $context = []): void {
@@ -364,6 +381,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function info(string|\Stringable $message, array $context = []): void {
@@ -371,6 +390,8 @@ class CakeExamplesController extends SandboxAppController {
 			}
 
 			/**
+			 * @param \Stringable|string $message
+			 * @param array $context
 			 * @return void
 			 */
 			public function debug(string|\Stringable $message, array $context = []): void {
@@ -409,7 +430,7 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return string Formatted SQL
 	 */
 	protected function _formatSql(string $sql): string {
-		$formatter = new \Doctrine\SqlFormatter\SqlFormatter(new \Doctrine\SqlFormatter\NullHighlighter());
+		$formatter = new SqlFormatter(new NullHighlighter());
 
 		return $formatter->format($sql);
 	}

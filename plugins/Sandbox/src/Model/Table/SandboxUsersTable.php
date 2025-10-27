@@ -3,6 +3,7 @@
 namespace Sandbox\Model\Table;
 
 use Cake\Database\Type\EnumType;
+use Cake\Validation\Validator;
 use Sandbox\Model\Enum\UserStatus;
 use Tools\Model\Table\Table;
 
@@ -41,7 +42,7 @@ class SandboxUsersTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->requirePresence('username', 'create')
 			->notBlank('username', 'Mandatory');

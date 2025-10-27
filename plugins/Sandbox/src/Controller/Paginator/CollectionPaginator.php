@@ -66,6 +66,9 @@ class CollectionPaginator implements PaginatorInterface {
 	}
 
 	/**
+	 * @param mixed $target
+	 * @param array $params
+	 * @param array $settings
 	 * @return \Cake\Datasource\Paging\PaginatedInterface
 	 */
 	public function paginate(

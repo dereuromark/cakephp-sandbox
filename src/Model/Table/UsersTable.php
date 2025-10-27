@@ -2,6 +2,7 @@
 
 namespace App\Model\Table;
 
+use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
 /**
@@ -46,7 +47,7 @@ class UsersTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->requirePresence('username', 'create')
 			->notBlank('username', 'Mandatory')

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Model\Table;
 
+use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
 /**
@@ -41,7 +42,7 @@ class SandboxProfilesTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->requirePresence('username', 'create')
 			->notBlank('username', 'Mandatory');

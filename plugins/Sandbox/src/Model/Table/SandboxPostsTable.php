@@ -3,6 +3,7 @@
 namespace Sandbox\Model\Table;
 
 use Cake\ORM\Query\SelectQuery;
+use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
 /**
@@ -47,7 +48,7 @@ class SandboxPostsTable extends Table {
 	 *
 	 * @return \Cake\Validation\Validator
 	 */
-	public function validationDefault(\Cake\Validation\Validator $validator): \Cake\Validation\Validator {
+	public function validationDefault(Validator $validator): Validator {
 		$validator
 			->requirePresence('title', 'create')
 			->notBlank('title', 'Mandatory');
