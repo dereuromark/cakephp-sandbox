@@ -128,11 +128,9 @@ class RegistrationStateMachineHandler implements StateMachineHandlerInterface {
 	/**
 	 * {@inheritDoc]
 	 *
-	 * @param string $processName
-	 *
 	 * @return string
 	 */
-	public function getInitialStateForProcess($processName): string {
+	public function getInitialStateForProcess(string $processName): string {
 		return static::STATE_INIT;
 	}
 

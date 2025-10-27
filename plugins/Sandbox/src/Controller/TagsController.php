@@ -160,6 +160,7 @@ class TagsController extends SandboxAppController {
 				$tagList = [];
 				if ($category->tags) {
 					foreach ($category->tags as $tag) {
+						/** @var \Tags\Model\Entity\Tag $tag */
 						$tagString = $tag->label;
 						if ($tag->color) {
 							$tagString .= '@' . $tag->color;

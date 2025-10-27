@@ -63,6 +63,7 @@ class SandboxPostsTable extends Table {
 	 * @return \Search\Manager
 	 */
 	public function searchManager() {
+		/** @var \Search\Manager $searchManager */
 		$searchManager = $this->behaviors()->Search->searchManager();
 		$searchManager
 			->like('title', ['before' => true, 'after' => true])

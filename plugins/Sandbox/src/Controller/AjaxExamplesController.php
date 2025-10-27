@@ -33,7 +33,7 @@ class AjaxExamplesController extends SandboxAppController {
 		$this->loadComponent('Data.CountryStateHelper');
 		$this->loadComponent('Shim.RequestHandler');
 
-		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'])) {
+		if (in_array($this->request->getParam('action'), ['redirectingPrevented', 'form', 'toggle', 'editInPlace', 'editInPlaceEmail', 'tableDelete'], true)) {
 			$this->loadComponent('Ajax.Ajax');
 			if ($this->request->getQuery('no-header')) {
 				$this->Flash->setConfig('noSessionOnAjax', false);

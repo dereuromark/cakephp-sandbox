@@ -61,8 +61,6 @@ class CountrySearchForm extends Form {
 	/**
 	 * Execute the form (not used for search)
 	 *
-	 * @param array<string, mixed> $data
-	 *
 	 * @return bool
 	 */
 	protected function _execute(array $data): bool {

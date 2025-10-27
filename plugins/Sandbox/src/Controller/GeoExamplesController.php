@@ -43,6 +43,7 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function filter() {
+		/** @var \Sandbox\Model\Entity\SandboxCity $city */
 		$city = $this->fetchTable('Sandbox.SandboxCities')->find()
 			->contain(['Countries'])
 			->where(['SandboxCities.name' => 'Berlin'])

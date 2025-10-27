@@ -72,6 +72,8 @@ class CsvController extends SandboxAppController {
 
 		// Just to showcase how nullable date(time)s work we remove the dates from the first row
 		foreach ($countries as $country) {
+			/** @var \Data\Model\Entity\Country $country */
+			// @phpstan-ignore assign.propertyType
 			$country->iso2 = null;
 			$country->modified = null;
 

@@ -1,6 +1,8 @@
 includes:
-    - vendor/cakedc/cakephp-phpstan/extension.neon
-    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+	- vendor/cakedc/cakephp-phpstan/extension.neon
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+	- vendor/rector/type-perfect/config/extension.neon
+	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
 	level: 8
@@ -19,6 +21,31 @@ parameters:
 
 	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php
+
+	type_perfect:
+		no_mixed_property: true
+		no_mixed_caller: true
+		null_over_false: true
+	strictRules:
+		disallowedLooseComparison: false
+		booleansInConditions: false
+		booleansInLoopConditions: false
+		uselessCast: false
+		requireParentConstructorCall: false
+		disallowedBacktick: false
+		disallowedEmpty: false
+		disallowedImplicitArrayCreation: true
+		disallowedShortTernary: false
+		overwriteVariablesWithLoop: true
+		closureUsesThis: false
+		matchingInheritedMethodNames: true
+		numericOperandsInArithmeticOperators: false
+		strictFunctionCalls: true
+		dynamicCallOnStaticMethod: true
+		switchConditionsMatchingType: false
+		noVariableVariables: false
+		strictArrayFilter: true
+		illegalConstructorMethodCall: true
 
 	ignoreErrors:
 		- identifier: missingType.generics

@@ -20,8 +20,10 @@ class SandboxAppController extends AppController {
 		foreach ($methods as $method) {
 			$actions[] = $method->getName();
 		}
-		/** @var class-string $parentClass */
 		$parentClass = get_parent_class($Controller);
+		if ($parentClass === false) {
+			$parentClass = $Controller;
+		}
 		$parentMethods = get_class_methods($parentClass);
 		$parentMethods[] = 'index';
 		$parentMethods[] = 'loadModel';

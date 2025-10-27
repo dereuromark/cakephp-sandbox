@@ -140,8 +140,10 @@ class RegistrationDemoController extends AppController {
 			$stateMachineFacade = new StateMachineFacade();
 			$itemDto = new ItemDto();
 			$itemDto->setIdentifier((int)$id);
+			/** @var \StateMachineSandbox\Model\Entity\Registration|null $registrationEntity */
 			$registrationEntity = null;
 			foreach ($registrations as $registration) {
+				/** @var \StateMachineSandbox\Model\Entity\Registration $registration */
 				if ($registration->id === (int)$id) {
 					$registrationEntity = $registration;
 
@@ -150,6 +152,9 @@ class RegistrationDemoController extends AppController {
 			}
 			if (!$registrationEntity) {
 				throw new NotFoundException('No such registration');
+			}
+			if (!$registrationEntity->registration_state) {
+				throw new NotFoundException('No state machine data');
 			}
 
 			$itemDto->setStateMachineName(RegistrationStateMachineHandler::NAME);

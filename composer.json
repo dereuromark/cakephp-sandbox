@@ -80,6 +80,8 @@
 		"php-collective/code-sniffer": "dev-master as 0.4.5",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^2.0.0",
+		"rector/type-perfect": "^2.1",
+		"phpstan/phpstan-strict-rules": "^2.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.11.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",

@@ -37,7 +37,7 @@ class SandboxUser extends Entity {
 	/**
 	 * Fields that are excluded from JSON versions of the entity.
 	 *
-	 * @var list<string>
+	 * @var array<string>
 	 */
 	protected array $_hidden = [
 		'password',
