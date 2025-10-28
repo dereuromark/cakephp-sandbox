@@ -17,6 +17,16 @@
 					<div class="plugin-list plugin-list-two-columns">
 						<div class="plugin-item">
 							<h4 class="h6">
+								AuditStash Plugin
+								<span class="badge bg-success ms-2">NEW</span>
+							</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Database Audit Trail with TablePersister', ['controller' => 'AuditStash', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
+							<h4 class="h6">
 								QrCode Plugin
 								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
@@ -168,13 +178,6 @@
 							<h4 class="h6">Expose Plugin</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Expose entities through UUIDs to obfuscate primary key info', ['controller' => 'ExposeExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">AuditStash Plugin</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Database Audit Trail with TablePersister', ['controller' => 'AuditStash', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 					</div>
