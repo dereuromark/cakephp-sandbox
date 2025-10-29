@@ -37,8 +37,6 @@ class AuditLogsTable extends Table {
 
 		$this->setTable('audit_logs');
 		$this->setDisplayField('display_value');
-		$this->setPrimaryKey('id');
-		$this->setEntityClass('App\Model\Entity\AuditLog');
 
 		$this->getSchema()->setColumnType('type', EnumType::from(AuditLogType::class));
 	}
