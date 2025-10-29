@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string $status
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
+ * @property array<\Cake\ORM\Entity> $_i18n
  */
 class DemoArticle extends Entity {
 

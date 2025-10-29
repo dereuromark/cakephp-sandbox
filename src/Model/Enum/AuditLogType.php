@@ -13,5 +13,7 @@ enum AuditLogType: string {
 	case Create = 'create';
 	case Update = 'update';
 	case Delete = 'delete';
+	case Revert = 'revert';
+	case Restore = 'restore';
 
 }

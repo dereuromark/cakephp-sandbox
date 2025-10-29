@@ -59,7 +59,13 @@
                         <div class="list-group-item">
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">
-                                    <span class="badge badge-<?= $log->type === \App\Model\Enum\AuditLogType::Create ? 'success' : ($log->type === \App\Model\Enum\AuditLogType::Update ? 'warning' : 'danger') ?>">
+                                    <span class="badge badge-<?= match($log->type) {
+                                        \App\Model\Enum\AuditLogType::Create => 'success',
+                                        \App\Model\Enum\AuditLogType::Update => 'warning',
+                                        \App\Model\Enum\AuditLogType::Delete => 'danger',
+                                        \App\Model\Enum\AuditLogType::Revert => 'info',
+                                        \App\Model\Enum\AuditLogType::Restore => 'primary',
+                                    } ?>">
                                         <?= h(strtoupper($log->type->value)) ?>
                                     </span>
                                     Article #<?= h($log->primary_key) ?>
@@ -104,14 +110,6 @@
                     <h5>Configuration:</h5>
                     <ul>
                         <li>Plugin loaded in <code>config/plugins.php</code></li>
-                        <li>TablePersister configured in <code>config/app(_custom).php</code>:
-                            <pre><code>'AuditStash' => [
-    'persister' => \AuditStash\Persister\TablePersister::class,
-],</code></pre>
-                        </li>
-                        <li>Behavior added to SandboxArticlesTable:
-                            <pre><code>$this->addBehavior('AuditStash.AuditLog');</code></pre>
-                        </li>
                         <li>Audit logs stored in <code>audit_logs</code> table</li>
                     </ul>
 
@@ -120,6 +118,8 @@
                         <li><strong>Create:</strong> When a new article is added</li>
                         <li><strong>Update:</strong> When an article is modified (tracks original and changed values)</li>
                         <li><strong>Delete:</strong> When an article is removed</li>
+                        <li><strong>Revert:</strong> When changes are reverted to a previous version</li>
+                        <li><strong>Restore:</strong> When a deleted record is restored</li>
                     </ul>
 
                     <h5>Demo Features:</h5>

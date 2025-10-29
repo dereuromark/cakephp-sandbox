@@ -41,7 +41,13 @@
     <div class="card">
         <div class="card-header">
             <h3>
-                <span class="badge badge-<?= $auditLog->type === \App\Model\Enum\AuditLogType::Create ? 'success' : ($auditLog->type === \App\Model\Enum\AuditLogType::Update ? 'warning' : 'danger') ?>">
+                <span class="badge badge-<?= match($auditLog->type) {
+                    \App\Model\Enum\AuditLogType::Create => 'success',
+                    \App\Model\Enum\AuditLogType::Update => 'warning',
+                    \App\Model\Enum\AuditLogType::Delete => 'danger',
+                    \App\Model\Enum\AuditLogType::Revert => 'info',
+                    \App\Model\Enum\AuditLogType::Restore => 'primary',
+                } ?>">
                     <?= h(strtoupper($auditLog->type->value)) ?>
                 </span>
                 Log Entry #<?= h($auditLog->id) ?>

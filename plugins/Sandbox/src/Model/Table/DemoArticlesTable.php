@@ -27,6 +27,7 @@ use Cake\Validation\Validator;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TranslateBehavior
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}>
+ * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
  */
 class DemoArticlesTable extends Table {
 
