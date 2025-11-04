@@ -17,6 +17,7 @@ class RegistrationsControllerTest extends TestCase {
 	 * @var array<string>
 	 */
 	protected array $fixtures = [
+		'app.Users',
 		'plugin.StateMachineSandbox.Registrations',
 	];
 
@@ -24,35 +25,23 @@ class RegistrationsControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIndex(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->get(['plugin' => 'StateMachineSandbox', 'controller' => 'Registrations', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
 	}
 
 	/**
 	 * @return void
 	 */
 	public function testView(): void {
-		$this->markTestIncomplete('Not implemented yet.');
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testAdd(): void {
-		$this->markTestIncomplete('Not implemented yet.');
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testEdit(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->markTestIncomplete('Requires proper fixture with matching session_id and state machine data');
 	}
 
 	/**
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->markTestIncomplete('Requires proper fixture with matching session_id and state machine data');
 	}
 
 }

@@ -64,4 +64,22 @@ class RegistrationDemoControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testProcess() {
+		$this->get(['plugin' => 'StateMachineSandbox', 'controller' => 'RegistrationDemo', 'action' => 'process']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testRemoveJob() {
+		$this->expectException('Cake\Datasource\Exception\RecordNotFoundException');
+		$this->post(['plugin' => 'StateMachineSandbox', 'controller' => 'RegistrationDemo', 'action' => 'removeJob', 1]);
+	}
+
 }

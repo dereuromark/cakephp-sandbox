@@ -36,4 +36,58 @@ class AuditStashControllerTest extends TestCase {
 		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
 	}
 
+	/**
+	 * Test edit method
+	 *
+	 * @return void
+	 */
+	public function testEdit(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
+	/**
+	 * Test delete method
+	 *
+	 * @return void
+	 */
+	public function testDelete(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
+	/**
+	 * Test viewLog method
+	 *
+	 * @return void
+	 */
+	public function testViewLog(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
+	/**
+	 * Test revert method
+	 *
+	 * @return void
+	 */
+	public function testRevert(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
+	/**
+	 * Test restore method
+	 *
+	 * @return void
+	 */
+	public function testRestore(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
+	/**
+	 * Test partialRevert method
+	 *
+	 * @return void
+	 */
+	public function testPartialRevert(): void {
+		$this->markTestIncomplete('Requires audit_logs table setup from AuditStash plugin migrations');
+	}
+
 }

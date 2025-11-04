@@ -70,4 +70,16 @@ class CsvControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testPaginationCsvDownload() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Csv', 'action' => 'pagination', '_ext' => 'csv', '?' => ['download' => 1]]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

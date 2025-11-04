@@ -2,6 +2,7 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Cake\Routing\Router;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -16,6 +17,15 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 		'plugin.Data.Countries',
 		'plugin.Sandbox.SandboxProducts',
 	];
+
+	/**
+	 * @return void
+	 */
+	public function setUp(): void {
+		parent::setUp();
+
+		Router::extensions(['json', 'xml']);
+	}
 
 	/**
 	 * @return void
@@ -132,6 +142,30 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '?' => ['status' => '1']]);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTableJson() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'table', '_ext' => 'json']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTableXml() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'table', '_ext' => 'xml']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
 	}
 
 }

@@ -75,4 +75,16 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testLogout() {
+		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]];
+		$this->session($session);
+
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'logout']);
+
+		$this->assertResponseCode(302);
+	}
+
 }
