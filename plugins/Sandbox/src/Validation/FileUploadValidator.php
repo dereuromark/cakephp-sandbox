@@ -38,9 +38,9 @@ class FileUploadValidator extends Validator {
 	/**
 	 * Validate for image uploads (JPG, PNG only)
 	 *
-	 * @return self
+	 * @return $this
 	 */
-	public function forImages(): self {
+	public function forImages() {
 		// Extension validation
 		$this->add('file', 'extension', [
 			'rule' => ['extension', ['jpg', 'jpeg', 'png']],
@@ -59,9 +59,9 @@ class FileUploadValidator extends Validator {
 	/**
 	 * Validate for PDF uploads
 	 *
-	 * @return self
+	 * @return $this
 	 */
-	public function forPdfs(): self {
+	public function forPdfs() {
 		// Extension validation
 		$this->add('file', 'extension', [
 			'rule' => ['extension', ['pdf']],

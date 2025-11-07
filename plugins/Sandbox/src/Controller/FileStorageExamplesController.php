@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Http\Exception\NotFoundException;
+use Sandbox\Validation\FileUploadValidator;
 
 /**
  * FileStorage Examples Controller
@@ -53,7 +54,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			$data['collection'] = 'images';
 
 			// Validate using custom validator for images
-			$validator = new \Sandbox\Validation\FileUploadValidator();
+			$validator = new FileUploadValidator();
 			$validator->forImages();
 
 			$errors = $validator->validate($data);
@@ -114,7 +115,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			$data['collection'] = 'pdfs';
 
 			// Validate using custom validator for PDFs
-			$validator = new \Sandbox\Validation\FileUploadValidator();
+			$validator = new FileUploadValidator();
 			$validator->forPdfs();
 
 			$errors = $validator->validate($data);
@@ -175,7 +176,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			$data['collection'] = 'general';
 
 			// Validate using custom validator for general files
-			$validator = new \Sandbox\Validation\FileUploadValidator();
+			$validator = new FileUploadValidator();
 
 			$errors = $validator->validate($data);
 			if (!empty($errors)) {
@@ -230,8 +231,8 @@ class FileStorageExamplesController extends SandboxAppController {
 	 * View/download a file
 	 *
 	 * @param string|null $id File ID
-	 * @return \Cake\Http\Response
 	 * @throws \Cake\Http\Exception\NotFoundException
+	 * @return \Cake\Http\Response
 	 */
 	public function view($id = null) {
 		$this->FileStorage = $this->fetchTable('FileStorage.FileStorage');

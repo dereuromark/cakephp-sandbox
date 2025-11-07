@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "605e2c3220807444666c2319f7a6af34",
+    "content-hash": "b086837de5418ed358a929a460366e43",
     "packages": [
         {
             "name": "brick/math",
@@ -2253,12 +2253,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "62cc8328b96a89a9e8b5c094cc13875e9147e72b"
+                "reference": "a590e582a4f26f258e6c3c493e9c5b90c34881f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/62cc8328b96a89a9e8b5c094cc13875e9147e72b",
-                "reference": "62cc8328b96a89a9e8b5c094cc13875e9147e72b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/a590e582a4f26f258e6c3c493e9c5b90c34881f5",
+                "reference": "a590e582a4f26f258e6c3c493e9c5b90c34881f5",
                 "shasum": ""
             },
             "require": {
@@ -2272,7 +2272,7 @@
             },
             "require-dev": {
                 "php-collective/code-sniffer": "^0.4.1",
-                "php-collective/file-storage-image-processor": "dev-mater as 0.1.0",
+                "php-collective/file-storage-image-processor": "dev-master as 0.1.0",
                 "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
             },
             "suggest": {
@@ -2317,7 +2317,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage/tree/master"
             },
-            "time": "2025-11-07T01:32:53+00:00"
+            "time": "2025-11-07T02:46:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -5916,12 +5916,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage.git",
-                "reference": "3120d965316762a05eb2ebc2a822cdf6bcd76d39"
+                "reference": "51859645a2d1abd24807cc4df44cc921fbbde3d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/3120d965316762a05eb2ebc2a822cdf6bcd76d39",
-                "reference": "3120d965316762a05eb2ebc2a822cdf6bcd76d39",
+                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/51859645a2d1abd24807cc4df44cc921fbbde3d4",
+                "reference": "51859645a2d1abd24807cc4df44cc921fbbde3d4",
                 "shasum": ""
             },
             "require": {
@@ -5936,7 +5936,7 @@
                 "php-collective/code-sniffer": "^0.4.1",
                 "php-collective/file-storage-image-processor": "dev-master as 0.1.0",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.3"
+                "phpunit/phpunit": "^10.3 || ^11.5 || ^12.4"
             },
             "suggest": {
                 "php-collective/file-storage-image-processor": "For image processing"
@@ -5980,7 +5980,7 @@
                 "issues": "https://github.com/php-collective/file-storage/issues",
                 "source": "https://github.com/php-collective/file-storage/tree/master"
             },
-            "time": "2025-11-06T22:31:53+00:00"
+            "time": "2025-11-07T02:18:52+00:00"
         },
         {
             "name": "php-collective/file-storage-factories",
@@ -5988,12 +5988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage-factories.git",
-                "reference": "bcead8a984215fc18b1fe771a856f060e43a3576"
+                "reference": "b9fa6a4fdce73b91f5fe7337a033f1fecf4bad59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage-factories/zipball/bcead8a984215fc18b1fe771a856f060e43a3576",
-                "reference": "bcead8a984215fc18b1fe771a856f060e43a3576",
+                "url": "https://api.github.com/repos/php-collective/file-storage-factories/zipball/b9fa6a4fdce73b91f5fe7337a033f1fecf4bad59",
+                "reference": "b9fa6a4fdce73b91f5fe7337a033f1fecf4bad59",
                 "shasum": ""
             },
             "require": {
@@ -6009,9 +6009,9 @@
                 "league/flysystem-sftp": "^3.22",
                 "league/flysystem-webdav": "^3.21",
                 "league/flysystem-ziparchive": "^3.21",
-                "php-collective/code-sniffer": "^0.2.1",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.3",
+                "php-collective/code-sniffer": "^0.4.1",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^10.3 || ^11.5 || ^12.3",
                 "spatie/flysystem-dropbox": "^3.0.1"
             },
             "default-branch": true,
@@ -6052,7 +6052,7 @@
                 "issues": "https://github.com/php-collective/file-storage-factories/issues",
                 "source": "https://github.com/php-collective/file-storage-factories/tree/master"
             },
-            "time": "2025-11-06T22:16:15+00:00"
+            "time": "2025-11-07T02:17:04+00:00"
         },
         {
             "name": "php-collective/file-storage-image-processor",
@@ -6060,12 +6060,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage-image-processor.git",
-                "reference": "0495fd3e8b3f7580bd33b6531053fd1019327b29"
+                "reference": "d4ddc86ce19af5bce46bfbb656ca5463e66b2d96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage-image-processor/zipball/0495fd3e8b3f7580bd33b6531053fd1019327b29",
-                "reference": "0495fd3e8b3f7580bd33b6531053fd1019327b29",
+                "url": "https://api.github.com/repos/php-collective/file-storage-image-processor/zipball/d4ddc86ce19af5bce46bfbb656ca5463e66b2d96",
+                "reference": "d4ddc86ce19af5bce46bfbb656ca5463e66b2d96",
                 "shasum": ""
             },
             "require": {
@@ -6076,10 +6076,10 @@
             },
             "require-dev": {
                 "instituteweb/composer-scripts": "^1.1",
-                "php-collective/code-sniffer": "^0.2.1",
-                "php-collective/file-storage": "dev-league/flysystem-v3 as 1.0",
-                "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^10.3"
+                "php-collective/code-sniffer": "^0.4.1",
+                "php-collective/file-storage": "dev-master as 1.0",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^10.3 || ^11.5 || ^12.3"
             },
             "default-branch": true,
             "type": "library",
@@ -6117,7 +6117,7 @@
                 "issues": "https://github.com/php-collective/file-storage-image-processor/issues",
                 "source": "https://github.com/php-collective/file-storage-image-processor/tree/master"
             },
-            "time": "2025-11-06T22:27:28+00:00"
+            "time": "2025-11-07T02:34:51+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -7400,6 +7400,66 @@
                 "source": "https://github.com/spatie/image-optimizer/tree/1.8.0"
             },
             "time": "2024-11-04T08:24:54+00:00"
+        },
+        {
+            "name": "spatie/pdf-to-image",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/pdf-to-image.git",
+                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/pdf-to-image/zipball/9a5cb264a99e87e010c65d4ece03b51f821d55bd",
+                "reference": "9a5cb264a99e87e010c65d4ece03b51f821d55bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\PdfToImage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert a pdf to an image",
+            "homepage": "https://github.com/spatie/pdf-to-image",
+            "keywords": [
+                "convert",
+                "image",
+                "pdf",
+                "pdf-to-image",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/pdf-to-image/issues",
+                "source": "https://github.com/spatie/pdf-to-image/tree/1.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2016-12-14T15:37:00+00:00"
         },
         {
             "name": "spryker/cakephp-statemachine",

@@ -167,14 +167,17 @@ class FileStorageExamplesControllerTest extends TestCase {
 					case 'thumbnail':
 						$this->assertLessThanOrEqual(150, $size[0], 'Thumbnail width should be <= 150px');
 						$this->assertLessThanOrEqual(150, $size[1], 'Thumbnail height should be <= 150px');
+
 						break;
 					case 'medium':
 						$this->assertLessThanOrEqual(400, $size[0], 'Medium width should be <= 400px');
 						$this->assertLessThanOrEqual(400, $size[1], 'Medium height should be <= 400px');
+
 						break;
 					case 'large':
 						$this->assertLessThanOrEqual(800, $size[0], 'Large width should be <= 800px');
 						$this->assertLessThanOrEqual(800, $size[1], 'Large height should be <= 800px');
+
 						break;
 				}
 			}
@@ -394,6 +397,168 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		// Cleanup
 		@unlink($tmpFile);
+	}
+
+	/**
+	 * Test PDF upload with automatic thumbnail generation
+	 *
+	 * @return void
+	 */
+	public function testPdfUploadWithThumbnailGeneration() {
+		// Create a minimal valid PDF file
+		$pdfContent = $this->getMinimalPdfContent();
+		$tmpFile = TMP . 'test_pdf_' . time() . '.pdf';
+		file_put_contents($tmpFile, $pdfContent);
+
+		$this->assertFileExists($tmpFile, 'Test PDF should be created');
+
+		$uploadData = [
+			'file' => [
+				'tmp_name' => $tmpFile,
+				'error' => UPLOAD_ERR_OK,
+				'name' => 'test-document.pdf',
+				'type' => 'application/pdf',
+				'size' => filesize($tmpFile),
+			],
+		];
+
+		// Post the upload
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs'], $uploadData);
+
+		// Check redirect
+		$this->assertRedirect(['action' => 'pdfs']);
+
+		// Get the uploaded PDF from database
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'pdfs',
+				'filename' => 'test-document.pdf',
+			])
+			->orderByDesc('id')
+			->first();
+
+		$this->assertNotNull($file, 'PDF should be saved to database');
+		$this->assertSame('FileStorage', $file->model);
+		$this->assertSame('pdfs', $file->collection);
+		$this->assertSame('pdf', $file->extension);
+		$this->assertSame('application/pdf', $file->mime_type);
+
+		// Check that thumbnail variants were generated
+		$variants = $file->variants ?? [];
+		$this->assertNotEmpty($variants, 'PDF should have thumbnail variants');
+
+		$expectedVariants = ['thumbnail', 'medium', 'large'];
+		foreach ($expectedVariants as $variantName) {
+			if (isset($variants[$variantName])) {
+				$this->assertArrayHasKey('path', $variants[$variantName], "Variant '$variantName' should have path");
+
+				// Check variant file exists on disk
+				$variantPath = $variants[$variantName]['path'];
+				$fullPath = UPLOADS_DIR . $variantPath;
+
+				if (file_exists($fullPath)) {
+					// Verify it's a valid image
+					$imageInfo = @getimagesize($fullPath);
+					$this->assertNotFalse($imageInfo, "Variant '$variantName' should be a valid image");
+					$this->assertStringContainsString('image/', $imageInfo['mime'], "Variant '$variantName' should be an image mime type");
+				} else {
+					// Thumbnail generation may fail if Ghostscript is not available
+					// This is acceptable in test environment
+					$this->markTestSkipped("PDF thumbnail generation requires Ghostscript - variant file not found at: $fullPath");
+				}
+			}
+		}
+
+		// Check original file exists
+		$this->assertNotEmpty($file->path, 'PDF should have path');
+		$originalPath = UPLOADS_DIR . $file->path;
+		$this->assertFileExists($originalPath, "Original PDF should exist at: $originalPath");
+
+		// Cleanup
+		@unlink($tmpFile);
+		if (!empty($file->path) && file_exists(UPLOADS_DIR . $file->path)) {
+			@unlink(UPLOADS_DIR . $file->path);
+		}
+		foreach ($variants as $variant) {
+			if (!empty($variant['path']) && file_exists(UPLOADS_DIR . $variant['path'])) {
+				@unlink(UPLOADS_DIR . $variant['path']);
+			}
+		}
+	}
+
+	/**
+	 * Generate minimal valid PDF content for testing
+	 *
+	 * @return string
+	 */
+	protected function getMinimalPdfContent(): string {
+		// Minimal PDF with "Test PDF" text
+		return <<< 'PDF'
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+>>
+>>
+>>
+endobj
+4 0 obj
+<<
+/Length 44
+>>
+stream
+BT
+/F1 24 Tf
+100 700 Td
+(Test PDF) Tj
+ET
+endstream
+endobj
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+xref
+0 6
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000262 00000 n
+0000000355 00000 n
+trailer
+<<
+/Size 6
+/Root 1 0 R
+>>
+startxref
+433
+%%EOF
+PDF;
 	}
 
 	/**

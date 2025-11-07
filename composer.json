@@ -77,7 +77,8 @@
 		"dereuromark/cakephp-audit-stash": "dev-master",
 		"php-collective/file-storage": "dev-master",
 		"php-collective/file-storage-image-processor": "dev-master",
-		"dereuromark/cakephp-file-storage": "dev-master"
+		"dereuromark/cakephp-file-storage": "dev-master",
+		"spatie/pdf-to-image": "^1.2"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.4.5",
