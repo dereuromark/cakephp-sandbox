@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9698c0a04a36b34338e470be4d04773",
+    "content-hash": "605e2c3220807444666c2319f7a6af34",
     "packages": [
         {
             "name": "brick/math",
@@ -178,12 +178,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "f991252c08fd151521b532a63d104f2cf7c16912"
+                "reference": "e05df58b3a5a1f52d64d3dad8a235337c0d52b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/f991252c08fd151521b532a63d104f2cf7c16912",
-                "reference": "f991252c08fd151521b532a63d104f2cf7c16912",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e05df58b3a5a1f52d64d3dad8a235337c0d52b12",
+                "reference": "e05df58b3a5a1f52d64d3dad8a235337c0d52b12",
                 "shasum": ""
             },
             "require": {
@@ -292,7 +292,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-11-03T03:00:57+00:00"
+            "time": "2025-11-06T04:24:54+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -804,16 +804,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.8",
+            "version": "1.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "719026bb30813accb68271fee7e39552a58e9f65"
+                "reference": "1905981ee626e6f852448b7aaa978f8666c5bc54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/719026bb30813accb68271fee7e39552a58e9f65",
-                "reference": "719026bb30813accb68271fee7e39552a58e9f65",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/1905981ee626e6f852448b7aaa978f8666c5bc54",
+                "reference": "1905981ee626e6f852448b7aaa978f8666c5bc54",
                 "shasum": ""
             },
             "require": {
@@ -860,7 +860,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.8"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.9"
             },
             "funding": [
                 {
@@ -872,7 +872,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-08-20T18:49:47+00:00"
+            "time": "2025-11-06T11:46:17+00:00"
         },
         {
             "name": "composer/class-map-generator",
@@ -2248,6 +2248,78 @@
             "time": "2025-10-28T04:54:21+00:00"
         },
         {
+            "name": "dereuromark/cakephp-file-storage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-file-storage.git",
+                "reference": "62cc8328b96a89a9e8b5c094cc13875e9147e72b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/62cc8328b96a89a9e8b5c094cc13875e9147e72b",
+                "reference": "62cc8328b96a89a9e8b5c094cc13875e9147e72b",
+                "shasum": ""
+            },
+            "require": {
+                "brick/varexporter": "^0.3.5 || ^0.4.0 || ^0.5.0 || ^0.6.0",
+                "cakephp/cakephp": "^5.1.1",
+                "php": ">=8.1",
+                "php-collective/file-storage": "dev-master as 0.1.0"
+            },
+            "conflict": {
+                "cakephp/migrations": "<4.5"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "^0.4.1",
+                "php-collective/file-storage-image-processor": "dev-mater as 0.1.0",
+                "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
+            },
+            "suggest": {
+                "cakephp/migrations": "For migrations to run.",
+                "php-collective/file-storage-image-processor": "Required if you want to use the image processing feature of FileStorage"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "FileStorage\\": "src/",
+                    "FileStorage\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://github.com/dereuromark"
+                },
+                {
+                    "name": "Other contributors",
+                    "homepage": "https://github.com/dereuromark/cakephp-file-storage/graphs/contributors",
+                    "role": "Contributors"
+                }
+            ],
+            "description": "This plugin is giving you the possibility to store files in virtually any kind of storage backend. This plugin is wrapping the Gaufrette library (https://github.com/KnpLabs/Gaufrette) library in a CakePHP fashion and provides a simple way to use the storage adapters through the StorageManager class.",
+            "homepage": "https://github.com/dereuromark/cakephp-file-storage-plugin",
+            "keywords": [
+                "abstraction",
+                "cakephp",
+                "file",
+                "filesystem",
+                "media",
+                "storage",
+                "upload"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
+                "source": "https://github.com/dereuromark/cakephp-file-storage/tree/master"
+            },
+            "time": "2025-11-07T01:32:53+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-flash",
             "version": "dev-master",
             "source": {
@@ -3000,12 +3072,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "3306aec43d238d4ff0cca4d57973bbb1a1dfe72a"
+                "reference": "ea8176dad44089494d9a4658dbb8eea11c05e20c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/3306aec43d238d4ff0cca4d57973bbb1a1dfe72a",
-                "reference": "3306aec43d238d4ff0cca4d57973bbb1a1dfe72a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/ea8176dad44089494d9a4658dbb8eea11c05e20c",
+                "reference": "ea8176dad44089494d9a4658dbb8eea11c05e20c",
                 "shasum": ""
             },
             "require": {
@@ -3058,7 +3130,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2025-10-30T02:34:15+00:00"
+            "time": "2025-11-05T00:57:11+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -3893,6 +3965,150 @@
             "time": "2023-09-13T20:46:24+00:00"
         },
         {
+            "name": "intervention/gif",
+            "version": "4.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/gif.git",
+                "reference": "5999eac6a39aa760fb803bc809e8909ee67b451a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/gif/zipball/5999eac6a39aa760fb803bc809e8909ee67b451a",
+                "reference": "5999eac6a39aa760fb803bc809e8909ee67b451a",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^10.0 || ^11.0  || ^12.0",
+                "slevomat/coding-standard": "~8.0",
+                "squizlabs/php_codesniffer": "^3.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Gif\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Native PHP GIF Encoder/Decoder",
+            "homepage": "https://github.com/intervention/gif",
+            "keywords": [
+                "animation",
+                "gd",
+                "gif",
+                "image"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/gif/issues",
+                "source": "https://github.com/Intervention/gif/tree/4.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                },
+                {
+                    "url": "https://ko-fi.com/interventionphp",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2025-03-29T07:46:21+00:00"
+        },
+        {
+            "name": "intervention/image",
+            "version": "3.11.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "8c49eb21a6d2572532d1bc425964264f3e496846"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/8c49eb21a6d2572532d1bc425964264f3e496846",
+                "reference": "8c49eb21a6d2572532d1bc425964264f3e496846",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "intervention/gif": "^4.2",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.6",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^10.0 || ^11.0 || ^12.0",
+                "slevomat/coding-standard": "~8.0",
+                "squizlabs/php_codesniffer": "^3.8"
+            },
+            "suggest": {
+                "ext-exif": "Recommended to be able to read EXIF data properly."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "PHP image manipulation",
+            "homepage": "https://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "resize",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/3.11.4"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                },
+                {
+                    "url": "https://ko-fi.com/interventionphp",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2025-07-30T13:13:19+00:00"
+        },
+        {
             "name": "jasny/twig-extensions",
             "version": "v1.3.1",
             "source": {
@@ -4725,6 +4941,194 @@
             "time": "2025-05-20T12:55:37+00:00"
         },
         {
+            "name": "league/flysystem",
+            "version": "3.30.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "c139fd65c1f796b926f4aec0df37f6caa959a8da"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c139fd65c1f796b926f4aec0df37f6caa959a8da",
+                "reference": "c139fd65c1f796b926f4aec0df37f6caa959a8da",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem-local": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "conflict": {
+                "async-aws/core": "<1.19.0",
+                "async-aws/s3": "<1.14.0",
+                "aws/aws-sdk-php": "3.209.31 || 3.210.0",
+                "guzzlehttp/guzzle": "<7.0",
+                "guzzlehttp/ringphp": "<1.1.1",
+                "phpseclib/phpseclib": "3.0.15",
+                "symfony/http-client": "<5.2"
+            },
+            "require-dev": {
+                "async-aws/s3": "^1.5 || ^2.0",
+                "async-aws/simple-s3": "^1.1 || ^2.0",
+                "aws/aws-sdk-php": "^3.295.10",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "ext-ftp": "*",
+                "ext-mongodb": "^1.3|^2",
+                "ext-zip": "*",
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "google/cloud-storage": "^1.23",
+                "guzzlehttp/psr7": "^2.6",
+                "microsoft/azure-storage-blob": "^1.1",
+                "mongodb/mongodb": "^1.2|^2",
+                "phpseclib/phpseclib": "^3.0.36",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.5.11|^10.0",
+                "sabre/dav": "^4.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/3.30.1"
+            },
+            "time": "2025-10-20T15:35:26+00:00"
+        },
+        {
+            "name": "league/flysystem-local",
+            "version": "3.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-local.git",
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/6691915f77c7fb69adfb87dcd550052dc184ee10",
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "league/flysystem": "^3.0.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\Local\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Local filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "file",
+                "files",
+                "filesystem",
+                "local"
+            ],
+            "support": {
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.30.0"
+            },
+            "time": "2025-05-21T10:34:19+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "reference": "2d6702ff215bf922936ccc1ad31007edc76451b9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3 || ^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "support": {
+                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.16.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-09-21T08:32:55+00:00"
+        },
+        {
             "name": "linkorb/jsmin-php",
             "version": "dev-master",
             "source": {
@@ -5505,6 +5909,215 @@
                 "source": "https://github.com/php-collective/decimal-object/tree/1.3.1"
             },
             "time": "2025-04-03T22:28:46+00:00"
+        },
+        {
+            "name": "php-collective/file-storage",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/file-storage.git",
+                "reference": "3120d965316762a05eb2ebc2a822cdf6bcd76d39"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/3120d965316762a05eb2ebc2a822cdf6bcd76d39",
+                "reference": "3120d965316762a05eb2ebc2a822cdf6bcd76d39",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=8.1",
+                "php-collective/file-storage-factories": "dev-master as 0.1.0",
+                "psr/http-message": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "^0.4.1",
+                "php-collective/file-storage-image-processor": "dev-master as 0.1.0",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.3"
+            },
+            "suggest": {
+                "php-collective/file-storage-image-processor": "For image processing"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "PhpCollective\\Infrastructure\\Storage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Krämer",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "File Storage",
+            "keywords": [
+                "agnostic",
+                "file storage",
+                "file system",
+                "files",
+                "image processing",
+                "media",
+                "persistence",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/file-storage/issues",
+                "source": "https://github.com/php-collective/file-storage/tree/master"
+            },
+            "time": "2025-11-06T22:31:53+00:00"
+        },
+        {
+            "name": "php-collective/file-storage-factories",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/file-storage-factories.git",
+                "reference": "bcead8a984215fc18b1fe771a856f060e43a3576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/file-storage-factories/zipball/bcead8a984215fc18b1fe771a856f060e43a3576",
+                "reference": "bcead8a984215fc18b1fe771a856f060e43a3576",
+                "shasum": ""
+            },
+            "require": {
+                "league/flysystem": "^3.22",
+                "php": ">=8.1",
+                "psr/container": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "instituteweb/composer-scripts": "^1.1",
+                "league/flysystem-aws-s3-v3": "^3.22",
+                "league/flysystem-azure-blob-storage": "^3.22",
+                "league/flysystem-memory": "^3.0",
+                "league/flysystem-sftp": "^3.22",
+                "league/flysystem-webdav": "^3.21",
+                "league/flysystem-ziparchive": "^3.21",
+                "php-collective/code-sniffer": "^0.2.1",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.3",
+                "spatie/flysystem-dropbox": "^3.0.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCollective\\Infrastructure\\Storage\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Krämer",
+                    "homepage": "https://florian-kraemer.net"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "This library is a factory to instantiate storage adapters based on the Flysystem library.",
+            "homepage": "https://github.com/burzum/storage-factory",
+            "keywords": [
+                "abstraction",
+                "dropbox",
+                "file",
+                "filesystem",
+                "ftp",
+                "media",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/file-storage-factories/issues",
+                "source": "https://github.com/php-collective/file-storage-factories/tree/master"
+            },
+            "time": "2025-11-06T22:16:15+00:00"
+        },
+        {
+            "name": "php-collective/file-storage-image-processor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/file-storage-image-processor.git",
+                "reference": "0495fd3e8b3f7580bd33b6531053fd1019327b29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/file-storage-image-processor/zipball/0495fd3e8b3f7580bd33b6531053fd1019327b29",
+                "reference": "0495fd3e8b3f7580bd33b6531053fd1019327b29",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "intervention/image": "^3.2.0",
+                "php": ">=8.1",
+                "spatie/image-optimizer": "^1.2.0"
+            },
+            "require-dev": {
+                "instituteweb/composer-scripts": "^1.1",
+                "php-collective/code-sniffer": "^0.2.1",
+                "php-collective/file-storage": "dev-league/flysystem-v3 as 1.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^10.3"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCollective\\Infrastructure\\Storage\\Processor\\Image\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Krämer",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Mark Scherer",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "File Storage Image Processor",
+            "keywords": [
+                "agnostic",
+                "file storage",
+                "file system",
+                "files",
+                "image processing",
+                "media",
+                "persistence",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/file-storage-image-processor/issues",
+                "source": "https://github.com/php-collective/file-storage-image-processor/tree/master"
+            },
+            "time": "2025-11-06T22:27:28+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -6734,6 +7347,61 @@
             "time": "2023-09-03T09:24:00+00:00"
         },
         {
+            "name": "spatie/image-optimizer",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/image-optimizer.git",
+                "reference": "4fd22035e81d98fffced65a8c20d9ec4daa9671c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/image-optimizer/zipball/4fd22035e81d98fffced65a8c20d9ec4daa9671c",
+                "reference": "4fd22035e81d98fffced65a8c20d9ec4daa9671c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.3|^8.0",
+                "psr/log": "^1.0 | ^2.0 | ^3.0",
+                "symfony/process": "^4.2|^5.0|^6.0|^7.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.21",
+                "phpunit/phpunit": "^8.5.21|^9.4.4",
+                "symfony/var-dumper": "^4.2|^5.0|^6.0|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ImageOptimizer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily optimize images using PHP",
+            "homepage": "https://github.com/spatie/image-optimizer",
+            "keywords": [
+                "image-optimizer",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/image-optimizer/issues",
+                "source": "https://github.com/spatie/image-optimizer/tree/1.8.0"
+            },
+            "time": "2024-11-04T08:24:54+00:00"
+        },
+        {
             "name": "spryker/cakephp-statemachine",
             "version": "dev-master",
             "source": {
@@ -6811,16 +7479,16 @@
         },
         {
             "name": "symfony/config",
-            "version": "v7.3.4",
+            "version": "v7.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "8a09223170046d2cfda3d2e11af01df2c641e961"
+                "reference": "9d18eba95655a3152ae4c1d53c6cc34eb4d4a0b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/8a09223170046d2cfda3d2e11af01df2c641e961",
-                "reference": "8a09223170046d2cfda3d2e11af01df2c641e961",
+                "url": "https://api.github.com/repos/symfony/config/zipball/9d18eba95655a3152ae4c1d53c6cc34eb4d4a0b7",
+                "reference": "9d18eba95655a3152ae4c1d53c6cc34eb4d4a0b7",
                 "shasum": ""
             },
             "require": {
@@ -6866,7 +7534,7 @@
             "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/config/tree/v7.3.4"
+                "source": "https://github.com/symfony/config/tree/v7.3.6"
             },
             "funding": [
                 {
@@ -6886,20 +7554,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-22T12:46:16+00:00"
+            "time": "2025-11-02T08:04:43+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v7.3.5",
+            "version": "v7.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "cdb80fa5869653c83cfe1a9084a673b6daf57ea7"
+                "reference": "c28ad91448f86c5f6d9d2c70f0cf68bf135f252a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/cdb80fa5869653c83cfe1a9084a673b6daf57ea7",
-                "reference": "cdb80fa5869653c83cfe1a9084a673b6daf57ea7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c28ad91448f86c5f6d9d2c70f0cf68bf135f252a",
+                "reference": "c28ad91448f86c5f6d9d2c70f0cf68bf135f252a",
                 "shasum": ""
             },
             "require": {
@@ -6964,7 +7632,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.3.5"
+                "source": "https://github.com/symfony/console/tree/v7.3.6"
             },
             "funding": [
                 {
@@ -6984,7 +7652,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-10-14T15:46:26+00:00"
+            "time": "2025-11-04T01:21:42+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -7055,16 +7723,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v7.3.2",
+            "version": "v7.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "edcbb768a186b5c3f25d0643159a787d3e63b7fd"
+                "reference": "e9bcfd7837928ab656276fe00464092cc9e1826a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/edcbb768a186b5c3f25d0643159a787d3e63b7fd",
-                "reference": "edcbb768a186b5c3f25d0643159a787d3e63b7fd",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/e9bcfd7837928ab656276fe00464092cc9e1826a",
+                "reference": "e9bcfd7837928ab656276fe00464092cc9e1826a",
                 "shasum": ""
             },
             "require": {
@@ -7101,7 +7769,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v7.3.2"
+                "source": "https://github.com/symfony/filesystem/tree/v7.3.6"
             },
             "funding": [
                 {
@@ -7121,7 +7789,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-07-07T08:17:47+00:00"
+            "time": "2025-11-05T09:52:27+00:00"
         },
         {
             "name": "symfony/finder",
@@ -7193,16 +7861,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v7.3.4",
+            "version": "v7.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "4b62871a01c49457cf2a8e560af7ee8a94b87a62"
+                "reference": "3c0a55a2c8e21e30a37022801c11c7ab5a6cb2de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/4b62871a01c49457cf2a8e560af7ee8a94b87a62",
-                "reference": "4b62871a01c49457cf2a8e560af7ee8a94b87a62",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/3c0a55a2c8e21e30a37022801c11c7ab5a6cb2de",
+                "reference": "3c0a55a2c8e21e30a37022801c11c7ab5a6cb2de",
                 "shasum": ""
             },
             "require": {
@@ -7269,7 +7937,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v7.3.4"
+                "source": "https://github.com/symfony/http-client/tree/v7.3.6"
             },
             "funding": [
                 {
@@ -7289,7 +7957,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-11T10:12:26+00:00"
+            "time": "2025-11-05T17:41:46+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -9038,12 +9706,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "85ae77f2f1749f088c1fffbab13423c1fa6369b7"
+                "reference": "a950885be97371ba20360021d148df9c8c84cd3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/85ae77f2f1749f088c1fffbab13423c1fa6369b7",
-                "reference": "85ae77f2f1749f088c1fffbab13423c1fa6369b7",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/a950885be97371ba20360021d148df9c8c84cd3f",
+                "reference": "a950885be97371ba20360021d148df9c8c84cd3f",
                 "shasum": ""
             },
             "require": {
@@ -9088,7 +9756,7 @@
                 "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
                 "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
             },
-            "time": "2025-10-25T01:55:00+00:00"
+            "time": "2025-11-05T05:26:18+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -11320,7 +11988,7 @@
             "alias_normalized": "0.4.5.0"
         }
     ],
-    "minimum-stability": "RC",
+    "minimum-stability": "dev",
     "stability-flags": {
         "cakephp/cakephp": 20,
         "dereuromark/cakephp-ajax": 20,
@@ -11337,6 +12005,7 @@
         "dereuromark/cakephp-favorites": 20,
         "dereuromark/cakephp-feed": 20,
         "dereuromark/cakephp-feedback": 20,
+        "dereuromark/cakephp-file-storage": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-ide-helper": 20,
@@ -11359,6 +12028,8 @@
         "linkorb/jsmin-php": 20,
         "natxet/cssmin": 20,
         "php-collective/code-sniffer": 20,
+        "php-collective/file-storage": 20,
+        "php-collective/file-storage-image-processor": 20,
         "spryker/cakephp-statemachine": 20,
         "symfony/filesystem": 0
     },

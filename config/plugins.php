@@ -31,6 +31,7 @@ return [
 	'Favorites' => [],
 	'QrCode' => [],
 	'AuditStash' => [],
+	'FileStorage' => [],
 
 	// inside /plugins
 	'AuthSandbox' => [],
