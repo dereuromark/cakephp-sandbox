@@ -1,0 +1,46 @@
+coverage:
+  precision: 2
+  round: down
+  range: "50...100"
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+    patch:
+      default:
+        target: auto
+
+# Make sure codecov understands your directory structure
+fixes:
+  - "src/::"
+  - "plugins/*/src/::"
+
+# Ignore paths
+ignore:
+  - "tests"
+  - "config"
+  - "webroot"
+  - "bin"
+  - "vendor"
+  - "templates"
+
+# Component-based coverage
+component_management:
+  individual_components:
+    - component_id: "app"
+      name: "App"
+      paths:
+        - src/**
+    - component_id: "sandbox"
+      name: "Sandbox Plugin"
+      paths:
+        - plugins/Sandbox/src/**
+    - component_id: "auth_sandbox"
+      name: "AuthSandbox Plugin"
+      paths:
+        - plugins/AuthSandbox/src/**
+    - component_id: "state_machine_sandbox"
+      name: "StateMachineSandbox Plugin"
+      paths:
+        - plugins/StateMachineSandbox/src/**
