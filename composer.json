@@ -40,7 +40,7 @@
 		"dereuromark/cakephp-feed": "dev-master",
 		"dereuromark/cakephp-ajax": "dev-master",
 		"dereuromark/cakephp-queue": "dev-master as 8.5.1",
-		"dereuromark/cakephp-queue-scheduler": "dev-logging",
+		"dereuromark/cakephp-queue-scheduler": "dev-master",
 		"dereuromark/cakephp-meta": "dev-master",
 		"friendsofcake/bootstrap-ui": "^5.0.0",
 		"dereuromark/cakephp-cache": "dev-master",
