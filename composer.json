@@ -74,7 +74,11 @@
 		"friendsofcake/cakepdf": "^5.0",
 		"symfony/http-client": "^6.4 || ^7.1.8",
 		"dereuromark/cakephp-qrcode": "dev-master",
-		"dereuromark/cakephp-audit-stash": "dev-master"
+		"dereuromark/cakephp-audit-stash": "dev-master",
+		"php-collective/file-storage": "dev-master",
+		"php-collective/file-storage-image-processor": "dev-master",
+		"dereuromark/cakephp-file-storage": "dev-master",
+		"spatie/pdf-to-image": "^1.2"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.4.5",
@@ -151,7 +155,7 @@
 		}
 	],
 	"prefer-stable": true,
-	"minimum-stability": "RC",
+	"minimum-stability": "dev",
 	"config": {
 		"preferred-install": "dist",
 		"process-timeout": 900,

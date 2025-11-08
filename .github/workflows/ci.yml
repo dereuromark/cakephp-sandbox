@@ -38,8 +38,11 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, intl, pdo_${{ matrix.db-type }}
+        extensions: mbstring, intl, pdo_${{ matrix.db-type }}, imagick
         coverage: pcov
+
+    - name: Install Ghostscript
+      run: sudo apt-get update && sudo apt-get install -y ghostscript
 
     - name: Get composer cache directory
       id: composercache
@@ -90,8 +93,11 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
-        extensions: mbstring, intl, pdo_sqlite
+        extensions: mbstring, intl, pdo_sqlite, imagick
         coverage: none
+
+    - name: Install Ghostscript
+      run: sudo apt-get update && sudo apt-get install -y ghostscript
 
     - name: Get composer cache directory
       id: composercache

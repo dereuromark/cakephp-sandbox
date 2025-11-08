@@ -25,3 +25,4 @@ _*
 /coverage.xml
 /.bash_history
 .ddev/
+/webroot/files/uploads/

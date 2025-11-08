@@ -72,4 +72,5 @@ session_id('cli');
 	['plugin' => 'Queue'],
 	['plugin' => 'Favorites'],
 	['plugin' => 'Comments'],
+	['plugin' => 'FileStorage'],
 ]);
