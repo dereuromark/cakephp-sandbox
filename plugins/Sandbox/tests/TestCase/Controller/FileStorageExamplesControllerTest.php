@@ -459,7 +459,7 @@ class FileStorageExamplesControllerTest extends TestCase {
 				$imageInfo = @getimagesize($fullPath);
 				if ($imageInfo === false) {
 					// File exists but is corrupted - Ghostscript is required but not properly configured
-					$this->markTestSkipped("PDF thumbnail generation requires Ghostscript to be properly installed - variant file is corrupted");
+					$this->markTestSkipped('PDF thumbnail generation requires Ghostscript to be properly installed - variant file is corrupted');
 				}
 
 				$this->assertStringContainsString('image/', $imageInfo['mime'], "Variant '$variantName' should be an image mime type");
