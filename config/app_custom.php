@@ -3,7 +3,6 @@
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use IdeHelper\Annotator\EntityAnnotator;
-use Queue\Utility\JsonSerializer;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
