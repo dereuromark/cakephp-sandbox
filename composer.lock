@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b086837de5418ed358a929a460366e43",
+    "content-hash": "ff6d3fb940aa770e5a58eaa6a925eaa0",
     "packages": [
         {
             "name": "brick/math",
@@ -2689,6 +2689,55 @@
             "time": "2025-10-30T19:38:32+00:00"
         },
         {
+            "name": "dereuromark/cakephp-queue-scheduler",
+            "version": "dev-logging",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-queue-scheduler.git",
+                "reference": "1acfc7f01595ff3e4eb3d2aacb5f34b3a488e736"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue-scheduler/zipball/1acfc7f01595ff3e4eb3d2aacb5f34b3a488e736",
+                "reference": "1acfc7f01595ff3e4eb3d2aacb5f34b3a488e736",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.1.1",
+                "dereuromark/cakephp-queue": "^7.0.0 || ^8.0.0",
+                "dereuromark/cakephp-tools": "^3.0.0",
+                "dragonmantank/cron-expression": "^3.3",
+                "php": ">=8.1"
+            },
+            "conflict": {
+                "cakephp/migrations": "<4.5"
+            },
+            "require-dev": {
+                "cakephp/migrations": "^4.5.0",
+                "dereuromark/cakephp-templating": "^0.2.7",
+                "fig-r/psr2r-sniffer": "dev-master",
+                "panlatent/cron-expression-descriptor": "^1.1.0",
+                "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "QueueScheduler\\": "src/",
+                    "QueueScheduler\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "QueueScheduler plugin for CakePHP",
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-queue-scheduler/issues",
+                "source": "https://github.com/dereuromark/cakephp-queue-scheduler/tree/logging"
+            },
+            "time": "2025-11-08T10:47:54+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-ratings",
             "version": "dev-master",
             "source": {
@@ -3550,6 +3599,70 @@
                 "source": "https://github.com/dompdf/php-svg-lib/tree/1.0.0"
             },
             "time": "2024-04-29T13:26:35+00:00"
+        },
+        {
+            "name": "dragonmantank/cron-expression",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dragonmantank/cron-expression.git",
+                "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dragonmantank/cron-expression/zipball/d61a8a9604ec1f8c3d150d09db6ce98b32675013",
+                "reference": "d61a8a9604ec1f8c3d150d09db6ce98b32675013",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2|^8.3|^8.4|^8.5"
+            },
+            "replace": {
+                "mtdowling/cron-expression": "^1.0"
+            },
+            "require-dev": {
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "^1.12.32|^2.1.31",
+                "phpunit/phpunit": "^8.5.48|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cron\\": "src/Cron/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Tankersley",
+                    "email": "chris@ctankersley.com",
+                    "homepage": "https://github.com/dragonmantank"
+                }
+            ],
+            "description": "CRON for PHP: Calculate the next or previous run date and determine if a CRON expression is due",
+            "keywords": [
+                "cron",
+                "schedule"
+            ],
+            "support": {
+                "issues": "https://github.com/dragonmantank/cron-expression/issues",
+                "source": "https://github.com/dragonmantank/cron-expression/tree/v3.6.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dragonmantank",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-31T18:51:33+00:00"
         },
         {
             "name": "friendsofcake/bootstrap-ui",
@@ -12034,6 +12147,12 @@
             "alias_normalized": "2.11.0.0"
         },
         {
+            "package": "dereuromark/cakephp-queue",
+            "version": "9999999-dev",
+            "alias": "8.5.1",
+            "alias_normalized": "8.5.1.0"
+        },
+        {
             "package": "dereuromark/cakephp-shim",
             "version": "9999999-dev",
             "alias": "3.1.0",
@@ -12054,55 +12173,56 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "spryker/cakephp-statemachine": 20,
         "cakephp/cakephp": 20,
-        "dereuromark/cakephp-ajax": 20,
-        "dereuromark/cakephp-audit-stash": 20,
-        "dereuromark/cakephp-cache": 20,
-        "dereuromark/cakephp-calendar": 20,
-        "dereuromark/cakephp-captcha": 20,
         "dereuromark/cakephp-comments": 20,
-        "dereuromark/cakephp-data": 20,
-        "dereuromark/cakephp-databaselog": 20,
-        "dereuromark/cakephp-decimal": 20,
-        "dereuromark/cakephp-dto": 20,
-        "dereuromark/cakephp-expose": 20,
         "dereuromark/cakephp-favorites": 20,
-        "dereuromark/cakephp-feed": 20,
-        "dereuromark/cakephp-feedback": 20,
-        "dereuromark/cakephp-file-storage": 20,
-        "dereuromark/cakephp-flash": 20,
-        "dereuromark/cakephp-geo": 20,
-        "dereuromark/cakephp-ide-helper": 20,
-        "dereuromark/cakephp-ide-helper-extra": 20,
-        "dereuromark/cakephp-markup": 20,
-        "dereuromark/cakephp-meta": 20,
-        "dereuromark/cakephp-qrcode": 20,
-        "dereuromark/cakephp-queue": 20,
-        "dereuromark/cakephp-ratings": 20,
-        "dereuromark/cakephp-setup": 20,
-        "dereuromark/cakephp-shim": 20,
-        "dereuromark/cakephp-tags": 20,
-        "dereuromark/cakephp-templating": 20,
-        "dereuromark/cakephp-test-helper": 20,
-        "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-translate": 20,
-        "dereuromark/media-embed": 20,
-        "fig-r/psr2r-sniffer": 20,
-        "jdorn/sql-formatter": 0,
-        "linkorb/jsmin-php": 20,
+        "dereuromark/cakephp-geo": 20,
+        "dereuromark/cakephp-shim": 20,
+        "dereuromark/cakephp-tools": 20,
+        "dereuromark/cakephp-setup": 20,
+        "dereuromark/cakephp-markup": 20,
+        "dereuromark/cakephp-captcha": 20,
         "natxet/cssmin": 20,
-        "php-collective/code-sniffer": 20,
+        "linkorb/jsmin-php": 20,
+        "dereuromark/cakephp-feed": 20,
+        "dereuromark/cakephp-ajax": 20,
+        "dereuromark/cakephp-queue": 20,
+        "dereuromark/cakephp-queue-scheduler": 20,
+        "dereuromark/cakephp-meta": 20,
+        "dereuromark/cakephp-cache": 20,
+        "symfony/filesystem": 0,
+        "dereuromark/cakephp-data": 20,
+        "dereuromark/cakephp-calendar": 20,
+        "dereuromark/cakephp-flash": 20,
+        "dereuromark/cakephp-databaselog": 20,
+        "dereuromark/cakephp-feedback": 20,
+        "dereuromark/cakephp-tags": 20,
+        "dereuromark/media-embed": 20,
+        "dereuromark/cakephp-expose": 20,
+        "dereuromark/cakephp-ratings": 20,
+        "dereuromark/cakephp-dto": 20,
+        "dereuromark/cakephp-decimal": 20,
+        "jdorn/sql-formatter": 0,
+        "dereuromark/cakephp-templating": 20,
+        "dereuromark/cakephp-qrcode": 20,
+        "dereuromark/cakephp-audit-stash": 20,
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
-        "spryker/cakephp-statemachine": 20,
-        "symfony/filesystem": 0
+        "dereuromark/cakephp-file-storage": 20,
+        "php-collective/code-sniffer": 20,
+        "fig-r/psr2r-sniffer": 20,
+        "dereuromark/cakephp-ide-helper": 20,
+        "dereuromark/cakephp-ide-helper-extra": 20,
+        "dereuromark/cakephp-test-helper": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.3"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "platform-overrides": {
         "php": "8.3.1"
     },

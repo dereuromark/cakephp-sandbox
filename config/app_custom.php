@@ -284,20 +284,25 @@ $config = [
 	],
 
 	'Queue' => [
-		'serializerClass' => JsonSerializer::class,
 		'sleeptime' => 5,
 		'gcprob' => 10,
-		'maxworkers' => 3,
+		'maxworkers' => 2,
+		// seconds of running time after which the worker will terminate (0 = unlimited)
+		'workerLifetime' => 60,
+		// PHP timeout for a single job execution
+		'workerPhpTimeout' => 120,
 		// time (in seconds) after which a job is requeued if the worker doesn't report back
-		'defaultworkertimeout' => 1800,
+		'defaultRequeueTimeout' => 130,
 		// number of retries if a job fails or times out.
 		'defaultworkerretries' => 1,
-		// seconds of running time after which the worker will terminate (0 = unlimited)
-		'workermaxruntime' => 125,
 		// instruct a Workerprocess quit when there are no more tasks for it to execute (true = exit, false = keep running)
 		'exitwhennothingtodo' => false,
 		// minimum time (in seconds) which a task remains in the database before being cleaned up.
 		'cleanuptimeout' => 2592000, // 30 days
+	],
+
+	'QueueScheduler' => [
+		'allowRaw' => true, // By default, this is only enabled in debug mode for security reasons.
 	],
 
 	'Shim' => [

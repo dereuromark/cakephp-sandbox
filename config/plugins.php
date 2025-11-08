@@ -19,6 +19,7 @@ return [
 	'Templating' => [],
 	'DatabaseLog' => [],
 	'Queue' => [],
+	'QueueScheduler' => [],
 	'Captcha' => [],
 	'CakeDto' => [],
 	'Cake/Localized' => [],
