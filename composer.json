@@ -75,9 +75,9 @@
 		"symfony/http-client": "^6.4 || ^7.1.8",
 		"dereuromark/cakephp-qrcode": "dev-master",
 		"dereuromark/cakephp-audit-stash": "dev-master",
-		"php-collective/file-storage": "^1.0.0",
-		"php-collective/file-storage-image-processor": "^1.0.0",
-		"dereuromark/cakephp-file-storage": "^1.0.0",
+		"php-collective/file-storage": "dev-master",
+		"php-collective/file-storage-image-processor": "dev-master",
+		"dereuromark/cakephp-file-storage": "dev-master",
 		"spatie/pdf-to-image": "^1.2"
 	},
 	"require-dev": {
