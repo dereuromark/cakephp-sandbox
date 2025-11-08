@@ -3207,12 +3207,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "bb6cef16bf8adcb0931c8db0cd7a7291639ecab4"
+                "reference": "358e218b2a45297f9b7107261d1a3258d2a5d3d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/bb6cef16bf8adcb0931c8db0cd7a7291639ecab4",
-                "reference": "bb6cef16bf8adcb0931c8db0cd7a7291639ecab4",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/358e218b2a45297f9b7107261d1a3258d2a5d3d9",
+                "reference": "358e218b2a45297f9b7107261d1a3258d2a5d3d9",
                 "shasum": ""
             },
             "require": {
@@ -3264,7 +3264,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-29T04:34:26+00:00"
+            "time": "2025-11-08T09:08:59+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -6060,12 +6060,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage-image-processor.git",
-                "reference": "ac0b1636f0a98a54d3419d448fb35a6728faba9f"
+                "reference": "b527f778b9268a9e8534e15075c670fdcd922a8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage-image-processor/zipball/ac0b1636f0a98a54d3419d448fb35a6728faba9f",
-                "reference": "ac0b1636f0a98a54d3419d448fb35a6728faba9f",
+                "url": "https://api.github.com/repos/php-collective/file-storage-image-processor/zipball/b527f778b9268a9e8534e15075c670fdcd922a8a",
+                "reference": "b527f778b9268a9e8534e15075c670fdcd922a8a",
                 "shasum": ""
             },
             "require": {
@@ -6117,7 +6117,7 @@
                 "issues": "https://github.com/php-collective/file-storage-image-processor/issues",
                 "source": "https://github.com/php-collective/file-storage-image-processor/tree/master"
             },
-            "time": "2025-11-08T08:13:12+00:00"
+            "time": "2025-11-08T09:15:36+00:00"
         },
         {
             "name": "php-http/discovery",

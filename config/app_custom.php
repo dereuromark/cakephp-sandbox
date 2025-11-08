@@ -338,6 +338,108 @@ $config = [
 	'AuditStash' => [
 		'persister' => \AuditStash\Persister\TablePersister::class,
 	],
+
+	'FileStorage' => (function() {
+		if (!defined('UPLOADS_DIR')) {
+			define('UPLOADS_DIR', WWW_ROOT . 'files' . DS . 'uploads' . DS);
+		}
+
+		// Storage setup
+		$storageFactory = new \PhpCollective\Infrastructure\Storage\StorageAdapterFactory();
+		$storageService = new \PhpCollective\Infrastructure\Storage\StorageService(
+			$storageFactory,
+		);
+		$storageService->addAdapterConfig(
+			'Local',
+			\PhpCollective\Infrastructure\Storage\Factories\LocalFactory::class,
+			[
+				'root' => UPLOADS_DIR,
+			],
+		);
+
+		$pathBuilder = new \PhpCollective\Infrastructure\Storage\PathBuilder\PathBuilder([
+			'pathTemplate' => '{model}{ds}{collection}{ds}{randomPath}{ds}{id}{ds}{filename}.{extension}',
+			'variantPathTemplate' => '{model}{ds}{collection}{ds}{randomPath}{ds}{id}{ds}{filename}.{hashedVariant}.{extension}',
+			'randomPathLevels' => 1,
+			'sanitizer' => new \PhpCollective\Infrastructure\Storage\Utility\FilenameSanitizer([
+				'urlSafe' => true,
+				'removeUriReservedChars' => true,
+				'maxLength' => 190,
+			]),
+		]);
+		$fileStorage = new \PhpCollective\Infrastructure\Storage\FileStorage(
+			$storageService,
+			$pathBuilder,
+		);
+
+		// Image Manager and Processor
+		$imageManager = \Intervention\Image\ImageManager::gd();
+		$imageProcessor = new \PhpCollective\Infrastructure\Storage\Processor\Image\ImageProcessor(
+			$fileStorage,
+			$pathBuilder,
+			$imageManager,
+		);
+
+		// PDF thumbnail processor
+		$pdfProcessor = new \Sandbox\FileStorage\Processor\PdfThumbnailProcessor($imageProcessor);
+
+		// Unified processor - handles both images and PDFs
+		$unifiedProcessor = new \Sandbox\FileStorage\Processor\UnifiedFileProcessor(
+			$imageProcessor,
+			$pdfProcessor,
+		);
+
+		// Configure image variants for different collections
+		$imageVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$imageVariants->addNew('thumbnail')
+			->cover(150, 150) // zoom-crop to fill entire 150x150
+			->optimize();
+		$imageVariants->addNew('medium')
+			->resize(400, 400)
+			->optimize();
+		$imageVariants->addNew('large')
+			->resize(800, 800)
+			->optimize();
+
+		// Configure PDF preview variants (same as images)
+		$pdfVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$pdfVariants->addNew('thumbnail')
+			->cover(150, 150)
+			->optimize();
+		$pdfVariants->addNew('medium')
+			->resize(400, 400)
+			->optimize();
+		$pdfVariants->addNew('large')
+			->resize(800, 800)
+			->optimize();
+
+		// Square crop variants
+		$squareVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$squareVariants->addNew('thumb_square')
+			->cover(150, 150)
+			->optimize();
+		$squareVariants->addNew('medium_square')
+			->cover(300, 300)
+			->optimize();
+
+		return [
+			'pathPrefix' => 'files/uploads/',
+			// Image variants configuration per model/collection
+			// Model name is the Table alias (FileStorage), not the custom model field value
+			'imageVariants' => [
+				'FileStorage' => [
+					'images' => $imageVariants->toArray(),
+					'pdfs' => $pdfVariants->toArray(), // PDF preview variants
+					'general' => [], // No variants for general files
+				],
+			],
+			'behaviorConfig' => [
+				'fileStorage' => $fileStorage,
+				'fileProcessor' => $unifiedProcessor,
+				'fileValidator' => null,
+			],
+		];
+	})(),
 ];
 
 if (str_contains((string)getenv('DB_URL'), 'mysql')) {

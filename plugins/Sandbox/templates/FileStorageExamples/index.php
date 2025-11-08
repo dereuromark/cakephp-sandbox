@@ -83,7 +83,7 @@
 
 	<h3>Configuration</h3>
 	<p>
-		The plugin is configured in <code>config/app_local.php</code> with the following setup:
+		The plugin is configured in <code>config/app_custom.php</code> with the following setup:
 	</p>
 	<ul>
 		<li><strong>Storage Adapter:</strong> Local filesystem</li>
