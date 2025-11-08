@@ -5,6 +5,7 @@ namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestTrait;
+use Laminas\Diactoros\UploadedFile;
 use Shim\TestSuite\TestCase;
 
 /**
@@ -40,6 +41,25 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		// Run migrations for test database
 		exec('bin/cake migrations migrate --connection=test -p FileStorage 2>&1', $output);
+	}
+
+	/**
+	 * Create an UploadedFile instance for testing
+	 *
+	 * @param string $filePath Path to the file
+	 * @param string $clientFilename Original filename
+	 * @param string $clientMediaType MIME type
+	 * @param int|null $size Optional size override (defaults to actual file size)
+	 * @return \Laminas\Diactoros\UploadedFile
+	 */
+	protected function createUploadedFile(string $filePath, string $clientFilename, string $clientMediaType, ?int $size = null): UploadedFile {
+		return new UploadedFile(
+			$filePath,
+			$size ?? filesize($filePath),
+			UPLOAD_ERR_OK,
+			$clientFilename,
+			$clientMediaType,
+		);
 	}
 
 	/**
@@ -102,19 +122,13 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$this->assertFileExists($tmpFile, 'Test image file should be created');
 
-		// Create uploaded file data
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test-image.png',
-				'type' => 'image/png',
-				'size' => filesize($tmpFile),
-			],
-		];
+		// Create uploaded file object (PSR-7)
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test-image.png', 'image/png');
 
 		// Post the upload
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Check redirect
 		$this->assertRedirect(['action' => 'images']);
@@ -236,18 +250,12 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$this->assertFileExists($tmpFile, 'Test file should be created');
 
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test-image.gif',
-				'type' => 'image/gif',
-				'size' => filesize($tmpFile),
-			],
-		];
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test-image.gif', 'image/gif');
 
 		// Post the upload
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Should redirect back to form
 		$this->assertRedirect(['action' => 'images']);
@@ -286,18 +294,12 @@ class FileStorageExamplesControllerTest extends TestCase {
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
 		// Fake the file size to be over 2MB
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test-large.png',
-				'type' => 'image/png',
-				'size' => 2 * 1024 * 1024 + 1, // 2MB + 1 byte
-			],
-		];
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test-large.png', 'image/png', 2 * 1024 * 1024 + 1);
 
 		// Post the upload
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Should redirect back to form
 		$this->assertRedirect(['action' => 'images']);
@@ -360,18 +362,12 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test-fourth.png',
-				'type' => 'image/png',
-				'size' => filesize($tmpFile),
-			],
-		];
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test-fourth.png', 'image/png');
 
 		// Post the upload
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Should redirect back
 		$this->assertRedirect(['action' => 'images']);
@@ -412,18 +408,12 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$this->assertFileExists($tmpFile, 'Test PDF should be created');
 
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test-document.pdf',
-				'type' => 'application/pdf',
-				'size' => filesize($tmpFile),
-			],
-		];
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test-document.pdf', 'application/pdf');
 
 		// Post the upload
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Check redirect
 		$this->assertRedirect(['action' => 'pdfs']);
@@ -578,18 +568,12 @@ PDF;
 
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
-		$uploadData = [
-			'file' => [
-				'tmp_name' => $tmpFile,
-				'error' => UPLOAD_ERR_OK,
-				'name' => 'test.png',
-				'type' => 'image/png',
-				'size' => filesize($tmpFile),
-			],
-		];
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'test.png', 'image/png');
 
 		// Post to PDFs action
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs'], $uploadData);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs'], [
+			'file' => $uploadedFile,
+		]);
 
 		// Should redirect back
 		$this->assertRedirect(['action' => 'pdfs']);

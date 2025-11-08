@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
 use Sandbox\Validation\FileUploadValidator;
 
@@ -16,6 +17,24 @@ use Sandbox\Validation\FileUploadValidator;
  * @property \FileStorage\Model\Table\FileStorageTable $FileStorage
  */
 class FileStorageExamplesController extends SandboxAppController {
+
+	/**
+	 * @var \FileStorage\Model\Table\FileStorageTable
+	 */
+	protected $FileStorage;
+
+	/**
+	 * Before filter callback
+	 *
+	 * @param \Cake\Event\EventInterface $event Event
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function beforeFilter(EventInterface $event) {
+		parent::beforeFilter($event);
+
+		// Auto-cleanup old files older than 1 day on page load - for demo purposes
+		$this->cleanupOldFiles();
+	}
 
 	/**
 	 * List of all examples.
@@ -280,6 +299,32 @@ class FileStorageExamplesController extends SandboxAppController {
 		}
 
 		return $this->redirect($this->referer(['action' => 'index']));
+	}
+
+	/**
+	 * Clean up old files older than 1 day - for demo purposes
+	 *
+	 * Removes both database records and physical files (including variants)
+	 *
+	 * @return void
+	 */
+	protected function cleanupOldFiles(): void {
+		$oneDayAgo = new \DateTime('-1 day');
+
+		$fileStorageTable = $this->fetchTable('FileStorage.FileStorage');
+
+		// Find all old files across all collections
+		$oldFiles = $fileStorageTable->find()
+			->where([
+				'FileStorage.model' => 'FileStorage',
+				'FileStorage.created <' => $oneDayAgo,
+			])
+			->toArray();
+
+		// Delete each file (this will trigger the behavior to delete physical files)
+		foreach ($oldFiles as $file) {
+			$fileStorageTable->delete($file);
+		}
 	}
 
 }
