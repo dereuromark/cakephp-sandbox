@@ -122,6 +122,7 @@
 			"bin/cake migrations migrate -p QueueScheduler --no-lock",
 			"bin/cake migrations migrate -p Comments --no-lock",
 			"bin/cake migrations migrate -p Favorites --no-lock",
+			"bin/cake migrations migrate -p FileStorage --no-lock",
 			"bin/cake migrations migrate -p StateMachine --no-lock",
 			"bin/cake migrations migrate -p AuditStash --no-lock"
 		],
