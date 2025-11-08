@@ -80,17 +80,19 @@ class FileStorageExamplesController extends SandboxAppController {
 			if (!empty($errors)) {
 				$fileStorage->setErrors($errors);
 				$this->Flash->error('Could not upload image. Please check the errors below.');
-			} else {
-				$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
 
-				if ($this->FileStorage->save($fileStorage)) {
-					$this->Flash->success('Image uploaded successfully.');
-
-					return $this->redirect(['action' => 'images']);
-				}
-
-				$this->Flash->error('Could not upload image. Please check the errors below.');
+				return $this->redirect(['action' => 'images']);
 			}
+
+			$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+			if ($this->FileStorage->save($fileStorage)) {
+				$this->Flash->success('Image uploaded successfully.');
+
+				return $this->redirect(['action' => 'images']);
+			}
+
+			$this->Flash->error('Could not upload image. Please check the errors below.');
 		}
 
 		$images = $this->FileStorage->find()
@@ -141,17 +143,19 @@ class FileStorageExamplesController extends SandboxAppController {
 			if (!empty($errors)) {
 				$fileStorage->setErrors($errors);
 				$this->Flash->error('Could not upload PDF. Please check the errors below.');
-			} else {
-				$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
 
-				if ($this->FileStorage->save($fileStorage)) {
-					$this->Flash->success('PDF uploaded successfully.');
-
-					return $this->redirect(['action' => 'pdfs']);
-				}
-
-				$this->Flash->error('Could not upload PDF. Please check the errors below.');
+				return $this->redirect(['action' => 'pdfs']);
 			}
+
+			$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+			if ($this->FileStorage->save($fileStorage)) {
+				$this->Flash->success('PDF uploaded successfully.');
+
+				return $this->redirect(['action' => 'pdfs']);
+			}
+
+			$this->Flash->error('Could not upload PDF. Please check the errors below.');
 		}
 
 		$pdfs = $this->FileStorage->find()
@@ -201,17 +205,19 @@ class FileStorageExamplesController extends SandboxAppController {
 			if (!empty($errors)) {
 				$fileStorage->setErrors($errors);
 				$this->Flash->error('Could not upload file. Please check the errors below.');
-			} else {
-				$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
 
-				if ($this->FileStorage->save($fileStorage)) {
-					$this->Flash->success('File uploaded successfully.');
-
-					return $this->redirect(['action' => 'files']);
-				}
-
-				$this->Flash->error('Could not upload file. Please check the errors below.');
+				return $this->redirect(['action' => 'files']);
 			}
+
+			$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+			if ($this->FileStorage->save($fileStorage)) {
+				$this->Flash->success('File uploaded successfully.');
+
+				return $this->redirect(['action' => 'files']);
+			}
+
+			$this->Flash->error('Could not upload file. Please check the errors below.');
 		}
 
 		$files = $this->FileStorage->find()

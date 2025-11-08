@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Validation;
 
 use Cake\Validation\Validator;
+use Psr\Http\Message\UploadedFileInterface;
 
 /**
  * File Upload Validator
@@ -22,9 +23,23 @@ class FileUploadValidator extends Validator {
 		$this->requirePresence('file', 'create')
 			->notEmptyFile('file', 'Please select a file to upload');
 
-		// File size validation (2MB max)
+		// File size validation (2MB max) - custom rule for UploadedFileInterface
 		$this->add('file', 'fileSize', [
-			'rule' => ['fileSize', '<=', '2MB'],
+			'rule' => function ($value) {
+				if ($value instanceof UploadedFileInterface) {
+					$size = $value->getSize();
+					$maxSize = 2 * 1024 * 1024; // 2MB in bytes
+
+					return $size !== null && $size <= $maxSize;
+				}
+
+				// Fallback to array format
+				if (is_array($value) && isset($value['size'])) {
+					return $value['size'] <= 2 * 1024 * 1024;
+				}
+
+				return false;
+			},
 			'message' => 'File must be less than 2MB',
 		]);
 
@@ -43,15 +58,51 @@ class FileUploadValidator extends Validator {
 	 * @return $this
 	 */
 	public function forImages() {
-		// Extension validation
+		// Extension validation - custom rule for UploadedFileInterface
 		$this->add('file', 'extension', [
-			'rule' => ['extension', ['jpg', 'jpeg', 'png']],
+			'rule' => function ($value) {
+				$allowedExtensions = ['jpg', 'jpeg', 'png'];
+
+				if ($value instanceof UploadedFileInterface) {
+					$filename = $value->getClientFilename();
+					if (!$filename) {
+						return false;
+					}
+					$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+					return in_array($extension, $allowedExtensions, true);
+				}
+
+				// Fallback to array format
+				if (is_array($value) && isset($value['name'])) {
+					$extension = strtolower(pathinfo($value['name'], PATHINFO_EXTENSION));
+
+					return in_array($extension, $allowedExtensions, true);
+				}
+
+				return false;
+			},
 			'message' => 'Only JPG and PNG images are allowed',
 		]);
 
-		// MIME type validation
+		// MIME type validation - custom rule for UploadedFileInterface
 		$this->add('file', 'mimeType', [
-			'rule' => ['mimeType', ['image/jpeg', 'image/png']],
+			'rule' => function ($value) {
+				$allowedMimeTypes = ['image/jpeg', 'image/png'];
+
+				if ($value instanceof UploadedFileInterface) {
+					$mimeType = $value->getClientMediaType();
+
+					return $mimeType && in_array($mimeType, $allowedMimeTypes, true);
+				}
+
+				// Fallback to array format
+				if (is_array($value) && isset($value['type'])) {
+					return in_array($value['type'], $allowedMimeTypes, true);
+				}
+
+				return false;
+			},
 			'message' => 'Only JPG and PNG images are allowed',
 		]);
 
@@ -64,15 +115,51 @@ class FileUploadValidator extends Validator {
 	 * @return $this
 	 */
 	public function forPdfs() {
-		// Extension validation
+		// Extension validation - custom rule for UploadedFileInterface
 		$this->add('file', 'extension', [
-			'rule' => ['extension', ['pdf']],
+			'rule' => function ($value) {
+				$allowedExtensions = ['pdf'];
+
+				if ($value instanceof UploadedFileInterface) {
+					$filename = $value->getClientFilename();
+					if (!$filename) {
+						return false;
+					}
+					$extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+
+					return in_array($extension, $allowedExtensions, true);
+				}
+
+				// Fallback to array format
+				if (is_array($value) && isset($value['name'])) {
+					$extension = strtolower(pathinfo($value['name'], PATHINFO_EXTENSION));
+
+					return in_array($extension, $allowedExtensions, true);
+				}
+
+				return false;
+			},
 			'message' => 'Only PDF files are allowed',
 		]);
 
-		// MIME type validation
+		// MIME type validation - custom rule for UploadedFileInterface
 		$this->add('file', 'mimeType', [
-			'rule' => ['mimeType', ['application/pdf']],
+			'rule' => function ($value) {
+				$allowedMimeTypes = ['application/pdf'];
+
+				if ($value instanceof UploadedFileInterface) {
+					$mimeType = $value->getClientMediaType();
+
+					return $mimeType && in_array($mimeType, $allowedMimeTypes, true);
+				}
+
+				// Fallback to array format
+				if (is_array($value) && isset($value['type'])) {
+					return in_array($value['type'], $allowedMimeTypes, true);
+				}
+
+				return false;
+			},
 			'message' => 'Only PDF files are allowed',
 		]);
 

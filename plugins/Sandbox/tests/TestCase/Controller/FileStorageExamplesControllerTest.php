@@ -69,6 +69,8 @@ class FileStorageExamplesControllerTest extends TestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
+
+		$this->enableRetainFlashMessages();
 	}
 
 	/**
@@ -150,10 +152,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 		$this->assertSame('png', $file->extension);
 		$this->assertSame('image/png', $file->mime_type);
 
-		// Debug: Check variants
-		debug('File ID: ' . $file->id);
-		debug('Variants: ' . json_encode($file->variants, JSON_PRETTY_PRINT));
-
 		// Check that variants were generated
 		$variants = $file->variants ?? [];
 		$this->assertNotEmpty($variants, 'Variants should be generated');
@@ -174,7 +172,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 			// Check variant dimensions
 			if (file_exists($fullPath)) {
 				$size = getimagesize($fullPath);
-				debug("$variantName dimensions: {$size[0]}x{$size[1]}");
 
 				// Verify dimensions are within expected ranges
 				switch ($variantName) {
@@ -233,9 +230,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 		$this->assertArrayHasKey('thumbnail', $imageVariants, 'thumbnail variant should be configured');
 		$this->assertArrayHasKey('medium', $imageVariants, 'medium variant should be configured');
 		$this->assertArrayHasKey('large', $imageVariants, 'large variant should be configured');
-
-		debug('Configuration is correct!');
-		debug('Variants: ' . json_encode(array_keys($imageVariants)));
 	}
 
 	/**
@@ -328,18 +322,20 @@ class FileStorageExamplesControllerTest extends TestCase {
 	public function testMaximumCountLimitEnforced() {
 		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
 
-		// Create 3 dummy files in the images collection
+		// Create 3 dummy files in the images collection by actually uploading them
 		for ($i = 1; $i <= 3; $i++) {
-			$entity = $FileStorage->newEntity([
-				'model' => 'FileStorage',
-				'collection' => 'images',
-				'filename' => "dummy-$i.png",
-				'extension' => 'png',
-				'mime_type' => 'image/png',
-				'filesize' => 1000,
-				'path' => "test/dummy-$i.png",
+			// Create a small test image
+			$image = imagecreatetruecolor(10, 10);
+			$tmpFile = TMP . 'test_dummy_' . $i . '_' . time() . '.png';
+			imagepng($image, $tmpFile);
+			imagedestroy($image);
+
+			// Upload it
+			$uploadedFile = $this->createUploadedFile($tmpFile, "dummy-$i.png", 'image/png');
+			$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+				'file' => $uploadedFile,
 			]);
-			$FileStorage->saveOrFail($entity);
+			$this->assertRedirect(['action' => 'images']);
 		}
 
 		// Verify we have 3 files
@@ -401,6 +397,11 @@ class FileStorageExamplesControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testPdfUploadWithThumbnailGeneration() {
+		// Skip if Imagick is not available (required for PDF thumbnails)
+		if (!extension_loaded('imagick')) {
+			$this->markTestSkipped('Imagick extension not available');
+		}
+
 		// Create a minimal valid PDF file
 		$pdfContent = $this->getMinimalPdfContent();
 		$tmpFile = TMP . 'test_pdf_' . time() . '.pdf';
