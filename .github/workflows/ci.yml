@@ -69,11 +69,34 @@ jobs:
         if [[ ${{ matrix.db-type }} == 'sqlite' ]]; then export DB_URL='sqlite:///:memory:'; fi
         if [[ ${{ matrix.db-type }} == 'mysql' ]]; then export DB_URL='mysql://root:root@127.0.0.1/cakephp'; fi
         if [[ ${{ matrix.db-type }} == 'pgsql' ]]; then export DB_URL='postgres://postgres:postgres@127.0.0.1/postgres'; fi
+
+        # Configure PCOV to include all project directories
+        echo "pcov.enabled=1" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/conf.d/pcov.ini
+        echo "pcov.directory=${{ github.workspace }}" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/conf.d/pcov.ini
+        echo "pcov.exclude=~vendor~" >> $HOME/.phpenv/versions/$(phpenv version-name)/etc/conf.d/pcov.ini
+
+        # Debug: Check PCOV config
+        php -i | grep pcov || true
+
+        # Debug: Check if plugins are loaded
+        bin/cake plugin list || true
+
         if [[ ${{ matrix.php-version }} == '8.3' && ${{ matrix.db-type }} == 'mysql' ]]; then
-          vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text
+          vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text 2>&1 | tee phpunit-output.txt
+          # Debug: Check coverage.xml for plugin files
+          grep -c "plugins/" coverage.xml || echo "No plugin files in coverage!"
         else
           vendor/bin/phpunit
         fi
+
+    - name: Upload coverage.xml artifact
+      if: matrix.php-version == '8.3' && matrix.db-type == 'mysql'
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: |
+          coverage.xml
+          phpunit-output.txt
 
     - name: Code Coverage Report
       if: success() && matrix.php-version == '8.3' && matrix.db-type == 'mysql'
