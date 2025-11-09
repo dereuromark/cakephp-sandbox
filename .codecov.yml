@@ -7,35 +7,39 @@ coverage:
       default:
         target: auto
         threshold: 1%
+        paths:
+          - "src/**"
+          - "plugins/**/src/**"
     patch:
       default:
         target: auto
 
 # Ignore paths
 ignore:
-  - "tests"
-  - "config"
-  - "webroot"
-  - "bin"
-  - "vendor"
-  - "templates"
+  - "tests/**"
+  - "config/**"
+  - "webroot/**"
+  - "bin/**"
+  - "vendor/**"
+  - "templates/**"
+  - "**/tests/**"
 
 # Component-based coverage
 component_management:
   individual_components:
-    - component_id: "app"
-      name: "App"
+    - component_id: app
+      name: App
       paths:
-        - src/**
-    - component_id: "sandbox"
-      name: "Sandbox Plugin"
+        - "src/**"
+    - component_id: sandbox
+      name: Sandbox Plugin
       paths:
-        - plugins/Sandbox/src/**
-    - component_id: "auth_sandbox"
-      name: "AuthSandbox Plugin"
+        - "plugins/Sandbox/src/**"
+    - component_id: auth_sandbox
+      name: AuthSandbox Plugin
       paths:
-        - plugins/AuthSandbox/src/**
-    - component_id: "state_machine_sandbox"
-      name: "StateMachineSandbox Plugin"
+        - "plugins/AuthSandbox/src/**"
+    - component_id: state_machine_sandbox
+      name: StateMachineSandbox Plugin
       paths:
-        - plugins/StateMachineSandbox/src/**
+        - "plugins/StateMachineSandbox/src/**"
