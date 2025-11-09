@@ -11,11 +11,6 @@ coverage:
       default:
         target: auto
 
-# Make sure codecov understands your directory structure
-fixes:
-  - "src/::"
-  - "plugins/*/src/::"
-
 # Ignore paths
 ignore:
   - "tests"
