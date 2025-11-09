@@ -11,15 +11,8 @@
 	<testsuites>
 		<testsuite name="app">
 			<directory>tests/TestCase/</directory>
-		</testsuite>
-		<!-- Add plugin test suites here. -->
-		<testsuite name="sandbox">
 			<directory>plugins/Sandbox/tests/TestCase/</directory>
-		</testsuite>
-		<testsuite name="auth-sandbox">
 			<directory>plugins/AuthSandbox/tests/TestCase/</directory>
-		</testsuite>
-		<testsuite name="state-machine-sandbox">
 			<directory>plugins/StateMachineSandbox/tests/TestCase/</directory>
 		</testsuite>
 	</testsuites>
