@@ -120,7 +120,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 		// Save to temp file
 		$tmpFile = TMP . 'test_image_' . time() . '.png';
 		imagepng($image, $tmpFile);
-		imagedestroy($image);
 
 		$this->assertFileExists($tmpFile, 'Test image file should be created');
 
@@ -283,7 +282,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$tmpFile = TMP . 'test_large_' . time() . '.png';
 		imagepng($image, $tmpFile);
-		imagedestroy($image);
 
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
@@ -328,7 +326,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 			$image = imagecreatetruecolor(10, 10);
 			$tmpFile = TMP . 'test_dummy_' . $i . '_' . time() . '.png';
 			imagepng($image, $tmpFile);
-			imagedestroy($image);
 
 			// Upload it
 			$uploadedFile = $this->createUploadedFile($tmpFile, "dummy-$i.png", 'image/png');
@@ -354,7 +351,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 
 		$tmpFile = TMP . 'test_fourth_' . time() . '.png';
 		imagepng($image, $tmpFile);
-		imagedestroy($image);
 
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
@@ -569,7 +565,6 @@ PDF;
 
 		$tmpFile = TMP . 'test_fake_pdf_' . time() . '.png';
 		imagepng($image, $tmpFile);
-		imagedestroy($image);
 
 		$this->assertFileExists($tmpFile, 'Test image should be created');
 
