@@ -253,6 +253,156 @@ class FileStorageExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Image cropping demo
+	 *
+	 * Demonstrates:
+	 * - Client-side image cropping before upload
+	 * - Multiple aspect ratio presets (free, square, 16:9, 4:3)
+	 * - Zoom and rotate controls
+	 * - Preview functionality
+	 * - Cropper.js integration
+	 *
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function imageCropping() {
+		$this->FileStorage = $this->fetchTable('FileStorage.FileStorage');
+
+		// Handle AJAX cropped image upload
+		if ($this->request->is('post')) {
+			$croppedData = $this->request->getData('cropped_image');
+			$originalFilename = $this->request->getData('original_filename', 'cropped-image.png');
+
+			// Check if this is an AJAX request
+			$isAjax = $this->request->is('ajax') || $this->request->getQuery('ajax');
+
+			// Check max count limit (3 files max)
+			$currentCount = $this->FileStorage->find()
+				->where([
+					'FileStorage.model' => 'FileStorage',
+					'FileStorage.collection' => 'cropped',
+				])
+				->count();
+
+			if ($currentCount >= 3) {
+				if ($isAjax) {
+					return $this->response
+						->withType('application/json')
+						->withStringBody(json_encode([
+							'success' => false,
+							'error' => 'Maximum 3 cropped images allowed. Please delete an existing image first.',
+						]));
+				}
+
+				$this->Flash->error('Maximum 3 cropped images allowed. Please delete an existing image first.');
+
+				return $this->redirect(['action' => 'imageCropping']);
+			}
+
+			// Decode base64 image data
+			if (preg_match('/^data:image\/(\w+);base64,/', $croppedData, $matches)) {
+				$imageType = $matches[1];
+				$croppedData = substr($croppedData, strpos($croppedData, ',') + 1);
+				$croppedData = base64_decode($croppedData);
+
+				// Create temporary file
+				$tmpFile = TMP . 'cropped_' . time() . '.' . $imageType;
+				file_put_contents($tmpFile, $croppedData);
+
+				// Create uploaded file object
+				$uploadedFile = new \Laminas\Diactoros\UploadedFile(
+					$tmpFile,
+					filesize($tmpFile),
+					UPLOAD_ERR_OK,
+					$originalFilename,
+					'image/' . $imageType,
+				);
+
+				$data = [
+					'file' => $uploadedFile,
+					'model' => 'FileStorage',
+					'collection' => 'cropped',
+				];
+
+				// Validate using custom validator for images
+				$validator = new FileUploadValidator();
+				$validator->forImages();
+
+				$errors = $validator->validate($data);
+				if (!empty($errors)) {
+					@unlink($tmpFile);
+
+					if ($isAjax) {
+						$errorMessage = 'Validation failed';
+						if (isset($errors['file'])) {
+							$errorMessage = is_array($errors['file']) ? implode(', ', $errors['file']) : $errors['file'];
+						}
+
+						return $this->response
+							->withType('application/json')
+							->withStringBody(json_encode([
+								'success' => false,
+								'error' => $errorMessage,
+							]));
+					}
+
+					$this->Flash->error('Could not upload cropped image. Please check the errors below.');
+
+					return $this->redirect(['action' => 'imageCropping']);
+				}
+
+				$fileStorage = $this->FileStorage->newEmptyEntity();
+				$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+				if ($this->FileStorage->save($fileStorage)) {
+					@unlink($tmpFile);
+
+					if ($isAjax) {
+						return $this->response
+							->withType('application/json')
+							->withStringBody(json_encode([
+								'success' => true,
+								'file' => [
+									'id' => $fileStorage->id,
+									'filename' => $fileStorage->filename,
+									'size' => $fileStorage->size,
+									'mime_type' => $fileStorage->mime_type,
+								],
+							]));
+					}
+
+					$this->Flash->success('Cropped image uploaded successfully.');
+
+					return $this->redirect(['action' => 'imageCropping']);
+				}
+
+				@unlink($tmpFile);
+			}
+
+			if ($isAjax) {
+				return $this->response
+					->withType('application/json')
+					->withStringBody(json_encode([
+						'success' => false,
+						'error' => 'Could not save cropped image. Please try again.',
+					]));
+			}
+
+			$this->Flash->error('Could not upload cropped image. Please try again.');
+		}
+
+		$files = $this->FileStorage->find()
+			->where([
+				'FileStorage.model' => 'FileStorage',
+				'FileStorage.collection' => 'cropped',
+			])
+			->orderByDesc('FileStorage.created')
+			->limit(20)
+			->toArray();
+
+		$this->set(compact('files'));
+	}
+
+	/**
 	 * Modern drag-and-drop upload demo
 	 *
 	 * Demonstrates:

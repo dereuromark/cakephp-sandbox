@@ -640,6 +640,154 @@ PDF;
 	}
 
 	/**
+	 * Test image cropping page loads
+	 *
+	 * @return void
+	 */
+	public function testImageCroppingPageLoads() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'imageCropping']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Image Cropping Before Upload');
+		$this->assertResponseContains('cropperImage');
+	}
+
+	/**
+	 * Test image cropping AJAX upload with base64 data
+	 *
+	 * @return void
+	 */
+	public function testImageCroppingAjaxUpload() {
+		// Create a small test image (10x10 red square)
+		$image = imagecreatetruecolor(10, 10);
+		$red = imagecolorallocate($image, 255, 0, 0);
+		imagefill($image, 0, 0, $red);
+
+		// Convert to base64
+		ob_start();
+		imagepng($image);
+		$imageData = ob_get_clean();
+		$base64Image = 'data:image/png;base64,' . base64_encode($imageData);
+
+		// Post with AJAX headers
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'imageCropping', '?' => ['ajax' => 1]],
+			[
+				'cropped_image' => $base64Image,
+				'original_filename' => 'cropped-test.png',
+			],
+		);
+
+		// Should return JSON response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		// Parse JSON response
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertTrue($response['success'], 'Upload should succeed');
+		$this->assertArrayHasKey('file', $response, 'Response should contain file data');
+
+		// Verify file was saved to database
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'cropped',
+			])
+			->orderByDesc('id')
+			->first();
+
+		$this->assertNotNull($file, 'File should be saved to database');
+		$this->assertSame('FileStorage', $file->model);
+		$this->assertSame('cropped', $file->collection);
+		$this->assertStringContainsString('.png', $file->filename);
+	}
+
+	/**
+	 * Test image cropping enforces 3-file limit
+	 *
+	 * @return void
+	 */
+	public function testImageCroppingEnforcesLimit() {
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+
+		// Create 3 dummy cropped images
+		for ($i = 1; $i <= 3; $i++) {
+			$image = imagecreatetruecolor(10, 10);
+			ob_start();
+			imagepng($image);
+			$imageData = ob_get_clean();
+			$base64Image = 'data:image/png;base64,' . base64_encode($imageData);
+
+			$this->configRequest([
+				'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+			]);
+
+			$this->post(
+				['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'imageCropping', '?' => ['ajax' => 1]],
+				[
+					'cropped_image' => $base64Image,
+					'original_filename' => "crop-$i.png",
+				],
+			);
+
+			$this->assertResponseCode(200);
+		}
+
+		// Verify we have 3 files
+		$count = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'cropped',
+			])
+			->count();
+		$this->assertEquals(3, $count, 'Should have 3 files in cropped collection');
+
+		// Try to upload a 4th file
+		$image = imagecreatetruecolor(10, 10);
+		ob_start();
+		imagepng($image);
+		$imageData = ob_get_clean();
+		$base64Image = 'data:image/png;base64,' . base64_encode($imageData);
+
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'imageCropping', '?' => ['ajax' => 1]],
+			[
+				'cropped_image' => $base64Image,
+				'original_filename' => 'crop-fourth.png',
+			],
+		);
+
+		// Should return JSON error response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertFalse($response['success'], 'Upload should fail when limit reached');
+		$this->assertArrayHasKey('error', $response);
+		$this->assertStringContainsString('Maximum 3', $response['error']);
+
+		// Should still have only 3 files
+		$newCount = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'cropped',
+			])
+			->count();
+		$this->assertEquals(3, $newCount, 'Should still have only 3 files (4th was rejected)');
+	}
+
+	/**
 	 * Test drag-drop upload page loads
 	 *
 	 * @return void

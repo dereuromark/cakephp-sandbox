@@ -62,7 +62,12 @@
 				<?php
 				$imagePath = $this->Url->build('/files/uploads/' . ($image->path ?: ''));
 				?>
-				<img src="<?php echo h($imagePath); ?>" class="card-img-top" alt="<?php echo h($image->filename); ?>" style="height: 200px; object-fit: cover;">
+				<img src="<?php echo h($imagePath); ?>"
+					class="card-img-top image-preview-trigger"
+					alt="<?php echo h($image->filename); ?>"
+					data-filename="<?php echo h($image->filename); ?>"
+					style="height: 200px; object-fit: cover; cursor: pointer;"
+					title="Click to view full size">
 				<div class="card-body">
 					<h5 class="card-title"><?php echo h($image->filename); ?></h5>
 					<p class="card-text">
@@ -132,3 +137,37 @@
 	</ul>
 
 </div>
+
+<!-- Image Preview Modal -->
+<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-labelledby="imagePreviewModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="imagePreviewModalLabel">Image Preview</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body text-center">
+				<img id="modalPreviewImage" src="" alt="" class="img-fluid" style="max-height: 80vh;">
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+(function() {
+	// Image preview modal handler
+	document.querySelectorAll('.image-preview-trigger').forEach(img => {
+		img.addEventListener('click', function() {
+			const modalImage = document.getElementById('modalPreviewImage');
+			const modalTitle = document.getElementById('imagePreviewModalLabel');
+
+			modalImage.src = this.src;
+			modalImage.alt = this.alt;
+			modalTitle.textContent = this.dataset.filename;
+
+			const modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
+			modal.show();
+		});
+	});
+})();
+</script>
