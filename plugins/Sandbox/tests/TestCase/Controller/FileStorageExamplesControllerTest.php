@@ -80,26 +80,13 @@ class FileStorageExamplesControllerTest extends TestCase {
 	 */
 	public function tearDown(): void {
 		// Clean up test files from database
+		// FileStorage behavior automatically deletes physical files (original + variants)
 		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
 		$testFiles = $FileStorage->find()
 			->where(['model' => 'FileStorage'])
 			->toArray();
 
 		foreach ($testFiles as $file) {
-			// Delete physical files
-			if (!empty($file->path) && file_exists(UPLOADS_DIR . $file->path)) {
-				@unlink(UPLOADS_DIR . $file->path);
-			}
-
-			// Delete variants
-			$variants = $file->variants ?? [];
-			foreach ($variants as $variant) {
-				if (!empty($variant['path']) && file_exists(UPLOADS_DIR . $variant['path'])) {
-					@unlink(UPLOADS_DIR . $variant['path']);
-				}
-			}
-
-			// Delete from database
 			$FileStorage->delete($file);
 		}
 
@@ -198,16 +185,8 @@ class FileStorageExamplesControllerTest extends TestCase {
 		$originalPath = UPLOADS_DIR . $file->path;
 		$this->assertFileExists($originalPath, "Original file should exist at: $originalPath");
 
-		// Cleanup
+		// Cleanup temp file (physical uploads cleaned by tearDown via FileStorage behavior)
 		@unlink($tmpFile);
-		if (!empty($file->path) && file_exists(UPLOADS_DIR . $file->path)) {
-			@unlink(UPLOADS_DIR . $file->path);
-		}
-		foreach ($variants as $variant) {
-			if (!empty($variant['path']) && file_exists(UPLOADS_DIR . $variant['path'])) {
-				@unlink(UPLOADS_DIR . $variant['path']);
-			}
-		}
 	}
 
 	/**
@@ -467,16 +446,8 @@ class FileStorageExamplesControllerTest extends TestCase {
 		$originalPath = UPLOADS_DIR . $file->path;
 		$this->assertFileExists($originalPath, "Original PDF should exist at: $originalPath");
 
-		// Cleanup
+		// Cleanup temp file (physical uploads cleaned by tearDown via FileStorage behavior)
 		@unlink($tmpFile);
-		if (!empty($file->path) && file_exists(UPLOADS_DIR . $file->path)) {
-			@unlink(UPLOADS_DIR . $file->path);
-		}
-		foreach ($variants as $variant) {
-			if (!empty($variant['path']) && file_exists(UPLOADS_DIR . $variant['path'])) {
-				@unlink(UPLOADS_DIR . $variant['path']);
-			}
-		}
 	}
 
 	/**
@@ -589,6 +560,80 @@ PDF;
 			->first();
 
 		$this->assertNull($file, 'Non-PDF file should not be saved to PDFs collection');
+
+		// Cleanup
+		@unlink($tmpFile);
+	}
+
+	/**
+	 * Test that deleting a file also deletes physical files and variants
+	 *
+	 * @return void
+	 */
+	public function testDeleteRemovesPhysicalFiles() {
+		// Create and upload a test image
+		$image = imagecreatetruecolor(100, 100);
+		$blue = imagecolorallocate($image, 0, 0, 255);
+		imagefill($image, 0, 0, $blue);
+
+		$tmpFile = TMP . 'test_delete_' . time() . '.png';
+		imagepng($image, $tmpFile);
+
+		$this->assertFileExists($tmpFile, 'Test image should be created');
+
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'delete-test.png', 'image/png');
+
+		// Upload the file
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images'], [
+			'file' => $uploadedFile,
+		]);
+
+		$this->assertRedirect(['action' => 'images']);
+
+		// Get the uploaded file from database
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'images',
+				'filename' => 'delete-test.png',
+			])
+			->orderByDesc('id')
+			->first();
+
+		$this->assertNotNull($file, 'File should be saved to database');
+
+		// Store paths for verification
+		$originalPath = UPLOADS_DIR . $file->path;
+		$this->assertFileExists($originalPath, 'Original file should exist on disk');
+
+		$variantPaths = [];
+		$variants = $file->variants ?? [];
+		foreach ($variants as $variantName => $variant) {
+			if (!empty($variant['path'])) {
+				$variantPath = UPLOADS_DIR . $variant['path'];
+				$variantPaths[] = $variantPath;
+				$this->assertFileExists($variantPath, "Variant '$variantName' should exist on disk");
+			}
+		}
+
+		// Now delete via controller action
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'delete', $file->id]);
+
+		$this->assertRedirect();
+
+		// Verify database record is deleted
+		$deletedFile = $FileStorage->find()
+			->where(['id' => $file->id])
+			->first();
+		$this->assertNull($deletedFile, 'File should be deleted from database');
+
+		// Verify physical files are deleted
+		$this->assertFileDoesNotExist($originalPath, 'Original file should be deleted from disk');
+
+		foreach ($variantPaths as $variantPath) {
+			$this->assertFileDoesNotExist($variantPath, 'Variant file should be deleted from disk');
+		}
 
 		// Cleanup
 		@unlink($tmpFile);
