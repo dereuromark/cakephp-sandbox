@@ -218,6 +218,49 @@ class CakeExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * CakePHP 5.3 feature: Combined sort pagination
+	 * Allows sorting with direction included in the sort key (e.g., 'title.asc' or 'created.desc')
+	 *
+	 * Example URL: ?sort=title.asc,created.desc
+	 *
+	 * @return void
+	 */
+	public function paginateCombinedSort() {
+		$sandboxPostsTable = $this->fetchTable('Sandbox.SandboxPosts');
+
+		// CakePHP 5.3: Use SortableFieldsBuilder via callable
+		$this->paginate = [
+			'sortableFields' => function (\Cake\Datasource\Paging\SortableFieldsBuilder $builder) {
+				return $builder
+					->add('title')
+					->add('rating_count')
+					->add('rating_sum')
+					->add('created')
+					->add('modified');
+			},
+			'limit' => 10,
+		];
+
+		$posts = $this->paginate($sandboxPostsTable);
+
+		$this->set(compact('posts'));
+	}
+
+	/**
+	 * CakePHP 5.3 feature: Rate Limit Demo
+	 * Demonstrates request rate limiting
+	 *
+	 * @return void
+	 */
+	public function rateLimiter() {
+		$requestCount = (int)$this->request->getSession()->read('rateLimiterRequestCount', 0);
+		$requestCount++;
+		$this->request->getSession()->write('rateLimiterRequestCount', $requestCount);
+
+		$this->set(compact('requestCount'));
+	}
+
+	/**
 	 * @return void
 	 */
 	public function translateBehavior() {

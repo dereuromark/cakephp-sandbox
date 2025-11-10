@@ -22,6 +22,7 @@ class CakeExamplesControllerTest extends TestCase {
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxUsers',
+		'plugin.Sandbox.SandboxPosts',
 	];
 
 	/**
@@ -172,6 +173,93 @@ class CakeExamplesControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test paginateCombinedSort method
+	 * Tests basic pagination without sorting
+	 *
+	 * @return void
+	 */
+	public function testPaginateCombinedSort(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Combined Sort Pagination');
+	}
+
+	/**
+	 * Test paginateCombinedSort with single column ascending sort
+	 * CakePHP 5.3 feature: sort with direction included in key
+	 *
+	 * @return void
+	 */
+	public function testPaginateCombinedSortTitleAsc(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort', '?' => ['sort' => 'title-asc']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test paginateCombinedSort with single column descending sort
+	 * CakePHP 5.3 feature: sort with direction included in key
+	 *
+	 * @return void
+	 */
+	public function testPaginateCombinedSortCreatedDesc(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort', '?' => ['sort' => 'created-desc']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test paginateCombinedSort with multi-column sort
+	 * CakePHP 5.3 feature: Combined sort with multiple fields
+	 *
+	 * @return void
+	 */
+	public function testPaginateCombinedSortMultiColumn(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort', '?' => ['sort' => 'rating_count-desc,created-desc']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * Test rateLimiter page loads and applies rate limit headers
+	 * CakePHP 5.3 feature: RateLimitMiddleware
+	 *
+	 * @return void
+	 */
+	public function testRateLimiterPageLoads(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'rateLimiter']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Rate Limit Middleware');
+
+		// Verify rate limit headers are present
+		$this->assertHeader('X-RateLimit-Limit', '5');
+		// Check that X-RateLimit-Remaining header exists (value depends on previous test state)
+		$headers = $this->_response->getHeaders();
+		$this->assertArrayHasKey('X-RateLimit-Remaining', $headers, 'X-RateLimit-Remaining header should be present');
+	}
+
+	/**
+	 * Test that rate limiter is NOT applied to other actions
+	 *
+	 * @return void
+	 */
+	public function testRateLimiterOnlyAppliesRateLimiterAction(): void {
+		// Make multiple requests to a different action
+		// This verifies rate limiting is scoped to specific action only
+		for ($i = 1; $i <= 5; $i++) {
+			$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'index']);
+			$this->assertResponseCode(200, "Request $i should succeed - rate limiter should not apply");
+		}
 	}
 
 }

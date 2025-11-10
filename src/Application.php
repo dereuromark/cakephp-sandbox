@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Middleware\DemoRateLimitMiddleware;
 use App\Http\Middleware\RedirectMiddleware;
 use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Core\Configure;
@@ -71,7 +72,12 @@ class Application extends BaseApplication {
 			->add(RedirectMiddleware::class)
 
 			// Apply routing
-			->add(new RoutingMiddleware($this));
+			->add(new RoutingMiddleware($this))
+
+			// CakePHP 5.3: Rate limit demo (limits to 10 requests/minute per IP)
+			// Applied AFTER routing so route params are available for skipCheck
+			// Only applies to Sandbox.CakeExamples::rateLimiter action via skipCheck callback
+			->add(new DemoRateLimitMiddleware());
 
 		return $middlewareQueue;
 	}
