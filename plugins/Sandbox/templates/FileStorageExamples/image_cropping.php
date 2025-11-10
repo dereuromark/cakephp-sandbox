@@ -363,8 +363,8 @@
 			imageSmoothingQuality: 'high',
 		});
 
-		// Convert to base64
-		const croppedImage = canvas.toDataURL('image/png');
+		// Convert to base64 (JPEG with 0.85 quality for smaller file size)
+		const croppedImage = canvas.toDataURL('image/jpeg', 0.85);
 
 		// Show progress
 		uploadProgress.style.display = 'block';

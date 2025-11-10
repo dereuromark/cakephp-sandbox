@@ -163,6 +163,18 @@ function uploadFiles(files) {
 		<li>Safari 14+</li>
 	</ul>
 
+	<h4>Troubleshooting</h4>
+	<div class="alert alert-warning">
+		<strong>Drag & Drop not working?</strong>
+		<p>If drag and drop isn't working in Chrome/Edge, browser extensions may be blocking drag events:</p>
+		<ul class="mb-0">
+			<li><strong>Test in Incognito Mode:</strong> Press Ctrl+Shift+N (Windows/Linux) or Cmd+Shift+N (Mac) to open an incognito window where extensions are disabled</li>
+			<li><strong>Common culprits:</strong> Ad blockers (uBlock Origin, AdBlock Plus), privacy extensions (Privacy Badger, Ghostery), or security extensions</li>
+			<li><strong>Solution:</strong> Go to <code>chrome://extensions/</code> and disable extensions one by one to identify which one is blocking drag events</li>
+			<li><strong>Alternative:</strong> Click the drop zone to use the traditional file picker instead</li>
+		</ul>
+	</div>
+
 </div>
 
 <style>
@@ -174,6 +186,11 @@ function uploadFiles(files) {
 	cursor: pointer;
 	transition: all 0.3s ease;
 	background: #f8f9fa;
+}
+
+.drop-zone-content,
+.drop-zone-content * {
+	pointer-events: none;
 }
 
 .drop-zone:hover:not(.disabled) {
@@ -310,8 +327,20 @@ function uploadFiles(files) {
 </style>
 
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
+	// Clean up any stale modal backdrops that might block drag/drop
+	document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+	document.body.classList.remove('modal-open');
+	document.body.style.overflow = '';
+	document.body.style.paddingRight = '';
+
 	const dropZone = document.getElementById('dropZone');
+
+	if (!dropZone) {
+		console.error('Drop zone element not found!');
+		return;
+	}
+
 	const fileInput = document.getElementById('fileInput');
 	const previewArea = document.getElementById('previewArea');
 	const uploadUrl = <?php echo json_encode($this->Url->build(['action' => 'dragDropUpload', '?' => ['ajax' => 1]])); ?>;
@@ -321,16 +350,16 @@ function uploadFiles(files) {
 	const allowedTypes = ['image/jpeg', 'image/png'];
 	let pendingUploads = [];
 
+	function preventDefaults(e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
 	// Prevent default drag behaviors
 	['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
 		dropZone.addEventListener(eventName, preventDefaults, false);
 		document.body.addEventListener(eventName, preventDefaults, false);
 	});
-
-	function preventDefaults(e) {
-		e.preventDefault();
-		e.stopPropagation();
-	}
 
 	// Highlight drop zone when item is dragged over it
 	['dragenter', 'dragover'].forEach(eventName => {
@@ -534,15 +563,20 @@ function uploadFiles(files) {
 			const modalImage = document.getElementById('modalPreviewImage');
 			const modalTitle = document.getElementById('imagePreviewModalLabel');
 
-			modalImage.src = this.src;
-			modalImage.alt = this.alt;
-			modalTitle.textContent = this.dataset.filename;
+			if (modalImage && modalTitle) {
+				modalImage.src = this.src;
+				modalImage.alt = this.alt;
+				modalTitle.textContent = this.dataset.filename;
+			}
 
-			const modal = new bootstrap.Modal(document.getElementById('imagePreviewModal'));
-			modal.show();
+			const modalElement = document.getElementById('imagePreviewModal');
+			if (modalElement && typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+				const modal = new bootstrap.Modal(modalElement);
+				modal.show();
+			}
 		});
 	});
-})();
+});
 </script>
 
 <!-- Image Preview Modal -->
