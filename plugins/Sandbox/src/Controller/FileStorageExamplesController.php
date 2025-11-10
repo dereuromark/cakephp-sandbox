@@ -288,7 +288,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				if ($isAjax) {
 					return $this->response
 						->withType('application/json')
-						->withStringBody(json_encode([
+						->withStringBody((string)json_encode([
 							'success' => false,
 							'error' => 'Maximum 3 cropped images allowed. Please delete an existing image first.',
 						]));
@@ -303,16 +303,17 @@ class FileStorageExamplesController extends SandboxAppController {
 			if (preg_match('/^data:image\/(\w+);base64,/', $croppedData, $matches)) {
 				$imageType = $matches[1];
 				$croppedData = substr($croppedData, strpos($croppedData, ',') + 1);
-				$croppedData = base64_decode($croppedData);
+				$croppedData = base64_decode($croppedData, true);
 
 				// Create temporary file
 				$tmpFile = TMP . 'cropped_' . time() . '.' . $imageType;
 				file_put_contents($tmpFile, $croppedData);
 
 				// Create uploaded file object
+				$fileSize = filesize($tmpFile);
 				$uploadedFile = new UploadedFile(
 					$tmpFile,
-					filesize($tmpFile),
+					$fileSize !== false ? $fileSize : 0,
 					UPLOAD_ERR_OK,
 					$originalFilename,
 					'image/' . $imageType,
@@ -340,7 +341,7 @@ class FileStorageExamplesController extends SandboxAppController {
 
 						return $this->response
 							->withType('application/json')
-							->withStringBody(json_encode([
+							->withStringBody((string)json_encode([
 								'success' => false,
 								'error' => $errorMessage,
 							]));
@@ -360,12 +361,12 @@ class FileStorageExamplesController extends SandboxAppController {
 					if ($isAjax) {
 						return $this->response
 							->withType('application/json')
-							->withStringBody(json_encode([
+							->withStringBody((string)json_encode([
 								'success' => true,
 								'file' => [
 									'id' => $fileStorage->id,
 									'filename' => $fileStorage->filename,
-									'size' => $fileStorage->size,
+									'size' => $fileStorage->filesize,
 									'mime_type' => $fileStorage->mime_type,
 								],
 							]));
@@ -382,7 +383,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			if ($isAjax) {
 				return $this->response
 					->withType('application/json')
-					->withStringBody(json_encode([
+					->withStringBody((string)json_encode([
 						'success' => false,
 						'error' => 'Could not save cropped image. Please try again.',
 					]));
@@ -437,7 +438,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				if ($isAjax) {
 					return $this->response
 						->withType('application/json')
-						->withStringBody(json_encode([
+						->withStringBody((string)json_encode([
 							'success' => false,
 							'error' => 'Maximum 3 files allowed. Please delete an existing file first.',
 						]));
@@ -468,7 +469,7 @@ class FileStorageExamplesController extends SandboxAppController {
 
 					return $this->response
 						->withType('application/json')
-						->withStringBody(json_encode([
+						->withStringBody((string)json_encode([
 							'success' => false,
 							'error' => $errorMessage,
 						]));
@@ -486,12 +487,12 @@ class FileStorageExamplesController extends SandboxAppController {
 				if ($isAjax) {
 					return $this->response
 						->withType('application/json')
-						->withStringBody(json_encode([
+						->withStringBody((string)json_encode([
 							'success' => true,
 							'file' => [
 								'id' => $fileStorage->id,
 								'filename' => $fileStorage->filename,
-								'size' => $fileStorage->size,
+								'size' => $fileStorage->filesize,
 								'mime_type' => $fileStorage->mime_type,
 							],
 						]));
@@ -505,7 +506,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			if ($isAjax) {
 				return $this->response
 					->withType('application/json')
-					->withStringBody(json_encode([
+					->withStringBody((string)json_encode([
 						'success' => false,
 						'error' => 'Could not save file. Please try again.',
 					]));
