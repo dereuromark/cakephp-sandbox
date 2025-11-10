@@ -382,7 +382,23 @@
 				'X-Requested-With': 'XMLHttpRequest'
 			}
 		})
-		.then(response => response.json())
+		.then(response => {
+			// Check if response is OK
+			if (!response.ok) {
+				throw new Error('Server returned ' + response.status);
+			}
+
+			// Check if response is JSON
+			const contentType = response.headers.get('content-type');
+			if (!contentType || !contentType.includes('application/json')) {
+				return response.text().then(text => {
+					console.error('Non-JSON response:', text.substring(0, 500));
+					throw new Error('Server returned HTML instead of JSON. Check server logs.');
+				});
+			}
+
+			return response.json();
+		})
 		.then(data => {
 			uploadProgress.style.display = 'none';
 
