@@ -253,6 +253,129 @@ class FileStorageExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Modern drag-and-drop upload demo
+	 *
+	 * Demonstrates:
+	 * - HTML5 drag and drop API
+	 * - AJAX file upload with progress tracking
+	 * - Multiple file uploads
+	 * - Client-side validation
+	 * - Image previews
+	 *
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function dragDropUpload() {
+		$this->FileStorage = $this->fetchTable('FileStorage.FileStorage');
+
+		// Handle AJAX file upload
+		if ($this->request->is('post')) {
+			$uploadedFile = $this->request->getData('file');
+
+			// Check if this is an AJAX request
+			$isAjax = $this->request->is('ajax') || $this->request->getQuery('ajax');
+
+			// Check max count limit (10 files max)
+			$currentCount = $this->FileStorage->find()
+				->where([
+					'FileStorage.model' => 'FileStorage',
+					'FileStorage.collection' => 'drag-drop',
+				])
+				->count();
+
+			if ($currentCount >= 3) {
+				if ($isAjax) {
+					return $this->response
+						->withType('application/json')
+						->withStringBody(json_encode([
+							'success' => false,
+							'error' => 'Maximum 3 files allowed. Please delete an existing file first.',
+						]));
+				}
+
+				$this->Flash->error('Maximum 3 files allowed. Please delete an existing file first.');
+
+				return $this->redirect(['action' => 'dragDropUpload']);
+			}
+
+			$data = [
+				'file' => $uploadedFile,
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+			];
+
+			// Validate using custom validator for images
+			$validator = new FileUploadValidator();
+			$validator->forImages();
+
+			$errors = $validator->validate($data);
+			if (!empty($errors)) {
+				if ($isAjax) {
+					$errorMessage = 'Validation failed';
+					if (isset($errors['file'])) {
+						$errorMessage = is_array($errors['file']) ? implode(', ', $errors['file']) : $errors['file'];
+					}
+
+					return $this->response
+						->withType('application/json')
+						->withStringBody(json_encode([
+							'success' => false,
+							'error' => $errorMessage,
+						]));
+				}
+
+				$this->Flash->error('Could not upload file. Please check the errors below.');
+
+				return $this->redirect(['action' => 'dragDropUpload']);
+			}
+
+			$fileStorage = $this->FileStorage->newEmptyEntity();
+			$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+			if ($this->FileStorage->save($fileStorage)) {
+				if ($isAjax) {
+					return $this->response
+						->withType('application/json')
+						->withStringBody(json_encode([
+							'success' => true,
+							'file' => [
+								'id' => $fileStorage->id,
+								'filename' => $fileStorage->filename,
+								'size' => $fileStorage->size,
+								'mime_type' => $fileStorage->mime_type,
+							],
+						]));
+				}
+
+				$this->Flash->success('File uploaded successfully.');
+
+				return $this->redirect(['action' => 'dragDropUpload']);
+			}
+
+			if ($isAjax) {
+				return $this->response
+					->withType('application/json')
+					->withStringBody(json_encode([
+						'success' => false,
+						'error' => 'Could not save file. Please try again.',
+					]));
+			}
+
+			$this->Flash->error('Could not upload file. Please try again.');
+		}
+
+		$files = $this->FileStorage->find()
+			->where([
+				'FileStorage.model' => 'FileStorage',
+				'FileStorage.collection' => 'drag-drop',
+			])
+			->orderByDesc('FileStorage.created')
+			->limit(20)
+			->toArray();
+
+		$this->set(compact('files'));
+	}
+
+	/**
 	 * View/download a file
 	 *
 	 * @param string|null $id File ID

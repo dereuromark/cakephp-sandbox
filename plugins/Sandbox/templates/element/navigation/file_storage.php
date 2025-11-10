@@ -25,6 +25,11 @@
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
+	<li class="heading"><?= __('Advanced Features') ?></li>
+	<li><?php echo $this->Navigation->link('Drag & Drop Upload', ['action' => 'dragDropUpload'])?></li>
+</ul>
+
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Image Processing') ?></li>
 	<li><?php echo $this->Navigation->link('Image Variants', ['action' => 'variants'])?></li>
 </ul>

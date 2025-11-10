@@ -62,6 +62,23 @@
 		</div>
 	</div>
 
+	<h3>Advanced Features</h3>
+	<div class="row">
+		<div class="col-md-4 mb-3">
+			<div class="card border-primary">
+				<div class="card-body">
+					<h5 class="card-title">
+						Drag & Drop Upload
+						<span class="badge bg-primary">Modern</span>
+						<span class="badge bg-info">AJAX</span>
+					</h5>
+					<p class="card-text">Modern HTML5 drag-and-drop upload with progress tracking, previews, and client-side validation.</p>
+					<?php echo $this->Html->link('Try it', ['action' => 'dragDropUpload'], ['class' => 'btn btn-primary']); ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<h3>Image Processing</h3>
 	<div class="row">
 		<div class="col-md-12 mb-3">

@@ -594,4 +594,255 @@ PDF;
 		@unlink($tmpFile);
 	}
 
+	/**
+	 * Test drag-drop upload page loads
+	 *
+	 * @return void
+	 */
+	public function testDragDropUploadPageLoads() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Modern Drag & Drop Upload');
+		$this->assertResponseContains('dropZone');
+	}
+
+	/**
+	 * Test drag-drop AJAX upload success
+	 *
+	 * @return void
+	 */
+	public function testDragDropAjaxUploadSuccess() {
+		// Create a test image
+		$image = imagecreatetruecolor(100, 100);
+		$blue = imagecolorallocate($image, 0, 0, 255);
+		imagefill($image, 0, 0, $blue);
+
+		$tmpFile = TMP . 'test_drag_' . time() . '.png';
+		imagepng($image, $tmpFile);
+
+		$this->assertFileExists($tmpFile, 'Test image should be created');
+
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'drag-test.png', 'image/png');
+
+		// Post with AJAX flag
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload', '?' => ['ajax' => 1]],
+			['file' => $uploadedFile],
+		);
+
+		// Should return JSON response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		// Parse JSON response
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertTrue($response['success'], 'Upload should succeed');
+		$this->assertArrayHasKey('file', $response, 'Response should contain file data');
+		$this->assertSame('drag-test.png', $response['file']['filename']);
+
+		// Verify file was saved to database
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+				'filename' => 'drag-test.png',
+			])
+			->orderByDesc('id')
+			->first();
+
+		$this->assertNotNull($file, 'File should be saved to database');
+		$this->assertSame('FileStorage', $file->model);
+		$this->assertSame('drag-drop', $file->collection);
+
+		// Cleanup
+		@unlink($tmpFile);
+	}
+
+	/**
+	 * Test drag-drop AJAX upload with invalid file type
+	 *
+	 * @return void
+	 */
+	public function testDragDropAjaxUploadInvalidType() {
+		// Create a fake GIF file (not allowed)
+		$tmpFile = TMP . 'test_drag_invalid_' . time() . '.gif';
+		file_put_contents($tmpFile, 'GIF89a');
+
+		$this->assertFileExists($tmpFile, 'Test file should be created');
+
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'invalid.gif', 'image/gif');
+
+		// Post with AJAX flag
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload', '?' => ['ajax' => 1]],
+			['file' => $uploadedFile],
+		);
+
+		// Should return JSON error response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		// Parse JSON response
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertFalse($response['success'], 'Upload should fail');
+		$this->assertArrayHasKey('error', $response, 'Response should contain error message');
+
+		// Verify file was NOT saved
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+				'filename' => 'invalid.gif',
+			])
+			->first();
+
+		$this->assertNull($file, 'Invalid file should not be saved');
+
+		// Cleanup
+		@unlink($tmpFile);
+	}
+
+	/**
+	 * Test drag-drop AJAX upload with file too large
+	 *
+	 * @return void
+	 */
+	public function testDragDropAjaxUploadFileTooLarge() {
+		// Create a test image
+		$image = imagecreatetruecolor(100, 100);
+		$tmpFile = TMP . 'test_drag_large_' . time() . '.png';
+		imagepng($image, $tmpFile);
+
+		$this->assertFileExists($tmpFile, 'Test image should be created');
+
+		// Fake the file size to be over 2MB
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'large.png', 'image/png', 2 * 1024 * 1024 + 1);
+
+		// Post with AJAX flag
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload', '?' => ['ajax' => 1]],
+			['file' => $uploadedFile],
+		);
+
+		// Should return JSON error response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		// Parse JSON response
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertFalse($response['success'], 'Upload should fail for large file');
+		$this->assertArrayHasKey('error', $response, 'Response should contain error message');
+
+		// Verify file was NOT saved
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		$file = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+				'filename' => 'large.png',
+			])
+			->first();
+
+		$this->assertNull($file, 'Large file should not be saved');
+
+		// Cleanup
+		@unlink($tmpFile);
+	}
+
+	/**
+	 * Test that maximum 3 uploads for drag-drop collection is enforced
+	 *
+	 * @return void
+	 */
+	public function testDragDropMaximumCountLimitEnforced() {
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+
+		// Note: Rate limiter middleware is automatically disabled in test environment
+
+		// Create 3 dummy files in the drag-drop collection
+		for ($i = 1; $i <= 3; $i++) {
+			$image = imagecreatetruecolor(10, 10);
+			$tmpFile = TMP . 'test_drag_dummy_' . $i . '_' . time() . '.png';
+			imagepng($image, $tmpFile);
+
+			$uploadedFile = $this->createUploadedFile($tmpFile, "drag-dummy-$i.png", 'image/png');
+
+			$this->configRequest([
+				'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+			]);
+
+			$this->post(
+				['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload', '?' => ['ajax' => 1]],
+				['file' => $uploadedFile],
+			);
+
+			$this->assertResponseCode(200);
+		}
+
+		// Verify we have 3 files
+		$count = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+			])
+			->count();
+		$this->assertEquals(3, $count, 'Should have 3 files in drag-drop collection');
+
+		// Try to upload a 4th file
+		$image = imagecreatetruecolor(100, 100);
+		$tmpFile = TMP . 'test_drag_fourth_' . time() . '.png';
+		imagepng($image, $tmpFile);
+
+		$uploadedFile = $this->createUploadedFile($tmpFile, 'fourth.png', 'image/png');
+
+		$this->configRequest([
+			'headers' => ['X-Requested-With' => 'XMLHttpRequest'],
+		]);
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'dragDropUpload', '?' => ['ajax' => 1]],
+			['file' => $uploadedFile],
+		);
+
+		// Should return JSON error response
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response, 'Response should be valid JSON');
+		$this->assertFalse($response['success'], 'Upload should fail when limit reached');
+		$this->assertArrayHasKey('error', $response);
+		$this->assertStringContainsString('Maximum 3 files', $response['error']);
+
+		// Should still have only 3 files
+		$newCount = $FileStorage->find()
+			->where([
+				'model' => 'FileStorage',
+				'collection' => 'drag-drop',
+			])
+			->count();
+		$this->assertEquals(3, $newCount, 'Should still have only 3 files (4th was rejected)');
+
+		// Cleanup
+		@unlink($tmpFile);
+	}
+
 }
