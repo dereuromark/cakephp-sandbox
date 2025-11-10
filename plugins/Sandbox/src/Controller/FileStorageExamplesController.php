@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
+use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
 
 /**
@@ -309,7 +310,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				file_put_contents($tmpFile, $croppedData);
 
 				// Create uploaded file object
-				$uploadedFile = new \Laminas\Diactoros\UploadedFile(
+				$uploadedFile = new UploadedFile(
 					$tmpFile,
 					filesize($tmpFile),
 					UPLOAD_ERR_OK,
