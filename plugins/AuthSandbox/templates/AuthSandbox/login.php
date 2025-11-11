@@ -27,14 +27,16 @@ echo $this->Form->control('password', ['autocomplete' => 'off']);
 </div>
 <div class="col-md-6">
 
-	<div class="well">
-	<h3>Roles and access credentials</h3>
-	<ul>
-		<li>not logged in (no role)</li>
-		<li><span class="badge">user</span> username: user, pwd: 123</li>
-		<li><span class="badge">mod</span> username: mod, pwd: 123</li>
-		<li><span class="badge">admin</span> username: admin, pwd: 123</li>
-	</ul>
+	<div class="card">
+		<div class="card-body">
+			<h3>Roles and access credentials</h3>
+			<ul>
+				<li>not logged in (no role)</li>
+				<li><span class="badge bg-primary">user</span> username: user, pwd: 123</li>
+				<li><span class="badge bg-warning">mod</span> username: mod, pwd: 123</li>
+				<li><span class="badge bg-danger">admin</span> username: admin, pwd: 123</li>
+			</ul>
+		</div>
 	</div>
 
 	<p>

@@ -11,10 +11,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ['8.3', '8.5']
+        php-version: ['8.4', '8.5']
         db-type: [sqlite, mysql, pgsql]
         include:
-          - php-version: '8.3'
+          - php-version: '8.4'
             db-type: 'sqlite'
 
     services:
@@ -76,7 +76,7 @@ jobs:
         # Debug: Check if plugins are loaded
         bin/cake plugin list || true
 
-        if [[ ${{ matrix.php-version }} == '8.3' && ${{ matrix.db-type }} == 'mysql' ]]; then
+        if [[ ${{ matrix.php-version }} == '8.4' && ${{ matrix.db-type }} == 'mysql' ]]; then
           php -d pcov.enabled=1 -d pcov.directory=${{ github.workspace }} -d pcov.exclude=~vendor~ vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-text 2>&1 | tee phpunit-output.txt
           # Debug: Check coverage.xml for plugin files
           grep -c "plugins/" coverage.xml || echo "No plugin files in coverage!"
@@ -85,7 +85,7 @@ jobs:
         fi
 
     - name: Upload coverage.xml artifact
-      if: matrix.php-version == '8.3' && matrix.db-type == 'mysql'
+      if: matrix.php-version == '8.4' && matrix.db-type == 'mysql'
       uses: actions/upload-artifact@v4
       with:
         name: coverage-report
@@ -94,7 +94,7 @@ jobs:
           phpunit-output.txt
 
     - name: Code Coverage Report
-      if: success() && matrix.php-version == '8.3' && matrix.db-type == 'mysql'
+      if: success() && matrix.php-version == '8.4' && matrix.db-type == 'mysql'
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
@@ -113,7 +113,7 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'
+        php-version: '8.4'
         extensions: mbstring, intl, pdo_sqlite, imagick
         coverage: none
 

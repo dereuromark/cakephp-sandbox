@@ -43,8 +43,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForAll() {
-		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]];
-		$this->session($session);
+		$Users = $this->fetchTable('Users');
+		$user = $Users->get(1);
+		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
 
@@ -56,8 +57,17 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForMods() {
-		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 3]]];
-		$this->session($session);
+		$Users = $this->fetchTable('Users');
+		// Create a user with mod role (role_id = 3)
+		$user = $Users->newEntity([
+			'username' => 'testmod',
+			'email' => 'testmod@example.com',
+			'password' => 'password',
+			'role_id' => 3,
+		]);
+		$Users->save($user);
+
+		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
 
@@ -79,8 +89,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]];
-		$this->session($session);
+		$Users = $this->fetchTable('Users');
+		$user = $Users->get(1);
+		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'logout']);
 

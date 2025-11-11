@@ -25,7 +25,17 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
 
-		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 2]]]);
+		$Users = $this->fetchTable('Users');
+		// Create a user with admin role (role_id = 2)
+		$user = $Users->newEntity([
+			'username' => 'testadmin',
+			'email' => 'testadmin@example.com',
+			'password' => 'password',
+			'role_id' => 2,
+		]);
+		$Users->save($user);
+
+		$this->session(['Auth' => $user]);
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
@@ -54,7 +64,17 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndexNotAllowed() {
 		$this->disableErrorHandlerMiddleware();
 
-		$this->session(['Auth' => ['User' => ['id' => 1, 'role_id' => 4]]]);
+		// Create a test user with a restricted role
+		$Users = $this->fetchTable('Users');
+		$user = $Users->newEntity([
+			'username' => 'testuser',
+			'email' => 'test@example.com',
+			'password' => 'password',
+			'role_id' => 4,
+		]);
+		$Users->save($user);
+
+		$this->session(['Auth' => $user]);
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(302);

@@ -10,3 +10,4 @@ parameters:
 		- %rootDir%/../../../tests/bootstrap.php
 
 	ignoreErrors:
+		- identifier: unset.possiblyHookedProperty

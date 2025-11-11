@@ -17,7 +17,7 @@
 	],
 	"license": "MIT",
 	"require": {
-		"php": ">=8.3",
+		"php": ">=8.4",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
 		"cakephp/cakephp": "5.x-dev as 5.2.0",
@@ -26,7 +26,7 @@
 		"dereuromark/cakephp-comments": "dev-master",
 		"dereuromark/cakephp-favorites": "dev-master",
 		"dereuromark/cakephp-translate": "dev-master",
-		"dereuromark/cakephp-tinyauth": "^4.5.3",
+		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
 		"dereuromark/cakephp-shim": "dev-master as 3.1.0",
 		"dereuromark/cakephp-tools": "dev-master as 3.9.0",
@@ -79,7 +79,9 @@
 		"php-collective/file-storage": "dev-master as 1.0.0",
 		"php-collective/file-storage-image-processor": "dev-master as 1.0.0",
 		"dereuromark/cakephp-file-storage": "dev-master as 1.0.0",
-		"spatie/pdf-to-image": "^1.2"
+		"spatie/pdf-to-image": "^1.2",
+		"cakephp/authentication": "^3.3",
+		"cakephp/authorization": "^3.4"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.4.5",
@@ -163,7 +165,7 @@
 		"preferred-install": "dist",
 		"process-timeout": 900,
 		"platform": {
-			"php": "8.3.1"
+			"php": "8.4.1"
 		},
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true,
