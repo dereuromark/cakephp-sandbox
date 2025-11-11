@@ -102,7 +102,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 						'prefix' => false,
 						'plugin' => false,
 						'controller' => 'Account',
-						'action' => 'index',
+						'action' => 'login',
 					],
 					'unauthorizedMessage' => 'You are not authorized to access that location.',
 				],
