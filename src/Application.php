@@ -13,14 +13,13 @@ use Authorization\AuthorizationServiceInterface;
 use Authorization\AuthorizationServiceProviderInterface;
 use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\MapResolver;
-use Cake\Http\ServerRequest;
-use TinyAuth\Policy\RequestPolicy;
 use Cache\Routing\Middleware\CacheMiddleware;
 use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Http\BaseApplication;
 use Cake\Http\MiddlewareQueue;
+use Cake\Http\ServerRequest;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\Routing\Router;
@@ -29,6 +28,7 @@ use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use Setup\Middleware\MaintenanceMiddleware;
 use TinyAuth\Middleware\RequestAuthorizationMiddleware;
+use TinyAuth\Policy\RequestPolicy;
 use Tools\Error\Middleware\ErrorHandlerMiddleware;
 
 /**
