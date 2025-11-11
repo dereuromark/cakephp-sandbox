@@ -45,21 +45,23 @@ class AccountController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function login() {
-		$userId = $this->Auth->user('id');
-		if ($userId) {
-			return $this->redirect($this->Auth->redirectUrl());
-		}
-
-		if ($this->Common->isPosted()) {
-			$user = $this->Auth->identify();
-			if ($user) {
-				$this->Auth->setUser($user);
-				$this->Flash->success(__('You are now logged in.'));
-
-				return $this->redirect($this->Auth->redirectUrl());
+		$result = $this->Authentication->getResult();
+		// If the user is logged in send them away.
+		if ($result && $result->isValid()) {
+			// For POST requests (actual login), use the redirect parameter
+			// For GET requests (already logged in), ignore redirect to avoid loops
+			if ($this->request->is('post')) {
+				$target = $this->Authentication->getLoginRedirect() ?? ['controller' => 'Account', 'action' => 'index'];
+			} else {
+				// Already logged in and accessing login page directly
+				$this->Flash->info(__('The page you tried to access is not relevant if you are already logged in. Redirected to main page.'));
+				$target = ['controller' => 'Account', 'action' => 'index'];
 			}
+
+			return $this->redirect($target);
+		}
+		if ($this->request->is('post') && $result && !$result->isValid()) {
 			$this->Flash->error('Wrong username/email or password');
-			//$this->request->data['password'] = '';
 		} else {
 			$username = $this->request->getQuery('username');
 			if ($username) {
@@ -72,11 +74,11 @@ class AccountController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function logout() {
-		$whereTo = $this->Auth->logout();
+		$this->Authentication->logout();
 
 		$this->Flash->success(__('You are now logged out.'));
 
-		return $this->redirect($whereTo);
+		return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 	}
 
 	/**
@@ -226,9 +228,9 @@ class AccountController extends AppController {
 			$data = $this->request->getData();
 			$data['role_id'] = Configure::read('Role.user');
 			$user = $this->Users->patchEntity($user, $data);
-			if (!$user->getErrors()) {
+			if (!$user->getErrors() && $this->Users->save($user)) {
 				$this->Flash->success(__('Account created'));
-				$this->Auth->setUser($user);
+				$this->Authentication->setIdentity($user);
 
 				return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 			}
@@ -250,7 +252,7 @@ class AccountController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function edit() {
-		$uid = $this->request->getSession()->read('Auth.User.id');
+		$uid = $this->AuthUser->id();
 		$user = $this->Users->get($uid);
 		$this->Users->addBehavior('Tools.Passwordable', ['require' => false]);
 
@@ -260,7 +262,7 @@ class AccountController extends AppController {
 			if ($this->Users->save($user)) {
 				$this->Flash->success(__('Account modified'));
 
-				$this->Auth->setUser($this->Users->get($uid)->toArray());
+				$this->Authentication->setIdentity($this->Users->get($uid));
 
 				return $this->redirect(['action' => 'index']);
 			}
@@ -280,7 +282,7 @@ class AccountController extends AppController {
 	 */
 	public function delete() {
 		$this->request->allowMethod(['post', 'delete']);
-		$uid = $this->request->getSession()->read('Auth.User.id');
+		$uid = $this->AuthUser->id();
 
 		$user = $this->Users->get($uid);
 		if (!$this->Users->delete($user)) {

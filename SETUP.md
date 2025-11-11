@@ -62,14 +62,17 @@ bin/cake migrations seed
 ```
 
 
-#### Using Devilbox or custom
+#### Using Devilbox or custom (deprecated)
 If you are not using ddev, consider using a vhost setup to map the base path to `http://sandbox.local/`.
 This will ensure that all linked assets will be found. Should also work without, though.
 
 Using [Devilbox](https://github.com/cytopia/devilbox) should also  be working on any OS.
 
 Just follow the [docs](https://github.com/cytopia/devilbox?tab=readme-ov-file#-quickstart) there.
-You need to adjust the `.env` file a bit, though.
+Make sure:
+- PHP 8.4+
+
+You need will also have to adjust the `.env` file a bit:
 
 Set HTTPD_DOCROOT_DIR for easier work with CakePHP:
 ```

@@ -26,8 +26,9 @@ class UsersControllerTest extends IntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$session = ['Auth' => ['User' => ['id' => 1, 'role_id' => 1]]];
-		$this->session($session);
+		$Users = $this->fetchTable('Users');
+		$user = $Users->get(1);
+		$this->session(['Auth' => $user]);
 	}
 
 	/**

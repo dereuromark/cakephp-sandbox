@@ -17,8 +17,17 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 		<h3>Status</h3>
 		<?php
 		$status = ' a guest';
-		if ($this->request->getSession()->read('Auth.User.id')) {
-			$status = ' logged in as <b>' . $this->request->getSession()->read('Auth.User.username') . '</b> <span class="badge" title="' . h($role->name) . '">' . h($role->alias) . '</span>';
+		if ($this->AuthUser->id()) {
+			// Determine badge color based on role
+			$badgeClass = 'badge';
+			if ($role->alias === 'admin') {
+				$badgeClass .= ' bg-danger';
+			} elseif ($role->alias === 'mod') {
+				$badgeClass .= ' bg-warning';
+			} elseif ($role->alias === 'user') {
+				$badgeClass .= ' bg-primary';
+			}
+			$status = ' logged in as <b>' . h($this->AuthUser->user('username')) . '</b> <span class="' . $badgeClass . '" title="' . h($role->name) . '">' . h($role->alias) . '</span>';
 		}
 
 		?>
@@ -26,10 +35,10 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 			You are <?php echo $status; ?>.
 		</p>
 		<p>
-		<?php if (!$this->request->getSession()->read('Auth.User.id')) { ?>
+		<?php if (!$this->AuthUser->id()) { ?>
 			<?php echo $this->Html->link('Log in', ['action' => 'login'], ['class' => 'btn btn-success']); ?>
 		<?php } ?>
-		<?php if ($this->request->getSession()->read('Auth.User.id')) { ?>
+		<?php if ($this->AuthUser->id()) { ?>
 			<?php echo $this->Html->link('Log out', ['action' => 'logout'], ['class' => 'btn btn-danger']); ?>
 		<?php } ?>
 		</p>
@@ -39,9 +48,9 @@ For <?php echo $this->Html->link('TinyAuth', 'https://github.com/dereuromark/cak
 		<h3>Roles and access credentials</h3>
 		<ul>
 			<li>not logged in (no role)</li>
-			<li><span class="badge badge-info">user</span> username: user, pwd: 123</li>
-			<li><span class="badge badge-info">mod</span> username: mod, pwd: 123</li>
-			<li><span class="badge badge-info">admin</span> username: admin, pwd: 123</li>
+			<li><span class="badge bg-primary">user</span> username: user, pwd: 123</li>
+			<li><span class="badge bg-warning">mod</span> username: mod, pwd: 123</li>
+			<li><span class="badge bg-danger">admin</span> username: admin, pwd: 123</li>
 		</ul>
 
 

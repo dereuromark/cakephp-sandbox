@@ -46,47 +46,6 @@ class AuthSandboxController extends AppController {
 	 */
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
-
-		$this->_authSetup();
-	}
-
-	/**
-	 * @return void
-	 */
-	protected function _authSetup() {
-		$this->Auth->setConfig('authenticate', [
-			'TinyAuth.MultiColumn' => [
-				'fields' => [
-					'username' => 'login',
-					'password' => 'password',
-				],
-				'columns' => ['username', 'email'],
-				'userModel' => 'Users',
-			],
-		]);
-
-		// Roles are defined in Roles table (and relationship linked in Users table)
-		$this->Auth->setConfig('authorize', ['TinyAuth.Tiny']);
-
-		$this->Auth->setConfig('loginAction', [
-			'prefix' => false,
-			'controller' => 'AuthSandbox',
-			'action' => 'login',
-			'plugin' => 'AuthSandbox',
-		]);
-		$this->Auth->setConfig('loginRedirect', [
-			'prefix' => false,
-			'controller' => 'AuthSandbox',
-			'action' => 'index',
-			'plugin' => 'AuthSandbox',
-		]);
-		$this->Auth->setConfig('logoutRedirect', [
-			'prefix' => false,
-			'controller' => 'AuthSandbox',
-			'action' => 'login',
-			'plugin' => 'AuthSandbox',
-		]);
-		$this->Auth->setConfig('authError', 'Did you really think you are allowed to see that?');
 	}
 
 	/**
@@ -103,13 +62,14 @@ class AuthSandboxController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function login() {
-		if ($this->request->is('post')) {
-			$user = $this->Auth->identify();
-			if ($user) {
-				$this->Auth->setUser($user);
+		$result = $this->Authentication->getResult();
+		// If the user is logged in send them away.
+		if ($result && $result->isValid()) {
+			$target = $this->Authentication->getLoginRedirect() ?? ['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index'];
 
-				return $this->redirect($this->Auth->redirectUrl());
-			}
+			return $this->redirect($target);
+		}
+		if ($this->request->is('post') && $result && !$result->isValid()) {
 			$this->Flash->error(__('Username or password is incorrect'));
 		}
 	}
@@ -124,14 +84,20 @@ class AuthSandboxController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Users->addBehavior('Tools.Passwordable');
 
+			$data = $this->request->getData();
+			// Provide a default email based on username if not provided (for demo purposes)
+			if (empty($data['email']) && !empty($data['username'])) {
+				$data['email'] = $data['username'] . '@example.com';
+			}
+
 			$user->role_id = static::ROLE_USER;
-			$user = $this->Users->patchEntity($user, $this->request->getData(), ['fields' => ['username']]);
+			$user = $this->Users->patchEntity($user, $data, ['fields' => ['username', 'email', 'pwd', 'pwd_repeat']]);
 
 			if ($this->Users->save($user)) {
-				$this->Auth->setUser($user->toArray());
+				$this->Authentication->setIdentity($user);
 				$this->Flash->success('Registered and logged in :-)');
 
-				return $this->redirect($this->Auth->redirectUrl());
+				return $this->redirect(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 			}
 
 			$this->Flash->error(__('Please try again'));
@@ -144,7 +110,9 @@ class AuthSandboxController extends AppController {
 	 * @return \Cake\Http\Response|null
 	 */
 	public function logout() {
-		return $this->redirect($this->Auth->logout());
+		$this->Authentication->logout();
+
+		return $this->redirect(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'login']);
 	}
 
 	/**

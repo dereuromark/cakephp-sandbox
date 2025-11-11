@@ -55,12 +55,15 @@ class ContactController extends AppController {
 			$data = (array)$this->request->getQuery();
 
 			# try to autofill fields
-			$user = (array)$this->request->getSession()->read('Auth.User');
-			if (!empty($user['email'])) {
-				$data['email'] = $user['email'];
-			}
-			if (!empty($user['username'])) {
-				$data['name'] = $user['username'];
+			if ($this->AuthUser->id()) {
+				$email = $this->AuthUser->user('email');
+				if ($email) {
+					$data['email'] = $email;
+				}
+				$username = $this->AuthUser->user('username');
+				if ($username) {
+					$data['name'] = $username;
+				}
 			}
 
 			$this->request = $this->request->withParsedBody($data);
