@@ -160,3 +160,6 @@ jobs:
 
     - name: Run annotator
       run:  bin/cake annotate all -r -d --ci
+
+    - name: Run linter
+      run:  bin/cake linter -v
