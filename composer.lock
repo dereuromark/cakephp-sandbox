@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "de57e20ba391f12e848217dbbd1c94ec8bdc8350"
+                "reference": "ab7a1da9a270539a8a2353534e80dc6e7a65c740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/de57e20ba391f12e848217dbbd1c94ec8bdc8350",
-                "reference": "de57e20ba391f12e848217dbbd1c94ec8bdc8350",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/ab7a1da9a270539a8a2353534e80dc6e7a65c740",
+                "reference": "ab7a1da9a270539a8a2353534e80dc6e7a65c740",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-11-08T16:09:36+00:00"
+            "time": "2025-11-14T14:50:34+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -3324,12 +3324,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-translate.git",
-                "reference": "540e4bae8dbb62c7b2e5020f79717dc5cb7538a2"
+                "reference": "3d893558946a4a0b74e2add9ccc44779dc473a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/540e4bae8dbb62c7b2e5020f79717dc5cb7538a2",
-                "reference": "540e4bae8dbb62c7b2e5020f79717dc5cb7538a2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/3d893558946a4a0b74e2add9ccc44779dc473a68",
+                "reference": "3d893558946a4a0b74e2add9ccc44779dc473a68",
                 "shasum": ""
             },
             "require": {
@@ -3385,7 +3385,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-translate/issues",
                 "source": "https://github.com/dereuromark/cakephp-translate"
             },
-            "time": "2025-08-24T23:35:21+00:00"
+            "time": "2025-11-14T19:28:53+00:00"
         },
         {
             "name": "dereuromark/media-embed",
