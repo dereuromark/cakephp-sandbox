@@ -155,11 +155,17 @@ jobs:
     - name: Run phpstan tests
       run: vendor/bin/phpstan analyse -c tests/phpstan.neon --error-format=github
 
-    - name: Run phpcs
-      run: composer cs-check
-
     - name: Run annotator
       run:  bin/cake annotate all -r -d --ci
 
+    - name: Run annotator
+      run:  bin/cake annotate all -r -d --ci -p all
+
     - name: Run linter
-      run:  bin/cake linter -v
+      run:  bin/cake linter --ci
+
+    - name: Run linter on plugins
+      run:  bin/cake linter --ci -p all
+
+    - name: Run phpcs
+      run: composer cs-check

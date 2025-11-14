@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var array<string> $operations
- * @var mixed $result
+ * @var \PhpCollective\DecimalObject\Decimal|bool|null $result
  */
 
 ?>

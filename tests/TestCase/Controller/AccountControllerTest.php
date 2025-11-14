@@ -102,7 +102,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/account');
+		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
@@ -131,7 +131,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/account');
+		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
@@ -160,7 +160,7 @@ class AccountControllerTest extends IntegrationTestCase {
 		];
 		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/somewhere');
+		$this->assertRedirect(['controller' => 'Somewhere', 'action' => 'index']);
 	}
 
 	/**
@@ -173,7 +173,7 @@ class AccountControllerTest extends IntegrationTestCase {
 
 		$this->get(['controller' => 'Account', 'action' => 'logout']);
 		$this->assertResponseCode(302);
-		$this->assertRedirect('/');
+		$this->assertRedirect(['controller' => 'Overview', 'action' => 'index']);
 	}
 
 	/**

@@ -1897,12 +1897,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-data.git",
-                "reference": "825e5f9cc4ee8d8e5f101e90ef7cb5e294978c0a"
+                "reference": "e91bff9b2886e37393b630b4a25051cefcc3b098"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/825e5f9cc4ee8d8e5f101e90ef7cb5e294978c0a",
-                "reference": "825e5f9cc4ee8d8e5f101e90ef7cb5e294978c0a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-data/zipball/e91bff9b2886e37393b630b4a25051cefcc3b098",
+                "reference": "e91bff9b2886e37393b630b4a25051cefcc3b098",
                 "shasum": ""
             },
             "require": {
@@ -1954,7 +1954,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-data/issues",
                 "source": "https://github.com/dereuromark/cakephp-data"
             },
-            "time": "2025-11-10T12:01:20+00:00"
+            "time": "2025-11-14T04:30:32+00:00"
         },
         {
             "name": "dereuromark/cakephp-databaselog",
@@ -9812,12 +9812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "7e0e177cdbe7b806a05066a00daa7021f19cdcde"
+                "reference": "d0fe5c748cb84ea6cfbff784247f097be233530b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/7e0e177cdbe7b806a05066a00daa7021f19cdcde",
-                "reference": "7e0e177cdbe7b806a05066a00daa7021f19cdcde",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/d0fe5c748cb84ea6cfbff784247f097be233530b",
+                "reference": "d0fe5c748cb84ea6cfbff784247f097be233530b",
                 "shasum": ""
             },
             "require": {
@@ -9881,7 +9881,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-12T14:00:25+00:00"
+            "time": "2025-11-14T10:36:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -9959,12 +9959,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-test-helper.git",
-                "reference": "faad0682aa64a4c5d9eedca1d379425f1369df80"
+                "reference": "ed57a86d4a3fabb2acfb5c8a5c0251adadf8a7c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/faad0682aa64a4c5d9eedca1d379425f1369df80",
-                "reference": "faad0682aa64a4c5d9eedca1d379425f1369df80",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/ed57a86d4a3fabb2acfb5c8a5c0251adadf8a7c2",
+                "reference": "ed57a86d4a3fabb2acfb5c8a5c0251adadf8a7c2",
                 "shasum": ""
             },
             "require": {
@@ -10010,7 +10010,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-test-helper/issues",
                 "source": "https://github.com/dereuromark/cakephp-test-helper/tree/master"
             },
-            "time": "2025-11-14T03:48:55+00:00"
+            "time": "2025-11-14T11:17:11+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
