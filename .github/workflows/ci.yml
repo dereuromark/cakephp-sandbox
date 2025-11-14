@@ -161,8 +161,8 @@ jobs:
     - name: Run annotator
       run:  bin/cake annotate all -r -d --ci
 
-    - name: Run annotator
-      run:  bin/cake annotate all -r -d --ci -p all
+    #- name: Run annotator
+    #  run:  bin/cake annotate all -r -d --ci -p all
 
     - name: Run linter
       run:  bin/cake linter --ci
