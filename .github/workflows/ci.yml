@@ -135,7 +135,7 @@ jobs:
       run: cp config/app_local.ci.php config/app_local.php
 
     - name: Prepare DB
-      run: export DB_URL='sqlite:///:memory:'
+      run: echo "DB_URL=sqlite:///:memory:" >> $GITHUB_ENV
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
