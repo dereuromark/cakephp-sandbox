@@ -2,6 +2,7 @@
 
 namespace App\Model\Table;
 
+use Cake\ORM\Query\SelectQuery;
 use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
@@ -67,6 +68,30 @@ class UsersTable extends Table {
 			]);
 
 		return $validator;
+	}
+
+	/**
+	 * Custom finder for authentication that allows login by username OR email.
+	 * The Password identifier will call this finder and pass the login value
+	 * via the 'login' key (matching our field configuration).
+	 *
+	 * @param \Cake\ORM\Query\SelectQuery $query
+	 * @param array<string, mixed> $options
+	 * @return \Cake\ORM\Query\SelectQuery
+	 */
+	public function findAuth(SelectQuery $query, array $options): SelectQuery {
+		// Check for 'login' field (our custom credential field)
+		if (isset($options['login'])) {
+			$login = $options['login'];
+			$query->where([
+				'OR' => [
+					$this->aliasField('username') => $login,
+					$this->aliasField('email') => $login,
+				],
+			]);
+		}
+
+		return $query;
 	}
 
 }

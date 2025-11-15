@@ -2,8 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var \StateMachineSandbox\Model\Entity\Registration $registration
- * @var mixed $history
- * @var mixed $logs
+ * @var array<\StateMachine\Model\Entity\StateMachineItemStateLog> $history
+ * @var array<\StateMachine\Model\Entity\StateMachineTransitionLog> $logs
  */
 ?>
 <div class="row">

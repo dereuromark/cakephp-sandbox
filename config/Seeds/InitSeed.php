@@ -23,7 +23,8 @@ class InitSeed extends BaseSeed {
 INSERT INTO `users` (`id`, `active`, `last_login`, `created`, `modified`, `logins`, `username`, `password`, `email`, `role_id`) VALUES
 (1, 1, NULL, '2015-02-16 09:56:56', '2015-02-16 09:56:56', 0, 'user', '$2y$10$wo7.YGG1t8JStBooeqBEMeVsL/HgTJ8dJ6M6U1MtoZpZZgtS893W.', '', 4),
 (2, 1, NULL, '2015-02-16 10:00:32', '2015-02-16 10:00:32', 0, 'admin', '$2y$10$9Zo2pVUHZiPpo0tzMCm9nOnMUWeMPFAcixOh4ppPcJPPLnw9NAAHm', '', 1),
-(3, 1, NULL, '2015-02-16 10:00:38', '2015-02-16 10:00:38', 0, 'mod', '$2y$10$C1Y0PhjcdQ1QR9ZwQ8VwiuF0E/FS7jSEdblVJKTgWWHK8vm2VaBfi', '', 3);
+(3, 1, NULL, '2015-02-16 10:00:38', '2015-02-16 10:00:38', 0, 'mod', '$2y$10$C1Y0PhjcdQ1QR9ZwQ8VwiuF0E/FS7jSEdblVJKTgWWHK8vm2VaBfi', '', 3),
+(5, 1, NULL, '2015-02-16 10:00:38', '2015-02-16 10:00:38', 0, 'superadmin', '$2y$10$C1Y0PhjcdQ1QR9ZwQ8VwiuF0E/FS7jSEdblVJKTgWWHK8vm2VaBfi', '', 15);
 SQL;
 		$this->execute($sql);
 

@@ -10,7 +10,8 @@ use Tools\Controller\Controller;
  * @property \Flash\Controller\Component\FlashComponent $Flash
  * @property \Tools\Controller\Component\CommonComponent $Common
  * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
- * @property \TinyAuth\Controller\Component\AuthComponent $Auth
+ * @property \TinyAuth\Controller\Component\AuthenticationComponent $Authentication
+ * @property \TinyAuth\Controller\Component\AuthorizationComponent $Authorization
  */
 class AppController extends Controller {
 
@@ -24,7 +25,8 @@ class AppController extends Controller {
 
 		$this->loadComponent('Tools.Common');
 		$this->loadComponent('Flash.Flash');
-		$this->loadComponent('TinyAuth.Auth');
+		$this->loadComponent('TinyAuth.Authentication');
+		$this->loadComponent('TinyAuth.Authorization');
 		$this->loadComponent('TinyAuth.AuthUser');
 	}
 
@@ -36,40 +38,6 @@ class AppController extends Controller {
 	public function beforeFilter(EventInterface $event) {
 		parent::beforeFilter($event);
 
-		$config = [
-			'authenticate' => [
-				'TinyAuth.MultiColumn' => [
-					'fields' => [
-						'username' => 'login',
-						'password' => 'password',
-					],
-					'columns' => ['username', 'email'],
-					'userModel' => 'Users',
-				],
-			],
-			'authorize' => ['TinyAuth.Tiny' => []],
-			'logoutRedirect' => [
-				'plugin' => false,
-				'prefix' => false,
-				'controller' => 'Overview',
-				'action' => 'index',
-			],
-			'loginRedirect' => [
-				'plugin' => false,
-				'prefix' => false,
-				'controller' => 'Account',
-				'action' => 'index',
-			],
-			'loginAction' => [
-				'plugin' => false,
-				'prefix' => false,
-				'controller' => 'Account',
-				'action' => 'login',
-			],
-		];
-		$config += $this->Auth->getConfig();
-		$this->Auth->setConfig($config);
-
 		// Make sure you can't access login etc when already logged in
 		$allowed = ['Account' => ['login', 'lostPassword', 'register']];
 		if (!$this->AuthUser->id()) {
@@ -78,9 +46,8 @@ class AppController extends Controller {
 
 		foreach ($allowed as $controller => $actions) {
 			if ($this->name === $controller && in_array($this->request->getParam('action'), $actions, true)) {
-				$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
-
-				return $this->redirect($this->Auth->getConfig('loginRedirect'));
+				//$this->Flash->info('The page you tried to access is not relevant if you are already logged in. Redirected to main page.');
+				//return $this->redirect(['controller' => 'Account', 'action' => 'index']);
 			}
 		}
 	}

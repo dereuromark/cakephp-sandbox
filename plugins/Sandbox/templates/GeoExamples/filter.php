@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var mixed $sqlQuery
+ * @var string|null $sqlQuery
  * @var iterable<\Sandbox\Model\Entity\SandboxCity> $sandboxCities
  */
 ?>

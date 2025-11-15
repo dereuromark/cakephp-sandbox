@@ -131,7 +131,7 @@ class ToolsExamplesController extends SandboxAppController {
 		*/
 
 		$options = [];
-		$tree = $sandboxCategoriesTable->find('threaded', $options);
+		$tree = $sandboxCategoriesTable->find('threaded', ...$options);
 
 		$this->set(compact('tree'));
 	}

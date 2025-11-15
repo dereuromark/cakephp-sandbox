@@ -4,7 +4,7 @@
  * @var \Comments\Model\Entity\Comment $comment
  * @var array $commentsData
  * @var int|null $ownerId
- * @var mixed $adminMode
+ * @var bool $adminMode
  */
 ?>
 <div class="comments">

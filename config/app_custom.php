@@ -57,7 +57,7 @@ $config = [
 			'host' => env('DB_HOST', '127.0.0.1'),
 			'username' => env('DB_USER', 'root'),
 			'password' => env('DB_PASSWORD', ''),
-			'database' => env('DB_DATABASE', ''), // Set in your app_local.php
+			'database' => env('DB_DATABASE', 'sandbox_local'), // Set in your app_local.php
 			'quoteIdentifiers' => true,
 			'url' => env('DB_URL') ?: null,
 			'flags' => [],
@@ -139,6 +139,12 @@ $config = [
 		'adminEmail' => null, // Set in your app_local.php
 	],
 
+	'Role' => [
+		'user' => 4,
+		'admin' => 1,
+		'mod' => 3,
+	],
+
 	'App' => [
 		'monitorHeaders' => 1,
 		'defaultOutputTimezone' => 'Europe/Berlin',
@@ -150,6 +156,8 @@ $config = [
 	],
 
 	'DebugKit' => [
+		'safeTld' => ['site'],
+		'ignoreAuthorization' => true,
 		'maxDepth' => 8,
 		'panels' => [
 			'DebugKit.Packages' => false,

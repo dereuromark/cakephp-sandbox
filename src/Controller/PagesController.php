@@ -27,7 +27,7 @@ class PagesController extends AppController {
 
 		$count = count($path);
 		if (!$count) {
-			return $this->redirect('/');
+			return $this->redirect(['controller' => 'Overview', 'action' => 'index']);
 		}
 		$page = $subpage = null;
 
