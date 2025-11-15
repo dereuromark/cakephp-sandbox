@@ -24,54 +24,13 @@
 		</ul>
 	</div>
 
-	<?php
-	$currentSort = $this->request->getQuery('sort');
-	$sortHelper = function ($field, $label = null, $locked = false) use ($currentSort) {
-		$label = $label ?: ucfirst($field);
-		$isAsc = $currentSort === $field . '-asc';
-		$isDesc = $currentSort === $field . '-desc';
-
-		// For locked fields, always use asc
-		if ($locked) {
-			$nextSort = $field . '-asc';
-			$isActive = $isAsc;
-		} else {
-			$nextSort = $isAsc ? $field . '-desc' : $field . '-asc';
-			$isActive = $isAsc || $isDesc;
-		}
-
-		$arrow = '';
-		if ($isAsc) {
-			$arrow = ' ▲';
-		} elseif ($isDesc && !$locked) {
-			$arrow = ' ▼';
-		}
-
-		// If locked and active, don't make it a link
-		if ($locked && $isActive) {
-			return sprintf(
-				'<span>%s%s</span>',
-				h($label),
-				$arrow
-			);
-		}
-
-		return sprintf(
-			'<a href="%s">%s%s</a>',
-			$this->Url->build(['?' => ['sort' => $nextSort]]),
-			h($label),
-			$arrow
-		);
-	};
-	?>
-
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th><?= $sortHelper('title', 'Title') ?></th>
-				<th><?= $sortHelper('price', 'Price', true) ?></th>
-				<th><?= $sortHelper('created', 'Created') ?></th>
-				<th><?= $sortHelper('modified', 'Modified') ?></th>
+				<th><?= $this->Paginator->sort('title', 'Title') ?></th>
+				<th><?= $this->Paginator->sort('price', 'Price') ?> / <?= $this->Paginator->sort('expensive', 'Expensive') ?></th>
+				<th><?= $this->Paginator->sort('created', 'Created') ?></th>
+				<th><?= $this->Paginator->sort('modified', 'Modified') ?></th>
 			</tr>
 		</thead>
 		<tbody>
