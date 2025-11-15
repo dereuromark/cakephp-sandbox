@@ -64,6 +64,7 @@ class ProductsTableTest extends TestCase {
 		$product = $this->Products->newEntity([
 			'title' => 'x',
 			'price' => '12.34',
+			'stock' => 0,
 		]);
 		$result = $this->Products->save($product);
 		$this->assertTrue((bool)$result);

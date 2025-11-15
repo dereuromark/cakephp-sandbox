@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 use Migrations\BaseMigration;
 
-class AddStockToSandboxProducts extends BaseMigration
-{
-    /**
+class AddStockToSandboxProducts extends BaseMigration {
+
+	/**
      * Change Method.
      *
      * More information on this method is available here:
@@ -13,14 +13,14 @@ class AddStockToSandboxProducts extends BaseMigration
      *
      * @return void
      */
-    public function change(): void
-    {
-        $table = $this->table('sandbox_products');
-        $table->addColumn('stock', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => false,
-        ]);
-        $table->update();
-    }
+	public function change(): void {
+		$table = $this->table('sandbox_products');
+		$table->addColumn('stock', 'integer', [
+			'default' => null,
+			'limit' => 11,
+			'null' => false,
+		]);
+		$table->update();
+	}
+
 }

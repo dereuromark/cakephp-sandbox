@@ -10,6 +10,8 @@ $this->Paginator->setConfig('options.sortFormat', 'combined');
 <div class="page index">
 	<h2>Combined Sort Pagination</h2>
 
+	<p>Including "SortableFieldsBuilder" functionality and Paginator defaulting.</p>
+
 	<div class="alert alert-info">
 		<h4>CakePHP 5.3 Feature</h4>
 		<p>
