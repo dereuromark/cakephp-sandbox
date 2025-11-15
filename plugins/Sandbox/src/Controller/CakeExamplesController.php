@@ -244,8 +244,8 @@ class CakeExamplesController extends SandboxAppController {
 					->add('price', SortField::asc('price', locked: true))
 					->add('created')
 					->add('modified')
-					// Custom multi-column sort: expensive items first, then newest
-					->add('expensive', 'price', 'created');
+					// Custom multi-column sort: expensive items first (DESC only, locked)
+					->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true));
 			},
 			'limit' => 10,
 			'maxLimit' => 10,

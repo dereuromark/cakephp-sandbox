@@ -103,7 +103,12 @@
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-asc']]) ?>" class="<?= $activeSort === 'price-asc' ? 'btn btn-sm btn-success' : 'btn btn-sm btn-outline-success' ?>">Price ASC (Locked)</a>
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-desc']]) ?>" class="btn btn-sm btn-outline-secondary text-decoration-line-through disabled" aria-disabled="true"><s>Price DESC</s></a>
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'created-desc']]) ?>" class="<?= $activeSort === 'created-desc' ? 'btn btn-sm btn-info' : 'btn btn-sm btn-outline-info' ?>">Newest First</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?>" class="<?= $activeSort === 'expensive-desc' ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-outline-warning' ?>">Most Expensive (Custom)</a>
+		<?php if ($activeSort === 'expensive-desc') { ?>
+			<span class="btn btn-sm btn-warning">Most Expensive (Custom, Locked)</span>
+		<?php } else { ?>
+			<a href="<?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?>" class="btn btn-sm btn-outline-warning">Most Expensive (Custom, Locked)</a>
+		<?php } ?>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'expensive-asc']]) ?>" class="btn btn-sm btn-outline-secondary text-decoration-line-through disabled" aria-disabled="true"><s>Expensive ASC</s></a>
 	</div>
 
 	<h3>Current Query Parameters</h3>
@@ -119,8 +124,8 @@ $this->paginate = [
             ->add('price', SortField::asc('price', locked: true))
             ->add('created')        // Allows: created-asc, created-desc
             ->add('modified')
-            // Custom multi-column sort: expensive items first, then newest
-            ->add('expensive', 'price', 'created');  // Allows: expensive-asc, expensive-desc
+            // Custom multi-column sort: expensive items first (DESC only, locked)
+            ->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true));
     },
     'limit' => 10,
     'maxLimit' => 10,       // Enforce maximum limit
@@ -128,7 +133,7 @@ $this->paginate = [
 
 // Key Features Demonstrated:
 // - Combined sort format: field-direction (e.g., title-asc)
-// - Locked direction: price always sorts ASC, even if DESC is requested
+// - Locked direction: price always sorts ASC, expensive always sorts DESC
 // - Multi-column custom sort: 'expensive' sorts by price DESC, then created DESC
 // - Pagination limit enforcement via maxLimit</code></pre>
 </div>
