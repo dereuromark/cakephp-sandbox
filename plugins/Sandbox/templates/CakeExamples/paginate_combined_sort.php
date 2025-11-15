@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var \Sandbox\Model\Entity\Product[]|\Cake\Collection\CollectionInterface $products
+ * @var string $orderClause
  */
 
 $this->Paginator->setConfig('options.sortFormat', 'combined');
@@ -86,7 +87,6 @@ $this->Paginator->setConfig('options.sortFormat', 'combined');
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'title-desc']]) ?>" class="<?= $activeSort === 'title-desc' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary' ?>">Title DESC</a>
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-asc']]) ?>" class="<?= $activeSort === 'price-asc' ? 'btn btn-sm btn-success' : 'btn btn-sm btn-outline-success' ?>">Price ASC (Locked)</a>
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-desc']]) ?>" class="btn btn-sm btn-outline-secondary text-decoration-line-through disabled" aria-disabled="true"><s>Price DESC</s></a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'created-desc']]) ?>" class="<?= $activeSort === 'created-desc' ? 'btn btn-sm btn-info' : 'btn btn-sm btn-outline-info' ?>">Newest First</a>
 		<?php if ($activeSort === 'expensive-desc') { ?>
 			<span class="btn btn-sm btn-warning">Most Expensive (Custom, Locked)</span>
 		<?php } else { ?>
@@ -95,8 +95,16 @@ $this->Paginator->setConfig('options.sortFormat', 'combined');
 		<a href="<?= $this->Url->build(['?' => ['sort' => 'expensive-asc']]) ?>" class="btn btn-sm btn-outline-secondary text-decoration-line-through disabled" aria-disabled="true"><s>Expensive ASC</s></a>
 	</div>
 
-	<h3>Current Query Parameters</h3>
-	<pre><?= h(print_r($this->request->getQuery(), true)) ?></pre>
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Current Query Parameters</h3>
+			<pre><?= h(print_r($this->request->getQuery(), true)) ?></pre>
+		</div>
+		<div class="col-md-6">
+			<h3>SQL ORDER BY</h3>
+			<pre><?= $orderClause ?: 'No sorting applied' ?></pre>
+		</div>
+	</div>
 
 	<h3>Implementation</h3>
 	<pre><code class="language-php">// Controller - Using SortableFieldsBuilder (CakePHP 5.3)

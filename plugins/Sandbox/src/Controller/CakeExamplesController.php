@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Collection\Collection;
+use Cake\Database\ValueBinder;
 use Cake\Datasource\Paging\SortField;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Exception\RedirectException;
@@ -254,9 +255,20 @@ class CakeExamplesController extends SandboxAppController {
 			'maxLimit' => 10,
 		];
 
-		$products = $this->paginate($productsTable);
+		$query = $productsTable->find();
+		$products = $this->paginate($query);
 
-		$this->set(compact('products'));
+		// Extract the actual SQL ORDER BY clause from the paginated query
+		$orderClause = '';
+		$order = $query->clause('order');
+		if ($order) {
+			// Use sql() method to get the full ORDER BY clause, then strip "ORDER BY " prefix
+			$binder = new ValueBinder();
+			$orderSql = $order->sql($binder);
+			$orderClause = preg_replace('/^ORDER BY /', '', $orderSql);
+		}
+
+		$this->set(compact('products', 'orderClause'));
 	}
 
 	/**
