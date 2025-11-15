@@ -3,14 +3,18 @@
 namespace Sandbox\Controller;
 
 use Cake\Collection\Collection;
+use Cake\Datasource\Paging\SortField;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Exception\RedirectException;
 use Cake\I18n\I18n;
+use Cake\Routing\Router;
 use Cake\Utility\Hash;
 use Doctrine\SqlFormatter\NullHighlighter;
 use Doctrine\SqlFormatter\SqlFormatter;
 use Psr\Log\LoggerInterface;
 use Sandbox\Controller\Paginator\CollectionPaginator;
 use Sandbox\Model\Enum\UserStatus;
+use Sandbox\Model\Table\ProductsTable;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -219,31 +223,37 @@ class CakeExamplesController extends SandboxAppController {
 
 	/**
 	 * CakePHP 5.3 feature: Combined sort pagination
-	 * Allows sorting with direction included in the sort key (e.g., 'title.asc' or 'created.desc')
+	 * Allows sorting with direction included in the sort key (e.g., 'title-asc' or 'created-desc')
 	 *
-	 * Example URL: ?sort=title.asc,created.desc
+	 * Example URL: ?sort=title-asc,created-desc
 	 *
 	 * @return void
 	 */
 	public function paginateCombinedSort() {
-		$sandboxPostsTable = $this->fetchTable('Sandbox.SandboxPosts');
+		$productsTable = $this->fetchTable('Sandbox.Products');
+
+		// Ensure demo data exists with randomized prices and timestamps
+		$this->_ensurePaginationDemoData($productsTable);
 
 		// CakePHP 5.3: Use SortableFieldsBuilder via callable
 		$this->paginate = [
 			'sortableFields' => function (\Cake\Datasource\Paging\SortableFieldsBuilder $builder) {
 				return $builder
 					->add('title')
-					->add('rating_count')
-					->add('rating_sum')
+					// Lock price to ascending only (for demo purposes)
+					->add('price', SortField::asc('price', locked: true))
 					->add('created')
-					->add('modified');
+					->add('modified')
+					// Custom multi-column sort: expensive items first, then newest
+					->add('expensive', 'price', 'created');
 			},
 			'limit' => 10,
+			'maxLimit' => 10,
 		];
 
-		$posts = $this->paginate($sandboxPostsTable);
+		$products = $this->paginate($productsTable);
 
-		$this->set(compact('posts'));
+		$this->set(compact('products'));
 	}
 
 	/**
@@ -476,6 +486,119 @@ class CakeExamplesController extends SandboxAppController {
 		$formatter = new SqlFormatter(new NullHighlighter());
 
 		return $formatter->format($sql);
+	}
+
+	/**
+	 * Ensure pagination demo data exists with randomized prices and timestamps.
+	 * Creates 12 products if they don't exist, with varying prices and timestamps.
+	 *
+	 * @param \Sandbox\Model\Table\ProductsTable $table The Products table
+	 * @return void
+	 */
+	protected function _ensurePaginationDemoData(ProductsTable $table): void {
+		// Skip in CLI/testing mode
+		if (PHP_SAPI === 'cli') {
+			return;
+		}
+
+		$count = $table->find()->count();
+		if ($count >= 12 && !$this->request->getQuery('force-update')) {
+			return;
+		}
+
+		// Clear existing products to ensure fresh demo data
+		if ($count > 0) {
+			$table->deleteAll([]);
+		}
+
+		$products = [
+			[
+				'title' => 'Awesome Keyboard',
+				'price' => mt_rand(50, 150) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-60 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-55 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Budget Mouse',
+				'price' => mt_rand(10, 30) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-50 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-48 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Fun Story Collection Book',
+				'price' => mt_rand(15, 40) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-45 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-40 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Premium Headphones',
+				'price' => mt_rand(200, 400) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-35 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-30 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Zero Gravity Pen',
+				'price' => mt_rand(5, 15) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-28 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-25 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Coffee Mug Set',
+				'price' => mt_rand(20, 45) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-20 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-18 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Laptop Stand',
+				'price' => mt_rand(35, 80) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-15 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-12 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'USB-C Cable',
+				'price' => mt_rand(8, 25) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-10 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-8 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Desk Organizer',
+				'price' => mt_rand(15, 35) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-7 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-5 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Monitor Arm',
+				'price' => mt_rand(60, 150) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-5 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-3 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Webcam HD',
+				'price' => mt_rand(50, 120) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-3 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-2 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+			[
+				'title' => 'Wireless Charger',
+				'price' => mt_rand(18, 45) + (mt_rand(0, 99) / 100),
+				'created' => date('Y-m-d H:i:s', strtotime('-1 day -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
+				'modified' => date('Y-m-d H:i:s', strtotime('-6 hours -' . mt_rand(0, 59) . ' minutes')),
+			],
+		];
+
+		// Create entities and mark created/modified as clean to prevent Timestamp behavior from overwriting
+		$entities = [];
+		foreach ($products as $data) {
+			$entity = $table->newEntity($data);
+			// Mark the timestamp fields as clean (already set) so Timestamp behavior won't touch them
+			$entity->setDirty('created', true);
+			$entity->setDirty('modified', true);
+			$entities[] = $entity;
+		}
+
+		$table->saveManyOrFail($entities, ['checkExisting' => false, 'associated' => false]);
+
+		throw new RedirectException(Router::url(['?' => []]));
 	}
 
 }

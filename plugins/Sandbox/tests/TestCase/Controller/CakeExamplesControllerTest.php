@@ -23,6 +23,7 @@ class CakeExamplesControllerTest extends TestCase {
 		'plugin.Sandbox.SandboxAnimals',
 		'plugin.Sandbox.SandboxUsers',
 		'plugin.Sandbox.SandboxPosts',
+		'plugin.Sandbox.SandboxProducts',
 	];
 
 	/**
@@ -216,13 +217,13 @@ class CakeExamplesControllerTest extends TestCase {
 	}
 
 	/**
-	 * Test paginateCombinedSort with multi-column sort
-	 * CakePHP 5.3 feature: Combined sort with multiple fields
+	 * Test paginateCombinedSort with custom multi-column sort
+	 * CakePHP 5.3 feature: Custom sort key with multiple fields
 	 *
 	 * @return void
 	 */
 	public function testPaginateCombinedSortMultiColumn(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort', '?' => ['sort' => 'rating_count-desc,created-desc']]);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort', '?' => ['sort' => 'expensive-desc']]);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

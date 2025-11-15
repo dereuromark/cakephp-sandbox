@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\SandboxPost[]|\Cake\Collection\CollectionInterface $posts
+ * @var \Sandbox\Model\Entity\Product[]|\Cake\Collection\CollectionInterface $products
  */
 ?>
 
@@ -19,24 +19,41 @@
 		</p>
 		<ul>
 			<li><code><?= $this->Url->build(['?' => ['sort' => 'title-asc']]) ?></code> - Sort by title ascending</li>
-			<li><code><?= $this->Url->build(['?' => ['sort' => 'created-desc']]) ?></code> - Sort by created descending</li>
-			<li><code><?= $this->Url->build(['?' => ['sort' => 'rating_count-desc,created-desc']]) ?></code> - Multi-column combined sort</li>
+			<li><code><?= $this->Url->build(['?' => ['sort' => 'price-desc']]) ?></code> - Sort by price descending</li>
+			<li><code><?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?></code> - Custom multi-column sort (price DESC, then created DESC)</li>
 		</ul>
 	</div>
 
 	<?php
 	$currentSort = $this->request->getQuery('sort');
-	$sortHelper = function ($field, $label = null) use ($currentSort) {
+	$sortHelper = function ($field, $label = null, $locked = false) use ($currentSort) {
 		$label = $label ?: ucfirst($field);
-		$isAsc = $currentSort === $field . '.asc';
-		$isDesc = $currentSort === $field . '.desc';
-		$nextSort = $isAsc ? $field . '.desc' : $field . '.asc';
+		$isAsc = $currentSort === $field . '-asc';
+		$isDesc = $currentSort === $field . '-desc';
+
+		// For locked fields, always use asc
+		if ($locked) {
+			$nextSort = $field . '-asc';
+			$isActive = $isAsc;
+		} else {
+			$nextSort = $isAsc ? $field . '-desc' : $field . '-asc';
+			$isActive = $isAsc || $isDesc;
+		}
 
 		$arrow = '';
 		if ($isAsc) {
 			$arrow = ' ▲';
-		} elseif ($isDesc) {
+		} elseif ($isDesc && !$locked) {
 			$arrow = ' ▼';
+		}
+
+		// If locked and active, don't make it a link
+		if ($locked && $isActive) {
+			return sprintf(
+				'<span>%s%s</span>',
+				h($label),
+				$arrow
+			);
 		}
 
 		return sprintf(
@@ -52,20 +69,18 @@
 		<thead>
 			<tr>
 				<th><?= $sortHelper('title', 'Title') ?></th>
-				<th><?= $sortHelper('rating_count', 'Rating Count') ?></th>
-				<th><?= $sortHelper('rating_sum', 'Rating Sum') ?></th>
+				<th><?= $sortHelper('price', 'Price', true) ?></th>
 				<th><?= $sortHelper('created', 'Created') ?></th>
 				<th><?= $sortHelper('modified', 'Modified') ?></th>
 			</tr>
 		</thead>
 		<tbody>
-			<?php foreach ($posts as $post) { ?>
+			<?php foreach ($products as $product) { ?>
 				<tr>
-					<td><?= h($post->title) ?></td>
-					<td><span class="badge bg-info"><?= $post->rating_count ?? 0 ?></span></td>
-					<td><span class="badge bg-primary"><?= $post->rating_sum ?? 0 ?></span></td>
-					<td><?= $post->created->nice() ?></td>
-					<td><?= $post->modified->nice() ?></td>
+					<td><?= h($product->title) ?></td>
+					<td><span class="badge bg-success">$<?= number_format($product->price, 2) ?></span></td>
+					<td><?= $this->Time->nice($product->created) ?></td>
+					<td><?= $this->Time->nice($product->modified) ?></td>
 				</tr>
 			<?php } ?>
 		</tbody>
@@ -77,12 +92,18 @@
 
 	<h3>Try Combined Sort</h3>
 	<div class="mb-3">
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'title-asc']]) ?>" class="btn btn-sm btn-outline-primary">Title ASC</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'title-desc']]) ?>" class="btn btn-sm btn-outline-primary">Title DESC</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'rating_count-desc']]) ?>" class="btn btn-sm btn-outline-success">Rating Count DESC</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'rating_sum-desc']]) ?>" class="btn btn-sm btn-outline-success">Rating Sum DESC</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'created-desc']]) ?>" class="btn btn-sm btn-outline-info">Created DESC</a>
-		<a href="<?= $this->Url->build(['?' => ['sort' => 'rating_count-desc,created-desc']]) ?>" class="btn btn-sm btn-outline-warning">Rating DESC + Created DESC</a>
+		<?php
+		$activeSort = $this->request->getQuery('sort');
+		$btnClass = function($sortKey) use ($activeSort) {
+			return $activeSort === $sortKey ? 'btn btn-sm' : 'btn btn-sm btn-outline';
+		};
+		?>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'title-asc']]) ?>" class="<?= $activeSort === 'title-asc' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary' ?>">Title ASC</a>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'title-desc']]) ?>" class="<?= $activeSort === 'title-desc' ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-outline-primary' ?>">Title DESC</a>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-asc']]) ?>" class="<?= $activeSort === 'price-asc' ? 'btn btn-sm btn-success' : 'btn btn-sm btn-outline-success' ?>">Price ASC (Locked)</a>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'price-desc']]) ?>" class="btn btn-sm btn-outline-secondary text-decoration-line-through disabled" aria-disabled="true"><s>Price DESC</s></a>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'created-desc']]) ?>" class="<?= $activeSort === 'created-desc' ? 'btn btn-sm btn-info' : 'btn btn-sm btn-outline-info' ?>">Newest First</a>
+		<a href="<?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?>" class="<?= $activeSort === 'expensive-desc' ? 'btn btn-sm btn-warning' : 'btn btn-sm btn-outline-warning' ?>">Most Expensive (Custom)</a>
 	</div>
 
 	<h3>Current Query Parameters</h3>
@@ -93,17 +114,21 @@
 $this->paginate = [
     'sortableFields' => function ($builder) {
         return $builder
-            ->add('title')           // Allows: title-asc, title-desc
-            ->add('rating_count')    // Allows: rating_count-asc, rating_count-desc
-            ->add('created')         // Allows: created-asc, created-desc
-            ->add('modified');
+            ->add('title')          // Allows: title-asc, title-desc
+            // Lock price to ascending only (for demo purposes)
+            ->add('price', SortField::asc('price', locked: true))
+            ->add('created')        // Allows: created-asc, created-desc
+            ->add('modified')
+            // Custom multi-column sort: expensive items first, then newest
+            ->add('expensive', 'price', 'created');  // Allows: expensive-asc, expensive-desc
     },
     'limit' => 10,
+    'maxLimit' => 10,       // Enforce maximum limit
 ];
 
-// The builder automatically creates -asc and -desc variants
-// Example URLs:
-// - ?sort=title-asc
-// - ?sort=rating_count-desc
-// - ?sort=rating_count-desc,created-desc  (multi-column)</code></pre>
+// Key Features Demonstrated:
+// - Combined sort format: field-direction (e.g., title-asc)
+// - Locked direction: price always sorts ASC, even if DESC is requested
+// - Multi-column custom sort: 'expensive' sorts by price DESC, then created DESC
+// - Pagination limit enforcement via maxLimit</code></pre>
 </div>
