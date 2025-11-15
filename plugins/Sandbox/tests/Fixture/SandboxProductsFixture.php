@@ -20,6 +20,7 @@ class SandboxProductsFixture extends TestFixture {
 			[
 				'title' => 'Lorem ipsum dolor sit amet',
 				'price' => 1.5,
+				'stock' => 10,
 				'created' => '2025-04-17 12:57:27',
 				'modified' => '2025-04-17 12:57:27',
 			],

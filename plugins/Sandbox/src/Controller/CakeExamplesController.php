@@ -242,10 +242,13 @@ class CakeExamplesController extends SandboxAppController {
 					->add('title')
 					// Lock price to ascending only (for demo purposes)
 					->add('price', SortField::asc('price', locked: true))
+					->add('stock')
 					->add('created')
-					->add('modified')
+					->add('modified', SortField::desc('modified'))
 					// Custom multi-column sort: expensive items first (DESC only, locked)
-					->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true));
+					->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true))
+					// Custom multi-column sort: availability (price + stock, not locked, can toggle)
+					->add('availability', 'price', 'stock');
 			},
 			'limit' => 10,
 			'maxLimit' => 10,
@@ -515,72 +518,84 @@ class CakeExamplesController extends SandboxAppController {
 			[
 				'title' => 'Awesome Keyboard',
 				'price' => mt_rand(50, 150) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-60 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-55 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Budget Mouse',
 				'price' => mt_rand(10, 30) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-50 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-48 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Fun Story Collection Book',
 				'price' => mt_rand(15, 40) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-45 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-40 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Premium Headphones',
 				'price' => mt_rand(200, 400) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-35 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-30 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Zero Gravity Pen',
 				'price' => mt_rand(5, 15) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-28 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-25 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Coffee Mug Set',
 				'price' => mt_rand(20, 45) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-20 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-18 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Laptop Stand',
 				'price' => mt_rand(35, 80) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-15 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-12 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'USB-C Cable',
 				'price' => mt_rand(8, 25) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-10 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-8 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Desk Organizer',
 				'price' => mt_rand(15, 35) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-7 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-5 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Monitor Arm',
 				'price' => mt_rand(60, 150) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-5 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-3 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Webcam HD',
 				'price' => mt_rand(50, 120) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-3 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-2 days -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 			],
 			[
 				'title' => 'Wireless Charger',
 				'price' => mt_rand(18, 45) + (mt_rand(0, 99) / 100),
+				'stock' => mt_rand(0, 100),
 				'created' => date('Y-m-d H:i:s', (int)strtotime('-1 day -' . mt_rand(0, 23) . ' hours -' . mt_rand(0, 59) . ' minutes')),
 				'modified' => date('Y-m-d H:i:s', (int)strtotime('-6 hours -' . mt_rand(0, 59) . ' minutes')),
 			],

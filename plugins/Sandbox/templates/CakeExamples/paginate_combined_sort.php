@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \Sandbox\Model\Entity\Product[]|\Cake\Collection\CollectionInterface $products
  */
+
+$this->Paginator->setConfig('options.sortFormat', 'combined');
 ?>
 
 <div class="page index">
@@ -20,7 +22,8 @@
 		<ul>
 			<li><code><?= $this->Url->build(['?' => ['sort' => 'title-asc']]) ?></code> - Sort by title ascending</li>
 			<li><code><?= $this->Url->build(['?' => ['sort' => 'price-desc']]) ?></code> - Sort by price descending</li>
-			<li><code><?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?></code> - Custom multi-column sort (price DESC, then created DESC)</li>
+			<li><code><?= $this->Url->build(['?' => ['sort' => 'expensive-desc']]) ?></code> - Custom multi-column sort, locked (price DESC, then created DESC)</li>
+			<li><code><?= $this->Url->build(['?' => ['sort' => 'availability-asc']]) ?></code> - Custom multi-column sort, unlocked (price ASC, then stock ASC)</li>
 		</ul>
 	</div>
 
@@ -29,6 +32,7 @@
 			<tr>
 				<th><?= $this->Paginator->sort('title', 'Title') ?></th>
 				<th><?= $this->Paginator->sort('price', 'Price') ?> / <?= $this->Paginator->sort('expensive', 'Expensive') ?></th>
+				<th><?= $this->Paginator->sort('stock', 'Stock') ?> / <?= $this->Paginator->sort('availability', 'Availability') ?></th>
 				<th><?= $this->Paginator->sort('created', 'Created') ?></th>
 				<th><?= $this->Paginator->sort('modified', 'Modified') ?></th>
 			</tr>
@@ -38,6 +42,7 @@
 				<tr>
 					<td><?= h($product->title) ?></td>
 					<td><span class="badge bg-success">$<?= number_format($product->price, 2) ?></span></td>
+					<td><span class="badge bg-info"><?= $product->stock ?></span></td>
 					<td><?= $this->Time->nice($product->created) ?></td>
 					<td><?= $this->Time->nice($product->modified) ?></td>
 				</tr>
@@ -81,10 +86,13 @@ $this->paginate = [
             ->add('title')          // Allows: title-asc, title-desc
             // Lock price to ascending only (for demo purposes)
             ->add('price', SortField::asc('price', locked: true))
+            ->add('stock')          // Allows: stock-asc, stock-desc
             ->add('created')        // Allows: created-asc, created-desc
-            ->add('modified')
+            ->add('modified', SortField::desc('modified'))  // Defaults to DESC
             // Custom multi-column sort: expensive items first (DESC only, locked)
-            ->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true));
+            ->add('expensive', SortField::desc('price', locked: true), SortField::desc('created', locked: true))
+            // Custom multi-column sort: availability (price + stock, not locked, can toggle)
+            ->add('availability', 'price', 'stock');
     },
     'limit' => 10,
     'maxLimit' => 10,       // Enforce maximum limit
@@ -93,6 +101,8 @@ $this->paginate = [
 // Key Features Demonstrated:
 // - Combined sort format: field-direction (e.g., title-asc)
 // - Locked direction: price always sorts ASC, expensive always sorts DESC
-// - Multi-column custom sort: 'expensive' sorts by price DESC, then created DESC
+// - Default direction: modified defaults to DESC (most recent first)
+// - Multi-column custom sort (locked): 'expensive' sorts by price DESC, then created DESC
+// - Multi-column custom sort (unlocked): 'availability' sorts by price, then stock (toggleable)
 // - Pagination limit enforcement via maxLimit</code></pre>
 </div>

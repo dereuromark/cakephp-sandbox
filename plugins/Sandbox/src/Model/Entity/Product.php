@@ -26,10 +26,8 @@ class Product extends Entity {
 	 * @var array<string, bool>
 	 */
 	protected array $_accessible = [
-		'title' => true,
-		'price' => true,
-		'created' => true,
-		'modified' => true,
+		'*' => true,
+		'id' => false,
 	];
 
 }
