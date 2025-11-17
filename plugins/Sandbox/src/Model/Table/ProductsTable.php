@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Sandbox\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Sandbox\Model\Filter\ProductsCollection;
 
 /**
  * SandboxProducts Model
@@ -44,7 +44,9 @@ class ProductsTable extends Table {
 		$this->setPrimaryKey('id');
 
 		$this->addBehavior('Timestamp');
-		$this->addBehavior('Search.Search');
+		$this->addBehavior('Search.Search', [
+			'collectionClass' => ProductsCollection::class,
+		]);
 	}
 
 	/**
@@ -66,43 +68,6 @@ class ProductsTable extends Table {
 			->notEmptyString('price');
 
 		return $validator;
-	}
-
-	/**
-	 * @return \Search\Manager
-	 */
-	public function searchManager() {
-		/** @var \Search\Manager $searchManager */
-		$searchManager = $this->behaviors()->Search->searchManager();
-		$searchManager
-			->like('title', ['before' => true, 'after' => true])
-			->callback('price_max', [
-				'callback' => function (SelectQuery $query, array $args, $filter) {
-					$min = isset($args['price_min']) ? (int)$args['price_min'] : 0;
-					$max = isset($args['price_max']) ? (int)ceil((float)$args['price_max']) : 0;
-
-					if (!$min && !$max || $max < $min) {
-						return false;
-					}
-
-					return true;
-				},
-			])
-			->callback('price_min', [
-				'callback' => function (SelectQuery $query, array $args, $filter) {
-					$min = isset($args['price_min']) ? (int)$args['price_min'] : 0;
-					$max = isset($args['price_max']) ? (int)ceil((float)$args['price_max']) : 0;
-					if (!$min && !$max || $max < $min) {
-						return false;
-					}
-
-					$query->where(['price >=' => $min, 'price <=' => $max]);
-
-					return true;
-				},
-			]);
-
-		return $searchManager;
 	}
 
 }

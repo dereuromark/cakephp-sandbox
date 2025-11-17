@@ -50,6 +50,7 @@ parameters:
 	ignoreErrors:
 		- identifier: missingType.generics
 		- identifier: missingType.iterableValue
+		- identifier: new.internalClass
 		- '#Constant \w+ not found\.#'
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Call to an undefined method .+Mailer::set.+#'

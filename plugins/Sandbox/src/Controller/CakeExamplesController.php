@@ -260,6 +260,7 @@ class CakeExamplesController extends SandboxAppController {
 
 		// Extract the actual SQL ORDER BY clause from the paginated query
 		$orderClause = '';
+		/** @var \Cake\Database\Expression\OrderByExpression $order */
 		$order = $query->clause('order');
 		if ($order) {
 			// Use sql() method to get the full ORDER BY clause, then strip "ORDER BY " prefix

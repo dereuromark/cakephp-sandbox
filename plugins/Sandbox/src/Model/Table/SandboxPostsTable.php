@@ -2,8 +2,8 @@
 
 namespace Sandbox\Model\Table;
 
-use Cake\ORM\Query\SelectQuery;
 use Cake\Validation\Validator;
+use Sandbox\Model\Filter\SandboxPostsCollection;
 use Tools\Model\Table\Table;
 
 /**
@@ -39,7 +39,9 @@ class SandboxPostsTable extends Table {
 		parent::initialize($config);
 
 		$this->addBehavior('Tools.Slugged');
-		$this->addBehavior('Search.Search');
+		$this->addBehavior('Search.Search', [
+			'collectionClass' => SandboxPostsCollection::class,
+		]);
 		$this->addBehavior('Tags.Tag', ['taggedCounter' => false]);
 	}
 
@@ -58,29 +60,6 @@ class SandboxPostsTable extends Table {
 			->notBlank('content', 'Mandatory');
 
 		return $validator;
-	}
-
-	/**
-	 * @return \Search\Manager
-	 */
-	public function searchManager() {
-		/** @var \Search\Manager $searchManager */
-		$searchManager = $this->behaviors()->Search->searchManager();
-		$searchManager
-			->like('title', ['before' => true, 'after' => true])
-			->callback('tag', [
-				'callback' => function (SelectQuery $query, array $args, $manager) {
-					if ($args['tag'] === '-1') {
-						$query->find('untagged');
-					} else {
-						$query->find('tagged', ['slug' => $args['tag']]);
-					}
-
-					return true;
-				},
-			]);
-
-		return $searchManager;
 	}
 
 	/**

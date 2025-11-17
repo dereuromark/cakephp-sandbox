@@ -142,8 +142,8 @@
 		"dto": "bin/cake dto generate -p Sandbox",
 		"test": "phpunit",
 		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
-		"cs-check": "phpcs --parallel=16 --extensions=php",
-		"cs-fix": "phpcbf --parallel=16 --extensions=php",
+		"cs-check": "phpcs --colors --parallel=16",
+		"cs-fix": "phpcbf --colors --parallel=16",
 		"stan": "phpstan analyse",
 		"stan-tests": "phpstan analyse -c tests/phpstan.neon"
 	},
