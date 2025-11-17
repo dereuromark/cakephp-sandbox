@@ -3386,16 +3386,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-translate.git",
-                "reference": "a41d494a8beac6a94879460f3b3942269486942d"
+                "reference": "d29f72a5cb25b938ceac3ecbc07b77f3843846a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/a41d494a8beac6a94879460f3b3942269486942d",
-                "reference": "a41d494a8beac6a94879460f3b3942269486942d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/d29f72a5cb25b938ceac3ecbc07b77f3843846a7",
+                "reference": "d29f72a5cb25b938ceac3ecbc07b77f3843846a7",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^5.1.5",
+                "cakephp/cakephp": "^5.1.6",
                 "friendsofcake/search": "^7.0",
                 "php": ">=8.3"
             },
@@ -3447,7 +3447,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-translate/issues",
                 "source": "https://github.com/dereuromark/cakephp-translate"
             },
-            "time": "2025-11-17T12:24:09+00:00"
+            "time": "2025-11-17T19:29:28+00:00"
         },
         {
             "name": "dereuromark/media-embed",

@@ -134,7 +134,6 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function edit($id = null) {
-		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
 		$article = $this->SandboxArticles->get($id);
 		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
@@ -178,7 +177,6 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function view($id = null) {
-		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
 		$article = $this->SandboxArticles->get($id);
 		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
@@ -200,7 +198,6 @@ class BouncerExamplesController extends SandboxAppController {
 	public function delete($id = null) {
 		$this->request->allowMethod(['post', 'delete']);
 
-		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
 		$article = $this->SandboxArticles->get($id);
 
 		// Simulate logged-in user - in real app, get from Auth
