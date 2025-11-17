@@ -128,6 +128,7 @@
 			"bin/cake migrations migrate -p FileStorage --no-lock",
 			"bin/cake migrations migrate -p StateMachine --no-lock",
 			"bin/cake migrations migrate -p Translate --no-lock",
+			"bin/cake migrations migrate -p Bouncer --no-lock",
 			"bin/cake migrations migrate -p AuditStash --no-lock"
 		],
 		"assets": [

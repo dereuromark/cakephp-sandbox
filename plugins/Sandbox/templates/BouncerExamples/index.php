@@ -102,6 +102,7 @@ $this->addBehavior('Bouncer.Bouncer', [
 	<p>
 		Start by <?= $this->Html->link('creating a new article', ['action' => 'add']) ?>,
 		then check the <?= $this->Html->link('pending queue', ['action' => 'pending']) ?> to approve it.
+		Admins can also <?= $this->Html->link('bypass the approval workflow', ['action' => 'adminAdd']) ?> and publish directly.
 	</p>
 
 	<div class="alert alert-warning">

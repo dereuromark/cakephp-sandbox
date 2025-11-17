@@ -37,5 +37,12 @@ $current = $this->request->getParam('action');
 				['class' => 'nav-link' . (in_array($current, ['pending', 'review']) ? ' active' : '')]
 			) ?>
 		</li>
+		<li class="nav-item">
+			<?= $this->Html->link(
+				'Admin Bypass',
+				['action' => 'adminAdd'],
+				['class' => 'nav-link' . ($current === 'adminAdd' ? ' active' : '')]
+			) ?>
+		</li>
 	</ul>
 </nav>

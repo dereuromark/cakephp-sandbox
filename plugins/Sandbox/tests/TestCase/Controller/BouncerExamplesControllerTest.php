@@ -55,4 +55,18 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseContains('form');
 	}
 
+	/**
+	 * Test adminAdd GET displays form
+	 *
+	 * @return void
+	 */
+	public function testAdminAddGet() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'adminAdd']);
+
+		$this->assertResponseOk();
+		$this->assertResponseContains('Admin Direct Publish');
+		$this->assertResponseContains('Admin Bypass');
+		$this->assertResponseContains('form');
+	}
+
 }
