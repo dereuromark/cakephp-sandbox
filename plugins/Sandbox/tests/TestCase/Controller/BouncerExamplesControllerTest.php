@@ -141,20 +141,23 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReviewShowsOriginalData() {
-		$this->enableRetainFlashMessages();
-
 		// First create a draft by editing
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+		$sandboxArticlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
+		$sandboxArticlesTable->addBehavior('Bouncer.Bouncer', [
+			'userField' => 'user_id',
+			'requireApproval' => ['add', 'edit', 'delete'],
+			'validateOnDraft' => true,
+			'autoSupersede' => true,
+		]);
+
+		$article = $sandboxArticlesTable->get(1);
+		$article = $sandboxArticlesTable->patchEntity($article, [
 			'title' => 'Updated Title',
 			'content' => 'Updated content',
 			'status' => 'published',
 			'user_id' => 1,
 		]);
-
-		// Should redirect to view page after creating draft
-		$this->assertResponseCode(302);
-		$this->assertFlashMessage('Your changes are pending approval.');
-		$this->assertRedirectContains('/bouncer-examples/view/1');
+		$sandboxArticlesTable->save($article, ['bouncerUserId' => 1]);
 
 		// Find the bouncer record that was created
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
@@ -177,6 +180,79 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseContains('Proposed'); // Should have "Proposed" column header
 		$this->assertResponseContains('Lorem ipsum'); // Original title from fixture
 		$this->assertResponseContains('Updated Title'); // New title
+	}
+
+	/**
+	 * Test reverting edit back to original removes pending draft
+	 *
+	 * @return void
+	 */
+	public function testRevertEditRemovesPendingDraft() {
+		$this->enableRetainFlashMessages();
+
+		// First create a draft by editing
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+			'title' => 'Changed Title',
+			'content' => 'Changed content',
+			'status' => 'published',
+			'user_id' => 1,
+		]);
+
+		$this->assertResponseCode(302);
+		$this->assertFlashMessage('Your changes are pending approval.');
+
+		// Verify draft was created
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$pendingCount = $bouncerTable->find()
+			->where([
+				'source' => 'SandboxArticles',
+				'primary_key' => 1,
+				'status' => 'pending',
+			])
+			->count();
+		$this->assertEquals(1, $pendingCount, 'Should have 1 pending draft after edit');
+	}
+
+	/**
+	 * Test reverting edit back to original removes pending draft - part 2
+	 *
+	 * @return void
+	 */
+	public function testRevertEditRemovesPendingDraftPart2() {
+		$this->enableRetainFlashMessages();
+
+		// First create a draft by editing (setup from part 1)
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+			'title' => 'Changed Title',
+			'content' => 'Changed content',
+			'status' => 'published',
+			'user_id' => 1,
+		]);
+
+		// Now edit again, reverting to original values from fixture
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+			'title' => 'Lorem ipsum dolor sit amet',
+			'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+			'status' => 'Lorem ipsum dolor sit amet',
+			'user_id' => 1,
+		]);
+
+		// Should redirect successfully without "pending approval" message
+		// since the changes match the original (draft was removed and save proceeded)
+		$this->assertResponseCode(302);
+		$this->assertRedirectContains('/bouncer-examples/articles');
+		$this->assertFlashMessageAt(1, 'Article updated successfully.');
+
+		// Verify draft was removed
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$pendingCount = $bouncerTable->find()
+			->where([
+				'source' => 'SandboxArticles',
+				'primary_key' => 1,
+				'status' => 'pending',
+			])
+			->count();
+		$this->assertEquals(0, $pendingCount, 'Pending draft should be removed when reverted to original');
 	}
 
 	/**
