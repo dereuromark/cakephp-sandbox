@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \Sandbox\Model\Entity\Product[]|\Cake\Collection\CollectionInterface $products
+ * @var iterable<\Sandbox\Model\Entity\Product> $products
  * @var string $orderClause
  */
 

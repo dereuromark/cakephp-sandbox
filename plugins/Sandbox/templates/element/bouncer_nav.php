@@ -20,7 +20,7 @@ $current = $this->request->getParam('action');
 			<?= $this->Html->link(
 				'Articles',
 				['action' => 'articles'],
-				['class' => 'nav-link' . ($current === 'articles' ? ' active' : '')]
+				['class' => 'nav-link' . (in_array($current, ['articles', 'view', 'edit']) ? ' active' : '')]
 			) ?>
 		</li>
 		<li class="nav-item">

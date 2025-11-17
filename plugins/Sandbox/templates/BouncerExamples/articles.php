@@ -54,6 +54,14 @@
 					<td class="actions">
 						<?= $this->Html->link(__('View'), ['action' => 'view', $article->id], ['class' => 'btn btn-sm btn-info']) ?>
 						<?= $this->Html->link(__('Edit'), ['action' => 'edit', $article->id, '?' => ['user_id' => 1]], ['class' => 'btn btn-sm btn-primary']) ?>
+						<?= $this->Form->postLink(
+							__('Delete'),
+							['action' => 'delete', $article->id],
+							[
+								'confirm' => __('Request deletion of "{0}"?', $article->title),
+								'class' => 'btn btn-sm btn-danger',
+							]
+						) ?>
 					</td>
 				</tr>
 			<?php } ?>

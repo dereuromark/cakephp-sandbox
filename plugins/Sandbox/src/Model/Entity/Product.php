@@ -13,6 +13,7 @@ use Cake\ORM\Entity;
  * @property string $price
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
+ * @property int $stock
  */
 class Product extends Entity {
 

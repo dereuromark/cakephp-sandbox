@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Controller;
 
-use Sandbox\Model\Table\SandboxArticlesTable;
+use Cake\Cache\Cache;
 
 /**
  * BouncerExamples Controller
@@ -11,9 +11,14 @@ use Sandbox\Model\Table\SandboxArticlesTable;
  * Demonstrates the Bouncer plugin approval workflow functionality.
  * Shows how user-submitted content can be moderated before publication.
  *
- * @property SandboxArticlesTable $SandboxArticles
+ * @property \Sandbox\Model\Table\SandboxArticlesTable $SandboxArticles
  */
 class BouncerExamplesController extends SandboxAppController {
+
+	/**
+	 * @var string|null
+	 */
+	protected ?string $defaultTable = 'Sandbox.SandboxArticles';
 
 	/**
 	 * @return void
@@ -24,15 +29,17 @@ class BouncerExamplesController extends SandboxAppController {
 		$this->viewBuilder()->setHelpers(['Tools.Format', 'Tools.Time']);
 
 		// Add Bouncer behavior to SandboxArticles for this controller only
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		if (!$sandboxArticlesTable->hasBehavior('Bouncer')) {
-			$sandboxArticlesTable->addBehavior('Bouncer.Bouncer', [
+		if (!$this->SandboxArticles->hasBehavior('Bouncer')) {
+			$this->SandboxArticles->addBehavior('Bouncer.Bouncer', [
 				'userField' => 'user_id',
-				'requireApproval' => ['add', 'edit'],
+				'requireApproval' => ['add', 'edit', 'delete'],
 				'validateOnDraft' => true,
 				'autoSupersede' => true,
 			]);
 		}
+
+		// Ensure demo data is available and fresh
+		$this->ensureDemoData();
 	}
 
 	/**
@@ -50,19 +57,18 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function articles() {
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-
 		$this->paginate = [
 			'order' => ['SandboxArticles.created' => 'DESC'],
 			'limit' => 20,
 		];
 
-		$articles = $this->paginate($sandboxArticlesTable);
+		$articles = $this->paginate($this->SandboxArticles);
 
 		// Get pending drafts count for each article
 		$bouncerTable = $this->fetchTable('Bouncer.BouncerRecords');
 		$pendingCounts = [];
 		foreach ($articles as $article) {
+			/** @var \Sandbox\Model\Entity\SandboxArticle $article */
 			$count = $bouncerTable->find()
 				->where([
 					'source' => 'SandboxArticles',
@@ -91,34 +97,31 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function add() {
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		$article = $sandboxArticlesTable->newEmptyEntity();
+		$article = $this->SandboxArticles->newEmptyEntity();
 
 		if ($this->request->is('post')) {
-			$data = $this->request->getData();
-			// Simulate a logged-in user (in real app, get from Authentication)
-			$userId = $data['user_id'] ?? 1;
+			$article = $this->SandboxArticles->patchEntity($article, $this->request->getData());
+			$userId = $this->request->getData('user_id', 1);
 
-			$article = $sandboxArticlesTable->patchEntity($article, $data);
+			$this->SandboxArticles->save($article, ['bouncerUserId' => $userId]);
+			/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
+			/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+			$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
-			// Pass user ID to bouncer
-			if ($sandboxArticlesTable->save($article, ['bouncerUserId' => $userId])) {
-				if ($sandboxArticlesTable->getBehavior('Bouncer')->wasBounced()) {
-					$this->Flash->success('Your article has been submitted and is pending approval.');
-
-					return $this->redirect(['action' => 'articles']);
-				}
-
-				$this->Flash->success('Article saved directly (bouncer bypassed).');
+			// Check if it was bounced (intercepted for approval)
+			if ($bouncerBehavior->wasBounced()) {
+				$this->Flash->success('Your article has been submitted and is pending approval.');
 
 				return $this->redirect(['action' => 'articles']);
 			}
 
-			if ($article->getErrors()) {
-				$this->Flash->error('Please fix the validation errors below.');
-			} else {
-				$this->Flash->error('Could not save the article. Please try again.');
+			if (!$article->getErrors()) {
+				$this->Flash->success('Article saved successfully.');
+
+				return $this->redirect(['action' => 'articles']);
 			}
+
+			$this->Flash->error('Please fix the validation errors below.');
 		}
 
 		$this->set(compact('article'));
@@ -131,39 +134,38 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function edit($id = null) {
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		$article = $sandboxArticlesTable->get($id);
+		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
+		$article = $this->SandboxArticles->get($id);
+		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
+		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
-		// Check for existing draft
-		$userId = $this->request->getQuery('user_id', 1); // Simulate logged-in user
-		$bouncerBehavior = $sandboxArticlesTable->getBehavior('Bouncer');
-		$draft = $bouncerBehavior->loadDraft($id, $userId);
-
-		if ($draft) {
-			// Overlay draft data onto the article
-			$article = $sandboxArticlesTable->patchEntity($article, $draft->get('data'));
+		// Check for existing draft and overlay it
+		$userId = (int)$this->request->getQuery('user_id', 1); // Simulate logged-in user
+		if ($bouncerBehavior->withDraft($article, $userId)) {
 			$this->Flash->info('You are editing your pending draft.');
 		}
 
 		if ($this->request->is(['patch', 'post', 'put'])) {
-			$data = $this->request->getData();
-			$userId = $data['user_id'] ?? 1;
+			$article = $this->SandboxArticles->patchEntity($article, $this->request->getData());
+			$userId = $this->request->getData('user_id', 1);
 
-			$article = $sandboxArticlesTable->patchEntity($article, $data);
+			$result = $this->SandboxArticles->save($article, ['bouncerUserId' => $userId]);
 
-			if ($sandboxArticlesTable->save($article, ['bouncerUserId' => $userId])) {
-				if ($bouncerBehavior->wasBounced()) {
-					$this->Flash->success('Your changes are pending approval.');
+			// Check if it was bounced (intercepted for approval)
+			if ($bouncerBehavior->wasBounced()) {
+				$this->Flash->success('Your changes are pending approval.');
 
-					return $this->redirect(['action' => 'articles']);
-				}
+				return $this->redirect(['action' => 'view', $id]);
+			}
 
-				$this->Flash->success('Article updated directly (bouncer bypassed).');
+			if (!$article->getErrors() && $result) {
+				$this->Flash->success('Article updated successfully.');
 
 				return $this->redirect(['action' => 'articles']);
 			}
 
-			$this->Flash->error('Could not update the article. Please try again.');
+			$this->Flash->error('Please fix the validation errors below.');
 		}
 
 		$this->set(compact('article'));
@@ -176,10 +178,55 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function view($id = null) {
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		$article = $sandboxArticlesTable->get($id);
+		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
+		$article = $this->SandboxArticles->get($id);
+		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
+		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
-		$this->set(compact('article'));
+		// Check for existing draft and overlay it
+		$userId = (int)$this->request->getQuery('user_id', 1); // Simulate logged-in user
+		$hasDraft = $bouncerBehavior->withDraft($article, $userId);
+
+		$this->set(compact('article', 'hasDraft'));
+	}
+
+	/**
+	 * Delete an article (will be sent for approval)
+	 *
+	 * @param string|null $id Article id.
+	 * @return \Cake\Http\Response|null
+	 */
+	public function delete($id = null) {
+		$this->request->allowMethod(['post', 'delete']);
+
+		/** @var \Sandbox\Model\Entity\SandboxArticle $article */
+		$article = $this->SandboxArticles->get($id);
+
+		// Simulate logged-in user - in real app, get from Auth
+		$userId = 1;
+
+		$result = $this->SandboxArticles->delete($article, ['bouncerUserId' => $userId]);
+		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
+		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
+
+		// Check if it was bounced (intercepted for approval)
+		if ($bouncerBehavior->wasBounced()) {
+			$this->Flash->success('Your deletion request is pending approval.');
+
+			return $this->redirect(['action' => 'articles']);
+		}
+
+		if ($result) {
+			$this->Flash->success('Article deleted successfully.');
+
+			return $this->redirect(['action' => 'articles']);
+		}
+
+		$this->Flash->error('Could not delete the article. Please try again.');
+
+		return $this->redirect(['action' => 'articles']);
 	}
 
 	/**
@@ -214,6 +261,7 @@ class BouncerExamplesController extends SandboxAppController {
 	 */
 	public function review($id = null) {
 		$bouncerTable = $this->fetchTable('Bouncer.BouncerRecords');
+		/** @var \Bouncer\Model\Entity\BouncerRecord $bouncerRecord */
 		$bouncerRecord = $bouncerTable->get($id);
 
 		if ($bouncerRecord->status !== 'pending') {
@@ -229,12 +277,13 @@ class BouncerExamplesController extends SandboxAppController {
 	 * Admin interface: Approve a pending change
 	 *
 	 * @param string|null $id Bouncer record id.
-	 * @return \Cake\Http\Response
+	 * @return \Cake\Http\Response|null
 	 */
 	public function approve($id = null) {
 		$this->request->allowMethod(['post']);
 
 		$bouncerTable = $this->fetchTable('Bouncer.BouncerRecords');
+		/** @var \Bouncer\Model\Entity\BouncerRecord $bouncerRecord */
 		$bouncerRecord = $bouncerTable->get($id);
 
 		if ($bouncerRecord->status !== 'pending') {
@@ -243,46 +292,51 @@ class BouncerExamplesController extends SandboxAppController {
 			return $this->redirect(['action' => 'pending']);
 		}
 
-		// Apply the approved changes
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		$bouncerBehavior = $sandboxArticlesTable->getBehavior('Bouncer');
+		// Mark as approved first
+		$reviewerId = $this->request->getData('reviewer_id', 1); // Simulate admin user
+		$bouncerRecord = $bouncerTable->patchEntity($bouncerRecord, [
+			'status' => 'approved',
+			'reviewer_id' => $reviewerId,
+			'reviewed' => new \DateTime(),
+			'reason' => $this->request->getData('reason'),
+		]);
 
+		if (!$bouncerTable->save($bouncerRecord)) {
+			$this->Flash->error('Could not save approval status.');
+
+			return $this->redirect(['action' => 'review', $id]);
+		}
+
+		// Apply the approved changes
+		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
+		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
+
+		// Reload the record to get updated data
+		/** @var \Bouncer\Model\Entity\BouncerRecord $bouncerRecord */
+		$bouncerRecord = $bouncerTable->get($id);
 		$entity = $bouncerBehavior->applyApprovedChanges($bouncerRecord);
 
 		if ($entity) {
-			// Mark as approved
-			$reviewerId = $this->request->getData('reviewer_id', 1); // Simulate admin user
-			$bouncerRecord = $bouncerTable->patchEntity($bouncerRecord, [
-				'status' => 'approved',
-				'reviewer_id' => $reviewerId,
-				'reviewed' => new \DateTime(),
-				'reason' => $this->request->getData('reason'),
-			]);
-
-			if ($bouncerTable->save($bouncerRecord)) {
-				$this->Flash->success('Changes approved and published successfully.');
-
-				return $this->redirect(['action' => 'pending']);
-			}
-
-			$this->Flash->error('Could not save approval status.');
+			$this->Flash->success('Changes approved and published successfully.');
 		} else {
-			$this->Flash->error('Could not apply changes. Validation may have failed.');
+			$this->Flash->warning('Changes approved but could not be published. Please check validation.');
 		}
 
-		return $this->redirect(['action' => 'review', $id]);
+		return $this->redirect(['action' => 'pending']);
 	}
 
 	/**
 	 * Admin interface: Reject a pending change
 	 *
 	 * @param string|null $id Bouncer record id.
-	 * @return \Cake\Http\Response
+	 * @return \Cake\Http\Response|null
 	 */
 	public function reject($id = null) {
 		$this->request->allowMethod(['post']);
 
 		$bouncerTable = $this->fetchTable('Bouncer.BouncerRecords');
+		/** @var \Bouncer\Model\Entity\BouncerRecord $bouncerRecord */
 		$bouncerRecord = $bouncerTable->get($id);
 
 		if ($bouncerRecord->status !== 'pending') {
@@ -316,14 +370,13 @@ class BouncerExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function adminAdd() {
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
-		$article = $sandboxArticlesTable->newEmptyEntity();
+		$article = $this->SandboxArticles->newEmptyEntity();
 
 		if ($this->request->is('post')) {
-			$article = $sandboxArticlesTable->patchEntity($article, $this->request->getData());
+			$article = $this->SandboxArticles->patchEntity($article, $this->request->getData());
 
 			// Admin bypasses bouncer
-			if ($sandboxArticlesTable->save($article, ['bypassBouncer' => true])) {
+			if ($this->SandboxArticles->save($article, ['bypassBouncer' => true])) {
 				$this->Flash->success('Article published directly (admin bypass).');
 
 				return $this->redirect(['action' => 'articles']);
@@ -333,6 +386,78 @@ class BouncerExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('article'));
+	}
+
+	/**
+	 * Ensure demo data exists and reset every 6 hours
+	 *
+	 * @return void
+	 */
+	protected function ensureDemoData(): void {
+		if (PHP_SAPI === 'cli') {
+			return;
+		}
+
+		$cacheKey = 'bouncer_demo_last_reset';
+		$cache = Cache::read($cacheKey);
+		$now = time();
+		$sixHours = 6 * 3600;
+
+		// Check if we need to reset (no cache or older than 6 hours)
+		if ($this->request->getQuery('force-update') || $cache === null || ($now - $cache) >= $sixHours) {
+			$this->resetDemoData();
+			Cache::write($cacheKey, $now);
+
+			return;
+		}
+
+		// Check if we have at least 3 articles
+		$count = $this->SandboxArticles->find()->count();
+		if ($count < 3) {
+			$this->resetDemoData();
+			Cache::write($cacheKey, $now);
+		}
+	}
+
+	/**
+	 * Reset demo data - truncate and create fresh demo records
+	 *
+	 * @return void
+	 */
+	protected function resetDemoData(): void {
+		$bouncerRecordsTable = $this->fetchTable('Bouncer.BouncerRecords');
+
+		// Truncate both tables
+		$connection = $this->SandboxArticles->getConnection();
+		$connection->execute('TRUNCATE TABLE sandbox_articles');
+		$bouncerRecordsTable->deleteAll('1=1');
+
+		// Create 3 demo articles
+		$demoArticles = [
+			[
+				'title' => 'Getting Started with Bouncer',
+				'content' => 'The Bouncer plugin provides a flexible approval workflow for CakePHP applications. This demo shows how user submissions can be moderated before publication.',
+				'status' => 'draft',
+				'user_id' => 1,
+			],
+			[
+				'title' => 'Understanding the Approval Process',
+				'content' => 'When a user submits changes, they are stored as pending drafts in the bouncer_records table. Admins can review, approve, or reject these changes through a dedicated interface.',
+				'status' => 'draft',
+				'user_id' => 1,
+			],
+			[
+				'title' => 'Advanced Features',
+				'content' => 'Bouncer supports draft auto-superseding, validation on draft creation, and the ability to bypass approval for trusted users or admins.',
+				'status' => 'published',
+				'user_id' => 1,
+			],
+		];
+
+		foreach ($demoArticles as $data) {
+			$article = $this->SandboxArticles->newEntity($data);
+			$this->SandboxArticles->save($article, ['bypassBouncer' => true]);
+		}
 	}
 
 }

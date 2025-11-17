@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property string $status
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
+ * @property int|null $user_id
  */
 class SandboxArticle extends Entity {
 

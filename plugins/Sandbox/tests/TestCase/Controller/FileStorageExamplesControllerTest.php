@@ -10,6 +10,8 @@ use Shim\TestSuite\TestCase;
 
 /**
  * FileStorageExamplesController Test Case
+ *
+ * @uses \Sandbox\Controller\FileStorageExamplesController
  */
 class FileStorageExamplesControllerTest extends TestCase {
 

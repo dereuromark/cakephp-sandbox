@@ -11,6 +11,9 @@
 
 	<div class="alert alert-info">
 		<h4>About Bouncer</h4>
+		<p class="float-end mb-0">
+			<?= $this->Html->link('View on GitHub', 'https://github.com/dereuromark/cakephp-bouncer', ['target' => '_blank', 'class' => 'btn btn-sm btn-outline-primary']) ?>
+		</p>
 		<p>
 			The <strong>Bouncer plugin</strong> implements an approval workflow for CakePHP applications.
 			Users propose changes (create or edit records), and admins/moderators can review, approve,

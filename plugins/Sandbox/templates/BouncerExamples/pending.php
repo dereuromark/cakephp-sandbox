@@ -33,10 +33,16 @@
 			</thead>
 			<tbody>
 				<?php foreach ($pendingRecords as $record) { ?>
+					<?php
+					$data = json_decode($record->get('data'), true) ?: [];
+					$isDelete = isset($data['_delete']) && $data['_delete'] === true;
+					?>
 					<tr>
 						<td><?= $this->Number->format($record->id) ?></td>
 						<td>
-							<?php if ($record->primary_key === null) { ?>
+							<?php if ($isDelete) { ?>
+								<span class="badge bg-danger">Delete Article #<?= h($record->primary_key) ?></span>
+							<?php } elseif ($record->primary_key === null) { ?>
 								<span class="badge bg-success">New Article</span>
 							<?php } else { ?>
 								<span class="badge bg-warning">Edit Article #<?= h($record->primary_key) ?></span>

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 use Migrations\BaseMigration;
 
-class AddUserIdToSandboxArticles extends BaseMigration
-{
-    /**
+class AddUserIdToSandboxArticles extends BaseMigration {
+
+	/**
      * Change Method.
      *
      * More information on this method is available here:
@@ -13,21 +13,20 @@ class AddUserIdToSandboxArticles extends BaseMigration
      *
      * @return void
      */
-    public function change(): void
-    {
-        $table = $this->table('sandbox_articles');
-        $table->addColumn('user_id', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => true,
-        ]);
-        $table->addIndex([
-            'user_id',
-        
-            ], [
-            'name' => 'BY_USER_ID',
-            'unique' => false,
-        ]);
-        $table->update();
-    }
+	public function change(): void {
+		$table = $this->table('sandbox_articles');
+		$table->addColumn('user_id', 'integer', [
+			'default' => null,
+			'limit' => 11,
+			'null' => true,
+		]);
+		$table->addIndex([
+			'user_id',
+		], [
+			'name' => 'BY_USER_ID',
+			'unique' => false,
+		]);
+		$table->update();
+	}
+
 }
