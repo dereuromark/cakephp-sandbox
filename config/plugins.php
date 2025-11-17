@@ -33,6 +33,7 @@ return [
 	'QrCode' => [],
 	'AuditStash' => [],
 	'FileStorage' => [],
+	'Bouncer' => [],
 
 	// inside /plugins
 	'AuthSandbox' => [],

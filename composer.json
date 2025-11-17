@@ -81,7 +81,8 @@
 		"dereuromark/cakephp-file-storage": "dev-master as 1.0.0",
 		"spatie/pdf-to-image": "^1.2",
 		"cakephp/authentication": "^3.3",
-		"cakephp/authorization": "^3.4"
+		"cakephp/authorization": "^3.4",
+		"dereuromark/cakephp-bouncer": "dev-master"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.4.5",

@@ -17,6 +17,16 @@
 					<div class="plugin-list plugin-list-two-columns">
 						<div class="plugin-item">
 							<h4 class="h6">
+								Bouncer Plugin
+								<span class="badge bg-success ms-2">NEW</span>
+							</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Approval Workflow / Content Moderation', ['controller' => 'BouncerExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
+							<h4 class="h6">
 								FileStorage Plugin
 								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
