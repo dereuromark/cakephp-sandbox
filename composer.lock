@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92354459782fd2d485705690971cc1c7",
+    "content-hash": "4260ccb5ad04dbc6d2b7d0eb6a7b9217",
     "packages": [
         {
             "name": "brick/math",
@@ -3982,16 +3982,16 @@
         },
         {
             "name": "friendsofcake/search",
-            "version": "7.7.1",
+            "version": "dev-helper-paging",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/search.git",
-                "reference": "d104764fc30b23bb9849f32203113f71398ec09e"
+                "reference": "a0b0c803d081144048c5a2b4695c519525fdbefc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/d104764fc30b23bb9849f32203113f71398ec09e",
-                "reference": "d104764fc30b23bb9849f32203113f71398ec09e",
+                "url": "https://api.github.com/repos/FriendsOfCake/search/zipball/a0b0c803d081144048c5a2b4695c519525fdbefc",
+                "reference": "a0b0c803d081144048c5a2b4695c519525fdbefc",
                 "shasum": ""
             },
             "require": {
@@ -4037,7 +4037,7 @@
                 "issues": "https://github.com/FriendsOfCake/search/issues",
                 "source": "https://github.com/FriendsOfCake/search"
             },
-            "time": "2025-11-13T16:20:07+00:00"
+            "time": "2025-11-15T17:24:56+00:00"
         },
         {
             "name": "geocoder-php/common-http",
@@ -12304,6 +12304,12 @@
             "alias_normalized": "3.9.0.0"
         },
         {
+            "package": "friendsofcake/search",
+            "version": "dev-helper-paging",
+            "alias": "7.7.0",
+            "alias_normalized": "7.7.0.0"
+        },
+        {
             "package": "php-collective/code-sniffer",
             "version": "9999999-dev",
             "alias": "0.4.5",
@@ -12360,6 +12366,7 @@
         "dereuromark/cakephp-translate": 20,
         "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
+        "friendsofcake/search": 20,
         "jdorn/sql-formatter": 0,
         "linkorb/jsmin-php": 20,
         "natxet/cssmin": 20,
