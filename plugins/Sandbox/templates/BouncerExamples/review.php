@@ -4,8 +4,8 @@
  * @var \Bouncer\Model\Entity\BouncerRecord $bouncerRecord
  */
 $isNew = $bouncerRecord->primary_key === null;
-$data = $bouncerRecord->get('data');
-$originalData = $bouncerRecord->get('original_data') ?: [];
+$data = json_decode($bouncerRecord->get('data'), true) ?: [];
+$originalData = json_decode($bouncerRecord->get('original_data'), true) ?: [];
 ?>
 
 <div class="page view">
