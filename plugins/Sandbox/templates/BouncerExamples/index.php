@@ -16,7 +16,7 @@
 		</p>
 		<p>
 			The <strong>Bouncer plugin</strong> implements an approval workflow for CakePHP applications.
-			Users propose changes (create or edit records), and admins/moderators can review, approve,
+			Users propose changes (create, edit or delete records), and admins/moderators can review, approve,
 			or reject those changes before they are published to the actual database tables.
 		</p>
 	</div>
@@ -33,7 +33,7 @@
 					<ul>
 						<li><?= $this->Html->link('View All Articles', ['action' => 'articles']) ?> - See published content</li>
 						<li><?= $this->Html->link('Submit New Article', ['action' => 'add']) ?> - Create content for approval</li>
-						<li><strong>Edit Articles</strong> - Click edit on any article to propose changes</li>
+						<li><strong>Edit/Delete Articles</strong> - Click edit/delete on any article to propose changes</li>
 						<li><strong>Draft Management</strong> - Automatic draft recovery on re-edit</li>
 						<li><strong>Validation</strong> - Errors shown immediately, not after approval</li>
 					</ul>

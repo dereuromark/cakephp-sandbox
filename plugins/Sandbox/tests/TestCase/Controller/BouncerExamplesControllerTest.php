@@ -221,15 +221,36 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	public function testRevertEditRemovesPendingDraftPart2() {
 		$this->enableRetainFlashMessages();
 
-		// First create a draft by editing (setup from part 1)
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+		// First create a draft using table layer (not a controller request)
+		$sandboxArticlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
+		$sandboxArticlesTable->addBehavior('Bouncer.Bouncer', [
+			'userField' => 'user_id',
+			'requireApproval' => ['add', 'edit', 'delete'],
+			'validateOnDraft' => true,
+			'autoSupersede' => true,
+		]);
+
+		$article = $sandboxArticlesTable->get(1);
+		$article = $sandboxArticlesTable->patchEntity($article, [
 			'title' => 'Changed Title',
 			'content' => 'Changed content',
 			'status' => 'published',
 			'user_id' => 1,
 		]);
+		$sandboxArticlesTable->save($article, ['bouncerUserId' => 1]);
 
-		// Now edit again, reverting to original values from fixture
+		// Verify draft was created
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$pendingCount = $bouncerTable->find()
+			->where([
+				'source' => 'SandboxArticles',
+				'primary_key' => 1,
+				'status' => 'pending',
+			])
+			->count();
+		$this->assertEquals(1, $pendingCount, 'Should have 1 pending draft before revert');
+
+		// Now edit again via controller, reverting to original values from fixture
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
 			'title' => 'Lorem ipsum dolor sit amet',
 			'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
@@ -241,10 +262,9 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		// since the changes match the original (draft was removed and save proceeded)
 		$this->assertResponseCode(302);
 		$this->assertRedirectContains('/bouncer-examples/articles');
-		$this->assertFlashMessageAt(1, 'Article updated successfully.');
+		$this->assertFlashMessage('Article updated successfully.');
 
 		// Verify draft was removed
-		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$pendingCount = $bouncerTable->find()
 			->where([
 				'source' => 'SandboxArticles',
