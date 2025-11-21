@@ -286,7 +286,7 @@ echo $this->Highlighter->highlight($code, ['lang' => 'php']);
 <div class="alert alert-info">
 	<h5><?= $this->Html->icon('info-circle') ?> Tips</h5>
 	<ul class="mb-0">
-		<li>Default locale translations are stored in the main table</li>
+		<li>Default locale translations (text in original language) are still stored in the main table (nothing changes)</li>
 		<li>Non-default locales are stored in the shadow table (same structure + locale)</li>
 		<li>Shadow tables provide better query performance than EAV/i18n tables</li>
 		<li>Use <code>I18n::setLocale()</code> to set the application-wide locale</li>

@@ -3,7 +3,7 @@
 
 git pull
 
-COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
+COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-dist --no-dev -a --no-interaction
 
 chmod +x bin/cake
 
