@@ -38,7 +38,7 @@ class CaptchasController extends SandboxAppController {
 		if ($this->request->getQuery('reset')) {
 			$this->Captcha->resetFor((string)env('REMOTE_ADDR'));
 
-			$this->Flash->success('Resetted, now you can try again.');
+			$this->Flash->success('Reset, now you can try again.');
 
 			return $this->redirect(['action' => 'math']);
 		}

@@ -81,4 +81,16 @@ class CaptchasControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test that the captcha image is publicly accessible (no auth required).
+	 *
+	 * @return void
+	 */
+	public function testCaptchaImageIsPublic(): void {
+		$this->get(['plugin' => 'Captcha', 'controller' => 'Captcha', 'action' => 'display']);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('image/png');
+	}
+
 }
