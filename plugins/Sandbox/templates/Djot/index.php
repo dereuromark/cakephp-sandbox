@@ -95,6 +95,9 @@ DJOT;
 	</div>
 	<?php } ?>
 	<div class="col-auto ms-auto">
+		<span id="loading-indicator" class="me-2" style="opacity: 0;">
+			<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
+		</span>
 		<button type="button" class="btn btn-sm btn-outline-primary me-2" id="btn-share" title="Copy shareable link">
 			<i class="bi bi-share"></i> Share
 		</button>
@@ -133,6 +136,7 @@ DJOT;
 	const outputRendered = document.getElementById('output-rendered');
 	const outputSource = document.getElementById('output-source');
 	const alertContainer = document.getElementById('alert-container');
+	const loadingIndicator = document.getElementById('loading-indicator');
 	const optXhtml = document.getElementById('opt-xhtml');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
@@ -227,6 +231,9 @@ DJOT;
 			currentRequest.abort();
 		}
 
+		loadingIndicator.style.transition = 'none';
+		loadingIndicator.style.opacity = '1';
+
 		const controller = new AbortController();
 		currentRequest = controller;
 
@@ -248,6 +255,8 @@ DJOT;
 		.then(response => response.json())
 		.then(data => {
 			currentRequest = null;
+			loadingIndicator.style.transition = 'opacity 0.8s';
+			loadingIndicator.style.opacity = '0';
 			alertContainer.innerHTML = '';
 
 			if (data.error) {
@@ -267,6 +276,8 @@ DJOT;
 			outputSource.querySelector('code').textContent = data.html || '';
 		})
 		.catch(err => {
+			loadingIndicator.style.transition = 'opacity 0.8s';
+			loadingIndicator.style.opacity = '0';
 			if (err.name !== 'AbortError') {
 				console.error('Conversion error:', err);
 			}
