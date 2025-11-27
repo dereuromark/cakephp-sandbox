@@ -38,6 +38,20 @@ echo "Hello, World!";
 | Djot   | Markup |
 | PHP    | Code   |
 
+### Lists
+
+x. A *cool*
+
+  Some paragraph.
+
+x. automatically *numbered*
+
+  - sub
+
+    - subsub
+
+x. nested *list*
+
 ### Footnotes
 
 Here is a footnote reference[^1].
