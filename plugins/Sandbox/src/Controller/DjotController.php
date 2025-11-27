@@ -71,8 +71,9 @@ class DjotController extends SandboxAppController {
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-sandbox');
-		$config->set('HTML.DefinitionRev', 1);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub,sup[class|id],a[href|title|class|id|target|rel],img[src|alt|title],ul,ol,li,dl,dt,dd,blockquote,pre,code[class],h1,h2,h3,h4,h5,h6,table[class|id],thead,tbody,tr,th[align],td[align],hr,div[class|id],span[class|id],section[id]');
+		$config->set('HTML.DefinitionRev', 2);
+		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul,ol,li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],thead,tbody,tr,th[align],td[align],hr,div[class|id],span[class|id],section[id]');
+		$config->set('Attr.EnableID', true);
 		$config->set('HTML.TargetBlank', true);
 		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true]);
 

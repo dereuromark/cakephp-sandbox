@@ -37,13 +37,13 @@ echo "Hello, World!";
 | Djot   | Markup |
 | PHP    | Code   |
 
-### Math
-
-Inline math: $E = mc^2$
-
 ### Footnotes
 
 Here is a footnote reference[^1].
+
+### Math
+
+Inline math: $E = mc^2$
 
 [^1]: This is the footnote content.
 DJOT;
