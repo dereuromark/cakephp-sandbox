@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var bool $debugMode
  */
 
 $defaultDjot = <<<'DJOT'
@@ -84,6 +85,14 @@ DJOT;
 			<label class="form-check-label" for="opt-strict">Strict</label>
 		</div>
 	</div>
+	<?php if ($debugMode) { ?>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-raw">
+			<label class="form-check-label text-danger" for="opt-raw" title="Disable HTML sanitization (debug only)">Raw</label>
+		</div>
+	</div>
+	<?php } ?>
 	<div class="col-auto ms-auto">
 		<button type="button" class="btn btn-sm btn-outline-primary me-2" id="btn-share" title="Copy shareable link">
 			<i class="bi bi-share"></i> Share
@@ -120,6 +129,7 @@ DJOT;
 	const optXhtml = document.getElementById('opt-xhtml');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
+	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
 	const btnShare = document.getElementById('btn-share');
@@ -218,6 +228,7 @@ DJOT;
 		formData.append('xhtml', optXhtml.checked ? '1' : '0');
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
+		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
 			method: 'POST',
@@ -275,6 +286,7 @@ DJOT;
 	optXhtml.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
+	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
 	btnShare.addEventListener('click', share);

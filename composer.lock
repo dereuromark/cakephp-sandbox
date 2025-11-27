@@ -6291,12 +6291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "30f7082b8c434cd6fa15ec3b6b0c092493fd95bc"
+                "reference": "22372a265bef6ef9c6af9e542b19cb6ba310916f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/30f7082b8c434cd6fa15ec3b6b0c092493fd95bc",
-                "reference": "30f7082b8c434cd6fa15ec3b6b0c092493fd95bc",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/22372a265bef6ef9c6af9e542b19cb6ba310916f",
+                "reference": "22372a265bef6ef9c6af9e542b19cb6ba310916f",
                 "shasum": ""
             },
             "require": {
@@ -6341,7 +6341,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-27T16:19:46+00:00"
+            "time": "2025-11-27T18:05:55+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -10520,12 +10520,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "d4dc8749ceb9d6a5998eab61805bf9562b0acaac"
+                "reference": "2cce49d70ea9a39ce51aca41cff93e720f391d43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/d4dc8749ceb9d6a5998eab61805bf9562b0acaac",
-                "reference": "d4dc8749ceb9d6a5998eab61805bf9562b0acaac",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/2cce49d70ea9a39ce51aca41cff93e720f391d43",
+                "reference": "2cce49d70ea9a39ce51aca41cff93e720f391d43",
                 "shasum": ""
             },
             "require": {
@@ -10572,7 +10572,7 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2025-11-27T13:30:56+00:00"
+            "time": "2025-11-27T17:45:54+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
