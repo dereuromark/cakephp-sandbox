@@ -82,7 +82,9 @@
 		"spatie/pdf-to-image": "^1.2",
 		"cakephp/authentication": "^3.3",
 		"cakephp/authorization": "^3.4",
-		"dereuromark/cakephp-bouncer": "dev-master"
+		"dereuromark/cakephp-bouncer": "dev-master",
+		"php-collective/djot": "dev-master",
+		"ezyang/htmlpurifier": "^4.19"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.4.5",

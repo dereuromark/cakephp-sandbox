@@ -41,6 +41,7 @@ Some of the plugins from the <a href="https://github.com/FriendsOfCake/awesome-c
 
 <h3>PHP Libraries</h3>
 <ul>
+	<li><?php echo $this->Html->link('Djot', ['controller' => 'Djot', 'action' => 'index']); ?></li>
 	<li><?php echo $this->Html->link('MediaEmbed', ['controller' => 'MediaEmbed', 'action' => 'index']); ?></li>
 </ul>
 
