@@ -26,8 +26,9 @@ echo "Hello, World!";
 
 ### Blockquote
 
-> Djot is a lightweight markup language
-> designed for simplicity and flexibility.
+> The best way to predict the future is to invent it.
+
+--- _Alan Kay_
 
 ### Table
 
@@ -117,6 +118,12 @@ DJOT;
 		<pre id="output-source" class="border rounded p-3 bg-light d-none" style="min-height: 100%; max-height: 480px; overflow-y: auto; margin: 0;"><code></code></pre>
 	</div>
 </div>
+
+<p class="text-muted small mt-2">
+	<i class="bi bi-shield-check"></i>
+	Output is sanitized via <a href="https://github.com/ezyang/htmlpurifier" target="_blank">HTMLPurifier</a> for security.
+	For raw output, clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
+</p>
 
 </div>
 
