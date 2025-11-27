@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83f46e1e8ddb3803aa536ad55892ad8f",
+    "content-hash": "05f58ee36da02c997bf9073d130f4d3c",
     "packages": [
         {
             "name": "brick/math",
@@ -10280,21 +10280,21 @@
         },
         {
             "name": "fig-r/psr2r-sniffer",
-            "version": "dev-next",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "9d75c924f7619754b3fc4420b1ee1b9ed80bf868"
+                "reference": "a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/9d75c924f7619754b3fc4420b1ee1b9ed80bf868",
-                "reference": "9d75c924f7619754b3fc4420b1ee1b9ed80bf868",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428",
+                "reference": "a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "php-collective/code-sniffer": "dev-master",
+                "php-collective/code-sniffer": "^0.5.0",
                 "squizlabs/php_codesniffer": "^4.0.0"
             },
             "require-dev": {
@@ -10302,6 +10302,7 @@
                 "phpstan/phpstan": "^2.1.0",
                 "phpunit/phpunit": "^10.3 || ^11.5 || ^12.0"
             },
+            "default-branch": true,
             "bin": [
                 "bin/tokenize",
                 "bin/sniff"
@@ -10331,9 +10332,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
-                "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/next"
+                "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
             },
-            "time": "2025-11-27T22:39:07+00:00"
+            "time": "2025-11-27T22:45:53+00:00"
         },
         {
             "name": "myclabs/deep-copy",
