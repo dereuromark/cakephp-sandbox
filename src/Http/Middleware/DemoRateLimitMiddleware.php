@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use Cake\Http\Middleware\RateLimitMiddleware;
+use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Demo Rate Limit Middleware - CakePHP 5.3 Feature
@@ -23,7 +24,7 @@ class DemoRateLimitMiddleware extends RateLimitMiddleware {
 			'headers' => true, // Add X-RateLimit-* headers
 			'message' => 'Too many requests. Please try again in a minute.',
 			// Only apply rate limiting to the rate limit demo page
-			'skipCheck' => function (\Psr\Http\Message\ServerRequestInterface $request) {
+			'skipCheck' => function (ServerRequestInterface $request) {
 				/** @var array<string, mixed> $params */
 				$params = $request->getAttribute('params', []);
 

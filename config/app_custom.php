@@ -1,8 +1,23 @@
 <?php
 
+use AuditStash\Persister\TablePersister;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
+use Favorites\View\Helper\FavoritesHelper;
 use IdeHelper\Annotator\EntityAnnotator;
+use Intervention\Image\ImageManager;
+use PhpCollective\Infrastructure\Storage\Factories\LocalFactory;
+use PhpCollective\Infrastructure\Storage\FileStorage;
+use PhpCollective\Infrastructure\Storage\PathBuilder\PathBuilder;
+use PhpCollective\Infrastructure\Storage\Processor\Image\ImageProcessor;
+use PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection;
+use PhpCollective\Infrastructure\Storage\StorageAdapterFactory;
+use PhpCollective\Infrastructure\Storage\StorageService;
+use PhpCollective\Infrastructure\Storage\Utility\FilenameSanitizer;
+use Sandbox\FileStorage\Processor\PdfThumbnailProcessor;
+use Sandbox\FileStorage\Processor\UnifiedFileProcessor;
+use Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck;
+use Setup\Healthcheck\HealthcheckCollector;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
@@ -170,11 +185,11 @@ $config = [
 	'Setup' => [
 		'Healthcheck' => [
 			'checks' => [
-				\Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck::class => [
+				PhpUploadLimitCheck::class => [
 					'min' => 16,
 				],
 					// ...
-			] + \Setup\Healthcheck\HealthcheckCollector::defaultChecks(),
+			] + HealthcheckCollector::defaultChecks(),
 		],
 	],
 
@@ -340,7 +355,7 @@ $config = [
 			'FavoritePosts' => 'Sandbox.SandboxPosts',
 		],
 		'userModelClass' => 'Sandbox.SandboxUsers',
-		'icons' => \Favorites\View\Helper\FavoritesHelper::ICONS_GITHUB,
+		'icons' => FavoritesHelper::ICONS_GITHUB,
 	],
 
 	'Comments' => [
@@ -348,7 +363,7 @@ $config = [
 	],
 
 	'AuditStash' => [
-		'persister' => \AuditStash\Persister\TablePersister::class,
+		'persister' => TablePersister::class,
 	],
 
 	'FileStorage' => (function() {
@@ -357,52 +372,52 @@ $config = [
 		}
 
 		// Storage setup
-		$storageFactory = new \PhpCollective\Infrastructure\Storage\StorageAdapterFactory();
-		$storageService = new \PhpCollective\Infrastructure\Storage\StorageService(
+		$storageFactory = new StorageAdapterFactory();
+		$storageService = new StorageService(
 			$storageFactory,
 		);
 		$storageService->addAdapterConfig(
 			'Local',
-			\PhpCollective\Infrastructure\Storage\Factories\LocalFactory::class,
+			LocalFactory::class,
 			[
 				'root' => UPLOADS_DIR,
 			],
 		);
 
-		$pathBuilder = new \PhpCollective\Infrastructure\Storage\PathBuilder\PathBuilder([
+		$pathBuilder = new PathBuilder([
 			'pathTemplate' => '{model}{ds}{collection}{ds}{randomPath}{ds}{id}{ds}{filename}.{extension}',
 			'variantPathTemplate' => '{model}{ds}{collection}{ds}{randomPath}{ds}{id}{ds}{filename}.{hashedVariant}.{extension}',
 			'randomPathLevels' => 1,
-			'sanitizer' => new \PhpCollective\Infrastructure\Storage\Utility\FilenameSanitizer([
+			'sanitizer' => new FilenameSanitizer([
 				'urlSafe' => true,
 				'removeUriReservedChars' => true,
 				'maxLength' => 190,
 			]),
 		]);
-		$fileStorage = new \PhpCollective\Infrastructure\Storage\FileStorage(
+		$fileStorage = new FileStorage(
 			$storageService,
 			$pathBuilder,
 		);
 
 		// Image Manager and Processor
-		$imageManager = \Intervention\Image\ImageManager::gd();
-		$imageProcessor = new \PhpCollective\Infrastructure\Storage\Processor\Image\ImageProcessor(
+		$imageManager = ImageManager::gd();
+		$imageProcessor = new ImageProcessor(
 			$fileStorage,
 			$pathBuilder,
 			$imageManager,
 		);
 
 		// PDF thumbnail processor
-		$pdfProcessor = new \Sandbox\FileStorage\Processor\PdfThumbnailProcessor($imageProcessor);
+		$pdfProcessor = new PdfThumbnailProcessor($imageProcessor);
 
 		// Unified processor - handles both images and PDFs
-		$unifiedProcessor = new \Sandbox\FileStorage\Processor\UnifiedFileProcessor(
+		$unifiedProcessor = new UnifiedFileProcessor(
 			$imageProcessor,
 			$pdfProcessor,
 		);
 
 		// Configure image variants for different collections
-		$imageVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$imageVariants = ImageVariantCollection::create();
 		$imageVariants->addNew('thumbnail')
 			->cover(150, 150) // zoom-crop to fill entire 150x150
 			->optimize();
@@ -414,7 +429,7 @@ $config = [
 			->optimize();
 
 		// Configure PDF preview variants (same as images)
-		$pdfVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$pdfVariants = ImageVariantCollection::create();
 		$pdfVariants->addNew('thumbnail')
 			->cover(150, 150)
 			->optimize();
@@ -426,7 +441,7 @@ $config = [
 			->optimize();
 
 		// Square crop variants
-		$squareVariants = \PhpCollective\Infrastructure\Storage\Processor\Image\ImageVariantCollection::create();
+		$squareVariants = ImageVariantCollection::create();
 		$squareVariants->addNew('thumb_square')
 			->cover(150, 150)
 			->optimize();

@@ -87,8 +87,8 @@
 		"ezyang/htmlpurifier": "^4.19"
 	},
 	"require-dev": {
-		"php-collective/code-sniffer": "dev-master as 0.4.5",
-		"fig-r/psr2r-sniffer": "dev-master",
+		"php-collective/code-sniffer": "dev-master as 0.5.0",
+		"fig-r/psr2r-sniffer": "dev-next",
 		"phpstan/phpstan": "^2.0.0",
 		"rector/type-perfect": "^2.1",
 		"phpstan/phpstan-strict-rules": "^2.0",

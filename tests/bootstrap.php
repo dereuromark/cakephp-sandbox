@@ -5,6 +5,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\Router;
+use Migrations\TestSuite\Migrator;
 use Shim\Filesystem\Folder;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
@@ -64,7 +65,7 @@ Configure::write('Error.ignoredDeprecationPaths', [
 // has been written to.
 session_id('cli');
 
-(new \Migrations\TestSuite\Migrator())->runMany([
+(new Migrator())->runMany([
 	['connection' => 'test'],
 	['plugin' => 'StateMachine'],
 	['plugin' => 'Tags'],

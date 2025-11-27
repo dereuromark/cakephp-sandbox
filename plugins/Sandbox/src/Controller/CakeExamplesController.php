@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Collection\Collection;
 use Cake\Database\ValueBinder;
+use Cake\Datasource\Paging\SortableFieldsBuilder;
 use Cake\Datasource\Paging\SortField;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Exception\RedirectException;
@@ -16,6 +17,7 @@ use Psr\Log\LoggerInterface;
 use Sandbox\Controller\Paginator\CollectionPaginator;
 use Sandbox\Model\Enum\UserStatus;
 use Sandbox\Model\Table\ProductsTable;
+use Stringable;
 
 /**
  * @property \Sandbox\Model\Table\AnimalsTable $Animals
@@ -238,7 +240,7 @@ class CakeExamplesController extends SandboxAppController {
 
 		// CakePHP 5.3: Use SortableFieldsBuilder via callable
 		$this->paginate = [
-			'sortableFields' => function (\Cake\Datasource\Paging\SortableFieldsBuilder $builder) {
+			'sortableFields' => function (SortableFieldsBuilder $builder) {
 				return $builder
 					->add('title')
 					// Lock price to ascending only (for demo purposes)
@@ -384,7 +386,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function log(mixed $level, string|\Stringable $message, array $context = []): void {
+			public function log(mixed $level, string|Stringable $message, array $context = []): void {
 				$query = $context['query'];
 				// @phpstan-ignore typePerfect.noMixedMethodCaller
 				$took = $query->getContext()['took'];
@@ -400,7 +402,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function emergency(string|\Stringable $message, array $context = []): void {
+			public function emergency(string|Stringable $message, array $context = []): void {
 				$this->log('emergency', $message, $context);
 			}
 
@@ -409,7 +411,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function alert(string|\Stringable $message, array $context = []): void {
+			public function alert(string|Stringable $message, array $context = []): void {
 				$this->log('alert', $message, $context);
 			}
 
@@ -418,7 +420,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function critical(string|\Stringable $message, array $context = []): void {
+			public function critical(string|Stringable $message, array $context = []): void {
 				$this->log('critical', $message, $context);
 			}
 
@@ -427,7 +429,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function error(string|\Stringable $message, array $context = []): void {
+			public function error(string|Stringable $message, array $context = []): void {
 				$this->log('error', $message, $context);
 			}
 
@@ -436,7 +438,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function warning(string|\Stringable $message, array $context = []): void {
+			public function warning(string|Stringable $message, array $context = []): void {
 				$this->log('warning', $message, $context);
 			}
 
@@ -445,7 +447,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function notice(string|\Stringable $message, array $context = []): void {
+			public function notice(string|Stringable $message, array $context = []): void {
 				$this->log('notice', $message, $context);
 			}
 
@@ -454,7 +456,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function info(string|\Stringable $message, array $context = []): void {
+			public function info(string|Stringable $message, array $context = []): void {
 				$this->log('info', $message, $context);
 			}
 
@@ -463,7 +465,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function debug(string|\Stringable $message, array $context = []): void {
+			public function debug(string|Stringable $message, array $context = []): void {
 				$this->log('debug', $message, $context);
 			}
 		};

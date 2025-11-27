@@ -2,6 +2,7 @@
 
 namespace App\Test\TestCase\Controller;
 
+use Exception;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -100,7 +101,7 @@ class ExportControllerTest extends IntegrationTestCase {
 			]);
 			try {
 				$timezonesTable->saveOrFail($timezone);
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 				debug('Timezone save failed: ' . $e->getMessage());
 				debug($timezone->getErrors());
 			}

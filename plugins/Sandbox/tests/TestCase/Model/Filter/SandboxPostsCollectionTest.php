@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Test\TestCase\Model\Filter;
 
 use Cake\TestSuite\TestCase;
+use ReflectionClass;
 use Sandbox\Model\Filter\SandboxPostsCollection;
 use Sandbox\Model\Table\SandboxPostsTable;
 
@@ -32,7 +33,7 @@ class SandboxPostsCollectionTest extends TestCase {
 		$behavior = $table->behaviors()->get('Search');
 		$this->assertNotNull($behavior);
 
-		$reflection = new \ReflectionClass($behavior);
+		$reflection = new ReflectionClass($behavior);
 		$property = $reflection->getProperty('_collectionClass');
 		$property->setAccessible(true);
 		$collectionClass = $property->getValue($behavior);

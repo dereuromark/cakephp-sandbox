@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 
 use App\Model\Enum\AuditLogType;
 use Cake\I18n\DateTime;
+use Exception;
 
 /**
  * AuditStash Controller
@@ -153,7 +154,7 @@ class AuditStashController extends SandboxAppController {
 			} else {
 				$this->Flash->error(__('Could not revert changes. Please try again.'));
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->Flash->error(__('Error reverting: {0}', $e->getMessage()));
 		}
 
@@ -208,7 +209,7 @@ class AuditStashController extends SandboxAppController {
 			} else {
 				$this->Flash->error(__('Could not restore article. Please try again.'));
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->Flash->error(__('Error restoring: {0}', $e->getMessage()));
 		}
 
@@ -278,7 +279,7 @@ class AuditStashController extends SandboxAppController {
 					}
 
 					$this->Flash->error(__('Could not revert changes. Please try again.'));
-				} catch (\Exception $e) {
+				} catch (Exception $e) {
 					$this->Flash->error(__('Error reverting: {0}', $e->getMessage()));
 				}
 			}

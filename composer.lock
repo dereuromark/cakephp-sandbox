@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eecbf15ca06d1b8dec49986cf320878e",
+    "content-hash": "83f46e1e8ddb3803aa536ad55892ad8f",
     "packages": [
         {
             "name": "brick/math",
@@ -1837,12 +1837,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-captcha.git",
-                "reference": "026b318ed4546410828384f7fb3362ff9f1c62e3"
+                "reference": "865070a9f16548c0c523a9352552e4663e6fd3fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/026b318ed4546410828384f7fb3362ff9f1c62e3",
-                "reference": "026b318ed4546410828384f7fb3362ff9f1c62e3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-captcha/zipball/865070a9f16548c0c523a9352552e4663e6fd3fa",
+                "reference": "865070a9f16548c0c523a9352552e4663e6fd3fa",
                 "shasum": ""
             },
             "require": {
@@ -1888,7 +1888,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-captcha/issues",
                 "source": "https://github.com/dereuromark/cakephp-captcha"
             },
-            "time": "2025-11-27T22:03:28+00:00"
+            "time": "2025-11-27T22:25:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-comments",
@@ -10280,21 +10280,21 @@
         },
         {
             "name": "fig-r/psr2r-sniffer",
-            "version": "dev-master",
+            "version": "dev-next",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "ad3db4a6389e413dc85de53892b3c7f00d6e8f2c"
+                "reference": "9d75c924f7619754b3fc4420b1ee1b9ed80bf868"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/ad3db4a6389e413dc85de53892b3c7f00d6e8f2c",
-                "reference": "ad3db4a6389e413dc85de53892b3c7f00d6e8f2c",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/9d75c924f7619754b3fc4420b1ee1b9ed80bf868",
+                "reference": "9d75c924f7619754b3fc4420b1ee1b9ed80bf868",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "php-collective/code-sniffer": "^0.4.2",
+                "php-collective/code-sniffer": "dev-master",
                 "squizlabs/php_codesniffer": "^4.0.0"
             },
             "require-dev": {
@@ -10302,7 +10302,6 @@
                 "phpstan/phpstan": "^2.1.0",
                 "phpunit/phpunit": "^10.3 || ^11.5 || ^12.0"
             },
-            "default-branch": true,
             "bin": [
                 "bin/tokenize",
                 "bin/sniff"
@@ -10332,9 +10331,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
-                "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
+                "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/next"
             },
-            "time": "2025-11-12T11:56:34+00:00"
+            "time": "2025-11-27T22:39:07+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -10520,12 +10519,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "2cce49d70ea9a39ce51aca41cff93e720f391d43"
+                "reference": "f5ee62cca4998b7841f6bcaefcc2be0946902eba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/2cce49d70ea9a39ce51aca41cff93e720f391d43",
-                "reference": "2cce49d70ea9a39ce51aca41cff93e720f391d43",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/f5ee62cca4998b7841f6bcaefcc2be0946902eba",
+                "reference": "f5ee62cca4998b7841f6bcaefcc2be0946902eba",
                 "shasum": ""
             },
             "require": {
@@ -10572,7 +10571,7 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2025-11-27T17:45:54+00:00"
+            "time": "2025-11-27T22:32:52+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -12570,8 +12569,8 @@
         {
             "package": "php-collective/code-sniffer",
             "version": "9999999-dev",
-            "alias": "0.4.5",
-            "alias_normalized": "0.4.5.0"
+            "alias": "0.5.0",
+            "alias_normalized": "0.5.0.0"
         },
         {
             "package": "php-collective/file-storage",

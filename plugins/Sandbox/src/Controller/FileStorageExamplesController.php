@@ -4,6 +4,8 @@ namespace Sandbox\Controller;
 
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
+use DateTime;
+use Exception;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
 
@@ -391,7 +393,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				}
 
 				$this->Flash->error('Could not upload cropped image. Please try again.');
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 				if ($isAjax) {
 					return $this->response
 						->withType('application/json')
@@ -603,7 +605,7 @@ class FileStorageExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	protected function cleanupOldFiles(): void {
-		$oneDayAgo = new \DateTime('-1 day');
+		$oneDayAgo = new DateTime('-1 day');
 
 		$fileStorageTable = $this->fetchTable('FileStorage.FileStorage');
 

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\FileStorage\Processor;
 
+use Exception;
 use Intervention\Image\ImageManager;
 use PhpCollective\Infrastructure\Storage\FileInterface;
 use PhpCollective\Infrastructure\Storage\Processor\Image\Operations;
@@ -70,7 +71,7 @@ class PdfThumbnailProcessor implements ProcessorInterface {
 
 				@unlink($tempImage);
 			}
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			// PDF conversion failed, continue without thumbnail
 			// Could log this error if needed
 			@unlink($tempImage);
@@ -132,7 +133,7 @@ class PdfThumbnailProcessor implements ProcessorInterface {
 				if (!empty($variantConfig['optimize'])) {
 					$this->optimizeImage($fullVariantPath);
 				}
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 				// Skip this variant if it fails
 				continue;
 			}
@@ -182,7 +183,7 @@ class PdfThumbnailProcessor implements ProcessorInterface {
 		try {
 			$optimizerChain = OptimizerChainFactory::create();
 			$optimizerChain->optimize($imagePath);
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			// Optimization failed, continue without it
 		}
 	}

@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Database\TypeFactory;
+use Exception;
 use PhpCollective\DecimalObject\Decimal;
 use Throwable;
 
@@ -59,7 +60,7 @@ class DecimalExamplesController extends SandboxAppController {
 			$runtimeErrors = false;
 			try {
 				$record = $this->fetchTable('Sandbox.SandboxProfiles')->patchEntity($record, $this->request->getData());
-			} catch (\Exception $e) {
+			} catch (Exception $e) {
 				$runtimeErrors = true;
 				$this->Flash->error('Hard fail: ' . $e->getMessage());
 			}

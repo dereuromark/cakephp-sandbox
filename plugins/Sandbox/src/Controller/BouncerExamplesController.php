@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Controller;
 
 use Cake\Cache\Cache;
+use DateTime;
 
 /**
  * BouncerExamples Controller
@@ -295,7 +296,7 @@ class BouncerExamplesController extends SandboxAppController {
 		$bouncerRecord = $bouncerTable->patchEntity($bouncerRecord, [
 			'status' => 'approved',
 			'reviewer_id' => $reviewerId,
-			'reviewed' => new \DateTime(),
+			'reviewed' => new DateTime(),
 			'reason' => $this->request->getData('reason'),
 		]);
 
@@ -347,7 +348,7 @@ class BouncerExamplesController extends SandboxAppController {
 		$bouncerRecord = $bouncerTable->patchEntity($bouncerRecord, [
 			'status' => 'rejected',
 			'reviewer_id' => $reviewerId,
-			'reviewed' => new \DateTime(),
+			'reviewed' => new DateTime(),
 			'reason' => $this->request->getData('reason', 'Rejected by moderator'),
 		]);
 
