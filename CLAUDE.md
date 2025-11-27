@@ -145,6 +145,12 @@ bin/cake user create username password  # Create user (select role 1 for admin)
 - `phpcs.xml`: Coding standards (PSR2R ruleset)
 - `phpstan.neon`: Static analysis config (level 8)
 
+## Git Commit Guidelines
+
+- NEVER commit unrelated files, especially personal notes or planning `.md` files in the root directory
+- Before committing, always review `git status` carefully to ensure only relevant files are staged
+- Files like `_*.md` should remain local and untracked
+
 ## CakePHP 5 Patterns
 
 See global CLAUDE.md for general CakePHP patterns. Project-specific notes:
