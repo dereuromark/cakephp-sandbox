@@ -52,13 +52,28 @@ x. automatically *numbered*
 
 x. nested *list*
 
+### Task List
+
+- [ ] Write documentation
+- [x] Create examples
+- [x] Test features
+
+### Definition List
+
+Djot
+: A lightweight markup language with clean syntax.
+
+Markdown
+: The predecessor that inspired Djot.
+
+### Super/Subscript
+
+- Superscript: 2^10^ = 1024
+- Subscript: H~2~O
+
 ### Footnotes
 
 Here is a footnote reference[^1].
-
-### Math
-
-Inline math: $E = mc^2$
 
 [^1]: This is the footnote content.
 DJOT;
@@ -125,6 +140,19 @@ DJOT;
 </div>
 
 <div id="alert-container"></div>
+
+<style>
+#output-rendered ul.task-list,
+#output-rendered ul.task {
+	list-style: none;
+	padding-left: 0;
+}
+#output-rendered ul.task-list li,
+#output-rendered ul.task li {
+	padding-left: 1.5em;
+	text-indent: -1.5em;
+}
+</style>
 
 <div class="row">
 	<div class="col-md-6">

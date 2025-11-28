@@ -6291,12 +6291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "2a17fb71940c2dfcf279e05b139f9e7f52f177bb"
+                "reference": "400870f969affa6b11a001c83bfa707b2881e659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/2a17fb71940c2dfcf279e05b139f9e7f52f177bb",
-                "reference": "2a17fb71940c2dfcf279e05b139f9e7f52f177bb",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/400870f969affa6b11a001c83bfa707b2881e659",
+                "reference": "400870f969affa6b11a001c83bfa707b2881e659",
                 "shasum": ""
             },
             "require": {
@@ -6341,7 +6341,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-27T19:36:52+00:00"
+            "time": "2025-11-27T23:36:21+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -10284,12 +10284,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428"
+                "reference": "eeedaf7efd875a9d21faae1629ace2cca00bcae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428",
-                "reference": "a0dc13db33bef6eeb1a8d1f326ae0cb1ccc42428",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/eeedaf7efd875a9d21faae1629ace2cca00bcae5",
+                "reference": "eeedaf7efd875a9d21faae1629ace2cca00bcae5",
                 "shasum": ""
             },
             "require": {
@@ -10334,7 +10334,7 @@
                 "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
                 "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
             },
-            "time": "2025-11-27T22:45:53+00:00"
+            "time": "2025-11-27T22:47:33+00:00"
         },
         {
             "name": "myclabs/deep-copy",
