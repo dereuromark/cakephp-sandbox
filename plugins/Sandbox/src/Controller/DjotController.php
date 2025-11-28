@@ -27,7 +27,7 @@ class DjotController extends SandboxAppController {
 		$this->request->allowMethod(['post']);
 
 		$djot = (string)$this->request->getData('djot');
-		$xhtml = (bool)$this->request->getData('xhtml');
+		$xhtml = Configure::read('debug') ? (bool)$this->request->getData('xhtml') : true;
 		$collectWarnings = (bool)$this->request->getData('warnings');
 		$strict = (bool)$this->request->getData('strict');
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');

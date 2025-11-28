@@ -9,6 +9,8 @@ $defaultDjot = <<<'DJOT'
 
 This is a *Djot* markup demo. Try editing this text!
 
+---
+
 ## Features
 
 - _emphasis_ and *strong* text
@@ -94,12 +96,14 @@ DJOT;
 </p>
 
 <div class="row mb-2 align-items-center">
+	<?php if ($debugMode) { ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-xhtml">
+			<input class="form-check-input" type="checkbox" id="opt-xhtml" checked>
 			<label class="form-check-label" for="opt-xhtml">XHTML</label>
 		</div>
 	</div>
+	<?php } ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-warnings">
@@ -163,7 +167,7 @@ DJOT;
 
 <p class="text-muted small mt-2">
 	<i class="bi bi-shield-check"></i>
-	Output is sanitized via <a href="https://github.com/ezyang/htmlpurifier" target="_blank">HTMLPurifier</a> for security.
+	Output is XHTMLed and sanitized via <a href="https://github.com/ezyang/htmlpurifier" target="_blank">HTMLPurifier</a> for security.
 	For raw output, clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
 </p>
 
@@ -227,7 +231,7 @@ This div is never closed.</code></pre>
 				input.value = decoded;
 			}
 		}
-		if (params.get('xhtml') === '1') optXhtml.checked = true;
+		if (optXhtml && params.get('xhtml') === '1') optXhtml.checked = true;
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 	}
@@ -235,7 +239,7 @@ This div is never closed.</code></pre>
 	function getShareUrl() {
 		const url = new URL(window.location.href.split('?')[0]);
 		url.searchParams.set('d', compress(input.value));
-		if (optXhtml.checked) url.searchParams.set('xhtml', '1');
+		if (optXhtml && optXhtml.checked) url.searchParams.set('xhtml', '1');
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		return url.toString();
@@ -297,7 +301,7 @@ This div is never closed.</code></pre>
 
 		const formData = new FormData();
 		formData.append('djot', input.value);
-		formData.append('xhtml', optXhtml.checked ? '1' : '0');
+		formData.append('xhtml', optXhtml && optXhtml.checked ? '1' : '0');
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
@@ -359,7 +363,7 @@ This div is never closed.</code></pre>
 	}
 
 	input.addEventListener('input', convert);
-	optXhtml.addEventListener('change', convert);
+	if (optXhtml) optXhtml.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
