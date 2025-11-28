@@ -41,9 +41,6 @@ echo "Hello, World!";
 ### Lists
 
 x. A *cool*
-
-  Some paragraph.
-
 x. automatically *numbered*
 
   - sub
