@@ -40,14 +40,14 @@ echo "Hello, World!";
 
 ### Lists
 
-x. A *cool*
-x. automatically *numbered*
+1. A *cool*
+1. automatically *numbered*
 
   - sub
 
     - subsub
 
-x. nested *list*
+1. nested *list*
 
 ### Task List
 
@@ -166,6 +166,25 @@ DJOT;
 	Output is sanitized via <a href="https://github.com/ezyang/htmlpurifier" target="_blank">HTMLPurifier</a> for security.
 	For raw output, clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
 </p>
+
+<h3 class="mt-4">Test Examples</h3>
+<p>Copy and paste these to test warnings and errors:</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<h5>Warning Example</h5>
+		<p class="text-muted small">Enable "Warnings" checkbox to see undefined reference warnings.</p>
+		<pre class="bg-light p-2 border rounded"><code>[undefined link][missing-ref]
+
+This has an undefined footnote[^missing].</code></pre>
+	</div>
+	<div class="col-md-6">
+		<h5>Strict Mode Example</h5>
+		<p class="text-muted small">Enable "Strict" checkbox to see errors for unclosed blocks.</p>
+		<pre class="bg-light p-2 border rounded"><code>::: warning
+This div is never closed.</code></pre>
+	</div>
+</div>
 
 </div>
 
