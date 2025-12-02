@@ -45,13 +45,18 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithXhtml(): void {
+	public function testConvertWithArticleProfile(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "Line one\nLine two",
-			'xhtml' => '1',
+			'djot' => "# Heading\n\n``` =html\n<script>alert(1)</script>\n```",
+			'profile' => 'article',
 		]);
 
 		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<h1', $response['html']);
+		$this->assertStringNotContainsString('<script>', $response['html']);
+		$this->assertNotEmpty($response['violations']);
 	}
 
 	/**
@@ -66,6 +71,43 @@ class DjotControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringNotContainsString('javascript:', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithCommentProfile(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "# Heading\n\nSome *bold* text.\n\n![image](/test.png)",
+			'profile' => 'comment',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringNotContainsString('<h1', $response['html']);
+		$this->assertStringNotContainsString('<img', $response['html']);
+		$this->assertStringContainsString('<strong>bold</strong>', $response['html']);
+		$this->assertNotEmpty($response['violations']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithMinimalProfile(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "*Bold* and `code` with [link](https://example.com)\n\n- list item",
+			'profile' => 'minimal',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<strong>Bold</strong>', $response['html']);
+		$this->assertStringContainsString('<code>code</code>', $response['html']);
+		$this->assertStringContainsString('<li>', $response['html']);
+		$this->assertStringNotContainsString('<a href', $response['html']);
+		$this->assertNotEmpty($response['violations']);
 	}
 
 }

@@ -59,11 +59,14 @@ echo "Hello, World!";
 
 ### Definition List
 
-Djot
-: A lightweight markup language with clean syntax.
+: Djot
 
-Markdown
-: The predecessor that inspired Djot.
+  A lightweight markup language with clean syntax.
+
+: Markdown
+: CommonMark
+
+  The predecessors that inspired Djot.
 
 ### Super/Subscript
 
@@ -96,14 +99,39 @@ DJOT;
 </p>
 
 <div class="row mb-2 align-items-center">
-	<?php if ($debugMode) { ?>
 	<div class="col-auto">
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-xhtml" checked>
-			<label class="form-check-label" for="opt-xhtml">XHTML</label>
+		<label class="form-label small mb-0 me-1">Profile:</label>
+		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-profile" title="Profile restricts which features are allowed">
+			<option value="full">Full (all features)</option>
+			<option value="article">Article (no raw HTML)</option>
+			<option value="comment">Comment (no images/tables)</option>
+			<option value="minimal">Minimal (no links/highlights)</option>
+		</select>
+	</div>
+	<div class="col-auto">
+		<label class="form-label small mb-0 me-1">Filter:</label>
+		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-filter-mode" title="How to handle disallowed elements">
+			<option value="to_text">To Text</option>
+			<option value="strip">Strip</option>
+			<option value="error">Error</option>
+		</select>
+	</div>
+	<div class="col-auto ms-auto">
+		<span id="loading-indicator" class="me-2" style="opacity: 0;">
+			<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
+		</span>
+		<button type="button" class="btn btn-sm btn-outline-primary me-2" id="btn-share" title="Copy shareable link">
+			<i class="bi bi-share"></i> Share
+		</button>
+		<div class="btn-group btn-group-sm" role="group">
+			<input type="radio" class="btn-check" name="view-mode" id="view-rendered" value="rendered" checked>
+			<label class="btn btn-outline-secondary" for="view-rendered">Preview</label>
+			<input type="radio" class="btn-check" name="view-mode" id="view-source" value="source">
+			<label class="btn btn-outline-secondary" for="view-source">HTML</label>
 		</div>
 	</div>
-	<?php } ?>
+</div>
+<div class="row mb-2 align-items-center">
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-warnings">
@@ -124,20 +152,6 @@ DJOT;
 		</div>
 	</div>
 	<?php } ?>
-	<div class="col-auto ms-auto">
-		<span id="loading-indicator" class="me-2" style="opacity: 0;">
-			<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
-		</span>
-		<button type="button" class="btn btn-sm btn-outline-primary me-2" id="btn-share" title="Copy shareable link">
-			<i class="bi bi-share"></i> Share
-		</button>
-		<div class="btn-group btn-group-sm" role="group">
-			<input type="radio" class="btn-check" name="view-mode" id="view-rendered" value="rendered" checked>
-			<label class="btn btn-outline-secondary" for="view-rendered">Preview</label>
-			<input type="radio" class="btn-check" name="view-mode" id="view-source" value="source">
-			<label class="btn btn-outline-secondary" for="view-source">HTML</label>
-		</div>
-	</div>
 </div>
 
 <div id="alert-container"></div>
@@ -222,18 +236,70 @@ DJOT;
 </div>
 
 <h3 class="mt-4">Test Examples</h3>
-<p>Copy and paste these to test warnings and errors:</p>
+
+<h5>Profile Feature Restriction</h5>
+<p class="text-muted small">Select different profiles to see how content gets filtered. Violations show which elements were converted to plain text.</p>
+
+<div class="row mb-4">
+	<div class="col-md-6">
+		<h6>Article Profile Test</h6>
+		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
+		<pre class="bg-light p-2 border rounded"><code># Full Formatting Works
+
+*Bold*, _italic_, {=highlight=}, `code` - all allowed!
+
+``` =html
+&lt;script&gt;alert('This raw block is filtered')&lt;/script&gt;
+```
+
+Tables, images, footnotes all work in article mode.</code></pre>
+	</div>
+	<div class="col-md-6">
+		<h6>Comment Profile Test</h6>
+		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
+		<pre class="bg-light p-2 border rounded"><code># This heading will be filtered
+
+*Bold*, _italic_, {=highlight=}, 2^10^ all allowed!
+
+> Blockquotes and `code` work too.
+
+![This image is not allowed](/img/cake.icon.png)
+
+| Tables | Not | Allowed |
+|--------|-----|---------|
+
+[Links](https://example.com) work fine!</code></pre>
+	</div>
+</div>
+
+<div class="row mb-4">
+	<div class="col-md-6">
+		<h6>Minimal Profile Test</h6>
+		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
+		<pre class="bg-light p-2 border rounded"><code>*Bold*, _italic_, `code`, 2^10^, {+insert+}, {-delete-} work!
+
+- Lists work too
+- With nesting
+
+{=Highlights=} become plain text.
+
+Links like [this](https://example.com) are filtered.</code></pre>
+	</div>
+</div>
+
+<h5>Warnings &amp; Errors</h5>
+<p class="text-muted small">Copy and paste these to test warnings and errors:</p>
 
 <div class="row">
 	<div class="col-md-6">
-		<h5>Warning Example</h5>
+		<h6>Warning Example</h6>
 		<p class="text-muted small">Enable "Warnings" checkbox to see undefined reference warnings.</p>
 		<pre class="bg-light p-2 border rounded"><code>[undefined link][missing-ref]
 
 This has an undefined footnote[^missing].</code></pre>
 	</div>
 	<div class="col-md-6">
-		<h5>Strict Mode Example</h5>
+		<h6>Strict Mode Example</h6>
 		<p class="text-muted small">Enable "Strict" checkbox to see errors for unclosed blocks.</p>
 		<pre class="bg-light p-2 border rounded"><code>::: warning
 This div is never closed.</code></pre>
@@ -249,7 +315,8 @@ This div is never closed.</code></pre>
 	const outputSource = document.getElementById('output-source');
 	const alertContainer = document.getElementById('alert-container');
 	const loadingIndicator = document.getElementById('loading-indicator');
-	const optXhtml = document.getElementById('opt-xhtml');
+	const optProfile = document.getElementById('opt-profile');
+	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
 	const optRaw = document.getElementById('opt-raw');
@@ -281,7 +348,8 @@ This div is never closed.</code></pre>
 				input.value = decoded;
 			}
 		}
-		if (optXhtml && params.get('xhtml') === '1') optXhtml.checked = true;
+		if (params.get('profile')) optProfile.value = params.get('profile');
+		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 	}
@@ -289,7 +357,8 @@ This div is never closed.</code></pre>
 	function getShareUrl() {
 		const url = new URL(window.location.href.split('?')[0]);
 		url.searchParams.set('d', compress(input.value));
-		if (optXhtml && optXhtml.checked) url.searchParams.set('xhtml', '1');
+		if (optProfile.value) url.searchParams.set('profile', optProfile.value);
+		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		return url.toString();
@@ -351,7 +420,8 @@ This div is never closed.</code></pre>
 
 		const formData = new FormData();
 		formData.append('djot', input.value);
-		formData.append('xhtml', optXhtml && optXhtml.checked ? '1' : '0');
+		formData.append('profile', optProfile.value);
+		formData.append('filter_mode', optFilterMode.value);
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
@@ -384,6 +454,15 @@ This div is never closed.</code></pre>
 				alertContainer.innerHTML += warningHtml;
 			}
 
+			if (data.violations && data.violations.length > 0) {
+				let violationHtml = '<div class="alert alert-info py-2"><strong>Profile Violations:</strong> Content was filtered.<ul class="mb-0 ps-3">';
+				data.violations.forEach(function(v) {
+					violationHtml += '<li><code>' + escapeHtml(v.nodeType) + '</code>: ' + escapeHtml(v.reason) + '</li>';
+				});
+				violationHtml += '</ul></div>';
+				alertContainer.innerHTML += violationHtml;
+			}
+
 			outputRendered.innerHTML = data.html || '<span class="text-muted">Enter some Djot markup...</span>';
 			outputSource.querySelector('code').textContent = data.html || '';
 		})
@@ -413,7 +492,8 @@ This div is never closed.</code></pre>
 	}
 
 	input.addEventListener('input', convert);
-	if (optXhtml) optXhtml.addEventListener('change', convert);
+	optProfile.addEventListener('change', convert);
+	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);

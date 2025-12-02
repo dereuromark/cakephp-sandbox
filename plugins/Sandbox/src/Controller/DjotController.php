@@ -6,8 +6,11 @@ use Cake\Core\Configure;
 use Cake\Http\Response;
 use Djot\DjotConverter;
 use Djot\Exception\ParseException;
+use Djot\Exception\ProfileViolationException;
+use Djot\Profile;
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use LengthException;
 
 class DjotController extends SandboxAppController {
 
@@ -27,20 +30,23 @@ class DjotController extends SandboxAppController {
 		$this->request->allowMethod(['post']);
 
 		$djot = (string)$this->request->getData('djot');
-		$xhtml = Configure::read('debug') ? (bool)$this->request->getData('xhtml') : true;
 		$collectWarnings = (bool)$this->request->getData('warnings');
 		$strict = (bool)$this->request->getData('strict');
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
+		$profileName = (string)$this->request->getData('profile');
+		$filterMode = (string)$this->request->getData('filter_mode');
 
 		$result = [
 			'html' => '',
 			'warnings' => [],
+			'violations' => [],
 			'error' => null,
 		];
 
 		if ($djot) {
 			try {
-				$converter = new DjotConverter($xhtml, $collectWarnings, $strict);
+				$profile = $this->getProfile($profileName, $filterMode);
+				$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
 				$html = $converter->convert($djot);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
 				if ($collectWarnings) {
@@ -51,14 +57,62 @@ class DjotController extends SandboxAppController {
 						];
 					}
 				}
+				if ($profile) {
+					foreach ($converter->getProfileViolations() as $violation) {
+						$result['violations'][] = [
+							'nodeType' => $violation->nodeType,
+							'reason' => $violation->reason,
+							'message' => $violation->getMessage(),
+						];
+					}
+				}
 			} catch (ParseException $e) {
 				$result['error'] = $e->getMessage();
+			} catch (LengthException $e) {
+				$result['error'] = $e->getMessage();
+			} catch (ProfileViolationException $e) {
+				$result['error'] = 'Profile violation: ' . $e->getMessage();
+				foreach ($e->violations as $violation) {
+					$result['violations'][] = [
+						'nodeType' => $violation->nodeType,
+						'reason' => $violation->reason,
+						'message' => $violation->getMessage(),
+					];
+				}
 			}
 		}
 
 		return $this->response
 			->withType('application/json')
 			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * Get profile instance from name.
+	 *
+	 * @param string $name
+	 * @param string $filterMode
+	 * @return \Djot\Profile|null
+	 */
+	protected function getProfile(string $name, string $filterMode): ?Profile {
+		$profile = match ($name) {
+			'full' => Profile::full(),
+			'article' => Profile::article(),
+			'comment' => Profile::comment(),
+			'minimal' => Profile::minimal(),
+			default => null,
+		};
+
+		if ($profile !== null && $filterMode) {
+			$action = match ($filterMode) {
+				'strip' => Profile::ACTION_STRIP,
+				'error' => Profile::ACTION_ERROR,
+				default => Profile::ACTION_TO_TEXT,
+			};
+			$profile->onDisallowed($action);
+		}
+
+		return $profile;
 	}
 
 	/**
