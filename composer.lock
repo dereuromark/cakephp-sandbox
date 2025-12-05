@@ -1673,12 +1673,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-bouncer.git",
-                "reference": "1ebef1d7b4e73df4ee6f98bdc108a50d48f270a3"
+                "reference": "42d87fb704e58ac9a44e549f624d274b86cab5c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-bouncer/zipball/1ebef1d7b4e73df4ee6f98bdc108a50d48f270a3",
-                "reference": "1ebef1d7b4e73df4ee6f98bdc108a50d48f270a3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-bouncer/zipball/42d87fb704e58ac9a44e549f624d274b86cab5c4",
+                "reference": "42d87fb704e58ac9a44e549f624d274b86cab5c4",
                 "shasum": ""
             },
             "require": {
@@ -1730,7 +1730,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-bouncer/issues",
                 "source": "https://github.com/dereuromark/cakephp-bouncer/tree/master"
             },
-            "time": "2025-12-05T05:14:19+00:00"
+            "time": "2025-12-05T16:21:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
