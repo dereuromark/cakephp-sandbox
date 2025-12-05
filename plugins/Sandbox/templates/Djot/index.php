@@ -103,6 +103,7 @@ DJOT;
 	<div class="col-auto">
 		<label class="form-label small mb-0 me-1">Profile:</label>
 		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-profile" title="Profile restricts which features are allowed">
+			<option value="">No filter</option>
 			<option value="full">Full (all features)</option>
 			<option value="article">Article (no raw HTML)</option>
 			<option value="comment">Comment (no images/tables)</option>
