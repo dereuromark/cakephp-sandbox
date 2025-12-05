@@ -5,6 +5,9 @@ git pull
 
 COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-dist --no-dev -a --no-interaction
 
+echo "### Clear OPcache ###";
+sudo systemctl reload php8.4-fpm
+
 chmod +x bin/cake
 
 bin/cake maintenance_mode activate

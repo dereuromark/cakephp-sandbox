@@ -36,7 +36,8 @@ class DjotController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$softBreakAsNewline = (bool)$this->request->getData('soft_break_newline');
+		$significantNewlines = (bool)$this->request->getData('significant_newlines');
+		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
 			'html' => '',
@@ -48,9 +49,15 @@ class DjotController extends SandboxAppController {
 		if ($djot) {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
-				$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
-				if ($softBreakAsNewline) {
-					$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
+				if ($significantNewlines) {
+					$converter = DjotConverter::withSignificantNewlines(true, $collectWarnings, $strict, null, $profile);
+				} else {
+					$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
+					// Soft break as <br> only applies when not using significantNewlines
+					// (significantNewlines already renders soft breaks as <br>)
+					if ($softBreakAsBr) {
+						$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
+					}
 				}
 				$html = $converter->convert($djot);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);

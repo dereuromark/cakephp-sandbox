@@ -7,7 +7,8 @@
 $defaultDjot = <<<'DJOT'
 # Djot Playground
 
-This is a *Djot* markup demo. Try editing this text!
+This is a *Djot* markup demo.
+Try editing this text!
 
 ---
 
@@ -146,8 +147,14 @@ DJOT;
 	</div>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-soft-break-newline" checked>
-			<label class="form-check-label" for="opt-soft-break-newline" title="Render soft breaks as newlines (checked) or spaces (unchecked). Not part of Djot spec, but useful for Markdown compatibility.">Soft break as \n</label>
+			<input class="form-check-input" type="checkbox" id="opt-soft-break-br">
+			<label class="form-check-label" for="opt-soft-break-br" title="Render soft breaks (single newlines) as visible <br> tags. Not part of Djot spec.">Soft break as &lt;br&gt;</label>
+		</div>
+	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-significant-newlines">
+			<label class="form-check-label" for="opt-significant-newlines" title="Enable significant newlines mode: soft breaks render as <br>, and blocks can interrupt paragraphs without blank lines. Not part of Djot spec.">Significant newlines</label>
 		</div>
 	</div>
 	<?php if ($debugMode) { ?>
@@ -325,7 +332,8 @@ This div is never closed.</code></pre>
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
-	const optSoftBreakNewline = document.getElementById('opt-soft-break-newline');
+	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
+	const optSignificantNewlines = document.getElementById('opt-significant-newlines');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -359,7 +367,12 @@ This div is never closed.</code></pre>
 		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
-		if (params.get('soft_break') === '0') optSoftBreakNewline.checked = false;
+		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
+		if (params.get('sig_newlines') === '1') {
+			optSignificantNewlines.checked = true;
+			optSoftBreakBr.checked = true;
+			optSoftBreakBr.disabled = true;
+		}
 	}
 
 	function getShareUrl() {
@@ -369,7 +382,8 @@ This div is never closed.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
-		if (!optSoftBreakNewline.checked) url.searchParams.set('soft_break', '0');
+		if (optSoftBreakBr.checked && !optSignificantNewlines.checked) url.searchParams.set('soft_break_br', '1');
+		if (optSignificantNewlines.checked) url.searchParams.set('sig_newlines', '1');
 		return url.toString();
 	}
 
@@ -433,7 +447,8 @@ This div is never closed.</code></pre>
 		formData.append('filter_mode', optFilterMode.value);
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
-		formData.append('soft_break_newline', optSoftBreakNewline.checked ? '1' : '0');
+		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
+		formData.append('significant_newlines', optSignificantNewlines.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -506,7 +521,17 @@ This div is never closed.</code></pre>
 	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
-	optSoftBreakNewline.addEventListener('change', convert);
+	optSoftBreakBr.addEventListener('change', convert);
+	optSignificantNewlines.addEventListener('change', function() {
+		// Auto-toggle soft break checkbox when significant newlines is enabled
+		if (optSignificantNewlines.checked) {
+			optSoftBreakBr.checked = true;
+			optSoftBreakBr.disabled = true;
+		} else {
+			optSoftBreakBr.disabled = false;
+		}
+		convert();
+	});
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
