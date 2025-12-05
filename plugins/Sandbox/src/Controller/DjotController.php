@@ -8,6 +8,7 @@ use Djot\DjotConverter;
 use Djot\Exception\ParseException;
 use Djot\Exception\ProfileViolationException;
 use Djot\Profile;
+use Djot\Renderer\SoftBreakMode;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use LengthException;
@@ -35,6 +36,7 @@ class DjotController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
+		$softBreakAsNewline = (bool)$this->request->getData('soft_break_newline');
 
 		$result = [
 			'html' => '',
@@ -47,6 +49,9 @@ class DjotController extends SandboxAppController {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
 				$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
+				if ($softBreakAsNewline) {
+					$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
+				}
 				$html = $converter->convert($djot);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
 				if ($collectWarnings) {

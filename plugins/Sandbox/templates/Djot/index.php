@@ -144,6 +144,12 @@ DJOT;
 			<label class="form-check-label" for="opt-strict">Strict</label>
 		</div>
 	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-soft-break-newline" checked>
+			<label class="form-check-label" for="opt-soft-break-newline" title="Render soft breaks as newlines (checked) or spaces (unchecked). Not part of Djot spec, but useful for Markdown compatibility.">Soft break as \n</label>
+		</div>
+	</div>
 	<?php if ($debugMode) { ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
@@ -319,6 +325,7 @@ This div is never closed.</code></pre>
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
+	const optSoftBreakNewline = document.getElementById('opt-soft-break-newline');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -352,6 +359,7 @@ This div is never closed.</code></pre>
 		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
+		if (params.get('soft_break') === '0') optSoftBreakNewline.checked = false;
 	}
 
 	function getShareUrl() {
@@ -361,6 +369,7 @@ This div is never closed.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
+		if (!optSoftBreakNewline.checked) url.searchParams.set('soft_break', '0');
 		return url.toString();
 	}
 
@@ -424,6 +433,7 @@ This div is never closed.</code></pre>
 		formData.append('filter_mode', optFilterMode.value);
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
+		formData.append('soft_break_newline', optSoftBreakNewline.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -496,6 +506,7 @@ This div is never closed.</code></pre>
 	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
+	optSoftBreakNewline.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
