@@ -83,7 +83,7 @@
 		"cakephp/authentication": "^3.3",
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
-		"php-collective/djot": "dev-feature/significant-newlines",
+		"php-collective/djot": "dev-master",
 		"ezyang/htmlpurifier": "^4.19"
 	},
 	"require-dev": {

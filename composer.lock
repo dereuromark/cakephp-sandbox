@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c136183a1f8ff58280b4f06550531b7",
+    "content-hash": "e0d959f9bd50bf67693a84bee85d75dc",
     "packages": [
         {
             "name": "brick/math",
@@ -6291,16 +6291,16 @@
         },
         {
             "name": "php-collective/djot",
-            "version": "dev-feature/significant-newlines",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "cbac3a3ff56026f958cdb29580af018636daec17"
+                "reference": "41ccc47cfc0a80e777f65f7cd6bfb39ddadcbf50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/cbac3a3ff56026f958cdb29580af018636daec17",
-                "reference": "cbac3a3ff56026f958cdb29580af018636daec17",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/41ccc47cfc0a80e777f65f7cd6bfb39ddadcbf50",
+                "reference": "41ccc47cfc0a80e777f65f7cd6bfb39ddadcbf50",
                 "shasum": ""
             },
             "require": {
@@ -6311,6 +6311,7 @@
                 "phpstan/phpstan": "^2.1.32",
                 "phpunit/phpunit": "^11.0 || ^12.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6336,7 +6337,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/djot-php/issues",
-                "source": "https://github.com/php-collective/djot-php/tree/feature/significant-newlines"
+                "source": "https://github.com/php-collective/djot-php/tree/master"
             },
             "funding": [
                 {
@@ -6344,7 +6345,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-05T20:04:13+00:00"
+            "time": "2025-12-05T21:15:15+00:00"
         },
         {
             "name": "php-collective/file-storage",
