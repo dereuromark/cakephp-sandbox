@@ -115,7 +115,7 @@ echo $this->Highlighter->highlight($dataPrint, ['lang' => 'markdown']);
 ?>
 
 <p>
-<?php echo $this->Html->link('Dark Theme', ['?' => ['dark' => 1]]); ?> | More examples directly at <a href="https://highlightjs.org/static/demo/" target="_blank">highlightjs.org/static/demo</a>
+<?php echo $this->Html->link('Dark Theme', ['?' => ['dark' => 1]]); ?> | More examples directly at <a href="https://highlightjs.org/demo" target="_blank">highlightjs.org/demo</a>
 </p>
 
 </div></div>
