@@ -6295,12 +6295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "5bb7d673a7bbe93920c9d27ec8ff6ecb93e71c88"
+                "reference": "f850719429ff8aa78e94e6fa97c6ad27034f4ae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/5bb7d673a7bbe93920c9d27ec8ff6ecb93e71c88",
-                "reference": "5bb7d673a7bbe93920c9d27ec8ff6ecb93e71c88",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/f850719429ff8aa78e94e6fa97c6ad27034f4ae4",
+                "reference": "f850719429ff8aa78e94e6fa97c6ad27034f4ae4",
                 "shasum": ""
             },
             "require": {
@@ -6345,7 +6345,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-05T22:59:43+00:00"
+            "time": "2025-12-06T02:07:38+00:00"
         },
         {
             "name": "php-collective/file-storage",
