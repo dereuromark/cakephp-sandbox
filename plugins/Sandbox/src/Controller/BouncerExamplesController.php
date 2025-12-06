@@ -107,7 +107,6 @@ class BouncerExamplesController extends SandboxAppController {
 
 			$this->SandboxArticles->save($article, ['bouncerUserId' => $userId]);
 			/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
-			/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
 			$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
 			// Check if it was bounced (intercepted for approval)
@@ -137,8 +136,7 @@ class BouncerExamplesController extends SandboxAppController {
 	 */
 	public function edit($id = null) {
 		$article = $this->SandboxArticles->get($id);
-		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
-		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
 		// Check for existing draft and overlay it
@@ -180,8 +178,7 @@ class BouncerExamplesController extends SandboxAppController {
 	 */
 	public function view($id = null) {
 		$article = $this->SandboxArticles->get($id);
-		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
-		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
 		// Check for existing draft and overlay it
@@ -206,8 +203,7 @@ class BouncerExamplesController extends SandboxAppController {
 		$userId = 1;
 
 		$result = $this->SandboxArticles->delete($article, ['bouncerUserId' => $userId]);
-		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
-		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
 		// Check if it was bounced (intercepted for approval)
@@ -307,8 +303,7 @@ class BouncerExamplesController extends SandboxAppController {
 		}
 
 		// Apply the approved changes
-		/** @phpstan-var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
-		/** @phpstan-ignore varTag.type, argument.type, argument.templateType */
+		/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 		$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
 		// Reload the record to get updated data

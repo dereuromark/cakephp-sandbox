@@ -138,7 +138,7 @@ class DjotController extends SandboxAppController {
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-sandbox');
 		$config->set('HTML.DefinitionRev', 4);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul[class],ol[start|value],li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],input[type|checked|disabled]');
+		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul[class],ol[start],li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],input[type|checked|disabled]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('HTML.TargetBlank', true);
