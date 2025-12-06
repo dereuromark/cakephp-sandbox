@@ -24,7 +24,7 @@ use Cake\ORM\Entity;
  * @property array|null $meta_data
  * @property array<string> $changed_fields
  * @property string|null $parent_source
- * @property string|null $username
+ * @property string|null $user
  */
 class AuditLog extends Entity {
 
