@@ -50,6 +50,7 @@ use Cake\View\View;
  * @property \Favorites\View\Helper\FavoritesHelper $Favorites
  * @property \Comments\View\Helper\CommentsHelper $Comments
  * @property \Tools\View\Helper\TimelineHelper $Timeline
+ * @property \Markup\View\Helper\DjotHelper $Djot
  */
 class AppView extends View {
 
