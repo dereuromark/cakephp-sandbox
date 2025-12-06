@@ -1,0 +1,58 @@
+``` =html
+<nav class="actions col-md-2 col-sm-3 col-12">
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
+<li class="nav-item"><a href="/sandbox/markup-examples" class="nav-link">Back to Markup</a></li>
+<li class="nav-item"><a href="/sandbox/markup-examples/djot" class="nav-link">Djot Helper</a></li>
+</ul>
+</nav>
+<div class="col-md-10 col-sm-9 col-12">
+```
+
+# {{title}}
+
+This page is rendered directly from a `.djot` file using `DjotView`.
+
+## How It Works
+
+Instead of writing PHP templates, you write content in Djot markup. The view class automatically converts it to HTML.
+
+### Variable Substitution
+
+View variables can be inserted using `{{varName}}` syntax. For example, the title above uses `{{title}}`.
+
+### Features
+
+Djot-PHP provides:
+
+- *Fast* parsing with the PHP-Collective parser
+- _Safe mode_ for XSS protection
+- Profile support for feature restriction
+
+## Example Controller
+
+```php
+public function documentation(): void
+{
+    $this->viewBuilder()->setClassName('Markup.Djot');
+    $this->set('title', 'My Documentation');
+}
+```
+
+## When to Use DjotView
+
+This approach works well for:
+
+1. Documentation pages
+2. Static content that rarely changes
+3. Content managed by non-developers
+4. Markdown/Djot migration projects
+
+::: info
+DjotView is ideal for content-heavy pages where the markup is the primary content, not dynamic data rendering.
+:::
+
+---
+
+[Back to Djot Helper examples](/sandbox/markup-examples/djot) | [Back to Markup overview](/sandbox/markup-examples)
+
+</div>

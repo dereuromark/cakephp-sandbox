@@ -24,11 +24,13 @@
 
 <h3>Code Transformation</h3>
 <p>
-	Parse and transform markup formats like BBCode and Markdown into HTML for safe display.
+	Parse and transform markup formats like BBCode, Markdown, and Djot into HTML for safe display.
 </p>
 <ul>
-	<li><?php echo $this->Html->link('BBCode', ['action' => 'bbcode'])?> - Parse BBCode tags to HTML</li>
-	<li><?php echo $this->Html->link('Markdown', ['action' => 'markdown'])?> - Convert Markdown to HTML</li>
+	<li><?php echo $this->Html->link('BBCode', ['action' => 'bbcode']); ?> - Parse BBCode tags to HTML</li>
+	<li><?php echo $this->Html->link('Markdown', ['action' => 'markdown']); ?> - Convert Markdown to HTML</li>
+	<li><?php echo $this->Html->link('Djot', ['action' => 'djot']); ?> - Convert Djot to HTML (modern markup language)</li>
+	<li><?php echo $this->Html->link('DjotView', ['action' => 'djotView']); ?> - Render .djot files directly as templates</li>
 </ul>
 
 <h3>Features</h3>

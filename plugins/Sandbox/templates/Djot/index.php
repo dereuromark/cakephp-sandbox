@@ -299,6 +299,19 @@ Tables, images, footnotes all work in article mode.</code></pre>
 
 Links like [this](https://example.com) are filtered.</code></pre>
 	</div>
+	<div class="col-md-6">
+		<h6>Raw HTML Test</h6>
+		<p class="text-muted small">Raw HTML requires "No filter" profile and "Raw" mode enabled.</p>
+		<pre class="bg-light p-2 border rounded"><code>Inline raw: `&lt;span style="color:red"&gt;red text&lt;/span&gt;`{=html}
+
+Block raw HTML:
+
+``` =html
+&lt;div class="alert alert-info"&gt;
+  &lt;strong&gt;Note:&lt;/strong&gt; This is raw HTML!
+&lt;/div&gt;
+```</code></pre>
+	</div>
 </div>
 
 <h5>Warnings &amp; Errors</h5>

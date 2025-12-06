@@ -75,4 +75,28 @@ class MarkupExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testDjot(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'MarkupExamples', 'action' => 'djot']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testDjotView(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'MarkupExamples', 'action' => 'djotView']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

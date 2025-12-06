@@ -110,4 +110,143 @@ class DjotControllerTest extends TestCase {
 		$this->assertNotEmpty($response['violations']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testConvertWithFullProfile(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "# Heading\n\n*Bold* text",
+			'profile' => 'full',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<h1', $response['html']);
+		$this->assertStringContainsString('<strong>Bold</strong>', $response['html']);
+		$this->assertEmpty($response['violations']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithWarnings(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => '[undefined link][missing-ref]',
+			'warnings' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotEmpty($response['warnings']);
+		$this->assertArrayHasKey('message', $response['warnings'][0]);
+		$this->assertArrayHasKey('line', $response['warnings'][0]);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithStrictMode(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "::: warning\nThis div is never closed.",
+			'strict' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithSoftBreakAsBr(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "Line one\nLine two",
+			'soft_break_br' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<br', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithSignificantNewlines(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "Line one\nLine two",
+			'significant_newlines' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<br', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithFilterModeStrip(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "# Heading\n\nSome text",
+			'profile' => 'comment',
+			'filter_mode' => 'strip',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringNotContainsString('<h1', $response['html']);
+		$this->assertStringNotContainsString('Heading', $response['html']);
+		$this->assertNotEmpty($response['violations']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithFilterModeError(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "# Heading\n\nSome text",
+			'profile' => 'comment',
+			'filter_mode' => 'error',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response['error']);
+		$this->assertStringContainsString('Profile violation', $response['error']);
+		$this->assertNotEmpty($response['violations']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertEmptyInput(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert']);
+
+		$this->assertResponseCode(405);
+	}
+
 }

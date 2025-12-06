@@ -24,6 +24,8 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Code Transformation') ?></li>
-	<li><?php echo $this->Navigation->link('BBCode', ['action' => 'bbcode'])?></li>
-	<li><?php echo $this->Navigation->link('Markdown', ['action' => 'markdown'])?></li>
+	<li><?php echo $this->Navigation->link('BBCode', ['action' => 'bbcode']); ?></li>
+	<li><?php echo $this->Navigation->link('Markdown', ['action' => 'markdown']); ?></li>
+	<li><?php echo $this->Navigation->link('Djot', ['action' => 'djot']); ?></li>
+	<li><?php echo $this->Navigation->link('DjotView', ['action' => 'djotView']); ?></li>
 </ul>
