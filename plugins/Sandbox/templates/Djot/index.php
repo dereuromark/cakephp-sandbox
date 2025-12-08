@@ -201,6 +201,30 @@ DJOT;
 	margin-left: 1.5em;
 	margin-top: 0;
 }
+#output-rendered figure {
+	margin: 1em 0;
+	padding: 0;
+}
+#output-rendered figure blockquote {
+	margin-bottom: 0.5em;
+}
+#output-rendered figcaption {
+	font-style: italic;
+	color: #666;
+	font-size: 0.9em;
+	padding-left: 1em;
+}
+#output-rendered figcaption::before {
+	content: "— ";
+}
+#output-rendered table caption {
+	caption-side: bottom;
+	font-style: italic;
+	color: #666;
+	font-size: 0.9em;
+	padding-top: 0.5em;
+	text-align: left;
+}
 </style>
 
 <div class="row">
@@ -551,6 +575,42 @@ This div is never closed.</code></pre>
 	}
 
 	input.addEventListener('input', convert);
+	input.addEventListener('keydown', function(e) {
+		if (e.key === 'Tab') {
+			e.preventDefault();
+			const start = input.selectionStart;
+			const end = input.selectionEnd;
+			const text = input.value;
+
+			// Find line boundaries for the selection
+			let lineStart = start;
+			while (lineStart > 0 && text[lineStart - 1] !== '\n') lineStart--;
+
+			let lineEnd = end;
+			while (lineEnd < text.length && text[lineEnd] !== '\n') lineEnd++;
+
+			// Get selected lines
+			const block = text.substring(lineStart, lineEnd);
+			const lines = block.split('\n');
+
+			let modified;
+			if (e.shiftKey) {
+				// Shift+Tab: unindent
+				modified = lines.map(line => line.startsWith('  ') ? line.substring(2) : line);
+			} else {
+				// Tab: indent
+				modified = lines.map(line => '  ' + line);
+			}
+
+			const newBlock = modified.join('\n');
+			const diff = newBlock.length - block.length;
+
+			input.value = text.substring(0, lineStart) + newBlock + text.substring(lineEnd);
+			input.selectionStart = lineStart;
+			input.selectionEnd = lineEnd + diff;
+			convert();
+		}
+	});
 	optProfile.addEventListener('change', convert);
 	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
