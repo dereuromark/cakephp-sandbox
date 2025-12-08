@@ -188,6 +188,19 @@ DJOT;
 	padding-left: 1.5em;
 	text-indent: -1.5em;
 }
+#output-rendered dl {
+	width: auto;
+	line-height: 1.5em;
+}
+#output-rendered dt {
+	font-weight: bold;
+	width: auto;
+	margin-top: 0.5em;
+}
+#output-rendered dd {
+	margin-left: 1.5em;
+	margin-top: 0;
+}
 </style>
 
 <div class="row">
