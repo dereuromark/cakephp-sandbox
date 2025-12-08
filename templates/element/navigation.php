@@ -5,7 +5,7 @@
 ?>
 <header class="container navbar navbar-default navbar-expand navbar-light flex-column flex-md-row bd-navbar">
 	<a class="navbar-brand mr-0 mr-md-2" href="/" aria-label="Sandbox" style="padding-right: 10px">
-		CakePHP Sandbox App v5
+		(Cake)PHP Sandbox App v5
 	</a>
 
 	<div class="navbar-nav-scroll">
