@@ -4,6 +4,11 @@
  * @var bool $debugMode
  */
 
+$this->append('script');
+echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+$this->end();
+
 $defaultDjot = <<<'DJOT'
 # Djot Playground
 
@@ -83,19 +88,7 @@ DJOT;
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
-	<ul class="side-nav nav nav-pills nav-stacked flex-column">
-		<li class="heading"><?= __('Converters') ?></li>
-		<li class="nav-item"><?= $this->Html->link('Djot Playground', ['action' => 'index'], ['class' => 'nav-link active']) ?></li>
-		<li class="nav-item"><?= $this->Html->link('Markdown to Djot', ['action' => 'markdownToDjot'], ['class' => 'nav-link']) ?></li>
-		<li class="nav-item"><?= $this->Html->link('HTML to Djot', ['action' => 'htmlToDjot'], ['class' => 'nav-link']) ?></li>
-	</ul>
-	<ul class="side-nav nav nav-pills nav-stacked flex-column">
-		<li class="heading"><?= __('Links') ?></li>
-		<li class="nav-item"><?= $this->Html->link('Djot-PHP', 'https://github.com/php-collective/djot-php', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
-		<li class="nav-item"><?= $this->Html->link('Djot Spec', 'https://djot.net', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
-		<li class="nav-item"><?= $this->Html->link('Cheatsheet', 'https://htmlpreview.github.io/?https://github.com/jgm/djot/blob/master/doc/cheatsheet.html', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
-		<li class="nav-item"><?= $this->Html->link('Pandoc', 'https://pandoc.org/', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
-	</ul>
+	<?= $this->element('navigation/djot') ?>
 </nav>
 <div class="col-md-10 col-sm-9 col-12">
 
@@ -181,12 +174,89 @@ DJOT;
 #output-rendered ul.task-list,
 #output-rendered ul.task {
 	list-style: none;
-	padding-left: 0;
+	padding-left: 1.5em;
 }
 #output-rendered ul.task-list li,
 #output-rendered ul.task li {
-	padding-left: 1.5em;
-	text-indent: -1.5em;
+	position: relative;
+	padding-left: 0.5em;
+	text-indent: 0;
+}
+#output-rendered ul.task-list li input[type="checkbox"],
+#output-rendered ul.task li input[type="checkbox"] {
+	position: absolute;
+	left: -1.25em;
+	top: 0.25em;
+}
+#output-rendered div.warning,
+#output-rendered div.note,
+#output-rendered div.info,
+#output-rendered div.tip,
+#output-rendered div.caution,
+#output-rendered div.important {
+	padding: 1rem;
+	margin: 1rem 0;
+	border-radius: 0.25rem;
+	border-left: 4px solid;
+}
+#output-rendered div.warning {
+	background-color: #fff3cd;
+	border-color: #ffc107;
+}
+#output-rendered div.note,
+#output-rendered div.info {
+	background-color: #cff4fc;
+	border-color: #0dcaf0;
+}
+#output-rendered div.tip {
+	background-color: #d1e7dd;
+	border-color: #198754;
+}
+#output-rendered div.caution,
+#output-rendered div.important {
+	background-color: #f8d7da;
+	border-color: #dc3545;
+}
+#output-rendered div.warning > *:first-child,
+#output-rendered div.note > *:first-child,
+#output-rendered div.info > *:first-child,
+#output-rendered div.tip > *:first-child,
+#output-rendered div.caution > *:first-child,
+#output-rendered div.important > *:first-child {
+	margin-top: 0;
+}
+#output-rendered div.warning > *:last-child,
+#output-rendered div.note > *:last-child,
+#output-rendered div.info > *:last-child,
+#output-rendered div.tip > *:last-child,
+#output-rendered div.caution > *:last-child,
+#output-rendered div.important > *:last-child {
+	margin-bottom: 0;
+}
+#output-rendered .highlight {
+	background-color: #fff3cd;
+	padding: 0.1em 0.3em;
+	border-radius: 0.2em;
+}
+#output-rendered .term {
+	font-style: italic;
+	border-bottom: 1px dotted #666;
+}
+#output-rendered .class1 {
+	color: #0d6efd;
+}
+#output-rendered .class2 {
+	font-weight: bold;
+}
+#output-rendered span[id] {
+	background-color: #e7f1ff;
+	padding: 0.1em 0.2em;
+	border-radius: 0.2em;
+}
+#output-rendered div.line-block {
+	padding-left: 1em;
+	border-left: 3px solid #dee2e6;
+	font-style: italic;
 }
 #output-rendered dl {
 	width: auto;
@@ -216,6 +286,21 @@ DJOT;
 }
 #output-rendered figcaption::before {
 	content: "— ";
+}
+#output-rendered table {
+	width: 100%;
+	margin-bottom: 1rem;
+	color: #212529;
+	border-collapse: collapse;
+}
+#output-rendered table th,
+#output-rendered table td {
+	padding: 0.5rem;
+	border: 1px solid #dee2e6;
+}
+#output-rendered table thead th {
+	border-bottom: 2px solid #dee2e6;
+	background-color: #f8f9fa;
 }
 #output-rendered table caption {
 	caption-side: bottom;
@@ -548,6 +633,12 @@ This div is never closed.</code></pre>
 
 			outputRendered.innerHTML = data.html || '<span class="text-muted">Enter some Djot markup...</span>';
 			outputSource.querySelector('code').textContent = data.html || '';
+
+			// Highlight code blocks
+			outputRendered.querySelectorAll('pre code').forEach(el => {
+				el.removeAttribute('data-highlighted');
+				hljs.highlightElement(el);
+			});
 		})
 		.catch(err => {
 			loadingIndicator.style.transition = 'opacity 0.8s';

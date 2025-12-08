@@ -103,6 +103,14 @@ class DjotController extends SandboxAppController {
 	}
 
 	/**
+	 * Complex Djot examples showcase.
+	 *
+	 * @return void
+	 */
+	public function complexExamples(): void {
+	}
+
+	/**
 	 * Markdown to Djot converter playground.
 	 *
 	 * @return void

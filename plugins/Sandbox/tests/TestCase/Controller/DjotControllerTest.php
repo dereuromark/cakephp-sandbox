@@ -252,6 +252,16 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testComplexExamples(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'complexExamples']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testMarkdownToDjot(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'markdownToDjot']);
 
