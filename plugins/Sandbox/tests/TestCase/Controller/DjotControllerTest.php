@@ -249,4 +249,106 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(405);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testMarkdownToDjot(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'markdownToDjot']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertMarkdown(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown'], [
+			'markdown' => 'Hello **world**!',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('djot', $response);
+		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertMarkdownEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown'], [
+			'markdown' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertMarkdownGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHtmlToDjot(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'htmlToDjot']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertHtml(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml'], [
+			'html' => '<p>Hello <strong>world</strong>!</p>',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('djot', $response);
+		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertHtmlEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml'], [
+			'html' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertHtmlGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml']);
+
+		$this->assertResponseCode(405);
+	}
+
 }

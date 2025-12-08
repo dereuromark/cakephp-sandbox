@@ -4,11 +4,14 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Response;
+use Djot\Converter\HtmlToDjot;
+use Djot\Converter\MarkdownToDjot;
 use Djot\DjotConverter;
 use Djot\Exception\ParseException;
 use Djot\Exception\ProfileViolationException;
 use Djot\Profile;
 use Djot\Renderer\SoftBreakMode;
+use Exception;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use LengthException;
@@ -91,6 +94,80 @@ class DjotController extends SandboxAppController {
 						'message' => $violation->getMessage(),
 					];
 				}
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * Markdown to Djot converter playground.
+	 *
+	 * @return void
+	 */
+	public function markdownToDjot(): void {
+	}
+
+	/**
+	 * AJAX endpoint for Markdown to Djot conversion.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertMarkdown(): Response {
+		$this->request->allowMethod(['post']);
+
+		$markdown = (string)$this->request->getData('markdown');
+
+		$result = [
+			'djot' => '',
+			'error' => null,
+		];
+
+		if ($markdown) {
+			try {
+				$converter = new MarkdownToDjot();
+				$result['djot'] = $converter->convert($markdown);
+			} catch (Exception $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * HTML to Djot converter playground.
+	 *
+	 * @return void
+	 */
+	public function htmlToDjot(): void {
+	}
+
+	/**
+	 * AJAX endpoint for HTML to Djot conversion.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertHtml(): Response {
+		$this->request->allowMethod(['post']);
+
+		$html = (string)$this->request->getData('html');
+
+		$result = [
+			'djot' => '',
+			'error' => null,
+		];
+
+		if ($html) {
+			try {
+				$converter = new HtmlToDjot();
+				$result['djot'] = $converter->convert($html);
+			} catch (Exception $e) {
+				$result['error'] = $e->getMessage();
 			}
 		}
 

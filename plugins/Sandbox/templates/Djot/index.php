@@ -84,10 +84,17 @@ DJOT;
 
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<ul class="side-nav nav nav-pills nav-stacked flex-column">
+		<li class="heading"><?= __('Converters') ?></li>
+		<li class="nav-item"><?= $this->Html->link('Djot Playground', ['action' => 'index'], ['class' => 'nav-link active']) ?></li>
+		<li class="nav-item"><?= $this->Html->link('Markdown to Djot', ['action' => 'markdownToDjot'], ['class' => 'nav-link']) ?></li>
+		<li class="nav-item"><?= $this->Html->link('HTML to Djot', ['action' => 'htmlToDjot'], ['class' => 'nav-link']) ?></li>
+	</ul>
+	<ul class="side-nav nav nav-pills nav-stacked flex-column">
 		<li class="heading"><?= __('Links') ?></li>
 		<li class="nav-item"><?= $this->Html->link('Djot-PHP', 'https://github.com/php-collective/djot-php', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 		<li class="nav-item"><?= $this->Html->link('Djot Spec', 'https://djot.net', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 		<li class="nav-item"><?= $this->Html->link('Cheatsheet', 'https://htmlpreview.github.io/?https://github.com/jgm/djot/blob/master/doc/cheatsheet.html', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
+		<li class="nav-item"><?= $this->Html->link('Pandoc', 'https://pandoc.org/', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 	</ul>
 </nav>
 <div class="col-md-10 col-sm-9 col-12">
