@@ -35,7 +35,7 @@ echo "Hello, World!";</code></pre>
 
 <h3>Table</h3>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <th>Name</th>
