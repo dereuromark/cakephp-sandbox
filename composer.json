@@ -139,7 +139,8 @@
 			"cp -R webroot/assets/@fortawesome/fontawesome-free/webfonts webroot/css/",
 			"cp -R webroot/assets/@fortawesome/fontawesome-free/webfonts webroot/css/ccss/",
 			"cp -R node_modules/bootstrap-icons webroot/assets/",
-			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/"
+			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/",
+			"cp vendor/php-collective/djot/docs/assets/hljs-djot.js plugins/Sandbox/webroot/js/"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
 		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p StateMachineSandbox",

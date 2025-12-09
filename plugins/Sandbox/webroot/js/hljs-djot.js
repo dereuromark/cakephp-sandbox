@@ -196,41 +196,45 @@
             relevance: 5,
         };
 
-        // Code fences: ``` with optional language
-        const CODE_FENCE = {
-            className: 'code',
-            begin: /^`{3,}/,
-            end: /^`{3,}/,
+        // Code fence opening: ``` with optional language or =format
+        const CODE_FENCE_START = {
+            className: 'keyword',
+            begin: /^`{3,}\s*=?[a-zA-Z]*$/,
             relevance: 10,
-            contains: [
-                {
-                    className: 'keyword',
-                    begin: /^`{3,}\s*=?\w*/,
-                    end: /$/,
-                },
-            ],
         };
 
-        // Div blocks: ::: with optional class
-        const DIV_BLOCK = {
-            className: 'section',
-            begin: /^:{3,}/,
-            end: /^:{3,}/,
+        // Code fence closing: ```
+        const CODE_FENCE_END = {
+            className: 'keyword',
+            begin: /^`{3,}$/,
             relevance: 10,
-            contains: [
-                {
-                    className: 'keyword',
-                    begin: /^:{3,}\s*\w*/,
-                    end: /$/,
-                },
-            ],
         };
 
-        // Fenced comments (djot-php extension): %%%
-        const FENCED_COMMENT = {
+        // Div block opening: ::: with optional class
+        const DIV_BLOCK_START = {
+            className: 'keyword',
+            begin: /^:{3,}\s*\w*$/,
+            relevance: 10,
+        };
+
+        // Div block closing: :::
+        const DIV_BLOCK_END = {
+            className: 'keyword',
+            begin: /^:{3,}$/,
+            relevance: 10,
+        };
+
+        // Fenced comment opening (djot-php extension): %%%
+        const FENCED_COMMENT_START = {
             className: 'comment',
-            begin: /^%{3,}/,
-            end: /^%{3,}/,
+            begin: /^%{3,}$/,
+            relevance: 10,
+        };
+
+        // Fenced comment closing: %%%
+        const FENCED_COMMENT_END = {
+            className: 'comment',
+            begin: /^%{3,}$/,
             relevance: 10,
         };
 
@@ -322,42 +326,48 @@
             aliases: ['djot'],
             case_insensitive: false,
             contains: [
+                // Block-level elements (order matters - more specific first)
                 HEADING,
-                CODE_FENCE,
-                DIV_BLOCK,
-                FENCED_COMMENT,
+                CODE_FENCE_START,
+                CODE_FENCE_END,
+                DIV_BLOCK_START,
+                DIV_BLOCK_END,
+                FENCED_COMMENT_START,
+                FENCED_COMMENT_END,
                 HORIZONTAL_RULE,
                 TABLE_SEPARATOR,
+                LINE_BLOCK,        // Must be before TABLE_ROW (both start with |)
                 TABLE_ROW,
-                LINE_BLOCK,
                 BLOCKQUOTE,
                 CAPTION,
-                TASK_LIST,
+                TASK_LIST,         // Must be before LIST_BULLET
                 LIST_BULLET,
                 LIST_NUMBER,
                 DEFINITION_TERM,
+                FOOTNOTE_DEF,      // Must be before REFERENCE_DEF
                 REFERENCE_DEF,
-                FOOTNOTE_DEF,
+
+                // Inline elements (order matters - more specific first)
                 FOOTNOTE_REF,
-                IMAGE,
-                SPAN,
+                IMAGE,             // Must be before LINK (starts with !)
+                SPAN,              // Must be before LINK ([text]{attr} vs [text](url))
+                REFERENCE_LINK,    // Must be before LINK ([text][ref] vs [text](url))
                 LINK,
-                REFERENCE_LINK,
                 AUTOLINK,
                 EMAIL_AUTOLINK,
-                DISPLAY_MATH,
+                DISPLAY_MATH,      // Must be before INLINE_MATH ($$` vs $`)
                 INLINE_MATH,
-                STRONG,
-                EMPHASIS,
-                HIGHLIGHT,
-                INSERT,
-                DELETE,
+                RAW_FORMAT,        // {=html} - must be before HIGHLIGHT
+                HIGHLIGHT,         // {=text=}
+                INSERT,            // {+text+}
+                DELETE,            // {-text-}
+                INLINE_COMMENT,    // {% %} - must be before ATTRIBUTE
                 SUPERSCRIPT,
                 SUBSCRIPT,
+                STRONG,
+                EMPHASIS,
                 INLINE_CODE,
-                INLINE_COMMENT,
                 SYMBOL,
-                RAW_FORMAT,
                 ATTRIBUTE,
                 ESCAPE,
                 HARD_BREAK,

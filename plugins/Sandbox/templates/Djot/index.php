@@ -399,7 +399,7 @@ DJOT;
 ```
 
 Tables, images, footnotes all work in article mode.</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="article"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
 		<h6>Comment Profile Test</h6>
@@ -416,7 +416,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 |--------|-----|---------|
 
 [Links](https://example.com) work fine!</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="comment"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
 
@@ -432,7 +432,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 {=Highlights=} become plain text.
 
 Links like [this](https://example.com) are filtered.</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="minimal"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
 		<h6>Raw HTML Test</h6>
@@ -446,28 +446,28 @@ Block raw HTML:
   &lt;strong&gt;Note:&lt;/strong&gt; This is raw HTML!
 &lt;/div&gt;
 ```</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="" data-raw="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
 
 <h5>Warnings &amp; Errors</h5>
-<p class="text-muted small">Select different options to test warnings and errors:</p>
+<p class="text-muted small">Click "Try this" to load examples with appropriate settings:</p>
 
 <div class="row">
 	<div class="col-md-6">
 		<h6>Warning Example</h6>
-		<p class="text-muted small">Enable "Warnings" checkbox to see undefined reference warnings.</p>
+		<p class="text-muted small">Loads with "Warnings" checkbox enabled.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-djot">[undefined link][missing-ref]
 
 This has an undefined footnote[^missing].</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
 		<h6>Strict Mode Example</h6>
-		<p class="text-muted small">Enable "Strict" checkbox to see errors for unclosed blocks.</p>
+		<p class="text-muted small">Loads with "Strict" checkbox enabled.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-djot">::: warning
 This div is never closed.</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-strict="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
 
@@ -857,6 +857,27 @@ This div is never closed.</code></pre>
 			const code = this.previousElementSibling.querySelector('code');
 			if (code) {
 				input.value = code.textContent;
+
+				// Apply settings from data attributes
+				if (this.dataset.profile !== undefined) {
+					optProfile.value = this.dataset.profile;
+				}
+				if (this.dataset.warnings === '1') {
+					optWarnings.checked = true;
+				} else {
+					optWarnings.checked = false;
+				}
+				if (this.dataset.strict === '1') {
+					optStrict.checked = true;
+				} else {
+					optStrict.checked = false;
+				}
+				if (optRaw && this.dataset.raw === '1') {
+					optRaw.checked = true;
+				} else if (optRaw) {
+					optRaw.checked = false;
+				}
+
 				input.scrollIntoView({ behavior: 'smooth', block: 'center' });
 				convert();
 			}
