@@ -3016,12 +3016,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "eaf969b1b75f9ebeb84fa1a35c8f1c73eb801be1"
+                "reference": "527a03f14de7a9a61e6a10ef194e0a3cb7658cbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/eaf969b1b75f9ebeb84fa1a35c8f1c73eb801be1",
-                "reference": "eaf969b1b75f9ebeb84fa1a35c8f1c73eb801be1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/527a03f14de7a9a61e6a10ef194e0a3cb7658cbd",
+                "reference": "527a03f14de7a9a61e6a10ef194e0a3cb7658cbd",
                 "shasum": ""
             },
             "require": {
@@ -3073,7 +3073,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2025-12-01T17:23:57+00:00"
+            "time": "2025-12-09T04:38:25+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -6296,12 +6296,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "2555cca566983f1fa603b5919587df2c78eb42d5"
+                "reference": "9932426ea4a95992d7753b19e4143403d38149d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/2555cca566983f1fa603b5919587df2c78eb42d5",
-                "reference": "2555cca566983f1fa603b5919587df2c78eb42d5",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/9932426ea4a95992d7753b19e4143403d38149d6",
+                "reference": "9932426ea4a95992d7753b19e4143403d38149d6",
                 "shasum": ""
             },
             "require": {
@@ -6346,7 +6346,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-09T01:29:09+00:00"
+            "time": "2025-12-09T14:43:05+00:00"
         },
         {
             "name": "php-collective/file-storage",
