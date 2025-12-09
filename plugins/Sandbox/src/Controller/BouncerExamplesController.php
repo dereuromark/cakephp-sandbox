@@ -73,7 +73,7 @@ class BouncerExamplesController extends SandboxAppController {
 			/** @var \Sandbox\Model\Entity\SandboxArticle $article */
 			$count = $bouncerTable->find()
 				->where([
-					'source' => 'SandboxArticles',
+					'source' => 'Sandbox.SandboxArticles',
 					'primary_key' => $article->id,
 					'status' => 'pending',
 				])
@@ -84,7 +84,7 @@ class BouncerExamplesController extends SandboxAppController {
 		// Get pending new articles count
 		$pendingNewCount = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'primary_key IS' => null,
 				'status' => 'pending',
 			])
@@ -105,7 +105,7 @@ class BouncerExamplesController extends SandboxAppController {
 			$article = $this->SandboxArticles->patchEntity($article, $this->request->getData());
 			$userId = $this->request->getData('user_id', 1);
 
-			$this->SandboxArticles->save($article, ['bouncerUserId' => $userId]);
+			$result = $this->SandboxArticles->save($article, ['bouncerUserId' => $userId]);
 			/** @var \Bouncer\Model\Behavior\BouncerBehavior $bouncerBehavior */
 			$bouncerBehavior = $this->SandboxArticles->getBehavior('Bouncer');
 
@@ -116,7 +116,7 @@ class BouncerExamplesController extends SandboxAppController {
 				return $this->redirect(['action' => 'articles']);
 			}
 
-			if (!$article->getErrors()) {
+			if ($result) {
 				$this->Flash->success('Article saved successfully.');
 
 				return $this->redirect(['action' => 'articles']);
@@ -234,7 +234,7 @@ class BouncerExamplesController extends SandboxAppController {
 
 		$query = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'status' => 'pending',
 			])
 			->orderBy(['BouncerRecords.created' => 'DESC']);
@@ -450,7 +450,7 @@ class BouncerExamplesController extends SandboxAppController {
 
 		foreach ($demoArticles as $data) {
 			$article = $this->SandboxArticles->newEntity($data);
-			$this->SandboxArticles->save($article, ['bypassBouncer' => true]);
+			$this->SandboxArticles->saveOrFail($article, ['bypassBouncer' => true]);
 		}
 	}
 

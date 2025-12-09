@@ -3,7 +3,8 @@ declare(strict_types=1);
 
 namespace Sandbox\Controller;
 
-use App\Model\Enum\AuditLogType;
+use AuditStash\AuditLogType;
+use AuditStash\Service\RevertService;
 use Cake\I18n\DateTime;
 use Exception;
 
@@ -26,9 +27,9 @@ class AuditStashController extends SandboxAppController {
 		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
 		$articles = $sandboxArticlesTable->find()->toArray();
 
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLogs = $auditLogsTable->find()
-			->where(['source' => 'sandbox_articles'])
+			->where(['source' => 'Sandbox.SandboxArticles'])
 			->orderBy(['created' => 'DESC'])
 			->limit(50)
 			->toArray();
@@ -38,7 +39,7 @@ class AuditStashController extends SandboxAppController {
 
 	/**
 	 * Add method - creates a new article
-	 *
+	 *()
 	 * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
 	 */
 	public function add() {
@@ -108,24 +109,24 @@ class AuditStashController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void Renders view
 	 */
 	public function viewLog($id = null) {
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLog = $auditLogsTable->get($id);
 
 		$this->set(compact('auditLog'));
 	}
 
 	/**
-	 * Revert changes from an audit log entry
+	 * Revert changes from an audit log entry (full revert)
+	 *
+	 * Uses the plugin's RevertService to properly track the revert operation.
 	 *
 	 * @param string|null $id Audit log id.
 	 * @return \Cake\Http\Response|null Redirects to index.
 	 */
 	public function revert($id = null) {
 		$this->request->allowMethod(['post']);
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLog = $auditLogsTable->get($id);
-
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
 
 		// Only allow reverting updated records
 		if ($auditLog->type !== AuditLogType::Update) {
@@ -134,22 +135,21 @@ class AuditStashController extends SandboxAppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
+		if ($auditLog->primary_key === null) {
+			$this->Flash->error(__('No primary key found in audit log.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
 		try {
-			// Get the current article
-			$article = $sandboxArticlesTable->get($auditLog->primary_key);
+			$revertService = new RevertService();
+			$result = $revertService->revertFull(
+				$auditLog->source,
+				$auditLog->primary_key,
+				(int)$auditLog->id,
+			);
 
-			// Restore original values
-			$originalData = $auditLog->original_data;
-			if (!$originalData) {
-				$this->Flash->error(__('No original data found in audit log.'));
-
-				return $this->redirect(['action' => 'index']);
-			}
-
-			// Patch the article with original values
-			$article = $sandboxArticlesTable->patchEntity($article, $originalData);
-
-			if ($sandboxArticlesTable->save($article)) {
+			if ($result) {
 				$this->Flash->success(__('Successfully reverted to previous version.'));
 			} else {
 				$this->Flash->error(__('Could not revert changes. Please try again.'));
@@ -164,15 +164,15 @@ class AuditStashController extends SandboxAppController {
 	/**
 	 * Restore a deleted record from an audit log entry
 	 *
+	 * Uses the plugin's RevertService to properly track the restore operation.
+	 *
 	 * @param string|null $id Audit log id.
 	 * @return \Cake\Http\Response|null Redirects to index.
 	 */
 	public function restore($id = null) {
 		$this->request->allowMethod(['post']);
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLog = $auditLogsTable->get($id);
-
-		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
 
 		// Only allow restoring deleted records
 		if ($auditLog->type !== AuditLogType::Delete) {
@@ -181,33 +181,23 @@ class AuditStashController extends SandboxAppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
+		if ($auditLog->primary_key === null) {
+			$this->Flash->error(__('No primary key found in audit log.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
 		try {
-			// Check if a record with this ID already exists
-			$exists = $sandboxArticlesTable->exists(['id' => $auditLog->primary_key]);
-			if ($exists) {
-				$this->Flash->error(__('A record with ID {0} already exists.', $auditLog->primary_key));
+			$revertService = new RevertService();
+			$result = $revertService->restoreDeleted(
+				$auditLog->source,
+				$auditLog->primary_key,
+			);
 
-				return $this->redirect(['action' => 'index']);
-			}
-
-			// Get original data from the audit log
-			$originalData = $auditLog->original_data;
-			if (!$originalData) {
-				$this->Flash->error(__('No original data found in audit log.'));
-
-				return $this->redirect(['action' => 'index']);
-			}
-
-			// Create a new entity with the original data and ID
-			$article = $sandboxArticlesTable->newEntity([
-				'id' => $auditLog->primary_key,
-				...$originalData,
-			]);
-
-			if ($sandboxArticlesTable->save($article)) {
+			if ($result) {
 				$this->Flash->success(__('Successfully restored deleted article #{0}.', $auditLog->primary_key));
 			} else {
-				$this->Flash->error(__('Could not restore article. Please try again.'));
+				$this->Flash->error(__('Could not restore article. Record may already exist.'));
 			}
 		} catch (Exception $e) {
 			$this->Flash->error(__('Error restoring: {0}', $e->getMessage()));
@@ -219,11 +209,13 @@ class AuditStashController extends SandboxAppController {
 	/**
 	 * Show form for partial revert (select specific fields)
 	 *
+	 * Uses the plugin's RevertService to properly track the partial revert operation.
+	 *
 	 * @param string|null $id Audit log id.
 	 * @return \Cake\Http\Response|null|void Redirects on successful partial revert, renders view otherwise.
 	 */
 	public function partialRevert($id = null) {
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLog = $auditLogsTable->get($id);
 
 		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
@@ -235,7 +227,13 @@ class AuditStashController extends SandboxAppController {
 			return $this->redirect(['action' => 'index']);
 		}
 
-		if (!$auditLog->original_data || !$auditLog->changed_data) {
+		if ($auditLog->primary_key === null) {
+			$this->Flash->error(__('No primary key found in audit log.'));
+
+			return $this->redirect(['action' => 'index']);
+		}
+
+		if (!$auditLog->original || !$auditLog->changed) {
 			$this->Flash->error(__('No change data found in audit log.'));
 
 			return $this->redirect(['action' => 'index']);
@@ -254,21 +252,15 @@ class AuditStashController extends SandboxAppController {
 				$this->Flash->error(__('Please select at least one field to revert.'));
 			} else {
 				try {
-					// Get the current article
-					$article = $sandboxArticlesTable->get($auditLog->primary_key);
+					$revertService = new RevertService();
+					$result = $revertService->revertPartial(
+						$auditLog->source,
+						$auditLog->primary_key,
+						(int)$auditLog->id,
+						$selectedFields,
+					);
 
-					// Build data with only selected fields from original
-					$revertData = [];
-					foreach ($selectedFields as $field) {
-						if (isset($auditLog->original_data[$field])) {
-							$revertData[$field] = $auditLog->original_data[$field];
-						}
-					}
-
-					// Patch the article with selected original values
-					$article = $sandboxArticlesTable->patchEntity($article, $revertData);
-
-					if ($sandboxArticlesTable->save($article)) {
+					if ($result) {
 						$this->Flash->success(__(
 							'Successfully reverted {0} field(s): {1}',
 							count($selectedFields),
@@ -299,9 +291,9 @@ class AuditStashController extends SandboxAppController {
 	protected function rotateOldLogs(): void {
 		// Delete old audit logs
 		$oneHourAgo = new DateTime('-1 hour');
-		$auditLogsTable = $this->fetchTable('AuditLogs');
+		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$deletedLogs = $auditLogsTable->deleteAll([
-			'source' => 'sandbox_articles',
+			'source' => 'Sandbox.SandboxArticles',
 			'created <' => $oneHourAgo,
 		]);
 

@@ -4,6 +4,12 @@
  * @var string $djot
  */
 
+$this->append('script');
+echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+echo $this->Html->script('Sandbox.hljs-djot.js');
+$this->end();
+
 $examples = [
 	'Image with Caption' => [
 		'description' => 'Images can have captions using the ^ syntax.',
@@ -347,7 +353,7 @@ function encodeDjot(string $djot): string {
 		</div>
 		<div class="card-body py-2">
 			<p class="text-muted small mb-2"><?= h($example['description']) ?></p>
-			<pre class="bg-light p-2 border rounded mb-0" style="max-height: 200px; overflow-y: auto;"><code><?= h($example['code']) ?></code></pre>
+			<pre class="bg-light p-2 border rounded mb-0" style="max-height: 200px; overflow-y: auto;"><code class="language-djot"><?= h($example['code']) ?></code></pre>
 		</div>
 	</div>
 </div>
@@ -355,3 +361,9 @@ function encodeDjot(string $djot): string {
 </div>
 
 </div>
+
+<?php $this->Html->scriptStart(['block' => true]); ?>
+document.querySelectorAll('pre code.language-djot').forEach(el => {
+	hljs.highlightElement(el);
+});
+<?php $this->Html->scriptEnd(); ?>

@@ -2,7 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var array<\Sandbox\Model\Entity\SandboxArticle> $articles
- * @var array<\App\Model\Entity\AuditLog> $auditLogs
+ * @var array<\AuditStash\Model\Entity\AuditLog> $auditLogs
  */
 ?>
 <div class="audit-stash index">
@@ -60,11 +60,10 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">
                                     <span class="badge badge-<?= match($log->type) {
-                                        \App\Model\Enum\AuditLogType::Create => 'success',
-                                        \App\Model\Enum\AuditLogType::Update => 'warning',
-                                        \App\Model\Enum\AuditLogType::Delete => 'danger',
-                                        \App\Model\Enum\AuditLogType::Revert => 'info',
-                                        \App\Model\Enum\AuditLogType::Restore => 'primary',
+                                        \AuditStash\AuditLogType::Create => 'success',
+                                        \AuditStash\AuditLogType::Update => 'warning',
+                                        \AuditStash\AuditLogType::Delete => 'danger',
+                                        \AuditStash\AuditLogType::Revert => 'info',
                                     } ?>">
                                         <?= h(strtoupper($log->type->value)) ?>
                                     </span>
@@ -76,14 +75,14 @@
                                 <small><?= h($log->created->timeAgoInWords()) ?></small>
                             </div>
                             <p class="mb-1">
-                                <?php if ($log->changed_fields) { ?>
+                                <?php if ($log->changed) { ?>
                                     <strong>Changed Fields:</strong>
-                                    <?= h(implode(', ', $log->changed_fields)) ?>
+                                    <?= h(implode(', ', array_keys(json_decode($log->changed, true) ?: []))) ?>
                                 <?php } ?>
                             </p>
                             <small>
                                 <?= $this->Html->link('View Details', ['action' => 'viewLog', $log->id], ['class' => 'btn btn-sm btn-info']) ?>
-                                <?php if ($log->type === \App\Model\Enum\AuditLogType::Delete && $log->original_data) { ?>
+                                <?php if ($log->type === \AuditStash\AuditLogType::Delete && $log->original) { ?>
                                     <?= $this->Form->postLink(
                                         'Restore',
                                         ['action' => 'restore', $log->id],
@@ -118,8 +117,7 @@
                         <li><strong>Create:</strong> When a new article is added</li>
                         <li><strong>Update:</strong> When an article is modified (tracks original and changed values)</li>
                         <li><strong>Delete:</strong> When an article is removed</li>
-                        <li><strong>Revert:</strong> When changes are reverted to a previous version</li>
-                        <li><strong>Restore:</strong> When a deleted record is restored</li>
+                        <li><strong>Revert:</strong> When changes are reverted (full, partial, or restore of deleted records)</li>
                     </ul>
 
                     <h5>Demo Features:</h5>

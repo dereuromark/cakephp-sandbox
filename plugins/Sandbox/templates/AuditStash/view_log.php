@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\AuditLog $auditLog
+ * @var \AuditStash\Model\Entity\AuditLog $auditLog
  */
 ?>
 <div class="audit-stash view-log">
@@ -9,7 +9,7 @@
 
     <div class="mb-3">
         <?= $this->Html->link('← Back to List', ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
-        <?php if ($auditLog->type === \App\Model\Enum\AuditLogType::Update && $auditLog->original_data) { ?>
+        <?php if ($auditLog->type === \AuditStash\AuditLogType::Update && $auditLog->original) { ?>
             <?= $this->Html->link(
                 'Partial Revert (Select Fields)',
                 ['action' => 'partialRevert', $auditLog->id],
@@ -25,7 +25,7 @@
                 ],
             ) ?>
         <?php } ?>
-        <?php if ($auditLog->type === \App\Model\Enum\AuditLogType::Delete && $auditLog->original_data) { ?>
+        <?php if ($auditLog->type === \AuditStash\AuditLogType::Delete && $auditLog->original) { ?>
             <?= $this->Form->postLink(
                 'Restore Deleted Record',
                 ['action' => 'restore', $auditLog->id],
@@ -42,11 +42,10 @@
         <div class="card-header">
             <h3>
                 <span class="badge badge-<?= match($auditLog->type) {
-                    \App\Model\Enum\AuditLogType::Create => 'success',
-                    \App\Model\Enum\AuditLogType::Update => 'warning',
-                    \App\Model\Enum\AuditLogType::Delete => 'danger',
-                    \App\Model\Enum\AuditLogType::Revert => 'info',
-                    \App\Model\Enum\AuditLogType::Restore => 'primary',
+                    \AuditStash\AuditLogType::Create => 'success',
+                    \AuditStash\AuditLogType::Update => 'warning',
+                    \AuditStash\AuditLogType::Delete => 'danger',
+                    \AuditStash\AuditLogType::Revert => 'info',
                 } ?>">
                     <?= h(strtoupper($auditLog->type->value)) ?>
                 </span>
@@ -87,14 +86,19 @@
                 </tr>
             </table>
 
-            <?php if ($auditLog->original_data) { ?>
+            <?php
+            $originalData = $auditLog->original ? json_decode($auditLog->original, true) : null;
+            $changedData = $auditLog->changed ? json_decode($auditLog->changed, true) : null;
+            $metaData = $auditLog->meta ? json_decode($auditLog->meta, true) : null;
+            ?>
+            <?php if ($originalData) { ?>
                 <h4 class="mt-4">Original Values</h4>
-                <pre class="bg-light p-3"><?= h(json_encode($auditLog->original_data, JSON_PRETTY_PRINT)) ?></pre>
+                <pre class="bg-light p-3"><?= h(json_encode($originalData, JSON_PRETTY_PRINT)) ?></pre>
             <?php } ?>
 
-            <?php if ($auditLog->changed_data) { ?>
+            <?php if ($changedData) { ?>
                 <h4 class="mt-4">Changed Values</h4>
-                <pre class="bg-light p-3"><?= h(json_encode($auditLog->changed_data, JSON_PRETTY_PRINT)) ?></pre>
+                <pre class="bg-light p-3"><?= h(json_encode($changedData, JSON_PRETTY_PRINT)) ?></pre>
 
                 <h4 class="mt-4">Changed Fields Comparison</h4>
                 <table class="table table-bordered">
@@ -106,10 +110,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($auditLog->changed_data as $field => $newValue) { ?>
+                        <?php foreach ($changedData as $field => $newValue) { ?>
                             <tr>
                                 <td><strong><?= h($field) ?></strong></td>
-                                <td><span class="text-danger"><?= h($auditLog->original_data[$field] ?? 'N/A') ?></span></td>
+                                <td><span class="text-danger"><?= h($originalData[$field] ?? 'N/A') ?></span></td>
                                 <td><span class="text-success"><?= h($newValue) ?></span></td>
                             </tr>
                         <?php } ?>
@@ -117,9 +121,9 @@
                 </table>
             <?php } ?>
 
-            <?php if ($auditLog->meta_data) { ?>
+            <?php if ($metaData) { ?>
                 <h4 class="mt-4">Metadata</h4>
-                <pre class="bg-light p-3"><?= h(json_encode($auditLog->meta_data, JSON_PRETTY_PRINT)) ?></pre>
+                <pre class="bg-light p-3"><?= h(json_encode($metaData, JSON_PRETTY_PRINT)) ?></pre>
             <?php } ?>
         </div>
     </div>

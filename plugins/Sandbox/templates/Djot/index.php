@@ -4,9 +4,12 @@
  * @var bool $debugMode
  */
 
-$this->append('script');
+$this->append('css');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+$this->end();
+$this->append('script');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+echo $this->Html->script('Sandbox.hljs-djot.js');
 $this->end();
 
 $defaultDjot = <<<'DJOT'
@@ -387,7 +390,7 @@ DJOT;
 	<div class="col-md-6">
 		<h6>Article Profile Test</h6>
 		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
-		<pre class="bg-light p-2 border rounded"><code># Full Formatting Works
+		<pre class="bg-light p-2 border rounded"><code class="language-djot"># Full Formatting Works
 
 *Bold*, _italic_, {=highlight=}, `code` - all allowed!
 
@@ -400,7 +403,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 	<div class="col-md-6">
 		<h6>Comment Profile Test</h6>
 		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
-		<pre class="bg-light p-2 border rounded"><code># This heading will be filtered
+		<pre class="bg-light p-2 border rounded"><code class="language-djot"># This heading will be filtered
 
 *Bold*, _italic_, {=highlight=}, 2^10^ all allowed!
 
@@ -419,7 +422,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 	<div class="col-md-6">
 		<h6>Minimal Profile Test</h6>
 		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
-		<pre class="bg-light p-2 border rounded"><code>*Bold*, _italic_, `code`, 2^10^, {+insert+}, {-delete-} work!
+		<pre class="bg-light p-2 border rounded"><code class="language-djot">*Bold*, _italic_, `code`, 2^10^, {+insert+}, {-delete-} work!
 
 - Lists work too
 - With nesting
@@ -431,7 +434,7 @@ Links like [this](https://example.com) are filtered.</code></pre>
 	<div class="col-md-6">
 		<h6>Raw HTML Test</h6>
 		<p class="text-muted small">Raw HTML requires "No filter" profile and "Raw" mode enabled.</p>
-		<pre class="bg-light p-2 border rounded"><code>Inline raw: `&lt;span style="color:red"&gt;red text&lt;/span&gt;`{=html}
+		<pre class="bg-light p-2 border rounded"><code class="language-djot">Inline raw: `&lt;span style="color:red"&gt;red text&lt;/span&gt;`{=html}
 
 Block raw HTML:
 
@@ -450,14 +453,14 @@ Block raw HTML:
 	<div class="col-md-6">
 		<h6>Warning Example</h6>
 		<p class="text-muted small">Enable "Warnings" checkbox to see undefined reference warnings.</p>
-		<pre class="bg-light p-2 border rounded"><code>[undefined link][missing-ref]
+		<pre class="bg-light p-2 border rounded"><code class="language-djot">[undefined link][missing-ref]
 
 This has an undefined footnote[^missing].</code></pre>
 	</div>
 	<div class="col-md-6">
 		<h6>Strict Mode Example</h6>
 		<p class="text-muted small">Enable "Strict" checkbox to see errors for unclosed blocks.</p>
-		<pre class="bg-light p-2 border rounded"><code>::: warning
+		<pre class="bg-light p-2 border rounded"><code class="language-djot">::: warning
 This div is never closed.</code></pre>
 	</div>
 </div>
@@ -836,6 +839,11 @@ This div is never closed.</code></pre>
 		input.focus();
 		convert();
 	}
+
+	// Highlight djot example code blocks
+	document.querySelectorAll('pre code.language-djot').forEach(el => {
+		hljs.highlightElement(el);
+	});
 
 	// Load from URL if shared, then convert
 	loadFromUrl();
