@@ -2,6 +2,8 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Http\Response;
+
 class MarkupExamplesController extends SandboxAppController {
 
 	/**
@@ -47,7 +49,7 @@ class MarkupExamplesController extends SandboxAppController {
 	 *
 	 * @return \Cake\Http\Response|null
 	 */
-	public function djotView(): ?\Cake\Http\Response {
+	public function djotView(): ?Response {
 		$this->viewBuilder()->setClassName('Markup.Djot');
 		$this->viewBuilder()->disableAutoLayout();
 
