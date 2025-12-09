@@ -45,9 +45,9 @@ class MarkupExamplesController extends SandboxAppController {
 	/**
 	 * Djot markup using DjotView (renders .djot files directly).
 	 *
-	 * @return void
+	 * @return \Cake\Http\Response|null
 	 */
-	public function djotView() {
+	public function djotView(): ?\Cake\Http\Response {
 		$this->viewBuilder()->setClassName('Markup.Djot');
 		$this->viewBuilder()->disableAutoLayout();
 
@@ -56,6 +56,10 @@ class MarkupExamplesController extends SandboxAppController {
 
 		$this->set('title', 'Djot View Demo');
 		$this->set('features', ['Fast parsing', 'Safe mode', 'Profile support']);
+
+		$this->response = $this->response->withHeader('X-Robots-Tag', 'noindex');
+
+		return null;
 	}
 
 }
