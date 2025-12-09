@@ -17,6 +17,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 */
 	protected array $fixtures = [
 		'plugin.Sandbox.SandboxArticles',
+		'plugin.Sandbox.BouncerRecords',
 	];
 
 	/**
@@ -163,7 +164,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$bouncerRecord = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'primary_key' => 1,
 				'status' => 'pending',
 			])
@@ -205,7 +206,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$pendingCount = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'primary_key' => 1,
 				'status' => 'pending',
 			])
@@ -243,7 +244,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$pendingCount = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'primary_key' => 1,
 				'status' => 'pending',
 			])
@@ -267,7 +268,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		// Verify draft was removed
 		$pendingCount = $bouncerTable->find()
 			->where([
-				'source' => 'SandboxArticles',
+				'source' => 'Sandbox.SandboxArticles',
 				'primary_key' => 1,
 				'status' => 'pending',
 			])
