@@ -9,6 +9,7 @@ $action = $this->request->getParam('action');
 	<li class="heading"><?= __('Converters') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Djot Playground', ['action' => 'index'], ['class' => 'nav-link' . ($action === 'index' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Complex Examples', ['action' => 'complexExamples'], ['class' => 'nav-link' . ($action === 'complexExamples' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Markdown to Djot', ['action' => 'markdownToDjot'], ['class' => 'nav-link' . ($action === 'markdownToDjot' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('HTML to Djot', ['action' => 'htmlToDjot'], ['class' => 'nav-link' . ($action === 'htmlToDjot' ? ' active' : '')]) ?></li>
 </ul>

@@ -262,6 +262,203 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testExtensions(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'extensions']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('DefaultAttributesExtension');
+		$this->assertResponseContains('AutolinkExtension');
+		$this->assertResponseContains('ExternalLinksExtension');
+		$this->assertResponseContains('HeadingPermalinksExtension');
+		$this->assertResponseContains('MentionsExtension');
+		$this->assertResponseContains('TableOfContentsExtension');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsDefaultAttributes(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "![Image](/test.png)\n\n| A | B |\n|---|---|\n| 1 | 2 |",
+			'extensions' => ['default_attributes'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('loading="lazy"', $response['html']);
+		$this->assertStringContainsString('decoding="async"', $response['html']);
+		$this->assertStringContainsString('class="table table-striped"', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsAutolink(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => 'Visit https://example.com for more.',
+			'extensions' => ['autolink'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('html', $response);
+		$this->assertStringContainsString('<a href="https://example.com"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsExternalLinks(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => '[Link](https://example.com)',
+			'extensions' => ['external_links'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('target="_blank"', $response['html']);
+		$this->assertStringContainsString('noopener', $response['html']);
+		$this->assertStringContainsString('noreferrer', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsMentions(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => 'Thanks @johndoe!',
+			'extensions' => ['mentions'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('href="/sandbox/djot?user=johndoe"', $response['html']);
+		$this->assertStringContainsString('@johndoe', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsHeadingPermalinks(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => '# Hello World',
+			'extensions' => ['heading_permalinks'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="permalink"', $response['html']);
+		$this->assertStringContainsString('aria-label="Permalink"', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsToc(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "# Heading 1\n\n## Heading 2",
+			'extensions' => ['toc'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('toc', $response);
+		$this->assertStringContainsString('<nav class="toc">', $response['toc']);
+		$this->assertStringContainsString('Heading 1', $response['toc']);
+		$this->assertStringContainsString('Heading 2', $response['toc']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsTocTop(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "# Hello\n\nContent here.",
+			'extensions' => ['toc_top'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<nav class="toc">', $response['html']);
+		$tocPos = strpos($response['html'], '<nav class="toc">');
+		$contentPos = strpos($response['html'], 'Content here');
+		$this->assertLessThan($contentPos, $tocPos, 'TOC should appear before content');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsTocBottom(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "# Hello\n\nContent here.",
+			'extensions' => ['toc_bottom'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<nav class="toc">', $response['html']);
+		$tocPos = strpos($response['html'], '<nav class="toc">');
+		$contentPos = strpos($response['html'], 'Content here');
+		$this->assertGreaterThan($contentPos, $tocPos, 'TOC should appear after content');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsCombined(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "# Hello\n\nThanks @user! Visit https://example.com",
+			'extensions' => ['autolink', 'mentions', 'toc'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('@user', $response['html']);
+		$this->assertStringContainsString('href="https://example.com"', $response['html']);
+		$this->assertNotEmpty($response['toc']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => '',
+			'extensions' => ['autolink'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testMarkdownToDjot(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'markdownToDjot']);
 
