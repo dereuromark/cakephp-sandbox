@@ -133,7 +133,7 @@ $config = [
 	],
 
 	'Migrations' => [
-		//'legacyTables' => false,
+		'legacyTables' => false,
 		'unsigned_primary_keys' => true,
 		'unsigned_ints' => true,
 		'column_null_default' => true,
