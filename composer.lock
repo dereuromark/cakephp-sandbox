@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0d959f9bd50bf67693a84bee85d75dc",
+    "content-hash": "bfb5a95e15ba51fdd2dbe981251831fa",
     "packages": [
         {
             "name": "brick/math",
@@ -605,30 +605,29 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.9.1",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "e6da2fe872557b4211abbdf17a17e4074bf33110"
+                "reference": "79f7554ed116d6a6d82d177cc7a05d336a7828f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e6da2fe872557b4211abbdf17a17e4074bf33110",
-                "reference": "e6da2fe872557b4211abbdf17a17e4074bf33110",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/79f7554ed116d6a6d82d177cc7a05d336a7828f6",
+                "reference": "79f7554ed116d6a6d82d177cc7a05d336a7828f6",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cache": "^5.2.9",
-                "cakephp/database": "^5.2.9",
-                "cakephp/orm": "^5.2.9",
-                "php": ">=8.1",
-                "robmorgan/phinx": "^0.16.10"
+                "cakephp/cache": "dev-5.next as 5.3.0",
+                "cakephp/database": "dev-5.next as 5.3.0",
+                "cakephp/orm": "dev-5.next as 5.3.0",
+                "php": ">=8.2"
             },
             "require-dev": {
                 "cakephp/bake": "^3.3",
-                "cakephp/cakephp": "^5.2.9",
+                "cakephp/cakephp": "dev-5.next as 5.3.0",
                 "cakephp/cakephp-codesniffer": "^5.0",
-                "phpunit/phpunit": "^10.5.5 || ^11.1.3 || ^12.2.4"
+                "phpunit/phpunit": "^11.5.3 || ^12.1.3"
             },
             "suggest": {
                 "cakephp/bake": "If you want to generate migrations.",
@@ -650,7 +649,7 @@
                     "homepage": "https://github.com/cakephp/migrations/graphs/contributors"
                 }
             ],
-            "description": "Database Migration plugin for CakePHP based on Phinx",
+            "description": "Database Migration plugin for CakePHP",
             "homepage": "https://github.com/cakephp/migrations",
             "keywords": [
                 "cakephp",
@@ -663,7 +662,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2025-12-03T16:30:32+00:00"
+            "time": "2025-12-07T20:58:37+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -2029,12 +2028,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "239197fd8a2c92624977aa3d0288cafe9d0b52e7"
+                "reference": "d99217e96df0c1fb943a6754bf6c46bc59e7c358"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/239197fd8a2c92624977aa3d0288cafe9d0b52e7",
-                "reference": "239197fd8a2c92624977aa3d0288cafe9d0b52e7",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/d99217e96df0c1fb943a6754bf6c46bc59e7c358",
+                "reference": "d99217e96df0c1fb943a6754bf6c46bc59e7c358",
                 "shasum": ""
             },
             "require": {
@@ -2095,7 +2094,7 @@
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2025-11-19T01:40:57+00:00"
+            "time": "2025-12-11T20:34:04+00:00"
         },
         {
             "name": "dereuromark/cakephp-decimal",
@@ -2820,12 +2819,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-queue.git",
-                "reference": "295dbdb1f11f2bb55b78e72c857ded2bf8f26ff1"
+                "reference": "ce69d1fff33dc784bc5c43ee83c199def0489f62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/295dbdb1f11f2bb55b78e72c857ded2bf8f26ff1",
-                "reference": "295dbdb1f11f2bb55b78e72c857ded2bf8f26ff1",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-queue/zipball/ce69d1fff33dc784bc5c43ee83c199def0489f62",
+                "reference": "ce69d1fff33dc784bc5c43ee83c199def0489f62",
                 "shasum": ""
             },
             "require": {
@@ -2889,7 +2888,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-queue/issues",
                 "source": "https://github.com/dereuromark/cakephp-queue"
             },
-            "time": "2025-12-01T17:28:07+00:00"
+            "time": "2025-12-11T19:55:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue-scheduler",
@@ -6296,12 +6295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "e21e0ac28c0a19d0d5ad48feac77e8e25db9e29a"
+                "reference": "a991b9e3606b15b1d1b3d2d0020b74ed932e0130"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/e21e0ac28c0a19d0d5ad48feac77e8e25db9e29a",
-                "reference": "e21e0ac28c0a19d0d5ad48feac77e8e25db9e29a",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/a991b9e3606b15b1d1b3d2d0020b74ed932e0130",
+                "reference": "a991b9e3606b15b1d1b3d2d0020b74ed932e0130",
                 "shasum": ""
             },
             "require": {
@@ -6346,7 +6345,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-11T11:01:37+00:00"
+            "time": "2025-12-11T20:30:49+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -7335,93 +7334,6 @@
             "time": "2025-08-19T18:57:03+00:00"
         },
         {
-            "name": "robmorgan/phinx",
-            "version": "0.16.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/phinx.git",
-                "reference": "83f83ec105e55e3abba7acc23c0272b5fcf66929"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/83f83ec105e55e3abba7acc23c0272b5fcf66929",
-                "reference": "83f83ec105e55e3abba7acc23c0272b5fcf66929",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/database": "^5.0.2",
-                "composer-runtime-api": "^2.0",
-                "php-64bit": ">=8.1",
-                "psr/container": "^1.1|^2.0",
-                "symfony/config": "^4.0|^5.0|^6.0|^7.0",
-                "symfony/console": "^6.0|^7.0"
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "^5.0",
-                "cakephp/i18n": "^5.0",
-                "ext-json": "*",
-                "ext-pdo": "*",
-                "phpunit/phpunit": "^9.5.19",
-                "symfony/yaml": "^4.0|^5.0|^6.0|^7.0"
-            },
-            "suggest": {
-                "ext-json": "Install if using JSON configuration format",
-                "ext-pdo": "PDO extension is needed",
-                "symfony/yaml": "Install if using YAML configuration format"
-            },
-            "bin": [
-                "bin/phinx"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phinx\\": "src/Phinx/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Morgan",
-                    "email": "robbym@gmail.com",
-                    "homepage": "https://robmorgan.id.au",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "email": "woody.gilk@gmail.com",
-                    "homepage": "https://shadowhand.me",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Richard Quadling",
-                    "email": "rquadling@gmail.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "CakePHP Community",
-                    "homepage": "https://github.com/cakephp/phinx/graphs/contributors",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
-            "homepage": "https://phinx.org",
-            "keywords": [
-                "database",
-                "database migrations",
-                "db",
-                "migrations",
-                "phinx"
-            ],
-            "support": {
-                "issues": "https://github.com/cakephp/phinx/issues",
-                "source": "https://github.com/cakephp/phinx/tree/0.16.10"
-            },
-            "time": "2025-07-08T18:55:28+00:00"
-        },
-        {
             "name": "sabberworm/php-css-parser",
             "version": "v8.9.0",
             "source": {
@@ -7974,127 +7886,40 @@
             "time": "2025-12-01T17:33:18+00:00"
         },
         {
-            "name": "symfony/config",
-            "version": "v7.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "2c323304c354a43a48b61c5fa760fc4ed60ce495"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/2c323304c354a43a48b61c5fa760fc4ed60ce495",
-                "reference": "2c323304c354a43a48b61c5fa760fc4ed60ce495",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2",
-                "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/filesystem": "^7.1|^8.0",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "conflict": {
-                "symfony/finder": "<6.4",
-                "symfony/service-contracts": "<2.5"
-            },
-            "require-dev": {
-                "symfony/event-dispatcher": "^6.4|^7.0|^8.0",
-                "symfony/finder": "^6.4|^7.0|^8.0",
-                "symfony/messenger": "^6.4|^7.0|^8.0",
-                "symfony/service-contracts": "^2.5|^3",
-                "symfony/yaml": "^6.4|^7.0|^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Config\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/config/tree/v7.4.1"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-12-05T07:52:08+00:00"
-        },
-        {
             "name": "symfony/console",
-            "version": "v7.4.1",
+            "version": "v8.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "6d9f0fbf2ec2e9785880096e3abd0ca0c88b506e"
+                "reference": "fcb73f69d655b48fcb894a262f074218df08bd58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/6d9f0fbf2ec2e9785880096e3abd0ca0c88b506e",
-                "reference": "6d9f0fbf2ec2e9785880096e3abd0ca0c88b506e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/fcb73f69d655b48fcb894a262f074218df08bd58",
+                "reference": "fcb73f69d655b48fcb894a262f074218df08bd58",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.2",
-                "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/polyfill-mbstring": "~1.0",
+                "php": ">=8.4",
+                "symfony/polyfill-mbstring": "^1.0",
                 "symfony/service-contracts": "^2.5|^3",
-                "symfony/string": "^7.2|^8.0"
-            },
-            "conflict": {
-                "symfony/dependency-injection": "<6.4",
-                "symfony/dotenv": "<6.4",
-                "symfony/event-dispatcher": "<6.4",
-                "symfony/lock": "<6.4",
-                "symfony/process": "<6.4"
+                "symfony/string": "^7.4|^8.0"
             },
             "provide": {
                 "psr/log-implementation": "1.0|2.0|3.0"
             },
             "require-dev": {
                 "psr/log": "^1|^2|^3",
-                "symfony/config": "^6.4|^7.0|^8.0",
-                "symfony/dependency-injection": "^6.4|^7.0|^8.0",
-                "symfony/event-dispatcher": "^6.4|^7.0|^8.0",
-                "symfony/http-foundation": "^6.4|^7.0|^8.0",
-                "symfony/http-kernel": "^6.4|^7.0|^8.0",
-                "symfony/lock": "^6.4|^7.0|^8.0",
-                "symfony/messenger": "^6.4|^7.0|^8.0",
-                "symfony/process": "^6.4|^7.0|^8.0",
-                "symfony/stopwatch": "^6.4|^7.0|^8.0",
-                "symfony/var-dumper": "^6.4|^7.0|^8.0"
+                "symfony/config": "^7.4|^8.0",
+                "symfony/dependency-injection": "^7.4|^8.0",
+                "symfony/event-dispatcher": "^7.4|^8.0",
+                "symfony/http-foundation": "^7.4|^8.0",
+                "symfony/http-kernel": "^7.4|^8.0",
+                "symfony/lock": "^7.4|^8.0",
+                "symfony/messenger": "^7.4|^8.0",
+                "symfony/process": "^7.4|^8.0",
+                "symfony/stopwatch": "^7.4|^8.0",
+                "symfony/var-dumper": "^7.4|^8.0"
             },
             "type": "library",
             "autoload": {
@@ -8128,7 +7953,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.4.1"
+                "source": "https://github.com/symfony/console/tree/v8.0.1"
             },
             "funding": [
                 {
@@ -8148,7 +7973,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-05T15:23:39+00:00"
+            "time": "2025-12-05T15:25:33+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -10230,12 +10055,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-test-helper.git",
-                "reference": "143e48607754dc8f05b6faadda13f1ed9c00a9d0"
+                "reference": "601909aedef9e7be334a1c80adcc12717b6b9e05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/143e48607754dc8f05b6faadda13f1ed9c00a9d0",
-                "reference": "143e48607754dc8f05b6faadda13f1ed9c00a9d0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/601909aedef9e7be334a1c80adcc12717b6b9e05",
+                "reference": "601909aedef9e7be334a1c80adcc12717b6b9e05",
                 "shasum": ""
             },
             "require": {
@@ -10281,7 +10106,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-test-helper/issues",
                 "source": "https://github.com/dereuromark/cakephp-test-helper/tree/master"
             },
-            "time": "2025-12-01T21:11:16+00:00"
+            "time": "2025-12-11T20:49:53+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
@@ -12537,6 +12362,12 @@
             "alias_normalized": "5.3.0.0"
         },
         {
+            "package": "cakephp/migrations",
+            "version": "5.9999999.9999999.9999999-dev",
+            "alias": "4.9.1",
+            "alias_normalized": "4.9.1.0"
+        },
+        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.0.0",
@@ -12594,6 +12425,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "cakephp/cakephp": 20,
+        "cakephp/migrations": 20,
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-audit-stash": 20,
         "dereuromark/cakephp-bouncer": 20,
