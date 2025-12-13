@@ -6295,12 +6295,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "0f9a93e6673dbf164723d327e95f74bc5250f6a3"
+                "reference": "4c97d8172e604157af6cb6748d3b094f04b81e8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/0f9a93e6673dbf164723d327e95f74bc5250f6a3",
-                "reference": "0f9a93e6673dbf164723d327e95f74bc5250f6a3",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/4c97d8172e604157af6cb6748d3b094f04b81e8c",
+                "reference": "4c97d8172e604157af6cb6748d3b094f04b81e8c",
                 "shasum": ""
             },
             "require": {
@@ -6344,7 +6344,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-13T21:43:24+00:00"
+            "time": "2025-12-13T22:32:07+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -9905,12 +9905,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "ad6ca55c0d03055c5a6681035ccb81799b44819f"
+                "reference": "d2e578c172f00703111a2162811f5544394e294c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/ad6ca55c0d03055c5a6681035ccb81799b44819f",
-                "reference": "ad6ca55c0d03055c5a6681035ccb81799b44819f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/d2e578c172f00703111a2162811f5544394e294c",
+                "reference": "d2e578c172f00703111a2162811f5544394e294c",
                 "shasum": ""
             },
             "require": {
@@ -9976,7 +9976,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-12T20:38:55+00:00"
+            "time": "2025-12-13T22:38:10+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
