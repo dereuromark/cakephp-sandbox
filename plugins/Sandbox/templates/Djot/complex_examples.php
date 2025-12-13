@@ -60,6 +60,8 @@ DJOT,
 
   Earlier markup languages that inspired Djot's design,
   but with less consistent parsing rules.
+
+  They can be up to two times slower.
 DJOT,
 	],
 	'Nested Lists' => [
