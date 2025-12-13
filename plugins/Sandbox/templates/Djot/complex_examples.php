@@ -44,13 +44,17 @@ DJOT,
 ^ Syntax comparison between Markdown and Djot
 DJOT,
 	],
-	'Definition List (Multiple Terms)' => [
-		'description' => 'Multiple terms can share a single definition.',
+	'Definition List (Multiple Terms/Definitions)' => [
+		'description' => 'Multiple terms can share a single definition and vice versa.',
 		'code' => <<<'DJOT'
 : Djot
 
   A lightweight markup language designed by John MacFarlane,
   creator of Pandoc and CommonMark.
+
+: +
+
+  Enhanced by Mark Scherer and Djot PHP implementation to support more awesomeness.
 
 : Markdown
 : CommonMark

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfb5a95e15ba51fdd2dbe981251831fa",
+    "content-hash": "86e13156431d319f3865da69cda37227",
     "packages": [
         {
             "name": "brick/math",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "70e3032d6485bf39a9498453beb7a1dc78a17583"
+                "reference": "e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/70e3032d6485bf39a9498453beb7a1dc78a17583",
-                "reference": "70e3032d6485bf39a9498453beb7a1dc78a17583",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302",
+                "reference": "e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-12-10T06:03:27+00:00"
+            "time": "2025-12-13T20:35:47+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -609,12 +609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "79f7554ed116d6a6d82d177cc7a05d336a7828f6"
+                "reference": "47f960d0d010f4177b0154dd4a69b2e3b5152e00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/79f7554ed116d6a6d82d177cc7a05d336a7828f6",
-                "reference": "79f7554ed116d6a6d82d177cc7a05d336a7828f6",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/47f960d0d010f4177b0154dd4a69b2e3b5152e00",
+                "reference": "47f960d0d010f4177b0154dd4a69b2e3b5152e00",
                 "shasum": ""
             },
             "require": {
@@ -662,7 +662,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2025-12-07T20:58:37+00:00"
+            "time": "2025-12-12T03:55:38+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -6291,16 +6291,16 @@
         },
         {
             "name": "php-collective/djot",
-            "version": "dev-master",
+            "version": "dev-feature/definition-list-continuation-marker",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "a991b9e3606b15b1d1b3d2d0020b74ed932e0130"
+                "reference": "0f9a93e6673dbf164723d327e95f74bc5250f6a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/a991b9e3606b15b1d1b3d2d0020b74ed932e0130",
-                "reference": "a991b9e3606b15b1d1b3d2d0020b74ed932e0130",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/0f9a93e6673dbf164723d327e95f74bc5250f6a3",
+                "reference": "0f9a93e6673dbf164723d327e95f74bc5250f6a3",
                 "shasum": ""
             },
             "require": {
@@ -6311,7 +6311,6 @@
                 "phpstan/phpstan": "^2.1.32",
                 "phpunit/phpunit": "^11.0 || ^12.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6337,7 +6336,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/djot-php/issues",
-                "source": "https://github.com/php-collective/djot-php/tree/master"
+                "source": "https://github.com/php-collective/djot-php/tree/feature/definition-list-continuation-marker"
             },
             "funding": [
                 {
@@ -6345,7 +6344,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-11T20:30:49+00:00"
+            "time": "2025-12-13T21:43:24+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -9906,12 +9905,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "e625ca57e0286aa16440abac6c6eb7eb7d360f5f"
+                "reference": "ad6ca55c0d03055c5a6681035ccb81799b44819f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/e625ca57e0286aa16440abac6c6eb7eb7d360f5f",
-                "reference": "e625ca57e0286aa16440abac6c6eb7eb7d360f5f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/ad6ca55c0d03055c5a6681035ccb81799b44819f",
+                "reference": "ad6ca55c0d03055c5a6681035ccb81799b44819f",
                 "shasum": ""
             },
             "require": {
@@ -9977,7 +9976,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-01T17:27:47+00:00"
+            "time": "2025-12-12T20:38:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
