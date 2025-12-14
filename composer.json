@@ -63,7 +63,7 @@
 		"dereuromark/media-embed": "dev-master",
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
-		"dereuromark/cakephp-dto": "dev-master as 2.0.0",
+		"dereuromark/cakephp-dto": "dev-feature/standalone-integration as 2.0.0",
 		"dereuromark/cakephp-decimal": "dev-master",
 		"brick/math": "^0.14.0",
 		"league/commonmark": "^2.0",

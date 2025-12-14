@@ -6,7 +6,7 @@
 
 namespace Sandbox\Dto\Github;
 
-use CakeDto\Dto\AbstractDto;
+use PhpCollective\Dto\Dto\AbstractDto;
 
 /**
  * Github/Label DTO
@@ -52,6 +52,8 @@ class LabelDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'color' => [
 			'name' => 'color',
@@ -64,6 +66,8 @@ class LabelDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 	];
 

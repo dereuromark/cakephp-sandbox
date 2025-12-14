@@ -6,7 +6,7 @@
 
 namespace Sandbox\Dto\Github;
 
-use CakeDto\Dto\AbstractDto;
+use PhpCollective\Dto\Dto\AbstractDto;
 
 /**
  * Github/Repo DTO
@@ -72,6 +72,8 @@ class RepoDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -84,6 +86,8 @@ class RepoDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'private' => [
 			'name' => 'private',
@@ -96,6 +100,8 @@ class RepoDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'owner' => [
 			'name' => 'owner',
@@ -108,6 +114,8 @@ class RepoDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 	];
 

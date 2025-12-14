@@ -1,0 +1,35 @@
+{
+	"id": 12345,
+	"name": "Example Product",
+	"description": "A sample product for demonstration",
+	"price": 29.99,
+	"currency": "USD",
+	"in_stock": true,
+	"quantity": 150,
+	"categories": ["electronics", "gadgets"],
+	"tags": ["featured", "new"],
+	"created_at": "2024-01-15T10:30:00Z",
+	"updated_at": "2024-06-20T14:22:10Z",
+	"manufacturer": {
+		"id": 42,
+		"name": "Acme Corp",
+		"country": "US",
+		"website": "https://example.com"
+	},
+	"variants": [
+		{
+			"id": 101,
+			"sku": "PROD-12345-BLK",
+			"color": "Black",
+			"size": "Medium",
+			"price_modifier": 0.0
+		},
+		{
+			"id": 102,
+			"sku": "PROD-12345-WHT",
+			"color": "White",
+			"size": "Large",
+			"price_modifier": 5.0
+		}
+	]
+}

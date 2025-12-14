@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86e13156431d319f3865da69cda37227",
+    "content-hash": "8300950c706a6ff5e3a455b6082416e6",
     "packages": [
         {
             "name": "brick/math",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302"
+                "reference": "c2061bf61418f9d03b88ec2d1a09c91bafd1a32c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302",
-                "reference": "e35a6d3a5ff25442fe9ebf6f50f6efb1c6e8b302",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c2061bf61418f9d03b88ec2d1a09c91bafd1a32c",
+                "reference": "c2061bf61418f9d03b88ec2d1a09c91bafd1a32c",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-12-13T20:35:47+00:00"
+            "time": "2025-12-14T16:01:41+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -1621,12 +1621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-audit-stash.git",
-                "reference": "5207c546ea6a8fabcc181e62d1b6a4acb0f930e3"
+                "reference": "2d747a276d94b334aece98edcdf2b2a4358d3ac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/5207c546ea6a8fabcc181e62d1b6a4acb0f930e3",
-                "reference": "5207c546ea6a8fabcc181e62d1b6a4acb0f930e3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/2d747a276d94b334aece98edcdf2b2a4358d3ac8",
+                "reference": "2d747a276d94b334aece98edcdf2b2a4358d3ac8",
                 "shasum": ""
             },
             "require": {
@@ -1664,7 +1664,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-audit-stash/issues",
                 "source": "https://github.com/dereuromark/cakephp-audit-stash/tree/master"
             },
-            "time": "2025-12-09T03:31:46+00:00"
+            "time": "2025-12-14T00:31:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-bouncer",
@@ -2140,36 +2140,36 @@
         },
         {
             "name": "dereuromark/cakephp-dto",
-            "version": "dev-master",
+            "version": "dev-feature/standalone-integration",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "5cc052cca5adb59b6dac943c54f62216821e6ff9"
+                "reference": "c58c650b15b994377ed4d7a08316c71d0d1d988f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/5cc052cca5adb59b6dac943c54f62216821e6ff9",
-                "reference": "5cc052cca5adb59b6dac943c54f62216821e6ff9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/c58c650b15b994377ed4d7a08316c71d0d1d988f",
+                "reference": "c58c650b15b994377ed4d7a08316c71d0d1d988f",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^5.1.1",
                 "cakephp/twig-view": "^2.0.1",
                 "ext-json": "*",
-                "php": ">=8.1",
-                "sebastian/diff": "^5.0.0 || ^6.0.0 || ^7.0.0"
+                "php": ">=8.2",
+                "php-collective/dto": "^0.1.0",
+                "sebastian/diff": "^6.0.0 || ^7.0.0"
             },
             "require-dev": {
                 "ext-dom": "*",
                 "ext-libxml": "*",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "nette/neon": "^2.4 || ^3.2",
-                "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
+                "phpunit/phpunit": "^11.5 || ^12.1"
             },
             "suggest": {
                 "nette/neon": "If you want to add a NEON file engine instead of XML."
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2208,7 +2208,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2025-12-01T17:27:06+00:00"
+            "time": "2025-12-14T12:04:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -6345,6 +6345,74 @@
                 }
             ],
             "time": "2025-12-13T22:32:07+00:00"
+        },
+        {
+            "name": "php-collective/dto",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/dto.git",
+                "reference": "3398feeae36369afd77fb033b5e602cf89e03c0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/3398feeae36369afd77fb033b5e602cf89e03c0d",
+                "reference": "3398feeae36369afd77fb033b5e602cf89e03c0d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "sebastian/diff": "^6.0 || ^7.0",
+                "twig/twig": "^3.0"
+            },
+            "require-dev": {
+                "justinrainbow/json-schema": "^6.0",
+                "nette/neon": "^3.3",
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^11.0 || ^12.0"
+            },
+            "suggest": {
+                "justinrainbow/json-schema": "For YAML/NEON schema validation",
+                "nette/neon": "For NEON format support"
+            },
+            "bin": [
+                "bin/dto"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCollective\\Dto\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://github.com/dereuromark",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "PHP Collective",
+                    "homepage": "https://github.com/php-collective"
+                }
+            ],
+            "description": "Framework-agnostic Data Transfer Object library with code generation",
+            "homepage": "https://github.com/php-collective/dto",
+            "keywords": [
+                "code-generation",
+                "data-transfer-object",
+                "dto",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/dto/issues",
+                "source": "https://github.com/php-collective/dto/tree/0.1.0"
+            },
+            "time": "2025-12-14T12:05:05+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -12368,7 +12436,7 @@
         },
         {
             "package": "dereuromark/cakephp-dto",
-            "version": "9999999-dev",
+            "version": "dev-feature/standalone-integration",
             "alias": "2.0.0",
             "alias_normalized": "2.0.0.0"
         },

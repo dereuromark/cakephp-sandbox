@@ -41,6 +41,40 @@ class DtoExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function generator() {
+		$demoFiles = [
+			'simple-product' => [
+				'label' => 'Simple Product (Example Data)',
+				'file' => 'Demo' . DS . 'simple_product.json',
+				'namespace' => 'Shop',
+				'type' => 'data',
+			],
+			'user-schema' => [
+				'label' => 'User (JSON Schema)',
+				'file' => 'Demo' . DS . 'user_schema.json',
+				'namespace' => 'Account',
+				'type' => 'schema',
+			],
+			'github-pr' => [
+				'label' => 'GitHub Pull Request API (Complex)',
+				'file' => 'Github' . DS . 'demo_pr.json',
+				'namespace' => 'Github',
+				'type' => 'data',
+			],
+		];
+
+		$demos = [];
+		foreach ($demoFiles as $key => $demo) {
+			$file = Plugin::path('Sandbox') . 'files' . DS . $demo['file'];
+			$data = file_get_contents($file) ?: '';
+			$demos[$key] = [
+				'label' => $demo['label'],
+				'data' => base64_encode((string)gzcompress($data)),
+				'namespace' => $demo['namespace'],
+				'type' => $demo['type'],
+			];
+		}
+
+		$this->set(compact('demos'));
 	}
 
 }

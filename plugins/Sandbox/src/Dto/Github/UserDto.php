@@ -6,7 +6,7 @@
 
 namespace Sandbox\Dto\Github;
 
-use CakeDto\Dto\AbstractDto;
+use PhpCollective\Dto\Dto\AbstractDto;
 
 /**
  * Github/User DTO
@@ -62,6 +62,8 @@ class UserDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -74,6 +76,8 @@ class UserDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 		'type' => [
 			'name' => 'type',
@@ -86,6 +90,8 @@ class UserDto extends AbstractDto {
 			'key' => null,
 			'serialize' => null,
 			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
 		],
 	];
 

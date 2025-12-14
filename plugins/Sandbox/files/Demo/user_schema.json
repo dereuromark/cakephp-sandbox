@@ -1,0 +1,58 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "User",
+	"type": "object",
+	"required": ["id", "email", "name"],
+	"properties": {
+		"id": {
+			"type": "integer",
+			"description": "Unique user identifier"
+		},
+		"email": {
+			"type": "string",
+			"format": "email",
+			"description": "User email address"
+		},
+		"name": {
+			"type": "string",
+			"description": "Full name"
+		},
+		"username": {
+			"type": "string",
+			"description": "Username for login"
+		},
+		"is_active": {
+			"type": "boolean",
+			"default": true
+		},
+		"created_at": {
+			"type": "string",
+			"format": "date-time"
+		},
+		"role": {
+			"type": "string",
+			"enum": ["admin", "user", "guest"]
+		},
+		"profile": {
+			"type": "object",
+			"properties": {
+				"bio": {
+					"type": "string"
+				},
+				"avatar_url": {
+					"type": "string",
+					"format": "uri"
+				},
+				"location": {
+					"type": "string"
+				}
+			}
+		},
+		"tags": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
+		}
+	}
+}
