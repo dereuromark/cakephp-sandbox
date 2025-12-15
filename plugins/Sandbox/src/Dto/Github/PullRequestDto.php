@@ -727,7 +727,6 @@ class PullRequestDto extends AbstractDto {
 		return $this->base !== null;
 	}
 
-
 	/**
 	 * @param string|null $type
 	 * @param array<string>|null $fields
@@ -736,8 +735,10 @@ class PullRequestDto extends AbstractDto {
 	 * @return array{url: string, number: int, state: string, title: string, body: string, user: array<string, mixed>, createdAt: \Cake\I18n\FrozenTime, labels: array<string, \Sandbox\Dto\Github\LabelDto>, head: array<string, mixed>|null, base: array<string, mixed>|null}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
-		/** @phpstan-ignore return.type */
-		return $this->_toArrayInternal($type, $fields, $touched);
+		/** @var array{url: string, number: int, state: string, title: string, body: string, user: array<string, mixed>, createdAt: \Cake\I18n\FrozenTime, labels: array<string, \Sandbox\Dto\Github\LabelDto>, head: array<string, mixed>|null, base: array<string, mixed>|null} $result */
+		$result = $this->_toArrayInternal($type, $fields, $touched);
+
+		return $result;
 	}
 
 	/**
@@ -747,7 +748,7 @@ class PullRequestDto extends AbstractDto {
 	 *
 	 * @return static
 	 */
-	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static { // @phpstan-ignore method.childParameterType
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);
 	}
 

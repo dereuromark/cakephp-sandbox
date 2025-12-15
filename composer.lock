@@ -2144,12 +2144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "092ef3d0d2c0c37a85588e61e3895344d8c240b7"
+                "reference": "b207b724a7defd4d8c28bea09a7476dbe2766799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/092ef3d0d2c0c37a85588e61e3895344d8c240b7",
-                "reference": "092ef3d0d2c0c37a85588e61e3895344d8c240b7",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/b207b724a7defd4d8c28bea09a7476dbe2766799",
+                "reference": "b207b724a7defd4d8c28bea09a7476dbe2766799",
                 "shasum": ""
             },
             "require": {
@@ -2209,7 +2209,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2025-12-15T08:58:07+00:00"
+            "time": "2025-12-15T09:16:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -6354,12 +6354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "c38c2f841348c5fd850c5d6d55c1877f7aa40fc7"
+                "reference": "435af7b4d6c581b3bd632b71ca5da0629eb94532"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/c38c2f841348c5fd850c5d6d55c1877f7aa40fc7",
-                "reference": "c38c2f841348c5fd850c5d6d55c1877f7aa40fc7",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/435af7b4d6c581b3bd632b71ca5da0629eb94532",
+                "reference": "435af7b4d6c581b3bd632b71ca5da0629eb94532",
                 "shasum": ""
             },
             "require": {
@@ -6415,7 +6415,7 @@
                 "issues": "https://github.com/php-collective/dto/issues",
                 "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2025-12-15T08:33:58+00:00"
+            "time": "2025-12-15T09:07:11+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -7885,12 +7885,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "442303f8bf01bd2b02536c70aade33154a014524"
+                "reference": "746855d3ec63e7a90d4193fe64abb9cb4d12a9f5"
             },
             "require": {
                 "cakephp/cakephp": "^5.1.0",
-                "dereuromark/cakephp-dto": "^2.0.0",
+                "dereuromark/cakephp-dto": "dev-master",
                 "php": ">=8.3",
+                "php-collective/dto": "dev-master",
                 "phpdocumentor/graphviz": "^2.0.0"
             },
             "require-dev": {
@@ -7953,7 +7954,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2025-12-01T17:33:18+00:00"
+            "time": "2025-12-15T09:14:21+00:00"
         },
         {
             "name": "symfony/console",
