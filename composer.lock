@@ -6296,18 +6296,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "4c97d8172e604157af6cb6748d3b094f04b81e8c"
+                "reference": "7d1c3e051e5b3f9a09dea973e194aa63f97a0865"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/4c97d8172e604157af6cb6748d3b094f04b81e8c",
-                "reference": "4c97d8172e604157af6cb6748d3b094f04b81e8c",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/7d1c3e051e5b3f9a09dea973e194aa63f97a0865",
+                "reference": "7d1c3e051e5b3f9a09dea973e194aa63f97a0865",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2"
             },
             "require-dev": {
+                "nikic/php-fuzzer": "^0.0.11",
                 "php-collective/code-sniffer": "dev-master",
                 "phpstan/phpstan": "^2.1.32",
                 "phpunit/phpunit": "^11.0 || ^12.0"
@@ -6345,7 +6346,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-13T22:32:07+00:00"
+            "time": "2025-12-15T08:19:57+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -6353,12 +6354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "b05392b58624b90e26d3b6c34167311aa80ff3b0"
+                "reference": "c38c2f841348c5fd850c5d6d55c1877f7aa40fc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/b05392b58624b90e26d3b6c34167311aa80ff3b0",
-                "reference": "b05392b58624b90e26d3b6c34167311aa80ff3b0",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/c38c2f841348c5fd850c5d6d55c1877f7aa40fc7",
+                "reference": "c38c2f841348c5fd850c5d6d55c1877f7aa40fc7",
                 "shasum": ""
             },
             "require": {
@@ -6414,7 +6415,7 @@
                 "issues": "https://github.com/php-collective/dto/issues",
                 "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2025-12-15T04:02:09+00:00"
+            "time": "2025-12-15T08:33:58+00:00"
         },
         {
             "name": "php-collective/file-storage",
