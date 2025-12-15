@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9034716420da998de8c60ea053e53e86",
+    "content-hash": "ff355fb0387185ed72fb01f6d3f0efd9",
     "packages": [
         {
             "name": "brick/math",
@@ -2144,12 +2144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "ea270fe128774b794fbff3bfe1138a63fdd80ccb"
+                "reference": "c511e62cd95723d2d31be3fb8bbfde98632330f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/ea270fe128774b794fbff3bfe1138a63fdd80ccb",
-                "reference": "ea270fe128774b794fbff3bfe1138a63fdd80ccb",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/c511e62cd95723d2d31be3fb8bbfde98632330f6",
+                "reference": "c511e62cd95723d2d31be3fb8bbfde98632330f6",
                 "shasum": ""
             },
             "require": {
@@ -2209,7 +2209,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2025-12-15T09:21:50+00:00"
+            "time": "2025-12-15T12:09:10+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -6354,12 +6354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "8068c6bc58a83d1d3e88afded41ca71ac0fe8abb"
+                "reference": "f27534c0572720b92e05aad91ec4e79000df538a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/8068c6bc58a83d1d3e88afded41ca71ac0fe8abb",
-                "reference": "8068c6bc58a83d1d3e88afded41ca71ac0fe8abb",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/f27534c0572720b92e05aad91ec4e79000df538a",
+                "reference": "f27534c0572720b92e05aad91ec4e79000df538a",
                 "shasum": ""
             },
             "require": {
@@ -6415,7 +6415,7 @@
                 "issues": "https://github.com/php-collective/dto/issues",
                 "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2025-12-15T09:20:11+00:00"
+            "time": "2025-12-15T11:51:45+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -7885,13 +7885,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "a59a9ea779f2b1e52c801e3f5b08d865876e5b0d"
+                "reference": "25241be4f51713773ea35200e72489b59e734d64"
             },
             "require": {
                 "cakephp/cakephp": "^5.1.0",
-                "dereuromark/cakephp-dto": "dev-master",
+                "dereuromark/cakephp-dto": "^2.5.0",
                 "php": ">=8.3",
-                "php-collective/dto": "dev-master",
+                "php-collective/dto": "^0.1.2",
                 "phpdocumentor/graphviz": "^2.0.0"
             },
             "require-dev": {
@@ -7954,7 +7954,7 @@
                 }
             ],
             "description": "CakePHP StateMachine Plugin",
-            "time": "2025-12-15T09:23:43+00:00"
+            "time": "2025-12-15T09:36:07+00:00"
         },
         {
             "name": "symfony/console",
@@ -9556,16 +9556,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.22.1",
+            "version": "v3.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3"
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
-                "reference": "1de2ec1fc43ab58a4b7e80b214b96bfc895750f3",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/946ddeafa3c9f4ce279d1f34051af041db0e16f2",
+                "reference": "946ddeafa3c9f4ce279d1f34051af041db0e16f2",
                 "shasum": ""
             },
             "require": {
@@ -9619,7 +9619,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.22.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.22.2"
             },
             "funding": [
                 {
@@ -9631,7 +9631,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-16T16:01:12+00:00"
+            "time": "2025-12-14T11:28:47+00:00"
         },
         {
             "name": "voku/portable-ascii",
@@ -12441,8 +12441,8 @@
         {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
-            "alias": "2.0.0",
-            "alias_normalized": "2.0.0.0"
+            "alias": "2.5.0",
+            "alias_normalized": "2.5.0.0"
         },
         {
             "package": "dereuromark/cakephp-file-storage",
@@ -12483,8 +12483,8 @@
         {
             "package": "php-collective/dto",
             "version": "9999999-dev",
-            "alias": "0.1.0",
-            "alias_normalized": "0.1.0.0"
+            "alias": "0.1.2",
+            "alias_normalized": "0.1.2.0"
         },
         {
             "package": "php-collective/file-storage",
