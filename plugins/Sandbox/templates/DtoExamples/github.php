@@ -46,7 +46,7 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 
 	<h4>dd($pullRequestDto) result</h4>
 	<p>Using debug() or dd() we can easily show what the DTO contains:</p>
-<pre><code><?php echo Debugger::printVar($pullRequestDto, [], false)?></code></pre>
+<pre><code><?php Debugger::printVar($pullRequestDto); ?></code></pre>
 
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>
