@@ -352,7 +352,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return static
 	 */
-	#[\Override]
+	#[\Override] // @phpstan-ignore method.childParameterType
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return parent::createFromArray($data, $ignoreMissing, $type);
 	}
