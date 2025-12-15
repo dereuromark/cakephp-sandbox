@@ -112,6 +112,80 @@ class UserDto extends AbstractDto {
 	];
 
 	/**
+	 * Whether this DTO is immutable.
+	 */
+	protected const IS_IMMUTABLE = false;
+
+	/**
+	 * Pre-computed setter method names for fast lookup.
+	 *
+	 * @var array<string, string>
+	 */
+	protected static array $_setters = [
+		'login' => 'setLogin',
+		'htmlUrl' => 'setHtmlurl',
+		'type' => 'setType',
+	];
+
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['login'])) {
+			$this->login = $data['login'];
+			$this->_touchedFields['login'] = true;
+		}
+		if (isset($data['htmlUrl'])) {
+			$this->htmlUrl = $data['htmlUrl'];
+			$this->_touchedFields['htmlUrl'] = true;
+		}
+		if (isset($data['type'])) {
+			$this->type = $data['type'];
+			$this->_touchedFields['type'] = true;
+		}
+	}
+
+	/**
+	 * Optimized setDefaults - only processes fields with default values.
+	 *
+	 * @return $this
+	 */
+	protected function setDefaults() {
+
+		return $this;
+	}
+
+	/**
+	 * Optimized validate - only checks required fields.
+	 *
+	 * @throws \InvalidArgumentException
+	 *
+	 * @return void
+	 */
+	protected function validate(): void {
+		if ($this->login === null || $this->htmlUrl === null || $this->type === null) {
+			$errors = [];
+			if ($this->login === null) {
+				$errors[] = 'login';
+			}
+			if ($this->htmlUrl === null) {
+				$errors[] = 'htmlUrl';
+			}
+			if ($this->type === null) {
+				$errors[] = 'type';
+			}
+			if ($errors) {
+				throw new \InvalidArgumentException('Required fields missing: ' . implode(', ', $errors));
+			}
+		}
+	}
+
+
+	/**
 	 * @param string $login
 	 *
 	 * @return $this
@@ -187,6 +261,31 @@ class UserDto extends AbstractDto {
 	 */
 	public function hasType(): bool {
 		return $this->type !== null;
+	}
+
+
+	/**
+	 * @param string|null $type
+	 * @param array<string>|null $fields
+	 * @param bool $touched
+	 *
+	 * @return array{login: string, htmlUrl: string, type: string}
+	 */
+	#[\Override]
+	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		return parent::toArray($type, $fields, $touched);
+	}
+
+	/**
+	 * @param array{login: string, htmlUrl: string, type: string} $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
+	 */
+	#[\Override]
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+		return parent::createFromArray($data, $ignoreMissing, $type);
 	}
 
 }

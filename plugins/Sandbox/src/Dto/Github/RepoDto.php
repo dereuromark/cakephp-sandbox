@@ -138,6 +138,92 @@ class RepoDto extends AbstractDto {
 	];
 
 	/**
+	 * Whether this DTO is immutable.
+	 */
+	protected const IS_IMMUTABLE = false;
+
+	/**
+	 * Pre-computed setter method names for fast lookup.
+	 *
+	 * @var array<string, string>
+	 */
+	protected static array $_setters = [
+		'name' => 'setName',
+		'htmlUrl' => 'setHtmlurl',
+		'private' => 'setPrivate',
+		'owner' => 'setOwner',
+	];
+
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['name'])) {
+			$this->name = $data['name'];
+			$this->_touchedFields['name'] = true;
+		}
+		if (isset($data['htmlUrl'])) {
+			$this->htmlUrl = $data['htmlUrl'];
+			$this->_touchedFields['htmlUrl'] = true;
+		}
+		if (isset($data['private'])) {
+			$this->private = $data['private'];
+			$this->_touchedFields['private'] = true;
+		}
+		if (isset($data['owner'])) {
+			$value = $data['owner'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\UserDto($value);
+			}
+			$this->owner = $value;
+			$this->_touchedFields['owner'] = true;
+		}
+	}
+
+	/**
+	 * Optimized setDefaults - only processes fields with default values.
+	 *
+	 * @return $this
+	 */
+	protected function setDefaults() {
+
+		return $this;
+	}
+
+	/**
+	 * Optimized validate - only checks required fields.
+	 *
+	 * @throws \InvalidArgumentException
+	 *
+	 * @return void
+	 */
+	protected function validate(): void {
+		if ($this->name === null || $this->htmlUrl === null || $this->private === null || $this->owner === null) {
+			$errors = [];
+			if ($this->name === null) {
+				$errors[] = 'name';
+			}
+			if ($this->htmlUrl === null) {
+				$errors[] = 'htmlUrl';
+			}
+			if ($this->private === null) {
+				$errors[] = 'private';
+			}
+			if ($this->owner === null) {
+				$errors[] = 'owner';
+			}
+			if ($errors) {
+				throw new \InvalidArgumentException('Required fields missing: ' . implode(', ', $errors));
+			}
+		}
+	}
+
+
+	/**
 	 * @param string $name
 	 *
 	 * @return $this
@@ -239,6 +325,31 @@ class RepoDto extends AbstractDto {
 	 */
 	public function hasOwner(): bool {
 		return $this->owner !== null;
+	}
+
+
+	/**
+	 * @param string|null $type
+	 * @param array<string>|null $fields
+	 * @param bool $touched
+	 *
+	 * @return array{name: string, htmlUrl: string, private: bool, owner: array<string, mixed>}
+	 */
+	#[\Override]
+	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		return parent::toArray($type, $fields, $touched);
+	}
+
+	/**
+	 * @param array{name: string, htmlUrl: string, private: bool, owner: array<string, mixed>} $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
+	 */
+	#[\Override]
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+		return parent::createFromArray($data, $ignoreMissing, $type);
 	}
 
 }

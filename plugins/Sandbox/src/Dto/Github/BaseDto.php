@@ -138,6 +138,96 @@ class BaseDto extends AbstractDto {
 	];
 
 	/**
+	 * Whether this DTO is immutable.
+	 */
+	protected const IS_IMMUTABLE = false;
+
+	/**
+	 * Pre-computed setter method names for fast lookup.
+	 *
+	 * @var array<string, string>
+	 */
+	protected static array $_setters = [
+		'ref' => 'setRef',
+		'sha' => 'setSha',
+		'user' => 'setUser',
+		'repo' => 'setRepo',
+	];
+
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['ref'])) {
+			$this->ref = $data['ref'];
+			$this->_touchedFields['ref'] = true;
+		}
+		if (isset($data['sha'])) {
+			$this->sha = $data['sha'];
+			$this->_touchedFields['sha'] = true;
+		}
+		if (isset($data['user'])) {
+			$value = $data['user'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\UserDto($value);
+			}
+			$this->user = $value;
+			$this->_touchedFields['user'] = true;
+		}
+		if (isset($data['repo'])) {
+			$value = $data['repo'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\RepoDto($value);
+			}
+			$this->repo = $value;
+			$this->_touchedFields['repo'] = true;
+		}
+	}
+
+	/**
+	 * Optimized setDefaults - only processes fields with default values.
+	 *
+	 * @return $this
+	 */
+	protected function setDefaults() {
+
+		return $this;
+	}
+
+	/**
+	 * Optimized validate - only checks required fields.
+	 *
+	 * @throws \InvalidArgumentException
+	 *
+	 * @return void
+	 */
+	protected function validate(): void {
+		if ($this->ref === null || $this->sha === null || $this->user === null || $this->repo === null) {
+			$errors = [];
+			if ($this->ref === null) {
+				$errors[] = 'ref';
+			}
+			if ($this->sha === null) {
+				$errors[] = 'sha';
+			}
+			if ($this->user === null) {
+				$errors[] = 'user';
+			}
+			if ($this->repo === null) {
+				$errors[] = 'repo';
+			}
+			if ($errors) {
+				throw new \InvalidArgumentException('Required fields missing: ' . implode(', ', $errors));
+			}
+		}
+	}
+
+
+	/**
 	 * @param string $ref
 	 *
 	 * @return $this
@@ -239,6 +329,31 @@ class BaseDto extends AbstractDto {
 	 */
 	public function hasRepo(): bool {
 		return $this->repo !== null;
+	}
+
+
+	/**
+	 * @param string|null $type
+	 * @param array<string>|null $fields
+	 * @param bool $touched
+	 *
+	 * @return array{ref: string, sha: string, user: array<string, mixed>, repo: array<string, mixed>}
+	 */
+	#[\Override]
+	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		return parent::toArray($type, $fields, $touched);
+	}
+
+	/**
+	 * @param array{ref: string, sha: string, user: array<string, mixed>, repo: array<string, mixed>} $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
+	 */
+	#[\Override]
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+		return parent::createFromArray($data, $ignoreMissing, $type);
 	}
 
 }

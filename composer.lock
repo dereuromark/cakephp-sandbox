@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8300950c706a6ff5e3a455b6082416e6",
+    "content-hash": "9034716420da998de8c60ea053e53e86",
     "packages": [
         {
             "name": "brick/math",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "c2061bf61418f9d03b88ec2d1a09c91bafd1a32c"
+                "reference": "4ea255d3dd9ea429f1f190aafcfe6a66b42159f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c2061bf61418f9d03b88ec2d1a09c91bafd1a32c",
-                "reference": "c2061bf61418f9d03b88ec2d1a09c91bafd1a32c",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/4ea255d3dd9ea429f1f190aafcfe6a66b42159f4",
+                "reference": "4ea255d3dd9ea429f1f190aafcfe6a66b42159f4",
                 "shasum": ""
             },
             "require": {
@@ -424,7 +424,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2025-12-14T16:01:41+00:00"
+            "time": "2025-12-15T04:13:44+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2140,16 +2140,16 @@
         },
         {
             "name": "dereuromark/cakephp-dto",
-            "version": "dev-feature/standalone-integration",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "c58c650b15b994377ed4d7a08316c71d0d1d988f"
+                "reference": "a0454bd6729c3b99140566b370191815a57ea9c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/c58c650b15b994377ed4d7a08316c71d0d1d988f",
-                "reference": "c58c650b15b994377ed4d7a08316c71d0d1d988f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/a0454bd6729c3b99140566b370191815a57ea9c5",
+                "reference": "a0454bd6729c3b99140566b370191815a57ea9c5",
                 "shasum": ""
             },
             "require": {
@@ -2170,6 +2170,7 @@
             "suggest": {
                 "nette/neon": "If you want to add a NEON file engine instead of XML."
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2208,7 +2209,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2025-12-14T12:04:34+00:00"
+            "time": "2025-12-15T01:36:50+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -3391,12 +3392,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-translate.git",
-                "reference": "0fb8fe94babd49fe53e68d8495a0e6a413872a81"
+                "reference": "0f60a8887fa98ec9826cac6feac17187f246103b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/0fb8fe94babd49fe53e68d8495a0e6a413872a81",
-                "reference": "0fb8fe94babd49fe53e68d8495a0e6a413872a81",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-translate/zipball/0f60a8887fa98ec9826cac6feac17187f246103b",
+                "reference": "0f60a8887fa98ec9826cac6feac17187f246103b",
                 "shasum": ""
             },
             "require": {
@@ -3452,7 +3453,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-translate/issues",
                 "source": "https://github.com/dereuromark/cakephp-translate"
             },
-            "time": "2025-11-25T18:04:15+00:00"
+            "time": "2025-12-14T16:27:32+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -6348,16 +6349,16 @@
         },
         {
             "name": "php-collective/dto",
-            "version": "0.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "3398feeae36369afd77fb033b5e602cf89e03c0d"
+                "reference": "b05392b58624b90e26d3b6c34167311aa80ff3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/3398feeae36369afd77fb033b5e602cf89e03c0d",
-                "reference": "3398feeae36369afd77fb033b5e602cf89e03c0d",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/b05392b58624b90e26d3b6c34167311aa80ff3b0",
+                "reference": "b05392b58624b90e26d3b6c34167311aa80ff3b0",
                 "shasum": ""
             },
             "require": {
@@ -6376,6 +6377,7 @@
                 "justinrainbow/json-schema": "For YAML/NEON schema validation",
                 "nette/neon": "For NEON format support"
             },
+            "default-branch": true,
             "bin": [
                 "bin/dto"
             ],
@@ -6410,9 +6412,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/dto/issues",
-                "source": "https://github.com/php-collective/dto/tree/0.1.0"
+                "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2025-12-14T12:05:05+00:00"
+            "time": "2025-12-15T04:02:09+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -11130,16 +11132,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.5.3",
+            "version": "12.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6dc2e076d09960efbb0c1272aa9bc156fc80955e"
+                "reference": "4ba0e923f9d3fc655de22f9547c01d15a41fc93a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6dc2e076d09960efbb0c1272aa9bc156fc80955e",
-                "reference": "6dc2e076d09960efbb0c1272aa9bc156fc80955e",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/4ba0e923f9d3fc655de22f9547c01d15a41fc93a",
+                "reference": "4ba0e923f9d3fc655de22f9547c01d15a41fc93a",
                 "shasum": ""
             },
             "require": {
@@ -11207,7 +11209,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.5.4"
             },
             "funding": [
                 {
@@ -11231,7 +11233,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-11T08:52:59+00:00"
+            "time": "2025-12-15T06:05:34+00:00"
         },
         {
             "name": "rector/type-perfect",
@@ -12436,7 +12438,7 @@
         },
         {
             "package": "dereuromark/cakephp-dto",
-            "version": "dev-feature/standalone-integration",
+            "version": "9999999-dev",
             "alias": "2.0.0",
             "alias_normalized": "2.0.0.0"
         },
@@ -12475,6 +12477,12 @@
             "version": "9999999-dev",
             "alias": "0.5.0",
             "alias_normalized": "0.5.0.0"
+        },
+        {
+            "package": "php-collective/dto",
+            "version": "9999999-dev",
+            "alias": "0.1.0",
+            "alias_normalized": "0.1.0.0"
         },
         {
             "package": "php-collective/file-storage",
@@ -12534,6 +12542,7 @@
         "natxet/cssmin": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
+        "php-collective/dto": 20,
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
         "spryker/cakephp-statemachine": 20,
