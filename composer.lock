@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff355fb0387185ed72fb01f6d3f0efd9",
+    "content-hash": "c900199a4dd76901495863f7b45f402b",
     "packages": [
         {
             "name": "brick/math",
@@ -2144,12 +2144,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "c511e62cd95723d2d31be3fb8bbfde98632330f6"
+                "reference": "9d008cb679c23563e34ecc71c9b03e1b7ecf630b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/c511e62cd95723d2d31be3fb8bbfde98632330f6",
-                "reference": "c511e62cd95723d2d31be3fb8bbfde98632330f6",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/9d008cb679c23563e34ecc71c9b03e1b7ecf630b",
+                "reference": "9d008cb679c23563e34ecc71c9b03e1b7ecf630b",
                 "shasum": ""
             },
             "require": {
@@ -2157,7 +2157,7 @@
                 "cakephp/twig-view": "^2.0.1",
                 "ext-json": "*",
                 "php": ">=8.2",
-                "php-collective/dto": "dev-master",
+                "php-collective/dto": "^0.1.3",
                 "sebastian/diff": "^6.0.0 || ^7.0.0"
             },
             "require-dev": {
@@ -2209,7 +2209,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2025-12-15T12:09:10+00:00"
+            "time": "2025-12-15T13:49:03+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -6292,16 +6292,16 @@
         },
         {
             "name": "php-collective/djot",
-            "version": "dev-feature/definition-list-continuation-marker",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "7d1c3e051e5b3f9a09dea973e194aa63f97a0865"
+                "reference": "1ea357fe6be503c1437b33dc890d26f47fedfbad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/7d1c3e051e5b3f9a09dea973e194aa63f97a0865",
-                "reference": "7d1c3e051e5b3f9a09dea973e194aa63f97a0865",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/1ea357fe6be503c1437b33dc890d26f47fedfbad",
+                "reference": "1ea357fe6be503c1437b33dc890d26f47fedfbad",
                 "shasum": ""
             },
             "require": {
@@ -6313,6 +6313,10 @@
                 "phpstan/phpstan": "^2.1.32",
                 "phpunit/phpunit": "^11.0 || ^12.0"
             },
+            "default-branch": true,
+            "bin": [
+                "bin/djot"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6338,7 +6342,7 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/djot-php/issues",
-                "source": "https://github.com/php-collective/djot-php/tree/feature/definition-list-continuation-marker"
+                "source": "https://github.com/php-collective/djot-php/tree/master"
             },
             "funding": [
                 {
@@ -6346,7 +6350,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-15T08:19:57+00:00"
+            "time": "2025-12-15T22:05:02+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -6354,12 +6358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "f27534c0572720b92e05aad91ec4e79000df538a"
+                "reference": "c086285da437cfe62b66f48a088040d66eabceec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/f27534c0572720b92e05aad91ec4e79000df538a",
-                "reference": "f27534c0572720b92e05aad91ec4e79000df538a",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/c086285da437cfe62b66f48a088040d66eabceec",
+                "reference": "c086285da437cfe62b66f48a088040d66eabceec",
                 "shasum": ""
             },
             "require": {
@@ -6415,7 +6419,7 @@
                 "issues": "https://github.com/php-collective/dto/issues",
                 "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2025-12-15T11:51:45+00:00"
+            "time": "2025-12-15T21:44:55+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -12483,8 +12487,8 @@
         {
             "package": "php-collective/dto",
             "version": "9999999-dev",
-            "alias": "0.1.2",
-            "alias_normalized": "0.1.2.0"
+            "alias": "0.1.3",
+            "alias_normalized": "0.1.3.0"
         },
         {
             "package": "php-collective/file-storage",

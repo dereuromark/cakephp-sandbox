@@ -64,7 +64,7 @@
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 2.5.0",
-		"php-collective/dto": "dev-master as 0.1.2",
+		"php-collective/dto": "dev-master as 0.1.3",
 		"dereuromark/cakephp-decimal": "dev-master",
 		"brick/math": "^0.14.0",
 		"league/commonmark": "^2.0",
@@ -84,7 +84,7 @@
 		"cakephp/authentication": "^3.3",
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
-		"php-collective/djot": "dev-feature/definition-list-continuation-marker",
+		"php-collective/djot": "dev-master",
 		"ezyang/htmlpurifier": "^4.19"
 	},
 	"require-dev": {
