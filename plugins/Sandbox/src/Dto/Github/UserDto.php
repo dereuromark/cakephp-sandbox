@@ -127,27 +127,6 @@ class UserDto extends AbstractDto {
 		'type' => 'setType',
 	];
 
-	/**
-	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * @param array<string, mixed> $data
-	 *
-	 * @return void
-	 */
-	protected function setFromArrayFast(array $data): void {
-		if (isset($data['login'])) {
-			$this->login = $data['login'];
-			$this->_touchedFields['login'] = true;
-		}
-		if (isset($data['htmlUrl'])) {
-			$this->htmlUrl = $data['htmlUrl'];
-			$this->_touchedFields['htmlUrl'] = true;
-		}
-		if (isset($data['type'])) {
-			$this->type = $data['type'];
-			$this->_touchedFields['type'] = true;
-		}
-	}
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -272,6 +251,7 @@ class UserDto extends AbstractDto {
 	 * @return array{login: string, htmlUrl: string, type: string}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		/** @phpstan-ignore return.type */
 		return $this->_toArrayInternal($type, $fields, $touched);
 	}
 
@@ -282,7 +262,7 @@ class UserDto extends AbstractDto {
 	 *
 	 * @return static
 	 */
-	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static { // @phpstan-ignore method.childParameterType
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);
 	}
 

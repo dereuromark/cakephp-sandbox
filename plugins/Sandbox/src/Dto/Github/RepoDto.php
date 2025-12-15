@@ -154,35 +154,6 @@ class RepoDto extends AbstractDto {
 		'owner' => 'setOwner',
 	];
 
-	/**
-	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * @param array<string, mixed> $data
-	 *
-	 * @return void
-	 */
-	protected function setFromArrayFast(array $data): void {
-		if (isset($data['name'])) {
-			$this->name = $data['name'];
-			$this->_touchedFields['name'] = true;
-		}
-		if (isset($data['htmlUrl'])) {
-			$this->htmlUrl = $data['htmlUrl'];
-			$this->_touchedFields['htmlUrl'] = true;
-		}
-		if (isset($data['private'])) {
-			$this->private = $data['private'];
-			$this->_touchedFields['private'] = true;
-		}
-		if (isset($data['owner'])) {
-			$value = $data['owner'];
-			if (is_array($value)) {
-				$value = new \Sandbox\Dto\Github\UserDto($value);
-			}
-			$this->owner = $value;
-			$this->_touchedFields['owner'] = true;
-		}
-	}
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -336,6 +307,7 @@ class RepoDto extends AbstractDto {
 	 * @return array{name: string, htmlUrl: string, private: bool, owner: array<string, mixed>}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		/** @phpstan-ignore return.type */
 		return $this->_toArrayInternal($type, $fields, $touched);
 	}
 
@@ -346,7 +318,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return static
 	 */
-	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static { // @phpstan-ignore method.childParameterType
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);
 	}
 
