@@ -75,6 +75,9 @@ class DjotController extends SandboxAppController {
 						$result['warnings'][] = [
 							'message' => $warning->getMessage(),
 							'line' => $warning->getLine(),
+							'column' => $warning->getColumn(),
+							'category' => $warning->getCategory(),
+							'suggestion' => $warning->getSuggestion(),
 						];
 					}
 				}
