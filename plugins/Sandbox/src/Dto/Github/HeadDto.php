@@ -341,6 +341,7 @@ class HeadDto extends AbstractDto {
 	 */
 	#[\Override]
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		/** @phpstan-ignore return.type (parent returns array, we provide shape for IDE) */
 		return parent::toArray($type, $fields, $touched);
 	}
 
