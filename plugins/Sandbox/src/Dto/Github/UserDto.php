@@ -258,6 +258,7 @@ class UserDto extends AbstractDto {
 
 	/**
 	 * @param array{login: string, htmlUrl: string, type: string} $data
+	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
 	 *

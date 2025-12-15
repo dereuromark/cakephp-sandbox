@@ -314,6 +314,7 @@ class HeadDto extends AbstractDto {
 
 	/**
 	 * @param array{ref: string, sha: string, user: array<string, mixed>, repo: array<string, mixed>} $data
+	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
 	 *

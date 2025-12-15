@@ -743,6 +743,7 @@ class PullRequestDto extends AbstractDto {
 
 	/**
 	 * @param array{url: string, number: int, state: string, title: string, body: string, user: array<string, mixed>, createdAt: \Cake\I18n\FrozenTime, labels: array<string, \Sandbox\Dto\Github\LabelDto>, head: array<string, mixed>|null, base: array<string, mixed>|null} $data
+	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
 	 *

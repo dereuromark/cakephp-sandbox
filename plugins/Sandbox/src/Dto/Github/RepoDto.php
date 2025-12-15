@@ -314,6 +314,7 @@ class RepoDto extends AbstractDto {
 
 	/**
 	 * @param array{name: string, htmlUrl: string, private: bool, owner: array<string, mixed>} $data
+	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
 	 *

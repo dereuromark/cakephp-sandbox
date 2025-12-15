@@ -240,6 +240,7 @@ class LabelDto extends AbstractDto {
 
 	/**
 	 * @param array{name: string|null, color: string|null} $data
+	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
 	 *
