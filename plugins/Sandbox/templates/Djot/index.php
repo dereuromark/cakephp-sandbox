@@ -625,7 +625,11 @@ This div is never closed.</code></pre>
 			if (data.warnings && data.warnings.length > 0) {
 				let warningHtml = '<div class="alert alert-warning py-2"><strong>Warnings:</strong><ul class="mb-0 ps-3">';
 				data.warnings.forEach(function(w) {
-					warningHtml += '<li>' + escapeHtml(w.message) + ' (line ' + w.line + ')</li>';
+					warningHtml += '<li>' + escapeHtml(w.message) + ' (line ' + w.line + ')';
+					if (w.suggestion) {
+						warningHtml += ' <i class="bi bi-lightbulb text-primary" title="' + escapeHtml(w.suggestion) + '" style="cursor: help;"></i>';
+					}
+					warningHtml += '</li>';
 				});
 				warningHtml += '</ul></div>';
 				alertContainer.innerHTML += warningHtml;
