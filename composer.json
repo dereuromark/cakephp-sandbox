@@ -20,7 +20,7 @@
 		"php": ">=8.4",
 		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
-		"cakephp/cakephp": "dev-5.next as 5.3.0",
+		"cakephp/cakephp": "dev-5.next-dto-projection as 5.3.0",
 		"cakephp/bake": "^3.0.2",
 		"mobiledetect/mobiledetectlib": "4.*",
 		"dereuromark/cakephp-comments": "dev-master",
@@ -33,7 +33,7 @@
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"dereuromark/cakephp-captcha": "dev-master",
-		"cakephp/migrations": "5.x-dev as 4.9.1",
+		"cakephp/migrations": "^4.9",
 		"markstory/asset_compress": "^5.0.0",
 		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
@@ -97,7 +97,8 @@
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^12.1",
-		"cakedc/cakephp-phpstan": "^4.0"
+		"cakedc/cakephp-phpstan": "^4.0",
+		"admad/entity": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
@@ -156,16 +157,20 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
-	"repositories": [
-		{
+	"repositories": {
+		"admad-entity": {
+			"type": "vcs",
+			"url": "https://github.com/ADmad/cakephp-entity"
+		},
+		"0": {
 			"type": "git",
 			"url": "https://github.com/dereuromark/cakephp-statemachine.git"
 		},
-		{
+		"1": {
 			"type": "git",
 			"url": "https://github.com/dereuromark/audit-stash.git"
 		}
-	],
+	},
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"config": {
