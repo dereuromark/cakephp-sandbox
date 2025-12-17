@@ -7,6 +7,7 @@ use App\Dto\PostDto;
 use App\Dto\SimpleRoleDto;
 use App\Dto\SimpleUserDto;
 use App\Dto\UserProjectionDto;
+use App\Dto\UserWithMatchingDto;
 
 /**
  * DtoProjectionController
@@ -115,6 +116,7 @@ class DtoProjectionController extends AppController {
      * Shows:
      * - matching() finder with _matchingData
      * - How matched association data appears in DTOs
+     * - DTO without _matchingData vs DTO with _matchingData
      *
      * @return void
      */
@@ -129,9 +131,9 @@ class DtoProjectionController extends AppController {
             ->limit(5)
             ->toArray();
 
-        // DTO projection with matching
-        // Note: _matchingData will be present in the raw array data
-        $dtos = $usersTable->find()
+        // DTO projection WITHOUT _matchingData property
+        // The _matchingData from the query is ignored (not in DTO constructor)
+        $dtosWithout = $usersTable->find()
             ->matching('Roles', function ($q) {
                 return $q->where(['Roles.id' => 1]);
             })
@@ -139,16 +141,26 @@ class DtoProjectionController extends AppController {
             ->projectAs(SimpleUserDto::class)
             ->toArray();
 
-        // Get raw array to show _matchingData
+        // DTO projection WITH _matchingData property
+        // The _matchingData is included because UserWithMatchingDto has the property
+        $dtosWith = $usersTable->find()
+            ->matching('Roles', function ($q) {
+                return $q->where(['Roles.id' => 1]);
+            })
+            ->limit(5)
+            ->projectAs(UserWithMatchingDto::class)
+            ->toArray();
+
+        // Get raw array to show _matchingData structure
         $rawArrays = $usersTable->find()
             ->matching('Roles', function ($q) {
                 return $q->where(['Roles.id' => 1]);
             })
             ->limit(5)
-            ->enableHydration(false)
+            ->disableHydration()
             ->toArray();
 
-        $this->set(compact('entities', 'dtos', 'rawArrays'));
+        $this->set(compact('entities', 'dtosWithout', 'dtosWith', 'rawArrays'));
     }
 
     /**

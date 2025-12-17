@@ -2,7 +2,8 @@
 /**
  * @var \App\View\AppView $this
  * @var array<\App\Model\Entity\User> $entities
- * @var array<\App\Dto\SimpleUserDto> $dtos
+ * @var array<\App\Dto\SimpleUserDto> $dtosWithout
+ * @var array<\App\Dto\UserWithMatchingDto> $dtosWith
  * @var array $rawArrays
  */
 ?>
@@ -10,8 +11,8 @@
 
 <p>
     This demo shows <code>projectAs()</code> with <code>matching()</code> queries.
-    Note: <code>_matchingData</code> is available in the raw array but not automatically
-    mapped to the DTO (it's query metadata, not part of the entity structure).
+    <strong>Key insight:</strong> <code>_matchingData</code> IS available in DTOs if you
+    explicitly add it as a constructor parameter.
 </p>
 
 <h2>Navigation</h2>
@@ -34,37 +35,77 @@ foreach ($entities as $entity) {
 }
 ?></pre>
 
-<h2>DTOs from matching() Query</h2>
+<h2>DTO WITHOUT _matchingData property</h2>
 <p>
-    The DTO gets the main entity fields. <code>_matchingData</code> is query metadata
-    and would need explicit handling if you need it in the DTO.
+    Using <code>SimpleUserDto</code> which does NOT have a <code>$_matchingData</code> property.
+    The matching data is silently ignored.
 </p>
 <pre><?php
-foreach ($dtos as $dto) {
+foreach ($dtosWithout as $dto) {
     echo "User #{$dto->id}: {$dto->username}\n";
     echo "  Type: " . get_class($dto) . "\n";
+    echo "  Has _matchingData property: " . (property_exists($dto, '_matchingData') ? 'yes' : 'no') . "\n";
 }
 ?></pre>
 
-<h2>Raw Array showing _matchingData</h2>
+<h2>DTO WITH _matchingData property</h2>
+<p>
+    Using <code>UserWithMatchingDto</code> which HAS a <code>$_matchingData</code> property.
+    The matching data is included as an array.
+</p>
 <pre><?php
-foreach ($rawArrays as $row) {
-    echo "User #{$row['id']}: {$row['username']}\n";
-    if (isset($row['_matchingData']['Roles'])) {
-        $role = $row['_matchingData']['Roles'];
-        echo "  _matchingData[Roles]: " . print_r($role, true);
+foreach ($dtosWith as $dto) {
+    echo "User #{$dto->id}: {$dto->username}\n";
+    echo "  Type: " . get_class($dto) . "\n";
+    if ($dto->_matchingData !== null) {
+        foreach ($dto->_matchingData as $alias => $data) {
+            if (is_array($data)) {
+                echo "  _matchingData[{$alias}]: " . ($data['name'] ?? 'unknown') . " (array)\n";
+            } else {
+                echo "  _matchingData[{$alias}]: " . $data->name . " (" . get_class($data) . ")\n";
+            }
+        }
     }
 }
 ?></pre>
 
-<h2>Code Example</h2>
-<pre><code>// matching() query with DTO projection
-$users = $usersTable->find()
-    ->matching('Roles', function ($q) {
-        return $q->where(['Roles.id' => 1]);
-    })
-    ->projectAs(SimpleUserDto::class)
-    ->toArray();
+<h2>Raw Array showing _matchingData structure</h2>
+<pre><?php
+foreach (array_slice($rawArrays, 0, 2) as $row) {
+    echo "User #{$row['id']}: {$row['username']}\n";
+    if (isset($row['_matchingData']['Roles'])) {
+        echo "  _matchingData[Roles]: " . json_encode($row['_matchingData']['Roles'], JSON_PRETTY_PRINT) . "\n";
+    }
+}
+?></pre>
 
-// Note: If you need _matchingData in DTOs, add it to your DTO:
-// public ?array $_matchingData = null;</code></pre>
+<h2>DTO Definitions</h2>
+<pre><code>// SimpleUserDto - does NOT include _matchingData
+readonly class SimpleUserDto
+{
+    public function __construct(
+        public int $id,
+        public string $username,
+        public ?string $email = null,
+        public ?SimpleRoleDto $role = null,
+        public ?DateTime $created = null,
+    ) {}
+}
+
+// UserWithMatchingDto - INCLUDES _matchingData
+readonly class UserWithMatchingDto
+{
+    public function __construct(
+        public int $id,
+        public string $username,
+        public ?string $email = null,
+        public ?DateTime $created = null,
+        public ?array $_matchingData = null,  // <-- Explicit property
+    ) {}
+}</code></pre>
+
+<h2>Key Takeaway</h2>
+<p>
+    <code>_matchingData</code> (and <code>_joinData</code>) work with DTOs just like any other field.
+    If you want them in your DTO, add them as constructor parameters. If you don't need them, omit them.
+</p>
