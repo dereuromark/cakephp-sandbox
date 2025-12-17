@@ -8,6 +8,7 @@ use App\Dto\SimpleRoleDto;
 use App\Dto\SimpleUserDto;
 use App\Dto\UserProjectionDto;
 use App\Dto\UserWithMatchingDto;
+use App\Dto\UserWithMatchingDtoTyped;
 
 /**
  * DtoProjectionController
@@ -141,14 +142,24 @@ class DtoProjectionController extends AppController {
             ->projectAs(SimpleUserDto::class)
             ->toArray();
 
-        // DTO projection WITH _matchingData property
+        // DTO projection WITH _matchingData as array
         // The _matchingData is included because UserWithMatchingDto has the property
-        $dtosWith = $usersTable->find()
+        $dtosWithArray = $usersTable->find()
             ->matching('Roles', function ($q) {
                 return $q->where(['Roles.id' => 1]);
             })
             ->limit(5)
             ->projectAs(UserWithMatchingDto::class)
+            ->toArray();
+
+        // DTO projection WITH _matchingData as typed DTO
+        // The _matchingData is recursively mapped to MatchingDataDto->SimpleRoleDto
+        $dtosWithTyped = $usersTable->find()
+            ->matching('Roles', function ($q) {
+                return $q->where(['Roles.id' => 1]);
+            })
+            ->limit(5)
+            ->projectAs(UserWithMatchingDtoTyped::class)
             ->toArray();
 
         // Get raw array to show _matchingData structure
@@ -160,7 +171,7 @@ class DtoProjectionController extends AppController {
             ->disableHydration()
             ->toArray();
 
-        $this->set(compact('entities', 'dtosWithout', 'dtosWith', 'rawArrays'));
+        $this->set(compact('entities', 'dtosWithout', 'dtosWithArray', 'dtosWithTyped', 'rawArrays'));
     }
 
     /**

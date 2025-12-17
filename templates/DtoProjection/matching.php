@@ -3,7 +3,8 @@
  * @var \App\View\AppView $this
  * @var array<\App\Model\Entity\User> $entities
  * @var array<\App\Dto\SimpleUserDto> $dtosWithout
- * @var array<\App\Dto\UserWithMatchingDto> $dtosWith
+ * @var array<\App\Dto\UserWithMatchingDto> $dtosWithArray
+ * @var array<\App\Dto\UserWithMatchingDtoTyped> $dtosWithTyped
  * @var array $rawArrays
  */
 ?>
@@ -11,8 +12,8 @@
 
 <p>
     This demo shows <code>projectAs()</code> with <code>matching()</code> queries.
-    <strong>Key insight:</strong> <code>_matchingData</code> IS available in DTOs if you
-    explicitly add it as a constructor parameter.
+    <strong>Key insight:</strong> <code>_matchingData</code> can be typed as <code>array</code>
+    OR as a nested DTO for full type safety.
 </p>
 
 <h2>Navigation</h2>
@@ -24,88 +25,87 @@
     <li><?= $this->Html->link('Benchmark', ['action' => 'benchmark']) ?></li>
 </ul>
 
-<h2>Traditional Entities with matching()</h2>
+<h2>1. Traditional Entities</h2>
 <pre><?php
 foreach ($entities as $entity) {
     echo "User #{$entity->id}: {$entity->username}\n";
     if (isset($entity->_matchingData['Roles'])) {
         $role = $entity->_matchingData['Roles'];
-        echo "  _matchingData[Roles]: {$role->name} (type: " . get_class($role) . ")\n";
+        echo "  _matchingData[Roles]: {$role->name} (" . get_class($role) . ")\n";
     }
 }
 ?></pre>
 
-<h2>DTO WITHOUT _matchingData property</h2>
-<p>
-    Using <code>SimpleUserDto</code> which does NOT have a <code>$_matchingData</code> property.
-    The matching data is silently ignored.
-</p>
+<h2>2. DTO WITHOUT _matchingData</h2>
+<p>Using <code>SimpleUserDto</code> - matching data is silently ignored.</p>
 <pre><?php
 foreach ($dtosWithout as $dto) {
     echo "User #{$dto->id}: {$dto->username}\n";
-    echo "  Type: " . get_class($dto) . "\n";
-    echo "  Has _matchingData property: " . (property_exists($dto, '_matchingData') ? 'yes' : 'no') . "\n";
+    echo "  _matchingData: not available (no property)\n";
 }
 ?></pre>
 
-<h2>DTO WITH _matchingData property</h2>
-<p>
-    Using <code>UserWithMatchingDto</code> which HAS a <code>$_matchingData</code> property.
-    The matching data is included as an array.
-</p>
+<h2>3. DTO with _matchingData as <code>array</code></h2>
+<p>Using <code>UserWithMatchingDto</code> - matching data as raw array.</p>
 <pre><?php
-foreach ($dtosWith as $dto) {
+foreach ($dtosWithArray as $dto) {
     echo "User #{$dto->id}: {$dto->username}\n";
-    echo "  Type: " . get_class($dto) . "\n";
     if ($dto->_matchingData !== null) {
         foreach ($dto->_matchingData as $alias => $data) {
-            if (is_array($data)) {
-                echo "  _matchingData[{$alias}]: " . ($data['name'] ?? 'unknown') . " (array)\n";
-            } else {
-                echo "  _matchingData[{$alias}]: " . $data->name . " (" . get_class($data) . ")\n";
-            }
+            $type = is_array($data) ? 'array' : get_class($data);
+            $name = is_array($data) ? ($data['name'] ?? '?') : $data->name;
+            echo "  _matchingData[{$alias}]: {$name} ({$type})\n";
         }
     }
 }
 ?></pre>
 
-<h2>Raw Array showing _matchingData structure</h2>
+<h2>4. DTO with _matchingData as <code>MatchingDataDto</code></h2>
+<p>Using <code>UserWithMatchingDtoTyped</code> - fully typed nested DTOs!</p>
 <pre><?php
-foreach (array_slice($rawArrays, 0, 2) as $row) {
-    echo "User #{$row['id']}: {$row['username']}\n";
-    if (isset($row['_matchingData']['Roles'])) {
-        echo "  _matchingData[Roles]: " . json_encode($row['_matchingData']['Roles'], JSON_PRETTY_PRINT) . "\n";
+foreach ($dtosWithTyped as $dto) {
+    echo "User #{$dto->id}: {$dto->username}\n";
+    if ($dto->_matchingData !== null) {
+        echo "  _matchingData type: " . get_class($dto->_matchingData) . "\n";
+        if ($dto->_matchingData->Roles !== null) {
+            $role = $dto->_matchingData->Roles;
+            echo "  _matchingData->Roles: {$role->name} (" . get_class($role) . ")\n";
+        }
     }
 }
 ?></pre>
 
 <h2>DTO Definitions</h2>
-<pre><code>// SimpleUserDto - does NOT include _matchingData
-readonly class SimpleUserDto
-{
-    public function __construct(
-        public int $id,
-        public string $username,
-        public ?string $email = null,
-        public ?SimpleRoleDto $role = null,
-        public ?DateTime $created = null,
-    ) {}
-}
-
-// UserWithMatchingDto - INCLUDES _matchingData
+<pre><code>// Option 1: _matchingData as array (simple)
 readonly class UserWithMatchingDto
 {
     public function __construct(
         public int $id,
         public string $username,
-        public ?string $email = null,
-        public ?DateTime $created = null,
-        public ?array $_matchingData = null,  // <-- Explicit property
+        public ?array $_matchingData = null,
+    ) {}
+}
+
+// Option 2: _matchingData as typed DTO (full type safety)
+readonly class MatchingDataDto
+{
+    public function __construct(
+        public ?SimpleRoleDto $Roles = null,  // Property name = association alias
+    ) {}
+}
+
+readonly class UserWithMatchingDtoTyped
+{
+    public function __construct(
+        public int $id,
+        public string $username,
+        public ?MatchingDataDto $_matchingData = null,
     ) {}
 }</code></pre>
 
 <h2>Key Takeaway</h2>
-<p>
-    <code>_matchingData</code> (and <code>_joinData</code>) work with DTOs just like any other field.
-    If you want them in your DTO, add them as constructor parameters. If you don't need them, omit them.
-</p>
+<ul>
+    <li><code>?array</code> - Quick and simple, data stays as arrays</li>
+    <li><code>?MatchingDataDto</code> - Full type safety, nested DTOs auto-mapped</li>
+    <li>Property names in MatchingDataDto must match association aliases (e.g., <code>Roles</code>)</li>
+</ul>
