@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Dto\RoleProjectionDto;
+use App\Dto\UserProjectionDto;
+
 class MiscController extends AppController {
 
 	/**
@@ -105,6 +108,62 @@ class MiscController extends AppController {
 		}
 
 		return 1;
+	}
+
+	/**
+	 * Test DTO projection with BelongsTo association.
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function dtoProjection() {
+		$usersTable = $this->fetchTable('Users');
+
+		// Test 1: Simple projection (no associations)
+		$simpleUsers = $usersTable->find()
+			->projectAs(UserProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 2: Projection with BelongsTo (Users -> Roles)
+		$usersWithRoles = $usersTable->find()
+			->contain(['Roles'])
+			->projectAs(UserProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 3: Projection with HasMany (Roles -> Users)
+		$rolesTable = $this->fetchTable('Roles');
+		$rolesWithUsers = $rolesTable->find()
+			->contain(['Users'])
+			->projectAs(RoleProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 4: Compare with Entity hydration
+		$usersAsEntities = $usersTable->find()
+			->contain(['Roles'])
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 5: Compare with disableHydration (raw arrays)
+		$usersAsArrays = $usersTable->find()
+			->contain(['Roles'])
+			->disableHydration()
+			->limit(3)
+			->all()
+			->toArray();
+
+		$this->set(compact(
+			'simpleUsers',
+			'usersWithRoles',
+			'rolesWithUsers',
+			'usersAsEntities',
+			'usersAsArrays',
+		));
 	}
 
 }
