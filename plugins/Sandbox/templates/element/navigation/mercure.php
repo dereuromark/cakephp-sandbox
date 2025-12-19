@@ -18,4 +18,5 @@
 	<li><?php echo $this->Navigation->link('Publishing', ['action' => 'publishing']); ?></li>
 	<li><?php echo $this->Navigation->link('Authorization', ['action' => 'authorization']); ?></li>
 	<li><?php echo $this->Navigation->link('Subscription', ['action' => 'subscription']); ?></li>
+	<li><?php echo $this->Navigation->link('Queue Integration', ['action' => 'queueProgress']); ?></li>
 </ul>

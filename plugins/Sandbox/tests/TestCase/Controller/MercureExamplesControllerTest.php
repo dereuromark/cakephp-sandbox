@@ -53,4 +53,25 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseContains('Client-Side Subscription');
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testQueueProgress(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'queueProgress']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Queue Integration');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testScheduleQueueDemo(): void {
+		$this->enableRetainFlashMessages();
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'scheduleQueueDemo']);
+
+		$this->assertRedirect(['action' => 'queueProgress']);
+	}
+
 }

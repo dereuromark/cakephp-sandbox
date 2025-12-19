@@ -11,6 +11,7 @@ use Exception;
  * Demonstrates the cakephp-mercure plugin for real-time updates via Server-Sent Events.
  *
  * @property \Mercure\Controller\Component\MercureComponent $Mercure
+ * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
  */
 class MercureExamplesController extends SandboxAppController {
 
@@ -35,6 +36,14 @@ class MercureExamplesController extends SandboxAppController {
 				'defaultTopics' => ['/sandbox/notifications'],
 			]);
 		}
+	}
+
+	/**
+	 * @return \Queue\Model\Table\QueuedJobsTable
+	 */
+	protected function getQueuedJobsTable(): \Queue\Model\Table\QueuedJobsTable {
+		/** @var \Queue\Model\Table\QueuedJobsTable */
+		return $this->fetchTable('Queue.QueuedJobs');
 	}
 
 	/**
@@ -118,6 +127,64 @@ class MercureExamplesController extends SandboxAppController {
 	 */
 	public function subscription(): void {
 		$this->set('mercureConfigured', $this->mercureConfigured);
+	}
+
+	/**
+	 * Queue integration demo - Real-time job progress via Mercure.
+	 *
+	 * @return void
+	 */
+	public function queueProgress(): void {
+		$queuedJobsTable = $this->getQueuedJobsTable();
+
+		// For the demo we bind it to the user session to avoid side-effects
+		$sid = $this->request->getSession()->id();
+		$reference = 'mercure-demo-' . $sid;
+
+		$queuedJobs = $queuedJobsTable->find()
+			->where(['reference' => $reference, 'completed IS' => null])
+			->all()
+			->toArray();
+
+		$mercurePublicUrl = Configure::read('Mercure.public_url');
+
+		$this->set(compact('queuedJobs', 'reference', 'mercurePublicUrl'));
+		$this->set('mercureConfigured', $this->mercureConfigured);
+	}
+
+	/**
+	 * Trigger a queue job with Mercure progress updates.
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function scheduleQueueDemo() {
+		$this->request->allowMethod('post');
+
+		$queuedJobsTable = $this->getQueuedJobsTable();
+
+		$sid = $this->request->getSession()->id();
+		$reference = 'mercure-demo-' . $sid;
+		$topic = '/sandbox/queue/' . $sid;
+
+		if ($queuedJobsTable->isQueued($reference, 'Sandbox.MercureProgressExample')) {
+			$this->Flash->error('Job already running or scheduled. Wait for it to complete.');
+
+			return $this->redirect(['action' => 'queueProgress']);
+		}
+
+		$queuedJobsTable->createJob(
+			'Sandbox.MercureProgressExample',
+			[
+				'duration' => 15,
+				'steps' => 10,
+				'topic' => $topic,
+			],
+			['reference' => $reference],
+		);
+
+		$this->Flash->success('Job queued! Watch the real-time progress below.');
+
+		return $this->redirect(['action' => 'queueProgress']);
 	}
 
 }
