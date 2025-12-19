@@ -89,11 +89,6 @@
 	<div class="col-6">
 		<h3>Other plugins</h3>
 
-		<h4>StateMachine plugin <i>(NEW)</i></h4>
-		<ul>
-			<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
-		</ul>
-
 		<h4>TwigView plugin</h4>
 		<ul>
 			<li><?php echo $this->Html->link('Twig templating in CakePHP', ['controller' => 'TwigExamples', 'action' => 'index']); ?></li>

@@ -42,7 +42,6 @@ This site combines useful code snippets with their live result.
 		<ul>
 			<li><?php echo $this->Html->link('Sandbox', ['plugin' => 'Sandbox', 'controller' => 'Sandbox', 'action' => 'index']); ?></li>
 			<li><?php echo $this->Html->link('Auth Sandbox', ['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']); ?></li>
-			<li><?php echo $this->Html->link('Workflow Sandbox', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
 		</ul>
 	</div>
 
