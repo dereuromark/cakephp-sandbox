@@ -85,7 +85,9 @@
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
 		"php-collective/djot": "dev-master",
-		"ezyang/htmlpurifier": "^4.19"
+		"ezyang/htmlpurifier": "^4.19",
+		"cuyz/valinor": "^2.3",
+		"josbeir/cakephp-mercure": "^0.1.8"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.5.0",

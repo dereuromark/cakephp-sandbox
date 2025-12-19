@@ -213,6 +213,16 @@
 				<div class="card-body">
 					<div class="plugin-list">
 						<div class="plugin-item">
+							<h4 class="h6">
+								Mercure Plugin
+								<span class="badge bg-success ms-2">NEW</span>
+							</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Real-Time Updates with Server-Sent Events', ['controller' => 'MercureExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
 							<h4 class="h6">StateMachine Plugin</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>

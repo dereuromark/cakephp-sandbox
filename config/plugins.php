@@ -34,6 +34,7 @@ return [
 	'AuditStash' => [],
 	'FileStorage' => [],
 	'Bouncer' => [],
+	'Mercure' => [],
 
 	// inside /plugins
 	'AuthSandbox' => [],

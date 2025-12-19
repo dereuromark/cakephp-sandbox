@@ -26,3 +26,4 @@ _*
 /.bash_history
 .ddev/
 /webroot/files/uploads/
+bolt.db
