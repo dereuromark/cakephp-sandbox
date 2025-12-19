@@ -154,6 +154,39 @@ class RepoDto extends AbstractDto {
 		'owner' => 'setOwner',
 	];
 
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * This method is only called in lenient mode (ignoreMissing=true),
+	 * where unknown fields are silently ignored.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['name'])) {
+			$this->name = $data['name'];
+			$this->_touchedFields['name'] = true;
+		}
+		if (isset($data['htmlUrl'])) {
+			$this->htmlUrl = $data['htmlUrl'];
+			$this->_touchedFields['htmlUrl'] = true;
+		}
+		if (isset($data['private'])) {
+			$this->private = $data['private'];
+			$this->_touchedFields['private'] = true;
+		}
+		if (isset($data['owner'])) {
+			$value = $data['owner'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\UserDto($value, true);
+			}
+			$this->owner = $value;
+			$this->_touchedFields['owner'] = true;
+		}
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

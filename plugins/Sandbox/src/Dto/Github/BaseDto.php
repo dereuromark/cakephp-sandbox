@@ -154,6 +154,43 @@ class BaseDto extends AbstractDto {
 		'repo' => 'setRepo',
 	];
 
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * This method is only called in lenient mode (ignoreMissing=true),
+	 * where unknown fields are silently ignored.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['ref'])) {
+			$this->ref = $data['ref'];
+			$this->_touchedFields['ref'] = true;
+		}
+		if (isset($data['sha'])) {
+			$this->sha = $data['sha'];
+			$this->_touchedFields['sha'] = true;
+		}
+		if (isset($data['user'])) {
+			$value = $data['user'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\UserDto($value, true);
+			}
+			$this->user = $value;
+			$this->_touchedFields['user'] = true;
+		}
+		if (isset($data['repo'])) {
+			$value = $data['repo'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\RepoDto($value, true);
+			}
+			$this->repo = $value;
+			$this->_touchedFields['repo'] = true;
+		}
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

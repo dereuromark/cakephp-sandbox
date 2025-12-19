@@ -53,4 +53,13 @@
 		<field name="owner" type="Github/User" required="true"/>
 	</dto>
 
+	<!-- DTO projection example with enum support -->
+	<dto name="SandboxUserProjection" immutable="true">
+		<field name="id" type="int"/>
+		<field name="username" type="string"/>
+		<field name="email" type="string"/>
+		<field name="status" type="\Sandbox\Model\Enum\UserStatus"/>
+		<field name="created" type="\Cake\I18n\DateTime"/>
+	</dto>
+
 </dtos>
