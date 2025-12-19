@@ -2,12 +2,33 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Mercure\Publisher;
+use Mercure\TestSuite\MockPublisher;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * @uses \Sandbox\Controller\MercureExamplesController
  */
 class MercureExamplesControllerTest extends IntegrationTestCase {
+
+	/**
+	 * @return void
+	 */
+	public function setUp(): void {
+		parent::setUp();
+
+		// Mock Mercure publisher to prevent actual HTTP requests during tests
+		Publisher::setInstance(new MockPublisher());
+	}
+
+	/**
+	 * @return void
+	 */
+	public function tearDown(): void {
+		parent::tearDown();
+
+		Publisher::clear();
+	}
 
 	/**
 	 * @return void
