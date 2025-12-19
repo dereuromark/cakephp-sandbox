@@ -47,31 +47,11 @@
 
 						<div class="plugin-item">
 							<h4 class="h6">
-								QrCode Plugin
+								CakeDto Plugin
 								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
-								<li><?php echo $this->Html->link('QrCodes and CakePHP', ['controller' => 'QrCodeExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">
-								Favorites Plugin
-								<span class="badge bg-success ms-2">NEW</span>
-							</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">
-								Comments Plugin
-								<span class="badge bg-success ms-2">NEW</span>
-							</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Comment everything', ['controller' => 'CommentExamples', 'action' => 'index']); ?></li>
+								<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 
@@ -83,9 +63,23 @@
 						</div>
 
 						<div class="plugin-item">
-							<h4 class="h6">CakeDto Plugin</h4>
+							<h4 class="h6">QrCode Plugin</h4>
 							<ul class="mb-3">
-								<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
+								<li><?php echo $this->Html->link('QrCodes and CakePHP', ['controller' => 'QrCodeExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
+							<h4 class="h6">Favorites Plugin</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
+							<h4 class="h6">Comments Plugin</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Comment everything', ['controller' => 'CommentExamples', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 

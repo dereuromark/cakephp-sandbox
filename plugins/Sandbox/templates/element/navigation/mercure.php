@@ -15,8 +15,8 @@
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Overview', ['action' => 'index']); ?></li>
-	<li><?php echo $this->Navigation->link('Publishing', ['action' => 'publishing']); ?></li>
-	<li><?php echo $this->Navigation->link('Authorization', ['action' => 'authorization']); ?></li>
-	<li><?php echo $this->Navigation->link('Subscription', ['action' => 'subscription']); ?></li>
 	<li><?php echo $this->Navigation->link('Queue Integration', ['action' => 'queueProgress']); ?></li>
+	<li><?php echo $this->Navigation->link('Publishing', ['action' => 'publishing']); ?></li>
+	<li><?php echo $this->Navigation->link('Subscription', ['action' => 'subscription']); ?></li>
+	<li><?php echo $this->Navigation->link('Authorization', ['action' => 'authorization']); ?></li>
 </ul>

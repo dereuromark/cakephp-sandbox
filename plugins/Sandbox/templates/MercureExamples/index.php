@@ -102,9 +102,9 @@ eventSource.onmessage = (event) => {
 	<div class="col-md-6">
 		<div class="card mb-3">
 			<div class="card-body">
-				<h5 class="card-title">Authorization</h5>
-				<p class="card-text">Set JWT cookies for accessing private topics with the fluent builder pattern.</p>
-				<?php echo $this->Html->link('View Demo', ['action' => 'authorization'], ['class' => 'btn btn-primary btn-sm']); ?>
+				<h5 class="card-title">Queue Integration</h5>
+				<p class="card-text">Real-time background job progress without polling or page refresh.</p>
+				<?php echo $this->Html->link('View Demo', ['action' => 'queueProgress'], ['class' => 'btn btn-primary btn-sm']); ?>
 			</div>
 		</div>
 	</div>
@@ -123,6 +123,15 @@ eventSource.onmessage = (event) => {
 				<h5 class="card-title">Client Subscription</h5>
 				<p class="card-text">Subscribe to topics and receive updates in real-time.</p>
 				<?php echo $this->Html->link('View Demo', ['action' => 'subscription'], ['class' => 'btn btn-primary btn-sm']); ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card mb-3">
+			<div class="card-body">
+				<h5 class="card-title">Authorization</h5>
+				<p class="card-text">Set JWT cookies for accessing private topics with the fluent builder pattern.</p>
+				<?php echo $this->Html->link('View Demo', ['action' => 'authorization'], ['class' => 'btn btn-primary btn-sm']); ?>
 			</div>
 		</div>
 	</div>
