@@ -63,7 +63,6 @@
 	"require-dev": {
 		"psy/psysh": "@stable",
 		"cakephp/bake": "@stable",
-		"fig-r/psr2r-sniffer": "dev-master",
 		"dereuromark/cakephp-ide-helper": "dev-cake3",
 		"dereuromark/cakephp-test-helper": "dev-cake3"
 	},
