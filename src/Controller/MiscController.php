@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Dto\RoleProjectionDto;
 use App\Dto\UserProjectionDto;
+use Sandbox\Dto\SandboxUserProjectionDto;
 
 class MiscController extends AppController {
 
@@ -157,12 +158,28 @@ class MiscController extends AppController {
 			->all()
 			->toArray();
 
+		// Test 6: Projection with enum field (SandboxUsers -> UserStatus enum)
+		$sandboxUsersTable = $this->fetchTable('Sandbox.SandboxUsers');
+		$sandboxUsers = $sandboxUsersTable->find()
+			->projectAs(SandboxUserProjectionDto::class)
+			->limit(5)
+			->all()
+			->toArray();
+
+		// Test 7: Entity hydration with enum (comparison)
+		$sandboxUsersAsEntities = $sandboxUsersTable->find()
+			->limit(5)
+			->all()
+			->toArray();
+
 		$this->set(compact(
 			'simpleUsers',
 			'usersWithRoles',
 			'rolesWithUsers',
 			'usersAsEntities',
 			'usersAsArrays',
+			'sandboxUsers',
+			'sandboxUsersAsEntities',
 		));
 	}
 
