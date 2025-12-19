@@ -1,0 +1,41 @@
+services:
+  frankenphp:
+    build: .
+    image: frankenphp-cakephp:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8090:80"
+      - "127.0.0.1:8091:443"
+    volumes:
+      - /var/www/dereuromark/franken:/app
+      - ./Caddyfile:/etc/frankenphp/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - SERVER_NAME=:80
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
+      - MERCURE_EXTRA_DIRECTIVES=anonymous
+    security_opt:
+      - no-new-privileges:true
+    cap_add:
+      - NET_BIND_SERVICE
+
+  queue:
+    image: frankenphp-cakephp:latest
+    restart: unless-stopped
+    depends_on:
+      - frankenphp
+    volumes:
+      - /var/www/dereuromark/franken:/app
+    working_dir: /app
+    command: php bin/cake.php queue run
+    environment:
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  caddy_data:
+  caddy_config:
