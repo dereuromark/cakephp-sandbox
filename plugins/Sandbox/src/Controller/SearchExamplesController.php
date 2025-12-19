@@ -143,6 +143,7 @@ class SearchExamplesController extends SandboxAppController {
 		$countries = $this->paginate($query);
 
 		$this->set(compact('countries'));
+		$this->viewBuilder()->setOptions(['serialize' => 'countries']);
 	}
 
 	/**
@@ -157,6 +158,7 @@ class SearchExamplesController extends SandboxAppController {
 		$countries = $this->paginate($query);
 
 		$this->set(compact('countries'));
+		$this->viewBuilder()->setOptions(['serialize' => 'countries']);
 	}
 
 	/**
