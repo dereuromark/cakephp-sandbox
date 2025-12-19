@@ -339,7 +339,7 @@ class FileStorageExamplesController extends SandboxAppController {
 						if ($isAjax) {
 							$errorMessage = 'Validation failed';
 							if (isset($errors['file'])) {
-								$errorMessage = is_array($errors['file']) ? implode(', ', $errors['file']) : $errors['file'];
+								$errorMessage = is_array($errors['file']) ? implode(', ', array_filter($errors['file'], 'is_string')) : $errors['file'];
 							}
 
 							return $this->response
@@ -479,7 +479,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				if ($isAjax) {
 					$errorMessage = 'Validation failed';
 					if (isset($errors['file'])) {
-						$errorMessage = is_array($errors['file']) ? implode(', ', $errors['file']) : $errors['file'];
+						$errorMessage = is_array($errors['file']) ? implode(', ', array_filter($errors['file'], 'is_string')) : $errors['file'];
 					}
 
 					return $this->response
