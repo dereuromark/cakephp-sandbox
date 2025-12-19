@@ -7,6 +7,7 @@ _*
 /vendor/
 /logs
 /config/app_local.php
+/config/app_mercure.php
 /phpunit.phar
 /composer.phar
 /phpstan.phar
