@@ -27,8 +27,18 @@ class MercureExamplesController extends SandboxAppController {
 		parent::initialize();
 
 		// Check if Mercure is fully configured (URL and JWT secret required)
-		$this->mercureConfigured = (bool)Configure::read('Mercure.url')
-			&& (bool)Configure::read('Mercure.jwt.secret');
+		$mercureUrl = Configure::read('Mercure.url');
+		$mercureSecret = Configure::read('Mercure.jwt.secret');
+		$this->mercureConfigured = (bool)$mercureUrl && (bool)$mercureSecret;
+
+		// Debug output for CI troubleshooting
+		if (PHP_SAPI === 'cli' && !$this->mercureConfigured) {
+			error_log(sprintf(
+				'MercureExamplesController: Mercure NOT configured - url=%s, secret=%s',
+				var_export($mercureUrl, true),
+				$mercureSecret ? '[SET]' : 'NULL',
+			));
+		}
 
 		// Only load the component if Mercure is fully configured
 		if ($this->mercureConfigured) {
