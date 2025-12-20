@@ -34,7 +34,12 @@
 <?php if (!$mercureConfigured) { ?>
 <div class="alert alert-warning">
 	<h5>Mercure Hub Not Configured</h5>
-	<p class="mb-2">To use this plugin, you need a running Mercure hub. Quick start with Docker:</p>
+	<p class="mb-2">To use this plugin, you need a running Mercure hub.</p>
+	<p class="mb-2">
+		<strong>Option 1: FrankenPHP</strong> - Has Mercure built-in, no separate hub needed.
+		See the <a href="https://frankenphp.dev/docs/mercure/" target="_blank">FrankenPHP Mercure docs</a>.
+	</p>
+	<p class="mb-2"><strong>Option 2: Standalone Hub</strong> - Quick start with Docker:</p>
 	<pre class="mb-2"><code>docker run -d \
   --name mercure-sandbox \
   -e SERVER_NAME=:3080 \
