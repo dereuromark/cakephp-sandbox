@@ -214,7 +214,7 @@ class MercureExamplesController extends SandboxAppController {
 		if (!$this->mercureConfigured) {
 			return $this->response
 				->withType('application/json')
-				->withStringBody(json_encode(['error' => 'Mercure not configured']));
+				->withStringBody((string)json_encode(['error' => 'Mercure not configured']));
 		}
 
 		$name = trim((string)$this->request->getData('name'));
@@ -223,7 +223,7 @@ class MercureExamplesController extends SandboxAppController {
 		if (!$name || !$message) {
 			return $this->response
 				->withType('application/json')
-				->withStringBody(json_encode(['error' => 'Name and message are required']));
+				->withStringBody((string)json_encode(['error' => 'Name and message are required']));
 		}
 
 		try {
@@ -239,11 +239,11 @@ class MercureExamplesController extends SandboxAppController {
 
 			return $this->response
 				->withType('application/json')
-				->withStringBody(json_encode(['success' => true]));
+				->withStringBody((string)json_encode(['success' => true]));
 		} catch (Exception $e) {
 			return $this->response
 				->withType('application/json')
-				->withStringBody(json_encode(['error' => $e->getMessage()]));
+				->withStringBody((string)json_encode(['error' => $e->getMessage()]));
 		}
 	}
 

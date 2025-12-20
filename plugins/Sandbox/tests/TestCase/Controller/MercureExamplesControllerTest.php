@@ -2,6 +2,7 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Cake\Core\Configure;
 use Mercure\Publisher;
 use Mercure\TestSuite\MockPublisher;
 use Shim\TestSuite\IntegrationTestCase;
@@ -17,6 +18,18 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
+		// Configure Mercure for tests
+		Configure::write('Mercure', [
+			'url' => 'http://localhost/.well-known/mercure',
+			'public_url' => 'http://localhost/.well-known/mercure',
+			'jwt' => [
+				'secret' => 'test-secret-key-for-testing-only',
+				'algorithm' => 'HS256',
+				'publish' => ['*'],
+				'subscribe' => ['*'],
+			],
+		]);
+
 		// Mock Mercure publisher to prevent actual HTTP requests during tests
 		Publisher::setInstance(new MockPublisher());
 	}
@@ -28,6 +41,7 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 		parent::tearDown();
 
 		Publisher::clear();
+		Configure::delete('Mercure');
 	}
 
 	/**
