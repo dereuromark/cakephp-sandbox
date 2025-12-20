@@ -3,6 +3,7 @@ services:
     build: .
     image: frankenphp-cakephp:latest
     restart: unless-stopped
+    user: "33:33"
     ports:
       - "127.0.0.1:8090:80"
       - "127.0.0.1:8091:443"
@@ -25,6 +26,7 @@ services:
     image: frankenphp-cakephp:latest
     hostname: queue-worker
     restart: unless-stopped
+    user: "33:33"
     depends_on:
       - frankenphp
     volumes:
