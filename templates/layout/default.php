@@ -52,7 +52,9 @@ echo $this->fetch('css');
 				<?php echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => 'index']); ?>
 			</div>
 			<div class="text-muted">Running on CakePHP <?php echo $this->Configure->version(); ?> / <?php echo function_exists('frankenphp_handle_request') ? 'FrankenPHP' : 'PHP'; ?> <?php echo substr(phpversion(), 0, 3); ?><?php
-			if (!empty($_SERVER['FRANKENPHP_WORKER'])) {
+			// Check for worker mode marker file
+			$workerMarkerFile = sys_get_temp_dir() . '/frankenphp_worker_' . getmypid();
+			if (file_exists($workerMarkerFile)) {
 				echo ' <span class="fa fa-bolt text-warning" title="Worker Mode: PHP stays in memory for faster responses" style="cursor: help;"></span>';
 			}
 			?></div>
