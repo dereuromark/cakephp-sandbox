@@ -17,13 +17,12 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function setUp(): void {
-		parent::setUp();
-
-		// Clear any cached singleton instances before configuring
+		// Clear any cached singleton instances BEFORE parent setup
 		Publisher::clear();
 		Authorization::clear();
 
-		// Configure Mercure for tests
+		// Configure Mercure for tests BEFORE parent setup
+		// to ensure config is available when controller initializes
 		Configure::write('Mercure', [
 			'url' => 'http://localhost/.well-known/mercure',
 			'public_url' => 'http://localhost/.well-known/mercure',
@@ -34,6 +33,8 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 				'subscribe' => ['*'],
 			],
 		]);
+
+		parent::setUp();
 
 		// Mock Mercure publisher to prevent actual HTTP requests during tests
 		Publisher::setInstance(new MockPublisher());
