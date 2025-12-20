@@ -13,7 +13,7 @@
 		echo $this->Form->control('email');
 		echo $this->Form->control('active');
 		echo $this->Form->control('role_id');
-		echo $this->Form->control('pwd');
+		echo $this->Form->control('pwd', ['type' => 'password']);
 	?>
 	</fieldset>
 <?php echo $this->Form->submit(__('Submit')); echo $this->Form->end();?>
