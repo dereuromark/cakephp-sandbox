@@ -51,7 +51,11 @@ echo $this->fetch('css');
 				Code: <a href="https://github.com/dereuromark/cakephp-sandbox">github.com/dereuromark/cakephp-sandbox</a> |
 				<?php echo $this->Html->linkReset('Contact', ['controller' => 'Contact', 'action' => 'index']); ?>
 			</div>
-			<div class="text-muted">Running on CakePHP <?php echo $this->Configure->version(); ?> / <?php echo function_exists('frankenphp_handle_request') ? 'FrankenPHP' : 'PHP'; ?> <?php echo substr(phpversion(), 0, 3); ?></div>
+			<div class="text-muted">Running on CakePHP <?php echo $this->Configure->version(); ?> / <?php echo function_exists('frankenphp_handle_request') ? 'FrankenPHP' : 'PHP'; ?> <?php echo substr(phpversion(), 0, 3); ?><?php
+			if (!empty($_SERVER['FRANKENPHP_WORKER'])) {
+				echo ' <span class="fa fa-bolt text-warning" title="Worker Mode: PHP stays in memory for faster responses" style="cursor: help;"></span>';
+			}
+			?></div>
 		</footer>
 
 	</main>
