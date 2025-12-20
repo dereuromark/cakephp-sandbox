@@ -365,6 +365,7 @@ class PullRequestDto extends AbstractDto {
 			if (!is_object($value)) {
 				$value = $this->createWithConstructor('createdAt', $value, $this->_metadata['createdAt']);
 			}
+			/** @var \Cake\I18n\FrozenTime $value */
 			$this->createdAt = $value;
 			$this->_touchedFields['createdAt'] = true;
 		}

@@ -42,8 +42,12 @@ class CitiesSeed extends BaseSeed {
 			$rows[] = $row;
 		}
 		$table = $this->table('sandbox_cities');
-		foreach ($rows as $row) {
-			$table->insert([$row])->save();
+		$chunks = array_chunk($rows, 1000);
+		foreach ($chunks as $chunk) {
+			foreach ($chunk as $row) {
+				$table->insert([$row]);
+			}
+			$table->save();
 		}
 	}
 
