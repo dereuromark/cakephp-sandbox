@@ -13,7 +13,7 @@
 $workerMarkerFile = sys_get_temp_dir() . '/frankenphp_worker_' . getmypid();
 file_put_contents($workerMarkerFile, '1');
 register_shutdown_function(function() use ($workerMarkerFile) {
-    @unlink($workerMarkerFile);
+	@unlink($workerMarkerFile);
 });
 
 // Check platform requirements
@@ -34,18 +34,18 @@ $maxRequests = (int)($_SERVER['MAX_REQUESTS'] ?? 500);
 
 // Handle requests in a loop
 for ($requestCount = 0; $requestCount < $maxRequests; $requestCount++) {
-    $running = frankenphp_handle_request(function () use ($server): void {
-        try {
-            $server->emit($server->run());
-        } catch (Throwable $e) {
-            error_log('Worker error: ' . $e->getMessage());
-        }
-    });
+	$running = frankenphp_handle_request(function () use ($server): void {
+		try {
+			$server->emit($server->run());
+		} catch (Throwable $e) {
+			error_log('Worker error: ' . $e->getMessage());
+		}
+	});
 
-    if (!$running) {
-        break;
-    }
+	if (!$running) {
+		break;
+	}
 
-    // Garbage collection between requests
-    gc_collect_cycles();
+	// Garbage collection between requests
+	gc_collect_cycles();
 }
