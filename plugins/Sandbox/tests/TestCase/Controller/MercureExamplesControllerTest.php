@@ -131,22 +131,13 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testPostMessage(): void {
-		// Verify Mercure config is set before making the request
-		$mercureUrl = Configure::read('Mercure.url');
-		$mercureSecret = Configure::read('Mercure.jwt.secret');
-		$this->assertNotEmpty($mercureUrl, 'Mercure.url should be configured');
-		$this->assertNotEmpty($mercureSecret, 'Mercure.jwt.secret should be configured');
-
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'postMessage'], [
 			'name' => 'TestUser',
 			'message' => 'Hello World',
 		]);
 
 		$this->assertResponseCode(200);
-
-		// Get response body for better error messages
-		$body = (string)$this->_response->getBody();
-		$this->assertStringContainsString('"success":true', $body, 'Response was: ' . $body);
+		$this->assertResponseContains('"success":true');
 	}
 
 	/**
