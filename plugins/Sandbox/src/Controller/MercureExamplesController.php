@@ -26,10 +26,11 @@ class MercureExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		// Check if Mercure is configured (via app_mercure.php or env)
-		$this->mercureConfigured = (bool)Configure::read('Mercure.url');
+		// Check if Mercure is fully configured (URL and JWT secret required)
+		$this->mercureConfigured = (bool)Configure::read('Mercure.url')
+			&& (bool)Configure::read('Mercure.jwt.secret');
 
-		// Only load the component if Mercure is configured
+		// Only load the component if Mercure is fully configured
 		if ($this->mercureConfigured) {
 			$this->loadComponent('Mercure.Mercure', [
 				'autoDiscover' => false,
