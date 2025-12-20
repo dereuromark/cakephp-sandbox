@@ -321,6 +321,83 @@ class PullRequestDto extends AbstractDto {
 		'base' => 'setBase',
 	];
 
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * This method is only called in lenient mode (ignoreMissing=true),
+	 * where unknown fields are silently ignored.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['url'])) {
+			$this->url = $data['url'];
+			$this->_touchedFields['url'] = true;
+		}
+		if (isset($data['number'])) {
+			$this->number = $data['number'];
+			$this->_touchedFields['number'] = true;
+		}
+		if (isset($data['state'])) {
+			$this->state = $data['state'];
+			$this->_touchedFields['state'] = true;
+		}
+		if (isset($data['title'])) {
+			$this->title = $data['title'];
+			$this->_touchedFields['title'] = true;
+		}
+		if (isset($data['body'])) {
+			$this->body = $data['body'];
+			$this->_touchedFields['body'] = true;
+		}
+		if (isset($data['user'])) {
+			$value = $data['user'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\UserDto($value, true);
+			}
+			$this->user = $value;
+			$this->_touchedFields['user'] = true;
+		}
+		if (isset($data['createdAt'])) {
+			$value = $data['createdAt'];
+			if (!is_object($value)) {
+				$value = $this->createWithConstructor('createdAt', $value, $this->_metadata['createdAt']);
+			}
+			/** @var \Cake\I18n\FrozenTime $value */
+			$this->createdAt = $value;
+			$this->_touchedFields['createdAt'] = true;
+		}
+		if (isset($data['labels'])) {
+			$collection = [];
+			foreach ($data['labels'] as $key => $item) {
+				if (is_array($item)) {
+					$item = new \Sandbox\Dto\Github\LabelDto($item, true);
+				}
+				$collection[$key] = $item;
+			}
+			$this->labels = $collection;
+			$this->_touchedFields['labels'] = true;
+		}
+		if (isset($data['head'])) {
+			$value = $data['head'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\HeadDto($value, true);
+			}
+			$this->head = $value;
+			$this->_touchedFields['head'] = true;
+		}
+		if (isset($data['base'])) {
+			$value = $data['base'];
+			if (is_array($value)) {
+				$value = new \Sandbox\Dto\Github\BaseDto($value, true);
+			}
+			$this->base = $value;
+			$this->_touchedFields['base'] = true;
+		}
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

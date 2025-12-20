@@ -127,6 +127,31 @@ class UserDto extends AbstractDto {
 		'type' => 'setType',
 	];
 
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * This method is only called in lenient mode (ignoreMissing=true),
+	 * where unknown fields are silently ignored.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['login'])) {
+			$this->login = $data['login'];
+			$this->_touchedFields['login'] = true;
+		}
+		if (isset($data['htmlUrl'])) {
+			$this->htmlUrl = $data['htmlUrl'];
+			$this->_touchedFields['htmlUrl'] = true;
+		}
+		if (isset($data['type'])) {
+			$this->type = $data['type'];
+			$this->_touchedFields['type'] = true;
+		}
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
