@@ -95,4 +95,41 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 		$this->assertRedirect(['action' => 'queueProgress']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testChat(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'chat']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Real-Time Chat Demo');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPostMessage(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'postMessage'], [
+			'name' => 'TestUser',
+			'message' => 'Hello World',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('"success":true');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPostMessageValidation(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'postMessage'], [
+			'name' => '',
+			'message' => '',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('"error"');
+	}
+
 }

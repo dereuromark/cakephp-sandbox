@@ -102,6 +102,15 @@ eventSource.onmessage = (event) => {
 	<div class="col-md-6">
 		<div class="card mb-3">
 			<div class="card-body">
+				<h5 class="card-title">Chat Demo</h5>
+				<p class="card-text">Real-time multi-user chat. Open in multiple windows to see instant messaging.</p>
+				<?php echo $this->Html->link('View Demo', ['action' => 'chat'], ['class' => 'btn btn-primary btn-sm']); ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card mb-3">
+			<div class="card-body">
 				<h5 class="card-title">Queue Integration</h5>
 				<p class="card-text">Real-time background job progress without polling or page refresh.</p>
 				<?php echo $this->Html->link('View Demo', ['action' => 'queueProgress'], ['class' => 'btn btn-primary btn-sm']); ?>

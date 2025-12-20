@@ -187,4 +187,64 @@ class MercureExamplesController extends SandboxAppController {
 		return $this->redirect(['action' => 'queueProgress']);
 	}
 
+	/**
+	 * Real-time chat demo.
+	 *
+	 * Demonstrates multi-user real-time messaging via Mercure.
+	 * Open in multiple browser windows to see messages appear instantly.
+	 *
+	 * @return void
+	 */
+	public function chat(): void {
+		$mercurePublicUrl = Configure::read('Mercure.public_url');
+
+		$this->set(compact('mercurePublicUrl'));
+		$this->set('mercureConfigured', $this->mercureConfigured);
+	}
+
+	/**
+	 * Post a chat message via AJAX.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function postMessage() {
+		$this->request->allowMethod('post');
+		$this->autoRender = false;
+
+		if (!$this->mercureConfigured) {
+			return $this->response
+				->withType('application/json')
+				->withStringBody(json_encode(['error' => 'Mercure not configured']));
+		}
+
+		$name = trim((string)$this->request->getData('name'));
+		$message = trim((string)$this->request->getData('message'));
+
+		if (!$name || !$message) {
+			return $this->response
+				->withType('application/json')
+				->withStringBody(json_encode(['error' => 'Name and message are required']));
+		}
+
+		try {
+			$this->Mercure->publishJson(
+				topics: '/sandbox/chat',
+				data: [
+					'name' => h($name),
+					'message' => h($message),
+					'timestamp' => date('c'),
+					'id' => uniqid('msg_'),
+				],
+			);
+
+			return $this->response
+				->withType('application/json')
+				->withStringBody(json_encode(['success' => true]));
+		} catch (Exception $e) {
+			return $this->response
+				->withType('application/json')
+				->withStringBody(json_encode(['error' => $e->getMessage()]));
+		}
+	}
+
 }
