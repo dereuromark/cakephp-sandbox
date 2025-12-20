@@ -17,6 +17,7 @@ use PhpCollective\Infrastructure\Storage\Utility\FilenameSanitizer;
 use Sandbox\FileStorage\Processor\PdfThumbnailProcessor;
 use Sandbox\FileStorage\Processor\UnifiedFileProcessor;
 use Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck;
+use Setup\Healthcheck\Check\Environment\PhpVersionCheck;
 use Setup\Healthcheck\HealthcheckCollector;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
 use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
@@ -190,7 +191,9 @@ $config = [
 				PhpUploadLimitCheck::class => [
 					'min' => 16,
 				],
-					// ...
+				PhpVersionCheck::class => [
+					'failOnHigher' => 'major',
+				],
 			] + HealthcheckCollector::defaultChecks(),
 		],
 	],
