@@ -23,22 +23,33 @@ This will not be version-controlled. I use it for email setup, API keys and core
 #### Use DDEV as VM
 Using [ddev](https://docs.ddev.com/en/stable/) is the recommended way for local development.
 
-Browse into your app directory in your console.
+Browse into your app directory in your console and create a `.ddev/` folder.
 
-Create a folder `.dev/`.
-Copy and paste the `config.yaml` from `.ddev.example/` into that new folder:
-```
-cp .ddev.example/config.yaml .ddev/config.yaml
-```
-You can also further customize as needed.
+**Option A: Standard DDEV (Apache/nginx + PHP-FPM)**
 
-Alternatively you can create the file fresh:
-```
-ddev config
+Copy the basic config:
+```bash
+cp -r .ddev.example/* .ddev/
 ```
 
-Once the file is created, start the container(s):
+**Option B: FrankenPHP with Mercure (recommended)**
+
+For better performance (worker mode) and real-time features (Mercure):
+```bash
+cp -r .ddev.example/* .ddev/
+cp -r .ddev.franken.example/* .ddev/
+cp .ddev/docker-compose.mercure.yaml.example .ddev/docker-compose.mercure.yaml
+# Edit docker-compose.mercure.yaml and set your own JWT keys
+cp config/app_mercure.default.php config/app_mercure.php
+# Edit app_mercure.php with matching JWT secret
 ```
+
+See `.ddev.franken.example/README.md` for more details on FrankenPHP features.
+
+---
+
+Once configured, start the container(s):
+```bash
 ddev start
 ```
 

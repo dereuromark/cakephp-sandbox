@@ -1,0 +1,56 @@
+# Custom FrankenPHP Caddyfile with Worker Mode and Mercure
+#
+# https://frankenphp.dev/docs/worker/
+# https://frankenphp.dev/docs/mercure/
+
+{
+	skip_install_trust
+
+	# Enable FrankenPHP
+	frankenphp
+
+	# Enable Mercure hub - must be ordered after encode
+	order mercure after encode
+
+	{$CADDY_GLOBAL_OPTIONS}
+}
+
+{$CADDY_EXTRA_CONFIG}
+
+{$SERVER_NAME:localhost} {
+	root * /var/www/html/webroot
+	encode zstd br gzip
+
+	# Mercure endpoint - must be handled BEFORE PHP
+	@mercure path /.well-known/mercure
+	handle @mercure {
+		header Access-Control-Allow-Origin "*"
+		header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+		header Access-Control-Allow-Headers "Content-Type, Last-Event-ID, Authorization"
+		header Access-Control-Allow-Credentials "true"
+
+		@options method OPTIONS
+		handle @options {
+			respond 204
+		}
+
+		mercure {
+			publisher_jwt {$MERCURE_PUBLISHER_JWT_KEY}
+			subscriber_jwt {$MERCURE_SUBSCRIBER_JWT_KEY}
+			anonymous
+			subscriptions
+		}
+	}
+
+	# Everything else goes to PHP
+	handle {
+		php {
+			root /var/www/html/webroot
+			worker /var/www/html/webroot/worker.php {
+				env MAX_REQUESTS 500
+			}
+		}
+		file_server
+		try_files {path} index.php
+	}
+}
