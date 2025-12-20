@@ -23,13 +23,14 @@ services:
 
   queue:
     image: frankenphp-cakephp:latest
+    hostname: queue-worker
     restart: unless-stopped
     depends_on:
       - frankenphp
     volumes:
       - /var/www/dereuromark/franken:/app
     working_dir: /app
-    command: php bin/cake.php queue run
+    command: sh -c "php bin/cake.php queue worker end all 2>/dev/null || true; php bin/cake.php queue run"
     environment:
       - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
       - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}

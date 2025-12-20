@@ -1,47 +1,53 @@
 #!/bin/bash
-# Warning: This is NOT a productive script, but for local dev envs only!
+# FrankenPHP Docker deployment script
+
+set -e
+
+DOCKER_DIR="/var/www/dereuromark/franken/docker"
+APP_DIR="/var/www/dereuromark/franken"
+
+cd "$APP_DIR"
 
 git pull
 
-COMPOSER_ALLOW_SUPERUSER=1 composer install --prefer-dist --no-dev -a --no-interaction
+echo "### Maintenance mode ON ###"
+docker exec docker-frankenphp-1 php /app/bin/cake.php maintenance_mode activate
 
-echo "### Clear OPcache ###";
-sudo systemctl reload php8.4-fpm
+echo "### Stop queue worker ###"
+# Signal worker to stop accepting new jobs (finishes current job then exits)
+docker exec docker-queue-1 php /app/bin/cake.php queue worker end all 2>/dev/null || true
 
-chmod +x bin/cake
+# Wait for worker to exit gracefully (up to 120 seconds)
+echo "Waiting for queue worker to finish current job..."
+docker compose -f "$DOCKER_DIR/docker-compose.yml" stop -t 120 queue
 
-bin/cake maintenance_mode activate
+echo "### Composer install ###"
+docker exec docker-frankenphp-1 composer install --prefer-dist --no-dev -a --no-interaction --working-dir=/app
 
-bin/cake queue worker end all
+echo "### DB MIGRATION ###"
+docker exec docker-frankenphp-1 composer migrate --no-interaction --working-dir=/app
 
-mkdir -p tmp
-mkdir -p logs
-mkdir -p webroot/js/cjs/
-mkdir -p webroot/css/ccss/
-
-echo "### DB MIGRATION ###";
-COMPOSER_ALLOW_SUPERUSER=1 composer migrate --no-interaction
-
-echo "### ASSETS ###";
+echo "### ASSETS ###"
 bower install --allow-root
-COMPOSER_ALLOW_SUPERUSER=1 composer assets
+docker exec docker-frankenphp-1 composer assets --working-dir=/app
+docker exec docker-frankenphp-1 php /app/bin/cake.php asset_compress build
 
-bin/cake asset_compress build
-
-echo "### CLEANUP ###";
+echo "### CLEANUP ###"
 rm -rf tmp/cache/models/*
 rm -rf tmp/cache/persistent/*
 rm -rf tmp/cache/views/*
 
-bin/cake cache clear_all
-bin/cake schema_cache build
+docker exec docker-frankenphp-1 php /app/bin/cake.php cache clear_all
+docker exec docker-frankenphp-1 php /app/bin/cake.php schema_cache build
 
-bin/cake maintenance_mode deactivate
+echo "### Maintenance mode OFF ###"
+docker exec docker-frankenphp-1 php /app/bin/cake.php maintenance_mode deactivate
 
-chown -R www-data:www-data *
-chmod -R 0770 tmp
-chmod -R 0770 logs
-chmod -R 0770 webroot/js/cjs/
-chmod -R 0770 webroot/css/ccss/
+echo "### Restart services ###"
+docker compose -f "$DOCKER_DIR/docker-compose.yml" restart frankenphp
+docker compose -f "$DOCKER_DIR/docker-compose.yml" start queue
 
-echo "### DONE ###";
+chown -R www-data:www-data "$APP_DIR"
+chmod -R 0770 tmp logs webroot/js/cjs/ webroot/css/ccss/
+
+echo "### DONE ###"
