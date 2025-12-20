@@ -11,7 +11,6 @@ use Exception;
  * Demonstrates the cakephp-mercure plugin for real-time updates via Server-Sent Events.
  *
  * @property \Mercure\Controller\Component\MercureComponent $Mercure
- * @property \Queue\Model\Table\QueuedJobsTable $QueuedJobs
  */
 class MercureExamplesController extends SandboxAppController {
 

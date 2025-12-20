@@ -51,6 +51,7 @@ use Cake\View\View;
  * @property \Comments\View\Helper\CommentsHelper $Comments
  * @property \Tools\View\Helper\TimelineHelper $Timeline
  * @property \Markup\View\Helper\DjotHelper $Djot
+ * @property \Mercure\View\Helper\MercureHelper $Mercure
  */
 class AppView extends View {
 

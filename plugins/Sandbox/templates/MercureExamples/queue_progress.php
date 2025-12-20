@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \Queue\Model\Entity\QueuedJob[] $queuedJobs
- * @var string $reference
  * @var string|null $mercurePublicUrl
  * @var bool $mercureConfigured
  */
