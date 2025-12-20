@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Exception;
+use Queue\Model\Table\QueuedJobsTable;
 
 /**
  * Mercure Examples Controller
@@ -40,7 +41,7 @@ class MercureExamplesController extends SandboxAppController {
 	/**
 	 * @return \Queue\Model\Table\QueuedJobsTable
 	 */
-	protected function getQueuedJobsTable(): \Queue\Model\Table\QueuedJobsTable {
+	protected function getQueuedJobsTable(): QueuedJobsTable {
 		/** @var \Queue\Model\Table\QueuedJobsTable */
 		return $this->fetchTable('Queue.QueuedJobs');
 	}

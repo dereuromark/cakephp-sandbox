@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Queue\Task;
 
 use Cake\Core\Configure;
+use Exception;
 use Mercure\Publisher;
 use Mercure\Update\JsonUpdate;
 use Queue\Queue\Task;
@@ -100,7 +101,7 @@ class MercureProgressExampleTask extends Task {
 				topics: $topic,
 				data: $data,
 			));
-		} catch (\Exception $e) {
+		} catch (Exception $e) {
 			$this->io->error('Mercure publish failed: ' . $e->getMessage());
 		}
 	}
