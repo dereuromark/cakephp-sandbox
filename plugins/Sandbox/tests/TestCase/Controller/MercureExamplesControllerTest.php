@@ -3,6 +3,7 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
+use Mercure\Authorization;
 use Mercure\Publisher;
 use Mercure\TestSuite\MockPublisher;
 use Shim\TestSuite\IntegrationTestCase;
@@ -17,6 +18,10 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
+
+		// Clear any cached singleton instances before configuring
+		Publisher::clear();
+		Authorization::clear();
 
 		// Configure Mercure for tests
 		Configure::write('Mercure', [
@@ -41,6 +46,7 @@ class MercureExamplesControllerTest extends IntegrationTestCase {
 		parent::tearDown();
 
 		Publisher::clear();
+		Authorization::clear();
 		Configure::delete('Mercure');
 	}
 
