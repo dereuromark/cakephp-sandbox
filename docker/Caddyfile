@@ -32,7 +32,8 @@
         }
     }
 
-    # PHP handling via FrankenPHP
-    # php_server handles static files + PHP fallback to index.php
-    php_server
+    # PHP handling via FrankenPHP in worker mode
+    php_server {
+        worker /app/webroot/worker.php
+    }
 }
