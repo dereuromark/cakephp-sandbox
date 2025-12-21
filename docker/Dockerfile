@@ -4,6 +4,7 @@ FROM dunglas/frankenphp:latest
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
+    graphviz \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
