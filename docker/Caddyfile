@@ -33,7 +33,6 @@
     }
 
     # PHP handling via FrankenPHP
-    php_server {
-        root /app/webroot
-    }
+    # php_server handles static files + PHP fallback to index.php
+    php_server
 }
