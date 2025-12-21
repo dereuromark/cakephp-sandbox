@@ -12,6 +12,7 @@ $action = $this->request->getParam('action');
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Markdown to Djot', ['action' => 'markdownToDjot'], ['class' => 'nav-link' . ($action === 'markdownToDjot' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('HTML to Djot', ['action' => 'htmlToDjot'], ['class' => 'nav-link' . ($action === 'htmlToDjot' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('BBCode to Djot', ['action' => 'bbcodeToDjot'], ['class' => 'nav-link' . ($action === 'bbcodeToDjot' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Links') ?></li>

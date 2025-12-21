@@ -3,67 +3,41 @@
  * @var \App\View\AppView $this
  */
 
-$defaultHtml = <<<'HTML'
-<h1>HTML to Djot</h1>
+$defaultBbcode = <<<'BBCODE'
+[b]Welcome to BBCode![/b]
 
-<p>This is an <strong>HTML</strong> document.<br>
-Try editing this text!</p>
+This is [i]italic[/i] and this is [b]bold[/b] text.
+You can also use [u]underline[/u] and [s]strikethrough[/s].
 
-<hr>
+[quote=John]
+This is a quoted message from John.
+It can span multiple lines.
+[/quote]
 
-<h2>Features</h2>
+Here's a list:
+[list]
+[*]First item
+[*]Second item with [b]bold[/b]
+[*]Third item
+[/list]
 
-<ul>
-    <li><em>emphasis</em> and <strong>strong</strong> text</li>
-    <li><del>deleted</del> and <ins>inserted</ins> text</li>
-    <li><mark>highlighted</mark> text</li>
-    <li>Links: <a href="https://djot.net">Djot docs</a></li>
-    <li>Inline <code>code</code> spans</li>
-</ul>
+And a numbered list:
+[list=1]
+[*]Step one
+[*]Step two
+[*]Step three
+[/list]
 
-<h3>Code Block</h3>
+[code=php]
+echo "Hello World!";
+$x = 42;
+[/code]
 
-<pre><code class="language-php">&lt;?php
-echo "Hello, World!";</code></pre>
+Check out [url=https://djot.net]the Djot website[/url] for more info.
+Or just visit [url]https://example.com[/url].
 
-<h3>Blockquote</h3>
-
-<blockquote>
-    <p>The best way to predict the future is to invent it.</p>
-    <p><em>Alan Kay</em></p>
-</blockquote>
-
-<h3>Table</h3>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>HTML</td>
-            <td>Markup</td>
-        </tr>
-        <tr>
-            <td>PHP</td>
-            <td>Code</td>
-        </tr>
-    </tbody>
-</table>
-
-<h3>Definition List</h3>
-
-<dl>
-    <dt>Djot</dt>
-    <dd>A lightweight markup language with clean syntax.</dd>
-    <dt>Markdown</dt>
-    <dt>CommonMark</dt>
-    <dd>The predecessors that inspired Djot.</dd>
-</dl>
-HTML;
+[img]/img/cake.icon.png[/img]
+BBCODE;
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -71,23 +45,19 @@ HTML;
 </nav>
 <div class="col-md-10 col-sm-9 col-12">
 
-<h2>HTML to Djot Converter</h2>
+<h2>BBCode to Djot Converter</h2>
 <p>
-	Convert <a href="https://html.spec.whatwg.org/" target="_blank">HTML</a> content to
+	Convert <a href="https://en.wikipedia.org/wiki/BBCode" target="_blank">BBCode</a> syntax to
 	<a href="https://djot.net" target="_blank">Djot</a> markup.
-	Edit on the left, see the Djot result on the right.
-</p>
-<p class="text-muted small">
-	Useful for importing HTML content from CMS systems, WYSIWYG editors, or web scraping into Djot format.
-	For more conversion options, see <a href="https://pandoc.org/" target="_blank">Pandoc</a>.
+	Useful for migrating forum content to Djot format.
 </p>
 
 <div id="alert-container"></div>
 
 <div class="row">
 	<div class="col-md-6">
-		<label class="form-label"><strong>HTML Input</strong></label>
-		<textarea id="html-input" class="form-control font-monospace" rows="20" placeholder="Enter HTML..."><?= h($defaultHtml) ?></textarea>
+		<label class="form-label"><strong>BBCode Input</strong></label>
+		<textarea id="bbcode-input" class="form-control font-monospace" rows="20" placeholder="Enter BBCode..."><?= h($defaultBbcode) ?></textarea>
 	</div>
 	<div class="col-md-6">
 		<div class="d-flex justify-content-between align-items-center mb-1">
@@ -108,51 +78,106 @@ HTML;
 	</div>
 </div>
 
-<h3 class="mt-4">Supported HTML Elements</h3>
+<h3 class="mt-4">Conversion Reference</h3>
+<p class="text-muted">BBCode tags are converted to their Djot equivalents:</p>
 <div class="row">
-	<div class="col-md-4">
-		<h6>Block Elements</h6>
-		<ul class="small">
-			<li><code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> - Headings</li>
-			<li><code>&lt;p&gt;</code> - Paragraphs</li>
-			<li><code>&lt;blockquote&gt;</code> - Blockquotes</li>
-			<li><code>&lt;pre&gt;&lt;code&gt;</code> - Code blocks</li>
-			<li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> - Lists</li>
-			<li><code>&lt;table&gt;</code> - Tables</li>
-			<li><code>&lt;dl&gt;</code> - Definition lists</li>
-			<li><code>&lt;hr&gt;</code> - Thematic breaks</li>
-		</ul>
+	<div class="col-md-6">
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th>Feature</th>
+					<th>BBCode</th>
+					<th>Djot</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Bold</td>
+					<td><code>[b]text[/b]</code></td>
+					<td><code>*text*</code></td>
+				</tr>
+				<tr>
+					<td>Italic</td>
+					<td><code>[i]text[/i]</code></td>
+					<td><code>_text_</code></td>
+				</tr>
+				<tr>
+					<td>Underline</td>
+					<td><code>[u]text[/u]</code></td>
+					<td><code>{+text+}</code></td>
+				</tr>
+				<tr>
+					<td>Strikethrough</td>
+					<td><code>[s]text[/s]</code></td>
+					<td><code>{-text-}</code></td>
+				</tr>
+				<tr>
+					<td>Superscript</td>
+					<td><code>[sup]text[/sup]</code></td>
+					<td><code>^text^</code></td>
+				</tr>
+				<tr>
+					<td>Subscript</td>
+					<td><code>[sub]text[/sub]</code></td>
+					<td><code>~text~</code></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	<div class="col-md-4">
-		<h6>Inline Elements</h6>
-		<ul class="small">
-			<li><code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code> - Strong</li>
-			<li><code>&lt;em&gt;</code>, <code>&lt;i&gt;</code> - Emphasis</li>
-			<li><code>&lt;del&gt;</code>, <code>&lt;s&gt;</code> - Deleted</li>
-			<li><code>&lt;ins&gt;</code>, <code>&lt;u&gt;</code> - Inserted</li>
-			<li><code>&lt;mark&gt;</code> - Highlighted</li>
-			<li><code>&lt;sup&gt;</code> - Superscript</li>
-			<li><code>&lt;sub&gt;</code> - Subscript</li>
-			<li><code>&lt;code&gt;</code> - Inline code</li>
-		</ul>
-	</div>
-	<div class="col-md-4">
-		<h6>Other Elements</h6>
-		<ul class="small">
-			<li><code>&lt;a&gt;</code> - Links</li>
-			<li><code>&lt;img&gt;</code> - Images</li>
-			<li><code>&lt;br&gt;</code> - Line breaks</li>
-			<li><code>&lt;figure&gt;</code> - Figures</li>
-			<li><code>&lt;span&gt;</code> - With classes/IDs</li>
-		</ul>
+	<div class="col-md-6">
+		<table class="table table-sm">
+			<thead>
+				<tr>
+					<th>Feature</th>
+					<th>BBCode</th>
+					<th>Djot</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Link</td>
+					<td><code>[url=...]text[/url]</code></td>
+					<td><code>[text](url)</code></td>
+				</tr>
+				<tr>
+					<td>Image</td>
+					<td><code>[img]url[/img]</code></td>
+					<td><code>![](url)</code></td>
+				</tr>
+				<tr>
+					<td>Code block</td>
+					<td><code>[code]...[/code]</code></td>
+					<td><code>```...```</code></td>
+				</tr>
+				<tr>
+					<td>Quote</td>
+					<td><code>[quote]...[/quote]</code></td>
+					<td><code>&gt; ...</code></td>
+				</tr>
+				<tr>
+					<td>List item</td>
+					<td><code>[*]item</code></td>
+					<td><code>- item</code></td>
+				</tr>
+				<tr>
+					<td>Horizontal rule</td>
+					<td><code>[hr]</code></td>
+					<td><code>---</code></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
+
+<p class="text-muted small mt-3">
+	<strong>Note:</strong> Some BBCode features like <code>[size]</code>, <code>[color]</code>, and <code>[font]</code> have no direct Djot equivalent and are stripped during conversion.
+</p>
 
 </div>
 
 <?php $this->Html->scriptStart(['block' => true]); ?>
 (function() {
-	const htmlInput = document.getElementById('html-input');
+	const bbcodeInput = document.getElementById('bbcode-input');
 	const djotOutput = document.getElementById('djot-output');
 	const alertContainer = document.getElementById('alert-container');
 	const loadingIndicator = document.getElementById('loading-indicator');
@@ -179,9 +204,9 @@ HTML;
 		currentRequest = controller;
 
 		const formData = new FormData();
-		formData.append('html', htmlInput.value);
+		formData.append('bbcode', bbcodeInput.value);
 
-		fetch('<?= $this->Url->build(['action' => 'convertHtml']) ?>', {
+		fetch('<?= $this->Url->build(['action' => 'convertBbcode']) ?>', {
 			method: 'POST',
 			body: formData,
 			signal: controller.signal,
@@ -241,7 +266,7 @@ HTML;
 		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
 	}
 
-	htmlInput.addEventListener('input', convert);
+	bbcodeInput.addEventListener('input', convert);
 
 	btnTry.addEventListener('click', function() {
 		const djot = djotOutput.value;

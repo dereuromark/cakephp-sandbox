@@ -558,4 +558,55 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(405);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testBbcodeToDjot(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'bbcodeToDjot']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertBbcode(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode'], [
+			'bbcode' => 'Hello [b]world[/b]!',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('djot', $response);
+		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertBbcodeEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode'], [
+			'bbcode' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['djot']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertBbcodeGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode']);
+
+		$this->assertResponseCode(405);
+	}
+
 }
