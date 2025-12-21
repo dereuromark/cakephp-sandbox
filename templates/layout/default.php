@@ -55,7 +55,7 @@ echo $this->fetch('css');
 			// Check for worker mode marker file
 			$workerMarkerFile = sys_get_temp_dir() . '/frankenphp_worker_' . getmypid();
 			if (file_exists($workerMarkerFile)) {
-				echo ' <span class="fa fa-bolt text-warning" title="Worker Mode: PHP stays in memory for faster responses" style="cursor: help;"></span>';
+				echo ' <span class="fa-solid fa-bolt text-warning" title="Worker Mode: PHP stays in memory for faster responses" style="cursor: help;"></span>';
 			}
 			?></div>
 		</footer>

@@ -42,7 +42,13 @@
 		}
 	}
 
-	# Everything else goes to PHP
+	# Static files - serve directly without PHP
+	@static file
+	handle @static {
+		file_server
+	}
+
+	# PHP requests - everything else
 	handle {
 		php {
 			root /var/www/html/webroot
@@ -50,7 +56,7 @@
 				env MAX_REQUESTS 500
 			}
 		}
-		file_server
 		try_files {path} index.php
+		file_server
 	}
 }
