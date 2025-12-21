@@ -29,3 +29,4 @@ _*
 .ddev/
 /webroot/files/uploads/
 bolt.db
+docker/check_queue.conf
