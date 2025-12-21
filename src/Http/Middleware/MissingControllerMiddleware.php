@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Middleware;
 
 use Cake\Http\Exception\NotFoundException;
+use Cake\Http\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -16,6 +17,12 @@ use Psr\Http\Server\RequestHandlerInterface;
  * controllers (e.g., bots requesting /sitemap.xml, /wp-admin.php, etc.)
  */
 class MissingControllerMiddleware implements MiddlewareInterface {
+
+	/**
+	 * Static file extensions that should return 404 silently (not logged).
+	 * These are typically browser/dev-tool requests, not bot probing.
+	 */
+	protected const SILENT_EXTENSIONS = ['map'];
 
 	/**
 	 * @param \Psr\Http\Message\ServerRequestInterface $request
@@ -34,6 +41,13 @@ class MissingControllerMiddleware implements MiddlewareInterface {
 
 		$className = $this->getControllerClassName($controller, $plugin, $prefix);
 		if ($className === null || !class_exists($className)) {
+			// For static file extensions, return 404 silently without logging
+			$path = $request->getUri()->getPath();
+			$extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+			if (in_array($extension, static::SILENT_EXTENSIONS, true)) {
+				return (new Response())->withStatus(404);
+			}
+
 			throw new NotFoundException('Controller not found: ' . $controller);
 		}
 
