@@ -2,6 +2,9 @@
 COPY --from=frankenphp /usr /usr
 COPY --from=frankenphp /etc/frankenphp /etc/frankenphp
 RUN ldconfig
+
+# Install graphviz for state machine diagrams
+RUN apt-get update && apt-get install -y graphviz && rm -rf /var/lib/apt/lists/*
 ARG PHP_INI_DIR=/usr/local/etc/php
 ARG PHP_CFLAGS="-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
 ARG PHP_CPPFLAGS="-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64"
