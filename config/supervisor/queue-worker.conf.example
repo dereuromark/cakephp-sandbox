@@ -1,0 +1,10 @@
+[program:sandbox-queue]
+command=/usr/bin/php bin/cake queue run
+directory=/var/www/sandbox
+user=www-data
+autostart=true
+autorestart=true
+startsecs=5
+startretries=3
+stderr_logfile=/var/log/sandbox/queue-worker-error.log
+stdout_logfile=/var/log/sandbox/queue-worker.log
