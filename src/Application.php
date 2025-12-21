@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Http\Middleware\DemoRateLimitMiddleware;
+use App\Http\Middleware\MissingControllerMiddleware;
 use App\Http\Middleware\RedirectMiddleware;
+use AssetCompress\Middleware\AssetCompressMiddleware;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
@@ -88,6 +90,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
 			// Apply routing
 			->add(new RoutingMiddleware($this))
+
+			// Return 404 for non-existent controllers (before auth checks)
+			->add(MissingControllerMiddleware::class)
 
 			// CakePHP 5.3: Rate limit demo (limits to 10 requests/minute per IP)
 			// Applied AFTER routing so route params are available for skipCheck
