@@ -22,14 +22,14 @@ echo "Waiting for queue worker to finish current job..."
 docker compose -f "$DOCKER_DIR/docker-compose.yml" stop -t 120 queue
 
 echo "### Composer install ###"
-docker exec docker-frankenphp-1 composer install --prefer-dist --no-dev -a --no-interaction --working-dir=/app
+composer install --prefer-dist --no-dev -a --no-interaction
 
 echo "### DB MIGRATION ###"
-docker exec docker-frankenphp-1 composer migrate --no-interaction --working-dir=/app
+composer migrate --no-interaction
 
 echo "### ASSETS ###"
 bower install --allow-root
-docker exec docker-frankenphp-1 composer assets --working-dir=/app
+composer assets
 docker exec docker-frankenphp-1 php /app/bin/cake.php asset_compress build
 
 echo "### CLEANUP ###"
