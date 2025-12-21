@@ -21,6 +21,8 @@ class MissingControllerMiddleware implements MiddlewareInterface {
 	/**
 	 * Static file extensions that should return 404 silently (not logged).
 	 * These are typically browser/dev-tool requests, not bot probing.
+	 *
+	 * @var array<string>
 	 */
 	protected const SILENT_EXTENSIONS = ['map'];
 
