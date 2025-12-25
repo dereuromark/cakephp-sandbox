@@ -56,7 +56,9 @@ jobs:
         restore-keys: ${{ runner.os }}-composer-
 
     - name: Prepare config
-      run: cp config/app_local.ci.php config/app_local.php
+      run: |
+        cp config/app_local.ci.php config/app_local.php
+        cp config/app_mercure.ci.php config/app_mercure.php
 
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader

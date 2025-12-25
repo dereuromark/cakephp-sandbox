@@ -1,5 +1,6 @@
 <?php
 
+use App\Healthcheck\Check\Tools\GraphvizCheck;
 use AuditStash\Persister\TablePersister;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
@@ -194,6 +195,7 @@ $config = [
 				PhpVersionCheck::class => [
 					'failOnHigher' => 'major',
 				],
+				GraphvizCheck::class => [],
 			] + HealthcheckCollector::defaultChecks(),
 		],
 	],

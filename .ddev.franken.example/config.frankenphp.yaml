@@ -1,0 +1,13 @@
+webserver_type: generic
+web_extra_daemons:
+  - name: "frankenphp"
+    command: "frankenphp run --config /etc/frankenphp/Caddyfile --adapter=caddyfile"
+    directory: /var/www/html
+  - name: "queue-worker"
+    command: "bash -c 'sleep 5 && bin/cake queue worker clean 2>/dev/null || true && bin/cake queue run -v'"
+    directory: /var/www/html
+web_extra_exposed_ports:
+  - name: "frankenphp"
+    container_port: 80
+    http_port: 80
+    https_port: 443

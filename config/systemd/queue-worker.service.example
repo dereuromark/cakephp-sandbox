@@ -1,0 +1,26 @@
+[Unit]
+Description=CakePHP Queue Worker for Sandbox
+After=network.target mysql.service
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/sandbox
+ExecStart=/usr/bin/php bin/cake queue run
+Restart=always
+RestartSec=5
+
+# Environment
+Environment=APP_ENV=production
+
+# Logging
+StandardOutput=append:/var/log/sandbox/queue-worker.log
+StandardError=append:/var/log/sandbox/queue-worker-error.log
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

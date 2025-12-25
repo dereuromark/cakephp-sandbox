@@ -60,6 +60,18 @@ Configure::write('Error.ignoredDeprecationPaths', [
 	'vendor/*',
 ]);
 
+// Configure Mercure for tests (prevents MercureComponent initialization errors)
+Configure::write('Mercure', [
+	'url' => 'http://localhost/.well-known/mercure',
+	'public_url' => 'http://localhost/.well-known/mercure',
+	'jwt' => [
+		'secret' => 'test-secret-key-for-testing-only',
+		'algorithm' => 'HS256',
+		'publish' => ['*'],
+		'subscribe' => ['*'],
+	],
+]);
+
 // Fixate sessionid early on, as php7.2+
 // does not allow the sessionid to be set after stdout
 // has been written to.
