@@ -3,10 +3,11 @@
 # Queue Worker Monitor Script
 # Sends email alert via SendGrid when queue worker is not running
 #
-# Usage: Add to crontab (runs every 5 minutes):
-#   */5 * * * * /var/www/dereuromark/franken/docker/check_queue.sh
+# Usage: Add to crontab (runs every minute for accurate grace period):
+#   * * * * * /var/www/dereuromark/sandbox5/docker/check_queue.sh
 #
 # Configuration: Uses same config file as check_memory.sh
+# Grace period: Only alerts if queue has been down for > ALERT_GRACE_SECONDS (default: 120s)
 
 # Configuration
 SENDGRID_API_KEY=${SENDGRID_API_KEY:-""}
@@ -15,11 +16,15 @@ FROM_EMAIL=${FROM_EMAIL:-""}
 FROM_NAME=${FROM_NAME:-"Server Monitor"}
 
 # Queue-specific settings
-DOCKER_COMPOSE_FILE="/var/www/dereuromark/franken/docker/docker-compose.yml"
-QUEUE_CONTAINER="docker-queue-1"
-FRANKENPHP_CONTAINER="docker-frankenphp-1"
+DOCKER_COMPOSE_FILE="/var/www/dereuromark/sandbox5/docker/docker-compose.yml"
+QUEUE_CONTAINER="sandbox-queue"
+FRANKENPHP_CONTAINER="sandbox-frankenphp"
 # Max seconds since last worker activity before alerting
 MAX_IDLE_SECONDS=${MAX_IDLE_SECONDS:-300}
+# Grace period before sending alert (default 2 minutes)
+ALERT_GRACE_SECONDS=${ALERT_GRACE_SECONDS:-120}
+# State file to track when queue was first detected as down
+STATE_FILE="/tmp/queue_monitor_state"
 
 # Load config from file parallel to this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -128,11 +133,26 @@ else
 fi
 
 if [ "$ALERT_NEEDED" = true ]; then
-    SUBJECT="[ALERT] Queue Worker Down on $HOSTNAME"
-    BODY="Queue worker alert triggered at $TIMESTAMP
+    # Check if this is a new issue or ongoing
+    CURRENT_TIME=$(date +%s)
+    if [ -f "$STATE_FILE" ]; then
+        FIRST_DETECTED=$(cat "$STATE_FILE")
+        DOWNTIME=$((CURRENT_TIME - FIRST_DETECTED))
+    else
+        # First detection - record the timestamp
+        echo "$CURRENT_TIME" > "$STATE_FILE"
+        DOWNTIME=0
+    fi
+
+    # Only send alert if queue has been down longer than grace period
+    if [ "$DOWNTIME" -ge "$ALERT_GRACE_SECONDS" ]; then
+        DOWNTIME_MINS=$((DOWNTIME / 60))
+        SUBJECT="[ALERT] Queue Worker Down on $HOSTNAME"
+        BODY="Queue worker alert triggered at $TIMESTAMP
 
 Server: $HOSTNAME
 Reason: $ALERT_REASON
+Down for: ${DOWNTIME_MINS} minute(s)
 
 Container Status:
 $(docker ps -a --filter "name=$QUEUE_CONTAINER" --format "table {{.Names}}\t{{.Status}}\t{{.RunningFor}}")
@@ -145,9 +165,18 @@ $(get_queue_status 2>&1 || echo "Unable to get queue status")
 
 Please investigate."
 
-    send_alert "$SUBJECT" "$BODY"
-    echo "[$TIMESTAMP] Alert sent: $ALERT_REASON"
+        send_alert "$SUBJECT" "$BODY"
+        echo "[$TIMESTAMP] Alert sent: $ALERT_REASON (down for ${DOWNTIME_MINS}m)"
+    else
+        REMAINING=$((ALERT_GRACE_SECONDS - DOWNTIME))
+        echo "[$TIMESTAMP] Queue down: $ALERT_REASON (grace period: ${REMAINING}s remaining)"
+    fi
 else
+    # Queue is OK - clear state file if it exists
+    if [ -f "$STATE_FILE" ]; then
+        rm -f "$STATE_FILE"
+        echo "[$TIMESTAMP] Queue recovered"
+    fi
     WORKERS=$(get_active_workers)
     LAST_RUN=$(get_last_activity)
     echo "[$TIMESTAMP] Queue OK: $WORKERS worker(s) active, last run: $LAST_RUN"

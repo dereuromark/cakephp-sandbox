@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
 
 # Install PHP extensions
 RUN install-php-extensions \
+    bcmath \
     intl \
+    pcntl \
     pdo_mysql \
     zip \
     opcache \

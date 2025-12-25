@@ -1,5 +1,6 @@
 services:
   frankenphp:
+    container_name: sandbox-frankenphp
     build: .
     image: frankenphp-cakephp:latest
     restart: unless-stopped
@@ -8,7 +9,7 @@ services:
       - "127.0.0.1:8090:80"
       - "127.0.0.1:8091:443"
     volumes:
-      - /var/www/dereuromark/franken:/app
+      - /var/www/dereuromark/sandbox5:/app
       - ./Caddyfile:/etc/frankenphp/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
@@ -23,6 +24,7 @@ services:
       - NET_BIND_SERVICE
 
   queue:
+    container_name: sandbox-queue
     image: frankenphp-cakephp:latest
     hostname: queue-worker
     restart: unless-stopped
@@ -30,7 +32,7 @@ services:
     depends_on:
       - frankenphp
     volumes:
-      - /var/www/dereuromark/franken:/app
+      - /var/www/dereuromark/sandbox5:/app
     working_dir: /app
     command: sh -c "php bin/cake.php queue worker clean 2>/dev/null || true; php bin/cake.php queue run"
     environment:
