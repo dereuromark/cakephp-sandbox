@@ -15,6 +15,14 @@
 
 <h2>Sandbox</h2>
 
+<div class="alert alert-info d-flex align-items-center mb-4" role="alert">
+	<i class="fa fa-broadcast-tower me-3 fa-2x"></i>
+	<div>
+		<strong>New: Mercure Examples</strong><br>
+		Real-time updates with Server-Sent Events. <?php echo $this->Html->link('Check out the demos →', ['controller' => 'MercureExamples', 'action' => 'index']); ?>
+	</div>
+</div>
+
 <div class="row">
 	<div class="col-sm-6 col-12">
 

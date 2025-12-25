@@ -10,6 +10,16 @@ I always found it difficult so "imagine" specific code snippets without demo/exa
 This site combines useful code snippets with their live result.
 </p>
 
+<div class="alert alert-info">
+	<h4><strong>NEW: Mercure Examples</strong></h4>
+	<p>Real-time updates with Server-Sent Events:</p>
+	<ul class="mb-0">
+		<li><?php echo $this->Html->link('Mercure Overview', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'index']); ?> - Learn about Mercure integration</li>
+		<li><?php echo $this->Html->link('Chat Demo', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'chat']); ?> - Real-time multi-user chat</li>
+		<li><?php echo $this->Html->link('Queue Progress', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'queueProgress']); ?> - Live background job updates</li>
+	</ul>
+</div>
+
 <div class="alert alert-success">
 	<h4><strong>NEW: CakePHP 5.3 Features</strong></h4>
 	<p>Check out the latest CakePHP features in action:</p>
