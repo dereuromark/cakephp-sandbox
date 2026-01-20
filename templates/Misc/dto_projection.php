@@ -13,6 +13,11 @@
 
 <h1>DTO Projection POC</h1>
 
+<p>
+    This page demonstrates the POC for DTO projection, including enum type support.
+    See <?= $this->Html->link('Main DTO Projection Demo', ['controller' => 'DtoProjection', 'action' => 'index']) ?> for more examples.
+</p>
+
 <h2>Test 1: Simple Projection (no associations)</h2>
 <pre><?php
 foreach ($simpleUsers as $user) {

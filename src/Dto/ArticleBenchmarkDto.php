@@ -7,6 +7,7 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
+use RuntimeException;
 
 /**
  * ArticleBenchmark DTO
@@ -23,18 +24,22 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TITLE = 'title';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_BODY = 'body';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_AUTHOR = 'author';
+
 	/**
 	 * @var string
 	 */
@@ -168,6 +173,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -210,7 +216,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 		if (isset($data['author'])) {
 			$value = $data['author'];
 			if (is_array($value)) {
-				$value = new \App\Dto\AuthorBenchmarkDto($value, true);
+				$value = new AuthorBenchmarkDto($value, true);
 			}
 			$this->author = $value;
 			$this->_touchedFields['author'] = true;
@@ -219,7 +225,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			$collection = [];
 			foreach ($data['comments'] as $key => $item) {
 				if (is_array($item)) {
-					$item = new \App\Dto\CommentBenchmarkDto($item, true);
+					$item = new CommentBenchmarkDto($item, true);
 				}
 				$collection[$key] = $item;
 			}
@@ -228,14 +234,12 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 		}
 	}
 
-
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
-
 		return $this;
 	}
 
@@ -248,7 +252,6 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
-
 
 	/**
 	 * @param int|null $id
@@ -290,7 +293,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -343,7 +346,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getTitleOrFail(): string {
 		if ($this->title === null) {
-			throw new \RuntimeException('Value not set for field `title` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `title` (expected to be not null)');
 		}
 
 		return $this->title;
@@ -396,7 +399,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getBodyOrFail(): string {
 		if ($this->body === null) {
-			throw new \RuntimeException('Value not set for field `body` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `body` (expected to be not null)');
 		}
 
 		return $this->body;
@@ -414,7 +417,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withAuthor(?\App\Dto\AuthorBenchmarkDto $author = null) {
+	public function withAuthor(?AuthorBenchmarkDto $author = null) {
 		$new = clone $this;
 		$new->author = $author;
 		$new->_touchedFields[static::FIELD_AUTHOR] = true;
@@ -427,7 +430,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withAuthorOrFail(\App\Dto\AuthorBenchmarkDto $author) {
+	public function withAuthorOrFail(AuthorBenchmarkDto $author) {
 		$new = clone $this;
 		$new->author = $author;
 		$new->_touchedFields[static::FIELD_AUTHOR] = true;
@@ -438,7 +441,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\AuthorBenchmarkDto|null
 	 */
-	public function getAuthor(): ?\App\Dto\AuthorBenchmarkDto {
+	public function getAuthor(): ?AuthorBenchmarkDto {
 		return $this->author;
 	}
 
@@ -447,9 +450,9 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\AuthorBenchmarkDto
 	 */
-	public function getAuthorOrFail(): \App\Dto\AuthorBenchmarkDto {
+	public function getAuthorOrFail(): AuthorBenchmarkDto {
 		if ($this->author === null) {
-			throw new \RuntimeException('Value not set for field `author` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `author` (expected to be not null)');
 		}
 
 		return $this->author;
@@ -500,7 +503,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 * @param \App\Dto\CommentBenchmarkDto $comment
 	 * @return static
 	 */
-	public function withAddedComment(\App\Dto\CommentBenchmarkDto $comment) {
+	public function withAddedComment(CommentBenchmarkDto $comment) {
 		$new = clone $this;
 
 		if ($new->comments === null) {
@@ -528,12 +531,12 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param array{id: int|null, title: string|null, body: string|null, author: array{id: int|null, name: string|null}|null, comments: array<int, array{id: int|null, comment: string|null, articleId: int|null, userId: int|null}>} $data
-	 * @phpstan-param array<string, mixed> $data
-	 * @param bool $ignoreMissing
-	 * @param string|null $type
-	 *
-	 * @return static
+     * @phpstan-param array<string, mixed> $data
+     * @param array{id: (int | null), title: (string | null), body: (string | null), author: (array{id: (int | null), name: (string | null)} | null), comments: array<int, array{id: (int | null), comment: (string | null), articleId: (int | null), userId: (int | null)}>}|array $data
+     * @param bool $ignoreMissing
+     * @param string|null $type
+     *
+     * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

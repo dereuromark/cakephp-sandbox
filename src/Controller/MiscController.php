@@ -114,9 +114,9 @@ class MiscController extends AppController {
 	/**
 	 * Test DTO projection with BelongsTo association.
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return void
 	 */
-	public function dtoProjection() {
+	public function dtoProjection(): void {
 		$usersTable = $this->fetchTable('Users');
 
 		// Test 1: Simple projection (no associations)

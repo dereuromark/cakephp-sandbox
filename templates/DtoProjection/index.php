@@ -19,6 +19,7 @@
     <li><?= $this->Html->link('BelongsToMany with _joinData', ['action' => 'belongsToMany']) ?></li>
     <li><?= $this->Html->link('Matching with _matchingData', ['action' => 'matching']) ?></li>
     <li><?= $this->Html->link('Benchmark', ['action' => 'benchmark']) ?></li>
+    <li><?= $this->Html->link('POC with Enums', ['controller' => 'Misc', 'action' => 'dtoProjection']) ?></li>
 </ul>
 
 <h2>Traditional Entities</h2>

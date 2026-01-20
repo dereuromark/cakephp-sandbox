@@ -34,7 +34,7 @@
     <tbody>
         <?php
         $baseTime = $results['Entity']['time'];
-        foreach ($results as $method => $data): ?>
+        foreach ($results as $method => $data) { ?>
         <tr>
             <td><strong><?= h($method) ?></strong></td>
             <td><?= number_format($data['time'], 2) ?> ms</td>
@@ -52,7 +52,7 @@
                 ?>
             </td>
         </tr>
-        <?php endforeach; ?>
+        <?php } ?>
     </tbody>
 </table>
 

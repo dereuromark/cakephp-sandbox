@@ -8,18 +8,19 @@ use Cake\ORM\Attribute\CollectionOf;
 /**
  * Simple readonly DTO for Role using DtoMapper.
  */
-readonly class SimpleRoleDto
-{
-    /**
+readonly class SimpleRoleDto {
+
+	/**
      * @param int $id
      * @param string $name
      * @param array<SimpleUserDto> $users HasMany Users
      */
-    public function __construct(
-        public int $id,
-        public string $name,
-        #[CollectionOf(SimpleUserDto::class)]
-        public array $users = [],
-    ) {
-    }
+	public function __construct(
+		public int $id,
+		public string $name,
+		#[CollectionOf(SimpleUserDto::class)]
+		public array $users = [],
+	) {
+	}
+
 }

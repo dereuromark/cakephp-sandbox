@@ -7,6 +7,7 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
+use RuntimeException;
 
 /**
  * CommentBenchmark DTO
@@ -22,14 +23,17 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_COMMENT = 'comment';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_ARTICLE_ID = 'articleId';
+
 	/**
 	 * @var string
 	 */
@@ -139,6 +143,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -183,14 +188,12 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 		}
 	}
 
-
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
-
 		return $this;
 	}
 
@@ -203,7 +206,6 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
-
 
 	/**
 	 * @param int|null $id
@@ -245,7 +247,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -298,7 +300,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getCommentOrFail(): string {
 		if ($this->comment === null) {
-			throw new \RuntimeException('Value not set for field `comment` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `comment` (expected to be not null)');
 		}
 
 		return $this->comment;
@@ -351,7 +353,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getArticleIdOrFail(): int {
 		if ($this->articleId === null) {
-			throw new \RuntimeException('Value not set for field `articleId` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `articleId` (expected to be not null)');
 		}
 
 		return $this->articleId;
@@ -404,7 +406,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	public function getUserIdOrFail(): int {
 		if ($this->userId === null) {
-			throw new \RuntimeException('Value not set for field `userId` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `userId` (expected to be not null)');
 		}
 
 		return $this->userId;
@@ -432,12 +434,12 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param array{id: int|null, comment: string|null, articleId: int|null, userId: int|null} $data
-	 * @phpstan-param array<string, mixed> $data
-	 * @param bool $ignoreMissing
-	 * @param string|null $type
-	 *
-	 * @return static
+     * @phpstan-param array<string, mixed> $data
+     * @param array{id: (int | null), comment: (string | null), articleId: (int | null), userId: (int | null)}|array $data
+     * @param bool $ignoreMissing
+     * @param string|null $type
+     *
+     * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

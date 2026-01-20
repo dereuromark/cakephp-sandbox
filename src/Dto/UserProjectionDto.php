@@ -6,7 +6,9 @@
 
 namespace App\Dto;
 
+use Cake\I18n\DateTime;
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
+use RuntimeException;
 
 /**
  * UserProjection DTO
@@ -23,18 +25,22 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_ROLE = 'role';
+
 	/**
 	 * @var string
 	 */
@@ -167,6 +173,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -209,7 +216,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 		if (isset($data['role'])) {
 			$value = $data['role'];
 			if (is_array($value)) {
-				$value = new \App\Dto\RoleProjectionDto($value, true);
+				$value = new RoleProjectionDto($value, true);
 			}
 			$this->role = $value;
 			$this->_touchedFields['role'] = true;
@@ -224,14 +231,12 @@ class UserProjectionDto extends AbstractImmutableDto {
 		}
 	}
 
-
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
-
 		return $this;
 	}
 
@@ -244,7 +249,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
-
 
 	/**
 	 * @param int|null $id
@@ -286,7 +290,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -339,7 +343,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getUsernameOrFail(): string {
 		if ($this->username === null) {
-			throw new \RuntimeException('Value not set for field `username` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `username` (expected to be not null)');
 		}
 
 		return $this->username;
@@ -392,7 +396,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getEmailOrFail(): string {
 		if ($this->email === null) {
-			throw new \RuntimeException('Value not set for field `email` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `email` (expected to be not null)');
 		}
 
 		return $this->email;
@@ -410,7 +414,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRole(?\App\Dto\RoleProjectionDto $role = null) {
+	public function withRole(?RoleProjectionDto $role = null) {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -423,7 +427,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRoleOrFail(\App\Dto\RoleProjectionDto $role) {
+	public function withRoleOrFail(RoleProjectionDto $role) {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -434,7 +438,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\RoleProjectionDto|null
 	 */
-	public function getRole(): ?\App\Dto\RoleProjectionDto {
+	public function getRole(): ?RoleProjectionDto {
 		return $this->role;
 	}
 
@@ -443,9 +447,9 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\RoleProjectionDto
 	 */
-	public function getRoleOrFail(): \App\Dto\RoleProjectionDto {
+	public function getRoleOrFail(): RoleProjectionDto {
 		if ($this->role === null) {
-			throw new \RuntimeException('Value not set for field `role` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `role` (expected to be not null)');
 		}
 
 		return $this->role;
@@ -463,7 +467,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?\Cake\I18n\DateTime $created = null) {
+	public function withCreated(?DateTime $created = null) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -476,7 +480,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
+	public function withCreatedOrFail(DateTime $created) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -487,7 +491,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 	/**
 	 * @return \Cake\I18n\DateTime|null
 	 */
-	public function getCreated(): ?\Cake\I18n\DateTime {
+	public function getCreated(): ?DateTime {
 		return $this->created;
 	}
 
@@ -496,9 +500,9 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return \Cake\I18n\DateTime
 	 */
-	public function getCreatedOrFail(): \Cake\I18n\DateTime {
+	public function getCreatedOrFail(): DateTime {
 		if ($this->created === null) {
-			throw new \RuntimeException('Value not set for field `created` (expected to be not null)');
+			throw new RuntimeException('Value not set for field `created` (expected to be not null)');
 		}
 
 		return $this->created;
@@ -526,12 +530,12 @@ class UserProjectionDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param array{id: int|null, username: string|null, email: string|null, role: array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>}|null, created: \Cake\I18n\DateTime|null} $data
-	 * @phpstan-param array<string, mixed> $data
-	 * @param bool $ignoreMissing
-	 * @param string|null $type
-	 *
-	 * @return static
+     * @phpstan-param array<string, mixed> $data
+     * @param array{id: (int | null), username: (string | null), email: (string | null), role: (array{id: (int | null), name: (string | null), users: array<int, array{id: (int | null), username: (string | null), email: (string | null)}>} | null), created: (\Cake\I18n\DateTime | null)}|array $data
+     * @param bool $ignoreMissing
+     * @param string|null $type
+     *
+     * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);
