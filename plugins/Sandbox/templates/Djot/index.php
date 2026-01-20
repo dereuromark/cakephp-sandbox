@@ -43,7 +43,7 @@ echo "Hello, World!";
 
 ### Table
 
-{.table}
+{.table .table-striped}
 | Name   | Type   |
 |--------|--------|
 | Djot   | Markup |
