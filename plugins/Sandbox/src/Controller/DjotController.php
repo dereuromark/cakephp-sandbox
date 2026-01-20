@@ -31,6 +31,10 @@ class DjotController extends SandboxAppController {
 	 */
 	public function index() {
 		$djotVersion = InstalledVersions::getPrettyVersion('php-collective/djot');
+		$reference = InstalledVersions::getReference('php-collective/djot');
+		if ($djotVersion === 'dev-master' && $reference) {
+			$djotVersion = 'dev-master@' . substr($reference, 0, 7);
+		}
 
 		$this->set('debugMode', Configure::read('debug'));
 		$this->set('djotVersion', $djotVersion);
