@@ -2147,12 +2147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "8c1de2d6031b762f96978ebc9770532d4439da13"
+                "reference": "ec94062cfb43cb37572c2f12974c790b6f277b5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/8c1de2d6031b762f96978ebc9770532d4439da13",
-                "reference": "8c1de2d6031b762f96978ebc9770532d4439da13",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/ec94062cfb43cb37572c2f12974c790b6f277b5a",
+                "reference": "ec94062cfb43cb37572c2f12974c790b6f277b5a",
                 "shasum": ""
             },
             "require": {
@@ -2212,7 +2212,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2026-01-15T07:53:29+00:00"
+            "time": "2026-01-20T17:48:05+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -6466,12 +6466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "dba7c99e66da9408eee6664f00df8d157427e3dc"
+                "reference": "ccbb202ab041532e1edb47ac3beb9226e2cd55f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/dba7c99e66da9408eee6664f00df8d157427e3dc",
-                "reference": "dba7c99e66da9408eee6664f00df8d157427e3dc",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/ccbb202ab041532e1edb47ac3beb9226e2cd55f4",
+                "reference": "ccbb202ab041532e1edb47ac3beb9226e2cd55f4",
                 "shasum": ""
             },
             "require": {
@@ -6527,7 +6527,7 @@
                 "issues": "https://github.com/php-collective/dto/issues",
                 "source": "https://github.com/php-collective/dto/tree/master"
             },
-            "time": "2026-01-19T07:50:19+00:00"
+            "time": "2026-01-20T18:21:37+00:00"
         },
         {
             "name": "php-collective/file-storage",
