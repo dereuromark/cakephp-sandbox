@@ -213,6 +213,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 			if (!is_object($value)) {
 				$value = $this->createEnum('status', $value);
 			}
+			/** @var \Sandbox\Model\Enum\UserStatus|null $value */
 			$this->status = $value;
 			$this->_touchedFields['status'] = true;
 		}
