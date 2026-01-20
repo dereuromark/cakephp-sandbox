@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06e2d242756c60c2c85b4e58311a81f7",
+    "content-hash": "bf91f7d361adb88f26821ccac81278ca",
     "packages": [
         {
             "name": "brick/math",
@@ -12646,12 +12646,6 @@
             "alias_normalized": "5.3.0.0"
         },
         {
-            "package": "cakephp/migrations",
-            "version": "5.9999999.9999999.9999999-dev",
-            "alias": "4.9.1",
-            "alias_normalized": "4.9.1.0"
-        },
-        {
             "package": "dereuromark/cakephp-dto",
             "version": "9999999-dev",
             "alias": "2.5.0",
@@ -12714,8 +12708,8 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "admad/entity": 20,
         "cakephp/cakephp": 20,
-        "cakephp/migrations": 20,
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-audit-stash": 20,
         "dereuromark/cakephp-bouncer": 20,
