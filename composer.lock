@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aea5ede799c4da52a71d6a776d09f70d",
+    "content-hash": "06e2d242756c60c2c85b4e58311a81f7",
     "packages": [
         {
             "name": "brick/math",
@@ -307,16 +307,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "dev-5.next",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "c12df4f4660384a74f093cd667edc618e27be09d"
+                "reference": "66662dec2223f236976c3663848ceb01c85368bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/c12df4f4660384a74f093cd667edc618e27be09d",
-                "reference": "c12df4f4660384a74f093cd667edc618e27be09d",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/66662dec2223f236976c3663848ceb01c85368bd",
+                "reference": "66662dec2223f236976c3663848ceb01c85368bd",
                 "shasum": ""
             },
             "require": {
@@ -376,10 +376,11 @@
                 "ext-openssl": "To use Security::encrypt() or have secure CSRF token generation.",
                 "paragonie/csp-builder": "CSP builder, to use the CSP Middleware"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-5.next": "5.4.x-dev"
+                    "dev-5.next": "5.3.x-dev"
                 }
             },
             "autoload": {
@@ -424,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-01-18T13:40:20+00:00"
+            "time": "2026-01-19T19:26:29+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -12640,7 +12641,7 @@
     "aliases": [
         {
             "package": "cakephp/cakephp",
-            "version": "dev-5.next",
+            "version": "5.9999999.9999999.9999999-dev",
             "alias": "5.3.0",
             "alias_normalized": "5.3.0.0"
         },
