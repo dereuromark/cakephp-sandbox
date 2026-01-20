@@ -1,0 +1,4 @@
+#ddev-generated
+ARG DDEV_PHP_VERSION
+ARG FRANKENPHP_DEBIAN_CODENAME=bookworm
+FROM dunglas/frankenphp:php${DDEV_PHP_VERSION}-${FRANKENPHP_DEBIAN_CODENAME} AS frankenphp

@@ -1,0 +1,39 @@
+{
+    # Enable FrankenPHP
+    frankenphp
+
+    # Enable Mercure hub
+    order mercure after encode
+}
+
+:80 {
+    root * /app/webroot
+    encode zstd gzip
+
+    # Mercure with CORS
+    route /.well-known/mercure {
+        header Access-Control-Allow-Origin "https://sandbox.dereuromark.de"
+        header Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        header Access-Control-Allow-Headers "Content-Type, Last-Event-ID, Authorization"
+        header Access-Control-Allow-Credentials "true"
+
+        @options method OPTIONS
+        handle @options {
+            respond 204
+        }
+
+        handle {
+            mercure {
+                publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY}
+                subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY}
+                anonymous
+                subscriptions
+            }
+        }
+    }
+
+    # PHP handling via FrankenPHP in worker mode
+    php_server {
+        worker /app/webroot/worker.php
+    }
+}

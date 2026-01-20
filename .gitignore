@@ -7,6 +7,8 @@ _*
 /vendor/
 /logs
 /config/app_local.php
+/config/app_mercure.php
+/docker/.env
 /phpunit.phar
 /composer.phar
 /phpstan.phar
@@ -26,3 +28,5 @@ _*
 /.bash_history
 .ddev/
 /webroot/files/uploads/
+bolt.db
+docker/check_queue.conf

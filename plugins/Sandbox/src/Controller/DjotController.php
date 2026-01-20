@@ -4,6 +4,8 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Response;
+use Composer\InstalledVersions;
+use Djot\Converter\BbcodeToDjot;
 use Djot\Converter\HtmlToDjot;
 use Djot\Converter\MarkdownToDjot;
 use Djot\DjotConverter;
@@ -28,7 +30,14 @@ class DjotController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+		$djotVersion = InstalledVersions::getPrettyVersion('php-collective/djot');
+		$reference = InstalledVersions::getReference('php-collective/djot');
+		if ($djotVersion === 'dev-master' && $reference) {
+			$djotVersion = 'dev-master@' . substr($reference, 0, 7);
+		}
+
 		$this->set('debugMode', Configure::read('debug'));
+		$this->set('djotVersion', $djotVersion);
 	}
 
 	/**
@@ -432,6 +441,43 @@ DJOT,
 			try {
 				$converter = new HtmlToDjot();
 				$result['djot'] = $converter->convert($html);
+			} catch (Exception $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * BBCode to Djot converter playground.
+	 *
+	 * @return void
+	 */
+	public function bbcodeToDjot(): void {
+	}
+
+	/**
+	 * AJAX endpoint for BBCode to Djot conversion.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertBbcode(): Response {
+		$this->request->allowMethod(['post']);
+
+		$bbcode = (string)$this->request->getData('bbcode');
+
+		$result = [
+			'djot' => '',
+			'error' => null,
+		];
+
+		if ($bbcode) {
+			try {
+				$converter = new BbcodeToDjot();
+				$result['djot'] = $converter->convert($bbcode);
 			} catch (Exception $e) {
 				$result['error'] = $e->getMessage();
 			}

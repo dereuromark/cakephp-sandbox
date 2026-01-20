@@ -19,6 +19,7 @@ echo "### START ###";
 bin/cake maintenance_mode activate
 
 bin/cake queue worker end all
+bin/cake queue worker clean
 
 echo "### DB MIGRATION ###";
 COMPOSER_ALLOW_SUPERUSER=1 composer migrate

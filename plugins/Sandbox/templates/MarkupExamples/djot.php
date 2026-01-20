@@ -102,7 +102,7 @@ echo $this->Djot->convert($text);
 <h4>Tables</h4>
 <div class="code-snippet"><?php
 $text = <<<'DJOT'
-{.table}
+{.table .table-striped}
 | Name   | Type   | Description         |
 |--------|--------|---------------------|
 | Djot   | Markup | Modern markup       |

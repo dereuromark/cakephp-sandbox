@@ -84,6 +84,9 @@ try {
 
 Configure::load('app_custom');
 Configure::load('app_local');
+if (file_exists(CONFIG . 'app_mercure.php')) {
+	Configure::load('app_mercure');
+}
 
 // Load an environment local configuration file.
 // You can use a file like app_local.php to provide local overrides to your
@@ -135,7 +138,7 @@ if ($isCli) {
  */
 if (!Configure::read('App.fullBaseUrl')) {
 	$s = null;
-	if (env('HTTPS')) {
+	if (env('HTTPS') || env('HTTP_X_FORWARDED_PROTO') === 'https') {
 		$s = 's';
 	}
 

@@ -168,4 +168,69 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testEmptyValuesJson() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'emptyValues', '_ext' => 'json']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertContentType('application/json');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testEmptyValuesXml() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'emptyValues', '_ext' => 'xml']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertContentType('application/xml');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testEmptyValuesJsonWithFilter() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'emptyValues', '_ext' => 'json', '?' => ['has_phone_code' => '0']]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertContentType('application/json');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationJson() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '_ext' => 'json']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertContentType('application/json');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testValidationXml() {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'validation', '_ext' => 'xml']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertContentType('application/xml');
+	}
+
 }

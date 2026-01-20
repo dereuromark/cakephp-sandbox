@@ -43,18 +43,22 @@ MARKDOWN;
 		<textarea id="markdown-input" class="form-control font-monospace" rows="20" placeholder="Enter Markdown..."><?= h($defaultMarkdown) ?></textarea>
 	</div>
 	<div class="col-md-6">
-		<label class="form-label"><strong>Djot Output</strong></label>
+		<div class="d-flex justify-content-between align-items-center mb-1">
+			<label class="form-label mb-0"><strong>Djot Output</strong></label>
+			<div>
+				<span id="loading-indicator" class="me-2" style="opacity: 0;">
+					<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
+				</span>
+				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-copy" title="Copy Djot output">
+					<i class="bi bi-clipboard"></i> Copy
+				</button>
+				<button type="button" class="btn btn-sm btn-outline-primary" id="btn-try" title="Try in Djot Playground">
+					<i class="bi bi-play-fill"></i> Try in Playground
+				</button>
+			</div>
+		</div>
 		<textarea id="djot-output" class="form-control font-monospace" rows="20" readonly placeholder="Djot output will appear here..."></textarea>
 	</div>
-</div>
-
-<div class="mt-3">
-	<button type="button" class="btn btn-outline-secondary" id="btn-copy" title="Copy Djot output">
-		<i class="bi bi-clipboard"></i> Copy
-	</button>
-	<span id="loading-indicator" class="ms-2" style="opacity: 0;">
-		<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
-	</span>
 </div>
 
 <h3 class="mt-4">Key Differences</h3>
@@ -137,6 +141,7 @@ MARKDOWN;
 	const alertContainer = document.getElementById('alert-container');
 	const loadingIndicator = document.getElementById('loading-indicator');
 	const btnCopy = document.getElementById('btn-copy');
+	const btnTry = document.getElementById('btn-try');
 
 	let debounceTimer;
 	let currentRequest;
@@ -216,7 +221,18 @@ MARKDOWN;
 		}
 	}
 
+	function compress(str) {
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
+	}
+
 	markdownInput.addEventListener('input', convert);
+
+	btnTry.addEventListener('click', function() {
+		const djot = djotOutput.value;
+		if (djot) {
+			window.location.href = '<?= $this->Url->build(['action' => 'index']) ?>?d=' + encodeURIComponent(compress(djot));
+		}
+	});
 
 	btnCopy.addEventListener('click', function() {
 		copyToClipboard(djotOutput.value).then(() => {

@@ -1,0 +1,46 @@
+services:
+  frankenphp:
+    container_name: sandbox-frankenphp
+    build: .
+    image: frankenphp-cakephp:latest
+    restart: unless-stopped
+    user: "33:33"
+    ports:
+      - "127.0.0.1:8090:80"
+      - "127.0.0.1:8091:443"
+    volumes:
+      - /var/www/dereuromark/sandbox5:/app
+      - ./Caddyfile:/etc/frankenphp/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - SERVER_NAME=:80
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY}
+      - MERCURE_EXTRA_DIRECTIVES=anonymous
+    security_opt:
+      - no-new-privileges:true
+    cap_add:
+      - NET_BIND_SERVICE
+
+  queue:
+    container_name: sandbox-queue
+    image: frankenphp-cakephp:latest
+    hostname: queue-worker
+    restart: unless-stopped
+    user: "33:33"
+    depends_on:
+      - frankenphp
+    volumes:
+      - /var/www/dereuromark/sandbox5:/app
+    working_dir: /app
+    command: sh -c "php bin/cake.php queue worker clean 2>/dev/null || true; php bin/cake.php queue run"
+    environment:
+      - MERCURE_PUBLISHER_JWT_KEY=${MERCURE_PUBLISHER_JWT_KEY}
+      - MERCURE_SUBSCRIBER_JWT_KEY=${MERCURE_SUBSCRIBER_JWT_KEY}
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  caddy_data:
+  caddy_config:
