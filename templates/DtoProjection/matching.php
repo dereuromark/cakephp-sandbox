@@ -1,11 +1,10 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<\App\Model\Entity\User> $entities
+ * @var iterable<\App\Model\Entity\Entity> $entities
  * @var array<\App\Dto\SimpleUserDto> $dtosWithout
  * @var array<\App\Dto\UserWithMatchingDto> $dtosWithArray
- * @var array<\App\Dto\UserWithMatchingDtoTyped> $dtosWithTyped
- * @var array $rawArrays
+ * @var array<\App\Dto\UserWithMatchingTypedDto> $dtosWithTyped
  */
 ?>
 <h1>DTO Projection Demo: Matching with _matchingData</h1>
@@ -61,7 +60,7 @@ foreach ($dtosWithArray as $dto) {
 ?></pre>
 
 <h2>4. DTO with _matchingData as <code>MatchingDataDto</code></h2>
-<p>Using <code>UserWithMatchingDtoTyped</code> - fully typed nested DTOs!</p>
+<p>Using <code>UserWithMatchingTypedDto</code> - fully typed nested DTOs!</p>
 <pre><?php
 foreach ($dtosWithTyped as $dto) {
     echo "User #{$dto->id}: {$dto->username}\n";
@@ -94,7 +93,7 @@ readonly class MatchingDataDto
     ) {}
 }
 
-readonly class UserWithMatchingDtoTyped
+readonly class UserWithMatchingTypedDto
 {
     public function __construct(
         public int $id,

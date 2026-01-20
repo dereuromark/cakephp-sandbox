@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<\App\Model\Entity\User> $entities
+ * @var iterable<\App\Model\Entity\Entity> $entities
  * @var array<\App\Dto\SimpleUserDto> $dtosSimple
  * @var array<\App\Dto\UserProjectionDto> $dtosPlugin
  */

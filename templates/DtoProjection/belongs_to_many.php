@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<\Sandbox\Model\Entity\SandboxPost> $entities
+ * @var iterable<\App\Model\Entity\Entity> $entities
  * @var array<\App\Dto\PostDto> $dtos
  */
 ?>
