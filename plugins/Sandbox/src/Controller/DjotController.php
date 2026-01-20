@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Response;
+use Composer\InstalledVersions;
 use Djot\Converter\BbcodeToDjot;
 use Djot\Converter\HtmlToDjot;
 use Djot\Converter\MarkdownToDjot;
@@ -29,7 +30,10 @@ class DjotController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
+		$djotVersion = InstalledVersions::getPrettyVersion('php-collective/djot');
+
 		$this->set('debugMode', Configure::read('debug'));
+		$this->set('djotVersion', $djotVersion);
 	}
 
 	/**

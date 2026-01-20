@@ -2,6 +2,7 @@
 /**
  * @var \App\View\AppView $this
  * @var bool $debugMode
+ * @var string|null $djotVersion
  */
 
 $this->append('css');
@@ -97,7 +98,7 @@ DJOT;
 
 <h2>Djot Playground</h2>
 <p>
-	<a href="https://github.com/php-collective/djot-php" target="_blank">[Djot-PHP]</a> converts
+	<a href="https://github.com/php-collective/djot-php" target="_blank">[Djot-PHP<?php if ($djotVersion) { ?> <?= h($djotVersion) ?><?php } ?>]</a> converts
 	<a href="https://djot.net" target="_blank">Djot</a> markup to HTML.
 	Edit on the left, see the result on the right.
 </p>
