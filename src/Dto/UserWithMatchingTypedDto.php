@@ -11,15 +11,15 @@ use PhpCollective\Dto\Dto\AbstractImmutableDto;
 use RuntimeException;
 
 /**
- * Tagged DTO
+ * UserWithMatchingTyped DTO
  *
  * @property int|null $id
- * @property int|null $tagId
- * @property int|null $fkId
- * @property string|null $fkModel
+ * @property string|null $username
+ * @property string|null $email
  * @property \Cake\I18n\DateTime|null $created
+ * @property \App\Dto\MatchingDataDto|null $_matchingData
  */
-class TaggedDto extends AbstractImmutableDto {
+class UserWithMatchingTypedDto extends AbstractImmutableDto {
 
 	/**
 	 * @var string
@@ -29,17 +29,12 @@ class TaggedDto extends AbstractImmutableDto {
 	/**
 	 * @var string
 	 */
-	public const FIELD_TAG_ID = 'tagId';
+	public const FIELD_USERNAME = 'username';
 
 	/**
 	 * @var string
 	 */
-	public const FIELD_FK_ID = 'fkId';
-
-	/**
-	 * @var string
-	 */
-	public const FIELD_FK_MODEL = 'fkModel';
+	public const FIELD_EMAIL = 'email';
 
 	/**
 	 * @var string
@@ -47,29 +42,34 @@ class TaggedDto extends AbstractImmutableDto {
 	public const FIELD_CREATED = 'created';
 
 	/**
+	 * @var string
+	 */
+	public const FIELD__MATCHING_DATA = '_matchingData';
+
+	/**
 	 * @var int|null
 	 */
 	protected $id;
 
 	/**
-	 * @var int|null
+	 * @var string|null
 	 */
-	protected $tagId;
-
-	/**
-	 * @var int|null
-	 */
-	protected $fkId;
+	protected $username;
 
 	/**
 	 * @var string|null
 	 */
-	protected $fkModel;
+	protected $email;
 
 	/**
 	 * @var \Cake\I18n\DateTime|null
 	 */
 	protected $created;
+
+	/**
+	 * @var \App\Dto\MatchingDataDto|null
+	 */
+	protected $_matchingData;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -91,9 +91,9 @@ class TaggedDto extends AbstractImmutableDto {
 			'mapFrom' => null,
 			'mapTo' => null,
 		],
-		'tagId' => [
-			'name' => 'tagId',
-			'type' => 'int',
+		'username' => [
+			'name' => 'username',
+			'type' => 'string',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
@@ -105,22 +105,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'mapFrom' => null,
 			'mapTo' => null,
 		],
-		'fkId' => [
-			'name' => 'fkId',
-			'type' => 'int',
-			'required' => false,
-			'defaultValue' => null,
-			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
-			'serialize' => null,
-			'factory' => null,
-			'mapFrom' => null,
-			'mapTo' => null,
-		],
-		'fkModel' => [
-			'name' => 'fkModel',
+		'email' => [
+			'name' => 'email',
 			'type' => 'string',
 			'required' => false,
 			'defaultValue' => null,
@@ -149,6 +135,20 @@ class TaggedDto extends AbstractImmutableDto {
 			'isClass' => true,
 			'enum' => null,
 		],
+		'_matchingData' => [
+			'name' => '_matchingData',
+			'type' => '\App\Dto\MatchingDataDto',
+			'required' => false,
+			'defaultValue' => null,
+			'dto' => 'MatchingData',
+			'collectionType' => null,
+			'associative' => false,
+			'key' => null,
+			'serialize' => null,
+			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
+		],
 	];
 
 	/**
@@ -157,17 +157,17 @@ class TaggedDto extends AbstractImmutableDto {
 	protected array $_keyMap = [
 		'underscored' => [
 			'id' => 'id',
-			'tag_id' => 'tagId',
-			'fk_id' => 'fkId',
-			'fk_model' => 'fkModel',
+			'username' => 'username',
+			'email' => 'email',
 			'created' => 'created',
+			'_matching_data' => '_matchingData',
 		],
 		'dashed' => [
 			'id' => 'id',
-			'tag-id' => 'tagId',
-			'fk-id' => 'fkId',
-			'fk-model' => 'fkModel',
+			'username' => 'username',
+			'email' => 'email',
 			'created' => 'created',
+			'-matching-data' => '_matchingData',
 		],
 	];
 
@@ -184,10 +184,10 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	protected static array $_setters = [
 		'id' => 'withId',
-		'tagId' => 'withTagid',
-		'fkId' => 'withFkid',
-		'fkModel' => 'withFkmodel',
+		'username' => 'withUsername',
+		'email' => 'withEmail',
 		'created' => 'withCreated',
+		'_matchingData' => 'with_matchingdata',
 	];
 
 	/**
@@ -205,17 +205,13 @@ class TaggedDto extends AbstractImmutableDto {
 			$this->id = $data['id'];
 			$this->_touchedFields['id'] = true;
 		}
-		if (isset($data['tagId'])) {
-			$this->tagId = $data['tagId'];
-			$this->_touchedFields['tagId'] = true;
+		if (isset($data['username'])) {
+			$this->username = $data['username'];
+			$this->_touchedFields['username'] = true;
 		}
-		if (isset($data['fkId'])) {
-			$this->fkId = $data['fkId'];
-			$this->_touchedFields['fkId'] = true;
-		}
-		if (isset($data['fkModel'])) {
-			$this->fkModel = $data['fkModel'];
-			$this->_touchedFields['fkModel'] = true;
+		if (isset($data['email'])) {
+			$this->email = $data['email'];
+			$this->_touchedFields['email'] = true;
 		}
 		if (isset($data['created'])) {
 			$value = $data['created'];
@@ -225,6 +221,14 @@ class TaggedDto extends AbstractImmutableDto {
 			/** @var \Cake\I18n\DateTime $value */
 			$this->created = $value;
 			$this->_touchedFields['created'] = true;
+		}
+		if (isset($data['_matchingData'])) {
+			$value = $data['_matchingData'];
+			if (is_array($value)) {
+				$value = new MatchingDataDto($value, true);
+			}
+			$this->_matchingData = $value;
+			$this->_touchedFields['_matchingData'] = true;
 		}
 	}
 
@@ -301,133 +305,27 @@ class TaggedDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param int|null $tagId
+	 * @param string|null $username
 	 *
 	 * @return static
 	 */
-	public function withTagId(?int $tagId = null) {
+	public function withUsername(?string $username = null) {
 		$new = clone $this;
-		$new->tagId = $tagId;
-		$new->_touchedFields[static::FIELD_TAG_ID] = true;
+		$new->username = $username;
+		$new->_touchedFields[static::FIELD_USERNAME] = true;
 
 		return $new;
 	}
 
 	/**
-	 * @param int $tagId
+	 * @param string $username
 	 *
 	 * @return static
 	 */
-	public function withTagIdOrFail(int $tagId) {
+	public function withUsernameOrFail(string $username) {
 		$new = clone $this;
-		$new->tagId = $tagId;
-		$new->_touchedFields[static::FIELD_TAG_ID] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @return int|null
-	 */
-	public function getTagId(): ?int {
-		return $this->tagId;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return int
-	 */
-	public function getTagIdOrFail(): int {
-		if ($this->tagId === null) {
-			throw new RuntimeException('Value not set for field `tagId` (expected to be not null)');
-		}
-
-		return $this->tagId;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasTagId(): bool {
-		return $this->tagId !== null;
-	}
-
-	/**
-	 * @param int|null $fkId
-	 *
-	 * @return static
-	 */
-	public function withFkId(?int $fkId = null) {
-		$new = clone $this;
-		$new->fkId = $fkId;
-		$new->_touchedFields[static::FIELD_FK_ID] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @param int $fkId
-	 *
-	 * @return static
-	 */
-	public function withFkIdOrFail(int $fkId) {
-		$new = clone $this;
-		$new->fkId = $fkId;
-		$new->_touchedFields[static::FIELD_FK_ID] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @return int|null
-	 */
-	public function getFkId(): ?int {
-		return $this->fkId;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return int
-	 */
-	public function getFkIdOrFail(): int {
-		if ($this->fkId === null) {
-			throw new RuntimeException('Value not set for field `fkId` (expected to be not null)');
-		}
-
-		return $this->fkId;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasFkId(): bool {
-		return $this->fkId !== null;
-	}
-
-	/**
-	 * @param string|null $fkModel
-	 *
-	 * @return static
-	 */
-	public function withFkModel(?string $fkModel = null) {
-		$new = clone $this;
-		$new->fkModel = $fkModel;
-		$new->_touchedFields[static::FIELD_FK_MODEL] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @param string $fkModel
-	 *
-	 * @return static
-	 */
-	public function withFkModelOrFail(string $fkModel) {
-		$new = clone $this;
-		$new->fkModel = $fkModel;
-		$new->_touchedFields[static::FIELD_FK_MODEL] = true;
+		$new->username = $username;
+		$new->_touchedFields[static::FIELD_USERNAME] = true;
 
 		return $new;
 	}
@@ -435,8 +333,8 @@ class TaggedDto extends AbstractImmutableDto {
 	/**
 	 * @return string|null
 	 */
-	public function getFkModel(): ?string {
-		return $this->fkModel;
+	public function getUsername(): ?string {
+		return $this->username;
 	}
 
 	/**
@@ -444,19 +342,72 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return string
 	 */
-	public function getFkModelOrFail(): string {
-		if ($this->fkModel === null) {
-			throw new RuntimeException('Value not set for field `fkModel` (expected to be not null)');
+	public function getUsernameOrFail(): string {
+		if ($this->username === null) {
+			throw new RuntimeException('Value not set for field `username` (expected to be not null)');
 		}
 
-		return $this->fkModel;
+		return $this->username;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasFkModel(): bool {
-		return $this->fkModel !== null;
+	public function hasUsername(): bool {
+		return $this->username !== null;
+	}
+
+	/**
+	 * @param string|null $email
+	 *
+	 * @return static
+	 */
+	public function withEmail(?string $email = null) {
+		$new = clone $this;
+		$new->email = $email;
+		$new->_touchedFields[static::FIELD_EMAIL] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @param string $email
+	 *
+	 * @return static
+	 */
+	public function withEmailOrFail(string $email) {
+		$new = clone $this;
+		$new->email = $email;
+		$new->_touchedFields[static::FIELD_EMAIL] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @return string|null
+	 */
+	public function getEmail(): ?string {
+		return $this->email;
+	}
+
+	/**
+	 * @throws \RuntimeException If value is not set.
+	 *
+	 * @return string
+	 */
+	public function getEmailOrFail(): string {
+		if ($this->email === null) {
+			throw new RuntimeException('Value not set for field `email` (expected to be not null)');
+		}
+
+		return $this->email;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasEmail(): bool {
+		return $this->email !== null;
 	}
 
 	/**
@@ -513,14 +464,67 @@ class TaggedDto extends AbstractImmutableDto {
 	}
 
 	/**
+	 * @param \App\Dto\MatchingDataDto|null $_matchingData
+	 *
+	 * @return static
+	 */
+	public function with_matchingData(?MatchingDataDto $_matchingData = null) {
+		$new = clone $this;
+		$new->_matchingData = $_matchingData;
+		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @param \App\Dto\MatchingDataDto $_matchingData
+	 *
+	 * @return static
+	 */
+	public function with_matchingDataOrFail(MatchingDataDto $_matchingData) {
+		$new = clone $this;
+		$new->_matchingData = $_matchingData;
+		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @return \App\Dto\MatchingDataDto|null
+	 */
+	public function get_matchingData(): ?MatchingDataDto {
+		return $this->_matchingData;
+	}
+
+	/**
+	 * @throws \RuntimeException If value is not set.
+	 *
+	 * @return \App\Dto\MatchingDataDto
+	 */
+	public function get_matchingDataOrFail(): MatchingDataDto {
+		if ($this->_matchingData === null) {
+			throw new RuntimeException('Value not set for field `_matchingData` (expected to be not null)');
+		}
+
+		return $this->_matchingData;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function has_matchingData(): bool {
+		return $this->_matchingData !== null;
+	}
+
+	/**
 	 * @param string|null $type
 	 * @param array<string>|null $fields
 	 * @param bool $touched
 	 *
-	 * @return array{id: int|null, tagId: int|null, fkId: int|null, fkModel: string|null, created: \Cake\I18n\DateTime|null}
+	 * @return array{id: int|null, username: string|null, email: string|null, created: \Cake\I18n\DateTime|null, _matchingData: array{Roles: array{id: int|null, name: string|null}|null}|null}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
-		/** @var array{id: int|null, tagId: int|null, fkId: int|null, fkModel: string|null, created: \Cake\I18n\DateTime|null} $result */
+		/** @var array{id: int|null, username: string|null, email: string|null, created: \Cake\I18n\DateTime|null, _matchingData: array{Roles: array{id: int|null, name: string|null}|null}|null} $result */
 		$result = $this->_toArrayInternal($type, $fields, $touched);
 
 		return $result;
@@ -528,7 +532,7 @@ class TaggedDto extends AbstractImmutableDto {
 
 	/**
      * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), tagId: (int | null), fkId: (int | null), fkModel: (string | null), created: (\Cake\I18n\DateTime | null)}|array $data
+     * @param array{id: (int | null), username: (string | null), email: (string | null), created: (\Cake\I18n\DateTime | null), _matchingData: (array{Roles: (array{id: (int | null), name: (string | null)} | null)} | null)}|array $data
      * @param bool $ignoreMissing
      * @param string|null $type
      *

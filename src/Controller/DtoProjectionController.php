@@ -8,7 +8,7 @@ use App\Dto\SimpleRoleDto;
 use App\Dto\SimpleUserDto;
 use App\Dto\UserProjectionDto;
 use App\Dto\UserWithMatchingDto;
-use App\Dto\UserWithMatchingDtoTyped;
+use App\Dto\UserWithMatchingTypedDto;
 use Cake\ORM\Query\SelectQuery;
 
 /**
@@ -160,7 +160,7 @@ class DtoProjectionController extends AppController {
 				return $q->where(['Roles.id' => 1]);
 			})
 			->limit(5)
-			->projectAs(UserWithMatchingDtoTyped::class)
+			->projectAs(UserWithMatchingTypedDto::class)
 			->toArray();
 
 		// Get raw array to show _matchingData structure

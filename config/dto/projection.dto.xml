@@ -50,4 +50,83 @@
 		<field name="userId" type="int"/>
 	</dto>
 
+	<!-- Simple User DTO with BelongsTo Role -->
+	<dto name="SimpleUser" immutable="true">
+		<field name="id" type="int"/>
+		<field name="username" type="string"/>
+		<field name="email" type="string"/>
+		<field name="role" type="SimpleRoleBasic"/>
+		<field name="created" type="\Cake\I18n\DateTime"/>
+	</dto>
+
+	<!-- Simple Role DTO with HasMany Users -->
+	<dto name="SimpleRole" immutable="true">
+		<field name="id" type="int"/>
+		<field name="name" type="string"/>
+		<field name="users" type="SimpleUserBasic[]" collectionType="array"/>
+	</dto>
+
+	<!-- Basic role without back-reference -->
+	<dto name="SimpleRoleBasic" immutable="true">
+		<field name="id" type="int"/>
+		<field name="name" type="string"/>
+	</dto>
+
+	<!-- Basic user without back-reference -->
+	<dto name="SimpleUserBasic" immutable="true">
+		<field name="id" type="int"/>
+		<field name="username" type="string"/>
+		<field name="email" type="string"/>
+	</dto>
+
+	<!-- Post DTO with BelongsToMany Tags -->
+	<dto name="Post" immutable="true">
+		<field name="id" type="int"/>
+		<field name="title" type="string"/>
+		<field name="content" type="string"/>
+		<field name="slug" type="string"/>
+		<field name="tags" type="Tag[]" collectionType="array"/>
+	</dto>
+
+	<!-- Tag DTO with _joinData from pivot table -->
+	<dto name="Tag" immutable="true">
+		<field name="id" type="int"/>
+		<field name="label" type="string"/>
+		<field name="slug" type="string"/>
+		<field name="counter" type="int"/>
+		<field name="_joinData" type="Tagged"/>
+	</dto>
+
+	<!-- Tagged pivot table DTO -->
+	<dto name="Tagged" immutable="true">
+		<field name="id" type="int"/>
+		<field name="tagId" type="int"/>
+		<field name="fkId" type="int"/>
+		<field name="fkModel" type="string"/>
+		<field name="created" type="\Cake\I18n\DateTime"/>
+	</dto>
+
+	<!-- User DTO with _matchingData as array -->
+	<dto name="UserWithMatching" immutable="true">
+		<field name="id" type="int"/>
+		<field name="username" type="string"/>
+		<field name="email" type="string"/>
+		<field name="created" type="\Cake\I18n\DateTime"/>
+		<field name="_matchingData" type="array"/>
+	</dto>
+
+	<!-- User DTO with typed _matchingData -->
+	<dto name="UserWithMatchingTyped" immutable="true">
+		<field name="id" type="int"/>
+		<field name="username" type="string"/>
+		<field name="email" type="string"/>
+		<field name="created" type="\Cake\I18n\DateTime"/>
+		<field name="_matchingData" type="MatchingData"/>
+	</dto>
+
+	<!-- MatchingData structure -->
+	<dto name="MatchingData" immutable="true">
+		<field name="Roles" type="SimpleRoleBasic"/>
+	</dto>
+
 </dtos>

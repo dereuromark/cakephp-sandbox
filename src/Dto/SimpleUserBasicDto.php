@@ -6,20 +6,17 @@
 
 namespace App\Dto;
 
-use Cake\I18n\DateTime;
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
 use RuntimeException;
 
 /**
- * UserProjection DTO
+ * SimpleUserBasic DTO
  *
  * @property int|null $id
  * @property string|null $username
  * @property string|null $email
- * @property \App\Dto\RoleProjectionDto|null $role
- * @property \Cake\I18n\DateTime|null $created
  */
-class UserProjectionDto extends AbstractImmutableDto {
+class SimpleUserBasicDto extends AbstractImmutableDto {
 
 	/**
 	 * @var string
@@ -37,16 +34,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 	public const FIELD_EMAIL = 'email';
 
 	/**
-	 * @var string
-	 */
-	public const FIELD_ROLE = 'role';
-
-	/**
-	 * @var string
-	 */
-	public const FIELD_CREATED = 'created';
-
-	/**
 	 * @var int|null
 	 */
 	protected $id;
@@ -60,16 +47,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 * @var string|null
 	 */
 	protected $email;
-
-	/**
-	 * @var \App\Dto\RoleProjectionDto|null
-	 */
-	protected $role;
-
-	/**
-	 * @var \Cake\I18n\DateTime|null
-	 */
-	protected $created;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -119,36 +96,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'mapFrom' => null,
 			'mapTo' => null,
 		],
-		'role' => [
-			'name' => 'role',
-			'type' => '\App\Dto\RoleProjectionDto',
-			'required' => false,
-			'defaultValue' => null,
-			'dto' => 'RoleProjection',
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
-			'serialize' => null,
-			'factory' => null,
-			'mapFrom' => null,
-			'mapTo' => null,
-		],
-		'created' => [
-			'name' => 'created',
-			'type' => '\Cake\I18n\DateTime',
-			'required' => false,
-			'defaultValue' => null,
-			'dto' => null,
-			'collectionType' => null,
-			'associative' => false,
-			'key' => null,
-			'serialize' => null,
-			'factory' => null,
-			'mapFrom' => null,
-			'mapTo' => null,
-			'isClass' => true,
-			'enum' => null,
-		],
 	];
 
 	/**
@@ -159,15 +106,11 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'id' => 'id',
 			'username' => 'username',
 			'email' => 'email',
-			'role' => 'role',
-			'created' => 'created',
 		],
 		'dashed' => [
 			'id' => 'id',
 			'username' => 'username',
 			'email' => 'email',
-			'role' => 'role',
-			'created' => 'created',
 		],
 	];
 
@@ -186,8 +129,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 		'id' => 'withId',
 		'username' => 'withUsername',
 		'email' => 'withEmail',
-		'role' => 'withRole',
-		'created' => 'withCreated',
 	];
 
 	/**
@@ -212,23 +153,6 @@ class UserProjectionDto extends AbstractImmutableDto {
 		if (isset($data['email'])) {
 			$this->email = $data['email'];
 			$this->_touchedFields['email'] = true;
-		}
-		if (isset($data['role'])) {
-			$value = $data['role'];
-			if (is_array($value)) {
-				$value = new RoleProjectionDto($value, true);
-			}
-			$this->role = $value;
-			$this->_touchedFields['role'] = true;
-		}
-		if (isset($data['created'])) {
-			$value = $data['created'];
-			if (!is_object($value)) {
-				$value = $this->createWithConstructor('created', $value, $this->_metadata['created']);
-			}
-			/** @var \Cake\I18n\DateTime $value */
-			$this->created = $value;
-			$this->_touchedFields['created'] = true;
 		}
 	}
 
@@ -411,120 +335,14 @@ class UserProjectionDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param \App\Dto\RoleProjectionDto|null $role
-	 *
-	 * @return static
-	 */
-	public function withRole(?RoleProjectionDto $role = null) {
-		$new = clone $this;
-		$new->role = $role;
-		$new->_touchedFields[static::FIELD_ROLE] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @param \App\Dto\RoleProjectionDto $role
-	 *
-	 * @return static
-	 */
-	public function withRoleOrFail(RoleProjectionDto $role) {
-		$new = clone $this;
-		$new->role = $role;
-		$new->_touchedFields[static::FIELD_ROLE] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @return \App\Dto\RoleProjectionDto|null
-	 */
-	public function getRole(): ?RoleProjectionDto {
-		return $this->role;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return \App\Dto\RoleProjectionDto
-	 */
-	public function getRoleOrFail(): RoleProjectionDto {
-		if ($this->role === null) {
-			throw new RuntimeException('Value not set for field `role` (expected to be not null)');
-		}
-
-		return $this->role;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasRole(): bool {
-		return $this->role !== null;
-	}
-
-	/**
-	 * @param \Cake\I18n\DateTime|null $created
-	 *
-	 * @return static
-	 */
-	public function withCreated(?DateTime $created = null) {
-		$new = clone $this;
-		$new->created = $created;
-		$new->_touchedFields[static::FIELD_CREATED] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @param \Cake\I18n\DateTime $created
-	 *
-	 * @return static
-	 */
-	public function withCreatedOrFail(DateTime $created) {
-		$new = clone $this;
-		$new->created = $created;
-		$new->_touchedFields[static::FIELD_CREATED] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @return \Cake\I18n\DateTime|null
-	 */
-	public function getCreated(): ?DateTime {
-		return $this->created;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return \Cake\I18n\DateTime
-	 */
-	public function getCreatedOrFail(): DateTime {
-		if ($this->created === null) {
-			throw new RuntimeException('Value not set for field `created` (expected to be not null)');
-		}
-
-		return $this->created;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasCreated(): bool {
-		return $this->created !== null;
-	}
-
-	/**
 	 * @param string|null $type
 	 * @param array<string>|null $fields
 	 * @param bool $touched
 	 *
-	 * @return array{id: int|null, username: string|null, email: string|null, role: array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>}|null, created: \Cake\I18n\DateTime|null}
+	 * @return array{id: int|null, username: string|null, email: string|null}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
-		/** @var array{id: int|null, username: string|null, email: string|null, role: array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>}|null, created: \Cake\I18n\DateTime|null} $result */
+		/** @var array{id: int|null, username: string|null, email: string|null} $result */
 		$result = $this->_toArrayInternal($type, $fields, $touched);
 
 		return $result;
@@ -532,7 +350,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 
 	/**
      * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), username: (string | null), email: (string | null), role: (array{id: (int | null), name: (string | null), users: array<int, array{id: (int | null), username: (string | null), email: (string | null)}>} | null), created: (\Cake\I18n\DateTime | null)}|array $data
+     * @param array{id: (int | null), username: (string | null), email: (string | null)}|array $data
      * @param bool $ignoreMissing
      * @param string|null $type
      *

@@ -1,21 +1,197 @@
 <?php
-declare(strict_types=1);
+/**
+ * !!! Auto generated file. Do not directly modify this file. !!!
+ * You can either version control this or generate the file on the fly prior to usage/deployment.
+ */
 
 namespace App\Dto;
 
+use PhpCollective\Dto\Dto\AbstractImmutableDto;
+use RuntimeException;
+
 /**
- * DTO for _matchingData structure.
+ * MatchingData DTO
  *
- * Property names must match association aliases used in matching().
+ * @property \App\Dto\SimpleRoleBasicDto|null $Roles
  */
-readonly class MatchingDataDto {
+class MatchingDataDto extends AbstractImmutableDto {
 
 	/**
-	 * @param \App\Dto\SimpleRoleDto|null $Roles Matching Roles data
+	 * @var string
 	 */
-	public function __construct(
-		public ?SimpleRoleDto $Roles = null,
-	) {
+	public const FIELD_ROLES = 'Roles';
+
+	/**
+	 * @var \App\Dto\SimpleRoleBasicDto|null
+	 */
+	protected $Roles;
+
+	/**
+	 * Some data is only for debugging for now.
+	 *
+	 * @var array<string, array<string, mixed>>
+	 */
+	protected array $_metadata = [
+		'Roles' => [
+			'name' => 'Roles',
+			'type' => '\App\Dto\SimpleRoleBasicDto',
+			'required' => false,
+			'defaultValue' => null,
+			'dto' => 'SimpleRoleBasic',
+			'collectionType' => null,
+			'associative' => false,
+			'key' => null,
+			'serialize' => null,
+			'factory' => null,
+			'mapFrom' => null,
+			'mapTo' => null,
+		],
+	];
+
+	/**
+	* @var array<string, array<string, string>>
+	*/
+	protected array $_keyMap = [
+		'underscored' => [
+			'roles' => 'Roles',
+		],
+		'dashed' => [
+			'roles' => 'Roles',
+		],
+	];
+
+	/**
+	 * Whether this DTO is immutable.
+     * @var bool
+	 */
+	protected const IS_IMMUTABLE = true;
+
+	/**
+	 * Pre-computed setter method names for fast lookup.
+	 *
+	 * @var array<string, string>
+	 */
+	protected static array $_setters = [
+		'Roles' => 'withRoles',
+	];
+
+	/**
+	 * Optimized array assignment without dynamic method calls.
+	 *
+	 * This method is only called in lenient mode (ignoreMissing=true),
+	 * where unknown fields are silently ignored.
+	 *
+	 * @param array<string, mixed> $data
+	 *
+	 * @return void
+	 */
+	protected function setFromArrayFast(array $data): void {
+		if (isset($data['Roles'])) {
+			$value = $data['Roles'];
+			if (is_array($value)) {
+				$value = new SimpleRoleBasicDto($value, true);
+			}
+			$this->Roles = $value;
+			$this->_touchedFields['Roles'] = true;
+		}
+	}
+
+	/**
+	 * Optimized setDefaults - only processes fields with default values.
+	 *
+	 * @return $this
+	 */
+	protected function setDefaults() {
+		return $this;
+	}
+
+	/**
+	 * Optimized validate - only checks required fields.
+	 *
+	 * @throws \InvalidArgumentException
+	 *
+	 * @return void
+	 */
+	protected function validate(): void {
+	}
+
+	/**
+	 * @param \App\Dto\SimpleRoleBasicDto|null $Roles
+	 *
+	 * @return static
+	 */
+	public function withRoles(?SimpleRoleBasicDto $Roles = null) {
+		$new = clone $this;
+		$new->Roles = $Roles;
+		$new->_touchedFields[static::FIELD_ROLES] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @param \App\Dto\SimpleRoleBasicDto $Roles
+	 *
+	 * @return static
+	 */
+	public function withRolesOrFail(SimpleRoleBasicDto $Roles) {
+		$new = clone $this;
+		$new->Roles = $Roles;
+		$new->_touchedFields[static::FIELD_ROLES] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @return \App\Dto\SimpleRoleBasicDto|null
+	 */
+	public function getRoles(): ?SimpleRoleBasicDto {
+		return $this->Roles;
+	}
+
+	/**
+	 * @throws \RuntimeException If value is not set.
+	 *
+	 * @return \App\Dto\SimpleRoleBasicDto
+	 */
+	public function getRolesOrFail(): SimpleRoleBasicDto {
+		if ($this->Roles === null) {
+			throw new RuntimeException('Value not set for field `Roles` (expected to be not null)');
+		}
+
+		return $this->Roles;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasRoles(): bool {
+		return $this->Roles !== null;
+	}
+
+	/**
+	 * @param string|null $type
+	 * @param array<string>|null $fields
+	 * @param bool $touched
+	 *
+	 * @return array{Roles: array{id: int|null, name: string|null}|null}
+	 */
+	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
+		/** @var array{Roles: array{id: int|null, name: string|null}|null} $result */
+		$result = $this->_toArrayInternal($type, $fields, $touched);
+
+		return $result;
+	}
+
+	/**
+     * @phpstan-param array<string, mixed> $data
+     * @param array{Roles: (array{id: (int | null), name: (string | null)} | null)}|array $data
+     * @param bool $ignoreMissing
+     * @param string|null $type
+     *
+     * @return static
+	 */
+	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
+		return static::_createFromArrayInternal($data, $ignoreMissing, $type);
 	}
 
 }

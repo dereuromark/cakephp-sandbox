@@ -10,13 +10,12 @@ use PhpCollective\Dto\Dto\AbstractImmutableDto;
 use RuntimeException;
 
 /**
- * SimpleRole DTO
+ * SimpleRoleBasic DTO
  *
  * @property int|null $id
  * @property string|null $name
- * @property array<int, \App\Dto\SimpleUserBasicDto> $users
  */
-class SimpleRoleDto extends AbstractImmutableDto {
+class SimpleRoleBasicDto extends AbstractImmutableDto {
 
 	/**
 	 * @var string
@@ -29,11 +28,6 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	public const FIELD_NAME = 'name';
 
 	/**
-	 * @var string
-	 */
-	public const FIELD_USERS = 'users';
-
-	/**
 	 * @var int|null
 	 */
 	protected $id;
@@ -42,11 +36,6 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 * @var string|null
 	 */
 	protected $name;
-
-	/**
-	 * @var array<int, \App\Dto\SimpleUserBasicDto>
-	 */
-	protected $users;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -82,23 +71,6 @@ class SimpleRoleDto extends AbstractImmutableDto {
 			'mapFrom' => null,
 			'mapTo' => null,
 		],
-		'users' => [
-			'name' => 'users',
-			'type' => '\App\Dto\SimpleUserBasicDto[]',
-			'collectionType' => 'array',
-			'required' => false,
-			'defaultValue' => null,
-			'dto' => null,
-			'associative' => false,
-			'key' => null,
-			'serialize' => null,
-			'factory' => null,
-			'mapFrom' => null,
-			'mapTo' => null,
-			'singularType' => '\App\Dto\SimpleUserBasicDto',
-			'singularNullable' => false,
-			'singularTypeHint' => '\App\Dto\SimpleUserBasicDto',
-		],
 	];
 
 	/**
@@ -108,12 +80,10 @@ class SimpleRoleDto extends AbstractImmutableDto {
 		'underscored' => [
 			'id' => 'id',
 			'name' => 'name',
-			'users' => 'users',
 		],
 		'dashed' => [
 			'id' => 'id',
 			'name' => 'name',
-			'users' => 'users',
 		],
 	];
 
@@ -131,7 +101,6 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	protected static array $_setters = [
 		'id' => 'withId',
 		'name' => 'withName',
-		'users' => 'withUsers',
 	];
 
 	/**
@@ -152,17 +121,6 @@ class SimpleRoleDto extends AbstractImmutableDto {
 		if (isset($data['name'])) {
 			$this->name = $data['name'];
 			$this->_touchedFields['name'] = true;
-		}
-		if (isset($data['users'])) {
-			$collection = [];
-			foreach ($data['users'] as $key => $item) {
-				if (is_array($item)) {
-					$item = new SimpleUserBasicDto($item, true);
-				}
-				$collection[$key] = $item;
-			}
-			$this->users = $collection;
-			$this->_touchedFields['users'] = true;
 		}
 	}
 
@@ -292,65 +250,14 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	}
 
 	/**
-	 * @param array<int, \App\Dto\SimpleUserBasicDto> $users
-	 *
-	 * @return static
-	 */
-	public function withUsers(array $users) {
-		$new = clone $this;
-		$new->users = $users;
-		$new->_touchedFields[static::FIELD_USERS] = true;
-
-		return $new;
-	}
-
-	/**
-	 * @return array<int, \App\Dto\SimpleUserBasicDto>
-	 */
-	public function getUsers(): array {
-		if ($this->users === null) {
-			return [];
-		}
-
-		return $this->users;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasUsers(): bool {
-		if ($this->users === null) {
-			return false;
-		}
-
-		return count($this->users) > 0;
-	}
-	/**
-	 * @param \App\Dto\SimpleUserBasicDto $user
-	 * @return static
-	 */
-	public function withAddedUser(SimpleUserBasicDto $user) {
-		$new = clone $this;
-
-		if ($new->users === null) {
-			$new->users = [];
-		}
-
-		$new->users[] = $user;
-		$new->_touchedFields[static::FIELD_USERS] = true;
-
-		return $new;
-	}
-
-	/**
 	 * @param string|null $type
 	 * @param array<string>|null $fields
 	 * @param bool $touched
 	 *
-	 * @return array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>}
+	 * @return array{id: int|null, name: string|null}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
-		/** @var array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>} $result */
+		/** @var array{id: int|null, name: string|null} $result */
 		$result = $this->_toArrayInternal($type, $fields, $touched);
 
 		return $result;
@@ -358,7 +265,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 
 	/**
      * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), name: (string | null), users: array<int, array{id: (int | null), username: (string | null), email: (string | null)}>}|array $data
+     * @param array{id: (int | null), name: (string | null)}|array $data
      * @param bool $ignoreMissing
      * @param string|null $type
      *
