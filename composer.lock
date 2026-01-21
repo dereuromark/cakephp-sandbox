@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65644ad945fcb884ef4ddf0e3f179262",
+    "content-hash": "c79b066b182c2824067cbec147b1f969",
     "packages": [
         {
             "name": "brick/math",
@@ -606,30 +606,29 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.9.5",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "94500dac5b4e0650f3c32c04650ca46b9cd5c038"
+                "reference": "5958b1480191de401701b81b24949e4e1ffc4b2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/94500dac5b4e0650f3c32c04650ca46b9cd5c038",
-                "reference": "94500dac5b4e0650f3c32c04650ca46b9cd5c038",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/5958b1480191de401701b81b24949e4e1ffc4b2e",
+                "reference": "5958b1480191de401701b81b24949e4e1ffc4b2e",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cache": "^5.2.9",
-                "cakephp/database": "^5.2.9",
-                "cakephp/orm": "^5.2.9",
-                "php": ">=8.1",
-                "robmorgan/phinx": "^0.16.10"
+                "cakephp/cache": "^5.3.0",
+                "cakephp/database": "^5.3.0",
+                "cakephp/orm": "^5.3.0",
+                "php": ">=8.2"
             },
             "require-dev": {
                 "cakephp/bake": "^3.3",
-                "cakephp/cakephp": "^5.2.9",
+                "cakephp/cakephp": "^5.3.0",
                 "cakephp/cakephp-codesniffer": "^5.0",
-                "phpunit/phpunit": "^10.5.5 || ^11.1.3 || ^12.2.4"
+                "phpunit/phpunit": "^11.5.3 || ^12.1.3"
             },
             "suggest": {
                 "cakephp/bake": "If you want to generate migrations.",
@@ -651,7 +650,7 @@
                     "homepage": "https://github.com/cakephp/migrations/graphs/contributors"
                 }
             ],
-            "description": "Database Migration plugin for CakePHP based on Phinx",
+            "description": "Database Migration plugin for CakePHP",
             "homepage": "https://github.com/cakephp/migrations",
             "keywords": [
                 "cakephp",
@@ -664,7 +663,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2026-01-21T00:56:33+00:00"
+            "time": "2026-01-21T04:03:20+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -7466,93 +7465,6 @@
             "time": "2025-08-19T18:57:03+00:00"
         },
         {
-            "name": "robmorgan/phinx",
-            "version": "0.16.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cakephp/phinx.git",
-                "reference": "83f83ec105e55e3abba7acc23c0272b5fcf66929"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/phinx/zipball/83f83ec105e55e3abba7acc23c0272b5fcf66929",
-                "reference": "83f83ec105e55e3abba7acc23c0272b5fcf66929",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/database": "^5.0.2",
-                "composer-runtime-api": "^2.0",
-                "php-64bit": ">=8.1",
-                "psr/container": "^1.1|^2.0",
-                "symfony/config": "^4.0|^5.0|^6.0|^7.0",
-                "symfony/console": "^6.0|^7.0"
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "^5.0",
-                "cakephp/i18n": "^5.0",
-                "ext-json": "*",
-                "ext-pdo": "*",
-                "phpunit/phpunit": "^9.5.19",
-                "symfony/yaml": "^4.0|^5.0|^6.0|^7.0"
-            },
-            "suggest": {
-                "ext-json": "Install if using JSON configuration format",
-                "ext-pdo": "PDO extension is needed",
-                "symfony/yaml": "Install if using YAML configuration format"
-            },
-            "bin": [
-                "bin/phinx"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phinx\\": "src/Phinx/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Rob Morgan",
-                    "email": "robbym@gmail.com",
-                    "homepage": "https://robmorgan.id.au",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Woody Gilk",
-                    "email": "woody.gilk@gmail.com",
-                    "homepage": "https://shadowhand.me",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Richard Quadling",
-                    "email": "rquadling@gmail.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "CakePHP Community",
-                    "homepage": "https://github.com/cakephp/phinx/graphs/contributors",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Phinx makes it ridiculously easy to manage the database migrations for your PHP app.",
-            "homepage": "https://phinx.org",
-            "keywords": [
-                "database",
-                "database migrations",
-                "db",
-                "migrations",
-                "phinx"
-            ],
-            "support": {
-                "issues": "https://github.com/cakephp/phinx/issues",
-                "source": "https://github.com/cakephp/phinx/tree/0.16.10"
-            },
-            "time": "2025-07-08T18:55:28+00:00"
-        },
-        {
             "name": "sabberworm/php-css-parser",
             "version": "v9.1.0",
             "source": {
@@ -8112,85 +8024,6 @@
             ],
             "description": "CakePHP StateMachine Plugin",
             "time": "2025-12-15T09:36:07+00:00"
-        },
-        {
-            "name": "symfony/config",
-            "version": "v7.4.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "800ce889e358a53a9678b3212b0c8cecd8c6aace"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/800ce889e358a53a9678b3212b0c8cecd8c6aace",
-                "reference": "800ce889e358a53a9678b3212b0c8cecd8c6aace",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2",
-                "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/filesystem": "^7.1|^8.0",
-                "symfony/polyfill-ctype": "~1.8"
-            },
-            "conflict": {
-                "symfony/finder": "<6.4",
-                "symfony/service-contracts": "<2.5"
-            },
-            "require-dev": {
-                "symfony/event-dispatcher": "^6.4|^7.0|^8.0",
-                "symfony/finder": "^6.4|^7.0|^8.0",
-                "symfony/messenger": "^6.4|^7.0|^8.0",
-                "symfony/service-contracts": "^2.5|^3",
-                "symfony/yaml": "^6.4|^7.0|^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Config\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Helps you find, load, combine, autofill and validate configuration values of any kind",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/config/tree/v7.4.3"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-12-23T14:24:27+00:00"
         },
         {
             "name": "symfony/console",
@@ -10202,64 +10035,6 @@
     ],
     "packages-dev": [
         {
-            "name": "admad/entity",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ADmad/cakephp-entity.git",
-                "reference": "c0d105602f7dee53360db0a7a1e602540f8c7bfe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ADmad/cakephp-entity/zipball/c0d105602f7dee53360db0a7a1e602540f8c7bfe",
-                "reference": "c0d105602f7dee53360db0a7a1e602540f8c7bfe",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "^5.3@RC",
-                "php": ">=8.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.6",
-                "phpunit/phpunit": "^12.5.3"
-            },
-            "default-branch": true,
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "ADmad\\Entity\\": "src/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "ADmad\\Entity\\Test\\": "tests/",
-                    "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
-                    "TestApp\\": "tests/test_app/TestApp/",
-                    "TestPlugin\\": "tests/test_app/Plugin/TestPlugin/src/",
-                    "TestPlugin\\Test\\": "tests/test_app/Plugin/TestPlugin/tests/",
-                    "TestPluginTwo\\": "tests/test_app/Plugin/TestPluginTwo/src/",
-                    "Company\\TestPluginThree\\": "tests/test_app/Plugin/Company/TestPluginThree/src/",
-                    "Company\\TestPluginThree\\Test\\": "tests/test_app/Plugin/Company/TestPluginThree/tests/",
-                    "Named\\": "tests/test_app/Plugin/Named/src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "ADmad/Entity plugin for CakePHP",
-            "support": {
-                "source": "https://github.com/ADmad/cakephp-entity/tree/master",
-                "issues": "https://github.com/ADmad/cakephp-entity/issues"
-            },
-            "funding": [
-                {
-                    "type": "github",
-                    "url": "https://github.com/ADmad"
-                }
-            ],
-            "time": "2025-12-14T17:27:12+00:00"
-        },
-        {
             "name": "cakedc/cakephp-phpstan",
             "version": "4.1.1",
             "source": {
@@ -10315,83 +10090,6 @@
                 "source": "https://github.com/CakeDC/cakephp-phpstan/tree/4.1.1"
             },
             "time": "2025-11-13T13:34:51+00:00"
-        },
-        {
-            "name": "cuyz/valinor",
-            "version": "2.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/CuyZ/Valinor.git",
-                "reference": "212835b2efb89becd9881f4836e9b0b32ea105bf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/CuyZ/Valinor/zipball/212835b2efb89becd9881f4836e9b0b32ea105bf",
-                "reference": "212835b2efb89becd9881f4836e9b0b32ea105bf",
-                "shasum": ""
-            },
-            "require": {
-                "composer-runtime-api": "^2.0",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
-            },
-            "conflict": {
-                "phpstan/phpstan": "<1.0 || >= 3.0",
-                "vimeo/psalm": "<5.0 || >=7.0"
-            },
-            "require-dev": {
-                "friendsofphp/php-cs-fixer": "^3.4",
-                "infection/infection": "^0.31",
-                "marcocesarato/php-conventional-changelog": "^1.12",
-                "mikey179/vfsstream": "^1.6.10",
-                "phpbench/phpbench": "^1.3",
-                "phpstan/phpstan": "^2.0",
-                "phpstan/phpstan-phpunit": "^2.0",
-                "phpstan/phpstan-strict-rules": "^2.0",
-                "phpunit/phpunit": "^10.5",
-                "rector/rector": "^2.0",
-                "vimeo/psalm": "^6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "CuyZ\\Valinor\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Romain Canon",
-                    "email": "romain.hydrocanon@gmail.com",
-                    "homepage": "https://github.com/romm"
-                }
-            ],
-            "description": "Library that helps to map any input into a strongly-typed value object structure.",
-            "homepage": "https://github.com/CuyZ/Valinor",
-            "keywords": [
-                "array",
-                "conversion",
-                "hydrator",
-                "json",
-                "mapper",
-                "mapping",
-                "object",
-                "tree",
-                "yaml"
-            ],
-            "support": {
-                "issues": "https://github.com/CuyZ/Valinor/issues",
-                "source": "https://github.com/CuyZ/Valinor/tree/2.3.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/romm",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-10-21T12:16:56+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
@@ -13011,7 +12709,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "admad/entity": 20,
         "cakephp/cakephp": 20,
         "dereuromark/cakephp-ajax": 20,
         "dereuromark/cakephp-audit-stash": 20,
