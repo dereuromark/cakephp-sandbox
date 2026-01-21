@@ -11,6 +11,7 @@
 	<exclude-pattern>\.git/</exclude-pattern>
 	<exclude-pattern>/*/tmp/</exclude-pattern>
 	<exclude-pattern>/webroot/assets/</exclude-pattern>
+	<exclude-pattern>/src/Dto/</exclude-pattern>
 	<exclude-pattern>/plugins/Sandbox/src/Dto/</exclude-pattern>
 	<exclude-pattern>/templates/</exclude-pattern>
 

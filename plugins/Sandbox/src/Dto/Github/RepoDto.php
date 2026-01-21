@@ -22,18 +22,22 @@ class RepoDto extends AbstractDto {
 	 * @var string
 	 */
 	public const FIELD_NAME = 'name';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_HTML_URL = 'htmlUrl';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_PRIVATE = 'private';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_OWNER = 'owner';
+
 
 	/**
 	 * @var string
@@ -139,6 +143,8 @@ class RepoDto extends AbstractDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = false;
 
@@ -149,7 +155,7 @@ class RepoDto extends AbstractDto {
 	 */
 	protected static array $_setters = [
 		'name' => 'setName',
-		'htmlUrl' => 'setHtmlurl',
+		'htmlUrl' => 'setHtmlUrl',
 		'private' => 'setPrivate',
 		'owner' => 'setOwner',
 	];
@@ -186,7 +192,6 @@ class RepoDto extends AbstractDto {
 			$this->_touchedFields['owner'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

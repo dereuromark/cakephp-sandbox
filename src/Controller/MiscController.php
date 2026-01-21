@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Dto\RoleProjectionDto;
+use App\Dto\UserProjectionDto;
+use Sandbox\Dto\SandboxUserProjectionDto;
+
 class MiscController extends AppController {
 
 	/**
@@ -105,6 +109,78 @@ class MiscController extends AppController {
 		}
 
 		return 1;
+	}
+
+	/**
+	 * Test DTO projection with BelongsTo association.
+	 *
+	 * @return void
+	 */
+	public function dtoProjection(): void {
+		$usersTable = $this->fetchTable('Users');
+
+		// Test 1: Simple projection (no associations)
+		$simpleUsers = $usersTable->find()
+			->projectAs(UserProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 2: Projection with BelongsTo (Users -> Roles)
+		$usersWithRoles = $usersTable->find()
+			->contain(['Roles'])
+			->projectAs(UserProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 3: Projection with HasMany (Roles -> Users)
+		$rolesTable = $this->fetchTable('Roles');
+		$rolesWithUsers = $rolesTable->find()
+			->contain(['Users'])
+			->projectAs(RoleProjectionDto::class)
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 4: Compare with Entity hydration
+		$usersAsEntities = $usersTable->find()
+			->contain(['Roles'])
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 5: Compare with disableHydration (raw arrays)
+		$usersAsArrays = $usersTable->find()
+			->contain(['Roles'])
+			->disableHydration()
+			->limit(3)
+			->all()
+			->toArray();
+
+		// Test 6: Projection with enum field (SandboxUsers -> UserStatus enum)
+		$sandboxUsersTable = $this->fetchTable('Sandbox.SandboxUsers');
+		$sandboxUsers = $sandboxUsersTable->find()
+			->projectAs(SandboxUserProjectionDto::class)
+			->limit(5)
+			->all()
+			->toArray();
+
+		// Test 7: Entity hydration with enum (comparison)
+		$sandboxUsersAsEntities = $sandboxUsersTable->find()
+			->limit(5)
+			->all()
+			->toArray();
+
+		$this->set(compact(
+			'simpleUsers',
+			'usersWithRoles',
+			'rolesWithUsers',
+			'usersAsEntities',
+			'usersAsArrays',
+			'sandboxUsers',
+			'sandboxUsersAsEntities',
+		));
 	}
 
 }

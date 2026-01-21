@@ -28,42 +28,52 @@ class PullRequestDto extends AbstractDto {
 	 * @var string
 	 */
 	public const FIELD_URL = 'url';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_NUMBER = 'number';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_STATE = 'state';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TITLE = 'title';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_BODY = 'body';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USER = 'user';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED_AT = 'createdAt';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_LABELS = 'labels';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_HEAD = 'head';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_BASE = 'base';
+
 
 	/**
 	 * @var string
@@ -300,6 +310,8 @@ class PullRequestDto extends AbstractDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = false;
 
@@ -315,7 +327,7 @@ class PullRequestDto extends AbstractDto {
 		'title' => 'setTitle',
 		'body' => 'setBody',
 		'user' => 'setUser',
-		'createdAt' => 'setCreatedat',
+		'createdAt' => 'setCreatedAt',
 		'labels' => 'setLabels',
 		'head' => 'setHead',
 		'base' => 'setBase',
@@ -397,7 +409,6 @@ class PullRequestDto extends AbstractDto {
 			$this->_touchedFields['base'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

@@ -33,7 +33,7 @@
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"dereuromark/cakephp-captcha": "dev-master",
-		"cakephp/migrations": "5.x-dev as 4.9.1",
+		"cakephp/migrations": "^5.0",
 		"markstory/asset_compress": "^5.0.0",
 		"natxet/cssmin": "dev-master",
 		"linkorb/jsmin-php": "dev-master",
@@ -64,7 +64,7 @@
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 2.5.0",
-		"php-collective/dto": "dev-master as 0.1.5",
+		"php-collective/dto": "^0.1.7",
 		"dereuromark/cakephp-decimal": "dev-master",
 		"brick/math": "^0.14.0",
 		"league/commonmark": "^2.0",
@@ -157,16 +157,12 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
-	"repositories": [
-		{
+	"repositories": {
+		"0": {
 			"type": "git",
 			"url": "https://github.com/dereuromark/cakephp-statemachine.git"
-		},
-		{
-			"type": "git",
-			"url": "https://github.com/dereuromark/audit-stash.git"
 		}
-	],
+	},
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"config": {

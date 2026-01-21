@@ -4,28 +4,31 @@
  * You can either version control this or generate the file on the fly prior to usage/deployment.
  */
 
-namespace Sandbox\Dto\Github;
+namespace App\Dto;
 
-use PhpCollective\Dto\Dto\AbstractDto;
+use PhpCollective\Dto\Dto\AbstractImmutableDto;
 
 /**
- * Github/Label DTO
+ * SimpleRoleBasic DTO
  *
+ * @property int|null $id
  * @property string|null $name
- * @property string|null $color
  */
-class LabelDto extends AbstractDto {
+class SimpleRoleBasicDto extends AbstractImmutableDto {
 
+	/**
+	 * @var string
+	 */
+	public const FIELD_ID = 'id';
 	/**
 	 * @var string
 	 */
 	public const FIELD_NAME = 'name';
 
 	/**
-	 * @var string
+	 * @var int|null
 	 */
-	public const FIELD_COLOR = 'color';
-
+	protected $id;
 
 	/**
 	 * @var string|null
@@ -33,19 +36,14 @@ class LabelDto extends AbstractDto {
 	protected $name;
 
 	/**
-	 * @var string|null
-	 */
-	protected $color;
-
-	/**
 	 * Some data is only for debugging for now.
 	 *
 	 * @var array<string, array<string, mixed>>
 	 */
 	protected array $_metadata = [
-		'name' => [
-			'name' => 'name',
-			'type' => 'string',
+		'id' => [
+			'name' => 'id',
+			'type' => 'int',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
@@ -57,8 +55,8 @@ class LabelDto extends AbstractDto {
 			'mapFrom' => null,
 			'mapTo' => null,
 		],
-		'color' => [
-			'name' => 'color',
+		'name' => [
+			'name' => 'name',
 			'type' => 'string',
 			'required' => false,
 			'defaultValue' => null,
@@ -78,21 +76,19 @@ class LabelDto extends AbstractDto {
 	*/
 	protected array $_keyMap = [
 		'underscored' => [
+			'id' => 'id',
 			'name' => 'name',
-			'color' => 'color',
 		],
 		'dashed' => [
+			'id' => 'id',
 			'name' => 'name',
-			'color' => 'color',
 		],
 	];
 
 	/**
 	 * Whether this DTO is immutable.
-	 *
-	 * @var bool
 	 */
-	protected const IS_IMMUTABLE = false;
+	protected const IS_IMMUTABLE = true;
 
 	/**
 	 * Pre-computed setter method names for fast lookup.
@@ -100,8 +96,8 @@ class LabelDto extends AbstractDto {
 	 * @var array<string, string>
 	 */
 	protected static array $_setters = [
-		'name' => 'setName',
-		'color' => 'setColor',
+		'id' => 'withId',
+		'name' => 'withName',
 	];
 
 	/**
@@ -115,15 +111,16 @@ class LabelDto extends AbstractDto {
 	 * @return void
 	 */
 	protected function setFromArrayFast(array $data): void {
+		if (isset($data['id'])) {
+			$this->id = $data['id'];
+			$this->_touchedFields['id'] = true;
+		}
 		if (isset($data['name'])) {
 			$this->name = $data['name'];
 			$this->_touchedFields['name'] = true;
 		}
-		if (isset($data['color'])) {
-			$this->color = $data['color'];
-			$this->_touchedFields['color'] = true;
-		}
 	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -147,27 +144,82 @@ class LabelDto extends AbstractDto {
 
 
 	/**
+	 * @param int|null $id
+	 *
+	 * @return static
+	 */
+	public function withId(?int $id = null) {
+		$new = clone $this;
+		$new->id = $id;
+		$new->_touchedFields[static::FIELD_ID] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @param int $id
+	 *
+	 * @return static
+	 */
+	public function withIdOrFail(int $id) {
+		$new = clone $this;
+		$new->id = $id;
+		$new->_touchedFields[static::FIELD_ID] = true;
+
+		return $new;
+	}
+
+	/**
+	 * @return int|null
+	 */
+	public function getId(): ?int {
+		return $this->id;
+	}
+
+	/**
+	 * @throws \RuntimeException If value is not set.
+	 *
+	 * @return int
+	 */
+	public function getIdOrFail(): int {
+		if ($this->id === null) {
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
+		}
+
+		return $this->id;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function hasId(): bool {
+		return $this->id !== null;
+	}
+
+	/**
 	 * @param string|null $name
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setName(?string $name) {
-		$this->name = $name;
-		$this->_touchedFields[static::FIELD_NAME] = true;
+	public function withName(?string $name = null) {
+		$new = clone $this;
+		$new->name = $name;
+		$new->_touchedFields[static::FIELD_NAME] = true;
 
-		return $this;
+		return $new;
 	}
 
 	/**
 	 * @param string $name
 	 *
-	 * @return $this
+	 * @return static
 	 */
-	public function setNameOrFail(string $name) {
-		$this->name = $name;
-		$this->_touchedFields[static::FIELD_NAME] = true;
+	public function withNameOrFail(string $name) {
+		$new = clone $this;
+		$new->name = $name;
+		$new->_touchedFields[static::FIELD_NAME] = true;
 
-		return $this;
+		return $new;
 	}
 
 	/**
@@ -198,72 +250,21 @@ class LabelDto extends AbstractDto {
 	}
 
 	/**
-	 * @param string|null $color
-	 *
-	 * @return $this
-	 */
-	public function setColor(?string $color) {
-		$this->color = $color;
-		$this->_touchedFields[static::FIELD_COLOR] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @param string $color
-	 *
-	 * @return $this
-	 */
-	public function setColorOrFail(string $color) {
-		$this->color = $color;
-		$this->_touchedFields[static::FIELD_COLOR] = true;
-
-		return $this;
-	}
-
-	/**
-	 * @return string|null
-	 */
-	public function getColor(): ?string {
-		return $this->color;
-	}
-
-	/**
-	 * @throws \RuntimeException If value is not set.
-	 *
-	 * @return string
-	 */
-	public function getColorOrFail(): string {
-		if ($this->color === null) {
-			throw new \RuntimeException('Value not set for field `color` (expected to be not null)');
-		}
-
-		return $this->color;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hasColor(): bool {
-		return $this->color !== null;
-	}
-
-	/**
 	 * @param string|null $type
 	 * @param array<string>|null $fields
 	 * @param bool $touched
 	 *
-	 * @return array{name: string|null, color: string|null}
+	 * @return array{id: int|null, name: string|null}
 	 */
 	public function toArray(?string $type = null, ?array $fields = null, bool $touched = false): array {
-		/** @var array{name: string|null, color: string|null} $result */
+		/** @var array{id: int|null, name: string|null} $result */
 		$result = $this->_toArrayInternal($type, $fields, $touched);
 
 		return $result;
 	}
 
 	/**
-	 * @param array{name: string|null, color: string|null} $data
+	 * @param array{id: int|null, name: string|null} $data
 	 * @phpstan-param array<string, mixed> $data
 	 * @param bool $ignoreMissing
 	 * @param string|null $type
