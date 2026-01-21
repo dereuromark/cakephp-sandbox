@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf91f7d361adb88f26821ccac81278ca",
+    "content-hash": "65644ad945fcb884ef4ddf0e3f179262",
     "packages": [
         {
             "name": "brick/math",
@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "66662dec2223f236976c3663848ceb01c85368bd"
+                "reference": "b30dec51a76a5174c9b2e39b615cbec36a7070f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/66662dec2223f236976c3663848ceb01c85368bd",
-                "reference": "66662dec2223f236976c3663848ceb01c85368bd",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b30dec51a76a5174c9b2e39b615cbec36a7070f6",
+                "reference": "b30dec51a76a5174c9b2e39b615cbec36a7070f6",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-01-19T19:26:29+00:00"
+            "time": "2026-01-20T16:37:57+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -606,16 +606,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "4.9.4",
+            "version": "4.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "d0f5e3c4b0fd9d6c136d34f922bb0a4d0fbc0dba"
+                "reference": "94500dac5b4e0650f3c32c04650ca46b9cd5c038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/d0f5e3c4b0fd9d6c136d34f922bb0a4d0fbc0dba",
-                "reference": "d0f5e3c4b0fd9d6c136d34f922bb0a4d0fbc0dba",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/94500dac5b4e0650f3c32c04650ca46b9cd5c038",
+                "reference": "94500dac5b4e0650f3c32c04650ca46b9cd5c038",
                 "shasum": ""
             },
             "require": {
@@ -664,7 +664,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2026-01-18T04:27:22+00:00"
+            "time": "2026-01-21T00:56:33+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -2147,12 +2147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "ec94062cfb43cb37572c2f12974c790b6f277b5a"
+                "reference": "b7943b0d527de50693ce988c6c2d41d658f981b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/ec94062cfb43cb37572c2f12974c790b6f277b5a",
-                "reference": "ec94062cfb43cb37572c2f12974c790b6f277b5a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/b7943b0d527de50693ce988c6c2d41d658f981b4",
+                "reference": "b7943b0d527de50693ce988c6c2d41d658f981b4",
                 "shasum": ""
             },
             "require": {
@@ -2160,7 +2160,7 @@
                 "cakephp/twig-view": "^2.0.1",
                 "ext-json": "*",
                 "php": ">=8.2",
-                "php-collective/dto": "^0.1.5",
+                "php-collective/dto": "^0.1.7",
                 "sebastian/diff": "^6.0.0 || ^7.0.0"
             },
             "require-dev": {
@@ -2212,7 +2212,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2026-01-20T17:48:05+00:00"
+            "time": "2026-01-21T17:14:45+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -3019,12 +3019,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-setup.git",
-                "reference": "3493c41d7a1e6bd31ed5bcd4a1fdb99a616e572a"
+                "reference": "d68ed122014ff2b075c2b28c0a7addf380b5c1e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/3493c41d7a1e6bd31ed5bcd4a1fdb99a616e572a",
-                "reference": "3493c41d7a1e6bd31ed5bcd4a1fdb99a616e572a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-setup/zipball/d68ed122014ff2b075c2b28c0a7addf380b5c1e8",
+                "reference": "d68ed122014ff2b075c2b28c0a7addf380b5c1e8",
                 "shasum": ""
             },
             "require": {
@@ -3076,7 +3076,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-setup/issues",
                 "source": "https://github.com/dereuromark/cakephp-setup"
             },
-            "time": "2026-01-09T06:48:01+00:00"
+            "time": "2026-01-21T15:27:26+00:00"
         },
         {
             "name": "dereuromark/cakephp-shim",
@@ -3719,16 +3719,16 @@
         },
         {
             "name": "dompdf/php-font-lib",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/php-font-lib.git",
-                "reference": "6137b7d4232b7f16c882c75e4ca3991dbcf6fe2d"
+                "reference": "a6e9a688a2a80016ac080b97be73d3e10c444c9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/php-font-lib/zipball/6137b7d4232b7f16c882c75e4ca3991dbcf6fe2d",
-                "reference": "6137b7d4232b7f16c882c75e4ca3991dbcf6fe2d",
+                "url": "https://api.github.com/repos/dompdf/php-font-lib/zipball/a6e9a688a2a80016ac080b97be73d3e10c444c9a",
+                "reference": "a6e9a688a2a80016ac080b97be73d3e10c444c9a",
                 "shasum": ""
             },
             "require": {
@@ -3736,7 +3736,7 @@
                 "php": "^7.1 || ^8.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^3 || ^4 || ^5 || ^6"
+                "phpunit/phpunit": "^7.5 || ^8 || ^9 || ^10 || ^11 || ^12"
             },
             "type": "library",
             "autoload": {
@@ -3758,9 +3758,9 @@
             "homepage": "https://github.com/dompdf/php-font-lib",
             "support": {
                 "issues": "https://github.com/dompdf/php-font-lib/issues",
-                "source": "https://github.com/dompdf/php-font-lib/tree/1.0.1"
+                "source": "https://github.com/dompdf/php-font-lib/tree/1.0.2"
             },
-            "time": "2024-12-02T14:37:59+00:00"
+            "time": "2026-01-20T14:10:26+00:00"
         },
         {
             "name": "dompdf/php-svg-lib",
@@ -6462,16 +6462,16 @@
         },
         {
             "name": "php-collective/dto",
-            "version": "dev-master",
+            "version": "0.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "ccbb202ab041532e1edb47ac3beb9226e2cd55f4"
+                "reference": "761645547ec23f75b15883a8441d7d66570ed0d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/ccbb202ab041532e1edb47ac3beb9226e2cd55f4",
-                "reference": "ccbb202ab041532e1edb47ac3beb9226e2cd55f4",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/761645547ec23f75b15883a8441d7d66570ed0d4",
+                "reference": "761645547ec23f75b15883a8441d7d66570ed0d4",
                 "shasum": ""
             },
             "require": {
@@ -6490,7 +6490,6 @@
                 "justinrainbow/json-schema": "For YAML/NEON schema validation",
                 "nette/neon": "For NEON format support"
             },
-            "default-branch": true,
             "bin": [
                 "bin/dto"
             ],
@@ -6525,9 +6524,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/dto/issues",
-                "source": "https://github.com/php-collective/dto/tree/master"
+                "source": "https://github.com/php-collective/dto/tree/0.1.7"
             },
-            "time": "2026-01-20T18:21:37+00:00"
+            "time": "2026-01-21T16:20:13+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -10318,6 +10317,83 @@
             "time": "2025-11-13T13:34:51+00:00"
         },
         {
+            "name": "cuyz/valinor",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CuyZ/Valinor.git",
+                "reference": "212835b2efb89becd9881f4836e9b0b32ea105bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CuyZ/Valinor/zipball/212835b2efb89becd9881f4836e9b0b32ea105bf",
+                "reference": "212835b2efb89becd9881f4836e9b0b32ea105bf",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2.0",
+                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0"
+            },
+            "conflict": {
+                "phpstan/phpstan": "<1.0 || >= 3.0",
+                "vimeo/psalm": "<5.0 || >=7.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4",
+                "infection/infection": "^0.31",
+                "marcocesarato/php-conventional-changelog": "^1.12",
+                "mikey179/vfsstream": "^1.6.10",
+                "phpbench/phpbench": "^1.3",
+                "phpstan/phpstan": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^10.5",
+                "rector/rector": "^2.0",
+                "vimeo/psalm": "^6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CuyZ\\Valinor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Romain Canon",
+                    "email": "romain.hydrocanon@gmail.com",
+                    "homepage": "https://github.com/romm"
+                }
+            ],
+            "description": "Library that helps to map any input into a strongly-typed value object structure.",
+            "homepage": "https://github.com/CuyZ/Valinor",
+            "keywords": [
+                "array",
+                "conversion",
+                "hydrator",
+                "json",
+                "mapper",
+                "mapping",
+                "object",
+                "tree",
+                "yaml"
+            ],
+            "support": {
+                "issues": "https://github.com/CuyZ/Valinor/issues",
+                "source": "https://github.com/CuyZ/Valinor/tree/2.3.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/romm",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-21T12:16:56+00:00"
+        },
+        {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
             "version": "v1.2.0",
             "source": {
@@ -11141,11 +11217,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.34",
+            "version": "2.1.36",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/070ba754a949fcade788e16e8dc5a5935b7cf2ee",
-                "reference": "070ba754a949fcade788e16e8dc5a5935b7cf2ee",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2132e5e2361d11d40af4c17faa16f043269a4cf3",
+                "reference": "2132e5e2361d11d40af4c17faa16f043269a4cf3",
                 "shasum": ""
             },
             "require": {
@@ -11190,7 +11266,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-01-19T19:52:16+00:00"
+            "time": "2026-01-21T13:58:26+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -12921,12 +12997,6 @@
             "alias_normalized": "0.5.0.0"
         },
         {
-            "package": "php-collective/dto",
-            "version": "9999999-dev",
-            "alias": "0.1.5",
-            "alias_normalized": "0.1.5.0"
-        },
-        {
             "package": "php-collective/file-storage",
             "version": "9999999-dev",
             "alias": "1.0.0",
@@ -12984,7 +13054,6 @@
         "natxet/cssmin": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
-        "php-collective/dto": 20,
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
         "spryker/cakephp-statemachine": 20,

@@ -23,22 +23,27 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_STATUS = 'status';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED = 'created';
+
 
 	/**
 	 * @var int|null
@@ -169,6 +174,8 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -227,7 +234,6 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 			$this->_touchedFields['created'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

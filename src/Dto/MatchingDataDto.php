@@ -7,7 +7,6 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * MatchingData DTO
@@ -62,7 +61,6 @@ class MatchingDataDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -89,12 +87,13 @@ class MatchingDataDto extends AbstractImmutableDto {
 		if (isset($data['Roles'])) {
 			$value = $data['Roles'];
 			if (is_array($value)) {
-				$value = new SimpleRoleBasicDto($value, true);
+				$value = new \App\Dto\SimpleRoleBasicDto($value, true);
 			}
 			$this->Roles = $value;
 			$this->_touchedFields['Roles'] = true;
 		}
 	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -102,6 +101,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -115,12 +115,13 @@ class MatchingDataDto extends AbstractImmutableDto {
 	protected function validate(): void {
 	}
 
+
 	/**
 	 * @param \App\Dto\SimpleRoleBasicDto|null $Roles
 	 *
 	 * @return static
 	 */
-	public function withRoles(?SimpleRoleBasicDto $Roles = null) {
+	public function withRoles(?\App\Dto\SimpleRoleBasicDto $Roles = null) {
 		$new = clone $this;
 		$new->Roles = $Roles;
 		$new->_touchedFields[static::FIELD_ROLES] = true;
@@ -133,7 +134,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRolesOrFail(SimpleRoleBasicDto $Roles) {
+	public function withRolesOrFail(\App\Dto\SimpleRoleBasicDto $Roles) {
 		$new = clone $this;
 		$new->Roles = $Roles;
 		$new->_touchedFields[static::FIELD_ROLES] = true;
@@ -144,7 +145,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\SimpleRoleBasicDto|null
 	 */
-	public function getRoles(): ?SimpleRoleBasicDto {
+	public function getRoles(): ?\App\Dto\SimpleRoleBasicDto {
 		return $this->Roles;
 	}
 
@@ -153,9 +154,9 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\SimpleRoleBasicDto
 	 */
-	public function getRolesOrFail(): SimpleRoleBasicDto {
+	public function getRolesOrFail(): \App\Dto\SimpleRoleBasicDto {
 		if ($this->Roles === null) {
-			throw new RuntimeException('Value not set for field `Roles` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `Roles` (expected to be not null)');
 		}
 
 		return $this->Roles;
@@ -183,12 +184,12 @@ class MatchingDataDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{Roles: (array{id: (int | null), name: (string | null)} | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{Roles: array{id: int|null, name: string|null}|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

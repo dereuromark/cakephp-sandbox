@@ -7,7 +7,6 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * Tag DTO
@@ -24,22 +23,18 @@ class TagDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_LABEL = 'label';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_SLUG = 'slug';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_COUNTER = 'counter';
-
 	/**
 	 * @var string
 	 */
@@ -170,7 +165,6 @@ class TagDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -217,12 +211,13 @@ class TagDto extends AbstractImmutableDto {
 		if (isset($data['_joinData'])) {
 			$value = $data['_joinData'];
 			if (is_array($value)) {
-				$value = new TaggedDto($value, true);
+				$value = new \App\Dto\TaggedDto($value, true);
 			}
 			$this->_joinData = $value;
 			$this->_touchedFields['_joinData'] = true;
 		}
 	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -230,6 +225,7 @@ class TagDto extends AbstractImmutableDto {
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -242,6 +238,7 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -283,7 +280,7 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -336,7 +333,7 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	public function getLabelOrFail(): string {
 		if ($this->label === null) {
-			throw new RuntimeException('Value not set for field `label` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `label` (expected to be not null)');
 		}
 
 		return $this->label;
@@ -389,7 +386,7 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	public function getSlugOrFail(): string {
 		if ($this->slug === null) {
-			throw new RuntimeException('Value not set for field `slug` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `slug` (expected to be not null)');
 		}
 
 		return $this->slug;
@@ -442,7 +439,7 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	public function getCounterOrFail(): int {
 		if ($this->counter === null) {
-			throw new RuntimeException('Value not set for field `counter` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `counter` (expected to be not null)');
 		}
 
 		return $this->counter;
@@ -460,7 +457,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_joinData(?TaggedDto $_joinData = null) {
+	public function with_joinData(?\App\Dto\TaggedDto $_joinData = null) {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
 		$new->_touchedFields[static::FIELD__JOIN_DATA] = true;
@@ -473,7 +470,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_joinDataOrFail(TaggedDto $_joinData) {
+	public function with_joinDataOrFail(\App\Dto\TaggedDto $_joinData) {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
 		$new->_touchedFields[static::FIELD__JOIN_DATA] = true;
@@ -484,7 +481,7 @@ class TagDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\TaggedDto|null
 	 */
-	public function get_joinData(): ?TaggedDto {
+	public function get_joinData(): ?\App\Dto\TaggedDto {
 		return $this->_joinData;
 	}
 
@@ -493,9 +490,9 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\TaggedDto
 	 */
-	public function get_joinDataOrFail(): TaggedDto {
+	public function get_joinDataOrFail(): \App\Dto\TaggedDto {
 		if ($this->_joinData === null) {
-			throw new RuntimeException('Value not set for field `_joinData` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `_joinData` (expected to be not null)');
 		}
 
 		return $this->_joinData;
@@ -523,12 +520,12 @@ class TagDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), label: (string | null), slug: (string | null), counter: (int | null), _joinData: (array{id: (int | null), tagId: (int | null), fkId: (int | null), fkModel: (string | null), created: (\Cake\I18n\DateTime | null)} | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, label: string|null, slug: string|null, counter: int|null, _joinData: array{id: int|null, tagId: int|null, fkId: int|null, fkModel: string|null, created: \Cake\I18n\DateTime|null}|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

@@ -6,9 +6,7 @@
 
 namespace App\Dto;
 
-use Cake\I18n\DateTime;
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * UserWithMatchingTyped DTO
@@ -25,22 +23,18 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED = 'created';
-
 	/**
 	 * @var string
 	 */
@@ -173,7 +167,6 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -225,12 +218,13 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 		if (isset($data['_matchingData'])) {
 			$value = $data['_matchingData'];
 			if (is_array($value)) {
-				$value = new MatchingDataDto($value, true);
+				$value = new \App\Dto\MatchingDataDto($value, true);
 			}
 			$this->_matchingData = $value;
 			$this->_touchedFields['_matchingData'] = true;
 		}
 	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -238,6 +232,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -250,6 +245,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -291,7 +287,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -344,7 +340,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 */
 	public function getUsernameOrFail(): string {
 		if ($this->username === null) {
-			throw new RuntimeException('Value not set for field `username` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `username` (expected to be not null)');
 		}
 
 		return $this->username;
@@ -397,7 +393,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 */
 	public function getEmailOrFail(): string {
 		if ($this->email === null) {
-			throw new RuntimeException('Value not set for field `email` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `email` (expected to be not null)');
 		}
 
 		return $this->email;
@@ -415,7 +411,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -428,7 +424,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -439,7 +435,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	/**
 	 * @return \Cake\I18n\DateTime|null
 	 */
-	public function getCreated(): ?DateTime {
+	public function getCreated(): ?\Cake\I18n\DateTime {
 		return $this->created;
 	}
 
@@ -448,9 +444,9 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return \Cake\I18n\DateTime
 	 */
-	public function getCreatedOrFail(): DateTime {
+	public function getCreatedOrFail(): \Cake\I18n\DateTime {
 		if ($this->created === null) {
-			throw new RuntimeException('Value not set for field `created` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `created` (expected to be not null)');
 		}
 
 		return $this->created;
@@ -468,7 +464,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingData(?MatchingDataDto $_matchingData = null) {
+	public function with_matchingData(?\App\Dto\MatchingDataDto $_matchingData = null) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
 		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
@@ -481,7 +477,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingDataOrFail(MatchingDataDto $_matchingData) {
+	public function with_matchingDataOrFail(\App\Dto\MatchingDataDto $_matchingData) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
 		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
@@ -492,7 +488,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\MatchingDataDto|null
 	 */
-	public function get_matchingData(): ?MatchingDataDto {
+	public function get_matchingData(): ?\App\Dto\MatchingDataDto {
 		return $this->_matchingData;
 	}
 
@@ -501,9 +497,9 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\MatchingDataDto
 	 */
-	public function get_matchingDataOrFail(): MatchingDataDto {
+	public function get_matchingDataOrFail(): \App\Dto\MatchingDataDto {
 		if ($this->_matchingData === null) {
-			throw new RuntimeException('Value not set for field `_matchingData` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `_matchingData` (expected to be not null)');
 		}
 
 		return $this->_matchingData;
@@ -531,12 +527,12 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), username: (string | null), email: (string | null), created: (\Cake\I18n\DateTime | null), _matchingData: (array{Roles: (array{id: (int | null), name: (string | null)} | null)} | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, username: string|null, email: string|null, created: \Cake\I18n\DateTime|null, _matchingData: array{Roles: array{id: int|null, name: string|null}|null}|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

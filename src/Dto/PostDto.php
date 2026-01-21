@@ -7,7 +7,6 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * Post DTO
@@ -24,22 +23,18 @@ class PostDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_TITLE = 'title';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_CONTENT = 'content';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_SLUG = 'slug';
-
 	/**
 	 * @var string
 	 */
@@ -173,7 +168,6 @@ class PostDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -221,7 +215,7 @@ class PostDto extends AbstractImmutableDto {
 			$collection = [];
 			foreach ($data['tags'] as $key => $item) {
 				if (is_array($item)) {
-					$item = new TagDto($item, true);
+					$item = new \App\Dto\TagDto($item, true);
 				}
 				$collection[$key] = $item;
 			}
@@ -230,12 +224,14 @@ class PostDto extends AbstractImmutableDto {
 		}
 	}
 
+
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -248,6 +244,7 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -289,7 +286,7 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -342,7 +339,7 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	public function getTitleOrFail(): string {
 		if ($this->title === null) {
-			throw new RuntimeException('Value not set for field `title` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `title` (expected to be not null)');
 		}
 
 		return $this->title;
@@ -395,7 +392,7 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	public function getContentOrFail(): string {
 		if ($this->content === null) {
-			throw new RuntimeException('Value not set for field `content` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `content` (expected to be not null)');
 		}
 
 		return $this->content;
@@ -448,7 +445,7 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	public function getSlugOrFail(): string {
 		if ($this->slug === null) {
-			throw new RuntimeException('Value not set for field `slug` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `slug` (expected to be not null)');
 		}
 
 		return $this->slug;
@@ -499,7 +496,7 @@ class PostDto extends AbstractImmutableDto {
 	 * @param \App\Dto\TagDto $tag
 	 * @return static
 	 */
-	public function withAddedTag(TagDto $tag) {
+	public function withAddedTag(\App\Dto\TagDto $tag) {
 		$new = clone $this;
 
 		if ($new->tags === null) {
@@ -527,12 +524,12 @@ class PostDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), title: (string | null), content: (string | null), slug: (string | null), tags: array<int, array{id: (int | null), label: (string | null), slug: (string | null), counter: (int | null), _joinData: (array{id: (int | null), tagId: (int | null), fkId: (int | null), fkModel: (string | null), created: (\Cake\I18n\DateTime | null)} | null)}>}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, title: string|null, content: string|null, slug: string|null, tags: array<int, array{id: int|null, label: string|null, slug: string|null, counter: int|null, _joinData: array{id: int|null, tagId: int|null, fkId: int|null, fkModel: string|null, created: \Cake\I18n\DateTime|null}|null}>} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

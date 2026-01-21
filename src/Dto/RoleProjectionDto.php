@@ -7,7 +7,6 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * RoleProjection DTO
@@ -22,12 +21,10 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_NAME = 'name';
-
 	/**
 	 * @var string
 	 */
@@ -119,7 +116,6 @@ class RoleProjectionDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -157,7 +153,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 			$collection = [];
 			foreach ($data['users'] as $key => $item) {
 				if (is_array($item)) {
-					$item = new UserSimpleProjectionDto($item, true);
+					$item = new \App\Dto\UserSimpleProjectionDto($item, true);
 				}
 				$collection[$key] = $item;
 			}
@@ -166,12 +162,14 @@ class RoleProjectionDto extends AbstractImmutableDto {
 		}
 	}
 
+
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -184,6 +182,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -225,7 +224,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -278,7 +277,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getNameOrFail(): string {
 		if ($this->name === null) {
-			throw new RuntimeException('Value not set for field `name` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `name` (expected to be not null)');
 		}
 
 		return $this->name;
@@ -329,7 +328,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	 * @param \App\Dto\UserSimpleProjectionDto $user
 	 * @return static
 	 */
-	public function withAddedUser(UserSimpleProjectionDto $user) {
+	public function withAddedUser(\App\Dto\UserSimpleProjectionDto $user) {
 		$new = clone $this;
 
 		if ($new->users === null) {
@@ -357,12 +356,12 @@ class RoleProjectionDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), name: (string | null), users: array<int, array{id: (int | null), username: (string | null), email: (string | null)}>}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, name: string|null, users: array<int, array{id: int|null, username: string|null, email: string|null}>} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

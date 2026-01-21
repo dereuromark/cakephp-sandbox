@@ -20,10 +20,12 @@ class LabelDto extends AbstractDto {
 	 * @var string
 	 */
 	public const FIELD_NAME = 'name';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_COLOR = 'color';
+
 
 	/**
 	 * @var string|null
@@ -87,6 +89,8 @@ class LabelDto extends AbstractDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = false;
 
@@ -120,7 +124,6 @@ class LabelDto extends AbstractDto {
 			$this->_touchedFields['color'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

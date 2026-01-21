@@ -6,9 +6,7 @@
 
 namespace App\Dto;
 
-use Cake\I18n\DateTime;
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * SimpleUser DTO
@@ -25,22 +23,18 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_ROLE = 'role';
-
 	/**
 	 * @var string
 	 */
@@ -173,7 +167,6 @@ class SimpleUserDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -216,7 +209,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 		if (isset($data['role'])) {
 			$value = $data['role'];
 			if (is_array($value)) {
-				$value = new SimpleRoleBasicDto($value, true);
+				$value = new \App\Dto\SimpleRoleBasicDto($value, true);
 			}
 			$this->role = $value;
 			$this->_touchedFields['role'] = true;
@@ -232,12 +225,14 @@ class SimpleUserDto extends AbstractImmutableDto {
 		}
 	}
 
+
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -250,6 +245,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -291,7 +287,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -344,7 +340,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 */
 	public function getUsernameOrFail(): string {
 		if ($this->username === null) {
-			throw new RuntimeException('Value not set for field `username` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `username` (expected to be not null)');
 		}
 
 		return $this->username;
@@ -397,7 +393,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 */
 	public function getEmailOrFail(): string {
 		if ($this->email === null) {
-			throw new RuntimeException('Value not set for field `email` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `email` (expected to be not null)');
 		}
 
 		return $this->email;
@@ -415,7 +411,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRole(?SimpleRoleBasicDto $role = null) {
+	public function withRole(?\App\Dto\SimpleRoleBasicDto $role = null) {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -428,7 +424,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRoleOrFail(SimpleRoleBasicDto $role) {
+	public function withRoleOrFail(\App\Dto\SimpleRoleBasicDto $role) {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -439,7 +435,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\SimpleRoleBasicDto|null
 	 */
-	public function getRole(): ?SimpleRoleBasicDto {
+	public function getRole(): ?\App\Dto\SimpleRoleBasicDto {
 		return $this->role;
 	}
 
@@ -448,9 +444,9 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\SimpleRoleBasicDto
 	 */
-	public function getRoleOrFail(): SimpleRoleBasicDto {
+	public function getRoleOrFail(): \App\Dto\SimpleRoleBasicDto {
 		if ($this->role === null) {
-			throw new RuntimeException('Value not set for field `role` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `role` (expected to be not null)');
 		}
 
 		return $this->role;
@@ -468,7 +464,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -481,7 +477,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -492,7 +488,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	/**
 	 * @return \Cake\I18n\DateTime|null
 	 */
-	public function getCreated(): ?DateTime {
+	public function getCreated(): ?\Cake\I18n\DateTime {
 		return $this->created;
 	}
 
@@ -501,9 +497,9 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return \Cake\I18n\DateTime
 	 */
-	public function getCreatedOrFail(): DateTime {
+	public function getCreatedOrFail(): \Cake\I18n\DateTime {
 		if ($this->created === null) {
-			throw new RuntimeException('Value not set for field `created` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `created` (expected to be not null)');
 		}
 
 		return $this->created;
@@ -531,12 +527,12 @@ class SimpleUserDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), username: (string | null), email: (string | null), role: (array{id: (int | null), name: (string | null)} | null), created: (\Cake\I18n\DateTime | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, username: string|null, email: string|null, role: array{id: int|null, name: string|null}|null, created: \Cake\I18n\DateTime|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

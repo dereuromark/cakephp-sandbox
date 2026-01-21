@@ -7,7 +7,6 @@
 namespace App\Dto;
 
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * UserSimpleProjection DTO
@@ -22,12 +21,10 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
-
 	/**
 	 * @var string
 	 */
@@ -116,7 +113,6 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -156,12 +152,14 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 		}
 	}
 
+
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -174,6 +172,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -215,7 +214,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -268,7 +267,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getUsernameOrFail(): string {
 		if ($this->username === null) {
-			throw new RuntimeException('Value not set for field `username` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `username` (expected to be not null)');
 		}
 
 		return $this->username;
@@ -321,7 +320,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 */
 	public function getEmailOrFail(): string {
 		if ($this->email === null) {
-			throw new RuntimeException('Value not set for field `email` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `email` (expected to be not null)');
 		}
 
 		return $this->email;
@@ -349,12 +348,12 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), username: (string | null), email: (string | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, username: string|null, email: string|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

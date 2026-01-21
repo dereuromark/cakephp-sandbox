@@ -22,18 +22,22 @@ class HeadDto extends AbstractDto {
 	 * @var string
 	 */
 	public const FIELD_REF = 'ref';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_SHA = 'sha';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USER = 'user';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_REPO = 'repo';
+
 
 	/**
 	 * @var string
@@ -139,6 +143,8 @@ class HeadDto extends AbstractDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = false;
 
@@ -190,7 +196,6 @@ class HeadDto extends AbstractDto {
 			$this->_touchedFields['repo'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

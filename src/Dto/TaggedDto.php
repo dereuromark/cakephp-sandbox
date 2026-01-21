@@ -6,9 +6,7 @@
 
 namespace App\Dto;
 
-use Cake\I18n\DateTime;
 use PhpCollective\Dto\Dto\AbstractImmutableDto;
-use RuntimeException;
 
 /**
  * Tagged DTO
@@ -25,22 +23,18 @@ class TaggedDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_TAG_ID = 'tagId';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_FK_ID = 'fkId';
-
 	/**
 	 * @var string
 	 */
 	public const FIELD_FK_MODEL = 'fkModel';
-
 	/**
 	 * @var string
 	 */
@@ -173,7 +167,6 @@ class TaggedDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
-     * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -228,12 +221,14 @@ class TaggedDto extends AbstractImmutableDto {
 		}
 	}
 
+
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
 	 *
 	 * @return $this
 	 */
 	protected function setDefaults() {
+
 		return $this;
 	}
 
@@ -246,6 +241,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	protected function validate(): void {
 	}
+
 
 	/**
 	 * @param int|null $id
@@ -287,7 +283,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	public function getIdOrFail(): int {
 		if ($this->id === null) {
-			throw new RuntimeException('Value not set for field `id` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `id` (expected to be not null)');
 		}
 
 		return $this->id;
@@ -340,7 +336,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	public function getTagIdOrFail(): int {
 		if ($this->tagId === null) {
-			throw new RuntimeException('Value not set for field `tagId` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `tagId` (expected to be not null)');
 		}
 
 		return $this->tagId;
@@ -393,7 +389,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	public function getFkIdOrFail(): int {
 		if ($this->fkId === null) {
-			throw new RuntimeException('Value not set for field `fkId` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `fkId` (expected to be not null)');
 		}
 
 		return $this->fkId;
@@ -446,7 +442,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	public function getFkModelOrFail(): string {
 		if ($this->fkModel === null) {
-			throw new RuntimeException('Value not set for field `fkModel` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `fkModel` (expected to be not null)');
 		}
 
 		return $this->fkModel;
@@ -464,7 +460,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -477,7 +473,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -488,7 +484,7 @@ class TaggedDto extends AbstractImmutableDto {
 	/**
 	 * @return \Cake\I18n\DateTime|null
 	 */
-	public function getCreated(): ?DateTime {
+	public function getCreated(): ?\Cake\I18n\DateTime {
 		return $this->created;
 	}
 
@@ -497,9 +493,9 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return \Cake\I18n\DateTime
 	 */
-	public function getCreatedOrFail(): DateTime {
+	public function getCreatedOrFail(): \Cake\I18n\DateTime {
 		if ($this->created === null) {
-			throw new RuntimeException('Value not set for field `created` (expected to be not null)');
+			throw new \RuntimeException('Value not set for field `created` (expected to be not null)');
 		}
 
 		return $this->created;
@@ -527,12 +523,12 @@ class TaggedDto extends AbstractImmutableDto {
 	}
 
 	/**
-     * @phpstan-param array<string, mixed> $data
-     * @param array{id: (int | null), tagId: (int | null), fkId: (int | null), fkModel: (string | null), created: (\Cake\I18n\DateTime | null)}|array $data
-     * @param bool $ignoreMissing
-     * @param string|null $type
-     *
-     * @return static
+	 * @param array{id: int|null, tagId: int|null, fkId: int|null, fkModel: string|null, created: \Cake\I18n\DateTime|null} $data
+	 * @phpstan-param array<string, mixed> $data
+	 * @param bool $ignoreMissing
+	 * @param string|null $type
+	 *
+	 * @return static
 	 */
 	public static function createFromArray(array $data, bool $ignoreMissing = false, ?string $type = null): static {
 		return static::_createFromArrayInternal($data, $ignoreMissing, $type);

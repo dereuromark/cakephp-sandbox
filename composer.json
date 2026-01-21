@@ -64,7 +64,7 @@
 		"dereuromark/cakephp-expose": "dev-master",
 		"dereuromark/cakephp-ratings": "dev-master",
 		"dereuromark/cakephp-dto": "dev-master as 2.5.0",
-		"php-collective/dto": "dev-master as 0.1.5",
+		"php-collective/dto": "^0.1.7",
 		"dereuromark/cakephp-decimal": "dev-master",
 		"brick/math": "^0.14.0",
 		"league/commonmark": "^2.0",
@@ -99,7 +99,8 @@
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^12.1",
 		"cakedc/cakephp-phpstan": "^4.0",
-		"admad/entity": "dev-master"
+		"admad/entity": "dev-master",
+		"cuyz/valinor": "^2.3"
 	},
 	"autoload": {
 		"psr-4": {
