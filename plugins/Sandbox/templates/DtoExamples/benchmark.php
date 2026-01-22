@@ -98,9 +98,9 @@
 <div class="alert alert-success">
 	<h4>DTOs are Performance-Competitive</h4>
 	<ul class="mb-0">
-		<li><strong>Overhead is minimal:</strong> DTO projection adds ~<?php echo abs($results['comparison']['overheadMs']); ?>ms per query average</li>
-		<li><strong>Database dominates:</strong> ~95% of query time is database I/O, not hydration</li>
-		<li><strong>Immutability is free:</strong> DTOs provide immutability with negligible cost</li>
+		<li><strong>Overhead is minimal:</strong> DTO projection adds no relevant overhead, with optimizations even gains some ms.</li>
+		<li><strong>Database dominates:</strong> ~95% of query time is database I/O, not hydration.</li>
+		<li><strong>Immutability is free:</strong> DTOs provide immutability with negligible cost.</li>
 	</ul>
 </div>
 
