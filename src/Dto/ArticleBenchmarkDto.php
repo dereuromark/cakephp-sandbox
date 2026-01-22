@@ -23,22 +23,27 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TITLE = 'title';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_BODY = 'body';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_AUTHOR = 'author';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_COMMENTS = 'comments';
+
 
 	/**
 	 * @var int|null
@@ -168,6 +173,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -227,7 +234,6 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			$this->_touchedFields['comments'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

@@ -21,14 +21,17 @@ class SimpleUserBasicDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
+
 
 	/**
 	 * @var int|null
@@ -113,6 +116,8 @@ class SimpleUserBasicDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -151,7 +156,6 @@ class SimpleUserBasicDto extends AbstractImmutableDto {
 			$this->_touchedFields['email'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

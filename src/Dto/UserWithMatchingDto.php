@@ -23,22 +23,27 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED = 'created';
+
 	/**
 	 * @var string
 	 */
-	public const FIELD__MATCHING_DATA = '_matchingData';
+	public const FIELD_MATCHING_DATA = '_matchingData';
+
 
 	/**
 	 * @var int|null
@@ -167,6 +172,8 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -180,7 +187,7 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 		'username' => 'withUsername',
 		'email' => 'withEmail',
 		'created' => 'withCreated',
-		'_matchingData' => 'with_matchingdata',
+		'_matchingData' => 'withMatchingData',
 	];
 
 	/**
@@ -220,7 +227,6 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 			$this->_touchedFields['_matchingData'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -460,10 +466,10 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingData(?array $_matchingData = null) {
+	public function withMatchingData(?array $_matchingData = null) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
-		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+		$new->_touchedFields[static::FIELD_MATCHING_DATA] = true;
 
 		return $new;
 	}
@@ -473,10 +479,10 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingDataOrFail(array $_matchingData) {
+	public function withMatchingDataOrFail(array $_matchingData) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
-		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+		$new->_touchedFields[static::FIELD_MATCHING_DATA] = true;
 
 		return $new;
 	}
@@ -484,7 +490,7 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	/**
 	 * @return array|null
 	 */
-	public function get_matchingData(): ?array {
+	public function getMatchingData(): ?array {
 		return $this->_matchingData;
 	}
 
@@ -493,7 +499,7 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	 *
 	 * @return array
 	 */
-	public function get_matchingDataOrFail(): array {
+	public function getMatchingDataOrFail(): array {
 		if ($this->_matchingData === null) {
 			throw new \RuntimeException('Value not set for field `_matchingData` (expected to be not null)');
 		}
@@ -504,7 +510,7 @@ class UserWithMatchingDto extends AbstractImmutableDto {
 	/**
 	 * @return bool
 	 */
-	public function has_matchingData(): bool {
+	public function hasMatchingData(): bool {
 		return $this->_matchingData !== null;
 	}
 

@@ -20,6 +20,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 */
 	public const FIELD_ROLES = 'Roles';
 
+
 	/**
 	 * @var \App\Dto\SimpleRoleBasicDto|null
 	 */
@@ -61,6 +62,8 @@ class MatchingDataDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -93,7 +96,6 @@ class MatchingDataDto extends AbstractImmutableDto {
 			$this->_touchedFields['Roles'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

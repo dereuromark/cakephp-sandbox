@@ -23,22 +23,27 @@ class TaggedDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TAG_ID = 'tagId';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_FK_ID = 'fkId';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_FK_MODEL = 'fkModel';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED = 'created';
+
 
 	/**
 	 * @var int|null
@@ -167,6 +172,8 @@ class TaggedDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -177,9 +184,9 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	protected static array $_setters = [
 		'id' => 'withId',
-		'tagId' => 'withTagid',
-		'fkId' => 'withFkid',
-		'fkModel' => 'withFkmodel',
+		'tagId' => 'withTagId',
+		'fkId' => 'withFkId',
+		'fkModel' => 'withFkModel',
 		'created' => 'withCreated',
 	];
 
@@ -220,7 +227,6 @@ class TaggedDto extends AbstractImmutableDto {
 			$this->_touchedFields['created'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

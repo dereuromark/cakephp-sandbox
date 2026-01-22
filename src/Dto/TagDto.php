@@ -23,22 +23,27 @@ class TagDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_LABEL = 'label';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_SLUG = 'slug';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_COUNTER = 'counter';
+
 	/**
 	 * @var string
 	 */
-	public const FIELD__JOIN_DATA = '_joinData';
+	public const FIELD_JOIN_DATA = '_joinData';
+
 
 	/**
 	 * @var int|null
@@ -165,6 +170,8 @@ class TagDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -178,7 +185,7 @@ class TagDto extends AbstractImmutableDto {
 		'label' => 'withLabel',
 		'slug' => 'withSlug',
 		'counter' => 'withCounter',
-		'_joinData' => 'with_joindata',
+		'_joinData' => 'withJoinData',
 	];
 
 	/**
@@ -217,7 +224,6 @@ class TagDto extends AbstractImmutableDto {
 			$this->_touchedFields['_joinData'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -457,10 +463,10 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_joinData(?\App\Dto\TaggedDto $_joinData = null) {
+	public function withJoinData(?\App\Dto\TaggedDto $_joinData = null) {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
-		$new->_touchedFields[static::FIELD__JOIN_DATA] = true;
+		$new->_touchedFields[static::FIELD_JOIN_DATA] = true;
 
 		return $new;
 	}
@@ -470,10 +476,10 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_joinDataOrFail(\App\Dto\TaggedDto $_joinData) {
+	public function withJoinDataOrFail(\App\Dto\TaggedDto $_joinData) {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
-		$new->_touchedFields[static::FIELD__JOIN_DATA] = true;
+		$new->_touchedFields[static::FIELD_JOIN_DATA] = true;
 
 		return $new;
 	}
@@ -481,7 +487,7 @@ class TagDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\TaggedDto|null
 	 */
-	public function get_joinData(): ?\App\Dto\TaggedDto {
+	public function getJoinData(): ?\App\Dto\TaggedDto {
 		return $this->_joinData;
 	}
 
@@ -490,7 +496,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\TaggedDto
 	 */
-	public function get_joinDataOrFail(): \App\Dto\TaggedDto {
+	public function getJoinDataOrFail(): \App\Dto\TaggedDto {
 		if ($this->_joinData === null) {
 			throw new \RuntimeException('Value not set for field `_joinData` (expected to be not null)');
 		}
@@ -501,7 +507,7 @@ class TagDto extends AbstractImmutableDto {
 	/**
 	 * @return bool
 	 */
-	public function has_joinData(): bool {
+	public function hasJoinData(): bool {
 		return $this->_joinData !== null;
 	}
 

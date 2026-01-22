@@ -24,6 +24,7 @@ This site combines useful code snippets with their live result.
 	<h4><strong>NEW: CakePHP 5.3 Features</strong></h4>
 	<p>Check out the latest CakePHP features in action:</p>
 	<ul class="mb-0">
+		<li><?php echo $this->Html->link('DTO Projection', ['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'projection']); ?> - Project ORM results directly into typed DTOs with <code>projectAs()</code></li>
 		<li><?php echo $this->Html->link('Rate Limiter Middleware', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'rateLimiter']); ?> - Protect your application from abuse</li>
 		<li><?php echo $this->Html->link('Combined Pagination Sorting', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort']); ?> - Multi-field sorting made easy</li>
 		<li><?php echo $this->Html->link('FileStorage Plugin', ['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'index']); ?> - File uploads, image cropping, drag & drop, and more</li>

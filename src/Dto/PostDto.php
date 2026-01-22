@@ -23,22 +23,27 @@ class PostDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TITLE = 'title';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CONTENT = 'content';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_SLUG = 'slug';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_TAGS = 'tags';
+
 
 	/**
 	 * @var int|null
@@ -168,6 +173,8 @@ class PostDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -223,7 +230,6 @@ class PostDto extends AbstractImmutableDto {
 			$this->_touchedFields['tags'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

@@ -23,22 +23,27 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USERNAME = 'username';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_EMAIL = 'email';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_CREATED = 'created';
+
 	/**
 	 * @var string
 	 */
-	public const FIELD__MATCHING_DATA = '_matchingData';
+	public const FIELD_MATCHING_DATA = '_matchingData';
+
 
 	/**
 	 * @var int|null
@@ -167,6 +172,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -180,7 +187,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 		'username' => 'withUsername',
 		'email' => 'withEmail',
 		'created' => 'withCreated',
-		'_matchingData' => 'with_matchingdata',
+		'_matchingData' => 'withMatchingData',
 	];
 
 	/**
@@ -224,7 +231,6 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			$this->_touchedFields['_matchingData'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
@@ -464,10 +470,10 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingData(?\App\Dto\MatchingDataDto $_matchingData = null) {
+	public function withMatchingData(?\App\Dto\MatchingDataDto $_matchingData = null) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
-		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+		$new->_touchedFields[static::FIELD_MATCHING_DATA] = true;
 
 		return $new;
 	}
@@ -477,10 +483,10 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function with_matchingDataOrFail(\App\Dto\MatchingDataDto $_matchingData) {
+	public function withMatchingDataOrFail(\App\Dto\MatchingDataDto $_matchingData) {
 		$new = clone $this;
 		$new->_matchingData = $_matchingData;
-		$new->_touchedFields[static::FIELD__MATCHING_DATA] = true;
+		$new->_touchedFields[static::FIELD_MATCHING_DATA] = true;
 
 		return $new;
 	}
@@ -488,7 +494,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	/**
 	 * @return \App\Dto\MatchingDataDto|null
 	 */
-	public function get_matchingData(): ?\App\Dto\MatchingDataDto {
+	public function getMatchingData(): ?\App\Dto\MatchingDataDto {
 		return $this->_matchingData;
 	}
 
@@ -497,7 +503,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 *
 	 * @return \App\Dto\MatchingDataDto
 	 */
-	public function get_matchingDataOrFail(): \App\Dto\MatchingDataDto {
+	public function getMatchingDataOrFail(): \App\Dto\MatchingDataDto {
 		if ($this->_matchingData === null) {
 			throw new \RuntimeException('Value not set for field `_matchingData` (expected to be not null)');
 		}
@@ -508,7 +514,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	/**
 	 * @return bool
 	 */
-	public function has_matchingData(): bool {
+	public function hasMatchingData(): bool {
 		return $this->_matchingData !== null;
 	}
 

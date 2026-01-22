@@ -22,18 +22,22 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_COMMENT = 'comment';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_ARTICLE_ID = 'articleId';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_USER_ID = 'userId';
+
 
 	/**
 	 * @var int|null
@@ -139,6 +143,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -150,8 +156,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	protected static array $_setters = [
 		'id' => 'withId',
 		'comment' => 'withComment',
-		'articleId' => 'withArticleid',
-		'userId' => 'withUserid',
+		'articleId' => 'withArticleId',
+		'userId' => 'withUserId',
 	];
 
 	/**
@@ -182,7 +188,6 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 			$this->_touchedFields['userId'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

@@ -20,10 +20,12 @@ class AuthorBenchmarkDto extends AbstractImmutableDto {
 	 * @var string
 	 */
 	public const FIELD_ID = 'id';
+
 	/**
 	 * @var string
 	 */
 	public const FIELD_NAME = 'name';
+
 
 	/**
 	 * @var int|null
@@ -87,6 +89,8 @@ class AuthorBenchmarkDto extends AbstractImmutableDto {
 
 	/**
 	 * Whether this DTO is immutable.
+	 *
+	 * @var bool
 	 */
 	protected const IS_IMMUTABLE = true;
 
@@ -120,7 +124,6 @@ class AuthorBenchmarkDto extends AbstractImmutableDto {
 			$this->_touchedFields['name'] = true;
 		}
 	}
-
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
