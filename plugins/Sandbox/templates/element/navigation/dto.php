@@ -29,3 +29,10 @@
 	<li><?php echo $this->Navigation->link('BelongsToMany', ['action' => 'projectionBelongsToMany'])?></li>
 	<li><?php echo $this->Navigation->link('Matching', ['action' => 'projectionMatching'])?></li>
 </ul>
+
+<h3>Performance</h3>
+<p>Entity vs DTO performance comparison.</p>
+
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
+	<li><?php echo $this->Navigation->link('Benchmark', ['action' => 'benchmark'])?></li>
+</ul>

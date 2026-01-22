@@ -81,4 +81,14 @@ class DtoExamplesControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testBenchmark() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'benchmark']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

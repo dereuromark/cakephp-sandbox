@@ -160,6 +160,80 @@ class DtoExamplesController extends SandboxAppController {
 	}
 
 	/**
+	 * Performance benchmark comparing Entity vs DTO hydration.
+	 *
+	 * @return void
+	 */
+	public function benchmark(): void {
+		$usersTable = $this->fetchTable('Users');
+		$iterations = 100;
+
+		// Warm up - ensure query is cached
+		$usersTable->find()->contain(['Roles'])->limit(50)->toArray();
+
+		// Benchmark Entity hydration
+		$entityStart = microtime(true);
+		$entityMemStart = memory_get_usage();
+		for ($i = 0; $i < $iterations; $i++) {
+			$entities = $usersTable->find()
+				->contain(['Roles'])
+				->limit(50)
+				->toArray();
+		}
+		$entityTime = (microtime(true) - $entityStart) * 1000;
+		$entityMem = memory_get_usage() - $entityMemStart;
+
+		// Benchmark DTO projection
+		$dtoStart = microtime(true);
+		$dtoMemStart = memory_get_usage();
+		for ($i = 0; $i < $iterations; $i++) {
+			$dtos = $usersTable->find()
+				->contain(['Roles'])
+				->limit(50)
+				->projectAs(UserProjectionDto::class)
+				->toArray();
+		}
+		$dtoTime = (microtime(true) - $dtoStart) * 1000;
+		$dtoMem = memory_get_usage() - $dtoMemStart;
+
+		// Single iteration for detailed breakdown
+		$singleEntityStart = microtime(true);
+		$singleEntities = $usersTable->find()->contain(['Roles'])->limit(50)->toArray();
+		$singleEntityTime = (microtime(true) - $singleEntityStart) * 1000;
+
+		$singleDtoStart = microtime(true);
+		$singleDtos = $usersTable->find()->contain(['Roles'])->limit(50)->projectAs(UserProjectionDto::class)->toArray();
+		$singleDtoTime = (microtime(true) - $singleDtoStart) * 1000;
+
+		$results = [
+			'iterations' => $iterations,
+			'recordCount' => count($entities ?? []),
+			'entity' => [
+				'totalMs' => round($entityTime, 2),
+				'avgMs' => round($entityTime / $iterations, 4),
+				'memoryKb' => round($entityMem / 1024, 2),
+			],
+			'dto' => [
+				'totalMs' => round($dtoTime, 2),
+				'avgMs' => round($dtoTime / $iterations, 4),
+				'memoryKb' => round($dtoMem / 1024, 2),
+			],
+			'single' => [
+				'entityMs' => round($singleEntityTime, 4),
+				'dtoMs' => round($singleDtoTime, 4),
+				'diffMs' => round($singleDtoTime - $singleEntityTime, 4),
+			],
+		];
+
+		$results['comparison'] = [
+			'dtoPct' => round(($dtoTime / $entityTime) * 100, 1),
+			'overheadMs' => round(($dtoTime - $entityTime) / $iterations, 4),
+		];
+
+		$this->set(compact('results', 'entities', 'dtos'));
+	}
+
+	/**
 	 * Matching query demo - Users matching specific Role.
 	 *
 	 * @return void

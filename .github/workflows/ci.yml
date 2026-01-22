@@ -149,7 +149,7 @@ jobs:
       run: npm install -g bower && bower install --allow-root && composer assets
 
     - name: DTO check
-      run: bin/cake dto generate -p Sandbox -v -d
+      run: bin/cake dto generate -v -d && bin/cake dto generate -p Sandbox -v -d
 
     - name: Code completion generate
       run: bin/cake generate code_completion
