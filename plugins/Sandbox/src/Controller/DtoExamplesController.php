@@ -160,11 +160,21 @@ class DtoExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * Performance benchmark comparing Entity vs DTO hydration.
+	 * Benchmark info page - instant loading with summary.
 	 *
 	 * @return void
 	 */
 	public function benchmark(): void {
+		// No database operations - just display info
+	}
+
+	/**
+	 * Performance benchmark comparing Entity vs DTO hydration.
+	 * Actually runs the benchmark.
+	 *
+	 * @return void
+	 */
+	public function benchmarkRun(): void {
 		$usersTable = $this->fetchTable('Users');
 		$iterations = 100;
 

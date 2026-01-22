@@ -34,5 +34,6 @@
 <p>Entity vs DTO performance comparison.</p>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
-	<li><?php echo $this->Navigation->link('Benchmark', ['action' => 'benchmark'])?></li>
+	<li><?php echo $this->Navigation->link('Benchmark Info', ['action' => 'benchmark'])?></li>
+	<li><?php echo $this->Navigation->link('Run Benchmark', ['action' => 'benchmarkRun'])?></li>
 </ul>

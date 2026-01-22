@@ -1,9 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<string, mixed> $results
- * @var array<\App\Model\Entity\User> $entities
- * @var array<\App\Dto\UserProjectionDto> $dtos
  */
 ?>
 <div class="row">
@@ -16,82 +13,20 @@
 
 <p>
 	This benchmark compares CakePHP Entity hydration vs DTO projection using <code>projectAs()</code>.
-	Results are generated live on each page load.
 </p>
 
-<div class="alert alert-info">
-	<strong>Test Configuration:</strong>
-	<?php echo $results['iterations']; ?> iterations,
-	<?php echo $results['recordCount']; ?> records per query (Users with BelongsTo Role)
+<div class="alert alert-primary">
+	<h4>Run the Benchmark</h4>
+	<p>Click the button below to run a live benchmark comparing Entity vs DTO performance.</p>
+	<p class="mb-0">
+		<?php echo $this->Html->link(
+			'Run Benchmark (100 iterations)',
+			['action' => 'benchmarkRun'],
+			['class' => 'btn btn-primary'],
+		); ?>
+	</p>
+	<small class="text-muted">Note: This may take a few seconds to complete.</small>
 </div>
-
-<h2>Results</h2>
-
-<table class="table table-bordered">
-	<thead>
-		<tr>
-			<th>Metric</th>
-			<th>Entity</th>
-			<th>DTO</th>
-			<th>Difference</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><strong>Total Time (<?php echo $results['iterations']; ?> iterations)</strong></td>
-			<td><?php echo $results['entity']['totalMs']; ?> ms</td>
-			<td><?php echo $results['dto']['totalMs']; ?> ms</td>
-			<td>
-				<?php
-				$diff = $results['dto']['totalMs'] - $results['entity']['totalMs'];
-				$class = $diff > 0 ? 'text-warning' : 'text-success';
-				echo "<span class=\"{$class}\">" . ($diff > 0 ? '+' : '') . round($diff, 2) . ' ms</span>';
-				?>
-			</td>
-		</tr>
-		<tr>
-			<td><strong>Average per Query</strong></td>
-			<td><?php echo $results['entity']['avgMs']; ?> ms</td>
-			<td><?php echo $results['dto']['avgMs']; ?> ms</td>
-			<td>
-				<?php
-				$overhead = $results['comparison']['overheadMs'];
-				$class = $overhead > 0.1 ? 'text-warning' : 'text-success';
-				echo "<span class=\"{$class}\">" . ($overhead > 0 ? '+' : '') . $overhead . ' ms</span>';
-				?>
-			</td>
-		</tr>
-		<tr>
-			<td><strong>Memory Delta</strong></td>
-			<td><?php echo $results['entity']['memoryKb']; ?> KB</td>
-			<td><?php echo $results['dto']['memoryKb']; ?> KB</td>
-			<td><?php echo round($results['dto']['memoryKb'] - $results['entity']['memoryKb'], 2); ?> KB</td>
-		</tr>
-	</tbody>
-</table>
-
-<h2>Single Iteration Breakdown</h2>
-<p>Detailed timing for a single query (includes database + hydration):</p>
-<table class="table table-bordered">
-	<tr>
-		<td>Entity Query + Hydration</td>
-		<td><?php echo $results['single']['entityMs']; ?> ms</td>
-	</tr>
-	<tr>
-		<td>DTO Query + Projection</td>
-		<td><?php echo $results['single']['dtoMs']; ?> ms</td>
-	</tr>
-	<tr>
-		<td><strong>DTO Overhead</strong></td>
-		<td>
-			<?php
-			$singleDiff = $results['single']['diffMs'];
-			$class = $singleDiff > 0.5 ? 'text-warning' : 'text-success';
-			echo "<span class=\"{$class}\">" . ($singleDiff > 0 ? '+' : '') . $singleDiff . ' ms</span>';
-			?>
-		</td>
-	</tr>
-</table>
 
 <h2>Key Findings</h2>
 
@@ -145,5 +80,22 @@ foreach ($dtos as $user) {
     echo $user->getUsername();       // string|null
     echo $user->getRole()->getName(); // Nested DTO with types
 }</code></pre>
+
+<h2>Benchmark Methodology</h2>
+
+<p>The benchmark performs the following tests:</p>
+<ul>
+	<li><strong>Warm-up:</strong> Initial query to ensure database/cache is ready</li>
+	<li><strong>Entity Test:</strong> 100 iterations of <code>find()->contain(['Roles'])->toArray()</code></li>
+	<li><strong>DTO Test:</strong> 100 iterations of <code>find()->contain(['Roles'])->projectAs(Dto::class)->toArray()</code></li>
+	<li><strong>Single Query:</strong> One iteration of each for detailed breakdown</li>
+</ul>
+
+<p>Metrics measured:</p>
+<ul>
+	<li>Total execution time (ms)</li>
+	<li>Average time per query (ms)</li>
+	<li>Memory delta (KB)</li>
+</ul>
 
 </div></div>
