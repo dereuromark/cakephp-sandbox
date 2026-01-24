@@ -43,6 +43,122 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function leaflet() {
+		$providers = [
+			'osm' => [
+				'name' => 'OpenStreetMap',
+				'url' => 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+					'maxZoom' => 19,
+				],
+			],
+			'osm_hot' => [
+				'name' => 'OpenStreetMap HOT',
+				'url' => 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, Tiles by <a href="https://www.hotosm.org/">HOT</a>',
+					'maxZoom' => 19,
+				],
+			],
+			'carto_light' => [
+				'name' => 'CartoDB Positron (Light)',
+				'url' => 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+					'subdomains' => 'abcd',
+					'maxZoom' => 20,
+				],
+			],
+			'carto_dark' => [
+				'name' => 'CartoDB Dark Matter',
+				'url' => 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+					'subdomains' => 'abcd',
+					'maxZoom' => 20,
+				],
+			],
+			'carto_voyager' => [
+				'name' => 'CartoDB Voyager',
+				'url' => 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+					'subdomains' => 'abcd',
+					'maxZoom' => 20,
+				],
+			],
+			'opentopomap' => [
+				'name' => 'OpenTopoMap',
+				'url' => 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>, <a href="https://opentopomap.org">OpenTopoMap</a>',
+					'maxZoom' => 17,
+				],
+			],
+			'cyclosm' => [
+				'name' => 'CyclOSM (Cycling)',
+				'url' => 'https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://openstreetmap.org">OpenStreetMap</a>, <a href="https://www.cyclosm.org">CyclOSM</a>',
+					'maxZoom' => 20,
+				],
+			],
+			'esri_world' => [
+				'name' => 'Esri WorldStreetMap',
+				'url' => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+				'options' => [
+					'attribution' => 'Tiles &copy; Esri',
+					'maxZoom' => 18,
+				],
+			],
+			'esri_satellite' => [
+				'name' => 'Esri WorldImagery (Satellite)',
+				'url' => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+				'options' => [
+					'attribution' => 'Tiles &copy; Esri',
+					'maxZoom' => 18,
+				],
+			],
+			'esri_topo' => [
+				'name' => 'Esri WorldTopoMap',
+				'url' => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+				'options' => [
+					'attribution' => 'Tiles &copy; Esri',
+					'maxZoom' => 18,
+				],
+			],
+			'stadia_smooth' => [
+				'name' => 'Stadia Alidade Smooth',
+				'url' => 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>',
+					'maxZoom' => 20,
+				],
+			],
+			'stadia_dark' => [
+				'name' => 'Stadia Alidade Dark',
+				'url' => 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="https://openstreetmap.org">OpenStreetMap</a>',
+					'maxZoom' => 20,
+				],
+			],
+			'stadia_satellite' => [
+				'name' => 'Stadia Satellite',
+				'url' => 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png',
+				'options' => [
+					'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, CNES, Airbus DS, PlanetObserver',
+					'maxZoom' => 20,
+				],
+			],
+		];
+
+		$provider = $this->request->getQuery('provider');
+		if (!$provider || !isset($providers[$provider])) {
+			$provider = 'osm';
+		}
+
+		$this->set(compact('providers', 'provider'));
 	}
 
 	/**
