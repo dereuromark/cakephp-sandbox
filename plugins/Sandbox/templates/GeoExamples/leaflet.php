@@ -32,17 +32,16 @@ $currentProvider = $providers[$provider];
 
 <h4>Basic Map with Markers</h4>
 <?php
-// Apply custom tile layer for non-default providers
-if ($provider !== 'osm') {
-	$this->Leaflet->addTileLayer($currentProvider['url'], $currentProvider['options']);
-}
-
 echo $this->Leaflet->map([
 	'zoom' => 5,
 	'lat' => 48.0,
 	'lng' => 11.0,
 	'div' => ['id' => 'leaflet-map-basic', 'height' => '400px'],
 	'autoScript' => true,
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
 ]);
 
 $this->Leaflet->addMarker([
@@ -69,15 +68,15 @@ $this->Leaflet->finalize();
 
 <h4>Map with Polyline</h4>
 <?php
-if ($provider !== 'osm') {
-	$this->Leaflet->addTileLayer($currentProvider['url'], $currentProvider['options']);
-}
-
 echo $this->Leaflet->map([
 	'zoom' => 6,
 	'lat' => 48.0,
 	'lng' => 11.0,
 	'div' => ['id' => 'leaflet-map-polyline', 'height' => '300px'],
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
 ]);
 
 // Munich to Innsbruck route
@@ -93,15 +92,15 @@ $this->Leaflet->finalize();
 
 <h4>Map with Circle and Polygon</h4>
 <?php
-if ($provider !== 'osm') {
-	$this->Leaflet->addTileLayer($currentProvider['url'], $currentProvider['options']);
-}
-
 echo $this->Leaflet->map([
 	'zoom' => 7,
 	'lat' => 48.5,
 	'lng' => 11.5,
 	'div' => ['id' => 'leaflet-map-shapes', 'height' => '300px'],
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
 ]);
 
 $this->Leaflet->addCircle([
