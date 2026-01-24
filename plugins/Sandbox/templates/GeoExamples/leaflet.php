@@ -59,13 +59,13 @@ echo $this->Leaflet->map([
 	'div' => ['id' => 'leaflet-map-polyline', 'height' => '300px'],
 ]);
 
-$this->Leaflet->addMarker(['lat' => 48.69847, 'lng' => 10.9514, 'title' => 'Start']);
-$this->Leaflet->addMarker(['lat' => 47.19847, 'lng' => 11.1514, 'title' => 'End']);
+// Munich to Innsbruck route
+$this->Leaflet->addMarker(['lat' => 48.1351, 'lng' => 11.5820, 'title' => 'Munich', 'content' => 'Start: Munich']);
+$this->Leaflet->addMarker(['lat' => 47.2692, 'lng' => 11.4041, 'title' => 'Innsbruck', 'content' => 'End: Innsbruck']);
 
 $this->Leaflet->addPolyline(
-	['lat' => 48.69847, 'lng' => 10.9514],
-	['lat' => 48.0, 'lng' => 11.5],
-	['lat' => 47.19847, 'lng' => 11.1514],
+	['lat' => 48.1351, 'lng' => 11.5820],
+	['lat' => 47.2692, 'lng' => 11.4041],
 );
 $this->Leaflet->finalize();
 ?>
@@ -102,18 +102,19 @@ $this->Leaflet->finalize();
 
 <h4>Dark Theme (CartoDB Dark)</h4>
 <?php
+// Must call useTilePreset BEFORE map()
+$this->Leaflet->useTilePreset(\Geo\View\Helper\LeafletHelper::TILES_CARTO_DARK);
 echo $this->Leaflet->map([
 	'zoom' => 5,
 	'lat' => 48.0,
 	'lng' => 11.0,
 	'div' => ['id' => 'leaflet-map-dark', 'height' => '300px'],
 ]);
-$this->Leaflet->useTilePreset(\Geo\View\Helper\LeafletHelper::TILES_CARTO_DARK);
 
 $this->Leaflet->addMarker([
-	'lat' => 48.69847,
-	'lng' => 10.9514,
-	'title' => 'Dark Mode Marker',
+	'lat' => 48.1351,
+	'lng' => 11.5820,
+	'title' => 'Munich',
 	'content' => 'A marker on a dark themed map',
 ]);
 $this->Leaflet->finalize();
