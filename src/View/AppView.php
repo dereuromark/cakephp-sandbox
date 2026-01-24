@@ -52,6 +52,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\TimelineHelper $Timeline
  * @property \Markup\View\Helper\DjotHelper $Djot
  * @property \Mercure\View\Helper\MercureHelper $Mercure
+ * @property \Geo\View\Helper\LeafletHelper $Leaflet
  */
 class AppView extends View {
 
