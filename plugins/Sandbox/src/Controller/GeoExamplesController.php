@@ -143,14 +143,6 @@ class GeoExamplesController extends SandboxAppController {
 					'maxZoom' => 20,
 				],
 			],
-			'stadia_satellite' => [
-				'name' => 'Stadia Satellite',
-				'url' => 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png',
-				'options' => [
-					'attribution' => '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, CNES, Airbus DS, PlanetObserver',
-					'maxZoom' => 20,
-				],
-			],
 		];
 
 		$provider = $this->request->getQuery('provider');
