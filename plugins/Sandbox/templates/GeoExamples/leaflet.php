@@ -52,7 +52,7 @@ $this->Leaflet->finalize();
 
 <h4>Map with Polyline</h4>
 <?php
-$this->Leaflet->map([
+echo $this->Leaflet->map([
 	'zoom' => 6,
 	'lat' => 48.0,
 	'lng' => 11.0,
@@ -72,7 +72,7 @@ $this->Leaflet->finalize();
 
 <h4>Map with Circle and Polygon</h4>
 <?php
-$this->Leaflet->map([
+echo $this->Leaflet->map([
 	'zoom' => 7,
 	'lat' => 48.5,
 	'lng' => 11.5,
@@ -102,7 +102,7 @@ $this->Leaflet->finalize();
 
 <h4>Dark Theme (CartoDB Dark)</h4>
 <?php
-$this->Leaflet->map([
+echo $this->Leaflet->map([
 	'zoom' => 5,
 	'lat' => 48.0,
 	'lng' => 11.0,
