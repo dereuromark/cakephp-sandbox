@@ -241,7 +241,7 @@ $this->Leaflet->finalize();
 		}
 	};
 
-	var map = lMap3;
+	var map = map3;
 	var currentLayer = L.tileLayer(providers.osm.url, providers.osm.options).addTo(map);
 
 	document.getElementById('tile-provider-select').addEventListener('change', function() {
