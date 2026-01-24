@@ -41,6 +41,8 @@ class MiscControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDtoProjection(): void {
+		$this->disableErrorHandlerMiddleware();
+
 		$this->get(['controller' => 'Misc', 'action' => 'dtoProjection']);
 
 		$this->assertResponseCode(200);
