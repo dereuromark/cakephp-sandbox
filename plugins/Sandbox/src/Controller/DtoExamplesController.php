@@ -182,6 +182,7 @@ class DtoExamplesController extends SandboxAppController {
 		$usersTable->find()->contain(['Roles'])->limit(50)->toArray();
 
 		// Benchmark Entity hydration
+		$entities = [];
 		$entityStart = microtime(true);
 		$entityMemStart = memory_get_usage();
 		for ($i = 0; $i < $iterations; $i++) {
@@ -194,6 +195,7 @@ class DtoExamplesController extends SandboxAppController {
 		$entityMem = memory_get_usage() - $entityMemStart;
 
 		// Benchmark DTO projection
+		$dtos = [];
 		$dtoStart = microtime(true);
 		$dtoMemStart = memory_get_usage();
 		for ($i = 0; $i < $iterations; $i++) {

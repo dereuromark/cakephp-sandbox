@@ -14,7 +14,8 @@
 	<li class="heading"><?= __('Geo Examples') ?></li>
 	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
 
-	<li><?php echo $this->Navigation->link('Maps', ['action' => 'maps'])?></li>
+	<li><?php echo $this->Navigation->link('Maps (Google)', ['action' => 'maps'])?></li>
+	<li><?php echo $this->Navigation->link('Maps (Leaflet)', ['action' => 'leaflet'])?></li>
 	<li><?php echo $this->Navigation->link('Distance lookup/filter', ['action' => 'filter'])?></li>
 	<li><?php echo $this->Navigation->link('Geocoding', ['action' => 'query'])?></li>
 </ul>

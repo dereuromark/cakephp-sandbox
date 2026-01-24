@@ -89,4 +89,18 @@ class GeoExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test leaflet method
+	 *
+	 * @return void
+	 */
+	public function testLeaflet(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'GeoExamples', 'action' => 'leaflet']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }

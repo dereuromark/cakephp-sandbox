@@ -35,7 +35,6 @@ class ProductsCollectionTest extends TestCase {
 
 		$reflection = new ReflectionClass($behavior);
 		$property = $reflection->getProperty('_collectionClass');
-		$property->setAccessible(true);
 		$collectionClass = $property->getValue($behavior);
 
 		$this->assertSame(ProductsCollection::class, $collectionClass);

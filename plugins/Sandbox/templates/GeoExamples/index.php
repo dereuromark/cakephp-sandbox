@@ -17,7 +17,7 @@
 		<li>geocode locations/ips and save the information (lat/lng) along with the records</li>
 		<li>reverse geocode data</li>
 		<li>querying geocoded data by distance (using custom finder)</li>
-		<li>display (Google) maps (dynamic and static)</li>
+		<li>display maps (Google Maps and Leaflet.js)</li>
 	</ul>
 
 </div></div>
