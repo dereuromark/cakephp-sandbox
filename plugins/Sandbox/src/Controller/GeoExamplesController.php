@@ -24,7 +24,7 @@ class GeoExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->addHelpers(['Geo.GoogleMap']);
+		$this->viewBuilder()->addHelpers(['Geo.GoogleMap', 'Geo.Leaflet']);
 	}
 
 	/**
@@ -37,6 +37,12 @@ class GeoExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function maps() {
+	}
+
+	/**
+	 * @return void
+	 */
+	public function leaflet() {
 	}
 
 	/**
