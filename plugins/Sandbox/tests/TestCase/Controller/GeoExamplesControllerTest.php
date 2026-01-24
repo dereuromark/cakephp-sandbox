@@ -103,4 +103,18 @@ class GeoExamplesControllerTest extends TestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * Test staticMaps method
+	 *
+	 * @return void
+	 */
+	public function testStaticMaps(): void {
+		$this->disableErrorHandlerMiddleware();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'GeoExamples', 'action' => 'staticMaps']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }
