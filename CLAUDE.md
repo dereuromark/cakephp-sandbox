@@ -45,7 +45,7 @@ Manual steps:
 ```bash
 composer install
 composer migrate          # Runs migrations for app + all plugins
-bin/cake migrations seed  # Seed demo data
+bin/cake seeds run        # Seed demo data
 composer assets           # Install npm assets via package.json
 ```
 
@@ -55,7 +55,9 @@ composer assets           # Install npm assets via package.json
 composer migrate                      # Run all migrations
 bin/cake migrations migrate           # Run app migrations
 bin/cake migrations migrate -p Queue  # Run plugin migrations
-bin/cake migrations seed              # Seed demo data
+bin/cake seeds run                    # Seed all demo data
+bin/cake seeds run Cities             # Seed specific seeder
+bin/cake seeds status                 # Show seed status
 ```
 
 ### Testing

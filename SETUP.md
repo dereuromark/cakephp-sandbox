@@ -68,7 +68,7 @@ You can also look into that file and just those commands manually, one by one, o
 ```
 composer install
 composer migrate
-bin/cake migrations seed
+bin/cake seeds run
 ...
 ```
 

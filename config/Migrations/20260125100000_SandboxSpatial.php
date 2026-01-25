@@ -44,7 +44,7 @@ class SandboxSpatial extends BaseMigration {
 			SET coordinates = ST_GeomFromText(CONCAT('POINT(', lng, ' ', lat, ')'))
 		");
 
-		// Step 3: Alter coordinates to NOT NULL
+		// Step 3: Alter coordinates to NOT NULL (required for SPATIAL index)
 		$this->execute("
 			ALTER TABLE sandbox_cities
 			MODIFY COLUMN coordinates POINT NOT NULL

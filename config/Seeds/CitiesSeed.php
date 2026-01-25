@@ -28,6 +28,7 @@ class CitiesSeed extends BaseSeed {
 	 */
 	public function run(): void {
 		$map = $this->countriesMap();
+		$isMysqlWithSpatial = $this->hasSpatialColumn();
 
 		$file = RESOURCES . 'data/cities.csv';
 		$handle = fopen($file, 'r');
@@ -41,13 +42,64 @@ class CitiesSeed extends BaseSeed {
 			$row['country_id'] = $map[$row['country_id']];
 			$rows[] = $row;
 		}
-		$table = $this->table('sandbox_cities');
+		fclose($handle);
+
+		if ($isMysqlWithSpatial) {
+			// MySQL with spatial column: use raw INSERT to compute coordinates
+			$this->insertWithCoordinates($rows);
+		} else {
+			// SQLite/Postgres or no coordinates column: use standard Phinx insert
+			$table = $this->table('sandbox_cities');
+			$chunks = array_chunk($rows, 1000);
+			foreach ($chunks as $chunk) {
+				foreach ($chunk as $row) {
+					$table->insert([$row]);
+				}
+				$table->save();
+			}
+		}
+	}
+
+	/**
+	 * Check if we're on MySQL with the coordinates column.
+	 *
+	 * @return bool
+	 */
+	protected function hasSpatialColumn(): bool {
+		$adapter = $this->getAdapter();
+		if ($adapter->getAdapterType() !== 'mysql') {
+			return false;
+		}
+
+		return $adapter->hasColumn('sandbox_cities', 'coordinates');
+	}
+
+	/**
+	 * Insert rows with computed coordinates column for MySQL.
+	 *
+	 * @param array $rows The rows to insert.
+	 * @return void
+	 */
+	protected function insertWithCoordinates(array $rows): void {
 		$chunks = array_chunk($rows, 1000);
 		foreach ($chunks as $chunk) {
+			$values = [];
 			foreach ($chunk as $row) {
-				$table->insert([$row]);
+				$name = addslashes($row['name']);
+				$alias = $row['alias'] ? "'" . addslashes($row['alias']) . "'" : 'NULL';
+				$values[] = sprintf(
+					"('%s', %s, %d, %s, %s, ST_GeomFromText('POINT(%s %s)'))",
+					$name,
+					$alias,
+					$row['country_id'],
+					$row['lat'],
+					$row['lng'],
+					$row['lng'],
+					$row['lat'],
+				);
 			}
-			$table->save();
+			$sql = 'INSERT INTO sandbox_cities (name, alias, country_id, lat, lng, coordinates) VALUES ' . implode(', ', $values);
+			$this->execute($sql);
 		}
 	}
 
