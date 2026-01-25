@@ -124,4 +124,150 @@ $this->Leaflet->addPolygon([
 $this->Leaflet->finalize();
 ?>
 
+<h4>Map with Auto-Center</h4>
+<p>The map automatically fits all markers in view using <code>autoCenter</code>:</p>
+<?php
+echo $this->Leaflet->map([
+	'div' => ['id' => 'leaflet-map-autocenter', 'height' => '300px'],
+	'autoCenter' => true,
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
+]);
+
+// Spread out markers across Europe
+$this->Leaflet->addMarker(['lat' => 48.8566, 'lng' => 2.3522, 'title' => 'Paris', 'content' => 'Paris, France']);
+$this->Leaflet->addMarker(['lat' => 52.5200, 'lng' => 13.4050, 'title' => 'Berlin', 'content' => 'Berlin, Germany']);
+$this->Leaflet->addMarker(['lat' => 41.9028, 'lng' => 12.4964, 'title' => 'Rome', 'content' => 'Rome, Italy']);
+$this->Leaflet->addMarker(['lat' => 40.4168, 'lng' => -3.7038, 'title' => 'Madrid', 'content' => 'Madrid, Spain']);
+$this->Leaflet->finalize();
+?>
+
+<h4>Map with GeoJSON</h4>
+<p>Load geographic data using GeoJSON format:</p>
+<?php
+echo $this->Leaflet->map([
+	'zoom' => 5,
+	'lat' => 48.0,
+	'lng' => 10.0,
+	'div' => ['id' => 'leaflet-map-geojson', 'height' => '300px'],
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
+]);
+
+// Sample GeoJSON data - a LineString representing a route
+$geoJsonData = [
+	'type' => 'FeatureCollection',
+	'features' => [
+		[
+			'type' => 'Feature',
+			'geometry' => [
+				'type' => 'LineString',
+				'coordinates' => [
+					[11.5820, 48.1351], // Munich
+					[11.4041, 47.2692], // Innsbruck
+					[11.3548, 46.4983], // Bolzano
+					[11.8768, 45.4064], // Verona
+				],
+			],
+			'properties' => ['name' => 'Alpine Route'],
+		],
+		[
+			'type' => 'Feature',
+			'geometry' => [
+				'type' => 'Point',
+				'coordinates' => [11.5820, 48.1351],
+			],
+			'properties' => ['name' => 'Munich'],
+		],
+		[
+			'type' => 'Feature',
+			'geometry' => [
+				'type' => 'Point',
+				'coordinates' => [11.8768, 45.4064],
+			],
+			'properties' => ['name' => 'Verona'],
+		],
+	],
+];
+
+$this->Leaflet->addGeoJson($geoJsonData, [
+	'style' => [
+		'color' => '#ff7800',
+		'weight' => 4,
+		'opacity' => 0.8,
+	],
+]);
+$this->Leaflet->finalize();
+?>
+
+<h4>Map with Marker Clustering</h4>
+<p>Group nearby markers into clusters using <code>enableClustering()</code>. Click clusters to expand:</p>
+<?php
+echo $this->Leaflet->map([
+	'zoom' => 5,
+	'lat' => 48.0,
+	'lng' => 10.0,
+	'div' => ['id' => 'leaflet-map-cluster', 'height' => '350px'],
+	'tileLayer' => [
+		'url' => $currentProvider['url'],
+		'options' => $currentProvider['options'],
+	],
+]);
+
+// Enable clustering before adding markers
+$this->Leaflet->enableClustering([
+	'showCoverageOnHover' => false,
+	'maxClusterRadius' => 50,
+]);
+
+// Add many markers - they will be grouped into clusters
+$cities = [
+	// Germany
+	['lat' => 52.5200, 'lng' => 13.4050, 'title' => 'Berlin'],
+	['lat' => 48.1351, 'lng' => 11.5820, 'title' => 'Munich'],
+	['lat' => 50.1109, 'lng' => 8.6821, 'title' => 'Frankfurt'],
+	['lat' => 53.5511, 'lng' => 9.9937, 'title' => 'Hamburg'],
+	['lat' => 50.9375, 'lng' => 6.9603, 'title' => 'Cologne'],
+	['lat' => 51.2277, 'lng' => 6.7735, 'title' => 'Düsseldorf'],
+	['lat' => 48.7758, 'lng' => 9.1829, 'title' => 'Stuttgart'],
+	// Austria
+	['lat' => 48.2082, 'lng' => 16.3738, 'title' => 'Vienna'],
+	['lat' => 47.0707, 'lng' => 15.4395, 'title' => 'Graz'],
+	['lat' => 48.3069, 'lng' => 14.2858, 'title' => 'Linz'],
+	['lat' => 47.8095, 'lng' => 13.0550, 'title' => 'Salzburg'],
+	['lat' => 47.2692, 'lng' => 11.4041, 'title' => 'Innsbruck'],
+	// Switzerland
+	['lat' => 47.3769, 'lng' => 8.5417, 'title' => 'Zurich'],
+	['lat' => 46.9480, 'lng' => 7.4474, 'title' => 'Bern'],
+	['lat' => 46.2044, 'lng' => 6.1432, 'title' => 'Geneva'],
+	['lat' => 47.5596, 'lng' => 7.5886, 'title' => 'Basel'],
+	// France
+	['lat' => 48.8566, 'lng' => 2.3522, 'title' => 'Paris'],
+	['lat' => 45.7640, 'lng' => 4.8357, 'title' => 'Lyon'],
+	['lat' => 43.2965, 'lng' => 5.3698, 'title' => 'Marseille'],
+	['lat' => 43.6047, 'lng' => 1.4442, 'title' => 'Toulouse'],
+	// Italy
+	['lat' => 41.9028, 'lng' => 12.4964, 'title' => 'Rome'],
+	['lat' => 45.4642, 'lng' => 9.1900, 'title' => 'Milan'],
+	['lat' => 40.8518, 'lng' => 14.2681, 'title' => 'Naples'],
+	['lat' => 45.4408, 'lng' => 12.3155, 'title' => 'Venice'],
+	['lat' => 43.7696, 'lng' => 11.2558, 'title' => 'Florence'],
+];
+
+foreach ($cities as $city) {
+	$this->Leaflet->addMarker([
+		'lat' => $city['lat'],
+		'lng' => $city['lng'],
+		'title' => $city['title'],
+		'content' => '<b>' . $city['title'] . '</b>',
+	]);
+}
+$this->Leaflet->finalize();
+?>
+<p class="text-muted"><small>25 European cities grouped into clusters. Zoom in or click clusters to see individual markers.</small></p>
+
 </div></div>
