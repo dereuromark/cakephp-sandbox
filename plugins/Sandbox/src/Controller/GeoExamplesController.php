@@ -3,6 +3,7 @@
 namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
+use Cake\Database\Driver\Mysql;
 use Cake\Utility\Text;
 use Exception;
 use Geo\Exception\InconclusiveException;
@@ -219,10 +220,13 @@ class GeoExamplesController extends SandboxAppController {
 			->firstOrFail();
 		$cities = [$city->id => $city->name . ', ' . $city->country->name . ' (' . $city->lat . ', ' . $city->lng . ')'];
 
-		$type = $this->request->getQuery('spatial') ? 'spatial' : 'distance';
+		// Spatial queries require MySQL with coordinates column
+		$spatialAvailable = $this->isSpatialAvailable();
+		$type = ($this->request->getQuery('spatial') && $spatialAvailable) ? 'spatial' : 'distance';
 
 		$sandboxCities = [];
 		$sqlQuery = null;
+		$queryTime = null;
 		if ($this->request->getData('city_id')) {
 			$this->fetchTable('Sandbox.SandboxCities')->addBehavior('Geo.Geocoder');
 			$city = $this->fetchTable('Sandbox.SandboxCities')->get($this->request->getData('city_id'));
@@ -238,10 +242,33 @@ class GeoExamplesController extends SandboxAppController {
 				->contain(['Countries'])
 				->limit(10);
 			$sqlQuery = (string)$query;
+
+			$startTime = microtime(true);
 			$sandboxCities = $query->all()->toArray();
+			$queryTime = (microtime(true) - $startTime) * 1000; // in milliseconds
 		}
 
-		$this->set(compact('cities', 'sandboxCities', 'sqlQuery'));
+		$this->set(compact('cities', 'sandboxCities', 'sqlQuery', 'spatialAvailable', 'queryTime'));
+	}
+
+	/**
+	 * Check if spatial queries are available (MySQL with coordinates column).
+	 *
+	 * @return bool
+	 */
+	protected function isSpatialAvailable(): bool {
+		$connection = $this->fetchTable('Sandbox.SandboxCities')->getConnection();
+		$driver = $connection->getDriver();
+
+		// Only MySQL/MariaDB supports POINT columns and SPATIAL indexes
+		if (!$driver instanceof Mysql) {
+			return false;
+		}
+
+		// Check if coordinates column exists
+		$schema = $this->fetchTable('Sandbox.SandboxCities')->getSchema();
+
+		return $schema->hasColumn('coordinates');
 	}
 
 	/**

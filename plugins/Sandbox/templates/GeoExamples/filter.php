@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var string|null $sqlQuery
  * @var iterable<\Sandbox\Model\Entity\SandboxCity> $sandboxCities
+ * @var bool $spatialAvailable
+ * @var float|null $queryTime
  */
 ?>
 
@@ -15,18 +17,27 @@
 
 <h2><?php echo __('Query {0}', __('Geo Data')); ?></h2>
 
-
 	<?php if (method_exists(\Geo\Model\Behavior\GeocoderBehavior::class, 'findSpatial')) { ?>
 	<p>
 		Using
-		<?php echo $this->Html->link('lat/lng', ['?' => []], ['class' => 'btn btn-secondary']); ?>
+		<?php echo $this->Html->link('lat/lng', ['?' => []], ['class' => 'btn btn-secondary' . (!$this->request->getQuery('spatial') ? ' active' : '')]); ?>
 		|
-		<?php echo $this->Html->link('spatial coordinate (MySQL only)', ['?' => ['spatial' => true]], ['class' => 'btn btn-secondary']); ?>
+		<?php if ($spatialAvailable) { ?>
+			<?php echo $this->Html->link('spatial coordinate (MySQL only)', ['?' => ['spatial' => true]], ['class' => 'btn btn-secondary' . ($this->request->getQuery('spatial') ? ' active' : '')]); ?>
+		<?php } else { ?>
+			<span class="btn btn-secondary disabled" title="Requires MySQL with coordinates column">spatial coordinate (MySQL only)</span>
+		<?php } ?>
 	</p>
+	<?php if (!$spatialAvailable) { ?>
+	<div class="alert alert-info">
+		Spatial queries with POINT columns and SPATIAL indexes require MySQL/MariaDB.
+		The lat/lng distance finder works on all databases.
+	</div>
+	<?php } ?>
 	<?php } ?>
 
 	<h3>Distance lookup/filter</h3>
-	<p>Using the Geocoder behavior you can filter by corresponding <?php echo $this->request->getQuery('spatial') ? 'spatial `coordinates`' : '`lat` and `lng`'?> fields and sort by calculated distance.
+	<p>Using the Geocoder behavior you can filter by corresponding <?php echo ($this->request->getQuery('spatial') && $spatialAvailable) ? 'spatial `coordinates`' : '`lat` and `lng`'; ?> fields and sort by calculated distance.
 	</p>
 	<p>For this example, we have a table with 130000 cities and geo coordinates to filter in.</p>
 
@@ -69,6 +80,10 @@
 			</tbody>
 		</table>
 	</div>
+
+		<p class="text-muted">
+			Query executed in <?php echo $this->Number->format($queryTime, ['precision' => 2]); ?> ms
+		</p>
 
 		<details>
 			<summary>SQL Query</summary>
