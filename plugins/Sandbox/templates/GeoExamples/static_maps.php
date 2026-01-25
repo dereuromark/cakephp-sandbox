@@ -154,13 +154,11 @@
 					'lat' => 48.2082,
 					'lng' => 16.3738,
 					'color' => 'red',
-					'label' => 'A',
 				],
 				[
 					'lat' => 48.1951,
 					'lng' => 16.3715,
 					'color' => 'blue',
-					'label' => 'B',
 				],
 			],
 		];
@@ -178,8 +176,8 @@
     'lng' => 16.3738,
     'zoom' => 13,
     'markers' => [
-        ['lat' => 48.2082, 'lng' => 16.3738, 'color' => 'red', 'label' => 'A'],
-        ['lat' => 48.1951, 'lng' => 16.3715, 'color' => 'blue', 'label' => 'B'],
+        ['lat' => 48.2082, 'lng' => 16.3738, 'color' => 'red'],
+        ['lat' => 48.1951, 'lng' => 16.3715, 'color' => 'blue'],
     ],
 ]);</code></pre>
 	</div>
@@ -368,9 +366,9 @@
 
 <hr class="my-4">
 
-<h3>Multiple Marker Styles</h3>
+<h3>Multiple Markers with Helper</h3>
 
-<p>Combine different marker sizes and colors using the <code>markers()</code> helper:</p>
+<p>Use the <code>markers()</code> helper to format multiple positions with consistent styling:</p>
 
 <div class="row">
 	<div class="col-md-6">
@@ -383,8 +381,6 @@
 		];
 		$markers = $this->StaticMap->markers($positions, [
 			'color' => 'purple',
-			'size' => 'small',
-			'autoLabel' => true,
 		]);
 		$options = [
 			'provider' => $provider,
@@ -409,11 +405,8 @@
     ['lat' => 48.2000, 'lng' => 16.3900],
 ];
 
-// Use helper to add styling and auto-labels (A, B, C, D)
 $markers = $this->StaticMap->markers($positions, [
     'color' => 'purple',
-    'size' => 'small',
-    'autoLabel' => true,
 ]);
 
 echo $this->StaticMap->image([
@@ -424,6 +417,52 @@ echo $this->StaticMap->image([
 </div>
 
 <?php if ($provider === 'google') { ?>
+<hr class="my-4">
+
+<h3>Labeled Markers (Google)</h3>
+
+<p>Use <code>autoLabel</code> to add A, B, C labels to markers:</p>
+
+<div class="row">
+	<div class="col-md-6">
+		<?php
+		$positions = [
+			['lat' => 48.2082, 'lng' => 16.3738],
+			['lat' => 48.1951, 'lng' => 16.3715],
+			['lat' => 48.2100, 'lng' => 16.3500],
+		];
+		$markers = $this->StaticMap->markers($positions, [
+			'color' => 'green',
+			'autoLabel' => true,
+		]);
+		$options = [
+			'provider' => 'google',
+			'lat' => 48.205,
+			'lng' => 16.37,
+			'zoom' => 14,
+			'size' => '400x300',
+			'markers' => $markers,
+		];
+		if ($style) {
+			$options['style'] = $style;
+		}
+		echo $this->StaticMap->image($options, ['class' => 'img-fluid border', 'alt' => 'Labeled markers']);
+		?>
+	</div>
+	<div class="col-md-6">
+		<h5>Code</h5>
+		<pre><code>$markers = $this->StaticMap->markers($positions, [
+    'color' => 'green',
+    'autoLabel' => true, // Adds A, B, C...
+]);
+
+echo $this->StaticMap->image([
+    'provider' => 'google',
+    'markers' => $markers,
+]);</code></pre>
+	</div>
+</div>
+
 <hr class="my-4">
 
 <h3>Custom Marker Icon (Google)</h3>
@@ -476,9 +515,9 @@ echo $this->StaticMap->image([
 <?php if ($provider === 'geoapify') { ?>
 <hr class="my-4">
 
-<h3>Icon Types (Geoapify)</h3>
+<h3>Many Style Options (Geoapify)</h3>
 
-<p>Geoapify supports different marker icon types:</p>
+<p>Geoapify offers many map styles including dark themes:</p>
 
 <div class="row">
 	<div class="col-md-6">
@@ -487,48 +526,33 @@ echo $this->StaticMap->image([
 			'provider' => 'geoapify',
 			'lat' => 48.2082,
 			'lng' => 16.3738,
-			'zoom' => 14,
+			'zoom' => 13,
 			'size' => '400x300',
+			'style' => 'dark-matter',
 			'markers' => [
 				[
 					'lat' => 48.2082,
 					'lng' => 16.3738,
-					'color' => 'red',
-					'icon' => 'awesome',
-				],
-				[
-					'lat' => 48.2050,
-					'lng' => 16.3650,
-					'color' => 'blue',
-					'icon' => 'material',
+					'color' => 'orange',
 				],
 			],
 		];
-		if ($style) {
-			$options['style'] = $style;
-		}
-		echo $this->StaticMap->image($options, ['class' => 'img-fluid border', 'alt' => 'Geoapify icon types']);
+		echo $this->StaticMap->image($options, ['class' => 'img-fluid border', 'alt' => 'Geoapify dark theme']);
 		?>
 	</div>
 	<div class="col-md-6">
 		<h5>Code</h5>
 		<pre><code>echo $this->StaticMap->image([
     'provider' => 'geoapify',
+    'lat' => 48.2082,
+    'lng' => 16.3738,
+    'zoom' => 13,
+    'style' => 'dark-matter',
     'markers' => [
-        [
-            'lat' => 48.2082,
-            'lng' => 16.3738,
-            'color' => 'red',
-            'icon' => 'awesome', // Font Awesome style
-        ],
-        [
-            'lat' => 48.2050,
-            'lng' => 16.3650,
-            'color' => 'blue',
-            'icon' => 'material', // Material Design style
-        ],
+        ['lat' => 48.2082, 'lng' => 16.3738, 'color' => 'orange'],
     ],
 ]);</code></pre>
+		<p class="text-muted mt-2"><small>Available styles: osm-bright, dark-matter, positron, toner, and <a href="https://apidocs.geoapify.com/docs/maps/static/" target="_blank">more</a>.</small></p>
 	</div>
 </div>
 <?php } ?>
