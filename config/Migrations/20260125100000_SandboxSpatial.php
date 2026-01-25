@@ -53,19 +53,8 @@ class SandboxSpatial extends BaseMigration {
 		// Step 4: Add spatial index (using raw SQL as Phinx doesn't create proper SPATIAL index)
 		$this->execute('ALTER TABLE sandbox_cities ADD SPATIAL INDEX coordinates (coordinates)');
 
-		// Step 5: Add triggers to keep coordinates in sync with lat/lng
-		$this->execute("
-			CREATE TRIGGER before_sandbox_cities_insert
-			BEFORE INSERT ON sandbox_cities
-			FOR EACH ROW
-			SET NEW.coordinates = ST_GeomFromText(CONCAT('POINT(', NEW.lng, ' ', NEW.lat, ')'));
-		");
-		$this->execute("
-			CREATE TRIGGER before_sandbox_cities_update
-			BEFORE UPDATE ON sandbox_cities
-			FOR EACH ROW
-			SET NEW.coordinates = ST_GeomFromText(CONCAT('POINT(', NEW.lng, ' ', NEW.lat, ')'));
-		");
+		// Note: Triggers removed due to MySQL SUPER privilege requirement with binary logging.
+		// Coordinate sync is handled in SandboxCitiesTable::beforeSave() instead.
 	}
 
 	/**
@@ -76,8 +65,7 @@ class SandboxSpatial extends BaseMigration {
 			return;
 		}
 
-		$this->execute('DROP TRIGGER IF EXISTS before_sandbox_cities_insert');
-		$this->execute('DROP TRIGGER IF EXISTS before_sandbox_cities_update');
+		$this->execute('ALTER TABLE sandbox_cities DROP INDEX coordinates');
 		$this->table('sandbox_cities')
 			->removeColumn('coordinates')
 			->update();
