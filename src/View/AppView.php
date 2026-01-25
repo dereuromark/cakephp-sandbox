@@ -53,6 +53,7 @@ use Cake\View\View;
  * @property \Markup\View\Helper\DjotHelper $Djot
  * @property \Mercure\View\Helper\MercureHelper $Mercure
  * @property \Geo\View\Helper\LeafletHelper $Leaflet
+ * @property \Geo\View\Helper\StaticMapHelper $StaticMap
  */
 class AppView extends View {
 
