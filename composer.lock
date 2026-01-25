@@ -2146,12 +2146,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "b7943b0d527de50693ce988c6c2d41d658f981b4"
+                "reference": "7161481faeae96d60363dbf3cff57efc3c23a343"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/b7943b0d527de50693ce988c6c2d41d658f981b4",
-                "reference": "b7943b0d527de50693ce988c6c2d41d658f981b4",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/7161481faeae96d60363dbf3cff57efc3c23a343",
+                "reference": "7161481faeae96d60363dbf3cff57efc3c23a343",
                 "shasum": ""
             },
             "require": {
@@ -2211,7 +2211,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2026-01-21T17:14:45+00:00"
+            "time": "2026-01-25T05:37:18+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -2584,12 +2584,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-geo.git",
-                "reference": "c979581c9b9e9c9bcf1194917d77c451ff79b179"
+                "reference": "a64b7b114cbb62bf6186ed4c2346b85181d5962a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/c979581c9b9e9c9bcf1194917d77c451ff79b179",
-                "reference": "c979581c9b9e9c9bcf1194917d77c451ff79b179",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-geo/zipball/a64b7b114cbb62bf6186ed4c2346b85181d5962a",
+                "reference": "a64b7b114cbb62bf6186ed4c2346b85181d5962a",
                 "shasum": ""
             },
             "require": {
@@ -2647,7 +2647,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-geo/issues",
                 "source": "https://github.com/dereuromark/cakephp-geo"
             },
-            "time": "2026-01-25T04:49:10+00:00"
+            "time": "2026-01-25T06:53:56+00:00"
         },
         {
             "name": "dereuromark/cakephp-markup",

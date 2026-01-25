@@ -147,7 +147,6 @@
 			'provider' => $provider,
 			'lat' => 48.2082,
 			'lng' => 16.3738,
-			'zoom' => 13,
 			'size' => '400x300',
 			'markers' => [
 				[
@@ -174,7 +173,7 @@
     'provider' => '<?= h($provider) ?>',
     'lat' => 48.2082,
     'lng' => 16.3738,
-    'zoom' => 13,
+    'zoom' => 'auto',
     'markers' => [
         ['lat' => 48.2082, 'lng' => 16.3738, 'color' => 'red'],
         ['lat' => 48.1951, 'lng' => 16.3715, 'color' => 'blue'],
@@ -185,18 +184,15 @@
 
 <hr class="my-4">
 
-<h3>Map with Path</h3>
+<h3>Map with Path (Auto Zoom)</h3>
 
-<p>Draw a path between points:</p>
+<p>Draw a path between points with automatic center and zoom calculation:</p>
 
 <div class="row">
 	<div class="col-md-6">
 		<?php
 		$options = [
 			'provider' => $provider,
-			'lat' => 47.5,
-			'lng' => 15.5,
-			'zoom' => 7,
 			'size' => '400x300',
 			'paths' => [
 				[
@@ -218,11 +214,9 @@
 	</div>
 	<div class="col-md-6">
 		<h5>Code</h5>
-		<pre><code>echo $this->StaticMap->image([
+		<pre><code>// Center and zoom auto-calculated from path points
+echo $this->StaticMap->image([
     'provider' => '<?= h($provider) ?>',
-    'lat' => 47.5,
-    'lng' => 15.5,
-    'zoom' => 7,
     'paths' => [
         [
             'points' => [
@@ -316,9 +310,6 @@
 		<?php
 		$options = [
 			'provider' => $provider,
-			'lat' => 48.21,
-			'lng' => 16.37,
-			'zoom' => 14,
 			'size' => '400x300',
 			'paths' => [
 				[
@@ -344,9 +335,6 @@
 		<h5>Code</h5>
 		<pre><code>echo $this->StaticMap->image([
     'provider' => '<?= h($provider) ?>',
-    'lat' => 48.21,
-    'lng' => 16.37,
-    'zoom' => 14,
     'paths' => [
         [
             'points' => [
@@ -366,9 +354,9 @@
 
 <hr class="my-4">
 
-<h3>Multiple Markers with Helper</h3>
+<h3>Multiple Markers with Helper (Auto Zoom)</h3>
 
-<p>Use the <code>markers()</code> helper to format multiple positions with consistent styling:</p>
+<p>Use the <code>markers()</code> helper to format multiple positions. Center and zoom are auto-calculated:</p>
 
 <div class="row">
 	<div class="col-md-6">
@@ -384,9 +372,6 @@
 		]);
 		$options = [
 			'provider' => $provider,
-			'lat' => 48.205,
-			'lng' => 16.37,
-			'zoom' => 14,
 			'size' => '400x300',
 			'markers' => $markers,
 		];
@@ -409,6 +394,7 @@ $markers = $this->StaticMap->markers($positions, [
     'color' => 'purple',
 ]);
 
+// Center and zoom auto-calculated from markers
 echo $this->StaticMap->image([
     'provider' => '<?= h($provider) ?>',
     'markers' => $markers,
@@ -437,9 +423,6 @@ echo $this->StaticMap->image([
 		]);
 		$options = [
 			'provider' => 'google',
-			'lat' => 48.205,
-			'lng' => 16.37,
-			'zoom' => 14,
 			'size' => '400x300',
 			'markers' => $markers,
 		];
