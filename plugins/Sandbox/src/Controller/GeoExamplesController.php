@@ -24,7 +24,7 @@ class GeoExamplesController extends SandboxAppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->addHelpers(['Geo.GoogleMap', 'Geo.Leaflet']);
+		$this->viewBuilder()->addHelpers(['Geo.GoogleMap', 'Geo.Leaflet', 'Geo.StaticMap']);
 	}
 
 	/**
@@ -151,6 +151,61 @@ class GeoExamplesController extends SandboxAppController {
 		}
 
 		$this->set(compact('providers', 'provider'));
+	}
+
+	/**
+	 * Static map images from various providers.
+	 *
+	 * @return void
+	 */
+	public function staticMaps() {
+		$providers = [
+			'geoapify' => [
+				'name' => 'Geoapify',
+				'styles' => ['osm-bright', 'osm-bright-grey', 'klokantech-basic', 'dark-matter', 'positron'],
+				'apiKeyConfigs' => ['StaticMap.geoapify.apiKey'],
+			],
+			'mapbox' => [
+				'name' => 'Mapbox',
+				'styles' => ['streets-v12', 'outdoors-v12', 'light-v11', 'dark-v11', 'satellite-v9'],
+				'apiKeyConfigs' => ['StaticMap.mapbox.apiKey'],
+			],
+			'stadia' => [
+				'name' => 'Stadia',
+				'styles' => ['alidade_smooth', 'alidade_smooth_dark', 'outdoors', 'stamen_toner', 'stamen_terrain'],
+				'apiKeyConfigs' => ['StaticMap.stadia.apiKey'],
+			],
+			'google' => [
+				'name' => 'Google',
+				'styles' => ['roadmap', 'satellite', 'terrain', 'hybrid'],
+				'apiKeyConfigs' => ['StaticMap.google.apiKey', 'GoogleMap.key'],
+			],
+		];
+
+		// Use GoogleMap.key as fallback for StaticMap.google.apiKey
+		if (!Configure::read('StaticMap.google.apiKey') && Configure::read('GoogleMap.key')) {
+			Configure::write('StaticMap.google.apiKey', Configure::read('GoogleMap.key'));
+		}
+
+		$configuredProviders = [];
+		foreach ($providers as $key => $provider) {
+			foreach ($provider['apiKeyConfigs'] as $configKey) {
+				if (Configure::read($configKey)) {
+					$configuredProviders[$key] = $provider;
+
+					break;
+				}
+			}
+		}
+
+		$provider = $this->request->getQuery('provider');
+		if (!$provider || !isset($configuredProviders[$provider])) {
+			$provider = array_key_first($configuredProviders);
+		}
+
+		$style = $this->request->getQuery('style');
+
+		$this->set(compact('providers', 'configuredProviders', 'provider', 'style'));
 	}
 
 	/**
