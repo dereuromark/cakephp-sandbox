@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Sandbox\Model\Table;
 
 use ArrayObject;
+use Cake\Database\Driver\Mysql;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\EventInterface;
-use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
@@ -105,6 +105,7 @@ class SandboxCitiesTable extends Table {
 	 * Sync coordinates POINT column from lat/lng before save.
 	 *
 	 * This replaces MySQL triggers which require SUPER privilege with binary logging.
+	 * Only runs on MySQL as spatial functions are not available on SQLite/Postgres.
 	 *
 	 * @param \Cake\Event\EventInterface $event The event.
 	 * @param \Cake\Datasource\EntityInterface $entity The entity.
@@ -112,11 +113,15 @@ class SandboxCitiesTable extends Table {
 	 * @return void
 	 */
 	public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void {
+		$connection = $this->getConnection();
+		if (!$connection->getDriver() instanceof Mysql) {
+			return;
+		}
+
 		if ($entity->isDirty('lat') || $entity->isDirty('lng') || $entity->isNew()) {
 			$lat = $entity->get('lat');
 			$lng = $entity->get('lng');
 			if ($lat !== null && $lng !== null) {
-				$connection = $this->getConnection();
 				$point = $connection->execute(
 					"SELECT ST_GeomFromText(CONCAT('POINT(', ?, ' ', ?, ')')) AS point",
 					[$lng, $lat],
@@ -124,23 +129,6 @@ class SandboxCitiesTable extends Table {
 				$entity->set('coordinates', $point);
 			}
 		}
-	}
-
-	/**
-	 * Custom finder that adds distance calculation from a reference point.
-	 *
-	 * @param \Cake\ORM\Query\SelectQuery $query The query.
-	 * @param float $lat Latitude of reference point.
-	 * @param float $lng Longitude of reference point.
-	 * @return \Cake\ORM\Query\SelectQuery
-	 */
-	public function findWithDistance(SelectQuery $query, float $lat, float $lng): SelectQuery {
-		return $query->select([
-			'distance' => $query->func()->st_distance_sphere([
-				'coordinates' => 'identifier',
-				$query->func()->st_geomfromtext("POINT({$lng} {$lat})"),
-			]),
-		], true);
 	}
 
 }
