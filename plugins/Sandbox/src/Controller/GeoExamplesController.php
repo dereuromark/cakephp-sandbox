@@ -222,11 +222,13 @@ class GeoExamplesController extends SandboxAppController {
 
 		// Spatial queries require MySQL with coordinates column
 		$spatialAvailable = $this->isSpatialAvailable();
+		$spatialInfo = $spatialAvailable ? $this->getSpatialInfo() : null;
 		$type = ($this->request->getQuery('spatial') && $spatialAvailable) ? 'spatial' : 'distance';
 
 		$sandboxCities = [];
 		$sqlQuery = null;
 		$queryTime = null;
+		$explainResult = null;
 		if ($this->request->getData('city_id')) {
 			$this->fetchTable('Sandbox.SandboxCities')->addBehavior('Geo.Geocoder');
 			$city = $this->fetchTable('Sandbox.SandboxCities')->get($this->request->getData('city_id'));
@@ -243,12 +245,17 @@ class GeoExamplesController extends SandboxAppController {
 				->limit(10);
 			$sqlQuery = (string)$query;
 
+			// Get EXPLAIN output for the query
+			if ($spatialAvailable && $this->request->getQuery('spatial')) {
+				$explainResult = $this->getExplainResult($sqlQuery);
+			}
+
 			$startTime = microtime(true);
 			$sandboxCities = $query->all()->toArray();
 			$queryTime = (microtime(true) - $startTime) * 1000; // in milliseconds
 		}
 
-		$this->set(compact('cities', 'sandboxCities', 'sqlQuery', 'spatialAvailable', 'queryTime'));
+		$this->set(compact('cities', 'sandboxCities', 'sqlQuery', 'spatialAvailable', 'spatialInfo', 'queryTime', 'explainResult'));
 	}
 
 	/**
@@ -269,6 +276,83 @@ class GeoExamplesController extends SandboxAppController {
 		$schema = $this->fetchTable('Sandbox.SandboxCities')->getSchema();
 
 		return $schema->hasColumn('coordinates');
+	}
+
+	/**
+	 * Get spatial column information (SRID, index status).
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function getSpatialInfo(): array {
+		$connection = $this->fetchTable('Sandbox.SandboxCities')->getConnection();
+
+		// Get column SRID from information schema
+		$sridResult = $connection->execute(
+			"SELECT SRS_ID FROM INFORMATION_SCHEMA.ST_GEOMETRY_COLUMNS
+			WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'sandbox_cities' AND COLUMN_NAME = 'coordinates'",
+		)->fetchAll('assoc');
+		$columnSrid = $sridResult[0]['SRS_ID'] ?? null;
+
+		// Get data SRID from actual data
+		$dataSridResult = $connection->execute(
+			'SELECT ST_SRID(coordinates) as srid FROM sandbox_cities LIMIT 1',
+		)->fetchAll('assoc');
+		$dataSrid = $dataSridResult[0]['srid'] ?? null;
+
+		// Check if spatial index exists
+		$indexResult = $connection->execute(
+			"SHOW INDEX FROM sandbox_cities WHERE Key_name = 'coordinates'",
+		)->fetchAll('assoc');
+		$hasIndex = !empty($indexResult);
+		$indexType = $indexResult[0]['Index_type'] ?? null;
+
+		// Get total row count
+		$countResult = $connection->execute('SELECT COUNT(*) as cnt FROM sandbox_cities')->fetchAll('assoc');
+		$totalRows = (int)($countResult[0]['cnt'] ?? 0);
+
+		return [
+			'columnSrid' => $columnSrid,
+			'dataSrid' => $dataSrid,
+			'hasIndex' => $hasIndex,
+			'indexType' => $indexType,
+			'totalRows' => $totalRows,
+			'sridConfigured' => $columnSrid !== null,
+		];
+	}
+
+	/**
+	 * Get EXPLAIN result for a query.
+	 *
+	 * @param string $sql The SQL query to explain.
+	 * @return array<string, mixed>|null
+	 */
+	protected function getExplainResult(string $sql): ?array {
+		$connection = $this->fetchTable('Sandbox.SandboxCities')->getConnection();
+
+		try {
+			$result = $connection->execute('EXPLAIN ' . $sql)->fetchAll('assoc');
+			$citiesExplain = null;
+			foreach ($result as $row) {
+				if (($row['table'] ?? '') === 'SandboxCities') {
+					$citiesExplain = $row;
+
+					break;
+				}
+			}
+
+			if (!$citiesExplain) {
+				return null;
+			}
+
+			return [
+				'type' => $citiesExplain['type'] ?? 'unknown',
+				'key' => $citiesExplain['key'] ?? null,
+				'rows' => (int)($citiesExplain['rows'] ?? 0),
+				'usingSpatialIndex' => ($citiesExplain['key'] ?? '') === 'coordinates',
+			];
+		} catch (Exception $e) {
+			return null;
+		}
 	}
 
 	/**

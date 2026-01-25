@@ -4,7 +4,9 @@
  * @var string|null $sqlQuery
  * @var iterable<\Sandbox\Model\Entity\SandboxCity> $sandboxCities
  * @var bool $spatialAvailable
+ * @var array<string, mixed>|null $spatialInfo
  * @var float|null $queryTime
+ * @var array<string, mixed>|null $explainResult
  */
 ?>
 
@@ -33,6 +35,51 @@
 		Spatial queries with POINT columns and SPATIAL indexes require MySQL/MariaDB.
 		The lat/lng distance finder works on all databases.
 	</div>
+	<?php } ?>
+
+	<?php if ($spatialAvailable && $spatialInfo) { ?>
+	<details class="mb-3">
+		<summary>Spatial Configuration Details</summary>
+		<div class="card card-body mt-2">
+			<table class="table table-sm mb-0">
+				<tr>
+					<th>Spatial Index</th>
+					<td>
+						<?php if ($spatialInfo['hasIndex']) { ?>
+							<span class="badge bg-success">Present</span>
+							(<?= h($spatialInfo['indexType']) ?>)
+						<?php } else { ?>
+							<span class="badge bg-danger">Missing</span>
+						<?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<th>Column SRID</th>
+					<td>
+						<?php if ($spatialInfo['sridConfigured']) { ?>
+							<span class="badge bg-success"><?= h($spatialInfo['columnSrid']) ?></span>
+						<?php } else { ?>
+							<span class="badge bg-warning text-dark">Not configured</span>
+							<small class="text-muted">(spatial index may not be used)</small>
+						<?php } ?>
+					</td>
+				</tr>
+				<tr>
+					<th>Data SRID</th>
+					<td><?= h($spatialInfo['dataSrid'] ?? 'N/A') ?></td>
+				</tr>
+				<tr>
+					<th>Total Rows</th>
+					<td><?= $this->Number->format($spatialInfo['totalRows']) ?></td>
+				</tr>
+			</table>
+			<p class="small text-muted mt-2 mb-0">
+				<strong>Note:</strong> For MySQL 8.0+, spatial indexes require a defined SRID on the column.
+				SRID 0 = Cartesian plane, SRID 4326 = WGS84 (GPS coordinates).
+				If SRID is not configured, queries will do a full table scan.
+			</p>
+		</div>
+	</details>
 	<?php } ?>
 	<?php } ?>
 
@@ -84,6 +131,19 @@
 		<p class="text-muted">
 			Query executed in <?php echo $this->Number->format($queryTime, ['precision' => 2]); ?> ms
 		</p>
+
+		<?php if ($explainResult) { ?>
+		<div class="alert <?= $explainResult['usingSpatialIndex'] ? 'alert-success' : 'alert-warning' ?> mb-3">
+			<strong>Index Usage:</strong>
+			<?php if ($explainResult['usingSpatialIndex']) { ?>
+				Spatial index <code>coordinates</code> is being used.
+				Scanning ~<?= $this->Number->format($explainResult['rows']) ?> rows (type: <?= h($explainResult['type']) ?>).
+			<?php } else { ?>
+				Spatial index NOT used. Using <?= h($explainResult['key'] ?? 'full table scan') ?>.
+				Scanning ~<?= $this->Number->format($explainResult['rows']) ?> rows (type: <?= h($explainResult['type']) ?>).
+			<?php } ?>
+		</div>
+		<?php } ?>
 
 		<details>
 			<summary>SQL Query</summary>

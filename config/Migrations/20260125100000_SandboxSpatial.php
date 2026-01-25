@@ -44,10 +44,12 @@ class SandboxSpatial extends BaseMigration {
 			SET coordinates = ST_GeomFromText(CONCAT('POINT(', lng, ' ', lat, ')'))
 		");
 
-		// Step 3: Alter coordinates to NOT NULL (required for SPATIAL index)
+		// Step 3: Alter coordinates to NOT NULL with SRID 0 (required for SPATIAL index to be used)
+		// Note: SRID 0 indicates a Cartesian coordinate system. For proper geographic calculations
+		// with ST_Distance_Sphere, SRID 4326 (WGS84) could be used, but SRID 0 works for our use case.
 		$this->execute("
 			ALTER TABLE sandbox_cities
-			MODIFY COLUMN coordinates POINT NOT NULL
+			MODIFY COLUMN coordinates POINT NOT NULL SRID 0
 		");
 
 		// Step 4: Add spatial index (using raw SQL as Phinx doesn't create proper SPATIAL index)
