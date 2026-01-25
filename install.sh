@@ -19,7 +19,7 @@ mysql --host=mariadb --password=geheim -u root -e "create database test";
 
 php composer.phar migrate
 
-bin/cake migrations seed
+bin/cake seeds run
 
 # Assets
 mkdir -p tmp

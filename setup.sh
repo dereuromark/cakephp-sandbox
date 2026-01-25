@@ -25,7 +25,7 @@ echo "### DB MIGRATION ###";
 COMPOSER_ALLOW_SUPERUSER=1 composer migrate
 
 echo "### DB DEMO DATA ###";
-bin/cake migrations seed
+bin/cake seeds run
 
 echo "### ASSETS ###";
 #npm install -g bower
