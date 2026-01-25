@@ -2,8 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var array<string, mixed> $results
- * @var array<\App\Model\Entity\User> $entities
- * @var array<\App\Dto\UserProjectionDto> $dtos
  */
 ?>
 <div class="row">
