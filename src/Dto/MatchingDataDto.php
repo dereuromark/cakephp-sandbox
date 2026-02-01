@@ -24,7 +24,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	/**
 	 * @var \App\Dto\SimpleRoleBasicDto|null
 	 */
-	protected $Roles;
+	protected ?\App\Dto\SimpleRoleBasicDto $Roles = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -118,7 +118,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -139,7 +139,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRoles(?\App\Dto\SimpleRoleBasicDto $Roles = null) {
+	public function withRoles(?\App\Dto\SimpleRoleBasicDto $Roles = null): static {
 		$new = clone $this;
 		$new->Roles = $Roles;
 		$new->_touchedFields[static::FIELD_ROLES] = true;
@@ -152,7 +152,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRolesOrFail(\App\Dto\SimpleRoleBasicDto $Roles) {
+	public function withRolesOrFail(\App\Dto\SimpleRoleBasicDto $Roles): static {
 		$new = clone $this;
 		$new->Roles = $Roles;
 		$new->_touchedFields[static::FIELD_ROLES] = true;

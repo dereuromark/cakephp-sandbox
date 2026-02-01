@@ -48,27 +48,27 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $username;
+	protected ?string $username = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $email;
+	protected ?string $email = null;
 
 	/**
 	 * @var \Sandbox\Model\Enum\UserStatus|null
 	 */
-	protected $status;
+	protected ?\Sandbox\Model\Enum\UserStatus $status = null;
 
 	/**
 	 * @var \Cake\I18n\DateTime|null
 	 */
-	protected $created;
+	protected ?\Cake\I18n\DateTime $created = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -260,7 +260,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -281,7 +281,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -294,7 +294,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -334,7 +334,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsername(?string $username = null) {
+	public function withUsername(?string $username = null): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -347,7 +347,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsernameOrFail(string $username) {
+	public function withUsernameOrFail(string $username): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -387,7 +387,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmail(?string $email = null) {
+	public function withEmail(?string $email = null): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
@@ -400,7 +400,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmailOrFail(string $email) {
+	public function withEmailOrFail(string $email): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
@@ -440,7 +440,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withStatus(?\Sandbox\Model\Enum\UserStatus $status = null) {
+	public function withStatus(?\Sandbox\Model\Enum\UserStatus $status = null): static {
 		$new = clone $this;
 		$new->status = $status;
 		$new->_touchedFields[static::FIELD_STATUS] = true;
@@ -453,7 +453,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withStatusOrFail(\Sandbox\Model\Enum\UserStatus $status) {
+	public function withStatusOrFail(\Sandbox\Model\Enum\UserStatus $status): static {
 		$new = clone $this;
 		$new->status = $status;
 		$new->_touchedFields[static::FIELD_STATUS] = true;
@@ -493,7 +493,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?\Cake\I18n\DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -506,7 +506,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;

@@ -48,22 +48,22 @@ class PostDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $title;
+	protected ?string $title = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $content;
+	protected ?string $content = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $slug;
+	protected ?string $slug = null;
 
 	/**
 	 * @var array<int, \App\Dto\TagDto>
@@ -265,7 +265,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -286,7 +286,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -299,7 +299,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -339,7 +339,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTitle(?string $title = null) {
+	public function withTitle(?string $title = null): static {
 		$new = clone $this;
 		$new->title = $title;
 		$new->_touchedFields[static::FIELD_TITLE] = true;
@@ -352,7 +352,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTitleOrFail(string $title) {
+	public function withTitleOrFail(string $title): static {
 		$new = clone $this;
 		$new->title = $title;
 		$new->_touchedFields[static::FIELD_TITLE] = true;
@@ -392,7 +392,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withContent(?string $content = null) {
+	public function withContent(?string $content = null): static {
 		$new = clone $this;
 		$new->content = $content;
 		$new->_touchedFields[static::FIELD_CONTENT] = true;
@@ -405,7 +405,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withContentOrFail(string $content) {
+	public function withContentOrFail(string $content): static {
 		$new = clone $this;
 		$new->content = $content;
 		$new->_touchedFields[static::FIELD_CONTENT] = true;
@@ -445,7 +445,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withSlug(?string $slug = null) {
+	public function withSlug(?string $slug = null): static {
 		$new = clone $this;
 		$new->slug = $slug;
 		$new->_touchedFields[static::FIELD_SLUG] = true;
@@ -458,7 +458,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withSlugOrFail(string $slug) {
+	public function withSlugOrFail(string $slug): static {
 		$new = clone $this;
 		$new->slug = $slug;
 		$new->_touchedFields[static::FIELD_SLUG] = true;
@@ -498,7 +498,7 @@ class PostDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTags(array $tags) {
+	public function withTags(array $tags): static {
 		$new = clone $this;
 		$new->tags = $tags;
 		$new->_touchedFields[static::FIELD_TAGS] = true;
@@ -531,7 +531,7 @@ class PostDto extends AbstractImmutableDto {
 	 * @param \App\Dto\TagDto $tag
 	 * @return static
 	 */
-	public function withAddedTag(\App\Dto\TagDto $tag) {
+	public function withAddedTag(\App\Dto\TagDto $tag): static {
 		$new = clone $this;
 
 		if ($new->tags === null) {

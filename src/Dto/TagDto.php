@@ -48,27 +48,27 @@ class TagDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $label;
+	protected ?string $label = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $slug;
+	protected ?string $slug = null;
 
 	/**
 	 * @var int|null
 	 */
-	protected $counter;
+	protected ?int $counter = null;
 
 	/**
 	 * @var \App\Dto\TaggedDto|null
 	 */
-	protected $_joinData;
+	protected ?\App\Dto\TaggedDto $_joinData = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -250,7 +250,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -271,7 +271,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -284,7 +284,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -324,7 +324,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withLabel(?string $label = null) {
+	public function withLabel(?string $label = null): static {
 		$new = clone $this;
 		$new->label = $label;
 		$new->_touchedFields[static::FIELD_LABEL] = true;
@@ -337,7 +337,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withLabelOrFail(string $label) {
+	public function withLabelOrFail(string $label): static {
 		$new = clone $this;
 		$new->label = $label;
 		$new->_touchedFields[static::FIELD_LABEL] = true;
@@ -377,7 +377,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withSlug(?string $slug = null) {
+	public function withSlug(?string $slug = null): static {
 		$new = clone $this;
 		$new->slug = $slug;
 		$new->_touchedFields[static::FIELD_SLUG] = true;
@@ -390,7 +390,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withSlugOrFail(string $slug) {
+	public function withSlugOrFail(string $slug): static {
 		$new = clone $this;
 		$new->slug = $slug;
 		$new->_touchedFields[static::FIELD_SLUG] = true;
@@ -430,7 +430,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCounter(?int $counter = null) {
+	public function withCounter(?int $counter = null): static {
 		$new = clone $this;
 		$new->counter = $counter;
 		$new->_touchedFields[static::FIELD_COUNTER] = true;
@@ -443,7 +443,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCounterOrFail(int $counter) {
+	public function withCounterOrFail(int $counter): static {
 		$new = clone $this;
 		$new->counter = $counter;
 		$new->_touchedFields[static::FIELD_COUNTER] = true;
@@ -483,7 +483,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withJoinData(?\App\Dto\TaggedDto $_joinData = null) {
+	public function withJoinData(?\App\Dto\TaggedDto $_joinData = null): static {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
 		$new->_touchedFields[static::FIELD_JOIN_DATA] = true;
@@ -496,7 +496,7 @@ class TagDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withJoinDataOrFail(\App\Dto\TaggedDto $_joinData) {
+	public function withJoinDataOrFail(\App\Dto\TaggedDto $_joinData): static {
 		$new = clone $this;
 		$new->_joinData = $_joinData;
 		$new->_touchedFields[static::FIELD_JOIN_DATA] = true;

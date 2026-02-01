@@ -48,27 +48,27 @@ class TaggedDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var int|null
 	 */
-	protected $tagId;
+	protected ?int $tagId = null;
 
 	/**
 	 * @var int|null
 	 */
-	protected $fkId;
+	protected ?int $fkId = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $fkModel;
+	protected ?string $fkModel = null;
 
 	/**
 	 * @var \Cake\I18n\DateTime|null
 	 */
-	protected $created;
+	protected ?\Cake\I18n\DateTime $created = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -253,7 +253,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -274,7 +274,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -287,7 +287,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -327,7 +327,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTagId(?int $tagId = null) {
+	public function withTagId(?int $tagId = null): static {
 		$new = clone $this;
 		$new->tagId = $tagId;
 		$new->_touchedFields[static::FIELD_TAG_ID] = true;
@@ -340,7 +340,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTagIdOrFail(int $tagId) {
+	public function withTagIdOrFail(int $tagId): static {
 		$new = clone $this;
 		$new->tagId = $tagId;
 		$new->_touchedFields[static::FIELD_TAG_ID] = true;
@@ -380,7 +380,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withFkId(?int $fkId = null) {
+	public function withFkId(?int $fkId = null): static {
 		$new = clone $this;
 		$new->fkId = $fkId;
 		$new->_touchedFields[static::FIELD_FK_ID] = true;
@@ -393,7 +393,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withFkIdOrFail(int $fkId) {
+	public function withFkIdOrFail(int $fkId): static {
 		$new = clone $this;
 		$new->fkId = $fkId;
 		$new->_touchedFields[static::FIELD_FK_ID] = true;
@@ -433,7 +433,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withFkModel(?string $fkModel = null) {
+	public function withFkModel(?string $fkModel = null): static {
 		$new = clone $this;
 		$new->fkModel = $fkModel;
 		$new->_touchedFields[static::FIELD_FK_MODEL] = true;
@@ -446,7 +446,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withFkModelOrFail(string $fkModel) {
+	public function withFkModelOrFail(string $fkModel): static {
 		$new = clone $this;
 		$new->fkModel = $fkModel;
 		$new->_touchedFields[static::FIELD_FK_MODEL] = true;
@@ -486,7 +486,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?\Cake\I18n\DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -499,7 +499,7 @@ class TaggedDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;

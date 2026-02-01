@@ -217,7 +217,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -256,7 +256,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setName(string $name) {
+	public function setName(string $name): static {
 		$this->name = $name;
 		$this->_touchedFields[static::FIELD_NAME] = true;
 
@@ -282,7 +282,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHtmlUrl(string $htmlUrl) {
+	public function setHtmlUrl(string $htmlUrl): static {
 		$this->htmlUrl = $htmlUrl;
 		$this->_touchedFields[static::FIELD_HTML_URL] = true;
 
@@ -308,7 +308,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setPrivate(bool $private) {
+	public function setPrivate(bool $private): static {
 		$this->private = $private;
 		$this->_touchedFields[static::FIELD_PRIVATE] = true;
 
@@ -334,7 +334,7 @@ class RepoDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setOwner(\Sandbox\Dto\Github\UserDto $owner) {
+	public function setOwner(\Sandbox\Dto\Github\UserDto $owner): static {
 		$this->owner = $owner;
 		$this->_touchedFields[static::FIELD_OWNER] = true;
 

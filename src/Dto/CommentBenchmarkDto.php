@@ -42,22 +42,22 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $comment;
+	protected ?string $comment = null;
 
 	/**
 	 * @var int|null
 	 */
-	protected $articleId;
+	protected ?int $articleId = null;
 
 	/**
 	 * @var int|null
 	 */
-	protected $userId;
+	protected ?int $userId = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -213,7 +213,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -234,7 +234,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -247,7 +247,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -287,7 +287,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withComment(?string $comment = null) {
+	public function withComment(?string $comment = null): static {
 		$new = clone $this;
 		$new->comment = $comment;
 		$new->_touchedFields[static::FIELD_COMMENT] = true;
@@ -300,7 +300,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCommentOrFail(string $comment) {
+	public function withCommentOrFail(string $comment): static {
 		$new = clone $this;
 		$new->comment = $comment;
 		$new->_touchedFields[static::FIELD_COMMENT] = true;
@@ -340,7 +340,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withArticleId(?int $articleId = null) {
+	public function withArticleId(?int $articleId = null): static {
 		$new = clone $this;
 		$new->articleId = $articleId;
 		$new->_touchedFields[static::FIELD_ARTICLE_ID] = true;
@@ -353,7 +353,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withArticleIdOrFail(int $articleId) {
+	public function withArticleIdOrFail(int $articleId): static {
 		$new = clone $this;
 		$new->articleId = $articleId;
 		$new->_touchedFields[static::FIELD_ARTICLE_ID] = true;
@@ -393,7 +393,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUserId(?int $userId = null) {
+	public function withUserId(?int $userId = null): static {
 		$new = clone $this;
 		$new->userId = $userId;
 		$new->_touchedFields[static::FIELD_USER_ID] = true;
@@ -406,7 +406,7 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUserIdOrFail(int $userId) {
+	public function withUserIdOrFail(int $userId): static {
 		$new = clone $this;
 		$new->userId = $userId;
 		$new->_touchedFields[static::FIELD_USER_ID] = true;

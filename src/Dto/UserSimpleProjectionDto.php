@@ -36,17 +36,17 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $username;
+	protected ?string $username = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $email;
+	protected ?string $email = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -180,7 +180,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -201,7 +201,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -214,7 +214,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -254,7 +254,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsername(?string $username = null) {
+	public function withUsername(?string $username = null): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -267,7 +267,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsernameOrFail(string $username) {
+	public function withUsernameOrFail(string $username): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -307,7 +307,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmail(?string $email = null) {
+	public function withEmail(?string $email = null): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
@@ -320,7 +320,7 @@ class UserSimpleProjectionDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmailOrFail(string $email) {
+	public function withEmailOrFail(string $email): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
