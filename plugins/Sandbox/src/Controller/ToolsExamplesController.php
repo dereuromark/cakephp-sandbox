@@ -3,6 +3,8 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\EventInterface;
+use Doctrine\SqlFormatter\NullHighlighter;
+use Doctrine\SqlFormatter\SqlFormatter;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
 use Sandbox\Model\Enum\Flag;
@@ -194,6 +196,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 		$query = $bitmaskedRecordsTable->find('search', search: $this->request->getQuery());
 		$sql = (string)$query;
+		$sqlFormatted = (new SqlFormatter(new NullHighlighter()))->format($sql);
 
 		$bitmaskedRecords = $this->paginate($query);
 
@@ -206,7 +209,7 @@ class ToolsExamplesController extends SandboxAppController {
 		if ($type !== 'multiOr' && $type !== 'multiAnd') {
 			$flags[0] = ' - n/a (no flags) - ';
 		}
-		$this->set(compact('bitmaskedRecords', 'flags', 'type', 'sql'));
+		$this->set(compact('bitmaskedRecords', 'flags', 'type', 'sql', 'sqlFormatted'));
 	}
 
 	/**

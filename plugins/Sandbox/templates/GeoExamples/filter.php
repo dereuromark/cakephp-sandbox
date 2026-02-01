@@ -147,7 +147,7 @@
 
 		<details>
 			<summary>SQL Query</summary>
-			<?php echo SqlFormatter::format($sqlQuery); ?>
+			<?php echo $sqlQueryFormatted; ?>
 		</details>
 
 	<?php } ?>

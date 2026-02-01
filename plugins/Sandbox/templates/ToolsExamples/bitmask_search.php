@@ -66,6 +66,6 @@
 <h3>SQL query</h3>
 For example/demo purposes here the query it runs as per your filter selection above:
 <div>
-	<?php echo SqlFormatter::format($sql); ?>
+	<?php echo $sqlFormatted; ?>
 </div>
 

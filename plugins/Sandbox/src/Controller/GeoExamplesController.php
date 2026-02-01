@@ -5,6 +5,8 @@ namespace Sandbox\Controller;
 use Cake\Core\Configure;
 use Cake\Database\Driver\Mysql;
 use Cake\Utility\Text;
+use Doctrine\SqlFormatter\NullHighlighter;
+use Doctrine\SqlFormatter\SqlFormatter;
 use Exception;
 use Geo\Exception\InconclusiveException;
 use Geo\Geocoder\Geocoder;
@@ -227,6 +229,7 @@ class GeoExamplesController extends SandboxAppController {
 
 		$sandboxCities = [];
 		$sqlQuery = null;
+		$sqlQueryFormatted = null;
 		$queryTime = null;
 		$explainResult = null;
 		if ($this->request->getData('city_id')) {
@@ -244,6 +247,7 @@ class GeoExamplesController extends SandboxAppController {
 				->contain(['Countries'])
 				->limit(10);
 			$sqlQuery = (string)$query;
+			$sqlQueryFormatted = (new SqlFormatter(new NullHighlighter()))->format($sqlQuery);
 
 			// Get EXPLAIN output for the query
 			if ($spatialAvailable && $this->request->getQuery('spatial')) {
@@ -255,7 +259,7 @@ class GeoExamplesController extends SandboxAppController {
 			$queryTime = (microtime(true) - $startTime) * 1000; // in milliseconds
 		}
 
-		$this->set(compact('cities', 'sandboxCities', 'sqlQuery', 'spatialAvailable', 'spatialInfo', 'queryTime', 'explainResult'));
+		$this->set(compact('cities', 'sandboxCities', 'sqlQuery', 'sqlQueryFormatted', 'spatialAvailable', 'spatialInfo', 'queryTime', 'explainResult'));
 	}
 
 	/**
