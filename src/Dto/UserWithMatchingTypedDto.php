@@ -178,6 +178,13 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	protected const IS_IMMUTABLE = true;
 
 	/**
+	 * Whether this DTO has generated fast-path methods.
+	 *
+	 * @var bool
+	 */
+	protected const HAS_FAST_PATH = true;
+
+	/**
 	 * Pre-computed setter method names for fast lookup.
 	 *
 	 * @var array<string, string>
@@ -192,9 +199,6 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 
 	/**
 	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * This method is only called in lenient mode (ignoreMissing=true),
-	 * where unknown fields are silently ignored.
 	 *
 	 * @param array<string, mixed> $data
 	 *
@@ -231,6 +235,22 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			$this->_touchedFields['_matchingData'] = true;
 		}
 	}
+
+	/**
+	 * Optimized toArray for default type without dynamic dispatch.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function toArrayFast(): array {
+		return [
+			'id' => $this->id,
+			'username' => $this->username,
+			'email' => $this->email,
+			'created' => $this->created,
+			'_matchingData' => $this->_matchingData !== null ? $this->_matchingData->toArray() : null,
+		];
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

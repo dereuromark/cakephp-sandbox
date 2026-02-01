@@ -178,6 +178,13 @@ class TaggedDto extends AbstractImmutableDto {
 	protected const IS_IMMUTABLE = true;
 
 	/**
+	 * Whether this DTO has generated fast-path methods.
+	 *
+	 * @var bool
+	 */
+	protected const HAS_FAST_PATH = true;
+
+	/**
 	 * Pre-computed setter method names for fast lookup.
 	 *
 	 * @var array<string, string>
@@ -192,9 +199,6 @@ class TaggedDto extends AbstractImmutableDto {
 
 	/**
 	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * This method is only called in lenient mode (ignoreMissing=true),
-	 * where unknown fields are silently ignored.
 	 *
 	 * @param array<string, mixed> $data
 	 *
@@ -227,6 +231,22 @@ class TaggedDto extends AbstractImmutableDto {
 			$this->_touchedFields['created'] = true;
 		}
 	}
+
+	/**
+	 * Optimized toArray for default type without dynamic dispatch.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function toArrayFast(): array {
+		return [
+			'id' => $this->id,
+			'tagId' => $this->tagId,
+			'fkId' => $this->fkId,
+			'fkModel' => $this->fkModel,
+			'created' => $this->created,
+		];
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
