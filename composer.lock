@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e41dcb91c96d73057fa0288bb36d237a",
+    "content-hash": "1bd827841182b740734f8d6d8349394d",
     "packages": [
         {
             "name": "brick/math",
@@ -6464,16 +6464,16 @@
         },
         {
             "name": "php-collective/dto",
-            "version": "dev-combined-optimizations",
+            "version": "0.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "661ca1405ef6bd0fd728b933714550e438660801"
+                "reference": "598b5c6175733db7148ba4a434dab0a0a3406ee1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/661ca1405ef6bd0fd728b933714550e438660801",
-                "reference": "661ca1405ef6bd0fd728b933714550e438660801",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/598b5c6175733db7148ba4a434dab0a0a3406ee1",
+                "reference": "598b5c6175733db7148ba4a434dab0a0a3406ee1",
                 "shasum": ""
             },
             "require": {
@@ -6526,9 +6526,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/dto/issues",
-                "source": "https://github.com/php-collective/dto/tree/combined-optimizations"
+                "source": "https://github.com/php-collective/dto/tree/0.1.8"
             },
-            "time": "2026-01-22T04:46:36+00:00"
+            "time": "2026-02-01T07:13:48+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -12690,12 +12690,6 @@
             "alias_normalized": "0.5.0.0"
         },
         {
-            "package": "php-collective/dto",
-            "version": "dev-combined-optimizations",
-            "alias": "0.1.8",
-            "alias_normalized": "0.1.8.0"
-        },
-        {
             "package": "php-collective/file-storage",
             "version": "9999999-dev",
             "alias": "1.0.0",
@@ -12752,7 +12746,6 @@
         "natxet/cssmin": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
-        "php-collective/dto": 20,
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
         "spryker/cakephp-statemachine": 20,
