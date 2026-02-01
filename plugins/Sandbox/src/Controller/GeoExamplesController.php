@@ -5,7 +5,6 @@ namespace Sandbox\Controller;
 use Cake\Core\Configure;
 use Cake\Database\Driver\Mysql;
 use Cake\Utility\Text;
-use Doctrine\SqlFormatter\NullHighlighter;
 use Doctrine\SqlFormatter\SqlFormatter;
 use Exception;
 use Geo\Exception\InconclusiveException;
@@ -247,7 +246,7 @@ class GeoExamplesController extends SandboxAppController {
 				->contain(['Countries'])
 				->limit(10);
 			$sqlQuery = (string)$query;
-			$sqlQueryFormatted = (new SqlFormatter(new NullHighlighter()))->format($sqlQuery);
+			$sqlQueryFormatted = (new SqlFormatter())->format($sqlQuery);
 
 			// Get EXPLAIN output for the query
 			if ($spatialAvailable && $this->request->getQuery('spatial')) {

@@ -3,7 +3,6 @@
 namespace Sandbox\Controller;
 
 use Cake\Event\EventInterface;
-use Doctrine\SqlFormatter\NullHighlighter;
 use Doctrine\SqlFormatter\SqlFormatter;
 use RuntimeException;
 use Sandbox\Model\Entity\BitmaskedRecord;
@@ -196,7 +195,7 @@ class ToolsExamplesController extends SandboxAppController {
 
 		$query = $bitmaskedRecordsTable->find('search', search: $this->request->getQuery());
 		$sql = (string)$query;
-		$sqlFormatted = (new SqlFormatter(new NullHighlighter()))->format($sql);
+		$sqlFormatted = (new SqlFormatter())->format($sql);
 
 		$bitmaskedRecords = $this->paginate($query);
 
