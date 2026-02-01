@@ -152,8 +152,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'id' => 'id',
