@@ -48,27 +48,27 @@ class SimpleUserDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $username;
+	protected ?string $username = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $email;
+	protected ?string $email = null;
 
 	/**
 	 * @var \App\Dto\SimpleRoleBasicDto|null
 	 */
-	protected $role;
+	protected ?\App\Dto\SimpleRoleBasicDto $role = null;
 
 	/**
 	 * @var \Cake\I18n\DateTime|null
 	 */
-	protected $created;
+	protected ?\Cake\I18n\DateTime $created = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -151,8 +151,8 @@ class SimpleUserDto extends AbstractImmutableDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'id' => 'id',
@@ -257,7 +257,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -278,7 +278,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -291,7 +291,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -331,7 +331,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsername(?string $username = null) {
+	public function withUsername(?string $username = null): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -344,7 +344,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsernameOrFail(string $username) {
+	public function withUsernameOrFail(string $username): static {
 		$new = clone $this;
 		$new->username = $username;
 		$new->_touchedFields[static::FIELD_USERNAME] = true;
@@ -384,7 +384,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmail(?string $email = null) {
+	public function withEmail(?string $email = null): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
@@ -397,7 +397,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withEmailOrFail(string $email) {
+	public function withEmailOrFail(string $email): static {
 		$new = clone $this;
 		$new->email = $email;
 		$new->_touchedFields[static::FIELD_EMAIL] = true;
@@ -437,7 +437,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRole(?\App\Dto\SimpleRoleBasicDto $role = null) {
+	public function withRole(?\App\Dto\SimpleRoleBasicDto $role = null): static {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -450,7 +450,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withRoleOrFail(\App\Dto\SimpleRoleBasicDto $role) {
+	public function withRoleOrFail(\App\Dto\SimpleRoleBasicDto $role): static {
 		$new = clone $this;
 		$new->role = $role;
 		$new->_touchedFields[static::FIELD_ROLE] = true;
@@ -490,7 +490,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreated(?\Cake\I18n\DateTime $created = null) {
+	public function withCreated(?\Cake\I18n\DateTime $created = null): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;
@@ -503,7 +503,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withCreatedOrFail(\Cake\I18n\DateTime $created) {
+	public function withCreatedOrFail(\Cake\I18n\DateTime $created): static {
 		$new = clone $this;
 		$new->created = $created;
 		$new->_touchedFields[static::FIELD_CREATED] = true;

@@ -99,8 +99,8 @@ class UserDto extends AbstractDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'login' => 'login',
@@ -180,7 +180,7 @@ class UserDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -216,7 +216,7 @@ class UserDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setLogin(string $login) {
+	public function setLogin(string $login): static {
 		$this->login = $login;
 		$this->_touchedFields[static::FIELD_LOGIN] = true;
 
@@ -242,7 +242,7 @@ class UserDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setHtmlUrl(string $htmlUrl) {
+	public function setHtmlUrl(string $htmlUrl): static {
 		$this->htmlUrl = $htmlUrl;
 		$this->_touchedFields[static::FIELD_HTML_URL] = true;
 
@@ -268,7 +268,7 @@ class UserDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setType(string $type) {
+	public function setType(string $type): static {
 		$this->type = $type;
 		$this->_touchedFields[static::FIELD_TYPE] = true;
 

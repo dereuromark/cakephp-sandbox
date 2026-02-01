@@ -124,8 +124,8 @@ class BaseDto extends AbstractDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'ref' => 'ref',
@@ -221,7 +221,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -260,7 +260,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setRef(string $ref) {
+	public function setRef(string $ref): static {
 		$this->ref = $ref;
 		$this->_touchedFields[static::FIELD_REF] = true;
 
@@ -286,7 +286,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setSha(string $sha) {
+	public function setSha(string $sha): static {
 		$this->sha = $sha;
 		$this->_touchedFields[static::FIELD_SHA] = true;
 
@@ -312,7 +312,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setUser(\Sandbox\Dto\Github\UserDto $user) {
+	public function setUser(\Sandbox\Dto\Github\UserDto $user): static {
 		$this->user = $user;
 		$this->_touchedFields[static::FIELD_USER] = true;
 
@@ -338,7 +338,7 @@ class BaseDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setRepo(\Sandbox\Dto\Github\RepoDto $repo) {
+	public function setRepo(\Sandbox\Dto\Github\RepoDto $repo): static {
 		$this->repo = $repo;
 		$this->_touchedFields[static::FIELD_REPO] = true;
 

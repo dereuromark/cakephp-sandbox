@@ -36,12 +36,12 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $name;
+	protected ?string $name = null;
 
 	/**
 	 * @var array<int, \App\Dto\SimpleUserBasicDto>
@@ -102,8 +102,8 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'id' => 'id',
@@ -199,7 +199,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -220,7 +220,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -233,7 +233,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -273,7 +273,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withName(?string $name = null) {
+	public function withName(?string $name = null): static {
 		$new = clone $this;
 		$new->name = $name;
 		$new->_touchedFields[static::FIELD_NAME] = true;
@@ -286,7 +286,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withNameOrFail(string $name) {
+	public function withNameOrFail(string $name): static {
 		$new = clone $this;
 		$new->name = $name;
 		$new->_touchedFields[static::FIELD_NAME] = true;
@@ -326,7 +326,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withUsers(array $users) {
+	public function withUsers(array $users): static {
 		$new = clone $this;
 		$new->users = $users;
 		$new->_touchedFields[static::FIELD_USERS] = true;
@@ -359,7 +359,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 * @param \App\Dto\SimpleUserBasicDto $user
 	 * @return static
 	 */
-	public function withAddedUser(\App\Dto\SimpleUserBasicDto $user) {
+	public function withAddedUser(\App\Dto\SimpleUserBasicDto $user): static {
 		$new = clone $this;
 
 		if ($new->users === null) {

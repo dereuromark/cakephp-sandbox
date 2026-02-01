@@ -48,22 +48,22 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	/**
 	 * @var int|null
 	 */
-	protected $id;
+	protected ?int $id = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $title;
+	protected ?string $title = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $body;
+	protected ?string $body = null;
 
 	/**
 	 * @var \App\Dto\AuthorBenchmarkDto|null
 	 */
-	protected $author;
+	protected ?\App\Dto\AuthorBenchmarkDto $author = null;
 
 	/**
 	 * @var array<int, \App\Dto\CommentBenchmarkDto>
@@ -152,8 +152,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'id' => 'id',
@@ -269,7 +269,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -290,7 +290,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withId(?int $id = null) {
+	public function withId(?int $id = null): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -303,7 +303,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withIdOrFail(int $id) {
+	public function withIdOrFail(int $id): static {
 		$new = clone $this;
 		$new->id = $id;
 		$new->_touchedFields[static::FIELD_ID] = true;
@@ -343,7 +343,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTitle(?string $title = null) {
+	public function withTitle(?string $title = null): static {
 		$new = clone $this;
 		$new->title = $title;
 		$new->_touchedFields[static::FIELD_TITLE] = true;
@@ -356,7 +356,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withTitleOrFail(string $title) {
+	public function withTitleOrFail(string $title): static {
 		$new = clone $this;
 		$new->title = $title;
 		$new->_touchedFields[static::FIELD_TITLE] = true;
@@ -396,7 +396,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withBody(?string $body = null) {
+	public function withBody(?string $body = null): static {
 		$new = clone $this;
 		$new->body = $body;
 		$new->_touchedFields[static::FIELD_BODY] = true;
@@ -409,7 +409,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withBodyOrFail(string $body) {
+	public function withBodyOrFail(string $body): static {
 		$new = clone $this;
 		$new->body = $body;
 		$new->_touchedFields[static::FIELD_BODY] = true;
@@ -449,7 +449,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withAuthor(?\App\Dto\AuthorBenchmarkDto $author = null) {
+	public function withAuthor(?\App\Dto\AuthorBenchmarkDto $author = null): static {
 		$new = clone $this;
 		$new->author = $author;
 		$new->_touchedFields[static::FIELD_AUTHOR] = true;
@@ -462,7 +462,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withAuthorOrFail(\App\Dto\AuthorBenchmarkDto $author) {
+	public function withAuthorOrFail(\App\Dto\AuthorBenchmarkDto $author): static {
 		$new = clone $this;
 		$new->author = $author;
 		$new->_touchedFields[static::FIELD_AUTHOR] = true;
@@ -502,7 +502,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 *
 	 * @return static
 	 */
-	public function withComments(array $comments) {
+	public function withComments(array $comments): static {
 		$new = clone $this;
 		$new->comments = $comments;
 		$new->_touchedFields[static::FIELD_COMMENTS] = true;
@@ -535,7 +535,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 * @param \App\Dto\CommentBenchmarkDto $comment
 	 * @return static
 	 */
-	public function withAddedComment(\App\Dto\CommentBenchmarkDto $comment) {
+	public function withAddedComment(\App\Dto\CommentBenchmarkDto $comment): static {
 		$new = clone $this;
 
 		if ($new->comments === null) {

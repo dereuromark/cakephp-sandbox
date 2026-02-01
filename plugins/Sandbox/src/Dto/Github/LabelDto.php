@@ -30,12 +30,12 @@ class LabelDto extends AbstractDto {
 	/**
 	 * @var string|null
 	 */
-	protected $name;
+	protected ?string $name = null;
 
 	/**
 	 * @var string|null
 	 */
-	protected $color;
+	protected ?string $color = null;
 
 	/**
 	 * Some data is only for debugging for now.
@@ -74,8 +74,8 @@ class LabelDto extends AbstractDto {
 	];
 
 	/**
-	* @var array<string, array<string, string>>
-	*/
+	 * @var array<string, array<string, string>>
+	 */
 	protected array $_keyMap = [
 		'underscored' => [
 			'name' => 'name',
@@ -147,7 +147,7 @@ class LabelDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	protected function setDefaults() {
+	protected function setDefaults(): static {
 
 		return $this;
 	}
@@ -168,7 +168,7 @@ class LabelDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setName(?string $name) {
+	public function setName(?string $name): static {
 		$this->name = $name;
 		$this->_touchedFields[static::FIELD_NAME] = true;
 
@@ -180,7 +180,7 @@ class LabelDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setNameOrFail(string $name) {
+	public function setNameOrFail(string $name): static {
 		$this->name = $name;
 		$this->_touchedFields[static::FIELD_NAME] = true;
 
@@ -219,7 +219,7 @@ class LabelDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setColor(?string $color) {
+	public function setColor(?string $color): static {
 		$this->color = $color;
 		$this->_touchedFields[static::FIELD_COLOR] = true;
 
@@ -231,7 +231,7 @@ class LabelDto extends AbstractDto {
 	 *
 	 * @return $this
 	 */
-	public function setColorOrFail(string $color) {
+	public function setColorOrFail(string $color): static {
 		$this->color = $color;
 		$this->_touchedFields[static::FIELD_COLOR] = true;
 
