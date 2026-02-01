@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74e6d0631bf6d110512a342dc03a61d2",
+    "content-hash": "e41dcb91c96d73057fa0288bb36d237a",
     "packages": [
         {
             "name": "brick/math",
@@ -2147,12 +2147,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-dto.git",
-                "reference": "80dcf673efa1a43a5aa7c9fc54df87ef5279e60c"
+                "reference": "6e143668508e8053e1d5ab748cef89ec78b3a762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/80dcf673efa1a43a5aa7c9fc54df87ef5279e60c",
-                "reference": "80dcf673efa1a43a5aa7c9fc54df87ef5279e60c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-dto/zipball/6e143668508e8053e1d5ab748cef89ec78b3a762",
+                "reference": "6e143668508e8053e1d5ab748cef89ec78b3a762",
                 "shasum": ""
             },
             "require": {
@@ -2160,7 +2160,7 @@
                 "cakephp/twig-view": "^2.0.1",
                 "ext-json": "*",
                 "php": ">=8.2",
-                "php-collective/dto": "^0.1.7",
+                "php-collective/dto": "^0.1.8",
                 "sebastian/diff": "^6.0.0 || ^7.0.0"
             },
             "require-dev": {
@@ -2212,7 +2212,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-dto/issues",
                 "source": "https://github.com/dereuromark/cakephp-dto/"
             },
-            "time": "2026-01-28T06:53:09+00:00"
+            "time": "2026-02-01T09:05:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-expose",
@@ -12692,8 +12692,8 @@
         {
             "package": "php-collective/dto",
             "version": "dev-combined-optimizations",
-            "alias": "0.1.7",
-            "alias_normalized": "0.1.7.0"
+            "alias": "0.1.8",
+            "alias_normalized": "0.1.8.0"
         },
         {
             "package": "php-collective/file-storage",

@@ -149,6 +149,13 @@ class RepoDto extends AbstractDto {
 	protected const IS_IMMUTABLE = false;
 
 	/**
+	 * Whether this DTO has generated fast-path methods.
+	 *
+	 * @var bool
+	 */
+	protected const HAS_FAST_PATH = true;
+
+	/**
 	 * Pre-computed setter method names for fast lookup.
 	 *
 	 * @var array<string, string>
@@ -162,9 +169,6 @@ class RepoDto extends AbstractDto {
 
 	/**
 	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * This method is only called in lenient mode (ignoreMissing=true),
-	 * where unknown fields are silently ignored.
 	 *
 	 * @param array<string, mixed> $data
 	 *
@@ -192,6 +196,21 @@ class RepoDto extends AbstractDto {
 			$this->_touchedFields['owner'] = true;
 		}
 	}
+
+	/**
+	 * Optimized toArray for default type without dynamic dispatch.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function toArrayFast(): array {
+		return [
+			'name' => $this->name,
+			'htmlUrl' => $this->htmlUrl,
+			'private' => $this->private,
+			'owner' => $this->owner !== null ? $this->owner->toArray() : null,
+		];
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.

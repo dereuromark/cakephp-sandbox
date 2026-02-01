@@ -95,6 +95,13 @@ class LabelDto extends AbstractDto {
 	protected const IS_IMMUTABLE = false;
 
 	/**
+	 * Whether this DTO has generated fast-path methods.
+	 *
+	 * @var bool
+	 */
+	protected const HAS_FAST_PATH = true;
+
+	/**
 	 * Pre-computed setter method names for fast lookup.
 	 *
 	 * @var array<string, string>
@@ -106,9 +113,6 @@ class LabelDto extends AbstractDto {
 
 	/**
 	 * Optimized array assignment without dynamic method calls.
-	 *
-	 * This method is only called in lenient mode (ignoreMissing=true),
-	 * where unknown fields are silently ignored.
 	 *
 	 * @param array<string, mixed> $data
 	 *
@@ -124,6 +128,19 @@ class LabelDto extends AbstractDto {
 			$this->_touchedFields['color'] = true;
 		}
 	}
+
+	/**
+	 * Optimized toArray for default type without dynamic dispatch.
+	 *
+	 * @return array<string, mixed>
+	 */
+	protected function toArrayFast(): array {
+		return [
+			'name' => $this->name,
+			'color' => $this->color,
+		];
+	}
+
 
 	/**
 	 * Optimized setDefaults - only processes fields with default values.
