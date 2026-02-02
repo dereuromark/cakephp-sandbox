@@ -37,6 +37,8 @@ class CountriesSeed extends BaseSeed {
 		}
 		fclose($handle);
 
+		$this->execute('DELETE FROM countries');
+
 		$table = $this->table('countries');
 		$table->insert($rows)->save();
 	}
