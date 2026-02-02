@@ -22,8 +22,8 @@ class CountriesSeed extends BaseSeed {
 		$file = RESOURCES . 'data/countries.csv';
 		$handle = fopen($file, 'r');
 		$headers = fgetcsv($handle, null, ',', '"', '\\');
-		$rows = [];
 		$nullableFields = ['phone_code', 'zip_regexp', 'address_format', 'timezone'];
+		$newRows = [];
 		while (($data = fgetcsv($handle, 1000, ',', '"', '\\')) !== false) {
 			$row = array_combine($headers, $data);
 			unset($row['continent_id']);
@@ -33,13 +33,37 @@ class CountriesSeed extends BaseSeed {
 					$row[$field] = null;
 				}
 			}
-			$rows[] = $row;
+
+			$existing = $this->fetchRow('SELECT id FROM countries WHERE id = ' . (int)$row['id']);
+			if ($existing) {
+				$this->updateRow($row);
+			} else {
+				$newRows[] = $row;
+			}
 		}
 		fclose($handle);
 
-		$table = $this->table('countries');
-		$table->truncate();
-		$table->insert($rows)->save();
+		if ($newRows) {
+			$table = $this->table('countries');
+			$table->insert($newRows)->save();
+		}
+	}
+
+	/**
+	 * @param array<string, mixed> $row
+	 *
+	 * @return void
+	 */
+	protected function updateRow(array $row): void {
+		$id = (int)$row['id'];
+		unset($row['id']);
+
+		$sets = [];
+		foreach ($row as $key => $value) {
+			$sets[] = $key . ' = ' . ($value === null ? 'NULL' : "'" . addslashes((string)$value) . "'");
+		}
+
+		$this->execute('UPDATE countries SET ' . implode(', ', $sets) . ' WHERE id = ' . $id);
 	}
 
 }
