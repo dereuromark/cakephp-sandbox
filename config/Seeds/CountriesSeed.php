@@ -9,13 +9,13 @@ use Migrations\BaseSeed;
 class CountriesSeed extends BaseSeed {
 
 	/**
-	 * Run Method.
-	 *
-	 * Write your database seeder using this method.
-	 *
-	 * More information on writing seeds is available here:
-	 * https://book.cakephp.org/phinx/0/en/seeding.html
-	 *
+	 * @return bool
+	 */
+	public function isIdempotent(): bool {
+		return true;
+	}
+
+	/**
 	 * @return void
 	 */
 	public function run(): void {
