@@ -23,6 +23,13 @@ class CountriesSeed extends BaseSeed {
 		$handle = fopen($file, 'r');
 		$headers = fgetcsv($handle, null, ',', '"', '\\');
 		$nullableFields = ['phone_code', 'zip_regexp', 'address_format', 'timezone'];
+
+		/** @var array<int, true> $existingIds */
+		$existingIds = [];
+		foreach ($this->fetchAll('SELECT id FROM countries') as $row) {
+			$existingIds[(int)$row['id']] = true;
+		}
+
 		$newRows = [];
 		while (($data = fgetcsv($handle, 1000, ',', '"', '\\')) !== false) {
 			$row = array_combine($headers, $data);
@@ -34,8 +41,7 @@ class CountriesSeed extends BaseSeed {
 				}
 			}
 
-			$existing = $this->fetchRow('SELECT id FROM countries WHERE id = ' . (int)$row['id']);
-			if ($existing) {
+			if (isset($existingIds[(int)$row['id']])) {
 				$this->updateRow($row);
 			} else {
 				$newRows[] = $row;
