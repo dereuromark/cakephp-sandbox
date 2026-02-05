@@ -29,6 +29,29 @@ $this->end();
 </p>
 </div>
 
+<div class="card mb-4">
+	<div class="card-header">
+		<h5 class="mb-0">Table of Contents</h5>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-6">
+				<ul class="list-unstyled mb-0">
+					<?php foreach ($examples as $key => $example) { ?>
+					<li><a href="#ext-<?= h($key) ?>"><code><?= h($example['name']) ?></code></a></li>
+					<?php } ?>
+				</ul>
+			</div>
+			<div class="col-md-6">
+				<ul class="list-unstyled mb-0">
+					<li><a href="#ext-toc-position">TOC Auto-Insert Position Demo</a></li>
+					<li><a href="#ext-combined">Combined Extensions Demo</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
 <?php foreach ($examples as $key => $example) { ?>
 <div class="card mb-4" id="ext-<?= h($key) ?>">
 	<div class="card-header">
@@ -263,6 +286,25 @@ Or contact @alice and @bob directly.</textarea>
 .html-output section {
 	margin-bottom: 1em;
 }
+.html-output kbd {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	padding: 0.1em 0.4em;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+	color: #212529;
+}
+.html-output dfn {
+	font-style: italic;
+	font-weight: 500;
+	color: #0d6efd;
+}
+.html-output abbr[title] {
+	text-decoration: underline dotted;
+	cursor: help;
+}
 .toc-output nav.toc {
 	font-size: 0.9em;
 }
@@ -303,6 +345,25 @@ Or contact @alice and @bob directly.</textarea>
 }
 #combined-html-output .permalink:hover {
 	opacity: 1;
+}
+#combined-html-output kbd {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	padding: 0.1em 0.4em;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+	color: #212529;
+}
+#combined-html-output dfn {
+	font-style: italic;
+	font-weight: 500;
+	color: #0d6efd;
+}
+#combined-html-output abbr[title] {
+	text-decoration: underline dotted;
+	cursor: help;
 }
 #combined-toc-output nav.toc {
 	font-size: 0.9em;

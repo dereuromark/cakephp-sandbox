@@ -16,6 +16,8 @@ use Djot\Extension\DefaultAttributesExtension;
 use Djot\Extension\ExternalLinksExtension;
 use Djot\Extension\HeadingPermalinksExtension;
 use Djot\Extension\MentionsExtension;
+use Djot\Extension\SemanticSpanExtension;
+use Djot\Extension\SmartQuotesExtension;
 use Djot\Extension\TableOfContentsExtension;
 use Djot\Profile;
 use Djot\Renderer\SoftBreakMode;
@@ -204,6 +206,14 @@ class DjotController extends SandboxAppController {
 							]));
 
 							break;
+						case 'semantic_span':
+							$converter->addExtension(new SemanticSpanExtension());
+
+							break;
+						case 'smart_quotes':
+							$converter->addExtension(new SmartQuotesExtension(locale: 'de'));
+
+							break;
 					}
 				}
 
@@ -374,6 +384,46 @@ DJOT,
 					'position' => "null, 'top', or 'bottom'",
 				],
 			],
+			'semantic_span' => [
+				'name' => 'SemanticSpanExtension',
+				'description' => 'Converts span attributes into semantic HTML5 elements like <kbd>, <dfn>, and <abbr> for keyboard input, definitions, and abbreviations.',
+				'class' => SemanticSpanExtension::class,
+				'example_djot' => <<<'DJOT'
+Press [Ctrl+C]{kbd} to copy the selection.
+
+A [variable]{dfn} is a named storage location in memory.
+
+The [HTML]{abbr="HyperText Markup Language"} standard defines web page structure.
+
+[CSS]{dfn abbr="Cascading Style Sheets"} is used for styling web pages.
+
+Use [Enter]{kbd} to submit and [Esc]{kbd} to cancel.
+DJOT,
+				'options' => [
+					'(none)' => 'Uses span attributes: kbd, dfn, abbr',
+				],
+			],
+			'smart_quotes' => [
+				'name' => 'SmartQuotesExtension',
+				'description' => 'Configures locale-specific typographic quote characters. Transforms straight quotes into proper opening/closing quotes based on language conventions.',
+				'class' => SmartQuotesExtension::class,
+				'example_djot' => <<<'DJOT'
+She said, "Hello, world!"
+
+It's a 'simple' example.
+
+"Nested 'quotes' work too," he replied.
+
+The "German style" uses „low-high" quotes.
+DJOT,
+				'options' => [
+					'locale' => "'en', 'de', 'de-CH', 'fr', 'pl', 'ru', etc.",
+					'openDoubleQuote' => 'Custom opening double quote',
+					'closeDoubleQuote' => 'Custom closing double quote',
+					'openSingleQuote' => 'Custom opening single quote',
+					'closeSingleQuote' => 'Custom closing single quote',
+				],
+			],
 		];
 	}
 
@@ -526,8 +576,8 @@ DJOT,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-extensions');
-		$config->set('HTML.DefinitionRev', 2);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre[class],code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],nav[class],input[type|checked|disabled],figure,figcaption');
+		$config->set('HTML.DefinitionRev', 3);
+		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre[class],code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],nav[class],input[type|checked|disabled],figure,figcaption,kbd,dfn,abbr[title]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
@@ -568,8 +618,8 @@ DJOT,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-sandbox');
-		$config->set('HTML.DefinitionRev', 6);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],input[type|checked|disabled],figure,figcaption');
+		$config->set('HTML.DefinitionRev', 7);
+		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],input[type|checked|disabled],figure,figcaption,kbd,dfn,abbr[title]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('HTML.TargetBlank', true);
