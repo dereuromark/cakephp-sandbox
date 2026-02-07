@@ -89,6 +89,8 @@ class TagDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'label' => [
 			'name' => 'label',
@@ -103,6 +105,8 @@ class TagDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'slug' => [
 			'name' => 'slug',
@@ -117,6 +121,8 @@ class TagDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'counter' => [
 			'name' => 'counter',
@@ -131,6 +137,8 @@ class TagDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'_joinData' => [
 			'name' => '_joinData',
@@ -145,6 +153,8 @@ class TagDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -204,19 +214,27 @@ class TagDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['label'])) {
-			$this->label = $data['label'];
+			/** @var string|null $value */
+			$value = $data['label'];
+			$this->label = $value;
 			$this->_touchedFields['label'] = true;
 		}
 		if (isset($data['slug'])) {
-			$this->slug = $data['slug'];
+			/** @var string|null $value */
+			$value = $data['slug'];
+			$this->slug = $value;
 			$this->_touchedFields['slug'] = true;
 		}
 		if (isset($data['counter'])) {
-			$this->counter = $data['counter'];
+			/** @var int|null $value */
+			$value = $data['counter'];
+			$this->counter = $value;
 			$this->_touchedFields['counter'] = true;
 		}
 		if (isset($data['_joinData'])) {
@@ -224,6 +242,7 @@ class TagDto extends AbstractImmutableDto {
 			if (is_array($value)) {
 				$value = new \App\Dto\TaggedDto($value, true);
 			}
+			/** @var ?\App\Dto\TaggedDto $value */
 			$this->_joinData = $value;
 			$this->_touchedFields['_joinData'] = true;
 		}

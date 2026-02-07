@@ -67,6 +67,8 @@ class UserDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -81,6 +83,8 @@ class UserDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'type' => [
 			'name' => 'type',
@@ -95,6 +99,8 @@ class UserDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -148,15 +154,21 @@ class UserDto extends AbstractDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['login'])) {
-			$this->login = $data['login'];
+			/** @var string $value */
+			$value = $data['login'];
+			$this->login = $value;
 			$this->_touchedFields['login'] = true;
 		}
 		if (isset($data['htmlUrl'])) {
-			$this->htmlUrl = $data['htmlUrl'];
+			/** @var string $value */
+			$value = $data['htmlUrl'];
+			$this->htmlUrl = $value;
 			$this->_touchedFields['htmlUrl'] = true;
 		}
 		if (isset($data['type'])) {
-			$this->type = $data['type'];
+			/** @var string $value */
+			$value = $data['type'];
+			$this->type = $value;
 			$this->_touchedFields['type'] = true;
 		}
 	}

@@ -89,6 +89,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'tagId' => [
 			'name' => 'tagId',
@@ -103,6 +105,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'fkId' => [
 			'name' => 'fkId',
@@ -117,6 +121,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'fkModel' => [
 			'name' => 'fkModel',
@@ -131,6 +137,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'created' => [
 			'name' => 'created',
@@ -145,6 +153,8 @@ class TaggedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'isClass' => true,
 			'enum' => null,
 		],
@@ -206,19 +216,27 @@ class TaggedDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['tagId'])) {
-			$this->tagId = $data['tagId'];
+			/** @var int|null $value */
+			$value = $data['tagId'];
+			$this->tagId = $value;
 			$this->_touchedFields['tagId'] = true;
 		}
 		if (isset($data['fkId'])) {
-			$this->fkId = $data['fkId'];
+			/** @var int|null $value */
+			$value = $data['fkId'];
+			$this->fkId = $value;
 			$this->_touchedFields['fkId'] = true;
 		}
 		if (isset($data['fkModel'])) {
-			$this->fkModel = $data['fkModel'];
+			/** @var string|null $value */
+			$value = $data['fkModel'];
+			$this->fkModel = $value;
 			$this->_touchedFields['fkModel'] = true;
 		}
 		if (isset($data['created'])) {

@@ -67,6 +67,8 @@ class SimpleRoleDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'name' => [
 			'name' => 'name',
@@ -81,6 +83,8 @@ class SimpleRoleDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'users' => [
 			'name' => 'users',
@@ -95,6 +99,8 @@ class SimpleRoleDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'singularType' => '\App\Dto\SimpleUserBasicDto',
 			'singularNullable' => false,
 			'singularTypeHint' => '\App\Dto\SimpleUserBasicDto',
@@ -151,16 +157,22 @@ class SimpleRoleDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['name'])) {
-			$this->name = $data['name'];
+			/** @var string|null $value */
+			$value = $data['name'];
+			$this->name = $value;
 			$this->_touchedFields['name'] = true;
 		}
 		if (isset($data['users'])) {
 			$collection = [];
-			foreach ($data['users'] as $key => $item) {
+			/** @var array $dataItems */
+			$dataItems = $data['users'];
+			foreach ($dataItems as $key => $item) {
 				if (is_array($item)) {
 					$item = new \App\Dto\SimpleUserBasicDto($item, true);
 				}

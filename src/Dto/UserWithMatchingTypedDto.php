@@ -89,6 +89,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'username' => [
 			'name' => 'username',
@@ -103,6 +105,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'email' => [
 			'name' => 'email',
@@ -117,6 +121,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'created' => [
 			'name' => 'created',
@@ -131,6 +137,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'isClass' => true,
 			'enum' => null,
 		],
@@ -147,6 +155,8 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -206,15 +216,21 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['username'])) {
-			$this->username = $data['username'];
+			/** @var string|null $value */
+			$value = $data['username'];
+			$this->username = $value;
 			$this->_touchedFields['username'] = true;
 		}
 		if (isset($data['email'])) {
-			$this->email = $data['email'];
+			/** @var string|null $value */
+			$value = $data['email'];
+			$this->email = $value;
 			$this->_touchedFields['email'] = true;
 		}
 		if (isset($data['created'])) {
@@ -231,6 +247,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 			if (is_array($value)) {
 				$value = new \App\Dto\MatchingDataDto($value, true);
 			}
+			/** @var ?\App\Dto\MatchingDataDto $value */
 			$this->_matchingData = $value;
 			$this->_touchedFields['_matchingData'] = true;
 		}

@@ -78,6 +78,8 @@ class RepoDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -92,6 +94,8 @@ class RepoDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'private' => [
 			'name' => 'private',
@@ -106,6 +110,8 @@ class RepoDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'owner' => [
 			'name' => 'owner',
@@ -120,6 +126,8 @@ class RepoDto extends AbstractDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -176,15 +184,21 @@ class RepoDto extends AbstractDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['name'])) {
-			$this->name = $data['name'];
+			/** @var string $value */
+			$value = $data['name'];
+			$this->name = $value;
 			$this->_touchedFields['name'] = true;
 		}
 		if (isset($data['htmlUrl'])) {
-			$this->htmlUrl = $data['htmlUrl'];
+			/** @var string $value */
+			$value = $data['htmlUrl'];
+			$this->htmlUrl = $value;
 			$this->_touchedFields['htmlUrl'] = true;
 		}
 		if (isset($data['private'])) {
-			$this->private = $data['private'];
+			/** @var bool $value */
+			$value = $data['private'];
+			$this->private = $value;
 			$this->_touchedFields['private'] = true;
 		}
 		if (isset($data['owner'])) {
@@ -192,6 +206,7 @@ class RepoDto extends AbstractDto {
 			if (is_array($value)) {
 				$value = new \Sandbox\Dto\Github\UserDto($value, true);
 			}
+			/** @var \Sandbox\Dto\Github\UserDto $value */
 			$this->owner = $value;
 			$this->_touchedFields['owner'] = true;
 		}

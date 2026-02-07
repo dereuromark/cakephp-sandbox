@@ -89,6 +89,8 @@ class PostDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'title' => [
 			'name' => 'title',
@@ -103,6 +105,8 @@ class PostDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'content' => [
 			'name' => 'content',
@@ -117,6 +121,8 @@ class PostDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'slug' => [
 			'name' => 'slug',
@@ -131,6 +137,8 @@ class PostDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'tags' => [
 			'name' => 'tags',
@@ -145,6 +153,8 @@ class PostDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'singularType' => '\App\Dto\TagDto',
 			'singularNullable' => false,
 			'singularTypeHint' => '\App\Dto\TagDto',
@@ -207,24 +217,34 @@ class PostDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['title'])) {
-			$this->title = $data['title'];
+			/** @var string|null $value */
+			$value = $data['title'];
+			$this->title = $value;
 			$this->_touchedFields['title'] = true;
 		}
 		if (isset($data['content'])) {
-			$this->content = $data['content'];
+			/** @var string|null $value */
+			$value = $data['content'];
+			$this->content = $value;
 			$this->_touchedFields['content'] = true;
 		}
 		if (isset($data['slug'])) {
-			$this->slug = $data['slug'];
+			/** @var string|null $value */
+			$value = $data['slug'];
+			$this->slug = $value;
 			$this->_touchedFields['slug'] = true;
 		}
 		if (isset($data['tags'])) {
 			$collection = [];
-			foreach ($data['tags'] as $key => $item) {
+			/** @var array $dataItems */
+			$dataItems = $data['tags'];
+			foreach ($dataItems as $key => $item) {
 				if (is_array($item)) {
 					$item = new \App\Dto\TagDto($item, true);
 				}

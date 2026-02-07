@@ -56,6 +56,8 @@ class SimpleRoleBasicDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'name' => [
 			'name' => 'name',
@@ -70,6 +72,8 @@ class SimpleRoleBasicDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -120,11 +124,15 @@ class SimpleRoleBasicDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['name'])) {
-			$this->name = $data['name'];
+			/** @var string|null $value */
+			$value = $data['name'];
+			$this->name = $value;
 			$this->_touchedFields['name'] = true;
 		}
 	}

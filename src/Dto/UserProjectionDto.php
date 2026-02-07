@@ -89,6 +89,8 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'username' => [
 			'name' => 'username',
@@ -103,6 +105,8 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'email' => [
 			'name' => 'email',
@@ -117,6 +121,8 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'role' => [
 			'name' => 'role',
@@ -131,6 +137,8 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'created' => [
 			'name' => 'created',
@@ -145,6 +153,8 @@ class UserProjectionDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'isClass' => true,
 			'enum' => null,
 		],
@@ -206,15 +216,21 @@ class UserProjectionDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['username'])) {
-			$this->username = $data['username'];
+			/** @var string|null $value */
+			$value = $data['username'];
+			$this->username = $value;
 			$this->_touchedFields['username'] = true;
 		}
 		if (isset($data['email'])) {
-			$this->email = $data['email'];
+			/** @var string|null $value */
+			$value = $data['email'];
+			$this->email = $value;
 			$this->_touchedFields['email'] = true;
 		}
 		if (isset($data['role'])) {
@@ -222,6 +238,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 			if (is_array($value)) {
 				$value = new \App\Dto\RoleProjectionDto($value, true);
 			}
+			/** @var ?\App\Dto\RoleProjectionDto $value */
 			$this->role = $value;
 			$this->_touchedFields['role'] = true;
 		}

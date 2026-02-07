@@ -45,6 +45,8 @@ class MatchingDataDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -96,6 +98,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 			if (is_array($value)) {
 				$value = new \App\Dto\SimpleRoleBasicDto($value, true);
 			}
+			/** @var ?\App\Dto\SimpleRoleBasicDto $value */
 			$this->Roles = $value;
 			$this->_touchedFields['Roles'] = true;
 		}

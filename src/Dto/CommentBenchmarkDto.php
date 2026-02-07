@@ -78,6 +78,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'comment' => [
 			'name' => 'comment',
@@ -92,6 +94,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'articleId' => [
 			'name' => 'articleId',
@@ -106,6 +110,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'userId' => [
 			'name' => 'userId',
@@ -120,6 +126,8 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 	];
 
@@ -176,19 +184,27 @@ class CommentBenchmarkDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['comment'])) {
-			$this->comment = $data['comment'];
+			/** @var string|null $value */
+			$value = $data['comment'];
+			$this->comment = $value;
 			$this->_touchedFields['comment'] = true;
 		}
 		if (isset($data['articleId'])) {
-			$this->articleId = $data['articleId'];
+			/** @var int|null $value */
+			$value = $data['articleId'];
+			$this->articleId = $value;
 			$this->_touchedFields['articleId'] = true;
 		}
 		if (isset($data['userId'])) {
-			$this->userId = $data['userId'];
+			/** @var int|null $value */
+			$value = $data['userId'];
+			$this->userId = $value;
 			$this->_touchedFields['userId'] = true;
 		}
 	}

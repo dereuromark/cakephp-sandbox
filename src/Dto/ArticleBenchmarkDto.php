@@ -89,6 +89,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'title' => [
 			'name' => 'title',
@@ -103,6 +105,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'body' => [
 			'name' => 'body',
@@ -117,6 +121,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'author' => [
 			'name' => 'author',
@@ -131,6 +137,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 		],
 		'comments' => [
 			'name' => 'comments',
@@ -145,6 +153,8 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'factory' => null,
 			'mapFrom' => null,
 			'mapTo' => null,
+			'transformFrom' => null,
+			'transformTo' => null,
 			'singularType' => '\App\Dto\CommentBenchmarkDto',
 			'singularNullable' => false,
 			'singularTypeHint' => '\App\Dto\CommentBenchmarkDto',
@@ -207,15 +217,21 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 	 */
 	protected function setFromArrayFast(array $data): void {
 		if (isset($data['id'])) {
-			$this->id = $data['id'];
+			/** @var int|null $value */
+			$value = $data['id'];
+			$this->id = $value;
 			$this->_touchedFields['id'] = true;
 		}
 		if (isset($data['title'])) {
-			$this->title = $data['title'];
+			/** @var string|null $value */
+			$value = $data['title'];
+			$this->title = $value;
 			$this->_touchedFields['title'] = true;
 		}
 		if (isset($data['body'])) {
-			$this->body = $data['body'];
+			/** @var string|null $value */
+			$value = $data['body'];
+			$this->body = $value;
 			$this->_touchedFields['body'] = true;
 		}
 		if (isset($data['author'])) {
@@ -223,12 +239,15 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			if (is_array($value)) {
 				$value = new \App\Dto\AuthorBenchmarkDto($value, true);
 			}
+			/** @var ?\App\Dto\AuthorBenchmarkDto $value */
 			$this->author = $value;
 			$this->_touchedFields['author'] = true;
 		}
 		if (isset($data['comments'])) {
 			$collection = [];
-			foreach ($data['comments'] as $key => $item) {
+			/** @var array $dataItems */
+			$dataItems = $data['comments'];
+			foreach ($dataItems as $key => $item) {
 				if (is_array($item)) {
 					$item = new \App\Dto\CommentBenchmarkDto($item, true);
 				}

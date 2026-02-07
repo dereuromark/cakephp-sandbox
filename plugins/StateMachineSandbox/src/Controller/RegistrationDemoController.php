@@ -130,6 +130,7 @@ class RegistrationDemoController extends AppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function adminPanel($id = null) {
+		/** @var \StateMachineSandbox\Model\Entity\Registration[] $registrations */
 		$registrations = $this->Registrations->find()
 			->where(['session_id' => $this->request->getSession()->id()])
 			->contain(['Users', 'RegistrationStates'])

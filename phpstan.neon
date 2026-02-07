@@ -21,6 +21,8 @@ parameters:
 
 	excludePaths:
 		- %rootDir%/../../../src/Console/Installer.php
+		- %rootDir%/../../../src/Dto/
+		- %rootDir%/../../../plugins/Sandbox/src/Dto/
 
 	type_perfect:
 		no_mixed_property: true
