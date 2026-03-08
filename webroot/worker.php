@@ -30,9 +30,9 @@ $app = new Application(dirname(__DIR__) . '/config');
 $server = new Server($app);
 
 // Max requests before worker restarts (prevents memory leaks)
-// Add jitter to prevent all workers restarting simultaneously (thundering herd)
+// Add wide jitter to prevent all workers restarting simultaneously (thundering herd)
 $maxRequests = (int)($_SERVER['MAX_REQUESTS'] ?? 500);
-$maxRequests = random_int((int)($maxRequests * 0.8), (int)($maxRequests * 1.2));
+$maxRequests = random_int((int)($maxRequests * 0.5), (int)($maxRequests * 1.5));
 
 // Handle requests in a loop
 for ($requestCount = 0; $requestCount < $maxRequests; $requestCount++) {

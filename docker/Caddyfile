@@ -34,6 +34,6 @@
 
     # PHP handling via FrankenPHP in worker mode
     php_server {
-        worker /app/webroot/worker.php
+        worker /app/webroot/worker.php 12
     }
 }

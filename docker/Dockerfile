@@ -15,7 +15,8 @@ RUN install-php-extensions \
     pdo_mysql \
     zip \
     opcache \
-    gd
+    gd \
+    redis
 
 # PHP configuration
 RUN echo "upload_max_filesize = 32M" >> /usr/local/etc/php/conf.d/uploads.ini \

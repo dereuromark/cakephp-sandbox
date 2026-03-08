@@ -49,6 +49,16 @@ $config = [
 		'logger' => ErrorLogger::class,
 	],
 
+	'Cache' => [
+		'session' => [
+			'className' => \Cake\Cache\Engine\RedisEngine::class,
+			'host' => env('REDIS_HOST', '127.0.0.1'),
+			'database' => 4,
+			'prefix' => 'sandbox_session_',
+			'duration' => '+1 week',
+		],
+	],
+
 	'Log' => [
 		'debug' => [
 			//'className' => 'File',
@@ -95,7 +105,10 @@ $config = [
 	],
 
 	'Session' => [
-		//'defaults' => 'database',
+		'defaults' => 'cache',
+		'handler' => [
+			'config' => 'session',
+		],
 		'timeout' => 60000,
 		'ini' => [
 			'session.cookie_lifetime' => WEEK,
