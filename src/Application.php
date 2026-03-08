@@ -177,15 +177,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 		// Password identifier configuration for multi-column authentication
 		// The username can match EITHER 'username' OR 'email' columns
 		$passwordIdentifier = [
-			'Authentication.Password' => [
-				'fields' => [
-					PasswordIdentifier::CREDENTIAL_USERNAME => ['username', 'email'],
-					PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
-				],
-				'resolver' => [
-					'className' => 'Authentication.Orm',
-					'userModel' => 'Users',
-				],
+			'className' => 'Authentication.Password',
+			'fields' => [
+				PasswordIdentifier::CREDENTIAL_USERNAME => ['username', 'email'],
+				PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
+			],
+			'resolver' => [
+				'className' => 'Authentication.Orm',
+				'userModel' => 'Users',
 			],
 		];
 
