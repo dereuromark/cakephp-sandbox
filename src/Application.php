@@ -8,7 +8,7 @@ use App\Http\Middleware\RedirectMiddleware;
 use Authentication\AuthenticationService;
 use Authentication\AuthenticationServiceInterface;
 use Authentication\AuthenticationServiceProviderInterface;
-use Authentication\Identifier\AbstractIdentifier;
+use Authentication\Identifier\PasswordIdentifier;
 use Authentication\Middleware\AuthenticationMiddleware;
 use Authorization\AuthorizationService;
 use Authorization\AuthorizationServiceInterface;
@@ -170,8 +170,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
 		// Form field mapping (HTML form uses 'login' field)
 		$formFields = [
-			AbstractIdentifier::CREDENTIAL_USERNAME => 'login',
-			AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+			PasswordIdentifier::CREDENTIAL_USERNAME => 'login',
+			PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
 		];
 
 		// Password identifier configuration for multi-column authentication
@@ -179,8 +179,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 		$passwordIdentifier = [
 			'Authentication.Password' => [
 				'fields' => [
-					AbstractIdentifier::CREDENTIAL_USERNAME => ['username', 'email'],
-					AbstractIdentifier::CREDENTIAL_PASSWORD => 'password',
+					PasswordIdentifier::CREDENTIAL_USERNAME => ['username', 'email'],
+					PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
 				],
 				'resolver' => [
 					'className' => 'Authentication.Orm',
