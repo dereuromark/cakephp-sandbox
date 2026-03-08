@@ -69,6 +69,12 @@ class UserDto extends AbstractDto {
 			'mapTo' => null,
 			'transformFrom' => null,
 			'transformTo' => null,
+			'minLength' => null,
+			'maxLength' => null,
+			'min' => null,
+			'max' => null,
+			'pattern' => null,
+			'lazy' => false,
 		],
 		'htmlUrl' => [
 			'name' => 'htmlUrl',
@@ -85,6 +91,12 @@ class UserDto extends AbstractDto {
 			'mapTo' => null,
 			'transformFrom' => null,
 			'transformTo' => null,
+			'minLength' => null,
+			'maxLength' => null,
+			'min' => null,
+			'max' => null,
+			'pattern' => null,
+			'lazy' => false,
 		],
 		'type' => [
 			'name' => 'type',
@@ -101,6 +113,12 @@ class UserDto extends AbstractDto {
 			'mapTo' => null,
 			'transformFrom' => null,
 			'transformTo' => null,
+			'minLength' => null,
+			'maxLength' => null,
+			'min' => null,
+			'max' => null,
+			'pattern' => null,
+			'lazy' => false,
 		],
 	];
 
