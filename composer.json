@@ -139,6 +139,7 @@
 			"cp -R webroot/assets/@fortawesome/fontawesome-free/webfonts webroot/css/ccss/",
 			"cp -R node_modules/bootstrap-icons webroot/assets/",
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/",
+			"mkdir -p plugins/Sandbox/webroot/js",
 			"cp vendor/php-collective/djot/docs/public/assets/hljs-djot.js plugins/Sandbox/webroot/js/"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
