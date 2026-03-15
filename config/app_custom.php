@@ -2,6 +2,7 @@
 
 use App\Healthcheck\Check\Tools\GraphvizCheck;
 use AuditStash\Persister\TablePersister;
+use Cake\Cache\Engine\RedisEngine;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Favorites\View\Helper\FavoritesHelper;
@@ -51,7 +52,7 @@ $config = [
 
 	'Cache' => [
 		'session' => [
-			'className' => \Cake\Cache\Engine\RedisEngine::class,
+			'className' => RedisEngine::class,
 			'host' => env('REDIS_HOST', '127.0.0.1'),
 			'database' => 4,
 			'prefix' => 'sandbox_session_',
