@@ -18,6 +18,6 @@ $action = $this->request->getParam('action');
 	<li class="heading"><?= __('Links') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Djot-PHP', 'https://github.com/php-collective/djot-php', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Djot Spec', 'https://djot.net', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
-	<li class="nav-item"><?= $this->Html->link('Cheatsheet', 'https://htmlpreview.github.io/?https://github.com/jgm/djot/blob/master/doc/cheatsheet.html', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Cheatsheet', 'https://php-collective.github.io/djot-php/guide/syntax.html', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Pandoc', 'https://pandoc.org/', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 </ul>

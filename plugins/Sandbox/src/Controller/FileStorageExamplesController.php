@@ -610,6 +610,7 @@ class FileStorageExamplesController extends SandboxAppController {
 		$fileStorageTable = $this->fetchTable('FileStorage.FileStorage');
 
 		// Find all old files across all collections
+		/** @var list<\FileStorage\Model\Entity\FileStorage> $oldFiles */
 		$oldFiles = $fileStorageTable->find()
 			->where([
 				'FileStorage.model' => 'FileStorage',
