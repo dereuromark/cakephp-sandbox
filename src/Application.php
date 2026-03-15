@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Middleware\CorsMiddleware;
 use App\Http\Middleware\DemoRateLimitMiddleware;
 use App\Http\Middleware\MissingControllerMiddleware;
 use App\Http\Middleware\RedirectMiddleware;
@@ -84,6 +85,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
 			// Handle cached files
 			->add(CacheMiddleware::class)
+
+			// CORS headers for API access from documentation sites
+			->add(CorsMiddleware::class)
 
 			->add(RedirectMiddleware::class)
 
