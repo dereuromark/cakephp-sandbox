@@ -6,8 +6,12 @@
 $action = $this->request->getParam('action');
 ?>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
-	<li class="heading"><?= __('Converters') ?></li>
+	<li class="heading"><?= __('Editors') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Djot Playground', ['action' => 'index'], ['class' => 'nav-link' . ($action === 'index' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('WYSIWYG Editor', ['action' => 'wysiwyg'], ['class' => 'nav-link' . ($action === 'wysiwyg' ? ' active' : '')]) ?></li>
+</ul>
+<ul class="side-nav nav nav-pills nav-stacked flex-column">
+	<li class="heading"><?= __('Converters') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Complex Examples', ['action' => 'complexExamples'], ['class' => 'nav-link' . ($action === 'complexExamples' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Markdown to Djot', ['action' => 'markdownToDjot'], ['class' => 'nav-link' . ($action === 'markdownToDjot' ? ' active' : '')]) ?></li>

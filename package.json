@@ -2,10 +2,11 @@
 	"name": "sandbox",
 	"version": "1.0.0",
 	"dependencies": {
-		"@popperjs/core": "^2.9.2",
 		"@fortawesome/fontawesome-free": "^6.7.2",
+		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
-		"material-symbols": "^0.4.2",
-		"feather-icons": "^4.29.0"
+		"djot-grammars": "github:php-collective/djot-grammars",
+		"feather-icons": "^4.29.0",
+		"material-symbols": "^0.4.2"
 	}
 }
