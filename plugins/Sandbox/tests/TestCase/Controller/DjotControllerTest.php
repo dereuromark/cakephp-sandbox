@@ -609,4 +609,14 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(405);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testWysiwyg(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'wysiwyg']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
 }
