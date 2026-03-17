@@ -510,6 +510,14 @@ DJOT,
 	}
 
 	/**
+	 * WYSIWYG editor using Tiptap with Djot output.
+	 *
+	 * @return void
+	 */
+	public function wysiwyg(): void {
+	}
+
+	/**
 	 * AJAX endpoint for BBCode to Djot conversion.
 	 *
 	 * @return \Cake\Http\Response
