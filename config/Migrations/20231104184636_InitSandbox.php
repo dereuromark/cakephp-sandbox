@@ -19,7 +19,7 @@ class InitSandbox extends BaseMigration {
 				'limit' => 128,
 				'null' => false,
 			])
-			->addColumn('data', 'blob', [
+			->addColumn('data', 'binary', [
 				'default' => null,
 				'limit' => null,
 				'null' => true,
