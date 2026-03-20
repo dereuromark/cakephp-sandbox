@@ -172,15 +172,9 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 			'queryParam' => 'redirect',
 		]);
 
-		// Form field mapping (HTML form uses 'login' field)
-		$formFields = [
-			PasswordIdentifier::CREDENTIAL_USERNAME => 'login',
-			PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
-		];
-
 		// Password identifier configuration for multi-column authentication
 		// The username can match EITHER 'username' OR 'email' columns
-		$passwordIdentifier = [
+		$identifierConfig = [
 			'className' => 'Authentication.Password',
 			'fields' => [
 				PasswordIdentifier::CREDENTIAL_USERNAME => ['username', 'email'],
@@ -193,13 +187,18 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 		];
 
 		// Load the authenticators. Session should be first.
-		$service->loadAuthenticator('Authentication.Session');
+		$service->loadAuthenticator('Authentication.Session', [
+			'identifier' => $identifierConfig,
+		]);
 
 		// Form authenticator for login
 		// Note: No loginUrl restriction to allow multiple login pages (Account and AuthSandbox)
 		$service->loadAuthenticator('Authentication.Form', [
-			'identifier' => $passwordIdentifier,
-			'fields' => $formFields,
+			'identifier' => $identifierConfig,
+			'fields' => [
+				PasswordIdentifier::CREDENTIAL_USERNAME => 'login',
+				PasswordIdentifier::CREDENTIAL_PASSWORD => 'password',
+			],
 		]);
 
 		return $service;

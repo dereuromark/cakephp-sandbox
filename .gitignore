@@ -31,3 +31,4 @@ _*
 /webroot/files/uploads/
 bolt.db
 docker/check_queue.conf
+.phpcs.cache

@@ -9,6 +9,7 @@ use PhpCollective\Infrastructure\Storage\FileInterface;
 use PhpCollective\Infrastructure\Storage\Processor\Image\Operations;
 use PhpCollective\Infrastructure\Storage\Processor\ProcessorInterface;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
+use Spatie\PdfToImage\Enums\OutputFormat;
 use Spatie\PdfToImage\Pdf;
 
 /**
@@ -56,9 +57,9 @@ class PdfThumbnailProcessor implements ProcessorInterface {
 
 		try {
 			$pdf = new Pdf($pdfPath);
-			$pdf->setOutputFormat('jpg')
-				->setPage(1)
-				->saveImage($tempImage);
+			$pdf->format(OutputFormat::Jpg)
+				->selectPage(1)
+				->save($tempImage);
 
 			// Now we need to process this temporary image through the image processor
 			// to generate the configured variants

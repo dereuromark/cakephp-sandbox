@@ -13,6 +13,25 @@ class InitSandbox extends BaseMigration {
 	 * @return void
 	 */
 	public function up(): void {
+		$this->table('sessions', ['id' => false, 'primary_key' => ['id']])
+			->addColumn('id', 'string', [
+				'default' => null,
+				'limit' => 128,
+				'null' => false,
+			])
+			->addColumn('data', 'blob', [
+				'default' => null,
+				'limit' => null,
+				'null' => true,
+			])
+			->addColumn('expires', 'integer', [
+				'default' => null,
+				'limit' => null,
+				'null' => true,
+				'signed' => false,
+			])
+			->create();
+
 		$this->table('bitmasked_records')
 			->addColumn('name', 'string', [
 				'default' => null,
@@ -891,6 +910,7 @@ class InitSandbox extends BaseMigration {
 			)->save();
 		*/
 
+		$this->table('sessions')->drop()->save();
 		$this->table('bitmasked_records')->drop()->save();
 		$this->table('continents')->drop()->save();
 		$this->table('countries')->drop()->save();

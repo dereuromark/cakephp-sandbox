@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="app">
 	<arg value="nps"/>
+	<arg name="cache" value=".phpcs.cache"/>
 
 	<file>src/</file>
 	<file>config/</file>
