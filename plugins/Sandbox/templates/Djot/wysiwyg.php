@@ -23,7 +23,7 @@ $this->append('css');
 .tiptap > * + * {
 	margin-top: 0.75em;
 }
-.tiptap h1, .tiptap h2, .tiptap h3, .tiptap h4, .tiptap h5 {
+.tiptap h1, .tiptap h2, .tiptap h3, .tiptap h4, .tiptap h5, .tiptap h6 {
 	line-height: 1.3;
 	margin-top: 0.75em;
 	margin-bottom: 0.5em;
@@ -33,6 +33,7 @@ $this->append('css');
 .tiptap h3 { font-size: 1.25em; }
 .tiptap h4 { font-size: 1.1em; }
 .tiptap h5 { font-size: 1em; font-weight: 600; }
+.tiptap h6 { font-size: 0.9em; font-weight: 600; color: #6c757d; }
 .tiptap p {
 	margin: 0;
 }
@@ -332,14 +333,15 @@ $this->end();
 			<button type="button" class="btn btn-outline-secondary" data-cmd="subscript" title="Subscript ~text~">x₂</button>
 		</div>
 		<div class="divider"></div>
-		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading1" title="Heading 1 (Ctrl+Alt+1)">H1</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading2" title="Heading 2 (Ctrl+Alt+2)">H2</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading3" title="Heading 3 (Ctrl+Alt+3)">H3</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading4" title="Heading 4 (Ctrl+Alt+4)">H4</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading5" title="Heading 5 (Ctrl+Alt+5)">H5</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="paragraph" title="Paragraph (Ctrl+Alt+0)">¶</button>
-		</div>
+		<select class="form-select form-select-sm" id="blockType" style="width: auto; min-width: 110px;" title="Block type">
+			<option value="paragraph">Paragraph</option>
+			<option value="heading1">Heading 1</option>
+			<option value="heading2">Heading 2</option>
+			<option value="heading3">Heading 3</option>
+			<option value="heading4">Heading 4</option>
+			<option value="heading5">Heading 5</option>
+			<option value="heading6">Heading 6</option>
+		</select>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bulletList" title="Bullet list"><i class="bi bi-list-ul"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="orderedList" title="Ordered list"><i class="bi bi-list-ol"></i></button>
@@ -520,7 +522,7 @@ $this->end();
 						</table>
 						<h6 class="text-muted mb-2">Headings</h6>
 						<table class="table table-sm table-borderless mb-3">
-							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1-5</kbd></td><td>Heading 1-5</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1-6</kbd></td><td>Heading 1-6</td></tr>
 							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd></td><td>Paragraph</td></tr>
 						</table>
 					</div>
@@ -681,11 +683,6 @@ function updateToolbarState() {
 			case 'djotDelete': isActive = editor.isActive('djotDelete'); break;
 			case 'superscript': isActive = editor.isActive('superscript'); break;
 			case 'subscript': isActive = editor.isActive('subscript'); break;
-			case 'heading1': isActive = editor.isActive('heading', { level: 1 }); break;
-			case 'heading2': isActive = editor.isActive('heading', { level: 2 }); break;
-			case 'heading3': isActive = editor.isActive('heading', { level: 3 }); break;
-			case 'heading4': isActive = editor.isActive('heading', { level: 4 }); break;
-			case 'heading5': isActive = editor.isActive('heading', { level: 5 }); break;
 			case 'bulletList': isActive = editor.isActive('bulletList'); break;
 			case 'orderedList': isActive = editor.isActive('orderedList'); break;
 			case 'taskList': isActive = editor.isActive('taskList'); break;
@@ -696,6 +693,16 @@ function updateToolbarState() {
 
 		btn.classList.toggle('is-active', isActive);
 	});
+
+	// Update block type dropdown
+	const blockType = document.getElementById('blockType');
+	if (editor.isActive('heading', { level: 1 })) blockType.value = 'heading1';
+	else if (editor.isActive('heading', { level: 2 })) blockType.value = 'heading2';
+	else if (editor.isActive('heading', { level: 3 })) blockType.value = 'heading3';
+	else if (editor.isActive('heading', { level: 4 })) blockType.value = 'heading4';
+	else if (editor.isActive('heading', { level: 5 })) blockType.value = 'heading5';
+	else if (editor.isActive('heading', { level: 6 })) blockType.value = 'heading6';
+	else blockType.value = 'paragraph';
 }
 
 function updateCodeLanguageDropdown() {
@@ -758,6 +765,17 @@ document.getElementById('codeLanguage').addEventListener('change', (e) => {
 	}
 });
 
+// Block type dropdown (headings/paragraph)
+document.getElementById('blockType').addEventListener('change', (e) => {
+	const value = e.target.value;
+	if (value === 'paragraph') {
+		editor.chain().focus().setParagraph().run();
+	} else {
+		const level = parseInt(value.replace('heading', ''));
+		editor.chain().focus().toggleHeading({ level }).run();
+	}
+});
+
 // Table controls
 document.querySelectorAll('#table-controls button[data-table-cmd]').forEach(btn => {
 	btn.addEventListener('click', () => {
@@ -787,12 +805,6 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'djotDelete': editor.chain().focus().toggleDjotDelete().run(); break;
 			case 'superscript': editor.chain().focus().toggleSuperscript().run(); break;
 			case 'subscript': editor.chain().focus().toggleSubscript().run(); break;
-			case 'heading1': editor.chain().focus().toggleHeading({ level: 1 }).run(); break;
-			case 'heading2': editor.chain().focus().toggleHeading({ level: 2 }).run(); break;
-			case 'heading3': editor.chain().focus().toggleHeading({ level: 3 }).run(); break;
-			case 'heading4': editor.chain().focus().toggleHeading({ level: 4 }).run(); break;
-			case 'heading5': editor.chain().focus().toggleHeading({ level: 5 }).run(); break;
-			case 'paragraph': editor.chain().focus().setParagraph().run(); break;
 			case 'bulletList': editor.chain().focus().toggleBulletList().run(); break;
 			case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
 			case 'taskList': editor.chain().focus().toggleTaskList().run(); break;
