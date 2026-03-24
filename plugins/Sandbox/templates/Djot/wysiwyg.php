@@ -25,8 +25,8 @@ $this->append('css');
 }
 .tiptap h1, .tiptap h2, .tiptap h3, .tiptap h4, .tiptap h5, .tiptap h6 {
 	line-height: 1.3;
-	margin-top: 0.75em;
-	margin-bottom: 0.5em;
+	padding-top: 0.75em;
+	padding-bottom: 0.5em;
 }
 .tiptap h1 { font-size: 1.8em; }
 .tiptap h2 { font-size: 1.5em; }
@@ -117,6 +117,27 @@ $this->append('css');
 .tiptap abbr {
 	text-decoration: underline dotted;
 	cursor: help;
+}
+/* Hard breaks - show a subtle symbol */
+.tiptap .hard-break {
+	display: inline;
+	color: #adb5bd;
+	font-size: 0.75em;
+	user-select: none;
+}
+/* Definition lists */
+.tiptap dl.djot-definition-list {
+	margin: 1em 0;
+}
+.tiptap dl.djot-definition-list dt {
+	font-weight: 600;
+	margin-top: 0.5em;
+}
+.tiptap dl.djot-definition-list dd {
+	margin-left: 1.5em;
+	margin-bottom: 0.5em;
+	padding-left: 0.5em;
+	border-left: 2px solid #dee2e6;
 }
 /* Tables */
 .tiptap table {
@@ -359,6 +380,7 @@ $this->end();
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bulletList" title="Bullet list"><i class="bi bi-list-ul"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="orderedList" title="Ordered list"><i class="bi bi-list-ol"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="taskList" title="Task list"><i class="bi bi-check2-square"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="definitionList" title="Definition list"><i class="bi bi-card-list"></i></button>
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="blockquote" title="Blockquote"><i class="bi bi-quote"></i></button>
@@ -525,16 +547,17 @@ $this->end();
 			</div>
 			<div class="modal-body py-2">
 				<div class="mb-2">
-					<label for="abbrTitle" class="form-label small mb-1">Full text / expansion</label>
-					<input type="text" class="form-control form-control-sm" id="abbrTitle" placeholder="e.g. HyperText Markup Language">
+					<label for="abbrText" class="form-label small mb-1">Abbreviation</label>
+					<input type="text" class="form-control form-control-sm" id="abbrText" placeholder="e.g. HTML">
 				</div>
-				<div class="small text-muted">
-					Selected text becomes the abbreviation, this is the expansion shown on hover.
+				<div class="mb-2">
+					<label for="abbrTitle" class="form-label small mb-1">Full text (shown on hover)</label>
+					<input type="text" class="form-control form-control-sm" id="abbrTitle" placeholder="e.g. HyperText Markup Language">
 				</div>
 			</div>
 			<div class="modal-footer py-2">
 				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
-				<button type="button" class="btn btn-sm btn-primary" id="insertAbbrBtn">Apply</button>
+				<button type="button" class="btn btn-sm btn-primary" id="insertAbbrBtn">Insert</button>
 			</div>
 		</div>
 	</div>
@@ -573,10 +596,18 @@ $this->end();
 							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd></td><td>Code block</td></tr>
 						</table>
 						<h6 class="text-muted mb-2">General</h6>
-						<table class="table table-sm table-borderless">
+						<table class="table table-sm table-borderless mb-3">
 							<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo</td></tr>
 							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>Redo</td></tr>
 							<tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Select all</td></tr>
+							<tr><td><kbd>Shift</kbd>+<kbd>Enter</kbd></td><td>Hard break ↵</td></tr>
+						</table>
+						<h6 class="text-muted mb-2">Definition Lists</h6>
+						<table class="table table-sm table-borderless">
+							<tr><td><kbd>Enter</kbd> (in term)</td><td>Go to definition</td></tr>
+							<tr><td><kbd>Shift</kbd>+<kbd>Enter</kbd> (term)</td><td>Add another term</td></tr>
+							<tr><td><kbd>Shift</kbd>+<kbd>Enter</kbd> (def)</td><td>Add another definition</td></tr>
+							<tr><td><kbd>Enter</kbd> (empty def)</td><td>New term+def pair</td></tr>
 						</table>
 					</div>
 				</div>
@@ -610,6 +641,7 @@ $this->end();
 		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
 		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
+		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"@djot/djot": "https://esm.sh/@djot/djot@0"
 	}
 }
@@ -622,8 +654,8 @@ import * as djot from '@djot/djot';
 
 // Import DjotKit and serializer from djot-grammars package (installed via npm, copied by composer assets)
 // Cache-busting version parameter
-import { DjotKit } from '/sandbox/js/tiptap/djot-kit.js?v=2';
-import { serializeToDjot } from '/sandbox/js/tiptap/serializer.js?v=2';
+import { DjotKit } from '/sandbox/js/tiptap/djot-kit.js?v=9';
+import { serializeToDjot } from '/sandbox/js/tiptap/serializer.js?v=5';
 
 const initialContent = `
 	<h1>Djot WYSIWYG Demo</h1>
@@ -660,6 +692,14 @@ echo "Hello, Djot!";</code></pre>
 	<div class="djot-div tip">
 		<p>This is a tip container using the <code>DjotDiv</code> extension.</p>
 	</div>
+
+	<h2>Definition List</h2>
+	<dl>
+		<dt>Djot</dt>
+		<dd><p>A modern markup language with clean syntax.</p></dd>
+		<dt>Tiptap</dt>
+		<dd><p>A headless editor framework for the web.</p></dd>
+	</dl>
 
 	<p>Edit the content above and see the Djot output below!</p>
 `;
@@ -724,6 +764,7 @@ function updateToolbarState() {
 			case 'bulletList': isActive = editor.isActive('bulletList'); break;
 			case 'orderedList': isActive = editor.isActive('orderedList'); break;
 			case 'taskList': isActive = editor.isActive('taskList'); break;
+			case 'definitionList': isActive = editor.isActive('definitionList'); break;
 			case 'blockquote': isActive = editor.isActive('blockquote'); break;
 			case 'codeBlock': isActive = editor.isActive('codeBlock'); break;
 			case 'link': isActive = editor.isActive('link'); break;
@@ -844,15 +885,30 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'djotDelete': editor.chain().focus().toggleDjotDelete().run(); break;
 			case 'superscript': editor.chain().focus().toggleSuperscript().run(); break;
 			case 'subscript': editor.chain().focus().toggleSubscript().run(); break;
-			case 'abbr':
+			case 'abbr': {
+				// If cursor is inside an abbreviation, expand selection to full mark
+				if (editor.isActive('djotAbbreviation')) {
+					editor.chain().focus().extendMarkRange('djotAbbreviation').run();
+				}
+				// Pre-fill with selected text and existing title if any (get fresh selection after extend)
+				const abbrSel = editor.state.selection;
+				const abbrSelectedText = editor.state.doc.textBetween(abbrSel.from, abbrSel.to);
+				document.getElementById('abbrText').value = abbrSelectedText || '';
+				// Check if selection has existing abbreviation mark
+				const abbrAttrs = editor.getAttributes('djotAbbreviation');
+				document.getElementById('abbrTitle').value = abbrAttrs?.title || '';
 				new bootstrap.Modal(document.getElementById('abbrModal')).show();
 				break;
+			}
 			case 'clearFormat':
 				editor.chain().focus().unsetAllMarks().clearNodes().run();
 				break;
 			case 'bulletList': editor.chain().focus().toggleBulletList().run(); break;
 			case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
 			case 'taskList': editor.chain().focus().toggleTaskList().run(); break;
+			case 'definitionList':
+				editor.chain().focus().insertDefinitionList().run();
+				break;
 			case 'blockquote': editor.chain().focus().toggleBlockquote().run(); break;
 			case 'codeBlock':
 				editor.chain().focus().toggleCodeBlock().run();
@@ -948,19 +1004,30 @@ document.getElementById('insertVideoBtn').addEventListener('click', () => {
 
 // Abbreviation modal
 document.getElementById('insertAbbrBtn').addEventListener('click', () => {
-	const title = document.getElementById('abbrTitle').value.trim();
-	if (title) {
-		// Wrap selection in abbr tag using a custom mark or insertContent
+	const abbrText = document.getElementById('abbrText').value.trim();
+	const abbrTitle = document.getElementById('abbrTitle').value.trim();
+	if (abbrText && abbrTitle) {
 		const { from, to } = editor.state.selection;
-		const text = editor.state.doc.textBetween(from, to);
-		if (text) {
+		const hasSelection = from !== to;
+
+		// Build the abbr HTML
+		const abbrHtml = `<abbr title="${abbrTitle.replace(/"/g, '&quot;')}">${abbrText}</abbr>`;
+
+		if (hasSelection) {
+			// Replace selection with abbr
 			editor.chain().focus()
 				.deleteSelection()
-				.insertContent(`<abbr title="${title}">${text}</abbr>`)
+				.insertContent(abbrHtml, { parseOptions: { preserveWhitespace: true } })
+				.run();
+		} else {
+			// Just insert at cursor
+			editor.chain().focus()
+				.insertContent(abbrHtml, { parseOptions: { preserveWhitespace: true } })
 				.run();
 		}
 	}
 	bootstrap.Modal.getInstance(document.getElementById('abbrModal')).hide();
+	document.getElementById('abbrText').value = '';
 	document.getElementById('abbrTitle').value = '';
 });
 
