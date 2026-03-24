@@ -362,8 +362,11 @@ $this->end();
 		</div>
 		<div class="divider"></div>
 		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-secondary" data-cmd="undo" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="redo" title="Redo"><i class="bi bi-arrow-clockwise"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="undo" title="Undo (Ctrl+Z)"><i class="bi bi-arrow-counterclockwise"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="redo" title="Redo (Ctrl+Shift+Z)"><i class="bi bi-arrow-clockwise"></i></button>
+		</div>
+		<div class="btn-group btn-group-sm" role="group">
+			<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#shortcutsModal" title="Keyboard shortcuts"><i class="bi bi-keyboard"></i></button>
 		</div>
 	</div>
 	<div id="tiptap-editor"></div>
@@ -493,6 +496,54 @@ $this->end();
 			<div class="modal-footer py-2">
 				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-sm btn-primary" id="insertVideoBtn">Insert</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="shortcutsModal" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header py-2">
+				<h5 class="modal-title"><i class="bi bi-keyboard me-2"></i>Keyboard Shortcuts</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body py-2">
+				<div class="row">
+					<div class="col-6">
+						<h6 class="text-muted mb-2">Text Formatting</h6>
+						<table class="table table-sm table-borderless mb-3">
+							<tr><td><kbd>Ctrl</kbd>+<kbd>B</kbd></td><td>Bold</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>I</kbd></td><td>Italic</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>E</kbd></td><td>Code</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></td><td>Strikethrough</td></tr>
+						</table>
+						<h6 class="text-muted mb-2">Headings</h6>
+						<table class="table table-sm table-borderless mb-3">
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1-5</kbd></td><td>Heading 1-5</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>0</kbd></td><td>Paragraph</td></tr>
+						</table>
+					</div>
+					<div class="col-6">
+						<h6 class="text-muted mb-2">Lists & Blocks</h6>
+						<table class="table table-sm table-borderless mb-3">
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>7</kbd></td><td>Ordered list</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd></td><td>Bullet list</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>9</kbd></td><td>Task list</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd></td><td>Blockquote</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd></td><td>Code block</td></tr>
+						</table>
+						<h6 class="text-muted mb-2">General</h6>
+						<table class="table table-sm table-borderless">
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td>Undo</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Z</kbd></td><td>Redo</td></tr>
+							<tr><td><kbd>Ctrl</kbd>+<kbd>A</kbd></td><td>Select all</td></tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer py-2">
+				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
