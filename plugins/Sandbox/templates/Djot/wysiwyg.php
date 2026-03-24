@@ -643,7 +643,7 @@ $this->end();
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"@djot/djot": "https://esm.sh/@djot/djot@0",
-		"djot-grammars/": "https://esm.sh/gh/php-collective/djot-grammars@main/tiptap/"
+		"djot-grammars/": "https://esm.sh/gh/php-collective/djot-grammars@master/tiptap/"
 	}
 }
 </script>
