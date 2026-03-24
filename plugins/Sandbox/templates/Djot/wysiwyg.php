@@ -23,7 +23,7 @@ $this->append('css');
 .tiptap > * + * {
 	margin-top: 0.75em;
 }
-.tiptap h1, .tiptap h2, .tiptap h3 {
+.tiptap h1, .tiptap h2, .tiptap h3, .tiptap h4, .tiptap h5 {
 	line-height: 1.3;
 	margin-top: 0.75em;
 	margin-bottom: 0.5em;
@@ -31,6 +31,8 @@ $this->append('css');
 .tiptap h1 { font-size: 1.8em; }
 .tiptap h2 { font-size: 1.5em; }
 .tiptap h3 { font-size: 1.25em; }
+.tiptap h4 { font-size: 1.1em; }
+.tiptap h5 { font-size: 1em; font-weight: 600; }
 .tiptap p {
 	margin: 0;
 }
@@ -190,8 +192,8 @@ $this->append('css');
 	max-width: 100%;
 	border-radius: 8px;
 }
-/* Floating language selector */
-.code-language-selector {
+/* Floating controls (language selector, table controls) */
+.floating-control {
 	position: absolute;
 	z-index: 100;
 	background: #fff;
@@ -200,16 +202,24 @@ $this->append('css');
 	padding: 4px 8px;
 	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-.code-language-selector select {
+.floating-control select {
 	min-width: 120px;
 	font-size: 12px;
 	padding: 2px 24px 2px 8px;
 	border: none;
 	background: transparent;
 }
-.code-language-selector select:focus {
+.floating-control select:focus {
 	outline: none;
 	box-shadow: none;
+}
+.table-controls {
+	display: flex;
+	gap: 4px;
+}
+.table-controls .btn {
+	padding: 2px 6px;
+	font-size: 11px;
 }
 .tiptap p.is-editor-empty:first-child::before {
 	content: attr(data-placeholder);
@@ -323,10 +333,12 @@ $this->end();
 		</div>
 		<div class="divider"></div>
 		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading1">H1</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading2">H2</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="heading3">H3</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="paragraph" title="Paragraph">¶</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="heading1" title="Heading 1 (Ctrl+Alt+1)">H1</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="heading2" title="Heading 2 (Ctrl+Alt+2)">H2</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="heading3" title="Heading 3 (Ctrl+Alt+3)">H3</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="heading4" title="Heading 4 (Ctrl+Alt+4)">H4</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="heading5" title="Heading 5 (Ctrl+Alt+5)">H5</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="paragraph" title="Paragraph (Ctrl+Alt+0)">¶</button>
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bulletList" title="Bullet list"><i class="bi bi-list-ul"></i></button>
@@ -347,11 +359,6 @@ $this->end();
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="insertTable" title="Insert table"><i class="bi bi-table"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="addColumnAfter" title="Add column">+Col</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteColumn" title="Delete column">-Col</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="addRowAfter" title="Add row">+Row</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteRow" title="Delete row">-Row</button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteTable" title="Delete table"><i class="bi bi-x-lg"></i></button>
 		</div>
 		<div class="divider"></div>
 		<div class="btn-group btn-group-sm" role="group">
@@ -360,8 +367,16 @@ $this->end();
 		</div>
 	</div>
 	<div id="tiptap-editor"></div>
+	<!-- Floating table controls -->
+	<div id="table-controls" class="floating-control table-controls" style="display: none;">
+		<button type="button" class="btn btn-sm btn-outline-secondary" data-table-cmd="addColumnAfter" title="Add column">+Col</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" data-table-cmd="deleteColumn" title="Delete column">-Col</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" data-table-cmd="addRowAfter" title="Add row">+Row</button>
+		<button type="button" class="btn btn-sm btn-outline-secondary" data-table-cmd="deleteRow" title="Delete row">-Row</button>
+		<button type="button" class="btn btn-sm btn-outline-danger" data-table-cmd="deleteTable" title="Delete table"><i class="bi bi-trash"></i></button>
+	</div>
 	<!-- Floating language selector for code blocks -->
-	<div id="code-language-selector" class="code-language-selector" style="display: none;">
+	<div id="code-language-selector" class="floating-control" style="display: none;">
 		<select class="form-select form-select-sm" id="codeLanguage">
 			<option value="">Plain text</option>
 			<option value="php">PHP</option>
@@ -576,6 +591,7 @@ editor = new Editor({
 	onSelectionUpdate: () => {
 		updateToolbarState();
 		updateCodeLanguageDropdown();
+		updateTableControls();
 	},
 });
 
@@ -617,6 +633,8 @@ function updateToolbarState() {
 			case 'heading1': isActive = editor.isActive('heading', { level: 1 }); break;
 			case 'heading2': isActive = editor.isActive('heading', { level: 2 }); break;
 			case 'heading3': isActive = editor.isActive('heading', { level: 3 }); break;
+			case 'heading4': isActive = editor.isActive('heading', { level: 4 }); break;
+			case 'heading5': isActive = editor.isActive('heading', { level: 5 }); break;
 			case 'bulletList': isActive = editor.isActive('bulletList'); break;
 			case 'orderedList': isActive = editor.isActive('orderedList'); break;
 			case 'taskList': isActive = editor.isActive('taskList'); break;
@@ -660,12 +678,48 @@ function updateCodeLanguageDropdown() {
 	}
 }
 
+function updateTableControls() {
+	const controls = document.getElementById('table-controls');
+
+	if (editor.isActive('table')) {
+		// Find the table element
+		const tableEl = document.querySelector('#tiptap-editor .tiptap table');
+		if (tableEl) {
+			const editorEl = document.getElementById('tiptap-editor');
+			const editorRect = editorEl.getBoundingClientRect();
+			const tableRect = tableEl.getBoundingClientRect();
+
+			// Position above the table, aligned to its right edge
+			controls.style.display = 'flex';
+			controls.style.top = (tableRect.top - editorRect.top + editorEl.offsetTop - controls.offsetHeight - 4) + 'px';
+			controls.style.left = (tableRect.right - editorRect.left - controls.offsetWidth - 8) + 'px';
+		}
+	} else {
+		controls.style.display = 'none';
+	}
+}
+
 // Code language dropdown - only update when already in code block
 document.getElementById('codeLanguage').addEventListener('change', (e) => {
 	const language = e.target.value;
 	if (editor.isActive('codeBlock')) {
 		editor.chain().focus().updateAttributes('codeBlock', { language }).run();
 	}
+});
+
+// Table controls
+document.querySelectorAll('#table-controls button[data-table-cmd]').forEach(btn => {
+	btn.addEventListener('click', () => {
+		const cmd = btn.dataset.tableCmd;
+		switch (cmd) {
+			case 'addColumnAfter': editor.chain().focus().addColumnAfter().run(); break;
+			case 'deleteColumn': editor.chain().focus().deleteColumn().run(); break;
+			case 'addRowAfter': editor.chain().focus().addRowAfter().run(); break;
+			case 'deleteRow': editor.chain().focus().deleteRow().run(); break;
+			case 'deleteTable': editor.chain().focus().deleteTable().run(); break;
+		}
+		updateTableControls();
+	});
 });
 
 // Toolbar commands
@@ -685,6 +739,8 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'heading1': editor.chain().focus().toggleHeading({ level: 1 }).run(); break;
 			case 'heading2': editor.chain().focus().toggleHeading({ level: 2 }).run(); break;
 			case 'heading3': editor.chain().focus().toggleHeading({ level: 3 }).run(); break;
+			case 'heading4': editor.chain().focus().toggleHeading({ level: 4 }).run(); break;
+			case 'heading5': editor.chain().focus().toggleHeading({ level: 5 }).run(); break;
 			case 'paragraph': editor.chain().focus().setParagraph().run(); break;
 			case 'bulletList': editor.chain().focus().toggleBulletList().run(); break;
 			case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
@@ -713,21 +769,6 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 				break;
 			case 'insertTable':
 				editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run();
-				break;
-			case 'addColumnAfter':
-				editor.chain().focus().addColumnAfter().run();
-				break;
-			case 'deleteColumn':
-				editor.chain().focus().deleteColumn().run();
-				break;
-			case 'addRowAfter':
-				editor.chain().focus().addRowAfter().run();
-				break;
-			case 'deleteRow':
-				editor.chain().focus().deleteRow().run();
-				break;
-			case 'deleteTable':
-				editor.chain().focus().deleteTable().run();
 				break;
 			case 'undo': editor.chain().focus().undo().run(); break;
 			case 'redo': editor.chain().focus().redo().run(); break;
