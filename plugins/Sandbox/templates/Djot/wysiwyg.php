@@ -173,6 +173,44 @@ $this->append('css');
 	border-left-color: #dc3545;
 	background: #f8d7da;
 }
+.tiptap .djot-div.note {
+	border-left-color: #0d6efd;
+	background: #cfe2ff;
+}
+.tiptap .djot-div.info {
+	border-left-color: #6c757d;
+	background: #e9ecef;
+}
+/* Video embeds */
+.tiptap .wpdjot-embed {
+	margin: 1em 0;
+	padding: 0;
+}
+.tiptap .wpdjot-embed iframe {
+	max-width: 100%;
+	border-radius: 8px;
+}
+/* Floating language selector */
+.code-language-selector {
+	position: absolute;
+	z-index: 100;
+	background: #fff;
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	padding: 4px 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.code-language-selector select {
+	min-width: 120px;
+	font-size: 12px;
+	padding: 2px 24px 2px 8px;
+	border: none;
+	background: transparent;
+}
+.code-language-selector select:focus {
+	outline: none;
+	box-shadow: none;
+}
 .tiptap p.is-editor-empty:first-child::before {
 	content: attr(data-placeholder);
 	color: #adb5bd;
@@ -298,23 +336,34 @@ $this->end();
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="blockquote" title="Blockquote"><i class="bi bi-quote"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="codeBlock" title="Code block"><i class="bi bi-file-code"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="divBlock" title="Div container">:::div</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="divBlock" title="Container block (tip, warning, etc)"><i class="bi bi-card-text"></i></button>
 		</div>
 		<div class="divider"></div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="link" title="Link"><i class="bi bi-link-45deg"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="image" title="Image"><i class="bi bi-image"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="video" title="Video embed"><i class="bi bi-play-btn"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="horizontalRule" title="Horizontal rule"><i class="bi bi-hr"></i></button>
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="insertTable" title="Insert table"><i class="bi bi-table"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="addColumnAfter" title="Add column">+Col</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteColumn" title="Delete column">-Col</button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="addRowAfter" title="Add row">+Row</button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteRow" title="Delete row">-Row</button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="deleteTable" title="Delete table"><i class="bi bi-x-lg"></i></button>
 		</div>
 		<div class="divider"></div>
-		<select class="form-select form-select-sm" id="codeLanguage" title="Code block language" style="width: auto;">
-			<option value="">Language...</option>
+		<div class="btn-group btn-group-sm" role="group">
+			<button type="button" class="btn btn-outline-secondary" data-cmd="undo" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="redo" title="Redo"><i class="bi bi-arrow-clockwise"></i></button>
+		</div>
+	</div>
+	<div id="tiptap-editor"></div>
+	<!-- Floating language selector for code blocks -->
+	<div id="code-language-selector" class="code-language-selector" style="display: none;">
+		<select class="form-select form-select-sm" id="codeLanguage">
+			<option value="">Plain text</option>
 			<option value="php">PHP</option>
 			<option value="javascript">JavaScript</option>
 			<option value="typescript">TypeScript</option>
@@ -324,14 +373,18 @@ $this->end();
 			<option value="sql">SQL</option>
 			<option value="bash">Bash</option>
 			<option value="json">JSON</option>
+			<option value="xml">XML</option>
+			<option value="yaml">YAML</option>
+			<option value="markdown">Markdown</option>
+			<option value="ruby">Ruby</option>
+			<option value="go">Go</option>
+			<option value="rust">Rust</option>
+			<option value="java">Java</option>
+			<option value="c">C</option>
+			<option value="cpp">C++</option>
+			<option value="csharp">C#</option>
 		</select>
-		<div class="divider"></div>
-		<div class="btn-group btn-group-sm" role="group">
-			<button type="button" class="btn btn-outline-secondary" data-cmd="undo" title="Undo"><i class="bi bi-arrow-counterclockwise"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="redo" title="Redo"><i class="bi bi-arrow-clockwise"></i></button>
-		</div>
 	</div>
-	<div id="tiptap-editor"></div>
 </div>
 
 <div class="output-panel mt-4">
@@ -406,6 +459,30 @@ $this->end();
 	</div>
 </div>
 
+<div class="modal fade" id="videoModal" tabindex="-1">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header py-2">
+				<h5 class="modal-title">Insert Video</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body py-2">
+				<div class="mb-2">
+					<label for="videoUrl" class="form-label small mb-1">Video URL</label>
+					<input type="text" class="form-control form-control-sm" id="videoUrl" placeholder="https://www.youtube.com/watch?v=...">
+				</div>
+				<div class="small text-muted">
+					Supported: YouTube, Vimeo
+				</div>
+			</div>
+			<div class="modal-footer py-2">
+				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-sm btn-primary" id="insertVideoBtn">Insert</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 </div>
 
 <script type="importmap">
@@ -413,6 +490,7 @@ $this->end();
 	"imports": {
 		"@tiptap/core": "https://esm.sh/@tiptap/core@2",
 		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@2",
+		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@2",
 		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@2",
 		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
 		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
@@ -425,6 +503,8 @@ $this->end();
 		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
 		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
 		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
+		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
+		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@djot/djot": "https://esm.sh/@djot/djot@0"
 	}
 }
@@ -436,8 +516,9 @@ import Placeholder from '@tiptap/extension-placeholder';
 import * as djot from '@djot/djot';
 
 // Import DjotKit and serializer from djot-grammars package (installed via npm, copied by composer assets)
-import { DjotKit } from '/sandbox/js/tiptap/djot-kit.js';
-import { serializeToDjot } from '/sandbox/js/tiptap/serializer.js';
+// Cache-busting version parameter
+import { DjotKit } from '/sandbox/js/tiptap/djot-kit.js?v=2';
+import { serializeToDjot } from '/sandbox/js/tiptap/serializer.js?v=2';
 
 const initialContent = `
 	<h1>Djot WYSIWYG Demo</h1>
@@ -455,6 +536,13 @@ const initialContent = `
 	<h2>Code Example</h2>
 	<pre><code class="language-php">&lt;?php
 echo "Hello, Djot!";</code></pre>
+
+	<h2>Task List</h2>
+	<ul class="task-list">
+		<li><input type="checkbox" checked> Learn Djot syntax</li>
+		<li><input type="checkbox" checked> Try the WYSIWYG editor</li>
+		<li><input type="checkbox"> Share with others</li>
+	</ul>
 
 	<h2>Table</h2>
 	<table>
@@ -542,20 +630,41 @@ function updateToolbarState() {
 }
 
 function updateCodeLanguageDropdown() {
+	const selector = document.getElementById('code-language-selector');
 	const select = document.getElementById('codeLanguage');
+
 	if (editor.isActive('codeBlock')) {
+		// Show and position the floating selector
 		const attrs = editor.getAttributes('codeBlock');
 		select.value = attrs.language || '';
+
+		// Find the current code block element in the editor
+		const { $from } = editor.state.selection;
+		const codeBlockPos = $from.before($from.depth);
+		const domNode = editor.view.nodeDOM(codeBlockPos);
+
+		if (domNode && domNode.tagName === 'PRE') {
+			const editorEl = document.getElementById('tiptap-editor');
+			const editorRect = editorEl.getBoundingClientRect();
+			const codeRect = domNode.getBoundingClientRect();
+
+			// Position above the code block, aligned to its right edge
+			selector.style.display = 'block';
+			selector.style.top = (codeRect.top - editorRect.top + editorEl.offsetTop - selector.offsetHeight - 4) + 'px';
+			selector.style.left = (codeRect.right - editorRect.left - selector.offsetWidth - 8) + 'px';
+			selector.style.right = 'auto';
+		}
+	} else {
+		// Hide when not in code block
+		selector.style.display = 'none';
 	}
 }
 
-// Code language dropdown
+// Code language dropdown - only update when already in code block
 document.getElementById('codeLanguage').addEventListener('change', (e) => {
 	const language = e.target.value;
 	if (editor.isActive('codeBlock')) {
 		editor.chain().focus().updateAttributes('codeBlock', { language }).run();
-	} else if (language) {
-		editor.chain().focus().toggleCodeBlock({ language }).run();
 	}
 });
 
@@ -582,8 +691,7 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'taskList': editor.chain().focus().toggleTaskList().run(); break;
 			case 'blockquote': editor.chain().focus().toggleBlockquote().run(); break;
 			case 'codeBlock':
-				const lang = document.getElementById('codeLanguage').value;
-				editor.chain().focus().toggleCodeBlock({ language: lang }).run();
+				editor.chain().focus().toggleCodeBlock().run();
 				break;
 			case 'horizontalRule': editor.chain().focus().setHorizontalRule().run(); break;
 			case 'link':
@@ -597,6 +705,9 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'image':
 				new bootstrap.Modal(document.getElementById('imageModal')).show();
 				break;
+			case 'video':
+				new bootstrap.Modal(document.getElementById('videoModal')).show();
+				break;
 			case 'divBlock':
 				new bootstrap.Modal(document.getElementById('divModal')).show();
 				break;
@@ -606,8 +717,14 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'addColumnAfter':
 				editor.chain().focus().addColumnAfter().run();
 				break;
+			case 'deleteColumn':
+				editor.chain().focus().deleteColumn().run();
+				break;
 			case 'addRowAfter':
 				editor.chain().focus().addRowAfter().run();
+				break;
+			case 'deleteRow':
+				editor.chain().focus().deleteRow().run();
 				break;
 			case 'deleteTable':
 				editor.chain().focus().deleteTable().run();
@@ -663,6 +780,47 @@ document.getElementById('insertDivBtn').addEventListener('click', () => {
 	editor.chain().focus().setDjotDiv({ class: type }).run();
 	bootstrap.Modal.getInstance(document.getElementById('divModal')).hide();
 });
+
+// Video modal
+document.getElementById('insertVideoBtn').addEventListener('click', () => {
+	const url = document.getElementById('videoUrl').value.trim();
+	if (url) {
+		const embedData = getVideoEmbed(url);
+		if (embedData) {
+			editor.chain().focus().setDjotEmbed({
+				src: url,
+				html: embedData.html,
+			}).run();
+		}
+	}
+	bootstrap.Modal.getInstance(document.getElementById('videoModal')).hide();
+	document.getElementById('videoUrl').value = '';
+});
+
+// Convert video URL to embed HTML
+function getVideoEmbed(url) {
+	// YouTube
+	let match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/);
+	if (match) {
+		const videoId = match[1];
+		return {
+			html: `<iframe width="560" height="315" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+		};
+	}
+
+	// Vimeo
+	match = url.match(/vimeo\.com\/(\d+)/);
+	if (match) {
+		const videoId = match[1];
+		return {
+			html: `<iframe width="560" height="315" src="https://player.vimeo.com/video/${videoId}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`,
+		};
+	}
+
+	// Unknown - just use the URL as-is
+	alert('Unsupported video URL. Please use YouTube or Vimeo.');
+	return null;
+}
 
 // Initial render
 updateOutput();
