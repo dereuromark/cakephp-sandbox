@@ -643,7 +643,8 @@ $this->end();
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"@djot/djot": "https://esm.sh/@djot/djot@0",
-		"djot-grammars/": "https://esm.sh/gh/php-collective/djot-grammars@master/tiptap/"
+		"djot-grammars/djot-kit.js": "https://esm.sh/gh/php-collective/djot-grammars@master/tiptap/djot-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break",
+		"djot-grammars/serializer.js": "https://esm.sh/gh/php-collective/djot-grammars@master/tiptap/serializer.js"
 	}
 }
 </script>
