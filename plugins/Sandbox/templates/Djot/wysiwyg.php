@@ -642,7 +642,8 @@ $this->end();
 		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
-		"@djot/djot": "https://esm.sh/@djot/djot@0"
+		"@djot/djot": "https://esm.sh/@djot/djot@0",
+		"djot-grammars/": "https://esm.sh/gh/php-collective/djot-grammars@main/tiptap/"
 	}
 }
 </script>
@@ -652,10 +653,9 @@ import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import * as djot from '@djot/djot';
 
-// Import DjotKit and serializer from djot-grammars package (installed via npm, copied by composer assets)
-// Cache-busting version parameter
-import { DjotKit } from '/sandbox/js/tiptap/djot-kit.js?v=9';
-import { serializeToDjot } from '/sandbox/js/tiptap/serializer.js?v=5';
+// Import DjotKit and serializer from djot-grammars via jsdelivr CDN
+import { DjotKit } from 'djot-grammars/djot-kit.js';
+import { serializeToDjot } from 'djot-grammars/serializer.js';
 
 const initialContent = `
 	<h1>Djot WYSIWYG Demo</h1>
