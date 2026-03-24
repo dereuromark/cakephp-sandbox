@@ -110,6 +110,14 @@ $this->append('css');
 	font-size: 0.75em;
 	vertical-align: sub;
 }
+.tiptap s {
+	text-decoration: line-through;
+	color: #6c757d;
+}
+.tiptap abbr {
+	text-decoration: underline dotted;
+	cursor: help;
+}
 /* Tables */
 .tiptap table {
 	border-collapse: collapse;
@@ -327,10 +335,15 @@ $this->end();
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="highlight" title="Highlight {=text=}"><i class="bi bi-pencil-fill"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="djotDelete" title="Delete {-text-}"><i class="bi bi-type-strikethrough"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="strike" title="Strikethrough {~text~}"><i class="bi bi-type-strikethrough"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="djotDelete" title="Delete {-text-}"><i class="bi bi-dash-lg"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="djotInsert" title="Insert {+text+}"><i class="bi bi-plus-lg"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="superscript" title="Superscript ^text^">x²</button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="subscript" title="Subscript ~text~">x₂</button>
+		</div>
+		<div class="btn-group btn-group-sm" role="group">
+			<button type="button" class="btn btn-outline-secondary" data-cmd="abbr" title="Abbreviation"><i class="bi bi-chat-square-text"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="clearFormat" title="Clear formatting"><i class="bi bi-eraser"></i></button>
 		</div>
 		<div class="divider"></div>
 		<select class="form-select form-select-sm" id="blockType" style="width: auto; min-width: 110px;" title="Block type">
@@ -498,6 +511,30 @@ $this->end();
 			<div class="modal-footer py-2">
 				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
 				<button type="button" class="btn btn-sm btn-primary" id="insertVideoBtn">Insert</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="abbrModal" tabindex="-1">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header py-2">
+				<h5 class="modal-title">Abbreviation</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body py-2">
+				<div class="mb-2">
+					<label for="abbrTitle" class="form-label small mb-1">Full text / expansion</label>
+					<input type="text" class="form-control form-control-sm" id="abbrTitle" placeholder="e.g. HyperText Markup Language">
+				</div>
+				<div class="small text-muted">
+					Selected text becomes the abbreviation, this is the expansion shown on hover.
+				</div>
+			</div>
+			<div class="modal-footer py-2">
+				<button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-sm btn-primary" id="insertAbbrBtn">Apply</button>
 			</div>
 		</div>
 	</div>
@@ -679,6 +716,7 @@ function updateToolbarState() {
 			case 'italic': isActive = editor.isActive('italic'); break;
 			case 'code': isActive = editor.isActive('code'); break;
 			case 'highlight': isActive = editor.isActive('highlight'); break;
+			case 'strike': isActive = editor.isActive('strike'); break;
 			case 'djotInsert': isActive = editor.isActive('djotInsert'); break;
 			case 'djotDelete': isActive = editor.isActive('djotDelete'); break;
 			case 'superscript': isActive = editor.isActive('superscript'); break;
@@ -801,10 +839,17 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'italic': editor.chain().focus().toggleItalic().run(); break;
 			case 'code': editor.chain().focus().toggleCode().run(); break;
 			case 'highlight': editor.chain().focus().toggleHighlight().run(); break;
+			case 'strike': editor.chain().focus().toggleStrike().run(); break;
 			case 'djotInsert': editor.chain().focus().toggleDjotInsert().run(); break;
 			case 'djotDelete': editor.chain().focus().toggleDjotDelete().run(); break;
 			case 'superscript': editor.chain().focus().toggleSuperscript().run(); break;
 			case 'subscript': editor.chain().focus().toggleSubscript().run(); break;
+			case 'abbr':
+				new bootstrap.Modal(document.getElementById('abbrModal')).show();
+				break;
+			case 'clearFormat':
+				editor.chain().focus().unsetAllMarks().clearNodes().run();
+				break;
 			case 'bulletList': editor.chain().focus().toggleBulletList().run(); break;
 			case 'orderedList': editor.chain().focus().toggleOrderedList().run(); break;
 			case 'taskList': editor.chain().focus().toggleTaskList().run(); break;
@@ -899,6 +944,24 @@ document.getElementById('insertVideoBtn').addEventListener('click', () => {
 	}
 	bootstrap.Modal.getInstance(document.getElementById('videoModal')).hide();
 	document.getElementById('videoUrl').value = '';
+});
+
+// Abbreviation modal
+document.getElementById('insertAbbrBtn').addEventListener('click', () => {
+	const title = document.getElementById('abbrTitle').value.trim();
+	if (title) {
+		// Wrap selection in abbr tag using a custom mark or insertContent
+		const { from, to } = editor.state.selection;
+		const text = editor.state.doc.textBetween(from, to);
+		if (text) {
+			editor.chain().focus()
+				.deleteSelection()
+				.insertContent(`<abbr title="${title}">${text}</abbr>`)
+				.run();
+		}
+	}
+	bootstrap.Modal.getInstance(document.getElementById('abbrModal')).hide();
+	document.getElementById('abbrTitle').value = '';
 });
 
 // Convert video URL to embed HTML
