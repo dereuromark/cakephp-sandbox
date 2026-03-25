@@ -83,7 +83,8 @@
 		"dereuromark/cakephp-bouncer": "dev-master",
 		"php-collective/djot": "dev-master",
 		"ezyang/htmlpurifier": "^4.19",
-		"josbeir/cakephp-mercure": "^0.2.0"
+		"josbeir/cakephp-mercure": "^0.2.0",
+		"php-collective/toml": "dev-master"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.5.0",
