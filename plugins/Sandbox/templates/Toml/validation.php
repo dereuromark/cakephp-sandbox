@@ -3,6 +3,10 @@
  * @var \App\View\AppView $this
  */
 
+echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/toml.min.js');
+
 $defaultToml = <<<'TOML'
 # TOML Validation Demo
 # This file has intentional errors - fix them!
@@ -138,7 +142,7 @@ TOML,
 		</div>
 		<div class="card-body py-2">
 			<p class="text-muted small mb-2"><?= h($example['description']) ?></p>
-			<pre class="bg-light p-2 border rounded mb-0"><code><?= h($example['code']) ?></code></pre>
+			<pre class="bg-light p-2 border rounded mb-0"><code class="language-toml"><?= h($example['code']) ?></code></pre>
 		</div>
 	</div>
 </div>
@@ -213,6 +217,11 @@ TOML,
 			input.scrollIntoView({ behavior: 'smooth', block: 'center' });
 			validate();
 		});
+	});
+
+	// Initialize syntax highlighting
+	document.querySelectorAll('code.language-toml').forEach(el => {
+		hljs.highlightElement(el);
 	});
 })();
 <?php $this->Html->scriptEnd(); ?>
