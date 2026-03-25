@@ -187,10 +187,23 @@ TOML;
 		convert();
 	}
 
+	function loadFromUrl() {
+		const params = new URLSearchParams(window.location.search);
+		const encoded = params.get('d');
+		if (encoded) {
+			try {
+				input.value = atob(encoded);
+			} catch (e) {
+				console.error('Failed to decode URL parameter');
+			}
+		}
+	}
+
 	input.addEventListener('input', convert);
 	modeDecode.addEventListener('change', updateMode);
 	modeEncode.addEventListener('change', updateMode);
 
+	loadFromUrl();
 	convert();
 })();
 <?php $this->Html->scriptEnd(); ?>
