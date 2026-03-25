@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dc65b0586eb7749920df2c922814681",
+    "content-hash": "67045a8d3f768ce0097677bc5029bf52",
     "packages": [
         {
             "name": "brick/math",
@@ -6386,12 +6386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "68bd7ce7cd336813e158f56813b5f0fa028ea0a8"
+                "reference": "3b52a11e2c3972fb699d6fb1575c3e5efaafeba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/68bd7ce7cd336813e158f56813b5f0fa028ea0a8",
-                "reference": "68bd7ce7cd336813e158f56813b5f0fa028ea0a8",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/3b52a11e2c3972fb699d6fb1575c3e5efaafeba5",
+                "reference": "3b52a11e2c3972fb699d6fb1575c3e5efaafeba5",
                 "shasum": ""
             },
             "require": {
@@ -6440,7 +6440,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-23T22:05:27+00:00"
+            "time": "2026-03-24T23:23:29+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -6716,6 +6716,63 @@
                 "source": "https://github.com/php-collective/file-storage-image-processor/tree/master"
             },
             "time": "2026-03-08T17:12:52+00:00"
+        },
+        {
+            "name": "php-collective/toml",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-collective/toml.git",
+                "reference": "fbd1aba41795597754db247370227b7b1625bfda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-collective/toml/zipball/fbd1aba41795597754db247370227b7b1625bfda",
+                "reference": "fbd1aba41795597754db247370227b7b1625bfda",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/polyfill-mbstring": "^1.30"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.5 || ^12.5 || ^13.0"
+            },
+            "suggest": {
+                "ext-ds": "For improved performance with Set-based key tracking"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PhpCollective\\Toml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer"
+                }
+            ],
+            "description": "A TOML parser and encoder for PHP with AST access and collected parse errors",
+            "homepage": "https://github.com/php-collective/toml",
+            "keywords": [
+                "config",
+                "configuration",
+                "encoder",
+                "parser",
+                "toml"
+            ],
+            "support": {
+                "issues": "https://github.com/php-collective/toml/issues",
+                "source": "https://github.com/php-collective/toml/tree/master"
+            },
+            "time": "2026-03-25T01:46:41+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -10842,11 +10899,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.42",
+            "version": "2.1.43",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1279e1ce86ba768f0780c9d889852b4e02ff40d0",
-                "reference": "1279e1ce86ba768f0780c9d889852b4e02ff40d0",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d01bebe3edfd4d49b9666ee5b8271ddca561042f",
+                "reference": "d01bebe3edfd4d49b9666ee5b8271ddca561042f",
                 "shasum": ""
             },
             "require": {
@@ -10891,7 +10948,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-17T14:58:32+00:00"
+            "time": "2026-03-24T20:40:50+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -12789,6 +12846,7 @@
         "php-collective/djot": 20,
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
+        "php-collective/toml": 20,
         "spryker/cakephp-statemachine": 20,
         "symfony/filesystem": 0
     },
