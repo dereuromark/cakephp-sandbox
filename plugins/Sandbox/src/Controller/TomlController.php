@@ -120,12 +120,13 @@ class TomlController extends SandboxAppController {
 		if ($toml) {
 			try {
 				$parseResult = Toml::tryParse($toml);
-				if ($parseResult->errors) {
-					foreach ($parseResult->errors as $error) {
+				$errors = $parseResult->getErrors();
+				if ($errors) {
+					foreach ($errors as $error) {
 						$result['errors'][] = [
-							'message' => $error->getMessage(),
-							'line' => $error->getLine(),
-							'column' => $error->getColumn(),
+							'message' => $error->message,
+							'line' => $error->span->line,
+							'column' => $error->span->column,
 						];
 					}
 				} else {
