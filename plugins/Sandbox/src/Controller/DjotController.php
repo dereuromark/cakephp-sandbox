@@ -233,7 +233,7 @@ class DjotController extends SandboxAppController {
 
 							break;
 						case 'admonition':
-							$converter->addExtension(new AdmonitionExtension());
+							$converter->addExtension(new AdmonitionExtension(icons: true));
 
 							break;
 						case 'tabs':
@@ -529,33 +529,42 @@ DJOT,
 			],
 			'admonition' => [
 				'name' => 'AdmonitionExtension',
-				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success, caution) into semantic HTML with ARIA roles and auto-generated titles. Supports collapsible blocks.',
+				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success) into semantic HTML with ARIA roles, emoji icons, and auto-generated titles. Supports collapsible blocks.',
 				'class' => AdmonitionExtension::class,
 				'example_djot' => <<<'DJOT'
 ::: note
-This is a simple note.
+This is a simple note with 📝 icon.
+:::
+
+::: info
+Here's some informational content with ℹ️ icon.
+:::
+
+::: tip
+Here's a helpful tip with 💡 icon.
 :::
 
 {title="Watch Out!"}
 ::: warning
-Be careful with this operation!
-:::
-
-::: tip
-Here's a helpful tip for you.
-:::
-
-{collapsible}
-::: info
-Click to expand this collapsible info block.
+Be careful with this operation! (⚠️ icon)
 :::
 
 ::: danger
-This action cannot be undone!
+This action cannot be undone! (🚨 icon)
+:::
+
+::: success
+Operation completed successfully! (✅ icon)
+:::
+
+{collapsible}
+::: tip
+Click to expand this collapsible tip block.
 :::
 DJOT,
 				'options' => [
-					'types' => "['note', 'tip', 'warning', 'danger', 'info', 'success', 'caution']",
+					'types' => "['note', 'tip', 'warning', 'danger', 'info', 'success']",
+					'icons' => 'true',
 					'defaultTitle' => 'true',
 					'titleTag' => "'p'",
 					'titleClass' => "'admonition-title'",
@@ -622,7 +631,7 @@ DJOT,
 			],
 			'frontmatter' => [
 				'name' => 'FrontmatterExtension',
-				'description' => 'Parses YAML/TOML/JSON frontmatter blocks at the start of documents. The format identifier (yaml, toml, json) distinguishes from thematic breaks (---).',
+				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (yaml, neon, toml, ...) is optional.',
 				'class' => FrontmatterExtension::class,
 				'example_djot' => <<<'DJOT'
 ---yaml

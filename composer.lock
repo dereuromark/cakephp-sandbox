@@ -6386,12 +6386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "9b09975d8d2a2cbc831f92db34eeac45f22f1d5d"
+                "reference": "2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/9b09975d8d2a2cbc831f92db34eeac45f22f1d5d",
-                "reference": "9b09975d8d2a2cbc831f92db34eeac45f22f1d5d",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4",
+                "reference": "2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4",
                 "shasum": ""
             },
             "require": {
@@ -6440,7 +6440,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-26T16:18:13+00:00"
+            "time": "2026-03-26T17:30:06+00:00"
         },
         {
             "name": "php-collective/dto",

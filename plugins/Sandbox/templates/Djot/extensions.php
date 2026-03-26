@@ -108,7 +108,7 @@ $html = $converter->convert($djot);
 // Retrieve the frontmatter after conversion
 $fm = $ext->getFrontmatter();
 if ($fm !== null) {
-    $format = $fm->getFormat();  // 'yaml', 'toml', 'json'
+    $format = $fm->getFormat();  // 'yaml', 'toml', 'neon'
     $content = $fm->getContent(); // Raw string content
 }</code></pre>
 				<?php } else { ?>
@@ -501,6 +501,13 @@ Or contact @alice and @bob directly.</textarea>
 .html-output .admonition-title {
 	font-weight: bold;
 	margin: 0 0 0.5rem 0;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.html-output .admonition-icon {
+	font-size: 1.1em;
+	flex-shrink: 0;
 }
 .html-output .admonition.note {
 	border-color: #0d6efd;
@@ -526,10 +533,6 @@ Or contact @alice and @bob directly.</textarea>
 	border-color: #198754;
 	background-color: #d1e7dd;
 }
-.html-output .admonition.caution {
-	border-color: #fd7e14;
-	background-color: #ffe5d0;
-}
 /* Collapsible admonitions */
 .html-output details.admonition {
 	border-left: 4px solid;
@@ -541,6 +544,12 @@ Or contact @alice and @bob directly.</textarea>
 	cursor: pointer;
 	font-weight: bold;
 	margin-bottom: 0.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.html-output details.admonition summary .admonition-icon {
+	font-size: 1.1em;
 }
 .html-output details.admonition[open] summary {
 	margin-bottom: 0.5rem;
