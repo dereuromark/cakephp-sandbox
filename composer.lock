@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "a2b68c432036717fe3712b31a143d3ec29df1443"
+                "reference": "7da391775e36f6654cdc793a11c6737853e4188a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a2b68c432036717fe3712b31a143d3ec29df1443",
-                "reference": "a2b68c432036717fe3712b31a143d3ec29df1443",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/7da391775e36f6654cdc793a11c6737853e4188a",
+                "reference": "7da391775e36f6654cdc793a11c6737853e4188a",
                 "shasum": ""
             },
             "require": {
@@ -425,20 +425,20 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-03-20T00:56:30+00:00"
+            "time": "2026-03-26T03:29:40+00:00"
         },
         {
             "name": "cakephp/chronos",
-            "version": "3.3.3",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "960e7ecd5709fc186309b0733a18beecb37fd37e"
+                "reference": "608bbc32c59f74a0ea3358c20436c8dd94536e7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/960e7ecd5709fc186309b0733a18beecb37fd37e",
-                "reference": "960e7ecd5709fc186309b0733a18beecb37fd37e",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/608bbc32c59f74a0ea3358c20436c8dd94536e7c",
+                "reference": "608bbc32c59f74a0ea3358c20436c8dd94536e7c",
                 "shasum": ""
             },
             "require": {
@@ -484,7 +484,7 @@
                 "issues": "https://github.com/cakephp/chronos/issues",
                 "source": "https://github.com/cakephp/chronos"
             },
-            "time": "2026-03-14T17:03:37+00:00"
+            "time": "2026-03-25T23:05:15+00:00"
         },
         {
             "name": "cakephp/debug_kit",
@@ -2540,12 +2540,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "5d49fd4b7fc1d25883daca80aa798d91e5e98493"
+                "reference": "5f4528674a9b6ac20410f45a87271a669b63732d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/5d49fd4b7fc1d25883daca80aa798d91e5e98493",
-                "reference": "5d49fd4b7fc1d25883daca80aa798d91e5e98493",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/5f4528674a9b6ac20410f45a87271a669b63732d",
+                "reference": "5f4528674a9b6ac20410f45a87271a669b63732d",
                 "shasum": ""
             },
             "require": {
@@ -2606,7 +2606,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage/tree/master"
             },
-            "time": "2026-03-15T15:35:39+00:00"
+            "time": "2026-03-25T17:15:59+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -6386,12 +6386,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "0c866c80f2bbc8e7b07dd26cc47fd445a68f1e9f"
+                "reference": "9b09975d8d2a2cbc831f92db34eeac45f22f1d5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/0c866c80f2bbc8e7b07dd26cc47fd445a68f1e9f",
-                "reference": "0c866c80f2bbc8e7b07dd26cc47fd445a68f1e9f",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/9b09975d8d2a2cbc831f92db34eeac45f22f1d5d",
+                "reference": "9b09975d8d2a2cbc831f92db34eeac45f22f1d5d",
                 "shasum": ""
             },
             "require": {
@@ -6440,7 +6440,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T08:31:54+00:00"
+            "time": "2026-03-26T16:18:13+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -6723,12 +6723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/toml.git",
-                "reference": "a2d5929b69c722c2cf560ea3fe48b716205a52fe"
+                "reference": "54521865d8b3a05470464c0dd93983dc94874e23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/toml/zipball/a2d5929b69c722c2cf560ea3fe48b716205a52fe",
-                "reference": "a2d5929b69c722c2cf560ea3fe48b716205a52fe",
+                "url": "https://api.github.com/repos/php-collective/toml/zipball/54521865d8b3a05470464c0dd93983dc94874e23",
+                "reference": "54521865d8b3a05470464c0dd93983dc94874e23",
                 "shasum": ""
             },
             "require": {
@@ -6744,6 +6744,9 @@
                 "ext-ds": "For improved performance with Set-based key tracking"
             },
             "default-branch": true,
+            "bin": [
+                "bin/toml-validate"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6773,7 +6776,7 @@
                 "issues": "https://github.com/php-collective/toml/issues",
                 "source": "https://github.com/php-collective/toml/tree/master"
             },
-            "time": "2026-03-25T06:36:12+00:00"
+            "time": "2026-03-25T09:44:54+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -10174,12 +10177,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "53167bb3d01a147eec05ff177a50ff9b91a40bab"
+                "reference": "1be6bbe2b100f156f3e3f452329ff5476430752f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/53167bb3d01a147eec05ff177a50ff9b91a40bab",
-                "reference": "53167bb3d01a147eec05ff177a50ff9b91a40bab",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/1be6bbe2b100f156f3e3f452329ff5476430752f",
+                "reference": "1be6bbe2b100f156f3e3f452329ff5476430752f",
                 "shasum": ""
             },
             "require": {
@@ -10245,7 +10248,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-17T17:30:37+00:00"
+            "time": "2026-03-25T20:58:20+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -10900,11 +10903,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.43",
+            "version": "2.1.44",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/d01bebe3edfd4d49b9666ee5b8271ddca561042f",
-                "reference": "d01bebe3edfd4d49b9666ee5b8271ddca561042f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
                 "shasum": ""
             },
             "require": {
@@ -10949,7 +10952,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-24T20:40:50+00:00"
+            "time": "2026-03-25T17:34:21+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",

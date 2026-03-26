@@ -11,14 +11,20 @@ use Djot\Converter\MarkdownToDjot;
 use Djot\DjotConverter;
 use Djot\Exception\ParseException;
 use Djot\Exception\ProfileViolationException;
+use Djot\Extension\AdmonitionExtension;
 use Djot\Extension\AutolinkExtension;
 use Djot\Extension\DefaultAttributesExtension;
 use Djot\Extension\ExternalLinksExtension;
+use Djot\Extension\FrontmatterExtension;
+use Djot\Extension\HeadingLevelShiftExtension;
 use Djot\Extension\HeadingPermalinksExtension;
 use Djot\Extension\MentionsExtension;
+use Djot\Extension\MermaidExtension;
 use Djot\Extension\SemanticSpanExtension;
 use Djot\Extension\SmartQuotesExtension;
 use Djot\Extension\TableOfContentsExtension;
+use Djot\Extension\TabsExtension;
+use Djot\Extension\WikilinksExtension;
 use Djot\Profile;
 use Djot\Renderer\SoftBreakMode;
 use Exception;
@@ -154,6 +160,7 @@ class DjotController extends SandboxAppController {
 		$result = [
 			'html' => '',
 			'toc' => '',
+			'frontmatter' => null,
 			'error' => null,
 		];
 
@@ -161,6 +168,7 @@ class DjotController extends SandboxAppController {
 			try {
 				$converter = new DjotConverter();
 				$tocExtension = null;
+				$frontmatterExtension = null;
 
 				foreach ($enabledExtensions as $ext) {
 					switch ($ext) {
@@ -214,12 +222,52 @@ class DjotController extends SandboxAppController {
 							$converter->addExtension(new SmartQuotesExtension(locale: 'de'));
 
 							break;
+						case 'heading_level_shift':
+							$converter->addExtension(new HeadingLevelShiftExtension(shift: 1));
+
+							break;
+						case 'mermaid':
+							$converter->addExtension(new MermaidExtension());
+
+							break;
+						case 'admonition':
+							$converter->addExtension(new AdmonitionExtension());
+
+							break;
+						case 'tabs':
+							$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_CSS));
+
+							break;
+						case 'tabs_aria':
+							$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_ARIA));
+
+							break;
+						case 'wikilinks':
+							$converter->addExtension(new WikilinksExtension(
+								urlGenerator: fn(string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
+							));
+
+							break;
+						case 'frontmatter':
+							$frontmatterExtension = new FrontmatterExtension();
+							$converter->addExtension($frontmatterExtension);
+
+							break;
 					}
 				}
 
 				$result['html'] = $this->sanitizeExtensionHtml($converter->convert($djot));
 				if ($tocExtension !== null) {
 					$result['toc'] = $tocExtension->getTocHtml();
+				}
+				if ($frontmatterExtension !== null) {
+					$fm = $frontmatterExtension->getFrontmatter();
+					if ($fm !== null) {
+						$result['frontmatter'] = [
+							'format' => $fm->getFormat(),
+							'content' => $fm->getContent(),
+						];
+					}
 				}
 			} catch (ParseException $e) {
 				$result['error'] = $e->getMessage();
@@ -424,6 +472,171 @@ DJOT,
 					'closeSingleQuote' => 'Custom closing single quote',
 				],
 			],
+			'heading_level_shift' => [
+				'name' => 'HeadingLevelShiftExtension',
+				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when h1 is reserved for the page title and document headings should start at h2 for SEO and accessibility.',
+				'class' => HeadingLevelShiftExtension::class,
+				'example_djot' => <<<'DJOT'
+# Main Title (becomes h2)
+
+Introduction paragraph.
+
+## Section (becomes h3)
+
+Section content.
+
+### Subsection (becomes h4)
+
+More details here.
+DJOT,
+				'options' => [
+					'shift' => '1 (1-5, levels capped at h6)',
+				],
+			],
+			'mermaid' => [
+				'name' => 'MermaidExtension',
+				'description' => 'Transforms code blocks with language "mermaid" into Mermaid.js-compatible markup for rendering diagrams. Supports flowcharts, sequence diagrams, class diagrams, and more.',
+				'class' => MermaidExtension::class,
+				'example_djot' => <<<'DJOT'
+``` mermaid
+graph TD;
+    A[Start] --> B{Decision};
+    B -->|Yes| C[Do Something];
+    B -->|No| D[Do Nothing];
+    C --> E[End];
+    D --> E;
+```
+
+``` mermaid
+sequenceDiagram
+    Alice->>Bob: Hello Bob!
+    Bob->>Alice: Hi Alice!
+```
+DJOT,
+				'options' => [
+					'tag' => "'pre' or 'div'",
+					'cssClass' => "'mermaid'",
+					'wrapInFigure' => 'false',
+					'figureClass' => "'mermaid-figure'",
+				],
+			],
+			'admonition' => [
+				'name' => 'AdmonitionExtension',
+				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success, caution) into semantic HTML with ARIA roles and auto-generated titles. Supports collapsible blocks.',
+				'class' => AdmonitionExtension::class,
+				'example_djot' => <<<'DJOT'
+::: note
+This is a simple note.
+:::
+
+{title="Watch Out!"}
+::: warning
+Be careful with this operation!
+:::
+
+::: tip
+Here's a helpful tip for you.
+:::
+
+{collapsible}
+::: info
+Click to expand this collapsible info block.
+:::
+
+::: danger
+This action cannot be undone!
+:::
+DJOT,
+				'options' => [
+					'types' => "['note', 'tip', 'warning', 'danger', 'info', 'success', 'caution']",
+					'defaultTitle' => 'true',
+					'titleTag' => "'p'",
+					'titleClass' => "'admonition-title'",
+					'containerClass' => "'admonition'",
+				],
+			],
+			'tabs' => [
+				'name' => 'TabsExtension',
+				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). Note: Use more colons (::::) for the outer tabs container to properly nest inner tab divs.',
+				'class' => TabsExtension::class,
+				'example_djot' => <<<'DJOT'
+:::: tabs
+
+::: tab
+### Installation
+
+Install the package with Composer:
+
+`composer require php-collective/djot`
+:::
+
+::: tab
+### Usage
+
+Convert Djot to HTML:
+
+`$html = $converter->convert($djot);`
+:::
+
+::: tab
+### Configuration
+
+Configure options as needed.
+:::
+
+::::
+DJOT,
+				'options' => [
+					'mode' => "'css' (default) or 'aria'",
+					'wrapperClass' => "'tabs'",
+					'tabClass' => "'tabs-panel'",
+					'labelClass' => "'tabs-label'",
+					'radioClass' => "'tabs-radio'",
+				],
+			],
+			'wikilinks' => [
+				'name' => 'WikilinksExtension',
+				'description' => 'Parses [[wikilinks]] into navigational links. Supports [[page|display text]] syntax and anchors like [[page#section]]. Common in wiki systems and note-taking apps like Obsidian.',
+				'class' => WikilinksExtension::class,
+				'example_djot' => <<<'DJOT'
+Check out the [[Getting Started]] guide for beginners.
+
+For advanced users, see [[Advanced Topics|the advanced section]].
+
+The [[API Reference#authentication]] section covers auth.
+
+Related: [[Best Practices]], [[FAQ]], [[Troubleshooting]]
+DJOT,
+				'options' => [
+					'urlGenerator' => 'Custom URL generator closure',
+					'cssClass' => "'wikilink'",
+					'newWindow' => 'false',
+				],
+			],
+			'frontmatter' => [
+				'name' => 'FrontmatterExtension',
+				'description' => 'Parses YAML/TOML/JSON frontmatter blocks at the start of documents. The format identifier (yaml, toml, json) distinguishes from thematic breaks (---).',
+				'class' => FrontmatterExtension::class,
+				'example_djot' => <<<'DJOT'
+---yaml
+title: My Article
+author: John Doe
+date: 2024-01-15
+tags:
+  - djot
+  - documentation
+---
+
+# My Article
+
+This is the main content after the frontmatter.
+DJOT,
+				'options' => [
+					'defaultFormat' => "'yaml'",
+					'renderAsComment' => 'false (true renders as HTML comment)',
+					'renderCallback' => 'Custom render function',
+				],
+			],
 		];
 	}
 
@@ -584,8 +797,8 @@ DJOT,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-extensions');
-		$config->set('HTML.DefinitionRev', 3);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre[class],code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],nav[class],input[type|checked|disabled],figure,figcaption,kbd,dfn,abbr[title]');
+		$config->set('HTML.DefinitionRev', 4);
+		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre[class],code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id|role],span[class|id],section[id],nav[class],input[type|name|id|checked|disabled|class],label[for|class],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|open],summary,figure[class],figcaption,kbd,dfn,abbr[title]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
@@ -600,14 +813,27 @@ DJOT,
 			$def->addElement('figure', 'Block', 'Flow', 'Common');
 			$def->addElement('figcaption', 'Block', 'Flow', 'Common');
 			$def->addElement('nav', 'Block', 'Flow', 'Common');
+			$def->addElement('details', 'Block', 'Flow', 'Common', ['open' => 'Bool']);
+			$def->addElement('summary', 'Block', 'Inline', 'Common');
+			$def->addElement('button', 'Inline', 'Inline', 'Common', [
+				'role' => 'Text',
+				'tabindex' => 'Number',
+				'aria-selected' => 'Enum#true,false',
+				'aria-controls' => 'ID',
+			]);
 			$def->addAttribute('a', 'data-username', 'Text');
 			$def->addAttribute('a', 'aria-label', 'Text');
 			$def->addAttribute('img', 'loading', 'Enum#lazy,eager,auto');
 			$def->addAttribute('img', 'decoding', 'Enum#async,sync,auto');
+			$def->addAttribute('div', 'role', 'Text');
 			$def->addElement('input', 'Inline', 'Empty', 'Common', [
-				'type' => 'Enum#checkbox',
+				'type' => 'Enum#checkbox,radio',
+				'name' => 'Text',
 				'checked' => 'Bool',
 				'disabled' => 'Bool',
+			]);
+			$def->addElement('label', 'Inline', 'Inline', 'Common', [
+				'for' => 'CDATA',
 			]);
 		}
 
