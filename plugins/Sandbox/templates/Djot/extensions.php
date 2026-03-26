@@ -142,8 +142,42 @@ $html = $converter->convert($djot);</code></pre>
 					<span class="text-muted">TOC will appear here...</span>
 				</div>
 				<?php } ?>
+				<?php if ($key === 'smart_quotes') { ?>
+				<div class="mt-2 mb-2">
+					<label class="form-label" for="smart-quotes-locale"><code>locale</code>:</label>
+					<select class="form-select form-select-sm smart-quotes-locale" id="smart-quotes-locale" data-extension="<?= h($key) ?>" style="width: auto; display: inline-block;">
+						<option value="en">en - English "..."  '...'</option>
+						<option value="de" selected>de - German „..."  ‚...'</option>
+						<option value="de-CH">de-CH - Swiss «...»  ‹...›</option>
+						<option value="fr">fr - French « ... »  ‹ ... ›</option>
+						<option value="it">it - Italian «...»  "..."</option>
+						<option value="es">es - Spanish «...»  "..."</option>
+						<option value="pt">pt - Portuguese «...»  "..."</option>
+						<option value="nl">nl - Dutch "..."  '...'</option>
+						<option value="pl">pl - Polish „..."  ‚...'</option>
+						<option value="cs">cs - Czech „..."  ‚...'</option>
+						<option value="hu">hu - Hungarian „..."  ‚...'</option>
+						<option value="da">da - Danish „..."  ‚...'</option>
+						<option value="sv">sv - Swedish "..."  '...'</option>
+						<option value="fi">fi - Finnish "..."  '...'</option>
+						<option value="nb">nb - Norwegian «...»  '...'</option>
+						<option value="ru">ru - Russian «...»  „..."</option>
+						<option value="uk">uk - Ukrainian «...»  „..."</option>
+						<option value="ja">ja - Japanese 「...」  『...』</option>
+						<option value="zh">zh - Chinese 「...」  『...』</option>
+					</select>
+				</div>
+				<?php } ?>
 				<?php if ($key === 'frontmatter') { ?>
-				<label class="form-label mt-2">Parsed Frontmatter (via <code>getFrontmatter()</code>):</label>
+				<?php if ($this->Configure->read('debug')) { ?>
+				<div class="form-check mt-2 mb-2">
+					<input class="form-check-input frontmatter-comment-toggle" type="checkbox" id="frontmatter-render-comment" data-extension="<?= h($key) ?>">
+					<label class="form-check-label" for="frontmatter-render-comment">
+						<code>renderAsComment: true</code> <small class="text-muted">(output frontmatter as HTML comment)</small>
+					</label>
+				</div>
+				<?php } ?>
+				<label class="form-label">Parsed Frontmatter (via <code>getFrontmatter()</code>):</label>
 				<div class="border rounded p-3 bg-light frontmatter-output" data-extension="<?= h($key) ?>" style="min-height: 100px;">
 					<span class="text-muted">Frontmatter data will appear here...</span>
 				</div>
@@ -606,21 +640,31 @@ Or contact @alice and @bob directly.</textarea>
 			const rawOutput = document.querySelector(`.raw-html-output[data-extension="${ext}"]`);
 			const tocOutput = document.querySelector(`.toc-output[data-extension="${ext}"]`);
 			const frontmatterOutput = document.querySelector(`.frontmatter-output[data-extension="${ext}"]`);
+			const frontmatterCommentToggle = document.querySelector(`.frontmatter-comment-toggle[data-extension="${ext}"]`);
+			const smartQuotesLocale = document.querySelector(`.smart-quotes-locale[data-extension="${ext}"]`);
 
 			this.disabled = true;
 			this.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Converting...';
 
 			try {
+				const params = new URLSearchParams({
+					djot: input.value,
+					'extensions[]': ext,
+				});
+				if (frontmatterCommentToggle && frontmatterCommentToggle.checked) {
+					params.append('frontmatter_as_comment', '1');
+				}
+				if (smartQuotesLocale) {
+					params.append('smart_quotes_locale', smartQuotesLocale.value);
+				}
+
 				const response = await fetch(convertUrl, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded',
 						'X-Requested-With': 'XMLHttpRequest',
 					},
-					body: new URLSearchParams({
-						djot: input.value,
-						'extensions[]': ext,
-					}),
+					body: params,
 				});
 
 				const result = await response.json();
@@ -630,7 +674,7 @@ Or contact @alice and @bob directly.</textarea>
 					rawOutput.querySelector('code').textContent = 'Error: ' + result.error;
 				} else {
 					htmlOutput.innerHTML = result.html || '<span class="text-muted">No output</span>';
-					rawOutput.querySelector('code').textContent = result.html || 'No output';
+					rawOutput.querySelector('code').textContent = result.rawHtml || result.html || 'No output';
 
 					if (tocOutput && result.toc) {
 						tocOutput.innerHTML = result.toc;

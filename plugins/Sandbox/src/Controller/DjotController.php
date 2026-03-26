@@ -159,6 +159,7 @@ class DjotController extends SandboxAppController {
 
 		$result = [
 			'html' => '',
+			'rawHtml' => '',
 			'toc' => '',
 			'frontmatter' => null,
 			'error' => null,
@@ -219,7 +220,8 @@ class DjotController extends SandboxAppController {
 
 							break;
 						case 'smart_quotes':
-							$converter->addExtension(new SmartQuotesExtension(locale: 'de'));
+							$locale = (string)$this->request->getData('smart_quotes_locale') ?: 'de';
+							$converter->addExtension(new SmartQuotesExtension(locale: $locale));
 
 							break;
 						case 'heading_level_shift':
@@ -244,19 +246,24 @@ class DjotController extends SandboxAppController {
 							break;
 						case 'wikilinks':
 							$converter->addExtension(new WikilinksExtension(
-								urlGenerator: fn(string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
+								urlGenerator: fn (string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
 							));
 
 							break;
 						case 'frontmatter':
-							$frontmatterExtension = new FrontmatterExtension();
+							$renderAsComment = (bool)$this->request->getData('frontmatter_as_comment');
+							$frontmatterExtension = new FrontmatterExtension(renderAsComment: $renderAsComment);
 							$converter->addExtension($frontmatterExtension);
 
 							break;
 					}
 				}
 
-				$result['html'] = $this->sanitizeExtensionHtml($converter->convert($djot));
+				$rawHtml = $converter->convert($djot);
+				$result['html'] = $this->sanitizeExtensionHtml($rawHtml);
+				if (Configure::read('debug')) {
+					$result['rawHtml'] = $rawHtml;
+				}
 				if ($tocExtension !== null) {
 					$result['toc'] = $tocExtension->getTocHtml();
 				}
