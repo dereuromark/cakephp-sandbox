@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "7da391775e36f6654cdc793a11c6737853e4188a"
+                "reference": "05e0ae0a1201f38b96cf3119d4b0b34e13b722d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/7da391775e36f6654cdc793a11c6737853e4188a",
-                "reference": "7da391775e36f6654cdc793a11c6737853e4188a",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/05e0ae0a1201f38b96cf3119d4b0b34e13b722d3",
+                "reference": "05e0ae0a1201f38b96cf3119d4b0b34e13b722d3",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-03-26T03:29:40+00:00"
+            "time": "2026-03-27T06:46:53+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -2744,12 +2744,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "7ade3f8e940569eed5a29c7bd0c6395fa0940d7d"
+                "reference": "c81cfe56967be9fa8f9580a8dcc048c5681af551"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/7ade3f8e940569eed5a29c7bd0c6395fa0940d7d",
-                "reference": "7ade3f8e940569eed5a29c7bd0c6395fa0940d7d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/c81cfe56967be9fa8f9580a8dcc048c5681af551",
+                "reference": "c81cfe56967be9fa8f9580a8dcc048c5681af551",
                 "shasum": ""
             },
             "require": {
@@ -2757,7 +2757,7 @@
                 "php": ">=8.2"
             },
             "require-dev": {
-                "dereuromark/media-embed": "^0.6",
+                "dereuromark/media-embed": "^0.7",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "league/commonmark": "^1.5 || ^2.0",
                 "mjohnson/decoda": "^6.12",
@@ -2798,7 +2798,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-markup/issues",
                 "source": "https://github.com/dereuromark/cakephp-markup"
             },
-            "time": "2026-03-15T15:35:47+00:00"
+            "time": "2026-03-27T09:02:43+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -3609,12 +3609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "901f3eb3f01e5530274eaa937313a5a675188fb4"
+                "reference": "65883e22a7f0f705e6618bb43b4e634615d0e159"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/901f3eb3f01e5530274eaa937313a5a675188fb4",
-                "reference": "901f3eb3f01e5530274eaa937313a5a675188fb4",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/65883e22a7f0f705e6618bb43b4e634615d0e159",
+                "reference": "65883e22a7f0f705e6618bb43b4e634615d0e159",
                 "shasum": ""
             },
             "require": {
@@ -3623,7 +3623,8 @@
             },
             "require-dev": {
                 "fig-r/psr2r-sniffer": "@stable",
-                "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1 || 13.0",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1 || ^13.0",
                 "sebastian/diff": "@stable"
             },
             "default-branch": true,
@@ -3666,7 +3667,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-09T04:07:56+00:00"
+            "time": "2026-03-27T04:16:49+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -6386,12 +6387,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4"
+                "reference": "ea1d99e81b348efafe9656cdf5d6e2b6f0de9adc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4",
-                "reference": "2a62117b1f388cddd6e9db7b5ac0a34f886ee4e4",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/ea1d99e81b348efafe9656cdf5d6e2b6f0de9adc",
+                "reference": "ea1d99e81b348efafe9656cdf5d6e2b6f0de9adc",
                 "shasum": ""
             },
             "require": {
@@ -6440,7 +6441,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-26T17:30:06+00:00"
+            "time": "2026-03-27T18:53:21+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -10625,12 +10626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "a72681bc6f0fdda47cd2e86ec3244562f263d9b6"
+                "reference": "6c2f79f1cec602c751ed853b81a811b752618790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/a72681bc6f0fdda47cd2e86ec3244562f263d9b6",
-                "reference": "a72681bc6f0fdda47cd2e86ec3244562f263d9b6",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/6c2f79f1cec602c751ed853b81a811b752618790",
+                "reference": "6c2f79f1cec602c751ed853b81a811b752618790",
                 "shasum": ""
             },
             "require": {
@@ -10677,7 +10678,7 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2026-03-08T17:12:43+00:00"
+            "time": "2026-03-27T09:01:08+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",

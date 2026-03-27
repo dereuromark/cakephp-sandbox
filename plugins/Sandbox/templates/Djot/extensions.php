@@ -625,6 +625,57 @@ Or contact @alice and @bob directly.</textarea>
 	margin: 1rem 0;
 	text-align: center;
 }
+/* Code group styles */
+.html-output .code-group {
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid #dee2e6;
+	border-radius: 0.375rem;
+	overflow: hidden;
+	margin: 1rem 0;
+}
+.html-output .code-group-radio {
+	display: none;
+}
+.html-output .code-group-label {
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	background-color: #f8f9fa;
+	border-bottom: 2px solid transparent;
+	transition: all 0.2s;
+	font-size: 0.9em;
+}
+.html-output .code-group-label:hover {
+	background-color: #e9ecef;
+}
+.html-output .code-group-radio:checked + .code-group-label {
+	background-color: #1e293b;
+	color: #fff;
+	border-bottom-color: #3b82f6;
+}
+.html-output .code-group-panel {
+	display: none;
+	width: 100%;
+	order: 1;
+	background-color: #1e293b;
+}
+.html-output .code-group-panel pre {
+	margin: 0;
+	padding: 1rem;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+}
+.html-output .code-group-panel code {
+	color: #e2e8f0;
+}
+.html-output .code-group-radio:nth-of-type(1):checked ~ .code-group-panel:nth-of-type(1),
+.html-output .code-group-radio:nth-of-type(2):checked ~ .code-group-panel:nth-of-type(2),
+.html-output .code-group-radio:nth-of-type(3):checked ~ .code-group-panel:nth-of-type(3),
+.html-output .code-group-radio:nth-of-type(4):checked ~ .code-group-panel:nth-of-type(4),
+.html-output .code-group-radio:nth-of-type(5):checked ~ .code-group-panel:nth-of-type(5) {
+	display: block;
+}
 /* Wikilinks styles */
 .html-output .wikilink {
 	color: #0969da;

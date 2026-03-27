@@ -13,6 +13,7 @@ use Djot\Exception\ParseException;
 use Djot\Exception\ProfileViolationException;
 use Djot\Extension\AdmonitionExtension;
 use Djot\Extension\AutolinkExtension;
+use Djot\Extension\CodeGroupExtension;
 use Djot\Extension\DefaultAttributesExtension;
 use Djot\Extension\ExternalLinksExtension;
 use Djot\Extension\FrontmatterExtension;
@@ -242,6 +243,10 @@ class DjotController extends SandboxAppController {
 							break;
 						case 'tabs_aria':
 							$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_ARIA));
+
+							break;
+						case 'code_group':
+							$converter->addExtension(new CodeGroupExtension());
 
 							break;
 						case 'wikilinks':
@@ -608,6 +613,35 @@ DJOT,
 					'tabClass' => "'tabs-panel'",
 					'labelClass' => "'tabs-label'",
 					'radioClass' => "'tabs-radio'",
+				],
+			],
+			'code_group' => [
+				'name' => 'CodeGroupExtension',
+				'description' => 'Transforms code-group divs into tabbed code block interfaces. Labels are extracted from language hints using `[Label]` suffix syntax (e.g., `php [Installation]`), falling back to the language name or "Code N".',
+				'class' => CodeGroupExtension::class,
+				'example_djot' => <<<'DJOT'
+::: code-group
+
+``` php [Composer]
+composer require php-collective/djot
+```
+
+``` bash [NPM]
+npm install @example/djot
+```
+
+``` python [Pip]
+pip install djot
+```
+
+:::
+DJOT,
+				'options' => [
+					'wrapperClass' => "'code-group'",
+					'panelClass' => "'code-group-panel'",
+					'labelClass' => "'code-group-label'",
+					'radioClass' => "'code-group-radio'",
+					'highlighter' => 'Custom syntax highlighter callback',
 				],
 			],
 			'wikilinks' => [
