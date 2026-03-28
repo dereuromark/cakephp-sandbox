@@ -95,8 +95,8 @@ class BuilderController extends AppController {
 
 			$definition = new Definition(
 				name: $workflowName,
-				table: $this->neonToString($workflowData['table'] ?? 'Unknown'),
-				field: $this->neonToString($workflowData['field'] ?? 'status'),
+				table: $this->neonToString($workflowData['table'] ?? 'Unknown') ?? 'Unknown',
+				field: $this->neonToString($workflowData['field'] ?? 'status') ?? 'status',
 				states: $states,
 				transitions: $transitions,
 				label: $this->neonToString($workflowData['metadata']['label'] ?? null),
