@@ -1,0 +1,62 @@
+ticket:
+	table: WorkflowSandbox.Tickets
+	field: status
+	metadata:
+		label: Support Ticket Workflow
+		description: Customer support ticket lifecycle with escalation
+
+	states:
+		open:
+			initial: true
+			label: Open
+			color: '#dc3545'
+		assigned:
+			label: Assigned
+			color: '#fd7e14'
+		in_progress:
+			label: In Progress
+			color: '#0d6efd'
+		waiting_on_customer:
+			label: Waiting on Customer
+			color: '#6f42c1'
+		escalated:
+			label: Escalated
+			color: '#dc3545'
+		resolved:
+			label: Resolved
+			color: '#0dcaf0'
+		closed:
+			final: true
+			label: Closed
+			color: '#198754'
+
+	transitions:
+		assign:
+			from: [open]
+			to: assigned
+			happy: true
+		start_work:
+			from: [assigned]
+			to: in_progress
+			happy: true
+		request_info:
+			from: [in_progress]
+			to: waiting_on_customer
+		customer_replied:
+			from: [waiting_on_customer]
+			to: in_progress
+		escalate:
+			from: [open, assigned, in_progress]
+			to: escalated
+			command: notifyManager
+		resolve:
+			from: [in_progress, escalated]
+			to: resolved
+			happy: true
+		reopen:
+			from: [resolved]
+			to: open
+		close:
+			from: [resolved]
+			to: closed
+			happy: true
