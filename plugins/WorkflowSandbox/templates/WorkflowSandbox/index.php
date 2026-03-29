@@ -20,6 +20,7 @@ $this->assign('title', 'Workflow Sandbox');
 		<li><strong>Content</strong> - Role-based review, publish/unpublish cycle</li>
 		<li><strong>Ticket</strong> - Escalation, customer interaction states</li>
 		<li><strong>Document</strong> - Multi-level approval chain</li>
+		<li><strong>Payment</strong> - Automated verification with timeout-based retry logic (max 3 attempts)</li>
 	</ul>
 </div>
 

@@ -18,6 +18,7 @@ $routes->plugin(
 		$builder->connect('/contents', ['controller' => 'Contents', 'action' => 'index']);
 		$builder->connect('/tickets', ['controller' => 'Tickets', 'action' => 'index']);
 		$builder->connect('/documents', ['controller' => 'Documents', 'action' => 'index']);
+		$builder->connect('/payments', ['controller' => 'Payments', 'action' => 'index']);
 
 		// Interactive builder
 		$builder->connect('/builder', ['controller' => 'Builder', 'action' => 'index']);
