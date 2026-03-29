@@ -36,9 +36,12 @@ return [
 	'Bouncer' => [],
 	'Mercure' => [],
 
+	// Workflow
+	'Workflow' => [],
+
 	// inside /plugins
 	'AuthSandbox' => [],
 	'Sandbox' => [],
-	'StateMachine' => [],
-	'StateMachineSandbox' => [],
+	'WorkflowSandbox' => [],
+	'StateMachineSandbox' => [], // Redirects only
 ];

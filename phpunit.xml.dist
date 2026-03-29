@@ -18,8 +18,8 @@
 		<testsuite name="auth-sandbox">
 			<directory>plugins/AuthSandbox/tests/TestCase/</directory>
 		</testsuite>
-		<testsuite name="state-machine-sandbox">
-			<directory>plugins/StateMachineSandbox/tests/TestCase/</directory>
+		<testsuite name="workflow-sandbox">
+			<directory>plugins/WorkflowSandbox/tests/TestCase/</directory>
 		</testsuite>
 	</testsuites>
 
@@ -32,7 +32,7 @@
 			<directory suffix=".php">src/</directory>
 			<directory suffix=".php">plugins/Sandbox/src/</directory>
 			<directory suffix=".php">plugins/AuthSandbox/src/</directory>
-			<directory suffix=".php">plugins/StateMachineSandbox/src/</directory>
+			<directory suffix=".php">plugins/WorkflowSandbox/src/</directory>
 		</include>
 	</source>
 </phpunit>

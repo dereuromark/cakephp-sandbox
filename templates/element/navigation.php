@@ -42,7 +42,7 @@
 					<li class="nav-item"><?php echo $this->Html->linkReset('CakePHP Core', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'CakeExamples', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('CakePHP Plugins', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('Auth Sandbox', ['plugin' => 'AuthSandbox', 'admin' => false, 'controller' => 'AuthSandbox', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
-					<li class="nav-item"><?php echo $this->Html->linkReset('Workflow Sandbox', ['plugin' => 'StateMachineSandbox', 'admin' => false, 'controller' => 'StateMachineSandbox', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
+					<li class="nav-item"><?php echo $this->Html->linkReset('Workflow Sandbox', ['plugin' => 'WorkflowSandbox', 'admin' => false, 'controller' => 'WorkflowSandbox', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="dropdown-divider"></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('Djot', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Djot', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('TOML', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Toml', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>

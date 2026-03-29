@@ -18,7 +18,6 @@
 	"license": "MIT",
 	"require": {
 		"php": ">=8.4",
-		"spryker/cakephp-statemachine": "dev-master",
 		"cakephp/plugin-installer": "^2.0.1",
 		"cakephp/cakephp": "5.x-dev as 5.3.0",
 		"cakephp/bake": "^3.0.2",
@@ -84,7 +83,9 @@
 		"php-collective/djot": "dev-master",
 		"ezyang/htmlpurifier": "^4.19",
 		"josbeir/cakephp-mercure": "^0.2.0",
-		"php-collective/toml": "dev-master"
+		"php-collective/toml": "dev-master",
+		"dereuromark/cakephp-workflow": "dev-master",
+		"nette/neon": "^3.4"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.5.0",
@@ -103,6 +104,7 @@
 			"App\\": "src/",
 			"Sandbox\\": "plugins/Sandbox/src/",
 			"AuthSandbox\\": "plugins/AuthSandbox/src/",
+			"WorkflowSandbox\\": "plugins/WorkflowSandbox/src/",
 			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/"
 		}
 	},
@@ -111,6 +113,7 @@
 			"App\\Test\\": "tests/",
 			"Sandbox\\Test\\": "plugins/Sandbox/tests/",
 			"AuthSandbox\\Test\\": "plugins/AuthSandbox/tests/",
+			"WorkflowSandbox\\Test\\": "plugins/WorkflowSandbox/tests/",
 			"StateMachineSandbox\\Test\\": "plugins/StateMachineSandbox/tests/",
 			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
 			"Captcha\\Test\\": "vendor/dereuromark/cakephp-captcha/tests/",
@@ -128,7 +131,8 @@
 			"bin/cake migrations migrate -p Comments --no-lock",
 			"bin/cake migrations migrate -p Favorites --no-lock",
 			"bin/cake migrations migrate -p FileStorage --no-lock",
-			"bin/cake migrations migrate -p StateMachine --no-lock",
+			"bin/cake migrations migrate -p Workflow --no-lock",
+			"bin/cake migrations migrate -p WorkflowSandbox --no-lock",
 			"bin/cake migrations migrate -p Bouncer --no-lock",
 			"bin/cake migrations migrate -p AuditStash --no-lock",
 			"bin/cake migrations migrate -p Translate --no-lock"
@@ -145,7 +149,7 @@
 			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
-		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p StateMachineSandbox",
+		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p WorkflowSandbox",
 		"dto": "bin/cake dto generate && bin/cake dto generate -p Sandbox",
 		"test": "phpunit",
 		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",
@@ -156,12 +160,6 @@
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
-	},
-	"repositories": {
-		"0": {
-			"type": "git",
-			"url": "https://github.com/dereuromark/cakephp-statemachine.git"
-		}
 	},
 	"prefer-stable": true,
 	"minimum-stability": "dev",
