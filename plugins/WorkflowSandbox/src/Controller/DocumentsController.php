@@ -15,6 +15,7 @@ use Workflow\Service\WorkflowRegistry;
  * Demo for Document approval workflow.
  *
  * @property \WorkflowSandbox\Model\Table\DocumentsTable $Documents
+ * @property \Workflow\Controller\Component\WorkflowComponent $Workflow
  */
 class DocumentsController extends AppController {
 
@@ -25,6 +26,7 @@ class DocumentsController extends AppController {
 		parent::initialize();
 
 		$this->Documents = $this->fetchTable('WorkflowSandbox.Documents');
+		$this->loadComponent('Workflow.Workflow');
 	}
 
 	/**
@@ -107,22 +109,20 @@ class DocumentsController extends AppController {
 	/**
 	 * Apply a transition to a document.
 	 *
-	 * With autoSave and autoLog enabled on the behavior, this is all we need:
-	 * - applyTransition() runs workflow commands (clearApprovalState for revise)
-	 * - autoSave saves the entity
-	 * - autoLog logs the transition
+	 * Uses the WorkflowComponent for standardized flash messages.
+	 * Pre-transition logic sets entity fields from form data before transition.
 	 *
 	 * Note: Approval/rejection tracking requires form data (user_id, reason),
 	 * so we set those before the transition runs.
 	 *
 	 * @param int $id Document ID
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response
 	 */
-	public function transition(int $id): ?Response {
+	public function transition(int $id): Response {
 		$this->request->allowMethod(['post']);
 
 		$document = $this->Documents->get($id);
-		$transitionName = $this->request->getData('transition');
+		$transitionName = (string)$this->request->getData('transition');
 
 		// Handle form data that needs to be set before transition
 		$approverId = (int)($this->request->getData('approver_id') ?: 1);
@@ -136,19 +136,12 @@ class DocumentsController extends AppController {
 		}
 		// Note: 'revise' is handled by clearApprovalState command
 
-		$result = $this->Documents->applyTransition($document, $transitionName, [
+		$this->Workflow->applyTransition($this->Documents, $document, $transitionName, [
 			'reason' => $this->request->getData('reason') ?: 'Manual transition',
 			'user_id' => $approverId,
 		]);
 
-		if ($result->isSuccess()) {
-			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
-		} elseif ($result->isBlocked()) {
-			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
-		} else {
-			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
-		}
-
+		/** @var \Cake\Http\Response */
 		return $this->redirect(['action' => 'view', $id]);
 	}
 

@@ -15,6 +15,7 @@ use Workflow\Service\WorkflowRegistry;
  * Demo for Order workflow.
  *
  * @property \WorkflowSandbox\Model\Table\OrdersTable $Orders
+ * @property \Workflow\Controller\Component\WorkflowComponent $Workflow
  */
 class OrdersController extends AppController {
 
@@ -25,6 +26,7 @@ class OrdersController extends AppController {
 		parent::initialize();
 
 		$this->Orders = $this->fetchTable('WorkflowSandbox.Orders');
+		$this->loadComponent('Workflow.Workflow');
 	}
 
 	/**
@@ -108,33 +110,25 @@ class OrdersController extends AppController {
 	/**
 	 * Apply a transition to an order.
 	 *
-	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * Uses the WorkflowComponent for standardized flash messages.
+	 * With autoSave and autoLog enabled on the behavior:
 	 * - applyTransition() runs workflow commands (set timestamps, etc.)
 	 * - autoSave saves the entity
 	 * - autoLog logs the transition
 	 *
 	 * @param int $id Order ID
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response
 	 */
-	public function transition(int $id): ?Response {
+	public function transition(int $id): Response {
 		$this->request->allowMethod(['post']);
 
 		$order = $this->Orders->get($id);
-		$transitionName = $this->request->getData('transition');
 
-		$result = $this->Orders->applyTransition($order, $transitionName, [
-			'reason' => $this->request->getData('reason') ?: 'Manual transition',
-		]);
-
-		if ($result->isSuccess()) {
-			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
-		} elseif ($result->isBlocked()) {
-			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
-		} else {
-			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
-		}
-
-		return $this->redirect(['action' => 'view', $id]);
+		return $this->Workflow->handleTransition(
+			$this->Orders,
+			$order,
+			['action' => 'view', $id],
+		);
 	}
 
 	/**

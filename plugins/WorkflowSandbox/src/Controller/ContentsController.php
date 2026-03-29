@@ -15,6 +15,7 @@ use Workflow\Service\WorkflowRegistry;
  * Demo for Content moderation workflow.
  *
  * @property \WorkflowSandbox\Model\Table\ContentsTable $Contents
+ * @property \Workflow\Controller\Component\WorkflowComponent $Workflow
  */
 class ContentsController extends AppController {
 
@@ -25,6 +26,7 @@ class ContentsController extends AppController {
 		parent::initialize();
 
 		$this->Contents = $this->fetchTable('WorkflowSandbox.Contents');
+		$this->loadComponent('Workflow.Workflow');
 	}
 
 	/**
@@ -107,19 +109,17 @@ class ContentsController extends AppController {
 	/**
 	 * Apply a transition to content.
 	 *
-	 * With autoSave and autoLog enabled on the behavior, this is all we need:
-	 * - applyTransition() runs workflow commands (set timestamps, etc.)
-	 * - autoSave saves the entity
-	 * - autoLog logs the transition
+	 * Uses the WorkflowComponent for standardized flash messages.
+	 * Pre-transition logic sets entity fields from form data before transition.
 	 *
 	 * @param int $id Content ID
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response
 	 */
-	public function transition(int $id): ?Response {
+	public function transition(int $id): Response {
 		$this->request->allowMethod(['post']);
 
 		$content = $this->Contents->get($id);
-		$transitionName = $this->request->getData('transition');
+		$transitionName = (string)$this->request->getData('transition');
 
 		// Handle special transitions that need form data before transition
 		if ($transitionName === 'assign_reviewer' && $this->request->getData('reviewer_id')) {
@@ -128,18 +128,11 @@ class ContentsController extends AppController {
 			$content->rejection_reason = $this->request->getData('rejection_reason');
 		}
 
-		$result = $this->Contents->applyTransition($content, $transitionName, [
+		$this->Workflow->applyTransition($this->Contents, $content, $transitionName, [
 			'reason' => $this->request->getData('reason') ?: 'Manual transition',
 		]);
 
-		if ($result->isSuccess()) {
-			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
-		} elseif ($result->isBlocked()) {
-			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
-		} else {
-			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
-		}
-
+		/** @var \Cake\Http\Response */
 		return $this->redirect(['action' => 'view', $id]);
 	}
 

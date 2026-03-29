@@ -15,6 +15,7 @@ use Workflow\Service\WorkflowRegistry;
  * Demonstrates automated payment verification with timeout-based retry logic.
  *
  * @property \WorkflowSandbox\Model\Table\PaymentsTable $Payments
+ * @property \Workflow\Controller\Component\WorkflowComponent $Workflow
  */
 class PaymentsController extends AppController {
 
@@ -25,6 +26,7 @@ class PaymentsController extends AppController {
 		parent::initialize();
 
 		$this->Payments = $this->fetchTable('WorkflowSandbox.Payments');
+		$this->loadComponent('Workflow.Workflow');
 	}
 
 	/**
@@ -120,20 +122,18 @@ class PaymentsController extends AppController {
 	/**
 	 * Execute a workflow transition.
 	 *
-	 * With autoSave and autoLog enabled on the behavior, this is all we need:
-	 * - applyTransition() runs workflow commands (set timestamps, etc.)
-	 * - autoSave saves the entity
-	 * - autoLog logs the transition
+	 * Uses the WorkflowComponent for standardized flash messages.
+	 * Includes demo logic to simulate random payment success.
 	 *
 	 * @param int $id Payment ID
 	 *
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response
 	 */
-	public function transition(int $id): ?Response {
+	public function transition(int $id): Response {
 		$this->request->allowMethod(['post']);
 
 		$payment = $this->Payments->get($id);
-		$transitionName = $this->request->getData('transition');
+		$transitionName = (string)$this->request->getData('transition');
 
 		// Demo: simulate random success for payment checks
 		if (in_array($transitionName, ['check_timeout_1', 'check_timeout_2', 'check_timeout_3'], true)) {
@@ -142,18 +142,11 @@ class PaymentsController extends AppController {
 			}
 		}
 
-		$result = $this->Payments->applyTransition($payment, $transitionName, [
+		$this->Workflow->applyTransition($this->Payments, $payment, $transitionName, [
 			'reason' => $this->request->getData('reason') ?: 'Manual transition',
 		]);
 
-		if ($result->isSuccess()) {
-			$this->Flash->success("Transition '{$transitionName}' applied successfully.");
-		} elseif ($result->isBlocked()) {
-			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
-		} else {
-			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
-		}
-
+		/** @var \Cake\Http\Response */
 		return $this->redirect(['action' => 'view', $id]);
 	}
 

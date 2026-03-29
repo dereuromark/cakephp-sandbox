@@ -15,6 +15,7 @@ use Workflow\Service\WorkflowRegistry;
  * Demo for Registration workflow.
  *
  * @property \WorkflowSandbox\Model\Table\RegistrationsTable $Registrations
+ * @property \Workflow\Controller\Component\WorkflowComponent $Workflow
  */
 class RegistrationsController extends AppController {
 
@@ -25,6 +26,7 @@ class RegistrationsController extends AppController {
 		parent::initialize();
 
 		$this->Registrations = $this->fetchTable('WorkflowSandbox.Registrations');
+		$this->loadComponent('Workflow.Workflow');
 	}
 
 	/**
@@ -107,33 +109,25 @@ class RegistrationsController extends AppController {
 	/**
 	 * Apply a transition to a registration.
 	 *
-	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * Uses the WorkflowComponent for standardized flash messages.
+	 * With autoSave and autoLog enabled on the behavior:
 	 * - applyTransition() runs workflow commands
 	 * - autoSave saves the entity
 	 * - autoLog logs the transition
 	 *
 	 * @param int $id Registration ID
-	 * @return \Cake\Http\Response|null
+	 * @return \Cake\Http\Response
 	 */
-	public function transition(int $id): ?Response {
+	public function transition(int $id): Response {
 		$this->request->allowMethod(['post']);
 
 		$registration = $this->Registrations->get($id);
-		$transitionName = $this->request->getData('transition');
 
-		$result = $this->Registrations->applyTransition($registration, $transitionName, [
-			'reason' => $this->request->getData('reason') ?: 'Manual transition',
-		]);
-
-		if ($result->isSuccess()) {
-			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
-		} elseif ($result->isBlocked()) {
-			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
-		} else {
-			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
-		}
-
-		return $this->redirect(['action' => 'view', $id]);
+		return $this->Workflow->handleTransition(
+			$this->Registrations,
+			$registration,
+			['action' => 'view', $id],
+		);
 	}
 
 	/**
