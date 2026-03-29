@@ -46,6 +46,8 @@ class RegistrationsTable extends Table {
 		$this->addBehavior('Workflow.Workflow', [
 			'workflow' => 'registration',
 			'registry' => Configure::read('WorkflowSandbox.registry'),
+			'autoSave' => true,
+			'autoLog' => true,
 		]);
 
 		$this->belongsTo('Users', [

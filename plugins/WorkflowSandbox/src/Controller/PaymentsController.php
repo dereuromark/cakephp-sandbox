@@ -6,7 +6,6 @@ namespace WorkflowSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
 
@@ -68,7 +67,6 @@ class PaymentsController extends AppController {
 		$definition = $this->getRegistry()->getWorkflow('payment');
 		$availableTransitions = $this->Payments->getAvailableTransitions($payment);
 
-		// Get transition history
 		$logger = new TransitionLogger();
 		$transitionHistory = $logger->getHistory('payment', 'WorkflowSandbox.Payments', (string)$id);
 
@@ -90,7 +88,6 @@ class PaymentsController extends AppController {
 			$data['status'] = 'pending';
 			$data['retry_count'] = 0;
 
-			// Generate a fake transaction ID if not provided
 			if (empty($data['transaction_id'])) {
 				$data['transaction_id'] = 'TXN-' . strtoupper(bin2hex(random_bytes(8)));
 			}
@@ -121,7 +118,12 @@ class PaymentsController extends AppController {
 	}
 
 	/**
-	 * Execute a workflow transition
+	 * Execute a workflow transition.
+	 *
+	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * - applyTransition() runs workflow commands (set timestamps, etc.)
+	 * - autoSave saves the entity
+	 * - autoLog logs the transition
 	 *
 	 * @param int $id Payment ID
 	 *
@@ -133,43 +135,21 @@ class PaymentsController extends AppController {
 		$payment = $this->Payments->get($id);
 		$transitionName = $this->request->getData('transition');
 
-		// Simulate external payment check for demo purposes
-		if (in_array($transitionName, ['payment_success', 'check_timeout_1', 'check_timeout_2', 'check_timeout_3'], true)) {
-			// Randomly succeed or continue to next retry
-			$shouldSucceed = random_int(1, 100) <= 40; // 40% success rate per check
-
-			if ($shouldSucceed && $transitionName !== 'payment_success') {
+		// Demo: simulate random success for payment checks
+		if (in_array($transitionName, ['check_timeout_1', 'check_timeout_2', 'check_timeout_3'], true)) {
+			if (random_int(1, 100) <= 40) {
 				$transitionName = 'payment_success';
 			}
 		}
 
 		$result = $this->Payments->applyTransition($payment, $transitionName, [
-			'reason' => $this->request->getData('reason') ?? 'Manual transition',
+			'reason' => $this->request->getData('reason') ?: 'Manual transition',
 		]);
 
 		if ($result->isSuccess()) {
-			// Update retry count for retry transitions
-			if (str_starts_with($transitionName, 'check_timeout_')) {
-				$payment->retry_count = ($payment->retry_count ?? 0) + 1;
-			}
-
-			// Set verified timestamp on success
-			if ($transitionName === 'payment_success') {
-				$payment->verified_at = new DateTime();
-			}
-
-			// Set failure reason
-			if ($transitionName === 'max_retries_exceeded') {
-				$payment->failure_reason = 'Maximum verification attempts exceeded';
-			}
-
-			$this->Payments->save($payment);
-
-			// Log the transition
-			$logger = new TransitionLogger();
-			$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, $transitionName);
-
 			$this->Flash->success("Transition '{$transitionName}' applied successfully.");
+		} elseif ($result->isBlocked()) {
+			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
 		}
@@ -178,7 +158,7 @@ class PaymentsController extends AppController {
 	}
 
 	/**
-	 * Simulate automated verification (for demo)
+	 * Simulate automated verification (for demo).
 	 *
 	 * @param int $id Payment ID
 	 *
@@ -188,67 +168,38 @@ class PaymentsController extends AppController {
 		$this->request->allowMethod(['post']);
 
 		$payment = $this->Payments->get($id);
-
 		$messages = [];
-		$maxIterations = 10; // Safety limit
-		$iteration = 0;
 
-		// Run through the automated flow
-		while ($iteration < $maxIterations) {
-			$iteration++;
+		for ($i = 0; $i < 10; $i++) {
 			$available = $this->Payments->getAvailableTransitions($payment);
 
 			if (!$available) {
-				$messages[] = "No more transitions available. Final state: {$payment->status}";
+				$messages[] = "Final state: {$payment->status}";
 
 				break;
 			}
 
-			// Prioritize success check
-			if (in_array('payment_success', $available, true)) {
-				// 40% chance of success at each check
-				if (random_int(1, 100) <= 40) {
-					$result = $this->Payments->applyTransition($payment, 'payment_success', ['reason' => 'Automated: Payment confirmed']);
-					if ($result->isSuccess()) {
-						$payment->verified_at = new DateTime();
-						$this->Payments->save($payment);
+			// Try payment success (40% chance)
+			if (in_array('payment_success', $available, true) && random_int(1, 100) <= 40) {
+				$this->Payments->applyTransition($payment, 'payment_success', [
+					'reason' => 'Simulated: Payment confirmed',
+				]);
+				$messages[] = '✓ Payment verified successfully!';
 
-						$logger = new TransitionLogger();
-						$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, 'payment_success');
-
-						$messages[] = '✓ Payment verified successfully!';
-					}
-
-					break;
-				}
+				break;
 			}
 
-			// Find timeout transition
-			$timeoutTransition = null;
-			foreach ($available as $t) {
-				if (str_starts_with($t, 'check_timeout_') || $t === 'max_retries_exceeded') {
-					$timeoutTransition = $t;
+			// Find and apply timeout transition
+			$timeout = $this->findTimeoutTransition($available);
+			if ($timeout) {
+				$this->Payments->applyTransition($payment, $timeout, [
+					'reason' => 'Automated: Timeout check',
+				]);
 
-					break;
-				}
-			}
-
-			if ($timeoutTransition) {
-				$result = $this->Payments->applyTransition($payment, $timeoutTransition, ['reason' => 'Automated: Timeout check']);
-				if ($result->isSuccess()) {
-					$payment->retry_count = ($payment->retry_count ?? 0) + 1;
-
-					if ($timeoutTransition === 'max_retries_exceeded') {
-						$payment->failure_reason = 'Maximum verification attempts exceeded';
-						$messages[] = '✗ Max retries exceeded. Payment failed.';
-					} else {
-						$messages[] = "→ Retry {$payment->retry_count}: Payment not yet confirmed, scheduling next check...";
-					}
-
-					$this->Payments->save($payment);
-
-					$logger = new TransitionLogger();
-					$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, $timeoutTransition);
+				if ($timeout === 'max_retries_exceeded') {
+					$messages[] = '✗ Max retries exceeded. Payment moved to verification failed for manual review.';
+				} else {
+					$messages[] = "→ Retry {$payment->retry_count}: Scheduling next check...";
 				}
 			} else {
 				break;
@@ -258,6 +209,22 @@ class PaymentsController extends AppController {
 		$this->Flash->success(implode('<br>', $messages));
 
 		return $this->redirect(['action' => 'view', $id]);
+	}
+
+	/**
+	 * Find timeout transition from available transitions.
+	 *
+	 * @param array<string> $available
+	 * @return string|null
+	 */
+	private function findTimeoutTransition(array $available): ?string {
+		foreach ($available as $t) {
+			if (str_starts_with($t, 'check_timeout_') || $t === 'max_retries_exceeded') {
+				return $t;
+			}
+		}
+
+		return null;
 	}
 
 	/**

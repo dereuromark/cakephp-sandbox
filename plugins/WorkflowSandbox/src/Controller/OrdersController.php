@@ -6,7 +6,6 @@ namespace WorkflowSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
 
@@ -109,45 +108,28 @@ class OrdersController extends AppController {
 	/**
 	 * Apply a transition to an order.
 	 *
-	 * @param int|null $id Order ID
+	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * - applyTransition() runs workflow commands (set timestamps, etc.)
+	 * - autoSave saves the entity
+	 * - autoLog logs the transition
+	 *
+	 * @param int $id Order ID
 	 * @return \Cake\Http\Response|null
 	 */
-	public function transition(?int $id = null): ?Response {
+	public function transition(int $id): ?Response {
 		$this->request->allowMethod(['post']);
 
 		$order = $this->Orders->get($id);
-		$transition = $this->request->getData('transition');
+		$transitionName = $this->request->getData('transition');
 
-		if (!$transition) {
-			$this->Flash->error(__('No transition specified.'));
-
-			return $this->redirect(['action' => 'view', $id]);
-		}
-
-		$result = $this->Orders->applyTransition($order, $transition);
+		$result = $this->Orders->applyTransition($order, $transitionName, [
+			'reason' => $this->request->getData('reason') ?: 'Manual transition',
+		]);
 
 		if ($result->isSuccess()) {
-			// Handle timestamp updates based on transition
-			if ($transition === 'pay') {
-				$order->paid_at = new DateTime();
-			} elseif ($transition === 'ship') {
-				$order->shipped_at = new DateTime();
-			} elseif ($transition === 'deliver') {
-				$order->delivered_at = new DateTime();
-			} elseif ($transition === 'cancel') {
-				$order->cancelled_at = new DateTime();
-			}
-
-			$this->Orders->save($order);
-
-			// Log the transition
-			$logger = new TransitionLogger();
-			$logger->log('order', 'WorkflowSandbox.Orders', $order, $result, $transition);
-
-			$this->Flash->success(__('Transition "{0}" applied. New status: {1}', $transition, $order->status));
+			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
 		} elseif ($result->isBlocked()) {
-			$blockedBy = implode(', ', $result->getBlockedBy());
-			$this->Flash->warning(__('Transition blocked by: {0}', $blockedBy ?: 'guard'));
+			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
 		}

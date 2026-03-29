@@ -28,15 +28,15 @@ payment:
 			color: '#ff9800'
 
 		retry_3:
-			label: Retry 3 - Final
+			label: Retry 3
 			color: '#f44336'
 
 		confirmed:
 			label: Payment Confirmed
 			color: '#4caf50'
 
-		failed:
-			label: Payment Failed
+		verification_failed:
+			label: Verification Failed
 			color: '#f44336'
 
 		refund_pending:
@@ -82,16 +82,16 @@ payment:
 			timeout: 60
 			command: checkPaymentStatus
 
-		# Final timeout - fail after retry_3
+		# Final retry timeout - move into manual review
 		max_retries_exceeded:
 			from: [retry_3]
-			to: failed
+			to: verification_failed
 			timeout: 60
 			command: markAsFailed
 
 		# Manual intervention paths (no guard for demo purposes)
 		manual_confirm:
-			from: [retry_1, retry_2, retry_3, failed]
+			from: [retry_1, retry_2, retry_3, verification_failed]
 			to: confirmed
 			command: manualConfirmation
 

@@ -58,6 +58,8 @@ class TicketsTable extends Table {
 		$this->addBehavior('Workflow.Workflow', [
 			'workflow' => 'ticket',
 			'registry' => Configure::read('WorkflowSandbox.registry'),
+			'autoSave' => true,
+			'autoLog' => true,
 		]);
 
 		$this->belongsTo('Users', [

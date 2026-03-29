@@ -23,7 +23,6 @@ order:
 			label: Shipped
 			color: '#0dcaf0'
 		delivered:
-			final: true
 			label: Delivered
 			color: '#198754'
 		cancelled:
@@ -33,6 +32,7 @@ order:
 			color: '#dc3545'
 		refunded:
 			final: true
+			failed: true
 			label: Refunded
 			color: '#6f42c1'
 
@@ -53,15 +53,17 @@ order:
 		ship:
 			from: [processing]
 			to: shipped
-			command: createShipmentJob
+			command: recordShipment
 			happy: true
 		deliver:
 			from: [shipped]
 			to: delivered
+			command: recordDelivery
 			happy: true
 		cancel:
 			from: [pending, awaiting_payment, paid]
 			to: cancelled
+			command: recordCancellation
 			guard: canCancel
 		refund:
 			from: [paid, processing, shipped, delivered]

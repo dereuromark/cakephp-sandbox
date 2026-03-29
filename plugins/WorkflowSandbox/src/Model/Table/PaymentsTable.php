@@ -41,6 +41,8 @@ class PaymentsTable extends Table {
 		$this->addBehavior('Workflow.Workflow', [
 			'workflow' => 'payment',
 			'registry' => Configure::read('WorkflowSandbox.registry'),
+			'autoSave' => true,
+			'autoLog' => true,
 		]);
 
 		$this->belongsTo('Users', [

@@ -107,34 +107,28 @@ class RegistrationsController extends AppController {
 	/**
 	 * Apply a transition to a registration.
 	 *
-	 * @param int|null $id Registration ID
+	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * - applyTransition() runs workflow commands
+	 * - autoSave saves the entity
+	 * - autoLog logs the transition
+	 *
+	 * @param int $id Registration ID
 	 * @return \Cake\Http\Response|null
 	 */
-	public function transition(?int $id = null): ?Response {
+	public function transition(int $id): ?Response {
 		$this->request->allowMethod(['post']);
 
 		$registration = $this->Registrations->get($id);
-		$transition = $this->request->getData('transition');
+		$transitionName = $this->request->getData('transition');
 
-		if (!$transition) {
-			$this->Flash->error(__('No transition specified.'));
-
-			return $this->redirect(['action' => 'view', $id]);
-		}
-
-		$result = $this->Registrations->applyTransition($registration, $transition);
+		$result = $this->Registrations->applyTransition($registration, $transitionName, [
+			'reason' => $this->request->getData('reason') ?: 'Manual transition',
+		]);
 
 		if ($result->isSuccess()) {
-			$this->Registrations->save($registration);
-
-			// Log the transition
-			$logger = new TransitionLogger();
-			$logger->log('registration', 'WorkflowSandbox.Registrations', $registration, $result, $transition);
-
-			$this->Flash->success(__('Transition "{0}" applied. New status: {1}', $transition, $registration->status));
+			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
 		} elseif ($result->isBlocked()) {
-			$blockedBy = implode(', ', $result->getBlockedBy());
-			$this->Flash->warning(__('Transition blocked by: {0}', $blockedBy ?: 'guard'));
+			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
 		}

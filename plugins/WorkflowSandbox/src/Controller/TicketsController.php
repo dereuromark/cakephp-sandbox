@@ -6,7 +6,6 @@ namespace WorkflowSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
 
@@ -110,57 +109,33 @@ class TicketsController extends AppController {
 	/**
 	 * Apply a transition to a ticket.
 	 *
-	 * @param int|null $id Ticket ID
+	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * - applyTransition() runs workflow commands (set timestamps, etc.)
+	 * - autoSave saves the entity
+	 * - autoLog logs the transition
+	 *
+	 * @param int $id Ticket ID
 	 * @return \Cake\Http\Response|null
 	 */
-	public function transition(?int $id = null): ?Response {
+	public function transition(int $id): ?Response {
 		$this->request->allowMethod(['post']);
 
 		$ticket = $this->Tickets->get($id);
-		$transition = $this->request->getData('transition');
+		$transitionName = $this->request->getData('transition');
 
-		if (!$transition) {
-			$this->Flash->error(__('No transition specified.'));
-
-			return $this->redirect(['action' => 'view', $id]);
+		// For 'assign' transition, set assignee from form data before transition
+		if ($transitionName === 'assign' && $this->request->getData('assignee_id')) {
+			$ticket->assignee_id = $this->request->getData('assignee_id');
 		}
 
-		// Handle special transitions
-		if ($transition === 'assign') {
-			$assigneeId = $this->request->getData('assignee_id');
-			if ($assigneeId) {
-				$ticket->assignee_id = $assigneeId;
-			}
-		}
-
-		$result = $this->Tickets->applyTransition($ticket, $transition);
+		$result = $this->Tickets->applyTransition($ticket, $transitionName, [
+			'reason' => $this->request->getData('reason') ?: 'Manual transition',
+		]);
 
 		if ($result->isSuccess()) {
-			if ($transition === 'escalate') {
-				$ticket->escalated_at = new DateTime();
-			} elseif ($transition === 'resolve') {
-				$ticket->resolved_at = new DateTime();
-			} elseif ($transition === 'reopen') {
-				$ticket->resolved_at = null;
-			}
-
-			$this->Tickets->save($ticket);
-
-			// Log the transition
-			$logger = new TransitionLogger();
-			$logger->log(
-				'ticket',
-				'WorkflowSandbox.Tickets',
-				$ticket,
-				$result,
-				$transition,
-				['user_id' => $this->request->getData('approver_id')],
-			);
-
-			$this->Flash->success(__('Transition "{0}" applied. New status: {1}', $transition, $ticket->status));
+			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
 		} elseif ($result->isBlocked()) {
-			$blockedBy = implode(', ', $result->getBlockedBy());
-			$this->Flash->warning(__('Transition blocked by: {0}', $blockedBy ?: 'guard'));
+			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
 		}

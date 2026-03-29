@@ -78,7 +78,7 @@ $this->assign('title', 'Create Payment');
 					<li>Click "Start Verification" to begin the process</li>
 					<li>The system will automatically retry up to 3 times</li>
 					<li>Each retry has a 40% chance of success (simulated)</li>
-					<li>After 3 failed attempts, payment is marked as Failed</li>
+					<li>After 3 failed attempts, payment moves to <strong>Verification Failed</strong> for manual review</li>
 				</ul>
 				<p class="text-muted mb-0">
 					<small>In production, timeouts would be handled by the Queue worker. Here you can manually trigger transitions or use "Simulate Full Flow".</small>

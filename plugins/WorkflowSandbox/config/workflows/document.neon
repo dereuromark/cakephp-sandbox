@@ -24,7 +24,6 @@ document:
 			label: Approved
 			color: '#198754'
 		rejected:
-			failed: true
 			label: Rejected
 			color: '#dc3545'
 
@@ -58,3 +57,4 @@ document:
 		revise:
 			from: [rejected]
 			to: draft
+			command: clearApprovalState

@@ -6,7 +6,6 @@ namespace WorkflowSandbox\Controller;
 use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Http\Response;
-use Cake\I18n\DateTime;
 use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
 
@@ -108,53 +107,35 @@ class ContentsController extends AppController {
 	/**
 	 * Apply a transition to content.
 	 *
-	 * @param int|null $id Content ID
+	 * With autoSave and autoLog enabled on the behavior, this is all we need:
+	 * - applyTransition() runs workflow commands (set timestamps, etc.)
+	 * - autoSave saves the entity
+	 * - autoLog logs the transition
+	 *
+	 * @param int $id Content ID
 	 * @return \Cake\Http\Response|null
 	 */
-	public function transition(?int $id = null): ?Response {
+	public function transition(int $id): ?Response {
 		$this->request->allowMethod(['post']);
 
 		$content = $this->Contents->get($id);
-		$transition = $this->request->getData('transition');
+		$transitionName = $this->request->getData('transition');
 
-		if (!$transition) {
-			$this->Flash->error(__('No transition specified.'));
-
-			return $this->redirect(['action' => 'view', $id]);
+		// Handle special transitions that need form data before transition
+		if ($transitionName === 'assign_reviewer' && $this->request->getData('reviewer_id')) {
+			$content->reviewer_id = $this->request->getData('reviewer_id');
+		} elseif ($transitionName === 'reject' && $this->request->getData('rejection_reason')) {
+			$content->rejection_reason = $this->request->getData('rejection_reason');
 		}
 
-		// Handle special transitions that need extra data
-		if ($transition === 'assign_reviewer') {
-			$reviewerId = $this->request->getData('reviewer_id');
-			if ($reviewerId) {
-				$content->reviewer_id = $reviewerId;
-			}
-		} elseif ($transition === 'reject') {
-			$reason = $this->request->getData('rejection_reason');
-			if ($reason) {
-				$content->rejection_reason = $reason;
-			}
-		}
-
-		$result = $this->Contents->applyTransition($content, $transition);
+		$result = $this->Contents->applyTransition($content, $transitionName, [
+			'reason' => $this->request->getData('reason') ?: 'Manual transition',
+		]);
 
 		if ($result->isSuccess()) {
-			if ($transition === 'publish') {
-				$content->published_at = new DateTime();
-			} elseif ($transition === 'revise') {
-				$content->rejection_reason = null;
-			}
-
-			$this->Contents->save($content);
-
-			// Log the transition
-			$logger = new TransitionLogger();
-			$logger->log('content', 'WorkflowSandbox.Contents', $content, $result, $transition);
-
-			$this->Flash->success(__('Transition "{0}" applied. New status: {1}', $transition, $content->status));
+			$this->Flash->success(__('Transition "{0}" applied successfully.', $transitionName));
 		} elseif ($result->isBlocked()) {
-			$blockedBy = implode(', ', $result->getBlockedBy());
-			$this->Flash->warning(__('Transition blocked by: {0}', $blockedBy ?: 'guard'));
+			$this->Flash->warning(__('Transition blocked: {0}', implode(', ', $result->getBlockedBy())));
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
 		}

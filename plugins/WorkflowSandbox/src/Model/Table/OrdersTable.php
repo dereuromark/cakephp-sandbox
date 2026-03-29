@@ -46,6 +46,8 @@ class OrdersTable extends Table {
 		$this->addBehavior('Workflow.Workflow', [
 			'workflow' => 'order',
 			'registry' => Configure::read('WorkflowSandbox.registry'),
+			'autoSave' => true,
+			'autoLog' => true,
 		]);
 
 		$this->belongsTo('Users', [

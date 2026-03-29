@@ -20,11 +20,9 @@ content:
 			label: Approved
 			color: '#0dcaf0'
 		published:
-			final: true
 			label: Published
 			color: '#198754'
 		rejected:
-			failed: true
 			label: Rejected
 			color: '#dc3545'
 
@@ -50,11 +48,12 @@ content:
 		publish:
 			from: [approved]
 			to: published
-			command: setPublishedAt
+			command: recordPublication
 			happy: true
 		revise:
 			from: [rejected]
 			to: draft
+			command: clearRejection
 		unpublish:
 			from: [published]
 			to: draft

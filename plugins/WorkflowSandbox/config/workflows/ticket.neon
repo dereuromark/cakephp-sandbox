@@ -48,14 +48,16 @@ ticket:
 		escalate:
 			from: [open, assigned, in_progress]
 			to: escalated
-			command: notifyManager
+			command: recordEscalation
 		resolve:
 			from: [in_progress, escalated]
 			to: resolved
+			command: recordResolution
 			happy: true
 		reopen:
 			from: [resolved]
 			to: open
+			command: clearResolution
 		close:
 			from: [resolved]
 			to: closed

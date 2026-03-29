@@ -3614,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "85e80aa42b448c9ac171e04e32b7d5530ebecfcd"
+                "reference": "60365199b171f2fd9a881b154802855fdf0ea58f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/85e80aa42b448c9ac171e04e32b7d5530ebecfcd",
-                "reference": "85e80aa42b448c9ac171e04e32b7d5530ebecfcd",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/60365199b171f2fd9a881b154802855fdf0ea58f",
+                "reference": "60365199b171f2fd9a881b154802855fdf0ea58f",
                 "shasum": ""
             },
             "require": {
@@ -3627,6 +3627,7 @@
                 "php": ">=8.2"
             },
             "require-dev": {
+                "cakephp/bake": "^3.0",
                 "cakephp/migrations": "^4.0.0",
                 "nette/neon": "^3.0",
                 "php-collective/code-sniffer": "^0.5.4",
@@ -3634,6 +3635,7 @@
                 "symfony/yaml": "^6.0 || ^7.0 || ^8.0"
             },
             "suggest": {
+                "cakephp/bake": "Optional for bake workflow_state scaffolding (^3.0)",
                 "nette/neon": "Required for NEON workflow definitions (^3.0)",
                 "symfony/yaml": "Required for YAML workflow definitions (^6.0 || ^7.0 || ^8.0)"
             },
@@ -3672,7 +3674,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-03-29T02:27:43+00:00"
+            "time": "2026-03-29T16:39:47+00:00"
         },
         {
             "name": "dereuromark/media-embed",

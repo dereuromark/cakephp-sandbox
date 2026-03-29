@@ -66,6 +66,67 @@ $currentState = $definition->getState($order->status);
 				<?php endif; ?>
 			</div>
 		</div>
+
+		<?php if ($availableTransitions): ?>
+		<div class="card mt-3">
+			<div class="card-header"><h5 class="mb-0">Code</h5></div>
+			<div class="card-body">
+				<p class="text-muted">
+					The buttons above call transition names through the ORM behavior. For this order, you can invoke:
+				</p>
+				<?php $tabPrefix = 'transition-code-' . (int)$order->id; ?>
+				<ul class="nav nav-tabs mb-3" role="tablist">
+					<?php foreach ($availableTransitions as $i => $t): ?>
+						<li class="nav-item" role="presentation">
+							<button
+								class="nav-link<?= $i === 0 ? ' active' : '' ?>"
+								id="<?= h($tabPrefix . '-' . $t) ?>-tab"
+								data-bs-toggle="tab"
+								data-bs-target="#<?= h($tabPrefix . '-' . $t) ?>"
+								type="button"
+								role="tab"
+								aria-controls="<?= h($tabPrefix . '-' . $t) ?>"
+								aria-selected="<?= $i === 0 ? 'true' : 'false' ?>"
+							>
+								<code><?= h($t) ?></code>
+							</button>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+
+				<div class="tab-content">
+					<?php foreach ($availableTransitions as $i => $t): ?>
+						<div
+							class="tab-pane fade<?= $i === 0 ? ' show active' : '' ?>"
+							id="<?= h($tabPrefix . '-' . $t) ?>"
+							role="tabpanel"
+							aria-labelledby="<?= h($tabPrefix . '-' . $t) ?>-tab"
+							tabindex="0"
+						>
+							<pre class="mb-0"><code><?php
+echo h(sprintf(
+'$order = $this->Orders->get(%d);
+
+if ($this->Orders->canTransition($order, %s)) {
+    $result = $this->Orders->applyTransition($order, %s, [
+        \'reason\' => \'Manual transition\',
+    ]);
+
+    if ($result->isSuccess()) {
+        $this->Orders->saveOrFail($order);
+    }
+}',
+	(int)$order->id,
+	var_export($t, true),
+	var_export($t, true),
+));
+?></code></pre>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+		<?php endif; ?>
 	</div>
 
 	<div class="col-lg-6">
