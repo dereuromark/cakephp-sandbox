@@ -4,21 +4,38 @@ declare(strict_types=1);
 use Migrations\BaseMigration;
 
 /**
- * Create all workflow demo tables.
+ * Create all WorkflowSandbox demo tables.
  */
-class CreateWorkflowTables extends BaseMigration {
+class WorkflowInit extends BaseMigration {
 
 	/**
 	 * @return void
 	 */
 	public function change(): void {
-		// Registrations table
-		$this->table('workflow_registrations')
+		// Payments table - automated verification demo
+		$this->table('workflow_sandbox_payments')
 			->addColumn('user_id', 'integer', [
 				'null' => true,
 				'signed' => false,
 			])
-			->addColumn('session_id', 'string', [
+			->addColumn('transaction_id', 'string', [
+				'limit' => 100,
+				'null' => false,
+			])
+			->addColumn('amount', 'decimal', [
+				'precision' => 10,
+				'scale' => 2,
+				'null' => false,
+			])
+			->addColumn('currency', 'string', [
+				'limit' => 3,
+				'default' => 'USD',
+			])
+			->addColumn('provider', 'string', [
+				'limit' => 50,
+				'null' => true,
+			])
+			->addColumn('provider_reference', 'string', [
 				'limit' => 255,
 				'null' => true,
 			])
@@ -26,7 +43,13 @@ class CreateWorkflowTables extends BaseMigration {
 				'limit' => 50,
 				'default' => 'pending',
 			])
-			->addColumn('notes', 'text', [
+			->addColumn('retry_count', 'integer', [
+				'default' => 0,
+			])
+			->addColumn('failure_reason', 'text', [
+				'null' => true,
+			])
+			->addColumn('verified_at', 'datetime', [
 				'null' => true,
 			])
 			->addColumn('created', 'datetime', [
@@ -36,10 +59,12 @@ class CreateWorkflowTables extends BaseMigration {
 				'null' => true,
 			])
 			->addIndex(['user_id'])
+			->addIndex(['transaction_id'], ['unique' => true])
 			->addIndex(['status'])
+			->addIndex(['provider'])
 			->create();
 
-		// Orders table
+		// Orders table - e-commerce order workflow
 		$this->table('workflow_orders')
 			->addColumn('user_id', 'integer', [
 				'null' => true,
@@ -77,6 +102,9 @@ class CreateWorkflowTables extends BaseMigration {
 			->addColumn('cancelled_at', 'datetime', [
 				'null' => true,
 			])
+			->addColumn('refunded_at', 'datetime', [
+				'null' => true,
+			])
 			->addColumn('created', 'datetime', [
 				'null' => true,
 			])
@@ -88,45 +116,7 @@ class CreateWorkflowTables extends BaseMigration {
 			->addIndex(['status'])
 			->create();
 
-		// Contents table
-		$this->table('workflow_contents')
-			->addColumn('user_id', 'integer', [
-				'null' => true,
-				'signed' => false,
-			])
-			->addColumn('reviewer_id', 'integer', [
-				'null' => true,
-				'signed' => false,
-			])
-			->addColumn('title', 'string', [
-				'limit' => 255,
-				'null' => false,
-			])
-			->addColumn('body', 'text', [
-				'null' => true,
-			])
-			->addColumn('status', 'string', [
-				'limit' => 50,
-				'default' => 'draft',
-			])
-			->addColumn('rejection_reason', 'text', [
-				'null' => true,
-			])
-			->addColumn('published_at', 'datetime', [
-				'null' => true,
-			])
-			->addColumn('created', 'datetime', [
-				'null' => true,
-			])
-			->addColumn('modified', 'datetime', [
-				'null' => true,
-			])
-			->addIndex(['user_id'])
-			->addIndex(['reviewer_id'])
-			->addIndex(['status'])
-			->create();
-
-		// Tickets table
+		// Tickets table - support ticket workflow
 		$this->table('workflow_tickets')
 			->addColumn('user_id', 'integer', [
 				'null' => true,
@@ -174,7 +164,45 @@ class CreateWorkflowTables extends BaseMigration {
 			->addIndex(['priority'])
 			->create();
 
-		// Documents table
+		// Contents table - content moderation workflow
+		$this->table('workflow_contents')
+			->addColumn('user_id', 'integer', [
+				'null' => true,
+				'signed' => false,
+			])
+			->addColumn('reviewer_id', 'integer', [
+				'null' => true,
+				'signed' => false,
+			])
+			->addColumn('title', 'string', [
+				'limit' => 255,
+				'null' => false,
+			])
+			->addColumn('body', 'text', [
+				'null' => true,
+			])
+			->addColumn('status', 'string', [
+				'limit' => 50,
+				'default' => 'draft',
+			])
+			->addColumn('rejection_reason', 'text', [
+				'null' => true,
+			])
+			->addColumn('published_at', 'datetime', [
+				'null' => true,
+			])
+			->addColumn('created', 'datetime', [
+				'null' => true,
+			])
+			->addColumn('modified', 'datetime', [
+				'null' => true,
+			])
+			->addIndex(['user_id'])
+			->addIndex(['reviewer_id'])
+			->addIndex(['status'])
+			->create();
+
+		// Documents table - multi-level approval workflow
 		$this->table('workflow_documents')
 			->addColumn('user_id', 'integer', [
 				'null' => true,
@@ -203,6 +231,39 @@ class CreateWorkflowTables extends BaseMigration {
 				'signed' => false,
 			])
 			->addColumn('rejection_reason', 'text', [
+				'null' => true,
+			])
+			->addColumn('created', 'datetime', [
+				'null' => true,
+			])
+			->addColumn('modified', 'datetime', [
+				'null' => true,
+			])
+			->addIndex(['user_id'])
+			->addIndex(['status'])
+			->create();
+
+		// Registrations table - registration approval workflow
+		$this->table('workflow_registrations')
+			->addColumn('user_id', 'integer', [
+				'null' => true,
+				'signed' => false,
+			])
+			->addColumn('session_id', 'string', [
+				'limit' => 255,
+				'null' => true,
+			])
+			->addColumn('status', 'string', [
+				'limit' => 50,
+				'default' => 'pending',
+			])
+			->addColumn('notes', 'text', [
+				'null' => true,
+			])
+			->addColumn('payment_requested_at', 'datetime', [
+				'null' => true,
+			])
+			->addColumn('confirmation_sent_at', 'datetime', [
 				'null' => true,
 			])
 			->addColumn('created', 'datetime', [
