@@ -353,7 +353,7 @@ DJOT;
 <p class="text-muted small mt-2">
 	<i class="bi bi-shield-check"></i>
 	Output is XHTMLed and sanitized via <a href="https://github.com/ezyang/htmlpurifier" target="_blank">HTMLPurifier</a> for security.
-	For raw output, clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
+	For raw output (attributes beyond class/id), clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
 </p>
 
 <div class="modal fade" id="insertModal" tabindex="-1">
@@ -521,11 +521,7 @@ This div is never closed.</code></pre>
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
-		if (params.get('sig_newlines') === '1') {
-			optSignificantNewlines.checked = true;
-			optSoftBreakBr.checked = true;
-			optSoftBreakBr.disabled = true;
-		}
+		if (params.get('sig_newlines') === '1') optSignificantNewlines.checked = true;
 	}
 
 	function getShareUrl() {
@@ -535,7 +531,7 @@ This div is never closed.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
-		if (optSoftBreakBr.checked && !optSignificantNewlines.checked) url.searchParams.set('soft_break_br', '1');
+		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
 		if (optSignificantNewlines.checked) url.searchParams.set('sig_newlines', '1');
 		return url.toString();
 	}
@@ -721,16 +717,7 @@ This div is never closed.</code></pre>
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	optSoftBreakBr.addEventListener('change', convert);
-	optSignificantNewlines.addEventListener('change', function() {
-		// Auto-toggle soft break checkbox when significant newlines is enabled
-		if (optSignificantNewlines.checked) {
-			optSoftBreakBr.checked = true;
-			optSoftBreakBr.disabled = true;
-		} else {
-			optSoftBreakBr.disabled = false;
-		}
-		convert();
-	});
+	optSignificantNewlines.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
