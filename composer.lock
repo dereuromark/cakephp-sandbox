@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d09f5368d5b14c1711cea0ead8352b4a",
+    "content-hash": "a0b8ae117879a0127e31f851c46d2b2c",
     "packages": [
         {
             "name": "brick/math",
@@ -3614,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "a510bf20b28f9a5ca5afe45a4c2e45548fbb25a3"
+                "reference": "85e80aa42b448c9ac171e04e32b7d5530ebecfcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/a510bf20b28f9a5ca5afe45a4c2e45548fbb25a3",
-                "reference": "a510bf20b28f9a5ca5afe45a4c2e45548fbb25a3",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/85e80aa42b448c9ac171e04e32b7d5530ebecfcd",
+                "reference": "85e80aa42b448c9ac171e04e32b7d5530ebecfcd",
                 "shasum": ""
             },
             "require": {
@@ -3672,7 +3672,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-03-28T20:59:30+00:00"
+            "time": "2026-03-29T02:27:43+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -7002,59 +7002,6 @@
             "time": "2024-10-02T11:20:13+00:00"
         },
         {
-            "name": "phpdocumentor/graphviz",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/GraphViz.git",
-                "reference": "115999dc7f31f2392645aa825a94a6b165e1cedf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/GraphViz/zipball/115999dc7f31f2392645aa825a94a6b165e1cedf",
-                "reference": "115999dc7f31f2392645aa825a94a6b165e1cedf",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "ext-simplexml": "*",
-                "mockery/mockery": "^1.2",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8.2 || ^9.2",
-                "psalm/phar": "^4.15"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "phpDocumentor\\GraphViz\\": "src/phpDocumentor/GraphViz",
-                    "phpDocumentor\\GraphViz\\PHPStan\\": "./src/phpDocumentor/PHPStan"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike van Riel",
-                    "email": "mike.vanriel@naenius.com"
-                }
-            ],
-            "description": "Wrapper for Graphviz",
-            "support": {
-                "issues": "https://github.com/phpDocumentor/GraphViz/issues",
-                "source": "https://github.com/phpDocumentor/GraphViz/tree/2.1.0"
-            },
-            "time": "2021-12-13T19:03:21+00:00"
-        },
-        {
             "name": "psr/clock",
             "version": "1.0.0",
             "source": {
@@ -8163,83 +8110,6 @@
                 }
             ],
             "time": "2026-02-09T14:43:55+00:00"
-        },
-        {
-            "name": "spryker/cakephp-statemachine",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "25241be4f51713773ea35200e72489b59e734d64"
-            },
-            "require": {
-                "cakephp/cakephp": "^5.1.0",
-                "dereuromark/cakephp-dto": "^2.5.0",
-                "php": ">=8.3",
-                "php-collective/dto": "^0.1.2",
-                "phpdocumentor/graphviz": "^2.0.0"
-            },
-            "require-dev": {
-                "cakephp/bake": "^3.0.4",
-                "cakephp/migrations": "^4.1.1",
-                "dereuromark/cakephp-ide-helper": "^2.0.0",
-                "dereuromark/cakephp-tools": "^3.0.0",
-                "php-collective/code-sniffer": "dev-master",
-                "phpstan/phpstan": "^2.1.0",
-                "phpunit/phpunit": "^12.3"
-            },
-            "default-branch": true,
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "StateMachine\\": "src/",
-                    "StateMachine\\Test\\Fixture\\": "tests/Fixture/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
-                    "StateMachine\\Test\\": "tests/",
-                    "TestApp\\": "tests/test_app/src/"
-                }
-            },
-            "scripts": {
-                "cs-check": [
-                    "vendor/bin/phpcs"
-                ],
-                "cs-fix": [
-                    "vendor/bin/phpcbf"
-                ],
-                "lowest": [
-                    "validate-prefer-lowest"
-                ],
-                "lowest-setup": [
-                    "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json"
-                ],
-                "stan": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "stan-tests": [
-                    "vendor/bin/phpstan analyse -c tests/phpstan.neon"
-                ],
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml"
-                ]
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Spryker Systems GmbH",
-                    "homepage": "https://spryker.com"
-                }
-            ],
-            "description": "CakePHP StateMachine Plugin",
-            "time": "2025-12-15T09:36:07+00:00"
         },
         {
             "name": "symfony/console",
@@ -12996,7 +12866,6 @@
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
         "php-collective/toml": 20,
-        "spryker/cakephp-statemachine": 20,
         "symfony/filesystem": 0
     },
     "prefer-stable": true,

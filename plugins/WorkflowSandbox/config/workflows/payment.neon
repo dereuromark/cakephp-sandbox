@@ -63,11 +63,11 @@ payment:
 			command: recordConfirmation
 			happy: true
 
-		# Timeout triggers retry logic
+		# Timeout triggers retry logic (1 minute intervals for demo)
 		check_timeout_1:
 			from: [verifying]
 			to: retry_1
-			timeout: 30
+			timeout: 60
 			command: checkPaymentStatus
 
 		check_timeout_2:
@@ -79,14 +79,14 @@ payment:
 		check_timeout_3:
 			from: [retry_2]
 			to: retry_3
-			timeout: 120
+			timeout: 60
 			command: checkPaymentStatus
 
 		# Final timeout - fail after retry_3
 		max_retries_exceeded:
 			from: [retry_3]
 			to: failed
-			timeout: 180
+			timeout: 60
 			command: markAsFailed
 
 		# Manual intervention paths (no guard for demo purposes)

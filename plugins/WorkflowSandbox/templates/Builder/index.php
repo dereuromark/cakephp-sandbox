@@ -81,7 +81,13 @@ $this->assign('title', 'Workflow Builder');
 					<button class="btn btn-sm btn-outline-primary" onclick="loadExample('document')">Document</button>
 				</div>
 			</div>
-			<div>
+			<div class="d-flex gap-2">
+				<button class="btn btn-sm btn-outline-secondary" onclick="downloadSvg()" title="Open SVG in new tab">
+					<i class="fas fa-external-link-alt"></i> SVG
+				</button>
+				<button class="btn btn-sm btn-outline-secondary" onclick="downloadPng()" title="Download diagram as PNG">
+					<i class="fas fa-image"></i> PNG
+				</button>
 				<button class="btn btn-sm btn-success" onclick="downloadNeon()">
 					<i class="fas fa-download"></i> Download NEON
 				</button>
@@ -237,5 +243,89 @@ function downloadNeon() {
 	a.click();
 	document.body.removeChild(a);
 	URL.revokeObjectURL(url);
+}
+
+function downloadSvg() {
+	const svg = document.querySelector('#preview svg');
+	if (!svg) {
+		alert('No diagram available. Please create a valid workflow first.');
+		return;
+	}
+
+	// Clone SVG and set explicit dimensions
+	const clone = svg.cloneNode(true);
+	const viewBox = svg.getAttribute('viewBox');
+	let width, height;
+
+	if (viewBox) {
+		const parts = viewBox.split(' ');
+		width = parseFloat(parts[2]);
+		height = parseFloat(parts[3]);
+	} else {
+		const bbox = svg.getBBox();
+		width = bbox.width + 20;
+		height = bbox.height + 20;
+	}
+
+	clone.setAttribute('width', width);
+	clone.setAttribute('height', height);
+	clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+	const svgData = new XMLSerializer().serializeToString(clone);
+	const blob = new Blob([svgData], { type: 'image/svg+xml' });
+	const url = URL.createObjectURL(blob);
+	window.open(url, '_blank');
+}
+
+function downloadPng() {
+	const svg = document.querySelector('#preview svg');
+	if (!svg) {
+		alert('No diagram to download. Please create a valid workflow first.');
+		return;
+	}
+
+	// Get dimensions from viewBox
+	const viewBox = svg.getAttribute('viewBox');
+	let width, height;
+
+	if (viewBox) {
+		const parts = viewBox.split(' ');
+		width = parseFloat(parts[2]);
+		height = parseFloat(parts[3]);
+	} else {
+		const bbox = svg.getBBox();
+		width = bbox.width + 20;
+		height = bbox.height + 20;
+	}
+
+	// Clone and set explicit dimensions
+	const clone = svg.cloneNode(true);
+	clone.setAttribute('width', width);
+	clone.setAttribute('height', height);
+	clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+	const svgData = new XMLSerializer().serializeToString(clone);
+	const canvas = document.createElement('canvas');
+	const ctx = canvas.getContext('2d');
+	const img = new Image();
+	const scale = 2;  // 2x for better quality
+
+	img.onload = function() {
+		canvas.width = width * scale;
+		canvas.height = height * scale;
+		ctx.fillStyle = 'white';
+		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+		const pngUrl = canvas.toDataURL('image/png');
+		const a = document.createElement('a');
+		a.href = pngUrl;
+		a.download = 'workflow.png';
+		document.body.appendChild(a);
+		a.click();
+		document.body.removeChild(a);
+	};
+
+	img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgData)));
 }
 </script>
