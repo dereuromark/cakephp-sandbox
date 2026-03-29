@@ -34,6 +34,10 @@ $currentState = $definition->getState($payment->status);
 						<td><code><?= h($payment->transaction_id) ?></code></td>
 					</tr>
 					<tr>
+						<th>User</th>
+						<td><?= h($payment->user?->username ?? '-') ?></td>
+					</tr>
+					<tr>
 						<th>Amount</th>
 						<td><strong><?= h($payment->amount) ?> <?= h($payment->currency ?? 'USD') ?></strong></td>
 					</tr>
@@ -93,14 +97,13 @@ $currentState = $definition->getState($payment->status);
 						<?php foreach ($availableTransitions as $t): ?>
 							<?php
 							$transition = $definition->getTransition($t);
-							$isHappy = $transition?->isHappy();
-							$btnClass = match (true) {
-								$t === 'payment_success' => 'btn-success',
-								str_starts_with($t, 'check_timeout_') => 'btn-warning',
-								$t === 'max_retries_exceeded' => 'btn-danger',
-								$isHappy => 'btn-success',
-								default => 'btn-outline-primary',
-							};
+							$btnClass = $transition?->isHappy() ? 'btn-success' : 'btn-outline-primary';
+							// Override for specific payment transitions
+							if ($t === 'max_retries_exceeded') {
+								$btnClass = 'btn-danger';
+							} elseif (str_starts_with($t, 'check_timeout_')) {
+								$btnClass = 'btn-warning';
+							}
 							?>
 							<?= $this->Form->create(null, ['url' => ['action' => 'transition', $payment->id]]) ?>
 							<?= $this->Form->hidden('transition', ['value' => $t]) ?>

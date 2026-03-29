@@ -32,18 +32,8 @@ class Payment extends Entity {
 	 * @var array<string, bool>
 	 */
 	protected array $_accessible = [
-		'user_id' => true,
-		'status' => true,
-		'transaction_id' => true,
-		'amount' => true,
-		'currency' => true,
-		'provider' => true,
-		'provider_reference' => true,
-		'retry_count' => true,
-		'failure_reason' => true,
-		'verified_at' => true,
-		'created' => true,
-		'modified' => true,
+		'*' => true,
+		'id' => false,
 	];
 
 }

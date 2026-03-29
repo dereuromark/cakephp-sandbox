@@ -4,6 +4,7 @@
  * @var \WorkflowSandbox\Model\Entity\Payment $payment
  * @var array<string, string> $providers
  * @var array<string, string> $currencies
+ * @var array<int, string> $users
  */
 
 $this->assign('title', 'Create Payment');
@@ -51,6 +52,11 @@ $this->assign('title', 'Create Payment');
 				<?= $this->Form->control('provider_reference', [
 					'label' => 'Provider Reference (optional)',
 					'placeholder' => 'External reference ID',
+				]) ?>
+
+				<?= $this->Form->control('user_id', [
+					'options' => $users,
+					'empty' => '-- Select User (optional) --',
 				]) ?>
 
 				<div class="mt-3">

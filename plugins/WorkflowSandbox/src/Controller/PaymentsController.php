@@ -113,8 +113,9 @@ class PaymentsController extends AppController {
 			'adyen' => 'Adyen',
 		];
 		$currencies = ['USD' => 'USD', 'EUR' => 'EUR', 'GBP' => 'GBP'];
+		$users = $this->fetchTable('Users')->find('list')->toArray();
 
-		$this->set(compact('payment', 'providers', 'currencies'));
+		$this->set(compact('payment', 'providers', 'currencies', 'users'));
 
 		return null;
 	}
