@@ -7,6 +7,7 @@ use App\Controller\AppController;
 use Cake\Core\Configure;
 use Cake\Http\Response;
 use Cake\I18n\DateTime;
+use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
 
 /**
@@ -68,14 +69,8 @@ class PaymentsController extends AppController {
 		$availableTransitions = $this->Payments->getAvailableTransitions($payment);
 
 		// Get transition history
-		$transitionHistory = $this->fetchTable('Workflow.WorkflowTransitions')
-			->find()
-			->where([
-				'workflow_name' => 'payment',
-				'entity_id' => $id,
-			])
-			->orderBy(['created' => 'DESC'])
-			->toArray();
+		$logger = new TransitionLogger();
+		$transitionHistory = $logger->getHistory('payment', 'WorkflowSandbox.Payments', (string)$id);
 
 		$this->set(compact('payment', 'definition', 'availableTransitions', 'transitionHistory'));
 
