@@ -31,7 +31,17 @@ This site combines useful code snippets with their live result.
 	</ul>
 </div>
 
-	<p>Also fully updated/reworked: Translate and TestHelper plugins.</p>
+<div class="alert alert-warning">
+	<h4><strong>NEW: Workflow State Machine</strong></h4>
+	<p>Define and manage complex workflows with the <?php echo $this->Html->link('cakephp-workflow', 'https://github.com/dereuromark/cakephp-workflow', ['target' => '_blank']); ?> plugin:</p>
+	<ul class="mb-0">
+		<li><?php echo $this->Html->link('Workflow Overview', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?> - Multiple workflow examples</li>
+		<li><?php echo $this->Html->link('Visual Designer', ['plugin' => 'WorkflowSandbox', 'controller' => 'Builder', 'action' => 'index']); ?> - Build workflows with a visual editor</li>
+		<li><?php echo $this->Html->link('Transition History', ['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'index']); ?> - Track all state changes</li>
+	</ul>
+</div>
+
+<p>Also fully updated/reworked: Translate and TestHelper plugins.</p>
 
 <div class="row">
 	<div class="col-sm-6">
