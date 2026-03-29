@@ -10,35 +10,44 @@ I always found it difficult so "imagine" specific code snippets without demo/exa
 This site combines useful code snippets with their live result.
 </p>
 
-<div class="alert alert-info">
-	<h4><strong>NEW: Mercure Examples</strong></h4>
-	<p>Real-time updates with Server-Sent Events:</p>
-	<ul class="mb-0">
-		<li><?php echo $this->Html->link('Mercure Overview', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'index']); ?> - Learn about Mercure integration</li>
-		<li><?php echo $this->Html->link('Chat Demo', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'chat']); ?> - Real-time multi-user chat</li>
-		<li><?php echo $this->Html->link('Queue Progress', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'queueProgress']); ?> - Live background job updates</li>
-	</ul>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="alert alert-info h-100">
+			<h4><strong>NEW: Mercure Examples</strong></h4>
+			<p>Real-time updates with Server-Sent Events:</p>
+			<ul class="mb-0">
+				<li><?php echo $this->Html->link('Mercure Overview', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'index']); ?> - Learn about Mercure integration</li>
+				<li><?php echo $this->Html->link('Chat Demo', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'chat']); ?> - Real-time multi-user chat</li>
+				<li><?php echo $this->Html->link('Queue Progress', ['plugin' => 'Sandbox', 'controller' => 'MercureExamples', 'action' => 'queueProgress']); ?> - Live background job updates</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="alert alert-success h-100">
+			<h4><strong>NEW: CakePHP 5.3 Features</strong></h4>
+			<p>Check out the latest CakePHP features in action:</p>
+			<ul class="mb-0">
+				<li><?php echo $this->Html->link('DTO Projection', ['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'projection']); ?> - Project ORM results directly into typed DTOs with <code>projectAs()</code></li>
+				<li><?php echo $this->Html->link('Rate Limiter Middleware', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'rateLimiter']); ?> - Protect your application from abuse</li>
+				<li><?php echo $this->Html->link('Combined Pagination Sorting', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort']); ?> - Multi-field sorting made easy</li>
+				<li><?php echo $this->Html->link('FileStorage Plugin', ['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'index']); ?> - File uploads, image cropping, drag & drop, and more</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
-<div class="alert alert-success">
-	<h4><strong>NEW: CakePHP 5.3 Features</strong></h4>
-	<p>Check out the latest CakePHP features in action:</p>
-	<ul class="mb-0">
-		<li><?php echo $this->Html->link('DTO Projection', ['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'projection']); ?> - Project ORM results directly into typed DTOs with <code>projectAs()</code></li>
-		<li><?php echo $this->Html->link('Rate Limiter Middleware', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'rateLimiter']); ?> - Protect your application from abuse</li>
-		<li><?php echo $this->Html->link('Combined Pagination Sorting', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort']); ?> - Multi-field sorting made easy</li>
-		<li><?php echo $this->Html->link('FileStorage Plugin', ['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'index']); ?> - File uploads, image cropping, drag & drop, and more</li>
-	</ul>
-</div>
-
-<div class="alert alert-warning">
-	<h4><strong>NEW: Workflow State Machine</strong></h4>
-	<p>Define and manage complex workflows with the <?php echo $this->Html->link('cakephp-workflow', 'https://github.com/dereuromark/cakephp-workflow', ['target' => '_blank']); ?> plugin:</p>
-	<ul class="mb-0">
-		<li><?php echo $this->Html->link('Workflow Overview', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?> - Multiple workflow examples</li>
-		<li><?php echo $this->Html->link('Visual Designer', ['plugin' => 'WorkflowSandbox', 'controller' => 'Builder', 'action' => 'index']); ?> - Build workflows with a visual editor</li>
-		<li><?php echo $this->Html->link('Transition History', ['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'index']); ?> - Track all state changes</li>
-	</ul>
+<div class="row mt-3 pb-2">
+	<div class="col-sm-6">
+		<div class="alert alert-warning h-100 mb-0">
+			<h4><strong>NEW: Workflow State Machine</strong></h4>
+			<p>Define and manage complex workflows with the <?php echo $this->Html->link('cakephp-workflow', 'https://github.com/dereuromark/cakephp-workflow', ['target' => '_blank']); ?> plugin:</p>
+			<ul class="mb-0">
+				<li><?php echo $this->Html->link('Workflow Overview', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?> - Multiple workflow examples</li>
+				<li><?php echo $this->Html->link('Visual Designer', ['plugin' => 'WorkflowSandbox', 'controller' => 'Builder', 'action' => 'index']); ?> - Build workflows with a visual editor</li>
+				<li><?php echo $this->Html->link('Transition History', ['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'index']); ?> - Track all state changes</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <p>Also fully updated/reworked: Translate and TestHelper plugins.</p>
