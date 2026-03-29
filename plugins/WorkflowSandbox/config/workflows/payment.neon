@@ -28,13 +28,12 @@ payment:
 			color: '#ff9800'
 
 		retry_3:
-			label: Retry 3 (Final)
+			label: Retry 3 - Final
 			color: '#f44336'
 
 		confirmed:
 			label: Payment Confirmed
 			color: '#4caf50'
-			final: true
 
 		failed:
 			label: Payment Failed

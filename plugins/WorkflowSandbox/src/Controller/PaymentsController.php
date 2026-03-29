@@ -164,6 +164,11 @@ class PaymentsController extends AppController {
 			}
 
 			$this->Payments->save($payment);
+
+			// Log the transition
+			$logger = new TransitionLogger();
+			$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, $transitionName);
+
 			$this->Flash->success("Transition '{$transitionName}' applied successfully.");
 		} else {
 			$this->Flash->error(__('Transition failed: {0}', $result->getError()?->getMessage() ?? 'Unknown error'));
@@ -207,6 +212,10 @@ class PaymentsController extends AppController {
 					if ($result->isSuccess()) {
 						$payment->verified_at = new DateTime();
 						$this->Payments->save($payment);
+
+						$logger = new TransitionLogger();
+						$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, 'payment_success');
+
 						$messages[] = '✓ Payment verified successfully!';
 					}
 
@@ -237,6 +246,9 @@ class PaymentsController extends AppController {
 					}
 
 					$this->Payments->save($payment);
+
+					$logger = new TransitionLogger();
+					$logger->log('payment', 'WorkflowSandbox.Payments', $payment, $result, $timeoutTransition);
 				}
 			} else {
 				break;

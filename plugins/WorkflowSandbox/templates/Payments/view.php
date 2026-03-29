@@ -43,7 +43,7 @@ $currentState = $definition->getState($payment->status);
 					</tr>
 					<tr>
 						<th>Provider</th>
-						<td><?= h($payment->provider ?? '-') ?></td>
+						<td><?= h($payment->provider ?: '-') ?></td>
 					</tr>
 					<tr>
 						<th>Status</th>
