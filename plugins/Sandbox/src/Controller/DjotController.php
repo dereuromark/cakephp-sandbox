@@ -80,11 +80,9 @@ class DjotController extends SandboxAppController {
 					$converter = DjotConverter::withSignificantNewlines(true, $collectWarnings, $strict, null, $profile);
 				} else {
 					$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
-					// Soft break as <br> only applies when not using significantNewlines
-					// (significantNewlines already renders soft breaks as <br>)
-					if ($softBreakAsBr) {
-						$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
-					}
+				}
+				if ($softBreakAsBr) {
+					$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
 				$html = $converter->convert($djot);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
@@ -265,7 +263,7 @@ class DjotController extends SandboxAppController {
 				}
 
 				$rawHtml = $converter->convert($djot);
-				$result['html'] = $this->sanitizeExtensionHtml($rawHtml);
+				$result['html'] = $this->sanitizeHtml($rawHtml);
 				if (Configure::read('debug')) {
 					$result['rawHtml'] = $rawHtml;
 				}
@@ -838,17 +836,17 @@ DJOT,
 	}
 
 	/**
-	 * Sanitize HTML output for extensions demo.
+	 * Sanitize HTML output to prevent XSS attacks.
 	 *
 	 * @param string $html
 	 * @return string
 	 */
-	protected function sanitizeExtensionHtml(string $html): string {
+	protected function sanitizeHtml(string $html): string {
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
-		$config->set('HTML.DefinitionID', 'djot-extensions');
-		$config->set('HTML.DefinitionRev', 4);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre[class],code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id|role],span[class|id],section[id],nav[class],input[type|name|id|checked|disabled|class],label[for|class],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|open],summary,figure[class],figcaption,kbd,dfn,abbr[title]');
+		$config->set('HTML.DefinitionID', 'djot-sandbox');
+		$config->set('HTML.DefinitionRev', 8);
+		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role],span[class|id],section[class|id],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],abbr[title|class|id]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
@@ -884,42 +882,6 @@ DJOT,
 			]);
 			$def->addElement('label', 'Inline', 'Inline', 'Common', [
 				'for' => 'CDATA',
-			]);
-		}
-
-		$purifier = new HTMLPurifier($config);
-
-		return $purifier->purify($html);
-	}
-
-	/**
-	 * Sanitize HTML output to prevent XSS attacks. Needed when input comes from outside.
-	 *
-	 * @param string $html
-	 * @return string
-	 */
-	protected function sanitizeHtml(string $html): string {
-		$config = HTMLPurifier_Config::createDefault();
-		$config->set('Cache.DefinitionImpl', null);
-		$config->set('HTML.DefinitionID', 'djot-sandbox');
-		$config->set('HTML.DefinitionRev', 7);
-		$config->set('HTML.Allowed', 'p,br,strong,em,u,s,del,ins,mark,sub[id],sup[id],a[href|title|class|id],img[src|alt|title],ul[class],ol[start|type],li,dl,dt,dd,blockquote,pre,code[class],h1[id],h2[id],h3[id],h4[id],h5[id],h6[id],table[class|id],caption,thead,tbody,tr,th[align|colspan|rowspan|style],td[align|colspan|rowspan|style],hr,div[class|id],span[class|id],section[id],input[type|checked|disabled],figure,figcaption,kbd,dfn,abbr[title]');
-		$config->set('CSS.AllowedProperties', 'text-align');
-		$config->set('Attr.EnableID', true);
-		$config->set('HTML.TargetBlank', true);
-		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true]);
-		$config->set('AutoFormat.RemoveEmpty', false);
-
-		$def = $config->maybeGetRawHTMLDefinition();
-		if ($def !== null) {
-			$def->addElement('mark', 'Inline', 'Inline', 'Common');
-			$def->addElement('section', 'Block', 'Flow', 'Common');
-			$def->addElement('figure', 'Block', 'Flow', 'Common');
-			$def->addElement('figcaption', 'Block', 'Flow', 'Common');
-			$def->addElement('input', 'Inline', 'Empty', 'Common', [
-				'type' => 'Enum#checkbox',
-				'checked' => 'Bool',
-				'disabled' => 'Bool',
 			]);
 		}
 

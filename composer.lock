@@ -3614,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "fca8379e87ec8c8716c2ecc5ba6d692d052c4649"
+                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/fca8379e87ec8c8716c2ecc5ba6d692d052c4649",
-                "reference": "fca8379e87ec8c8716c2ecc5ba6d692d052c4649",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/07fd9231d41c9feeb14236daf92f7a919d128560",
+                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560",
                 "shasum": ""
             },
             "require": {
@@ -3674,7 +3674,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-03-29T17:19:25+00:00"
+            "time": "2026-03-29T20:32:24+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -6532,12 +6532,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "8bd40c32cfdbdcab4dba105d5fba3ff147aa239f"
+                "reference": "722922253c5ab0deb977f0217b320e6e50abe9a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/8bd40c32cfdbdcab4dba105d5fba3ff147aa239f",
-                "reference": "8bd40c32cfdbdcab4dba105d5fba3ff147aa239f",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/722922253c5ab0deb977f0217b320e6e50abe9a4",
+                "reference": "722922253c5ab0deb977f0217b320e6e50abe9a4",
                 "shasum": ""
             },
             "require": {
@@ -6586,7 +6586,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-29T16:16:50+00:00"
+            "time": "2026-03-29T17:35:07+00:00"
         },
         {
             "name": "php-collective/dto",
