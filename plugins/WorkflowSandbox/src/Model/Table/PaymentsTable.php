@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace WorkflowSandbox\Model\Table;
 
-use Cake\Core\Configure;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
@@ -40,7 +39,6 @@ class PaymentsTable extends Table {
 		$this->addBehavior('Timestamp');
 		$this->addBehavior('Workflow.Workflow', [
 			'workflow' => 'payment',
-			'registry' => Configure::read('WorkflowSandbox.registry'),
 			'autoSave' => true,
 			'autoLog' => true,
 		]);

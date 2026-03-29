@@ -4,10 +4,11 @@ declare(strict_types=1);
 namespace WorkflowSandbox\Controller;
 
 use App\Controller\AppController;
-use Cake\Core\Configure;
 use Cake\Http\Response;
+use RuntimeException;
 use Workflow\Service\TransitionLogger;
 use Workflow\Service\WorkflowRegistry;
+use Workflow\Service\WorkflowRegistryLocator;
 
 /**
  * Tickets Controller
@@ -35,7 +36,7 @@ class TicketsController extends AppController {
 	 * @return \Workflow\Service\WorkflowRegistry
 	 */
 	protected function getRegistry(): WorkflowRegistry {
-		return Configure::read('WorkflowSandbox.registry');
+		return WorkflowRegistryLocator::get() ?? throw new RuntimeException('Workflow registry not configured');
 	}
 
 	/**

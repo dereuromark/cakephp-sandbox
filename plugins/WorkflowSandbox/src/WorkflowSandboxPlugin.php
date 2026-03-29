@@ -4,9 +4,8 @@ declare(strict_types=1);
 namespace WorkflowSandbox;
 
 use Cake\Core\BasePlugin;
-use Cake\Core\Configure;
+use Cake\Core\ContainerInterface;
 use Cake\Core\Plugin;
-use Cake\Core\PluginApplicationInterface;
 use Cake\Datasource\EntityInterface;
 use Cake\Event\EventManager;
 use Cake\I18n\DateTime;
@@ -32,22 +31,13 @@ class WorkflowSandboxPlugin extends BasePlugin {
 	 */
 	protected bool $consoleEnabled = false;
 
-	/**
-	 * @param \Cake\Core\PluginApplicationInterface $app Application instance
-	 * @return void
-	 */
-	public function bootstrap(PluginApplicationInterface $app): void {
-		parent::bootstrap($app);
-
-		$this->registerWorkflows();
+	public function services(ContainerInterface $container): void {
+		$container->addShared(WorkflowRegistry::class, function () {
+			return $this->buildRegistry();
+		});
 	}
 
-	/**
-	 * Register workflow definitions from this plugin.
-	 *
-	 * @return void
-	 */
-	private function registerWorkflows(): void {
+	private function buildRegistry(): WorkflowRegistry {
 		$workflowsPath = Plugin::path('WorkflowSandbox') . 'config' . DS . 'workflows' . DS;
 
 		$loader = new NeonLoader($workflowsPath);
@@ -62,9 +52,7 @@ class WorkflowSandboxPlugin extends BasePlugin {
 		$this->registerDocumentCommands($registry);
 		$this->registerRegistrationCommands($registry);
 
-		// Store in Configure for access by controllers and behaviors
-		Configure::write('WorkflowSandbox.registry', $registry);
-		Configure::write('Workflow.registry', $registry);
+		return $registry;
 	}
 
 	/**
