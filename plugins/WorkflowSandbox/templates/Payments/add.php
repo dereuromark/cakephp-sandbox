@@ -26,6 +26,7 @@ $this->assign('title', 'Create Payment');
 				<?= $this->Form->create($payment) ?>
 
 				<?= $this->Form->control('transaction_id', [
+					'type' => 'text',
 					'label' => 'Transaction ID',
 					'placeholder' => 'Leave empty to auto-generate',
 				]) ?>

@@ -58,8 +58,7 @@ class PaymentsTable extends Table {
 		$validator
 			->scalar('transaction_id')
 			->maxLength('transaction_id', 100)
-			->requirePresence('transaction_id', 'create')
-			->notEmptyString('transaction_id');
+			->allowEmptyString('transaction_id');
 
 		$validator
 			->decimal('amount')
