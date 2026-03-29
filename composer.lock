@@ -606,16 +606,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "5.0.3",
+            "version": "5.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "c8cfb9359cec6a880f67eb25210fb02f260a5bd8"
+                "reference": "e9baed9a39efdab64288832c4f1984d98a484ccb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/c8cfb9359cec6a880f67eb25210fb02f260a5bd8",
-                "reference": "c8cfb9359cec6a880f67eb25210fb02f260a5bd8",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/e9baed9a39efdab64288832c4f1984d98a484ccb",
+                "reference": "e9baed9a39efdab64288832c4f1984d98a484ccb",
                 "shasum": ""
             },
             "require": {
@@ -663,7 +663,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2026-03-12T21:10:11+00:00"
+            "time": "2026-03-29T04:06:25+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -3614,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "60365199b171f2fd9a881b154802855fdf0ea58f"
+                "reference": "fca8379e87ec8c8716c2ecc5ba6d692d052c4649"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/60365199b171f2fd9a881b154802855fdf0ea58f",
-                "reference": "60365199b171f2fd9a881b154802855fdf0ea58f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/fca8379e87ec8c8716c2ecc5ba6d692d052c4649",
+                "reference": "fca8379e87ec8c8716c2ecc5ba6d692d052c4649",
                 "shasum": ""
             },
             "require": {
@@ -3674,7 +3674,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-03-29T16:39:47+00:00"
+            "time": "2026-03-29T17:19:25+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -6532,12 +6532,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "5b6b08f40d8f3d44ccffb0441eefdf6ae8fa19da"
+                "reference": "8bd40c32cfdbdcab4dba105d5fba3ff147aa239f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/5b6b08f40d8f3d44ccffb0441eefdf6ae8fa19da",
-                "reference": "5b6b08f40d8f3d44ccffb0441eefdf6ae8fa19da",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/8bd40c32cfdbdcab4dba105d5fba3ff147aa239f",
+                "reference": "8bd40c32cfdbdcab4dba105d5fba3ff147aa239f",
                 "shasum": ""
             },
             "require": {
@@ -6586,7 +6586,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-28T19:31:34+00:00"
+            "time": "2026-03-29T16:16:50+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -6869,12 +6869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/toml.git",
-                "reference": "b4c662070243177c73dcf442436e1f750c5f8504"
+                "reference": "005e80160a65df68e27210e7856e3a8b6c94faa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/toml/zipball/b4c662070243177c73dcf442436e1f750c5f8504",
-                "reference": "b4c662070243177c73dcf442436e1f750c5f8504",
+                "url": "https://api.github.com/repos/php-collective/toml/zipball/005e80160a65df68e27210e7856e3a8b6c94faa1",
+                "reference": "005e80160a65df68e27210e7856e3a8b6c94faa1",
                 "shasum": ""
             },
             "require": {
@@ -6922,7 +6922,7 @@
                 "issues": "https://github.com/php-collective/toml/issues",
                 "source": "https://github.com/php-collective/toml/tree/master"
             },
-            "time": "2026-03-28T18:37:27+00:00"
+            "time": "2026-03-28T23:00:59+00:00"
         },
         {
             "name": "php-http/discovery",
