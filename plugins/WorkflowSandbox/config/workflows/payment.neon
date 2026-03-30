@@ -1,0 +1,106 @@
+# Automated Payment Verification Workflow
+# Demonstrates condition-like behavior using timeouts for polling
+# Max 3 verification attempts before failure
+
+payment:
+	table: WorkflowSandbox.Payments
+	field: status
+	metadata:
+		label: Payment Verification
+		description: Automated payment processing with retry logic
+
+	states:
+		pending:
+			label: Pending
+			color: '#9e9e9e'
+			initial: true
+
+		verifying:
+			label: Verifying Payment
+			color: '#2196f3'
+
+		retry_1:
+			label: Retry 1
+			color: '#ff9800'
+
+		retry_2:
+			label: Retry 2
+			color: '#ff9800'
+
+		retry_3:
+			label: Retry 3
+			color: '#f44336'
+
+		confirmed:
+			label: Payment Confirmed
+			color: '#4caf50'
+
+		verification_failed:
+			label: Verification Failed
+			color: '#f44336'
+
+		refund_pending:
+			label: Refund Pending
+			color: '#9c27b0'
+
+		refunded:
+			label: Refunded
+			color: '#607d8b'
+			final: true
+
+	transitions:
+		# Manual start of verification
+		start_verification:
+			from: [pending]
+			to: verifying
+			command: initiatePaymentCheck
+			happy: true
+
+		# Auto-check via timeout - success path (no guard for demo)
+		payment_success:
+			from: [verifying, retry_1, retry_2, retry_3]
+			to: confirmed
+			command: recordConfirmation
+			happy: true
+
+		# Timeout triggers retry logic (1 minute intervals for demo)
+		check_timeout_1:
+			from: [verifying]
+			to: retry_1
+			timeout: 60
+			command: checkPaymentStatus
+
+		check_timeout_2:
+			from: [retry_1]
+			to: retry_2
+			timeout: 60
+			command: checkPaymentStatus
+
+		check_timeout_3:
+			from: [retry_2]
+			to: retry_3
+			timeout: 60
+			command: checkPaymentStatus
+
+		# Final retry timeout - move into manual review
+		max_retries_exceeded:
+			from: [retry_3]
+			to: verification_failed
+			timeout: 60
+			command: markAsFailed
+
+		# Manual intervention paths (no guard for demo purposes)
+		manual_confirm:
+			from: [retry_1, retry_2, retry_3, verification_failed]
+			to: confirmed
+			command: manualConfirmation
+
+		request_refund:
+			from: [confirmed]
+			to: refund_pending
+			command: initiateRefund
+
+		refund_complete:
+			from: [refund_pending]
+			to: refunded
+			command: recordRefund

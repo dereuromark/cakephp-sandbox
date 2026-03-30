@@ -1,0 +1,64 @@
+registration:
+	table: WorkflowSandbox.Registrations
+	field: status
+	metadata:
+		label: Registration Workflow
+		description: Workshop registration with approval and payment flow
+
+	states:
+		pending:
+			initial: true
+			label: Pending
+			color: '#6c757d'
+		approved:
+			label: Approved
+			color: '#0d6efd'
+		waiting_for_payment:
+			label: Waiting for Payment
+			color: '#fd7e14'
+		paid:
+			label: Paid
+			color: '#198754'
+		confirmed:
+			label: Confirmed
+			color: '#0dcaf0'
+		completed:
+			final: true
+			label: Completed
+			color: '#198754'
+		rejected:
+			final: true
+			failed: true
+			label: Rejected
+			color: '#dc3545'
+
+	transitions:
+		auto_approve:
+			from: [pending]
+			to: approved
+			guard: isModeratorUser
+		approve:
+			from: [pending]
+			to: approved
+			happy: true
+		reject:
+			from: [pending]
+			to: rejected
+		request_payment:
+			from: [approved]
+			to: waiting_for_payment
+			command: createPaymentJob
+			happy: true
+		confirm_payment:
+			from: [waiting_for_payment]
+			to: paid
+			happy: true
+		send_confirmation:
+			from: [paid]
+			to: confirmed
+			command: sendConfirmationEmail
+			happy: true
+		complete:
+			from: [confirmed]
+			to: completed
+			happy: true

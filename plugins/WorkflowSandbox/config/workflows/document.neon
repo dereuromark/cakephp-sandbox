@@ -1,0 +1,60 @@
+document:
+	table: WorkflowSandbox.Documents
+	field: status
+	metadata:
+		label: Document Approval Workflow
+		description: Multi-level document approval chain (Manager → Director → VP)
+
+	states:
+		draft:
+			initial: true
+			label: Draft
+			color: '#6c757d'
+		level1_review:
+			label: Manager Review
+			color: '#fd7e14'
+		level2_review:
+			label: Director Review
+			color: '#0d6efd'
+		level3_review:
+			label: VP Review
+			color: '#6f42c1'
+		approved:
+			final: true
+			label: Approved
+			color: '#198754'
+		rejected:
+			label: Rejected
+			color: '#dc3545'
+
+	transitions:
+		submit:
+			from: [draft]
+			to: level1_review
+			happy: true
+		approve_level1:
+			from: [level1_review]
+			to: level2_review
+			guard: isManager
+			command: recordApproval
+			happy: true
+		approve_level2:
+			from: [level2_review]
+			to: level3_review
+			guard: isDirector
+			command: recordApproval
+			happy: true
+		approve_level3:
+			from: [level3_review]
+			to: approved
+			guard: isVP
+			command: recordApproval
+			happy: true
+		reject:
+			from: [level1_review, level2_review, level3_review]
+			to: rejected
+			command: recordRejection
+		revise:
+			from: [rejected]
+			to: draft
+			command: clearApprovalState

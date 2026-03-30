@@ -186,7 +186,8 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('<br', $response['html']);
+		// Significant newlines preserves newlines in output (but doesn't convert to <br>)
+		$this->assertStringContainsString("Line one\n", $response['html']);
 	}
 
 	/**

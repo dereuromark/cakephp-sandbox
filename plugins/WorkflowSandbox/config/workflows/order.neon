@@ -1,0 +1,72 @@
+order:
+	table: WorkflowSandbox.Orders
+	field: status
+	metadata:
+		label: Order Workflow
+		description: E-commerce order processing with payment and shipping
+
+	states:
+		pending:
+			initial: true
+			label: Pending
+			color: '#6c757d'
+		awaiting_payment:
+			label: Awaiting Payment
+			color: '#fd7e14'
+		paid:
+			label: Paid
+			color: '#0d6efd'
+		processing:
+			label: Processing
+			color: '#0d6efd'
+		shipped:
+			label: Shipped
+			color: '#0dcaf0'
+		delivered:
+			label: Delivered
+			color: '#198754'
+		cancelled:
+			final: true
+			failed: true
+			label: Cancelled
+			color: '#dc3545'
+		refunded:
+			final: true
+			failed: true
+			label: Refunded
+			color: '#6f42c1'
+
+	transitions:
+		checkout:
+			from: [pending]
+			to: awaiting_payment
+			happy: true
+		pay:
+			from: [awaiting_payment]
+			to: paid
+			command: recordPayment
+			happy: true
+		process:
+			from: [paid]
+			to: processing
+			happy: true
+		ship:
+			from: [processing]
+			to: shipped
+			command: recordShipment
+			happy: true
+		deliver:
+			from: [shipped]
+			to: delivered
+			command: recordDelivery
+			happy: true
+		cancel:
+			from: [pending, awaiting_payment, paid]
+			to: cancelled
+			command: recordCancellation
+			guard: canCancel
+		refund:
+			from: [paid, processing, shipped, delivered]
+			to: refunded
+			guard: canRefund
+			command: processRefund

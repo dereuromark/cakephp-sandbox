@@ -217,9 +217,9 @@
 						</div>
 
 						<div class="plugin-item">
-							<h4 class="h6">StateMachine Plugin</h4>
+							<h4 class="h6">Workflow Plugin</h4>
 							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Workflow Examples using StateMachine', ['plugin' => 'StateMachineSandbox', 'controller' => 'StateMachineSandbox', 'action' => 'index']); ?></li>
+								<li><?php echo $this->Html->link('Workflow Examples', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 

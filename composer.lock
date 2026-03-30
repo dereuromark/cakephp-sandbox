@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67045a8d3f768ce0097677bc5029bf52",
+    "content-hash": "a0b8ae117879a0127e31f851c46d2b2c",
     "packages": [
         {
             "name": "brick/math",
@@ -3609,6 +3609,74 @@
             "time": "2026-03-19T21:55:56+00:00"
         },
         {
+            "name": "dereuromark/cakephp-workflow",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-workflow.git",
+                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/07fd9231d41c9feeb14236daf92f7a919d128560",
+                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.2",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "cakephp/bake": "^3.0",
+                "cakephp/migrations": "^4.0.0",
+                "nette/neon": "^3.0",
+                "php-collective/code-sniffer": "^0.5.4",
+                "phpunit/phpunit": "^11.5 || ^12.5 || ^13.0",
+                "symfony/yaml": "^6.0 || ^7.0 || ^8.0"
+            },
+            "suggest": {
+                "cakephp/bake": "Optional for bake workflow_state scaffolding (^3.0)",
+                "nette/neon": "Required for NEON workflow definitions (^3.0)",
+                "symfony/yaml": "Required for YAML workflow definitions (^6.0 || ^7.0 || ^8.0)"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Workflow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Author"
+                }
+            ],
+            "description": "State machine and workflow engine for CakePHP with PHP 8 Attributes, YAML support, and admin UI",
+            "homepage": "https://github.com/dereuromark/cakephp-workflow",
+            "keywords": [
+                "admin-panel",
+                "attributes",
+                "cakephp",
+                "fsm",
+                "plugin",
+                "standalone-ui",
+                "state-machine",
+                "workflow",
+                "yaml"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
+                "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
+            },
+            "time": "2026-03-29T20:32:24+00:00"
+        },
+        {
             "name": "dereuromark/media-embed",
             "version": "dev-master",
             "source": {
@@ -6116,6 +6184,77 @@
             "time": "2026-01-09T16:21:59+00:00"
         },
         {
+            "name": "nette/neon",
+            "version": "v3.4.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/neon.git",
+                "reference": "cc96bf5264d721d0c102bb976272d3d001a23e65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/neon/zipball/cc96bf5264d721d0c102bb976272d3d001a23e65",
+                "reference": "cc96bf5264d721d0c102bb976272d3d001a23e65",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "8.0 - 8.5"
+            },
+            "require-dev": {
+                "nette/tester": "^2.4",
+                "phpstan/phpstan-nette": "^2.0@stable",
+                "tracy/tracy": "^2.7"
+            },
+            "bin": [
+                "bin/neon-lint"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nette\\": "src"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🍸 Nette NEON: encodes and decodes NEON file format.",
+            "homepage": "https://neon.nette.org",
+            "keywords": [
+                "export",
+                "import",
+                "neon",
+                "nette",
+                "yaml"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/neon/issues",
+                "source": "https://github.com/nette/neon/tree/v3.4.7"
+            },
+            "time": "2026-01-04T08:39:50+00:00"
+        },
+        {
             "name": "nette/schema",
             "version": "v1.3.5",
             "source": {
@@ -6863,59 +7002,6 @@
                 "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
             "time": "2024-10-02T11:20:13+00:00"
-        },
-        {
-            "name": "phpdocumentor/graphviz",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/GraphViz.git",
-                "reference": "115999dc7f31f2392645aa825a94a6b165e1cedf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/GraphViz/zipball/115999dc7f31f2392645aa825a94a6b165e1cedf",
-                "reference": "115999dc7f31f2392645aa825a94a6b165e1cedf",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2 || ^8.0"
-            },
-            "require-dev": {
-                "ext-simplexml": "*",
-                "mockery/mockery": "^1.2",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8.2 || ^9.2",
-                "psalm/phar": "^4.15"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "phpDocumentor\\GraphViz\\": "src/phpDocumentor/GraphViz",
-                    "phpDocumentor\\GraphViz\\PHPStan\\": "./src/phpDocumentor/PHPStan"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Mike van Riel",
-                    "email": "mike.vanriel@naenius.com"
-                }
-            ],
-            "description": "Wrapper for Graphviz",
-            "support": {
-                "issues": "https://github.com/phpDocumentor/GraphViz/issues",
-                "source": "https://github.com/phpDocumentor/GraphViz/tree/2.1.0"
-            },
-            "time": "2021-12-13T19:03:21+00:00"
         },
         {
             "name": "psr/clock",
@@ -8026,83 +8112,6 @@
                 }
             ],
             "time": "2026-02-09T14:43:55+00:00"
-        },
-        {
-            "name": "spryker/cakephp-statemachine",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dereuromark/cakephp-statemachine.git",
-                "reference": "25241be4f51713773ea35200e72489b59e734d64"
-            },
-            "require": {
-                "cakephp/cakephp": "^5.1.0",
-                "dereuromark/cakephp-dto": "^2.5.0",
-                "php": ">=8.3",
-                "php-collective/dto": "^0.1.2",
-                "phpdocumentor/graphviz": "^2.0.0"
-            },
-            "require-dev": {
-                "cakephp/bake": "^3.0.4",
-                "cakephp/migrations": "^4.1.1",
-                "dereuromark/cakephp-ide-helper": "^2.0.0",
-                "dereuromark/cakephp-tools": "^3.0.0",
-                "php-collective/code-sniffer": "dev-master",
-                "phpstan/phpstan": "^2.1.0",
-                "phpunit/phpunit": "^12.3"
-            },
-            "default-branch": true,
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "StateMachine\\": "src/",
-                    "StateMachine\\Test\\Fixture\\": "tests/Fixture/"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
-                    "StateMachine\\Test\\": "tests/",
-                    "TestApp\\": "tests/test_app/src/"
-                }
-            },
-            "scripts": {
-                "cs-check": [
-                    "vendor/bin/phpcs"
-                ],
-                "cs-fix": [
-                    "vendor/bin/phpcbf"
-                ],
-                "lowest": [
-                    "validate-prefer-lowest"
-                ],
-                "lowest-setup": [
-                    "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json"
-                ],
-                "stan": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "stan-tests": [
-                    "vendor/bin/phpstan analyse -c tests/phpstan.neon"
-                ],
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml"
-                ]
-            },
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Spryker Systems GmbH",
-                    "homepage": "https://spryker.com"
-                }
-            ],
-            "description": "CakePHP StateMachine Plugin",
-            "time": "2025-12-15T09:36:07+00:00"
         },
         {
             "name": "symfony/console",
@@ -12851,6 +12860,7 @@
         "dereuromark/cakephp-tinyauth": 20,
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-translate": 20,
+        "dereuromark/cakephp-workflow": 20,
         "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
         "php-collective/code-sniffer": 20,
@@ -12858,7 +12868,6 @@
         "php-collective/file-storage": 20,
         "php-collective/file-storage-image-processor": 20,
         "php-collective/toml": 20,
-        "spryker/cakephp-statemachine": 20,
         "symfony/filesystem": 0
     },
     "prefer-stable": true,

@@ -23,6 +23,15 @@
 	</div>
 </div>
 
+<div class="alert alert-success d-flex align-items-center mb-4" role="alert">
+	<i class="fa fa-project-diagram me-3 fa-2x"></i>
+	<div>
+		<strong>New: Workflow State Machine</strong><br>
+		Define and manage complex workflows with NEON configs, visual diagrams, and transition history.
+		<?php echo $this->Html->link('Explore workflows →', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?>
+	</div>
+</div>
+
 <div class="row">
 	<div class="col-sm-6 col-12">
 

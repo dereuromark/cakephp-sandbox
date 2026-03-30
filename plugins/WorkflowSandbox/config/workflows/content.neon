@@ -1,0 +1,59 @@
+content:
+	table: WorkflowSandbox.Contents
+	field: status
+	metadata:
+		label: Content Moderation Workflow
+		description: Content review and publishing with role-based approval
+
+	states:
+		draft:
+			initial: true
+			label: Draft
+			color: '#6c757d'
+		pending_review:
+			label: Pending Review
+			color: '#fd7e14'
+		in_review:
+			label: In Review
+			color: '#0d6efd'
+		approved:
+			label: Approved
+			color: '#0dcaf0'
+		published:
+			label: Published
+			color: '#198754'
+		rejected:
+			label: Rejected
+			color: '#dc3545'
+
+	transitions:
+		submit:
+			from: [draft]
+			to: pending_review
+			happy: true
+		assign_reviewer:
+			from: [pending_review]
+			to: in_review
+			guard: hasReviewerRole
+			happy: true
+		approve:
+			from: [in_review]
+			to: approved
+			guard: isAssignedReviewer
+			happy: true
+		reject:
+			from: [in_review]
+			to: rejected
+			guard: isAssignedReviewer
+		publish:
+			from: [approved]
+			to: published
+			command: recordPublication
+			happy: true
+		revise:
+			from: [rejected]
+			to: draft
+			command: clearRejection
+		unpublish:
+			from: [published]
+			to: draft
