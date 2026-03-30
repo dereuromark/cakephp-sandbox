@@ -940,16 +940,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.10",
+            "version": "1.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "961a5e4056dd2e4a2eedcac7576075947c28bf63"
+                "reference": "68ff39175e8e94a4bb1d259407ce51a6a60f09e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/961a5e4056dd2e4a2eedcac7576075947c28bf63",
-                "reference": "961a5e4056dd2e4a2eedcac7576075947c28bf63",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/68ff39175e8e94a4bb1d259407ce51a6a60f09e6",
+                "reference": "68ff39175e8e94a4bb1d259407ce51a6a60f09e6",
                 "shasum": ""
             },
             "require": {
@@ -996,7 +996,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.10"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.11"
             },
             "funding": [
                 {
@@ -1008,20 +1008,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-08T15:06:51+00:00"
+            "time": "2026-03-30T09:16:10+00:00"
         },
         {
             "name": "composer/class-map-generator",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/class-map-generator.git",
-                "reference": "8f5fa3cc214230e71f54924bd0197a3bcc705eb1"
+                "reference": "6a9c2f0970022ab00dc58c07d0685dd712f2231b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/8f5fa3cc214230e71f54924bd0197a3bcc705eb1",
-                "reference": "8f5fa3cc214230e71f54924bd0197a3bcc705eb1",
+                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/6a9c2f0970022ab00dc58c07d0685dd712f2231b",
+                "reference": "6a9c2f0970022ab00dc58c07d0685dd712f2231b",
                 "shasum": ""
             },
             "require": {
@@ -1065,7 +1065,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/class-map-generator/issues",
-                "source": "https://github.com/composer/class-map-generator/tree/1.7.1"
+                "source": "https://github.com/composer/class-map-generator/tree/1.7.2"
             },
             "funding": [
                 {
@@ -1077,7 +1077,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-29T13:15:25+00:00"
+            "time": "2026-03-30T15:36:56+00:00"
         },
         {
             "name": "composer/composer",
@@ -3614,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560"
+                "reference": "1e1b0e373d1dc972cd933313d4190b673d205030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/07fd9231d41c9feeb14236daf92f7a919d128560",
-                "reference": "07fd9231d41c9feeb14236daf92f7a919d128560",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/1e1b0e373d1dc972cd933313d4190b673d205030",
+                "reference": "1e1b0e373d1dc972cd933313d4190b673d205030",
                 "shasum": ""
             },
             "require": {
@@ -3674,7 +3674,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-03-29T20:32:24+00:00"
+            "time": "2026-03-30T11:55:27+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -6532,12 +6532,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "722922253c5ab0deb977f0217b320e6e50abe9a4"
+                "reference": "b7c4ce5cb7c24b5f029cfa5dd9443ecf5a867859"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/722922253c5ab0deb977f0217b320e6e50abe9a4",
-                "reference": "722922253c5ab0deb977f0217b320e6e50abe9a4",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/b7c4ce5cb7c24b5f029cfa5dd9443ecf5a867859",
+                "reference": "b7c4ce5cb7c24b5f029cfa5dd9443ecf5a867859",
                 "shasum": ""
             },
             "require": {
@@ -6586,20 +6586,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-29T17:35:07+00:00"
+            "time": "2026-03-30T09:25:57+00:00"
         },
         {
             "name": "php-collective/dto",
-            "version": "0.1.15",
+            "version": "0.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/dto.git",
-                "reference": "5b32a8b90fa8c2e2834055abec7e7f3c1043aa1a"
+                "reference": "305f23c2d3c64232e66b4243921252f17846db5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/dto/zipball/5b32a8b90fa8c2e2834055abec7e7f3c1043aa1a",
-                "reference": "5b32a8b90fa8c2e2834055abec7e7f3c1043aa1a",
+                "url": "https://api.github.com/repos/php-collective/dto/zipball/305f23c2d3c64232e66b4243921252f17846db5e",
+                "reference": "305f23c2d3c64232e66b4243921252f17846db5e",
                 "shasum": ""
             },
             "require": {
@@ -6652,9 +6652,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/dto/issues",
-                "source": "https://github.com/php-collective/dto/tree/0.1.15"
+                "source": "https://github.com/php-collective/dto/tree/0.1.16"
             },
-            "time": "2026-03-23T22:12:18+00:00"
+            "time": "2026-03-30T19:48:59+00:00"
         },
         {
             "name": "php-collective/file-storage",
@@ -6869,12 +6869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/toml.git",
-                "reference": "005e80160a65df68e27210e7856e3a8b6c94faa1"
+                "reference": "5633b73294a312174917e0457ae36cc3e4c5afbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/toml/zipball/005e80160a65df68e27210e7856e3a8b6c94faa1",
-                "reference": "005e80160a65df68e27210e7856e3a8b6c94faa1",
+                "url": "https://api.github.com/repos/php-collective/toml/zipball/5633b73294a312174917e0457ae36cc3e4c5afbe",
+                "reference": "5633b73294a312174917e0457ae36cc3e4c5afbe",
                 "shasum": ""
             },
             "require": {
@@ -6922,7 +6922,7 @@
                 "issues": "https://github.com/php-collective/toml/issues",
                 "source": "https://github.com/php-collective/toml/tree/master"
             },
-            "time": "2026-03-28T23:00:59+00:00"
+            "time": "2026-03-30T20:23:41+00:00"
         },
         {
             "name": "php-http/discovery",
@@ -10919,11 +10919,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.44",
+            "version": "2.1.45",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a88c083c668b2c364a425c9b3171b2d9ea5d218",
-                "reference": "4a88c083c668b2c364a425c9b3171b2d9ea5d218",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f8cdfd9421b7edb7686a2d150a234870464eac70",
+                "reference": "f8cdfd9421b7edb7686a2d150a234870464eac70",
                 "shasum": ""
             },
             "require": {
@@ -10968,7 +10968,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-25T17:34:21+00:00"
+            "time": "2026-03-30T13:22:02+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",

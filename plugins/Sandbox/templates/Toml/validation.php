@@ -111,17 +111,68 @@ TOML,
 
 <div id="alert-container"></div>
 
+<style>
+.editor-container {
+	display: flex;
+	border: 1px solid #dee2e6;
+	border-radius: 0.375rem;
+	overflow: hidden;
+}
+.line-numbers {
+	background: #f8f9fa;
+	border-right: 1px solid #dee2e6;
+	padding: 0.375rem 0;
+	text-align: right;
+	user-select: none;
+	font-family: monospace;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: #6c757d;
+	min-width: 3em;
+}
+.line-numbers div {
+	padding: 0 0.5rem;
+}
+.line-numbers div.error-line {
+	background: #f8d7da;
+	color: #842029;
+	font-weight: bold;
+}
+.line-numbers div.highlighted {
+	background: #fff3cd;
+}
+#toml-input {
+	border: none;
+	border-radius: 0;
+	resize: none;
+	line-height: 1.5;
+	font-size: 0.875rem;
+}
+#toml-input:focus {
+	box-shadow: none;
+}
+.error-badge {
+	cursor: pointer;
+}
+.error-badge:hover {
+	opacity: 0.8;
+}
+</style>
+
 <div class="row mb-3">
 	<div class="col-md-6">
 		<label class="form-label">TOML Input</label>
-		<textarea id="toml-input" class="form-control font-monospace" rows="15" placeholder="Enter TOML to validate..."><?= h($defaultToml) ?></textarea>
+		<div class="editor-container">
+			<div class="line-numbers" id="line-numbers"></div>
+			<textarea id="toml-input" class="form-control font-monospace" rows="15" placeholder="Enter TOML to validate..."><?= h($defaultToml) ?></textarea>
+		</div>
 		<button type="button" class="btn btn-primary mt-2" id="btn-validate">
 			<i class="bi bi-check-circle"></i> Validate
 		</button>
 	</div>
 	<div class="col-md-6">
 		<label class="form-label">Validation Result</label>
-		<div id="validation-result" class="border rounded p-3 bg-light" style="min-height: 350px; max-height: 350px; overflow-y: auto;">
+		<div id="validation-result" class="border rounded p-3 bg-light" style="min-height: 350px;">
 			<span class="text-muted">Click "Validate" to check the TOML...</span>
 		</div>
 	</div>
@@ -154,13 +205,54 @@ TOML,
 <?php $this->Html->scriptStart(['block' => true]); ?>
 (function() {
 	const input = document.getElementById('toml-input');
+	const lineNumbers = document.getElementById('line-numbers');
 	const result = document.getElementById('validation-result');
 	const alertContainer = document.getElementById('alert-container');
 	const btnValidate = document.getElementById('btn-validate');
 
+	let errorLines = [];
+
+	function updateLineNumbers() {
+		const lines = input.value.split('\n');
+		let html = '';
+		for (let i = 1; i <= lines.length; i++) {
+			const isError = errorLines.includes(i);
+			html += '<div' + (isError ? ' class="error-line"' : '') + '>' + i + '</div>';
+		}
+		lineNumbers.innerHTML = html;
+	}
+
+	function syncScroll() {
+		lineNumbers.scrollTop = input.scrollTop;
+	}
+
+	function goToLine(lineNum) {
+		const lines = input.value.split('\n');
+		let charIndex = 0;
+		for (let i = 0; i < lineNum - 1 && i < lines.length; i++) {
+			charIndex += lines[i].length + 1;
+		}
+		input.focus();
+		input.setSelectionRange(charIndex, charIndex + (lines[lineNum - 1]?.length || 0));
+
+		// Scroll line into view
+		const lineHeight = input.scrollHeight / lines.length;
+		const targetScroll = (lineNum - 5) * lineHeight;
+		input.scrollTop = Math.max(0, targetScroll);
+
+		// Briefly highlight the line number
+		const lineEl = lineNumbers.children[lineNum - 1];
+		if (lineEl) {
+			lineEl.classList.add('highlighted');
+			setTimeout(() => lineEl.classList.remove('highlighted'), 1500);
+		}
+	}
+
 	function validate() {
 		result.innerHTML = '<span class="text-muted">Validating...</span>';
 		alertContainer.innerHTML = '';
+		errorLines = [];
+		updateLineNumbers();
 
 		const formData = new FormData();
 		formData.append('toml', input.value);
@@ -178,20 +270,50 @@ TOML,
 				result.innerHTML = '<div class="alert alert-success mb-2"><i class="bi bi-check-circle-fill"></i> Valid TOML!</div>' +
 					'<pre class="mb-0"><code>' + escapeHtml(JSON.stringify(data.data, null, 2)) + '</code></pre>';
 			} else if (data.errors && data.errors.length > 0) {
+				errorLines = data.errors.filter(e => e.line).map(e => e.line);
+				updateLineNumbers();
+
+				const inputLines = input.value.split('\n');
 				let html = '<div class="alert alert-danger mb-2"><i class="bi bi-x-circle-fill"></i> ' + data.errors.length + ' error(s) found</div>';
 				html += '<ul class="list-group">';
 				data.errors.forEach(function(err, i) {
 					html += '<li class="list-group-item list-group-item-danger">';
 					html += '<strong>Error ' + (i + 1) + ':</strong> ' + escapeHtml(err.message);
 					if (err.line) {
-						html += ' <span class="badge bg-secondary">Line ' + err.line;
+						html += ' <span class="badge bg-secondary error-badge" data-line="' + err.line + '" title="Click to go to line">Line ' + err.line;
 						if (err.column) html += ':' + err.column;
 						html += '</span>';
+					}
+					if (err.hint) {
+						html += '<div class="text-muted small mt-1"><i class="bi bi-lightbulb text-warning"></i> ' + escapeHtml(err.hint) + '</div>';
+					}
+					if (err.line) {
+						// Show context: the actual line content
+						const lineIdx = err.line - 1;
+						if (lineIdx >= 0 && lineIdx < inputLines.length) {
+							const lineContent = inputLines[lineIdx];
+							html += '<pre class="mt-2 mb-0 p-2 bg-white border rounded small"><code>';
+							// Show line number prefix
+							html += '<span class="text-muted">' + err.line.toString().padStart(3) + ' │ </span>';
+							html += escapeHtml(lineContent || '(empty line)');
+							// Show column indicator if available
+							if (err.column && err.column > 0) {
+								html += '\n<span class="text-muted">      </span><span class="text-danger">' + ' '.repeat(err.column - 1) + '^</span>';
+							}
+							html += '</code></pre>';
+						}
 					}
 					html += '</li>';
 				});
 				html += '</ul>';
 				result.innerHTML = html;
+
+				// Add click handlers to error badges
+				result.querySelectorAll('.error-badge').forEach(badge => {
+					badge.addEventListener('click', function() {
+						goToLine(parseInt(this.dataset.line, 10));
+					});
+				});
 			} else {
 				result.innerHTML = '<span class="text-muted">No result</span>';
 			}
@@ -209,11 +331,18 @@ TOML,
 	}
 
 	btnValidate.addEventListener('click', validate);
+	input.addEventListener('input', function() {
+		errorLines = [];
+		updateLineNumbers();
+	});
+	input.addEventListener('scroll', syncScroll);
 
 	// Try error examples
 	document.querySelectorAll('.try-error').forEach(btn => {
 		btn.addEventListener('click', function() {
 			input.value = this.dataset.code;
+			errorLines = [];
+			updateLineNumbers();
 			input.scrollIntoView({ behavior: 'smooth', block: 'center' });
 			validate();
 		});
@@ -223,5 +352,8 @@ TOML,
 	document.querySelectorAll('code.language-toml').forEach(el => {
 		hljs.highlightElement(el);
 	});
+
+	// Initialize line numbers
+	updateLineNumbers();
 })();
 <?php $this->Html->scriptEnd(); ?>

@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Http\Response;
 use Composer\InstalledVersions;
+use PhpCollective\Toml\Exception\ParseException;
 use PhpCollective\Toml\Toml;
 use Throwable;
 
@@ -36,6 +37,9 @@ class TomlController extends SandboxAppController {
 			'success' => false,
 			'data' => null,
 			'error' => null,
+			'hint' => null,
+			'line' => null,
+			'column' => null,
 		];
 
 		if ($toml) {
@@ -43,6 +47,11 @@ class TomlController extends SandboxAppController {
 				$data = Toml::decode($toml);
 				$result['success'] = true;
 				$result['data'] = $data;
+			} catch (ParseException $e) {
+				$result['error'] = $e->getMessage();
+				$result['hint'] = $e->hint;
+				$result['line'] = $e->span?->line;
+				$result['column'] = $e->span?->column;
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -125,6 +134,7 @@ class TomlController extends SandboxAppController {
 					foreach ($errors as $error) {
 						$result['errors'][] = [
 							'message' => $error->message,
+							'hint' => $error->hint,
 							'line' => $error->span->line,
 							'column' => $error->span->column,
 						];
