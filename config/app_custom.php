@@ -22,10 +22,8 @@ use Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck;
 use Setup\Healthcheck\Check\Environment\PhpVersionCheck;
 use Setup\Healthcheck\HealthcheckCollector;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
-use StateMachine\Graph\Adapter\PhpDocumentorGraphAdapter;
 use StateMachine\Illuminator\Task\EventTask;
 use StateMachine\Illuminator\Task\StateTask;
-use StateMachineSandbox\StateMachine\RegistrationStateMachineHandler;
 use Templating\Generator\Task\IconRenderTask;
 use Templating\View\Icon\BootstrapIcon;
 use Templating\View\Icon\FeatherIcon;
@@ -212,15 +210,6 @@ $config = [
 				GraphvizCheck::class => [],
 			] + HealthcheckCollector::defaultChecks(),
 		],
-	],
-
-	'StateMachine' => [
-		'graphAdapter' => PhpDocumentorGraphAdapter::class,
-		'handlers' => [
-			RegistrationStateMachineHandler::class,
-		],
-		'map' => [],
-		'pathToXml' => ROOT . DS . 'plugins' . DS . 'StateMachineSandbox' . DS . 'config' . DS . 'StateMachines' . DS,
 	],
 
 	'FormConfig' => [

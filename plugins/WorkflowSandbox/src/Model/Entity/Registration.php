@@ -13,6 +13,8 @@ use Cake\ORM\Entity;
  * @property string|null $session_id
  * @property string $status
  * @property string|null $notes
+ * @property \Cake\I18n\DateTime|null $payment_requested_at
+ * @property \Cake\I18n\DateTime|null $confirmation_sent_at
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *

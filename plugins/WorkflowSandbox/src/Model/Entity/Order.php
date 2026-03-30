@@ -19,6 +19,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\DateTime|null $shipped_at
  * @property \Cake\I18n\DateTime|null $delivered_at
  * @property \Cake\I18n\DateTime|null $cancelled_at
+ * @property \Cake\I18n\DateTime|null $refunded_at
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
  *
