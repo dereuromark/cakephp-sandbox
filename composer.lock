@@ -6869,12 +6869,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/toml.git",
-                "reference": "5633b73294a312174917e0457ae36cc3e4c5afbe"
+                "reference": "305fc5a9234ef49644a945bcaad81a9e8b67f0ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/toml/zipball/5633b73294a312174917e0457ae36cc3e4c5afbe",
-                "reference": "5633b73294a312174917e0457ae36cc3e4c5afbe",
+                "url": "https://api.github.com/repos/php-collective/toml/zipball/305fc5a9234ef49644a945bcaad81a9e8b67f0ce",
+                "reference": "305fc5a9234ef49644a945bcaad81a9e8b67f0ce",
                 "shasum": ""
             },
             "require": {
@@ -6922,7 +6922,7 @@
                 "issues": "https://github.com/php-collective/toml/issues",
                 "source": "https://github.com/php-collective/toml/tree/master"
             },
-            "time": "2026-03-30T20:23:41+00:00"
+            "time": "2026-03-30T21:08:12+00:00"
         },
         {
             "name": "php-http/discovery",
