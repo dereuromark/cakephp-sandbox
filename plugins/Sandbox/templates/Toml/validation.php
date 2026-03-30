@@ -298,7 +298,7 @@ TOML,
 							html += escapeHtml(lineContent || '(empty line)');
 							// Show column indicator if available
 							if (err.column && err.column > 0) {
-								html += '\n<span class="text-muted">      </span><span class="text-danger">' + ' '.repeat(err.column - 1) + '^</span>';
+								html += '\n<span class="text-muted">      </span><span class="text-danger">' + ' '.repeat(err.column) + '^</span>';
 							}
 							html += '</code></pre>';
 						}
