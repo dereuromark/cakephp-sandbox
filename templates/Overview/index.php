@@ -30,7 +30,6 @@ This site combines useful code snippets with their live result.
 				<li><?php echo $this->Html->link('DTO Projection', ['plugin' => 'Sandbox', 'controller' => 'DtoExamples', 'action' => 'projection']); ?> - Project ORM results directly into typed DTOs with <code>projectAs()</code></li>
 				<li><?php echo $this->Html->link('Rate Limiter Middleware', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'rateLimiter']); ?> - Protect your application from abuse</li>
 				<li><?php echo $this->Html->link('Combined Pagination Sorting', ['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'paginateCombinedSort']); ?> - Multi-field sorting made easy</li>
-				<li><?php echo $this->Html->link('FileStorage Plugin', ['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'index']); ?> - File uploads, image cropping, drag & drop, and more</li>
 			</ul>
 		</div>
 	</div>
@@ -44,7 +43,6 @@ This site combines useful code snippets with their live result.
 			<ul class="mb-0">
 				<li><?php echo $this->Html->link('Workflow Overview', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?> - Multiple workflow examples</li>
 				<li><?php echo $this->Html->link('Visual Designer', ['plugin' => 'WorkflowSandbox', 'controller' => 'Builder', 'action' => 'index']); ?> - Build workflows with a visual editor</li>
-				<li><?php echo $this->Html->link('Transition History', ['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'index']); ?> - Track all state changes</li>
 			</ul>
 		</div>
 	</div>
