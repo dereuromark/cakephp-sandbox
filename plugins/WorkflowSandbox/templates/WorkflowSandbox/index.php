@@ -85,11 +85,6 @@ $this->assign('title', 'Workflow Sandbox');
 <ul>
 	<li>
 		<?= $this->Html->link('Workflow Plugin Admin', ['plugin' => 'Workflow', 'controller' => 'Workflows', 'action' => 'index', 'prefix' => 'Admin']) ?>
-		- View all registered workflows
-	</li>
-	<li>
-		<a href="https://github.com/dereuromark/cakephp-workflow" target="_blank">
-			cakephp-workflow on GitHub
-		</a>
+		- View all registered workflows (live demo only available locally)
 	</li>
 </ul>
