@@ -79,7 +79,7 @@ session_id('cli');
 
 (new Migrator())->runMany([
 	['connection' => 'test'],
-	['plugin' => 'StateMachine'],
+	['plugin' => 'WorkflowSandbox'],
 	['plugin' => 'Tags'],
 	['plugin' => 'Captcha'],
 	['plugin' => 'Queue'],
