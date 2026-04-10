@@ -82,7 +82,7 @@ class DjotController extends SandboxAppController {
 					$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
 				}
 				if ($softBreakAsBr) {
-					$converter->getRenderer()->setSoftBreakMode(SoftBreakMode::Break);
+					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
 				$html = $converter->convert($djot);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
