@@ -6,6 +6,7 @@ return [
 	'Tools' => [],
 	'Setup' => [],
 	'Data' => [],
+	'Tags' => [],
 	'Ajax' => [],
 	//'Meta', ['bootstrap' => false]);
 	'Cache' => [],
