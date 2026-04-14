@@ -3269,12 +3269,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "c55376eeb292e9ca3c5d426594cf7e970879581f"
+                "reference": "161fe910f0be7a4859d732f7e442345efe8598db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/c55376eeb292e9ca3c5d426594cf7e970879581f",
-                "reference": "c55376eeb292e9ca3c5d426594cf7e970879581f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/161fe910f0be7a4859d732f7e442345efe8598db",
+                "reference": "161fe910f0be7a4859d732f7e442345efe8598db",
                 "shasum": ""
             },
             "require": {
@@ -3339,7 +3339,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tags/issues",
                 "source": "https://github.com/dereuromark/cakephp-tags"
             },
-            "time": "2026-04-13T14:09:25+00:00"
+            "time": "2026-04-13T15:13:16+00:00"
         },
         {
             "name": "dereuromark/cakephp-templating",
@@ -3469,12 +3469,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "2d920fd98d7f0e44265b872593157d01ab2d96fd"
+                "reference": "fe410314b1bdb13855a5a0d509e8905239000f3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/2d920fd98d7f0e44265b872593157d01ab2d96fd",
-                "reference": "2d920fd98d7f0e44265b872593157d01ab2d96fd",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/fe410314b1bdb13855a5a0d509e8905239000f3d",
+                "reference": "fe410314b1bdb13855a5a0d509e8905239000f3d",
                 "shasum": ""
             },
             "require": {
@@ -3527,7 +3527,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2026-04-02T12:07:38+00:00"
+            "time": "2026-04-13T15:29:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -6528,12 +6528,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "11f2b071adfcfa63a95f3128504e33cbdc7055da"
+                "reference": "d176668fda395eb520397f435076d517b8fca18a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/11f2b071adfcfa63a95f3128504e33cbdc7055da",
-                "reference": "11f2b071adfcfa63a95f3128504e33cbdc7055da",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/d176668fda395eb520397f435076d517b8fca18a",
+                "reference": "d176668fda395eb520397f435076d517b8fca18a",
                 "shasum": ""
             },
             "require": {
@@ -6582,7 +6582,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-02T09:13:23+00:00"
+            "time": "2026-04-13T20:56:12+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -10636,12 +10636,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "be50a428b4b2ff58ff339a2ef5244f0724212774"
+                "reference": "4175d2ebd987911eaa6277c4f1166a54165cde19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/be50a428b4b2ff58ff339a2ef5244f0724212774",
-                "reference": "be50a428b4b2ff58ff339a2ef5244f0724212774",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/4175d2ebd987911eaa6277c4f1166a54165cde19",
+                "reference": "4175d2ebd987911eaa6277c4f1166a54165cde19",
                 "shasum": ""
             },
             "require": {
@@ -10688,7 +10688,7 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2026-04-13T14:41:53+00:00"
+            "time": "2026-04-13T23:18:49+00:00"
         },
         {
             "name": "phpcsstandards/phpcsextra",
@@ -10914,11 +10914,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.46",
+            "version": "2.1.47",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a193923fc2d6325ef4e741cf3af8c3e8f54dbf25",
-                "reference": "a193923fc2d6325ef4e741cf3af8c3e8f54dbf25",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/79015445d8bd79e62b29140f12e5bfced1dcca65",
+                "reference": "79015445d8bd79e62b29140f12e5bfced1dcca65",
                 "shasum": ""
             },
             "require": {
@@ -10963,7 +10963,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-01T09:25:14+00:00"
+            "time": "2026-04-13T15:49:08+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
