@@ -31,6 +31,7 @@ class ExposedUsersFixture extends TestFixture {
 		],
 	];
 	// @codingStandardsIgnoreEnd
+
 	/**
 	 * Init method
 	 *

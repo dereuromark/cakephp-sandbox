@@ -14,7 +14,6 @@ return static function (RouteBuilder $routes) {
 	$routes->setRouteClass(DashedRoute::class);
 
 	$routes->scope('/', function (RouteBuilder $routes) {
-
 		$routes->connect('/', ['controller' => 'Overview', 'action' => 'index']);
 
 		$routes->connect('/register', ['controller' => 'Account', 'action' => 'register']);

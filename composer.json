@@ -88,8 +88,8 @@
 		"nette/neon": "^3.4"
 	},
 	"require-dev": {
-		"php-collective/code-sniffer": "dev-master as 0.5.0",
-		"fig-r/psr2r-sniffer": "dev-next",
+		"php-collective/code-sniffer": "dev-master as 0.6.0",
+		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^2.0.0",
 		"rector/type-perfect": "^2.1",
 		"phpstan/phpstan-strict-rules": "^2.0",
