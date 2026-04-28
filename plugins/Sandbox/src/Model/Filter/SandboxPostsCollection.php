@@ -22,7 +22,7 @@ class SandboxPostsCollection extends FilterCollection {
 					if ($args['tag'] === '-1') {
 						$query->find('untagged');
 					} else {
-						$query->find('tagged', ['slug' => $args['tag']]);
+						$query->find('tagged', value: $args['tag']);
 					}
 
 					return true;

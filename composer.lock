@@ -778,36 +778,40 @@
         },
         {
             "name": "chillerlan/php-qrcode",
-            "version": "5.0.5",
+            "version": "6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillerlan/php-qrcode.git",
-                "reference": "7b66282572fc14075c0507d74d9837dab25b38d6"
+                "reference": "49006e34bd5328f163e80329e7312f34dceea59b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/7b66282572fc14075c0507d74d9837dab25b38d6",
-                "reference": "7b66282572fc14075c0507d74d9837dab25b38d6",
+                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/49006e34bd5328f163e80329e7312f34dceea59b",
+                "reference": "49006e34bd5328f163e80329e7312f34dceea59b",
                 "shasum": ""
             },
             "require": {
-                "chillerlan/php-settings-container": "^2.1.6 || ^3.2.1",
+                "chillerlan/php-settings-container": "^3.2.1",
                 "ext-mbstring": "*",
-                "php": "^7.4 || ^8.0"
+                "php": "^8.2"
             },
             "require-dev": {
-                "chillerlan/php-authenticator": "^4.3.1 || ^5.2.1",
+                "chillerlan/php-authenticator": "^5.3",
                 "ext-fileinfo": "*",
-                "phan/phan": "^5.5.2",
-                "phpcompatibility/php-compatibility": "10.x-dev",
+                "intervention/image": "^3.11",
+                "phan/phan": "^6.0.1",
+                "phpbench/phpbench": "^1.4",
                 "phpmd/phpmd": "^2.15",
-                "phpunit/phpunit": "^9.6",
-                "setasign/fpdf": "^1.8.2",
-                "slevomat/coding-standard": "^8.23.0",
-                "squizlabs/php_codesniffer": "^4.0.0"
+                "phpstan/phpstan": "^2.1.40",
+                "phpstan/phpstan-deprecation-rules": "^2.0.4",
+                "phpunit/phpunit": "^11.5",
+                "setasign/fpdf": "^1.8.6",
+                "slevomat/coding-standard": "^8.28",
+                "squizlabs/php_codesniffer": "^4.0"
             },
             "suggest": {
                 "chillerlan/php-authenticator": "Yet another Google authenticator! Also creates URIs for mobile apps.",
+                "intervention/image": "More advanced GD and ImageMagick output.",
                 "setasign/fpdf": "Required to use the QR FPDF output.",
                 "simple-icons/simple-icons": "SVG icons that you can use to embed as logos in the QR Code"
             },
@@ -845,7 +849,7 @@
                     "homepage": "https://github.com/chillerlan/php-qrcode/graphs/contributors"
                 }
             ],
-            "description": "A QR Code generator and reader with a user-friendly API. PHP 7.4+",
+            "description": "A QR Code generator and reader with a user-friendly API. PHP 8.2+",
             "homepage": "https://github.com/chillerlan/php-qrcode",
             "keywords": [
                 "phpqrcode",
@@ -867,7 +871,7 @@
                     "type": "Ko-Fi"
                 }
             ],
-            "time": "2025-11-23T23:51:44+00:00"
+            "time": "2026-03-18T21:21:07+00:00"
         },
         {
             "name": "chillerlan/php-settings-container",
@@ -2865,17 +2869,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-qrcode.git",
-                "reference": "2b330a601d14473a9c73ba638cbe77d8d976d707"
+                "reference": "e5c4ddb8a22b2fa1335ff5f1e549a2bf3f7727a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/2b330a601d14473a9c73ba638cbe77d8d976d707",
-                "reference": "2b330a601d14473a9c73ba638cbe77d8d976d707",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-qrcode/zipball/e5c4ddb8a22b2fa1335ff5f1e549a2bf3f7727a0",
+                "reference": "e5c4ddb8a22b2fa1335ff5f1e549a2bf3f7727a0",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "^5.1.1",
-                "chillerlan/php-qrcode": "^5.0",
+                "chillerlan/php-qrcode": "^5.0 || ^6.0",
                 "php": ">=8.2"
             },
             "require-dev": {
@@ -2921,7 +2925,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-qrcode/issues",
                 "source": "https://github.com/dereuromark/cakephp-qrcode/"
             },
-            "time": "2026-04-28T16:59:07+00:00"
+            "time": "2026-04-28T21:16:26+00:00"
         },
         {
             "name": "dereuromark/cakephp-queue",
@@ -3271,12 +3275,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tags.git",
-                "reference": "e3477f20e7b76757ccb65c18a46cccd8fb6da3f0"
+                "reference": "336b16cf88d69a11108bbca45f0880e50473bb11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/e3477f20e7b76757ccb65c18a46cccd8fb6da3f0",
-                "reference": "e3477f20e7b76757ccb65c18a46cccd8fb6da3f0",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tags/zipball/336b16cf88d69a11108bbca45f0880e50473bb11",
+                "reference": "336b16cf88d69a11108bbca45f0880e50473bb11",
                 "shasum": ""
             },
             "require": {
@@ -3341,7 +3345,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tags/issues",
                 "source": "https://github.com/dereuromark/cakephp-tags"
             },
-            "time": "2026-04-28T16:58:59+00:00"
+            "time": "2026-04-28T21:15:26+00:00"
         },
         {
             "name": "dereuromark/cakephp-templating",
