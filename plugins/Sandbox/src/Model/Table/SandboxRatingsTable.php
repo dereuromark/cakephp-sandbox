@@ -19,6 +19,7 @@ use Ratings\Model\Table\RatingsTable;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxRating> saveManyOrFail(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxRating>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxRating> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxRating> find(string $type = 'all', mixed ...$args)
  */
 class SandboxRatingsTable extends RatingsTable {
 }

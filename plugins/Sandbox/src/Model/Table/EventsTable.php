@@ -23,6 +23,7 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, array $options = [])
  * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Event> find(string $type = 'all', mixed ...$args)
  */
 class EventsTable extends Table {
 

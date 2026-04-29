@@ -15,18 +15,20 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Registration newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Registration> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Registration findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Registration findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Registration> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false saveMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> saveManyOrFail(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Registration>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
+ * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Registration> find(string $type = 'all', mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  */
 class RegistrationsTable extends Table {
 

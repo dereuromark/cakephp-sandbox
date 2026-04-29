@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property int|null $reviewer_id
  * @property string $title
  * @property string|null $body
- * @property string $status
+ * @property string|null $status
  * @property string|null $rejection_reason
  * @property \Cake\I18n\DateTime|null $published_at
  * @property \Cake\I18n\DateTime|null $created

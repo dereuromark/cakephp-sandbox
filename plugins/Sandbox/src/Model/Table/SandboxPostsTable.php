@@ -27,6 +27,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable $entities, array $options = [])
  * @mixin \Tools\Model\Behavior\SluggedBehavior
  * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxPost> find(string $type = 'all', mixed ...$args)
  */
 class SandboxPostsTable extends Table {
 

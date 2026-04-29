@@ -28,6 +28,7 @@ use Cake\Validation\Validator;
  * @mixin \Cake\ORM\Behavior\TranslateBehavior
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}>
  * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\DemoArticle> find(string $type = 'all', mixed ...$args)
  */
 class DemoArticlesTable extends Table {
 

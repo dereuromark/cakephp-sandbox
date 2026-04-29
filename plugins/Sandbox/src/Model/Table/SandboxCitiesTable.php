@@ -29,6 +29,7 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity> saveManyOrFail(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCity> find(string $type = 'all', mixed ...$args)
  */
 class SandboxCitiesTable extends Table {
 
@@ -108,7 +109,7 @@ class SandboxCitiesTable extends Table {
 	 * Only runs on MySQL as spatial functions are not available on SQLite/Postgres.
 	 *
 	 * @param \Cake\Event\EventInterface $event The event.
-	 * @param \Cake\Datasource\EntityInterface $entity The entity.
+	 * @param \Sandbox\Model\Entity\SandboxCity $entity The entity.
 	 * @param \ArrayObject $options Options.
 	 * @return void
 	 */

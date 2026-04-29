@@ -16,18 +16,20 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Content newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Content> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Content findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Content findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Content> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Content>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false saveMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Content>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> saveManyOrFail(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Content>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Content>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
+ * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Content> find(string $type = 'all', mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  */
 class ContentsTable extends Table {
 

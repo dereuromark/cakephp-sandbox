@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<\WorkflowSandbox\Model\Entity\Payment> $payments
+ * @var iterable<\WorkflowSandbox\Model\Entity\Payment> $payments
  * @var \Workflow\Engine\Definition\Definition $definition
  */
 
