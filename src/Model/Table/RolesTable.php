@@ -21,6 +21,7 @@ use Tools\Model\Table\Table;
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\Role> find(string $type = 'all', mixed ...$args)
  */
 class RolesTable extends Table {
 

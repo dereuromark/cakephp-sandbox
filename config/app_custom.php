@@ -292,6 +292,8 @@ $config = [
 		],
 		'arrayAsGenerics' => true,
 		'objectAsGenerics' => true,
+		'tableEntityQuery' => true,
+		'codeCompletionPath' => ROOT . DS . '.phpstorm.meta.php' . DS,
 		'templateCollectionObject' => 'iterable',
 		'annotators' => [
 			EntityAnnotator::class => ShimEntityAnnotator::class,
