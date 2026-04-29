@@ -21,6 +21,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable $entities, array $options = [])
  * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCategory> find(string $type = 'all', mixed ...$args)
  */
 class SandboxCategoriesTable extends Table {
 

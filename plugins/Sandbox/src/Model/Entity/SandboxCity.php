@@ -12,10 +12,11 @@ use Cake\ORM\Entity;
  * @property string $name
  * @property string|null $alias
  * @property int $country_id
- * @property float|null $lat
- * @property float|null $lng
+ * @property float $lat
+ * @property float $lng
  *
  * @property \Data\Model\Entity\Country $country
+ * @property string $coordinates
  */
 class SandboxCity extends Entity {
 

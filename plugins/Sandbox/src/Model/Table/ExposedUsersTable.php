@@ -27,6 +27,7 @@ use Tools\Model\Table\Table;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Expose\Model\Behavior\ExposeBehavior
  * @extends \Tools\Model\Table\Table<array{Expose: \Expose\Model\Behavior\ExposeBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\ExposedUser> find(string $type = 'all', mixed ...$args)
  */
 class ExposedUsersTable extends Table {
 

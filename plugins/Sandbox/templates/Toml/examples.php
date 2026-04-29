@@ -239,13 +239,6 @@ max_files = 5
 TOML,
 	],
 ];
-
-/**
- * Encode TOML for URL sharing
- */
-function encodeToml(string $toml): string {
-	return base64_encode($toml);
-}
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -267,7 +260,7 @@ function encodeToml(string $toml): string {
 			<strong><?= h($title) ?></strong>
 			<?= $this->Html->link(
 				'<i class="bi bi-play-circle"></i> Try',
-				['action' => 'index', '?' => ['d' => encodeToml($example['code'])]],
+				['action' => 'index', '?' => ['d' => base64_encode($example['code'])]], // encode TOML for URL sharing
 				['class' => 'btn btn-sm btn-outline-primary', 'escape' => false],
 			) ?>
 		</div>

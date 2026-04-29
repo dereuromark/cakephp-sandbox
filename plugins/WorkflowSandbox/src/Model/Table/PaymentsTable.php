@@ -14,13 +14,19 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Payment newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Payment> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Payment findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Payment findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Payment> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
+ * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Payment> find(string $type = 'all', mixed ...$args)
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> deleteManyOrFail(iterable $entities, array $options = [])
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  */
 class PaymentsTable extends Table {
 

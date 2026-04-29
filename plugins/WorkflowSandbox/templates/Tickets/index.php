@@ -1,9 +1,8 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var array<\WorkflowSandbox\Model\Entity\Ticket> $tickets
+ * @var iterable<\WorkflowSandbox\Model\Entity\Ticket> $tickets
  * @var \Workflow\Engine\Definition\Definition $definition
- * @var array $users
  */
 
 use Workflow\Renderer\MermaidRenderer;

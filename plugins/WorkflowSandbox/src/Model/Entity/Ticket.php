@@ -14,8 +14,8 @@ use Cake\ORM\Entity;
  * @property string $ticket_number
  * @property string $subject
  * @property string|null $description
- * @property string $priority
- * @property string $status
+ * @property string|null $priority
+ * @property string|null $status
  * @property \Cake\I18n\DateTime|null $escalated_at
  * @property \Cake\I18n\DateTime|null $resolved_at
  * @property \Cake\I18n\DateTime|null $created

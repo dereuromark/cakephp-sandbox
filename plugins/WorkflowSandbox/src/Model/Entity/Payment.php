@@ -12,13 +12,13 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int|null $user_id
- * @property string $status
+ * @property string|null $status
  * @property string $transaction_id
  * @property string $amount
  * @property string|null $currency
  * @property string|null $provider
  * @property string|null $provider_reference
- * @property int $retry_count
+ * @property int|null $retry_count
  * @property string|null $failure_reason
  * @property \Cake\I18n\DateTime|null $verified_at
  * @property \Cake\I18n\DateTime|null $created

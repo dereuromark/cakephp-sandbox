@@ -27,6 +27,7 @@ use Sandbox\Model\Filter\ProductsCollection;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Search\Model\Behavior\SearchBehavior
  * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Product> find(string $type = 'all', mixed ...$args)
  */
 class ProductsTable extends Table {
 

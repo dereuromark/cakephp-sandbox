@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var string|null $type
  * @var iterable<\Sandbox\Model\Entity\BitmaskedRecord> $bitmaskedRecords
- * @var string $sql
+ * @var string $sqlFormatted
  */
 ?>
 <h2>Bitmasks</h2>

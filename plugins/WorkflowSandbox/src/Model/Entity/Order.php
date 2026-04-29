@@ -11,8 +11,8 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int|null $user_id
  * @property string $order_number
- * @property string $status
- * @property string|float $total
+ * @property string|null $status
+ * @property string|null $total
  * @property string|null $payment_method
  * @property string|null $shipping_address
  * @property \Cake\I18n\DateTime|null $paid_at

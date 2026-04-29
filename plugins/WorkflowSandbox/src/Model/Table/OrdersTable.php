@@ -15,18 +15,20 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Order newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Order> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Order findOrCreate($search, ?callable $callback = null, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Order findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Order> patchEntities(iterable $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Order>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order>|false saveMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Order>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> saveManyOrFail(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Order>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order>|false deleteMany(iterable $entities, array $options = [])
- * @method iterable<\WorkflowSandbox\Model\Entity\Order>|\Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order>|false saveMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> saveManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order>|false deleteMany(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
+ * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Order> find(string $type = 'all', mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  */
 class OrdersTable extends Table {
 

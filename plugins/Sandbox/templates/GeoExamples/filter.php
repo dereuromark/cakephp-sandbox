@@ -1,12 +1,12 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var string|null $sqlQuery
  * @var iterable<\Sandbox\Model\Entity\SandboxCity> $sandboxCities
  * @var bool $spatialAvailable
  * @var array<string, mixed>|null $spatialInfo
  * @var float|null $queryTime
  * @var array<string, mixed>|null $explainResult
+ * @var string $sqlQueryFormatted
  */
 ?>
 

@@ -12,8 +12,8 @@ use Cake\ORM\Entity;
  * @property int|null $user_id
  * @property string $title
  * @property string|null $file_path
- * @property string $status
- * @property int $current_approver_level
+ * @property string|null $status
+ * @property int|null $current_approver_level
  * @property string|null $approved_by
  * @property int|null $rejected_by
  * @property string|null $rejection_reason
