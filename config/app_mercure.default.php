@@ -13,8 +13,8 @@ use Cake\Http\Cookie\CookieInterface;
  * For devilbox/standalone: Run Mercure hub separately:
  *   docker run -d --name mercure-sandbox \
  *     -e SERVER_NAME=:3080 \
- *     -e MERCURE_PUBLISHER_JWT_KEY='your-secret-here' \
- *     -e MERCURE_SUBSCRIBER_JWT_KEY='your-secret-here' \
+ *     -e MERCURE_PUBLISHER_JWT_KEY='your-secret-here-must-be-32-plus-bytes' \
+ *     -e MERCURE_SUBSCRIBER_JWT_KEY='your-secret-here-must-be-32-plus-bytes' \
  *     -e MERCURE_CORS_ALLOWED_ORIGINS='*' \
  *     -p 3080:3080 dunglas/mercure
  */
@@ -43,8 +43,9 @@ return [
 		'public_url' => $mercurePublicUrl,
 
 		'jwt' => [
-			// Must match the secret in ddev config or Docker container
-			'secret' => 'your-secret-key-here',
+			// Must match the secret in ddev config or Docker container.
+			// HS256 requires at least 32 bytes; HS384 needs 48; HS512 needs 64.
+			'secret' => 'your-secret-key-here-must-be-32-plus-bytes',
 			'algorithm' => 'HS256',
 			'publish' => ['*'],
 			'subscribe' => [],

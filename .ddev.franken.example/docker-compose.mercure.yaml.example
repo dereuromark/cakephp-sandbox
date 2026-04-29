@@ -1,5 +1,5 @@
 services:
   web:
     environment:
-      - MERCURE_PUBLISHER_JWT_KEY=your-secret-key-here
-      - MERCURE_SUBSCRIBER_JWT_KEY=your-secret-key-here
+      - MERCURE_PUBLISHER_JWT_KEY=your-secret-key-here-must-be-32-plus-bytes
+      - MERCURE_SUBSCRIBER_JWT_KEY=your-secret-key-here-must-be-32-plus-bytes
