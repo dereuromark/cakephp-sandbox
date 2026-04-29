@@ -25,6 +25,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false deleteMany(iterable $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> deleteManyOrFail(iterable $entities, array $options = [])
  * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User> find(string $type = 'all', mixed ...$args)
  */
 class UsersTable extends Table {
 
