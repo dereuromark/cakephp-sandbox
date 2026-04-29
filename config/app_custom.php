@@ -7,6 +7,7 @@ use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 use Favorites\View\Helper\FavoritesHelper;
 use IdeHelper\Annotator\EntityAnnotator;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 use Intervention\Image\ImageManager;
 use PhpCollective\Infrastructure\Storage\Factories\LocalFactory;
 use PhpCollective\Infrastructure\Storage\FileStorage;
@@ -410,7 +411,7 @@ $config = [
 		);
 
 		// Image Manager and Processor
-		$imageManager = ImageManager::gd();
+		$imageManager = new ImageManager(new GdDriver());
 		$imageProcessor = new ImageProcessor(
 			$fileStorage,
 			$pathBuilder,

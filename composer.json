@@ -74,7 +74,7 @@
 		"dereuromark/cakephp-qrcode": "dev-master",
 		"dereuromark/cakephp-audit-stash": "dev-master",
 		"php-collective/file-storage": "dev-master as 1.0.0",
-		"php-collective/file-storage-image-processor": "dev-master as 1.0.0",
+		"php-collective/file-storage-image-processor": "dev-master as 2.0.0",
 		"dereuromark/cakephp-file-storage": "dev-master as 1.0.0",
 		"spatie/pdf-to-image": "^3.2",
 		"cakephp/authentication": "^4.0",

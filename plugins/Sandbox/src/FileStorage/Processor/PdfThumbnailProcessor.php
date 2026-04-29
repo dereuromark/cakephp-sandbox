@@ -4,9 +4,11 @@ declare(strict_types=1);
 namespace Sandbox\FileStorage\Processor;
 
 use Exception;
+use Intervention\Image\Drivers\Gd\Driver as GdDriver;
 use Intervention\Image\ImageManager;
 use PhpCollective\Infrastructure\Storage\FileInterface;
-use PhpCollective\Infrastructure\Storage\Processor\Image\Operations;
+use PhpCollective\Infrastructure\Storage\Processor\Image\Operation\OperationContext;
+use PhpCollective\Infrastructure\Storage\Processor\Image\Operation\OperationRegistry;
 use PhpCollective\Infrastructure\Storage\Processor\ProcessorInterface;
 use Spatie\ImageOptimizer\OptimizerChainFactory;
 use Spatie\PdfToImage\Enums\OutputFormat;
@@ -93,21 +95,22 @@ class PdfThumbnailProcessor implements ProcessorInterface {
 		$configuredVariants = $file->variants() ?: [];
 
 		// Get the image manager (GD in our case)
-		$imageManager = ImageManager::gd();
+		$imageManager = new ImageManager(new GdDriver());
+		$registry = OperationRegistry::default();
 
 		foreach ($configuredVariants as $variantName => $variantConfig) {
 			try {
 				// Load the temporary image
-				$image = $imageManager->read($imagePath);
+				$image = $imageManager->decodePath($imagePath);
 
-				// Apply the variant operations
-				$operations = new Operations($image);
-
+				// Apply the variant operations via the new operation registry
+				$context = new OperationContext($image);
 				if (isset($variantConfig['operations'])) {
-					foreach ($variantConfig['operations'] as $operation => $args) {
-						if (method_exists($operations, $operation)) {
-							$operations->$operation($args);
+					foreach ($variantConfig['operations'] as $operation => $arguments) {
+						if (!$registry->has($operation)) {
+							continue;
 						}
+						$registry->resolve($operation, (array)$arguments)->apply($context);
 					}
 				}
 
