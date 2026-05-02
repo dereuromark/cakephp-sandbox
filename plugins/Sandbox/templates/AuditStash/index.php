@@ -76,8 +76,9 @@
                             </div>
                             <p class="mb-1">
                                 <?php if ($log->changed) { ?>
+                                    <?php $changedFields = is_string($log->changed) ? (json_decode($log->changed, true) ?: []) : $log->changed; ?>
                                     <strong>Changed Fields:</strong>
-                                    <?= h(implode(', ', array_keys(json_decode($log->changed, true) ?: []))) ?>
+                                    <?= h(implode(', ', array_keys($changedFields))) ?>
                                 <?php } ?>
                             </p>
                             <small>

@@ -87,9 +87,9 @@
             </table>
 
             <?php
-            $originalData = $auditLog->original ? json_decode($auditLog->original, true) : null;
-            $changedData = $auditLog->changed ? json_decode($auditLog->changed, true) : null;
-            $metaData = $auditLog->meta ? json_decode($auditLog->meta, true) : null;
+            $originalData = $auditLog->original ? (is_string($auditLog->original) ? json_decode($auditLog->original, true) : $auditLog->original) : null;
+            $changedData = $auditLog->changed ? (is_string($auditLog->changed) ? json_decode($auditLog->changed, true) : $auditLog->changed) : null;
+            $metaData = $auditLog->meta ? (is_string($auditLog->meta) ? json_decode($auditLog->meta, true) : $auditLog->meta) : null;
             ?>
             <?php if ($originalData) { ?>
                 <h4 class="mt-4">Original Values</h4>
