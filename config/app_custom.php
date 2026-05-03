@@ -115,6 +115,9 @@ $config = [
 	],
 
 	'DatabaseLog' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'disableAutoTable' => true,
 		'datasource' => 'default',
 		'limit' => 99999,
@@ -318,6 +321,9 @@ $config = [
 	],
 
 	'Queue' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'sleeptime' => 5,
 		'gcprob' => 10,
 		'maxworkers' => 2,
