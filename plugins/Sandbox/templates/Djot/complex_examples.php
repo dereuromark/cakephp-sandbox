@@ -352,7 +352,7 @@ function encodeDjot(string $djot): string {
 			<?= $this->Html->link(
 				'<i class="bi bi-play-circle"></i> Try',
 				['action' => 'index', '?' => ['d' => encodeDjot($example['code'])]],
-				['class' => 'btn btn-sm btn-outline-primary', 'escape' => false]
+				['class' => 'btn btn-sm btn-outline-primary', 'escapeTitle' => false]
 			) ?>
 		</div>
 		<div class="card-body py-2">

@@ -31,7 +31,7 @@
 					<li class="nav-item"><?php echo $this->Html->linkReset('Best practice', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'best-practices'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 
 					<li class="dropdown-divider"></li>
-					<li class="nav-item"><?php echo $this->Html->linkReset('<span class="fa fa-pencil"></span> Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['class' => 'nav-link', 'tabindex' => '-1', 'escape' => false]); ?></li>
+					<li class="nav-item"><?php echo $this->Html->linkReset('<span class="fa fa-pencil"></span> Contribute', ['plugin' => false, 'admin' => false, 'controller' => 'Pages', 'action' => 'display', 'contribute'], ['class' => 'nav-link', 'tabindex' => '-1', 'escapeTitle' => false]); ?></li>
 				</ul>
 			</li>
 			<li class="nav-item dropdown">
@@ -62,8 +62,8 @@
 	<?php if (false) { ?>
 	<ul class="nav navbar-nav navbar-right">
 		<?php if ($this->AuthUser->id()) { ?>
-	  	<li class="nav-item"><?php echo $this->Html->linkReset($this->Format->fontIcon('home') . ' ' . 'Account', ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'], ['escape' => false]); ?></li>
-	  	<li class="nav-item"><?php echo $this->Html->linkReset($this->Format->fontIcon('signout') . ' ' . __('Logout'), ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'], ['escape' => false]); ?></li>
+	  	<li class="nav-item"><?php echo $this->Html->linkReset($this->Format->fontIcon('home') . ' ' . 'Account', ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'index'], ['escapeTitle' => false]); ?></li>
+	  	<li class="nav-item"><?php echo $this->Html->linkReset($this->Format->fontIcon('signout') . ' ' . __('Logout'), ['plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'logout'], ['escapeTitle' => false]); ?></li>
 		<?php } else { ?>
 		<li class="nav-item"><?php //echo $this->Html->linkReset($this->Format->fontIcon('signin') . ' ' . __('Login'), array('plugin' => false, 'admin' => false, 'controller' => 'account', 'action' => 'login'), array('escape' => false)); ?></li>
 			<?php if ($this->Configure->read('Config.allowRegister')) { ?>

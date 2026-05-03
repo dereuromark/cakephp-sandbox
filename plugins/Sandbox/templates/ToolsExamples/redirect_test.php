@@ -26,7 +26,7 @@
 	<?php echo $this->Html->link(
 		$this->Icon->render('edit') . ' Edit demo category',
 		['action' => 'fakeEdit', 1, '?' => ['ref' => $this->getRequest()->getRequestTarget()]],
-		['escape' => false]
+		['escapeTitle' => false]
 	); ?>
 	</p>
 
