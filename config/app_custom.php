@@ -342,6 +342,9 @@ $config = [
 	],
 
 	'QueueScheduler' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'allowRaw' => true, // By default, this is only enabled in debug mode for security reasons.
 	],
 
