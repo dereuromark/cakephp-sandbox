@@ -1,7 +1,6 @@
 <?php
 
 use App\Healthcheck\Check\Tools\GraphvizCheck;
-use AuditStash\Persister\TablePersister;
 use Cake\Cache\Engine\RedisEngine;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
@@ -376,7 +375,20 @@ $config = [
 	],
 
 	'AuditStash' => [
-		'persister' => TablePersister::class,
+		'adminAccess' => function (): bool {
+			return true;
+		},
+		'coverage' => [
+			'hidePlugins' => [
+				'DatabaseLog',
+				'Feedback',
+				'Queue',
+				'Captcha',
+				'Workflow',
+				'Geo',
+				'QueueScheduler',
+			],
+		],
 	],
 
 	'FileStorage' => (function() {
