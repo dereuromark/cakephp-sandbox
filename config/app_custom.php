@@ -375,6 +375,9 @@ $config = [
 	],
 
 	'AuditStash' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'coverage' => [
 			'hidePlugins' => [
 				'DatabaseLog',

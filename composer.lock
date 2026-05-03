@@ -1626,12 +1626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-audit-stash.git",
-                "reference": "858c540b4fb5475737963655ba1546eea6476903"
+                "reference": "e2b60bac59900150269c51ede2e053d9bfa83d85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/858c540b4fb5475737963655ba1546eea6476903",
-                "reference": "858c540b4fb5475737963655ba1546eea6476903",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/e2b60bac59900150269c51ede2e053d9bfa83d85",
+                "reference": "e2b60bac59900150269c51ede2e053d9bfa83d85",
                 "shasum": ""
             },
             "require": {
@@ -1678,7 +1678,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-audit-stash/issues",
                 "source": "https://github.com/dereuromark/cakephp-audit-stash/tree/master"
             },
-            "time": "2026-05-03T19:57:51+00:00"
+            "time": "2026-05-03T20:17:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-bouncer",
