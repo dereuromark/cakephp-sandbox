@@ -9,7 +9,7 @@
 
     <div class="mb-3">
         <?= $this->Html->link('← Back to List', ['action' => 'index'], ['class' => 'btn btn-secondary']) ?>
-        <?php if ($auditLog->type === \AuditStash\AuditLogType::Update && $auditLog->original) { ?>
+        <?php if ($auditLog->type === \AuditStash\AuditLogType::Update->value && $auditLog->original) { ?>
             <?= $this->Html->link(
                 'Partial Revert (Select Fields)',
                 ['action' => 'partialRevert', $auditLog->id],
@@ -25,7 +25,7 @@
                 ],
             ) ?>
         <?php } ?>
-        <?php if ($auditLog->type === \AuditStash\AuditLogType::Delete && $auditLog->original) { ?>
+        <?php if ($auditLog->type === \AuditStash\AuditLogType::Delete->value && $auditLog->original) { ?>
             <?= $this->Form->postLink(
                 'Restore Deleted Record',
                 ['action' => 'restore', $auditLog->id],
@@ -42,12 +42,13 @@
         <div class="card-header">
             <h3>
                 <span class="badge badge-<?= match($auditLog->type) {
-                    \AuditStash\AuditLogType::Create => 'success',
-                    \AuditStash\AuditLogType::Update => 'warning',
-                    \AuditStash\AuditLogType::Delete => 'danger',
-                    \AuditStash\AuditLogType::Revert => 'info',
+                    \AuditStash\AuditLogType::Create->value => 'success',
+                    \AuditStash\AuditLogType::Update->value => 'warning',
+                    \AuditStash\AuditLogType::Delete->value => 'danger',
+                    \AuditStash\AuditLogType::Revert->value => 'info',
+                    default => 'secondary',
                 } ?>">
-                    <?= h(strtoupper($auditLog->type->value)) ?>
+                    <?= h(strtoupper($auditLog->type)) ?>
                 </span>
                 Log Entry #<?= h($auditLog->id) ?>
             </h3>
@@ -64,7 +65,7 @@
                 </tr>
                 <tr>
                     <th>Event Type</th>
-                    <td><span class="badge badge-info"><?= h($auditLog->type->value) ?></span></td>
+                    <td><span class="badge badge-info"><?= h($auditLog->type) ?></span></td>
                 </tr>
                 <tr>
                     <th>Source Table</th>
@@ -100,25 +101,27 @@
                 <h4 class="mt-4">Changed Values</h4>
                 <pre class="bg-light p-3"><?= h(json_encode($changedData, JSON_PRETTY_PRINT)) ?></pre>
 
-                <h4 class="mt-4">Changed Fields Comparison</h4>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Field</th>
-                            <th>Original Value</th>
-                            <th>New Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($changedData as $field => $newValue) { ?>
+                <?php if ($originalData) { ?>
+                    <h4 class="mt-4">Changed Fields Comparison</h4>
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td><strong><?= h($field) ?></strong></td>
-                                <td><span class="text-danger"><?= h($originalData[$field] ?? 'N/A') ?></span></td>
-                                <td><span class="text-success"><?= h($newValue) ?></span></td>
+                                <th>Field</th>
+                                <th>Original Value</th>
+                                <th>New Value</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($changedData as $field => $newValue) { ?>
+                                <tr>
+                                    <td><strong><?= h($field) ?></strong></td>
+                                    <td><span class="text-danger"><?= h($originalData[$field] ?? 'N/A') ?></span></td>
+                                    <td><span class="text-success"><?= h($newValue) ?></span></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                <?php } ?>
             <?php } ?>
 
             <?php if ($metaData) { ?>

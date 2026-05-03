@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Controller;
 
+use AuditStash\Audit;
 use AuditStash\AuditLogType;
 use AuditStash\Service\RevertService;
 use Cake\I18n\DateTime;
@@ -29,7 +30,9 @@ class AuditStashController extends SandboxAppController {
 
 		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$auditLogs = $auditLogsTable->find()
-			->where(['source' => 'Sandbox.SandboxArticles'])
+			->where([
+				'source IN' => ['Sandbox.SandboxArticles', 'Users', 'Reports', 'Permissions'],
+			])
 			->orderBy(['created' => 'DESC'])
 			->limit(50)
 			->toArray();
@@ -129,8 +132,8 @@ class AuditStashController extends SandboxAppController {
 		$auditLog = $auditLogsTable->get($id);
 
 		// Only allow reverting updated records
-		if ($auditLog->type !== AuditLogType::Update) {
-			$this->Flash->error(__('Only updates can be reverted. Type: {0}', $auditLog->type->value));
+		if ($auditLog->type !== AuditLogType::Update->value) {
+			$this->Flash->error(__('Only updates can be reverted. Type: {0}', $auditLog->type));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -175,8 +178,8 @@ class AuditStashController extends SandboxAppController {
 		$auditLog = $auditLogsTable->get($id);
 
 		// Only allow restoring deleted records
-		if ($auditLog->type !== AuditLogType::Delete) {
-			$this->Flash->error(__('Only deleted records can be restored. Type: {0}', $auditLog->type->value));
+		if ($auditLog->type !== AuditLogType::Delete->value) {
+			$this->Flash->error(__('Only deleted records can be restored. Type: {0}', $auditLog->type));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -221,8 +224,8 @@ class AuditStashController extends SandboxAppController {
 		$sandboxArticlesTable = $this->fetchTable('Sandbox.SandboxArticles');
 
 		// Only allow partial revert for updated records
-		if ($auditLog->type !== AuditLogType::Update) {
-			$this->Flash->error(__('Only updates can be partially reverted. Type: {0}', $auditLog->type->value));
+		if ($auditLog->type !== AuditLogType::Update->value) {
+			$this->Flash->error(__('Only updates can be partially reverted. Type: {0}', $auditLog->type));
 
 			return $this->redirect(['action' => 'index']);
 		}
@@ -281,6 +284,53 @@ class AuditStashController extends SandboxAppController {
 	}
 
 	/**
+	 * Demonstrates emitting a custom audit event that doesn't map to entity
+	 * create/update/delete — using the AuditStash\Audit static facade.
+	 *
+	 * @return \Cake\Http\Response|null Redirects to index.
+	 */
+	public function customEvent() {
+		$this->request->allowMethod(['post']);
+
+		$type = $this->request->getData('type') ?: 'user.login';
+		$samples = [
+			'user.login' => [
+				'source' => 'Users',
+				'data' => ['ip' => $this->request->clientIp()],
+				'displayValue' => 'Sandbox demo user',
+			],
+			'report.exported' => [
+				'source' => 'Reports',
+				'data' => ['format' => 'csv', 'rows' => random_int(50, 5000)],
+				'displayValue' => 'Quarterly summary',
+			],
+			'permission.granted' => [
+				'source' => 'Permissions',
+				'data' => ['role' => 'editor', 'scope' => 'articles.publish'],
+				'displayValue' => 'editor → articles.publish',
+			],
+		];
+
+		$sample = $samples[$type] ?? $samples['user.login'];
+
+		Audit::log(
+			type: $type,
+			source: $sample['source'],
+			primaryKey: random_int(1, 9999),
+			data: $sample['data'],
+			meta: [
+				'user_display' => 'sandbox-demo',
+				'user_agent' => $this->request->getHeaderLine('User-Agent'),
+			],
+			displayValue: $sample['displayValue'],
+		);
+
+		$this->Flash->success(__('Custom audit event "{0}" logged.', $type));
+
+		return $this->redirect(['action' => 'index']);
+	}
+
+	/**
 	 * Rotate old audit logs and articles (delete older than 1 hour)
 	 *
 	 * This is called automatically on the index page for demo purposes
@@ -293,7 +343,7 @@ class AuditStashController extends SandboxAppController {
 		$oneHourAgo = new DateTime('-1 hour');
 		$auditLogsTable = $this->fetchTable('AuditStash.AuditLogs');
 		$deletedLogs = $auditLogsTable->deleteAll([
-			'source' => 'Sandbox.SandboxArticles',
+			'source IN' => ['Sandbox.SandboxArticles', 'Users', 'Reports', 'Permissions'],
 			'created <' => $oneHourAgo,
 		]);
 

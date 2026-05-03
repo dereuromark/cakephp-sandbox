@@ -8,6 +8,27 @@
 <div class="audit-stash index">
     <h1>AuditStash Plugin Demo</h1>
 
+    <div class="alert alert-light border mb-3">
+        <strong>Custom action events</strong> — emit non-CRUD audit entries through <code>AuditStash\Audit::log()</code>:
+        <div class="mt-2 d-flex gap-2 flex-wrap">
+            <?= $this->Form->postLink(
+                'Trigger user.login',
+                ['action' => 'customEvent'],
+                ['data' => ['type' => 'user.login'], 'class' => 'btn btn-sm btn-outline-secondary', 'block' => true],
+            ) ?>
+            <?= $this->Form->postLink(
+                'Trigger report.exported',
+                ['action' => 'customEvent'],
+                ['data' => ['type' => 'report.exported'], 'class' => 'btn btn-sm btn-outline-secondary', 'block' => true],
+            ) ?>
+            <?= $this->Form->postLink(
+                'Trigger permission.granted',
+                ['action' => 'customEvent'],
+                ['data' => ['type' => 'permission.granted'], 'class' => 'btn btn-sm btn-outline-secondary', 'block' => true],
+            ) ?>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-6">
             <h2>
@@ -60,12 +81,13 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h6 class="mb-1">
                                     <span class="badge badge-<?= match($log->type) {
-                                        \AuditStash\AuditLogType::Create => 'success',
-                                        \AuditStash\AuditLogType::Update => 'warning',
-                                        \AuditStash\AuditLogType::Delete => 'danger',
-                                        \AuditStash\AuditLogType::Revert => 'info',
+                                        \AuditStash\AuditLogType::Create->value => 'success',
+                                        \AuditStash\AuditLogType::Update->value => 'warning',
+                                        \AuditStash\AuditLogType::Delete->value => 'danger',
+                                        \AuditStash\AuditLogType::Revert->value => 'info',
+                                        default => 'secondary',
                                     } ?>">
-                                        <?= h(strtoupper($log->type->value)) ?>
+                                        <?= h(strtoupper($log->type)) ?>
                                     </span>
                                     Article #<?= h($log->primary_key) ?>
                                     <?php if ($log->display_value) { ?>
@@ -83,7 +105,7 @@
                             </p>
                             <small>
                                 <?= $this->Html->link('View Details', ['action' => 'viewLog', $log->id], ['class' => 'btn btn-sm btn-info']) ?>
-                                <?php if ($log->type === \AuditStash\AuditLogType::Delete && $log->original) { ?>
+                                <?php if ($log->type === \AuditStash\AuditLogType::Delete->value && $log->original) { ?>
                                     <?= $this->Form->postLink(
                                         'Restore',
                                         ['action' => 'restore', $log->id],
