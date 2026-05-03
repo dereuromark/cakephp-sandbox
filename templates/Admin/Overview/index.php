@@ -39,6 +39,7 @@
 		<ul>
 			<li><?php echo $this->Html->link(__('Users'), ['prefix' => 'Admin', 'controller' => 'Users'])?></li>
 			<li><?php echo $this->Html->link(__('Icons'), ['prefix' => 'Admin', 'plugin' => 'Templating', 'controller' => 'Icons'])?></li>
+			<li><?php echo $this->Html->link(__('Tags'), ['prefix' => 'Admin', 'plugin' => 'Tags', 'controller' => 'Tags'])?></li>
 			<li><?php echo $this->Html->link(__('Translate'), ['prefix' => 'Admin', 'plugin' => 'Translate', 'controller' => 'Translate'])?></li>
 		</ul>
 
