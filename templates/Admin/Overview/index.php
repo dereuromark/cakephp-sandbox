@@ -39,14 +39,11 @@
 		<ul>
 			<li><?php echo $this->Html->link(__('Users'), ['prefix' => 'Admin', 'controller' => 'Users'])?></li>
 			<li><?php echo $this->Html->link(__('Icons'), ['prefix' => 'Admin', 'plugin' => 'Templating', 'controller' => 'Icons'])?></li>
+			<li><?php echo $this->Html->link(__('Translate'), ['prefix' => 'Admin', 'plugin' => 'Translate', 'controller' => 'Translate'])?></li>
 		</ul>
 
 		<h3>System</h3>
 		<ul>
-			<?php if (false) { ?>
-				<li><?php echo $this->Html->link(__('Translations'), ['admin' => false, 'plugin' => 'Translate', 'controller' => 'Translate', 'action' => 'index'])?></li>
-			<?php } ?>
-
 			<li><?php echo $this->Html->link(__('Bouncer'), ['prefix' => 'Admin', 'plugin' => 'Bouncer', 'controller' => 'Bouncer'])?></li>
 			<li><?php echo $this->Html->link(__('AuditStash'), ['prefix' => 'Admin', 'plugin' => 'AuditStash', 'controller' => 'AuditStash'])?></li>
 			<li><?php echo $this->Html->link(__('Setup'), ['prefix' => 'Admin', 'plugin' => 'Setup', 'controller' => 'Setup'])?></li>
