@@ -383,6 +383,12 @@ $config = [
 		'allowAnonymous' => true,
 	],
 
+	'Translate' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
+	],
+
 	'AuditStash' => [
 		'adminAccess' => function (): bool {
 			return true;
