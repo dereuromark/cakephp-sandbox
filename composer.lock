@@ -1626,12 +1626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-audit-stash.git",
-                "reference": "e2b60bac59900150269c51ede2e053d9bfa83d85"
+                "reference": "e7665b972e1560661ed3c24e25b26cd32a1bcd7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/e2b60bac59900150269c51ede2e053d9bfa83d85",
-                "reference": "e2b60bac59900150269c51ede2e053d9bfa83d85",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-audit-stash/zipball/e7665b972e1560661ed3c24e25b26cd32a1bcd7e",
+                "reference": "e7665b972e1560661ed3c24e25b26cd32a1bcd7e",
                 "shasum": ""
             },
             "require": {
@@ -1678,7 +1678,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-audit-stash/issues",
                 "source": "https://github.com/dereuromark/cakephp-audit-stash/tree/master"
             },
-            "time": "2026-05-03T20:17:42+00:00"
+            "time": "2026-05-03T23:29:36+00:00"
         },
         {
             "name": "dereuromark/cakephp-bouncer",
@@ -1686,12 +1686,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-bouncer.git",
-                "reference": "349471f1d39d4e71f6759e12afb114fa3611aa24"
+                "reference": "23fa931be4e19c4027bff60c49fbf3b1ab025dd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-bouncer/zipball/349471f1d39d4e71f6759e12afb114fa3611aa24",
-                "reference": "349471f1d39d4e71f6759e12afb114fa3611aa24",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-bouncer/zipball/23fa931be4e19c4027bff60c49fbf3b1ab025dd0",
+                "reference": "23fa931be4e19c4027bff60c49fbf3b1ab025dd0",
                 "shasum": ""
             },
             "require": {
@@ -1746,7 +1746,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-bouncer/issues",
                 "source": "https://github.com/dereuromark/cakephp-bouncer/tree/master"
             },
-            "time": "2026-05-03T15:45:52+00:00"
+            "time": "2026-05-03T23:29:52+00:00"
         },
         {
             "name": "dereuromark/cakephp-cache",
@@ -2077,12 +2077,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/CakePHP-DatabaseLog.git",
-                "reference": "8b9191d73e8ed4bfdd9bd8a648705f8b231ecd72"
+                "reference": "ea6a999f03cdaf76ad44600cbba9385858eaf075"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/8b9191d73e8ed4bfdd9bd8a648705f8b231ecd72",
-                "reference": "8b9191d73e8ed4bfdd9bd8a648705f8b231ecd72",
+                "url": "https://api.github.com/repos/dereuromark/CakePHP-DatabaseLog/zipball/ea6a999f03cdaf76ad44600cbba9385858eaf075",
+                "reference": "ea6a999f03cdaf76ad44600cbba9385858eaf075",
                 "shasum": ""
             },
             "require": {
@@ -2148,7 +2148,7 @@
                 "issues": "https://github.com/dereuromark/CakePHP-DatabaseLog/issues",
                 "source": "https://github.com/dereuromark/CakePHP-DatabaseLog/"
             },
-            "time": "2026-05-03T15:49:00+00:00"
+            "time": "2026-05-03T23:27:24+00:00"
         },
         {
             "name": "dereuromark/cakephp-decimal",
