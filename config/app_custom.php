@@ -325,6 +325,7 @@ $config = [
 		'adminAccess' => function (): bool {
 			return true;
 		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 		'sleeptime' => 5,
 		'gcprob' => 10,
 		'maxworkers' => 2,
@@ -346,6 +347,7 @@ $config = [
 		'adminAccess' => function (): bool {
 			return true;
 		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 		'allowRaw' => true, // By default, this is only enabled in debug mode for security reasons.
 	],
 
@@ -355,6 +357,10 @@ $config = [
 	],
 
 	'Captcha' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 		'maxPerUser' => 5,
 	],
 
@@ -388,6 +394,18 @@ $config = [
 		'adminAccess' => function (): bool {
 			return true;
 		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
+	],
+
+	'Workflow' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
+	],
+
+	'Tags' => [
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 	],
 
 	'Bouncer' => [
@@ -499,6 +517,7 @@ $config = [
 			->optimize();
 
 		return [
+			'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 			'pathPrefix' => 'files/uploads/',
 			// Image variants configuration per model/collection
 			// Model name is the Table alias (FileStorage), not the custom model field value
