@@ -118,6 +118,7 @@ $config = [
 		'adminAccess' => function (): bool {
 			return true;
 		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 		'disableAutoTable' => true,
 		'datasource' => 'default',
 		'limit' => 99999,
@@ -389,10 +390,18 @@ $config = [
 		},
 	],
 
+	'Bouncer' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
+	],
+
 	'AuditStash' => [
 		'adminAccess' => function (): bool {
 			return true;
 		},
+		'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 		'coverage' => [
 			'hidePlugins' => [
 				'DatabaseLog',
