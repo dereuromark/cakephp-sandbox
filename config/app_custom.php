@@ -377,6 +377,9 @@ $config = [
 	],
 
 	'Favorites' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'models' => [
 			'StarPosts' => 'Sandbox.SandboxPosts',
 			'LikePosts' => 'Sandbox.SandboxPosts',
@@ -387,6 +390,9 @@ $config = [
 	],
 
 	'Comments' => [
+		'adminAccess' => function (): bool {
+			return true;
+		},
 		'allowAnonymous' => true,
 	],
 
@@ -517,6 +523,9 @@ $config = [
 			->optimize();
 
 		return [
+			'adminAccess' => function (): bool {
+				return true;
+			},
 			'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 			'pathPrefix' => 'files/uploads/',
 			// Image variants configuration per model/collection
