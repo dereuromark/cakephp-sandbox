@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * SandboxRatingFactory
  *
- * @method \Sandbox\Model\Entity\SandboxRating getEntity()
- * @method array<\Sandbox\Model\Entity\SandboxRating> getEntities()
- * @method \Sandbox\Model\Entity\SandboxRating|array<\Sandbox\Model\Entity\SandboxRating> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\SandboxRating>
  */
 class SandboxRatingFactory extends BaseFactory {
 

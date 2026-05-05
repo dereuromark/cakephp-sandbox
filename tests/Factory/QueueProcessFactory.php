@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * QueueProcessFactory
  *
- * @method \Cake\Datasource\EntityInterface getEntity()
- * @method array<\Cake\Datasource\EntityInterface> getEntities()
- * @method \Cake\Datasource\EntityInterface|array<\Cake\Datasource\EntityInterface> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Queue\Model\Entity\QueueProcess>
  */
 class QueueProcessFactory extends BaseFactory {
 

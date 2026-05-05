@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * BouncerRecordFactory
  *
- * @method \Bouncer\Model\Entity\BouncerRecord getEntity()
- * @method array<\Bouncer\Model\Entity\BouncerRecord> getEntities()
- * @method \Bouncer\Model\Entity\BouncerRecord|array<\Bouncer\Model\Entity\BouncerRecord> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Bouncer\Model\Entity\BouncerRecord>
  */
 class BouncerRecordFactory extends BaseFactory {
 

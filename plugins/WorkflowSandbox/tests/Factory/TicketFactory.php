@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * TicketFactory
  *
- * @method \WorkflowSandbox\Model\Entity\Ticket getEntity()
- * @method array<\WorkflowSandbox\Model\Entity\Ticket> getEntities()
- * @method \WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\WorkflowSandbox\Model\Entity\Ticket>
  */
 class TicketFactory extends BaseFactory {
 

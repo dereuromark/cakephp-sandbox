@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * SandboxCityFactory
  *
- * @method \Sandbox\Model\Entity\SandboxCity getEntity()
- * @method array<\Sandbox\Model\Entity\SandboxCity> getEntities()
- * @method \Sandbox\Model\Entity\SandboxCity|array<\Sandbox\Model\Entity\SandboxCity> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\SandboxCity>
  */
 class SandboxCityFactory extends BaseFactory {
 

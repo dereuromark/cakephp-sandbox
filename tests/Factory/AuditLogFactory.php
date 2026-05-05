@@ -10,9 +10,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * AuditLogFactory
  *
- * @method \Cake\Datasource\EntityInterface getEntity()
- * @method array<\Cake\Datasource\EntityInterface> getEntities()
- * @method \Cake\Datasource\EntityInterface|array<\Cake\Datasource\EntityInterface> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\AuditStash\Model\Entity\AuditLog>
  */
 class AuditLogFactory extends BaseFactory {
 

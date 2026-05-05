@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * ExposedUserFactory
  *
- * @method \Sandbox\Model\Entity\ExposedUser getEntity()
- * @method array<\Sandbox\Model\Entity\ExposedUser> getEntities()
- * @method \Sandbox\Model\Entity\ExposedUser|array<\Sandbox\Model\Entity\ExposedUser> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\ExposedUser>
  */
 class ExposedUserFactory extends BaseFactory {
 

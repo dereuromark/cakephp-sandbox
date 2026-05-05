@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * PaymentFactory
  *
- * @method \WorkflowSandbox\Model\Entity\Payment getEntity()
- * @method array<\WorkflowSandbox\Model\Entity\Payment> getEntities()
- * @method \WorkflowSandbox\Model\Entity\Payment|array<\WorkflowSandbox\Model\Entity\Payment> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\WorkflowSandbox\Model\Entity\Payment>
  */
 class PaymentFactory extends BaseFactory {
 

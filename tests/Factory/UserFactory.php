@@ -10,9 +10,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * UserFactory
  *
- * @method \App\Model\Entity\User getEntity()
- * @method array<\App\Model\Entity\User> getEntities()
- * @method \App\Model\Entity\User|array<\App\Model\Entity\User> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\App\Model\Entity\User>
  * @method static \App\Model\Entity\User get(mixed $primaryKey, array $options = [])
  */
 class UserFactory extends BaseFactory {

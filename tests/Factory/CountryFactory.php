@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * CountryFactory
  *
- * @method \Cake\Datasource\EntityInterface getEntity()
- * @method array<\Cake\Datasource\EntityInterface> getEntities()
- * @method \Cake\Datasource\EntityInterface|array<\Cake\Datasource\EntityInterface> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Data\Model\Entity\Country>
  */
 class CountryFactory extends BaseFactory {
 
@@ -19,7 +17,7 @@ class CountryFactory extends BaseFactory {
 	 * @return string
 	 */
 	protected function getRootTableRegistryName(): string {
-		return 'Countries';
+		return 'Data.Countries';
 	}
 
 	/**

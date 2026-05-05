@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * OrderFactory
  *
- * @method \WorkflowSandbox\Model\Entity\Order getEntity()
- * @method array<\WorkflowSandbox\Model\Entity\Order> getEntities()
- * @method \WorkflowSandbox\Model\Entity\Order|array<\WorkflowSandbox\Model\Entity\Order> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\WorkflowSandbox\Model\Entity\Order>
  */
 class OrderFactory extends BaseFactory {
 

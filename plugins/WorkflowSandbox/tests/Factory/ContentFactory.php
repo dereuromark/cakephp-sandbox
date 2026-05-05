@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * ContentFactory
  *
- * @method \WorkflowSandbox\Model\Entity\Content getEntity()
- * @method array<\WorkflowSandbox\Model\Entity\Content> getEntities()
- * @method \WorkflowSandbox\Model\Entity\Content|array<\WorkflowSandbox\Model\Entity\Content> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\WorkflowSandbox\Model\Entity\Content>
  */
 class ContentFactory extends BaseFactory {
 

@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * SandboxProductFactory
  *
- * @method \Sandbox\Model\Entity\SandboxProduct getEntity()
- * @method array<\Sandbox\Model\Entity\SandboxProduct> getEntities()
- * @method \Sandbox\Model\Entity\SandboxProduct|array<\Sandbox\Model\Entity\SandboxProduct> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\Product>
  */
 class SandboxProductFactory extends BaseFactory {
 
@@ -19,7 +17,7 @@ class SandboxProductFactory extends BaseFactory {
 	 * @return string
 	 */
 	protected function getRootTableRegistryName(): string {
-		return 'Sandbox.SandboxProducts';
+		return 'Sandbox.Products';
 	}
 
 	/**

@@ -9,10 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * RoleFactory
  *
- * @method \App\Model\Entity\Role getEntity()
- * @method array<\App\Model\Entity\Role> getEntities()
- * @method \App\Model\Entity\Role|array<\App\Model\Entity\Role> persist()
- * @method static \App\Model\Entity\Role get(mixed $primaryKey, array $options = [])
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\App\Model\Entity\Role>
  */
 class RoleFactory extends BaseFactory {
 

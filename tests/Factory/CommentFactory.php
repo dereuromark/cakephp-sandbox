@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * CommentFactory
  *
- * @method \Cake\Datasource\EntityInterface getEntity()
- * @method array<\Cake\Datasource\EntityInterface> getEntities()
- * @method \Cake\Datasource\EntityInterface|array<\Cake\Datasource\EntityInterface> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Comments\Model\Entity\Comment>
  */
 class CommentFactory extends BaseFactory {
 

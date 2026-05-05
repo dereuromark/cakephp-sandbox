@@ -8,9 +8,7 @@ use CakephpFixtureFactories\Factory\BaseFactory;
 /**
  * RegistrationFactory
  *
- * @method \WorkflowSandbox\Model\Entity\Registration getEntity()
- * @method array<\WorkflowSandbox\Model\Entity\Registration> getEntities()
- * @method \WorkflowSandbox\Model\Entity\Registration|array<\WorkflowSandbox\Model\Entity\Registration> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\WorkflowSandbox\Model\Entity\Registration>
  */
 class RegistrationFactory extends BaseFactory {
 

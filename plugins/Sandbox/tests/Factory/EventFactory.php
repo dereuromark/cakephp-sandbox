@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * EventFactory
  *
- * @method \Sandbox\Model\Entity\Event getEntity()
- * @method array<\Sandbox\Model\Entity\Event> getEntities()
- * @method \Sandbox\Model\Entity\Event|array<\Sandbox\Model\Entity\Event> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\Event>
  */
 class EventFactory extends BaseFactory {
 

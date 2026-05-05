@@ -10,9 +10,7 @@ use Sandbox\Model\Enum\UserStatus;
 /**
  * SandboxUserFactory
  *
- * @method \Sandbox\Model\Entity\SandboxUser getEntity()
- * @method array<\Sandbox\Model\Entity\SandboxUser> getEntities()
- * @method \Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\SandboxUser>
  */
 class SandboxUserFactory extends BaseFactory {
 

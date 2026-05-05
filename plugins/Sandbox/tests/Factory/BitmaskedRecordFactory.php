@@ -9,9 +9,7 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 /**
  * BitmaskedRecordFactory
  *
- * @method \Sandbox\Model\Entity\BitmaskedRecord getEntity()
- * @method array<\Sandbox\Model\Entity\BitmaskedRecord> getEntities()
- * @method \Sandbox\Model\Entity\BitmaskedRecord|array<\Sandbox\Model\Entity\BitmaskedRecord> persist()
+ * @extends \CakephpFixtureFactories\Factory\BaseFactory<\Sandbox\Model\Entity\BitmaskedRecord>
  */
 class BitmaskedRecordFactory extends BaseFactory {
 
