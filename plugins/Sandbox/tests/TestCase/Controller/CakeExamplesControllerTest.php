@@ -4,6 +4,7 @@ namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Sandbox\Test\Factory\SandboxUserFactory;
 
 /**
  * Sandbox\Controller\CakeExamplesController Test Case
@@ -13,18 +14,6 @@ use Cake\TestSuite\TestCase;
 class CakeExamplesControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
-
-	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxAnimals',
-		'plugin.Sandbox.SandboxUsers',
-		'plugin.Sandbox.SandboxPosts',
-		'plugin.Sandbox.SandboxProducts',
-	];
 
 	/**
 	 * Test index method
@@ -120,6 +109,8 @@ class CakeExamplesControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testEnums(): void {
+		SandboxUserFactory::make()->persist();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'enums']);
 
 		$this->assertResponseCode(200);

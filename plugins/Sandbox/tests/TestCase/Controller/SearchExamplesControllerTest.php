@@ -3,20 +3,13 @@
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Routing\Router;
+use Sandbox\Test\Factory\SandboxProductFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
  * @uses \Sandbox\Controller\SearchExamplesController
  */
 class SearchExamplesControllerTest extends IntegrationTestCase {
-
-	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Data.Countries',
-		'plugin.Sandbox.SandboxProducts',
-	];
 
 	/**
 	 * @return void
@@ -51,6 +44,8 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testRange() {
+		SandboxProductFactory::make()->persist();
+
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'range']);
 
 		$this->assertResponseCode(200);

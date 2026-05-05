@@ -14,14 +14,6 @@ class CommentExamplesControllerTest extends TestCase {
 	use IntegrationTestTrait;
 
 	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxPosts',
-		'plugin.Comments.Comments',
-	];
-
-	/**
 	 * @uses \Sandbox\Controller\CommentExamplesController::index()
 	 * @return void
 	 */

@@ -5,6 +5,7 @@ namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Sandbox\Test\Factory\SandboxProfileFactory;
 
 /**
  * @uses \Sandbox\Controller\DecimalExamplesController
@@ -12,13 +13,6 @@ use Cake\TestSuite\TestCase;
 class DecimalExamplesControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
-
-	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxProfiles',
-	];
 
 	/**
 	 * @uses \Sandbox\Controller\DecimalExamplesController::index()
@@ -39,6 +33,8 @@ class DecimalExamplesControllerTest extends TestCase {
 	 */
 	public function testForms(): void {
 		$this->disableErrorHandlerMiddleware();
+
+		SandboxProfileFactory::make()->persist();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'DecimalExamples', 'action' => 'forms']);
 

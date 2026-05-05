@@ -2,6 +2,8 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use App\Test\Factory\CountryFactory;
+use App\Test\Factory\StateFactory;
 use Cake\Routing\Router;
 use Shim\TestSuite\IntegrationTestCase;
 
@@ -16,14 +18,6 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @var bool
 	 */
 	protected bool $disableErrorHandlerMiddleware = true;
-
-	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Data.Countries',
-		'app.Users',
-	];
 
 	/**
 	 * @return void
@@ -251,13 +245,14 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testTableDelete() {
+		$country = CountryFactory::make()->persist();
 		$this->configRequest([
 			'headers' => [
 				'X_REQUESTED_WITH' => 'XMLHttpRequest',
 			],
 		]);
 
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'tableDelete', 1]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'tableDelete', $country->id]);
 
 		$this->assertResponseCode(200);
 	}
@@ -268,13 +263,16 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	public function testCountryStates() {
 		$this->disableErrorHandlerMiddleware();
 
+		$country = CountryFactory::make()->persist();
+		StateFactory::make(['country_id' => $country->id])->persist();
+
 		$this->configRequest([
 			'headers' => [
 				'X_REQUESTED_WITH' => 'XMLHttpRequest',
 			],
 		]);
 
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'countryStates', '?' => ['id' => 1]]);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'AjaxExamples', 'action' => 'countryStates', '?' => ['id' => $country->id]]);
 
 		$this->assertResponseCode(200);
 	}

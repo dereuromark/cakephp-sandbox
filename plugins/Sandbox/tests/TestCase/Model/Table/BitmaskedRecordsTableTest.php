@@ -19,15 +19,6 @@ class BitmaskedRecordsTableTest extends TestCase {
 	protected $BitmaskedRecords;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.BitmaskedRecords',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void
@@ -50,12 +41,24 @@ class BitmaskedRecordsTableTest extends TestCase {
 	}
 
 	/**
-	 * Test validationDefault method
-	 *
 	 * @return void
 	 */
 	public function testValidationDefault(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$entity = $this->BitmaskedRecords->newEntity([]);
+		$this->assertArrayHasKey('_required', $entity->getError('name'));
+
+		$entity = $this->BitmaskedRecords->newEntity([
+			'name' => str_repeat('x', 101),
+			'flag_required' => '',
+		]);
+		$this->assertArrayHasKey('maxLength', $entity->getError('name'));
+		$this->assertArrayHasKey('_empty', $entity->getError('flag_required'));
+
+		$entity = $this->BitmaskedRecords->newEntity([
+			'name' => 'My record',
+			'flag_required' => 1,
+		]);
+		$this->assertEmpty($entity->getErrors());
 	}
 
 }

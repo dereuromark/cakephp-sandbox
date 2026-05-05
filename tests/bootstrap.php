@@ -13,16 +13,16 @@ require dirname(__DIR__) . '/config/bootstrap.php';
 
 $_SERVER['PHP_SELF'] = '/';
 
-// Tests should log to file instead of the default configured DatabaseLog
+// Tests should log to memory (faster) instead of the default configured DatabaseLog
 $logs = Log::configured();
 foreach ($logs as $log) {
 	$config = Log::getConfig($log);
-	if ($config['className'] === 'Cake\Log\Engine\FileLog') {
+	if ($config['className'] === 'Cake\Log\Engine\ArrayLog') {
 		continue;
 	}
 	Log::drop($log);
 	Log::setConfig($log, [
-		'className' => 'Cake\Log\Engine\FileLog',
+		'className' => 'Cake\Log\Engine\ArrayLog',
 		'path' => LOGS,
 	] + $config);
 }
@@ -60,6 +60,8 @@ Configure::write('Error.ignoredDeprecationPaths', [
 	'vendor/*',
 ]);
 
+Configure::write('FixtureFactories.generatorType', 'dummy');
+
 // Configure Mercure for tests (prevents MercureComponent initialization errors)
 Configure::write('Mercure', [
 	'url' => 'http://localhost/.well-known/mercure',
@@ -79,6 +81,7 @@ session_id('cli');
 
 (new Migrator())->runMany([
 	['connection' => 'test'],
+	['plugin' => 'Workflow'],
 	['plugin' => 'WorkflowSandbox'],
 	['plugin' => 'Tags'],
 	['plugin' => 'Captcha'],

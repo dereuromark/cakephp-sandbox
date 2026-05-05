@@ -19,15 +19,6 @@ class ProductsTableTest extends TestCase {
 	protected $Products;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxProducts',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void

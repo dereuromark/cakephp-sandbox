@@ -2,6 +2,8 @@
 
 namespace App\Test\TestCase\Controller\Admin;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -12,21 +14,13 @@ use Shim\TestSuite\IntegrationTestCase;
 class OverviewControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function setUp(): void {
 		parent::setUp();
 
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		RoleFactory::seedAll();
+		$user = UserFactory::make()->asSuperadmin()->persist();
 		$this->session(['Auth' => $user]);
 	}
 

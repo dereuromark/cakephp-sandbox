@@ -10,14 +10,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class CaptchasControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Captcha.Captchas',
-		'plugin.Sandbox.SandboxAnimals',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {

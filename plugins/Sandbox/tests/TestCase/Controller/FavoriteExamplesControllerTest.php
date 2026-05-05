@@ -14,15 +14,6 @@ class FavoriteExamplesControllerTest extends TestCase {
 	use IntegrationTestTrait;
 
 	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxPosts',
-		'plugin.Sandbox.SandboxUsers',
-		'plugin.Favorites.Favorites',
-	];
-
-	/**
 	 * @uses \Sandbox\Controller\FavoriteExamplesController::index()
 	 * @return void
 	 */

@@ -11,15 +11,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class ToolsExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'app.Users',
-		'plugin.Sandbox.SandboxUsers',
-		'plugin.Sandbox.SandboxAnimals',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {

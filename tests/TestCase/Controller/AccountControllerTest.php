@@ -2,6 +2,8 @@
 
 namespace App\Test\TestCase\Controller;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -13,19 +15,18 @@ use Shim\TestSuite\IntegrationTestCase;
 class AccountControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @return void
 	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
+	protected function setUp(): void {
+		parent::setUp();
+		RoleFactory::seedAll();
+	}
 
 	/**
 	 * @return void
 	 */
 	public function testIndex() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'index']);
@@ -50,8 +51,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginLoggedIn() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'login']);
@@ -77,98 +77,52 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidData() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['username' => 'logintest'])->persist();
 
-		$data = [
-			'login' => 'admin',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login'], [
+			'login' => $user->username,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataEmail() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['email' => 'logintest@example.com'])->persist();
 
-		$data = [
-			'login' => 'admin@example.com',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login'], [
+			'login' => $user->email,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataReferrer() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['username' => 'logintest'])->persist();
 
-		$data = [
-			'login' => 'admin',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], [
+			'login' => $user->username,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
-		$this->assertRedirect(['controller' => 'Somewhere', 'action' => 'index']);
+		$this->assertRedirectContains('/somewhere');
 	}
 
 	/**
 	 * @return void
 	 */
 	public function testLogout() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'logout']);
@@ -200,8 +154,8 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testChangePassword() {
-		$session = ['Auth' => ['Tmp' => ['id' => '1']]];
-		$this->session($session);
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => ['Tmp' => ['id' => (string)$user->id]]]);
 
 		$this->get(['controller' => 'Account', 'action' => 'changePassword']);
 		$this->assertResponseCode(200);
@@ -250,14 +204,26 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEdit() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'edit']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testDelete() {
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => $user]);
+
+		$this->post(['controller' => 'Account', 'action' => 'delete']);
+
+		$this->assertResponseCode(302);
+		$this->assertNull($this->fetchTable('Users')->find()->where(['id' => $user->id])->first());
 	}
 
 }

@@ -10,13 +10,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class MenuControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxCategories',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {

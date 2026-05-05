@@ -10,14 +10,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class QueueExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Queue.QueuedJobs',
-		'plugin.Queue.QueueProcesses',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {

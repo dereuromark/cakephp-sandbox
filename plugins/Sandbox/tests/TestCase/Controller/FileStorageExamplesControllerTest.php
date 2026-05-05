@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
+use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\TestSuite\IntegrationTestTrait;
 use Laminas\Diactoros\UploadedFile;
 use Shim\TestSuite\TestCase;
@@ -16,13 +17,6 @@ use Shim\TestSuite\TestCase;
 class FileStorageExamplesControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
-
-	/**
-	 * Fixtures
-	 *
-	 * @var array<string>
-	 */
-	protected array $fixtures = [];
 
 	/**
 	 * setUpBeforeClass method
@@ -1038,6 +1032,56 @@ PDF;
 
 		// Cleanup
 		@unlink($tmpFile);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testIndex(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testImages(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPdfs(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'pdfs']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testVariants(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'variants']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testViewMissingFile(): void {
+		$this->disableErrorHandlerMiddleware();
+		$this->expectException(RecordNotFoundException::class);
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'view', 999999]);
 	}
 
 }

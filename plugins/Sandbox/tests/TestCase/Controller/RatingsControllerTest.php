@@ -4,6 +4,7 @@ namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use Sandbox\Test\Factory\SandboxRatingFactory;
 
 /**
  * Sandbox\Controller\RatingsController Test Case
@@ -13,16 +14,6 @@ use Cake\TestSuite\TestCase;
 class RatingsControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
-
-	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxPosts',
-		'plugin.Sandbox.SandboxRatings',
-	];
 
 	/**
 	 * Test index method
@@ -47,8 +38,7 @@ class RatingsControllerTest extends TestCase {
 		$this->disableErrorHandlerMiddleware();
 		$this->enableRetainFlashMessages();
 
-		/** @var \Sandbox\Model\Entity\SandboxRating $rating */
-		$rating = $this->fetchTable('Sandbox.SandboxRatings')->find()->firstOrFail();
+		$rating = SandboxRatingFactory::make()->persist();
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Ratings', 'action' => 'unrate', $rating->id]);
 

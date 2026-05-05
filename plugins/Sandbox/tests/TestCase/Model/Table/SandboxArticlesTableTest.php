@@ -16,13 +16,6 @@ class SandboxArticlesTableTest extends TestCase {
 	protected $SandboxArticles;
 
 	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxArticles',
-	];
-
-	/**
 	 * @return void
 	 */
 	protected function setUp(): void {
@@ -45,7 +38,28 @@ class SandboxArticlesTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testValidationDefault(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$entity = $this->SandboxArticles->newEntity([]);
+		$this->assertSame([
+			'title' => ['_required' => 'This field is required'],
+			'content' => ['_required' => 'This field is required'],
+			'status' => ['_required' => 'This field is required'],
+		], $entity->getErrors());
+
+		$entity = $this->SandboxArticles->newEntity([
+			'title' => str_repeat('x', 256),
+			'content' => '',
+			'status' => '',
+		]);
+		$this->assertArrayHasKey('maxLength', $entity->getError('title'));
+		$this->assertArrayHasKey('_empty', $entity->getError('content'));
+		$this->assertArrayHasKey('_empty', $entity->getError('status'));
+
+		$entity = $this->SandboxArticles->newEntity([
+			'title' => 'My title',
+			'content' => 'Some content',
+			'status' => 'published',
+		]);
+		$this->assertEmpty($entity->getErrors());
 	}
 
 }

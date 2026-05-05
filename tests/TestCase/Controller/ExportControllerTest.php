@@ -178,6 +178,16 @@ class ExportControllerTest extends IntegrationTestCase {
 	}
 
 	/**
+	 * Note: postal_codes table is part of the Data plugin's separate schema and
+	 * not migrated in tests/bootstrap.php. Enable when that's wired up.
+	 *
+	 * @return void
+	 */
+	public function testPostalCodes() {
+		$this->markTestSkipped('postal_codes table not migrated for tests');
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testTimezones() {

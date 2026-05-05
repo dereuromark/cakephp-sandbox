@@ -2,6 +2,8 @@
 
 namespace AuthSandbox\Test\TestCase\Controller;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -12,12 +14,12 @@ use Shim\TestSuite\IntegrationTestCase;
 class AuthSandboxControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @return void
 	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
+	protected function setUp(): void {
+		parent::setUp();
+		RoleFactory::seedAll();
+	}
 
 	/**
 	 * @return void
@@ -43,8 +45,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForAll() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
@@ -57,16 +58,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForMods() {
-		$Users = $this->fetchTable('Users');
-		// Create a user with mod role (role_id = 3)
-		$user = $Users->newEntity([
-			'username' => 'testmod',
-			'email' => 'testmod@example.com',
-			'password' => 'password',
-			'role_id' => 3,
-		]);
-		$Users->save($user);
-
+		$user = UserFactory::make()->asMod()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
@@ -89,13 +81,39 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'logout']);
 
 		$this->assertResponseCode(302);
+	}
+
+	/**
+	 * forMods is mod-only; a plain user must be redirected.
+	 *
+	 * @return void
+	 */
+	public function testForModsAsUserRedirects() {
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => $user]);
+
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+	}
+
+	/**
+	 * forAll requires any authenticated user; anonymous request must be redirected.
+	 *
+	 * @return void
+	 */
+	public function testForAllAnonymousRedirects() {
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
 	}
 
 }

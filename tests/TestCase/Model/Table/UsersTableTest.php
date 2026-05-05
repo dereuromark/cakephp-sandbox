@@ -2,21 +2,13 @@
 
 namespace App\Test\TestCase\Model\Table;
 
+use App\Test\Factory\UserFactory;
 use Cake\TestSuite\TestCase;
 
 /**
  * User Test Case
  */
 class UsersTableTest extends TestCase {
-
-	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'app.Users',
-	];
 
 	/**
 	 * @var \App\Model\Table\UsersTable
@@ -48,6 +40,8 @@ class UsersTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testBasic() {
+		UserFactory::make()->persist();
+
 		$result = $this->Users->find()->first();
 		$this->assertNotEmpty($result);
 	}
