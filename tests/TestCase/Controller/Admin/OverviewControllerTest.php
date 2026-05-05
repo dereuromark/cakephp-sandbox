@@ -20,7 +20,7 @@ class OverviewControllerTest extends IntegrationTestCase {
 		parent::setUp();
 
 		RoleFactory::seedAll();
-		$user = UserFactory::new()->asSuperadmin()->save();
+		$user = UserFactory::new()->asSuperadmin()->build();
 		$this->session(['Auth' => $user]);
 	}
 

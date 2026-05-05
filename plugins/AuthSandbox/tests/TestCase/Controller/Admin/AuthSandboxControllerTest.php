@@ -27,7 +27,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
 
-		$user = UserFactory::new()->asAdmin()->save();
+		$user = UserFactory::new()->asAdmin()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
@@ -58,7 +58,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndexNotAllowed() {
 		$this->disableErrorHandlerMiddleware();
 
-		$user = UserFactory::new()->save();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);

@@ -26,7 +26,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$user = UserFactory::new()->save();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'index']);
@@ -51,7 +51,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginLoggedIn() {
-		$user = UserFactory::new()->save();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'login']);
@@ -122,7 +122,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$user = UserFactory::new()->save();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'logout']);
