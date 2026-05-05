@@ -11,7 +11,6 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
  * UserFactory
  *
  * @extends \CakephpFixtureFactories\Factory\BaseFactory<\App\Model\Entity\User>
- * @method static \App\Model\Entity\User get(mixed $primaryKey, array $options = [])
  */
 class UserFactory extends BaseFactory {
 
