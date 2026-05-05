@@ -304,18 +304,12 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	public function testReject() {
 		$this->enableRetainFlashMessages();
 
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
+		$bouncerRecord = $this->createPendingEdit($this->article->id, [
 			'title' => 'Pending change',
 			'content' => 'Pending content',
 			'status' => 'published',
 			'user_id' => 1,
 		]);
-		$this->assertResponseCode(302);
-
-		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
-		$bouncerRecord = $bouncerTable->find()
-			->where(['source' => 'Sandbox.SandboxArticles', 'status' => 'pending'])
-			->firstOrFail();
 
 		$this->post(
 			['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'reject', $bouncerRecord->id],
@@ -323,6 +317,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		);
 
 		$this->assertResponseCode(302);
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$this->assertSame('rejected', $bouncerTable->get($bouncerRecord->id)->status);
 	}
 
@@ -335,22 +330,12 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	public function testApproveAppliesPendingEditToOriginal() {
 		$this->enableRetainFlashMessages();
 
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
+		$bouncerRecord = $this->createPendingEdit($this->article->id, [
 			'title' => 'Approved Title',
 			'content' => 'Approved content',
 			'status' => 'published',
 			'user_id' => 1,
 		]);
-		$this->assertResponseCode(302);
-
-		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
-		$bouncerRecord = $bouncerTable->find()
-			->where([
-				'source' => 'Sandbox.SandboxArticles',
-				'primary_key' => $this->article->id,
-				'status' => 'pending',
-			])
-			->firstOrFail();
 
 		$this->post(
 			['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'approve', $bouncerRecord->id],
@@ -358,13 +343,45 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		);
 		$this->assertResponseCode(302);
 
-		$updatedRecord = $bouncerTable->get($bouncerRecord->id);
-		$this->assertSame('approved', $updatedRecord->status);
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$this->assertSame('approved', $bouncerTable->get($bouncerRecord->id)->status);
 
 		$articlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
 		$updatedArticle = $articlesTable->get($this->article->id);
 		$this->assertSame('Approved Title', $updatedArticle->title);
 		$this->assertSame('Approved content', $updatedArticle->content);
+	}
+
+	/**
+	 * Set up a pending bouncer record for an article via the table layer.
+	 * Avoids the 'one request per test' rule by not going through the controller.
+	 *
+	 * @param int $articleId
+	 * @param array<string, mixed> $data
+	 * @return \Bouncer\Model\Entity\BouncerRecord
+	 */
+	protected function createPendingEdit(int $articleId, array $data) {
+		$articlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
+		$articlesTable->addBehavior('Bouncer.Bouncer', [
+			'userField' => 'user_id',
+			'requireApproval' => ['add', 'edit', 'delete'],
+			'validateOnDraft' => true,
+			'autoSupersede' => true,
+		]);
+
+		$article = $articlesTable->get($articleId);
+		$article = $articlesTable->patchEntity($article, $data);
+		$articlesTable->save($article, ['bouncerUserId' => 1]);
+
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+
+		return $bouncerTable->find()
+			->where([
+				'source' => 'Sandbox.SandboxArticles',
+				'primary_key' => $articleId,
+				'status' => 'pending',
+			])
+			->firstOrFail();
 	}
 
 }
