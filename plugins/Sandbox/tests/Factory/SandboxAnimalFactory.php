@@ -28,7 +28,7 @@ class SandboxAnimalFactory extends BaseFactory {
 	protected function setDefaultTemplate(): void {
 		$this->setDefaultData(function (GeneratorInterface $generator): array {
 			return [
-				'name' => $generator->words(2, true),
+				'name' => $generator->sentence(2),
 			];
 		});
 	}
