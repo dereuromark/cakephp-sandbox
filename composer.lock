@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4eac4eced52c96a6828d911077f489d1",
+    "content-hash": "649ae4398ad01c6de50476d3a42b4419",
     "packages": [
         {
             "name": "brick/math",
@@ -10205,16 +10205,16 @@
         },
         {
             "name": "dereuromark/cakephp-fixture-factories",
-            "version": "1.4.0",
+            "version": "dev-next",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-fixture-factories.git",
-                "reference": "7c48afd2d6431a33fc68cdda5852d033b9e1c57d"
+                "reference": "adda79db90da98eeb3deb6f930fdb1f6eaa3e757"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/7c48afd2d6431a33fc68cdda5852d033b9e1c57d",
-                "reference": "7c48afd2d6431a33fc68cdda5852d033b9e1c57d",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/adda79db90da98eeb3deb6f930fdb1f6eaa3e757",
+                "reference": "adda79db90da98eeb3deb6f930fdb1f6eaa3e757",
                 "shasum": ""
             },
             "require": {
@@ -10232,6 +10232,7 @@
                 "php-collective/code-sniffer": "dev-master",
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0",
+                "rector/rector": "^2.1",
                 "vierge-noire/cakephp-test-suite-light": "^3.0"
             },
             "suggest": {
@@ -10282,7 +10283,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-fixture-factories/issues",
                 "source": "https://github.com/dereuromark/cakephp-fixture-factories"
             },
-            "time": "2026-05-04T20:41:08+00:00"
+            "time": "2026-05-05T17:00:46+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -11841,6 +11842,66 @@
             "time": "2026-05-01T04:22:45+00:00"
         },
         {
+            "name": "rector/rector",
+            "version": "2.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rectorphp/rector.git",
+                "reference": "e645b6463c6a88ea5b44b17d3387d35a912c7946"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e645b6463c6a88ea5b44b17d3387d35a912c7946",
+                "reference": "e645b6463c6a88ea5b44b17d3387d35a912c7946",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4|^8.0",
+                "phpstan/phpstan": "^2.1.48"
+            },
+            "conflict": {
+                "rector/rector-doctrine": "*",
+                "rector/rector-downgrade-php": "*",
+                "rector/rector-phpunit": "*",
+                "rector/rector-symfony": "*"
+            },
+            "suggest": {
+                "ext-dom": "To manipulate phpunit.xml via the custom-rule command"
+            },
+            "bin": [
+                "bin/rector"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Instant Upgrade and Automated Refactoring of any PHP code",
+            "homepage": "https://getrector.com/",
+            "keywords": [
+                "automation",
+                "dev",
+                "migration",
+                "refactoring"
+            ],
+            "support": {
+                "issues": "https://github.com/rectorphp/rector/issues",
+                "source": "https://github.com/rectorphp/rector/tree/2.4.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/tomasvotruba",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-04-16T13:07:34+00:00"
+        },
+        {
             "name": "rector/type-perfect",
             "version": "2.1.4",
             "source": {
@@ -13242,6 +13303,7 @@
         "dereuromark/cakephp-feed": 20,
         "dereuromark/cakephp-feedback": 20,
         "dereuromark/cakephp-file-storage": 20,
+        "dereuromark/cakephp-fixture-factories": 20,
         "dereuromark/cakephp-flash": 20,
         "dereuromark/cakephp-geo": 20,
         "dereuromark/cakephp-ide-helper": 20,

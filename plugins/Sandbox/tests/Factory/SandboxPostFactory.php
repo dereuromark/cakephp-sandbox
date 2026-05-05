@@ -21,17 +21,17 @@ class SandboxPostFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'title' => $generator->sentence(4),
-				'content' => $generator->paragraph(2),
-				'rating_count' => 0,
-				'rating_sum' => 0,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'title' => $generator->sentence(4),
+			'content' => $generator->paragraph(2),
+			'rating_count' => 0,
+			'rating_sum' => 0,
+		];
 	}
 
 }

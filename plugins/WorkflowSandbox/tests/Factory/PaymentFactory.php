@@ -21,18 +21,18 @@ class PaymentFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'transaction_id' => $generator->unique()->uuid(),
-				'amount' => $generator->randomFloat(2, 1, 1000),
-				'currency' => 'USD',
-				'status' => 'pending',
-				'retry_count' => 0,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'transaction_id' => $generator->unique()->uuid(),
+			'amount' => $generator->randomFloat(2, 1, 1000),
+			'currency' => 'USD',
+			'status' => 'pending',
+			'retry_count' => 0,
+		];
 	}
 
 }

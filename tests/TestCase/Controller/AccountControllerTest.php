@@ -26,7 +26,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testIndex() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'index']);
@@ -51,7 +51,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginLoggedIn() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'login']);
@@ -80,7 +80,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginPostValidData() {
-		$user = UserFactory::make(['username' => 'logintest'])->persist();
+		$user = UserFactory::new(['username' => 'logintest'])->save();
 
 		$this->post(['controller' => 'Account', 'action' => 'login'], [
 			'login' => $user->username,
@@ -94,7 +94,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginPostValidDataEmail() {
-		$user = UserFactory::make(['email' => 'logintest@example.com'])->persist();
+		$user = UserFactory::new(['email' => 'logintest@example.com'])->save();
 
 		$this->post(['controller' => 'Account', 'action' => 'login'], [
 			'login' => $user->email,
@@ -108,7 +108,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginPostValidDataReferrer() {
-		$user = UserFactory::make(['username' => 'logintest'])->persist();
+		$user = UserFactory::new(['username' => 'logintest'])->save();
 
 		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], [
 			'login' => $user->username,
@@ -122,7 +122,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'logout']);
@@ -154,7 +154,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testChangePassword() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => ['Tmp' => ['id' => (string)$user->id]]]);
 
 		$this->get(['controller' => 'Account', 'action' => 'changePassword']);
@@ -204,7 +204,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEdit() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'edit']);
@@ -217,7 +217,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->save();
 		$this->session(['Auth' => $user]);
 
 		$this->post(['controller' => 'Account', 'action' => 'delete']);

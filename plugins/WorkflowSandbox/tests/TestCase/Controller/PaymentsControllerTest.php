@@ -35,7 +35,7 @@ class PaymentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$payment = PaymentFactory::make()->persist();
+		$payment = PaymentFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Payments', 'action' => 'view', $payment->id]);
 
@@ -47,7 +47,7 @@ class PaymentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$payment = PaymentFactory::make()->persist();
+		$payment = PaymentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Payments', 'action' => 'delete', $payment->id]);
 
@@ -59,7 +59,7 @@ class PaymentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testSimulate(): void {
-		$payment = PaymentFactory::make()->persist();
+		$payment = PaymentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Payments', 'action' => 'simulate', $payment->id]);
 

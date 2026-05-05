@@ -54,19 +54,19 @@ class UserFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'username' => $generator->unique()->userName(),
-				'email' => $generator->unique()->safeEmail(),
-				'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
-				'role_id' => static::ROLE_USER,
-				'active' => true,
-				'logins' => 0,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'username' => $generator->unique()->userName(),
+			'email' => $generator->unique()->safeEmail(),
+			'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
+			'role_id' => static::ROLE_USER,
+			'active' => true,
+			'logins' => 0,
+		];
 	}
 
 	/**

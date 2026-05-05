@@ -27,7 +27,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		parent::setUp();
 		$this->disableErrorHandlerMiddleware();
 
-		$this->article = SandboxArticleFactory::make()->persist();
+		$this->article = SandboxArticleFactory::new()->save();
 	}
 
 	/**

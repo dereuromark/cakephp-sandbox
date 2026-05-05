@@ -34,7 +34,7 @@ class DecimalExamplesControllerTest extends TestCase {
 	public function testForms(): void {
 		$this->disableErrorHandlerMiddleware();
 
-		SandboxProfileFactory::make()->persist();
+		SandboxProfileFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'DecimalExamples', 'action' => 'forms']);
 

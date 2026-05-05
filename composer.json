@@ -98,8 +98,9 @@
 		"dereuromark/cakephp-test-helper": "dev-master",
 		"phpunit/phpunit": "^13.0",
 		"cakedc/cakephp-phpstan": "^4.0",
-		"dereuromark/cakephp-fixture-factories": "^1.4",
-		"johnykvsky/dummygenerator": "^0.2"
+		"dereuromark/cakephp-fixture-factories": "dev-next",
+		"johnykvsky/dummygenerator": "^0.2",
+		"rector/rector": "^2.1"
 	},
 	"autoload": {
 		"psr-4": {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace WorkflowSandbox\Test\Factory;
 
 use CakephpFixtureFactories\Factory\BaseFactory;
+use CakephpFixtureFactories\Generator\GeneratorInterface;
 
 /**
  * RegistrationFactory
@@ -20,12 +21,14 @@ class RegistrationFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(fn (): array => [
+	public function definition(GeneratorInterface $generator): array {
+		return [
 			'status' => 'pending',
-		]);
+		];
 	}
 
 }

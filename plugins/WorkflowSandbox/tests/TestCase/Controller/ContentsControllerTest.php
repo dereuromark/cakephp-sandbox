@@ -35,7 +35,7 @@ class ContentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$content = ContentFactory::make()->persist();
+		$content = ContentFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Contents', 'action' => 'view', $content->id]);
 
@@ -47,7 +47,7 @@ class ContentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$content = ContentFactory::make()->persist();
+		$content = ContentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Contents', 'action' => 'delete', $content->id]);
 
@@ -59,7 +59,7 @@ class ContentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReset(): void {
-		ContentFactory::make()->persist();
+		ContentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Contents', 'action' => 'reset']);
 

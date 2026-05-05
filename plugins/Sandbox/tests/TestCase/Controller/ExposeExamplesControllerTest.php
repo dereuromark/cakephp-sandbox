@@ -16,7 +16,7 @@ class ExposeExamplesControllerTest extends IntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		ExposedUserFactory::make()->persist();
+		ExposedUserFactory::new()->save();
 	}
 
 	/**

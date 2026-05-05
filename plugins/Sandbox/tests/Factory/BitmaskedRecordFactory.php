@@ -21,15 +21,15 @@ class BitmaskedRecordFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'name' => $generator->word(),
-				'flag_required' => 1,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'name' => $generator->word(),
+			'flag_required' => 1,
+		];
 	}
 
 }

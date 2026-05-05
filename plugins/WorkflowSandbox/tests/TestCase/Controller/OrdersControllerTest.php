@@ -35,7 +35,7 @@ class OrdersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$order = OrderFactory::make()->persist();
+		$order = OrderFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'view', $order->id]);
 
@@ -47,7 +47,7 @@ class OrdersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$order = OrderFactory::make()->persist();
+		$order = OrderFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'delete', $order->id]);
 
@@ -59,7 +59,7 @@ class OrdersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReset(): void {
-		OrderFactory::make()->persist();
+		OrderFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Orders', 'action' => 'reset']);
 

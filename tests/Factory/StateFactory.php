@@ -21,18 +21,18 @@ class StateFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'country_id' => 1,
-				'code' => strtoupper(substr($generator->word(), 0, 2)),
-				'name' => $generator->word(),
-				'lat' => $generator->randomFloat(6, -90, 90),
-				'lng' => $generator->randomFloat(6, -180, 180),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'country_id' => 1,
+			'code' => strtoupper(substr($generator->word(), 0, 2)),
+			'name' => $generator->word(),
+			'lat' => $generator->randomFloat(6, -90, 90),
+			'lng' => $generator->randomFloat(6, -180, 180),
+		];
 	}
 
 }

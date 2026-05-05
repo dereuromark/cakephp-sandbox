@@ -21,18 +21,18 @@ class TagFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			$label = $generator->unique()->word();
+	public function definition(GeneratorInterface $generator): array {
+		$label = $generator->unique()->word();
 
-			return [
-				'slug' => strtolower($label),
-				'label' => $label,
-				'counter' => 0,
-			];
-		});
+		return [
+			'slug' => strtolower($label),
+			'label' => $label,
+			'counter' => 0,
+		];
 	}
 
 }

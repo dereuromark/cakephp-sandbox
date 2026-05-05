@@ -21,18 +21,18 @@ class CommentFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'foreign_key' => 1,
-				'model' => 'Posts',
-				'content' => $generator->paragraph(2),
-				'is_private' => false,
-				'is_spam' => false,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'foreign_key' => 1,
+			'model' => 'Posts',
+			'content' => $generator->paragraph(2),
+			'is_private' => false,
+			'is_spam' => false,
+		];
 	}
 
 }

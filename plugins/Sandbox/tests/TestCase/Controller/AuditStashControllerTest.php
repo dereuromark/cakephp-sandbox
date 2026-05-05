@@ -22,8 +22,8 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIndex(): void {
-		SandboxArticleFactory::make()->persist();
-		AuditLogFactory::make()->persist();
+		SandboxArticleFactory::new()->save();
+		AuditLogFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'index']);
 
@@ -61,7 +61,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testEdit(): void {
-		$article = SandboxArticleFactory::make()->persist();
+		$article = SandboxArticleFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'edit', $article->id]);
 
@@ -73,7 +73,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$article = SandboxArticleFactory::make()->persist();
+		$article = SandboxArticleFactory::new()->save();
 		$this->enableRetainFlashMessages();
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'delete', $article->id]);
@@ -86,7 +86,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testViewLog(): void {
-		$auditLog = AuditLogFactory::make()->persist();
+		$auditLog = AuditLogFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'viewLog', $auditLog->id]);
 
@@ -98,7 +98,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRevertWrongType(): void {
-		$auditLog = AuditLogFactory::make(['type' => AuditLogType::Create->value])->persist();
+		$auditLog = AuditLogFactory::new(['type' => AuditLogType::Create->value])->save();
 		$this->enableRetainFlashMessages();
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'revert', $auditLog->id]);
@@ -111,7 +111,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testRestoreWrongType(): void {
-		$auditLog = AuditLogFactory::make(['type' => AuditLogType::Update->value])->persist();
+		$auditLog = AuditLogFactory::new(['type' => AuditLogType::Update->value])->save();
 		$this->enableRetainFlashMessages();
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'restore', $auditLog->id]);
@@ -124,7 +124,7 @@ class AuditStashControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testPartialRevertWrongType(): void {
-		$auditLog = AuditLogFactory::make(['type' => AuditLogType::Create->value])->persist();
+		$auditLog = AuditLogFactory::new(['type' => AuditLogType::Create->value])->save();
 		$this->enableRetainFlashMessages();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'AuditStash', 'action' => 'partialRevert', $auditLog->id]);

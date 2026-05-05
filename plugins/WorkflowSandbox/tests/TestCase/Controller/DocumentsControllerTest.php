@@ -35,7 +35,7 @@ class DocumentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$document = DocumentFactory::make()->persist();
+		$document = DocumentFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Documents', 'action' => 'view', $document->id]);
 
@@ -47,7 +47,7 @@ class DocumentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$document = DocumentFactory::make()->persist();
+		$document = DocumentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Documents', 'action' => 'delete', $document->id]);
 
@@ -59,7 +59,7 @@ class DocumentsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReset(): void {
-		DocumentFactory::make()->persist();
+		DocumentFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Documents', 'action' => 'reset']);
 

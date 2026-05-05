@@ -21,16 +21,16 @@ class CaptchaFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'session_id' => $generator->uuid(),
-				'ip' => $generator->ipv4(),
-				'result' => $generator->word(),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'session_id' => $generator->uuid(),
+			'ip' => $generator->ipv4(),
+			'result' => $generator->word(),
+		];
 	}
 
 }
