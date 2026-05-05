@@ -18,16 +18,6 @@ class TagsControllerTest extends TestCase {
 	use IntegrationTestTrait;
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxCategories',
-		'plugin.Sandbox.SandboxPosts',
-		'plugin.Tags.Tags',
-		'plugin.Tags.Tagged',
-	];
-
-	/**
 	 * Test index method
 	 *
 	 * @return void

@@ -20,15 +20,6 @@ class ExposedUsersTableTest extends TestCase {
 	protected $ExposedUsers;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.ExposedUsers',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void

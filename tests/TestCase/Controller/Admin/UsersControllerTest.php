@@ -2,6 +2,8 @@
 
 namespace App\Test\TestCase\Controller\Admin;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -13,12 +15,9 @@ use Shim\TestSuite\IntegrationTestCase;
 class UsersControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @var \App\Model\Entity\User
 	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
+	protected $user;
 
 	/**
 	 * @return void
@@ -26,9 +25,9 @@ class UsersControllerTest extends IntegrationTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
-		$this->session(['Auth' => $user]);
+		RoleFactory::seedAll();
+		$this->user = UserFactory::make()->asSuperadmin()->persist();
+		$this->session(['Auth' => $this->user]);
 	}
 
 	/**
@@ -55,7 +54,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEdit() {
-		$this->get(['prefix' => 'Admin', 'controller' => 'Users', 'action' => 'edit', 1]);
+		$this->get(['prefix' => 'Admin', 'controller' => 'Users', 'action' => 'edit', $this->user->id]);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

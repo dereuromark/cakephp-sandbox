@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Test\TestCase\Model\Table;
 
+use App\Test\Factory\CountryFactory;
 use Cake\TestSuite\TestCase;
 use Sandbox\Model\Table\SandboxCitiesTable;
 
@@ -14,14 +15,6 @@ class SandboxCitiesTableTest extends TestCase {
 	 * @var \Sandbox\Model\Table\SandboxCitiesTable
 	 */
 	protected $SandboxCities;
-
-	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxCities',
-		'plugin.Data.Countries',
-	];
 
 	/**
 	 * @return void
@@ -45,9 +38,11 @@ class SandboxCitiesTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testSave(): void {
+		$country = CountryFactory::make()->persist();
+
 		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
 			'name' => 'My city',
-			'country_id' => 1,
+			'country_id' => $country->id,
 			'lat' => 52.5200,
 			'lng' => 13.4050,
 		]);

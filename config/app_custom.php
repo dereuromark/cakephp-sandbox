@@ -4,6 +4,7 @@ use App\Healthcheck\Check\Tools\GraphvizCheck;
 use Cake\Cache\Engine\RedisEngine;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
+use CakephpFixtureFactories\TestSuite\FactoryTransactionStrategy;
 use Favorites\View\Helper\FavoritesHelper;
 use IdeHelper\Annotator\EntityAnnotator;
 use Intervention\Image\Drivers\Gd\Driver as GdDriver;
@@ -42,6 +43,10 @@ $config = [
 
 	'Security' => [
 		'salt' => '0ebcb009bb3f8ebe43a4addc3fc1c1f310c50520',
+	],
+
+	'TestSuite' => [
+		'fixtureStrategy' => FactoryTransactionStrategy::class,
 	],
 
 	'Error' => [

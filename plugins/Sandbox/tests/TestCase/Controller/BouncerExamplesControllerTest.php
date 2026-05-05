@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Sandbox\Test\Factory\SandboxArticleFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -13,12 +14,9 @@ use Shim\TestSuite\IntegrationTestCase;
 class BouncerExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @var \Sandbox\Model\Entity\SandboxArticle
 	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxArticles',
-		'plugin.Sandbox.BouncerRecords',
-	];
+	protected $article;
 
 	/**
 	 * setUp method
@@ -28,6 +26,8 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->disableErrorHandlerMiddleware();
+
+		$this->article = SandboxArticleFactory::make()->persist();
 	}
 
 	/**
@@ -37,7 +37,6 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function testIndexIsRoutable() {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'index']);
-		// Just assert we got a valid HTTP response (not 404/500)
 		$responseCode = $this->_response->getStatusCode();
 		$this->assertTrue(
 			$responseCode >= 200 && $responseCode < 400,
@@ -78,10 +77,10 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'view', 1]);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'view', $this->article->id]);
 
 		$this->assertResponseOk();
-		$this->assertResponseContains('Lorem ipsum');
+		$this->assertResponseContains($this->article->title);
 	}
 
 	/**
@@ -90,7 +89,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEditGet() {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1]);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id]);
 
 		$this->assertResponseOk();
 		$this->assertResponseContains('Edit Article');
@@ -124,7 +123,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function testEditPostCreatesDraft() {
 		$this->enableRetainFlashMessages();
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
 			'title' => 'Updated Title',
 			'content' => 'Updated content',
 			'status' => 'published',
@@ -133,7 +132,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(302);
 		$this->assertFlashMessage('Your changes are pending approval.');
-		$this->assertRedirectContains('/bouncer-examples/view/1');
+		$this->assertRedirectContains('/bouncer-examples/view/' . $this->article->id);
 	}
 
 	/**
@@ -142,7 +141,6 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReviewShowsOriginalData() {
-		// First create a draft by editing
 		$sandboxArticlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
 		$sandboxArticlesTable->addBehavior('Bouncer.Bouncer', [
 			'userField' => 'user_id',
@@ -151,7 +149,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 			'autoSupersede' => true,
 		]);
 
-		$article = $sandboxArticlesTable->get(1);
+		$article = $sandboxArticlesTable->get($this->article->id);
 		$article = $sandboxArticlesTable->patchEntity($article, [
 			'title' => 'Updated Title',
 			'content' => 'Updated content',
@@ -160,12 +158,11 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		]);
 		$sandboxArticlesTable->save($article, ['bouncerUserId' => 1]);
 
-		// Find the bouncer record that was created
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$bouncerRecord = $bouncerTable->find()
 			->where([
 				'source' => 'Sandbox.SandboxArticles',
-				'primary_key' => 1,
+				'primary_key' => $this->article->id,
 				'status' => 'pending',
 			])
 			->orderBy(['BouncerRecords.created' => 'DESC'])
@@ -173,14 +170,13 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 
 		$this->assertNotNull($bouncerRecord, 'Should have created a bouncer record');
 
-		// Now visit the review page
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'review', $bouncerRecord->id]);
 
 		$this->assertResponseOk();
-		$this->assertResponseContains('Original'); // Should have "Original" column header
-		$this->assertResponseContains('Proposed'); // Should have "Proposed" column header
-		$this->assertResponseContains('Lorem ipsum'); // Original title from fixture
-		$this->assertResponseContains('Updated Title'); // New title
+		$this->assertResponseContains('Original');
+		$this->assertResponseContains('Proposed');
+		$this->assertResponseContains($this->article->title);
+		$this->assertResponseContains('Updated Title');
 	}
 
 	/**
@@ -191,8 +187,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	public function testRevertEditRemovesPendingDraft() {
 		$this->enableRetainFlashMessages();
 
-		// First create a draft by editing
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
 			'title' => 'Changed Title',
 			'content' => 'Changed content',
 			'status' => 'published',
@@ -202,12 +197,11 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(302);
 		$this->assertFlashMessage('Your changes are pending approval.');
 
-		// Verify draft was created
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$pendingCount = $bouncerTable->find()
 			->where([
 				'source' => 'Sandbox.SandboxArticles',
-				'primary_key' => 1,
+				'primary_key' => $this->article->id,
 				'status' => 'pending',
 			])
 			->count();
@@ -222,7 +216,6 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	public function testRevertEditRemovesPendingDraftPart2() {
 		$this->enableRetainFlashMessages();
 
-		// First create a draft using table layer (not a controller request)
 		$sandboxArticlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
 		$sandboxArticlesTable->addBehavior('Bouncer.Bouncer', [
 			'userField' => 'user_id',
@@ -231,7 +224,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 			'autoSupersede' => true,
 		]);
 
-		$article = $sandboxArticlesTable->get(1);
+		$article = $sandboxArticlesTable->get($this->article->id);
 		$article = $sandboxArticlesTable->patchEntity($article, [
 			'title' => 'Changed Title',
 			'content' => 'Changed content',
@@ -240,36 +233,31 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		]);
 		$sandboxArticlesTable->save($article, ['bouncerUserId' => 1]);
 
-		// Verify draft was created
 		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
 		$pendingCount = $bouncerTable->find()
 			->where([
 				'source' => 'Sandbox.SandboxArticles',
-				'primary_key' => 1,
+				'primary_key' => $this->article->id,
 				'status' => 'pending',
 			])
 			->count();
 		$this->assertEquals(1, $pendingCount, 'Should have 1 pending draft before revert');
 
-		// Now edit again via controller, reverting to original values from fixture
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', 1], [
-			'title' => 'Lorem ipsum dolor sit amet',
-			'content' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-			'status' => 'Lorem ipsum dolor sit amet',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
+			'title' => $this->article->title,
+			'content' => $this->article->content,
+			'status' => $this->article->status,
 			'user_id' => 1,
 		]);
 
-		// Should redirect successfully without "pending approval" message
-		// since the changes match the original (draft was removed and save proceeded)
 		$this->assertResponseCode(302);
 		$this->assertRedirectContains('/bouncer-examples/articles');
 		$this->assertFlashMessage('Article updated successfully.');
 
-		// Verify draft was removed
 		$pendingCount = $bouncerTable->find()
 			->where([
 				'source' => 'Sandbox.SandboxArticles',
-				'primary_key' => 1,
+				'primary_key' => $this->article->id,
 				'status' => 'pending',
 			])
 			->count();
@@ -283,7 +271,7 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 	 */
 	public function testDeletePostCreatesDeletionRequest() {
 		$this->enableRetainFlashMessages();
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'delete', 1]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'delete', $this->article->id]);
 
 		$this->assertResponseCode(302);
 		$this->assertFlashMessage('Your deletion request is pending approval.');

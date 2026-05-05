@@ -19,15 +19,6 @@ class BitmaskedRecordsTableTest extends TestCase {
 	protected $BitmaskedRecords;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.BitmaskedRecords',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void

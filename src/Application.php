@@ -17,7 +17,6 @@ use Authorization\AuthorizationServiceProviderInterface;
 use Authorization\Middleware\AuthorizationMiddleware;
 use Authorization\Policy\MapResolver;
 use Cache\Routing\Middleware\CacheMiddleware;
-use Cake\Core\Configure;
 use Cake\Core\ContainerInterface;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Http\BaseApplication;
@@ -26,7 +25,6 @@ use Cake\Http\ServerRequest;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 use Cake\Routing\Router;
-use Exception;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use Setup\Middleware\MaintenanceMiddleware;
@@ -51,15 +49,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
 		if (PHP_SAPI === 'cli') {
 			$this->bootstrapCli();
-		}
-
-		if (Configure::read('debug')) {
-			$this->addPlugin('DebugKit');
-			try {
-				$this->addPlugin('TestHelper');
-			} catch (Exception $exception) {
-				// This is OK live
-			}
 		}
 
 		// Load more plugins here
@@ -144,9 +133,6 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 		try {
 			$this->addPlugin('IdeHelper');
 			$this->addPlugin('Bake');
-
-			$this->addPlugin('ModelGraph');
-
 		} catch (MissingPluginException $e) {
 			// Do not halt if the plugin is missing
 		}

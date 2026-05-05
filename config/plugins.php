@@ -2,13 +2,16 @@
 
 return [
 	'Migrations' => ['onlyCli' => true],
+	'DebugKit' => ['onlyDebug' => true],
+	'TestHelper' => ['onlyDebug' => true, 'optional' => true],
+	'CakephpFixtureFactories' => ['onlyDebug' => true, 'onlyCli' => true],
 	'Shim' => [],
 	'Tools' => [],
 	'Setup' => [],
 	'Data' => [],
 	'Tags' => [],
 	'Ajax' => [],
-	//'Meta', ['bootstrap' => false]);
+	'Meta' => [],
 	'Cache' => [],
 	'AssetCompress' => [],
 	'TinyAuth' => ['bootstrap' => false],
@@ -36,8 +39,6 @@ return [
 	'FileStorage' => [],
 	'Bouncer' => [],
 	'Mercure' => [],
-
-	// Workflow
 	'Workflow' => [],
 
 	// inside /plugins

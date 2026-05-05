@@ -18,13 +18,6 @@ class FileStorageExamplesControllerTest extends TestCase {
 	use IntegrationTestTrait;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array<string>
-	 */
-	protected array $fixtures = [];
-
-	/**
 	 * setUpBeforeClass method
 	 *
 	 * @return void

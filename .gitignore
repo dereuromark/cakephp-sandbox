@@ -32,3 +32,4 @@ _*
 bolt.db
 docker/check_queue.conf
 .phpcs.cache
+/docs/superpowers/

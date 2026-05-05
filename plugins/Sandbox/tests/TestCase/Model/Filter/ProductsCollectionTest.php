@@ -14,13 +14,6 @@ use Sandbox\Model\Table\ProductsTable;
 class ProductsCollectionTest extends TestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxProducts',
-	];
-
-	/**
 	 * Test that the filter collection is properly configured
 	 *
 	 * @return void

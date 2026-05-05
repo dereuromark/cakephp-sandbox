@@ -2,6 +2,8 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use App\Test\Factory\StateFactory;
+use Sandbox\Test\Factory\EventFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -10,18 +12,12 @@ use Shim\TestSuite\IntegrationTestCase;
 class CalendarControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.Events',
-		'plugin.Data.States',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
+
+		StateFactory::make()->persist();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'index']);
 
@@ -35,7 +31,9 @@ class CalendarControllerTest extends IntegrationTestCase {
 	public function testView() {
 		$this->disableErrorHandlerMiddleware();
 
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'view', 1]);
+		$event = EventFactory::make()->persist();
+
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'view', $event->id]);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();

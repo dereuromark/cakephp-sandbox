@@ -10,15 +10,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class BootstrapControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxAnimals',
-		'plugin.Sandbox.SandboxUsers',
-		'plugin.Sandbox.SandboxPosts',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function testIndex() {

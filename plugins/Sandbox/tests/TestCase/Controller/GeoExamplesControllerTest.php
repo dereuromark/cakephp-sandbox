@@ -3,6 +3,7 @@ declare(strict_types = 1);
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use App\Test\Factory\CountryFactory;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -14,16 +15,6 @@ use Cake\TestSuite\TestCase;
 class GeoExamplesControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
-
-	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Data.Countries',
-		'plugin.Data.States',
-	];
 
 	/**
 	 * Test index method
@@ -61,9 +52,10 @@ class GeoExamplesControllerTest extends TestCase {
 	public function testFilter(): void {
 		$this->disableErrorHandlerMiddleware();
 
+		$country = CountryFactory::make()->persist();
 		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
 			'name' => 'Berlin',
-			'country_id' => 1,
+			'country_id' => $country->id,
 			'lat' => 52.5200,
 			'lng' => 13.4050,
 		]);

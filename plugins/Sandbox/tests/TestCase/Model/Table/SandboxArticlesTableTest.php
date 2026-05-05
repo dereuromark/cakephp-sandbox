@@ -16,13 +16,6 @@ class SandboxArticlesTableTest extends TestCase {
 	protected $SandboxArticles;
 
 	/**
-	 * @var list<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxArticles',
-	];
-
-	/**
 	 * @return void
 	 */
 	protected function setUp(): void {

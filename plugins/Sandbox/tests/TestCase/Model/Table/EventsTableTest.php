@@ -18,15 +18,6 @@ class EventsTableTest extends TestCase {
 	protected $Events;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.Events',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void

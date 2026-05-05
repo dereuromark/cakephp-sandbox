@@ -14,13 +14,6 @@ use Sandbox\Model\Table\SandboxPostsTable;
 class SandboxPostsCollectionTest extends TestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.SandboxPosts',
-	];
-
-	/**
 	 * Test that the filter collection is properly configured
 	 *
 	 * @return void

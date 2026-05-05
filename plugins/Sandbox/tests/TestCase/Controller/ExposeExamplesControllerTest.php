@@ -2,6 +2,7 @@
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Sandbox\Test\Factory\ExposedUserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -10,11 +11,13 @@ use Shim\TestSuite\IntegrationTestCase;
 class ExposeExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @return void
 	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.ExposedUsers',
-	];
+	protected function setUp(): void {
+		parent::setUp();
+
+		ExposedUserFactory::make()->persist();
+	}
 
 	/**
 	 * @return void

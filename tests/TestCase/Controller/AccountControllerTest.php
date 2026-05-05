@@ -2,6 +2,8 @@
 
 namespace App\Test\TestCase\Controller;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -13,19 +15,18 @@ use Shim\TestSuite\IntegrationTestCase;
 class AccountControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @return void
 	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
+	protected function setUp(): void {
+		parent::setUp();
+		RoleFactory::seedAll();
+	}
 
 	/**
 	 * @return void
 	 */
 	public function testIndex() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'index']);
@@ -50,8 +51,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLoginLoggedIn() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'login']);
@@ -167,8 +167,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'logout']);
@@ -200,8 +199,8 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testChangePassword() {
-		$session = ['Auth' => ['Tmp' => ['id' => '1']]];
-		$this->session($session);
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => ['Tmp' => ['id' => (string)$user->id]]]);
 
 		$this->get(['controller' => 'Account', 'action' => 'changePassword']);
 		$this->assertResponseCode(200);
@@ -250,8 +249,7 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testEdit() {
-		$Users = $this->fetchTable('Users');
-		$user = $Users->get(1);
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['controller' => 'Account', 'action' => 'edit']);

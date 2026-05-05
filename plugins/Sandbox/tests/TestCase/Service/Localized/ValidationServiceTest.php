@@ -14,15 +14,6 @@ class ValidationServiceTest extends TestCase {
 	protected $service;
 
 	/**
-	 * Fixtures
-	 *
-	 * @var array
-	 */
-	protected array $fixtures = [
-		'plugin.Sandbox.BitmaskedRecords',
-	];
-
-	/**
 	 * setUp method
 	 *
 	 * @return void

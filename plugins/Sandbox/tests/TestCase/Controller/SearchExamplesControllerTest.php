@@ -11,14 +11,6 @@ use Shim\TestSuite\IntegrationTestCase;
 class SearchExamplesControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
-	 */
-	protected array $fixtures = [
-		'plugin.Data.Countries',
-		'plugin.Sandbox.SandboxProducts',
-	];
-
-	/**
 	 * @return void
 	 */
 	public function setUp(): void {

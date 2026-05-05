@@ -2,6 +2,8 @@
 
 namespace AuthSandbox\Test\TestCase\Controller\Admin;
 
+use App\Test\Factory\RoleFactory;
+use App\Test\Factory\UserFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -12,12 +14,12 @@ use Shim\TestSuite\IntegrationTestCase;
 class AuthSandboxControllerTest extends IntegrationTestCase {
 
 	/**
-	 * @var array<string>
+	 * @return void
 	 */
-	protected array $fixtures = [
-		'app.Users',
-		'app.Roles',
-	];
+	protected function setUp(): void {
+		parent::setUp();
+		RoleFactory::seedAll();
+	}
 
 	/**
 	 * @return void
@@ -25,17 +27,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
 
-		$Users = $this->fetchTable('Users');
-		// Create a user with admin role (role_id = 2)
-		$user = $Users->newEntity([
-			'username' => 'testadmin',
-			'email' => 'testadmin@example.com',
-			'password' => 'password',
-			'role_id' => 2,
-		]);
-		$Users->save($user);
-
+		$user = UserFactory::make()->asAdmin()->persist();
 		$this->session(['Auth' => $user]);
+
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
@@ -64,17 +58,9 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	public function testIndexNotAllowed() {
 		$this->disableErrorHandlerMiddleware();
 
-		// Create a test user with a restricted role
-		$Users = $this->fetchTable('Users');
-		$user = $Users->newEntity([
-			'username' => 'testuser',
-			'email' => 'test@example.com',
-			'password' => 'password',
-			'role_id' => 4,
-		]);
-		$Users->save($user);
-
+		$user = UserFactory::make()->persist();
 		$this->session(['Auth' => $user]);
+
 		$this->get(['prefix' => 'Admin', 'plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'index']);
 
 		$this->assertResponseCode(302);
