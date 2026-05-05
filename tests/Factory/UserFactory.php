@@ -38,6 +38,18 @@ class UserFactory extends BaseFactory {
 	public const ROLE_USER = 4;
 
 	/**
+	 * Cache the bcrypt hash for the default plaintext password '123'.
+	 *
+	 * Why: bcrypt at cost 10 takes ~80ms, and most tests create a user just for
+	 * session(['Auth' => ...]) and never verify the password. Hashing once across
+	 * the suite saves seconds. Login-POST tests still verify because the cached
+	 * hash matches the same plaintext '123'.
+	 *
+	 * @var string|null
+	 */
+	private static ?string $defaultPasswordHash = null;
+
+	/**
 	 * @return string
 	 */
 	protected function getRootTableRegistryName(): string {
@@ -52,7 +64,7 @@ class UserFactory extends BaseFactory {
 			return [
 				'username' => $generator->unique()->userName(),
 				'email' => $generator->unique()->safeEmail(),
-				'password' => (new DefaultPasswordHasher())->hash('123'),
+				'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
 				'role_id' => static::ROLE_USER,
 				'active' => true,
 				'logins' => 0,

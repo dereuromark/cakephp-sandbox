@@ -21,12 +21,16 @@ use Workflow\Service\WorkflowRegistryLocator;
 class ContentsController extends AppController {
 
 	/**
+	 * @var string|null
+	 */
+	protected ?string $defaultTable = 'WorkflowSandbox.Contents';
+
+	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->Contents = $this->fetchTable('WorkflowSandbox.Contents');
 		$this->loadComponent('Workflow.Workflow');
 	}
 

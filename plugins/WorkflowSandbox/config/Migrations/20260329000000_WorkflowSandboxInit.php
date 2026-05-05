@@ -6,7 +6,7 @@ use Migrations\BaseMigration;
 /**
  * Create all WorkflowSandbox demo tables.
  */
-class WorkflowInit extends BaseMigration {
+class WorkflowSandboxInit extends BaseMigration {
 
 	/**
 	 * @return void

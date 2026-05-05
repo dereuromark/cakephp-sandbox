@@ -21,12 +21,16 @@ use Workflow\Service\WorkflowRegistryLocator;
 class TicketsController extends AppController {
 
 	/**
+	 * @var string|null
+	 */
+	protected ?string $defaultTable = 'WorkflowSandbox.Tickets';
+
+	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->Tickets = $this->fetchTable('WorkflowSandbox.Tickets');
 		$this->loadComponent('Workflow.Workflow');
 	}
 

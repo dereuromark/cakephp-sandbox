@@ -89,4 +89,31 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 		$this->assertResponseCode(302);
 	}
 
+	/**
+	 * forMods is mod-only; a plain user must be redirected.
+	 *
+	 * @return void
+	 */
+	public function testForModsAsUserRedirects() {
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => $user]);
+
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+	}
+
+	/**
+	 * forAll requires any authenticated user; anonymous request must be redirected.
+	 *
+	 * @return void
+	 */
+	public function testForAllAnonymousRedirects() {
+		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect();
+	}
+
 }

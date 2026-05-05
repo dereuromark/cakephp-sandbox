@@ -21,12 +21,16 @@ use Workflow\Service\WorkflowRegistryLocator;
 class PaymentsController extends AppController {
 
 	/**
+	 * @var string|null
+	 */
+	protected ?string $defaultTable = 'WorkflowSandbox.Payments';
+
+	/**
 	 * @return void
 	 */
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->Payments = $this->fetchTable('WorkflowSandbox.Payments');
 		$this->loadComponent('Workflow.Workflow');
 	}
 

@@ -42,30 +42,24 @@ class ExposedUsersTableTest extends TestCase {
 	}
 
 	/**
-	 * Test initialize method
-	 *
 	 * @return void
 	 */
 	public function testInitialize(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$this->assertSame('exposed_users', $this->ExposedUsers->getTable());
+		$this->assertSame('name', $this->ExposedUsers->getDisplayField());
+		$this->assertTrue($this->ExposedUsers->hasBehavior('Timestamp'));
+		$this->assertTrue($this->ExposedUsers->hasBehavior('Expose'));
 	}
 
 	/**
-	 * Test validationDefault method
-	 *
 	 * @return void
 	 */
 	public function testValidationDefault(): void {
-		$this->markTestIncomplete('Not implemented yet.');
-	}
+		$entity = $this->ExposedUsers->newEntity(['some_field' => 'not alphanumeric!']);
+		$this->assertArrayHasKey('valid', $entity->getError('some_field'));
 
-	/**
-	 * Test buildRules method
-	 *
-	 * @return void
-	 */
-	public function testBuildRules(): void {
-		$this->markTestIncomplete('Not implemented yet.');
+		$entity = $this->ExposedUsers->newEntity(['some_field' => 'abc123']);
+		$this->assertEmpty($entity->getError('some_field'));
 	}
 
 }

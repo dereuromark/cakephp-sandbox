@@ -278,4 +278,93 @@ class BouncerExamplesControllerTest extends IntegrationTestCase {
 		$this->assertRedirect(['action' => 'articles']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testArticles() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'articles']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testPending() {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'pending']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testReject() {
+		$this->enableRetainFlashMessages();
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
+			'title' => 'Pending change',
+			'content' => 'Pending content',
+			'status' => 'published',
+			'user_id' => 1,
+		]);
+		$this->assertResponseCode(302);
+
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$bouncerRecord = $bouncerTable->find()
+			->where(['source' => 'Sandbox.SandboxArticles', 'status' => 'pending'])
+			->firstOrFail();
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'reject', $bouncerRecord->id],
+			['reason' => 'Not approved'],
+		);
+
+		$this->assertResponseCode(302);
+		$this->assertSame('rejected', $bouncerTable->get($bouncerRecord->id)->status);
+	}
+
+	/**
+	 * Approving a pending edit should apply the proposed changes to the original article
+	 * and flip the bouncer record from pending to approved.
+	 *
+	 * @return void
+	 */
+	public function testApproveAppliesPendingEditToOriginal() {
+		$this->enableRetainFlashMessages();
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'edit', $this->article->id], [
+			'title' => 'Approved Title',
+			'content' => 'Approved content',
+			'status' => 'published',
+			'user_id' => 1,
+		]);
+		$this->assertResponseCode(302);
+
+		$bouncerTable = $this->getTableLocator()->get('Bouncer.BouncerRecords');
+		$bouncerRecord = $bouncerTable->find()
+			->where([
+				'source' => 'Sandbox.SandboxArticles',
+				'primary_key' => $this->article->id,
+				'status' => 'pending',
+			])
+			->firstOrFail();
+
+		$this->post(
+			['plugin' => 'Sandbox', 'controller' => 'BouncerExamples', 'action' => 'approve', $bouncerRecord->id],
+			['reason' => 'Looks good'],
+		);
+		$this->assertResponseCode(302);
+
+		$updatedRecord = $bouncerTable->get($bouncerRecord->id);
+		$this->assertSame('approved', $updatedRecord->status);
+
+		$articlesTable = $this->getTableLocator()->get('Sandbox.SandboxArticles');
+		$updatedArticle = $articlesTable->get($this->article->id);
+		$this->assertSame('Approved Title', $updatedArticle->title);
+		$this->assertSame('Approved content', $updatedArticle->content);
+	}
+
 }

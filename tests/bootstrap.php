@@ -81,6 +81,7 @@ session_id('cli');
 
 (new Migrator())->runMany([
 	['connection' => 'test'],
+	['plugin' => 'Workflow'],
 	['plugin' => 'WorkflowSandbox'],
 	['plugin' => 'Tags'],
 	['plugin' => 'Captcha'],

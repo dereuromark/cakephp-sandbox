@@ -77,90 +77,45 @@ class AccountControllerTest extends IntegrationTestCase {
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidData() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['username' => 'logintest'])->persist();
 
-		$data = [
-			'login' => 'admin',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login'], [
+			'login' => $user->username,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataEmail() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['email' => 'logintest@example.com'])->persist();
 
-		$data = [
-			'login' => 'admin@example.com',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login'], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login'], [
+			'login' => $user->email,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
 		$this->assertRedirect(['controller' => 'Account', 'action' => 'index']);
 	}
 
 	/**
-	 * TODO: Fix authentication finder for dynamically created users in tests
-	 *
 	 * @return void
 	 */
 	public function testLoginPostValidDataReferrer() {
-		$this->markTestSkipped('TODO: Authentication finder needs adjustment for dynamically created test users');
-		$data = [
-			'username' => 'admin',
-			'email' => 'admin@example.com',
-			'pwd' => '123456',
-			'role_id' => 1,
-		];
-		$Users = $this->fetchTable('Users');
-		$Users->addBehavior('Tools.Passwordable', ['confirm' => false]);
-		$user = $Users->newEntity($data);
-		$result = $Users->save($user);
-		$this->assertTrue((bool)$result);
-		$Users->removeBehavior('Passwordable');
+		$user = UserFactory::make(['username' => 'logintest'])->persist();
 
-		$data = [
-			'login' => 'admin',
-			'password' => '123456',
-		];
-		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], $data);
+		$this->post(['controller' => 'Account', 'action' => 'login', '?' => ['redirect' => '/somewhere']], [
+			'login' => $user->username,
+			'password' => '123',
+		]);
 		$this->assertResponseCode(302);
-		$this->assertRedirect(['controller' => 'Somewhere', 'action' => 'index']);
+		$this->assertRedirectContains('/somewhere');
 	}
 
 	/**
@@ -256,6 +211,19 @@ class AccountControllerTest extends IntegrationTestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testDelete() {
+		$user = UserFactory::make()->persist();
+		$this->session(['Auth' => $user]);
+
+		$this->post(['controller' => 'Account', 'action' => 'delete']);
+
+		$this->assertResponseCode(302);
+		$this->assertNull($this->fetchTable('Users')->find()->where(['id' => $user->id])->first());
 	}
 
 }

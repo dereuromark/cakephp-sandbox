@@ -60,4 +60,17 @@ class UsersControllerTest extends IntegrationTestCase {
 		$this->assertNoRedirect();
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testDelete() {
+		$target = UserFactory::make()->persist();
+
+		$this->post(['prefix' => 'Admin', 'controller' => 'Users', 'action' => 'delete', $target->id]);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['action' => 'index']);
+		$this->assertNull($this->fetchTable('Users')->find()->where(['id' => $target->id])->first());
+	}
+
 }

@@ -44,7 +44,7 @@ $priorityColors = ['low' => 'secondary', 'medium' => 'info', 'high' => 'warning'
 					<?php if ($ticket->resolved_at): ?><tr><th>Resolved</th><td><?= $ticket->resolved_at->format('Y-m-d H:i') ?></td></tr><?php endif; ?>
 				</table>
 				<hr>
-				<div><?= nl2br(h($ticket->description)) ?></div>
+				<div><?= nl2br(h((string)$ticket->description)) ?></div>
 			</div>
 		</div>
 
