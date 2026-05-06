@@ -14,6 +14,13 @@ use CakephpFixtureFactories\Generator\GeneratorInterface;
 class CountryFactory extends BaseFactory {
 
 	/**
+	 * @var array<string>
+	 */
+	protected array $uniqueProperties = [
+		'name',
+	];
+
+	/**
 	 * @return string
 	 */
 	protected function getRootTableRegistryName(): string {

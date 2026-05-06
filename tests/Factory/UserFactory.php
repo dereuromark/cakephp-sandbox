@@ -73,21 +73,21 @@ class UserFactory extends BaseFactory {
 	 * @return $this
 	 */
 	public function asAdmin() {
-		return $this->patchData(['role_id' => static::ROLE_ADMIN]);
+		return $this->state(['role_id' => static::ROLE_ADMIN]);
 	}
 
 	/**
 	 * @return $this
 	 */
 	public function asSuperadmin() {
-		return $this->patchData(['role_id' => static::ROLE_SUPERADMIN]);
+		return $this->state(['role_id' => static::ROLE_SUPERADMIN]);
 	}
 
 	/**
 	 * @return $this
 	 */
 	public function asMod() {
-		return $this->patchData(['role_id' => static::ROLE_MOD]);
+		return $this->state(['role_id' => static::ROLE_MOD]);
 	}
 
 }

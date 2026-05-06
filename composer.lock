@@ -10209,12 +10209,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-fixture-factories.git",
-                "reference": "adda79db90da98eeb3deb6f930fdb1f6eaa3e757"
+                "reference": "bbc16c530276f87f9c2b7629b12dc56e4883f3ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/adda79db90da98eeb3deb6f930fdb1f6eaa3e757",
-                "reference": "adda79db90da98eeb3deb6f930fdb1f6eaa3e757",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/bbc16c530276f87f9c2b7629b12dc56e4883f3ca",
+                "reference": "bbc16c530276f87f9c2b7629b12dc56e4883f3ca",
                 "shasum": ""
             },
             "require": {
@@ -10283,7 +10283,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-fixture-factories/issues",
                 "source": "https://github.com/dereuromark/cakephp-fixture-factories"
             },
-            "time": "2026-05-05T17:00:46+00:00"
+            "time": "2026-05-06T02:16:08+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
