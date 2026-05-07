@@ -52,7 +52,7 @@ class GeoExamplesControllerTest extends TestCase {
 	public function testFilter(): void {
 		$this->disableErrorHandlerMiddleware();
 
-		$country = CountryFactory::make()->persist();
+		$country = CountryFactory::new()->save();
 		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
 			'name' => 'Berlin',
 			'country_id' => $country->id,

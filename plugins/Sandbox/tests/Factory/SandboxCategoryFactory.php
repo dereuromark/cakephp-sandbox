@@ -21,18 +21,18 @@ class SandboxCategoryFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'name' => $generator->word(),
-				'description' => $generator->sentence(),
-				'status' => 1,
-				'lft' => 1,
-				'rght' => 2,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'name' => $generator->word(),
+			'description' => $generator->sentence(),
+			'status' => 1,
+			'lft' => 1,
+			'rght' => 2,
+		];
 	}
 
 }

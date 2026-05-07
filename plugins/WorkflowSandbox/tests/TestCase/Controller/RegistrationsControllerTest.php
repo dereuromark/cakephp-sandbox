@@ -35,7 +35,7 @@ class RegistrationsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$registration = RegistrationFactory::make()->persist();
+		$registration = RegistrationFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Registrations', 'action' => 'view', $registration->id]);
 
@@ -47,7 +47,7 @@ class RegistrationsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$registration = RegistrationFactory::make()->persist();
+		$registration = RegistrationFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Registrations', 'action' => 'delete', $registration->id]);
 
@@ -59,7 +59,7 @@ class RegistrationsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReset(): void {
-		RegistrationFactory::make()->persist();
+		RegistrationFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Registrations', 'action' => 'reset']);
 

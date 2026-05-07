@@ -109,7 +109,7 @@ class CakeExamplesControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testEnums(): void {
-		SandboxUserFactory::make()->persist();
+		SandboxUserFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'CakeExamples', 'action' => 'enums']);
 

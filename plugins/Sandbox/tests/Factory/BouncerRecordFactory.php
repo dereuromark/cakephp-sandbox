@@ -21,17 +21,17 @@ class BouncerRecordFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'source' => 'Sandbox.SandboxArticles',
-				'user_id' => 1,
-				'status' => 'pending',
-				'data' => '[]',
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'source' => 'Sandbox.SandboxArticles',
+			'user_id' => 1,
+			'status' => 'pending',
+			'data' => '[]',
+		];
 	}
 
 }

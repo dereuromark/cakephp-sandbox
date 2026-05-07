@@ -40,7 +40,7 @@ class UsersTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testBasic() {
-		UserFactory::make()->persist();
+		UserFactory::new()->save();
 
 		$result = $this->Users->find()->first();
 		$this->assertNotEmpty($result);

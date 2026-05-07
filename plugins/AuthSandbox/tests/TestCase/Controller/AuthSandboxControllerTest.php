@@ -45,7 +45,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForAll() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forAll']);
@@ -58,7 +58,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForMods() {
-		$user = UserFactory::make()->asMod()->persist();
+		$user = UserFactory::new()->asMod()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);
@@ -81,7 +81,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLogout() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'logout']);
@@ -95,7 +95,7 @@ class AuthSandboxControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testForModsAsUserRedirects() {
-		$user = UserFactory::make()->persist();
+		$user = UserFactory::new()->build();
 		$this->session(['Auth' => $user]);
 
 		$this->get(['plugin' => 'AuthSandbox', 'controller' => 'AuthSandbox', 'action' => 'forMods']);

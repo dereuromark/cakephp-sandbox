@@ -54,40 +54,40 @@ class UserFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'username' => $generator->unique()->userName(),
-				'email' => $generator->unique()->safeEmail(),
-				'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
-				'role_id' => static::ROLE_USER,
-				'active' => true,
-				'logins' => 0,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'username' => $generator->unique()->userName(),
+			'email' => $generator->unique()->safeEmail(),
+			'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
+			'role_id' => static::ROLE_USER,
+			'active' => true,
+			'logins' => 0,
+		];
 	}
 
 	/**
 	 * @return $this
 	 */
 	public function asAdmin() {
-		return $this->patchData(['role_id' => static::ROLE_ADMIN]);
+		return $this->state(['role_id' => static::ROLE_ADMIN]);
 	}
 
 	/**
 	 * @return $this
 	 */
 	public function asSuperadmin() {
-		return $this->patchData(['role_id' => static::ROLE_SUPERADMIN]);
+		return $this->state(['role_id' => static::ROLE_SUPERADMIN]);
 	}
 
 	/**
 	 * @return $this
 	 */
 	public function asMod() {
-		return $this->patchData(['role_id' => static::ROLE_MOD]);
+		return $this->state(['role_id' => static::ROLE_MOD]);
 	}
 
 }

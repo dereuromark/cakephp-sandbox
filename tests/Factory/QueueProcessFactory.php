@@ -21,16 +21,16 @@ class QueueProcessFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'pid' => (string)$generator->numberBetween(1000, 99999),
-				'terminate' => false,
-				'workerkey' => $generator->unique()->uuid(),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'pid' => (string)$generator->numberBetween(1000, 99999),
+			'terminate' => false,
+			'workerkey' => $generator->unique()->uuid(),
+		];
 	}
 
 }

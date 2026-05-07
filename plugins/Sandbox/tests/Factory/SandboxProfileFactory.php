@@ -21,16 +21,16 @@ class SandboxProfileFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'username' => $generator->unique()->userName(),
-				'balance' => $generator->randomFloat(2, 0, 1000),
-				'extra' => $generator->randomFloat(2, 0, 100),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'username' => $generator->unique()->userName(),
+			'balance' => $generator->randomFloat(2, 0, 1000),
+			'extra' => $generator->randomFloat(2, 0, 100),
+		];
 	}
 
 }

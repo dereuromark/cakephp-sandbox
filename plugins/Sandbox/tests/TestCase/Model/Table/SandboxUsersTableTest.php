@@ -42,7 +42,7 @@ class SandboxUsersTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testFind(): void {
-		SandboxUserFactory::make()->persist();
+		SandboxUserFactory::new()->save();
 
 		/** @var \App\Model\Entity\User $user */
 		$user = $this->SandboxUsers->find()->firstOrFail();

@@ -21,17 +21,17 @@ class TicketFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'ticket_number' => $generator->unique()->uuid(),
-				'subject' => $generator->sentence(4),
-				'priority' => 'medium',
-				'status' => 'open',
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'ticket_number' => $generator->unique()->uuid(),
+			'subject' => $generator->sentence(4),
+			'priority' => 'medium',
+			'status' => 'open',
+		];
 	}
 
 }

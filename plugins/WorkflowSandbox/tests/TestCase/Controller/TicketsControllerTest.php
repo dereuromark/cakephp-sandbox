@@ -35,7 +35,7 @@ class TicketsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testView(): void {
-		$ticket = TicketFactory::make()->persist();
+		$ticket = TicketFactory::new()->save();
 
 		$this->get(['plugin' => 'WorkflowSandbox', 'controller' => 'Tickets', 'action' => 'view', $ticket->id]);
 
@@ -47,7 +47,7 @@ class TicketsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete(): void {
-		$ticket = TicketFactory::make()->persist();
+		$ticket = TicketFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Tickets', 'action' => 'delete', $ticket->id]);
 
@@ -59,7 +59,7 @@ class TicketsControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testReset(): void {
-		TicketFactory::make()->persist();
+		TicketFactory::new()->save();
 
 		$this->post(['plugin' => 'WorkflowSandbox', 'controller' => 'Tickets', 'action' => 'reset']);
 

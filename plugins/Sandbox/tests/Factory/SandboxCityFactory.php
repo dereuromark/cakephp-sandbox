@@ -21,18 +21,18 @@ class SandboxCityFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'name' => $generator->city(),
-				'alias' => $generator->word(),
-				'country_id' => 1,
-				'lat' => $generator->randomFloat(6, -90, 90),
-				'lng' => $generator->randomFloat(6, -180, 180),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'name' => $generator->city(),
+			'alias' => $generator->word(),
+			'country_id' => 1,
+			'lat' => $generator->randomFloat(6, -90, 90),
+			'lng' => $generator->randomFloat(6, -180, 180),
+		];
 	}
 
 }

@@ -44,7 +44,7 @@ class SearchExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testRange() {
-		SandboxProductFactory::make()->persist();
+		SandboxProductFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'SearchExamples', 'action' => 'range']);
 

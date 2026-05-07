@@ -245,7 +245,7 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testTableDelete() {
-		$country = CountryFactory::make()->persist();
+		$country = CountryFactory::new()->save();
 		$this->configRequest([
 			'headers' => [
 				'X_REQUESTED_WITH' => 'XMLHttpRequest',
@@ -263,8 +263,8 @@ class AjaxExamplesControllerTest extends IntegrationTestCase {
 	public function testCountryStates() {
 		$this->disableErrorHandlerMiddleware();
 
-		$country = CountryFactory::make()->persist();
-		StateFactory::make(['country_id' => $country->id])->persist();
+		$country = CountryFactory::new()->save();
+		StateFactory::new(['country_id' => $country->id])->save();
 
 		$this->configRequest([
 			'headers' => [

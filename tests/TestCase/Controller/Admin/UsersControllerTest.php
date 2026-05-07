@@ -26,7 +26,7 @@ class UsersControllerTest extends IntegrationTestCase {
 		parent::setUp();
 
 		RoleFactory::seedAll();
-		$this->user = UserFactory::make()->asSuperadmin()->persist();
+		$this->user = UserFactory::new()->asSuperadmin()->save();
 		$this->session(['Auth' => $this->user]);
 	}
 
@@ -64,7 +64,7 @@ class UsersControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testDelete() {
-		$target = UserFactory::make()->persist();
+		$target = UserFactory::new()->save();
 
 		$this->post(['prefix' => 'Admin', 'controller' => 'Users', 'action' => 'delete', $target->id]);
 

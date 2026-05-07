@@ -21,16 +21,16 @@ class DocumentFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'title' => $generator->sentence(3),
-				'status' => 'draft',
-				'current_approver_level' => 0,
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'title' => $generator->sentence(3),
+			'status' => 'draft',
+			'current_approver_level' => 0,
+		];
 	}
 
 }

@@ -38,7 +38,7 @@ class RatingsControllerTest extends TestCase {
 		$this->disableErrorHandlerMiddleware();
 		$this->enableRetainFlashMessages();
 
-		$rating = SandboxRatingFactory::make()->persist();
+		$rating = SandboxRatingFactory::new()->save();
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Ratings', 'action' => 'unrate', $rating->id]);
 

@@ -22,19 +22,19 @@ class AuditLogFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'transaction_key' => $generator->unique()->uuid(),
-				'type' => AuditLogType::Update->value,
-				'primary_key' => 1,
-				'source' => 'Sandbox.SandboxArticles',
-				'original' => '{}',
-				'changed' => '{}',
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'transaction_key' => $generator->unique()->uuid(),
+			'type' => AuditLogType::Update->value,
+			'primary_key' => 1,
+			'source' => 'Sandbox.SandboxArticles',
+			'original' => '{}',
+			'changed' => '{}',
+		];
 	}
 
 }

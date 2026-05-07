@@ -17,7 +17,7 @@ class CalendarControllerTest extends IntegrationTestCase {
 	public function testIndex() {
 		$this->disableErrorHandlerMiddleware();
 
-		StateFactory::make()->persist();
+		StateFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'index']);
 
@@ -31,7 +31,7 @@ class CalendarControllerTest extends IntegrationTestCase {
 	public function testView() {
 		$this->disableErrorHandlerMiddleware();
 
-		$event = EventFactory::make()->persist();
+		$event = EventFactory::new()->save();
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Calendar', 'action' => 'view', $event->id]);
 

@@ -21,16 +21,16 @@ class OrderFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(function (GeneratorInterface $generator): array {
-			return [
-				'order_number' => $generator->unique()->uuid(),
-				'status' => 'pending',
-				'total' => $generator->randomFloat(2, 1, 500),
-			];
-		});
+	public function definition(GeneratorInterface $generator): array {
+		return [
+			'order_number' => $generator->unique()->uuid(),
+			'status' => 'pending',
+			'total' => $generator->randomFloat(2, 1, 500),
+		];
 	}
 
 }

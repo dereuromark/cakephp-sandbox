@@ -38,7 +38,7 @@ class SandboxCitiesTableTest extends TestCase {
 	 * @return void
 	 */
 	public function testSave(): void {
-		$country = CountryFactory::make()->persist();
+		$country = CountryFactory::new()->save();
 
 		$sandboxCity = $this->fetchTable('Sandbox.SandboxCities')->newEntity([
 			'name' => 'My city',

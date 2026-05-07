@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\Factory;
 
 use CakephpFixtureFactories\Factory\BaseFactory;
+use CakephpFixtureFactories\Generator\GeneratorInterface;
 
 /**
  * FavoriteFactory
@@ -20,15 +21,17 @@ class FavoriteFactory extends BaseFactory {
 	}
 
 	/**
-	 * @return void
+	 * @param \CakephpFixtureFactories\Generator\GeneratorInterface $generator Generator
+	 *
+	 * @return array<string, mixed>
 	 */
-	protected function setDefaultTemplate(): void {
-		$this->setDefaultData(fn (): array => [
+	public function definition(GeneratorInterface $generator): array {
+		return [
 			'foreign_key' => 1,
 			'model' => 'Posts',
 			'user_id' => 1,
 			'value' => 1,
-		]);
+		];
 	}
 
 }
