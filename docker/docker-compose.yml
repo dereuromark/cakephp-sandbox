@@ -1,3 +1,5 @@
+name: sandbox
+
 services:
   frankenphp:
     container_name: sandbox-frankenphp
