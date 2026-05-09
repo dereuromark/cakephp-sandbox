@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Payments Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @method \WorkflowSandbox\Model\Entity\Payment newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Payment newEntity(array $data, array $options = [])
@@ -19,17 +20,16 @@ use Cake\Validation\Validator;
  * @method array<\WorkflowSandbox\Model\Entity\Payment> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment|false save(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment saveOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Payment> find(string $type = 'all', mixed ...$args)
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Payment|array<\WorkflowSandbox\Model\Entity\Payment> loadInto(\WorkflowSandbox\Model\Entity\Payment|array<\WorkflowSandbox\Model\Entity\Payment> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class PaymentsTable extends Table {
 

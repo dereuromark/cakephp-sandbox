@@ -9,8 +9,8 @@ use Shim\TestSuite\IntegrationTestCase;
 /**
  * App\Controller\AccountController Test Case
  *
- * @property \App\Model\Table\UsersTable $Users
  * @uses \App\Controller\AccountController
+ * @property \App\Model\Table\UsersTable $Users
  */
 class AccountControllerTest extends IntegrationTestCase {
 

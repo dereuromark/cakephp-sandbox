@@ -7,10 +7,9 @@ use Sandbox\Model\Filter\SandboxPostsCollection;
 use Tools\Model\Table\Table;
 
 /**
- * @mixin \Ratings\Model\Behavior\RatableBehavior !
+ * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}>
  * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
- * @mixin \Tags\Model\Behavior\TagBehavior
  * @method \Sandbox\Model\Entity\SandboxPost get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxPost newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxPost> newEntities(array $data, array $options = [])
@@ -19,18 +18,19 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxPost patchEntity(\Sandbox\Model\Entity\SandboxPost $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxPost> patchEntities(iterable<\Sandbox\Model\Entity\SandboxPost> $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @mixin \Search\Model\Behavior\SearchBehavior
  * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxPost> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxPost> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxPost> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxPost> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxPost> $entities, array $options = [])
- * @mixin \Tools\Model\Behavior\SluggedBehavior
- * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxPost> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\SandboxPost $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxPost $entity, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxPost|array<\Sandbox\Model\Entity\SandboxPost> loadInto(\Sandbox\Model\Entity\SandboxPost|array<\Sandbox\Model\Entity\SandboxPost> $entities, array $contain)
+ * @mixin \Ratings\Model\Behavior\RatableBehavior !
+ * @mixin \Tags\Model\Behavior\TagBehavior
+ * @mixin \Search\Model\Behavior\SearchBehavior
+ * @mixin \Tools\Model\Behavior\SluggedBehavior
  */
 class SandboxPostsTable extends Table {
 

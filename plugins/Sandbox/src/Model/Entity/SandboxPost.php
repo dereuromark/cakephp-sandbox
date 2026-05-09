@@ -15,6 +15,7 @@ use App\Model\Entity\Entity;
  * @property array<\Tags\Model\Entity\Tagged> $tagged
  * @property array<\Tags\Model\Entity\Tag> $tags
  * @property string $tag_list !
+ * @property \Tags\Model\Entity\Tagged $_joinData
  * @method int getIdOrFail()
  * @method string getTitleOrFail()
  * @method string getContentOrFail()
@@ -33,7 +34,6 @@ use App\Model\Entity\Entity;
  * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
  * @method $this setTaggedOrFail(array $value)
  * @method $this setTagsOrFail(array $value)
- * @property \Tags\Model\Entity\Tagged $_joinData
  * @method \Tags\Model\Entity\Tagged getJoinDataOrFail()
  * @method $this setJoinDataOrFail(\Tags\Model\Entity\Tagged $value)
  */

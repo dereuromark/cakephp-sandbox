@@ -15,6 +15,7 @@ use App\Model\Entity\Entity;
  * @property string $description
  * @property \Cake\I18n\DateTime|null $beginning
  * @property \Cake\I18n\DateTime|null $end
+ * @property-read string|null $coordinates
  * @method int getIdOrFail()
  * @method string getTitleOrFail()
  * @method string getLocationOrFail()
@@ -23,7 +24,6 @@ use App\Model\Entity\Entity;
  * @method string getDescriptionOrFail()
  * @method \Cake\I18n\DateTime getBeginningOrFail()
  * @method \Cake\I18n\DateTime getEndOrFail()
- * @property-read string|null $coordinates
  * @method string getCoordinatesOrFail()
  * @method $this setIdOrFail(int $value)
  * @method $this setTitleOrFail(string $value)

@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * BitmaskedRecords Model
  *
+ * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Sandbox\Model\Entity\BitmaskedRecord newEmptyEntity()
  * @method \Sandbox\Model\Entity\BitmaskedRecord newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\BitmaskedRecord> newEntities(array $data, array $options = [])
@@ -22,14 +23,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord> saveManyOrFail(iterable<\Sandbox\Model\Entity\BitmaskedRecord> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord>|false deleteMany(iterable<\Sandbox\Model\Entity\BitmaskedRecord> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\BitmaskedRecord> deleteManyOrFail(iterable<\Sandbox\Model\Entity\BitmaskedRecord> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Search\Model\Behavior\SearchBehavior
- * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\BitmaskedRecord> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\BitmaskedRecord $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\BitmaskedRecord $entity, array $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord|array<\Sandbox\Model\Entity\BitmaskedRecord> loadInto(\Sandbox\Model\Entity\BitmaskedRecord|array<\Sandbox\Model\Entity\BitmaskedRecord> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Search\Model\Behavior\SearchBehavior
  */
 class BitmaskedRecordsTable extends Table {
 

@@ -9,6 +9,7 @@ use Cake\Validation\Validator;
 /**
  * SandboxArticles Model
  *
+ * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Sandbox\Model\Entity\SandboxArticle newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxArticle newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxArticle> newEntities(array $data, array $options = [])
@@ -22,13 +23,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \AuditStash\Model\Behavior\AuditLogBehavior
- * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxArticle> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> loadInto(\Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \AuditStash\Model\Behavior\AuditLogBehavior
  */
 class SandboxArticlesTable extends Table {
 

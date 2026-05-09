@@ -6,7 +6,7 @@ use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
 /**
- * @mixin \Cake\ORM\Behavior\TreeBehavior
+ * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}>
  * @method \Sandbox\Model\Entity\SandboxCategory get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxCategory newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxCategory> newEntities(array $data, array $options = [])
@@ -20,11 +20,11 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
- * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCategory> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory|array<\Sandbox\Model\Entity\SandboxCategory> loadInto(\Sandbox\Model\Entity\SandboxCategory|array<\Sandbox\Model\Entity\SandboxCategory> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TreeBehavior
  */
 class SandboxCategoriesTable extends Table {
 

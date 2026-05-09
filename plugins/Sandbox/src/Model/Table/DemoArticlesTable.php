@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
  *
  * Demonstrates the Translate Behavior with Shadow Table strategy.
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}>
+ * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
  * @method \Sandbox\Model\Entity\DemoArticle newEmptyEntity()
  * @method \Sandbox\Model\Entity\DemoArticle newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\DemoArticle> newEntities(array $data, array $options = [])
@@ -24,14 +26,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Cake\ORM\Behavior\TranslateBehavior
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}>
- * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\DemoArticle> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
  * @method \Sandbox\Model\Entity\DemoArticle|array<\Sandbox\Model\Entity\DemoArticle> loadInto(\Sandbox\Model\Entity\DemoArticle|array<\Sandbox\Model\Entity\DemoArticle> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Cake\ORM\Behavior\TranslateBehavior
  */
 class DemoArticlesTable extends Table {
 

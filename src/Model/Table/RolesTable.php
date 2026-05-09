@@ -5,6 +5,8 @@ namespace App\Model\Table;
 use Tools\Model\Table\Table;
 
 /**
+ * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
  * @method \App\Model\Entity\Role get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \App\Model\Entity\Role newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Role> newEntities(array $data, array $options = [])
@@ -18,13 +20,11 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role> saveManyOrFail(iterable<\App\Model\Entity\Role> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role>|false deleteMany(iterable<\App\Model\Entity\Role> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\Role> deleteManyOrFail(iterable<\App\Model\Entity\Role> $entities, array $options = [])
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\HasMany $Users
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\Role> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\App\Model\Entity\Role $entity, array $options = [])
  * @method bool deleteOrFail(\App\Model\Entity\Role $entity, array $options = [])
  * @method \App\Model\Entity\Role|array<\App\Model\Entity\Role> loadInto(\App\Model\Entity\Role|array<\App\Model\Entity\Role> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class RolesTable extends Table {
 

@@ -9,9 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Documents Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Rejectors
- *
  * @method \WorkflowSandbox\Model\Entity\Document newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Document newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Document> newEntities(array $data, array $options = [])
@@ -25,14 +25,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Document> find(string $type = 'all', mixed ...$args)
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Document|array<\WorkflowSandbox\Model\Entity\Document> loadInto(\WorkflowSandbox\Model\Entity\Document|array<\WorkflowSandbox\Model\Entity\Document> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class DocumentsTable extends Table {
 
