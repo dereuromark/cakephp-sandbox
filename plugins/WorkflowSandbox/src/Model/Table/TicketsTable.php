@@ -9,9 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Tickets Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Assignees
- *
  * @method \WorkflowSandbox\Model\Entity\Ticket newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Ticket newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Ticket> newEntities(array $data, array $options = [])
@@ -25,14 +25,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Ticket> find(string $type = 'all', mixed ...$args)
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> loadInto(\WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class TicketsTable extends Table {
 

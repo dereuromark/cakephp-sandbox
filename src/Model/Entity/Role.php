@@ -10,12 +10,12 @@ namespace App\Model\Entity;
  * @property string $alias
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
+ * @property array<\App\Model\Entity\User> $users
  * @method int getIdOrFail()
  * @method string getNameOrFail()
  * @method string getAliasOrFail()
  * @method \Cake\I18n\DateTime getCreatedOrFail()
  * @method \Cake\I18n\DateTime getModifiedOrFail()
- * @property array<\App\Model\Entity\User> $users
  * @method array<\App\Model\Entity\User> getUsersOrFail()
  * @method $this setIdOrFail(int $value)
  * @method $this setNameOrFail(string $value)

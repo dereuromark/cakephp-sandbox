@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Orders Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- *
  * @method \WorkflowSandbox\Model\Entity\Order newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Order newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Order> newEntities(array $data, array $options = [])
@@ -24,14 +24,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Order> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Order> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Order> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Order> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Order> find(string $type = 'all', mixed ...$args)
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Order $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Order $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order|array<\WorkflowSandbox\Model\Entity\Order> loadInto(\WorkflowSandbox\Model\Entity\Order|array<\WorkflowSandbox\Model\Entity\Order> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class OrdersTable extends Table {
 

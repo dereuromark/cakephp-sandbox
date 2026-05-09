@@ -9,8 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Registrations Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- *
  * @method \WorkflowSandbox\Model\Entity\Registration newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Registration newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Registration> newEntities(array $data, array $options = [])
@@ -24,14 +24,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Registration> find(string $type = 'all', mixed ...$args)
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration|array<\WorkflowSandbox\Model\Entity\Registration> loadInto(\WorkflowSandbox\Model\Entity\Registration|array<\WorkflowSandbox\Model\Entity\Registration> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class RegistrationsTable extends Table {
 

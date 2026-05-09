@@ -9,9 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Contents Model
  *
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Reviewers
- *
  * @method \WorkflowSandbox\Model\Entity\Content newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Content newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Content> newEntities(array $data, array $options = [])
@@ -25,14 +25,12 @@ use Cake\Validation\Validator;
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Content> find(string $type = 'all', mixed ...$args)
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
  * @method bool delete(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content|array<\WorkflowSandbox\Model\Entity\Content> loadInto(\WorkflowSandbox\Model\Entity\Content|array<\WorkflowSandbox\Model\Entity\Content> $entities, array $contain)
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
 class ContentsTable extends Table {
 
