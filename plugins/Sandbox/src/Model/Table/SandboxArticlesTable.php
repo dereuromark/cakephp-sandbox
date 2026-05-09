@@ -14,18 +14,21 @@ use Cake\Validation\Validator;
  * @method array<\Sandbox\Model\Entity\SandboxArticle> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxArticle get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxArticle findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\SandboxArticle> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false saveMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> saveManyOrFail(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Sandbox\Model\Entity\SandboxArticle $entity, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxArticle> patchEntities(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle|false save(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle saveOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \AuditStash\Model\Behavior\AuditLogBehavior
  * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxArticle> find(string $type = 'all', mixed ...$args)
+ * @method bool delete(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> loadInto(\Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> $entities, array $contain)
  */
 class SandboxArticlesTable extends Table {
 

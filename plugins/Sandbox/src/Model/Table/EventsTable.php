@@ -11,19 +11,22 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\Event get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Event> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Sandbox\Model\Entity\Event patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\Event|false save(\Sandbox\Model\Entity\Event $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\Event patchEntity(\Sandbox\Model\Entity\Event $entity, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable<\Sandbox\Model\Entity\Event> $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
- * @method \Sandbox\Model\Entity\Event saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\Event saveOrFail(\Sandbox\Model\Entity\Event $entity, array $options = [])
  * @method \Sandbox\Model\Entity\Event newEmptyEntity()
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
  * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Event> find(string $type = 'all', mixed ...$args)
+ * @method bool delete(\Sandbox\Model\Entity\Event $entity, array $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\Event $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\Event|array<\Sandbox\Model\Entity\Event> loadInto(\Sandbox\Model\Entity\Event|array<\Sandbox\Model\Entity\Event> $entities, array $contain)
  */
 class EventsTable extends Table {
 

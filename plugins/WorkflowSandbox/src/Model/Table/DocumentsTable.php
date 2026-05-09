@@ -17,19 +17,22 @@ use Cake\Validation\Validator;
  * @method array<\WorkflowSandbox\Model\Entity\Document> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Document get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Document findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Document patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Document> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Document|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Document saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document>|false saveMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> saveManyOrFail(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document>|false deleteMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> deleteManyOrFail(iterable $entities, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Document patchEntity(\WorkflowSandbox\Model\Entity\Document $entity, array $data, array $options = [])
+ * @method array<\WorkflowSandbox\Model\Entity\Document> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $data, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Document|false save(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Document saveOrFail(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Document> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Document> $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Document> find(string $type = 'all', mixed ...$args)
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
+ * @method bool delete(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
+ * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Document $entity, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Document|array<\WorkflowSandbox\Model\Entity\Document> loadInto(\WorkflowSandbox\Model\Entity\Document|array<\WorkflowSandbox\Model\Entity\Document> $entities, array $contain)
  */
 class DocumentsTable extends Table {
 

@@ -301,6 +301,7 @@ $config = [
 		'arrayAsGenerics' => true,
 		'objectAsGenerics' => true,
 		'tableEntityQuery' => true,
+		'concreteEntitiesInParam' => 'strict',
 		'codeCompletionPath' => ROOT . DS . '.phpstorm.meta.php' . DS,
 		'templateCollectionObject' => 'iterable',
 		'annotators' => [
