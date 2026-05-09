@@ -15,6 +15,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\ExposedUser newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\ExposedUser> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\ExposedUser> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\ExposedUser findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser patchEntity(\Sandbox\Model\Entity\ExposedUser $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\ExposedUser> patchEntities(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $data, array $options = [])
@@ -22,11 +23,10 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\ExposedUser saveOrFail(\Sandbox\Model\Entity\ExposedUser $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser>|false saveMany(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser> saveManyOrFail(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser>|false deleteMany(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\ExposedUser> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\ExposedUser $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\ExposedUser $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser>|false deleteMany(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\ExposedUser> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\ExposedUser|array<\Sandbox\Model\Entity\ExposedUser> loadInto(\Sandbox\Model\Entity\ExposedUser|array<\Sandbox\Model\Entity\ExposedUser> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Expose\Model\Behavior\ExposeBehavior

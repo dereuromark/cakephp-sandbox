@@ -17,6 +17,7 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\DemoArticle newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\DemoArticle> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\DemoArticle get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\DemoArticle> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\DemoArticle findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\DemoArticle patchEntity(\Sandbox\Model\Entity\DemoArticle $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\DemoArticle> patchEntities(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $data, array $options = [])
@@ -24,11 +25,10 @@ use Cake\Validation\Validator;
  * @method \Sandbox\Model\Entity\DemoArticle saveOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false saveMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\DemoArticle> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\DemoArticle|array<\Sandbox\Model\Entity\DemoArticle> loadInto(\Sandbox\Model\Entity\DemoArticle|array<\Sandbox\Model\Entity\DemoArticle> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TranslateBehavior

@@ -9,22 +9,22 @@ use Tools\Model\Table\Table;
 /**
  * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
  * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
- * @method \App\Model\Entity\User get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\User> newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\User|false save(\App\Model\Entity\User $entity, array $options = [])
+ * @method \App\Model\Entity\User get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User> find(string $type = 'all', mixed ...$args)
+ * @method \App\Model\Entity\User findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \App\Model\Entity\User patchEntity(\App\Model\Entity\User $entity, array $data, array $options = [])
  * @method array<\App\Model\Entity\User> patchEntities(iterable<\App\Model\Entity\User> $entities, array $data, array $options = [])
- * @method \App\Model\Entity\User findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
+ * @method \App\Model\Entity\User|false save(\App\Model\Entity\User $entity, array $options = [])
  * @method \App\Model\Entity\User saveOrFail(\App\Model\Entity\User $entity, array $options = [])
- * @method \App\Model\Entity\User newEmptyEntity()
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false saveMany(iterable<\App\Model\Entity\User> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> saveManyOrFail(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false deleteMany(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> deleteManyOrFail(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\App\Model\Entity\User $entity, array $options = [])
  * @method bool deleteOrFail(\App\Model\Entity\User $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false deleteMany(iterable<\App\Model\Entity\User> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> deleteManyOrFail(iterable<\App\Model\Entity\User> $entities, array $options = [])
  * @method \App\Model\Entity\User|array<\App\Model\Entity\User> loadInto(\App\Model\Entity\User|array<\App\Model\Entity\User> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */

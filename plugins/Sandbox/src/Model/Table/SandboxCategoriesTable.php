@@ -7,22 +7,22 @@ use Tools\Model\Table\Table;
 
 /**
  * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}>
- * @method \Sandbox\Model\Entity\SandboxCategory get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Sandbox\Model\Entity\SandboxCategory newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxCategory newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxCategory> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCategory|false save(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCategory saveOrFail(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCategory get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCategory> find(string $type = 'all', mixed ...$args)
+ * @method \Sandbox\Model\Entity\SandboxCategory findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory patchEntity(\Sandbox\Model\Entity\SandboxCategory $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxCategory> patchEntities(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCategory findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCategory newEmptyEntity()
+ * @method \Sandbox\Model\Entity\SandboxCategory|false save(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCategory saveOrFail(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCategory> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxCategory $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCategory> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCategory> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCategory|array<\Sandbox\Model\Entity\SandboxCategory> loadInto(\Sandbox\Model\Entity\SandboxCategory|array<\Sandbox\Model\Entity\SandboxCategory> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TreeBehavior
  */

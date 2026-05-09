@@ -15,6 +15,7 @@ use Sandbox\Model\Filter\ProductsCollection;
  * @method \Sandbox\Model\Entity\Product newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Product> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Product get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Product> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\Product findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\Product patchEntity(\Sandbox\Model\Entity\Product $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Product> patchEntities(iterable<\Sandbox\Model\Entity\Product> $entities, array $data, array $options = [])
@@ -22,11 +23,10 @@ use Sandbox\Model\Filter\ProductsCollection;
  * @method \Sandbox\Model\Entity\Product saveOrFail(\Sandbox\Model\Entity\Product $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false saveMany(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> saveManyOrFail(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false deleteMany(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Product> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\Product $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\Product $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product>|false deleteMany(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Product> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Product> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\Product|array<\Sandbox\Model\Entity\Product> loadInto(\Sandbox\Model\Entity\Product|array<\Sandbox\Model\Entity\Product> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Search\Model\Behavior\SearchBehavior

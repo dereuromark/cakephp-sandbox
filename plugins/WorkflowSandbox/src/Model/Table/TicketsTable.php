@@ -16,6 +16,7 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Ticket newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Ticket> newEntities(array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Ticket> find(string $type = 'all', mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Ticket findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket patchEntity(\WorkflowSandbox\Model\Entity\Ticket $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Ticket> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $data, array $options = [])
@@ -23,11 +24,10 @@ use Cake\Validation\Validator;
  * @method \WorkflowSandbox\Model\Entity\Ticket saveOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Ticket> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> loadInto(\WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
