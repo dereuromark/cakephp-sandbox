@@ -7,11 +7,11 @@ use Shim\Controller\RedirectOutOfBoundsTrait;
 use Tools\Controller\Controller;
 
 /**
- * @property \Flash\Controller\Component\FlashComponent $Flash
- * @property \Tools\Controller\Component\CommonComponent $Common
  * @property \TinyAuth\Controller\Component\AuthUserComponent $AuthUser
  * @property \TinyAuth\Controller\Component\AuthenticationComponent $Authentication
  * @property \TinyAuth\Controller\Component\AuthorizationComponent $Authorization
+ * @property \Tools\Controller\Component\CommonComponent $Common
+ * @property \Flash\Controller\Component\FlashComponent $Flash
  */
 class AppController extends Controller {
 

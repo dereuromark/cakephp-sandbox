@@ -7,10 +7,10 @@ use Cake\Event\EventInterface;
 use Sandbox\Model\Entity\SandboxUser;
 
 /**
+ * @property \Favorites\Controller\Component\FavoriteableComponent $Favoriteable
+ * @property \Favorites\Controller\Component\LikeableComponent $Likeable
  * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Favorites\Controller\Component\StarableComponent $Starable
- * @property \Favorites\Controller\Component\LikeableComponent $Likeable
- * @property \Favorites\Controller\Component\FavoriteableComponent $Favoriteable
  */
 class FavoriteExamplesController extends SandboxAppController {
 

@@ -13,8 +13,8 @@ use Cake\ORM\Query\SelectQuery;
 use Sandbox\Dto\Github\PullRequestDto;
 
 /**
- * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
  * @property \Data\Model\Table\CountriesTable $Countries
+ * @property \Data\Controller\Component\CountryStateHelperComponent $CountryStateHelper
  * @property \Data\Model\Table\StatesTable $States
  * @property \App\Model\Table\UsersTable $Users
  */

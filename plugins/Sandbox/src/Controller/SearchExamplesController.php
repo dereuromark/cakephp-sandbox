@@ -8,8 +8,8 @@ use Cake\View\XmlView;
 use Sandbox\Model\Filter\EmptyValuesTestFilterCollection;
 
 /**
- * @property \Search\Controller\Component\SearchComponent $Search
  * @property \Sandbox\Model\Table\CountryRecordsTable $CountryRecords
+ * @property \Search\Controller\Component\SearchComponent $Search
  */
 class SearchExamplesController extends SandboxAppController {
 

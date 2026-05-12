@@ -12,6 +12,7 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxUser newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxUser> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxUser get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxUser> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxUser findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxUser patchEntity(\Sandbox\Model\Entity\SandboxUser $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxUser> patchEntities(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $data, array $options = [])
@@ -19,11 +20,10 @@ use Tools\Model\Table\Table;
  * @method \Sandbox\Model\Entity\SandboxUser saveOrFail(\Sandbox\Model\Entity\SandboxUser $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxUser> find(string $type = 'all', mixed ...$args)
  * @method bool delete(\Sandbox\Model\Entity\SandboxUser $entity, array $options = [])
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxUser $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> loadInto(\Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> $entities, array $contain)
  */
 class SandboxUsersTable extends Table {

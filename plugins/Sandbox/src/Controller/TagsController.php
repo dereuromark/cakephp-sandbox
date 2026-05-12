@@ -6,8 +6,8 @@ use Cake\Core\Configure;
 use Cake\Utility\Hash;
 
 /**
- * @property \Search\Controller\Component\SearchComponent $Search
  * @property \Sandbox\Model\Table\SandboxCategoriesTable $SandboxCategories
+ * @property \Search\Controller\Component\SearchComponent $Search
  */
 class TagsController extends SandboxAppController {
 
