@@ -6,8 +6,8 @@ use BootstrapUI\View\Helper\FormHelper as BootstrapFormHelper;
 use Templating\View\Helper\FormHelperTrait;
 
 /**
- * @property \Cake\View\Helper\UrlHelper $Url
  * @property \App\View\Helper\HtmlHelper $Html
+ * @property \Cake\View\Helper\UrlHelper $Url
  */
 class FormHelper extends BootstrapFormHelper {
 

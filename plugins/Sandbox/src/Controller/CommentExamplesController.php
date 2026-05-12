@@ -7,8 +7,8 @@ use Cake\Event\EventInterface;
 use Sandbox\Model\Entity\SandboxUser;
 
 /**
- * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Comments\Controller\Component\CommentComponent $Comment
+ * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  */
 class CommentExamplesController extends SandboxAppController {
 

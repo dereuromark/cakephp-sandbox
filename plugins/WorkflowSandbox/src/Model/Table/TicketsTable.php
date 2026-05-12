@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * Tickets Model
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Assignees
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @method \WorkflowSandbox\Model\Entity\Ticket newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Ticket newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Ticket> newEntities(array $data, array $options = [])

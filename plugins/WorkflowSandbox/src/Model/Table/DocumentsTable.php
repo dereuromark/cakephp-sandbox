@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * Documents Model
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
- * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Rejectors
+ * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
  * @method \WorkflowSandbox\Model\Entity\Document newEmptyEntity()
  * @method \WorkflowSandbox\Model\Entity\Document newEntity(array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Document> newEntities(array $data, array $options = [])

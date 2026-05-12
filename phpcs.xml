@@ -28,4 +28,18 @@
 
 	<rule ref="PhpCollective.WhiteSpace.ConsistentIndent"/>
 
+	<rule ref="PhpCollective.Commenting.DocBlockTagOrder">
+		<properties>
+			<property name="innerOrder" type="array">
+				<element key="@method" value="newEmptyEntity,newEntity,newEntities,get,find*,findOrCreate,patchEntity,patchEntities,save,saveOrFail,saveMany*,delete,deleteOrFail,deleteMany*"/>
+				<element key="@property" value=""/>
+				<element key="@property-read" value=""/>
+				<element key="@property-write" value=""/>
+			</property>
+		</properties>
+	</rule>
+	<rule ref="PhpCollective.Commenting.DocBlockTagOrder.InnerOrderInvalid">
+		<exclude-pattern>*/src/Model/Entity/*</exclude-pattern>
+	</rule>
+
 </ruleset>

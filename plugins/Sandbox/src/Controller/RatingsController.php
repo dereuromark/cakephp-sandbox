@@ -3,8 +3,8 @@
 namespace Sandbox\Controller;
 
 /**
- * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  * @property \Ratings\Controller\Component\RatingComponent $Rating
+ * @property \Sandbox\Model\Table\SandboxPostsTable $SandboxPosts
  */
 class RatingsController extends SandboxAppController {
 
