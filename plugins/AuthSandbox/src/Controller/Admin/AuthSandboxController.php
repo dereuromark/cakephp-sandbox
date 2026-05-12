@@ -4,10 +4,6 @@ namespace AuthSandbox\Controller\Admin;
 
 use AuthSandbox\Controller\AuthSandboxController as NormalAuthSandboxController;
 
-/**
- * @property \Cake\ORM\Table $AuthSandbox
- * @property \App\Model\Table\UsersTable $Users
- */
 class AuthSandboxController extends NormalAuthSandboxController {
 
 	/**
