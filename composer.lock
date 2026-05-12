@@ -10867,12 +10867,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/code-sniffer.git",
-                "reference": "b1eccf19c29fd46aed6ac5721a9c86146ecaf16c"
+                "reference": "6433ed11eccc084ec74c294dba4242de8c6800a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/b1eccf19c29fd46aed6ac5721a9c86146ecaf16c",
-                "reference": "b1eccf19c29fd46aed6ac5721a9c86146ecaf16c",
+                "url": "https://api.github.com/repos/php-collective/code-sniffer/zipball/6433ed11eccc084ec74c294dba4242de8c6800a6",
+                "reference": "6433ed11eccc084ec74c294dba4242de8c6800a6",
                 "shasum": ""
             },
             "require": {
@@ -10919,7 +10919,7 @@
                 "issues": "https://github.com/php-collective/code-sniffer/issues",
                 "source": "https://github.com/php-collective/code-sniffer"
             },
-            "time": "2026-04-14T11:32:26+00:00"
+            "time": "2026-05-12T00:10:03+00:00"
         },
         {
             "name": "php-di/invoker",
