@@ -10,7 +10,7 @@ use Tools\Model\Table\Table;
 /**
  * ExposedUsers Model
  *
- * @extends \Tools\Model\Table\Table<array{Expose: \Expose\Model\Behavior\ExposeBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
+ * @extends \Tools\Model\Table\Table<array{Expose: \Expose\Model\Behavior\ExposeBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\ExposedUser>
  * @method \Sandbox\Model\Entity\ExposedUser newEmptyEntity()
  * @method \Sandbox\Model\Entity\ExposedUser newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\ExposedUser> newEntities(array $data, array $options = [])

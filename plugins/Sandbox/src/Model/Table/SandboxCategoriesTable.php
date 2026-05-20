@@ -6,7 +6,7 @@ use Cake\Validation\Validator;
 use Tools\Model\Table\Table;
 
 /**
- * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}>
+ * @extends \Tools\Model\Table\Table<array{Tree: \Cake\ORM\Behavior\TreeBehavior}, \Sandbox\Model\Entity\SandboxCategory>
  * @method \Sandbox\Model\Entity\SandboxCategory newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxCategory newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxCategory> newEntities(array $data, array $options = [])

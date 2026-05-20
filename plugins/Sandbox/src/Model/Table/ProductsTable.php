@@ -10,11 +10,7 @@ use Sandbox\Model\Filter\ProductsCollection;
 /**
  * SandboxProducts Model
  *
- * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
- * @method \Sandbox\Model\Entity\Product newEmptyEntity()
- * @method \Sandbox\Model\Entity\Product newEntity(array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\Product> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Product get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\Product>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Product> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\Product findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\Product patchEntity(\Sandbox\Model\Entity\Product $entity, array $data, array $options = [])

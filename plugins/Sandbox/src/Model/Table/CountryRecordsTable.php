@@ -5,7 +5,7 @@ namespace Sandbox\Model\Table;
 use Tools\Model\Table\Table;
 
 /**
- * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior}>
+ * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior}, \Cake\ORM\Entity>
  * @method \Search\Manager searchManager()
  * @mixin \Search\Model\Behavior\SearchBehavior
  */

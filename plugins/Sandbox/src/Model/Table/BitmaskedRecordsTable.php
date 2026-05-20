@@ -9,11 +9,7 @@ use Cake\Validation\Validator;
 /**
  * BitmaskedRecords Model
  *
- * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
- * @method \Sandbox\Model\Entity\BitmaskedRecord newEmptyEntity()
- * @method \Sandbox\Model\Entity\BitmaskedRecord newEntity(array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\BitmaskedRecord> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\BitmaskedRecord get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\BitmaskedRecord>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\BitmaskedRecord> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\BitmaskedRecord findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\BitmaskedRecord patchEntity(\Sandbox\Model\Entity\BitmaskedRecord $entity, array $data, array $options = [])

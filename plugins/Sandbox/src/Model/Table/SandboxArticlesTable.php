@@ -9,11 +9,7 @@ use Cake\Validation\Validator;
 /**
  * SandboxArticles Model
  *
- * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}>
- * @method \Sandbox\Model\Entity\SandboxArticle newEmptyEntity()
- * @method \Sandbox\Model\Entity\SandboxArticle newEntity(array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\SandboxArticle> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\SandboxArticle>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxArticle> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxArticle findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Sandbox\Model\Entity\SandboxArticle $entity, array $data, array $options = [])

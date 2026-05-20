@@ -27,8 +27,8 @@
 		"dereuromark/cakephp-translate": "dev-master",
 		"dereuromark/cakephp-tinyauth": "dev-master",
 		"dereuromark/cakephp-geo": "dev-master",
-		"dereuromark/cakephp-shim": "dev-master as 3.1.0",
-		"dereuromark/cakephp-tools": "dev-master as 3.9.2",
+		"dereuromark/cakephp-shim": "dev-master as 3.9.0",
+		"dereuromark/cakephp-tools": "dev-master as 3.12.9",
 		"dereuromark/cakephp-setup": "dev-master",
 		"dereuromark/cakephp-markup": "dev-master",
 		"dereuromark/cakephp-captcha": "dev-master",
@@ -96,9 +96,9 @@
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.11.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
 		"dereuromark/cakephp-test-helper": "dev-master",
-		"phpunit/phpunit": "^13.0",
-		"cakedc/cakephp-phpstan": "^4.0",
-		"dereuromark/cakephp-fixture-factories": "2.0.0-beta.2",
+		"phpunit/phpunit": "^13.1.10",
+		"cakedc/cakephp-phpstan": "^4.2.0",
+		"dereuromark/cakephp-fixture-factories": "2.0.0-rc.4",
 		"johnykvsky/dummygenerator": "^0.2"
 	},
 	"autoload": {

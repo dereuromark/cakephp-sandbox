@@ -9,13 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Tickets Model
  *
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Ticket>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Assignees
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Ticket newEmptyEntity()
- * @method \WorkflowSandbox\Model\Entity\Ticket newEntity(array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Ticket> newEntities(array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Ticket get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Ticket> find(string $type = 'all', mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Ticket findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket patchEntity(\WorkflowSandbox\Model\Entity\Ticket $entity, array $data, array $options = [])

@@ -9,12 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Orders Model
  *
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Order>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Order newEmptyEntity()
- * @method \WorkflowSandbox\Model\Entity\Order newEntity(array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Order> newEntities(array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Order get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Order> find(string $type = 'all', mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Order findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Order patchEntity(\WorkflowSandbox\Model\Entity\Order $entity, array $data, array $options = [])

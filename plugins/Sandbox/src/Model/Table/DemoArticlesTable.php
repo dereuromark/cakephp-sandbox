@@ -11,12 +11,8 @@ use Cake\Validation\Validator;
  *
  * Demonstrates the Translate Behavior with Shadow Table strategy.
  *
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}>
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}, \Sandbox\Model\Entity\DemoArticle>
  * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
- * @method \Sandbox\Model\Entity\DemoArticle newEmptyEntity()
- * @method \Sandbox\Model\Entity\DemoArticle newEntity(array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\DemoArticle> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\DemoArticle get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\DemoArticle> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\DemoArticle findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\DemoArticle patchEntity(\Sandbox\Model\Entity\DemoArticle $entity, array $data, array $options = [])

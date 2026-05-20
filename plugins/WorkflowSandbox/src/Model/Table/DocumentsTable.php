@@ -9,13 +9,9 @@ use Cake\Validation\Validator;
 /**
  * Documents Model
  *
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Document>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Rejectors
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Document newEmptyEntity()
- * @method \WorkflowSandbox\Model\Entity\Document newEntity(array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Document> newEntities(array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Document get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Document> find(string $type = 'all', mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Document findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Document patchEntity(\WorkflowSandbox\Model\Entity\Document $entity, array $data, array $options = [])

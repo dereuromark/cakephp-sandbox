@@ -9,12 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Registrations Model
  *
- * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}>
+ * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Registration>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Registration newEmptyEntity()
- * @method \WorkflowSandbox\Model\Entity\Registration newEntity(array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Registration> newEntities(array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Registration get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Registration> find(string $type = 'all', mixed ...$args)
  * @method \WorkflowSandbox\Model\Entity\Registration findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration patchEntity(\WorkflowSandbox\Model\Entity\Registration $entity, array $data, array $options = [])

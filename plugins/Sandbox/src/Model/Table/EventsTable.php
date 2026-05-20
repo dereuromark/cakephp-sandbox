@@ -8,11 +8,7 @@ use Cake\Validation\Validator;
 /**
  * Events Model
  *
- * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}>
- * @method \Sandbox\Model\Entity\Event newEmptyEntity()
- * @method \Sandbox\Model\Entity\Event newEntity(array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\Event> newEntities(array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}, \Sandbox\Model\Entity\Event>
  * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Event> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\Event findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Sandbox\Model\Entity\Event $entity, array $data, array $options = [])

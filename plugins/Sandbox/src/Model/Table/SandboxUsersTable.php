@@ -25,6 +25,7 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> loadInto(\Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> $entities, array $contain)
+ * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxUser>
  */
 class SandboxUsersTable extends Table {
 

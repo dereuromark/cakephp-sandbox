@@ -7,7 +7,7 @@ use Sandbox\Model\Filter\SandboxPostsCollection;
 use Tools\Model\Table\Table;
 
 /**
- * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}>
+ * @extends \Tools\Model\Table\Table<array{Search: \Search\Model\Behavior\SearchBehavior, Slugged: \Tools\Model\Behavior\SluggedBehavior, Tag: \Tags\Model\Behavior\TagBehavior}, \Sandbox\Model\Entity\SandboxPost>
  * @property \Tags\Model\Table\TaggedTable&\Cake\ORM\Association\HasMany $Tagged
  * @property \Tags\Model\Table\TagsTable&\Cake\ORM\Association\BelongsToMany $Tags
  * @method \Sandbox\Model\Entity\SandboxPost newEmptyEntity()
