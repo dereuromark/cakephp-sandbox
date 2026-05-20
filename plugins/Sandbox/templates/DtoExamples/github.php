@@ -51,10 +51,10 @@ $dtoFile = Plugin::path('Sandbox') . 'config' . DS . 'dto.xml';
 	<h4>Now let's use it</h4>
 	<p>In the template we now have fully annotated fields and can very quickly type what we want to print out.</p>
 
-<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . 'pr.php'), ['lang' => 'php-template'])?>
+<?php echo $this->Highlighter->highlight(file_get_contents(__DIR__ . DS . '..' . DS . 'element' . DS . 'DtoExamples' . DS . 'pr.php'), ['lang' => 'php-template'])?>
 
 	<h4>Resulting output</h4>
-	<?php echo $this->element('../DtoExamples/pr')?>
+	<?php echo $this->element('DtoExamples/pr')?>
 
 	<hr>
 

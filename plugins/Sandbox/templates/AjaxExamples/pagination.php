@@ -31,7 +31,7 @@ $(document).ready(function() {
 <h2><?php echo __('Countries');?> and AJAX Pagination</h2>
 
 <div id="pagination-container">
-<?php echo $this->element('../AjaxExamples/pagination_container'); ?>
+<?php echo $this->element('AjaxExamples/pagination_container'); ?>
 </div>
 
 <br><br>

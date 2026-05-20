@@ -55,7 +55,7 @@
 	</div>
 
 <div id="pagination-container">
-<?php echo $this->element('../AjaxExamples/endless_scroll_container'); ?>
+<?php echo $this->element('AjaxExamples/endless_scroll_container'); ?>
 </div>
 
 </div></div>
