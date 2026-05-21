@@ -3,7 +3,7 @@
 namespace Sandbox\Controller;
 
 /**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Sandbox\Model\Table\SandboxAnimalsTable $SandboxAnimals
  */
 class JsExamplesController extends SandboxAppController {
 
@@ -20,7 +20,7 @@ class JsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function datepicker() {
-		$Animals = $this->fetchTable('Sandbox.Animals');
+		$Animals = $this->fetchTable('Sandbox.SandboxAnimals');
 
 		$animal = $Animals->newEmptyEntity();
 

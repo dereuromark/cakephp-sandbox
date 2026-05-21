@@ -6,7 +6,7 @@ use Cake\Event\EventInterface;
 use Cake\View\JsonView;
 
 /**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Sandbox\Model\Table\SandboxAnimalsTable $SandboxAnimals
  */
 class JqueryExamplesController extends SandboxAppController {
 
@@ -61,7 +61,7 @@ class JqueryExamplesController extends SandboxAppController {
 	 */
 	public function autocomplete() {
 		if ($this->request->is(['ajax'])) {
-			$Animals = $this->fetchTable('Sandbox.Animals');
+			$Animals = $this->fetchTable('Sandbox.SandboxAnimals');
 			$items = $Animals->find('list', conditions: [
 				'name LIKE' => '%' . (string)$this->request->getQuery('term') . '%',
 			]);

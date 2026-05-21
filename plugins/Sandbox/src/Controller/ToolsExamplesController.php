@@ -349,7 +349,7 @@ class ToolsExamplesController extends SandboxAppController {
 	 * @return void
 	 */
 	public function confirmable() {
-		$animalsTable = $this->fetchTable('Sandbox.Animals');
+		$animalsTable = $this->fetchTable('Sandbox.SandboxAnimals');
 		$animalsTable->getValidator()->remove('confirm');
 		$animalsTable->addBehavior('Tools.Confirmable');
 		// Bug in CakePHP: You need to manually trigger build on the behavior and pass the validator!

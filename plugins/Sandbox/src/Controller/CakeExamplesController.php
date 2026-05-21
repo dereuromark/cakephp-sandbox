@@ -20,7 +20,7 @@ use Sandbox\Model\Table\ProductsTable;
 use Stringable;
 
 /**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Sandbox\Model\Table\SandboxAnimalsTable $SandboxAnimals
  */
 class CakeExamplesController extends SandboxAppController {
 
@@ -164,7 +164,7 @@ class CakeExamplesController extends SandboxAppController {
 	 * @return \Cake\Http\Response|null|void
 	 */
 	public function validation() {
-		$Animals = $this->fetchTable('Sandbox.Animals');
+		$Animals = $this->fetchTable('Sandbox.SandboxAnimals');
 
 		$animal = $Animals->newEmptyEntity();
 

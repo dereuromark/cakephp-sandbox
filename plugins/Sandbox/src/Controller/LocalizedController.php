@@ -49,7 +49,7 @@ class LocalizedController extends SandboxAppController {
 
 		$entity = null;
 		if ($this->request->is('post')) {
-			$table = $this->getTableLocator()->get('Sandbox.Animals');
+			$table = $this->getTableLocator()->get('Sandbox.SandboxAnimals');
 			$validator = $table->getValidator();
 
 			$code = $this->request->getData('code');

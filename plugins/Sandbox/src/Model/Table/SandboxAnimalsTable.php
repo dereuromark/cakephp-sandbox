@@ -10,37 +10,31 @@ use Tools\Model\Table\Table;
 /**
  * Animals Model
  *
+ * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxAnimal>
  * @method \Sandbox\Model\Entity\SandboxAnimal newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxAnimal newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxAnimal> newEntities(array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxAnimal get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxAnimal> find(string $type = 'all', mixed ...$args)
  * @method \Sandbox\Model\Entity\SandboxAnimal findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxAnimal patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\SandboxAnimal> patchEntities(iterable $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxAnimal|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxAnimal saveOrFail(\Cake\Datasource\EntityInterface $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false saveMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> saveManyOrFail(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false deleteMany(iterable $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> deleteManyOrFail(iterable $entities, array $options = [])
- * @extends \Tools\Model\Table\Table<array{}, \Cake\ORM\Entity>
+ * @method \Sandbox\Model\Entity\SandboxAnimal patchEntity(\Sandbox\Model\Entity\SandboxAnimal $entity, array $data, array $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxAnimal> patchEntities(iterable<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $data, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal|false save(\Sandbox\Model\Entity\SandboxAnimal $entity, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal saveOrFail(\Sandbox\Model\Entity\SandboxAnimal $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $options = [])
+ * @method bool delete(\Sandbox\Model\Entity\SandboxAnimal $entity, array $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxAnimal $entity, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxAnimal> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxAnimal|array<\Sandbox\Model\Entity\SandboxAnimal> loadInto(\Sandbox\Model\Entity\SandboxAnimal|array<\Sandbox\Model\Entity\SandboxAnimal> $entities, array $contain)
  */
-class AnimalsTable extends Table {
+class SandboxAnimalsTable extends Table {
 
 	/**
 	 * @var array<int|string, mixed>
 	 */
 	protected array $order = ['name' => 'ASC'];
-
-	/**
-	 * @param array<string, mixed> $config
-	 * @return void
-	 */
-	public function initialize(array $config): void {
-		parent::initialize($config);
-
-		$this->setTable('sandbox_animals');
-	}
 
 	/**
 	 * @param \Cake\Validation\Validator $validator

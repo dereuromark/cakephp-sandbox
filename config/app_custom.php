@@ -23,8 +23,6 @@ use Setup\Healthcheck\Check\Environment\PhpUploadLimitCheck;
 use Setup\Healthcheck\Check\Environment\PhpVersionCheck;
 use Setup\Healthcheck\HealthcheckCollector;
 use Shim\Annotator\EntityAnnotator as ShimEntityAnnotator;
-use StateMachine\Illuminator\Task\EventTask;
-use StateMachine\Illuminator\Task\StateTask;
 use Templating\Generator\Task\IconRenderTask;
 use Templating\View\Icon\BootstrapIcon;
 use Templating\View\Icon\FeatherIcon;
@@ -311,10 +309,7 @@ $config = [
 			IconRenderTask::class,
 		],
 		'classAnnotatorTasks' => [],
-		'illuminatorTasks' => [
-			StateTask::class,
-			EventTask::class,
-		],
+		'illuminatorTasks' => [],
 		'includedPlugins' => [
 			'Sandbox',
 			'AuthSandbox',

@@ -5,15 +5,15 @@ namespace Sandbox\Controller;
 use Tools\Form\ContactForm;
 
 /**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
  * @property \Captcha\Controller\Component\CaptchaComponent $Captcha
+ * @property \Sandbox\Model\Table\SandboxAnimalsTable $SandboxAnimals
  */
 class CaptchasController extends SandboxAppController {
 
 	/**
 	 * @var string|null
 	 */
-	protected ?string $defaultTable = 'Sandbox.Animals';
+	protected ?string $defaultTable = 'Sandbox.SandboxAnimals';
 
 	/**
 	 * @return void
@@ -43,9 +43,9 @@ class CaptchasController extends SandboxAppController {
 			return $this->redirect(['action' => 'math']);
 		}
 
-		$animal = $this->Animals->newEmptyEntity();
+		$animal = $this->SandboxAnimals->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$animal = $this->Animals->patchEntity($animal, $this->request->getData());
+			$animal = $this->SandboxAnimals->patchEntity($animal, $this->request->getData());
 			if (!$animal->getErrors()) {
 				$this->Flash->success(__('The animal has been saved.'));
 

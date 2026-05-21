@@ -9,6 +9,7 @@ use Tools\Model\Table\Table;
 /**
  * SandboxProfiles Model
  *
+ * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxProfile>
  * @method \Sandbox\Model\Entity\SandboxProfile newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxProfile newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxProfile> newEntities(array $data, array $options = [])
@@ -26,7 +27,6 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxProfile>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxProfile> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxProfile> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxProfile> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxProfile|array<\Sandbox\Model\Entity\SandboxProfile> loadInto(\Sandbox\Model\Entity\SandboxProfile|array<\Sandbox\Model\Entity\SandboxProfile> $entities, array $contain)
- * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxProfile>
  */
 class SandboxProfilesTable extends Table {
 

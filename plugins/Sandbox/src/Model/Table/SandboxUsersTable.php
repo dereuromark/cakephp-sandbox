@@ -8,6 +8,7 @@ use Sandbox\Model\Enum\UserStatus;
 use Tools\Model\Table\Table;
 
 /**
+ * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxUser>
  * @method \Sandbox\Model\Entity\SandboxUser newEmptyEntity()
  * @method \Sandbox\Model\Entity\SandboxUser newEntity(array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxUser> newEntities(array $data, array $options = [])
@@ -25,7 +26,6 @@ use Tools\Model\Table\Table;
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxUser> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxUser> $entities, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> loadInto(\Sandbox\Model\Entity\SandboxUser|array<\Sandbox\Model\Entity\SandboxUser> $entities, array $contain)
- * @extends \Tools\Model\Table\Table<array{}, \Sandbox\Model\Entity\SandboxUser>
  */
 class SandboxUsersTable extends Table {
 

@@ -6,14 +6,14 @@ use Cake\Core\Configure;
 use Cake\Event\EventInterface;
 
 /**
- * @property \Sandbox\Model\Table\AnimalsTable $Animals
+ * @property \Sandbox\Model\Table\SandboxAnimalsTable $SandboxAnimals
  */
 class BootstrapController extends SandboxAppController {
 
 	/**
 	 * @var string|null
 	 */
-	protected ?string $defaultTable = 'Sandbox.Animals';
+	protected ?string $defaultTable = 'Sandbox.SandboxAnimals';
 
 	/**
 	 * @return void
