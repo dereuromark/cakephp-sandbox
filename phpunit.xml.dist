@@ -34,5 +34,10 @@
 			<directory suffix=".php">plugins/AuthSandbox/src/</directory>
 			<directory suffix=".php">plugins/WorkflowSandbox/src/</directory>
 		</include>
+		<exclude>
+			<directory suffix=".php">src/Dto/</directory>
+			<directory suffix=".php">src/Console/</directory>
+			<directory suffix=".php">plugins/Sandbox/src/Dto/</directory>
+		</exclude>
 	</source>
 </phpunit>
