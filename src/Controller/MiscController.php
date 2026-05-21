@@ -74,19 +74,19 @@ class MiscController extends AppController {
 
 				break;
 			case '5':
-				$pieces = explode(NL, $text) ?: [];
+				$pieces = explode(PHP_EOL, $text) ?: [];
 				foreach ($pieces as $key => $val) {
-					$pieces[$key] = TB . $val;
+					$pieces[$key] = "\t" . $val;
 				}
-				$text = implode(NL, $pieces);
+				$text = implode(PHP_EOL, $pieces);
 
 				break;
 			case '6':
-				$pieces = explode(NL, $text) ?: [];
+				$pieces = explode(PHP_EOL, $text) ?: [];
 				foreach ($pieces as $key => $val) {
-					$pieces[$key] = mb_substr($val, 0, 1) === TB ? mb_substr($val, 1) : $val;
+					$pieces[$key] = mb_substr($val, 0, 1) === "\t" ? mb_substr($val, 1) : $val;
 				}
-				$text = implode(NL, $pieces);
+				$text = implode(PHP_EOL, $pieces);
 
 				break;
 		}
