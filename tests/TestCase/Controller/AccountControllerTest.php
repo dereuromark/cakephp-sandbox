@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Controller;
 
 use App\Test\Factory\RoleFactory;
 use App\Test\Factory\UserFactory;
+use Cake\Mailer\TransportFactory;
 use Shim\TestSuite\IntegrationTestCase;
 
 /**
@@ -134,11 +135,100 @@ class AccountControllerTest extends IntegrationTestCase {
 	 * @return void
 	 */
 	public function testLostPassword() {
-		$this->skipIf(true, 'FIXME');
-
 		$this->get(['controller' => 'Account', 'action' => 'lostPassword']);
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * POST with a matching email triggers token creation, email delivery, and a redirect back.
+	 *
+	 * @return void
+	 */
+	public function testLostPasswordPostValidEmail() {
+		$this->setupDebugEmailTransport();
+		$user = UserFactory::new(['email' => 'lost@example.com'])->save();
+
+		$this->enableRetainFlashMessages();
+		$this->post(['controller' => 'Account', 'action' => 'lostPassword'], [
+			'Form' => ['login' => $user->email],
+		]);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['controller' => 'Account', 'action' => 'lost_password']);
+		$this->assertFlashMessage(__('In a third step you will then be able to change your password.'));
+
+		$tokensTable = $this->fetchTable('Tools.Tokens');
+		$token = $tokensTable->find()
+			->where(['user_id' => $user->id, 'type' => 'reset_pwd'])
+			->first();
+		static::assertNotNull($token);
+	}
+
+	/**
+	 * POST with a non-existent email shows an error flash and re-renders the form.
+	 *
+	 * @return void
+	 */
+	public function testLostPasswordPostUnknownEmail() {
+		$this->enableRetainFlashMessages();
+		$this->post(['controller' => 'Account', 'action' => 'lostPassword'], [
+			'Form' => ['login' => 'nobody@example.com'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertFlashMessage('No account has been found for nobody@example.com');
+	}
+
+	/**
+	 * POST with an invalid reset key shows the "Invalid Key" flash.
+	 *
+	 * @return void
+	 */
+	public function testLostPasswordPostInvalidKey() {
+		$this->enableRetainFlashMessages();
+		$this->post(['controller' => 'Account', 'action' => 'lostPassword'], [
+			'Form' => ['key' => 'not-a-real-key'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertFlashMessage(__('Invalid Key'));
+	}
+
+	/**
+	 * POST with a valid reset key stores the user id in the session and redirects to change_password.
+	 *
+	 * @return void
+	 */
+	public function testLostPasswordPostValidKey() {
+		$user = UserFactory::new()->save();
+		/** @var \Tools\Model\Table\TokensTable $tokensTable */
+		$tokensTable = $this->fetchTable('Tools.Tokens');
+		$key = $tokensTable->newKey('reset_pwd', null, (string)$user->id);
+
+		$this->post(['controller' => 'Account', 'action' => 'lostPassword'], [
+			'Form' => ['key' => $key],
+		]);
+
+		$this->assertResponseCode(302);
+		$this->assertRedirect(['controller' => 'Account', 'action' => 'change_password']);
+
+		// The redirect to change_password only happens after the elseif ($token) branch
+		// runs, which also marks the token as spent.
+		$spent = $tokensTable->find()->where(['token_key' => $key])->firstOrFail();
+		static::assertSame(1, (int)$spent->get('used'));
+	}
+
+	/**
+	 * Configures a Debug email transport so deliver() doesn't try to hit the real mail backend.
+	 *
+	 * @return void
+	 */
+	protected function setupDebugEmailTransport(): void {
+		TransportFactory::drop('default');
+		TransportFactory::setConfig('default', ['className' => 'Debug']);
 	}
 
 	/**

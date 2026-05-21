@@ -116,13 +116,11 @@ class AccountController extends AppController {
 
 		} elseif ($this->request->getData('Form.login')) {
 			//$this->Users->addBehavior('Tools.Captcha');
-			unset($this->Users->validate['email']['isUnique']);
-			//$this->Users->set($this->request->data);
 			$data = $this->request->getData('Form');
 
-			$user = $this->Users->patchEntity($user, $data);
-			// Validate basic email scheme and captcha input.
-			if (!$user->getErrors()) {
+			$user = $this->Users->patchEntity($user, $data, ['validate' => false]);
+			// The form field is named "login" but contains the email address.
+			if (filter_var($this->request->getData('Form.login'), FILTER_VALIDATE_EMAIL)) {
 				/** @var \App\Model\Entity\User|null $res */
 				$res = $this->Users->find(
 					'all',
@@ -148,20 +146,20 @@ class AccountController extends AppController {
 					$email = new Mailer();
 					$email->setTo($res->email, $res->username);
 					$email->setSubject(Configure::read('Config.pageName') . ' - ' . __('Password request'));
-					$email->setTemplate('lost_password');
+					$email->viewBuilder()->setTemplate('lost_password');
 					$email->setViewVars(compact('cCode'));
 					$email->deliver();
 
 					$userEmail = h(ObfuscateHelper::hideEmail($res->email));
 
-					$this->Flash->success(__('An email with instructions has been send to \'{0}\'.', $userEmail));
+					$this->Flash->success(__('An email with instructions has been sent to {0}.', $userEmail));
 					$this->Flash->success(__('In a third step you will then be able to change your password.'));
 					//$this->Flash->error(__('Confirmation Email could not be sent. Please consult an admin.'));
 
 					return $this->redirect(['action' => 'lost_password']);
 				}
 
-				$this->Flash->error(__('No account has been found for \'{0}\'', $this->request->getData('Form.login')));
+				$this->Flash->error(__('No account has been found for {0}', $this->request->getData('Form.login')));
 			}
 		}
 
