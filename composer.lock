@@ -10454,12 +10454,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-test-helper.git",
-                "reference": "e9c288a565dfc06e1d276fa53055161d678f7658"
+                "reference": "e55f567add89ea22cc2c227fd132509b3a7e6d4b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/e9c288a565dfc06e1d276fa53055161d678f7658",
-                "reference": "e9c288a565dfc06e1d276fa53055161d678f7658",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-test-helper/zipball/e55f567add89ea22cc2c227fd132509b3a7e6d4b",
+                "reference": "e55f567add89ea22cc2c227fd132509b3a7e6d4b",
                 "shasum": ""
             },
             "require": {
@@ -10509,7 +10509,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-test-helper/issues",
                 "source": "https://github.com/dereuromark/cakephp-test-helper/tree/master"
             },
-            "time": "2026-05-11T23:38:51+00:00"
+            "time": "2026-05-21T02:46:36+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
