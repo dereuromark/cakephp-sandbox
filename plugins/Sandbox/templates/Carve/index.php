@@ -861,7 +861,7 @@ This div is never closed.</code></pre>
 		convert();
 	}
 
-	// Highlight djot example code blocks
+	// Highlight Carve example code blocks
 	document.querySelectorAll('pre code.language-djot').forEach(el => {
 		hljs.highlightElement(el);
 	});

@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var string $djot
  */
 
 $this->append('script');
@@ -225,12 +224,12 @@ DJOT,
 	'Reference Links' => [
 		'description' => 'Links and images using reference-style definitions.',
 		'code' => <<<'DJOT'
-Check out [Carve's homepage][djot] or the [PHP implementation][php-djot].
+Check out [Carve's homepage][carve] or the [PHP implementation][carve-php].
 
 You can also use [implicit][] references.
 
-[djot]: https://github.com/markup-carve/carve "Carve Markup Language"
-[php-djot]: https://github.com/markup-carve/carve-php
+[carve]: https://github.com/markup-carve/carve "Carve Markup Language"
+[carve-php]: https://github.com/markup-carve/carve-php
 [implicit]: https://example.com
 DJOT,
 	],
@@ -325,10 +324,10 @@ DJOT,
 ];
 
 /**
- * Encode djot for URL sharing (matches JS compress function)
+ * Encode Carve markup for URL sharing (matches JS compress function)
  */
-function encodeCarve(string $djot): string {
-	return base64_encode($djot);
+function encodeCarve(string $carve): string {
+	return base64_encode($carve);
 }
 ?>
 

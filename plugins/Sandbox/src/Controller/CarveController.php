@@ -628,11 +628,11 @@ composer require markup-carve/carve-php
 ```
 
 ``` bash [NPM]
-npm install @example/djot
+npm install @example/carve
 ```
 
 ``` python [Pip]
-pip install djot
+pip install carve
 ```
 
 :::
@@ -674,7 +674,7 @@ title: My Article
 author: John Doe
 date: 2024-01-15
 tags:
-  - djot
+  - carve
   - documentation
 ---
 
