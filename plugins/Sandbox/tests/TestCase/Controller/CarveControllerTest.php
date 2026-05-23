@@ -7,11 +7,11 @@ use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * Sandbox\Controller\DjotController Test Case
+ * Sandbox\Controller\CarveController Test Case
  *
- * @uses \Sandbox\Controller\DjotController
+ * @uses \Sandbox\Controller\CarveController
  */
-class DjotControllerTest extends TestCase {
+class CarveControllerTest extends TestCase {
 
 	use IntegrationTestTrait;
 
@@ -19,7 +19,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testIndex(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'index']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -29,8 +29,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvert(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => 'Hello *world*!',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => 'Hello *world*!',
 		]);
 
 		$this->assertResponseCode(200);
@@ -46,25 +46,26 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithArticleProfile(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "# Heading\n\n``` =html\n<script>alert(1)</script>\n```",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\n``` =html\n<script>alert(1)</script>\n```",
 			'profile' => 'article',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
+		// Article profile renders the heading; the fenced block is treated as code
+		// (info string "=html"), so its contents are escaped rather than executed.
 		$this->assertStringContainsString('<h1', $response['html']);
 		$this->assertStringNotContainsString('<script>', $response['html']);
-		$this->assertNotEmpty($response['violations']);
 	}
 
 	/**
 	 * @return void
 	 */
 	public function testConvertSanitizesXss(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => '[link](javascript:alert(1))',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => '[link](javascript:alert(1))',
 		]);
 
 		$this->assertResponseCode(200);
@@ -77,8 +78,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithCommentProfile(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "# Heading\n\nSome *bold* text.\n\n![image](/test.png)",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\nSome *bold* text.\n\n![image](/test.png)",
 			'profile' => 'comment',
 		]);
 
@@ -95,8 +96,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithMinimalProfile(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "*Bold* and `code` with [link](https://example.com)\n\n- list item",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "*Bold* and `code` with [link](https://example.com)\n\n- list item",
 			'profile' => 'minimal',
 		]);
 
@@ -114,8 +115,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithFullProfile(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "# Heading\n\n*Bold* text",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\n*Bold* text",
 			'profile' => 'full',
 		]);
 
@@ -131,8 +132,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithWarnings(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => '[undefined link][missing-ref]',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => '[undefined link][missing-ref]',
 			'warnings' => '1',
 		]);
 
@@ -148,8 +149,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithStrictMode(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "::: warning\nThis div is never closed.",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "::: warning\nThis div is never closed.",
 			'strict' => '1',
 		]);
 
@@ -163,8 +164,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithSoftBreakAsBr(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "Line one\nLine two",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "Line one\nLine two",
 			'soft_break_br' => '1',
 		]);
 
@@ -178,42 +179,40 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithBlocksInterruptParagraphs(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "Here:\n- one\n- two",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "Shopping:\n- milk\n- bread",
 			'blocks_interrupt_paragraphs' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// The list interrupts the paragraph without a blank line.
-		$this->assertStringContainsString('<p>Here:</p>', $response['html']);
+		// The list interrupts the paragraph without a blank line in between.
+		$this->assertStringContainsString('<p>Shopping:</p>', $response['html']);
 		$this->assertStringContainsString('<ul>', $response['html']);
 	}
 
 	/**
 	 * @return void
 	 */
-	public function testConvertWithNestedBlocksInLists(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "- Item\n\t- Sub one\n\t- Sub two",
-			'nested_blocks_in_lists' => '1',
+	public function testConvertNestedBlocksAreNativeWithoutFlag(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "- Item\n  > nested quote",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// The indented sublist nests without a blank line, producing two <ul>.
-		$this->assertSame(2, substr_count($response['html'], '<ul>'));
-		$this->assertStringContainsString('Sub one', $response['html']);
+		// Nesting a block inside a list item needs no flag in Carve.
+		$this->assertStringContainsString('<blockquote>', $response['html']);
 	}
 
 	/**
 	 * @return void
 	 */
 	public function testConvertWithFilterModeStrip(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "# Heading\n\nSome text",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\nSome text",
 			'profile' => 'comment',
 			'filter_mode' => 'strip',
 		]);
@@ -230,8 +229,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithFilterModeError(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "# Heading\n\nSome text",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\nSome text",
 			'profile' => 'comment',
 			'filter_mode' => 'error',
 		]);
@@ -248,8 +247,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertEmptyInput(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => '',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => '',
 		]);
 
 		$this->assertResponseCode(200);
@@ -263,7 +262,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert']);
 
 		$this->assertResponseCode(405);
 	}
@@ -272,7 +271,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testComplexExamples(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'complexExamples']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'complexExamples']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -282,7 +281,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testExtensions(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'extensions']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'extensions']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -298,8 +297,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsDefaultAttributes(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "![Image](/test.png)\n\n| A | B |\n|---|---|\n| 1 | 2 |",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "![Image](/test.png)\n\n| A | B |\n|---|---|\n| 1 | 2 |",
 			'extensions' => ['default_attributes'],
 		]);
 
@@ -316,8 +315,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsAutolink(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => 'Visit https://example.com for more.',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => 'Visit https://example.com for more.',
 			'extensions' => ['autolink'],
 		]);
 
@@ -334,8 +333,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsExternalLinks(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => '[Link](https://example.com)',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => '[Link](https://example.com)',
 			'extensions' => ['external_links'],
 		]);
 
@@ -351,15 +350,15 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsMentions(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => 'Thanks @johndoe!',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => 'Thanks @johndoe!',
 			'extensions' => ['mentions'],
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('href="/sandbox/djot?user=johndoe"', $response['html']);
+		$this->assertStringContainsString('href="/sandbox/carve?user=johndoe"', $response['html']);
 		$this->assertStringContainsString('@johndoe', $response['html']);
 	}
 
@@ -367,8 +366,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsHeadingPermalinks(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => '# Hello World',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => '# Hello World',
 			'extensions' => ['heading_permalinks'],
 		]);
 
@@ -383,8 +382,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsToc(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "# Heading 1\n\n## Heading 2",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# Heading 1\n\n## Heading 2",
 			'extensions' => ['toc'],
 		]);
 
@@ -401,8 +400,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsTocTop(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "# Hello\n\nContent here.",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# Hello\n\nContent here.",
 			'extensions' => ['toc_top'],
 		]);
 
@@ -419,8 +418,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsTocBottom(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "# Hello\n\nContent here.",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# Hello\n\nContent here.",
 			'extensions' => ['toc_bottom'],
 		]);
 
@@ -437,8 +436,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsCombined(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "# Hello\n\nThanks @user! Visit https://example.com",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# Hello\n\nThanks @user! Visit https://example.com",
 			'extensions' => ['autolink', 'mentions', 'toc'],
 		]);
 
@@ -454,8 +453,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => '',
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => '',
 			'extensions' => ['autolink'],
 		]);
 
@@ -470,7 +469,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions']);
 
 		$this->assertResponseCode(405);
 	}
@@ -478,8 +477,8 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testMarkdownToDjot(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'markdownToDjot']);
+	public function testMarkdownToCarve(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'markdownToCarve']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -489,7 +488,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertMarkdown(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertMarkdown'], [
 			'markdown' => 'Hello **world**!',
 		]);
 
@@ -497,8 +496,8 @@ class DjotControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertArrayHasKey('djot', $response);
-		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertArrayHasKey('carve', $response);
+		$this->assertStringContainsString('*world*', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -506,14 +505,14 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertMarkdownEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertMarkdown'], [
 			'markdown' => '',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame('', $response['djot']);
+		$this->assertSame('', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -521,7 +520,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertMarkdownGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertMarkdown']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertMarkdown']);
 
 		$this->assertResponseCode(405);
 	}
@@ -529,8 +528,8 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testHtmlToDjot(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'htmlToDjot']);
+	public function testHtmlToCarve(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'htmlToCarve']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -540,7 +539,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertHtml(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
 			'html' => '<p>Hello <strong>world</strong>!</p>',
 		]);
 
@@ -548,8 +547,8 @@ class DjotControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertArrayHasKey('djot', $response);
-		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertArrayHasKey('carve', $response);
+		$this->assertStringContainsString('*world*', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -557,14 +556,14 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertHtmlEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
 			'html' => '',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame('', $response['djot']);
+		$this->assertSame('', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -572,7 +571,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertHtmlGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertHtml']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml']);
 
 		$this->assertResponseCode(405);
 	}
@@ -580,8 +579,8 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testBbcodeToDjot(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'bbcodeToDjot']);
+	public function testBbcodeToCarve(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'bbcodeToCarve']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -591,7 +590,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertBbcode(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode'], [
 			'bbcode' => 'Hello [b]world[/b]!',
 		]);
 
@@ -599,8 +598,8 @@ class DjotControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertArrayHasKey('djot', $response);
-		$this->assertStringContainsString('*world*', $response['djot']);
+		$this->assertArrayHasKey('carve', $response);
+		$this->assertStringContainsString('*world*', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -608,14 +607,14 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertBbcodeEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode'], [
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode'], [
 			'bbcode' => '',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame('', $response['djot']);
+		$this->assertSame('', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 
@@ -623,7 +622,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertBbcodeGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertBbcode']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode']);
 
 		$this->assertResponseCode(405);
 	}
@@ -632,7 +631,7 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testWysiwyg(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'wysiwyg']);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwyg']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
@@ -641,9 +640,61 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testDjotToCarve(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'djotToCarve']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertDjot(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertDjot'], [
+			'djot' => '_text_ and {=mark=}',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('carve', $response);
+		$this->assertStringContainsString('/text/', $response['carve']);
+		$this->assertStringContainsString('==mark==', $response['carve']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertDjotEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertDjot'], [
+			'djot' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['carve']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertDjotGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertDjot']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertWithExtensionsTabsAriaPreservesLabel(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => ":::: tabs\n\n::: tab\n### One\n\nAlpha\n:::\n\n::: tab\n### Two\n\nBeta\n:::\n\n::::",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => ":::: tabs\n\n::: tab\n### One\n\nAlpha\n:::\n\n::: tab\n### Two\n\nBeta\n:::\n\n::::",
 			'extensions' => ['tabs_aria'],
 		]);
 
@@ -658,8 +709,8 @@ class DjotControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testConvertWithExtensionsFrontmatterAsComment(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
-			'djot' => "---yaml\ntitle: Demo\n---\n\n# Hi",
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "---yaml\ntitle: Demo\n---\n\n# Hi",
 			'extensions' => ['frontmatter'],
 			'frontmatter_as_comment' => '1',
 		]);

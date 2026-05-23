@@ -81,6 +81,7 @@
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
 		"php-collective/djot": "dev-master",
+		"markup-carve/carve-php": "dev-main",
 		"ezyang/htmlpurifier": "^4.19",
 		"josbeir/cakephp-mercure": "^0.2.0",
 		"php-collective/toml": "dev-master",

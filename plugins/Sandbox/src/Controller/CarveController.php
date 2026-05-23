@@ -4,49 +4,50 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Response;
+use Carve\CarveConverter;
+use Carve\Converter\BbcodeToCarve;
+use Carve\Converter\DjotToCarve;
+use Carve\Converter\HtmlToCarve;
+use Carve\Converter\MarkdownToCarve;
+use Carve\Exception\ParseException;
+use Carve\Exception\ProfileViolationException;
+use Carve\Extension\AdmonitionExtension;
+use Carve\Extension\AutolinkExtension;
+use Carve\Extension\CodeGroupExtension;
+use Carve\Extension\DefaultAttributesExtension;
+use Carve\Extension\ExternalLinksExtension;
+use Carve\Extension\FrontmatterExtension;
+use Carve\Extension\HeadingLevelShiftExtension;
+use Carve\Extension\HeadingPermalinksExtension;
+use Carve\Extension\MentionsExtension;
+use Carve\Extension\MermaidExtension;
+use Carve\Extension\SemanticSpanExtension;
+use Carve\Extension\SmartQuotesExtension;
+use Carve\Extension\TableOfContentsExtension;
+use Carve\Extension\TabsExtension;
+use Carve\Extension\WikilinksExtension;
+use Carve\Profile;
+use Carve\Renderer\SoftBreakMode;
 use Composer\InstalledVersions;
-use Djot\Converter\BbcodeToDjot;
-use Djot\Converter\HtmlToDjot;
-use Djot\Converter\MarkdownToDjot;
-use Djot\DjotConverter;
-use Djot\Exception\ParseException;
-use Djot\Exception\ProfileViolationException;
-use Djot\Extension\AdmonitionExtension;
-use Djot\Extension\AutolinkExtension;
-use Djot\Extension\CodeGroupExtension;
-use Djot\Extension\DefaultAttributesExtension;
-use Djot\Extension\ExternalLinksExtension;
-use Djot\Extension\FrontmatterExtension;
-use Djot\Extension\HeadingLevelShiftExtension;
-use Djot\Extension\HeadingPermalinksExtension;
-use Djot\Extension\MentionsExtension;
-use Djot\Extension\MermaidExtension;
-use Djot\Extension\SemanticSpanExtension;
-use Djot\Extension\SmartQuotesExtension;
-use Djot\Extension\TableOfContentsExtension;
-use Djot\Extension\TabsExtension;
-use Djot\Extension\WikilinksExtension;
-use Djot\Profile;
-use Djot\Renderer\SoftBreakMode;
 use Exception;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use LengthException;
 
-class DjotController extends SandboxAppController {
+class CarveController extends SandboxAppController {
 
 	/**
 	 * @return void
 	 */
 	public function index() {
-		$djotVersion = InstalledVersions::getPrettyVersion('php-collective/djot');
-		$reference = InstalledVersions::getReference('php-collective/djot');
-		if ($djotVersion === 'dev-master' && $reference) {
-			$djotVersion = 'dev-master@' . substr($reference, 0, 7);
+		$carveVersion = InstalledVersions::getPrettyVersion('markup-carve/carve-php');
+		$reference = InstalledVersions::getReference('markup-carve/carve-php');
+		if ($carveVersion !== null && str_starts_with($carveVersion, 'dev-') && $reference) {
+			$carveVersion .= '@' . substr($reference, 0, 7);
 		}
 
 		$this->set('debugMode', Configure::read('debug'));
-		$this->set('djotVersion', $djotVersion);
+		$this->set('carveVersion', $carveVersion);
 	}
 
 	/**
@@ -57,13 +58,12 @@ class DjotController extends SandboxAppController {
 	public function convert(): Response {
 		$this->request->allowMethod(['post']);
 
-		$djot = (string)$this->request->getData('djot');
+		$carve = (string)$this->request->getData('carve');
 		$collectWarnings = (bool)$this->request->getData('warnings');
 		$strict = (bool)$this->request->getData('strict');
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$nestedBlocksInLists = (bool)$this->request->getData('nested_blocks_in_lists');
 		$blocksInterruptParagraphs = (bool)$this->request->getData('blocks_interrupt_paragraphs');
 		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
@@ -74,21 +74,18 @@ class DjotController extends SandboxAppController {
 			'error' => null,
 		];
 
-		if ($djot) {
+		if ($carve) {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
-				$converter = new DjotConverter(
-					xhtml: true,
-					warnings: $collectWarnings,
-					strict: $strict,
-					profile: $profile,
-					nestedBlocksInLists: $nestedBlocksInLists,
-					blocksInterruptParagraphs: $blocksInterruptParagraphs,
-				);
+				if ($blocksInterruptParagraphs) {
+					$converter = CarveConverter::withBlocksInterruptParagraphs(true, $collectWarnings, $strict, null, $profile);
+				} else {
+					$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
+				}
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
-				$html = $converter->convert($djot);
+				$html = $converter->convert($carve);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
 				if ($collectWarnings) {
 					foreach ($converter->getWarnings() as $warning) {
@@ -132,7 +129,7 @@ class DjotController extends SandboxAppController {
 	}
 
 	/**
-	 * Complex Djot examples showcase.
+	 * Complex Carve examples showcase.
 	 *
 	 * @return void
 	 */
@@ -157,7 +154,7 @@ class DjotController extends SandboxAppController {
 	public function convertWithExtensions(): Response {
 		$this->request->allowMethod(['post']);
 
-		$djot = (string)$this->request->getData('djot');
+		$carve = (string)$this->request->getData('carve');
 		$enabledExtensions = (array)$this->request->getData('extensions');
 
 		$result = [
@@ -168,9 +165,9 @@ class DjotController extends SandboxAppController {
 			'error' => null,
 		];
 
-		if ($djot) {
+		if ($carve) {
 			try {
-				$converter = new DjotConverter();
+				$converter = new CarveConverter();
 				$tocExtension = null;
 				$frontmatterExtension = null;
 
@@ -192,7 +189,7 @@ class DjotController extends SandboxAppController {
 							break;
 						case 'mentions':
 							$converter->addExtension(new MentionsExtension(
-								urlTemplate: '/sandbox/djot?user={username}',
+								mentionUrl: '/sandbox/carve?user={name}',
 							));
 
 							break;
@@ -266,7 +263,7 @@ class DjotController extends SandboxAppController {
 					}
 				}
 
-				$rawHtml = $converter->convert($djot);
+				$rawHtml = $converter->convert($carve);
 				$result['html'] = $this->sanitizeHtml($rawHtml);
 				if (Configure::read('debug')) {
 					$result['rawHtml'] = $rawHtml;
@@ -307,7 +304,7 @@ class DjotController extends SandboxAppController {
 				'description' => 'Adds default attributes to elements by type. This demo adds: images get lazy loading, tables get Bootstrap classes, links get text-primary class, and code blocks get dark styling.',
 				'class' => DefaultAttributesExtension::class,
 				'example_djot' => <<<'DJOT'
-Check out this [link to Djot](https://djot.net).
+Check out this [link to Carve](https://github.com/markup-carve/carve).
 
 ![Sample image](/img/cake.icon.png)
 
@@ -332,11 +329,11 @@ DJOT,
 				'description' => 'Automatically converts bare URLs and email addresses into clickable links without requiring explicit link syntax.',
 				'class' => AutolinkExtension::class,
 				'example_djot' => <<<'DJOT'
-Visit https://djot.net for the official documentation.
+Visit https://github.com/markup-carve/carve for the official documentation.
 
 Contact us at info@example.com for support.
 
-Also check out https://github.com/php-collective/djot-php for the PHP implementation.
+Also check out https://github.com/markup-carve/carve-php for the PHP implementation.
 DJOT,
 				'options' => [
 					'allowedSchemes' => "['https', 'http', 'mailto']",
@@ -347,9 +344,9 @@ DJOT,
 				'description' => 'Adds target="_blank" and rel="noopener noreferrer" attributes to external links for security and UX.',
 				'class' => ExternalLinksExtension::class,
 				'example_djot' => <<<'DJOT'
-Check out [Djot's homepage](https://djot.net) for more information.
+Check out [Carve's homepage](https://github.com/markup-carve/carve) for more information.
 
-This [internal link](/sandbox/djot) stays in the same tab.
+This [internal link](/sandbox/carve) stays in the same tab.
 
 Visit [GitHub](https://github.com) to see the source code.
 DJOT,
@@ -401,8 +398,10 @@ The feature was implemented by @alice and reviewed by @bob.
 If you have questions, reach out to @support-team.
 DJOT,
 				'options' => [
-					'urlTemplate' => "'/users/view/{username}'",
-					'cssClass' => "'mention'",
+					'mentionUrl' => "'/users/{name}'",
+					'tagUrl' => "'/tags/{name}'",
+					'mentionClass' => "'mention'",
+					'tagClass' => "'tag'",
 				],
 			],
 			'toc' => [
@@ -410,9 +409,9 @@ DJOT,
 				'description' => 'Automatically generates a table of contents from document headings. Can be retrieved manually or auto-inserted at top/bottom.',
 				'class' => TableOfContentsExtension::class,
 				'example_djot' => <<<'DJOT'
-# Djot Documentation
+# Carve Documentation
 
-An overview of the Djot markup language.
+An overview of the Carve markup language.
 
 ## Basic Syntax
 
@@ -422,7 +421,7 @@ Text separated by blank lines.
 
 ### Emphasis
 
-Use _underscores_ for emphasis and *asterisks* for strong.
+Use /slashes/ for emphasis and *asterisks* for strong.
 
 ## Advanced Features
 
@@ -436,7 +435,7 @@ Grid-based table syntax.
 
 ## Conclusion
 
-Djot is a powerful markup language.
+Carve is a powerful markup language.
 DJOT,
 				'options' => [
 					'minLevel' => '1',
@@ -590,15 +589,15 @@ DJOT,
 
 Install the package with Composer:
 
-`composer require php-collective/djot`
+`composer require markup-carve/carve-php`
 :::
 
 ::: tab
 ### Usage
 
-Convert Djot to HTML:
+Convert Carve to HTML:
 
-`$html = $converter->convert($djot);`
+`$html = $converter->convert($carve);`
 :::
 
 ::: tab
@@ -625,15 +624,15 @@ DJOT,
 ::: code-group
 
 ``` php [Composer]
-composer require php-collective/djot
+composer require markup-carve/carve-php
 ```
 
 ``` bash [NPM]
-npm install @example/djot
+npm install @example/carve
 ```
 
 ``` python [Pip]
-pip install djot
+pip install carve
 ```
 
 :::
@@ -675,7 +674,7 @@ title: My Article
 author: John Doe
 date: 2024-01-15
 tags:
-  - djot
+  - carve
   - documentation
 ---
 
@@ -693,15 +692,15 @@ DJOT,
 	}
 
 	/**
-	 * Markdown to Djot converter playground.
+	 * Markdown to Carve converter playground.
 	 *
 	 * @return void
 	 */
-	public function markdownToDjot(): void {
+	public function markdownToCarve(): void {
 	}
 
 	/**
-	 * AJAX endpoint for Markdown to Djot conversion.
+	 * AJAX endpoint for Markdown to Carve conversion.
 	 *
 	 * @return \Cake\Http\Response
 	 */
@@ -711,14 +710,14 @@ DJOT,
 		$markdown = (string)$this->request->getData('markdown');
 
 		$result = [
-			'djot' => '',
+			'carve' => '',
 			'error' => null,
 		];
 
 		if ($markdown) {
 			try {
-				$converter = new MarkdownToDjot();
-				$result['djot'] = $converter->convert($markdown);
+				$converter = new MarkdownToCarve();
+				$result['carve'] = $converter->convert($markdown);
 			} catch (Exception $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -730,15 +729,15 @@ DJOT,
 	}
 
 	/**
-	 * HTML to Djot converter playground.
+	 * HTML to Carve converter playground.
 	 *
 	 * @return void
 	 */
-	public function htmlToDjot(): void {
+	public function htmlToCarve(): void {
 	}
 
 	/**
-	 * AJAX endpoint for HTML to Djot conversion.
+	 * AJAX endpoint for HTML to Carve conversion.
 	 *
 	 * @return \Cake\Http\Response
 	 */
@@ -748,14 +747,14 @@ DJOT,
 		$html = (string)$this->request->getData('html');
 
 		$result = [
-			'djot' => '',
+			'carve' => '',
 			'error' => null,
 		];
 
 		if ($html) {
 			try {
-				$converter = new HtmlToDjot();
-				$result['djot'] = $converter->convert($html);
+				$converter = new HtmlToCarve();
+				$result['carve'] = $converter->convert($html);
 			} catch (Exception $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -767,15 +766,18 @@ DJOT,
 	}
 
 	/**
-	 * BBCode to Djot converter playground.
+	 * BBCode to Carve converter playground.
 	 *
 	 * @return void
 	 */
-	public function bbcodeToDjot(): void {
+	public function bbcodeToCarve(): void {
 	}
 
 	/**
-	 * WYSIWYG editor using Tiptap with Djot output.
+	 * WYSIWYG editor placeholder.
+	 *
+	 * Carve has no published JS editor tooling (Tiptap kit/serializer) yet, so this
+	 * page shows a notice plus a server-side HTML preview via the convert endpoint.
 	 *
 	 * @return void
 	 */
@@ -783,7 +785,7 @@ DJOT,
 	}
 
 	/**
-	 * AJAX endpoint for BBCode to Djot conversion.
+	 * AJAX endpoint for BBCode to Carve conversion.
 	 *
 	 * @return \Cake\Http\Response
 	 */
@@ -793,14 +795,51 @@ DJOT,
 		$bbcode = (string)$this->request->getData('bbcode');
 
 		$result = [
-			'djot' => '',
+			'carve' => '',
 			'error' => null,
 		];
 
 		if ($bbcode) {
 			try {
-				$converter = new BbcodeToDjot();
-				$result['djot'] = $converter->convert($bbcode);
+				$converter = new BbcodeToCarve();
+				$result['carve'] = $converter->convert($bbcode);
+			} catch (Exception $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * Djot to Carve converter playground.
+	 *
+	 * @return void
+	 */
+	public function djotToCarve(): void {
+	}
+
+	/**
+	 * AJAX endpoint for Djot to Carve conversion.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertDjot(): Response {
+		$this->request->allowMethod(['post']);
+
+		$djot = (string)$this->request->getData('djot');
+
+		$result = [
+			'carve' => '',
+			'error' => null,
+		];
+
+		if ($djot) {
+			try {
+				$converter = new DjotToCarve();
+				$result['carve'] = $converter->convert($djot);
 			} catch (Exception $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -816,7 +855,7 @@ DJOT,
 	 *
 	 * @param string $name
 	 * @param string $filterMode
-	 * @return \Djot\Profile|null
+	 * @return \Carve\Profile|null
 	 */
 	protected function getProfile(string $name, string $filterMode): ?Profile {
 		$profile = match ($name) {
@@ -848,7 +887,7 @@ DJOT,
 	protected function sanitizeHtml(string $html): string {
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
-		$config->set('HTML.DefinitionID', 'djot-sandbox');
+		$config->set('HTML.DefinitionID', 'carve-sandbox');
 		$config->set('HTML.DefinitionRev', 8);
 		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby],span[class|id],section[class|id],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],abbr[title|class|id]');
 		$config->set('CSS.AllowedProperties', 'text-align');
