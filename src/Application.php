@@ -28,6 +28,8 @@ use Cake\Routing\Router;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use Setup\Middleware\MaintenanceMiddleware;
+use Setup\Middleware\SecurityTxt;
+use Setup\Middleware\SecurityTxtMiddleware;
 use TinyAuth\Middleware\RequestAuthorizationMiddleware;
 use TinyAuth\Policy\RequestPolicy;
 use Tools\Error\Middleware\ErrorHandlerMiddleware;
@@ -63,6 +65,14 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 	public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue {
 		$middlewareQueue
 			->add(MaintenanceMiddleware::class)
+
+			// Serve RFC 9116 security.txt at /.well-known/security.txt (and /security.txt)
+			->add(new SecurityTxtMiddleware(new SecurityTxt(
+				contact: 'https://github.com/dereuromark/cakephp-sandbox/security/advisories/new',
+				canonical: 'https://sandbox.dereuromark.de/.well-known/security.txt',
+				policy: 'https://github.com/dereuromark/cakephp-sandbox/security/policy',
+				preferredLanguages: 'en, de',
+			)))
 
 			// Catch any exceptions in the lower layers,
 			// and make an error page/response
