@@ -45,6 +45,7 @@
 					<li class="nav-item"><?php echo $this->Html->linkReset('Workflow Sandbox', ['plugin' => 'WorkflowSandbox', 'admin' => false, 'controller' => 'WorkflowSandbox', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="dropdown-divider"></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('Djot', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Djot', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
+					<li class="nav-item"><?php echo $this->Html->linkReset('Carve', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Carve', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('TOML', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'Toml', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('MediaEmbed', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'MediaEmbed', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
 					<li class="nav-item"><?php echo $this->Html->linkReset('JS', ['plugin' => 'Sandbox', 'admin' => false, 'controller' => 'JsExamples', 'action' => 'index'], ['class' => 'nav-link', 'tabindex' => '-1']); ?></li>
