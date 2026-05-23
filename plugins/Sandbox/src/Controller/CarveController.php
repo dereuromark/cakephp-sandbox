@@ -421,7 +421,7 @@ Text separated by blank lines.
 
 ### Emphasis
 
-Use _underscores_ for emphasis and *asterisks* for strong.
+Use /slashes/ for emphasis and *asterisks* for strong.
 
 ## Advanced Features
 

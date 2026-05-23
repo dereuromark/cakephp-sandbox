@@ -139,24 +139,25 @@ DJOT,
 		'code' => <<<'DJOT'
 Einstein's famous equation: E = mc^2^
 
-Water molecule: H~2~O
+Water molecule: H,,2,,O
 
 The 10^th^ power of 2 is 2^10^ = 1024
 
-Carbon dioxide: CO~2~
+Carbon dioxide: CO,,2,,
 DJOT,
 	],
 	'All Inline Formatting' => [
 		'description' => 'Complete inline formatting showcase.',
 		'code' => <<<'DJOT'
 - *strong text* (bold)
-- _emphasized text_ (italic)
-- *_strong and emphasized_*
-- {+inserted text+} (underline)
-- {-deleted text-} (strikethrough)
-- {=highlighted text=} (mark)
+- /emphasized text/ (italic)
+- _underlined text_ (underline)
+- ~struck text~ (strikethrough)
+- {+inserted text+} (insert)
+- {-deleted text-} (delete)
+- ==highlighted text== (mark)
 - `inline code`
-- H~2~O (subscript)
+- H,,2,,O (subscript)
 - x^2^ (superscript)
 - [Link text](https://github.com/markup-carve/carve)
 - ![Alt text](/img/cake.icon.png)
@@ -172,7 +173,7 @@ DJOT,
 | And looked down one as far as I could
 | To where it bent in the undergrowth;
 |
-| --- _Robert Frost_
+| --- /Robert Frost/
 DJOT,
 	],
 	'Code Blocks with Info' => [

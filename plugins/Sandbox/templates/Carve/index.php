@@ -416,7 +416,7 @@ CARVE;
 		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-djot"># Full Formatting Works
 
-*Bold*, _italic_, {=highlight=}, `code` - all allowed!
+*Bold*, /italic/, ==highlight==, `code` - all allowed!
 
 ``` =html
 &lt;script&gt;alert('This raw block is filtered')&lt;/script&gt;
@@ -430,7 +430,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-djot"># This heading will be filtered
 
-*Bold*, _italic_, {=highlight=}, 2^10^ all allowed!
+*Bold*, /italic/, ==highlight==, 2^10^ all allowed!
 
 > Blockquotes and `code` work too.
 
@@ -448,12 +448,12 @@ Tables, images, footnotes all work in article mode.</code></pre>
 	<div class="col-md-6">
 		<h6>Minimal Profile Test</h6>
 		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
-		<pre class="bg-light p-2 border rounded"><code class="language-djot">*Bold*, _italic_, `code`, 2^10^, {+insert+}, {-delete-} work!
+		<pre class="bg-light p-2 border rounded"><code class="language-djot">*Bold*, /italic/, `code`, 2^10^, {+insert+}, {-delete-} work!
 
 - Lists work too
 - With nesting
 
-{=Highlights=} become plain text.
+==Highlights== become plain text.
 
 Links like [this](https://example.com) are filtered.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="minimal"><i class="bi bi-play-fill"></i> Try this</button>
@@ -773,7 +773,7 @@ This div is never closed.</code></pre>
 		}
 
 		if (btn.dataset.wrap) {
-			// Wrap selection with markers (e.g., *bold*, _italic_)
+			// Wrap selection with markers (e.g., *bold*, /italic/)
 			const wrapStart = btn.dataset.wrap;
 			const wrapEnd = btn.dataset.wrapEnd || wrapStart;
 			const newText = wrapStart + selected + wrapEnd;
