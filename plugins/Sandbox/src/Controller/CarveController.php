@@ -889,13 +889,15 @@ DJOT,
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
 		$config->set('HTML.DefinitionRev', 8);
-		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role],span[class|id],section[class|id],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],abbr[title|class|id]');
+		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby],span[class|id],section[class|id],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],abbr[title|class|id]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
 		$config->set('HTML.TargetBlank', false);
 		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true]);
 		$config->set('AutoFormat.RemoveEmpty', false);
+		// Preserve HTML comments (e.g. frontmatter rendered as a comment) while blocking IE conditional comments.
+		$config->set('HTML.AllowedCommentsRegexp', '#^(?!\[if)#');
 
 		$def = $config->maybeGetRawHTMLDefinition();
 		if ($def !== null) {
@@ -917,6 +919,7 @@ DJOT,
 			$def->addAttribute('img', 'loading', 'Enum#lazy,eager,auto');
 			$def->addAttribute('img', 'decoding', 'Enum#async,sync,auto');
 			$def->addAttribute('div', 'role', 'Text');
+			$def->addAttribute('div', 'aria-labelledby', 'Text');
 			$def->addElement('input', 'Inline', 'Empty', 'Common', [
 				'type' => 'Enum#checkbox,radio',
 				'name' => 'Text',

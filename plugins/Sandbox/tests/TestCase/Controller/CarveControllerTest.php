@@ -674,4 +674,37 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(405);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsTabsAriaPreservesLabel(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => ":::: tabs\n\n::: tab\n### One\n\nAlpha\n:::\n\n::: tab\n### Two\n\nBeta\n:::\n\n::::",
+			'extensions' => ['tabs_aria'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		// The ARIA tab/panel association must survive sanitization.
+		$this->assertStringContainsString('aria-labelledby', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsFrontmatterAsComment(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "---yaml\ntitle: Demo\n---\n\n# Hi",
+			'extensions' => ['frontmatter'],
+			'frontmatter_as_comment' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		// Frontmatter rendered as an HTML comment must not be stripped by the sanitizer.
+		$this->assertStringContainsString('<!--', $response['html']);
+	}
+
 }
