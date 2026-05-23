@@ -22,7 +22,10 @@ window.mermaidRender = async function(container) {
 			const { svg } = await mermaid.render(id, el.textContent);
 			el.innerHTML = svg;
 		} catch (e) {
-			el.innerHTML = '<div class="alert alert-danger">Mermaid error: ' + e.message + '</div>';
+			const errBox = document.createElement('div');
+			errBox.className = 'alert alert-danger';
+			errBox.textContent = 'Mermaid error: ' + e.message;
+			el.replaceChildren(errBox);
 		}
 	}
 };

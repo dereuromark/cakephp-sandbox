@@ -272,7 +272,7 @@ class DjotController extends SandboxAppController {
 					$result['rawHtml'] = $rawHtml;
 				}
 				if ($tocExtension !== null) {
-					$result['toc'] = $tocExtension->getTocHtml();
+					$result['toc'] = $this->sanitizeHtml($tocExtension->getTocHtml());
 				}
 				if ($frontmatterExtension !== null) {
 					$fm = $frontmatterExtension->getFrontmatter();
@@ -858,7 +858,7 @@ DJOT,
 		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true]);
 		$config->set('AutoFormat.RemoveEmpty', false);
 		// Preserve HTML comments (e.g. frontmatter rendered as a comment) while blocking IE conditional comments.
-		$config->set('HTML.AllowedCommentsRegexp', '#^(?!\[if)#');
+		$config->set('HTML.AllowedCommentsRegexp', '#^(?!\s*\[if)#i');
 
 		$def = $config->maybeGetRawHTMLDefinition();
 		if ($def !== null) {

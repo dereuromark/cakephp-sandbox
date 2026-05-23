@@ -75,7 +75,7 @@ MARKDOWN;
 				<tr>
 					<th>Feature</th>
 					<th>Markdown</th>
-					<th>Carve</th>
+					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -108,7 +108,7 @@ MARKDOWN;
 				<tr>
 					<th>Feature</th>
 					<th>Markdown</th>
-					<th>Carve</th>
+					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
 				</tr>
 			</thead>
 			<tbody>

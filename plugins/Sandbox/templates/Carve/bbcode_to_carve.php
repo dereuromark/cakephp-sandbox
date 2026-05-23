@@ -92,7 +92,7 @@ BBCODE;
 				<tr>
 					<th>Feature</th>
 					<th>BBCode</th>
-					<th>Carve</th>
+					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -135,7 +135,7 @@ BBCODE;
 				<tr>
 					<th>Feature</th>
 					<th>BBCode</th>
-					<th>Carve</th>
+					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
 				</tr>
 			</thead>
 			<tbody>

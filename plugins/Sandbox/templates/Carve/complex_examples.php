@@ -36,10 +36,10 @@ DJOT,
 		'code' => <<<'DJOT'
 | Feature | Markdown | Carve |
 |:--------|:--------:|-----:|
-| Emphasis | `*text*` | `_text_` |
+| Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
-| Strikethrough | `~~text~~` | `{-text-}` |
-| Highlight | N/A | `{=text=}` |
+| Strikethrough | `~~text~~` | `~text~` |
+| Highlight | N/A | `==text==` |
 
 ^ Syntax comparison between Markdown and Carve
 DJOT,

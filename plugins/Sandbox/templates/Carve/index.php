@@ -321,9 +321,10 @@ CARVE;
 		<div class="btn-toolbar mb-1" role="toolbar" id="carve-toolbar">
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="*" title="Bold"><i class="bi bi-type-bold"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="_" title="Italic"><i class="bi bi-type-italic"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="{=" data-wrap-end="=}" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="{-" data-wrap-end="-}" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="/" title="Italic"><i class="bi bi-type-italic"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="_" title="Underline"><i class="bi bi-type-underline"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="==" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="~" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="`" title="Inline code"><i class="bi bi-code"></i></button>
