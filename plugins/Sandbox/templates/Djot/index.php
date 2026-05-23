@@ -252,6 +252,20 @@ DJOT;
 	font-style: italic;
 	border-bottom: 1px dotted #666;
 }
+#output-rendered ins {
+	color: #0f5132;
+	background-color: #d1e7dd;
+	text-decoration: none;
+	padding: 0.05em 0.25em;
+	border-radius: 0.2em;
+}
+#output-rendered del {
+	color: #842029;
+	background-color: #f8d7da;
+	text-decoration: line-through;
+	padding: 0.05em 0.25em;
+	border-radius: 0.2em;
+}
 #output-rendered .class1 {
 	color: #0d6efd;
 }
