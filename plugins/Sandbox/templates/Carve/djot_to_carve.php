@@ -10,6 +10,8 @@ This text uses _Djot emphasis_ which becomes /Carve italic/.
 
 Subscript like H~2~O and a {=highlight=} get rewritten too.
 
+Superscript like 2^10^ is identical in both, so it stays unchanged.
+
 Markdown-isms such as **bold** and ~~strike~~ are normalized.
 
 Code stays untouched: `_x_` and links like [home](/~user/index).
