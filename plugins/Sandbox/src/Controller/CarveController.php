@@ -398,8 +398,10 @@ The feature was implemented by @alice and reviewed by @bob.
 If you have questions, reach out to @support-team.
 DJOT,
 				'options' => [
-					'urlTemplate' => "'/users/view/{username}'",
-					'cssClass' => "'mention'",
+					'mentionUrl' => "'/users/{name}'",
+					'tagUrl' => "'/tags/{name}'",
+					'mentionClass' => "'mention'",
+					'tagClass' => "'tag'",
 				],
 			],
 			'toc' => [
