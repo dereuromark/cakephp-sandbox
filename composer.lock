@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6331653548e821f31376bac208c33ab",
+    "content-hash": "72ef6b6a438f1c840d95bebf33e984b2",
     "packages": [
         {
             "name": "brick/math",
@@ -6011,16 +6011,16 @@
         },
         {
             "name": "markup-carve/carve-php",
-            "version": "dev-feat/blocks-interrupt-paragraphs",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "b33693e4c801847bf00f0aab143a4bcc32c4a62c"
+                "reference": "95d48d0f292f7e3e4c8522ee72c4da1ea38f9b55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/b33693e4c801847bf00f0aab143a4bcc32c4a62c",
-                "reference": "b33693e4c801847bf00f0aab143a4bcc32c4a62c",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/95d48d0f292f7e3e4c8522ee72c4da1ea38f9b55",
+                "reference": "95d48d0f292f7e3e4c8522ee72c4da1ea38f9b55",
                 "shasum": ""
             },
             "require": {
@@ -6035,6 +6035,7 @@
             "suggest": {
                 "ext-intl": "Recommended for heading-ID transliteration: enables ICU romanization of non-Latin scripts (e.g. CJK, Arabic). Without it, a baked map covers Latin/Cyrillic/punctuation identically and other scripts fall back to the generated `section` id."
             },
+            "default-branch": true,
             "bin": [
                 "bin/carve"
             ],
@@ -6044,35 +6045,7 @@
                     "Carve\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Carve\\Test\\": "tests/"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "@cs-check",
-                    "@test"
-                ],
-                "cs-check": [
-                    "phpcs --colors --parallel=16"
-                ],
-                "cs-fix": [
-                    "phpcbf --colors --parallel=16"
-                ],
-                "fuzz": [
-                    "php-fuzzer fuzz fuzz/target.php fuzz/corpus/"
-                ],
-                "fuzz-strict": [
-                    "php-fuzzer fuzz fuzz/target-strict.php fuzz/corpus/"
-                ],
-                "stan": [
-                    "phpstan analyze"
-                ],
-                "test": [
-                    "phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -6095,16 +6068,16 @@
                 "parser"
             ],
             "support": {
-                "source": "https://github.com/markup-carve/carve-php/tree/feat/blocks-interrupt-paragraphs",
-                "issues": "https://github.com/markup-carve/carve-php/issues"
+                "issues": "https://github.com/markup-carve/carve-php/issues",
+                "source": "https://github.com/markup-carve/carve-php/tree/main"
             },
             "funding": [
                 {
-                    "type": "github",
-                    "url": "https://github.com/dereuromark"
+                    "url": "https://github.com/dereuromark",
+                    "type": "github"
                 }
             ],
-            "time": "2026-05-23T11:59:24+00:00"
+            "time": "2026-05-23T12:15:48+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -13326,12 +13299,6 @@
             "version": "9999999-dev",
             "alias": "3.12.9",
             "alias_normalized": "3.12.9.0"
-        },
-        {
-            "package": "markup-carve/carve-php",
-            "version": "dev-feat/blocks-interrupt-paragraphs",
-            "alias": "dev-main",
-            "alias_normalized": "dev-main"
         },
         {
             "package": "php-collective/code-sniffer",
