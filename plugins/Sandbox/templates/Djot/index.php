@@ -158,8 +158,14 @@ DJOT;
 	</div>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-significant-newlines">
-			<label class="form-check-label" for="opt-significant-newlines" title="Enable significant newlines mode: soft breaks render as <br>, and blocks can interrupt paragraphs without blank lines. Not part of Djot spec.">Significant newlines</label>
+			<input class="form-check-input" type="checkbox" id="opt-nested-blocks-in-lists">
+			<label class="form-check-label" for="opt-nested-blocks-in-lists" title="Allow nested blocks (sublists, blockquotes, fenced blocks) inside a list item without a blank line. Not part of Djot spec.">Nested blocks in lists</label>
+		</div>
+	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-blocks-interrupt-paragraphs">
+			<label class="form-check-label" for="opt-blocks-interrupt-paragraphs" title="Allow top-level blocks (lists, blockquotes, headings, tables, fences) to interrupt a paragraph without a blank line. Not part of Djot spec.">Blocks interrupt paragraphs</label>
 		</div>
 	</div>
 	<?php if ($debugMode) { ?>
@@ -356,6 +362,32 @@ DJOT;
 	For raw output (attributes beyond class/id), clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
 </p>
 
+<details class="small text-muted mb-3">
+	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility options (Soft break, Nested blocks, Blocks interrupt)</summary>
+	<div class="mt-2 ps-3 border-start">
+		<p class="mb-2">
+			Djot treats blank lines as significant: blocks are normally separated by a blank line, and a single newline inside a paragraph is just a space. Markdown is more forgiving. The three options below opt into Markdown-like behavior and are <strong>not part of the Djot spec</strong> &mdash; leave them off for spec-compliant output.
+		</p>
+		<dl class="row mb-0">
+			<dt class="col-sm-3">Soft break as &lt;br&gt;</dt>
+			<dd class="col-sm-9">
+				A single newline inside a paragraph becomes a visible line break (<code>&lt;br&gt;</code>) instead of collapsing onto the same line.
+				So <code>Line one ↵ Line two</code> stays on two lines instead of being joined into one.
+			</dd>
+			<dt class="col-sm-3">Nested blocks in lists</dt>
+			<dd class="col-sm-9">
+				Indentation alone nests a sublist, blockquote or code block inside a list item &mdash; no blank line needed.
+				So an indented <code>- Subitem</code> under <code>- Item</code> becomes a nested list instead of plain continuation text.
+			</dd>
+			<dt class="col-sm-3">Blocks interrupt paragraphs</dt>
+			<dd class="col-sm-9">
+				A block (list, blockquote, heading, table, fence) directly below a line of text starts right away, without a blank line in between.
+				So <code>Shopping: ↵ - milk</code> renders a list instead of keeping <code>- milk</code> as paragraph text.
+			</dd>
+		</dl>
+	</div>
+</details>
+
 <div class="modal fade" id="insertModal" tabindex="-1">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -486,7 +518,8 @@ This div is never closed.</code></pre>
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
 	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
-	const optSignificantNewlines = document.getElementById('opt-significant-newlines');
+	const optNestedBlocksInLists = document.getElementById('opt-nested-blocks-in-lists');
+	const optBlocksInterruptParagraphs = document.getElementById('opt-blocks-interrupt-paragraphs');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -521,7 +554,13 @@ This div is never closed.</code></pre>
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
-		if (params.get('sig_newlines') === '1') optSignificantNewlines.checked = true;
+		if (params.get('nested_blocks') === '1') optNestedBlocksInLists.checked = true;
+		if (params.get('interrupt_paragraphs') === '1') optBlocksInterruptParagraphs.checked = true;
+		// Legacy share links used a single significant-newlines toggle (the union of both options).
+		if (params.get('sig_newlines') === '1') {
+			optNestedBlocksInLists.checked = true;
+			optBlocksInterruptParagraphs.checked = true;
+		}
 	}
 
 	function getShareUrl() {
@@ -532,7 +571,8 @@ This div is never closed.</code></pre>
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
-		if (optSignificantNewlines.checked) url.searchParams.set('sig_newlines', '1');
+		if (optNestedBlocksInLists.checked) url.searchParams.set('nested_blocks', '1');
+		if (optBlocksInterruptParagraphs.checked) url.searchParams.set('interrupt_paragraphs', '1');
 		return url.toString();
 	}
 
@@ -597,7 +637,8 @@ This div is never closed.</code></pre>
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
-		formData.append('significant_newlines', optSignificantNewlines.checked ? '1' : '0');
+		formData.append('nested_blocks_in_lists', optNestedBlocksInLists.checked ? '1' : '0');
+		formData.append('blocks_interrupt_paragraphs', optBlocksInterruptParagraphs.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -717,7 +758,8 @@ This div is never closed.</code></pre>
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	optSoftBreakBr.addEventListener('change', convert);
-	optSignificantNewlines.addEventListener('change', convert);
+	optNestedBlocksInLists.addEventListener('change', convert);
+	optBlocksInterruptParagraphs.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);

@@ -63,7 +63,8 @@ class DjotController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$significantNewlines = (bool)$this->request->getData('significant_newlines');
+		$nestedBlocksInLists = (bool)$this->request->getData('nested_blocks_in_lists');
+		$blocksInterruptParagraphs = (bool)$this->request->getData('blocks_interrupt_paragraphs');
 		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
@@ -76,11 +77,14 @@ class DjotController extends SandboxAppController {
 		if ($djot) {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
-				if ($significantNewlines) {
-					$converter = DjotConverter::withSignificantNewlines(true, $collectWarnings, $strict, null, $profile);
-				} else {
-					$converter = new DjotConverter(true, $collectWarnings, $strict, null, $profile);
-				}
+				$converter = new DjotConverter(
+					xhtml: true,
+					warnings: $collectWarnings,
+					strict: $strict,
+					profile: $profile,
+					nestedBlocksInLists: $nestedBlocksInLists,
+					blocksInterruptParagraphs: $blocksInterruptParagraphs,
+				);
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}

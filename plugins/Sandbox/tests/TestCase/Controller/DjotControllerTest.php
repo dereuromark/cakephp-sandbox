@@ -177,17 +177,35 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithSignificantNewlines(): void {
+	public function testConvertWithBlocksInterruptParagraphs(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "Line one\nLine two",
-			'significant_newlines' => '1',
+			'djot' => "Here:\n- one\n- two",
+			'blocks_interrupt_paragraphs' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Significant newlines preserves newlines in output (but doesn't convert to <br>)
-		$this->assertStringContainsString("Line one\n", $response['html']);
+		// The list interrupts the paragraph without a blank line.
+		$this->assertStringContainsString('<p>Here:</p>', $response['html']);
+		$this->assertStringContainsString('<ul>', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithNestedBlocksInLists(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "- Item\n\t- Sub one\n\t- Sub two",
+			'nested_blocks_in_lists' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		// The indented sublist nests without a blank line, producing two <ul>.
+		$this->assertSame(2, substr_count($response['html'], '<ul>'));
+		$this->assertStringContainsString('Sub one', $response['html']);
 	}
 
 	/**
