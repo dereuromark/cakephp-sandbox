@@ -46,7 +46,6 @@ $this->end();
 	<strong>How Extensions Work:</strong>
 	Extensions can register inline patterns (for custom syntax like @mentions),
 	block patterns (for custom block elements), and render event listeners (to modify output).
-</p>
 </div>
 
 <div class="card mb-4">
@@ -100,10 +99,10 @@ $this->end();
 				<h6>Usage Example:</h6>
 				<?php if ($key === 'frontmatter') { ?>
 				<pre class="bg-light p-2 border rounded"><code class="language-php">$ext = new <?= h($example['name']) ?>();
-$converter = new DjotConverter();
+$converter = new CarveConverter();
 $converter->addExtension($ext);
 
-$html = $converter->convert($djot);
+$html = $converter->convert($carve);
 
 // Retrieve the frontmatter after conversion
 $fm = $ext->getFrontmatter();
@@ -112,10 +111,10 @@ if ($fm !== null) {
     $content = $fm->getContent(); // Raw string content
 }</code></pre>
 				<?php } else { ?>
-				<pre class="bg-light p-2 border rounded"><code class="language-php">$converter = new DjotConverter();
+				<pre class="bg-light p-2 border rounded"><code class="language-php">$converter = new CarveConverter();
 $converter->addExtension(new <?= h($example['name']) ?>());
 
-$html = $converter->convert($djot);</code></pre>
+$html = $converter->convert($carve);</code></pre>
 				<?php } ?>
 			</div>
 		</div>
@@ -816,7 +815,7 @@ Or contact @alice and @bob directly.</textarea>
 
 		try {
 			const params = new URLSearchParams();
-			params.append('djot', input.value);
+			params.append('carve', input.value);
 			enabledExtensions.forEach(ext => params.append('extensions[]', ext));
 
 			const response = await fetch(convertUrl, {

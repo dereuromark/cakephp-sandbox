@@ -304,7 +304,7 @@ class CarveController extends SandboxAppController {
 				'description' => 'Adds default attributes to elements by type. This demo adds: images get lazy loading, tables get Bootstrap classes, links get text-primary class, and code blocks get dark styling.',
 				'class' => DefaultAttributesExtension::class,
 				'example_djot' => <<<'DJOT'
-Check out this [link to Carve](https://djot.net).
+Check out this [link to Carve](https://github.com/markup-carve/carve).
 
 ![Sample image](/img/cake.icon.png)
 
@@ -329,11 +329,11 @@ DJOT,
 				'description' => 'Automatically converts bare URLs and email addresses into clickable links without requiring explicit link syntax.',
 				'class' => AutolinkExtension::class,
 				'example_djot' => <<<'DJOT'
-Visit https://djot.net for the official documentation.
+Visit https://github.com/markup-carve/carve for the official documentation.
 
 Contact us at info@example.com for support.
 
-Also check out https://github.com/markup-carve/carve-php-php for the PHP implementation.
+Also check out https://github.com/markup-carve/carve-php for the PHP implementation.
 DJOT,
 				'options' => [
 					'allowedSchemes' => "['https', 'http', 'mailto']",
@@ -344,9 +344,9 @@ DJOT,
 				'description' => 'Adds target="_blank" and rel="noopener noreferrer" attributes to external links for security and UX.',
 				'class' => ExternalLinksExtension::class,
 				'example_djot' => <<<'DJOT'
-Check out [Djot's homepage](https://djot.net) for more information.
+Check out [Carve's homepage](https://github.com/markup-carve/carve) for more information.
 
-This [internal link](/sandbox/djot) stays in the same tab.
+This [internal link](/sandbox/carve) stays in the same tab.
 
 Visit [GitHub](https://github.com) to see the source code.
 DJOT,
@@ -409,9 +409,9 @@ DJOT,
 				'description' => 'Automatically generates a table of contents from document headings. Can be retrieved manually or auto-inserted at top/bottom.',
 				'class' => TableOfContentsExtension::class,
 				'example_djot' => <<<'DJOT'
-# Djot Documentation
+# Carve Documentation
 
-An overview of the Djot markup language.
+An overview of the Carve markup language.
 
 ## Basic Syntax
 
@@ -435,7 +435,7 @@ Grid-based table syntax.
 
 ## Conclusion
 
-Djot is a powerful markup language.
+Carve is a powerful markup language.
 DJOT,
 				'options' => [
 					'minLevel' => '1',
@@ -595,7 +595,7 @@ Install the package with Composer:
 ::: tab
 ### Usage
 
-Convert Djot to HTML:
+Convert Carve to HTML:
 
 `$html = $converter->convert($carve);`
 :::
