@@ -64,7 +64,7 @@ class CarveController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$significantNewlines = (bool)$this->request->getData('significant_newlines');
+		$blocksInterruptParagraphs = (bool)$this->request->getData('blocks_interrupt_paragraphs');
 		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
@@ -77,8 +77,8 @@ class CarveController extends SandboxAppController {
 		if ($carve) {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
-				if ($significantNewlines) {
-					$converter = CarveConverter::withSignificantNewlines(true, $collectWarnings, $strict, null, $profile);
+				if ($blocksInterruptParagraphs) {
+					$converter = CarveConverter::withBlocksInterruptParagraphs(true, $collectWarnings, $strict, null, $profile);
 				} else {
 					$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
 				}

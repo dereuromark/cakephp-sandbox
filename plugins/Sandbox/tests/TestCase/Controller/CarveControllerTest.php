@@ -178,18 +178,33 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithSignificantNewlines(): void {
+	public function testConvertWithBlocksInterruptParagraphs(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "Line one\nLine two",
-			'significant_newlines' => '1',
+			'carve' => "Shopping:\n- milk\n- bread",
+			'blocks_interrupt_paragraphs' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Significant newlines preserve the soft break in the output (the <br>
-		// rendering itself is controlled by the separate soft_break_br option).
-		$this->assertStringContainsString("Line one\n", $response['html']);
+		// The list interrupts the paragraph without a blank line in between.
+		$this->assertStringContainsString('<p>Shopping:</p>', $response['html']);
+		$this->assertStringContainsString('<ul>', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertNestedBlocksAreNativeWithoutFlag(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "- Item\n  > nested quote",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		// Nesting a block inside a list item needs no flag in Carve.
+		$this->assertStringContainsString('<blockquote>', $response['html']);
 	}
 
 	/**
