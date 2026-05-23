@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20eda72420003c9c7e0ac7fee58f9c1c",
+    "content-hash": "72ef6b6a438f1c840d95bebf33e984b2",
     "packages": [
         {
             "name": "brick/math",
@@ -6008,6 +6008,76 @@
                 "source": "https://github.com/markstory/mini-asset"
             },
             "time": "2025-04-26T03:30:46+00:00"
+        },
+        {
+            "name": "markup-carve/carve-php",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markup-carve/carve-php.git",
+                "reference": "a179ab405857511b58f47f9a1c014d48e400daaa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/a179ab405857511b58f47f9a1c014d48e400daaa",
+                "reference": "a179ab405857511b58f47f9a1c014d48e400daaa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "nikic/php-fuzzer": "^0.0.11",
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^2.1.32",
+                "phpunit/phpunit": "^11.0 || ^12.0 || ^13.0"
+            },
+            "suggest": {
+                "ext-intl": "Recommended for heading-ID transliteration: enables ICU romanization of non-Latin scripts (e.g. CJK, Arabic). Without it, a baked map covers Latin/Cyrillic/punctuation identically and other scripts fall back to the generated `section` id."
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/carve"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Carve\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://github.com/dereuromark"
+                },
+                {
+                    "name": "PHP Collective (djot-php, upstream)",
+                    "homepage": "https://github.com/php-collective"
+                }
+            ],
+            "description": "PHP parser for Carve, a human-centered lightweight markup language derived from djot-php.",
+            "homepage": "https://github.com/markup-carve/carve-php",
+            "keywords": [
+                "carve",
+                "djot",
+                "markup",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/markup-carve/carve-php/issues",
+                "source": "https://github.com/markup-carve/carve-php/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/dereuromark",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-05-23T01:43:03+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -13289,6 +13359,7 @@
         "dereuromark/cakephp-workflow": 20,
         "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
+        "markup-carve/carve-php": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
         "php-collective/file-storage": 20,
