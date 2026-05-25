@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "brick/math",
-            "version": "0.17.1",
+            "version": "0.17.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/brick/math.git",
-                "reference": "6aef71a9fbbd1ee7be0e313cd627f8e6f7125a5b"
+                "reference": "8189e751995f9e15729c1aa2f89fa8f166ffe818"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/brick/math/zipball/6aef71a9fbbd1ee7be0e313cd627f8e6f7125a5b",
-                "reference": "6aef71a9fbbd1ee7be0e313cd627f8e6f7125a5b",
+                "url": "https://api.github.com/repos/brick/math/zipball/8189e751995f9e15729c1aa2f89fa8f166ffe818",
+                "reference": "8189e751995f9e15729c1aa2f89fa8f166ffe818",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
             ],
             "support": {
                 "issues": "https://github.com/brick/math/issues",
-                "source": "https://github.com/brick/math/tree/0.17.1"
+                "source": "https://github.com/brick/math/tree/0.17.2"
             },
             "funding": [
                 {
@@ -63,7 +63,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-19T20:55:20+00:00"
+            "time": "2026-05-25T20:34:43+00:00"
         },
         {
             "name": "brick/varexporter",
@@ -2812,12 +2812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-menu.git",
-                "reference": "a55ec6f3aa98b5dd204db8eb06fd2dfc2eef0786"
+                "reference": "a4a4075594f4ff4b1e87a363a80f419921107c36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/a55ec6f3aa98b5dd204db8eb06fd2dfc2eef0786",
-                "reference": "a55ec6f3aa98b5dd204db8eb06fd2dfc2eef0786",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/a4a4075594f4ff4b1e87a363a80f419921107c36",
+                "reference": "a4a4075594f4ff4b1e87a363a80f419921107c36",
                 "shasum": ""
             },
             "require": {
@@ -2872,7 +2872,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-menu/issues",
                 "source": "https://github.com/dereuromark/cakephp-menu"
             },
-            "time": "2026-05-25T20:12:40+00:00"
+            "time": "2026-05-25T22:18:53+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -3626,12 +3626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "32791a0b2e093893f8780614d86d0534a2fd9803"
+                "reference": "dbcdc0e80e01fd22537d9327a5c213557d9ed927"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/32791a0b2e093893f8780614d86d0534a2fd9803",
-                "reference": "32791a0b2e093893f8780614d86d0534a2fd9803",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/dbcdc0e80e01fd22537d9327a5c213557d9ed927",
+                "reference": "dbcdc0e80e01fd22537d9327a5c213557d9ed927",
                 "shasum": ""
             },
             "require": {
@@ -3639,8 +3639,11 @@
                 "dereuromark/cakephp-shim": "^3.0.0",
                 "php": ">=8.2"
             },
+            "conflict": {
+                "cakephp/authentication": "<4.0.0"
+            },
             "require-dev": {
-                "cakephp/authentication": "^3.1.0",
+                "cakephp/authentication": "^4.0.0",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "mobiledetect/mobiledetectlib": "^4.8.09",
                 "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0",
@@ -3685,7 +3688,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2026-05-25T15:02:37+00:00"
+            "time": "2026-05-25T20:59:49+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",

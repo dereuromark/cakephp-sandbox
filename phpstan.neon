@@ -3,9 +3,6 @@ includes:
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
 	- vendor/rector/type-perfect/config/extension.neon
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
-	# Temporary: cakephp-tools master dropped the entity template on Tools\Model\Table\Table.
-	# Restored upstream in dereuromark/cakephp-tools#334 — drop this baseline once that lands and deps update.
-	- phpstan-baseline.neon
 
 parameters:
 	level: 8
