@@ -30,7 +30,6 @@ use Cake\View\View;
  * @property \Favorites\View\Helper\LikesHelper $Likes
  * @property \Markup\View\Helper\MarkdownHelper $Markdown
  * @property \Sandbox\View\Helper\MediaEmbedBbcodeHelper $MediaEmbedBbcode
- * @property \Menu\View\Helper\MenuHelper $Menu
  * @property \Mercure\View\Helper\MercureHelper $Mercure
  * @property \Tools\View\Helper\MeterHelper $Meter
  * @property \App\View\Helper\NavigationHelper $Navigation
@@ -42,6 +41,7 @@ use Cake\View\View;
  * @property \Queue\View\Helper\QueueHelper $Queue
  * @property \Queue\View\Helper\QueueProgressHelper $QueueProgress
  * @property \Ratings\View\Helper\RatingHelper $Rating
+ * @property \Reactions\View\Helper\ReactionsHelper $Reactions
  * @property \App\View\Helper\SandboxHelper $Sandbox
  * @property \Search\View\Helper\SearchHelper $Search
  * @property \Favorites\View\Helper\StarsHelper $Stars
