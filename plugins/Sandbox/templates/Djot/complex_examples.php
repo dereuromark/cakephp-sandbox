@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var string $djot
  */
 
 $this->append('script');
@@ -324,12 +323,8 @@ DJOT,
 	],
 ];
 
-/**
- * Encode djot for URL sharing (matches JS compress function)
- */
-function encodeDjot(string $djot): string {
-	return base64_encode($djot);
-}
+// Encode djot for URL sharing (matches the JS compress function).
+$encodeDjot = static fn (string $djot): string => base64_encode($djot);
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -351,7 +346,7 @@ function encodeDjot(string $djot): string {
 			<strong><?= h($title) ?></strong>
 			<?= $this->Html->link(
 				'<i class="bi bi-play-circle"></i> Try',
-				['action' => 'index', '?' => ['d' => encodeDjot($example['code'])]],
+				['action' => 'index', '?' => ['d' => $encodeDjot($example['code'])]],
 				['class' => 'btn btn-sm btn-outline-primary', 'escapeTitle' => false]
 			) ?>
 		</div>
