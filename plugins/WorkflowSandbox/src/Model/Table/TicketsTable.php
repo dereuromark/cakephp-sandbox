@@ -12,8 +12,6 @@ use Cake\Validation\Validator;
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Ticket>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Assignees
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Ticket> find(string $type = 'all', mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Ticket findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket patchEntity(\WorkflowSandbox\Model\Entity\Ticket $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Ticket> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Ticket|false save(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
@@ -24,7 +22,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> loadInto(\WorkflowSandbox\Model\Entity\Ticket|array<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */

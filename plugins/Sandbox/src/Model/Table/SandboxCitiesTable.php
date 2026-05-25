@@ -16,8 +16,6 @@ use Cake\Validation\Validator;
  *
  * @extends \Cake\ORM\Table<array{}, \Sandbox\Model\Entity\SandboxCity>
  * @property \Data\Model\Table\CountriesTable&\Cake\ORM\Association\BelongsTo $Countries
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxCity> find(string $type = 'all', mixed ...$args)
- * @method \Sandbox\Model\Entity\SandboxCity findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCity patchEntity(\Sandbox\Model\Entity\SandboxCity $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxCity> patchEntities(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxCity|false save(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
@@ -28,7 +26,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCity|array<\Sandbox\Model\Entity\SandboxCity> loadInto(\Sandbox\Model\Entity\SandboxCity|array<\Sandbox\Model\Entity\SandboxCity> $entities, array $contain)
  */
 class SandboxCitiesTable extends Table {
 

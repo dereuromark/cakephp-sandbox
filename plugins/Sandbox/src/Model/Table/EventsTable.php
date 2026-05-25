@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
  * Events Model
  *
  * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}, \Sandbox\Model\Entity\Event>
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\Event> find(string $type = 'all', mixed ...$args)
- * @method \Sandbox\Model\Entity\Event findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\Event patchEntity(\Sandbox\Model\Entity\Event $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable<\Sandbox\Model\Entity\Event> $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\Event|false save(\Sandbox\Model\Entity\Event $entity, array $options = [])
@@ -21,7 +19,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\Sandbox\Model\Entity\Event $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
- * @method \Sandbox\Model\Entity\Event|array<\Sandbox\Model\Entity\Event> loadInto(\Sandbox\Model\Entity\Event|array<\Sandbox\Model\Entity\Event> $entities, array $contain)
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  */
 class EventsTable extends Table {

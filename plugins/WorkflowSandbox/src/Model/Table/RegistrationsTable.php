@@ -11,8 +11,6 @@ use Cake\Validation\Validator;
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Registration>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Registration> find(string $type = 'all', mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Registration findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration patchEntity(\WorkflowSandbox\Model\Entity\Registration $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Registration> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Registration|false save(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
@@ -23,7 +21,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Registration|array<\WorkflowSandbox\Model\Entity\Registration> loadInto(\WorkflowSandbox\Model\Entity\Registration|array<\WorkflowSandbox\Model\Entity\Registration> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */

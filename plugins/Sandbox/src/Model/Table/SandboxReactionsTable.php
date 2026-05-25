@@ -10,6 +10,8 @@ use Reactions\Model\Table\ReactionsTable;
  * instead of the app's main users table. Re-points the inherited `Users` association
  * (and therefore the `existsIn` rule) so the demo users validate, regardless of when
  * the table is first loaded.
+ *
+ * @property \Sandbox\Model\Table\SandboxUsersTable&\Cake\ORM\Association\BelongsTo $Users
  */
 class SandboxReactionsTable extends ReactionsTable {
 

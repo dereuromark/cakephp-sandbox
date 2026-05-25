@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var mixed $permission
  */
 
 use Menu\Item\ItemInterface;

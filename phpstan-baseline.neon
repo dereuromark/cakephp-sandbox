@@ -1,0 +1,55 @@
+parameters:
+	ignoreErrors:
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Search\Model\Behavior\SearchBehavior>, Cake\ORM\Entity> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/CountryRecordsTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Cake\ORM\Behavior\TimestampBehavior|Expose\Model\Behavior\ExposeBehavior>, Sandbox\Model\Entity\ExposedUser> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/ExposedUsersTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array, Sandbox\Model\Entity\SandboxAnimal> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/SandboxAnimalsTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Cake\ORM\Behavior\TreeBehavior>, Sandbox\Model\Entity\SandboxCategory> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/SandboxCategoriesTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Search\Model\Behavior\SearchBehavior|Tags\Model\Behavior\TagBehavior|Tools\Model\Behavior\SluggedBehavior>, Sandbox\Model\Entity\SandboxPost> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/SandboxPostsTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array, Sandbox\Model\Entity\SandboxProfile> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/SandboxProfilesTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array, Sandbox\Model\Entity\SandboxUser> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: plugins/Sandbox/src/Model/Table/SandboxUsersTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Cake\ORM\Behavior\TimestampBehavior>, App\Model\Entity\Role> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: src/Model/Table/RolesTable.php
+
+		-
+			rawMessage: 'Generic type Tools\Model\Table\Table<array<string, Cake\ORM\Behavior\TimestampBehavior>, App\Model\Entity\User> in PHPDoc tag @extends specifies 2 template types, but class Tools\Model\Table\Table supports only 1: TBehaviors (0-1 required)'
+			identifier: generics.moreTypes
+			count: 1
+			path: src/Model/Table/UsersTable.php

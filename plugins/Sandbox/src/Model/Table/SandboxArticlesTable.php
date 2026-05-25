@@ -10,8 +10,6 @@ use Cake\Validation\Validator;
  * SandboxArticles Model
  *
  * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\SandboxArticle>
- * @method \Cake\ORM\Query\SelectQuery<\Sandbox\Model\Entity\SandboxArticle> find(string $type = 'all', mixed ...$args)
- * @method \Sandbox\Model\Entity\SandboxArticle findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Sandbox\Model\Entity\SandboxArticle $entity, array $data, array $options = [])
  * @method array<\Sandbox\Model\Entity\SandboxArticle> patchEntities(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $data, array $options = [])
  * @method \Sandbox\Model\Entity\SandboxArticle|false save(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
@@ -22,7 +20,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> loadInto(\Sandbox\Model\Entity\SandboxArticle|array<\Sandbox\Model\Entity\SandboxArticle> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \AuditStash\Model\Behavior\AuditLogBehavior
  */

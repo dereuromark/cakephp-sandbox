@@ -12,8 +12,6 @@ use Cake\Validation\Validator;
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Content>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Reviewers
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \Cake\ORM\Query\SelectQuery<\WorkflowSandbox\Model\Entity\Content> find(string $type = 'all', mixed ...$args)
- * @method \WorkflowSandbox\Model\Entity\Content findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content patchEntity(\WorkflowSandbox\Model\Entity\Content $entity, array $data, array $options = [])
  * @method array<\WorkflowSandbox\Model\Entity\Content> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $data, array $options = [])
  * @method \WorkflowSandbox\Model\Entity\Content|false save(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
@@ -24,7 +22,6 @@ use Cake\Validation\Validator;
  * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
  * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Content|array<\WorkflowSandbox\Model\Entity\Content> loadInto(\WorkflowSandbox\Model\Entity\Content|array<\WorkflowSandbox\Model\Entity\Content> $entities, array $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
