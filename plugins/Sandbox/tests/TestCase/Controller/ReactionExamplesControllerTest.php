@@ -69,7 +69,8 @@ class ReactionExamplesControllerTest extends TestCase {
 		$this->assertRedirect();
 		$this->assertSame($before + 1, $reactions->find()->count());
 
-		// The 4-byte emoji must survive the DB round-trip (utf8mb4 connection), not become "????".
+		// The 4-byte emoji must survive the DB round-trip, not become "????". This guards the
+		// utf8mb3 connection regression on MySQL/MariaDB (a no-op on sqlite/pgsql, which never mangle it).
 		$stored = $reactions->find()->orderBy(['id' => 'DESC'])->firstOrFail();
 		$this->assertSame('🚀', $stored->reaction);
 	}
