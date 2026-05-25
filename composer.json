@@ -42,7 +42,6 @@
 		"friendsofcake/bootstrap-ui": "^5.0.0",
 		"dereuromark/cakephp-cache": "dev-master",
 		"symfony/filesystem": "@stable",
-		"icings/menu": "^5.0",
 		"friendsofcake/cakephp-csvview": "^5.0.0",
 		"friendsofcake/search": "^7.7.0",
 		"dereuromark/cakephp-data": "dev-master",
@@ -86,7 +85,9 @@
 		"josbeir/cakephp-mercure": "^0.2.0",
 		"php-collective/toml": "dev-master",
 		"dereuromark/cakephp-workflow": "dev-master",
-		"nette/neon": "^3.4"
+		"nette/neon": "^3.4",
+		"dereuromark/cakephp-reactions": "dev-master",
+		"dereuromark/cakephp-menu": "dev-master"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "dev-master as 0.6.0",
@@ -108,7 +109,8 @@
 			"Sandbox\\": "plugins/Sandbox/src/",
 			"AuthSandbox\\": "plugins/AuthSandbox/src/",
 			"WorkflowSandbox\\": "plugins/WorkflowSandbox/src/",
-			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/"
+			"StateMachineSandbox\\": "plugins/StateMachineSandbox/src/",
+			"MenuSandbox\\": "plugins/MenuSandbox/src/"
 		}
 	},
 	"autoload-dev": {
@@ -118,6 +120,7 @@
 			"AuthSandbox\\Test\\": "plugins/AuthSandbox/tests/",
 			"WorkflowSandbox\\Test\\": "plugins/WorkflowSandbox/tests/",
 			"StateMachineSandbox\\Test\\": "plugins/StateMachineSandbox/tests/",
+			"MenuSandbox\\Test\\": "plugins/MenuSandbox/tests/",
 			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
 			"Captcha\\Test\\": "vendor/dereuromark/cakephp-captcha/tests/",
 			"Cake\\PHPStan\\": "vendor/cakephp/cakephp/tests/PHPStan/"
@@ -133,6 +136,7 @@
 			"bin/cake migrations migrate -p QueueScheduler --no-lock",
 			"bin/cake migrations migrate -p Comments --no-lock",
 			"bin/cake migrations migrate -p Favorites --no-lock",
+			"bin/cake migrations migrate -p Reactions --no-lock",
 			"bin/cake migrations migrate -p FileStorage --no-lock",
 			"bin/cake migrations migrate -p Workflow --no-lock",
 			"bin/cake migrations migrate -p WorkflowSandbox --no-lock",
@@ -152,7 +156,7 @@
 			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
-		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p WorkflowSandbox",
+		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p WorkflowSandbox && bin/cake annotate all -r -p MenuSandbox",
 		"dto": "bin/cake dto generate && bin/cake dto generate -p Sandbox",
 		"test": "phpunit",
 		"test-coverage": "phpunit --log-junit webroot/coverage/unitreport.xml --coverage-html webroot/coverage --coverage-clover webroot/coverage/coverage.xml",

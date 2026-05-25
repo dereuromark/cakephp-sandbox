@@ -15,6 +15,7 @@ parameters:
 		- plugins/AuthSandbox/src/
 		- plugins/StateMachineSandbox/src/
 		- plugins/WorkflowSandbox/src/
+		- plugins/MenuSandbox/src/
 
 	bootstrapFiles:
 		- %rootDir%/../../../config/bootstrap.php

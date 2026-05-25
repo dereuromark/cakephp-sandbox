@@ -30,10 +30,11 @@ return [
 	'BootstrapUI' => [],
 	'Markup' => [],
 	'Feedback' => [],
-	'Icings/Menu' => [],
+	'Menu' => [],
 	'Expose' => [],
 	'Translate' => [],
 	'Favorites' => [],
+	'Reactions' => [],
 	'QrCode' => [],
 	'AuditStash' => [],
 	'FileStorage' => [],
@@ -46,4 +47,5 @@ return [
 	'Sandbox' => [],
 	'WorkflowSandbox' => [],
 	'StateMachineSandbox' => [], // Redirects only
+	'MenuSandbox' => [],
 ];
