@@ -30,7 +30,7 @@ use Cake\View\View;
  * @property \Favorites\View\Helper\LikesHelper $Likes
  * @property \Markup\View\Helper\MarkdownHelper $Markdown
  * @property \Sandbox\View\Helper\MediaEmbedBbcodeHelper $MediaEmbedBbcode
- * @property \Icings\Menu\View\Helper\MenuHelper $Menu
+ * @property \Menu\View\Helper\MenuHelper $Menu
  * @property \Mercure\View\Helper\MercureHelper $Mercure
  * @property \Tools\View\Helper\MeterHelper $Meter
  * @property \App\View\Helper\NavigationHelper $Navigation

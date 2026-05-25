@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72ef6b6a438f1c840d95bebf33e984b2",
+    "content-hash": "03ecdde57bf9136a32d28cb34142be77",
     "packages": [
         {
             "name": "brick/math",
@@ -2809,6 +2809,74 @@
             "time": "2026-05-22T18:51:47+00:00"
         },
         {
+            "name": "dereuromark/cakephp-menu",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-menu.git",
+                "reference": "dbc7296936cf0d3702566b98c2774566f40fce2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/dbc7296936cf0d3702566b98c2774566f40fce2c",
+                "reference": "dbc7296936cf0d3702566b98c2774566f40fce2c",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.3",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "dev-master",
+                "phpstan/phpstan": "^2.1",
+                "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Menu\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Florian Krämer",
+                    "homepage": "https://github.com/burzum/",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Composable menu builder and renderer for CakePHP",
+            "homepage": "https://github.com/dereuromark/cakephp-menu",
+            "keywords": [
+                "cakephp",
+                "helper",
+                "menu",
+                "navigation",
+                "plugin",
+                "view"
+            ],
+            "support": {
+                "docs": "https://github.com/dereuromark/cakephp-menu/wiki",
+                "issues": "https://github.com/dereuromark/cakephp-menu/issues",
+                "source": "https://github.com/dereuromark/cakephp-menu"
+            },
+            "time": "2026-05-25T17:50:07+00:00"
+        },
+        {
             "name": "dereuromark/cakephp-meta",
             "version": "dev-master",
             "source": {
@@ -3153,6 +3221,77 @@
                 "wiki": "https://github.com/dereuromark/cakephp-ratings/blob/master/docs"
             },
             "time": "2026-05-23T12:56:38+00:00"
+        },
+        {
+            "name": "dereuromark/cakephp-reactions",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dereuromark/cakephp-reactions.git",
+                "reference": "975f41ce4bcc4703040dd7ce857cfd0a815e4dde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-reactions/zipball/975f41ce4bcc4703040dd7ce857cfd0a815e4dde",
+                "reference": "975f41ce4bcc4703040dd7ce857cfd0a815e4dde",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.1.1",
+                "php": ">=8.2"
+            },
+            "conflict": {
+                "cakephp/migrations": "<4.5"
+            },
+            "require-dev": {
+                "cakephp/migrations": "^5.0.0",
+                "fig-r/psr2r-sniffer": "dev-master",
+                "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Reactions\\": "src/",
+                    "Reactions\\Test\\Fixture\\": "tests/Fixture/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Other contributors",
+                    "homepage": "https://github.com/dereuromark/cakephp-reactions/graphs/contributors",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A CakePHP plugin for emoji/named reactions on any model",
+            "homepage": "https://github.com/dereuromark/cakephp-reactions/",
+            "keywords": [
+                "cakephp",
+                "emoji",
+                "likes",
+                "plugin",
+                "reactions",
+                "votes"
+            ],
+            "support": {
+                "issues": "https://github.com/dereuromark/cakephp-reactions/issues",
+                "source": "https://github.com/dereuromark/cakephp-reactions/"
+            },
+            "time": "2026-05-25T16:31:34+00:00"
         },
         {
             "name": "dereuromark/cakephp-setup",
@@ -4595,58 +4734,6 @@
             "time": "2025-04-15T13:24:32+00:00"
         },
         {
-            "name": "icings/menu",
-            "version": "5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/icings/menu.git",
-                "reference": "af239c09ec62274b88b118b47cf4444f52a9d2dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/icings/menu/zipball/af239c09ec62274b88b118b47cf4444f52a9d2dc",
-                "reference": "af239c09ec62274b88b118b47cf4444f52a9d2dc",
-                "shasum": ""
-            },
-            "require": {
-                "cakephp/cakephp": "^5.0",
-                "knplabs/knp-menu": "^3.3",
-                "php": ">=8.1"
-            },
-            "require-dev": {
-                "cakephp/cakephp-codesniffer": "^5.0",
-                "phpunit/phpunit": "^10.1"
-            },
-            "type": "cakephp-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Icings\\Menu\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Oliver Nowak",
-                    "homepage": "https://nowak-media.de",
-                    "role": "Author"
-                }
-            ],
-            "description": "A KnpMenu seasoned menu plugin for CakePHP.",
-            "keywords": [
-                "cakephp",
-                "knp-menu",
-                "menu"
-            ],
-            "support": {
-                "issues": "https://github.com/icings/menu/issues",
-                "source": "https://github.com/icings/menu/tree/5.0.0"
-            },
-            "time": "2023-09-13T20:46:24+00:00"
-        },
-        {
             "name": "intervention/gif",
             "version": "5.0.1",
             "source": {
@@ -5044,80 +5131,6 @@
                 "source": "https://github.com/jsonrainbow/json-schema/tree/6.8.2"
             },
             "time": "2026-05-05T05:39:01+00:00"
-        },
-        {
-            "name": "knplabs/knp-menu",
-            "version": "v3.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/KnpLabs/KnpMenu.git",
-                "reference": "79d325909a1d428a93f1a0f55e90177830e283bb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/KnpMenu/zipball/79d325909a1d428a93f1a0f55e90177830e283bb",
-                "reference": "79d325909a1d428a93f1a0f55e90177830e283bb",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.1"
-            },
-            "conflict": {
-                "symfony/http-foundation": "<5.4",
-                "twig/twig": "<2.16"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^2.1",
-                "phpunit/phpunit": "^9.6",
-                "psr/container": "^1.0 || ^2.0",
-                "symfony/http-foundation": "^5.4 || ^6.0 || ^7.0",
-                "symfony/phpunit-bridge": "^7.0",
-                "symfony/routing": "^5.4 || ^6.0 || ^7.0",
-                "twig/twig": "^2.16 || ^3.0"
-            },
-            "suggest": {
-                "twig/twig": "for the TwigRenderer and the integration with your templates"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Knp\\Menu\\": "src/Knp/Menu"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "KnpLabs",
-                    "homepage": "https://knplabs.com"
-                },
-                {
-                    "name": "Christophe Coevoet",
-                    "email": "stof@notk.org"
-                },
-                {
-                    "name": "The Community",
-                    "homepage": "https://github.com/KnpLabs/KnpMenu/contributors"
-                }
-            ],
-            "description": "An object oriented menu library",
-            "homepage": "https://knplabs.com",
-            "keywords": [
-                "menu",
-                "tree"
-            ],
-            "support": {
-                "issues": "https://github.com/KnpLabs/KnpMenu/issues",
-                "source": "https://github.com/KnpLabs/KnpMenu/tree/v3.8.0"
-            },
-            "time": "2025-06-13T15:03:33+00:00"
         },
         {
             "name": "laminas/laminas-diactoros",
@@ -13343,11 +13356,13 @@
         "dereuromark/cakephp-ide-helper": 20,
         "dereuromark/cakephp-ide-helper-extra": 20,
         "dereuromark/cakephp-markup": 20,
+        "dereuromark/cakephp-menu": 20,
         "dereuromark/cakephp-meta": 20,
         "dereuromark/cakephp-qrcode": 20,
         "dereuromark/cakephp-queue": 20,
         "dereuromark/cakephp-queue-scheduler": 20,
         "dereuromark/cakephp-ratings": 20,
+        "dereuromark/cakephp-reactions": 20,
         "dereuromark/cakephp-setup": 20,
         "dereuromark/cakephp-shim": 20,
         "dereuromark/cakephp-tags": 20,

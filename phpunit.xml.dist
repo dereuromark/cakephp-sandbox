@@ -21,6 +21,9 @@
 		<testsuite name="workflow-sandbox">
 			<directory>plugins/WorkflowSandbox/tests/TestCase/</directory>
 		</testsuite>
+		<testsuite name="menu-sandbox">
+			<directory>plugins/MenuSandbox/tests/TestCase/</directory>
+		</testsuite>
 	</testsuites>
 
 	<extensions>
@@ -33,6 +36,7 @@
 			<directory suffix=".php">plugins/Sandbox/src/</directory>
 			<directory suffix=".php">plugins/AuthSandbox/src/</directory>
 			<directory suffix=".php">plugins/WorkflowSandbox/src/</directory>
+			<directory suffix=".php">plugins/MenuSandbox/src/</directory>
 		</include>
 		<exclude>
 			<directory suffix=".php">src/Dto/</directory>

@@ -77,6 +77,13 @@
 						</div>
 
 						<div class="plugin-item">
+							<h4 class="h6">Reactions Plugin</h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('GitHub-style reactions', ['controller' => 'ReactionExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
 							<h4 class="h6">Comments Plugin</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Comment everything', ['controller' => 'CommentExamples', 'action' => 'index']); ?></li>
@@ -254,7 +261,7 @@
 						<div class="plugin-item">
 							<h4 class="h6">Menu Plugin</h4>
 							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Menu Building in CakePHP', ['controller' => 'Menu', 'action' => 'index']); ?></li>
+								<li><?php echo $this->Html->link('Composable menu builder &amp; renderer', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['escapeTitle' => false]); ?></li>
 							</ul>
 						</div>
 
