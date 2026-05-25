@@ -13,7 +13,6 @@
 <p>lets people attach multiple GitHub-style reactions (👍 🎉 🚀 …) per record. Make any model reactable in minutes!</p>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
-	<li class="heading"><?= __('') ?></li>
 	<li><?php echo $this->Navigation->link('Overview', ['action' => 'index']); ?></li>
 	<li><?php echo $this->Navigation->link('Behavior API', ['action' => 'api']); ?></li>
 </ul>

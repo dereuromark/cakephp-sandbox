@@ -157,17 +157,19 @@ class ReactionExamplesController extends SandboxAppController {
 	 */
 	protected function user(): SandboxUser {
 		$sid = $this->request->getSession()->id() ?: (string)env('REMOTE_ADDR');
+		// Hash into a guaranteed-valid, unique local part (a raw IPv6 REMOTE_ADDR is not a valid email).
+		$email = 'demo-' . substr(md5($sid), 0, 12) . '@example.de';
 		$users = $this->fetchTable('Sandbox.SandboxUsers');
 
 		/** @var \Sandbox\Model\Entity\SandboxUser|null $user */
 		$user = $users->find()
-			->where(['email' => $sid . '@example.de'])
+			->where(['email' => $email])
 			->first();
 		if (!$user) {
 			$user = $users->newEntity([
 				'username' => 'DemoUser',
 				'slug' => 'demo-user',
-				'email' => $sid . '@example.de',
+				'email' => $email,
 				'password' => '',
 			]);
 			$users->saveOrFail($user);
