@@ -324,12 +324,8 @@ DJOT,
 	],
 ];
 
-/**
- * Encode Carve markup for URL sharing (matches JS compress function)
- */
-function encodeCarve(string $carve): string {
-	return base64_encode($carve);
-}
+// Encode Carve markup for URL sharing (matches the JS compress function).
+$encodeCarve = static fn (string $carve): string => base64_encode($carve);
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -351,7 +347,7 @@ function encodeCarve(string $carve): string {
 			<strong><?= h($title) ?></strong>
 			<?= $this->Html->link(
 				'<i class="bi bi-play-circle"></i> Try',
-				['action' => 'index', '?' => ['d' => encodeCarve($example['code'])]],
+				['action' => 'index', '?' => ['d' => $encodeCarve($example['code'])]],
 				['class' => 'btn btn-sm btn-outline-primary', 'escapeTitle' => false]
 			) ?>
 		</div>

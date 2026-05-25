@@ -115,28 +115,18 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 
 	<h4 class="mt-4">Permission service</h4>
 	<p>
-		<code>PermissionResolver</code> bridges to an authorization service exposing a <code>can()</code> method
-		(a tiny inline stub here). Items carry a <code>permission</code> key; denied ones are hidden:
+		<code>PermissionResolver</code> bridges to a <code>can()</code>-style authorization service. Here we hand it a
+		closure (invoked via <code>__invoke</code>); items carry a <code>permission</code> key and denied ones are hidden:
 	</p>
 
 	<?php
-	$authorizer = new class {
-
-		/**
-		 * @param string $permission
-		 * @return bool
-		 */
-		public function can(string $permission): bool {
-			return $permission === 'menu.public';
-		}
-
-	};
+	$can = static fn (string $permission): bool => $permission === 'menu.public';
 	$perm = $this->Menu->create('perm', ['menuAttributes' => ['class' => 'nav nav-pills']]);
 	$perm->addItem('Public area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['data' => ['permission' => 'menu.public']]);
 	$perm->addItem('Secret area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['permission' => 'menu.secret']]);
-	echo $this->Menu->render('perm', ['resolver' => new PermissionResolver($authorizer)]);
+	echo $this->Menu->render('perm', ['resolver' => new PermissionResolver($can, null, 'permission', '__invoke')]);
 	?>
-	<p class="text-muted"><small>"Secret area" is hidden because <code>can('menu.secret')</code> returns false.</small></p>
+	<p class="text-muted"><small>"Secret area" is hidden because the closure denies <code>menu.secret</code>.</small></p>
 
 	<h4 class="mt-4">Custom callback</h4>
 	<p><code>CallbackResolver</code> runs arbitrary logic per item with depth context. Here it appends a depth badge:</p>

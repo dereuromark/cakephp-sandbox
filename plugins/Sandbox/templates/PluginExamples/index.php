@@ -16,9 +16,22 @@
 				<div class="card-body">
 					<div class="plugin-list plugin-list-two-columns">
 						<div class="plugin-item">
+							<h4 class="h6">Reactions Plugin <span class="badge bg-success ms-2">NEW</span></h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('GitHub-style reactions', ['controller' => 'ReactionExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
+							<h4 class="h6">Workflow Plugin <span class="badge bg-success ms-2">NEW</span></h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Workflow Examples', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
 							<h4 class="h6">
 								Bouncer Plugin
-								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Approval Workflow / Content Moderation', ['controller' => 'BouncerExamples', 'action' => 'index']); ?></li>
@@ -28,7 +41,6 @@
 						<div class="plugin-item">
 							<h4 class="h6">
 								FileStorage Plugin
-								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('File Storage with FlySystem', ['controller' => 'FileStorageExamples', 'action' => 'index']); ?></li>
@@ -38,7 +50,6 @@
 						<div class="plugin-item">
 							<h4 class="h6">
 								AuditStash Plugin
-								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Database Audit Trail with TablePersister', ['controller' => 'AuditStash', 'action' => 'index']); ?></li>
@@ -48,7 +59,6 @@
 						<div class="plugin-item">
 							<h4 class="h6">
 								CakeDto Plugin
-								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('DTOs in CakePHP', ['controller' => 'DtoExamples', 'action' => 'index']); ?></li>
@@ -73,13 +83,6 @@
 							<h4 class="h6">Favorites Plugin</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Favorites (Star, Like, Reactions)', ['controller' => 'FavoriteExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">Reactions Plugin</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('GitHub-style reactions', ['controller' => 'ReactionExamples', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 
@@ -216,17 +219,9 @@
 						<div class="plugin-item">
 							<h4 class="h6">
 								Mercure Plugin
-								<span class="badge bg-success ms-2">NEW</span>
 							</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Real-Time Updates with Server-Sent Events', ['controller' => 'MercureExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">Workflow Plugin</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Workflow Examples', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?></li>
 							</ul>
 						</div>
 
@@ -255,13 +250,6 @@
 							<h4 class="h6">Search Plugin</h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Advanced Filtering in CakePHP', ['controller' => 'SearchExamples', 'action' => 'index']); ?></li>
-							</ul>
-						</div>
-
-						<div class="plugin-item">
-							<h4 class="h6">Menu Plugin</h4>
-							<ul class="mb-3">
-								<li><?php echo $this->Html->link('Composable menu builder &amp; renderer', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['escapeTitle' => false]); ?></li>
 							</ul>
 						</div>
 
