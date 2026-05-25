@@ -11,8 +11,14 @@ $nbFeatures = $navbar->addItem('Features', '#', ['id' => 'nav-features']);
 $nbFeatures->getSubMenu()->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
 $nbFeatures->getSubMenu()->addItem('Renderers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers']);
 $nbFeatures->getSubMenu()->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced']);
+$nbFeatures->getSubMenu()->addDivider();
+$nbFeatures->getSubMenu()->addItem('Plugin on GitHub', 'https://github.com/dereuromark/cakephp-menu', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
 $navbar->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
 $navbar->addItem('CakePHP Book', 'https://book.cakephp.org', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
+
+// "You are here": resolve the active item and walk its ancestor path.
+$current = $this->Menu->getCurrentItem('navbar');
+$trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->Menu->extractPath($current)) : [];
 ?>
 
 <div class="row">
@@ -35,6 +41,14 @@ $navbar->addItem('CakePHP Book', 'https://book.cakephp.org', ['attributes' => ['
 	<nav class="navbar navbar-expand bg-body-tertiary border rounded px-3 mb-3">
 		<?php echo $this->Menu->render('navbar', ['renderer' => Bootstrap5Renderer::class]); ?>
 	</nav>
+
+	<p class="text-muted">
+		<small>
+			The dropdown ends with a divider (<code>addDivider()</code>) before the external link.
+			Via <code>getCurrentItem()</code> + <code>extractPath()</code> the active trail is:
+			<b><?php echo $trail ? h(implode(' › ', $trail)) : __('(none)'); ?></b>.
+		</small>
+	</p>
 
 	<pre><code>$navbar = $this-&gt;Menu-&gt;create('navbar', ['menuAttributes' =&gt; ['class' =&gt; 'navbar-nav']]);
 $navbar-&gt;addItem('Home', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);

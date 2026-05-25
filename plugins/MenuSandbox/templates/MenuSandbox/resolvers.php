@@ -7,6 +7,7 @@ use Menu\Item\ItemInterface;
 use Menu\Resolver\AuthorizationResolver;
 use Menu\Resolver\CallbackResolver;
 use Menu\Resolver\LoggedInResolver;
+use Menu\Resolver\PermissionResolver;
 use Menu\Resolver\Psr7UrlResolver;
 use Menu\Resolver\ResolverCollection;
 use Menu\Resolver\ResolverContext;
@@ -68,6 +69,25 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	echo $this->Menu->render('section', ['resolver' => new SectionResolver($request)]);
 	?>
 
+	<h4 class="mt-4">Alternate match routes</h4>
+	<p>
+		<code>matchRoutes</code> lets one item be active for several URLs. The item below links to the Menu
+		Sandbox home but is also marked active on every Menu Sandbox sub-page — including this one:
+	</p>
+
+	<?php
+	$alt = $this->Menu->create('alt', ['menuAttributes' => ['class' => 'nav nav-pills menu-demo-active']]);
+	$alt->addItem('Menu Sandbox (any section)', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], [
+		'matchRoutes' => [
+			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers'],
+			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers'],
+			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'],
+		],
+	]);
+	$alt->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
+	echo $this->Menu->render('alt');
+	?>
+
 	<h4 class="mt-4">Authorization</h4>
 	<p>
 		<code>AuthorizationResolver</code> takes a callback returning <code>true</code>/<code>false</code> to
@@ -92,6 +112,31 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 		),
 	]);
 	?>
+
+	<h4 class="mt-4">Permission service</h4>
+	<p>
+		<code>PermissionResolver</code> bridges to an authorization service exposing a <code>can()</code> method
+		(a tiny inline stub here). Items carry a <code>permission</code> key; denied ones are hidden:
+	</p>
+
+	<?php
+	$authorizer = new class {
+
+		/**
+		 * @param string $permission
+		 * @return bool
+		 */
+		public function can(string $permission): bool {
+			return $permission === 'menu.public';
+		}
+
+	};
+	$perm = $this->Menu->create('perm', ['menuAttributes' => ['class' => 'nav nav-pills']]);
+	$perm->addItem('Public area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['data' => ['permission' => 'menu.public']]);
+	$perm->addItem('Secret area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['permission' => 'menu.secret']]);
+	echo $this->Menu->render('perm', ['resolver' => new PermissionResolver($authorizer)]);
+	?>
+	<p class="text-muted"><small>"Secret area" is hidden because <code>can('menu.secret')</code> returns false.</small></p>
 
 	<h4 class="mt-4">Custom callback</h4>
 	<p><code>CallbackResolver</code> runs arbitrary logic per item with depth context. Here it appends a depth badge:</p>
