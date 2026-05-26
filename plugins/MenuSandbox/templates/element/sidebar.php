@@ -46,10 +46,14 @@ $menu->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target
 	</p>
 
 	<?php
-	// A single chevron glyph for the caret; CSS rotates it when the branch is expanded
-	// (Bootstrap toggles aria-expanded on click, so the indicator stays in sync).
+	// `toggleClass` defaults to `nav-link d-flex justify-content-between …` which pushes the caret
+	// to the far edge and makes the toggle visually wider than the leaves. Plain `nav-link` keeps
+	// the toggle in line with every other item, with the caret immediately after the label.
+	// One chevron glyph for the caret; CSS rotates it on [aria-expanded="true"], so the indicator
+	// stays in sync with Bootstrap's live collapse state.
 	echo $this->Menu->render($menu, [
 		'renderer' => Bootstrap5SidebarRenderer::class,
+		'toggleClass' => 'nav-link',
 		'caretClosed' => '<i class="bi bi-chevron-right"></i>',
 		'caretOpen' => '<i class="bi bi-chevron-right"></i>',
 	]);
