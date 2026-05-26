@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  */
 
+use Menu\Link\Link;
 use Menu\Renderer\Bootstrap5Renderer;
 use Menu\Renderer\JsonRenderer;
 
@@ -11,16 +12,18 @@ use Menu\Renderer\JsonRenderer;
  *
  * @param \App\View\AppView $view
  * @param string $name
+ * @param string $menuClass
  * @return \Menu\MenuInterface
  */
-$build = function ($view, string $name) {
-	$menu = $view->Menu->create($name, ['menuAttributes' => ['class' => 'nav nav-pills']]);
+$build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
+	$menu = $view->Menu->create($name, ['menuAttributes' => ['class' => $menuClass]]);
 	$menu->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
 	$account = $menu->addItem('Account', '#');
 	$account->getSubMenu()->addItem('Login', ['plugin' => false, 'controller' => 'Account', 'action' => 'login']);
 	$account->getSubMenu()->addItem('Register', ['plugin' => false, 'controller' => 'Account', 'action' => 'register']);
 	$menu->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
-	$menu->addItem('Book', 'https://book.cakephp.org', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
+	// External link: attributes belong on the <a>, so pass a Link (item `attributes` would land on the <li>).
+	$menu->addItem('Book', Link::create('https://book.cakephp.org', ['target' => '_blank', 'rel' => 'noopener']));
 
 	return $menu;
 };
@@ -36,9 +39,12 @@ $build = function ($view, string $name) {
 	<p>The same menu can be rendered by different renderers without changing how it is built.</p>
 
 	<h4>Default (string template) renderer</h4>
-	<p>Semantic nested <code>&lt;ul&gt;</code> markup with <code>aria-current</code> / <code>aria-expanded</code>.</p>
+	<p>
+		Framework-agnostic, semantic nested <code>&lt;ul&gt;</code> markup with <code>aria-current</code> /
+		<code>aria-expanded</code> &mdash; styled here with a few lines of CSS:
+	</p>
 	<?php
-	$build($this, 'default_demo');
+	$build($this, 'default_demo', 'menu-tree');
 	echo $this->Menu->render('default_demo');
 	?>
 
@@ -83,5 +89,11 @@ $build = function ($view, string $name) {
 <?php $this->append('css'); ?>
 <style>
 	#content .custom-nav { border: 1px dashed var(--bs-border-color, #ccc); padding: .5rem; border-radius: .25rem; }
+	.menu-tree,
+	.menu-tree .submenu { list-style: none; padding-left: 0; margin-bottom: 0; }
+	.menu-tree .submenu { margin-left: .5rem; padding-left: 1rem; border-left: 2px solid var(--bs-border-color, #dee2e6); }
+	.menu-tree li > a { display: block; padding: .3rem .6rem; border-radius: .25rem; text-decoration: none; }
+	.menu-tree li > a:hover { background: var(--bs-secondary-bg, #f1f3f5); }
+	.menu-tree li.active > a { font-weight: 600; }
 </style>
 <?php $this->end(); ?>

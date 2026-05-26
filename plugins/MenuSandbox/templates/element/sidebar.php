@@ -9,6 +9,7 @@
  * @var \App\View\AppView $this
  */
 
+use Menu\Link\Link;
 use Menu\Menu;
 use Menu\Renderer\Bootstrap5SidebarRenderer;
 
@@ -34,10 +35,8 @@ $explore->getSubMenu()->addItem('Auth Sandbox', ['plugin' => 'AuthSandbox', 'con
 $explore->getSubMenu()->addItem('Workflow Sandbox', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']);
 $explore->getSubMenu()->addItem('Plugin examples', ['plugin' => 'Sandbox', 'controller' => 'PluginExamples', 'action' => 'index']);
 
-$menu->addItem('CakePHP Book', 'https://book.cakephp.org', [
-	'icon' => 'bi bi-book',
-	'attributes' => ['target' => '_blank', 'rel' => 'noopener'],
-]);
+// External link: attributes belong on the <a>, so pass a Link (item `attributes` would land on the <li>).
+$menu->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target' => '_blank', 'rel' => 'noopener']), ['icon' => 'bi bi-book']);
 ?>
 
 <div class="menu-sidebar">
@@ -46,7 +45,15 @@ $menu->addItem('CakePHP Book', 'https://book.cakephp.org', [
 		<a href="https://github.com/dereuromark/cakephp-menu" target="_blank" rel="noopener">[Menu Plugin]</a>
 	</p>
 
-	<?php echo $this->Menu->render($menu, ['renderer' => Bootstrap5SidebarRenderer::class]); ?>
+	<?php
+	// A single chevron glyph for the caret; CSS rotates it when the branch is expanded
+	// (Bootstrap toggles aria-expanded on click, so the indicator stays in sync).
+	echo $this->Menu->render($menu, [
+		'renderer' => Bootstrap5SidebarRenderer::class,
+		'caretClosed' => '<i class="bi bi-chevron-right"></i>',
+		'caretOpen' => '<i class="bi bi-chevron-right"></i>',
+	]);
+	?>
 
 	<p class="text-muted"><small>
 		Rendered by <code>Bootstrap5SidebarRenderer</code>: the branch holding the current page auto-opens
@@ -56,7 +63,8 @@ $menu->addItem('CakePHP Book', 'https://book.cakephp.org', [
 
 <?php $this->append('css'); ?>
 <style>
-	.menu-sidebar .menu-caret { font-size: .8rem; opacity: .6; }
+	.menu-sidebar .menu-caret { font-size: .75rem; opacity: .55; transition: transform .15s ease; }
+	.menu-sidebar [aria-expanded="true"] .menu-caret { transform: rotate(90deg); }
 	.menu-sidebar .nav-header { font-size: .75rem; text-transform: uppercase; opacity: .6; padding: .5rem .5rem .15rem; }
 </style>
 <?php $this->end(); ?>

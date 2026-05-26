@@ -2812,12 +2812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-menu.git",
-                "reference": "7acd43757d64c52e99ee09d9502f35db0cdedd1b"
+                "reference": "f2b8859d70089f44b29047c63e15a10711f9b692"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/7acd43757d64c52e99ee09d9502f35db0cdedd1b",
-                "reference": "7acd43757d64c52e99ee09d9502f35db0cdedd1b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/f2b8859d70089f44b29047c63e15a10711f9b692",
+                "reference": "f2b8859d70089f44b29047c63e15a10711f9b692",
                 "shasum": ""
             },
             "require": {
@@ -2872,7 +2872,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-menu/issues",
                 "source": "https://github.com/dereuromark/cakephp-menu"
             },
-            "time": "2026-05-26T00:35:49+00:00"
+            "time": "2026-05-26T01:39:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",

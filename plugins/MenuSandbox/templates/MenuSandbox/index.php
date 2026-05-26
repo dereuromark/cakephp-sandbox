@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  */
 
+use Menu\Link\Link;
 use Menu\Renderer\NavbarRenderer;
 
 $navbar = $this->Menu->create('navbar', ['menuAttributes' => ['class' => 'navbar-nav me-auto']]);
@@ -12,9 +13,9 @@ $nbFeatures->getSubMenu()->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'con
 $nbFeatures->getSubMenu()->addItem('Renderers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers']);
 $nbFeatures->getSubMenu()->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced']);
 $nbFeatures->getSubMenu()->addDivider();
-$nbFeatures->getSubMenu()->addItem('Plugin on GitHub', 'https://github.com/dereuromark/cakephp-menu', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
+$nbFeatures->getSubMenu()->addItem('Plugin on GitHub', Link::create('https://github.com/dereuromark/cakephp-menu', ['target' => '_blank', 'rel' => 'noopener']));
 $navbar->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index'], ['icon' => 'bi bi-emoji-smile', 'badge' => 'NEW', 'badgeType' => 'bg-success']);
-$navbar->addItem('CakePHP Book', 'https://book.cakephp.org', ['icon' => 'bi bi-book', 'attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
+$navbar->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target' => '_blank', 'rel' => 'noopener']), ['icon' => 'bi bi-book']);
 
 // "You are here": resolve the active item and walk its ancestor path.
 $current = $this->Menu->getCurrentItem('navbar');
