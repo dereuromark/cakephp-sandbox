@@ -9,7 +9,6 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Link\Link;
 use Menu\Menu;
 use Menu\Renderer\Bootstrap5SidebarRenderer;
 
@@ -35,8 +34,12 @@ $explore->getSubMenu()->addItem('Auth Sandbox', ['plugin' => 'AuthSandbox', 'con
 $explore->getSubMenu()->addItem('Workflow Sandbox', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']);
 $explore->getSubMenu()->addItem('Plugin examples', ['plugin' => 'Sandbox', 'controller' => 'PluginExamples', 'action' => 'index']);
 
-// External link: attributes belong on the <a>, so pass a Link (item `attributes` would land on the <li>).
-$menu->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target' => '_blank', 'rel' => 'noopener']), ['icon' => 'bi bi-book']);
+// External link: `labelAttributes` (added in plugin #15) lands target/rel on the <a> — cleaner
+// than passing a Link object just to carry the attributes.
+$menu->addItem('CakePHP Book', 'https://book.cakephp.org', [
+	'icon' => 'bi bi-book',
+	'labelAttributes' => ['target' => '_blank', 'rel' => 'noopener'],
+]);
 ?>
 
 <div class="menu-sidebar">

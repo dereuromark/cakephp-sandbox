@@ -3,7 +3,6 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Link\Link;
 use Menu\Renderer\Bootstrap5Renderer;
 use Menu\Renderer\JsonRenderer;
 
@@ -22,8 +21,11 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	$account->getSubMenu()->addItem('Login', ['plugin' => false, 'controller' => 'Account', 'action' => 'login']);
 	$account->getSubMenu()->addItem('Register', ['plugin' => false, 'controller' => 'Account', 'action' => 'register']);
 	$menu->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
-	// External link: attributes belong on the <a>, so pass a Link (item `attributes` would land on the <li>).
-	$menu->addItem('Book', Link::create('https://book.cakephp.org', ['target' => '_blank', 'rel' => 'noopener']));
+	// External link: `labelAttributes` puts target/rel on the rendered <a> — works in StringTemplate,
+	// Bootstrap5 and Sidebar renderers without needing a Link object just to carry the attributes.
+	$menu->addItem('Book', 'https://book.cakephp.org', [
+		'labelAttributes' => ['target' => '_blank', 'rel' => 'noopener'],
+	]);
 
 	return $menu;
 };

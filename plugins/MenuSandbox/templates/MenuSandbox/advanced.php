@@ -144,4 +144,89 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	?>
 	<p class="mt-2">Attempting to add an item after freezing: <code><?php echo h((string)$freezeError); ?></code></p>
 
+	<h4 class="mt-4">Tree manipulation</h4>
+	<p>
+		<code>insertBefore()</code> / <code>insertAfter()</code> / <code>moveToPosition()</code> / <code>reorder()</code>
+		mutate the menu in place; <code>slice()</code> / <code>split()</code> / <code>merge()</code> return derived
+		working copies via deep <code>__clone</code>, so the source tree stays intact and re-renderable.
+	</p>
+
+	<?php
+	$source = Menu::create(['class' => 'nav nav-pills']);
+	$source->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['key' => 'home']);
+	$source->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers'], ['key' => 'resolvers']);
+	$source->addItem('Renderers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers'], ['key' => 'renderers']);
+	$source->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['key' => 'advanced']);
+
+	$reordered = clone $source;
+	$reordered->reorder(['advanced', 'home', 'renderers', 'resolvers']);
+
+	$firstTwo = $source->slice(0, 2);
+	$lastTwo = $source->slice(2);
+
+	$merged = (clone $firstTwo)->merge($lastTwo);
+	$merged->insertBefore($merged->newItem('NEW', 'https://github.com/dereuromark/cakephp-menu', [
+		'key' => 'github',
+		'labelAttributes' => ['target' => '_blank', 'rel' => 'noopener'],
+	]), 'advanced');
+	?>
+
+	<p class="mb-1"><b>Source</b> (unchanged after all of the operations below):</p>
+	<?php echo $this->Menu->render($source); ?>
+
+	<p class="mb-1 mt-3"><b><code>clone</code> + <code>reorder()</code></b> (mutates the working copy only):</p>
+	<?php echo $this->Menu->render($reordered); ?>
+
+	<p class="mb-1 mt-3"><b><code>slice(0, 2)</code></b>:</p>
+	<?php echo $this->Menu->render($firstTwo); ?>
+
+	<p class="mb-1 mt-3"><b><code>merge()</code> + <code>insertBefore()</code></b> (adds a GitHub link before <code>advanced</code>):</p>
+	<?php echo $this->Menu->render($merged); ?>
+
+	<pre><code>$reordered = clone $source;
+$reordered-&gt;reorder(['advanced', 'home', 'renderers', 'resolvers']);
+
+$firstTwo = $source-&gt;slice(0, 2);              // new menu, items deep-cloned
+$merged = (clone $firstTwo)-&gt;merge($lastTwo);   // also a new menu, source untouched
+$merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code></pre>
+
+	<h4 class="mt-4">Bulk add &amp; lookup by key</h4>
+	<p>
+		<code>addItems()</code> validates the whole batch first (type + id/key uniqueness across the batch
+		and the tree) and rejects the lot atomically on the first conflict. Then look items up by their
+		stable <code>key</code> with <code>getByKey()</code> / <code>hasKey()</code>, and search the entire
+		tree recursively with <code>find(callable)</code>.
+	</p>
+
+	<?php
+	$bulk = Menu::create(['class' => 'nav flex-column']);
+	$bulk->addItems([
+		$bulk->newItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['key' => 'overview']),
+		$bulk->newItem('Features', '#', ['key' => 'features']),
+		$bulk->newItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index'], ['key' => 'reactions']),
+	]);
+	$bulk->getByKey('features')->getSubMenu()->addItems([
+		$bulk->newItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers'], ['key' => 'features.resolvers']),
+		$bulk->newItem('Renderers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers'], ['key' => 'features.renderers']),
+	]);
+
+	$matches = $bulk->find(static fn ($item) => str_starts_with($item->getKey(), 'features.'));
+	$matchLabels = array_map(static fn ($item) => (string)$item->getLabel(), $matches->all());
+
+	$bulkError = null;
+	try {
+		// Same key as the existing 'overview' item → whole batch rejected (atomic).
+		$bulk->addItems([$bulk->newItem('Conflict', '/whatever', ['key' => 'overview'])]);
+	} catch (\InvalidArgumentException $exception) {
+		$bulkError = $exception->getMessage();
+	}
+	?>
+	<?php echo $this->Menu->render($bulk); ?>
+	<ul>
+		<li><code>hasKey('reactions')</code>: <b><?php echo $bulk->hasKey('reactions') ? 'true' : 'false'; ?></b></li>
+		<li><code>getByKey('features')-&gt;getLabel()</code>: <b><?php echo h((string)$bulk->getByKey('features')->getLabel()); ?></b></li>
+		<li><code>find(fn ($i) =&gt; str_starts_with($i-&gt;getKey(), 'features.'))</code>: <b><?php echo h($matchLabels ? implode(', ', $matchLabels) : '(none)'); ?></b></li>
+		<li><code>addItems()</code> with a key conflict (atomic rejection): <code><?php echo h((string)$bulkError); ?></code></li>
+	</ul>
+
 </div></div>

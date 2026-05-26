@@ -9,6 +9,7 @@ use Menu\Resolver\CallbackResolver;
 use Menu\Resolver\LoggedInResolver;
 use Menu\Resolver\PermissionResolver;
 use Menu\Resolver\Psr7UrlResolver;
+use Menu\Resolver\RegexResolver;
 use Menu\Resolver\ResolverCollection;
 use Menu\Resolver\ResolverContext;
 use Menu\Resolver\SectionResolver;
@@ -207,6 +208,31 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 
 	<p class="mb-1 mt-3"><b>With <code>singleActive</code></b> &mdash; only the deepest (the child) stays active:</p>
 	<?php echo $this->Menu->render('single', ['singleActive' => true]); ?>
+
+	<h4 class="mt-4">Regex matching</h4>
+	<p>
+		<code>RegexResolver</code> activates items whose <code>data['match']</code> pattern matches the
+		current request path. Useful when the URL surface is dynamic and not easily expressed as a route
+		array. Bad patterns are silently skipped, never break rendering. Current path: <code><?php echo h($request->getPath()); ?></code>.
+	</p>
+
+	<?php
+	$regex = $this->Menu->create('regex', ['menuAttributes' => ['class' => 'nav flex-column menu-demo-active']]);
+	$regex->addItem('Anything under /menu-sandbox/', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], [
+		'data' => ['match' => '#^/menu-sandbox/#'],
+	]);
+	$regex->addItem('Only /sandbox/*', ['plugin' => 'Sandbox', 'controller' => 'PluginExamples', 'action' => 'index'], [
+		'data' => ['match' => '#^/sandbox/#'],
+	]);
+	$regex->addItem('Multiple patterns (login OR register)', ['plugin' => false, 'controller' => 'Account', 'action' => 'login'], [
+		'data' => ['match' => ['#^/login#', '#^/register#']],
+	]);
+	echo $this->Menu->render('regex', ['resolver' => new RegexResolver($request->getPath())]);
+	?>
+
+	<pre><code>$item-&gt;setData('match', '#^/menu-sandbox/#');             // single pattern
+$item-&gt;setData('match', ['#^/login#', '#^/register#']);  // any of several
+echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($request-&gt;getPath())]);</code></pre>
 
 </div></div>
 
