@@ -4,6 +4,7 @@
  */
 
 use Menu\Item\ItemInterface;
+use Menu\Renderer\Bootstrap5Renderer;
 use Menu\Resolver\AuthorizationResolver;
 use Menu\Resolver\CallbackResolver;
 use Menu\Resolver\LoggedInResolver;
@@ -45,7 +46,7 @@ $canAccessAdmin = (bool)$request->getQuery('admin');
 	$auth->addItem('Register', ['plugin' => false, 'controller' => 'Account', 'action' => 'register'], ['data' => ['auth' => 'loggedOut']]);
 	$auth->addItem('Change password', ['plugin' => false, 'controller' => 'Account', 'action' => 'changePassword'], ['data' => ['auth' => 'loggedIn']]);
 	$auth->addItem('Logout', ['plugin' => false, 'controller' => 'Account', 'action' => 'logout'], ['data' => ['auth' => 'loggedIn']]);
-	echo $this->Menu->render('auth', ['resolver' => new LoggedInResolver($loggedIn)]);
+	echo $this->Menu->render('auth', ['renderer' => Bootstrap5Renderer::class, 'resolver' => new LoggedInResolver($loggedIn)]);
 	?>
 
 	<pre><code>$menu-&gt;addItem('Login', '/login', ['data' =&gt; ['auth' =&gt; 'loggedOut']]);
@@ -67,7 +68,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	$section->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index'], [
 		'data' => ['section' => ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples']],
 	]);
-	echo $this->Menu->render('section', ['resolver' => new SectionResolver($request)]);
+	echo $this->Menu->render('section', ['renderer' => Bootstrap5Renderer::class, 'resolver' => new SectionResolver($request)]);
 	?>
 
 	<h4 class="mt-4">Alternate match routes</h4>
@@ -86,7 +87,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 		],
 	]);
 	$alt->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
-	echo $this->Menu->render('alt');
+	echo $this->Menu->render('alt', ['renderer' => Bootstrap5Renderer::class]);
 	?>
 
 	<h4 class="mt-4">Authorization</h4>
@@ -102,6 +103,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	$authz->addItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
 	$authz->addItem('Renderers (members only)', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers'], ['data' => ['permission' => 'menu.renderers']]);
 	echo $this->Menu->render('authz', [
+		'renderer' => Bootstrap5Renderer::class,
 		'resolver' => new AuthorizationResolver(
 			static function (ItemInterface $item, ResolverContext $context) use ($canAccessAdmin): ?bool {
 				if ($item->getData('permission') === null) {
@@ -125,7 +127,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	$perm = $this->Menu->create('perm', ['menuAttributes' => ['class' => 'nav nav-pills']]);
 	$perm->addItem('Public area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['data' => ['permission' => 'menu.public']]);
 	$perm->addItem('Secret area', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['permission' => 'menu.secret']]);
-	echo $this->Menu->render('perm', ['resolver' => new PermissionResolver($can, null, 'permission', '__invoke')]);
+	echo $this->Menu->render('perm', ['renderer' => Bootstrap5Renderer::class, 'resolver' => new PermissionResolver($can, null, 'permission', '__invoke')]);
 	?>
 	<p class="text-muted"><small>"Secret area" is hidden because the closure denies <code>menu.secret</code>.</small></p>
 
@@ -133,7 +135,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	<p><code>CallbackResolver</code> runs arbitrary logic per item with depth context. Here it appends a depth badge:</p>
 
 	<?php
-	$tree = $this->Menu->create('tree', ['menuAttributes' => ['class' => 'nav flex-column']]);
+	$tree = $this->Menu->create('tree', ['menuAttributes' => ['class' => 'menu-tree menu-demo-active']]);
 	$docs = $tree->addItem('Menu Sandbox', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
 	$docs->getSubMenu()->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
 	$advanced = $docs->getSubMenu()->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced']);
@@ -159,6 +161,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	$combo->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
 	$combo->addItem('Members only', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['auth' => 'loggedIn']]);
 	echo $this->Menu->render('combo', [
+		'renderer' => Bootstrap5Renderer::class,
 		'resolver' => (new ResolverCollection())
 			->add(new UrlArrayResolver($request))
 			->add(new Psr7UrlResolver($request))
@@ -179,7 +182,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	$extra->addItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
 	$extra->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
 	$extra->addItem('Members only', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['auth' => 'loggedIn']]);
-	echo $this->Menu->render('extra', ['additionalResolvers' => [new LoggedInResolver($loggedIn)]]);
+	echo $this->Menu->render('extra', ['renderer' => Bootstrap5Renderer::class, 'additionalResolvers' => [new LoggedInResolver($loggedIn)]]);
 	?>
 
 	<pre><code>echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
@@ -192,7 +195,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	</p>
 
 	<?php
-	$single = $this->Menu->create('single', ['menuAttributes' => ['class' => 'nav flex-column menu-demo-active']]);
+	$single = $this->Menu->create('single', ['menuAttributes' => ['class' => 'menu-tree menu-demo-active']]);
 	$singleParent = $single->addItem('Menu Sandbox', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], [
 		'matchRoutes' => [
 			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers'],
@@ -217,7 +220,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	</p>
 
 	<?php
-	$regex = $this->Menu->create('regex', ['menuAttributes' => ['class' => 'nav flex-column menu-demo-active']]);
+	$regex = $this->Menu->create('regex', ['menuAttributes' => ['class' => 'menu-tree menu-demo-active']]);
 	$regex->addItem('Anything under /menu-sandbox/', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], [
 		'data' => ['match' => '#^/menu-sandbox/#'],
 	]);
@@ -238,8 +241,16 @@ echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($reque
 
 <?php $this->append('css'); ?>
 <style>
+	.menu-tree,
+	.menu-tree .submenu { list-style: none; padding-left: 0; margin-bottom: 0; }
+	.menu-tree > li + li { margin-top: .25rem; }
+	.menu-tree .submenu { margin-top: .35rem; margin-left: .5rem; padding-left: 1rem; border-left: 2px solid var(--bs-border-color, #dee2e6); }
+	.menu-tree li > a,
+	.menu-tree li > span { display: block; padding: .3rem .6rem; border-radius: .25rem; text-decoration: none; }
+	.menu-tree li > a:hover { background: var(--bs-secondary-bg, #f1f3f5); }
 	/* Make the active item legible: Bootstrap's default .nav-link.active is color-only and theme-dependent. */
 	.menu-demo-active li.active > a,
+	.menu-demo-active li.active > span,
 	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); }
 </style>
 <?php $this->end(); ?>

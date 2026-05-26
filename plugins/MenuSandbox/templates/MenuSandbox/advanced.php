@@ -4,6 +4,7 @@
  */
 
 use Menu\Menu;
+use Menu\Renderer\Bootstrap5Renderer;
 use Menu\Renderer\BreadcrumbRenderer;
 ?>
 
@@ -45,7 +46,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 
 	<?php
 	$imported = Menu::fromArray([
-		'attributes' => ['class' => 'nav nav-pills'],
+		'attributes' => ['class' => 'menu-tree'],
 		'items' => [
 			['id' => 'home', 'label' => 'Home', 'link' => '/menu-sandbox'],
 			[
@@ -126,7 +127,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 
 	<?php
 	$frozen = Menu::fromArray([
-		'attributes' => ['class' => 'nav nav-pills'],
+		'attributes' => ['class' => 'menu-tree'],
 		'items' => [
 			['label' => 'Read only', 'link' => '/menu-sandbox'],
 			['label' => 'Locked', 'link' => '/menu-sandbox/advanced'],
@@ -172,16 +173,16 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	?>
 
 	<p class="mb-1"><b>Source</b> (unchanged after all of the operations below):</p>
-	<?php echo $this->Menu->render($source); ?>
+	<?php echo $this->Menu->render($source, ['renderer' => Bootstrap5Renderer::class]); ?>
 
 	<p class="mb-1 mt-3"><b><code>clone</code> + <code>reorder()</code></b> (mutates the working copy only):</p>
-	<?php echo $this->Menu->render($reordered); ?>
+	<?php echo $this->Menu->render($reordered, ['renderer' => Bootstrap5Renderer::class]); ?>
 
 	<p class="mb-1 mt-3"><b><code>slice(0, 2)</code></b>:</p>
-	<?php echo $this->Menu->render($firstTwo); ?>
+	<?php echo $this->Menu->render($firstTwo, ['renderer' => Bootstrap5Renderer::class]); ?>
 
 	<p class="mb-1 mt-3"><b><code>merge()</code> + <code>insertBefore()</code></b> (adds a GitHub link before <code>advanced</code>):</p>
-	<?php echo $this->Menu->render($merged); ?>
+	<?php echo $this->Menu->render($merged, ['renderer' => Bootstrap5Renderer::class]); ?>
 
 	<pre><code>$reordered = clone $source;
 $reordered-&gt;reorder(['advanced', 'home', 'renderers', 'resolvers']);
@@ -199,7 +200,7 @@ $merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code><
 	</p>
 
 	<?php
-	$bulk = Menu::create(['class' => 'nav flex-column']);
+	$bulk = Menu::create(['class' => 'menu-tree']);
 	$bulk->addItems([
 		$bulk->newItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['key' => 'overview']),
 		$bulk->newItem('Features', '#', ['key' => 'features']),
@@ -230,3 +231,17 @@ $merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code><
 	</ul>
 
 </div></div>
+
+<?php $this->append('css'); ?>
+<style>
+	.menu-tree,
+	.menu-tree .submenu { list-style: none; padding-left: 0; margin-bottom: 0; }
+	.menu-tree > li + li { margin-top: .25rem; }
+	.menu-tree .submenu { margin-top: .35rem; margin-left: .5rem; padding-left: 1rem; border-left: 2px solid var(--bs-border-color, #dee2e6); }
+	.menu-tree li > a,
+	.menu-tree li > span { display: block; padding: .3rem .6rem; border-radius: .25rem; text-decoration: none; }
+	.menu-tree li > a:hover { background: var(--bs-secondary-bg, #f1f3f5); }
+	.menu-tree li.active > a,
+	.menu-tree li.active > span { font-weight: 600; }
+</style>
+<?php $this->end(); ?>
