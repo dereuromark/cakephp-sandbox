@@ -5,11 +5,14 @@ RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
     graphviz \
+    libheif-examples \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN install-php-extensions \
     bcmath \
+    exif \
+    imagick \
     intl \
     pcntl \
     pdo_mysql \
