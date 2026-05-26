@@ -212,6 +212,8 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 
 <?php $this->append('css'); ?>
 <style>
-	#content .menu-demo-active li.active > a { font-weight: bold; }
+	/* Make the active item legible: Bootstrap's default .nav-link.active is color-only and theme-dependent. */
+	.menu-demo-active li.active > a,
+	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); }
 </style>
 <?php $this->end(); ?>

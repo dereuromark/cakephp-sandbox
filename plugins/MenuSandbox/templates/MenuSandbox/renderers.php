@@ -88,7 +88,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 
 <?php $this->append('css'); ?>
 <style>
-	#content .custom-nav { border: 1px dashed var(--bs-border-color, #ccc); padding: .5rem; border-radius: .25rem; }
+	.custom-nav { border: 1px dashed var(--bs-border-color, #ccc); padding: .5rem; border-radius: .25rem; }
 	.menu-tree,
 	.menu-tree .submenu { list-style: none; padding-left: 0; margin-bottom: 0; }
 	.menu-tree .submenu { margin-left: .5rem; padding-left: 1rem; border-left: 2px solid var(--bs-border-color, #dee2e6); }

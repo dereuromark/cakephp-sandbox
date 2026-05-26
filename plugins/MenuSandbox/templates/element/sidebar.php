@@ -67,7 +67,8 @@ $menu->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target
 
 <?php $this->append('css'); ?>
 <style>
-	.menu-sidebar .menu-caret { font-size: .75rem; opacity: .55; transition: transform .15s ease; }
+	/* `transform` only takes visible effect on non-inline boxes; force inline-block so the chevron actually rotates on expand. */
+	.menu-sidebar .menu-caret { font-size: .75rem; opacity: .55; transition: transform .15s ease; display: inline-block; }
 	.menu-sidebar [aria-expanded="true"] .menu-caret { transform: rotate(90deg); }
 	.menu-sidebar .nav-header { font-size: .75rem; text-transform: uppercase; opacity: .6; padding: .5rem .5rem .15rem; }
 	/* Bootstrap's default .nav-link.active only shifts color (theme-dependent). Add weight + a subtle bg so the current page reads at a glance. */
