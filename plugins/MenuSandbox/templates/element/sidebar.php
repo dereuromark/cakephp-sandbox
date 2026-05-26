@@ -70,5 +70,7 @@ $menu->addItem('CakePHP Book', Link::create('https://book.cakephp.org', ['target
 	.menu-sidebar .menu-caret { font-size: .75rem; opacity: .55; transition: transform .15s ease; }
 	.menu-sidebar [aria-expanded="true"] .menu-caret { transform: rotate(90deg); }
 	.menu-sidebar .nav-header { font-size: .75rem; text-transform: uppercase; opacity: .6; padding: .5rem .5rem .15rem; }
+	/* Bootstrap's default .nav-link.active only shifts color (theme-dependent). Add weight + a subtle bg so the current page reads at a glance. */
+	.menu-sidebar .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); }
 </style>
 <?php $this->end(); ?>
