@@ -166,6 +166,48 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	?>
 	<p class="text-muted"><small>The "Resolvers" item is active (current URL) and "Members only" only appears while logged in.</small></p>
 
+	<h4 class="mt-4">Adding to the default resolvers</h4>
+	<p>
+		The previous example wired the URL resolvers by hand. With <code>additionalResolvers</code> you keep the
+		helper's automatic URL active-state and just <em>append</em> your own &mdash; no manual
+		<code>ResolverCollection</code>. Same result, less wiring:
+	</p>
+
+	<?php
+	$extra = $this->Menu->create('extra', ['menuAttributes' => ['class' => 'nav nav-pills menu-demo-active']]);
+	$extra->addItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
+	$extra->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
+	$extra->addItem('Members only', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['auth' => 'loggedIn']]);
+	echo $this->Menu->render('extra', ['additionalResolvers' => [new LoggedInResolver($loggedIn)]]);
+	?>
+
+	<pre><code>echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
+
+	<h4 class="mt-4">Single active trail</h4>
+	<p>
+		Resolvers (and <code>matchRoutes</code>) can mark several items active for one request. Passing
+		<code>singleActive</code> keeps only the most specific match &mdash; the deepest item, ties broken by
+		document order &mdash; so breadcrumbs and <code>getActiveItem()</code> follow a single trail.
+	</p>
+
+	<?php
+	$single = $this->Menu->create('single', ['menuAttributes' => ['class' => 'nav flex-column menu-demo-active']]);
+	$singleParent = $single->addItem('Menu Sandbox', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], [
+		'matchRoutes' => [
+			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers'],
+			['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'],
+		],
+	]);
+	$singleParent->getSubMenu()->addItem('Resolvers (this page)', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
+	$singleParent->getSubMenu()->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced']);
+	?>
+
+	<p class="mb-1"><b>Default</b> &mdash; both the matched parent and the exact child are active:</p>
+	<?php echo $this->Menu->render('single'); ?>
+
+	<p class="mb-1 mt-3"><b>With <code>singleActive</code></b> &mdash; only the deepest (the child) stays active:</p>
+	<?php echo $this->Menu->render('single', ['singleActive' => true]); ?>
+
 </div></div>
 
 <?php $this->append('css'); ?>

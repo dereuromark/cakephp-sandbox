@@ -3,18 +3,18 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Renderer\Bootstrap5Renderer;
+use Menu\Renderer\NavbarRenderer;
 
 $navbar = $this->Menu->create('navbar', ['menuAttributes' => ['class' => 'navbar-nav me-auto']]);
-$navbar->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
-$nbFeatures = $navbar->addItem('Features', '#', ['id' => 'nav-features']);
+$navbar->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['icon' => 'bi bi-house']);
+$nbFeatures = $navbar->addItem('Features', '#', ['id' => 'nav-features', 'icon' => 'bi bi-stars']);
 $nbFeatures->getSubMenu()->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
 $nbFeatures->getSubMenu()->addItem('Renderers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'renderers']);
 $nbFeatures->getSubMenu()->addItem('Advanced', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced']);
 $nbFeatures->getSubMenu()->addDivider();
 $nbFeatures->getSubMenu()->addItem('Plugin on GitHub', 'https://github.com/dereuromark/cakephp-menu', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
-$navbar->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index']);
-$navbar->addItem('CakePHP Book', 'https://book.cakephp.org', ['attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
+$navbar->addItem('Reactions', ['plugin' => 'Sandbox', 'controller' => 'ReactionExamples', 'action' => 'index'], ['icon' => 'bi bi-emoji-smile', 'badge' => 'NEW', 'badgeType' => 'bg-success']);
+$navbar->addItem('CakePHP Book', 'https://book.cakephp.org', ['icon' => 'bi bi-book', 'attributes' => ['target' => '_blank', 'rel' => 'noopener']]);
 
 // "You are here": resolve the active item and walk its ancestor path.
 $current = $this->Menu->getCurrentItem('navbar');
@@ -35,12 +35,23 @@ $trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->M
 		of the page you are on expanded and highlighted.
 	</p>
 
-	<h4>Top navbar (Bootstrap 5 renderer)</h4>
-	<p>The built-in <code>Bootstrap5Renderer</code> emits ready-to-use navbar + dropdown markup:</p>
+	<h4>Top navbar (NavbarRenderer)</h4>
+	<p>
+		<code>NavbarRenderer</code> emits the <em>complete</em> Bootstrap 5 navbar &mdash; the <code>&lt;nav&gt;</code> landmark,
+		brand, responsive toggler and the collapsible <code>navbar-nav</code> with dropdowns &mdash; from one menu
+		definition. Items carry first-class icons and badges (<code>icon</code> / <code>badge</code> options):
+	</p>
 
-	<nav class="navbar navbar-expand bg-body-tertiary border rounded px-3 mb-3">
-		<?php echo $this->Menu->render('navbar', ['renderer' => Bootstrap5Renderer::class]); ?>
-	</nav>
+	<?php
+	echo $this->Menu->render('navbar', [
+		'renderer' => NavbarRenderer::class,
+		'brand' => 'Menu Sandbox',
+		'brandUrl' => $this->Url->build(['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']),
+		'collapseId' => 'menu-sandbox-navbar',
+		'ariaLabel' => 'Main navigation',
+		'navbarClass' => 'navbar navbar-expand-lg bg-body-tertiary border rounded px-3 mb-3',
+	]);
+	?>
 
 	<p class="text-muted">
 		<small>
@@ -51,16 +62,16 @@ $trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->M
 	</p>
 
 	<pre><code>$navbar = $this-&gt;Menu-&gt;create('navbar', ['menuAttributes' =&gt; ['class' =&gt; 'navbar-nav']]);
-$navbar-&gt;addItem('Home', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);
-$features = $navbar-&gt;addItem('Features', '#');
-$features-&gt;getSubMenu()-&gt;addItem('Resolvers', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'resolvers']);
-echo $this-&gt;Menu-&gt;render('navbar', ['renderer' =&gt; \Menu\Renderer\Bootstrap5Renderer::class]);</code></pre>
+$navbar-&gt;addItem('Home', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index'], ['icon' =&gt; 'bi bi-house']);
+$reactions = $navbar-&gt;addItem('Reactions', '/sandbox/reaction-examples', ['icon' =&gt; 'bi bi-emoji-smile', 'badge' =&gt; 'NEW', 'badgeType' =&gt; 'bg-success']);
+echo $this-&gt;Menu-&gt;render('navbar', ['renderer' =&gt; \Menu\Renderer\NavbarRenderer::class, 'brand' =&gt; 'Menu Sandbox']);</code></pre>
 
-	<h4>Collapsible sidebar (custom render)</h4>
+	<h4>Collapsible sidebar (Bootstrap5SidebarRenderer)</h4>
 	<p>
-		The left sidebar is built from the same <code>Menu</code> model: we apply the URL resolvers to flag
-		the active item, then render Bootstrap <code>collapse</code> markup so the active branch auto-opens.
-		See <code>templates/element/sidebar.php</code> for the ~40 lines that do it.
+		The left sidebar is built from the same <code>Menu</code> model and rendered by
+		<code>Bootstrap5SidebarRenderer</code>: the URL resolvers flag the active item, the renderer emits
+		Bootstrap <code>collapse</code> markup so the active branch auto-opens, and items show icons,
+		a badge and non-link group headers (<code>addHeader()</code>). See <code>templates/element/sidebar.php</code>.
 	</p>
 
 	<h4>Explore the features</h4>

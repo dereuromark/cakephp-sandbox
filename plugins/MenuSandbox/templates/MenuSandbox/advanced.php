@@ -68,6 +68,56 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	<p class="mt-2"><code>toArray()</code> output:</p>
 	<pre><code><?php echo h(json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></code></pre>
 
+	<h4 class="mt-4">Build from flat rows</h4>
+	<p>
+		<code>Menu::fromFlat()</code> turns a flat list of records (e.g. database rows with a parent reference)
+		into a tree. The mapper returns a <code>key</code>, optional <code>parent</code> key, <code>label</code>
+		and <code>link</code>; rows may arrive in any order and children are attached once all rows are read.
+	</p>
+
+	<?php
+	// Pretend these came from a `menu_items` table (id / parent_id / title / url).
+	$rows = [
+		['id' => 1, 'parent_id' => null, 'title' => 'Menu Sandbox', 'url' => '/menu-sandbox'],
+		['id' => 2, 'parent_id' => 1, 'title' => 'Resolvers', 'url' => '/menu-sandbox/resolvers'],
+		['id' => 3, 'parent_id' => 1, 'title' => 'Advanced', 'url' => '/menu-sandbox/advanced'],
+		['id' => 4, 'parent_id' => 3, 'title' => 'Renderers', 'url' => '/menu-sandbox/renderers'],
+		['id' => 5, 'parent_id' => null, 'title' => 'Reactions', 'url' => '/sandbox/reaction-examples'],
+	];
+	$tree = Menu::fromFlat($rows, static fn (array $row): array => [
+		'key' => (string)$row['id'],
+		'parent' => $row['parent_id'] !== null ? (string)$row['parent_id'] : null,
+		'label' => $row['title'],
+		'link' => $row['url'],
+	]);
+	echo $this->Menu->render($tree);
+	?>
+
+	<pre><code>$tree = Menu::fromFlat($rows, fn (array $row) =&gt; [
+    'key' =&gt; (string)$row['id'],
+    'parent' =&gt; $row['parent_id'] !== null ? (string)$row['parent_id'] : null,
+    'label' =&gt; $row['title'],
+    'link' =&gt; $row['url'],
+]);</code></pre>
+
+	<h4 class="mt-4">Flatten &amp; look up</h4>
+	<p>
+		<code>collect()</code> flattens the whole tree (depth-first) into an <code>ItemCollection</code> you can
+		count and search &mdash; handy for "find this node anywhere in the tree" without recursing yourself.
+	</p>
+
+	<?php
+	$collection = $tree->collect();
+	$renderersItem = $collection->findByKey('4');
+	$docsChildren = $collection->findByParent($collection->findByKey('1'));
+	$childLabels = array_map(static fn ($item) => (string)$item->getLabel(), $docsChildren);
+	?>
+	<ul>
+		<li><code>count()</code>: the tree above flattens to <b><?php echo $collection->count(); ?></b> items.</li>
+		<li><code>findByKey('4')</code>: <b><?php echo h($renderersItem ? (string)$renderersItem->getLabel() : '(none)'); ?></b>.</li>
+		<li><code>findByParent()</code> of "Menu Sandbox": <b><?php echo h($childLabels ? implode(', ', $childLabels) : '(none)'); ?></b>.</li>
+	</ul>
+
 	<h4 class="mt-4">Freeze mode</h4>
 	<p>
 		<code>freeze()</code> locks the structure. Resolvers may still flip runtime state (active/visible/expanded),
