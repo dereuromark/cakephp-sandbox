@@ -386,7 +386,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function log(mixed $level, string|Stringable $message, array $context = []): void {
+			public function log(mixed $level, Stringable|string $message, array $context = []): void {
 				$query = $context['query'];
 				// @phpstan-ignore typePerfect.noMixedMethodCaller
 				$took = $query->getContext()['took'];
@@ -402,7 +402,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function emergency(string|Stringable $message, array $context = []): void {
+			public function emergency(Stringable|string $message, array $context = []): void {
 				$this->log('emergency', $message, $context);
 			}
 
@@ -411,7 +411,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function alert(string|Stringable $message, array $context = []): void {
+			public function alert(Stringable|string $message, array $context = []): void {
 				$this->log('alert', $message, $context);
 			}
 
@@ -420,7 +420,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function critical(string|Stringable $message, array $context = []): void {
+			public function critical(Stringable|string $message, array $context = []): void {
 				$this->log('critical', $message, $context);
 			}
 
@@ -429,7 +429,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function error(string|Stringable $message, array $context = []): void {
+			public function error(Stringable|string $message, array $context = []): void {
 				$this->log('error', $message, $context);
 			}
 
@@ -438,7 +438,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function warning(string|Stringable $message, array $context = []): void {
+			public function warning(Stringable|string $message, array $context = []): void {
 				$this->log('warning', $message, $context);
 			}
 
@@ -447,7 +447,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function notice(string|Stringable $message, array $context = []): void {
+			public function notice(Stringable|string $message, array $context = []): void {
 				$this->log('notice', $message, $context);
 			}
 
@@ -456,7 +456,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function info(string|Stringable $message, array $context = []): void {
+			public function info(Stringable|string $message, array $context = []): void {
 				$this->log('info', $message, $context);
 			}
 
@@ -465,7 +465,7 @@ class CakeExamplesController extends SandboxAppController {
 			 * @param array $context
 			 * @return void
 			 */
-			public function debug(string|Stringable $message, array $context = []): void {
+			public function debug(Stringable|string $message, array $context = []): void {
 				$this->log('debug', $message, $context);
 			}
 		};
