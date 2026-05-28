@@ -5,8 +5,7 @@
  * @var \Workflow\Engine\Definition\Definition $definition
  */
 
-use Workflow\Renderer\MermaidRenderer;
-
+$this->loadHelper('Workflow.Workflow');
 $this->assign('title', 'Document Workflow Demo');
 ?>
 
@@ -67,8 +66,9 @@ $this->assign('title', 'Document Workflow Demo');
 		<div class="card">
 			<div class="card-header"><h5 class="mb-0">Workflow Diagram</h5></div>
 			<div class="card-body">
-				<?php $renderer = new MermaidRenderer(); ?>
-				<pre class="mermaid"><?= $renderer->render($definition) ?></pre>
+				<?= $this->Workflow->widget($definition, [
+					'export' => ['svg', 'png', 'mmd'],
+				]) ?>
 			</div>
 		</div>
 
@@ -85,5 +85,4 @@ $this->assign('title', 'Document Workflow Demo');
 	</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad: true, theme: 'default'});</script>
+<?= $this->Workflow->includeMermaid(['toolkit' => true]) ?>

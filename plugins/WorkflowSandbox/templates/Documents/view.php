@@ -7,8 +7,7 @@
  * @var array<\Workflow\Model\Entity\WorkflowTransition> $transitionHistory
  */
 
-use Workflow\Renderer\MermaidRenderer;
-
+$this->loadHelper('Workflow.Workflow');
 $this->assign('title', 'Document: ' . $document->title);
 $currentState = $definition->getState($document->status);
 ?>
@@ -80,8 +79,10 @@ $currentState = $definition->getState($document->status);
 		<div class="card">
 			<div class="card-header"><h5 class="mb-0">Workflow</h5></div>
 			<div class="card-body">
-				<?php $renderer = new MermaidRenderer(); ?>
-				<pre class="mermaid"><?= $renderer->render($definition, $document->status) ?></pre>
+				<?= $this->Workflow->widget($definition, [
+					'currentState' => $document->status,
+					'export' => ['svg', 'png', 'mmd'],
+				]) ?>
 			</div>
 		</div>
 	</div>
@@ -133,37 +134,4 @@ $currentState = $definition->getState($document->status);
 	</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js"></script>
-<script>
-mermaid.initialize({startOnLoad: true, theme: 'default'});
-// Color happy path arrowheads green after render
-document.addEventListener('DOMContentLoaded', () => {
-	setTimeout(() => {
-		document.querySelectorAll('.mermaid svg').forEach(svg => {
-			let happyMarkerCreated = false;
-			let happyMarkerId = null;
-			// Find paths with green stroke (happy path)
-			svg.querySelectorAll('path[style*="stroke:#2e7d32"], path[style*="stroke: rgb(46, 125, 50)"]').forEach(path => {
-				const markerMatch = path.getAttribute('marker-end')?.match(/url\(#(.+)\)/);
-				if (markerMatch) {
-					const markerId = markerMatch[1];
-					if (!happyMarkerCreated) {
-						const marker = svg.querySelector('#' + CSS.escape(markerId));
-						if (marker) {
-							happyMarkerId = markerId + '-happy';
-							const happyMarker = marker.cloneNode(true);
-							happyMarker.id = happyMarkerId;
-							happyMarker.querySelectorAll('path').forEach(p => p.style.fill = '#2e7d32');
-							marker.parentNode.appendChild(happyMarker);
-							happyMarkerCreated = true;
-						}
-					}
-					if (happyMarkerId) {
-						path.setAttribute('marker-end', 'url(#' + happyMarkerId + ')');
-					}
-				}
-			});
-		});
-	}, 100);
-});
-</script>
+<?= $this->Workflow->includeMermaid(['toolkit' => true]) ?>

@@ -5,6 +5,8 @@ namespace WorkflowSandbox\Model\Table;
 
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Workflow\Model\Table\WorkflowTableTrait;
+use Workflow\Model\WorkflowTableInterface;
 
 /**
  * Documents Model
@@ -25,7 +27,9 @@ use Cake\Validation\Validator;
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
-class DocumentsTable extends Table {
+class DocumentsTable extends Table implements WorkflowTableInterface {
+
+	use WorkflowTableTrait;
 
 	/**
 	 * @param array<string, mixed> $config Configuration

@@ -5,8 +5,7 @@
  * @var \Workflow\Engine\Definition\Definition $definition
  */
 
-use Workflow\Renderer\MermaidRenderer;
-
+$this->loadHelper('Workflow.Workflow');
 $this->assign('title', 'Payment Verification Demo');
 ?>
 
@@ -75,8 +74,9 @@ $this->assign('title', 'Payment Verification Demo');
 		<div class="card">
 			<div class="card-header"><h5 class="mb-0">Workflow Diagram</h5></div>
 			<div class="card-body">
-				<?php $renderer = new MermaidRenderer(); ?>
-				<pre class="mermaid"><?= $renderer->render($definition) ?></pre>
+				<?= $this->Workflow->widget($definition, [
+					'export' => ['svg', 'png', 'mmd'],
+				]) ?>
 			</div>
 		</div>
 
@@ -103,31 +103,4 @@ $this->assign('title', 'Payment Verification Demo');
 	</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.5/dist/mermaid.min.js"></script>
-<script>
-mermaid.initialize({startOnLoad: true, theme: 'default'});
-document.addEventListener('DOMContentLoaded', () => {
-	setTimeout(() => {
-		document.querySelectorAll('.mermaid svg').forEach(svg => {
-			let happyMarkerCreated = false, happyMarkerId = null;
-			svg.querySelectorAll('path[style*="stroke:#2e7d32"]').forEach(path => {
-				const markerMatch = path.getAttribute('marker-end')?.match(/url\(#(.+)\)/);
-				if (markerMatch) {
-					if (!happyMarkerCreated) {
-						const marker = svg.querySelector('#' + CSS.escape(markerMatch[1]));
-						if (marker) {
-							happyMarkerId = markerMatch[1] + '-happy';
-							const happyMarker = marker.cloneNode(true);
-							happyMarker.id = happyMarkerId;
-							happyMarker.querySelectorAll('path').forEach(p => p.style.fill = '#2e7d32');
-							marker.parentNode.appendChild(happyMarker);
-							happyMarkerCreated = true;
-						}
-					}
-					if (happyMarkerId) path.setAttribute('marker-end', 'url(#' + happyMarkerId + ')');
-				}
-			});
-		});
-	}, 100);
-});
-</script>
+<?= $this->Workflow->includeMermaid(['toolkit' => true]) ?>
