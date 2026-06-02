@@ -19,6 +19,8 @@ use Carve\Extension\ExternalLinksExtension;
 use Carve\Extension\FrontmatterExtension;
 use Carve\Extension\HeadingLevelShiftExtension;
 use Carve\Extension\HeadingPermalinksExtension;
+use Carve\Extension\HeadingReferenceExtension;
+use Carve\Extension\InlineFootnotesExtension;
 use Carve\Extension\MentionsExtension;
 use Carve\Extension\MermaidExtension;
 use Carve\Extension\SemanticSpanExtension;
@@ -162,6 +164,16 @@ class CarveController extends SandboxAppController {
 		$carve = (string)$this->request->getData('carve');
 		$enabledExtensions = (array)$this->request->getData('extensions');
 
+		// HeadingReference and Wikilinks both claim the [[...]] inline syntax and
+		// cannot share one converter instance. In the combined demo all toggles
+		// default to on, so drop HeadingReference when Wikilinks is also enabled.
+		if (in_array('wikilinks', $enabledExtensions, true) && in_array('heading_reference', $enabledExtensions, true)) {
+			$enabledExtensions = array_values(array_filter(
+				$enabledExtensions,
+				fn (string $ext): bool => $ext !== 'heading_reference',
+			));
+		}
+
 		$result = [
 			'html' => '',
 			'rawHtml' => '',
@@ -257,6 +269,14 @@ class CarveController extends SandboxAppController {
 							$converter->addExtension(new WikilinksExtension(
 								urlGenerator: fn (string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
 							));
+
+							break;
+						case 'heading_reference':
+							$converter->addExtension(new HeadingReferenceExtension());
+
+							break;
+						case 'inline_footnotes':
+							$converter->addExtension(new InlineFootnotesExtension());
 
 							break;
 						case 'frontmatter':
@@ -667,6 +687,40 @@ DJOT,
 					'urlGenerator' => 'Custom URL generator closure',
 					'cssClass' => "'wikilink'",
 					'newWindow' => 'false',
+				],
+			],
+			'heading_reference' => [
+				'name' => 'HeadingReferenceExtension',
+				'description' => 'Resolves [[Heading Text]] references to headings within the same document, producing anchor links. Supports custom display text via [[Heading Text|click here]]. Unresolvable references fall back to literal [[...]] text. Note: shares the [[...]] syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
+				'class' => HeadingReferenceExtension::class,
+				'example_djot' => <<<'DJOT'
+# Installation
+
+See [[Configuration]] for setup details, or jump straight to [[Usage|how to use it]].
+
+# Configuration
+
+Configure your settings here. A missing target like [[Nonexistent Section]] stays literal.
+
+# Usage
+
+Use the tool as described above.
+DJOT,
+				'options' => [
+					'cssClass' => "'heading-ref'",
+				],
+			],
+			'inline_footnotes' => [
+				'name' => 'InlineFootnotesExtension',
+				'description' => 'Converts spans marked with the .fn class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
+				'class' => InlineFootnotesExtension::class,
+				'example_djot' => <<<'DJOT'
+Carve supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
+
+Footnote content can include _emphasis_ and `code`[Footnotes support full inline formatting.]{.fn} too.
+DJOT,
+				'options' => [
+					'cssClass' => "'fn'",
 				],
 			],
 			'frontmatter' => [

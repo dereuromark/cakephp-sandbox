@@ -671,4 +671,77 @@ class DjotControllerTest extends TestCase {
 		$this->assertStringContainsString('<!--', $response['html']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testRoundtrip(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'roundtrip']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtrip(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertRoundtrip'], [
+			'djot' => 'Hello *world*!',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('html1', $response);
+		$this->assertArrayHasKey('djot2', $response);
+		$this->assertArrayHasKey('html2', $response);
+		$this->assertStringContainsString('<strong>world</strong>', $response['html1']);
+		$this->assertStringContainsString('*world*', $response['djot2']);
+		$this->assertTrue($response['htmlStable']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripNormalizesCrlf(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertRoundtrip'], [
+			// Multipart form-data sends CRLF; the verdict must ignore line-ending differences.
+			'djot' => "First *line*\r\n\r\nSecond line",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertTrue($response['djotStable']);
+		$this->assertTrue($response['htmlStable']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertRoundtrip'], [
+			'djot' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['html1']);
+		$this->assertSame('', $response['djot2']);
+		$this->assertFalse($response['htmlStable']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertRoundtrip']);
+
+		$this->assertResponseCode(405);
+	}
+
 }

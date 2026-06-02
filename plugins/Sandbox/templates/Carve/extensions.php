@@ -678,6 +678,35 @@ Or contact @alice and @bob directly.</textarea>
 .html-output .code-group-radio:nth-of-type(5):checked ~ .code-group-panel:nth-of-type(5) {
 	display: block;
 }
+/* Heading reference styles */
+.html-output a.heading-ref {
+	color: #0969da;
+	text-decoration: none;
+	border-bottom: 1px dotted #0969da;
+}
+.html-output a.heading-ref:hover {
+	border-bottom-style: solid;
+}
+/* Inline footnote styles */
+.html-output a[role="doc-noteref"] {
+	text-decoration: none;
+	font-weight: 600;
+}
+.html-output section[role="doc-endnotes"] {
+	margin-top: 1.5rem;
+	padding-top: 0.5rem;
+	font-size: 0.9em;
+	color: #495057;
+}
+.html-output section[role="doc-endnotes"] hr {
+	border: none;
+	border-top: 1px solid #dee2e6;
+	margin: 0 0 0.75rem;
+}
+.html-output a[role="doc-backlink"] {
+	text-decoration: none;
+	margin-left: 0.25em;
+}
 /* Wikilinks styles */
 .html-output .wikilink {
 	color: #0969da;

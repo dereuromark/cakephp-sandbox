@@ -772,6 +772,73 @@ DJOT,
 	}
 
 	/**
+	 * Roundtrip playground: Djot -> HTML -> Djot -> HTML.
+	 *
+	 * Lets you check whether Djot survives a conversion to HTML and back,
+	 * which is the key concern for WYSIWYG tooling that serializes to HTML.
+	 *
+	 * @return void
+	 */
+	public function roundtrip(): void {
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * AJAX endpoint for roundtrip conversion.
+	 *
+	 * Runs Djot -> HTML (pass 1) -> Djot -> HTML (pass 2) and reports whether
+	 * the output is stable. HTML stability (pass 1 == pass 2) is the meaningful
+	 * signal; the Djot text itself is normalized on the way back, so an exact
+	 * text match is the stricter, less common outcome.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertRoundtrip(): Response {
+		$this->request->allowMethod(['post']);
+
+		// Multipart form-data normalizes field newlines to CRLF, while the
+		// converter emits LF; normalize so the stability comparison is not
+		// thrown off by line-ending differences alone.
+		$djot = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('djot'));
+
+		$result = [
+			'html1' => '',
+			'djot2' => '',
+			'html2' => '',
+			'htmlStable' => false,
+			'djotStable' => false,
+			'error' => null,
+		];
+
+		if ($djot) {
+			try {
+				$toHtml = new DjotConverter(xhtml: true);
+				$toDjot = new HtmlToDjot();
+
+				$rawHtml1 = $toHtml->convert($djot);
+				$djot2 = $toDjot->convert($rawHtml1);
+				$rawHtml2 = (new DjotConverter(xhtml: true))->convert($djot2);
+
+				$result['html1'] = $this->sanitizeHtml($rawHtml1);
+				$result['djot2'] = $djot2;
+				$result['html2'] = $this->sanitizeHtml($rawHtml2);
+				// Compare raw (pre-sanitize) HTML so the verdict reflects converter
+				// fidelity, not what the sanitizer happens to normalize away.
+				$result['htmlStable'] = $rawHtml1 === $rawHtml2;
+				$result['djotStable'] = trim($djot) === trim($djot2);
+			} catch (ParseException $e) {
+				$result['error'] = $e->getMessage();
+			} catch (Throwable $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
 	 * BBCode to Djot converter playground.
 	 *
 	 * @return void

@@ -722,4 +722,58 @@ class CarveControllerTest extends TestCase {
 		$this->assertStringContainsString('<!--', $response['html']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsHeadingReference(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# Installation\n\nSee [[Configuration]].\n\n# Configuration\n\nDetails.",
+			'extensions' => ['heading_reference'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('href="#configuration"', $response['html']);
+		$this->assertStringContainsString('class="heading-ref"', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsInlineFootnotes(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => 'Text with a note[Inline footnote content.]{.fn} here.',
+			'extensions' => ['inline_footnotes'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		// Footnote reference and the generated endnotes section must survive sanitizing.
+		$this->assertStringContainsString('role="doc-noteref"', $response['html']);
+		$this->assertStringContainsString('role="doc-endnotes"', $response['html']);
+		$this->assertStringContainsString('Inline footnote content.', $response['html']);
+	}
+
+	/**
+	 * HeadingReference and Wikilinks share the [[...]] syntax; enabling both must
+	 * not error, and Wikilinks wins so the reference renders as a wiki link.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsHeadingReferenceConflictsWithWikilinks(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "See [[Configuration]].\n\n# Configuration\n\nDetails.",
+			'extensions' => ['wikilinks', 'heading_reference'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('class="wikilink"', $response['html']);
+		$this->assertStringNotContainsString('class="heading-ref"', $response['html']);
+	}
+
 }
