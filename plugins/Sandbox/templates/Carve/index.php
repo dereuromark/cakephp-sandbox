@@ -192,49 +192,82 @@ CARVE;
 	left: -1.25em;
 	top: 0.25em;
 }
-#output-rendered div.warning,
-#output-rendered div.note,
-#output-rendered div.info,
-#output-rendered div.tip,
-#output-rendered div.caution,
-#output-rendered div.important {
+/*
+ * Admonitions. Carve renders the eight canonical types
+ * (note, tip, warning, danger, info, success, example, quote) as a semantic
+ * <aside class="admonition {type}"> and any other custom type as a generic
+ * <div class="{type}">. Selectors are class-only so both elements match;
+ * caution/important are covered as Tier-2 <div> aliases.
+ */
+#output-rendered .warning,
+#output-rendered .note,
+#output-rendered .info,
+#output-rendered .tip,
+#output-rendered .caution,
+#output-rendered .important,
+#output-rendered .danger,
+#output-rendered .success,
+#output-rendered .example,
+#output-rendered .quote {
 	padding: 1rem;
 	margin: 1rem 0;
 	border-radius: 0.25rem;
 	border-left: 4px solid;
 }
-#output-rendered div.warning {
+#output-rendered .warning {
 	background-color: #fff3cd;
 	border-color: #ffc107;
 }
-#output-rendered div.note,
-#output-rendered div.info {
+#output-rendered .note,
+#output-rendered .info {
 	background-color: #cff4fc;
 	border-color: #0dcaf0;
 }
-#output-rendered div.tip {
+#output-rendered .tip,
+#output-rendered .success {
 	background-color: #d1e7dd;
 	border-color: #198754;
 }
-#output-rendered div.caution,
-#output-rendered div.important {
+#output-rendered .caution,
+#output-rendered .important,
+#output-rendered .danger {
 	background-color: #f8d7da;
 	border-color: #dc3545;
 }
-#output-rendered div.warning > *:first-child,
-#output-rendered div.note > *:first-child,
-#output-rendered div.info > *:first-child,
-#output-rendered div.tip > *:first-child,
-#output-rendered div.caution > *:first-child,
-#output-rendered div.important > *:first-child {
+#output-rendered .example {
+	background-color: #e2e3e5;
+	border-color: #6c757d;
+}
+#output-rendered .quote {
+	background-color: #e9ecef;
+	border-color: #adb5bd;
+}
+#output-rendered .admonition-title {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+#output-rendered .warning > *:first-child,
+#output-rendered .note > *:first-child,
+#output-rendered .info > *:first-child,
+#output-rendered .tip > *:first-child,
+#output-rendered .caution > *:first-child,
+#output-rendered .important > *:first-child,
+#output-rendered .danger > *:first-child,
+#output-rendered .success > *:first-child,
+#output-rendered .example > *:first-child,
+#output-rendered .quote > *:first-child {
 	margin-top: 0;
 }
-#output-rendered div.warning > *:last-child,
-#output-rendered div.note > *:last-child,
-#output-rendered div.info > *:last-child,
-#output-rendered div.tip > *:last-child,
-#output-rendered div.caution > *:last-child,
-#output-rendered div.important > *:last-child {
+#output-rendered .warning > *:last-child,
+#output-rendered .note > *:last-child,
+#output-rendered .info > *:last-child,
+#output-rendered .tip > *:last-child,
+#output-rendered .caution > *:last-child,
+#output-rendered .important > *:last-child,
+#output-rendered .danger > *:last-child,
+#output-rendered .success > *:last-child,
+#output-rendered .example > *:last-child,
+#output-rendered .quote > *:last-child {
 	margin-bottom: 0;
 }
 #output-rendered .highlight {
