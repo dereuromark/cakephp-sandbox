@@ -9,6 +9,7 @@ $action = $this->request->getParam('action');
 	<li class="heading"><?= __('Editors') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Carve Playground', ['action' => 'index'], ['class' => 'nav-link' . ($action === 'index' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('WYSIWYG Editor', ['action' => 'wysiwyg'], ['class' => 'nav-link' . ($action === 'wysiwyg' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Roundtrip Test', ['action' => 'roundtrip'], ['class' => 'nav-link' . ($action === 'roundtrip' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Converters') ?></li>

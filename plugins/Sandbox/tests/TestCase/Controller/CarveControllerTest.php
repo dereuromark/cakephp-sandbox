@@ -195,7 +195,7 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertNestedBlocksAreNativeWithoutFlag(): void {
+	public function testConvertNestedBlocksNeedFlagInsideListItem(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "- Item\n  > nested quote",
 		]);
@@ -203,8 +203,11 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Nesting a block inside a list item needs no flag in Carve.
-		$this->assertStringContainsString('<blockquote>', $response['html']);
+		// Without the blocks-interrupt-paragraphs flag the nested ">" stays part
+		// of the list item text; the flag (tested separately) is needed to turn
+		// it into a real blockquote.
+		$this->assertStringNotContainsString('<blockquote>', $response['html']);
+		$this->assertStringContainsString('&gt; nested quote', $response['html']);
 	}
 
 	/**
@@ -652,7 +655,7 @@ class CarveControllerTest extends TestCase {
 		// HtmlToCarve produces the Carve source.
 		$this->assertStringContainsString('# Title', $response['carve']);
 		$this->assertStringContainsString('*bold*', $response['carve']);
-		$this->assertStringContainsString('{=mark=}', $response['carve']);
+		$this->assertStringContainsString('==mark==', $response['carve']);
 		// CarveConverter renders the sanitized preview from that source.
 		$this->assertStringContainsString('<h1>Title</h1>', $response['html']);
 		$this->assertStringContainsString('<strong>bold</strong>', $response['html']);
@@ -820,6 +823,79 @@ class CarveControllerTest extends TestCase {
 		$this->assertNull($response['error']);
 		$this->assertStringContainsString('class="wikilink"', $response['html']);
 		$this->assertStringNotContainsString('class="heading-ref"', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testRoundtrip(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'roundtrip']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtrip(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
+			'carve' => 'Hello *world*!',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertArrayHasKey('html1', $response);
+		$this->assertArrayHasKey('carve2', $response);
+		$this->assertArrayHasKey('html2', $response);
+		$this->assertStringContainsString('<strong>world</strong>', $response['html1']);
+		$this->assertStringContainsString('*world*', $response['carve2']);
+		$this->assertTrue($response['htmlStable']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripNormalizesCrlf(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
+			// Multipart form-data sends CRLF; the verdict must ignore line-ending differences.
+			'carve' => "First *line*\r\n\r\nSecond line",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertTrue($response['carveStable']);
+		$this->assertTrue($response['htmlStable']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
+			'carve' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['html1']);
+		$this->assertSame('', $response['carve2']);
+		$this->assertFalse($response['htmlStable']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertRoundtripGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip']);
+
+		$this->assertResponseCode(405);
 	}
 
 }

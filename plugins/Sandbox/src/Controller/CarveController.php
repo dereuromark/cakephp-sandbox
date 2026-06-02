@@ -910,6 +910,70 @@ DJOT,
 	}
 
 	/**
+	 * Roundtrip test playground.
+	 *
+	 * @return void
+	 */
+	public function roundtrip(): void {
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * AJAX endpoint for roundtrip conversion.
+	 *
+	 * Runs Carve -> HTML (pass 1) -> Carve -> HTML (pass 2) and reports whether
+	 * the output is stable. HTML stability (pass 1 == pass 2) is the meaningful
+	 * signal; the Carve text itself is normalized on the way back, so an exact
+	 * text match is the stricter, less common outcome.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertRoundtrip(): Response {
+		$this->request->allowMethod(['post']);
+
+		// Multipart form-data normalizes field newlines to CRLF, while the
+		// converter emits LF; normalize so the stability comparison is not
+		// thrown off by line-ending differences alone.
+		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+
+		$result = [
+			'html1' => '',
+			'carve2' => '',
+			'html2' => '',
+			'htmlStable' => false,
+			'carveStable' => false,
+			'error' => null,
+		];
+
+		if ($carve) {
+			try {
+				$toHtml = new CarveConverter(xhtml: true);
+				$toCarve = new HtmlToCarve();
+
+				$rawHtml1 = $toHtml->convert($carve);
+				$carve2 = $toCarve->convert($rawHtml1);
+				$rawHtml2 = (new CarveConverter(xhtml: true))->convert($carve2);
+
+				$result['html1'] = $this->sanitizeHtml($rawHtml1);
+				$result['carve2'] = $carve2;
+				$result['html2'] = $this->sanitizeHtml($rawHtml2);
+				// Compare raw (pre-sanitize) HTML so the verdict reflects converter
+				// fidelity, not what the sanitizer happens to normalize away.
+				$result['htmlStable'] = $rawHtml1 === $rawHtml2;
+				$result['carveStable'] = trim($carve) === trim($carve2);
+			} catch (ParseException $e) {
+				$result['error'] = $e->getMessage();
+			} catch (Throwable $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
 	 * Djot to Carve converter playground.
 	 *
 	 * @return void
