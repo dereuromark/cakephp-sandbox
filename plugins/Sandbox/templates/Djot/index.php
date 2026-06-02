@@ -198,12 +198,23 @@ DJOT;
 	left: -1.25em;
 	top: 0.25em;
 }
+/*
+ * Admonitions. The core Djot renderer emits a generic <div class="{type}">;
+ * the AdmonitionExtension emits <div class="admonition {type}" role="…">.
+ * Selectors are div-qualified so they target admonition containers only and
+ * never collide with an inline span/paragraph that carries the same class
+ * (e.g. user-authored [text]{.warning}). caution/important are aliases.
+ */
 #output-rendered div.warning,
 #output-rendered div.note,
 #output-rendered div.info,
 #output-rendered div.tip,
 #output-rendered div.caution,
-#output-rendered div.important {
+#output-rendered div.important,
+#output-rendered div.danger,
+#output-rendered div.success,
+#output-rendered div.example,
+#output-rendered div.quote {
 	padding: 1rem;
 	margin: 1rem 0;
 	border-radius: 0.25rem;
@@ -218,21 +229,39 @@ DJOT;
 	background-color: #cff4fc;
 	border-color: #0dcaf0;
 }
-#output-rendered div.tip {
+#output-rendered div.tip,
+#output-rendered div.success {
 	background-color: #d1e7dd;
 	border-color: #198754;
 }
 #output-rendered div.caution,
-#output-rendered div.important {
+#output-rendered div.important,
+#output-rendered div.danger {
 	background-color: #f8d7da;
 	border-color: #dc3545;
+}
+#output-rendered div.example {
+	background-color: #e2e3e5;
+	border-color: #6c757d;
+}
+#output-rendered div.quote {
+	background-color: #e9ecef;
+	border-color: #adb5bd;
+}
+#output-rendered div.admonition .admonition-title {
+	font-weight: 600;
+	margin-bottom: 0.5rem;
 }
 #output-rendered div.warning > *:first-child,
 #output-rendered div.note > *:first-child,
 #output-rendered div.info > *:first-child,
 #output-rendered div.tip > *:first-child,
 #output-rendered div.caution > *:first-child,
-#output-rendered div.important > *:first-child {
+#output-rendered div.important > *:first-child,
+#output-rendered div.danger > *:first-child,
+#output-rendered div.success > *:first-child,
+#output-rendered div.example > *:first-child,
+#output-rendered div.quote > *:first-child {
 	margin-top: 0;
 }
 #output-rendered div.warning > *:last-child,
@@ -240,7 +269,11 @@ DJOT;
 #output-rendered div.info > *:last-child,
 #output-rendered div.tip > *:last-child,
 #output-rendered div.caution > *:last-child,
-#output-rendered div.important > *:last-child {
+#output-rendered div.important > *:last-child,
+#output-rendered div.danger > *:last-child,
+#output-rendered div.success > *:last-child,
+#output-rendered div.example > *:last-child,
+#output-rendered div.quote > *:last-child {
 	margin-bottom: 0;
 }
 #output-rendered .highlight {

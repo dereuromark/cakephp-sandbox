@@ -29,10 +29,10 @@ use Carve\Extension\WikilinksExtension;
 use Carve\Profile;
 use Carve\Renderer\SoftBreakMode;
 use Composer\InstalledVersions;
-use Exception;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use LengthException;
+use Throwable;
 
 class CarveController extends SandboxAppController {
 
@@ -120,6 +120,11 @@ class CarveController extends SandboxAppController {
 						'message' => $violation->getMessage(),
 					];
 				}
+			} catch (Throwable $e) {
+				// Last-resort guard: any other error (e.g. a TypeError from an
+				// extension closure) must surface as JSON, not an HTML error
+				// page that would break the AJAX client's JSON.parse.
+				$result['error'] = $e->getMessage();
 			}
 		}
 
@@ -282,7 +287,7 @@ class CarveController extends SandboxAppController {
 				}
 			} catch (ParseException $e) {
 				$result['error'] = $e->getMessage();
-			} catch (Exception $e) {
+			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -718,7 +723,7 @@ DJOT,
 			try {
 				$converter = new MarkdownToCarve();
 				$result['carve'] = $converter->convert($markdown);
-			} catch (Exception $e) {
+			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -755,7 +760,7 @@ DJOT,
 			try {
 				$converter = new HtmlToCarve();
 				$result['carve'] = $converter->convert($html);
-			} catch (Exception $e) {
+			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -803,7 +808,7 @@ DJOT,
 			try {
 				$converter = new BbcodeToCarve();
 				$result['carve'] = $converter->convert($bbcode);
-			} catch (Exception $e) {
+			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -840,7 +845,7 @@ DJOT,
 			try {
 				$converter = new DjotToCarve();
 				$result['carve'] = $converter->convert($djot);
-			} catch (Exception $e) {
+			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -888,8 +893,8 @@ DJOT,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
-		$config->set('HTML.DefinitionRev', 8);
-		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby],span[class|id],section[class|id],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],abbr[title|class|id]');
+		$config->set('HTML.DefinitionRev', 10);
+		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],aside[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
@@ -906,20 +911,29 @@ DJOT,
 			$def->addElement('figure', 'Block', 'Flow', 'Common');
 			$def->addElement('figcaption', 'Block', 'Flow', 'Common');
 			$def->addElement('nav', 'Block', 'Flow', 'Common');
+			$def->addElement('aside', 'Block', 'Flow', 'Common');
 			$def->addElement('details', 'Block', 'Flow', 'Common', ['open' => 'Bool']);
 			$def->addElement('summary', 'Block', 'Inline', 'Common');
 			$def->addElement('button', 'Inline', 'Inline', 'Common', [
 				'role' => 'Text',
 				'tabindex' => 'Number',
 				'aria-selected' => 'Enum#true,false',
-				'aria-controls' => 'ID',
+				// Text, not ID: HTMLPurifier treats an ID-typed attr as an id
+				// definition, so an ID-typed aria-controls would mark the panel's
+				// real id as a duplicate and strip it, breaking the tab wiring.
+				'aria-controls' => 'Text',
 			]);
 			$def->addAttribute('a', 'data-username', 'Text');
 			$def->addAttribute('a', 'aria-label', 'Text');
+			$def->addAttribute('a', 'role', 'Text');
 			$def->addAttribute('img', 'loading', 'Enum#lazy,eager,auto');
 			$def->addAttribute('img', 'decoding', 'Enum#async,sync,auto');
 			$def->addAttribute('div', 'role', 'Text');
 			$def->addAttribute('div', 'aria-labelledby', 'Text');
+			$def->addAttribute('div', 'hidden', 'Bool');
+			$def->addAttribute('section', 'role', 'Text');
+			$def->addElement('samp', 'Inline', 'Inline', 'Common');
+			$def->addElement('var', 'Inline', 'Inline', 'Common');
 			$def->addElement('input', 'Inline', 'Empty', 'Common', [
 				'type' => 'Enum#checkbox,radio',
 				'name' => 'Text',
