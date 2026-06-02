@@ -640,6 +640,52 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testWysiwygPreview(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
+			'html' => '<h1>Title</h1><p>A <strong>bold</strong> word and <mark>mark</mark>.</p>',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		// HtmlToCarve produces the Carve source.
+		$this->assertStringContainsString('# Title', $response['carve']);
+		$this->assertStringContainsString('*bold*', $response['carve']);
+		$this->assertStringContainsString('{=mark=}', $response['carve']);
+		// CarveConverter renders the sanitized preview from that source.
+		$this->assertStringContainsString('<h1>Title</h1>', $response['html']);
+		$this->assertStringContainsString('<strong>bold</strong>', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testWysiwygPreviewEmpty(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
+			'html' => '',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('', $response['carve']);
+		$this->assertSame('', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testWysiwygPreviewGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testDjotToCarve(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'djotToCarve']);
 

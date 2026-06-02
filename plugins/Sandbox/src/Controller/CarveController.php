@@ -833,14 +833,51 @@ DJOT,
 	}
 
 	/**
-	 * WYSIWYG editor placeholder.
+	 * WYSIWYG editor.
 	 *
-	 * Carve has no published JS editor tooling (Tiptap kit/serializer) yet, so this
-	 * page shows a notice plus a server-side HTML preview via the convert endpoint.
+	 * Carve has no published JS serializer yet, so this editor uses Tiptap for
+	 * rich-text editing and round-trips its HTML through the PHP converters
+	 * (HtmlToCarve, then CarveConverter) to produce both Carve source and a
+	 * sanitized HTML preview via the wysiwygPreview endpoint.
 	 *
 	 * @return void
 	 */
 	public function wysiwyg(): void {
+	}
+
+	/**
+	 * AJAX endpoint for the WYSIWYG editor.
+	 *
+	 * Serializes the editor's HTML to Carve (HtmlToCarve) and renders that Carve
+	 * back to sanitized HTML (CarveConverter), returning both so the page can show
+	 * the Carve source and a faithful server-rendered preview.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function wysiwygPreview(): Response {
+		$this->request->allowMethod(['post']);
+
+		$html = (string)$this->request->getData('html');
+
+		$result = [
+			'carve' => '',
+			'html' => '',
+			'error' => null,
+		];
+
+		if ($html) {
+			try {
+				$carve = (new HtmlToCarve())->convert($html);
+				$result['carve'] = $carve;
+				$result['html'] = $this->sanitizeHtml((new CarveConverter())->convert($carve));
+			} catch (Throwable $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
 	}
 
 	/**

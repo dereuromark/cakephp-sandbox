@@ -33,3 +33,4 @@ bolt.db
 docker/check_queue.conf
 .phpcs.cache
 /docs/superpowers/
+/plugins/WorkflowSandbox/config/Migrations/schema-dump-default.lock
