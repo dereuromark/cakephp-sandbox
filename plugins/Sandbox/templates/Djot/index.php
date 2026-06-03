@@ -158,14 +158,14 @@ DJOT;
 	</div>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-nested-blocks-in-lists">
-			<label class="form-check-label" for="opt-nested-blocks-in-lists" title="Allow nested blocks (sublists, blockquotes, fenced blocks) inside a list item without a blank line. Not part of Djot spec.">Nested blocks in lists</label>
+			<input class="form-check-input" type="checkbox" id="opt-blocks-interrupt-paragraphs">
+			<label class="form-check-label" for="opt-blocks-interrupt-paragraphs" title="Allow top-level blocks (lists, blockquotes, headings, tables, fences) to interrupt a paragraph without a blank line. Not part of Djot spec.">Blocks interrupt paragraphs</label>
 		</div>
 	</div>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-blocks-interrupt-paragraphs">
-			<label class="form-check-label" for="opt-blocks-interrupt-paragraphs" title="Allow top-level blocks (lists, blockquotes, headings, tables, fences) to interrupt a paragraph without a blank line. Not part of Djot spec.">Blocks interrupt paragraphs</label>
+			<input class="form-check-input" type="checkbox" id="opt-nested-lists-without-blank-line">
+			<label class="form-check-label" for="opt-nested-lists-without-blank-line" title="Allow a sublist to nest inside a list item by indentation alone, without a blank line. Not part of Djot spec.">Nested lists without blank line</label>
 		</div>
 	</div>
 	<?php if ($debugMode) { ?>
@@ -410,10 +410,10 @@ DJOT;
 </p>
 
 <details class="small text-muted mb-3">
-	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility options (Soft break, Nested blocks, Blocks interrupt)</summary>
+	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility options (Soft break, Nested blocks, Blocks interrupt, Nested lists)</summary>
 	<div class="mt-2 ps-3 border-start">
 		<p class="mb-2">
-			Djot treats blank lines as significant: blocks are normally separated by a blank line, and a single newline inside a paragraph is just a space. Markdown is more forgiving. The three options below opt into Markdown-like behavior and are <strong>not part of the Djot spec</strong> &mdash; leave them off for spec-compliant output.
+			Djot treats blank lines as significant: blocks are normally separated by a blank line, and a single newline inside a paragraph is just a space. Markdown is more forgiving. The options below opt into Markdown-like behavior and are <strong>not part of the Djot spec</strong> - leave them off for spec-compliant output.
 		</p>
 		<dl class="row mb-0">
 			<dt class="col-sm-3">Soft break as &lt;br&gt;</dt>
@@ -421,15 +421,16 @@ DJOT;
 				A single newline inside a paragraph becomes a visible line break (<code>&lt;br&gt;</code>) instead of collapsing onto the same line.
 				So <code>Line one ↵ Line two</code> stays on two lines instead of being joined into one.
 			</dd>
-			<dt class="col-sm-3">Nested blocks in lists</dt>
-			<dd class="col-sm-9">
-				Indentation alone nests a sublist, blockquote or code block inside a list item &mdash; no blank line needed.
-				So an indented <code>- Subitem</code> under <code>- Item</code> becomes a nested list instead of plain continuation text.
-			</dd>
 			<dt class="col-sm-3">Blocks interrupt paragraphs</dt>
 			<dd class="col-sm-9">
-				A block (list, blockquote, heading, table, fence) directly below a line of text starts right away, without a blank line in between.
-				So <code>Shopping: ↵ - milk</code> renders a list instead of keeping <code>- milk</code> as paragraph text.
+				Any block (list, blockquote, heading, table, fence) directly below a line of text starts right away, without a blank line in between - at every level, so a real sublist also nests inside a list item.
+				So <code>Shopping: ↵ - milk ↵ - bread</code> renders a list instead of keeping the lines as paragraph text.
+				On its own an ambiguous lone marker (a single <code>- x</code> or <code>&gt; x</code>) stays as text to avoid turning prose into a block; this playground also turns on <em>Nested lists without blank line</em> below so that lone case nests too.
+			</dd>
+			<dt class="col-sm-3">Nested lists without blank line</dt>
+			<dd class="col-sm-9">
+				The narrower subset, for sublists only: indentation alone nests a sublist inside a list item, with no blank line needed - including a lone single-item <code>- Subitem</code> that the option above leaves as text.
+				Use this when you want sublist nesting but not full paragraph interruption.
 			</dd>
 		</dl>
 	</div>
@@ -565,8 +566,8 @@ This div is never closed.</code></pre>
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
 	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
-	const optNestedBlocksInLists = document.getElementById('opt-nested-blocks-in-lists');
 	const optBlocksInterruptParagraphs = document.getElementById('opt-blocks-interrupt-paragraphs');
+	const optNestedListsWithoutBlankLine = document.getElementById('opt-nested-lists-without-blank-line');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -601,12 +602,20 @@ This div is never closed.</code></pre>
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
-		if (params.get('nested_blocks') === '1') optNestedBlocksInLists.checked = true;
 		if (params.get('interrupt_paragraphs') === '1') optBlocksInterruptParagraphs.checked = true;
-		// Legacy share links used a single significant-newlines toggle (the union of both options).
+		if (params.get('nested_lists') === '1') optNestedListsWithoutBlankLine.checked = true;
+		// Legacy share links. The removed "nested blocks in lists" toggle has no
+		// exact equivalent in the current two-flag model (it nested sublists,
+		// blockquotes and fences inside items but did not interrupt top-level
+		// paragraphs). Map it to its closest match, Nested lists without blank
+		// line, which covers the common sublist case. The older significant-
+		// newlines toggle was the union, so it also enables paragraph interruption.
+		if (params.get('nested_blocks') === '1') {
+			optNestedListsWithoutBlankLine.checked = true;
+		}
 		if (params.get('sig_newlines') === '1') {
-			optNestedBlocksInLists.checked = true;
 			optBlocksInterruptParagraphs.checked = true;
+			optNestedListsWithoutBlankLine.checked = true;
 		}
 	}
 
@@ -618,9 +627,23 @@ This div is never closed.</code></pre>
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
-		if (optNestedBlocksInLists.checked) url.searchParams.set('nested_blocks', '1');
 		if (optBlocksInterruptParagraphs.checked) url.searchParams.set('interrupt_paragraphs', '1');
+		if (optNestedListsWithoutBlankLine.checked) url.searchParams.set('nested_lists', '1');
 		return url.toString();
+	}
+
+	// In the playground, enabling "Blocks interrupt paragraphs" also turns on and
+	// locks the "Nested lists without blank line" subset, so a single checkbox
+	// gives the full Markdown-like nesting (including the lone single-item sublist
+	// that interruption alone leaves as text). The subset stays independently
+	// toggleable on its own when paragraph interruption is off.
+	function syncNestedListsLock() {
+		if (optBlocksInterruptParagraphs.checked) {
+			optNestedListsWithoutBlankLine.checked = true;
+			optNestedListsWithoutBlankLine.disabled = true;
+		} else {
+			optNestedListsWithoutBlankLine.disabled = false;
+		}
 	}
 
 	function copyToClipboard(text) {
@@ -684,8 +707,8 @@ This div is never closed.</code></pre>
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
-		formData.append('nested_blocks_in_lists', optNestedBlocksInLists.checked ? '1' : '0');
 		formData.append('blocks_interrupt_paragraphs', optBlocksInterruptParagraphs.checked ? '1' : '0');
+		formData.append('nested_lists_without_blank_line', optNestedListsWithoutBlankLine.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -805,8 +828,11 @@ This div is never closed.</code></pre>
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	optSoftBreakBr.addEventListener('change', convert);
-	optNestedBlocksInLists.addEventListener('change', convert);
-	optBlocksInterruptParagraphs.addEventListener('change', convert);
+	optBlocksInterruptParagraphs.addEventListener('change', function() {
+		syncNestedListsLock();
+		convert();
+	});
+	optNestedListsWithoutBlankLine.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
@@ -967,6 +993,7 @@ This div is never closed.</code></pre>
 
 	// Load from URL if shared, then convert
 	loadFromUrl();
+	syncNestedListsLock();
 	convert();
 })();
 <?php $this->Html->scriptEnd(); ?>

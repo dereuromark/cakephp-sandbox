@@ -63,8 +63,8 @@ class DjotController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$nestedBlocksInLists = (bool)$this->request->getData('nested_blocks_in_lists');
 		$blocksInterruptParagraphs = (bool)$this->request->getData('blocks_interrupt_paragraphs');
+		$nestedListsWithoutBlankLine = (bool)$this->request->getData('nested_lists_without_blank_line');
 		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
@@ -82,8 +82,8 @@ class DjotController extends SandboxAppController {
 					warnings: $collectWarnings,
 					strict: $strict,
 					profile: $profile,
-					nestedBlocksInLists: $nestedBlocksInLists,
 					blocksInterruptParagraphs: $blocksInterruptParagraphs,
+					nestedListsWithoutBlankLine: $nestedListsWithoutBlankLine,
 				);
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);

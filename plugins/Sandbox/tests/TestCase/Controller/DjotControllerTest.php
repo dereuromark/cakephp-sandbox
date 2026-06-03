@@ -194,16 +194,33 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithNestedBlocksInLists(): void {
+	public function testConvertWithNestedListsWithoutBlankLine(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
-			'djot' => "- Item\n\t- Sub one\n\t- Sub two",
-			'nested_blocks_in_lists' => '1',
+			'djot' => "- Item\n  - Sub one\n  - Sub two",
+			'nested_lists_without_blank_line' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		// The indented sublist nests without a blank line, producing two <ul>.
+		$this->assertSame(2, substr_count($response['html'], '<ul>'));
+		$this->assertStringContainsString('Sub one', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertBlocksInterruptParagraphsNestsMultiItemSublist(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "- Item\n  - Sub one\n  - Sub two",
+			// A list is a block, so the broader option nests a real sublist on its own.
+			'blocks_interrupt_paragraphs' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertSame(2, substr_count($response['html'], '<ul>'));
 		$this->assertStringContainsString('Sub one', $response['html']);
 	}
