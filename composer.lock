@@ -3365,12 +3365,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-shim.git",
-                "reference": "08beb9bd0032deb0acbafc55f3814450164b72ce"
+                "reference": "d20031e9bfbc7cb07663802244ad7e8618fd4723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/08beb9bd0032deb0acbafc55f3814450164b72ce",
-                "reference": "08beb9bd0032deb0acbafc55f3814450164b72ce",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-shim/zipball/d20031e9bfbc7cb07663802244ad7e8618fd4723",
+                "reference": "d20031e9bfbc7cb07663802244ad7e8618fd4723",
                 "shasum": ""
             },
             "require": {
@@ -3417,7 +3417,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-shim/issues",
                 "source": "https://github.com/dereuromark/cakephp-shim"
             },
-            "time": "2026-06-04T17:29:40+00:00"
+            "time": "2026-06-04T17:31:42+00:00"
         },
         {
             "name": "dereuromark/cakephp-tags",
