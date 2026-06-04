@@ -67,8 +67,8 @@ class CollectionPaginator implements PaginatorInterface {
 
 	/**
 	 * @param mixed $target
-	 * @param array $params
-	 * @param array $settings
+	 * @param array<mixed> $params
+	 * @param array<mixed> $settings
 	 * @return \Cake\Datasource\Paging\PaginatedInterface<int, mixed>
 	 */
 	public function paginate(
@@ -85,7 +85,7 @@ class CollectionPaginator implements PaginatorInterface {
 	/**
 	 * Extract pagination data needed
 	 *
-	 * @param \Cake\Collection\CollectionInterface $collection The repository object.
+	 * @param \Cake\Collection\CollectionInterface<int, mixed> $collection The repository object.
 	 * @param array<string, mixed> $params Request params
 	 * @param array<string, mixed> $settings The settings/configuration used for pagination.
 	 *
@@ -253,10 +253,10 @@ class CollectionPaginator implements PaginatorInterface {
 	 * Since the query fetches an extra record, drop the last record if records
 	 * fetched exceeds the limit/per page.
 	 *
-	 * @param \Cake\Collection\CollectionInterface $items
+	 * @param \Cake\Collection\CollectionInterface<int, mixed> $items
 	 * @param array<string, mixed> $pagingParams
 	 *
-	 * @return \Cake\Datasource\Paging\PaginatedInterface
+	 * @return \Cake\Datasource\Paging\PaginatedInterface<int, mixed>
 	 */
 	protected function buildPaginated(CollectionInterface $items, array $pagingParams): PaginatedInterface {
 		if (count($items) > $this->pagingParams['perPage']) {

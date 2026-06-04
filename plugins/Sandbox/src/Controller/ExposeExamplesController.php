@@ -10,7 +10,7 @@ use Expose\Database\Type\ShortUuidType;
 /**
  * @property \Sandbox\Model\Table\ExposedUsersTable $ExposedUsers
  * @property \Expose\Controller\Component\SuperimposeComponent $Superimpose
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\ExposedUser> paginate(\Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface|string|null $object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\ExposedUser> paginate(\Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface|string|null $object = null, array<string, mixed> $settings = [])
  */
 class ExposeExamplesController extends SandboxAppController {
 

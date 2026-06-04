@@ -33,7 +33,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @param \Cake\Event\EventInterface $event
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 * @throws \Cake\Http\Exception\MethodNotAllowedException
 	 * @return \Cake\Http\Response|null|void
 	 */
@@ -50,7 +50,7 @@ class ExportController extends AppController {
 	}
 
 	/**
-	 * @param \Cake\Event\EventInterface $event
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 * @return void
 	 */
 	public function afterFilter(EventInterface $event): void {

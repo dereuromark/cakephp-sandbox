@@ -52,8 +52,6 @@ parameters:
 		illegalConstructorMethodCall: true
 
 	ignoreErrors:
-		- identifier: missingType.generics
-		- identifier: missingType.iterableValue
 		- identifier: new.internalClass
 		- '#Access to an undefined property .+SandboxCategory::\$.+.#'
 		- '#Access to an undefined property Cake\\ORM\\BehaviorRegistry::\$.+#'

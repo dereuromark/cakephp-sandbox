@@ -13,16 +13,16 @@ use Workflow\Model\WorkflowTableInterface;
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Payment>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Payment patchEntity(\WorkflowSandbox\Model\Entity\Payment $entity, array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Payment> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Payment|false save(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Payment saveOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
- * @method bool delete(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
- * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Payment> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Payment patchEntity(\WorkflowSandbox\Model\Entity\Payment $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\WorkflowSandbox\Model\Entity\Payment> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Payment|false save(\WorkflowSandbox\Model\Entity\Payment $entity, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Payment saveOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Payment>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Payment> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\WorkflowSandbox\Model\Entity\Payment $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Payment $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Payment>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Payment> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Payment> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */

@@ -9,16 +9,16 @@ use Cake\Validation\Validator;
  * Events Model
  *
  * @extends \Cake\ORM\Table<array{Calendar: \Calendar\Model\Behavior\CalendarBehavior}, \Sandbox\Model\Entity\Event>
- * @method \Sandbox\Model\Entity\Event patchEntity(\Sandbox\Model\Entity\Event $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable<\Sandbox\Model\Entity\Event> $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\Event|false save(\Sandbox\Model\Entity\Event $entity, array $options = [])
- * @method \Sandbox\Model\Entity\Event saveOrFail(\Sandbox\Model\Entity\Event $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false saveMany(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> saveManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
- * @method bool delete(\Sandbox\Model\Entity\Event $entity, array $options = [])
- * @method bool deleteOrFail(\Sandbox\Model\Entity\Event $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event>|false deleteMany(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\Event> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\Event patchEntity(\Sandbox\Model\Entity\Event $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\Sandbox\Model\Entity\Event> patchEntities(iterable<\Sandbox\Model\Entity\Event> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\Event|false save(\Sandbox\Model\Entity\Event $entity, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\Event saveOrFail(\Sandbox\Model\Entity\Event $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\Event>|false saveMany(iterable<\Sandbox\Model\Entity\Event> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\Event> saveManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\Sandbox\Model\Entity\Event $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\Event $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\Event>|false deleteMany(iterable<\Sandbox\Model\Entity\Event> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\Event> deleteManyOrFail(iterable<\Sandbox\Model\Entity\Event> $entities, array<string, mixed> $options = [])
  * @mixin \Calendar\Model\Behavior\CalendarBehavior
  */
 class EventsTable extends Table {

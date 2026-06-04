@@ -31,7 +31,7 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * @param \Cake\Event\EventInterface $event
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 *
 	 * @return \Cake\Http\Response|null|void
 	 */
@@ -53,7 +53,7 @@ class AppController extends Controller {
 	}
 
 	/**
-	 * @param \Cake\Event\EventInterface $event
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 *
 	 * @return \Cake\Http\Response|null|void
 	 */

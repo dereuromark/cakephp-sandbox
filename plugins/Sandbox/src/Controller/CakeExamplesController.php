@@ -365,7 +365,7 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * Enable query logging for demonstration purposes
 	 *
-	 * @param array $queries Array to store queries (passed by reference)
+	 * @param array<array<string, mixed>> $queries Array to store queries (passed by reference)
 	 * @return void
 	 */
 	protected function _enableQueryLogging(array &$queries): void {
@@ -383,7 +383,7 @@ class CakeExamplesController extends SandboxAppController {
 			/**
 			 * @param mixed $level
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function log(mixed $level, Stringable|string $message, array $context = []): void {
@@ -399,7 +399,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function emergency(Stringable|string $message, array $context = []): void {
@@ -408,7 +408,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function alert(Stringable|string $message, array $context = []): void {
@@ -417,7 +417,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function critical(Stringable|string $message, array $context = []): void {
@@ -426,7 +426,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function error(Stringable|string $message, array $context = []): void {
@@ -435,7 +435,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function warning(Stringable|string $message, array $context = []): void {
@@ -444,7 +444,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function notice(Stringable|string $message, array $context = []): void {
@@ -453,7 +453,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function info(Stringable|string $message, array $context = []): void {
@@ -462,7 +462,7 @@ class CakeExamplesController extends SandboxAppController {
 
 			/**
 			 * @param \Stringable|string $message
-			 * @param array $context
+			 * @param array<mixed> $context
 			 * @return void
 			 */
 			public function debug(Stringable|string $message, array $context = []): void {
@@ -476,7 +476,7 @@ class CakeExamplesController extends SandboxAppController {
 	/**
 	 * Process queries: filter out schema introspection and format SQL
 	 *
-	 * @param array $queries Array of queries (passed by reference)
+	 * @param array<array<string, mixed>> $queries Array of queries (passed by reference)
 	 * @return void
 	 */
 	protected function _processQueries(array &$queries): void {

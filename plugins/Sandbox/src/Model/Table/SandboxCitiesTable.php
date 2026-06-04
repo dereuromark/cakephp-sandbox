@@ -16,16 +16,16 @@ use Cake\Validation\Validator;
  *
  * @extends \Cake\ORM\Table<array{}, \Sandbox\Model\Entity\SandboxCity>
  * @property \Data\Model\Table\CountriesTable&\Cake\ORM\Association\BelongsTo $Countries
- * @method \Sandbox\Model\Entity\SandboxCity patchEntity(\Sandbox\Model\Entity\SandboxCity $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\SandboxCity> patchEntities(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCity|false save(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxCity saveOrFail(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
- * @method bool delete(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
- * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxCity $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxCity> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCity patchEntity(\Sandbox\Model\Entity\SandboxCity $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxCity> patchEntities(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCity|false save(\Sandbox\Model\Entity\SandboxCity $entity, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\SandboxCity saveOrFail(\Sandbox\Model\Entity\SandboxCity $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxCity>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxCity> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\Sandbox\Model\Entity\SandboxCity $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxCity $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxCity>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxCity> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxCity> $entities, array<string, mixed> $options = [])
  */
 class SandboxCitiesTable extends Table {
 
@@ -104,9 +104,9 @@ class SandboxCitiesTable extends Table {
 	 * This replaces MySQL triggers which require SUPER privilege with binary logging.
 	 * Only runs on MySQL as spatial functions are not available on SQLite/Postgres.
 	 *
-	 * @param \Cake\Event\EventInterface $event The event.
+	 * @param \Cake\Event\EventInterface<\Cake\ORM\Table> $event The event.
 	 * @param \Sandbox\Model\Entity\SandboxCity $entity The entity.
-	 * @param \ArrayObject $options Options.
+	 * @param \ArrayObject<string, mixed> $options Options.
 	 * @return void
 	 */
 	public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void {

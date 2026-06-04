@@ -13,16 +13,16 @@ use Cake\Validation\Validator;
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Translate: \Cake\ORM\Behavior\TranslateBehavior}, \Sandbox\Model\Entity\DemoArticle>
  * @property \Cake\ORM\Table&\Cake\ORM\Association\HasMany $DemoArticlesTranslations
- * @method \Sandbox\Model\Entity\DemoArticle patchEntity(\Sandbox\Model\Entity\DemoArticle $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\DemoArticle> patchEntities(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\DemoArticle|false save(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
- * @method \Sandbox\Model\Entity\DemoArticle saveOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false saveMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method bool delete(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
- * @method bool deleteOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\DemoArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\DemoArticle patchEntity(\Sandbox\Model\Entity\DemoArticle $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\Sandbox\Model\Entity\DemoArticle> patchEntities(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\DemoArticle|false save(\Sandbox\Model\Entity\DemoArticle $entity, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\DemoArticle saveOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\DemoArticle>|false saveMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\DemoArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\Sandbox\Model\Entity\DemoArticle $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\DemoArticle $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\DemoArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\DemoArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\DemoArticle> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Cake\ORM\Behavior\TranslateBehavior
  */

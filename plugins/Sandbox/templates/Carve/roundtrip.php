@@ -1,7 +1,6 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var bool $debugMode
  */
 
 $defaultCarve = <<<'CARVE'

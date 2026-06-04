@@ -16,7 +16,7 @@ use Reactions\Model\Table\ReactionsTable;
 class SandboxReactionsTable extends ReactionsTable {
 
 	/**
-	 * @param array $config
+	 * @param array<mixed> $config
 	 *
 	 * @return void
 	 */

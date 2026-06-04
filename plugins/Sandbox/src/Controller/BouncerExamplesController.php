@@ -13,7 +13,7 @@ use DateTime;
  * Shows how user-submitted content can be moderated before publication.
  *
  * @property \Sandbox\Model\Table\SandboxArticlesTable $SandboxArticles
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> paginate(\Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface|string|null $object = null, array $settings = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxArticle> paginate(\Cake\Datasource\RepositoryInterface|\Cake\Datasource\QueryInterface|string|null $object = null, array<string, mixed> $settings = [])
  */
 class BouncerExamplesController extends SandboxAppController {
 

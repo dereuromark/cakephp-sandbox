@@ -13,16 +13,16 @@ use Workflow\Model\WorkflowTableInterface;
  *
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Registration>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Registration patchEntity(\WorkflowSandbox\Model\Entity\Registration $entity, array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Registration> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Registration|false save(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Registration saveOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
- * @method bool delete(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
- * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Registration patchEntity(\WorkflowSandbox\Model\Entity\Registration $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\WorkflowSandbox\Model\Entity\Registration> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Registration|false save(\WorkflowSandbox\Model\Entity\Registration $entity, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Registration saveOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Registration>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Registration> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\WorkflowSandbox\Model\Entity\Registration $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Registration $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Registration>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Registration> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Registration> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */

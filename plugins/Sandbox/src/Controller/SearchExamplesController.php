@@ -162,7 +162,7 @@ class SearchExamplesController extends SandboxAppController {
 	}
 
 	/**
-	 * @param \Cake\Event\EventInterface $event
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 *
 	 * @return void
 	 */

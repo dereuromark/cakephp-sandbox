@@ -6,6 +6,7 @@ use Cake\View\Helper;
 use MediaEmbed\MediaEmbed;
 
 /**
+ * @extends \Cake\View\Helper<\Cake\View\View>
  * @property \Cake\View\Helper\TextHelper $Text
  */
 class MediaEmbedBbcodeHelper extends Helper {

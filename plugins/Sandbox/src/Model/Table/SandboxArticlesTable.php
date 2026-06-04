@@ -10,16 +10,16 @@ use Cake\Validation\Validator;
  * SandboxArticles Model
  *
  * @extends \Cake\ORM\Table<array{AuditLog: \AuditStash\Model\Behavior\AuditLogBehavior, Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \Sandbox\Model\Entity\SandboxArticle>
- * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Sandbox\Model\Entity\SandboxArticle $entity, array $data, array $options = [])
- * @method array<\Sandbox\Model\Entity\SandboxArticle> patchEntities(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $data, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle|false save(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
- * @method \Sandbox\Model\Entity\SandboxArticle saveOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
- * @method bool delete(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
- * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle patchEntity(\Sandbox\Model\Entity\SandboxArticle $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\Sandbox\Model\Entity\SandboxArticle> patchEntities(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle|false save(\Sandbox\Model\Entity\SandboxArticle $entity, array<string, mixed> $options = [])
+ * @method \Sandbox\Model\Entity\SandboxArticle saveOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxArticle>|false saveMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxArticle> saveManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\Sandbox\Model\Entity\SandboxArticle $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\Sandbox\Model\Entity\SandboxArticle $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxArticle>|false deleteMany(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \Sandbox\Model\Entity\SandboxArticle> deleteManyOrFail(iterable<\Sandbox\Model\Entity\SandboxArticle> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \AuditStash\Model\Behavior\AuditLogBehavior
  */

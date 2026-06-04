@@ -22,7 +22,7 @@ namespace App\Model\Entity;
  * @method $this setAliasOrFail(string $value)
  * @method $this setCreatedOrFail(\Cake\I18n\DateTime $value)
  * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
- * @method $this setUsersOrFail(array $value)
+ * @method $this setUsersOrFail(array<\App\Model\Entity\User> $value)
  */
 class Role extends Entity {
 

@@ -14,16 +14,16 @@ use Workflow\Model\WorkflowTableInterface;
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Content>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Reviewers
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Content patchEntity(\WorkflowSandbox\Model\Entity\Content $entity, array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Content> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Content|false save(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Content saveOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
- * @method bool delete(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
- * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Content patchEntity(\WorkflowSandbox\Model\Entity\Content $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\WorkflowSandbox\Model\Entity\Content> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Content|false save(\WorkflowSandbox\Model\Entity\Content $entity, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Content saveOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Content>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Content> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\WorkflowSandbox\Model\Entity\Content $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Content $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Content>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Content> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Content> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */

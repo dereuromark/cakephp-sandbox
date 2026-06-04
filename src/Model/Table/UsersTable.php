@@ -10,22 +10,22 @@ use Tools\Model\Table\Table;
  * @extends \Tools\Model\Table\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior}, \App\Model\Entity\User>
  * @property \App\Model\Table\RolesTable&\Cake\ORM\Association\BelongsTo $Roles
  * @method \App\Model\Entity\User newEmptyEntity()
- * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
- * @method array<\App\Model\Entity\User> newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\User get(mixed $primaryKey, array|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \App\Model\Entity\User newEntity(array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\App\Model\Entity\User> newEntities(array<mixed> $data, array<string, mixed> $options = [])
+ * @method \App\Model\Entity\User get(mixed $primaryKey, array<string, mixed>|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
  * @method \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User> find(string $type = 'all', mixed ...$args)
- * @method \App\Model\Entity\User findOrCreate(\Cake\ORM\Query\SelectQuery|callable|array $search, ?callable $callback = null, array $options = [])
- * @method \App\Model\Entity\User patchEntity(\App\Model\Entity\User $entity, array $data, array $options = [])
- * @method array<\App\Model\Entity\User> patchEntities(iterable<\App\Model\Entity\User> $entities, array $data, array $options = [])
- * @method \App\Model\Entity\User|false save(\App\Model\Entity\User $entity, array $options = [])
- * @method \App\Model\Entity\User saveOrFail(\App\Model\Entity\User $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false saveMany(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> saveManyOrFail(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method bool delete(\App\Model\Entity\User $entity, array $options = [])
- * @method bool deleteOrFail(\App\Model\Entity\User $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User>|false deleteMany(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\App\Model\Entity\User> deleteManyOrFail(iterable<\App\Model\Entity\User> $entities, array $options = [])
- * @method \App\Model\Entity\User|array<\App\Model\Entity\User> loadInto(\App\Model\Entity\User|array<\App\Model\Entity\User> $entities, array $contain)
+ * @method \App\Model\Entity\User findOrCreate(\Cake\ORM\Query\SelectQuery<\App\Model\Entity\User>|callable|array<string, mixed> $search, ?callable $callback = null, array<string, mixed> $options = [])
+ * @method \App\Model\Entity\User patchEntity(\App\Model\Entity\User $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\App\Model\Entity\User> patchEntities(iterable<\App\Model\Entity\User> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \App\Model\Entity\User|false save(\App\Model\Entity\User $entity, array<string, mixed> $options = [])
+ * @method \App\Model\Entity\User saveOrFail(\App\Model\Entity\User $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \App\Model\Entity\User>|false saveMany(iterable<\App\Model\Entity\User> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \App\Model\Entity\User> saveManyOrFail(iterable<\App\Model\Entity\User> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\App\Model\Entity\User $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\App\Model\Entity\User $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \App\Model\Entity\User>|false deleteMany(iterable<\App\Model\Entity\User> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \App\Model\Entity\User> deleteManyOrFail(iterable<\App\Model\Entity\User> $entities, array<string, mixed> $options = [])
+ * @method \App\Model\Entity\User|array<\App\Model\Entity\User> loadInto(\App\Model\Entity\User|array<\App\Model\Entity\User> $entities, array<mixed> $contain)
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class UsersTable extends Table {
@@ -77,9 +77,9 @@ class UsersTable extends Table {
 	 * The Password identifier will call this finder and pass the login value
 	 * via the 'login' key (matching our field configuration).
 	 *
-	 * @param \Cake\ORM\Query\SelectQuery $query
+	 * @param \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User> $query
 	 * @param array<string, mixed> $options
-	 * @return \Cake\ORM\Query\SelectQuery
+	 * @return \Cake\ORM\Query\SelectQuery<\App\Model\Entity\User>
 	 */
 	public function findAuth(SelectQuery $query, array $options): SelectQuery {
 		// Check for 'login' field (our custom credential field)

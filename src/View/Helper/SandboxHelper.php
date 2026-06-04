@@ -5,6 +5,9 @@ namespace App\View\Helper;
 use Cake\Error\Debugger;
 use Cake\View\Helper;
 
+/**
+ * @extends \Cake\View\Helper<\Cake\View\View>
+ */
 class SandboxHelper extends Helper {
 
 	/**

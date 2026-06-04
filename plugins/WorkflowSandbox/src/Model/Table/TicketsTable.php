@@ -14,16 +14,16 @@ use Workflow\Model\WorkflowTableInterface;
  * @extends \Cake\ORM\Table<array{Timestamp: \Cake\ORM\Behavior\TimestampBehavior, Workflow: \Workflow\Model\Behavior\WorkflowBehavior}, \WorkflowSandbox\Model\Entity\Ticket>
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Assignees
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @method \WorkflowSandbox\Model\Entity\Ticket patchEntity(\WorkflowSandbox\Model\Entity\Ticket $entity, array $data, array $options = [])
- * @method array<\WorkflowSandbox\Model\Entity\Ticket> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $data, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Ticket|false save(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
- * @method \WorkflowSandbox\Model\Entity\Ticket saveOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method bool delete(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
- * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
- * @method \Cake\Datasource\ResultSetInterface<\WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Ticket patchEntity(\WorkflowSandbox\Model\Entity\Ticket $entity, array<mixed> $data, array<string, mixed> $options = [])
+ * @method array<\WorkflowSandbox\Model\Entity\Ticket> patchEntities(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array<mixed> $data, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Ticket|false save(\WorkflowSandbox\Model\Entity\Ticket $entity, array<string, mixed> $options = [])
+ * @method \WorkflowSandbox\Model\Entity\Ticket saveOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Ticket>|false saveMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Ticket> saveManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array<string, mixed> $options = [])
+ * @method bool delete(\WorkflowSandbox\Model\Entity\Ticket $entity, array<string, mixed> $options = [])
+ * @method bool deleteOrFail(\WorkflowSandbox\Model\Entity\Ticket $entity, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Ticket>|false deleteMany(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array<string, mixed> $options = [])
+ * @method \Cake\Datasource\ResultSetInterface<int, \WorkflowSandbox\Model\Entity\Ticket> deleteManyOrFail(iterable<\WorkflowSandbox\Model\Entity\Ticket> $entities, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  * @mixin \Workflow\Model\Behavior\WorkflowBehavior
  */
@@ -33,7 +33,7 @@ class TicketsTable extends Table implements WorkflowTableInterface {
 
 	/**
 	 * Priorities with labels
-     * @var array
+	 * @var array<string, string>
 	 */
 	public const PRIORITIES = [
 		'low' => 'Low',

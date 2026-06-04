@@ -32,8 +32,8 @@ use App\Model\Entity\Entity;
  * @method $this setRatingSumOrFail(int $value)
  * @method $this setCreatedOrFail(\Cake\I18n\DateTime $value)
  * @method $this setModifiedOrFail(\Cake\I18n\DateTime $value)
- * @method $this setTaggedOrFail(array $value)
- * @method $this setTagsOrFail(array $value)
+ * @method $this setTaggedOrFail(array<\Tags\Model\Entity\Tagged> $value)
+ * @method $this setTagsOrFail(array<\Tags\Model\Entity\Tag> $value)
  * @method \Tags\Model\Entity\Tagged getJoinDataOrFail()
  * @method $this setJoinDataOrFail(\Tags\Model\Entity\Tagged $value)
  */
