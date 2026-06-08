@@ -35,9 +35,9 @@ MARKDOWN;
 	For more conversion options (other formats), see <a href="https://pandoc.org/" target="_blank">Pandoc</a> which supports Carve as input/output format.
 </p>
 
-<div class="alert alert-warning py-2 small">
+<div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	carve-php's converters currently emit <strong>Djot-compatible</strong> output while Carve's distinct delimiters are being finalized. Pipe the result through <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?> for current Carve syntax.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,,sub,,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -75,14 +75,14 @@ MARKDOWN;
 				<tr>
 					<th>Feature</th>
 					<th>Markdown</th>
-					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
+					<th>Carve</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>Emphasis</td>
 					<td><code>*text*</code></td>
-					<td><code>_text_</code></td>
+					<td><code>/text/</code></td>
 				</tr>
 				<tr>
 					<td>Strong</td>
@@ -92,12 +92,12 @@ MARKDOWN;
 				<tr>
 					<td>Strikethrough</td>
 					<td><code>~~text~~</code></td>
-					<td><code>{-text-}</code></td>
+					<td><code>~text~</code></td>
 				</tr>
 				<tr>
 					<td>Highlight</td>
 					<td><code>==text==</code></td>
-					<td><code>{=text=}</code></td>
+					<td><code>==text==</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -108,7 +108,7 @@ MARKDOWN;
 				<tr>
 					<th>Feature</th>
 					<th>Markdown</th>
-					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
+					<th>Carve</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -120,7 +120,7 @@ MARKDOWN;
 				<tr>
 					<td>Subscript</td>
 					<td><code>&lt;sub&gt;text&lt;/sub&gt;</code></td>
-					<td><code>~text~</code></td>
+					<td><code>,,text,,</code></td>
 				</tr>
 				<tr>
 					<td>Insert</td>

@@ -82,9 +82,9 @@ HTML;
 	For more conversion options, see <a href="https://pandoc.org/" target="_blank">Pandoc</a>.
 </p>
 
-<div class="alert alert-warning py-2 small">
+<div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	carve-php's converters currently emit <strong>Djot-compatible</strong> output while Carve's distinct delimiters are being finalized. Pipe the result through <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?> for current Carve syntax.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,,sub,,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>

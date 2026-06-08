@@ -12,6 +12,7 @@ use Djot\DjotConverter;
 use Djot\Exception\ParseException;
 use Djot\Exception\ProfileViolationException;
 use Djot\Extension\AdmonitionExtension;
+use Djot\Extension\AsciiHeadingIdsExtension;
 use Djot\Extension\AutolinkExtension;
 use Djot\Extension\CodeGroupExtension;
 use Djot\Extension\DefaultAttributesExtension;
@@ -24,6 +25,7 @@ use Djot\Extension\MermaidExtension;
 use Djot\Extension\SemanticSpanExtension;
 use Djot\Extension\SmartQuotesExtension;
 use Djot\Extension\TableOfContentsExtension;
+use Djot\Extension\TabNormalizationExtension;
 use Djot\Extension\TabsExtension;
 use Djot\Extension\WikilinksExtension;
 use Djot\Profile;
@@ -85,6 +87,9 @@ class DjotController extends SandboxAppController {
 					blocksInterruptParagraphs: $blocksInterruptParagraphs,
 					nestedListsWithoutBlankLine: $nestedListsWithoutBlankLine,
 				);
+				// Tabs in code render at the browser default width (usually 8);
+				// expand them to spaces by default for consistent playground output.
+				$converter->addExtension(new TabNormalizationExtension(width: 4));
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
@@ -266,6 +271,14 @@ class DjotController extends SandboxAppController {
 							$renderAsComment = (bool)$this->request->getData('frontmatter_as_comment');
 							$frontmatterExtension = new FrontmatterExtension(renderAsComment: $renderAsComment);
 							$converter->addExtension($frontmatterExtension);
+
+							break;
+						case 'ascii_heading_ids':
+							$converter->addExtension(new AsciiHeadingIdsExtension());
+
+							break;
+						case 'tab_normalization':
+							$converter->addExtension(new TabNormalizationExtension(width: 4));
 
 							break;
 					}
@@ -692,6 +705,38 @@ DJOT,
 					'defaultFormat' => "'yaml'",
 					'renderAsComment' => 'false (true renders as HTML comment)',
 					'renderCallback' => 'Custom render function',
+				],
+			],
+			'ascii_heading_ids' => [
+				'name' => 'AsciiHeadingIdsExtension',
+				'description' => 'Folds auto-generated heading ids to ASCII. By default Djot keeps non-ASCII characters in ids (# Über uns becomes Über-uns); this extension transliterates them (Über-uns becomes Uber-uns) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
+				'class' => AsciiHeadingIdsExtension::class,
+				'example_djot' => <<<'DJOT'
+# Über uns
+
+## Café résumé
+
+### Größe & Maße
+
+Compare the generated id attributes with and without the extension.
+DJOT,
+				'options' => [
+					'useIntl' => 'null (auto-detect ext-intl, else built-in map)',
+				],
+			],
+			'tab_normalization' => [
+				'name' => 'TabNormalizationExtension',
+				'description' => 'Expands literal tabs in code blocks and inline code to a fixed number of spaces at render time. Djot preserves tabs by default, which render at the browser default tab width (usually 8); normalizing gives consistent fixed-width output. This demo uses width 4.',
+				'class' => TabNormalizationExtension::class,
+				'example_djot' => <<<DJOT
+``` js
+function greet() {
+\treturn "hi";
+}
+```
+DJOT,
+				'options' => [
+					'width' => '4 (spaces per tab; default 4, must be >= 1)',
 				],
 			],
 		];

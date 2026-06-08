@@ -350,6 +350,58 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertWithExtensionsAsciiHeadingIds(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => '# Über uns',
+			'extensions' => ['ascii_heading_ids'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('id="Uber-uns"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsTabNormalization(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "``` js\n\treturn 1;\n```",
+			'extensions' => ['tab_normalization'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('    return 1;', $response['html']);
+		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * Tabs in code are expanded to spaces by default on the main playground.
+	 *
+	 * @return void
+	 */
+	public function testConvertExpandsTabsByDefault(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "``` js\n\treturn 1;\n```",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('    return 1;', $response['html']);
+		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertWithExtensionsExternalLinks(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
 			'djot' => '[Link](https://example.com)',

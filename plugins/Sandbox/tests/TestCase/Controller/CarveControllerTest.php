@@ -335,6 +335,93 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertWithExtensionsPlusBullet(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "+ Apple\n+ Banana",
+			'extensions' => ['plus_bullet'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<li>Apple</li>', $response['html']);
+		$this->assertStringContainsString('<li>Banana</li>', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsAsciiHeadingIds(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => '# Über uns',
+			'extensions' => ['ascii_heading_ids'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('id="uber-uns"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsTabNormalize(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "``` js\n\treturn 1;\n```",
+			'extensions' => ['tab_normalize'],
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('    return 1;', $response['html']);
+		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * Tabs in code are expanded to spaces by default on the main playground.
+	 *
+	 * @return void
+	 */
+	public function testConvertExpandsTabsByDefault(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "``` js\n\treturn 1;\n```",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('    return 1;', $response['html']);
+		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+	}
+
+	/**
+	 * The WYSIWYG preview also expands code tabs to spaces by default.
+	 *
+	 * @return void
+	 */
+	public function testWysiwygPreviewExpandsTabsByDefault(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
+			'html' => "<pre><code class=\"language-js\">function f() {\n\treturn 1;\n}\n</code></pre>",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('    return 1;', $response['html']);
+		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertWithExtensionsExternalLinks(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
 			'carve' => '[Link](https://example.com)',

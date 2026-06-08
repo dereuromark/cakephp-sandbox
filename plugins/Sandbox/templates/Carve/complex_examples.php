@@ -6,7 +6,7 @@
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
-echo $this->Html->script('Sandbox.hljs-djot.js');
+echo $this->Html->script('Sandbox.hljs-carve.js');
 $this->end();
 
 $examples = [
@@ -31,16 +31,27 @@ DJOT,
 DJOT,
 	],
 	'Table with Caption' => [
-		'description' => 'Tables support captions and column alignment.',
+		'description' => 'Tables use header markers (`|=`) with glued alignment markers - `|=<` left, `|=~` center, `|=>` right - instead of a Markdown separator row.',
 		'code' => <<<'DJOT'
-| Feature | Markdown | Carve |
-|:--------|:--------:|-----:|
+|=< Feature |=~ Markdown |=> Carve |
 | Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
 | Strikethrough | `~~text~~` | `~text~` |
 | Highlight | N/A | `==text==` |
 
 ^ Syntax comparison between Markdown and Carve
+DJOT,
+	],
+	'Table with Cell Spans' => [
+		'description' => 'Cells merge with `^` (rowspan, continues the cell above) and `<` (colspan, merges with the cell to the left). Per-cell markers like `|>` override the column alignment.',
+		'code' => <<<'DJOT'
+|= Category |= Item |=> Price |
+| Fruit | Apple | $1.00 |
+| ^ | Banana | $0.50 |
+| Vegetable | Carrot | $0.30 |
+| Total | < | $1.80 |
+
+^ Rowspan (^), colspan (<) and a right-aligned price column
 DJOT,
 	],
 	'Definition List (Multiple Terms/Definitions)' => [
@@ -179,7 +190,7 @@ DJOT,
 	'Code Blocks with Info' => [
 		'description' => 'Fenced code blocks with language hints.',
 		'code' => <<<'DJOT'
-``` php
+```php
 <?php
 declare(strict_types=1);
 
@@ -199,7 +210,7 @@ class ArticlesController extends AppController
 }
 ```
 
-``` sql
+```sql
 SELECT users.name, COUNT(posts.id) as post_count
 FROM users
 LEFT JOIN posts ON posts.user_id = users.id
@@ -353,7 +364,7 @@ $encodeCarve = static fn (string $carve): string => base64_encode($carve);
 		</div>
 		<div class="card-body py-2">
 			<p class="text-muted small mb-2"><?= h($example['description']) ?></p>
-			<pre class="bg-light p-2 border rounded mb-0" style="max-height: 200px; overflow-y: auto;"><code class="language-djot"><?= h($example['code']) ?></code></pre>
+			<pre class="bg-light p-2 border rounded mb-0" style="max-height: 200px; overflow-y: auto;"><code class="language-carve"><?= h($example['code']) ?></code></pre>
 		</div>
 	</div>
 </div>
@@ -363,7 +374,7 @@ $encodeCarve = static fn (string $carve): string => base64_encode($carve);
 </div>
 
 <?php $this->Html->scriptStart(['block' => true]); ?>
-document.querySelectorAll('pre code.language-djot').forEach(el => {
+document.querySelectorAll('pre code.language-carve').forEach(el => {
 	hljs.highlightElement(el);
 });
 <?php $this->Html->scriptEnd(); ?>

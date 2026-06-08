@@ -52,9 +52,9 @@ BBCODE;
 	Useful for migrating forum content to Carve format.
 </p>
 
-<div class="alert alert-warning py-2 small">
+<div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	carve-php's converters currently emit <strong>Djot-compatible</strong> output while Carve's distinct delimiters are being finalized. Pipe the result through <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?> for current Carve syntax.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,,sub,,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -92,7 +92,7 @@ BBCODE;
 				<tr>
 					<th>Feature</th>
 					<th>BBCode</th>
-					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
+					<th>Carve</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,17 +104,17 @@ BBCODE;
 				<tr>
 					<td>Italic</td>
 					<td><code>[i]text[/i]</code></td>
-					<td><code>_text_</code></td>
+					<td><code>/text/</code></td>
 				</tr>
 				<tr>
 					<td>Underline</td>
 					<td><code>[u]text[/u]</code></td>
-					<td><code>{+text+}</code></td>
+					<td><code>_text_</code></td>
 				</tr>
 				<tr>
 					<td>Strikethrough</td>
 					<td><code>[s]text[/s]</code></td>
-					<td><code>{-text-}</code></td>
+					<td><code>~text~</code></td>
 				</tr>
 				<tr>
 					<td>Superscript</td>
@@ -124,7 +124,7 @@ BBCODE;
 				<tr>
 					<td>Subscript</td>
 					<td><code>[sub]text[/sub]</code></td>
-					<td><code>~text~</code></td>
+					<td><code>,,text,,</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -135,7 +135,7 @@ BBCODE;
 				<tr>
 					<th>Feature</th>
 					<th>BBCode</th>
-					<th>Carve <small class="text-muted">(Djot-compatible)</small></th>
+					<th>Carve</th>
 				</tr>
 			</thead>
 			<tbody>

@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "3076e4c01ecec3a51baa16136054102007ac01e0"
+                "reference": "191076a5be5e542d2f4853a9d455e7885b1db54b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/3076e4c01ecec3a51baa16136054102007ac01e0",
-                "reference": "3076e4c01ecec3a51baa16136054102007ac01e0",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/191076a5be5e542d2f4853a9d455e7885b1db54b",
+                "reference": "191076a5be5e542d2f4853a9d455e7885b1db54b",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-06-06T18:19:31+00:00"
+            "time": "2026-06-07T21:44:48+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -3627,12 +3627,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "aef618278ba22618b36ac03693dac7cfab426b7b"
+                "reference": "7e7158cb4ff04dec6dd722305a2ad0c59fec2d69"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/aef618278ba22618b36ac03693dac7cfab426b7b",
-                "reference": "aef618278ba22618b36ac03693dac7cfab426b7b",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/7e7158cb4ff04dec6dd722305a2ad0c59fec2d69",
+                "reference": "7e7158cb4ff04dec6dd722305a2ad0c59fec2d69",
                 "shasum": ""
             },
             "require": {
@@ -3689,7 +3689,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2026-06-02T00:55:59+00:00"
+            "time": "2026-06-08T08:47:30+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -6030,12 +6030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "3aea56677d4ddb59707991385f96874a9e705397"
+                "reference": "4dc5fc0ed4e70093229b1edc7e5fdf37d5f06b8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/3aea56677d4ddb59707991385f96874a9e705397",
-                "reference": "3aea56677d4ddb59707991385f96874a9e705397",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/4dc5fc0ed4e70093229b1edc7e5fdf37d5f06b8a",
+                "reference": "4dc5fc0ed4e70093229b1edc7e5fdf37d5f06b8a",
                 "shasum": ""
             },
             "require": {
@@ -6092,7 +6092,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-06T14:23:27+00:00"
+            "time": "2026-06-08T10:37:49+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6634,12 +6634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "d4de671712f36262594e7c1eac0093717a886cc2"
+                "reference": "32c0d5083c9f4802b1dce72a31592c8cd6479d19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/d4de671712f36262594e7c1eac0093717a886cc2",
-                "reference": "d4de671712f36262594e7c1eac0093717a886cc2",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/32c0d5083c9f4802b1dce72a31592c8cd6479d19",
+                "reference": "32c0d5083c9f4802b1dce72a31592c8cd6479d19",
                 "shasum": ""
             },
             "require": {
@@ -6693,7 +6693,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-06T19:57:19+00:00"
+            "time": "2026-06-07T14:53:55+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -10488,12 +10488,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "8205dea0b766790f61a2923f712274e1855bc389"
+                "reference": "2dac0840c4c06026501205b41f50bb9ecc668bee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/8205dea0b766790f61a2923f712274e1855bc389",
-                "reference": "8205dea0b766790f61a2923f712274e1855bc389",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/2dac0840c4c06026501205b41f50bb9ecc668bee",
+                "reference": "2dac0840c4c06026501205b41f50bb9ecc668bee",
                 "shasum": ""
             },
             "require": {
@@ -10559,7 +10559,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-04T17:31:18+00:00"
+            "time": "2026-06-07T13:25:48+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -11578,16 +11578,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "14.2.0",
+            "version": "14.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "ab8a36c9bd98c51f6cfe665a732bfadf72e18e8d"
+                "reference": "ed4f43a9a69d6be9f92d50397044ccb862bd8133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ab8a36c9bd98c51f6cfe665a732bfadf72e18e8d",
-                "reference": "ab8a36c9bd98c51f6cfe665a732bfadf72e18e8d",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ed4f43a9a69d6be9f92d50397044ccb862bd8133",
+                "reference": "ed4f43a9a69d6be9f92d50397044ccb862bd8133",
                 "shasum": ""
             },
             "require": {
@@ -11606,7 +11606,7 @@
                 "theseer/tokenizer": "^2.0.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^13.1.14"
+                "phpunit/phpunit": "^13.2.0"
             },
             "suggest": {
                 "ext-pcov": "PHP extension that provides line coverage",
@@ -11644,7 +11644,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/14.2.0"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/14.2.1"
             },
             "funding": [
                 {
@@ -11664,7 +11664,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-05T02:59:08+00:00"
+            "time": "2026-06-07T09:07:04+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",

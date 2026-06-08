@@ -12,6 +12,7 @@ use Carve\Converter\MarkdownToCarve;
 use Carve\Exception\ParseException;
 use Carve\Exception\ProfileViolationException;
 use Carve\Extension\AdmonitionExtension;
+use Carve\Extension\AsciiHeadingIdsExtension;
 use Carve\Extension\AutolinkExtension;
 use Carve\Extension\CodeGroupExtension;
 use Carve\Extension\DefaultAttributesExtension;
@@ -23,9 +24,11 @@ use Carve\Extension\HeadingReferenceExtension;
 use Carve\Extension\InlineFootnotesExtension;
 use Carve\Extension\MentionsExtension;
 use Carve\Extension\MermaidExtension;
+use Carve\Extension\PlusBulletExtension;
 use Carve\Extension\SemanticSpanExtension;
 use Carve\Extension\SmartQuotesExtension;
 use Carve\Extension\TableOfContentsExtension;
+use Carve\Extension\TabNormalizeExtension;
 use Carve\Extension\TabsExtension;
 use Carve\Extension\WikilinksExtension;
 use Carve\Profile;
@@ -84,6 +87,9 @@ class CarveController extends SandboxAppController {
 				} else {
 					$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
 				}
+				// Tabs in code render unevenly without a CSS tab-size; expand
+				// them to spaces by default for consistent playground output.
+				$converter->addExtension(new TabNormalizeExtension(width: 4));
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
@@ -283,6 +289,18 @@ class CarveController extends SandboxAppController {
 							$renderAsComment = (bool)$this->request->getData('frontmatter_as_comment');
 							$frontmatterExtension = new FrontmatterExtension(renderAsComment: $renderAsComment);
 							$converter->addExtension($frontmatterExtension);
+
+							break;
+						case 'plus_bullet':
+							$converter->addExtension(new PlusBulletExtension());
+
+							break;
+						case 'ascii_heading_ids':
+							$converter->addExtension(new AsciiHeadingIdsExtension());
+
+							break;
+						case 'tab_normalize':
+							$converter->addExtension(new TabNormalizeExtension(width: 4));
 
 							break;
 					}
@@ -747,6 +765,62 @@ DJOT,
 					'renderCallback' => 'Custom render function',
 				],
 			],
+			'plus_bullet' => [
+				'name' => 'PlusBulletExtension',
+				'description' => 'Re-enables + as a bullet-list marker alongside - and *. A + is only a bullet when followed by a space and content; a bare + stays the list-continuation marker, so the two never collide. Task lists (+ [ ]) work too.',
+				'class' => PlusBulletExtension::class,
+				'example_djot' => <<<'DJOT'
++ Apple
++ Banana
++ Cherry
+
+Mixed with the default markers:
+
+- Dash bullet
++ Plus bullet
+* Star bullet
+
+Task lists work as well:
+
++ [ ] Pending task
++ [x] Completed task
+DJOT,
+				'options' => [
+					'(none)' => 'Toggle-only; enable by adding the extension',
+				],
+			],
+			'ascii_heading_ids' => [
+				'name' => 'AsciiHeadingIdsExtension',
+				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (# Über uns becomes über-uns); this extension transliterates them (über-uns becomes uber-uns) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
+				'class' => AsciiHeadingIdsExtension::class,
+				'example_djot' => <<<'DJOT'
+# Über uns
+
+## Café résumé
+
+### Größe & Maße
+
+Compare the generated id attributes with and without the extension.
+DJOT,
+				'options' => [
+					'transliterator' => 'AsciiTransliterator (custom map optional)',
+				],
+			],
+			'tab_normalize' => [
+				'name' => 'TabNormalizeExtension',
+				'description' => 'Expands literal tabs in code blocks and inline code to a fixed number of spaces at render time. Carve preserves tabs by default (a CSS tab-size concern); this is useful for fixed-width output without CSS, e.g. email, RSS or plain HTML. This demo uses width 4.',
+				'class' => TabNormalizeExtension::class,
+				'example_djot' => <<<DJOT
+``` js
+function greet() {
+\treturn "hi";
+}
+```
+DJOT,
+				'options' => [
+					'width' => '4 (spaces per tab; default 2)',
+				],
+			],
 		];
 	}
 
@@ -869,7 +943,10 @@ DJOT,
 			try {
 				$carve = (new HtmlToCarve())->convert($html);
 				$result['carve'] = $carve;
-				$result['html'] = $this->sanitizeHtml((new CarveConverter())->convert($carve));
+				$converter = new CarveConverter();
+				// Expand code tabs to spaces by default for consistent preview rendering.
+				$converter->addExtension(new TabNormalizeExtension(width: 4));
+				$result['html'] = $this->sanitizeHtml($converter->convert($carve));
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
