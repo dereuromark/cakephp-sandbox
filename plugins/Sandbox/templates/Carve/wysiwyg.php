@@ -29,6 +29,9 @@ $this->append('css');
 .tiptap h1 { font-size: 1.8em; }
 .tiptap h2 { font-size: 1.5em; }
 .tiptap h3 { font-size: 1.25em; }
+.tiptap h4 { font-size: 1.1em; }
+.tiptap h5 { font-size: 1em; font-weight: 600; }
+.tiptap h6 { font-size: 0.9em; font-weight: 600; color: #6c757d; }
 .tiptap p { margin: 0; }
 .tiptap code {
 	background: #f8f9fa;
@@ -52,7 +55,14 @@ $this->append('css');
 	color: #6c757d;
 }
 .tiptap ul, .tiptap ol { padding-left: 24px; }
+.tiptap li { margin: 0.25em 0; }
+.tiptap li p { margin: 0; }
 .tiptap a { color: #0d6efd; }
+.tiptap a:hover { text-decoration: underline; }
+.tiptap ul[data-type="taskList"] { list-style: none; padding-left: 0; }
+.tiptap ul[data-type="taskList"] li { display: flex; align-items: flex-start; gap: 8px; }
+.tiptap ul[data-type="taskList"] li > label { flex-shrink: 0; margin-top: 4px; }
+.tiptap ul[data-type="taskList"] input[type="checkbox"] { width: 16px; height: 16px; }
 .tiptap mark { background: #fff3cd; padding: 1px 4px; border-radius: 3px; }
 .tiptap s { text-decoration: line-through; color: #6c757d; }
 .tiptap hr { border: none; border-top: 2px solid #dee2e6; margin: 1.5em 0; }
@@ -170,6 +180,7 @@ $this->end();
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bulletList" title="Bullet list"><i class="bi bi-list-ul"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="orderedList" title="Ordered list"><i class="bi bi-list-ol"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="taskList" title="Task list"><i class="bi bi-check2-square"></i></button>
 		</div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="blockquote" title="Blockquote"><i class="bi bi-quote"></i></button>
@@ -217,7 +228,9 @@ $this->end();
 		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@2",
 		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@2",
 		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@2",
-		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2"
+		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
+		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
+		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2"
 	}
 }
 </script>
@@ -232,6 +245,8 @@ import Table from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
+import TaskList from '@tiptap/extension-task-list';
+import TaskItem from '@tiptap/extension-task-item';
 
 const previewUrl = <?= json_encode($this->Url->build(['action' => 'wysiwygPreview'])) ?>;
 
@@ -243,6 +258,11 @@ const initialContent = `
 		<li><strong>Strong</strong> &rarr; <code>*text*</code></li>
 		<li><em>Emphasis</em> &rarr; <code>/text/</code></li>
 		<li><mark>Highlight</mark> &rarr; <code>==text==</code></li>
+	</ul>
+	<h2>Task list</h2>
+	<ul data-type="taskList">
+		<li data-type="taskItem" data-checked="true"><label><input type="checkbox" checked><span></span></label><div><p>Task lists round-trip to <code>- [x]</code></p></div></li>
+		<li data-type="taskItem" data-checked="false"><label><input type="checkbox"><span></span></label><div><p>Toggle the checkbox and watch the source</p></div></li>
 	</ul>
 	<blockquote><p>Edit the content and watch the Carve source below.</p></blockquote>
 	<pre><code class="language-php">echo "Hello, Carve!";</code></pre>
@@ -264,6 +284,8 @@ const editor = new Editor({
 		TableRow,
 		TableHeader,
 		TableCell,
+		TaskList,
+		TaskItem.configure({ nested: true }),
 	],
 	content: initialContent,
 	onUpdate: () => {
@@ -324,7 +346,7 @@ function escapeHtml(text) {
 function updateToolbarState() {
 	document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 		const cmd = btn.dataset.cmd;
-		const markMap = { bold: 'bold', italic: 'italic', code: 'code', highlight: 'highlight', strike: 'strike', bulletList: 'bulletList', orderedList: 'orderedList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
+		const markMap = { bold: 'bold', italic: 'italic', code: 'code', highlight: 'highlight', strike: 'strike', bulletList: 'bulletList', orderedList: 'orderedList', taskList: 'taskList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
 		if (markMap[cmd]) {
 			btn.classList.toggle('is-active', editor.isActive(markMap[cmd]));
 		}
@@ -358,6 +380,7 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'strike': chain.toggleStrike().run(); break;
 			case 'bulletList': chain.toggleBulletList().run(); break;
 			case 'orderedList': chain.toggleOrderedList().run(); break;
+			case 'taskList': chain.toggleTaskList().run(); break;
 			case 'blockquote': chain.toggleBlockquote().run(); break;
 			case 'codeBlock': chain.toggleCodeBlock().run(); break;
 			case 'horizontalRule': chain.setHorizontalRule().run(); break;

@@ -403,6 +403,23 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * TipTap task-list HTML round-trips to Carve checkbox items.
+	 *
+	 * @return void
+	 */
+	public function testWysiwygPreviewConvertsTaskLists(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
+			'html' => '<ul data-type="taskList"><li data-type="taskItem" data-checked="true"><label><input type="checkbox" checked></label><div><p>done</p></div></li><li data-type="taskItem" data-checked="false"><label><input type="checkbox"></label><div><p>todo</p></div></li></ul>',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('- [x] done', $response['carve']);
+		$this->assertStringContainsString('- [ ] todo', $response['carve']);
+	}
+
+	/**
 	 * The WYSIWYG preview also expands code tabs to spaces by default.
 	 *
 	 * @return void
