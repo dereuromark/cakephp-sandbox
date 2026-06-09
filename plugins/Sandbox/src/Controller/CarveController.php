@@ -69,7 +69,6 @@ class CarveController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$blocksInterruptParagraphs = (bool)$this->request->getData('blocks_interrupt_paragraphs');
 		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
@@ -82,11 +81,9 @@ class CarveController extends SandboxAppController {
 		if ($carve) {
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
-				if ($blocksInterruptParagraphs) {
-					$converter = CarveConverter::withBlocksInterruptParagraphs(true, $collectWarnings, $strict, null, $profile);
-				} else {
-					$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
-				}
+				// Carve interrupts paragraphs unconditionally (§10 default); there
+				// is no strict toggle anymore.
+				$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
 				// Tabs in code render unevenly without a CSS tab-size; expand
 				// them to spaces by default for consistent playground output.
 				$converter->addExtension(new TabNormalizeExtension(width: 4));
@@ -833,6 +830,18 @@ DJOT,
 	}
 
 	/**
+	 * Migration fixer playground (carve-js `applyMigrationFixes` / `carve fix`).
+	 *
+	 * Runs fully client-side via the bundled carve-js library; there is no
+	 * server endpoint - the JS rewrites Djot/Markdown delimiter collisions to
+	 * their Carve equivalents in the browser and reports applied/skipped fixes.
+	 *
+	 * @return void
+	 */
+	public function migrationFix(): void {
+	}
+
+	/**
 	 * AJAX endpoint for Markdown to Carve conversion.
 	 *
 	 * @return \Cake\Http\Response
@@ -993,6 +1002,99 @@ DJOT,
 	 */
 	public function roundtrip(): void {
 		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * Paragraph interruption (§10): a line that begins with a block marker is
+	 * that block. Carve paragraphs are not greedy, so no blank line is needed.
+	 *
+	 * Each case is shown three ways: as typed (marker starts the block), with a
+	 * blank line before the marker (identical result - the blank line is
+	 * optional), and with the marker escaped (kept literal inside the paragraph).
+	 *
+	 * @return void
+	 */
+	public function interruption(): void {
+		$converter = new CarveConverter();
+
+		$rows = [];
+		foreach ($this->getInterruptionCases() as $case) {
+			$typedRaw = $converter->convert($case['carve']);
+			$blankRaw = $converter->convert($case['blank']);
+			$escapedRaw = $converter->convert($case['escaped']);
+			$rows[] = [
+				'title' => $case['title'],
+				'note' => $case['note'],
+				'carve' => $case['carve'],
+				'blank' => $case['blank'],
+				'escaped' => $case['escaped'],
+				'typedRaw' => $typedRaw,
+				'blankRaw' => $blankRaw,
+				'escapedRaw' => $escapedRaw,
+				'typedHtml' => $this->sanitizeHtml($typedRaw),
+				'blankHtml' => $this->sanitizeHtml($blankRaw),
+				'escapedHtml' => $this->sanitizeHtml($escapedRaw),
+				// The whole point: no blank line and a blank line render the same.
+				'equivalent' => $typedRaw === $blankRaw,
+			];
+		}
+
+		$this->set('rows', $rows);
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * Curated cases. `carve` is as-typed (marker directly under the paragraph),
+	 * `blank` adds a blank line before the marker (same result), `escaped` keeps
+	 * the marker literal with a leading backslash.
+	 *
+	 * @return array<int, array{title: string, note: string, carve: string, blank: string, escaped: string}>
+	 */
+	protected function getInterruptionCases(): array {
+		return [
+			[
+				'title' => 'Heading marker after text',
+				'note' => 'A "# " line is a heading wherever it appears - the paragraph above does not absorb it.',
+				'carve' => "text\n# H",
+				'blank' => "text\n\n# H",
+				'escaped' => "text\n\\# H",
+			],
+			[
+				'title' => 'List after a label',
+				'note' => 'A "- " line is a list item. The label above stays its own paragraph.',
+				'carve' => "Cart:\n- 2x coffee\n- 1x tea",
+				'blank' => "Cart:\n\n- 2x coffee\n- 1x tea",
+				'escaped' => "Cart:\n\\- 2x coffee\n\\- 1x tea",
+			],
+			[
+				'title' => 'Nested list (no blank line)',
+				'note' => 'Indenting a sub-list nests it directly. Djot traditionally needed a blank line before the nested portion - a long-standing pain point - which Carve drops.',
+				'carve' => "- Drinks\n  - Coffee\n  - Tea\n- Snacks",
+				'blank' => "- Drinks\n\n  - Coffee\n  - Tea\n- Snacks",
+				'escaped' => "- Drinks\n  \\- Coffee\n  \\- Tea\n- Snacks",
+			],
+			[
+				'title' => 'Blockquote marker after text',
+				'note' => 'A "> " line is a blockquote. Escape it when you mean a literal greater-than.',
+				'carve' => "Make sure the result is\n> 5 so the check passes.",
+				'blank' => "Make sure the result is\n\n> 5 so the check passes.",
+				'escaped' => "Make sure the result is\n\\> 5 so the check passes.",
+			],
+			[
+				'title' => 'Pipe line after text',
+				'note' => 'A clean "| a | b |" row is a table. Escape the leading pipe to keep it as prose.',
+				'carve' => "The CSV header is\n| id | name | email |",
+				'blank' => "The CSV header is\n\n| id | name | email |",
+				'escaped' => "The CSV header is\n\\| id | name | email |",
+			],
+			[
+				'title' => 'Thematic break after text',
+				'note' => 'A "---" line is a thematic break. Escape it to keep an em dash inside the paragraph.',
+				'carve' => "Sign here:\n---\nJane Doe",
+				'blank' => "Sign here:\n\n---\nJane Doe",
+				'escaped' => "Sign here:\n\\---\nJane Doe",
+			],
+		];
 	}
 
 	/**

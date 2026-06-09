@@ -829,6 +829,93 @@ DJOT,
 	}
 
 	/**
+	 * Paragraph interruption: strict (djot default/spec) vs interrupt, side by side.
+	 *
+	 * Djot does NOT let a block interrupt an open paragraph without a blank line
+	 * by default (Carve, by contrast, now interrupts by default). The opt-in
+	 * interrupt mode adds markdown-like leniency. This page shows what that
+	 * costs: a line-initial block marker in prose gets reinterpreted as structure.
+	 *
+	 * @return void
+	 */
+	public function interruption(): void {
+		$rows = [];
+		$diverge = 0;
+		foreach ($this->getInterruptionCases() as $case) {
+			$strict = new DjotConverter(blocksInterruptParagraphs: false);
+			$interrupt = new DjotConverter(blocksInterruptParagraphs: true);
+			$strictHtml = $strict->convert($case['djot']);
+			$interruptHtml = $interrupt->convert($case['djot']);
+			$diverges = trim($strictHtml) !== trim($interruptHtml);
+			if ($diverges) {
+				$diverge++;
+			}
+
+			$rows[] = [
+				'title' => $case['title'],
+				'note' => $case['note'],
+				'djot' => $case['djot'],
+				'strictRaw' => $strictHtml,
+				'interruptRaw' => $interruptHtml,
+				'strictHtml' => $this->sanitizeHtml($strictHtml),
+				'interruptHtml' => $this->sanitizeHtml($interruptHtml),
+				'diverges' => $diverges,
+			];
+		}
+
+		$this->set('rows', $rows);
+		$this->set('diverge', $diverge);
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * Curated interruption cases drawn from real-world content sources.
+	 *
+	 * Strict (the djot default) is the reference: it preserves the text verbatim.
+	 *
+	 * @return array<int, array{title: string, note: string, djot: string}>
+	 */
+	protected function getInterruptionCases(): array {
+		return [
+			[
+				'title' => 'Pasted email / chat quote',
+				'note' => 'Pasting a reply is everyday content. Interrupt swallows the quote into a blockquote and detaches the intro line.',
+				'djot' => "Here is what he wrote back:\n> sounds good to me\n> ship it",
+			],
+			[
+				'title' => 'Hard-wrapped aside with a dash',
+				'note' => 'Line wrapping (email, commit bodies) can land a "- " at the start of a line. Interrupt turns the aside into a list.',
+				'djot' => "We ship three sizes. The default is\n- unless you override it -\nthe medium one.",
+			],
+			[
+				'title' => 'Technical comparison (>)',
+				'note' => 'Comparisons read naturally as "> 5". Interrupt reads it as a blockquote.',
+				'djot' => "Make sure the result is\n> 5 so the check passes.",
+			],
+			[
+				'title' => 'Heading-shaped wrap (side effects)',
+				'note' => 'Worse than structural: the spurious heading injects an id into the anchor namespace, the TOC and permalinks.',
+				'djot' => "The bug was fixed in milestone\n# 42 last sprint.",
+			],
+			[
+				'title' => 'Signature divider',
+				'note' => 'A "---" divider becomes a thematic break that cuts the name off.',
+				'djot' => "Sign here:\n---\nJane Doe",
+			],
+			[
+				'title' => 'CSV / table spec line',
+				'note' => 'A clean pipe row becomes a one-row table.',
+				'djot' => "The CSV header is\n| id | name | email |",
+			],
+			[
+				'title' => 'Control: blocks with a blank line',
+				'note' => 'With a blank line both modes agree - the blank line is the unambiguous, lossless separator the djot default relies on.',
+				'djot' => "text\n\n# H",
+			],
+		];
+	}
+
+	/**
 	 * AJAX endpoint for roundtrip conversion.
 	 *
 	 * Runs Djot -> HTML (pass 1) -> Djot -> HTML (pass 2) and reports whether

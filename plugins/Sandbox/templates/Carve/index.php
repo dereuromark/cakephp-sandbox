@@ -156,12 +156,6 @@ CARVE;
 			<label class="form-check-label" for="opt-soft-break-br" title="Render soft breaks (single newlines) as visible <br> tags. Not part of Carve spec.">Soft break as &lt;br&gt;</label>
 		</div>
 	</div>
-	<div class="col-auto">
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-blocks-interrupt-paragraphs">
-			<label class="form-check-label" for="opt-blocks-interrupt-paragraphs" title="Allow top-level blocks (lists, blockquotes, headings, tables, fences) to interrupt a paragraph without a blank line. Markdown-compatibility mode; not part of the Carve spec. (Nesting blocks inside list items is native and always on.)">Blocks interrupt paragraphs</label>
-		</div>
-	</div>
 	<?php if ($debugMode) { ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
@@ -405,22 +399,17 @@ CARVE;
 </p>
 
 <details class="small text-muted mb-3">
-	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility options (Soft break, Blocks interrupt paragraphs)</summary>
+	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility option (Soft break)</summary>
 	<div class="mt-2 ps-3 border-start">
 		<p class="mb-2">
-			Carve treats blank lines as significant: blocks are normally separated by a blank line, and a single newline inside a paragraph is just a space. Markdown is more forgiving. The options below opt into Markdown-like behavior and are <strong>not part of the Carve spec</strong> &mdash; leave them off for spec-compliant output.
+			A single newline inside a paragraph is normally just a space. The option below opts into Markdown-like behavior and is <strong>not part of the Carve spec</strong> &mdash; leave it off for spec-compliant output.
+			(Top-level blocks interrupt paragraphs without a blank line by default now &mdash; that is the §10 default, see the <?= $this->Html->link('interruption page', ['action' => 'interruption']) ?>.)
 		</p>
 		<dl class="row mb-0">
 			<dt class="col-sm-3">Soft break as &lt;br&gt;</dt>
 			<dd class="col-sm-9">
 				A single newline inside a paragraph becomes a visible line break (<code>&lt;br&gt;</code>) instead of collapsing onto the same line.
 				So <code>Line one ↵ Line two</code> stays on two lines instead of being joined into one.
-			</dd>
-			<dt class="col-sm-3">Blocks interrupt paragraphs</dt>
-			<dd class="col-sm-9">
-				Top-level blocks (lists, blockquotes, headings, tables, fences) may interrupt a paragraph without a blank line in between.
-				So <code>Shopping: ↵ - milk</code> renders a list instead of keeping <code>- milk</code> as paragraph text.
-				(Nesting blocks inside a list item is native Carve and works without this option.)
 			</dd>
 		</dl>
 	</div>
@@ -556,7 +545,6 @@ This div is never closed.</code></pre>
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
 	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
-	const optBlocksInterruptParagraphs = document.getElementById('opt-blocks-interrupt-paragraphs');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -591,7 +579,6 @@ This div is never closed.</code></pre>
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
-		if (params.get('interrupt_paragraphs') === '1') optBlocksInterruptParagraphs.checked = true;
 	}
 
 	function getShareUrl() {
@@ -602,7 +589,6 @@ This div is never closed.</code></pre>
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
-		if (optBlocksInterruptParagraphs.checked) url.searchParams.set('interrupt_paragraphs', '1');
 		return url.toString();
 	}
 
@@ -667,7 +653,6 @@ This div is never closed.</code></pre>
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
-		formData.append('blocks_interrupt_paragraphs', optBlocksInterruptParagraphs.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -787,7 +772,6 @@ This div is never closed.</code></pre>
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	optSoftBreakBr.addEventListener('change', convert);
-	optBlocksInterruptParagraphs.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);

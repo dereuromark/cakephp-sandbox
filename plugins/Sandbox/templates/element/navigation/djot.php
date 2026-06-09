@@ -10,6 +10,7 @@ $action = $this->request->getParam('action');
 	<li class="nav-item"><?= $this->Html->link('Djot Playground', ['action' => 'index'], ['class' => 'nav-link' . ($action === 'index' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('WYSIWYG Editor', ['action' => 'wysiwyg'], ['class' => 'nav-link' . ($action === 'wysiwyg' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Roundtrip Test', ['action' => 'roundtrip'], ['class' => 'nav-link' . ($action === 'roundtrip' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Strict vs Interrupt', ['action' => 'interruption'], ['class' => 'nav-link' . ($action === 'interruption' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Converters') ?></li>

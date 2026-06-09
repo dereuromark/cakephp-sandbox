@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "10314999a3af6314916dce99f890888059963a1f"
+                "reference": "786fe293cc7d28ac822cefa169356de92312fdc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/10314999a3af6314916dce99f890888059963a1f",
-                "reference": "10314999a3af6314916dce99f890888059963a1f",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/786fe293cc7d28ac822cefa169356de92312fdc1",
+                "reference": "786fe293cc7d28ac822cefa169356de92312fdc1",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-06-08T17:49:36+00:00"
+            "time": "2026-06-09T03:31:44+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -3772,12 +3772,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-workflow.git",
-                "reference": "2d1be39c75afe6aab3bf2c03c63f0cc27fb572be"
+                "reference": "c01ee9ffe212320bfb87166053c7ab7e08e48b3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/2d1be39c75afe6aab3bf2c03c63f0cc27fb572be",
-                "reference": "2d1be39c75afe6aab3bf2c03c63f0cc27fb572be",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-workflow/zipball/c01ee9ffe212320bfb87166053c7ab7e08e48b3e",
+                "reference": "c01ee9ffe212320bfb87166053c7ab7e08e48b3e",
                 "shasum": ""
             },
             "require": {
@@ -3832,7 +3832,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-workflow/issues",
                 "source": "https://github.com/dereuromark/cakephp-workflow/tree/master"
             },
-            "time": "2026-05-30T15:07:56+00:00"
+            "time": "2026-06-09T14:28:12+00:00"
         },
         {
             "name": "dereuromark/media-embed",
@@ -5291,16 +5291,16 @@
         },
         {
             "name": "league/climate",
-            "version": "3.10.1",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/climate.git",
-                "reference": "f2d78fbc504740bcd0209e40a4586c886567ddc9"
+                "reference": "66f14fb99570673597856575dfd9a48984fe49b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/climate/zipball/f2d78fbc504740bcd0209e40a4586c886567ddc9",
-                "reference": "f2d78fbc504740bcd0209e40a4586c886567ddc9",
+                "url": "https://api.github.com/repos/thephpleague/climate/zipball/66f14fb99570673597856575dfd9a48984fe49b0",
+                "reference": "66f14fb99570673597856575dfd9a48984fe49b0",
                 "shasum": ""
             },
             "require": {
@@ -5351,9 +5351,9 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/climate/issues",
-                "source": "https://github.com/thephpleague/climate/tree/3.10.1"
+                "source": "https://github.com/thephpleague/climate/tree/3.11.0"
             },
-            "time": "2026-03-19T19:32:55+00:00"
+            "time": "2026-06-09T11:34:50+00:00"
         },
         {
             "name": "league/commonmark",
@@ -6030,12 +6030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "05edbf00481df5990ac2690dbfb73429a08c1aaf"
+                "reference": "d94f2a50ec7a11c4119a2583cecb59d521a61c9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/05edbf00481df5990ac2690dbfb73429a08c1aaf",
-                "reference": "05edbf00481df5990ac2690dbfb73429a08c1aaf",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/d94f2a50ec7a11c4119a2583cecb59d521a61c9b",
+                "reference": "d94f2a50ec7a11c4119a2583cecb59d521a61c9b",
                 "shasum": ""
             },
             "require": {
@@ -6092,7 +6092,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-08T23:38:21+00:00"
+            "time": "2026-06-09T14:01:43+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6634,12 +6634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "32c0d5083c9f4802b1dce72a31592c8cd6479d19"
+                "reference": "720e30128d29dc5960780dfbad871967d7470b9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/32c0d5083c9f4802b1dce72a31592c8cd6479d19",
-                "reference": "32c0d5083c9f4802b1dce72a31592c8cd6479d19",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/720e30128d29dc5960780dfbad871967d7470b9b",
+                "reference": "720e30128d29dc5960780dfbad871967d7470b9b",
                 "shasum": ""
             },
             "require": {
@@ -6693,7 +6693,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-07T14:53:55+00:00"
+            "time": "2026-06-09T14:25:55+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -8961,16 +8961,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.38.1",
+            "version": "v1.38.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92"
+                "reference": "d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/14c5439eec4ccff081ac14eca2dc57feb2a66d92",
-                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6",
+                "reference": "d3d318bad5e7a1bfbd026009c8bfb8d8f99ae6b6",
                 "shasum": ""
             },
             "require": {
@@ -9022,7 +9022,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.38.1"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.38.2"
             },
             "funding": [
                 {
@@ -9042,7 +9042,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-26T12:51:13+00:00"
+            "time": "2026-05-27T06:59:30+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -10701,12 +10701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig-rectified/psr2r-sniffer.git",
-                "reference": "7cda24a53fe9ff7d00b9508b1a5380dc5e4d6bdc"
+                "reference": "4e8b34f2d54305ad587ac87b2f94aa2d4e3531c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/7cda24a53fe9ff7d00b9508b1a5380dc5e4d6bdc",
-                "reference": "7cda24a53fe9ff7d00b9508b1a5380dc5e4d6bdc",
+                "url": "https://api.github.com/repos/php-fig-rectified/psr2r-sniffer/zipball/4e8b34f2d54305ad587ac87b2f94aa2d4e3531c9",
+                "reference": "4e8b34f2d54305ad587ac87b2f94aa2d4e3531c9",
                 "shasum": ""
             },
             "require": {
@@ -10751,7 +10751,7 @@
                 "issues": "https://github.com/php-fig-rectified/psr2r-sniffer/issues",
                 "source": "https://github.com/php-fig-rectified/psr2r-sniffer/tree/master"
             },
-            "time": "2026-04-14T14:12:30+00:00"
+            "time": "2026-06-08T23:49:16+00:00"
         },
         {
             "name": "johnykvsky/dummygenerator",

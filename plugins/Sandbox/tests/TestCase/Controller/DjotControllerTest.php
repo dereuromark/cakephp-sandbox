@@ -813,4 +813,19 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(405);
 	}
 
+	/**
+	 * The strict-vs-interrupt comparison page renders and shows that interrupt
+	 * diverges from the djot default on the curated prose cases.
+	 *
+	 * @return void
+	 */
+	public function testInterruption(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'interruption']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Strict vs Interrupt');
+		$this->assertResponseContains('djot default preserves it - interrupt splits');
+	}
+
 }

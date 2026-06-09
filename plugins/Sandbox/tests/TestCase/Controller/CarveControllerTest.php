@@ -178,16 +178,16 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithBlocksInterruptParagraphs(): void {
+	public function testConvertInterruptsParagraphsByDefault(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "Shopping:\n- milk\n- bread",
-			'blocks_interrupt_paragraphs' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// The list interrupts the paragraph without a blank line in between.
+		// Carve interrupts paragraphs unconditionally (§10 default): the list
+		// starts without a blank line in between.
 		$this->assertStringContainsString('<p>Shopping:</p>', $response['html']);
 		$this->assertStringContainsString('<ul>', $response['html']);
 	}
@@ -195,7 +195,7 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertNestedBlocksNeedFlagInsideListItem(): void {
+	public function testConvertInterruptsNestedBlockInsideListItem(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "- Item\n  > nested quote",
 		]);
@@ -203,11 +203,10 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Without the blocks-interrupt-paragraphs flag the nested ">" stays part
-		// of the list item text; the flag (tested separately) is needed to turn
-		// it into a real blockquote.
-		$this->assertStringNotContainsString('<blockquote>', $response['html']);
-		$this->assertStringContainsString('&gt; nested quote', $response['html']);
+		// Interruption is unconditional, so the nested ">" becomes a real
+		// blockquote inside the list item.
+		$this->assertStringContainsString('<blockquote>', $response['html']);
+		$this->assertStringContainsString('nested quote', $response['html']);
 	}
 
 	/**
@@ -589,6 +588,17 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMigrationFix(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'migrationFix']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('carve-js.min.js');
 	}
 
 	/**
@@ -1000,6 +1010,24 @@ class CarveControllerTest extends TestCase {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip']);
 
 		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * The interruption page renders Carve's §10 default plus the escape hatch:
+	 * an as-typed marker interrupts, the backslash-escaped variant stays literal.
+	 *
+	 * @return void
+	 */
+	public function testInterruption(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'interruption']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Paragraph Interruption (§10)');
+		// As-typed "- " interrupts into a list.
+		$this->assertResponseContains('<li>2x coffee</li>');
+		// Escaped "\-" stays paragraph text.
+		$this->assertResponseContains('- 2x coffee');
 	}
 
 }
