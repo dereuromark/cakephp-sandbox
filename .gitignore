@@ -17,6 +17,7 @@ _*
 /npm-debug.log
 /webroot/assets
 /webroot/js/cjs
+/webroot/js/carve-js.min.js
 /webroot/css/ccss
 /webroot/css/fonts
 /webroot/css/webfonts

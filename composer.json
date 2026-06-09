@@ -153,7 +153,8 @@
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/",
 			"mkdir -p plugins/Sandbox/webroot/js/tiptap",
 			"cp node_modules/djot-grammars/highlightjs/djot.js plugins/Sandbox/webroot/js/hljs-djot.js",
-			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/"
+			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/",
+			"node_modules/.bin/esbuild node_modules/@markup-carve/carve/dist/index.js --bundle --format=iife --global-name=CarveJS --minify --outfile=webroot/js/carve-js.min.js"
 		],
 		"setup": "bin/cake generate code_completion && bin/cake generate phpstorm",
 		"annotate": "bin/cake annotate all -r && bin/cake annotate all -r -p Sandbox && bin/cake annotate all -r -p AuthSandbox && bin/cake annotate all -r -p WorkflowSandbox && bin/cake annotate all -r -p MenuSandbox",

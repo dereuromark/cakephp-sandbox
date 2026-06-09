@@ -3,9 +3,11 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.7.2",
+		"@markup-carve/carve": "github:markup-carve/carve-js",
 		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
 		"djot-grammars": "github:php-collective/djot-grammars",
+		"esbuild": "^0.25.0",
 		"feather-icons": "^4.29.0",
 		"material-symbols": "^0.4.2"
 	}

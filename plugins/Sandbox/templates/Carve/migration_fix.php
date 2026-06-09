@@ -39,8 +39,7 @@ SOURCE;
 	Runs <strong>fully client-side</strong> in your browser via the bundled
 	<?= $this->Html->link('carve-js', 'https://github.com/markup-carve/carve-js', ['target' => '_blank']) ?>
 	library (<code>applyMigrationFixes</code>). This is the same logic the
-	<?= $this->Html->link('carve fix CLI (PR #91)', 'https://github.com/markup-carve/carve-js/pull/91', ['target' => '_blank']) ?>
-	wraps - no server round-trip.
+	<code>carve fix</code> CLI wraps - no server round-trip.
 </div>
 
 <div id="carvejs-missing" class="alert alert-danger py-2" style="display: none;">
