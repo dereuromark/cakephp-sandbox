@@ -4,7 +4,7 @@
  */
 
 $this->append('script');
-echo $this->Html->script('Sandbox.carve-js.min.js');
+echo $this->Html->script('carve-js.min.js');
 $this->end();
 
 $defaultSource = <<<'SOURCE'
