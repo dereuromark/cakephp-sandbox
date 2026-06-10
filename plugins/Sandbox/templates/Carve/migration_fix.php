@@ -224,12 +224,18 @@ SOURCE;
 	}
 
 	// Syntax-highlight the fixed Carve output with the hljs-carve grammar.
+	// Degrade to plain text if highlight.js or the carve grammar is unavailable
+	// (e.g. the grammar file failed to load) - never let it break the demo.
 	function renderOutput(text) {
-		if (window.hljs && typeof hljs.highlight === 'function') {
-			output.innerHTML = hljs.highlight(text, { language: 'carve' }).value;
-		} else {
-			output.textContent = text;
+		if (window.hljs && typeof hljs.highlight === 'function' && hljs.getLanguage && hljs.getLanguage('carve')) {
+			try {
+				output.innerHTML = hljs.highlight(text, { language: 'carve' }).value;
+				return;
+			} catch (e) {
+				// fall through to plain text
+			}
 		}
+		output.textContent = text;
 	}
 
 	// In-place delimiter swaps keep source and output line-aligned, so a
