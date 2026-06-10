@@ -153,6 +153,7 @@
 			"cp -R node_modules/bootstrap-icons/font/fonts webroot/css/ccss/",
 			"mkdir -p plugins/Sandbox/webroot/js/tiptap",
 			"cp node_modules/djot-grammars/highlightjs/djot.js plugins/Sandbox/webroot/js/hljs-djot.js",
+			"cp node_modules/carve-grammars/highlightjs/carve.js plugins/Sandbox/webroot/js/hljs-carve.js",
 			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/",
 			"node_modules/.bin/esbuild node_modules/@markup-carve/carve/dist/index.js --bundle --format=iife --global-name=CarveJS --minify --outfile=webroot/js/carve-js.min.js"
 		],
