@@ -4,7 +4,9 @@
  */
 
 $this->append('script');
-echo $this->Html->script('carve-js.min.js');
+$bundle = WWW_ROOT . 'js' . DS . 'carve-js.min.js';
+$bundleVersion = is_file($bundle) ? (string)filemtime($bundle) : '1';
+echo $this->Html->script('carve-js.min.js?v=' . $bundleVersion);
 $this->end();
 
 $defaultSource = <<<'SOURCE'
@@ -16,8 +18,11 @@ collide with Carve's delimiters. Also ~~strikethrough~~ the old way.
 + A plus bullet (Djot continuation marker, not a Carve bullet)
 + Another one
 
-This part is **_bold and emphasized_** at once - an overlapping
-collision the autofix leaves for manual review.
+Nested collisions now compose in one pass: **_bold and emphasized_**
+and ~~_struck and emphasized_~~ are fixed automatically.
+
+Only a crossing overlap like **_x**_ - where neither span contains
+the other - stays ambiguous and is left for manual review.
 SOURCE;
 ?>
 
@@ -32,7 +37,9 @@ SOURCE;
 	<code>**bold**</code> &rarr; <code>*bold*</code>, <code>_em_</code> &rarr; <code>/em/</code>,
 	<code>~~strike~~</code> &rarr; <code>~strike~</code>, <code>+</code> bullets &rarr; <code>-</code>.
 	This is a minimal-diff <em>linter/autocorrect</em>, not a full converter: it only rewrites the
-	exact spans that would mis-render, and reports anything it cannot safely fix.
+	exact spans that would mis-render, and reports anything it cannot safely fix. Strictly nested
+	collisions like <code>**_x_**</code> &rarr; <code>*/x/*</code> compose in a single pass; only an
+	ambiguous <em>crossing</em> overlap is left for manual review.
 </p>
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
@@ -89,8 +96,10 @@ SOURCE;
 	<div class="col-md-5">
 		<h4 class="h6">Manual review <span class="badge bg-warning text-dark" id="mf-skipped-count">0</span></h4>
 		<p class="text-muted small">
-			Overlapping collisions (e.g. <code>**_x_**</code> - strong <em>and</em> emphasis) are not
-			guessed at. Rewriting both spans in one pass would corrupt offsets, so they are left for you.
+			Strictly nested collisions like <code>**_x_**</code> now <strong>compose automatically</strong> -
+			each rule edits only its delimiters, so they no longer corrupt each other's offsets.
+			Only a <em>crossing</em> overlap, where two collisions partly overlap and neither span contains the
+			other (e.g. <code>**_x**_</code>), stays genuinely ambiguous and is left for you.
 		</p>
 		<ul class="list-group list-group-flush small" id="mf-skipped-list">
 			<li class="list-group-item text-muted px-0">Nothing needs manual review.</li>
@@ -122,6 +131,12 @@ SOURCE;
 	const skippedList = document.getElementById('mf-skipped-list');
 	const skippedCount = document.getElementById('mf-skipped-count');
 	const btnCopy = document.getElementById('mf-copy');
+	const tryLink = document.getElementById('mf-try');
+	const playgroundUrl = '<?= $this->Url->build(['action' => 'index']) ?>';
+
+	function compress(str) {
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
+	}
 
 	if (typeof window.CarveJS === 'undefined' || typeof window.CarveJS.applyMigrationFixes !== 'function') {
 		document.getElementById('carvejs-missing').style.display = '';
@@ -149,6 +164,8 @@ SOURCE;
 		const result = window.CarveJS.applyMigrationFixes(source);
 
 		output.value = result.output;
+		// Carry the fixed output into the playground (?d= matches index decode).
+		tryLink.href = playgroundUrl + '?d=' + encodeURIComponent(compress(result.output || ''));
 
 		// Applied fixes table.
 		appliedCount.textContent = String(result.applied.length);

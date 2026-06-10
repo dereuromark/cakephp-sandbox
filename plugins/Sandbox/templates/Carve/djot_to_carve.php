@@ -14,6 +14,8 @@ Superscript like 2^10^ is identical in both, so it stays unchanged.
 
 Markdown-isms such as **bold** and ~~strike~~ are normalized.
 
+Nested delimiters compose in one pass: **_bold italic_**, ~~_struck italic_~~, and partial overlaps like **bold with _italic_ inside** all rewrite cleanly.
+
 Code stays untouched: `_x_` and links like [home](/~user/index).
 DJOT;
 ?>
@@ -74,6 +76,14 @@ DJOT;
 </table>
 <p class="text-muted small">
 	Constructs that mean the same in both (<code>^sup^</code>, <code>{+ins+}</code>, <code>{-del-}</code>, reference links) are left unchanged.
+</p>
+<p class="text-muted small">
+	<strong>Nested delimiters compose.</strong> Each rewrite edits only its delimiters, never the wrapped text, so a strictly nested pair like
+	<code>**_x_**</code> &rarr; <code>*/x/*</code>, <code>~~_x_~~</code> &rarr; <code>~/x/~</code>, or a partial overlap like
+	<code>**a _b_ c**</code> &rarr; <code>*a /b/ c*</code> all rewrite in a single pass.
+	A <em>crossing</em> overlap (e.g. <code>**_x**_</code>, where neither span contains the other) is genuinely ambiguous; carve-php still
+	rewrites it mechanically (delimiter by delimiter), while the <a href="https://github.com/markup-carve/carve-js" target="_blank">carve-js</a>
+	migration API additionally flags such a case as <code>skipped</code> for manual review.
 </p>
 
 </div>
