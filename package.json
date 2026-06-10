@@ -6,6 +6,7 @@
 		"@markup-carve/carve": "github:markup-carve/carve-js",
 		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
+		"carve-grammars": "github:markup-carve/carve-grammars",
 		"djot-grammars": "github:php-collective/djot-grammars",
 		"esbuild": "^0.25.0",
 		"feather-icons": "^4.29.0",
