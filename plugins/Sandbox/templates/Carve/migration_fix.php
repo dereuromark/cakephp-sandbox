@@ -3,9 +3,13 @@
  * @var \App\View\AppView $this
  */
 
+$this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css', ['block' => true]);
+
 $this->append('script');
 $bundle = WWW_ROOT . 'js' . DS . 'carve-js.min.js';
 $bundleVersion = is_file($bundle) ? (string)filemtime($bundle) : '1';
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+echo $this->Html->script('Sandbox.hljs-carve.js');
 echo $this->Html->script('carve-js.min.js?v=' . $bundleVersion);
 $this->end();
 
@@ -30,6 +34,61 @@ SOURCE;
 	<?= $this->element('navigation/carve') ?>
 </nav>
 <div class="col-md-10 col-sm-9 col-12">
+
+<style>
+#mf-output {
+	display: block;
+	min-height: 16rem;
+	max-height: 26rem;
+	overflow: auto;
+	margin: 0;
+}
+.mf-diff {
+	max-height: 22rem;
+	overflow: auto;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+.mf-dline {
+	padding: 0 .25rem;
+	border-left: 3px solid transparent;
+}
+.mf-dline.mf-changed {
+	background: #f6fff6;
+	border-left-color: #198754;
+}
+.mf-dline.mf-skip-line {
+	background: #fff8e6;
+	border-left-color: #ffc107;
+}
+.mf-diff del {
+	background: #ffe3e3;
+	color: #b02a37;
+	text-decoration: line-through;
+}
+.mf-diff ins {
+	background: #d1f0d8;
+	color: #0f5132;
+	text-decoration: none;
+}
+.mf-jumpable {
+	cursor: pointer;
+}
+.mf-flash {
+	animation: mf-flash-anim 1.2s ease-out;
+}
+@keyframes mf-flash-anim {
+	0% { background: #fff3cd; }
+	100% { background: transparent; }
+}
+.mf-dline.mf-flash {
+	animation: mf-flash-line 1.2s ease-out;
+}
+@keyframes mf-flash-line {
+	0% { background: #ffe69c; }
+	100% { background: inherit; }
+}
+</style>
 
 <h2>Migration Fix <small class="text-muted">(<code>carve fix</code>)</small></h2>
 <p>
@@ -68,8 +127,13 @@ SOURCE;
 				<?= $this->Html->link('<i class="bi bi-play-fill"></i> Try in Playground', ['action' => 'index'], ['escapeTitle' => false, 'class' => 'btn btn-sm btn-outline-primary', 'id' => 'mf-try', 'target' => '_blank']) ?>
 			</div>
 		</div>
-		<textarea id="mf-output" class="form-control font-monospace" rows="16" readonly placeholder="Fixed Carve output will appear here..."></textarea>
+		<pre class="form-control font-monospace"><code id="mf-output" class="language-carve hljs"></code></pre>
 	</div>
+</div>
+
+<div class="mt-3">
+	<label class="form-label mb-1"><strong>Changes</strong> <span class="text-muted small">(old delimiter struck, new in green - click an entry below to jump)</span></label>
+	<pre id="mf-diff" class="form-control font-monospace mf-diff"></pre>
 </div>
 
 <div class="mt-3" id="mf-gate"></div>
@@ -125,6 +189,7 @@ SOURCE;
 (function() {
 	const input = document.getElementById('mf-input');
 	const output = document.getElementById('mf-output');
+	const diff = document.getElementById('mf-diff');
 	const gate = document.getElementById('mf-gate');
 	const appliedBody = document.getElementById('mf-applied-body');
 	const appliedCount = document.getElementById('mf-applied-count');
@@ -133,6 +198,7 @@ SOURCE;
 	const btnCopy = document.getElementById('mf-copy');
 	const tryLink = document.getElementById('mf-try');
 	const playgroundUrl = '<?= $this->Url->build(['action' => 'index']) ?>';
+	let lastOutput = '';
 
 	function compress(str) {
 		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
@@ -157,23 +223,76 @@ SOURCE;
 		return warning.suggestion;
 	}
 
+	// Syntax-highlight the fixed Carve output with the hljs-carve grammar.
+	function renderOutput(text) {
+		if (window.hljs && typeof hljs.highlight === 'function') {
+			output.innerHTML = hljs.highlight(text, { language: 'carve' }).value;
+		} else {
+			output.textContent = text;
+		}
+	}
+
+	// In-place delimiter swaps keep source and output line-aligned, so a
+	// per-line prefix/suffix diff shows exactly which delimiters changed.
+	function renderDiff(source, out) {
+		const a = source.split('\n');
+		const b = out.split('\n');
+		const n = Math.max(a.length, b.length);
+		let html = '';
+		for (let i = 0; i < n; i++) {
+			const s = a[i] !== undefined ? a[i] : '';
+			const o = b[i] !== undefined ? b[i] : '';
+			const ln = i + 1;
+			if (s === o) {
+				html += '<div class="mf-dline" data-line="' + ln + '">' + (escapeHtml(o) || '&nbsp;') + '</div>';
+				continue;
+			}
+			let p = 0;
+			while (p < s.length && p < o.length && s[p] === o[p]) { p++; }
+			let q = 0;
+			while (q < s.length - p && q < o.length - p && s[s.length - 1 - q] === o[o.length - 1 - q]) { q++; }
+			const pre = escapeHtml(s.slice(0, p));
+			const delMid = escapeHtml(s.slice(p, s.length - q));
+			const insMid = escapeHtml(o.slice(p, o.length - q));
+			const suf = escapeHtml(s.slice(s.length - q));
+			html += '<div class="mf-dline mf-changed" data-line="' + ln + '">'
+				+ pre
+				+ (delMid ? '<del>' + delMid + '</del>' : '')
+				+ (insMid ? '<ins>' + insMid + '</ins>' : '')
+				+ suf
+				+ '</div>';
+		}
+		diff.innerHTML = html;
+	}
+
+	function flashLine(line) {
+		const el = diff.querySelector('.mf-dline[data-line="' + line + '"]');
+		if (!el) { return; }
+		el.classList.remove('mf-flash');
+		void el.offsetWidth; // restart the animation
+		el.classList.add('mf-flash');
+		el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+	}
+
 	let debounceTimer;
 
 	function run() {
 		const source = input.value;
 		const result = window.CarveJS.applyMigrationFixes(source);
 
-		output.value = result.output;
+		lastOutput = result.output;
+		renderOutput(result.output);
+		renderDiff(source, result.output);
 		// Carry the fixed output into the playground (?d= matches index decode).
 		tryLink.href = playgroundUrl + '?d=' + encodeURIComponent(compress(result.output || ''));
 
-		// Applied fixes table.
+		// Applied fixes table (rows jump to their line in the diff).
 		appliedCount.textContent = String(result.applied.length);
 		if (result.applied.length === 0) {
 			appliedBody.innerHTML = '<tr><td colspan="4" class="text-muted">No fixes applied.</td></tr>';
 		} else {
 			appliedBody.innerHTML = result.applied.map(function(w) {
-				return '<tr>'
+				return '<tr class="mf-jumpable" data-line="' + w.line + '" title="Jump to this change">'
 					+ '<td class="text-nowrap">' + w.line + ':' + w.column + '</td>'
 					+ '<td><code>' + escapeHtml(w.rule) + '</code></td>'
 					+ '<td><code class="text-danger">' + escapeHtml(snippet(source, w)) + '</code></td>'
@@ -182,18 +301,22 @@ SOURCE;
 			}).join('');
 		}
 
-		// Skipped (manual review) list.
+		// Skipped (manual review) list (also jumps; tint the source line amber).
 		skippedCount.textContent = String(result.skipped.length);
 		if (result.skipped.length === 0) {
 			skippedList.innerHTML = '<li class="list-group-item text-muted px-0">Nothing needs manual review.</li>';
 		} else {
 			skippedList.innerHTML = result.skipped.map(function(w) {
-				return '<li class="list-group-item px-0">'
+				return '<li class="list-group-item px-0 mf-jumpable" data-line="' + w.line + '" title="Jump to this collision">'
 					+ '<span class="text-nowrap fw-bold">' + w.line + ':' + w.column + '</span> '
 					+ '<code>' + escapeHtml(w.rule) + '</code><br>'
 					+ '<span class="text-muted">' + escapeHtml(w.message) + '</span>'
 					+ '</li>';
 			}).join('');
+			result.skipped.forEach(function(w) {
+				const el = diff.querySelector('.mf-dline[data-line="' + w.line + '"]');
+				if (el) { el.classList.add('mf-skip-line'); }
+			});
 		}
 
 		// --check gate badge: exit non-zero when anything would change or needs manual review.
@@ -218,8 +341,16 @@ SOURCE;
 		debounceTimer = setTimeout(run, 150);
 	});
 
+	// Delegated click: jump from an applied row or a skipped entry to its diff line.
+	function jumpHandler(e) {
+		const row = e.target.closest('.mf-jumpable');
+		if (row && row.dataset.line) { flashLine(parseInt(row.dataset.line, 10)); }
+	}
+	appliedBody.addEventListener('click', jumpHandler);
+	skippedList.addEventListener('click', jumpHandler);
+
 	btnCopy.addEventListener('click', function() {
-		navigator.clipboard.writeText(output.value).then(function() {
+		navigator.clipboard.writeText(lastOutput).then(function() {
 			const original = btnCopy.innerHTML;
 			btnCopy.innerHTML = '<i class="bi bi-check"></i> Copied';
 			setTimeout(function() { btnCopy.innerHTML = original; }, 1200);

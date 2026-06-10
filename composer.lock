@@ -6030,12 +6030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "d94f2a50ec7a11c4119a2583cecb59d521a61c9b"
+                "reference": "8c6fb6437f6f140c4829600335e3ce2686ea81b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/d94f2a50ec7a11c4119a2583cecb59d521a61c9b",
-                "reference": "d94f2a50ec7a11c4119a2583cecb59d521a61c9b",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/8c6fb6437f6f140c4829600335e3ce2686ea81b3",
+                "reference": "8c6fb6437f6f140c4829600335e3ce2686ea81b3",
                 "shasum": ""
             },
             "require": {
@@ -6092,7 +6092,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-09T14:01:43+00:00"
+            "time": "2026-06-10T02:35:02+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6634,12 +6634,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "ae55a795eeac0a354da930c5a9e95ce8c15d3146"
+                "reference": "416c2fcc95cf28e03ad88e85160cf43f20761ebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/ae55a795eeac0a354da930c5a9e95ce8c15d3146",
-                "reference": "ae55a795eeac0a354da930c5a9e95ce8c15d3146",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/416c2fcc95cf28e03ad88e85160cf43f20761ebe",
+                "reference": "416c2fcc95cf28e03ad88e85160cf43f20761ebe",
                 "shasum": ""
             },
             "require": {
@@ -6693,7 +6693,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-09T21:44:11+00:00"
+            "time": "2026-06-10T02:34:30+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -10488,12 +10488,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "91a733b56a6fe8a8ffc1ec86f67635e4e7502847"
+                "reference": "88f51d94cb7b7b8fd4bded2924ef835be008e61a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/91a733b56a6fe8a8ffc1ec86f67635e4e7502847",
-                "reference": "91a733b56a6fe8a8ffc1ec86f67635e4e7502847",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/88f51d94cb7b7b8fd4bded2924ef835be008e61a",
+                "reference": "88f51d94cb7b7b8fd4bded2924ef835be008e61a",
                 "shasum": ""
             },
             "require": {
@@ -10559,7 +10559,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-08T17:07:03+00:00"
+            "time": "2026-06-10T02:33:00+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",

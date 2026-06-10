@@ -602,6 +602,27 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * Contract canary: the bundled carve-js must exist and still expose the
+	 * migration API the Migration Fix demo calls. A carve-js build that drops or
+	 * renames applyMigrationFixes turns CI red here instead of silently breaking
+	 * the page in the browser.
+	 *
+	 * @return void
+	 */
+	public function testCarveJsBundleExposesMigrationApi(): void {
+		$bundle = WWW_ROOT . 'js' . DS . 'carve-js.min.js';
+		$this->assertFileExists($bundle, 'carve-js bundle missing - run `composer assets` to build it.');
+
+		$contents = (string)file_get_contents($bundle);
+		$this->assertGreaterThan(1000, strlen($contents), 'carve-js bundle looks empty/truncated.');
+		$this->assertStringContainsString(
+			'applyMigrationFixes',
+			$contents,
+			'carve-js bundle no longer exposes applyMigrationFixes - the Migration Fix demo will break.',
+		);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertMarkdown(): void {
