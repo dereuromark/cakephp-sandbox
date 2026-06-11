@@ -24,7 +24,7 @@ Try editing this text!
 ## Features
 
 - /emphasis/, *strong*, and _underline_ text
-- ==highlighted== text
+- =highlighted= text
 - {+inserted+} and {-deleted-} text
 - Links: [Carve docs](https://github.com/markup-carve/carve)
 - Inline `code` spans
@@ -45,9 +45,8 @@ echo "Hello, World!";
 ### Table
 
 {.table .table-striped}
-| Name   | Type   |
-|--------|--------|
-| Carve   | Markup |
+|= Name  |= Type  |
+| Carve  | Markup |
 | PHP    | Code   |
 
 ### Lists
@@ -80,12 +79,14 @@ echo "Hello, World!";
 
 ### Super/Subscript
 
-- Superscript: 2^10^ = 1024
-- Subscript: H,,2,,O
+- Superscript: 2{^10^} = 1024
+- Subscript: H{,2,}O
 
-### Footnotes
+### Footnotes & Cross-references
 
-Here is a footnote reference[^1].
+Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
+
+Jump back to the </#features> section.
 
 [^1]: This is the footnote content.
 CARVE;
@@ -452,7 +453,7 @@ CARVE;
 		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve"># Full Formatting Works
 
-*Bold*, /italic/, ==highlight==, `code` - all allowed!
+*Bold*, /italic/, =highlight=, `code` - all allowed!
 
 ``` =html
 &lt;script&gt;alert('This raw block is filtered')&lt;/script&gt;
@@ -466,14 +467,14 @@ Tables, images, footnotes all work in article mode.</code></pre>
 		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve"># This heading will be filtered
 
-*Bold*, /italic/, ==highlight==, 2^10^ all allowed!
+*Bold*, /italic/, =highlight=, 2{^10^} all allowed!
 
 > Blockquotes and `code` work too.
 
 ![This image is not allowed](/img/cake.icon.png)
 
-| Tables | Not | Allowed |
-|--------|-----|---------|
+|= Tables |= Not |= Allowed |
+| Cell    | Cell | Cell      |
 
 [Links](https://example.com) work fine!</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="comment"><i class="bi bi-play-fill"></i> Try this</button>
@@ -484,12 +485,12 @@ Tables, images, footnotes all work in article mode.</code></pre>
 	<div class="col-md-6">
 		<h6>Minimal Profile Test</h6>
 		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
-		<pre class="bg-light p-2 border rounded"><code class="language-carve">*Bold*, /italic/, `code`, 2^10^, {+insert+}, {-delete-} work!
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">*Bold*, /italic/, `code`, 2{^10^}, {+insert+}, {-delete-} work!
 
 - Lists work too
 - With nesting
 
-==Highlights== become plain text.
+=Highlights= become plain text.
 
 Links like [this](https://example.com) are filtered.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="minimal"><i class="bi bi-play-fill"></i> Try this</button>
@@ -830,9 +831,9 @@ This div is never closed.</code></pre>
 		} else if (btn.dataset.action === 'table') {
 			// Insert table template
 			const blockPrefix = getBlockPrefix();
-			const table = '| Header 1 | Header 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |\n';
+			const table = '|= Header 1 |= Header 2 |\n| Cell 1    | Cell 2    |\n';
 			input.value = text.substring(0, pos) + blockPrefix + table + text.substring(end);
-			input.selectionStart = pos + blockPrefix.length + 2;
+			input.selectionStart = pos + blockPrefix.length + 3;
 			input.selectionEnd = pos + blockPrefix.length + 10;
 		}
 

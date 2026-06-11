@@ -348,10 +348,9 @@ Check out this [link to Carve](https://github.com/markup-carve/carve).
 
 ![Sample image](/img/cake.icon.png)
 
-| Feature | Support |
-|---------|---------|
-| Tables | Yes |
-| Images | Yes |
+|= Feature |= Support |
+| Tables   | Yes      |
+| Images   | Yes      |
 
 ``` php
 echo "Hello World";

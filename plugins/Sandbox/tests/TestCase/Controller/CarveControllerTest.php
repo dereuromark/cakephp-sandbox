@@ -790,7 +790,7 @@ class CarveControllerTest extends TestCase {
 		// HtmlToCarve produces the Carve source.
 		$this->assertStringContainsString('# Title', $response['carve']);
 		$this->assertStringContainsString('*bold*', $response['carve']);
-		$this->assertStringContainsString('==mark==', $response['carve']);
+		$this->assertStringContainsString('{=mark=}', $response['carve']);
 		// CarveConverter renders the sanitized preview from that source.
 		$this->assertStringContainsString('<h1>Title</h1>', $response['html']);
 		$this->assertStringContainsString('<strong>bold</strong>', $response['html']);
@@ -845,7 +845,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertArrayHasKey('carve', $response);
 		$this->assertStringContainsString('/text/', $response['carve']);
-		$this->assertStringContainsString('==mark==', $response['carve']);
+		$this->assertStringContainsString('{=mark=}', $response['carve']);
 		$this->assertNull($response['error']);
 	}
 

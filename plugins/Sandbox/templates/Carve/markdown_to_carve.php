@@ -17,6 +17,12 @@ Notice how Carve adds them automatically!
 echo "Hello!";
 ```
 More text directly after code.
+### Table
+| Name  | Type   |
+|-------|--------|
+| Carve | Markup |
+
+GFM header separators normalize to Carve's canonical `|=` form.
 MARKDOWN;
 ?>
 
@@ -37,7 +43,7 @@ MARKDOWN;
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,,sub,,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,sub,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -96,8 +102,8 @@ MARKDOWN;
 				</tr>
 				<tr>
 					<td>Highlight</td>
-					<td><code>==text==</code></td>
-					<td><code>==text==</code></td>
+					<td><code>=text=</code></td>
+					<td><code>=text=</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -120,7 +126,7 @@ MARKDOWN;
 				<tr>
 					<td>Subscript</td>
 					<td><code>&lt;sub&gt;text&lt;/sub&gt;</code></td>
-					<td><code>,,text,,</code></td>
+					<td><code>,text,</code></td>
 				</tr>
 				<tr>
 					<td>Insert</td>

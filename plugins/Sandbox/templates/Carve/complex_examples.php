@@ -37,7 +37,7 @@ DJOT,
 | Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
 | Strikethrough | `~~text~~` | `~text~` |
-| Highlight | N/A | `==text==` |
+| Highlight | N/A | `=text=` |
 
 ^ Syntax comparison between Markdown and Carve
 DJOT,
@@ -148,13 +148,13 @@ DJOT,
 	'Superscript & Subscript' => [
 		'description' => 'Scientific notation and chemical formulas.',
 		'code' => <<<'DJOT'
-Einstein's famous equation: E = mc^2^
+Einstein's famous equation: E = mc{^2^}
 
-Water molecule: H,,2,,O
+Water molecule: H{,2,}O
 
-The 10^th^ power of 2 is 2^10^ = 1024
+The 10{^th^} power of 2 is 2{^10^} = 1024
 
-Carbon dioxide: CO,,2,,
+Carbon dioxide: CO,2,
 DJOT,
 	],
 	'All Inline Formatting' => [
@@ -166,10 +166,10 @@ DJOT,
 - ~struck text~ (strikethrough)
 - {+inserted text+} (insert)
 - {-deleted text-} (delete)
-- ==highlighted text== (mark)
+- =highlighted text= (mark)
 - `inline code`
-- H,,2,,O (subscript)
-- x^2^ (superscript)
+- H{,2,}O (subscript)
+- x{^2^} (superscript)
 - [Link text](https://github.com/markup-carve/carve)
 - ![Alt text](/img/cake.icon.png)
 DJOT,

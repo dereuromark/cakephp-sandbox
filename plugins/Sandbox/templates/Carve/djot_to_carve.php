@@ -10,7 +10,7 @@ This text uses _Djot emphasis_ which becomes /Carve italic/.
 
 Subscript like H~2~O and a {=highlight=} get rewritten too.
 
-Superscript like 2^10^ is identical in both, so it stays unchanged.
+Intraword superscript like 2^10^ gets the forced {^..^} wrap in Carve.
 
 Markdown-isms such as **bold** and ~~strike~~ are normalized.
 
@@ -68,8 +68,8 @@ DJOT;
 	</thead>
 	<tbody>
 		<tr><td>Emphasis (italic)</td><td><code>_text_</code></td><td><code>/text/</code></td></tr>
-		<tr><td>Subscript</td><td><code>~text~</code></td><td><code>,,text,,</code></td></tr>
-		<tr><td>Highlight</td><td><code>{=text=}</code></td><td><code>==text==</code></td></tr>
+		<tr><td>Subscript</td><td><code>~text~</code></td><td><code>,text,</code></td></tr>
+		<tr><td>Highlight</td><td><code>{=text=}</code></td><td><code>=text=</code></td></tr>
 		<tr><td>Bold (Markdown)</td><td><code>**text**</code></td><td><code>*text*</code></td></tr>
 		<tr><td>Strikethrough (Markdown)</td><td><code>~~text~~</code></td><td><code>~text~</code></td></tr>
 	</tbody>

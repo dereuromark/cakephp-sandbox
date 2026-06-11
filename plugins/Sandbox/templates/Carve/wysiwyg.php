@@ -166,7 +166,7 @@ $this->end();
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bold" title="Strong *text*"><i class="bi bi-type-bold"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="italic" title="Emphasis /text/"><i class="bi bi-type-italic"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="code" title="Code `text`"><i class="bi bi-code"></i></button>
-			<button type="button" class="btn btn-outline-secondary" data-cmd="highlight" title="Highlight ==text=="><i class="bi bi-pencil-fill"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="highlight" title="Highlight =text="><i class="bi bi-pencil-fill"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="strike" title="Strike ~text~"><i class="bi bi-type-strikethrough"></i></button>
 		</div>
 		<div class="divider"></div>
@@ -257,7 +257,7 @@ const initialContent = `
 	<ul>
 		<li><strong>Strong</strong> &rarr; <code>*text*</code></li>
 		<li><em>Emphasis</em> &rarr; <code>/text/</code></li>
-		<li><mark>Highlight</mark> &rarr; <code>==text==</code></li>
+		<li><mark>Highlight</mark> &rarr; <code>=text=</code></li>
 	</ul>
 	<h2>Task list</h2>
 	<ul data-type="taskList">
