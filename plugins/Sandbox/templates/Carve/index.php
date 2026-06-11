@@ -124,6 +124,7 @@ CARVE;
 		</select>
 	</div>
 	<div class="col-auto ms-auto">
+		<span id="render-time" class="badge bg-light text-secondary border me-2" title="Server-side parse + render time" style="display: none;"></span>
 		<span id="loading-indicator" class="me-2" style="opacity: 0;">
 			<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
 		</span>
@@ -541,6 +542,7 @@ This div is never closed.</code></pre>
 	const outputSource = document.getElementById('output-source');
 	const alertContainer = document.getElementById('alert-container');
 	const loadingIndicator = document.getElementById('loading-indicator');
+	const renderTime = document.getElementById('render-time');
 	const optProfile = document.getElementById('opt-profile');
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
@@ -699,6 +701,13 @@ This div is never closed.</code></pre>
 
 			outputRendered.innerHTML = data.html || '<span class="text-muted">Enter some Carve markup...</span>';
 			outputSource.querySelector('code').textContent = data.html || '';
+
+			if (data.ms !== null && data.ms !== undefined) {
+				renderTime.textContent = '⚡ ' + data.ms + ' ms · ' + (data.bytes || 0) + ' B';
+				renderTime.style.display = '';
+			} else {
+				renderTime.style.display = 'none';
+			}
 
 			// Highlight code blocks
 			outputRendered.querySelectorAll('pre code').forEach(el => {

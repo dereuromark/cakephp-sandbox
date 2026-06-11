@@ -160,7 +160,12 @@ CARVE;
 			badge = '<span class="badge bg-danger"><i class="bi bi-exclamation-triangle"></i> Drift detected</span>'
 				+ ' <span class="text-muted small">Second-pass HTML differs from the first - the roundtrip is lossy here.</span>';
 		}
-		statusContainer.innerHTML = badge;
+		let timing = '';
+		if (data.msToHtml !== null && data.msToHtml !== undefined) {
+			timing = ' <span class="badge bg-light text-secondary border ms-1" title="Server-side per-pass time">'
+				+ '⚡ Carve&rarr;HTML ' + data.msToHtml + ' ms · HTML&rarr;Carve ' + data.msToCarve + ' ms</span>';
+		}
+		statusContainer.innerHTML = badge + timing;
 	}
 
 	function renderDiff(a, b) {

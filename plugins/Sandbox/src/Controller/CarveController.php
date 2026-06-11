@@ -75,6 +75,8 @@ class CarveController extends SandboxAppController {
 			'html' => '',
 			'warnings' => [],
 			'violations' => [],
+			'ms' => null,
+			'bytes' => strlen($carve),
 			'error' => null,
 		];
 
@@ -90,7 +92,9 @@ class CarveController extends SandboxAppController {
 				if ($softBreakAsBr) {
 					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
 				}
+				$start = microtime(true);
 				$html = $converter->convert($carve);
+				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
 				if ($collectWarnings) {
 					foreach ($converter->getWarnings() as $warning) {
@@ -1120,6 +1124,8 @@ DJOT,
 			'html2' => '',
 			'htmlStable' => false,
 			'carveStable' => false,
+			'msToHtml' => null,
+			'msToCarve' => null,
 			'error' => null,
 		];
 
@@ -1128,8 +1134,14 @@ DJOT,
 				$toHtml = new CarveConverter(xhtml: true);
 				$toCarve = new HtmlToCarve();
 
+				$t = microtime(true);
 				$rawHtml1 = $toHtml->convert($carve);
+				$result['msToHtml'] = round((microtime(true) - $t) * 1000, 2);
+
+				$t = microtime(true);
 				$carve2 = $toCarve->convert($rawHtml1);
+				$result['msToCarve'] = round((microtime(true) - $t) * 1000, 2);
+
 				$rawHtml2 = (new CarveConverter(xhtml: true))->convert($carve2);
 
 				$result['html1'] = $this->sanitizeHtml($rawHtml1);
