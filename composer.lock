@@ -6029,12 +6029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "56c18be0967d32df97d41d59a08ae4aef3c49fae"
+                "reference": "2ac67752ca0e6356a8852f22b85fe107e6e45959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/56c18be0967d32df97d41d59a08ae4aef3c49fae",
-                "reference": "56c18be0967d32df97d41d59a08ae4aef3c49fae",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/2ac67752ca0e6356a8852f22b85fe107e6e45959",
+                "reference": "2ac67752ca0e6356a8852f22b85fe107e6e45959",
                 "shasum": ""
             },
             "require": {
@@ -6091,7 +6091,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-12T16:22:03+00:00"
+            "time": "2026-06-12T21:45:51+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -10487,12 +10487,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "88f51d94cb7b7b8fd4bded2924ef835be008e61a"
+                "reference": "4acb36db3715a4dc3c4727df6ee6aa5651963dca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/88f51d94cb7b7b8fd4bded2924ef835be008e61a",
-                "reference": "88f51d94cb7b7b8fd4bded2924ef835be008e61a",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/4acb36db3715a4dc3c4727df6ee6aa5651963dca",
+                "reference": "4acb36db3715a4dc3c4727df6ee6aa5651963dca",
                 "shasum": ""
             },
             "require": {
@@ -10558,7 +10558,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-10T02:33:00+00:00"
+            "time": "2026-06-12T21:00:36+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
