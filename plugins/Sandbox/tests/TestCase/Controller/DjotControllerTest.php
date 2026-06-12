@@ -589,6 +589,26 @@ class DjotControllerTest extends TestCase {
 	}
 
 	/**
+	 * Medial runs of two or more spaces inside a line block are held open with
+	 * non-breaking spaces (verse caesura, aligned columns), and survive sanitizing.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsLineBlockDivPreservesMedialGap(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "::: |\nleft    right\n:::",
+			'extensions' => ['line_block_div'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="line-block"', $response['html']);
+		$this->assertStringContainsString("left\u{00A0}\u{00A0}\u{00A0}\u{00A0}right", $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
 	 * HeadingReference and Wikilinks both claim [[...]]; enabling both must drop
 	 * HeadingReference so the converter does not throw, and Wikilinks wins.
 	 *

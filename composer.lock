@@ -6029,12 +6029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "f13cfeafe5cd9de49c2be26fbe9e4a749032736e"
+                "reference": "2b49871ac5fb714d4d37f33267a109a673cd2b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/f13cfeafe5cd9de49c2be26fbe9e4a749032736e",
-                "reference": "f13cfeafe5cd9de49c2be26fbe9e4a749032736e",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/2b49871ac5fb714d4d37f33267a109a673cd2b0c",
+                "reference": "2b49871ac5fb714d4d37f33267a109a673cd2b0c",
                 "shasum": ""
             },
             "require": {
@@ -6091,7 +6091,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-12T03:22:47+00:00"
+            "time": "2026-06-12T15:14:40+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6633,12 +6633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "681816114a116ceaab515a98db8f3689293f17c4"
+                "reference": "30088b9d0ea47bc580d5528c920b5ef00f18a295"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/681816114a116ceaab515a98db8f3689293f17c4",
-                "reference": "681816114a116ceaab515a98db8f3689293f17c4",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/30088b9d0ea47bc580d5528c920b5ef00f18a295",
+                "reference": "30088b9d0ea47bc580d5528c920b5ef00f18a295",
                 "shasum": ""
             },
             "require": {
@@ -6692,7 +6692,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-12T14:12:25+00:00"
+            "time": "2026-06-12T15:51:35+00:00"
         },
         {
             "name": "php-collective/dto",

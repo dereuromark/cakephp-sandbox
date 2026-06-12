@@ -767,15 +767,21 @@ DJOT,
 			],
 			'line_block_div' => [
 				'name' => 'LineBlockDivExtension',
-				'description' => 'Adds a fenced line-block div via ::: | (a :::-div whose only class token is a pipe). Each soft line break inside becomes a hard break and leading whitespace is preserved, so verse, addresses, lyrics, and signatures keep their shape - without prefixing every line. A blank line separates stanzas; inline Djot still parses normally. Line blocks do not nest inside each other (content is literal), but a line block nests inside a list item or any ::: container div - indent it and leave a blank line before the fence.',
+				'description' => 'Adds a fenced line-block div via ::: | (a :::-div whose only class token is a pipe). Each soft line break inside becomes a hard break, and whitespace is preserved both at the start of a line and mid-line: leading indent keeps its depth, and any medial run of two or more spaces (a verse caesura, an aligned column) is held open with non-breaking spaces. A single space stays an ordinary, wrapping space. So verse, addresses, lyrics, and signatures keep their shape without prefixing every line; a blank line separates stanzas and inline Djot still parses normally. Line blocks do not nest inside each other (content is literal), but a line block nests inside a list item or any ::: container div - indent it and leave a blank line before the fence.',
 				'class' => LineBlockDivExtension::class,
 				'example_djot' => <<<'DJOT'
 ::: |
+Hwaet! We Gardena    in geardagum,
+theodcyninga         thrym gefrunon,
+hu tha aethelingas   ellen fremedon.
+:::
+
+Leading indent and medial gaps (runs of two or more spaces) both survive, so the
+caesura above stays aligned. A single space between words stays collapsible:
+
+::: |
 The limerick packs laughs anatomical
   Into space that is quite economical.
-    But the good ones I've seen
-      So seldom are clean
-And the clean ones so seldom are comical.
 :::
 
 A line block also nests inside a list item (indent it, blank line before the fence):
