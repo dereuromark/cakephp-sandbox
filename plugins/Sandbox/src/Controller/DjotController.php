@@ -14,12 +14,16 @@ use Djot\Exception\ProfileViolationException;
 use Djot\Extension\AdmonitionExtension;
 use Djot\Extension\AsciiHeadingIdsExtension;
 use Djot\Extension\AutolinkExtension;
+use Djot\Extension\CitationsExtension;
 use Djot\Extension\CodeGroupExtension;
 use Djot\Extension\DefaultAttributesExtension;
 use Djot\Extension\ExternalLinksExtension;
 use Djot\Extension\FrontmatterExtension;
 use Djot\Extension\HeadingLevelShiftExtension;
 use Djot\Extension\HeadingPermalinksExtension;
+use Djot\Extension\HeadingReferenceExtension;
+use Djot\Extension\InlineFootnotesExtension;
+use Djot\Extension\LineBlockDivExtension;
 use Djot\Extension\MentionsExtension;
 use Djot\Extension\MermaidExtension;
 use Djot\Extension\SemanticSpanExtension;
@@ -170,6 +174,16 @@ class DjotController extends SandboxAppController {
 		$djot = (string)$this->request->getData('djot');
 		$enabledExtensions = (array)$this->request->getData('extensions');
 
+		// HeadingReference and Wikilinks both claim the [[...]] inline syntax and
+		// cannot share one converter instance. In the combined demo all toggles
+		// default to on, so drop HeadingReference when Wikilinks is also enabled.
+		if (in_array('wikilinks', $enabledExtensions, true) && in_array('heading_reference', $enabledExtensions, true)) {
+			$enabledExtensions = array_values(array_filter(
+				$enabledExtensions,
+				fn (mixed $ext): bool => $ext !== 'heading_reference',
+			));
+		}
+
 		$result = [
 			'html' => '',
 			'rawHtml' => '',
@@ -265,6 +279,22 @@ class DjotController extends SandboxAppController {
 							$converter->addExtension(new WikilinksExtension(
 								urlGenerator: fn (string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
 							));
+
+							break;
+						case 'heading_reference':
+							$converter->addExtension(new HeadingReferenceExtension());
+
+							break;
+						case 'inline_footnotes':
+							$converter->addExtension(new InlineFootnotesExtension());
+
+							break;
+						case 'citations':
+							$converter->addExtension(new CitationsExtension());
+
+							break;
+						case 'line_block_div':
+							$converter->addExtension(new LineBlockDivExtension());
 
 							break;
 						case 'frontmatter':
@@ -681,6 +711,85 @@ DJOT,
 					'urlGenerator' => 'Custom URL generator closure',
 					'cssClass' => "'wikilink'",
 					'newWindow' => 'false',
+				],
+			],
+			'heading_reference' => [
+				'name' => 'HeadingReferenceExtension',
+				'description' => 'Resolves [[Heading Text]] references to headings within the same document, producing anchor links. Supports custom display text via [[Heading Text|click here]]. Unresolvable references fall back to literal [[...]] text. Note: shares the [[...]] syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
+				'class' => HeadingReferenceExtension::class,
+				'example_djot' => <<<'DJOT'
+# Installation
+
+See [[Configuration]] for setup details, or jump straight to [[Usage|how to use it]].
+
+# Configuration
+
+Configure your settings here. A missing target like [[Nonexistent Section]] stays literal.
+
+# Usage
+
+Use the tool as described above.
+DJOT,
+				'options' => [
+					'cssClass' => "'heading-ref'",
+				],
+			],
+			'inline_footnotes' => [
+				'name' => 'InlineFootnotesExtension',
+				'description' => 'Converts spans marked with the .fn class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
+				'class' => InlineFootnotesExtension::class,
+				'example_djot' => <<<'DJOT'
+Djot supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
+
+Footnote content can include _emphasis_ and `code`[Footnotes support full inline formatting.]{.fn} too.
+DJOT,
+				'options' => [
+					'cssClass' => "'fn'",
+				],
+			],
+			'citations' => [
+				'name' => 'CitationsExtension',
+				'description' => 'Parses Pandoc/Citum-style citations: [@key], integral [+@key], author-suppressed [-@key], multiple keys [@a; @b], and locators [@key, p. 10]. It only marks citation groups semantically (span.citation with data-citation-* attributes); a resolver callback can render them, and bibliography processing is left to an external engine.',
+				'class' => CitationsExtension::class,
+				'example_djot' => <<<'DJOT'
+As shown by [@knuth1984], algorithms matter.
+
+The integral form names the author inline: [+@knuth1984].
+
+Suppress the author with [-@knuth1984].
+
+Cite multiple sources [@knuth1984; @lamport1994] and add a locator [@knuth1984, p. 42].
+DJOT,
+				'options' => [
+					'resolver' => 'Callback to resolve keys to rendered references',
+					'cssClass' => "'citation'",
+				],
+			],
+			'line_block_div' => [
+				'name' => 'LineBlockDivExtension',
+				'description' => 'Adds a fenced line-block div via ::: | (a :::-div whose only class token is a pipe). Each soft line break inside becomes a hard break and leading whitespace is preserved, so verse, addresses, lyrics, and signatures keep their shape - without prefixing every line. A blank line separates stanzas; inline Djot still parses normally. Line blocks do not nest inside each other (content is literal), but a line block nests inside a list item or any ::: container div - indent it and leave a blank line before the fence.',
+				'class' => LineBlockDivExtension::class,
+				'example_djot' => <<<'DJOT'
+::: |
+The limerick packs laughs anatomical
+  Into space that is quite economical.
+    But the good ones I've seen
+      So seldom are clean
+And the clean ones so seldom are comical.
+:::
+
+A line block also nests inside a list item (indent it, blank line before the fence):
+
+- A short verse:
+
+  ::: |
+  Roses are red
+    Violets are blue
+  :::
+- Back to the list.
+DJOT,
+				'options' => [
+					'(none)' => 'Toggle-only; enable by adding the extension',
 				],
 			],
 			'frontmatter' => [

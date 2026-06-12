@@ -6029,12 +6029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "637105aa3d119d159dd68be7bc306381d698d795"
+                "reference": "f13cfeafe5cd9de49c2be26fbe9e4a749032736e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/637105aa3d119d159dd68be7bc306381d698d795",
-                "reference": "637105aa3d119d159dd68be7bc306381d698d795",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/f13cfeafe5cd9de49c2be26fbe9e4a749032736e",
+                "reference": "f13cfeafe5cd9de49c2be26fbe9e4a749032736e",
                 "shasum": ""
             },
             "require": {
@@ -6074,7 +6074,7 @@
                 }
             ],
             "description": "PHP parser for Carve, a human-centered lightweight markup language derived from djot-php.",
-            "homepage": "https://github.com/markup-carve/carve-php",
+            "homepage": "https://markup-carve.github.io/carve/",
             "keywords": [
                 "carve",
                 "djot",
@@ -6091,7 +6091,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-11T21:07:54+00:00"
+            "time": "2026-06-12T03:22:47+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -6633,12 +6633,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "9a51f5a16085e49b7c5cdc69b0a75c6de760cd3e"
+                "reference": "681816114a116ceaab515a98db8f3689293f17c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/9a51f5a16085e49b7c5cdc69b0a75c6de760cd3e",
-                "reference": "9a51f5a16085e49b7c5cdc69b0a75c6de760cd3e",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/681816114a116ceaab515a98db8f3689293f17c4",
+                "reference": "681816114a116ceaab515a98db8f3689293f17c4",
                 "shasum": ""
             },
             "require": {
@@ -6692,7 +6692,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-11T18:33:38+00:00"
+            "time": "2026-06-12T14:12:25+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -7923,16 +7923,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.12.0",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "d95c42df9c4a713ca1d4a45b37f0416dee1ea73a"
+                "reference": "9a90eb5d32d5a500296bf43f946d60246444d5f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/d95c42df9c4a713ca1d4a45b37f0416dee1ea73a",
-                "reference": "d95c42df9c4a713ca1d4a45b37f0416dee1ea73a",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/9a90eb5d32d5a500296bf43f946d60246444d5f7",
+                "reference": "9a90eb5d32d5a500296bf43f946d60246444d5f7",
                 "shasum": ""
             },
             "require": {
@@ -7971,7 +7971,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/jsonlint/issues",
-                "source": "https://github.com/Seldaek/jsonlint/tree/1.12.0"
+                "source": "https://github.com/Seldaek/jsonlint/tree/1.12.1"
             },
             "funding": [
                 {
@@ -7983,7 +7983,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-11T13:43:55+00:00"
+            "time": "2026-06-12T11:32:29+00:00"
         },
         {
             "name": "seld/phar-utils",

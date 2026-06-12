@@ -177,7 +177,7 @@ class CarveController extends SandboxAppController {
 		if (in_array('wikilinks', $enabledExtensions, true) && in_array('heading_reference', $enabledExtensions, true)) {
 			$enabledExtensions = array_values(array_filter(
 				$enabledExtensions,
-				fn (string $ext): bool => $ext !== 'heading_reference',
+				fn (mixed $ext): bool => $ext !== 'heading_reference',
 			));
 		}
 

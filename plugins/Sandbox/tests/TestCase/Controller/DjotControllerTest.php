@@ -505,6 +505,111 @@ class DjotControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertWithExtensionsHeadingReference(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "# Intro\n\nSee [[Setup]].\n\n# Setup\n\nBody.",
+			'extensions' => ['heading_reference'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="heading-ref"', $response['html']);
+		$this->assertStringContainsString('href="#Setup"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsInlineFootnotes(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => 'Text[A note.]{.fn} more.',
+			'extensions' => ['inline_footnotes'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('role="doc-noteref"', $response['html']);
+		$this->assertStringContainsString('role="doc-endnotes"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsCitations(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => 'See [@knuth1984] for details.',
+			'extensions' => ['citations'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="citation', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsLineBlockDiv(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "::: |\nRoses are red\n  Violets are blue\n:::",
+			'extensions' => ['line_block_div'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="line-block"', $response['html']);
+		$this->assertStringContainsString('<br', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * A line block nests inside a list item (indent it, blank line before the fence).
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsLineBlockDivNestedInListItem(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => "- A short verse:\n\n  ::: |\n  Roses are red\n    Violets are blue\n  :::\n- Back to the list.",
+			'extensions' => ['line_block_div'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<li>', $response['html']);
+		$this->assertStringContainsString('class="line-block"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * HeadingReference and Wikilinks both claim [[...]]; enabling both must drop
+	 * HeadingReference so the converter does not throw, and Wikilinks wins.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsWikilinksHeadingReferenceCollision(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
+			'djot' => 'See [[Getting Started]].',
+			'extensions' => ['wikilinks', 'heading_reference'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('class="wikilink"', $response['html']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertWithExtensionsCombined(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convertWithExtensions'], [
 			'djot' => "# Hello\n\nThanks @user! Visit https://example.com",
