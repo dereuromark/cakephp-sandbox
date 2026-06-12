@@ -175,16 +175,17 @@ DJOT,
 DJOT,
 	],
 	'Line Blocks' => [
-		'description' => 'Preserve line breaks for poetry or addresses.',
+		'description' => 'Preserve line breaks for poetry or addresses with the ::: | fence. Leading indent and medial gaps (runs of two or more spaces) are kept, so verse caesuras and aligned columns survive; a blank line splits stanzas.',
 		'code' => <<<'DJOT'
-| The road not taken
-| Two roads diverged in a yellow wood,
-| And sorry I could not travel both
-| And be one traveler, long I stood
-| And looked down one as far as I could
-| To where it bent in the undergrowth;
-|
-| --- /Robert Frost/
+::: |
+The Road Not Taken
+Two roads diverged    in a yellow wood,
+And sorry I could not travel both
+  And be one traveler, long I stood
+And looked down one    as far as I could
+
+--- /Robert Frost/
+:::
 DJOT,
 	],
 	'Code Blocks with Info' => [

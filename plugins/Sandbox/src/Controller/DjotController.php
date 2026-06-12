@@ -392,7 +392,7 @@ DJOT,
 			],
 			'external_links' => [
 				'name' => 'ExternalLinksExtension',
-				'description' => 'Adds target="_blank" and rel="noopener noreferrer" attributes to external links for security and UX.',
+				'description' => 'Adds `target="_blank"` and `rel="noopener noreferrer"` attributes to external links for security and UX.',
 				'class' => ExternalLinksExtension::class,
 				'example_djot' => <<<'DJOT'
 Check out [Djot's homepage](https://djot.net) for more information.
@@ -439,7 +439,7 @@ DJOT,
 			],
 			'mentions' => [
 				'name' => 'MentionsExtension',
-				'description' => 'Transforms @username patterns into profile links, perfect for social features.',
+				'description' => 'Transforms `@username` patterns into profile links, perfect for social features.',
 				'class' => MentionsExtension::class,
 				'example_djot' => <<<'DJOT'
 Thanks to @johndoe for the contribution!
@@ -496,7 +496,7 @@ DJOT,
 			],
 			'semantic_span' => [
 				'name' => 'SemanticSpanExtension',
-				'description' => 'Converts span attributes into semantic HTML5 elements like <kbd>, <dfn>, and <abbr> for keyboard input, definitions, and abbreviations.',
+				'description' => 'Converts span attributes into semantic HTML5 elements like `<kbd>`, `<dfn>`, and `<abbr>` for keyboard input, definitions, and abbreviations.',
 				'class' => SemanticSpanExtension::class,
 				'example_djot' => <<<'DJOT'
 Press [Ctrl+C]{kbd} to copy the selection.
@@ -536,7 +536,7 @@ DJOT,
 			],
 			'heading_level_shift' => [
 				'name' => 'HeadingLevelShiftExtension',
-				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when h1 is reserved for the page title and document headings should start at h2 for SEO and accessibility.',
+				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when `h1` is reserved for the page title and document headings should start at `h2` for SEO and accessibility.',
 				'class' => HeadingLevelShiftExtension::class,
 				'example_djot' => <<<'DJOT'
 # Main Title (becomes h2)
@@ -557,7 +557,7 @@ DJOT,
 			],
 			'mermaid' => [
 				'name' => 'MermaidExtension',
-				'description' => 'Transforms code blocks with language "mermaid" into Mermaid.js-compatible markup for rendering diagrams. Supports flowcharts, sequence diagrams, class diagrams, and more.',
+				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams. Supports flowcharts, sequence diagrams, class diagrams, and more.',
 				'class' => MermaidExtension::class,
 				'example_djot' => <<<'DJOT'
 ``` mermaid
@@ -628,7 +628,7 @@ DJOT,
 			],
 			'tabs' => [
 				'name' => 'TabsExtension',
-				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). Note: Use more colons (::::) for the outer tabs container to properly nest inner tab divs.',
+				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). Note: Use more colons (`::::`) for the outer tabs container to properly nest inner tab divs.',
 				'class' => TabsExtension::class,
 				'example_djot' => <<<'DJOT'
 :::: tabs
@@ -696,7 +696,7 @@ DJOT,
 			],
 			'wikilinks' => [
 				'name' => 'WikilinksExtension',
-				'description' => 'Parses [[wikilinks]] into navigational links. Supports [[page|display text]] syntax and anchors like [[page#section]]. Common in wiki systems and note-taking apps like Obsidian.',
+				'description' => 'Parses `[[wikilinks]]` into navigational links. Supports `[[page|display text]]` syntax and anchors like `[[page#section]]`. Common in wiki systems and note-taking apps like Obsidian.',
 				'class' => WikilinksExtension::class,
 				'example_djot' => <<<'DJOT'
 Check out the [[Getting Started]] guide for beginners.
@@ -715,7 +715,7 @@ DJOT,
 			],
 			'heading_reference' => [
 				'name' => 'HeadingReferenceExtension',
-				'description' => 'Resolves [[Heading Text]] references to headings within the same document, producing anchor links. Supports custom display text via [[Heading Text|click here]]. Unresolvable references fall back to literal [[...]] text. Note: shares the [[...]] syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
+				'description' => 'Resolves `[[Heading Text]]` references to headings within the same document, producing anchor links. Supports custom display text via `[[Heading Text|click here]]`. Unresolvable references fall back to literal `[[...]]` text. Note: shares the `[[...]]` syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
 				'class' => HeadingReferenceExtension::class,
 				'example_djot' => <<<'DJOT'
 # Installation
@@ -736,7 +736,7 @@ DJOT,
 			],
 			'inline_footnotes' => [
 				'name' => 'InlineFootnotesExtension',
-				'description' => 'Converts spans marked with the .fn class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
+				'description' => 'Converts spans marked with the `.fn` class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
 				'class' => InlineFootnotesExtension::class,
 				'example_djot' => <<<'DJOT'
 Djot supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
@@ -749,7 +749,7 @@ DJOT,
 			],
 			'citations' => [
 				'name' => 'CitationsExtension',
-				'description' => 'Parses Pandoc/Citum-style citations: [@key], integral [+@key], author-suppressed [-@key], multiple keys [@a; @b], and locators [@key, p. 10]. It only marks citation groups semantically (span.citation with data-citation-* attributes); a resolver callback can render them, and bibliography processing is left to an external engine.',
+				'description' => 'Parses Pandoc/Citum-style citations: `[@key]`, integral `[+@key]`, author-suppressed `[-@key]`, multiple keys `[@a; @b]`, and locators `[@key, p. 10]`. It only marks citation groups semantically (`span.citation` with `data-citation-*` attributes); a resolver callback can render them, and bibliography processing is left to an external engine.',
 				'class' => CitationsExtension::class,
 				'example_djot' => <<<'DJOT'
 As shown by [@knuth1984], algorithms matter.
@@ -767,7 +767,7 @@ DJOT,
 			],
 			'line_block_div' => [
 				'name' => 'LineBlockDivExtension',
-				'description' => 'Adds a fenced line-block div via ::: | (a :::-div whose only class token is a pipe). Each soft line break inside becomes a hard break, and whitespace is preserved both at the start of a line and mid-line: leading indent keeps its depth, and any medial run of two or more spaces (a verse caesura, an aligned column) is held open with non-breaking spaces. A single space stays an ordinary, wrapping space. So verse, addresses, lyrics, and signatures keep their shape without prefixing every line; a blank line separates stanzas and inline Djot still parses normally. Line blocks do not nest inside each other (content is literal), but a line block nests inside a list item or any ::: container div - indent it and leave a blank line before the fence.',
+				'description' => 'Adds a fenced line-block div via `::: |` (a `:::`-div whose only class token is a pipe). Each soft line break inside becomes a hard break, and whitespace is preserved both at the start of a line and mid-line: leading indent keeps its depth, and any medial run of two or more spaces (a verse caesura, an aligned column) is held open with non-breaking spaces. A single space stays an ordinary, wrapping space. So verse, addresses, lyrics, and signatures keep their shape without prefixing every line; a blank line separates stanzas and inline Djot still parses normally. Line blocks do not nest inside each other (content is literal), but a line block nests inside a list item or any ::: container div - indent it and leave a blank line before the fence.',
 				'class' => LineBlockDivExtension::class,
 				'example_djot' => <<<'DJOT'
 ::: |
@@ -800,7 +800,7 @@ DJOT,
 			],
 			'frontmatter' => [
 				'name' => 'FrontmatterExtension',
-				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (yaml, neon, toml, ...) is optional.',
+				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (`yaml`, `neon`, `toml`, ...) is optional.',
 				'class' => FrontmatterExtension::class,
 				'example_djot' => <<<'DJOT'
 ---yaml
@@ -824,7 +824,7 @@ DJOT,
 			],
 			'ascii_heading_ids' => [
 				'name' => 'AsciiHeadingIdsExtension',
-				'description' => 'Folds auto-generated heading ids to ASCII. By default Djot keeps non-ASCII characters in ids (# Über uns becomes Über-uns); this extension transliterates them (Über-uns becomes Uber-uns) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
+				'description' => 'Folds auto-generated heading ids to ASCII. By default Djot keeps non-ASCII characters in ids (`# Über uns` becomes `Über-uns`); this extension transliterates them (`Über-uns` becomes `Uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
 				'class' => AsciiHeadingIdsExtension::class,
 				'example_djot' => <<<'DJOT'
 # Über uns

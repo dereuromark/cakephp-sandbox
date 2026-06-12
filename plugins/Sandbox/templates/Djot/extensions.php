@@ -80,7 +80,7 @@ $this->end();
 		</h4>
 	</div>
 	<div class="card-body">
-		<p class="lead"><?= h($example['description']) ?></p>
+		<p class="lead"><?= preg_replace('/`([^`]+)`/', '<code>$1</code>', h($example['description'])) ?></p>
 
 		<div class="row mb-3">
 			<div class="col-md-4">
