@@ -1,0 +1,6 @@
+#ddev-generated
+services:
+  web:
+    environment:
+      - MERCURE_PUBLISHER_JWT_KEY=SandboxMercureSecretKey2024-padded-for-HS256!
+      - MERCURE_SUBSCRIBER_JWT_KEY=SandboxMercureSecretKey2024-padded-for-HS256!

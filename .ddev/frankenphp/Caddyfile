@@ -35,8 +35,8 @@
 		}
 
 		mercure {
-			publisher_jwt {$MERCURE_PUBLISHER_JWT_KEY}
-			subscriber_jwt {$MERCURE_SUBSCRIBER_JWT_KEY}
+			publisher_jwt {$MERCURE_PUBLISHER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!}
+			subscriber_jwt {$MERCURE_SUBSCRIBER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!}
 			anonymous
 			subscriptions
 		}

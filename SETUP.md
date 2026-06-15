@@ -23,32 +23,27 @@ This will not be version-controlled. I use it for email setup, API keys and core
 #### Use DDEV as VM
 Using [ddev](https://docs.ddev.com/en/stable/) is the recommended way for local development.
 
-Browse into your app directory in your console and create a `.ddev/` folder.
+The `.ddev/` config is committed to the repo, so there is nothing to copy. It
+runs DDEV with FrankenPHP (worker mode), a Mercure hub, and a CakePHP queue
+worker. For the Mercure real-time features, add the matching CakePHP config:
 
-**Option A: Standard DDEV (Apache/nginx + PHP-FPM)**
-
-Copy the basic config:
 ```bash
-cp -r .ddev.example/* .ddev/
-```
-
-**Option B: FrankenPHP with Mercure (recommended)**
-
-For better performance (worker mode) and real-time features (Mercure):
-```bash
-cp -r .ddev.example/* .ddev/
-cp -r .ddev.franken.example/* .ddev/
-cp .ddev/docker-compose.mercure.yaml.example .ddev/docker-compose.mercure.yaml
-# Edit docker-compose.mercure.yaml and set your own JWT keys
 cp config/app_mercure.default.php config/app_mercure.php
-# Edit app_mercure.php with matching JWT secret
 ```
 
-See `.ddev.franken.example/README.md` for more details on FrankenPHP features.
+The local Mercure JWT key is a shared dev placeholder baked into
+`.ddev/docker-compose.mercure.yaml` and the Caddyfile, so it works out of the
+box; override it in `app_mercure.php` if you change it.
+
+> [!NOTE]
+> The FrankenPHP source image must match the ddev-webserver base Debian
+> release, or `COPY --from=frankenphp /usr /usr` downgrades glibc and the build
+> fails (`apt-get: ... GLIBC_2.x not found`). It is pinned via
+> `FRANKENPHP_DEBIAN_CODENAME` in `.ddev/.env.web` (trixie for ddev v1.25.x).
 
 ---
 
-Once configured, start the container(s):
+Start the container(s):
 ```bash
 ddev start
 ```
