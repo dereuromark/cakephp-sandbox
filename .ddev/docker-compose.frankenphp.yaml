@@ -1,0 +1,19 @@
+#ddev-generated
+services:
+  web:
+    build:
+      args:
+        FRANKENPHP_DEBIAN_CODENAME: ${FRANKENPHP_DEBIAN_CODENAME:-bookworm}
+        FRANKENPHP_DEFAULT_EXTENSIONS: ${FRANKENPHP_DEFAULT_EXTENSIONS-gd pdo_mysql pdo_pgsql xdebug xhprof zip}
+        FRANKENPHP_CUSTOM_EXTENSIONS: ${FRANKENPHP_CUSTOM_EXTENSIONS:-}
+    environment:
+      - SERVER_NAME=:80
+      - SERVER_ROOT=${DDEV_DOCROOT:-.}
+      - PHP_INI_SCAN_DIR=:/etc/frankenphp/php.d
+    volumes:
+      - "./php:/etc/frankenphp/php.d"
+  # This service is only used to pull the Docker image for offline use.
+  frankenphp:
+    image: dunglas/frankenphp:php${DDEV_PHP_VERSION}-${FRANKENPHP_DEBIAN_CODENAME:-bookworm}-${DDEV_SITENAME}-built
+    profiles:
+      - frankenphp

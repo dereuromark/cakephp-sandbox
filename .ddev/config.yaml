@@ -1,4 +1,4 @@
-name: cakephp-sandbox
+name: sandbox
 type: cakephp
 docroot: webroot
 php_version: "8.4"
@@ -7,13 +7,15 @@ xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
 database:
-    type: mysql
-    version: "8.0"
+    type: mariadb
+    version: "10.11"
 use_dns_when_possible: true
 composer_version: "2"
 web_environment: []
 corepack_enable: false
 disable_upload_dirs_warning: true
+router_http_port: "44110"
+router_https_port: "44111"
 
 # Key features of DDEV's config.yaml:
 
@@ -23,25 +25,27 @@ disable_upload_dirs_warning: true
 # which is useful if you want to have a copy of the project side by side with this one.
 
 # type: <projecttype>  # backdrop, cakephp, craftcms, drupal, drupal6, drupal7, drupal8, drupal9, drupal10, drupal11, generic, laravel, magento, magento2, php, shopware6, silverstripe, symfony, typo3, wordpress
-# See https://ddev.readthedocs.io/en/stable/users/quickstart/ for more
+# See https://docs.ddev.com/en/stable/users/quickstart/ for more
 # information on the different project types
 
 # docroot: <relative_path> # Relative path to the directory containing index.php.
 
-# php_version: "8.3"  # PHP version to use, "5.6" through "8.4"
+# php_version: "8.3"  # PHP version to use, "5.6" through "8.5"
 
 # You can explicitly specify the webimage but this
 # is not recommended, as the images are often closely tied to DDEV's' behavior,
 # so this can break upgrades.
 
-# webimage: <docker_image>  # nginx/php docker image.
+# webimage: <docker_image>
+# It’s unusual to change this option, and we don’t recommend it without Docker experience and a good reason.
+# Typically, this means additions to the existing web image using a .ddev/web-build/Dockerfile.*
 
 # database:
 #   type: <dbtype> # mysql, mariadb, postgres
 #   version: <version> # database version, like "10.11" or "8.0"
 #   MariaDB versions can be 5.5-10.8, 10.11, 11.4, 11.8
 #   MySQL versions can be 5.5-8.0, 8.4
-#   PostgreSQL versions can be 9-17
+#   PostgreSQL versions can be 9-18
 
 # router_http_port: <port>  # Port to be used for http (defaults to global configuration, usually 80)
 # router_https_port: <port> # Port for https (defaults to global configuration, usually 443)
@@ -51,23 +55,15 @@ disable_upload_dirs_warning: true
 # "ddev xdebug" to enable Xdebug and "ddev xdebug off" to disable it work better,
 # as leaving Xdebug enabled all the time is a big performance hit.
 
-# xhgui_https_port: 8142
-# Can be used to change the router https port for xhgui application
+# xhgui_http_port: "8143"
+# xhgui_https_port: "8142"
+# The XHGui ports can be changed from the default 8143 and 8142
 # Very rarely used
 
-# xhgui_http_port: 8143
-# Can be used to change the router http port for xhgui application
-# Very rarely used
-
-# host_xhgui_port: 8142
-# Can be used to change the host binding port of the xhgui
+# host_xhgui_port: "8142"
+# Can be used to change the host binding port of the XHGui
 # application. Rarely used; only when port conflict and
 # bind_all_ports is used (normally with router disabled)
-
-# xhprof_enabled: false  # Set to true to enable Xhprof and "ddev start" or "ddev restart"
-# Note that for most people the commands
-# "ddev xhprof" to enable Xhprof and "ddev xhprof off" to disable it work better,
-# as leaving Xhprof enabled all the time is a big performance hit.
 
 # xhprof_mode: [prepend|xhgui|global]
 # Set to "xhgui" to enable XHGui features
@@ -101,7 +97,7 @@ disable_upload_dirs_warning: true
 
 # nodejs_version: "22"
 # change from the default system Node.js version to any other version.
-# See https://ddev.readthedocs.io/en/stable/users/configuration/config/#nodejs_version for more information
+# See https://docs.ddev.com/en/stable/users/configuration/config/#nodejs_version for more information
 # and https://www.npmjs.com/package/n#specifying-nodejs-versions for the full documentation,
 # Note that using of 'ddev nvm' is discouraged because "nodejs_version" is much easier to use,
 # can specify any version, and is more robust than using 'nvm'.
@@ -137,7 +133,7 @@ disable_upload_dirs_warning: true
 
 # ddev_version_constraint: ""
 # Example:
-# ddev_version_constraint: ">= 1.22.4"
+# ddev_version_constraint: ">= 1.24.8"
 # This will enforce that the running ddev version is within this constraint.
 # See https://github.com/Masterminds/semver#checking-version-constraints for
 # supported constraint formats
@@ -166,8 +162,8 @@ disable_upload_dirs_warning: true
 #   - "mutagen": enables Mutagen for this project.
 #   - "nfs":     enables NFS for this project.
 #
-# See https://ddev.readthedocs.io/en/stable/users/install/performance/#nfs
-# See https://ddev.readthedocs.io/en/stable/users/install/performance/#mutagen
+# See https://docs.ddev.com/en/stable/users/install/performance/#nfs
+# See https://docs.ddev.com/en/stable/users/install/performance/#mutagen
 
 # fail_on_hook_fail: False
 # Decide whether 'ddev start' should be interrupted by a failing hook
@@ -294,10 +290,7 @@ disable_upload_dirs_warning: true
 # Many DDEV commands can be extended to run tasks before or after the
 # DDEV command is executed, for example "post-start", "post-import-db",
 # "pre-composer", "post-composer"
-# See https://ddev.readthedocs.io/en/stable/users/extend/custom-commands/ for more
+# See https://docs.ddev.com/en/stable/users/extend/custom-commands/ for more
 # information on the commands that can be extended and the tasks you can define
 # for them. Example:
 #hooks:
-hooks:
-    post-start:
-        - exec: echo 'alias c="composer"' >> ~/.bashrc

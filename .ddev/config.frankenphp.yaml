@@ -1,3 +1,4 @@
+#ddev-generated
 webserver_type: generic
 web_extra_daemons:
   - name: "frankenphp"

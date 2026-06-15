@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - "./frankenphp/Caddyfile:/etc/frankenphp/Caddyfile:ro"

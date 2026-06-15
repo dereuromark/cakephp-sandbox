@@ -1,7 +1,0 @@
-#ddev-generated
-ARG DDEV_PHP_VERSION
-# Must match the ddev-webserver base Debian release, otherwise `COPY --from=frankenphp /usr /usr`
-# downgrades glibc and breaks the base image (apt-get: GLIBC_2.x not found). ddev v1.25.x is trixie.
-# Override via .ddev/.env.web (FRANKENPHP_DEBIAN_CODENAME).
-ARG FRANKENPHP_DEBIAN_CODENAME=trixie
-FROM dunglas/frankenphp:php${DDEV_PHP_VERSION}-${FRANKENPHP_DEBIAN_CODENAME} AS frankenphp

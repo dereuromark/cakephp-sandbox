@@ -28,7 +28,6 @@ _*
 .phpunit.result.cache
 /coverage.xml
 /.bash_history
-.ddev/
 /webroot/files/uploads/
 bolt.db
 docker/check_queue.conf
