@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var bool $debugMode
  * @var string|null $carveVersion
+ * @var array<string, string> $enabledExtensions
  */
 
 $this->append('css');
@@ -86,6 +87,17 @@ Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
 Jump back to the </#features> section.
 
 [^1]: This is the footnote content.
+
+### Extensions (on by default)
+
+Bare links autolink: https://github.com/markup-carve/carve. Press [Esc]{kbd} to
+close, and [HTML]{abbr="HyperText Markup Language"} gets a tooltip. See the
+[[Getting Started]] wiki page.
+
+::: tip
+Admonitions render as styled callouts. Tick "Disable extensions" above to turn
+all of this back into plain text.
+:::
 CARVE;
 ?>
 
@@ -149,6 +161,12 @@ CARVE;
 			<label class="form-check-label" for="opt-strict">Strict</label>
 		</div>
 	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-disable-ext">
+			<label class="form-check-label" for="opt-disable-ext" title="Render plain spec Carve without the default extension set (see bottom of page)">Disable extensions</label>
+		</div>
+	</div>
 	<?php if ($debugMode) { ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
@@ -166,6 +184,7 @@ CARVE;
 <div class="row">
 	<div class="col-md-6">
 		<div class="btn-toolbar mb-1" role="toolbar" id="carve-toolbar">
+			<!-- Primary row: the common formatting, always visible. -->
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="*" title="Bold"><i class="bi bi-type-bold"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="/" title="Italic"><i class="bi bi-type-italic"></i></button>
@@ -174,25 +193,36 @@ CARVE;
 				<button type="button" class="btn btn-outline-secondary" data-wrap="~" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm me-1" role="group">
+				<div class="btn-group btn-group-sm" role="group">
+					<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Heading level"><i class="bi bi-type-h1"></i></button>
+					<ul class="dropdown-menu">
+						<li><button type="button" class="dropdown-item" data-prefix="# ">Heading 1</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="## ">Heading 2</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="### ">Heading 3</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="#### ">Heading 4</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="##### ">Heading 5</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="###### ">Heading 6</button></li>
+					</ul>
+				</div>
+				<button type="button" class="btn btn-outline-secondary" data-prefix="> " title="Quote"><i class="bi bi-quote"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-prefix="- " title="List"><i class="bi bi-list-ul"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-prefix="1. " title="Numbered list"><i class="bi bi-list-ol"></i></button>
+			</div>
+			<div class="btn-group btn-group-sm me-1" role="group">
+				<button type="button" class="btn btn-outline-secondary" data-wrap="`" title="Inline code"><i class="bi bi-code"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-action="link" title="Link"><i class="bi bi-link-45deg"></i></button>
+			</div>
+			<button type="button" class="btn btn-outline-secondary btn-sm me-1" id="toggle-more" title="More: inserted/deleted, super/subscript, abbreviation, code/line block, task list, image, table, rule, admonition"><i class="bi bi-three-dots"></i></button>
+			<!-- Secondary row: folded by default, revealed by the toggle above. -->
+			<div class="btn-group btn-group-sm me-1 d-none" role="group" id="toolbar-more">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="{+" data-wrap-end="+}" title="Inserted"><i class="bi bi-plus-square"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="{-" data-wrap-end="-}" title="Deleted"><i class="bi bi-dash-square"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="{^" data-wrap-end="^}" title="Superscript"><i class="bi bi-superscript"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="{," data-wrap-end=",}" title="Subscript"><i class="bi bi-subscript"></i></button>
-			</div>
-			<div class="btn-group btn-group-sm me-1" role="group">
-				<button type="button" class="btn btn-outline-secondary" data-wrap="`" title="Inline code"><i class="bi bi-code"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="[" data-wrap-end="]{abbr=&quot;...&quot;}" title="Abbreviation [term]{abbr=&quot;...&quot;}"><i class="bi bi-fonts"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="```\n\n```\n" data-cursor="-5" title="Code block"><i class="bi bi-file-code"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="::: |\n\n:::\n" data-cursor="-5" title="Line block (verse / preserved line breaks)"><i class="bi bi-text-left"></i></button>
-			</div>
-			<div class="btn-group btn-group-sm me-1" role="group">
-				<button type="button" class="btn btn-outline-secondary" data-prefix="# " title="Heading"><i class="bi bi-type-h1"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-prefix="> " title="Quote"><i class="bi bi-quote"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-prefix="- " title="List"><i class="bi bi-list-ul"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-prefix="1. " title="Numbered list"><i class="bi bi-list-ol"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-prefix="- [ ] " title="Task list"><i class="bi bi-check2-square"></i></button>
-			</div>
-			<div class="btn-group btn-group-sm" role="group">
-				<button type="button" class="btn btn-outline-secondary" data-action="link" title="Link"><i class="bi bi-link-45deg"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="image" title="Image"><i class="bi bi-image"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="table" title="Table"><i class="bi bi-table"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="---\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
@@ -329,6 +359,28 @@ This div is never closed.</code></pre>
 	</div>
 </div>
 
+<hr class="mt-4">
+<details class="small text-muted mb-3">
+	<summary class="text-secondary" style="cursor: pointer;">Enabled extensions (on by default)</summary>
+	<div class="mt-2 ps-3 border-start">
+		<p class="mb-2">
+			This playground renders with a curated, safe set of
+			<?= $this->Html->link('Carve extensions', ['action' => 'extensions']) ?>
+			enabled by default. Most are no-ops until their syntax appears, so plain Carve is unaffected.
+			Tick <strong>Disable extensions</strong> above to see pure spec output. The
+			<?= $this->Html->link('extensions page', ['action' => 'extensions']) ?>
+			lets you try each one individually. Colliding or context-specific extensions
+			(TOC, Mermaid, Mentions, HeadingReference, ...) stay off here.
+		</p>
+		<dl class="row mb-0">
+			<?php foreach ($enabledExtensions as $name => $description) { ?>
+			<dt class="col-sm-4"><code><?= h($name) ?></code></dt>
+			<dd class="col-sm-8"><?= h($description) ?></dd>
+			<?php } ?>
+		</dl>
+	</div>
+</details>
+
 </div>
 
 <?php $this->Html->scriptStart(['block' => true]); ?>
@@ -343,6 +395,7 @@ This div is never closed.</code></pre>
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
+	const optDisableExt = document.getElementById('opt-disable-ext');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -376,6 +429,7 @@ This div is never closed.</code></pre>
 		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
+		if (params.get('disable_ext') === '1') optDisableExt.checked = true;
 	}
 
 	function getShareUrl() {
@@ -385,6 +439,7 @@ This div is never closed.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
+		if (optDisableExt.checked) url.searchParams.set('disable_ext', '1');
 		return url.toString();
 	}
 
@@ -448,6 +503,7 @@ This div is never closed.</code></pre>
 		formData.append('filter_mode', optFilterMode.value);
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
+		formData.append('disable_ext', optDisableExt.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -483,11 +539,11 @@ This div is never closed.</code></pre>
 			}
 
 			if (data.violations && data.violations.length > 0) {
-				let violationHtml = '<div class="alert alert-info py-2"><strong>Profile Violations:</strong> Content was filtered.<ul class="mb-0 ps-3">';
+				let violationHtml = '<details class="alert alert-info py-2"><summary style="cursor: pointer;"><strong>Profile Violations:</strong> ' + data.violations.length + ' element(s) filtered.</summary><ul class="mb-0 ps-3 mt-2">';
 				data.violations.forEach(function(v) {
 					violationHtml += '<li><code>' + escapeHtml(v.nodeType) + '</code>: ' + escapeHtml(v.reason) + '</li>';
 				});
-				violationHtml += '</ul></div>';
+				violationHtml += '</ul></details>';
 				alertContainer.innerHTML += violationHtml;
 			}
 
@@ -573,6 +629,7 @@ This div is never closed.</code></pre>
 	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
+	optDisableExt.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);
@@ -582,6 +639,15 @@ This div is never closed.</code></pre>
 	document.getElementById('carve-toolbar').addEventListener('click', function(e) {
 		const btn = e.target.closest('button');
 		if (!btn) return;
+
+		if (btn.id === 'toggle-more') {
+			const more = document.getElementById('toolbar-more');
+			more.classList.toggle('d-none');
+			btn.classList.toggle('active', !more.classList.contains('d-none'));
+			return;
+		}
+		// Let Bootstrap handle the heading-level dropdown opener itself.
+		if (btn.classList.contains('dropdown-toggle')) return;
 
 		const pos = input.selectionStart;
 		const end = input.selectionEnd;

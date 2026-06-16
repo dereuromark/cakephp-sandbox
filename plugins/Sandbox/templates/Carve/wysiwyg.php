@@ -156,9 +156,11 @@ $this->end();
 
 <div class="alert alert-info py-2">
 	<i class="bi bi-info-circle"></i>
-	Carve has no published JS serializer yet, so this editor round-trips the editor's HTML
-	through the PHP converters (<code>HtmlToCarve</code> then <code>CarveConverter</code>) to
-	produce the Carve source and a sanitized preview. Output updates shortly after you stop typing.
+	Powered by Tiptap with the <code>CarveKit</code> extensions from
+	<a href="https://github.com/markup-carve/carve-grammars" target="_blank">carve-grammars</a>.
+	The document is serialized to Carve markup in the browser (<code>serializeToCarve</code>); the
+	preview is that Carve rendered to sanitized HTML by <code>CarveConverter</code>. Output updates
+	shortly after you stop typing.
 </div>
 
 <div class="mb-3">
@@ -172,6 +174,9 @@ $this->end();
 			<button type="button" class="btn btn-outline-secondary" data-cmd="strike" title="Strike ~text~"><i class="bi bi-type-strikethrough"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="superscript" title="Superscript {^text^}"><i class="bi bi-superscript"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="subscript" title="Subscript {,text,}"><i class="bi bi-subscript"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="inserted" title="Inserted {+text+}"><i class="bi bi-plus-square"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="deleted" title="Deleted {-text-}"><i class="bi bi-dash-square"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="abbreviation" title="Abbreviation [ABBR]{abbr=&quot;...&quot;}"><i class="bi bi-fonts"></i></button>
 		</div>
 		<div class="divider"></div>
 		<select class="form-select form-select-sm" id="blockType" style="width: auto; min-width: 110px;" title="Block type">
@@ -227,50 +232,53 @@ $this->end();
 	"imports": {
 		"@tiptap/core": "https://esm.sh/@tiptap/core@2",
 		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@2",
+		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@2",
 		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@2",
+		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
+		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
+		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@2",
 		"@tiptap/extension-link": "https://esm.sh/@tiptap/extension-link@2",
 		"@tiptap/extension-placeholder": "https://esm.sh/@tiptap/extension-placeholder@2",
+		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@2",
 		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@2",
 		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@2",
 		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@2",
 		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
 		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
 		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
-		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@2",
-		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
-		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
-		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@2"
+		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
+		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
+		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
+		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break",
+		"carve-grammars/serializer.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/serializer.js"
 	}
 }
 </script>
 
 <script type="module">
 import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit';
-import Highlight from '@tiptap/extension-highlight';
-import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
-import Table from '@tiptap/extension-table';
-import TableRow from '@tiptap/extension-table-row';
-import TableCell from '@tiptap/extension-table-cell';
-import TableHeader from '@tiptap/extension-table-header';
-import TaskList from '@tiptap/extension-task-list';
-import TaskItem from '@tiptap/extension-task-item';
-import Underline from '@tiptap/extension-underline';
-import Superscript from '@tiptap/extension-superscript';
-import Subscript from '@tiptap/extension-subscript';
-import Image from '@tiptap/extension-image';
+// CarveKit bundles StarterKit + the Carve marks (insert/delete/div/span/...);
+// serializeToCarve turns the editor document straight into Carve markup, so
+// there is no HTML-to-Carve round-trip through the server anymore.
+import { CarveKit } from 'carve-grammars/carve-kit.js';
+import { serializeToCarve } from 'carve-grammars/serializer.js';
 
-const previewUrl = <?= json_encode($this->Url->build(['action' => 'wysiwygPreview'])) ?>;
+const convertUrl = <?= json_encode($this->Url->build(['action' => 'convert'])) ?>;
 
 const initialContent = `
 	<h1>Carve WYSIWYG Demo</h1>
 	<p>This is a <strong>WYSIWYG editor</strong> that outputs <em>Carve markup</em>.</p>
-	<h2>Features</h2>
+	<h2>Inline marks</h2>
 	<ul>
 		<li><strong>Strong</strong> &rarr; <code>*text*</code></li>
 		<li><em>Emphasis</em> &rarr; <code>/text/</code></li>
+		<li><u>Underline</u> &rarr; <code>_text_</code></li>
 		<li><mark>Highlight</mark> &rarr; <code>=text=</code></li>
+		<li><s>Strike</s> &rarr; <code>~text~</code></li>
+		<li><span class="carve-insert">Inserted</span> &rarr; <code>{+text+}</code></li>
+		<li><span class="carve-delete">Deleted</span> &rarr; <code>{-text-}</code></li>
+		<li><abbr title="HyperText Markup Language">HTML</abbr> &rarr; <code>[HTML]{abbr="..."}</code></li>
 	</ul>
 	<h2>Task list</h2>
 	<ul data-type="taskList">
@@ -289,20 +297,12 @@ let lastResult = { carve: '', html: '' };
 const editor = new Editor({
 	element: document.getElementById('tiptap-editor'),
 	extensions: [
-		StarterKit,
-		Highlight,
-		Link.configure({ openOnClick: false }),
+		CarveKit.configure({
+			link: { openOnClick: false },
+			table: { resizable: false },
+			taskItem: { nested: true },
+		}),
 		Placeholder.configure({ placeholder: 'Start typing...' }),
-		Table.configure({ resizable: false }),
-		TableRow,
-		TableHeader,
-		TableCell,
-		TaskList,
-		TaskItem.configure({ nested: true }),
-		Underline,
-		Superscript,
-		Subscript,
-		Image,
 	],
 	content: initialContent,
 	onUpdate: () => {
@@ -320,29 +320,32 @@ function scheduleConvert() {
 }
 
 async function convert() {
+	// Serialize the editor document straight to Carve markup on the client.
+	const carve = serializeToCarve(editor.getJSON());
+	// Render that Carve to sanitized HTML via the standard convert endpoint
+	// (the canonical Carve -> HTML direction; no HTML-to-Carve round-trip).
 	// Guard against out-of-order responses: only the latest request may update output.
 	const seq = ++requestSeq;
-	const data = new URLSearchParams({ html: editor.getHTML() });
 	try {
-		const response = await fetch(previewUrl, {
+		const response = await fetch(convertUrl, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
-			body: data,
+			body: new URLSearchParams({ carve }),
 		});
 		const result = await response.json();
 		if (seq !== requestSeq) {
 			return;
 		}
 		if (result.error) {
-			lastResult = { carve: 'Error: ' + result.error, html: '<div class="alert alert-danger">' + escapeHtml(result.error) + '</div>' };
+			lastResult = { carve, html: '<div class="alert alert-danger">' + escapeHtml(result.error) + '</div>' };
 		} else {
-			lastResult = { carve: result.carve || '', html: result.html || '' };
+			lastResult = { carve, html: result.html || '' };
 		}
 	} catch (e) {
 		if (seq !== requestSeq) {
 			return;
 		}
-		lastResult = { carve: 'Request failed: ' + e.message, html: '' };
+		lastResult = { carve, html: '<div class="alert alert-danger">Request failed: ' + escapeHtml(e.message) + '</div>' };
 	}
 	renderOutput();
 }
@@ -363,7 +366,7 @@ function escapeHtml(text) {
 function updateToolbarState() {
 	document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 		const cmd = btn.dataset.cmd;
-		const markMap = { bold: 'bold', italic: 'italic', underline: 'underline', code: 'code', highlight: 'highlight', strike: 'strike', superscript: 'superscript', subscript: 'subscript', bulletList: 'bulletList', orderedList: 'orderedList', taskList: 'taskList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
+		const markMap = { bold: 'bold', italic: 'italic', underline: 'underline', code: 'code', highlight: 'highlight', strike: 'strike', superscript: 'superscript', subscript: 'subscript', inserted: 'carveInsert', deleted: 'carveDelete', abbreviation: 'carveAbbreviation', bulletList: 'bulletList', orderedList: 'orderedList', taskList: 'taskList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
 		if (markMap[cmd]) {
 			btn.classList.toggle('is-active', editor.isActive(markMap[cmd]));
 		}
@@ -398,6 +401,16 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 			case 'strike': chain.toggleStrike().run(); break;
 			case 'superscript': chain.toggleSuperscript().run(); break;
 			case 'subscript': chain.toggleSubscript().run(); break;
+			case 'inserted': chain.toggleCarveInsert().run(); break;
+			case 'deleted': chain.toggleCarveDelete().run(); break;
+			case 'abbreviation':
+				if (editor.isActive('carveAbbreviation')) {
+					chain.unsetAbbreviation().run();
+				} else {
+					const title = prompt('Abbreviation expansion (shown on hover):');
+					if (title) chain.setAbbreviation({ title }).run();
+				}
+				break;
 			case 'bulletList': chain.toggleBulletList().run(); break;
 			case 'orderedList': chain.toggleOrderedList().run(); break;
 			case 'taskList': chain.toggleTaskList().run(); break;

@@ -197,4 +197,60 @@
 	padding-top: 0.5em;
 	text-align: left;
 }
+/* SemanticSpanExtension: kbd / dfn / abbr */
+.carve-rendered kbd {
+	background-color: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	padding: 0.1em 0.4em;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	color: #212529;
+}
+.carve-rendered dfn {
+	font-style: italic;
+	font-weight: 500;
+	color: #0d6efd;
+}
+.carve-rendered abbr[title] {
+	text-decoration: underline dotted;
+	cursor: help;
+}
+/* WikilinksExtension */
+.carve-rendered .wikilink {
+	color: #0969da;
+	text-decoration: none;
+	border-bottom: 1px dashed #0969da;
+}
+.carve-rendered .wikilink:hover {
+	border-bottom-style: solid;
+}
+/* InlineFootnotesExtension */
+.carve-rendered a[role="doc-noteref"] {
+	text-decoration: none;
+	font-weight: 600;
+}
+.carve-rendered section[role="doc-endnotes"] {
+	margin-top: 1.5rem;
+	padding-top: 0.5rem;
+	font-size: 0.9em;
+	color: #495057;
+}
+.carve-rendered section[role="doc-endnotes"] hr {
+	border: none;
+	border-top: 1px solid #dee2e6;
+	margin: 0 0 0.75rem;
+}
+.carve-rendered a[role="doc-backlink"] {
+	text-decoration: none;
+	margin-left: 0.25em;
+}
+/* External links (ExternalLinksExtension) get an outbound marker */
+.carve-rendered a[target="_blank"]::after {
+	content: " \f1c5";
+	font-family: "bootstrap-icons";
+	font-size: 0.75em;
+	vertical-align: super;
+}
 </style>

@@ -406,37 +406,42 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * TipTap task-list HTML round-trips to Carve checkbox items.
+	 * The playground enables a curated extension set by default, so admonitions
+	 * and wikilinks render without any explicit toggle.
 	 *
 	 * @return void
 	 */
-	public function testWysiwygPreviewConvertsTaskLists(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
-			'html' => '<ul data-type="taskList"><li data-type="taskItem" data-checked="true"><label><input type="checkbox" checked></label><div><p>done</p></div></li><li data-type="taskItem" data-checked="false"><label><input type="checkbox"></label><div><p>todo</p></div></li></ul>',
+	public function testConvertEnablesExtensionsByDefault(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "::: tip\nHeads up.\n:::\n\nSee [[Getting Started]].",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('- [x] done', $response['carve']);
-		$this->assertStringContainsString('- [ ] todo', $response['carve']);
+		$this->assertStringContainsString('class="wikilink"', $response['html']);
+		$this->assertStringContainsString('tip', $response['html']);
+		$this->assertStringNotContainsString('::: tip', $response['html']);
+		$this->assertNull($response['error']);
 	}
 
 	/**
-	 * The WYSIWYG preview also expands code tabs to spaces by default.
+	 * With disable_ext the same input renders as plain spec Carve: the
+	 * admonition stays a literal fence and the wikilink is not linkified.
 	 *
 	 * @return void
 	 */
-	public function testWysiwygPreviewExpandsTabsByDefault(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
-			'html' => "<pre><code class=\"language-js\">function f() {\n\treturn 1;\n}\n</code></pre>",
+	public function testConvertDisableExtensions(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "::: tip\nHeads up.\n:::\n\nSee [[Getting Started]].",
+			'disable_ext' => '1',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('    return 1;', $response['html']);
-		$this->assertStringNotContainsString("\treturn 1;", $response['html']);
+		$this->assertStringNotContainsString('class="wikilink"', $response['html']);
+		$this->assertNull($response['error']);
 	}
 
 	/**
@@ -782,57 +787,24 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testWysiwygPreview(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
-			'html' => '<h1>Title</h1><p>A <strong>bold</strong> word and <mark>mark</mark>.</p>',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		// HtmlToCarve produces the Carve source.
-		$this->assertStringContainsString('# Title', $response['carve']);
-		$this->assertStringContainsString('*bold*', $response['carve']);
-		$this->assertStringContainsString('{=mark=}', $response['carve']);
-		// CarveConverter renders the sanitized preview from that source.
-		$this->assertStringContainsString('<h1>Title</h1>', $response['html']);
-		$this->assertStringContainsString('<strong>bold</strong>', $response['html']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testWysiwygPreviewEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview'], [
-			'html' => '',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame('', $response['carve']);
-		$this->assertSame('', $response['html']);
-		$this->assertNull($response['error']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testWysiwygPreviewGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwygPreview']);
-
-		$this->assertResponseCode(405);
-	}
-
-	/**
-	 * @return void
-	 */
 	public function testDjotToCarve(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'djotToCarve']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * The wikilinks stub target renders for any slug.
+	 *
+	 * @return void
+	 */
+	public function testWiki(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wiki', 'getting-started']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Getting Started');
 	}
 
 	/**

@@ -4,6 +4,7 @@ namespace Sandbox\Controller;
 
 use Cake\Core\Configure;
 use Cake\Http\Response;
+use Cake\Routing\Router;
 use Carve\CarveConverter;
 use Carve\Converter\BbcodeToCarve;
 use Carve\Converter\DjotToCarve;
@@ -52,6 +53,80 @@ class CarveController extends SandboxAppController {
 
 		$this->set('debugMode', Configure::read('debug'));
 		$this->set('carveVersion', $carveVersion);
+		$this->set('enabledExtensions', $this->defaultExtensionInfo());
+	}
+
+	/**
+	 * Adds the playground's default extension set to a converter.
+	 *
+	 * Curated to be safe-by-default: each is either a no-op until its syntax
+	 * appears or a mild enrichment, with no colliding pair and nothing that needs
+	 * page-specific JS. Wikilinks point at the {@link self::wiki()} stub so they
+	 * resolve instead of 404ing; Mentions stay out (no user pages). Keep this list
+	 * in sync with {@link self::defaultExtensionInfo()}.
+	 *
+	 * @param \Carve\CarveConverter $converter
+	 * @return void
+	 */
+	protected function addDefaultExtensions(CarveConverter $converter): void {
+		$converter->addExtension(new AutolinkExtension());
+		$converter->addExtension(new ExternalLinksExtension(
+			internalHosts: ['sandbox.dereuromark.de', 'localhost'],
+		));
+		$converter->addExtension(new AdmonitionExtension(icons: true));
+		$converter->addExtension(new SemanticSpanExtension());
+		$converter->addExtension(new AsciiHeadingIdsExtension());
+		$converter->addExtension(new PlusBulletExtension());
+		$converter->addExtension(new InlineFootnotesExtension());
+		$converter->addExtension(new WikilinksExtension(
+			urlGenerator: fn (string $page): string => Router::url([
+				'plugin' => 'Sandbox',
+				'controller' => 'Carve',
+				'action' => 'wiki',
+				$this->wikiSlug($page),
+			]),
+		));
+	}
+
+	/**
+	 * Slugify a wikilink page name for the wiki stub URL.
+	 *
+	 * @param string $page
+	 * @return string
+	 */
+	protected function wikiSlug(string $page): string {
+		return strtolower(str_replace(' ', '-', trim($page)));
+	}
+
+	/**
+	 * Demo stub target for the Wikilinks extension. There is no real wiki; any
+	 * [[Page]] link from the playground lands here so the links resolve.
+	 *
+	 * @param string $page
+	 * @return void
+	 */
+	public function wiki(string $page = ''): void {
+		$this->set('page', $page);
+		$this->set('title', $page !== '' ? ucwords(str_replace('-', ' ', $page)) : 'Wiki');
+	}
+
+	/**
+	 * Human-readable description of the default extension set, for the page
+	 * footer. Keep in sync with {@link self::addDefaultExtensions()}.
+	 *
+	 * @return array<string, string>
+	 */
+	protected function defaultExtensionInfo(): array {
+		return [
+			'AutolinkExtension' => 'Bare URLs and email addresses become links.',
+			'ExternalLinksExtension' => 'External links get target="_blank" and rel="noopener noreferrer".',
+			'AdmonitionExtension' => '::: note / tip / warning / ... blocks render as styled callouts with icons.',
+			'SemanticSpanExtension' => '[text]{kbd}, {dfn} and {abbr="..."} become <kbd>, <dfn> and <abbr>.',
+			'AsciiHeadingIdsExtension' => 'Heading ids are folded to ASCII for share-safe fragments.',
+			'PlusBulletExtension' => '+ works as a bullet-list marker alongside - and *.',
+			'InlineFootnotesExtension' => '[note]{.fn} produces an inline footnote collected at the end.',
+			'WikilinksExtension' => '[[Page]] and [[Page|label]] link to the /sandbox/carve/wiki/... stub.',
+		];
 	}
 
 	/**
@@ -68,6 +143,7 @@ class CarveController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
+		$disableExtensions = (bool)$this->request->getData('disable_ext');
 
 		$result = [
 			'html' => '',
@@ -87,6 +163,12 @@ class CarveController extends SandboxAppController {
 				// Tabs in code render unevenly without a CSS tab-size; expand
 				// them to spaces by default for consistent playground output.
 				$converter->addExtension(new TabNormalizeExtension(width: 4));
+				// The playground enables a curated, safe set of extensions by
+				// default (mostly no-ops unless their syntax is used); the UI can
+				// turn them off to show plain spec output.
+				if (!$disableExtensions) {
+					$this->addDefaultExtensions($converter);
+				}
 				$start = microtime(true);
 				$html = $converter->convert($carve);
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
@@ -916,52 +998,13 @@ DJOT,
 	/**
 	 * WYSIWYG editor.
 	 *
-	 * Carve has no published JS serializer yet, so this editor uses Tiptap for
-	 * rich-text editing and round-trips its HTML through the PHP converters
-	 * (HtmlToCarve, then CarveConverter) to produce both Carve source and a
-	 * sanitized HTML preview via the wysiwygPreview endpoint.
+	 * Uses Tiptap with the CarveKit extensions from carve-grammars. The document
+	 * is serialized to Carve markup client-side (serializeToCarve); the page then
+	 * renders that Carve to sanitized HTML through the standard convert endpoint.
 	 *
 	 * @return void
 	 */
 	public function wysiwyg(): void {
-	}
-
-	/**
-	 * AJAX endpoint for the WYSIWYG editor.
-	 *
-	 * Serializes the editor's HTML to Carve (HtmlToCarve) and renders that Carve
-	 * back to sanitized HTML (CarveConverter), returning both so the page can show
-	 * the Carve source and a faithful server-rendered preview.
-	 *
-	 * @return \Cake\Http\Response
-	 */
-	public function wysiwygPreview(): Response {
-		$this->request->allowMethod(['post']);
-
-		$html = (string)$this->request->getData('html');
-
-		$result = [
-			'carve' => '',
-			'html' => '',
-			'error' => null,
-		];
-
-		if ($html) {
-			try {
-				$carve = (new HtmlToCarve())->convert($html);
-				$result['carve'] = $carve;
-				$converter = new CarveConverter();
-				// Expand code tabs to spaces by default for consistent preview rendering.
-				$converter->addExtension(new TabNormalizeExtension(width: 4));
-				$result['html'] = $this->sanitizeHtml($converter->convert($carve));
-			} catch (Throwable $e) {
-				$result['error'] = $e->getMessage();
-			}
-		}
-
-		return $this->response
-			->withType('application/json')
-			->withStringBody((string)json_encode($result));
 	}
 
 	/**
