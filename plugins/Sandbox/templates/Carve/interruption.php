@@ -35,7 +35,8 @@
 <h2>Paragraph Interruption (§10)</h2>
 <p>
 	The (Markdown) rule: <strong>a line that begins with a block marker is that block.</strong> A
-	<code>#</code>, <code>-</code>, <code>&gt;</code>, <code>|</code> or <code>---</code> at the start of a
+	<code>#&nbsp;</code> (hash plus a space - a bare <code>#tag</code> stays an inline tag),
+	<code>&gt;</code>, <code>|</code> or <code>---</code> at the start of a
 	line opens its block wherever it appears - the paragraph above does not swallow it.
 </p>
 <p>
@@ -49,6 +50,11 @@
 	choice: write the marker where you mean it, and it just works. You only reach for a blank line or a
 	<code>\</code> escape when you deliberately want the opposite.
 </p>
+<div class="alert alert-warning">
+	<strong>One exception - lists.</strong> A list (bullet or ordered) following a paragraph
+	<em>does</em> need a blank line before it, so that a hard-wrapped <code>- </code> in the middle of prose
+	is not silently turned into a list. <em>Nested</em> sub-lists still need no blank line (see below).
+</div>
 
 <div class="alert alert-info">
 	Each case below is shown three ways: <strong>as typed</strong> (marker directly under the text),

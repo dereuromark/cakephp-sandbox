@@ -55,7 +55,6 @@ echo "Hello, World!";
 1. automatically *numbered*
 
   - sub
-
     - subsub
 
 1. nested *list*
@@ -68,14 +67,12 @@ echo "Hello, World!";
 
 ### Definition List
 
-: Carve
+:: Carve
+:  A lightweight markup language with clean syntax.
 
-  A lightweight markup language with clean syntax.
-
-: Markdown
-: CommonMark
-
-  The predecessors that inspired Carve.
+:: Markdown
+:: CommonMark
+:  The predecessors that inspired Carve.
 
 ### Super/Subscript
 
@@ -150,12 +147,6 @@ CARVE;
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-strict">
 			<label class="form-check-label" for="opt-strict">Strict</label>
-		</div>
-	</div>
-	<div class="col-auto">
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-soft-break-br">
-			<label class="form-check-label" for="opt-soft-break-br" title="Render soft breaks (single newlines) as visible <br> tags. Not part of Carve spec.">Soft break as &lt;br&gt;</label>
 		</div>
 	</div>
 	<?php if ($debugMode) { ?>
@@ -400,23 +391,6 @@ CARVE;
 	For raw output (attributes beyond class/id), clone the <a href="https://github.com/dereuromark/cakephp-sandbox" target="_blank">sandbox repo</a> and run locally in debug mode.
 </p>
 
-<details class="small text-muted mb-3">
-	<summary class="text-secondary" style="cursor: pointer;">About the Markdown-compatibility option (Soft break)</summary>
-	<div class="mt-2 ps-3 border-start">
-		<p class="mb-2">
-			A single newline inside a paragraph is normally just a space. The option below opts into Markdown-like behavior and is <strong>not part of the Carve spec</strong> &mdash; leave it off for spec-compliant output.
-			(Top-level blocks interrupt paragraphs without a blank line by default now &mdash; that is the §10 default, see the <?= $this->Html->link('interruption page', ['action' => 'interruption']) ?>.)
-		</p>
-		<dl class="row mb-0">
-			<dt class="col-sm-3">Soft break as &lt;br&gt;</dt>
-			<dd class="col-sm-9">
-				A single newline inside a paragraph becomes a visible line break (<code>&lt;br&gt;</code>) instead of collapsing onto the same line.
-				So <code>Line one ↵ Line two</code> stays on two lines instead of being joined into one.
-			</dd>
-		</dl>
-	</div>
-</details>
-
 <div class="modal fade" id="insertModal" tabindex="-1">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -547,7 +521,6 @@ This div is never closed.</code></pre>
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
-	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
 	const viewSource = document.getElementById('view-source');
@@ -581,7 +554,6 @@ This div is never closed.</code></pre>
 		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
-		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
 	}
 
 	function getShareUrl() {
@@ -591,7 +563,6 @@ This div is never closed.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
-		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
 		return url.toString();
 	}
 
@@ -655,7 +626,6 @@ This div is never closed.</code></pre>
 		formData.append('filter_mode', optFilterMode.value);
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
-		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
 		fetch('<?= $this->Url->build(['action' => 'convert']) ?>', {
@@ -781,7 +751,6 @@ This div is never closed.</code></pre>
 	optFilterMode.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
-	optSoftBreakBr.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
 	viewSource.addEventListener('change', updateView);

@@ -150,7 +150,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithStrictMode(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "::: warning\nThis div is never closed.",
+			'carve' => "``` php\nThis code fence is never closed.",
 			'strict' => '1',
 		]);
 
@@ -163,22 +163,27 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithSoftBreakAsBr(): void {
+	public function testConvertInterruptsParagraphsByDefault(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "Line one\nLine two",
-			'soft_break_br' => '1',
+			'carve' => "Section\n# Heading",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('<br', $response['html']);
+		// Carve interrupts paragraphs by default (§10): the heading starts
+		// without a blank line in between.
+		$this->assertStringContainsString('<p>Section</p>', $response['html']);
+		$this->assertStringContainsString('<h1', $response['html']);
 	}
 
 	/**
+	 * Lists are the one exception to §10: a list following a paragraph needs a
+	 * blank line, so a hard-wrapped "- " mid-prose is not turned into a list.
+	 *
 	 * @return void
 	 */
-	public function testConvertInterruptsParagraphsByDefault(): void {
+	public function testConvertDoesNotInterruptParagraphWithList(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "Shopping:\n- milk\n- bread",
 		]);
@@ -186,10 +191,8 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Carve interrupts paragraphs unconditionally (§10 default): the list
-		// starts without a blank line in between.
-		$this->assertStringContainsString('<p>Shopping:</p>', $response['html']);
-		$this->assertStringContainsString('<ul>', $response['html']);
+		$this->assertStringNotContainsString('<ul>', $response['html']);
+		$this->assertStringContainsString('- milk', $response['html']);
 	}
 
 	/**
@@ -362,7 +365,8 @@ class CarveControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('id="uber-uns"', $response['html']);
+		// Heading ids are case-preserving; the extension only folds diacritics.
+		$this->assertStringContainsString('id="Uber-uns"', $response['html']);
 		$this->assertNull($response['error']);
 	}
 
@@ -918,7 +922,8 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('href="#configuration"', $response['html']);
+		// Heading ids are case-preserving, so the anchor keeps the original case.
+		$this->assertStringContainsString('href="#Configuration"', $response['html']);
 		$this->assertStringContainsString('class="heading-ref"', $response['html']);
 	}
 
@@ -1045,10 +1050,10 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 		$this->assertResponseContains('Paragraph Interruption (§10)');
-		// As-typed "- " interrupts into a list.
-		$this->assertResponseContains('<li>2x coffee</li>');
-		// Escaped "\-" stays paragraph text.
-		$this->assertResponseContains('- 2x coffee');
+		// As-typed "# " interrupts into a heading.
+		$this->assertResponseContains('<h1>H</h1>');
+		// Lists are the documented exception to interruption.
+		$this->assertResponseContains('One exception - lists.');
 	}
 
 }

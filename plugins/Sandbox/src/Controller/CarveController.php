@@ -32,7 +32,6 @@ use Carve\Extension\TabNormalizeExtension;
 use Carve\Extension\TabsExtension;
 use Carve\Extension\WikilinksExtension;
 use Carve\Profile;
-use Carve\Renderer\SoftBreakMode;
 use Composer\InstalledVersions;
 use HTMLPurifier;
 use HTMLPurifier_Config;
@@ -69,7 +68,6 @@ class CarveController extends SandboxAppController {
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
-		$softBreakAsBr = (bool)$this->request->getData('soft_break_br');
 
 		$result = [
 			'html' => '',
@@ -89,9 +87,6 @@ class CarveController extends SandboxAppController {
 				// Tabs in code render unevenly without a CSS tab-size; expand
 				// them to spaces by default for consistent playground output.
 				$converter->addExtension(new TabNormalizeExtension(width: 4));
-				if ($softBreakAsBr) {
-					$converter->getHtmlRenderer()->setSoftBreakMode(SoftBreakMode::Break);
-				}
 				$start = microtime(true);
 				$html = $converter->convert($carve);
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
@@ -791,7 +786,7 @@ DJOT,
 			],
 			'ascii_heading_ids' => [
 				'name' => 'AsciiHeadingIdsExtension',
-				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (`# Über uns` becomes `über-uns`); this extension transliterates them (`über-uns` becomes `uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
+				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (`# Über uns` becomes `Über-uns`); this extension transliterates them (`Über-uns` becomes `Uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
 				'class' => AsciiHeadingIdsExtension::class,
 				'example_djot' => <<<'DJOT'
 # Über uns
@@ -1009,7 +1004,10 @@ DJOT,
 
 	/**
 	 * Paragraph interruption (§10): a line that begins with a block marker is
-	 * that block. Carve paragraphs are not greedy, so no blank line is needed.
+	 * that block. Carve paragraphs are not greedy, so no blank line is needed -
+	 * with one exception: a list (bullet or ordered) following a paragraph needs
+	 * a blank line, so a hard-wrapped "- " mid-prose is not turned into a list.
+	 * Nested sub-lists still need no blank line.
 	 *
 	 * Each case is shown three ways: as typed (marker starts the block), with a
 	 * blank line before the marker (identical result - the blank line is
@@ -1061,13 +1059,6 @@ DJOT,
 				'carve' => "text\n# H",
 				'blank' => "text\n\n# H",
 				'escaped' => "text\n\\# H",
-			],
-			[
-				'title' => 'List after a label',
-				'note' => 'A "- " line is a list item. The label above stays its own paragraph.',
-				'carve' => "Cart:\n- 2x coffee\n- 1x tea",
-				'blank' => "Cart:\n\n- 2x coffee\n- 1x tea",
-				'escaped' => "Cart:\n\\- 2x coffee\n\\- 1x tea",
 			],
 			[
 				'title' => 'Nested list (no blank line)',

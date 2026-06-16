@@ -57,38 +57,28 @@ DJOT,
 	'Definition List (Multiple Terms/Definitions)' => [
 		'description' => 'Multiple terms can share a single definition and vice versa.',
 		'code' => <<<'DJOT'
-: Carve
- (/dʒɑt/)
-  A lightweight markup language designed by John MacFarlane,
-  creator of Pandoc and CommonMark.
-: +
-  Enhanced by Mark Scherer and Carve PHP implementation to support more awesomeness.
+:: Carve
+:  A lightweight markup language designed by John MacFarlane,
+   creator of Pandoc and CommonMark.
+:  Enhanced by Mark Scherer and the Carve PHP implementation to support more awesomeness.
 
-: Markdown
-: CommonMark
-: GFM
-
-  Earlier markup languages that inspired Carve's design,
-  but with less consistent parsing rules.
-
-  They can be up to two times slower.
+:: Markdown
+:: CommonMark
+:: GFM
+:  Earlier markup languages that inspired Carve's design, but with less consistent parsing rules.
 DJOT,
 	],
 	'Nested Lists' => [
-		'description' => 'Complex nested lists with mixed markers and content blocks.',
+		'description' => 'Complex nested lists with mixed markers and content blocks. Carve nests sublists tight - no blank line needed before a nested list.',
 		'code' => <<<'DJOT'
 1. First level item
-
    - Nested bullet point
    - Another bullet
-
      1. Third level numbered
      2. With continuation
 
         Paragraph inside list item.
-
    - Back to second level
-
 2. Continue first level
 
    > Blockquote inside list
