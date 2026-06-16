@@ -162,22 +162,22 @@ CARVE;
 <div id="alert-container"></div>
 
 <style>
-#output-rendered ul.task-list,
-#output-rendered ul.task {
+/*
+ * Task lists. Carve emits a plain <ul><li><input type="checkbox"> with no
+ * task-list class (unlike Djot), so target the checkbox structurally: drop the
+ * bullet only on items that contain a checkbox, and pull the box into the
+ * gutter. Regular items in the same list keep their marker.
+ */
+#output-rendered li:has(> input[type="checkbox"]) {
 	list-style: none;
-	padding-left: 1.5em;
-}
-#output-rendered ul.task-list li,
-#output-rendered ul.task li {
 	position: relative;
-	padding-left: 0.5em;
-	text-indent: 0;
+	padding-left: 0.25em;
 }
-#output-rendered ul.task-list li input[type="checkbox"],
-#output-rendered ul.task li input[type="checkbox"] {
+#output-rendered li > input[type="checkbox"] {
 	position: absolute;
-	left: -1.25em;
-	top: 0.25em;
+	left: -1.3em;
+	top: 0.3em;
+	margin: 0;
 }
 /*
  * Admonitions. Carve renders the eight canonical types
