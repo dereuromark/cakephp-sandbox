@@ -138,6 +138,7 @@ $this->append('css');
 .preview-render section { margin-bottom: 1em; }
 .preview-render mark { background: #fff3cd; padding: 1px 4px; border-radius: 3px; }
 </style>
+<?= $this->element('carve/output_styles') ?>
 <?php
 $this->end();
 ?>
@@ -165,9 +166,12 @@ $this->end();
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="bold" title="Strong *text*"><i class="bi bi-type-bold"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="italic" title="Emphasis /text/"><i class="bi bi-type-italic"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="underline" title="Underline _text_"><i class="bi bi-type-underline"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="code" title="Code `text`"><i class="bi bi-code"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="highlight" title="Highlight =text="><i class="bi bi-pencil-fill"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="strike" title="Strike ~text~"><i class="bi bi-type-strikethrough"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="superscript" title="Superscript {^text^}"><i class="bi bi-superscript"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="subscript" title="Subscript {,text,}"><i class="bi bi-subscript"></i></button>
 		</div>
 		<div class="divider"></div>
 		<select class="form-select form-select-sm" id="blockType" style="width: auto; min-width: 110px;" title="Block type">
@@ -189,6 +193,7 @@ $this->end();
 		<div class="divider"></div>
 		<div class="btn-group btn-group-sm" role="group">
 			<button type="button" class="btn btn-outline-secondary" data-cmd="link" title="Link"><i class="bi bi-link-45deg"></i></button>
+			<button type="button" class="btn btn-outline-secondary" data-cmd="image" title="Image"><i class="bi bi-image"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="horizontalRule" title="Horizontal rule"><i class="bi bi-hr"></i></button>
 			<button type="button" class="btn btn-outline-secondary" data-cmd="insertTable" title="Insert table"><i class="bi bi-table"></i></button>
 		</div>
@@ -212,7 +217,7 @@ $this->end();
 		</div>
 	</div>
 	<div class="output-content source" id="output-carve"><span class="text-muted">Start typing above...</span></div>
-	<div class="output-content preview-render d-none" id="output-html"></div>
+	<div class="output-content preview-render carve-rendered d-none" id="output-html"></div>
 </div>
 
 </div>
@@ -230,7 +235,11 @@ $this->end();
 		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@2",
 		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
 		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
-		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2"
+		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
+		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@2",
+		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
+		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
+		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@2"
 	}
 }
 </script>
@@ -247,6 +256,10 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TaskList from '@tiptap/extension-task-list';
 import TaskItem from '@tiptap/extension-task-item';
+import Underline from '@tiptap/extension-underline';
+import Superscript from '@tiptap/extension-superscript';
+import Subscript from '@tiptap/extension-subscript';
+import Image from '@tiptap/extension-image';
 
 const previewUrl = <?= json_encode($this->Url->build(['action' => 'wysiwygPreview'])) ?>;
 
@@ -286,6 +299,10 @@ const editor = new Editor({
 		TableCell,
 		TaskList,
 		TaskItem.configure({ nested: true }),
+		Underline,
+		Superscript,
+		Subscript,
+		Image,
 	],
 	content: initialContent,
 	onUpdate: () => {
@@ -346,7 +363,7 @@ function escapeHtml(text) {
 function updateToolbarState() {
 	document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 		const cmd = btn.dataset.cmd;
-		const markMap = { bold: 'bold', italic: 'italic', code: 'code', highlight: 'highlight', strike: 'strike', bulletList: 'bulletList', orderedList: 'orderedList', taskList: 'taskList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
+		const markMap = { bold: 'bold', italic: 'italic', underline: 'underline', code: 'code', highlight: 'highlight', strike: 'strike', superscript: 'superscript', subscript: 'subscript', bulletList: 'bulletList', orderedList: 'orderedList', taskList: 'taskList', blockquote: 'blockquote', codeBlock: 'codeBlock', link: 'link' };
 		if (markMap[cmd]) {
 			btn.classList.toggle('is-active', editor.isActive(markMap[cmd]));
 		}
@@ -375,9 +392,12 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 		switch (cmd) {
 			case 'bold': chain.toggleBold().run(); break;
 			case 'italic': chain.toggleItalic().run(); break;
+			case 'underline': chain.toggleUnderline().run(); break;
 			case 'code': chain.toggleCode().run(); break;
 			case 'highlight': chain.toggleHighlight().run(); break;
 			case 'strike': chain.toggleStrike().run(); break;
+			case 'superscript': chain.toggleSuperscript().run(); break;
+			case 'subscript': chain.toggleSubscript().run(); break;
 			case 'bulletList': chain.toggleBulletList().run(); break;
 			case 'orderedList': chain.toggleOrderedList().run(); break;
 			case 'taskList': chain.toggleTaskList().run(); break;
@@ -395,6 +415,14 @@ document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
 					if (url) chain.setLink({ href: url }).run();
 				}
 				break;
+			case 'image': {
+				const src = prompt('Enter image URL:');
+				if (src) {
+					const alt = prompt('Alt text (optional):') || '';
+					chain.setImage({ src, alt }).run();
+				}
+				break;
+			}
 		}
 	});
 });

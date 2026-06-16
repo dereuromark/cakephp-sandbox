@@ -11,23 +11,9 @@
 </nav>
 <div class="col-md-10 col-sm-9 col-12">
 
+<?= $this->element('carve/output_styles') ?>
 <style>
-.carve-output table {
-	width: 100%;
-	margin-bottom: 0;
-	color: #212529;
-	border-collapse: collapse;
-}
-.carve-output table th,
-.carve-output table td {
-	padding: 0.4rem 0.5rem;
-	border: 1px solid #dee2e6;
-}
-.carve-output table thead th {
-	border-bottom: 2px solid #dee2e6;
-	background-color: #f8f9fa;
-}
-.carve-output > :last-child {
+.carve-rendered > :last-child {
 	margin-bottom: 0;
 }
 </style>
@@ -76,7 +62,7 @@
 				<div class="col-md-4">
 					<label class="form-label mb-1"><strong>As typed</strong> <span class="badge bg-primary">block</span></label>
 					<pre class="bg-light border rounded p-2 mb-2"><code><?= h($row['carve']) ?></code></pre>
-					<div class="carve-output border rounded p-2 mb-2"><?= $row['typedHtml'] ?></div>
+					<div class="carve-output carve-rendered border rounded p-2 mb-2"><?= $row['typedHtml'] ?></div>
 					<?php if ($debugMode) : ?>
 						<pre class="bg-light border rounded p-2 small mb-0"><code><?= h($row['typedRaw']) ?></code></pre>
 					<?php endif; ?>
@@ -84,7 +70,7 @@
 				<div class="col-md-4">
 					<label class="form-label mb-1"><strong>Blank line before</strong> <span class="badge bg-secondary">same</span></label>
 					<pre class="bg-light border rounded p-2 mb-2"><code><?= h($row['blank']) ?></code></pre>
-					<div class="carve-output border rounded p-2 mb-2"><?= $row['blankHtml'] ?></div>
+					<div class="carve-output carve-rendered border rounded p-2 mb-2"><?= $row['blankHtml'] ?></div>
 					<?php if ($debugMode) : ?>
 						<pre class="bg-light border rounded p-2 small mb-0"><code><?= h($row['blankRaw']) ?></code></pre>
 					<?php endif; ?>
@@ -92,7 +78,7 @@
 				<div class="col-md-4">
 					<label class="form-label mb-1"><strong>Escaped <code>\</code></strong> <span class="badge bg-dark">literal</span></label>
 					<pre class="bg-light border rounded p-2 mb-2"><code><?= h($row['escaped']) ?></code></pre>
-					<div class="carve-output border rounded p-2 mb-2"><?= $row['escapedHtml'] ?></div>
+					<div class="carve-output carve-rendered border rounded p-2 mb-2"><?= $row['escapedHtml'] ?></div>
 					<?php if ($debugMode) : ?>
 						<pre class="bg-light border rounded p-2 small mb-0"><code><?= h($row['escapedRaw']) ?></code></pre>
 					<?php endif; ?>

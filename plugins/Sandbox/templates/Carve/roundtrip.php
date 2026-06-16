@@ -74,9 +74,11 @@ CARVE;
 <pre id="diff-output" class="border rounded p-2 small bg-light" style="max-height: 300px; overflow: auto;"><span class="text-muted">No differences yet.</span></pre>
 
 <h3 class="mt-4">Rendered HTML Preview <small class="text-muted">(first pass)</small></h3>
-<div id="html-preview" class="border rounded p-3"></div>
+<div id="html-preview" class="carve-rendered border rounded p-3"></div>
 
 </div>
+
+<?= $this->element('carve/output_styles') ?>
 
 <?php $this->Html->scriptStart(['block' => true]); ?>
 (function() {
