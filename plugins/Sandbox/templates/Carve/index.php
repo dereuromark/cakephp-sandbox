@@ -183,7 +183,7 @@ CARVE;
 
 <div class="row">
 	<div class="col-md-6">
-		<div class="btn-toolbar mb-1" role="toolbar" id="carve-toolbar">
+		<div class="btn-toolbar mb-1" role="toolbar" id="carve-toolbar" style="row-gap: 0.3rem;">
 			<!-- Primary row: the common formatting, always visible. -->
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="*" title="Bold"><i class="bi bi-type-bold"></i></button>
