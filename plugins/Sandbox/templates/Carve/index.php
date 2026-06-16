@@ -24,7 +24,7 @@ Try editing this text!
 ## Features
 
 - /emphasis/, *strong*, and _underline_ text
-- =highlighted= text
+- =highlighted= and ~struck~ text
 - {+inserted+} and {-deleted-} text
 - Links: [Carve docs](https://github.com/markup-carve/carve)
 - Inline `code` spans
@@ -71,7 +71,7 @@ echo "Hello, World!";
 :  A lightweight markup language with clean syntax.
 
 :: Markdown
-:: CommonMark
+:: Djot
 :  The predecessors that inspired Carve.
 
 ### Super/Subscript
@@ -294,7 +294,6 @@ CARVE;
 #output-rendered div.line-block {
 	padding-left: 1em;
 	border-left: 3px solid #dee2e6;
-	font-style: italic;
 }
 #output-rendered dl {
 	width: auto;
@@ -357,24 +356,33 @@ CARVE;
 				<button type="button" class="btn btn-outline-secondary" data-wrap="*" title="Bold"><i class="bi bi-type-bold"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="/" title="Italic"><i class="bi bi-type-italic"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="_" title="Underline"><i class="bi bi-type-underline"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="==" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="=" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="~" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
+			</div>
+			<div class="btn-group btn-group-sm me-1" role="group">
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{+" data-wrap-end="+}" title="Inserted"><i class="bi bi-plus-square"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{-" data-wrap-end="-}" title="Deleted"><i class="bi bi-dash-square"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{^" data-wrap-end="^}" title="Superscript"><i class="bi bi-superscript"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{," data-wrap-end=",}" title="Subscript"><i class="bi bi-subscript"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="`" title="Inline code"><i class="bi bi-code"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="```\n\n```\n" data-cursor="-5" title="Code block"><i class="bi bi-file-code"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-block="::: |\n\n:::\n" data-cursor="-5" title="Line block (verse / preserved line breaks)"><i class="bi bi-text-left"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-prefix="# " title="Heading"><i class="bi bi-type-h1"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-prefix="> " title="Quote"><i class="bi bi-quote"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-prefix="- " title="List"><i class="bi bi-list-ul"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-prefix="1. " title="Numbered list"><i class="bi bi-list-ol"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-prefix="- [ ] " title="Task list"><i class="bi bi-check2-square"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-action="link" title="Link"><i class="bi bi-link-45deg"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="image" title="Image"><i class="bi bi-image"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="table" title="Table"><i class="bi bi-table"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="---\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-block="::: note\n\n:::\n" data-cursor="-5" title="Admonition (note / tip / warning / ...)"><i class="bi bi-info-square"></i></button>
 			</div>
 		</div>
 		<textarea id="carve-input" class="form-control font-monospace" rows="20" placeholder="Enter Carve markup..."><?= h($defaultCarve) ?></textarea>
