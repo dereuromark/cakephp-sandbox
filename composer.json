@@ -50,7 +50,7 @@
 		"dereuromark/cakephp-databaselog": "dev-master",
 		"cakephp/debug_kit": "^5.0.0",
 		"cakephp/twig-view": "^2.0.3",
-		"tecnickcom/tcpdf": "^6.2",
+		"tecnickcom/tc-lib-pdf": "^8",
 		"dompdf/dompdf": "^3.0.0",
 		"willdurand/geocoder": "^5.0.0",
 		"geocoder-php/google-maps-provider": "^4.7.1",
@@ -68,7 +68,7 @@
 		"mjohnson/decoda": "^6.12",
 		"cakephp/localized": "^5.0.1",
 		"dereuromark/cakephp-templating": "dev-master",
-		"friendsofcake/cakepdf": "^5.0",
+		"friendsofcake/cakepdf": "dev-feature/tc-lib-pdf-engine as 5.2.0",
 		"symfony/http-client": "^6.4 || ^7.1.8 || ^8.0",
 		"dereuromark/cakephp-qrcode": "dev-master",
 		"dereuromark/cakephp-audit-stash": "dev-master",
@@ -169,6 +169,12 @@
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
+	},
+	"repositories": {
+		"cakepdf": {
+			"type": "vcs",
+			"url": "https://github.com/friendsofcake/cakepdf"
+		}
 	},
 	"prefer-stable": true,
 	"minimum-stability": "dev",

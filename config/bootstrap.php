@@ -68,6 +68,14 @@ if (!defined('SECOND')) {
 }
 
 /**
+ * Font directory for the CakePdf TcLibPdf engine (tecnickcom/tc-lib-pdf).
+ * tc-lib-pdf ships no fonts, so the standard PDF core fonts are provided here.
+ */
+if (!defined('K_PATH_FONTS')) {
+	define('K_PATH_FONTS', ROOT . DS . 'resources' . DS . 'fonts');
+}
+
+/**
  * Read configuration file and inject configuration into various
  * CakePHP classes.
  *
