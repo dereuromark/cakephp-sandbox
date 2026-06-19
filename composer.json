@@ -62,7 +62,7 @@
 		"dereuromark/cakephp-dto": "dev-master as 3.0.0",
 		"php-collective/dto": "^0.1.8",
 		"dereuromark/cakephp-decimal": "dev-master",
-		"brick/math": "^0.17.0",
+		"brick/math": "^0.18.0",
 		"league/commonmark": "^2.0",
 		"doctrine/sql-formatter": "^1.5.2",
 		"mjohnson/decoda": "^6.12",
