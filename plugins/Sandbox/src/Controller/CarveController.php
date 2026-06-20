@@ -17,12 +17,15 @@ use Carve\Extension\AsciiHeadingIdsExtension;
 use Carve\Extension\AutolinkExtension;
 use Carve\Extension\CodeGroupExtension;
 use Carve\Extension\DefaultAttributesExtension;
+use Carve\Extension\DetailsExtension;
 use Carve\Extension\ExternalLinksExtension;
 use Carve\Extension\FrontmatterExtension;
 use Carve\Extension\HeadingLevelShiftExtension;
 use Carve\Extension\HeadingPermalinksExtension;
 use Carve\Extension\HeadingReferenceExtension;
 use Carve\Extension\InlineFootnotesExtension;
+use Carve\Extension\ListTableExtension;
+use Carve\Extension\MathBlockExtension;
 use Carve\Extension\MentionsExtension;
 use Carve\Extension\MermaidExtension;
 use Carve\Extension\PlusBulletExtension;
@@ -379,6 +382,18 @@ class CarveController extends SandboxAppController {
 							break;
 						case 'tab_normalize':
 							$converter->addExtension(new TabNormalizeExtension(width: 4));
+
+							break;
+						case 'details':
+							$converter->addExtension(new DetailsExtension());
+
+							break;
+						case 'list_table':
+							$converter->addExtension(new ListTableExtension());
+
+							break;
+						case 'math_block':
+							$converter->addExtension(new MathBlockExtension());
 
 							break;
 					}
@@ -896,6 +911,50 @@ function greet() {
 DJOT,
 				'options' => [
 					'width' => '4 (spaces per tab; default 2)',
+				],
+			],
+			'details' => [
+				'name' => 'DetailsExtension',
+				'description' => 'Renders ::: details "Title" admonition blocks as the native HTML5 <details>/<summary> disclosure widget. The quoted title becomes the <summary>; the body stays collapsed until the reader expands it.',
+				'class' => DetailsExtension::class,
+				'example_djot' => <<<'DJOT'
+::: details "What is Carve?"
+Carve is a djot-flavored markup converter for PHP.
+
+The body can hold *any* block content: lists, code, even tables.
+:::
+DJOT,
+			],
+			'list_table' => [
+				'name' => 'ListTableExtension',
+				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The optional {header-rows=1} attribute on the preceding line marks header rows.',
+				'class' => ListTableExtension::class,
+				'example_djot' => <<<'DJOT'
+{header-rows=1}
+::: list-table "Quarterly results"
+- - Region
+  - Notes
+- - EMEA
+  - Strong quarter.
+
+    Drivers:
+
+    - new logos
+    - renewals
+:::
+DJOT,
+			],
+			'math_block' => [
+				'name' => 'MathBlockExtension',
+				'description' => 'Renders a fenced ``` math ``` block as block-level display math (<div class="math display">\[…\]</div>), matching how inline and display $…$ math is emitted so KaTeX / MathJax can pick it up.',
+				'class' => MathBlockExtension::class,
+				'example_djot' => <<<'DJOT'
+``` math
+\int_0^1 x^2 \, dx = \frac{1}{3}
+```
+DJOT,
+				'options' => [
+					'language' => "'math' (fence info string to match; default 'math')",
 				],
 			],
 		];
