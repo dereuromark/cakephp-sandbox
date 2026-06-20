@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09751bde9ffb87b5d6043308dc713689",
+    "content-hash": "aa36743d46af2897257e4527c00bb733",
     "packages": [
         {
             "name": "brick/math",
@@ -4431,16 +4431,16 @@
         },
         {
             "name": "friendsofcake/cakepdf",
-            "version": "dev-feature/tc-lib-pdf-engine",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/CakePdf.git",
-                "reference": "c84d7076da7c1c258f96cf8e7dde614c01bdd7bb"
+                "reference": "9c478eba9fa697513b5fd7ec69cdf0a37d81869c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/c84d7076da7c1c258f96cf8e7dde614c01bdd7bb",
-                "reference": "c84d7076da7c1c258f96cf8e7dde614c01bdd7bb",
+                "url": "https://api.github.com/repos/FriendsOfCake/CakePdf/zipball/9c478eba9fa697513b5fd7ec69cdf0a37d81869c",
+                "reference": "9c478eba9fa697513b5fd7ec69cdf0a37d81869c",
                 "shasum": ""
             },
             "require": {
@@ -4452,7 +4452,7 @@
                 "dompdf/dompdf": "^3.0",
                 "mpdf/mpdf": "^8.1.6",
                 "phpunit/phpunit": "^10.5.58 || ^11.1.3 || ^12.4",
-                "tecnickcom/tc-lib-pdf": "^8",
+                "tecnickcom/tc-lib-pdf": "^8.5",
                 "tecnickcom/tcpdf": "^6.3"
             },
             "suggest": {
@@ -4467,48 +4467,17 @@
                     "CakePdf\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
-                    "CakePdf\\Test\\": "tests/",
-                    "MyPlugin\\": "tests/test_app/plugins/MyPlugin/src/",
-                    "TestApp\\": "tests/test_app/src/"
-                }
-            },
-            "scripts": {
-                "check": [
-                    "@test",
-                    "@cs-check"
-                ],
-                "cs-check": [
-                    "phpcs -p --parallel=16"
-                ],
-                "cs-fix": [
-                    "phpcbf -p --parallel=16"
-                ],
-                "stan": [
-                    "phpstan analyse && psalm.phar"
-                ],
-                "stan-setup": [
-                    "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^1.7 psalm/phar:~4.27.0 && mv composer.backup composer.json"
-                ],
-                "test": [
-                    "phpunit"
-                ],
-                "test-coverage": [
-                    "phpunit --coverage-clover=clover.xml"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "CakePHP plugin for creating and/or rendering Pdfs, several Pdf engines supported.",
             "homepage": "http://github.com/friendsofcake/CakePdf",
             "support": {
-                "source": "https://github.com/FriendsOfCake/CakePdf/tree/feature/tc-lib-pdf-engine",
-                "issues": "https://github.com/FriendsOfCake/CakePdf/issues"
+                "issues": "https://github.com/FriendsOfCake/CakePdf/issues",
+                "source": "https://github.com/FriendsOfCake/CakePdf/tree/5.3.0"
             },
-            "time": "2026-06-19T16:31:30+00:00"
+            "time": "2026-06-19T18:25:26+00:00"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
@@ -14243,12 +14212,6 @@
             "alias_normalized": "3.12.9.0"
         },
         {
-            "package": "friendsofcake/cakepdf",
-            "version": "dev-feature/tc-lib-pdf-engine",
-            "alias": "5.2.0",
-            "alias_normalized": "5.2.0.0"
-        },
-        {
             "package": "php-collective/code-sniffer",
             "version": "9999999-dev",
             "alias": "0.6.0",
@@ -14309,7 +14272,6 @@
         "dereuromark/cakephp-workflow": 20,
         "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
-        "friendsofcake/cakepdf": 20,
         "markup-carve/carve-php": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
