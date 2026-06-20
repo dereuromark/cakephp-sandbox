@@ -5,7 +5,7 @@
 $engines = [
 	'DomPdf' => 'dom',
 	'WkHtmlToPdf' => 'wk',
-	'Tcpdf' => 'tc',
+	'TcLibPdf' => 'tc',
 	//'Mpdf' => 'm'
 ];
 ?>

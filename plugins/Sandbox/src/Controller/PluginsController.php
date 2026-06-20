@@ -53,7 +53,7 @@ class PluginsController extends SandboxAppController {
 		$engines = [
 			'dom' => 'DomPdf',
 			'wk' => 'WkHtmlToPdf',
-			'tc' => 'Tcpdf',
+			'tc' => 'TcLibPdf',
 			//'m' => 'Mpdf'
 		];
 		if (!empty($engineSlug)) {
