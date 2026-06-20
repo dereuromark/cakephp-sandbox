@@ -74,8 +74,11 @@ class PluginsController extends SandboxAppController {
 		}
 
 		// Setting dynamic config settings
-		Configure::write('CakePdf.download', (bool)$this->request->getQuery('download'));
-		Configure::write('CakePdf.filename', 'example-' . $engineSlug . '.pdf');
+		$download = (bool)$this->request->getQuery('download');
+		Configure::write('CakePdf.download', $download);
+		// Only set filename when forcing download; CakePdf treats a set filename as
+		// "force download" regardless of the download flag (PdfView::render()).
+		Configure::write('CakePdf.filename', $download ? 'example-' . $engineSlug . '.pdf' : null);
 
 		// Passing some test data to the view
 		$someTestArray = ['Foo' => ['bar' => 'value']];

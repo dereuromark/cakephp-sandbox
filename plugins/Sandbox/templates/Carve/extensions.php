@@ -6,12 +6,30 @@
 
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+echo $this->Html->css('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
 ?>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
 mermaid.initialize({ startOnLoad: false, theme: 'default' });
+// Render inline ($...$) and block (\[...\], ``` math) math via KaTeX.
+window.mathRender = function(container) {
+	try {
+		renderMathInElement(container, {
+			delimiters: [
+				{ left: '$$', right: '$$', display: true },
+				{ left: '\\[', right: '\\]', display: true },
+				{ left: '$', right: '$', display: false },
+				{ left: '\\(', right: '\\)', display: false },
+			],
+			throwOnError: false,
+		});
+	} catch (e) {
+		// Leave the raw \[...\] text in place if KaTeX fails.
+	}
+};
 window.mermaidRender = async function(container) {
 	const diagrams = container.querySelectorAll('.mermaid');
 	for (const el of diagrams) {
@@ -87,16 +105,21 @@ $this->end();
 		<div class="row mb-3">
 			<div class="col-md-4">
 				<h6>Constructor Options:</h6>
-				<table class="table table-sm table-bordered">
-					<tbody>
-					<?php foreach ($example['options'] as $option => $value) { ?>
-						<tr>
-							<td><code><?= h($option) ?></code></td>
-							<td><code><?= h($value) ?></code></td>
-						</tr>
-					<?php } ?>
-					</tbody>
-				</table>
+				<?php $options = $example['options'] ?? []; ?>
+				<?php if ($options) { ?>
+					<table class="table table-sm table-bordered">
+						<tbody>
+						<?php foreach ($options as $option => $value) { ?>
+							<tr>
+								<td><code><?= h($option) ?></code></td>
+								<td><code><?= h($value) ?></code></td>
+							</tr>
+						<?php } ?>
+						</tbody>
+					</table>
+				<?php } else { ?>
+					<p class="text-muted small mb-0">None - no constructor arguments.</p>
+				<?php } ?>
 			</div>
 			<div class="col-md-8">
 				<h6>Usage Example:</h6>
@@ -345,6 +368,43 @@ Or contact @alice and @bob directly.</textarea>
 	font-family: "bootstrap-icons";
 	font-size: 0.75em;
 	vertical-align: super;
+}
+/* Tables (pipe tables and list-table extension) */
+.html-output table {
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0 0 1rem;
+	font-size: 0.95em;
+}
+.html-output th,
+.html-output td {
+	border: 1px solid #dee2e6;
+	padding: 0.5rem 0.75rem;
+	vertical-align: top;
+	text-align: left;
+}
+.html-output thead th {
+	background-color: #f8f9fa;
+	font-weight: 600;
+}
+.html-output tbody tr:nth-child(even) {
+	background-color: #fcfcfd;
+}
+.html-output caption {
+	caption-side: top;
+	padding: 0.25rem 0;
+	font-weight: 600;
+	color: #6c757d;
+	text-align: left;
+}
+/* Cell block content should not add stray outer margins */
+.html-output td > :first-child,
+.html-output th > :first-child {
+	margin-top: 0;
+}
+.html-output td > :last-child,
+.html-output th > :last-child {
+	margin-bottom: 0;
 }
 .html-output .mention {
 	background-color: #e7f3ff;
@@ -785,6 +845,9 @@ Or contact @alice and @bob directly.</textarea>
 					if (window.mermaidRender) {
 						await window.mermaidRender(htmlOutput);
 					}
+					if (window.mathRender) {
+						window.mathRender(htmlOutput);
+					}
 				}
 			} catch (e) {
 				htmlOutput.innerHTML = '<div class="alert alert-danger">Request failed: ' + escapeHtml(e.message) + '</div>';
@@ -877,6 +940,9 @@ Or contact @alice and @bob directly.</textarea>
 				// Render Mermaid diagrams if present
 				if (window.mermaidRender) {
 					await window.mermaidRender(htmlOutput);
+				}
+				if (window.mathRender) {
+					window.mathRender(htmlOutput);
 				}
 			}
 		} catch (e) {
