@@ -15,22 +15,25 @@ use Carve\Exception\ProfileViolationException;
 use Carve\Extension\AdmonitionExtension;
 use Carve\Extension\AsciiHeadingIdsExtension;
 use Carve\Extension\AutolinkExtension;
+use Carve\Extension\CitationsExtension;
 use Carve\Extension\CodeGroupExtension;
 use Carve\Extension\DefaultAttributesExtension;
 use Carve\Extension\DetailsExtension;
 use Carve\Extension\ExternalLinksExtension;
+use Carve\Extension\FencedRenderExtension;
 use Carve\Extension\FrontmatterExtension;
 use Carve\Extension\HeadingLevelShiftExtension;
 use Carve\Extension\HeadingPermalinksExtension;
 use Carve\Extension\HeadingReferenceExtension;
 use Carve\Extension\InlineFootnotesExtension;
 use Carve\Extension\ListTableExtension;
+use Carve\Extension\LowercaseHeadingIdsExtension;
 use Carve\Extension\MathBlockExtension;
 use Carve\Extension\MentionsExtension;
-use Carve\Extension\MermaidExtension;
 use Carve\Extension\PlusBulletExtension;
 use Carve\Extension\SemanticSpanExtension;
 use Carve\Extension\SmartQuotesExtension;
+use Carve\Extension\SpoilerExtension;
 use Carve\Extension\TableOfContentsExtension;
 use Carve\Extension\TabNormalizeExtension;
 use Carve\Extension\TabsExtension;
@@ -89,6 +92,20 @@ class CarveController extends SandboxAppController {
 				$this->wikiSlug($page),
 			]),
 		));
+		$converter->addExtension(new DetailsExtension());
+		$converter->addExtension(new ListTableExtension());
+		$converter->addExtension(new MathBlockExtension());
+		$converter->addExtension(new CitationsExtension());
+		$converter->addExtension(new LowercaseHeadingIdsExtension());
+		$converter->addExtension(new SpoilerExtension());
+		// Text mode so the Chart.js config rides in <pre class="chart"> as escaped
+		// text and survives sanitizing (the json preset's <script> wrapper would
+		// be stripped). The playground renders it client-side via Chart.js.
+		$converter->addExtension(new FencedRenderExtension(
+			language: 'chart',
+			contentMode: FencedRenderExtension::MODE_TEXT,
+			cssClass: 'chart',
+		));
 	}
 
 	/**
@@ -129,6 +146,13 @@ class CarveController extends SandboxAppController {
 			'PlusBulletExtension' => '+ works as a bullet-list marker alongside - and *.',
 			'InlineFootnotesExtension' => '[note]{.fn} produces an inline footnote collected at the end.',
 			'WikilinksExtension' => '[[Page]] and [[Page|label]] link to the /sandbox/carve/wiki/... stub.',
+			'DetailsExtension' => '::: details "Title" renders as a native <details>/<summary> disclosure widget.',
+			'ListTableExtension' => '::: list-table blocks (nested lists) render as real HTML tables with block-level cells.',
+			'MathBlockExtension' => '``` math fenced blocks render as display math for KaTeX / MathJax.',
+			'CitationsExtension' => '[@key] citations with an in-document bibliography ([@key]: ...) collected as a numbered reference list.',
+			'LowercaseHeadingIdsExtension' => 'Heading ids are lowercased for GitHub/SSG-style anchors.',
+			'FencedRenderExtension (chart)' => '``` chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
+			'SpoilerExtension' => ':spoiler[text] becomes a blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
 		];
 	}
 
@@ -237,7 +261,52 @@ class CarveController extends SandboxAppController {
 	 */
 	public function extensions(): void {
 		$examples = $this->getExtensionExamples();
-		$this->set(compact('examples'));
+		$groupedExamples = $this->groupExamples($examples);
+		$this->set(compact('examples', 'groupedExamples'));
+	}
+
+	/**
+	 * Ordered category map for the extension showcase. Keys are category labels,
+	 * values are the extension keys (from {@link self::getExtensionExamples()})
+	 * in display order.
+	 *
+	 * @return array<string, array<string>>
+	 */
+	protected function extensionGroups(): array {
+		return [
+			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference'],
+			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc'],
+			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize'],
+			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'list_table'],
+			'Client-rendered & Math' => ['math_block', 'mermaid', 'chart'],
+			'Document & Attributes' => ['frontmatter', 'default_attributes'],
+		];
+	}
+
+	/**
+	 * Groups the flat example list by category for the showcase. Any example not
+	 * listed in {@link self::extensionGroups()} falls into a trailing "Other"
+	 * group so nothing is silently dropped.
+	 *
+	 * @param array<string, array<string, mixed>> $examples
+	 * @return array<string, array<string, array<string, mixed>>>
+	 */
+	protected function groupExamples(array $examples): array {
+		$grouped = [];
+		$remaining = $examples;
+		foreach ($this->extensionGroups() as $category => $keys) {
+			foreach ($keys as $key) {
+				if (isset($remaining[$key])) {
+					$grouped[$category][$key] = $remaining[$key];
+					unset($remaining[$key]);
+				}
+			}
+		}
+		if ($remaining) {
+			$grouped['Other'] = $remaining;
+		}
+
+		return $grouped;
 	}
 
 	/**
@@ -333,7 +402,7 @@ class CarveController extends SandboxAppController {
 
 							break;
 						case 'mermaid':
-							$converter->addExtension(new MermaidExtension());
+							$converter->addExtension(FencedRenderExtension::mermaid());
 
 							break;
 						case 'admonition':
@@ -394,6 +463,30 @@ class CarveController extends SandboxAppController {
 							break;
 						case 'math_block':
 							$converter->addExtension(new MathBlockExtension());
+
+							break;
+						case 'citations':
+							$converter->addExtension(new CitationsExtension());
+
+							break;
+						case 'lowercase_heading_ids':
+							$converter->addExtension(new LowercaseHeadingIdsExtension());
+
+							break;
+						case 'spoiler':
+							$converter->addExtension(new SpoilerExtension());
+
+							break;
+						case 'chart':
+							// Text mode (not the json-mode chart() preset) so the
+							// config rides in <pre class="chart"> as escaped text and
+							// survives HTML sanitizing; the json preset's inert
+							// <script type="application/json"> wrapper would be stripped.
+							$converter->addExtension(new FencedRenderExtension(
+								language: 'chart',
+								contentMode: FencedRenderExtension::MODE_TEXT,
+								cssClass: 'chart',
+							));
 
 							break;
 					}
@@ -642,9 +735,9 @@ DJOT,
 				],
 			],
 			'mermaid' => [
-				'name' => 'MermaidExtension',
-				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams. Supports flowcharts, sequence diagrams, class diagrams, and more.',
-				'class' => MermaidExtension::class,
+				'name' => 'FencedRenderExtension::mermaid()',
+				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams (flowcharts, sequence, class diagrams, and more). Mermaid is a preset of the generic FencedRenderExtension; presets for d2, graphviz, wavedrom and abc also exist.',
+				'class' => FencedRenderExtension::class,
 				'example_djot' => <<<'DJOT'
 ``` mermaid
 graph TD;
@@ -927,7 +1020,7 @@ DJOT,
 			],
 			'list_table' => [
 				'name' => 'ListTableExtension',
-				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The optional {header-rows=1} attribute on the preceding line marks header rows.',
+				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The preceding line carries optional {header-rows=N} / {header-cols=N} counts, or their boolean form ({header-rows} marks just the first row/column).',
 				'class' => ListTableExtension::class,
 				'example_djot' => <<<'DJOT'
 {header-rows=1}
@@ -955,6 +1048,64 @@ DJOT,
 DJOT,
 				'options' => [
 					'language' => "'math' (fence info string to match; default 'math')",
+				],
+			],
+			'citations' => [
+				'name' => 'CitationsExtension',
+				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end.',
+				'class' => CitationsExtension::class,
+				'example_djot' => <<<'DJOT'
+Carve follows the djot spec [@durusau2022] and borrows ideas from Markdown [@gruber2004].
+
+[@durusau2022]: Durusau, P. (2022). *The djot markup language*.
+[@gruber2004]: Gruber, J. (2004). *Markdown: Syntax*.
+DJOT,
+				'options' => [
+					'mode' => "'numbered' (reference label style; default 'numbered')",
+				],
+			],
+			'lowercase_heading_ids' => [
+				'name' => 'LowercaseHeadingIdsExtension',
+				'description' => 'Carve heading ids are case-preserving by default (# Getting Started -> "Getting-Started"). This opt-in extension lowercases them for GitHub/SSG-style anchors (-> "getting-started"). Combine with AsciiHeadingIds for fully lowercase ASCII slugs.',
+				'class' => LowercaseHeadingIdsExtension::class,
+				'example_djot' => <<<'DJOT'
+# Getting Started
+
+## API Reference
+
+See [API Reference][] for the lowercased anchor.
+DJOT,
+			],
+			'spoiler' => [
+				'name' => 'SpoilerExtension',
+				'description' => 'Hidden / blurred spoiler content. Inline :spoiler[text] becomes <span class="spoiler"> (blurred until hover/focus); block ::: spoiler "Title" becomes a native <details class="spoiler"> disclosure. The blur + reveal is host CSS.',
+				'class' => SpoilerExtension::class,
+				'example_djot' => <<<'DJOT'
+The killer was :spoiler[the butler] all along.
+
+::: spoiler "Episode ending"
+They defeat the villain and head home.
+:::
+DJOT,
+			],
+			'chart' => [
+				'name' => 'FencedRenderExtension::chart() (text mode)',
+				'description' => 'Renders a ``` chart fenced block (Chart.js JSON config) as a client-rendered chart. Configured in text mode so the JSON rides in <pre class="chart"> as escaped text and survives HTML sanitizing, instead of the json preset\'s <script type="application/json"> wrapper (which a sanitizer strips). Chart.js must be loaded on the page.',
+				'class' => FencedRenderExtension::class,
+				'example_djot' => <<<'DJOT'
+``` chart
+{
+  "type": "bar",
+  "data": {
+    "labels": ["Q1", "Q2", "Q3", "Q4"],
+    "datasets": [{ "label": "Revenue", "data": [12, 19, 14, 23] }]
+  }
+}
+```
+DJOT,
+				'options' => [
+					'language' => "'chart' (fence info string to match)",
+					'contentMode' => 'MODE_TEXT (sanitizer-safe; avoids the json-mode <script> wrapper)',
 				],
 			],
 		];

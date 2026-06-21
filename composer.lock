@@ -116,16 +116,16 @@
         },
         {
             "name": "cakephp/authentication",
-            "version": "4.1.1",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/authentication.git",
-                "reference": "ee24bd48b9c3ef693dc9965de8f0cc8020a7052c"
+                "reference": "d4d7804c88151d98d7ae914fa0abe1b9b569df74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/authentication/zipball/ee24bd48b9c3ef693dc9965de8f0cc8020a7052c",
-                "reference": "ee24bd48b9c3ef693dc9965de8f0cc8020a7052c",
+                "url": "https://api.github.com/repos/cakephp/authentication/zipball/d4d7804c88151d98d7ae914fa0abe1b9b569df74",
+                "reference": "d4d7804c88151d98d7ae914fa0abe1b9b569df74",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
                 "issues": "https://github.com/cakephp/authentication/issues",
                 "source": "https://github.com/cakephp/authentication"
             },
-            "time": "2026-06-13T10:24:39+00:00"
+            "time": "2026-06-21T10:30:06+00:00"
         },
         {
             "name": "cakephp/authorization",
@@ -6031,12 +6031,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "e07b98da799a191d1087018d397cf14b73b0286f"
+                "reference": "b69729c9fd367fa77568857d655519ae93edf65c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/e07b98da799a191d1087018d397cf14b73b0286f",
-                "reference": "e07b98da799a191d1087018d397cf14b73b0286f",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/b69729c9fd367fa77568857d655519ae93edf65c",
+                "reference": "b69729c9fd367fa77568857d655519ae93edf65c",
                 "shasum": ""
             },
             "require": {
@@ -6093,7 +6093,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-20T13:59:53+00:00"
+            "time": "2026-06-21T11:37:02+00:00"
         },
         {
             "name": "masterminds/html5",

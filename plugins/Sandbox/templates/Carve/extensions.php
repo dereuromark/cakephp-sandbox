@@ -13,7 +13,58 @@ echo $this->Html->script('Sandbox.hljs-carve.js');
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.6/auto/+esm';
 mermaid.initialize({ startOnLoad: false, theme: 'default' });
+// Render ``` chart blocks (FencedRenderExtension text mode): <pre class="chart">
+// holds the Chart.js JSON config as escaped text; parse it and draw a canvas.
+window.chartRender = function(container) {
+	for (const el of container.querySelectorAll('pre.chart')) {
+		if (el.dataset.processed) continue;
+		el.dataset.processed = 'true';
+		let config;
+		try {
+			config = JSON.parse(el.textContent);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Chart JSON error: ' + e.message;
+			el.replaceWith(err);
+			continue;
+		}
+		const wrap = document.createElement('div');
+		wrap.style.maxWidth = '480px';
+		const canvas = document.createElement('canvas');
+		wrap.appendChild(canvas);
+		el.replaceWith(wrap);
+		try {
+			new Chart(canvas, config);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Chart error: ' + e.message;
+			wrap.replaceWith(err);
+		}
+	}
+};
+// SpoilerExtension: click (or Enter/Space) to reveal blurred inline/div spoilers.
+// details.spoiler is a native <details> and toggles itself, no JS needed.
+window.spoilerWire = function(container) {
+	for (const el of container.querySelectorAll('span.spoiler, div.spoiler')) {
+		if (el.dataset.spoilerWired) continue;
+		el.dataset.spoilerWired = 'true';
+		el.tabIndex = 0;
+		el.setAttribute('role', 'button');
+		el.setAttribute('aria-label', 'Spoiler, activate to reveal');
+		const toggle = () => el.classList.toggle('revealed');
+		el.addEventListener('click', toggle);
+		el.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				toggle();
+			}
+		});
+	}
+};
 // Render inline ($...$) and block (\[...\], ``` math) math via KaTeX.
 window.mathRender = function(container) {
 	try {
@@ -74,15 +125,19 @@ $this->end();
 		<h5 class="mb-0">Table of Contents</h5>
 	</div>
 	<div class="card-body">
-		<div class="row">
-			<div class="col-md-6">
+		<div class="toc-columns">
+			<?php foreach ($groupedExamples as $category => $items) { ?>
+			<div class="toc-group">
+				<div class="fw-semibold mb-1"><?= h($category) ?></div>
 				<ul class="list-unstyled mb-0">
-					<?php foreach ($examples as $key => $example) { ?>
+					<?php foreach ($items as $key => $example) { ?>
 					<li><a href="#ext-<?= h($key) ?>"><code><?= h($example['name']) ?></code></a></li>
 					<?php } ?>
 				</ul>
 			</div>
-			<div class="col-md-6">
+			<?php } ?>
+			<div class="toc-group">
+				<div class="fw-semibold mb-1">Demos</div>
 				<ul class="list-unstyled mb-0">
 					<li><a href="#ext-toc-position">TOC Auto-Insert Position Demo</a></li>
 					<li><a href="#ext-combined">Combined Extensions Demo</a></li>
@@ -92,7 +147,9 @@ $this->end();
 	</div>
 </div>
 
-<?php foreach ($examples as $key => $example) { ?>
+<?php foreach ($groupedExamples as $category => $items) { ?>
+<h3 class="mt-5 mb-3 pb-1 border-bottom"><?= h($category) ?></h3>
+<?php foreach ($items as $key => $example) { ?>
 <div class="card mb-4" id="ext-<?= h($key) ?>">
 	<div class="card-header">
 		<h4 class="mb-0">
@@ -216,6 +273,7 @@ $html = $converter->convert($carve);</code></pre>
 		</div>
 	</div>
 </div>
+<?php } ?>
 <?php } ?>
 
 <div class="card mb-4" id="ext-toc-position">
@@ -363,6 +421,21 @@ Or contact @alice and @bob directly.</textarea>
 </div>
 
 <style>
+/* Table of Contents: balanced multi-column, groups kept intact */
+.toc-columns {
+	column-count: 3;
+	column-gap: 1.5rem;
+}
+.toc-group {
+	break-inside: avoid;
+	margin-bottom: 0.85rem;
+}
+@media (max-width: 992px) {
+	.toc-columns { column-count: 2; }
+}
+@media (max-width: 576px) {
+	.toc-columns { column-count: 1; }
+}
 .html-output a[target="_blank"]::after {
 	content: " \f1c5";
 	font-family: "bootstrap-icons";
@@ -405,6 +478,80 @@ Or contact @alice and @bob directly.</textarea>
 .html-output td > :last-child,
 .html-output th > :last-child {
 	margin-bottom: 0;
+}
+/* SpoilerExtension: blurred until CLICKED (JS toggles .revealed); details is native */
+.html-output span.spoiler,
+.html-output div.spoiler {
+	filter: blur(0.3em);
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: rgba(127, 127, 127, 0.14);
+	user-select: none;
+	-webkit-user-select: none;
+	transition: filter 0.2s;
+	outline-offset: 3px;
+}
+.html-output div.spoiler {
+	display: block;
+	filter: blur(0.4em);
+	padding: 0.6rem 0.9rem;
+	border-left: 3px solid #e0af68;
+}
+.html-output span.spoiler {
+	padding: 0 0.15em;
+}
+.html-output span.spoiler.revealed,
+.html-output div.spoiler.revealed {
+	filter: none;
+	background-color: transparent;
+	user-select: text;
+	-webkit-user-select: text;
+	cursor: auto;
+}
+.html-output span.spoiler:focus-visible,
+.html-output div.spoiler:focus-visible {
+	outline: 2px solid #0d6efd;
+}
+.html-output span.spoiler.masked {
+	filter: none;
+	-webkit-text-security: disc;
+	text-security: disc;
+	letter-spacing: 0.08em;
+}
+.html-output span.spoiler.masked.revealed {
+	-webkit-text-security: none;
+	text-security: none;
+}
+.html-output details.spoiler {
+	border: 1px solid #5a4a2a;
+	border-left: 4px solid #e0af68;
+	border-radius: 8px;
+	padding: 0.4rem 0.9rem;
+	background-color: #fdf8ee;
+}
+.html-output details.spoiler > summary {
+	cursor: pointer;
+	font-weight: 600;
+	list-style: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.html-output details.spoiler > summary::-webkit-details-marker {
+	display: none;
+}
+.html-output details.spoiler > summary::before {
+	content: "\1F441  ";
+}
+.html-output details.spoiler > summary::after {
+	content: "  (click to reveal)";
+	font-weight: 400;
+	color: #6c757d;
+}
+.html-output details.spoiler[open] > summary::after {
+	content: "";
+}
+.html-output details.spoiler[open] > summary {
+	margin-bottom: 0.5rem;
 }
 .html-output .mention {
 	background-color: #e7f3ff;
@@ -848,6 +995,12 @@ Or contact @alice and @bob directly.</textarea>
 					if (window.mathRender) {
 						window.mathRender(htmlOutput);
 					}
+					if (window.chartRender) {
+						window.chartRender(htmlOutput);
+					}
+					if (window.spoilerWire) {
+						window.spoilerWire(htmlOutput);
+					}
 				}
 			} catch (e) {
 				htmlOutput.innerHTML = '<div class="alert alert-danger">Request failed: ' + escapeHtml(e.message) + '</div>';
@@ -943,6 +1096,12 @@ Or contact @alice and @bob directly.</textarea>
 				}
 				if (window.mathRender) {
 					window.mathRender(htmlOutput);
+				}
+				if (window.chartRender) {
+					window.chartRender(htmlOutput);
+				}
+				if (window.spoilerWire) {
+					window.spoilerWire(htmlOutput);
 				}
 			}
 		} catch (e) {

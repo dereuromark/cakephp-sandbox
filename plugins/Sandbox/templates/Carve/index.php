@@ -10,8 +10,81 @@ $this->append('css');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
 $this->end();
 $this->append('script');
+echo $this->Html->css('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
+?>
+<script type="module">
+import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
+import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.6/auto/+esm';
+// Render inline ($...$) and block (\[...\], ``` math) math via KaTeX.
+window.mathRender = function(container) {
+	try {
+		renderMathInElement(container, {
+			delimiters: [
+				{ left: '$$', right: '$$', display: true },
+				{ left: '\\[', right: '\\]', display: true },
+				{ left: '$', right: '$', display: false },
+				{ left: '\\(', right: '\\)', display: false },
+			],
+			throwOnError: false,
+		});
+	} catch (e) {
+		// Leave the raw \[...\] text in place if KaTeX fails.
+	}
+};
+// Render ``` chart blocks (FencedRenderExtension text mode): <pre class="chart">
+// holds the Chart.js JSON config as escaped text; parse it and draw a canvas.
+window.chartRender = function(container) {
+	for (const el of container.querySelectorAll('pre.chart')) {
+		if (el.dataset.processed) continue;
+		el.dataset.processed = 'true';
+		let config;
+		try {
+			config = JSON.parse(el.textContent);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Chart JSON error: ' + e.message;
+			el.replaceWith(err);
+			continue;
+		}
+		const wrap = document.createElement('div');
+		wrap.style.maxWidth = '480px';
+		const canvas = document.createElement('canvas');
+		wrap.appendChild(canvas);
+		el.replaceWith(wrap);
+		try {
+			new Chart(canvas, config);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Chart error: ' + e.message;
+			wrap.replaceWith(err);
+		}
+	}
+};
+// SpoilerExtension: click (or Enter/Space) to reveal blurred inline/div spoilers.
+// details.spoiler is a native <details> and toggles itself, no JS needed.
+window.spoilerWire = function(container) {
+	for (const el of container.querySelectorAll('span.spoiler, div.spoiler')) {
+		if (el.dataset.spoilerWired) continue;
+		el.dataset.spoilerWired = 'true';
+		el.tabIndex = 0;
+		el.setAttribute('role', 'button');
+		el.setAttribute('aria-label', 'Spoiler, activate to reveal');
+		const toggle = () => el.classList.toggle('revealed');
+		el.addEventListener('click', toggle);
+		el.addEventListener('keydown', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				toggle();
+			}
+		});
+	}
+};
+</script>
+<?php
 $this->end();
 
 $defaultCarve = <<<'CARVE'
@@ -548,6 +621,15 @@ This div is never closed.</code></pre>
 			}
 
 			outputRendered.innerHTML = data.html || '<span class="text-muted">Enter some Carve markup...</span>';
+			if (window.mathRender) {
+				window.mathRender(outputRendered);
+			}
+			if (window.chartRender) {
+				window.chartRender(outputRendered);
+			}
+			if (window.spoilerWire) {
+				window.spoilerWire(outputRendered);
+			}
 			outputSource.querySelector('code').textContent = data.html || '';
 
 			if (data.ms !== null && data.ms !== undefined) {

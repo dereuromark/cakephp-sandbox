@@ -184,10 +184,21 @@
 .carve-rendered table td {
 	padding: 0.5rem;
 	border: 1px solid #dee2e6;
+	vertical-align: top;
+	text-align: left;
 }
 .carve-rendered table thead th {
 	border-bottom: 2px solid #dee2e6;
 	background-color: #f8f9fa;
+}
+/* list-table cells can hold block content; drop stray outer margins */
+.carve-rendered table td > :first-child,
+.carve-rendered table th > :first-child {
+	margin-top: 0;
+}
+.carve-rendered table td > :last-child,
+.carve-rendered table th > :last-child {
+	margin-bottom: 0;
 }
 .carve-rendered table caption {
 	caption-side: bottom;
@@ -196,6 +207,81 @@
 	font-size: 0.9em;
 	padding-top: 0.5em;
 	text-align: left;
+}
+/* SpoilerExtension: blurred until CLICKED (JS toggles .revealed); details is native */
+.carve-rendered span.spoiler,
+.carve-rendered div.spoiler {
+	filter: blur(0.3em);
+	cursor: pointer;
+	border-radius: 3px;
+	background-color: rgba(127, 127, 127, 0.14);
+	user-select: none;
+	-webkit-user-select: none;
+	transition: filter 0.2s;
+	outline-offset: 3px;
+}
+.carve-rendered div.spoiler {
+	display: block;
+	filter: blur(0.4em);
+	padding: 0.6rem 0.9rem;
+	border-left: 3px solid #e0af68;
+}
+.carve-rendered span.spoiler {
+	padding: 0 0.15em;
+}
+.carve-rendered span.spoiler.revealed,
+.carve-rendered div.spoiler.revealed {
+	filter: none;
+	background-color: transparent;
+	user-select: text;
+	-webkit-user-select: text;
+	cursor: auto;
+}
+.carve-rendered span.spoiler:focus-visible,
+.carve-rendered div.spoiler:focus-visible {
+	outline: 2px solid #0d6efd;
+}
+/* masked variant ({.masked}): every char a dot until revealed */
+.carve-rendered span.spoiler.masked {
+	filter: none;
+	-webkit-text-security: disc;
+	text-security: disc;
+	letter-spacing: 0.08em;
+}
+.carve-rendered span.spoiler.masked.revealed {
+	-webkit-text-security: none;
+	text-security: none;
+}
+.carve-rendered details.spoiler {
+	border: 1px solid #5a4a2a;
+	border-left: 4px solid #e0af68;
+	border-radius: 8px;
+	padding: 0.4rem 0.9rem;
+	background-color: #fdf8ee;
+}
+.carve-rendered details.spoiler > summary {
+	cursor: pointer;
+	font-weight: 600;
+	list-style: none;
+	user-select: none;
+	-webkit-user-select: none;
+}
+.carve-rendered details.spoiler > summary::-webkit-details-marker {
+	display: none;
+}
+.carve-rendered details.spoiler > summary::before {
+	content: "\1F441  ";
+}
+.carve-rendered details.spoiler > summary::after {
+	content: "  (click to reveal)";
+	font-weight: 400;
+	color: #6c757d;
+}
+.carve-rendered details.spoiler[open] > summary::after {
+	content: "";
+}
+.carve-rendered details.spoiler[open] > summary {
+	margin-bottom: 0.5rem;
 }
 /* SemanticSpanExtension: kbd / dfn / abbr */
 .carve-rendered kbd {
