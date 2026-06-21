@@ -55,7 +55,13 @@ window.spoilerWire = function(container) {
 		el.tabIndex = 0;
 		el.setAttribute('role', 'button');
 		el.setAttribute('aria-label', 'Spoiler, activate to reveal');
-		const toggle = () => el.classList.toggle('revealed');
+		const sync = () => {
+			const revealed = el.classList.contains('revealed');
+			el.title = revealed ? 'Click to hide' : 'Click to reveal';
+			el.setAttribute('aria-expanded', revealed ? 'true' : 'false');
+		};
+		sync();
+		const toggle = () => { el.classList.toggle('revealed'); sync(); };
 		el.addEventListener('click', toggle);
 		el.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter' || e.key === ' ') {
