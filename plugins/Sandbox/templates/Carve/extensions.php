@@ -215,7 +215,7 @@ $html = $converter->convert($carve);</code></pre>
 			<div class="col-md-6">
 				<div class="mb-2">
 					<label class="form-label">Carve Input:</label>
-					<textarea class="form-control font-monospace carve-input" rows="8" data-extension="<?= h($key) ?>"><?= h($example['example_djot']) ?></textarea>
+					<textarea class="form-control font-monospace carve-input" rows="8" data-extension="<?= h($key) ?>"><?= h($example['example_carve']) ?></textarea>
 				</div>
 				<button class="btn btn-primary btn-sm convert-btn" data-extension="<?= h($key) ?>">
 					<i class="bi bi-arrow-right-circle"></i> Convert

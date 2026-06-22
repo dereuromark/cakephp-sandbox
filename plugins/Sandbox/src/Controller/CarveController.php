@@ -255,6 +255,131 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
+	 * Code-block showcase: syntax highlighting, line numbers, line highlight /
+	 * diff / focus, title bar and copy button. Carve emits the attributes from a
+	 * preceding `{...}` line onto the `<pre>`; highlight.js plus a little JS on
+	 * the page turn them into the gutter, highlighted lines and chrome.
+	 *
+	 * @return void
+	 */
+	public function codeBlocks(): void {
+		$converter = new CarveConverter();
+		$examples = [];
+		foreach ($this->getCodeBlockExamples() as $key => $example) {
+			$example['html'] = $converter->convert($example['carve']);
+			$examples[$key] = $example;
+		}
+		$this->set(compact('examples'));
+	}
+
+	/**
+	 * Source examples for the code-block showcase. Each carries the Carve source;
+	 * the rendered HTML is added in {@link self::codeBlocks()}.
+	 *
+	 * @return array<string, array<string, string>>
+	 */
+	protected function getCodeBlockExamples(): array {
+		return [
+			'highlighting' => [
+				'title' => 'Syntax highlighting',
+				'description' => 'A fenced block with a language info string renders as <pre><code class="language-X">; highlight.js colors it on the page. Carve highlights nothing itself, so any highlighter works.',
+				'carve' => <<<'CARVE'
+``` php
+function greet(string $name): string
+{
+    return "Hello, {$name}!";
+}
+```
+CARVE,
+			],
+			'line_numbers' => [
+				'title' => 'Line numbers',
+				'description' => 'Add the .line-numbers class on the preceding attribute line to get a gutter. Use data-line-start to offset the first number (handy for excerpts).',
+				'carve' => <<<'CARVE'
+{.line-numbers data-line-start="42"}
+``` js
+const items = await fetch('/api/items').then(r => r.json());
+for (const item of items) {
+  render(item);
+}
+```
+CARVE,
+			],
+			'line_highlight' => [
+				'title' => 'Highlighted lines',
+				'description' => 'data-highlight takes a comma list of line numbers and ranges (e.g. "2,4-6"). Those lines get a marker background. Works with or without the gutter.',
+				'carve' => <<<'CARVE'
+{.line-numbers data-highlight="2,4-5"}
+``` php
+$user = $this->Users->get($id);
+$user->verified = true;          // changed
+$user->verified_at = new DateTime();
+$this->Users->save($user);       // and
+$this->log("verified {$id}");    // these
+```
+CARVE,
+			],
+			'diff' => [
+				'title' => 'Diff (add / remove)',
+				'description' => 'data-add and data-remove mark inserted and deleted lines with +/- gutters and green/red backgrounds, like a code review diff.',
+				'carve' => <<<'CARVE'
+{.line-numbers data-remove="2" data-add="3"}
+``` php
+$query = $table->find();
+$query->where(['active' => 1]);
+$query->where(['active' => true]);
+return $query->all();
+```
+CARVE,
+			],
+			'focus' => [
+				'title' => 'Focus',
+				'description' => 'data-focus dims every line except the listed ones, so the eye jumps to what matters; hovering the block restores full contrast.',
+				'carve' => <<<'CARVE'
+{.line-numbers data-focus="3-4"}
+``` php
+class PaymentService
+{
+    public function charge(Money $amount): Receipt
+    {
+        return $this->gateway->process($amount);
+    }
+}
+```
+CARVE,
+			],
+			'title_bar' => [
+				'title' => 'Title bar and language badge',
+				'description' => 'A quoted "header" right on the fence opener (the spec-native form from carve#201) renders a filename header above the block; the language shows as a badge. A {title="..."} attribute line does the same and wins if both are present. A copy-to-clipboard button is added to every block.',
+				'carve' => <<<'CARVE'
+{.line-numbers}
+``` php "config/app.php"
+return [
+    'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
+];
+```
+CARVE,
+			],
+			'combined' => [
+				'title' => 'Everything together',
+				'description' => 'Fence-opener header, line numbers, a highlighted line and a diff in one block.',
+				'carve' => <<<'CARVE'
+{.line-numbers data-highlight="4" data-remove="5" data-add="6"}
+``` php "src/Middleware/AuthMiddleware.php"
+public function process($request, $handler)
+{
+    $identity = $this->authenticate($request);
+    $request = $request->withAttribute('identity', $identity);
+    return $handler->handle($request);
+    return $handler->handle($request->withAttribute('identity', $identity));
+}
+```
+CARVE,
+			],
+		];
+	}
+
+	/**
 	 * Extensions showcase.
 	 *
 	 * @return void
@@ -532,7 +657,7 @@ class CarveController extends SandboxAppController {
 				'name' => 'DefaultAttributesExtension',
 				'description' => 'Adds default attributes to elements by type. This demo adds: images get lazy loading, tables get Bootstrap classes, links get text-primary class, and code blocks get dark styling.',
 				'class' => DefaultAttributesExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Check out this [link to Carve](https://github.com/markup-carve/carve).
 
 ![Sample image](/img/cake.icon.png)
@@ -544,7 +669,7 @@ Check out this [link to Carve](https://github.com/markup-carve/carve).
 ``` php
 echo "Hello World";
 ```
-DJOT,
+CARVE,
 				'options' => [
 					'image' => "['loading' => 'lazy', 'decoding' => 'async']",
 					'table' => "['class' => 'table table-striped']",
@@ -556,13 +681,13 @@ DJOT,
 				'name' => 'AutolinkExtension',
 				'description' => 'Automatically converts bare URLs and email addresses into clickable links without requiring explicit link syntax.',
 				'class' => AutolinkExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Visit https://github.com/markup-carve/carve for the official documentation.
 
 Contact us at info@example.com for support.
 
 Also check out https://github.com/markup-carve/carve-php for the PHP implementation.
-DJOT,
+CARVE,
 				'options' => [
 					'allowedSchemes' => "['https', 'http', 'mailto']",
 				],
@@ -571,13 +696,13 @@ DJOT,
 				'name' => 'ExternalLinksExtension',
 				'description' => 'Adds `target="_blank"` and `rel="noopener noreferrer"` attributes to external links for security and UX.',
 				'class' => ExternalLinksExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Check out [Carve's homepage](https://github.com/markup-carve/carve) for more information.
 
 This [internal link](/sandbox/carve) stays in the same tab.
 
 Visit [GitHub](https://github.com) to see the source code.
-DJOT,
+CARVE,
 				'options' => [
 					'internalHosts' => "['example.com']",
 					'target' => "'_blank'",
@@ -589,7 +714,7 @@ DJOT,
 				'name' => 'HeadingPermalinksExtension',
 				'description' => 'Inserts clickable anchor links (¶ symbol) to headings for easy navigation and sharing.',
 				'class' => HeadingPermalinksExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Introduction
 
 Welcome to the documentation.
@@ -605,7 +730,7 @@ Configure the settings as needed.
 ## Advanced Usage
 
 For power users.
-DJOT,
+CARVE,
 				'options' => [
 					'symbol' => "'¶'",
 					'position' => "'after'",
@@ -618,13 +743,13 @@ DJOT,
 				'name' => 'MentionsExtension',
 				'description' => 'Transforms `@username` patterns into profile links, perfect for social features.',
 				'class' => MentionsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Thanks to @johndoe for the contribution!
 
 The feature was implemented by @alice and reviewed by @bob.
 
 If you have questions, reach out to @support-team.
-DJOT,
+CARVE,
 				'options' => [
 					'mentionUrl' => "'/users/{name}'",
 					'tagUrl' => "'/tags/{name}'",
@@ -636,7 +761,7 @@ DJOT,
 				'name' => 'TableOfContentsExtension',
 				'description' => 'Automatically generates a table of contents from document headings. Can be retrieved manually or auto-inserted at top/bottom.',
 				'class' => TableOfContentsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Carve Documentation
 
 An overview of the Carve markup language.
@@ -664,7 +789,7 @@ Grid-based table syntax.
 ## Conclusion
 
 Carve is a powerful markup language.
-DJOT,
+CARVE,
 				'options' => [
 					'minLevel' => '1',
 					'maxLevel' => '6',
@@ -677,7 +802,7 @@ DJOT,
 				'name' => 'SemanticSpanExtension',
 				'description' => 'Converts span attributes into semantic HTML5 elements like `<kbd>`, `<dfn>`, and `<abbr>` for keyboard input, definitions, and abbreviations.',
 				'class' => SemanticSpanExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Press [Ctrl+C]{kbd} to copy the selection.
 
 A [variable]{dfn} is a named storage location in memory.
@@ -687,7 +812,7 @@ The [HTML]{abbr="HyperText Markup Language"} standard defines web page structure
 [CSS]{dfn abbr="Cascading Style Sheets"} is used for styling web pages.
 
 Use [Enter]{kbd} to submit and [Esc]{kbd} to cancel.
-DJOT,
+CARVE,
 				'options' => [
 					'(none)' => 'Uses span attributes: kbd, dfn, abbr',
 				],
@@ -696,7 +821,7 @@ DJOT,
 				'name' => 'SmartQuotesExtension',
 				'description' => 'Configures locale-specific typographic quote characters. Transforms straight quotes into proper opening/closing quotes based on language conventions.',
 				'class' => SmartQuotesExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 She said, "Hello, world!"
 
 It's a 'simple' example.
@@ -704,7 +829,7 @@ It's a 'simple' example.
 "Nested 'quotes' work too," he replied.
 
 The "German style" uses „low-high" quotes.
-DJOT,
+CARVE,
 				'options' => [
 					'locale' => "'en', 'de', 'de-CH', 'fr', 'pl', 'ru', etc.",
 					'openDoubleQuote' => 'Custom opening double quote',
@@ -717,7 +842,7 @@ DJOT,
 				'name' => 'HeadingLevelShiftExtension',
 				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when `h1` is reserved for the page title and document headings should start at `h2` for SEO and accessibility.',
 				'class' => HeadingLevelShiftExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Main Title (becomes h2)
 
 Introduction paragraph.
@@ -729,7 +854,7 @@ Section content.
 ### Subsection (becomes h4)
 
 More details here.
-DJOT,
+CARVE,
 				'options' => [
 					'shift' => '1 (1-5, levels capped at h6)',
 				],
@@ -738,7 +863,7 @@ DJOT,
 				'name' => 'FencedRenderExtension::mermaid()',
 				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams (flowcharts, sequence, class diagrams, and more). Mermaid is a preset of the generic FencedRenderExtension; presets for d2, graphviz, wavedrom and abc also exist.',
 				'class' => FencedRenderExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ``` mermaid
 graph TD;
     A[Start] --> B{Decision};
@@ -753,7 +878,7 @@ sequenceDiagram
     Alice->>Bob: Hello Bob!
     Bob->>Alice: Hi Alice!
 ```
-DJOT,
+CARVE,
 				'options' => [
 					'tag' => "'pre' or 'div'",
 					'cssClass' => "'mermaid'",
@@ -765,7 +890,7 @@ DJOT,
 				'name' => 'AdmonitionExtension',
 				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success) into semantic HTML with ARIA roles, emoji icons, and auto-generated titles. Supports collapsible blocks.',
 				'class' => AdmonitionExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ::: note
 This is a simple note with 📝 icon.
 :::
@@ -795,7 +920,7 @@ Operation completed successfully! (✅ icon)
 ::: tip
 Click to expand this collapsible tip block.
 :::
-DJOT,
+CARVE,
 				'options' => [
 					'types' => "['note', 'tip', 'warning', 'danger', 'info', 'success']",
 					'icons' => 'true',
@@ -807,35 +932,29 @@ DJOT,
 			],
 			'tabs' => [
 				'name' => 'TabsExtension',
-				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). Note: Use more colons (`::::`) for the outer tabs container to properly nest inner tab divs.',
+				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). The tab name comes from the opener [Label] (canonical, carve#201), falling back to a leading content heading. Use more colons (`::::`) for the outer tabs container to nest the inner tab divs.',
 				'class' => TabsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 :::: tabs
 
-::: tab
-### Installation
-
+::: tab [Installation]
 Install the package with Composer:
 
 `composer require markup-carve/carve-php`
 :::
 
-::: tab
-### Usage
-
+::: tab [Usage]
 Convert Carve to HTML:
 
 `$html = $converter->convert($carve);`
 :::
 
-::: tab
-### Configuration
-
+::: tab [Configuration]
 Configure options as needed.
 :::
 
 ::::
-DJOT,
+CARVE,
 				'options' => [
 					'mode' => "'css' (default) or 'aria'",
 					'wrapperClass' => "'tabs'",
@@ -848,7 +967,7 @@ DJOT,
 				'name' => 'CodeGroupExtension',
 				'description' => 'Transforms code-group divs into tabbed code block interfaces. Labels are extracted from language hints using `[Label]` suffix syntax (e.g., `php [Installation]`), falling back to the language name or "Code N".',
 				'class' => CodeGroupExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ::: code-group
 
 ``` bash [Composer]
@@ -864,7 +983,7 @@ pip install carve
 ```
 
 :::
-DJOT,
+CARVE,
 				'options' => [
 					'wrapperClass' => "'code-group'",
 					'panelClass' => "'code-group-panel'",
@@ -877,7 +996,7 @@ DJOT,
 				'name' => 'WikilinksExtension',
 				'description' => 'Parses `[[wikilinks]]` into navigational links. Supports `[[page|display text]]` syntax and anchors like `[[page#section]]`. Common in wiki systems and note-taking apps like Obsidian.',
 				'class' => WikilinksExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Check out the [[Getting Started]] guide for beginners.
 
 For advanced users, see [[Advanced Topics|the advanced section]].
@@ -885,7 +1004,7 @@ For advanced users, see [[Advanced Topics|the advanced section]].
 The [[API Reference#authentication]] section covers auth.
 
 Related: [[Best Practices]], [[FAQ]], [[Troubleshooting]]
-DJOT,
+CARVE,
 				'options' => [
 					'urlGenerator' => 'Custom URL generator closure',
 					'cssClass' => "'wikilink'",
@@ -896,7 +1015,7 @@ DJOT,
 				'name' => 'HeadingReferenceExtension',
 				'description' => 'Resolves `[[Heading Text]]` references to headings within the same document, producing anchor links. Supports custom display text via `[[Heading Text|click here]]`. Unresolvable references fall back to literal `[[...]]` text. Note: shares the `[[...]]` syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
 				'class' => HeadingReferenceExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Installation
 
 See [[Configuration]] for setup details, or jump straight to [[Usage|how to use it]].
@@ -908,7 +1027,7 @@ Configure your settings here. A missing target like [[Nonexistent Section]] stay
 # Usage
 
 Use the tool as described above.
-DJOT,
+CARVE,
 				'options' => [
 					'cssClass' => "'heading-ref'",
 				],
@@ -917,11 +1036,11 @@ DJOT,
 				'name' => 'InlineFootnotesExtension',
 				'description' => 'Converts spans marked with the `.fn` class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
 				'class' => InlineFootnotesExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Carve supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
 
 Footnote content can include _emphasis_ and `code`[Footnotes support full inline formatting.]{.fn} too.
-DJOT,
+CARVE,
 				'options' => [
 					'cssClass' => "'fn'",
 				],
@@ -930,7 +1049,7 @@ DJOT,
 				'name' => 'FrontmatterExtension',
 				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (`yaml`, `neon`, `toml`, ...) is optional.',
 				'class' => FrontmatterExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ---yaml
 title: My Article
 author: John Doe
@@ -943,7 +1062,7 @@ tags:
 # My Article
 
 This is the main content after the frontmatter.
-DJOT,
+CARVE,
 				'options' => [
 					'defaultFormat' => "'yaml'",
 					'renderAsComment' => 'false (true renders as HTML comment)',
@@ -954,7 +1073,7 @@ DJOT,
 				'name' => 'PlusBulletExtension',
 				'description' => 'Re-enables `+` as a bullet-list marker alongside `-` and `*`. A `+` is only a bullet when followed by a space and content; a bare `+` stays the list-continuation marker, so the two never collide. Task lists (`+ [ ]`) work too.',
 				'class' => PlusBulletExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 + Apple
 + Banana
 + Cherry
@@ -969,7 +1088,7 @@ Task lists work as well:
 
 + [ ] Pending task
 + [x] Completed task
-DJOT,
+CARVE,
 				'options' => [
 					'(none)' => 'Toggle-only; enable by adding the extension',
 				],
@@ -978,7 +1097,7 @@ DJOT,
 				'name' => 'AsciiHeadingIdsExtension',
 				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (`# Über uns` becomes `Über-uns`); this extension transliterates them (`Über-uns` becomes `Uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
 				'class' => AsciiHeadingIdsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Über uns
 
 ## Café résumé
@@ -986,7 +1105,7 @@ DJOT,
 ### Größe & Maße
 
 Compare the generated id attributes with and without the extension.
-DJOT,
+CARVE,
 				'options' => [
 					'transliterator' => 'AsciiTransliterator (custom map optional)',
 				],
@@ -995,13 +1114,13 @@ DJOT,
 				'name' => 'TabNormalizeExtension',
 				'description' => 'Expands literal tabs in code blocks and inline code to a fixed number of spaces at render time. Carve preserves tabs by default (a CSS tab-size concern); this is useful for fixed-width output without CSS, e.g. email, RSS or plain HTML. This demo uses width 4.',
 				'class' => TabNormalizeExtension::class,
-				'example_djot' => <<<DJOT
+				'example_carve' => <<<CARVE
 ``` js
 function greet() {
 \treturn "hi";
 }
 ```
-DJOT,
+CARVE,
 				'options' => [
 					'width' => '4 (spaces per tab; default 2)',
 				],
@@ -1010,19 +1129,19 @@ DJOT,
 				'name' => 'DetailsExtension',
 				'description' => 'Renders ::: details "Title" admonition blocks as the native HTML5 <details>/<summary> disclosure widget. The quoted title becomes the <summary>; the body stays collapsed until the reader expands it.',
 				'class' => DetailsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ::: details "What is Carve?"
 Carve is a djot-flavored markup converter for PHP.
 
 The body can hold *any* block content: lists, code, even tables.
 :::
-DJOT,
+CARVE,
 			],
 			'list_table' => [
 				'name' => 'ListTableExtension',
 				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The preceding line carries optional {header-rows=N} / {header-cols=N} counts, or their boolean form ({header-rows} marks just the first row/column).',
 				'class' => ListTableExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 {header-rows=1}
 ::: list-table "Quarterly results"
 - - Region
@@ -1035,17 +1154,17 @@ DJOT,
     - new logos
     - renewals
 :::
-DJOT,
+CARVE,
 			],
 			'math_block' => [
 				'name' => 'MathBlockExtension',
 				'description' => 'Renders a fenced ``` math ``` block as block-level display math (<div class="math display">\[…\]</div>), matching how inline and display $…$ math is emitted so KaTeX / MathJax can pick it up.',
 				'class' => MathBlockExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ``` math
 \int_0^1 x^2 \, dx = \frac{1}{3}
 ```
-DJOT,
+CARVE,
 				'options' => [
 					'language' => "'math' (fence info string to match; default 'math')",
 				],
@@ -1054,12 +1173,12 @@ DJOT,
 				'name' => 'CitationsExtension',
 				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end.',
 				'class' => CitationsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 Carve follows the djot spec [@durusau2022] and borrows ideas from Markdown [@gruber2004].
 
 [@durusau2022]: Durusau, P. (2022). *The djot markup language*.
 [@gruber2004]: Gruber, J. (2004). *Markdown: Syntax*.
-DJOT,
+CARVE,
 				'options' => [
 					'mode' => "'numbered' (reference label style; default 'numbered')",
 				],
@@ -1068,31 +1187,31 @@ DJOT,
 				'name' => 'LowercaseHeadingIdsExtension',
 				'description' => 'Carve heading ids are case-preserving by default (# Getting Started -> "Getting-Started"). This opt-in extension lowercases them for GitHub/SSG-style anchors (-> "getting-started"). Combine with AsciiHeadingIds for fully lowercase ASCII slugs.',
 				'class' => LowercaseHeadingIdsExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 # Getting Started
 
 ## API Reference
 
 See [API Reference][] for the lowercased anchor.
-DJOT,
+CARVE,
 			],
 			'spoiler' => [
 				'name' => 'SpoilerExtension',
 				'description' => 'Hidden / blurred spoiler content. Inline :spoiler[text] becomes <span class="spoiler"> (blurred until you click it); block ::: spoiler "Title" becomes a native <details class="spoiler"> disclosure (click the summary). The blur + click-to-reveal is host CSS + a tiny bit of JS.',
 				'class' => SpoilerExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 The killer was :spoiler[the butler] all along.
 
 ::: spoiler "Episode ending"
 They defeat the villain and head home.
 :::
-DJOT,
+CARVE,
 			],
 			'chart' => [
 				'name' => 'FencedRenderExtension::chart() (text mode)',
 				'description' => 'Renders a ``` chart fenced block (Chart.js JSON config) as a client-rendered chart. Configured in text mode so the JSON rides in <pre class="chart"> as escaped text and survives HTML sanitizing, instead of the json preset\'s <script type="application/json"> wrapper (which a sanitizer strips). Chart.js must be loaded on the page.',
 				'class' => FencedRenderExtension::class,
-				'example_djot' => <<<'DJOT'
+				'example_carve' => <<<'CARVE'
 ``` chart
 {
   "type": "bar",
@@ -1102,7 +1221,7 @@ DJOT,
   }
 }
 ```
-DJOT,
+CARVE,
 				'options' => [
 					'language' => "'chart' (fence info string to match)",
 					'contentMode' => 'MODE_TEXT (sanitizer-safe; avoids the json-mode <script> wrapper)',
