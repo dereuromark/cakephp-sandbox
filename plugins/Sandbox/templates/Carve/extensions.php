@@ -110,6 +110,7 @@ $this->end();
 ?>
 <?= $this->element('carve/output_styles') ?>
 
+<div class="row">
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
 </nav>
@@ -425,6 +426,7 @@ Or contact @alice and @bob directly.</textarea>
 	</div>
 </div>
 
+</div>
 </div>
 
 <style>
