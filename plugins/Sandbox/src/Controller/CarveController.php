@@ -152,7 +152,7 @@ class CarveController extends SandboxAppController {
 			'CitationsExtension' => '[@key] citations with an in-document bibliography ([@key]: ...) collected as a numbered reference list.',
 			'LowercaseHeadingIdsExtension' => 'Heading ids are lowercased for GitHub/SSG-style anchors.',
 			'FencedRenderExtension (chart)' => '``` chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
-			'SpoilerExtension' => ':spoiler[text] becomes a blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
+			'SpoilerExtension' => ':spoiler[text] becomes a click-to-reveal blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
 		];
 	}
 
@@ -1078,7 +1078,7 @@ DJOT,
 			],
 			'spoiler' => [
 				'name' => 'SpoilerExtension',
-				'description' => 'Hidden / blurred spoiler content. Inline :spoiler[text] becomes <span class="spoiler"> (blurred until hover/focus); block ::: spoiler "Title" becomes a native <details class="spoiler"> disclosure. The blur + reveal is host CSS.',
+				'description' => 'Hidden / blurred spoiler content. Inline :spoiler[text] becomes <span class="spoiler"> (blurred until you click it); block ::: spoiler "Title" becomes a native <details class="spoiler"> disclosure (click the summary). The blur + click-to-reveal is host CSS + a tiny bit of JS.',
 				'class' => SpoilerExtension::class,
 				'example_djot' => <<<'DJOT'
 The killer was :spoiler[the butler] all along.
