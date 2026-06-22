@@ -12,15 +12,15 @@ $this->end();
 $examples = [
 	'Image with Caption' => [
 		'description' => 'Images can have captions using the ^ syntax.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 ![RSS Logo](/img/statics/logo_rss.png)
 
 ^ The logo used for this website
-DJOT,
+CARVE,
 	],
 	'Attributed Quotes' => [
 		'description' => 'Blockquotes with author attribution using figure/figcaption.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 > To be or not to be,
 > that is the question.
 >
@@ -28,11 +28,11 @@ DJOT,
 > the slings and arrows of outrageous fortune...
 
 ^ William Shakespeare, *Hamlet*
-DJOT,
+CARVE,
 	],
 	'Table with Caption' => [
 		'description' => 'Tables use header markers (`|=`) with glued alignment markers - `|=<` left, `|=~` center, `|=>` right - instead of a Markdown separator row.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 |=< Feature |=~ Markdown |=> Carve |
 | Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
@@ -40,11 +40,11 @@ DJOT,
 | Highlight | N/A | `=text=` |
 
 ^ Syntax comparison between Markdown and Carve
-DJOT,
+CARVE,
 	],
 	'Table with Cell Spans' => [
 		'description' => 'Cells merge with `^` (rowspan, continues the cell above) and `<` (colspan, merges with the cell to the left). Per-cell markers like `|>` override the column alignment.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 |= Category |= Item |=> Price |
 | Fruit | Apple | $1.00 |
 | ^ | Banana | $0.50 |
@@ -52,11 +52,11 @@ DJOT,
 | Total | < | $1.80 |
 
 ^ Rowspan (^), colspan (<) and a right-aligned price column
-DJOT,
+CARVE,
 	],
 	'Definition List (Multiple Terms/Definitions)' => [
 		'description' => 'Multiple terms can share a single definition and vice versa.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 :: Carve
 :  A lightweight markup language designed by John MacFarlane,
    creator of Pandoc and CommonMark.
@@ -66,11 +66,11 @@ DJOT,
 :: CommonMark
 :: GFM
 :  Earlier markup languages that inspired Carve's design, but with less consistent parsing rules.
-DJOT,
+CARVE,
 	],
 	'Nested Lists' => [
 		'description' => 'Complex nested lists with mixed markers and content blocks. Carve nests sublists tight - no blank line needed before a nested list.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 1. First level item
    - Nested bullet point
    - Another bullet
@@ -82,11 +82,11 @@ DJOT,
 2. Continue first level
 
    > Blockquote inside list
-DJOT,
+CARVE,
 	],
 	'Divs with Attributes' => [
 		'description' => 'Custom divs with classes and IDs for styling.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 {.warning #important-notice}
 :::
 ## Warning
@@ -100,20 +100,20 @@ This is an important notice with custom styling.
 ::: note
 A simple note div.
 :::
-DJOT,
+CARVE,
 	],
 	'Spans with Attributes' => [
 		'description' => 'Inline spans for custom styling and IDs.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 This has [highlighted text]{.highlight} and
 [a specific term]{#glossary-term .term} that can be styled.
 
 You can also use [multiple classes]{.class1 .class2} on spans.
-DJOT,
+CARVE,
 	],
 	'Footnotes' => [
 		'description' => 'Footnotes with references.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Here is a sentence with a footnote[^1] and another[^note2].
 
 Regular paragraph continues here.
@@ -121,11 +121,11 @@ Regular paragraph continues here.
 [^1]: Simple footnote content.
 
 [^note2]: A longer footnote with more detail about the topic.
-DJOT,
+CARVE,
 	],
 	'Task Lists' => [
 		'description' => 'Interactive task/checkbox lists.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 - [ ] Uncompleted task
 - [x] Completed task
 - [ ] Another pending item
@@ -133,11 +133,11 @@ DJOT,
   With additional content under the task.
 
 - [x] Final completed item
-DJOT,
+CARVE,
 	],
 	'Superscript & Subscript' => [
 		'description' => 'Scientific notation and chemical formulas.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Einstein's famous equation: E = mc{^2^}
 
 Water molecule: H{,2,}O
@@ -145,11 +145,11 @@ Water molecule: H{,2,}O
 The 10{^th^} power of 2 is 2{^10^} = 1024
 
 Carbon dioxide: CO,2,
-DJOT,
+CARVE,
 	],
 	'All Inline Formatting' => [
 		'description' => 'Complete inline formatting showcase.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 - *strong text* (bold)
 - /emphasized text/ (italic)
 - _underlined text_ (underline)
@@ -162,11 +162,11 @@ DJOT,
 - x{^2^} (superscript)
 - [Link text](https://github.com/markup-carve/carve)
 - ![Alt text](/img/cake.icon.png)
-DJOT,
+CARVE,
 	],
 	'Line Blocks' => [
 		'description' => 'Preserve line breaks for poetry or addresses with the ::: | fence. Leading indent and medial gaps (runs of two or more spaces) are kept, so verse caesuras and aligned columns survive; a blank line splits stanzas.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 ::: |
 The Road Not Taken
 Two roads diverged    in a yellow wood,
@@ -176,11 +176,11 @@ And looked down one    as far as I could
 
 --- /Robert Frost/
 :::
-DJOT,
+CARVE,
 	],
 	'Code Blocks with Info' => [
 		'description' => 'Fenced code blocks with language hints.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 ```php
 <?php
 declare(strict_types=1);
@@ -208,11 +208,11 @@ LEFT JOIN posts ON posts.user_id = users.id
 GROUP BY users.id
 ORDER BY post_count DESC;
 ```
-DJOT,
+CARVE,
 	],
 	'Thematic Breaks' => [
 		'description' => 'Section dividers with different styles.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 First section content.
 
 ---
@@ -222,11 +222,11 @@ Second section after thematic break.
 ***
 
 Third section with asterisk break.
-DJOT,
+CARVE,
 	],
 	'Reference Links' => [
 		'description' => 'Links and images using reference-style definitions.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Check out [Carve's homepage][carve] or the [PHP implementation][carve-php].
 
 You can also use [implicit][] references.
@@ -234,21 +234,21 @@ You can also use [implicit][] references.
 [carve]: https://github.com/markup-carve/carve "Carve Markup Language"
 [carve-php]: https://github.com/markup-carve/carve-php
 [implicit]: https://example.com
-DJOT,
+CARVE,
 	],
 	'Hard Line Breaks' => [
 		'description' => 'Force line breaks within paragraphs.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 This is line one\
 This is line two\
 This is line three
 
 All in the same paragraph but on separate lines.
-DJOT,
+CARVE,
 	],
 	'Nested Blockquotes' => [
 		'description' => 'Blockquotes can be nested multiple levels deep.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 > Level 1 quote
 >
 > > Level 2 nested quote
@@ -256,21 +256,21 @@ DJOT,
 > > > Level 3 deeply nested
 >
 > Back to level 1
-DJOT,
+CARVE,
 	],
 	'Auto-links & Email' => [
 		'description' => 'URLs and emails in angle brackets become clickable links.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Visit <https://github.com/markup-carve/carve> for the official spec.
 
 Contact us at <info@example.com> for support.
 
 Or use regular [link syntax](https://example.com).
-DJOT,
+CARVE,
 	],
 	'Smart Typography' => [
 		'description' => 'Automatic smart quotes, dashes, and ellipsis.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 "Smart quotes" and 'apostrophes' are automatic.
 
 En-dash for ranges: 1--10, pages 5--20.
@@ -278,41 +278,41 @@ En-dash for ranges: 1--10, pages 5--20.
 Em-dash for breaks---like this one.
 
 Ellipsis... becomes a single character.
-DJOT,
+CARVE,
 	],
 	'Escaped Characters' => [
 		'description' => 'Use backslash to show literal special characters.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Show literal \*asterisks\* without emphasis.
 
 And \_underscores\_ without formatting.
 
 Also \`backticks\` and \[brackets\].
-DJOT,
+CARVE,
 	],
 	'Comments (Hidden)' => [
 		'description' => 'Comments that do not appear in the output.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 This text is visible.
 
 {% This comment will not appear in the output %}
 
 This text is also visible.
-DJOT,
+CARVE,
 	],
 	'Link with Attributes' => [
 		'description' => 'Links can have classes, IDs, and other attributes.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 Click [this styled link](https://example.com){.btn .btn-primary}.
 
 Open [in new tab](https://github.com/markup-carve/carve){target=_blank}.
 
 A [special link](https://example.com){#my-link .highlight title="Hover me"}.
-DJOT,
+CARVE,
 	],
 	'Heading with ID' => [
 		'description' => 'Custom IDs and classes on headings for linking.',
-		'code' => <<<'DJOT'
+		'code' => <<<'CARVE'
 {#intro .chapter}
 ## Introduction
 
@@ -322,7 +322,7 @@ This section can be linked with [jump to intro](#intro).
 ## Conclusion
 
 And this with [jump to conclusion](#conclusion).
-DJOT,
+CARVE,
 	],
 ];
 
