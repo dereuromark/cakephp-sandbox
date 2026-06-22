@@ -1,0 +1,10 @@
+# CakePHP queue + scheduler as bounded cron jobs (fresh process per minute),
+# replacing the old web_extra_daemon that supervisor restart-looped an unbounded
+# `queue run -v` (busy-spin / worker pile-up risk).
+# Installed into the mark user crontab by .ddev/web-build/Dockerfile.ddev-cron
+# (COPY ./*.cron -> crontab -u). Read by the cron daemon from cron.conf.
+#
+# - flock -n: skip if the previous run is still active -> never stack workers.
+# - --max-runtime=58: each worker exits before the next minute fires.
+* * * * * cd /var/www/html && flock -n /tmp/cake-queue.lock bin/cake queue run --max-runtime=58 >> /var/www/html/logs/queue_cron.log 2>&1
+* * * * * cd /var/www/html && flock -n /tmp/cake-scheduler.lock bin/cake scheduler run >> /var/www/html/logs/scheduler_cron.log 2>&1
