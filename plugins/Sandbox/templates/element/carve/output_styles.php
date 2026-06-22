@@ -339,4 +339,99 @@
 	font-size: 0.75em;
 	vertical-align: super;
 }
+
+/* Code-fence pill: hover shows the language + a copy button in the top-right
+   corner. Decoration wired by carveDecorateCodeBlocks (below). Applies to both
+   the live .carve-rendered panes and the extensions page's .html-output (which
+   holds the code-group panels). */
+:is(.carve-rendered, .html-output) pre[data-pill] {
+	position: relative;
+}
+:is(.carve-rendered, .html-output) .code-pill {
+	position: absolute;
+	top: 6px;
+	right: 8px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	opacity: 0;
+	transition: opacity 0.15s;
+	font-size: 12px;
+	line-height: 1.4;
+}
+:is(.carve-rendered, .html-output) pre[data-pill]:hover .code-pill,
+:is(.carve-rendered, .html-output) .code-pill:focus-within {
+	opacity: 1;
+}
+:is(.carve-rendered, .html-output) .code-pill-lang {
+	background: rgba(127, 127, 127, 0.2);
+	color: #6c757d;
+	padding: 1px 8px;
+	border-radius: 999px;
+}
+:is(.carve-rendered, .html-output) .code-pill-copy {
+	cursor: pointer;
+	border: 1px solid #ced4da;
+	background: #fff;
+	border-radius: 6px;
+	padding: 0 5px;
+	font-size: 12px;
+	line-height: 1.4;
+}
+:is(.carve-rendered, .html-output) .code-pill-copy:hover {
+	border-color: #0d6efd;
+}
 </style>
+<script>
+/*
+ * Code-fence pill wiring, shared by every page that renders Carve output.
+ * On hover each highlighted code block shows its language + a click-to-copy
+ * button in the top-right corner. Exposed as window.carveDecorateCodeBlocks so
+ * the live playground can re-run it after a re-render; also auto-runs on load
+ * and observes each .carve-rendered pane for dynamically inserted output.
+ */
+(function () {
+	function decorate(container) {
+		for (const pre of container.querySelectorAll('pre')) {
+			if (pre.dataset.pill) continue;
+			const code = pre.querySelector('code');
+			if (!code) continue;
+			const cls = [...code.classList].find(c => c.startsWith('language-'));
+			const lang = cls ? cls.slice('language-'.length) : '';
+			if (!lang || lang === 'mermaid') continue;
+			pre.dataset.pill = 'true';
+			const pill = document.createElement('div');
+			pill.className = 'code-pill';
+			const label = document.createElement('span');
+			label.className = 'code-pill-lang';
+			label.textContent = lang;
+			const btn = document.createElement('button');
+			btn.type = 'button';
+			btn.className = 'code-pill-copy';
+			btn.setAttribute('aria-label', 'Copy code');
+			btn.textContent = '\u{1F4CB}';
+			btn.addEventListener('click', () => {
+				navigator.clipboard?.writeText(code.textContent || '').then(() => {
+					btn.textContent = '✓';
+					setTimeout(() => { btn.textContent = '\u{1F4CB}'; }, 1200);
+				});
+			});
+			pill.append(label, btn);
+			pre.appendChild(pill);
+		}
+	}
+	window.carveDecorateCodeBlocks = decorate;
+	function wire() {
+		for (const pane of document.querySelectorAll('.carve-rendered, .html-output')) {
+			decorate(pane);
+			new MutationObserver(() => decorate(pane))
+				.observe(pane, { childList: true, subtree: true });
+		}
+	}
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', wire);
+	} else {
+		wire();
+	}
+})();
+</script>

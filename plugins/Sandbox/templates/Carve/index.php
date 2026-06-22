@@ -650,6 +650,9 @@ This div is never closed.</code></pre>
 				el.removeAttribute('data-highlighted');
 				hljs.highlightElement(el);
 			});
+			if (window.carveDecorateCodeBlocks) {
+				window.carveDecorateCodeBlocks(outputRendered);
+			}
 		})
 		.catch(err => {
 			loadingIndicator.style.transition = 'opacity 0.8s';

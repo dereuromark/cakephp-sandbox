@@ -851,7 +851,7 @@ DJOT,
 				'example_djot' => <<<'DJOT'
 ::: code-group
 
-``` php [Composer]
+``` bash [Composer]
 composer require markup-carve/carve-php
 ```
 
@@ -859,7 +859,7 @@ composer require markup-carve/carve-php
 npm install @example/carve
 ```
 
-``` python [Pip]
+``` bash [Pip]
 pip install carve
 ```
 

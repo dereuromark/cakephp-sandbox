@@ -108,6 +108,7 @@ window.mermaidRender = async function(container) {
 <?php
 $this->end();
 ?>
+<?= $this->element('carve/output_styles') ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
