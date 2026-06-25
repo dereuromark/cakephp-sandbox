@@ -246,6 +246,12 @@ CARVE;
 			<label class="form-check-label" for="opt-disable-ext" title="Render plain spec Carve without the default extension set (see bottom of page)">Disable extensions</label>
 		</div>
 	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-soft-break-br">
+			<label class="form-check-label" for="opt-soft-break-br" title="Markdown compatibility: render soft breaks (single newlines) as visible <br> tags.">Soft break as &lt;br&gt;</label>
+		</div>
+	</div>
 	<?php if ($debugMode) { ?>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
@@ -472,6 +478,7 @@ This div is never closed.</code></pre>
 	const renderTime = document.getElementById('render-time');
 	const optProfile = document.getElementById('opt-profile');
 	const optFilterMode = document.getElementById('opt-filter-mode');
+	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
 	const optWarnings = document.getElementById('opt-warnings');
 	const optStrict = document.getElementById('opt-strict');
 	const optDisableExt = document.getElementById('opt-disable-ext');
@@ -506,6 +513,7 @@ This div is never closed.</code></pre>
 		}
 		if (params.get('profile')) optProfile.value = params.get('profile');
 		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
+		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('disable_ext') === '1') optDisableExt.checked = true;
@@ -516,6 +524,7 @@ This div is never closed.</code></pre>
 		url.searchParams.set('d', compress(input.value));
 		if (optProfile.value) url.searchParams.set('profile', optProfile.value);
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
+		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
 		if (optStrict.checked) url.searchParams.set('strict', '1');
 		if (optDisableExt.checked) url.searchParams.set('disable_ext', '1');
@@ -580,6 +589,7 @@ This div is never closed.</code></pre>
 		formData.append('carve', input.value);
 		formData.append('profile', optProfile.value);
 		formData.append('filter_mode', optFilterMode.value);
+		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
 		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('disable_ext', optDisableExt.checked ? '1' : '0');
@@ -718,6 +728,7 @@ This div is never closed.</code></pre>
 	});
 	optProfile.addEventListener('change', convert);
 	optFilterMode.addEventListener('change', convert);
+	optSoftBreakBr.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
 	optStrict.addEventListener('change', convert);
 	optDisableExt.addEventListener('change', convert);

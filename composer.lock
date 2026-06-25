@@ -6031,12 +6031,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "c640c966f4f24a48d348d925dcb3c816129d5a75"
+                "reference": "bdb9369b38d3496eb09fd0c3636762f5aba6630d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/c640c966f4f24a48d348d925dcb3c816129d5a75",
-                "reference": "c640c966f4f24a48d348d925dcb3c816129d5a75",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/bdb9369b38d3496eb09fd0c3636762f5aba6630d",
+                "reference": "bdb9369b38d3496eb09fd0c3636762f5aba6630d",
                 "shasum": ""
             },
             "require": {
@@ -6093,7 +6093,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-22T17:07:58+00:00"
+            "time": "2026-06-25T22:39:35+00:00"
         },
         {
             "name": "masterminds/html5",

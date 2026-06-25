@@ -562,6 +562,37 @@ Or contact @alice and @bob directly.</textarea>
 .html-output details.spoiler[open] > summary {
 	margin-bottom: 0.5rem;
 }
+/* ColorSwatchExtension: inline color chip + shape / tint options */
+.html-output .swatch-chip {
+	display: inline-block;
+	width: 0.9em;
+	height: 0.9em;
+	margin-right: 0.15em;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	vertical-align: -0.1em;
+}
+.html-output .swatch-chip-round {
+	border-radius: 50%;
+}
+.html-output .swatch-chip-ring {
+	background: transparent;
+	border-width: 2px;
+	border-radius: 50%;
+}
+.html-output .swatch-chip-only .swatch-chip {
+	margin-right: 0;
+	cursor: help;
+}
+.html-output .swatch-tint {
+	padding: 0 0.25em;
+	border-radius: 4px;
+}
+/* GlossaryExtension: term use */
+.html-output .term {
+	border-bottom: 1px dotted #6c757d;
+	cursor: help;
+}
 .html-output .mention {
 	background-color: #e7f3ff;
 	padding: 0.1em 0.3em;

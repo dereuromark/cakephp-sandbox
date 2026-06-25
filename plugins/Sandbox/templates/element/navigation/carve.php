@@ -17,6 +17,7 @@ $action = $this->request->getParam('action');
 	<li class="nav-item"><?= $this->Html->link('Complex Examples', ['action' => 'complexExamples'], ['class' => 'nav-link' . ($action === 'complexExamples' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Code Blocks', ['action' => 'codeBlocks'], ['class' => 'nav-link' . ($action === 'codeBlocks' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Graceful Degradation', ['action' => 'demo'], ['class' => 'nav-link' . ($action === 'demo' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Converters') ?></li>

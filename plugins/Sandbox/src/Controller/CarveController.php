@@ -2,7 +2,9 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
+use Cake\Http\Client;
 use Cake\Http\Response;
 use Cake\Routing\Router;
 use Carve\CarveConverter;
@@ -17,14 +19,17 @@ use Carve\Extension\AsciiHeadingIdsExtension;
 use Carve\Extension\AutolinkExtension;
 use Carve\Extension\CitationsExtension;
 use Carve\Extension\CodeGroupExtension;
+use Carve\Extension\ColorSwatchExtension;
 use Carve\Extension\DefaultAttributesExtension;
 use Carve\Extension\DetailsExtension;
 use Carve\Extension\ExternalLinksExtension;
 use Carve\Extension\FencedRenderExtension;
 use Carve\Extension\FrontmatterExtension;
+use Carve\Extension\GlossaryExtension;
 use Carve\Extension\HeadingLevelShiftExtension;
 use Carve\Extension\HeadingPermalinksExtension;
 use Carve\Extension\HeadingReferenceExtension;
+use Carve\Extension\IndexExtension;
 use Carve\Extension\InlineFootnotesExtension;
 use Carve\Extension\ListTableExtension;
 use Carve\Extension\LowercaseHeadingIdsExtension;
@@ -39,8 +44,15 @@ use Carve\Extension\TabNormalizeExtension;
 use Carve\Extension\TabsExtension;
 use Carve\Extension\WikilinksExtension;
 use Carve\Profile;
+use Carve\Renderer\RenderMode;
+use Carve\Renderer\SoftBreakMode;
+use Closure;
 use Composer\InstalledVersions;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use HTMLPurifier;
+use HTMLPurifier_AttrDef;
+use HTMLPurifier_AttrDef_CSS_Color;
 use HTMLPurifier_Config;
 use LengthException;
 use Throwable;
@@ -98,6 +110,9 @@ class CarveController extends SandboxAppController {
 		$converter->addExtension(new CitationsExtension());
 		$converter->addExtension(new LowercaseHeadingIdsExtension());
 		$converter->addExtension(new SpoilerExtension());
+		$converter->addExtension(new ColorSwatchExtension(tint: true));
+		$converter->addExtension(new GlossaryExtension());
+		$converter->addExtension(new IndexExtension());
 		// Text mode so the Chart.js config rides in <pre class="chart"> as escaped
 		// text and survives sanitizing (the json preset's <script> wrapper would
 		// be stripped). The playground renders it client-side via Chart.js.
@@ -153,6 +168,9 @@ class CarveController extends SandboxAppController {
 			'LowercaseHeadingIdsExtension' => 'Heading ids are lowercased for GitHub/SSG-style anchors.',
 			'FencedRenderExtension (chart)' => '``` chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
 			'SpoilerExtension' => ':spoiler[text] becomes a click-to-reveal blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
+			'ColorSwatchExtension' => ':color[#3b82f6] renders a small color chip next to the value when it is a valid CSS color.',
+			'GlossaryExtension' => ':term[word] links a use to its definition in a glossary definition list.',
+			'IndexExtension' => ':index[term] drops an invisible index marker, collected per occurrence for a back-of-book index.',
 		];
 	}
 
@@ -171,6 +189,9 @@ class CarveController extends SandboxAppController {
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
 		$disableExtensions = (bool)$this->request->getData('disable_ext');
+		// Markdown-compatibility option: render soft breaks (single newlines) as
+		// <br>. Null keeps the Carve default (newline / collapse onto one line).
+		$softBreakMode = (string)$this->request->getData('soft_break_br') === '1' ? SoftBreakMode::Break : null;
 
 		$result = [
 			'html' => '',
@@ -186,7 +207,7 @@ class CarveController extends SandboxAppController {
 				$profile = $this->getProfile($profileName, $filterMode);
 				// Carve interrupts paragraphs unconditionally (§10 default); there
 				// is no strict toggle anymore.
-				$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile);
+				$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile, softBreakMode: $softBreakMode);
 				// Tabs in code render unevenly without a CSS tab-size; expand
 				// them to spaces by default for consistent playground output.
 				$converter->addExtension(new TabNormalizeExtension(width: 4));
@@ -399,9 +420,9 @@ CARVE,
 	 */
 	protected function extensionGroups(): array {
 		return [
-			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference'],
+			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference', 'glossary', 'index'],
 			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc'],
-			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize'],
+			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
 			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'list_table'],
 			'Client-rendered & Math' => ['math_block', 'mermaid', 'chart'],
 			'Document & Attributes' => ['frontmatter', 'default_attributes'],
@@ -600,6 +621,18 @@ CARVE,
 							break;
 						case 'spoiler':
 							$converter->addExtension(new SpoilerExtension());
+
+							break;
+						case 'color_swatch':
+							$converter->addExtension(new ColorSwatchExtension(tint: true));
+
+							break;
+						case 'glossary':
+							$converter->addExtension(new GlossaryExtension());
+
+							break;
+						case 'index':
+							$converter->addExtension(new IndexExtension());
 
 							break;
 						case 'chart':
@@ -1227,6 +1260,43 @@ CARVE,
 					'contentMode' => 'MODE_TEXT (sanitizer-safe; avoids the json-mode <script> wrapper)',
 				],
 			],
+			'color_swatch' => [
+				'name' => 'ColorSwatchExtension',
+				'description' => 'Inline :color[value] renders a small color chip next to the value when it flattens to a valid CSS color (hex, named, rgb()/hsl()); invalid values fall back to a plain <span class="ext-color">. Configurable chip position, shape and an optional faint tint behind the swatch. This demo uses tint: true.',
+				'class' => ColorSwatchExtension::class,
+				'options' => [
+					'position' => "'before' (default) | 'after' | 'none' (chip only, value as title)",
+					'shape' => "'square' (default) | 'round' | 'ring'",
+					'tint' => 'false (default) | true (faint color-mix tint behind the swatch)',
+				],
+				'example_carve' => <<<'CARVE'
+Brand palette: :color[#3b82f6], :color[rebeccapurple] and :color[hsl(150 60% 45%)].
+
+Not a color: :color[banana].
+CARVE,
+			],
+			'glossary' => [
+				'name' => 'GlossaryExtension',
+				'description' => 'Inline :term[word] marks a glossary use and links it to the matching definition-list term (<dt>) defined elsewhere in the document. Reuses the definition-list syntax; no new block syntax.',
+				'class' => GlossaryExtension::class,
+				'example_carve' => <<<'CARVE'
+Carve is built on the :term[djot] data model and adds a few :term[extension]s.
+
+:: djot
+:  A light markup language with a clean, unambiguous grammar.
+
+:: extension
+:  An opt-in feature that adds inline or block behavior.
+CARVE,
+			],
+			'index' => [
+				'name' => 'IndexExtension',
+				'description' => 'Inline :index[term] drops an invisible marker (an empty <span class="index-term" id="idx-...">) at each occurrence, collected for a back-of-book index. It renders nothing visible; it is an anchor an index page can link back to.',
+				'class' => IndexExtension::class,
+				'example_carve' => <<<'CARVE'
+Carve:index[Carve] converts markup:index[markup] to HTML, and markup:index[markup] is fun.
+CARVE,
+			],
 		];
 	}
 
@@ -1602,15 +1672,43 @@ CARVE,
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
 		$config->set('HTML.DefinitionRev', 10);
-		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],aside[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
-		$config->set('CSS.AllowedProperties', 'text-align');
+		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],aside[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id|style],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
+		// background-color is needed for the ColorSwatch extension's chip; the
+		// value is validated as a CSS color by HTMLPurifier, so it cannot inject.
+		$config->set('CSS.AllowedProperties', 'text-align, background-color');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
 		$config->set('HTML.TargetBlank', false);
-		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true]);
+		// `data` is needed so self-contained build-time diagram images
+		// (data:image/png;base64 from the static renderers) survive sanitization;
+		// HTMLPurifier's data scheme only permits image MIME types, so it is safe.
+		$config->set('URI.AllowedSchemes', ['http' => true, 'https' => true, 'mailto' => true, 'data' => true]);
 		$config->set('AutoFormat.RemoveEmpty', false);
 		// Preserve HTML comments (e.g. frontmatter rendered as a comment) while blocking IE conditional comments.
 		$config->set('HTML.AllowedCommentsRegexp', '#^(?!\s*\[if)#i');
+
+		// Allow the ColorSwatch tint's color-mix() background value (the embedded
+		// color is already validated, so it cannot break out of the declaration);
+		// anything else falls back to HTMLPurifier's standard color validation.
+		$cssDef = $config->getCSSDefinition();
+		if ($cssDef !== null) {
+			$cssDef->info['background-color'] = new class extends HTMLPurifier_AttrDef {
+				/**
+				 * @param string $string
+				 * @param \HTMLPurifier_Config $config
+				 * @param \HTMLPurifier_Context $context
+				 * @return string|bool
+				 */
+				public function validate($string, $config, $context): string|bool {
+					$string = trim($string);
+					if (preg_match('/^color-mix\(in srgb, [#a-zA-Z0-9(),.%\s\/]+ \d{1,3}%, transparent\)$/', $string) === 1) {
+						return $string;
+					}
+
+					return (new HTMLPurifier_AttrDef_CSS_Color())->validate($string, $config, $context);
+				}
+			};
+		}
 
 		$def = $config->maybeGetRawHTMLDefinition();
 		if ($def !== null) {
@@ -1656,6 +1754,520 @@ CARVE,
 		$purifier = new HTMLPurifier($config);
 
 		return $purifier->purify($html);
+	}
+
+	/**
+	 * Graceful-degradation demo: render the same Carve source through every
+	 * output target so the degradation of interactive constructs (tabs,
+	 * code-group, details, spoiler, mermaid, math) is visible per target.
+	 *
+	 * Targets:
+	 * - `interactive`: live HTML (RenderMode::INTERACTIVE).
+	 * - `static`: HTML for a non-interactive medium (RenderMode::STATIC); tabs
+	 *   and code-group flatten to labeled sections, details/spoiler reveal,
+	 *   mermaid/math use the build-time `renderers` closures or fall back to
+	 *   source.
+	 * - `markdown` / `plain` / `ansi`: the inherently static text renderers.
+	 * - `pdf`: the static HTML run through dompdf, returned inline as a real PDF.
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function demo(): ?Response {
+		$target = (string)($this->request->getData('target') ?: 'static');
+		$carve = (string)($this->request->getData('carve') ?? '');
+		// On the first GET load, prefill with the showcase sample.
+		if (!$this->request->is('post')) {
+			$carve = $this->demoSampleCarve();
+		}
+		// Static "with build-time renderers" toggle: on by default so the
+		// renderers-supplied path is what a visitor sees first. Off shows the
+		// source fallback (no renderer registered for mermaid/math).
+		$useRenderers = !$this->request->is('post') || $this->request->getData('use_renderers') !== null;
+
+		// PDF is a separate response (binary), handled before the view renders.
+		if ($this->request->is('post') && $target === 'pdf') {
+			return $this->demoPdf($carve, $useRenderers);
+		}
+
+		$output = '';
+		$rendered = '';
+		$isHtml = false;
+		$error = null;
+		try {
+			switch ($target) {
+				case 'interactive':
+					$rendered = $this->sanitizeHtml($this->demoHtmlConverter(RenderMode::INTERACTIVE)->convert($carve));
+					$output = $this->demoHtmlConverter(RenderMode::INTERACTIVE)->convert($carve);
+					$isHtml = true;
+
+					break;
+				case 'static':
+					$converter = $this->demoHtmlConverter(
+						RenderMode::STATIC,
+						$useRenderers ? $this->demoStaticRenderers() : [],
+					);
+					$output = $converter->convert($carve);
+					$rendered = $this->sanitizeHtml($output);
+					$isHtml = true;
+
+					break;
+				case 'markdown':
+					$output = CarveConverter::markdown()->convert($carve);
+
+					break;
+				case 'plain':
+					$output = CarveConverter::plainText()->convert($carve);
+
+					break;
+				case 'ansi':
+					$ansi = CarveConverter::ansi()->convert($carve);
+					$output = $ansi;
+					$rendered = $this->ansiToHtml($ansi);
+					$isHtml = true;
+
+					break;
+				default:
+					$error = sprintf('Unknown target "%s".', $target);
+			}
+		} catch (Throwable $e) {
+			$error = $e->getMessage();
+		}
+
+		$this->set('carve', $carve);
+		$this->set('target', $target);
+		$this->set('useRenderers', $useRenderers);
+		$this->set('output', $output);
+		$this->set('rendered', $rendered);
+		$this->set('isHtml', $isHtml);
+		$this->set('error', $error);
+		$this->set('targets', $this->demoTargets());
+
+		return null;
+	}
+
+	/**
+	 * Render the static HTML through dompdf and return it inline as a real PDF.
+	 *
+	 * @param string $carve
+	 * @param bool $useRenderers Whether to pass the build-time static renderers.
+	 * @return \Cake\Http\Response
+	 */
+	protected function demoPdf(string $carve, bool $useRenderers = true): Response {
+		// Cache the rendered PDF (keyed on source + renderer toggle) so repeated
+		// or shared requests skip dompdf and the kroki/dot renders entirely.
+		$this->ensureDemoCache();
+		$key = 'carve_demo_pdf_' . md5($carve . ($useRenderers ? '1' : '0'));
+		$pdf = Cache::read($key, 'carve_demo');
+		if (!is_string($pdf)) {
+			$converter = $this->demoHtmlConverter(
+				RenderMode::STATIC,
+				$useRenderers ? $this->demoStaticRenderers() : [],
+			);
+			$body = $this->sanitizeHtml($converter->convert($carve));
+			$html = $this->demoPrintDocument($body);
+
+			$options = new Options();
+			$options->set('isRemoteEnabled', false);
+			$dompdf = new Dompdf($options);
+			$dompdf->loadHtml($html);
+			$dompdf->setPaper('A4');
+			$dompdf->render();
+			$pdf = (string)$dompdf->output();
+			Cache::write($key, $pdf, 'carve_demo');
+		}
+
+		return $this->response
+			->withType('pdf')
+			->withHeader('Content-Disposition', 'inline; filename="carve-degradation-demo.pdf"')
+			->withStringBody($pdf);
+	}
+
+	/**
+	 * Register the demo cache config once (idempotent). A dedicated File cache
+	 * with a 1-day TTL keeps the kroki/dot renders and PDFs out of the app's
+	 * default cache and bounds external load.
+	 */
+	protected function ensureDemoCache(): void {
+		if (in_array('carve_demo', Cache::configured(), true)) {
+			return;
+		}
+		Cache::setConfig('carve_demo', [
+			'className' => 'File',
+			'duration' => '+1 day',
+			'path' => CACHE . 'carve_demo' . DS,
+			'prefix' => 'carve_demo_',
+		]);
+	}
+
+	/**
+	 * Wrap the static HTML body in a minimal print document/stylesheet so the
+	 * flattened tabs and revealed sections read cleanly in the PDF.
+	 *
+	 * @param string $body
+	 * @return string
+	 */
+	protected function demoPrintDocument(string $body): string {
+		return <<<HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+	@page { margin: 24mm 18mm; }
+	body { font-family: "DejaVu Sans", sans-serif; font-size: 11pt; color: #1f2430; line-height: 1.55; }
+	.pdf-header { position: fixed; top: -14mm; left: 0; right: 0; height: 10mm;
+		font-size: 8pt; letter-spacing: 0.08em; text-transform: uppercase; color: #9aa3b5; }
+	.pdf-footer { position: fixed; bottom: -16mm; left: 0; right: 0; height: 10mm;
+		font-size: 8pt; color: #9aa3b5; border-top: 0.5pt solid #e3e7f0; padding-top: 4pt; text-align: right; }
+	.pdf-footer .pg:after { content: "Page " counter(page); }
+	h1 { font-size: 21pt; color: #0f1729; margin: 0 0 7pt; padding-bottom: 5pt; border-bottom: 2pt solid #2f7d7a; }
+	h2 { font-size: 15pt; color: #16323f; margin: 16pt 0 5pt; }
+	h3 { font-size: 12.5pt; color: #16323f; margin: 12pt 0 4pt; }
+	p { margin: 0 0 7pt; }
+	a { color: #2f6f9f; text-decoration: none; }
+	pre { background: #f6f8fa; border: 0.5pt solid #dde3ec; border-radius: 4pt; padding: 8pt 10pt;
+		font-family: "DejaVu Sans Mono", monospace; font-size: 9.5pt; line-height: 1.45; color: #243140;
+		white-space: pre-wrap; word-wrap: break-word; page-break-inside: avoid; }
+	code { background: #eef1f6; border-radius: 3pt; padding: 0.5pt 3pt; font-family: "DejaVu Sans Mono", monospace; font-size: 9.5pt; }
+	pre code { background: transparent; padding: 0; }
+	.tabs, .code-group { margin: 10pt 0; }
+	.tabs-panel, .code-group-panel { margin: 0 0 8pt; page-break-inside: avoid; }
+	.tabs-label, .code-group-label { display: block; color: #2f7d7a; font-weight: bold;
+		font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 3pt; }
+	.details, details { border: 0.5pt solid #d5dbe6; border-left: 3pt solid #2f7d7a; border-radius: 4pt;
+		background: #fafcfc; padding: 7pt 11pt; margin: 9pt 0; page-break-inside: avoid; }
+	.details-title, details summary { margin: 0 0 5pt; font-weight: bold; font-size: 11pt; color: #1d5b58; }
+	.spoiler, .spoiler-revealed { background: #f1eef7; border-radius: 3pt; padding: 0.5pt 3pt; }
+	section.spoiler { padding: 7pt 11pt; }
+	.diagram-figure, figure { margin: 11pt 0; text-align: center; page-break-inside: avoid; }
+	img.diagram { max-width: 100%; border: 0.5pt solid #e1e5ee; border-radius: 4pt; padding: 5pt; background: #fff; }
+	figcaption { font-size: 8.5pt; font-style: italic; color: #7a8398; margin-top: 4pt; }
+	.math.display, .math-static { display: block; text-align: center; margin: 9pt 0;
+		font-family: "DejaVu Sans Mono", monospace; color: #243140; }
+	.math-image { text-align: center; margin: 10pt 0; }
+	.math-img { max-width: 100%; }
+	.div-label { font-weight: bold; color: #1d5b58; font-size: 10pt; margin: 0 0 4pt; }
+	table { border-collapse: collapse; width: 100%; margin: 9pt 0; font-size: 10pt; page-break-inside: avoid; }
+	th, td { border: 0.5pt solid #d5dbe6; padding: 4pt 7pt; text-align: left; }
+	th { background: #eef5f4; color: #1d5b58; }
+	blockquote { border-left: 3pt solid #cfd6e2; color: #4a5366; margin: 9pt 0; padding: 2pt 12pt; }
+	ul, ol { margin: 0 0 7pt 16pt; }
+</style>
+</head>
+<body>
+<div class="pdf-header">Carve - static render (print fallback)</div>
+<div class="pdf-footer"><span class="pg"></span></div>
+{$body}
+</body>
+</html>
+HTML;
+	}
+
+	/**
+	 * Build an HTML CarveConverter for the demo with the full interactive
+	 * extension set (tabs, code-group, details, spoiler, mermaid, math, ...),
+	 * a render mode, and optional build-time static renderers.
+	 *
+	 * @param string $mode RenderMode::INTERACTIVE or RenderMode::STATIC.
+	 * @param array<string, \Closure(string): string> $renderers
+	 * @return \Carve\CarveConverter
+	 */
+	protected function demoHtmlConverter(string $mode, array $renderers = []): CarveConverter {
+		$converter = new CarveConverter(xhtml: true, mode: $mode, renderers: $renderers);
+		$converter->addExtension(new TabNormalizeExtension(width: 4));
+		$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_ARIA));
+		$converter->addExtension(new CodeGroupExtension());
+		$converter->addExtension(new DetailsExtension());
+		$converter->addExtension(new SpoilerExtension());
+		$converter->addExtension(new MathBlockExtension());
+		$converter->addExtension(FencedRenderExtension::mermaid());
+
+		return $converter;
+	}
+
+	/**
+	 * Build-time static renderers for the demo. Each maps the extension's source
+	 * string to sanitizer-safe HTML so the "with renderers" static path is
+	 * visible. Without these the static renderer falls back to the source.
+	 *
+	 * @return array<string, \Closure(string): string>
+	 */
+	protected function demoStaticRenderers(): array {
+		// Each renderer produces a real image (mermaid via kroki, graphviz via
+		// the local `dot`, math via CodeCogs) and falls back to readable source.
+		// All share demoCachedImage(), which caches successful renders so an
+		// external service is hit at most once per unique source.
+		return [
+			'mermaid' => fn (string $s): string => $this->demoCachedImage(
+				'mermaid_' . md5($s),
+				fn (): ?string => $this->demoFigure($this->demoKrokiPng('mermaid', $s), 'Mermaid diagram'),
+				fn (): string => $this->demoDiagramSource($s, 'Mermaid diagram (source - renderer unavailable)'),
+			),
+			'graphviz' => fn (string $s): string => $this->demoCachedImage(
+				'graphviz_' . md5($s),
+				fn (): ?string => $this->demoFigure($this->demoDotPng($s), 'Graphviz diagram'),
+				fn (): string => $this->demoDiagramSource($s, 'Graphviz diagram (source - dot unavailable)'),
+			),
+			'math' => fn (string $s): string => $this->demoCachedImage(
+				'math_' . md5(trim($s)),
+				fn (): ?string => $this->demoMathFigure(trim($s)),
+				fn (): string => '<div class="math-static">' . htmlspecialchars($s, ENT_QUOTES) . '</div>',
+			),
+			'chart' => fn (string $s): string => $this->demoDiagramSource($s, 'Chart config (no build-time renderer)'),
+		];
+	}
+
+	/**
+	 * Cache-on-success image wrapper: returns the cached figure, else the
+	 * producer's figure (cached), else the fallback (not cached, so it retries).
+	 */
+	protected function demoCachedImage(string $key, Closure $produce, Closure $fallback): string {
+		$this->ensureDemoCache();
+		$full = 'carve_demo_diag_' . $key;
+		$cached = Cache::read($full, 'carve_demo');
+		if (is_string($cached)) {
+			return $cached;
+		}
+		try {
+			$figure = $produce();
+			if (is_string($figure)) {
+				Cache::write($full, $figure, 'carve_demo');
+
+				return $figure;
+			}
+		} catch (Throwable $e) {
+			// fall through to the fallback (uncached, so it retries next time)
+		}
+
+		return $fallback();
+	}
+
+	protected function demoKrokiPng(string $type, string $source): ?string {
+		$response = (new Client(['timeout' => 8]))->post('https://kroki.io/' . $type . '/png', $source, ['type' => 'text/plain']);
+		$png = $response->isOk() ? $response->getStringBody() : '';
+
+		return $this->isPng($png) ? $png : null;
+	}
+
+	protected function demoDotPng(string $source): ?string {
+		$process = @proc_open('dot -Tpng', [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes);
+		if (!is_resource($process)) {
+			return null;
+		}
+		fwrite($pipes[0], $source);
+		fclose($pipes[0]);
+		$png = stream_get_contents($pipes[1]);
+		fclose($pipes[1]);
+		fclose($pipes[2]);
+		proc_close($process);
+
+		return ($png !== false && $this->isPng($png)) ? $png : null;
+	}
+
+	protected function demoMathFigure(string $latex): ?string {
+		$response = (new Client(['timeout' => 8]))->get('https://latex.codecogs.com/png.image?' . rawurlencode('\dpi{150} ' . $latex));
+		$png = $response->isOk() ? $response->getStringBody() : '';
+		if (!$this->isPng($png)) {
+			return null;
+		}
+
+		return '<div class="math-image"><img class="math-img" src="data:image/png;base64,'
+			. base64_encode($png) . '" alt="' . htmlspecialchars($latex, ENT_QUOTES) . '"></div>';
+	}
+
+	protected function isPng(string $bytes): bool {
+		return substr($bytes, 0, 8) === "\x89PNG\r\n\x1a\n";
+	}
+
+	protected function demoFigure(?string $png, string $caption): ?string {
+		return $png === null ? null : $this->demoImageFigure($png, $caption);
+	}
+
+	protected function demoImageFigure(string $png, string $caption): string {
+		$src = 'data:image/png;base64,' . base64_encode($png);
+
+		return '<figure class="diagram-figure">'
+			. '<img class="diagram" src="' . $src . '" alt="' . htmlspecialchars($caption, ENT_QUOTES) . '">'
+			. '<figcaption>' . htmlspecialchars($caption, ENT_QUOTES) . '</figcaption>'
+			. '</figure>';
+	}
+
+	protected function demoDiagramSource(string $source, string $caption): string {
+		return '<figure class="diagram-figure">'
+			. '<pre><code>' . htmlspecialchars($source, ENT_QUOTES) . '</code></pre>'
+			. '<figcaption>' . htmlspecialchars($caption, ENT_QUOTES) . '</figcaption>'
+			. '</figure>';
+	}
+
+	/**
+	 * The output targets offered by the demo (value => label).
+	 *
+	 * @return array<string, string>
+	 */
+	protected function demoTargets(): array {
+		return [
+			'interactive' => 'Interactive HTML',
+			'static' => 'Static HTML',
+			'markdown' => 'Markdown',
+			'plain' => 'Plain text',
+			'ansi' => 'ANSI (terminal colors)',
+			'pdf' => 'PDF',
+		];
+	}
+
+	/**
+	 * Convert ANSI SGR escape sequences to HTML spans so terminal colors show
+	 * in the browser. Handles the SGR codes the AnsiRenderer emits: reset (0),
+	 * bold (1), dim (2), italic (3), underline (4), strikethrough (9), and the
+	 * 16 foreground colors (30-37, 90-97).
+	 *
+	 * @param string $ansi
+	 * @return string
+	 */
+	protected function ansiToHtml(string $ansi): string {
+		$colors = [
+			30 => '#000000',
+			31 => '#cc0000',
+			32 => '#4e9a06',
+			33 => '#c4a000',
+			34 => '#3465a4',
+			35 => '#75507b',
+			36 => '#06989a',
+			37 => '#d3d7cf',
+			90 => '#555753',
+			91 => '#ef2929',
+			92 => '#8ae234',
+			93 => '#fce94f',
+			94 => '#729fcf',
+			95 => '#ad7fa8',
+			96 => '#34e2e2',
+			97 => '#eeeeec',
+		];
+
+		$open = 0;
+		$result = '';
+		$offset = 0;
+		$length = strlen($ansi);
+		while ($offset < $length) {
+			$escPos = strpos($ansi, "\033[", $offset);
+			if ($escPos === false) {
+				$result .= htmlspecialchars(substr($ansi, $offset), ENT_QUOTES);
+
+				break;
+			}
+
+			$result .= htmlspecialchars(substr($ansi, $offset, $escPos - $offset), ENT_QUOTES);
+
+			$mPos = strpos($ansi, 'm', $escPos);
+			if ($mPos === false) {
+				$result .= htmlspecialchars(substr($ansi, $escPos), ENT_QUOTES);
+
+				break;
+			}
+
+			$codes = substr($ansi, $escPos + 2, $mPos - ($escPos + 2));
+			$offset = $mPos + 1;
+
+			$styles = [];
+			foreach (explode(';', $codes) as $codePart) {
+				$code = (int)$codePart;
+				if ($code === 0) {
+					// Reset: close any open span.
+					while ($open > 0) {
+						$result .= '</span>';
+						$open--;
+					}
+
+					continue;
+				}
+				$style = match (true) {
+					$code === 1 => 'font-weight:bold',
+					$code === 2 => 'opacity:0.7',
+					$code === 3 => 'font-style:italic',
+					$code === 4 => 'text-decoration:underline',
+					$code === 9 => 'text-decoration:line-through',
+					isset($colors[$code]) => 'color:' . $colors[$code],
+					default => null,
+				};
+				if ($style !== null) {
+					$styles[] = $style;
+				}
+			}
+
+			if ($styles !== []) {
+				$result .= '<span style="' . implode(';', $styles) . '">';
+				$open++;
+			}
+		}
+
+		while ($open > 0) {
+			$result .= '</span>';
+			$open--;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Sample Carve source exercising every degradation class: tabs, code-group,
+	 * details, inline + block spoiler, a mermaid fence, and display + inline math.
+	 *
+	 * @return string
+	 */
+	protected function demoSampleCarve(): string {
+		return <<<'CARVE'
+# Graceful degradation demo
+
+The same source below renders differently per target. Interactive constructs
+flatten or reveal when the medium cannot run client scripts.
+
+:::: tabs
+::: tab [Install]
+``` bash
+composer require markup-carve/carve-php
+```
+:::
+::: tab [Usage]
+``` php
+$html = (new Carve\CarveConverter())->convert($carve);
+```
+:::
+::::
+
+:::: code-group
+``` js [config.js]
+export default { mode: 'static' };
+```
+``` json [config.json]
+{ "mode": "static" }
+```
+::::
+
+::: details "Show the details"
+Hidden content that a static target reveals inline.
+:::
+
+Inline secret: :spoiler[the answer is 42] and a block spoiler below.
+
+::: spoiler "Spoiler block"
+This stays blurred online but is revealed for print and text targets.
+:::
+
+``` mermaid
+graph TD
+  A[Source] --> B{Target?}
+  B -->|HTML| C[Interactive]
+  B -->|PDF| D[Static]
+```
+
+Display math (a ``` math fence, handled by the math renderer in static mode):
+
+``` math
+\int_0^1 x^2 \, dx = \frac{1}{3}
+```
+
+And inline math $E = mc^2$ within a sentence.
+CARVE;
 	}
 
 }

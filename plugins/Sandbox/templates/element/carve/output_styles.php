@@ -283,6 +283,37 @@
 .carve-rendered details.spoiler[open] > summary {
 	margin-bottom: 0.5rem;
 }
+/* ColorSwatchExtension: inline color chip + shape / tint options */
+.carve-rendered .swatch-chip {
+	display: inline-block;
+	width: 0.9em;
+	height: 0.9em;
+	margin-right: 0.15em;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	vertical-align: -0.1em;
+}
+.carve-rendered .swatch-chip-round {
+	border-radius: 50%;
+}
+.carve-rendered .swatch-chip-ring {
+	background: transparent;
+	border-width: 2px;
+	border-radius: 50%;
+}
+.carve-rendered .swatch-chip-only .swatch-chip {
+	margin-right: 0;
+	cursor: help;
+}
+.carve-rendered .swatch-tint {
+	padding: 0 0.25em;
+	border-radius: 4px;
+}
+/* GlossaryExtension: term use */
+.carve-rendered .term {
+	border-bottom: 1px dotted #6c757d;
+	cursor: help;
+}
 /* SemanticSpanExtension: kbd / dfn / abbr */
 .carve-rendered kbd {
 	background-color: #f8f9fa;
