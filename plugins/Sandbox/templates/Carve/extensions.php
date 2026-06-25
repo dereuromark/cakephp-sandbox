@@ -162,6 +162,7 @@ $this->end();
 	<div class="card-header">
 		<h4 class="mb-0">
 			<code><?= h($example['name']) ?></code>
+			<a class="header-anchor" href="#ext-<?= h($key) ?>" title="Link to this extension" aria-label="Link to this extension">#</a>
 		</h4>
 	</div>
 	<div class="card-body">
@@ -430,6 +431,22 @@ Or contact @alice and @bob directly.</textarea>
 </div>
 
 <style>
+/* Per-extension header anchor: faded until the card header is hovered */
+.card-header h4 .header-anchor {
+	margin-left: 0.4rem;
+	color: #adb5bd;
+	font-weight: 400;
+	text-decoration: none;
+	opacity: 0;
+	transition: opacity 0.12s;
+}
+.card-header:hover .header-anchor,
+.header-anchor:focus {
+	opacity: 1;
+}
+.header-anchor:hover {
+	color: #0d6efd;
+}
 /* Table of Contents: balanced multi-column, groups kept intact */
 .toc-columns {
 	column-count: 3;
@@ -781,27 +798,6 @@ Or contact @alice and @bob directly.</textarea>
 .html-output .admonition.success {
 	border-color: #198754;
 	background-color: #d1e7dd;
-}
-/* Collapsible admonitions */
-.html-output details.admonition {
-	border-left: 4px solid;
-	padding: 1rem;
-	margin: 1rem 0;
-	border-radius: 0.375rem;
-}
-.html-output details.admonition summary {
-	cursor: pointer;
-	font-weight: bold;
-	margin-bottom: 0.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-.html-output details.admonition summary .admonition-icon {
-	font-size: 1.1em;
-}
-.html-output details.admonition[open] summary {
-	margin-bottom: 0.5rem;
 }
 /* Tabs styles (CSS-only mode) */
 .html-output .tabs {

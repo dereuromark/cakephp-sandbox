@@ -921,7 +921,7 @@ CARVE,
 			],
 			'admonition' => [
 				'name' => 'AdmonitionExtension',
-				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success) into semantic HTML with ARIA roles, emoji icons, and auto-generated titles. Supports collapsible blocks.',
+				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success) into semantic HTML with ARIA roles, emoji icons, and auto-generated titles. For a collapsible block use the Details extension (::: details "Title").',
 				'class' => AdmonitionExtension::class,
 				'example_carve' => <<<'CARVE'
 ::: note
@@ -947,11 +947,6 @@ This action cannot be undone! (🚨 icon)
 
 ::: success
 Operation completed successfully! (✅ icon)
-:::
-
-{collapsible}
-::: tip
-Click to expand this collapsible tip block.
 :::
 CARVE,
 				'options' => [
