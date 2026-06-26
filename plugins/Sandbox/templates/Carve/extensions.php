@@ -596,6 +596,8 @@ Or contact @alice and @bob directly.</textarea>
 	background: transparent;
 	border-width: 2px;
 	border-radius: 50%;
+	/* keep a light/white ring bounded against a light background */
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
 }
 .html-output .swatch-chip-only .swatch-chip {
 	margin-right: 0;
@@ -604,6 +606,45 @@ Or contact @alice and @bob directly.</textarea>
 .html-output .swatch-tint {
 	padding: 0 0.25em;
 	border-radius: 4px;
+}
+/* reveal: collapse the value, expand on hover / keyboard focus. The chip side
+   is recovered from DOM order (chip+val = before, val+chip = after) so no extra
+   position class is needed. */
+.html-output .swatch-reveal {
+	cursor: default;
+}
+.html-output .swatch-reveal .swatch-chip {
+	margin-right: 0;
+	margin-left: 0;
+}
+.html-output .swatch-reveal .swatch-val {
+	display: inline-block;
+	max-width: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	vertical-align: bottom;
+	margin: 0;
+	transition: max-width 0.2s ease, margin 0.2s ease;
+}
+.html-output .swatch-reveal:hover .swatch-val,
+.html-output .swatch-reveal:focus .swatch-val,
+.html-output .swatch-reveal:focus-within .swatch-val {
+	max-width: 18ch;
+}
+.html-output .swatch-reveal:hover .swatch-chip + .swatch-val,
+.html-output .swatch-reveal:focus .swatch-chip + .swatch-val,
+.html-output .swatch-reveal:focus-within .swatch-chip + .swatch-val {
+	margin-left: 0.3em;
+}
+.html-output .swatch-reveal:hover .swatch-val:has(+ .swatch-chip),
+.html-output .swatch-reveal:focus .swatch-val:has(+ .swatch-chip),
+.html-output .swatch-reveal:focus-within .swatch-val:has(+ .swatch-chip) {
+	margin-right: 0.3em;
+}
+.html-output .swatch-reveal:focus {
+	outline: 2px solid #93c5fd;
+	outline-offset: 1px;
+	border-radius: 3px;
 }
 /* GlossaryExtension: term use */
 .html-output .term {

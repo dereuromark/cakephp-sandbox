@@ -1263,6 +1263,7 @@ CARVE,
 					'position' => "'before' (default) | 'after' | 'none' (chip only, value as title)",
 					'shape' => "'square' (default) | 'round' | 'ring'",
 					'tint' => 'false (default) | true (faint color-mix tint behind the swatch)',
+					'reveal' => 'false (default) | true (collapse the value, reveal on hover/keyboard focus; ignored when position is none)',
 				],
 				'example_carve' => <<<'CARVE'
 Brand palette: :color[#3b82f6], :color[rebeccapurple] and :color[hsl(150 60% 45%)].
