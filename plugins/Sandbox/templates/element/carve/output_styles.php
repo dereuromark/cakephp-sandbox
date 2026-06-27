@@ -309,6 +309,58 @@
 	padding: 0 0.25em;
 	border-radius: 4px;
 }
+/* ColorSwatch {contrast}: value sits inside a filled box, text auto black/white */
+.carve-rendered .swatch-label {
+	display: inline-block;
+	padding: 0.05em 0.45em;
+	border-radius: 3px;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+}
+/* CodeCalloutsExtension: <n> markers become numbered bubbles + an explanation list */
+.carve-rendered b.callout {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.4em;
+	height: 1.4em;
+	padding: 0 0.35em;
+	margin-left: 0.3em;
+	border-radius: 999px;
+	background-color: #0d6efd;
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: 700;
+	line-height: 1;
+	vertical-align: middle;
+}
+.carve-rendered ol.callouts {
+	list-style: none;
+	padding-left: 0;
+	margin: 0.6rem 0 1rem;
+}
+.carve-rendered ol.callouts li {
+	position: relative;
+	padding-left: 2em;
+	margin: 0.35em 0;
+}
+.carve-rendered ol.callouts li::before {
+	content: attr(value);
+	position: absolute;
+	left: 0;
+	top: 0.05em;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.4em;
+	height: 1.4em;
+	border-radius: 999px;
+	background-color: #0d6efd;
+	color: #fff;
+	font-size: 0.8em;
+	font-weight: 700;
+}
 /* GlossaryExtension: term use */
 .carve-rendered .term {
 	border-bottom: 1px dotted #6c757d;

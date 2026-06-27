@@ -18,6 +18,7 @@ use Carve\Extension\AdmonitionExtension;
 use Carve\Extension\AsciiHeadingIdsExtension;
 use Carve\Extension\AutolinkExtension;
 use Carve\Extension\CitationsExtension;
+use Carve\Extension\CodeCalloutsExtension;
 use Carve\Extension\CodeGroupExtension;
 use Carve\Extension\ColorSwatchExtension;
 use Carve\Extension\DefaultAttributesExtension;
@@ -113,6 +114,7 @@ class CarveController extends SandboxAppController {
 		$converter->addExtension(new ColorSwatchExtension(tint: true));
 		$converter->addExtension(new GlossaryExtension());
 		$converter->addExtension(new IndexExtension());
+		$converter->addExtension(new CodeCalloutsExtension());
 		// Text mode so the Chart.js config rides in <pre class="chart"> as escaped
 		// text and survives sanitizing (the json preset's <script> wrapper would
 		// be stripped). The playground renders it client-side via Chart.js.
@@ -171,6 +173,7 @@ class CarveController extends SandboxAppController {
 			'ColorSwatchExtension' => ':color[#3b82f6] renders a small color chip next to the value when it is a valid CSS color.',
 			'GlossaryExtension' => ':term[word] links a use to its definition in a glossary definition list.',
 			'IndexExtension' => ':index[term] drops an invisible index marker, collected per occurrence for a back-of-book index.',
+			'CodeCalloutsExtension' => '<n> markers at the end of code lines become numbered bubbles; a following list of <n> text lines binds as the explanation.',
 		];
 	}
 
@@ -423,7 +426,7 @@ CARVE,
 			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference', 'glossary', 'index'],
 			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc'],
 			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
-			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'list_table'],
+			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'code_callouts', 'list_table'],
 			'Client-rendered & Math' => ['math_block', 'mermaid', 'chart'],
 			'Document & Attributes' => ['frontmatter', 'default_attributes'],
 		];
@@ -633,6 +636,10 @@ CARVE,
 							break;
 						case 'index':
 							$converter->addExtension(new IndexExtension());
+
+							break;
+						case 'code_callouts':
+							$converter->addExtension(new CodeCalloutsExtension());
 
 							break;
 						case 'chart':
@@ -1199,10 +1206,14 @@ CARVE,
 			],
 			'citations' => [
 				'name' => 'CitationsExtension',
-				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end.',
+				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end. Supports a prefix ([see @key]), author suppression ([-@key]), typed locators after a comma ([@key, p. 12] / ch. / §, the full citeproc vocabulary, §22), multiple semicolon-separated sources, and a group-level integral marker ([+@key]).',
 				'class' => CitationsExtension::class,
 				'example_carve' => <<<'CARVE'
-Carve follows the djot spec [@durusau2022] and borrows ideas from Markdown [@gruber2004].
+Carve follows the djot spec [@durusau2022, p. 12] and borrows ideas from Markdown [see @gruber2004, ch. 3].
+
+Author suppression reads naturally: Gruber [-@gruber2004] introduced Markdown in 2004.
+
+Group several sources, with locators: [@durusau2022, pp. 12-14; @gruber2004, §2]. Force an integral (textual) group with a leading +: [+@durusau2022, p. 1].
 
 [@durusau2022]: Durusau, P. (2022). *The djot markup language*.
 [@gruber2004]: Gruber, J. (2004). *Markdown: Syntax*.
@@ -1257,15 +1268,19 @@ CARVE,
 			],
 			'color_swatch' => [
 				'name' => 'ColorSwatchExtension',
-				'description' => 'Inline :color[value] renders a small color chip next to the value when it flattens to a valid CSS color (hex, named, rgb()/hsl()); invalid values fall back to a plain <span class="ext-color">. Configurable chip position, shape and an optional faint tint behind the swatch. This demo uses tint: true.',
+				'description' => 'Inline :color[value] renders a small color chip next to the value when it flattens to a valid CSS color (hex, named, rgb()/hsl()); invalid values fall back to a plain <span class="ext-color">. Configurable chip position, shape and an optional faint tint behind the swatch. Add a {contrast} attribute to render the value inside a filled box with an auto-picked black or white label (brightness-based), instead of a chip. This demo uses tint: true.',
 				'class' => ColorSwatchExtension::class,
 				'options' => [
 					'position' => "'before' (default) | 'after' | 'none' (chip only, value as title)",
 					'shape' => "'square' (default) | 'round' | 'ring'",
 					'tint' => 'false (default) | true (faint color-mix tint behind the swatch)',
+					'reveal' => 'false (default) | true (collapse value, reveal on hover/focus)',
+					'{contrast} attr' => 'per-use: filled label box with auto black/white text',
 				],
 				'example_carve' => <<<'CARVE'
 Brand palette: :color[#3b82f6], :color[rebeccapurple] and :color[hsl(150 60% 45%)].
+
+Auto-contrast labels (text flips black/white to stay readable): :color[#3b82f6]{contrast} :color[#facc15]{contrast} :color[#111827]{contrast}.
 
 Not a color: :color[banana].
 CARVE,
@@ -1290,6 +1305,23 @@ CARVE,
 				'class' => IndexExtension::class,
 				'example_carve' => <<<'CARVE'
 Carve:index[Carve] converts markup:index[markup] to HTML, and markup:index[markup] is fun.
+CARVE,
+			],
+			'code_callouts' => [
+				'name' => 'CodeCalloutsExtension',
+				'description' => 'Annotate code with numbered callouts. A `<n>` marker at the end of a fenced-code line becomes a numbered bubble (<b class="callout">), and an immediately-following paragraph of `<n> text` lines binds to it as a `<ol class="callouts">` explanation list. Markers in the code round-trip unchanged.',
+				'class' => CodeCalloutsExtension::class,
+				'example_carve' => <<<'CARVE'
+``` php
+$converter = new CarveConverter(); <1>
+$converter->addExtension(new CodeCalloutsExtension()); <2>
+
+$html = $converter->convert($source); <3>
+```
+
+<1> Create the converter with default options.
+<2> Register the extension so `<n>` markers are recognized.
+<3> Convert; callouts render as numbered bubbles.
 CARVE,
 			],
 		];
@@ -1666,11 +1698,14 @@ CARVE,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
-		$config->set('HTML.DefinitionRev', 10);
-		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],aside[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id|style],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
+		$config->set('HTML.DefinitionRev', 11);
+		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],b[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id|value],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],aside[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id|style],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
 		// background-color is needed for the ColorSwatch extension's chip; the
 		// value is validated as a CSS color by HTMLPurifier, so it cannot inject.
-		$config->set('CSS.AllowedProperties', 'text-align, background-color');
+		// background + color additionally cover the {contrast} label variant
+		// (value inside a filled box, auto black/white text). Each is color-
+		// validated by HTMLPurifier, so none can break out of the declaration.
+		$config->set('CSS.AllowedProperties', 'text-align, background-color, background, color');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
 		$config->set('HTML.TargetBlank', false);
@@ -1744,6 +1779,11 @@ CARVE,
 			$def->addElement('label', 'Inline', 'Inline', 'Common', [
 				'for' => 'CDATA',
 			]);
+			// CodeCallouts: the bound explanation list is an <ol class="callouts">
+			// of <li value="N">; the per-item value drives the CSS number bubble.
+			$def->addAttribute('li', 'value', 'Number');
+			// CodeCallouts: in-code <n> bubbles render as <b class="callout">N</b>.
+			$def->addAttribute('b', 'data-callout', 'Text');
 		}
 
 		$purifier = new HTMLPurifier($config);

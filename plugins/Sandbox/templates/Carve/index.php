@@ -655,8 +655,13 @@ This div is never closed.</code></pre>
 				renderTime.style.display = 'none';
 			}
 
-			// Highlight code blocks
+			// Highlight code blocks. Skip blocks carrying CodeCallouts bubbles:
+			// hljs rebuilds the code element's innerHTML from its textContent and
+			// would strip the <b class="callout"> markers, so leave those plain.
 			outputRendered.querySelectorAll('pre code').forEach(el => {
+				if (el.querySelector('b.callout')) {
+					return;
+				}
 				el.removeAttribute('data-highlighted');
 				hljs.highlightElement(el);
 			});
