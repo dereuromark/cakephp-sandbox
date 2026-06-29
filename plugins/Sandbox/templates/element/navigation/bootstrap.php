@@ -15,15 +15,15 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('FormHelper') ?></li>
-	<li><?php echo $this->Navigation->link('Basic Form', ['action' => 'form'])?></li>
-	<li><?php echo $this->Navigation->link('Form Post & Defaults', ['action' => 'formPost'])?></li>
-	<li><?php echo $this->Navigation->link('Localized Inputs', ['action' => 'localized'])?></li>
-	<li><?php echo $this->Navigation->link('Time Inputs', ['action' => 'time'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Basic Form', ['action' => 'form'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Form Post & Defaults', ['action' => 'formPost'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Localized Inputs', ['action' => 'localized'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Time Inputs', ['action' => 'time'], ['class' => 'nav-link'])?></li>
 
 	<li class="heading"><?= __('Other Helpers') ?></li>
-	<li><?php echo $this->Navigation->link('Flash Messages', ['action' => 'flash'])?></li>
-	<li><?php echo $this->Navigation->link('Post Links', ['action' => 'postLink'])?></li>
-	<li><?php echo $this->Navigation->link('Badges & Icons (Html)', ['action' => 'html'])?></li>
-	<li><?php echo $this->Navigation->link('Pagination', ['action' => 'pagination'])?></li>
-	<li><?php echo $this->Navigation->link('Breadcrumbs', ['action' => 'breadcrumbs'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Flash Messages', ['action' => 'flash'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Post Links', ['action' => 'postLink'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Badges & Icons (Html)', ['action' => 'html'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Pagination', ['action' => 'pagination'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Breadcrumbs', ['action' => 'breadcrumbs'], ['class' => 'nav-link'])?></li>
 </ul>

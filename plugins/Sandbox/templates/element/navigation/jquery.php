@@ -10,13 +10,13 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
-	<li><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
-	<li><?= $this->Html->link(__('Overview'), ['controller' => 'JqueryExamples', 'action' => 'index']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Overview'), ['controller' => 'JqueryExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('jQuery Examples') ?></li>
-	<li><?php echo $this->Navigation->link('Autocomplete', ['action' => 'autocomplete'])?></li>
-	<li><?php echo $this->Navigation->link('Auto Preview', ['action' => 'autopreview'])?></li>
-	<li><?php echo $this->Navigation->link('Maxlength', ['action' => 'maxlength'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Autocomplete', ['action' => 'autocomplete'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Auto Preview', ['action' => 'autopreview'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Maxlength', ['action' => 'maxlength'], ['class' => 'nav-link'])?></li>
 </ul>

@@ -13,18 +13,18 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
-	<li><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
-	<li><?= $this->Html->link(__('Overview'), ['controller' => 'FlashExamples', 'action' => 'index']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Overview'), ['controller' => 'FlashExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Basic Flash Messages') ?></li>
-	<li><?php echo $this->Navigation->link('All flash message types', ['action' => 'messages'])?></li>
-	<li><?php echo $this->Navigation->link('Grouped types', ['action' => 'messageGroups'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('All flash message types', ['action' => 'messages'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Grouped types', ['action' => 'messageGroups'], ['class' => 'nav-link'])?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('AJAX Integration') ?></li>
-	<li><?php echo $this->Navigation->link('AJAX Buttons', ['action' => 'ajax'])?></li>
-	<li><?php echo $this->Navigation->link('AJAX with Ajax Plugin', ['action' => 'ajaxPlugin'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('AJAX Buttons', ['action' => 'ajax'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('AJAX with Ajax Plugin', ['action' => 'ajaxPlugin'], ['class' => 'nav-link'])?></li>
 </ul>

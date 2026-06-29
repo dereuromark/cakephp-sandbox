@@ -13,19 +13,19 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
-	<li><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
-	<li><?= $this->Html->link(__('Overview'), ['controller' => 'MarkupExamples', 'action' => 'index']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Overview'), ['controller' => 'MarkupExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Code Highlighting') ?></li>
-	<li><?php echo $this->Navigation->link('Highlighting (PHP or JS)', ['action' => 'markup'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Highlighting (PHP or JS)', ['action' => 'markup'], ['class' => 'nav-link'])?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Code Transformation') ?></li>
-	<li><?php echo $this->Navigation->link('BBCode', ['action' => 'bbcode']); ?></li>
-	<li><?php echo $this->Navigation->link('Markdown', ['action' => 'markdown']); ?></li>
-	<li><?php echo $this->Navigation->link('Djot', ['action' => 'djot']); ?></li>
-	<li><?php echo $this->Navigation->link('DjotView', ['action' => 'djotView']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('BBCode', ['action' => 'bbcode'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Markdown', ['action' => 'markdown'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Djot', ['action' => 'djot'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('DjotView', ['action' => 'djotView'], ['class' => 'nav-link']); ?></li>
 </ul>

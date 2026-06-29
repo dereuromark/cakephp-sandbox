@@ -12,9 +12,9 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Search handling in CakePHP') ?></li>
-	<li><?php echo $this->Navigation->link('Simple overview form', ['action' => 'index'])?></li>
-	<li><?php echo $this->Navigation->link('Table search form', ['action' => 'table'])?></li>
-	<li><?php echo $this->Navigation->link('Range search widget', ['action' => 'range'])?></li>
-	<li><?php echo $this->Navigation->link('Dealing with empty values', ['action' => 'emptyValues'])?></li>
-	<li><?php echo $this->Navigation->link('Form validation', ['action' => 'validation'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Simple overview form', ['action' => 'index'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Table search form', ['action' => 'table'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Range search widget', ['action' => 'range'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Dealing with empty values', ['action' => 'emptyValues'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Form validation', ['action' => 'validation'], ['class' => 'nav-link'])?></li>
 </ul>

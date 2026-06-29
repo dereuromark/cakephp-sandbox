@@ -15,7 +15,7 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
-	<li><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'])?></li>
-	<li><?php echo $this->Navigation->link('Scheduling', ['action' => 'scheduling'])?></li>
-	<li><?php echo $this->Navigation->link('Config', ['action' => 'config'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Basic Usage', ['action' => 'index'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Scheduling', ['action' => 'scheduling'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Config', ['action' => 'config'], ['class' => 'nav-link'])?></li>
 </ul>

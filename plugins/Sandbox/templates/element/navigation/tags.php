@@ -12,9 +12,9 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Tagging in CakePHP') ?></li>
-	<li><?php echo $this->Navigation->link('Simple string', ['action' => 'index'])?></li>
-	<li><?php echo $this->Navigation->link('Select2 Multiple select', ['action' => 'select'])?></li>
-	<li><?php echo $this->Navigation->link('Filtering', ['action' => 'search'])?></li>
-	<li><?php echo $this->Navigation->link('Tag Cloud', ['action' => 'cloud'])?></li>
-	<li><?php echo $this->Navigation->link('Colors', ['action' => 'colors'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Simple string', ['action' => 'index'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Select2 Multiple select', ['action' => 'select'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Filtering', ['action' => 'search'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Tag Cloud', ['action' => 'cloud'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Colors', ['action' => 'colors'], ['class' => 'nav-link'])?></li>
 </ul>

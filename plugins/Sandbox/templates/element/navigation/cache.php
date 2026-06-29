@@ -13,12 +13,12 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
-	<li><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
-	<li><?= $this->Html->link(__('Overview'), ['controller' => 'CacheExamples', 'action' => 'index']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Overview'), ['controller' => 'CacheExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Caching Examples') ?></li>
-	<li><?php echo $this->Navigation->link('Minute Cache', ['action' => 'minute'])?></li>
-	<li><?php echo $this->Navigation->link('Hour Cache', ['action' => 'hour'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Minute Cache', ['action' => 'minute'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Hour Cache', ['action' => 'hour'], ['class' => 'nav-link'])?></li>
 </ul>

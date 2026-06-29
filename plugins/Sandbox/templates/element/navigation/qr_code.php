@@ -16,8 +16,8 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
-	<li><?php echo $this->Navigation->link('Basic', ['action' => 'index'])?></li>
-	<li><?php echo $this->Navigation->link('SVG Image', ['action' => 'svg'])?></li>
-	<li><?php echo $this->Navigation->link('PNG Image', ['action' => 'png'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Basic', ['action' => 'index'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('SVG Image', ['action' => 'svg'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('PNG Image', ['action' => 'png'], ['class' => 'nav-link'])?></li>
 
 </ul>

@@ -15,6 +15,6 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
-	<li><?php echo $this->Navigation->link('Overview', ['action' => 'index'])?></li>
-	<li><?php echo $this->Navigation->link('Basic', ['action' => 'basic'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Overview', ['action' => 'index'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Basic', ['action' => 'basic'], ['class' => 'nav-link'])?></li>
 </ul>

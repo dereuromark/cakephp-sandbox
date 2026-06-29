@@ -14,10 +14,10 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('') ?></li>
-	<li><?php echo $this->Navigation->link('Overview', ['action' => 'index']); ?></li>
-	<li><?php echo $this->Navigation->link('Chat Demo', ['action' => 'chat']); ?></li>
-	<li><?php echo $this->Navigation->link('Queue Integration', ['action' => 'queueProgress']); ?></li>
-	<li><?php echo $this->Navigation->link('Publishing', ['action' => 'publishing']); ?></li>
-	<li><?php echo $this->Navigation->link('Subscription', ['action' => 'subscription']); ?></li>
-	<li><?php echo $this->Navigation->link('Authorization', ['action' => 'authorization']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Overview', ['action' => 'index'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Chat Demo', ['action' => 'chat'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Queue Integration', ['action' => 'queueProgress'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Publishing', ['action' => 'publishing'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Subscription', ['action' => 'subscription'], ['class' => 'nav-link']); ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Authorization', ['action' => 'authorization'], ['class' => 'nav-link']); ?></li>
 </ul>

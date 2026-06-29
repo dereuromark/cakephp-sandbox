@@ -12,23 +12,23 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Tools Examples') ?></li>
-	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Index', ['action' => 'index'], ['class' => 'nav-link'])?></li>
 
-	<li><?php echo $this->Navigation->link('Trim data input', ['action' => 'trim'])?></li>
-	<li><?php echo $this->Navigation->link('Password (create account)', ['action' => 'password'])?></li>
-	<li><?php echo $this->Navigation->link('Password Edit (edit account)', ['action' => 'passwordEdit'])?></li>
-	<li><?php echo $this->Navigation->link('Password Edit with current pwd', ['action' => 'passwordEditCurrent'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Trim data input', ['action' => 'trim'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Password (create account)', ['action' => 'password'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Password Edit (edit account)', ['action' => 'passwordEdit'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Password Edit with current pwd', ['action' => 'passwordEditCurrent'], ['class' => 'nav-link'])?></li>
 
-	<li><?php echo $this->Navigation->link('Trees', ['action' => 'tree'])?></li>
-	<li><?php echo $this->Navigation->link('Typography', ['action' => 'typography'])?></li>
-	<li><?php echo $this->Navigation->link('Confirmable Forms', ['action' => 'confirmable'])?></li>
-	<li><?php echo $this->Navigation->link('Slugs', ['action' => 'slug'])?></li>
-	<li><?php echo $this->Navigation->link('Datetime validation', ['action' => 'datetime'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Trees', ['action' => 'tree'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Typography', ['action' => 'typography'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Confirmable Forms', ['action' => 'confirmable'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Slugs', ['action' => 'slug'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Datetime validation', ['action' => 'datetime'], ['class' => 'nav-link'])?></li>
 
-	<li><?php echo $this->Navigation->link('Format and Font Icons', ['action' => 'formatHelper'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Format and Font Icons', ['action' => 'formatHelper'], ['class' => 'nav-link'])?></li>
 
-	<li><?php echo $this->Navigation->link('Gravatar images', ['action' => 'gravatar'])?></li>
-	<li><?php echo $this->Navigation->link('Progress', ['action' => 'progress'])?></li>
-	<li><?php echo $this->Navigation->link('Meter', ['action' => 'meter'])?></li>
-	<li><?php echo $this->Navigation->link('Timeline', ['action' => 'timeline'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Gravatar images', ['action' => 'gravatar'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Progress', ['action' => 'progress'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Meter', ['action' => 'meter'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Timeline', ['action' => 'timeline'], ['class' => 'nav-link'])?></li>
 </ul>

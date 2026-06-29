@@ -12,11 +12,11 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Geo Examples') ?></li>
-	<li><?php echo $this->Navigation->link('Index', ['action' => 'index'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Index', ['action' => 'index'], ['class' => 'nav-link'])?></li>
 
-	<li><?php echo $this->Navigation->link('Maps (Google)', ['action' => 'maps'])?></li>
-	<li><?php echo $this->Navigation->link('Maps (Leaflet)', ['action' => 'leaflet'])?></li>
-	<li><?php echo $this->Navigation->link('Static Maps', ['action' => 'staticMaps'])?></li>
-	<li><?php echo $this->Navigation->link('Distance lookup/filter', ['action' => 'filter'])?></li>
-	<li><?php echo $this->Navigation->link('Geocoding', ['action' => 'query'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Maps (Google)', ['action' => 'maps'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Maps (Leaflet)', ['action' => 'leaflet'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Static Maps', ['action' => 'staticMaps'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Distance lookup/filter', ['action' => 'filter'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Geocoding', ['action' => 'query'], ['class' => 'nav-link'])?></li>
 </ul>

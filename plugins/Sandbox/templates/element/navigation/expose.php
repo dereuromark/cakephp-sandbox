@@ -13,16 +13,16 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Actions') ?></li>
-	<li><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index']) ?></li>
-	<li><?= $this->Html->link(__('Overview'), ['controller' => 'ExposeExamples', 'action' => 'index']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Back to Plugins'), ['controller' => 'PluginExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
+	<li class="nav-item"><?= $this->Html->link(__('Overview'), ['controller' => 'ExposeExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Basic Usage') ?></li>
-	<li><?php echo $this->Navigation->link('Users List', ['action' => 'users'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Users List', ['action' => 'users'], ['class' => 'nav-link'])?></li>
 </ul>
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Superimposed Component') ?></li>
-	<li><?php echo $this->Navigation->link('Superimposed Index', ['action' => 'superimposedIndex'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Superimposed Index', ['action' => 'superimposedIndex'], ['class' => 'nav-link'])?></li>
 </ul>
