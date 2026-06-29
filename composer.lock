@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa36743d46af2897257e4527c00bb733",
+    "content-hash": "1d94d19a462c8512137172bb774b78ef",
     "packages": [
         {
             "name": "brick/math",
@@ -2747,12 +2747,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "2ebc963b7f840cb3463af8f4220665a2ca49e772"
+                "reference": "4f9d968f383425c8b6b131509e174404370d974d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/2ebc963b7f840cb3463af8f4220665a2ca49e772",
-                "reference": "2ebc963b7f840cb3463af8f4220665a2ca49e772",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/4f9d968f383425c8b6b131509e174404370d974d",
+                "reference": "4f9d968f383425c8b6b131509e174404370d974d",
                 "shasum": ""
             },
             "require": {
@@ -2760,11 +2760,11 @@
                 "php": ">=8.2"
             },
             "require-dev": {
-                "dereuromark/media-embed": "^0.7",
+                "dereuromark/media-embed": "^1.0",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "league/commonmark": "^1.5 || ^2.0",
                 "mjohnson/decoda": "^6.12",
-                "php-collective/djot": "^0.1.3",
+                "php-collective/djot": "^0.1.30",
                 "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
             },
             "default-branch": true,
@@ -2801,7 +2801,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-markup/issues",
                 "source": "https://github.com/dereuromark/cakephp-markup"
             },
-            "time": "2026-05-25T13:11:47+00:00"
+            "time": "2026-06-29T13:13:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-menu",
@@ -3833,33 +3833,45 @@
         },
         {
             "name": "dereuromark/media-embed",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/media-embed.git",
-                "reference": "65883e22a7f0f705e6618bb43b4e634615d0e159"
+                "reference": "b75858432507c91d2d4471e621d701e298f0c286"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/65883e22a7f0f705e6618bb43b4e634615d0e159",
-                "reference": "65883e22a7f0f705e6618bb43b4e634615d0e159",
+                "url": "https://api.github.com/repos/dereuromark/media-embed/zipball/b75858432507c91d2d4471e621d701e298f0c286",
+                "reference": "b75858432507c91d2d4471e621d701e298f0c286",
                 "shasum": ""
             },
             "require": {
-                "jbroadway/urlify": "^1.0.0",
-                "php": ">=8.1"
+                "php": ">=8.1",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/simple-cache": "^3.0"
             },
             "require-dev": {
                 "fig-r/psr2r-sniffer": "@stable",
+                "jbroadway/urlify": "^1.0.0",
+                "nyholm/psr7": "^1.8",
                 "phpstan/phpstan": "^2.0",
                 "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1 || ^13.0",
                 "sebastian/diff": "@stable"
             },
-            "default-branch": true,
+            "suggest": {
+                "jbroadway/urlify": "For best transliteration of non-ASCII provider names into slugs (otherwise a built-in ASCII slugger is used)"
+            },
             "bin": [
-                "bin/generate-docs"
+                "bin/generate-docs",
+                "bin/validate-providers.php"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-next": "1.0.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "MediaEmbed\\": "src/"
@@ -3887,7 +3899,7 @@
             ],
             "support": {
                 "issues": "https://github.com/dereuromark/media-embed/issues",
-                "source": "https://github.com/dereuromark/media-embed/tree/master"
+                "source": "https://github.com/dereuromark/media-embed"
             },
             "funding": [
                 {
@@ -3895,7 +3907,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-27T04:16:49+00:00"
+            "time": "2026-06-29T12:26:13+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -4947,77 +4959,6 @@
             "time": "2024-09-03T09:04:53+00:00"
         },
         {
-            "name": "jbroadway/urlify",
-            "version": "1.2.5-stable",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jbroadway/urlify.git",
-                "reference": "62f75cfa5ec06935091b348cac52c6672a7ca1f4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jbroadway/urlify/zipball/62f75cfa5ec06935091b348cac52c6672a7ca1f4",
-                "reference": "62f75cfa5ec06935091b348cac52c6672a7ca1f4",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.2",
-                "voku/portable-ascii": "^2.0",
-                "voku/stop-words": "^2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^8.5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "URLify": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause-Clear"
-            ],
-            "authors": [
-                {
-                    "name": "Johnny Broadway",
-                    "email": "johnny@johnnybroadway.com",
-                    "homepage": "http://www.johnnybroadway.com/"
-                }
-            ],
-            "description": "A fast PHP slug generator and transliteration library that converts non-ascii characters for use in URLs.",
-            "homepage": "https://github.com/jbroadway/urlify",
-            "keywords": [
-                "ascii",
-                "blogging",
-                "blogs",
-                "downcode",
-                "encode",
-                "iconv",
-                "link",
-                "seo",
-                "slug",
-                "slugify",
-                "slugs",
-                "translit",
-                "transliterate",
-                "transliteration",
-                "unicode",
-                "url",
-                "urlify"
-            ],
-            "support": {
-                "issues": "https://github.com/jbroadway/urlify/issues",
-                "source": "https://github.com/jbroadway/urlify/tree/1.2.5-stable"
-            },
-            "time": "2025-04-01T21:08:37+00:00"
-        },
-        {
             "name": "josbeir/cakephp-mercure",
             "version": "0.2.0",
             "source": {
@@ -6031,12 +5972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "0989cecba455dd5189e80c6fd11dc228567e9f47"
+                "reference": "c389e840ee70a16a76ed3f50bf2df977ae225276"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/0989cecba455dd5189e80c6fd11dc228567e9f47",
-                "reference": "0989cecba455dd5189e80c6fd11dc228567e9f47",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/c389e840ee70a16a76ed3f50bf2df977ae225276",
+                "reference": "c389e840ee70a16a76ed3f50bf2df977ae225276",
                 "shasum": ""
             },
             "require": {
@@ -6058,7 +5999,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Carve\\": "src/"
+                    "MarkupCarve\\Carve\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6093,7 +6034,72 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-27T12:28:48+00:00"
+            "time": "2026-06-29T12:59:33+00:00"
+        },
+        {
+            "name": "markup-carve/carve-php-media-embed",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markup-carve/carve-php-media-embed.git",
+                "reference": "f09bb95240c41568bff7c2c5f7739f708abc4f15"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markup-carve/carve-php-media-embed/zipball/f09bb95240c41568bff7c2c5f7739f708abc4f15",
+                "reference": "f09bb95240c41568bff7c2c5f7739f708abc4f15",
+                "shasum": ""
+            },
+            "require": {
+                "dereuromark/media-embed": "^1.0",
+                "markup-carve/carve-php": "*",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "*",
+                "php-collective/code-sniffer": "^0.6",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
+                "squizlabs/php_codesniffer": "^4.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MarkupCarve\\MediaEmbed\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Scherer",
+                    "homepage": "https://www.dereuromark.de"
+                }
+            ],
+            "description": "Opt-in Carve extension that embeds audio/video from 30+ providers via dereuromark/media-embed.",
+            "keywords": [
+                "audio",
+                "carve",
+                "embed",
+                "iframe",
+                "markup",
+                "media",
+                "video",
+                "youtube"
+            ],
+            "support": {
+                "issues": "https://github.com/markup-carve/carve-php-media-embed/issues",
+                "source": "https://github.com/markup-carve/carve-php-media-embed"
+            },
+            "time": "2026-06-29T13:00:41+00:00"
         },
         {
             "name": "masterminds/html5",
@@ -10856,127 +10862,6 @@
             "time": "2026-05-30T17:09:26+00:00"
         },
         {
-            "name": "voku/portable-ascii",
-            "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/voku/portable-ascii.git",
-                "reference": "8e1051fe39379367aecf014f41744ce7539a856f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/8e1051fe39379367aecf014f41744ce7539a856f",
-                "reference": "8e1051fe39379367aecf014f41744ce7539a856f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~8.5 || ~9.6 || ~10.5 || ~11.5"
-            },
-            "suggest": {
-                "ext-intl": "Use Intl for transliterator_transliterate() support"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "voku\\": "src/voku/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Moelleken",
-                    "homepage": "https://www.moelleken.org/"
-                }
-            ],
-            "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
-            "homepage": "https://github.com/voku/portable-ascii",
-            "keywords": [
-                "ascii",
-                "clean",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/voku/portable-ascii/issues",
-                "source": "https://github.com/voku/portable-ascii/tree/2.1.1"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/moelleken",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/voku",
-                    "type": "github"
-                },
-                {
-                    "url": "https://opencollective.com/portable-ascii",
-                    "type": "open_collective"
-                },
-                {
-                    "url": "https://www.patreon.com/voku",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-ascii",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2026-04-26T05:33:54+00:00"
-        },
-        {
-            "name": "voku/stop-words",
-            "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/voku/stop-words.git",
-                "reference": "8e63c0af20f800b1600783764e0ce19e53969f71"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/voku/stop-words/zipball/8e63c0af20f800b1600783764e0ce19e53969f71",
-                "reference": "8e63c0af20f800b1600783764e0ce19e53969f71",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=7.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "voku\\": "src/voku/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lars Moelleken",
-                    "homepage": "http://www.moelleken.org/"
-                }
-            ],
-            "description": "Stop-Words via PHP",
-            "keywords": [
-                "stop words",
-                "stop-words"
-            ],
-            "support": {
-                "issues": "https://github.com/voku/stop-words/issues",
-                "source": "https://github.com/voku/stop-words/tree/master"
-            },
-            "time": "2018-11-23T01:37:27+00:00"
-        },
-        {
             "name": "willdurand/geocoder",
             "version": "5.0.0",
             "source": {
@@ -14340,9 +14225,9 @@
         "dereuromark/cakephp-tools": 20,
         "dereuromark/cakephp-translate": 20,
         "dereuromark/cakephp-workflow": 20,
-        "dereuromark/media-embed": 20,
         "fig-r/psr2r-sniffer": 20,
         "markup-carve/carve-php": 20,
+        "markup-carve/carve-php-media-embed": 20,
         "php-collective/code-sniffer": 20,
         "php-collective/djot": 20,
         "php-collective/file-storage": 20,
