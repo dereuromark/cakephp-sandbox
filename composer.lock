@@ -2747,12 +2747,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "2ebc963b7f840cb3463af8f4220665a2ca49e772"
+                "reference": "4f9d968f383425c8b6b131509e174404370d974d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/2ebc963b7f840cb3463af8f4220665a2ca49e772",
-                "reference": "2ebc963b7f840cb3463af8f4220665a2ca49e772",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/4f9d968f383425c8b6b131509e174404370d974d",
+                "reference": "4f9d968f383425c8b6b131509e174404370d974d",
                 "shasum": ""
             },
             "require": {
@@ -2760,11 +2760,11 @@
                 "php": ">=8.2"
             },
             "require-dev": {
-                "dereuromark/media-embed": "^0.7",
+                "dereuromark/media-embed": "^1.0",
                 "fig-r/psr2r-sniffer": "dev-master",
                 "league/commonmark": "^1.5 || ^2.0",
                 "mjohnson/decoda": "^6.12",
-                "php-collective/djot": "^0.1.3",
+                "php-collective/djot": "^0.1.30",
                 "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
             },
             "default-branch": true,
@@ -2801,7 +2801,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-markup/issues",
                 "source": "https://github.com/dereuromark/cakephp-markup"
             },
-            "time": "2026-05-25T13:11:47+00:00"
+            "time": "2026-06-29T13:13:55+00:00"
         },
         {
             "name": "dereuromark/cakephp-menu",
