@@ -10,19 +10,28 @@ class MediaEmbedController extends SandboxAppController {
 	 * @return void
 	 */
 	public function index() {
-		if ($this->request->is('post')) {
-			$url = $this->request->getData('url');
-			if ($url) {
-				$mediaEmbed = new MediaEmbed();
-				$mediaObject = $mediaEmbed->parseUrl($url);
+		$privacy = (bool)$this->request->getData('privacy');
+		$responsive = (bool)$this->request->getData('responsive');
+		$customize = (bool)$this->request->getData('customize');
 
-				if (!$mediaObject) {
-					$this->Flash->error('Could not parse URL');
-				}
+		$url = $this->request->getData('url') ?: $this->request->getQuery('url');
+		if ($url) {
+			$mediaEmbed = new MediaEmbed();
+			$mediaObject = $mediaEmbed->parseUrl($url, $privacy ? ['privacy' => true] : []);
 
-				$this->set(compact('mediaObject'));
+			if (!$mediaObject) {
+				$this->Flash->error('Could not parse URL');
+			} elseif ($customize) {
+				// Immutable API: with*() returns a new instance, the original is untouched.
+				$mediaObject = $mediaObject
+					->withParam(['autoplay' => 1, 'loop' => 1])
+					->withAttribute('class', 'demo-embed');
 			}
+
+			$this->set(compact('mediaObject'));
 		}
+
+		$this->set(compact('privacy', 'responsive', 'customize'));
 	}
 
 	/**

@@ -7,46 +7,6 @@ use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Response;
 use Cake\Routing\Router;
-use Carve\CarveConverter;
-use Carve\Converter\BbcodeToCarve;
-use Carve\Converter\DjotToCarve;
-use Carve\Converter\HtmlToCarve;
-use Carve\Converter\MarkdownToCarve;
-use Carve\Exception\ParseException;
-use Carve\Exception\ProfileViolationException;
-use Carve\Extension\AdmonitionExtension;
-use Carve\Extension\AsciiHeadingIdsExtension;
-use Carve\Extension\AutolinkExtension;
-use Carve\Extension\CitationsExtension;
-use Carve\Extension\CodeCalloutsExtension;
-use Carve\Extension\CodeGroupExtension;
-use Carve\Extension\ColorSwatchExtension;
-use Carve\Extension\DefaultAttributesExtension;
-use Carve\Extension\DetailsExtension;
-use Carve\Extension\ExternalLinksExtension;
-use Carve\Extension\FencedRenderExtension;
-use Carve\Extension\FrontmatterExtension;
-use Carve\Extension\GlossaryExtension;
-use Carve\Extension\HeadingLevelShiftExtension;
-use Carve\Extension\HeadingPermalinksExtension;
-use Carve\Extension\HeadingReferenceExtension;
-use Carve\Extension\IndexExtension;
-use Carve\Extension\InlineFootnotesExtension;
-use Carve\Extension\ListTableExtension;
-use Carve\Extension\LowercaseHeadingIdsExtension;
-use Carve\Extension\MathBlockExtension;
-use Carve\Extension\MentionsExtension;
-use Carve\Extension\PlusBulletExtension;
-use Carve\Extension\SemanticSpanExtension;
-use Carve\Extension\SmartQuotesExtension;
-use Carve\Extension\SpoilerExtension;
-use Carve\Extension\TableOfContentsExtension;
-use Carve\Extension\TabNormalizeExtension;
-use Carve\Extension\TabsExtension;
-use Carve\Extension\WikilinksExtension;
-use Carve\Profile;
-use Carve\Renderer\RenderMode;
-use Carve\Renderer\SoftBreakMode;
 use Closure;
 use Composer\InstalledVersions;
 use Dompdf\Dompdf;
@@ -56,6 +16,47 @@ use HTMLPurifier_AttrDef;
 use HTMLPurifier_AttrDef_CSS_Color;
 use HTMLPurifier_Config;
 use LengthException;
+use MarkupCarve\Carve\CarveConverter;
+use MarkupCarve\Carve\Converter\BbcodeToCarve;
+use MarkupCarve\Carve\Converter\DjotToCarve;
+use MarkupCarve\Carve\Converter\HtmlToCarve;
+use MarkupCarve\Carve\Converter\MarkdownToCarve;
+use MarkupCarve\Carve\Exception\ParseException;
+use MarkupCarve\Carve\Exception\ProfileViolationException;
+use MarkupCarve\Carve\Extension\AdmonitionExtension;
+use MarkupCarve\Carve\Extension\AsciiHeadingIdsExtension;
+use MarkupCarve\Carve\Extension\AutolinkExtension;
+use MarkupCarve\Carve\Extension\CitationsExtension;
+use MarkupCarve\Carve\Extension\CodeCalloutsExtension;
+use MarkupCarve\Carve\Extension\CodeGroupExtension;
+use MarkupCarve\Carve\Extension\ColorSwatchExtension;
+use MarkupCarve\Carve\Extension\DefaultAttributesExtension;
+use MarkupCarve\Carve\Extension\DetailsExtension;
+use MarkupCarve\Carve\Extension\ExternalLinksExtension;
+use MarkupCarve\Carve\Extension\FencedRenderExtension;
+use MarkupCarve\Carve\Extension\FrontmatterExtension;
+use MarkupCarve\Carve\Extension\GlossaryExtension;
+use MarkupCarve\Carve\Extension\HeadingLevelShiftExtension;
+use MarkupCarve\Carve\Extension\HeadingPermalinksExtension;
+use MarkupCarve\Carve\Extension\HeadingReferenceExtension;
+use MarkupCarve\Carve\Extension\IndexExtension;
+use MarkupCarve\Carve\Extension\InlineFootnotesExtension;
+use MarkupCarve\Carve\Extension\ListTableExtension;
+use MarkupCarve\Carve\Extension\LowercaseHeadingIdsExtension;
+use MarkupCarve\Carve\Extension\MathBlockExtension;
+use MarkupCarve\Carve\Extension\MentionsExtension;
+use MarkupCarve\Carve\Extension\PlusBulletExtension;
+use MarkupCarve\Carve\Extension\SemanticSpanExtension;
+use MarkupCarve\Carve\Extension\SmartQuotesExtension;
+use MarkupCarve\Carve\Extension\SpoilerExtension;
+use MarkupCarve\Carve\Extension\TableOfContentsExtension;
+use MarkupCarve\Carve\Extension\TabNormalizeExtension;
+use MarkupCarve\Carve\Extension\TabsExtension;
+use MarkupCarve\Carve\Extension\WikilinksExtension;
+use MarkupCarve\Carve\Profile;
+use MarkupCarve\Carve\Renderer\RenderMode;
+use MarkupCarve\Carve\Renderer\SoftBreakMode;
+use MarkupCarve\MediaEmbed\MediaEmbedExtension;
 use Throwable;
 
 class CarveController extends SandboxAppController {
@@ -84,7 +85,7 @@ class CarveController extends SandboxAppController {
 	 * resolve instead of 404ing; Mentions stay out (no user pages). Keep this list
 	 * in sync with {@link self::defaultExtensionInfo()}.
 	 *
-	 * @param \Carve\CarveConverter $converter
+	 * @param \MarkupCarve\Carve\CarveConverter $converter
 	 * @return void
 	 */
 	protected function addDefaultExtensions(CarveConverter $converter): void {
@@ -276,6 +277,50 @@ class CarveController extends SandboxAppController {
 	 * @return void
 	 */
 	public function complexExamples(): void {
+	}
+
+	/**
+	 * Media embeds via the carve-php-media-embed extension (dereuromark/media-embed).
+	 *
+	 * @return void
+	 */
+	public function mediaEmbed(): void {
+		$defaultCarve = <<<'CARVE'
+		Embed audio/video from 35+ providers with concise inline syntax.
+
+		Per-provider (bare id or full url):
+
+		:youtube[dQw4w9WgXcQ]
+
+		:vimeo[https://vimeo.com/channels/staffpicks/99585787]
+
+		:ted[https://www.ted.com/talks/sir_ken_robinson_do_schools_kill_creativity]
+
+		Catchall with auto-detection:
+
+		:media[https://open.spotify.com/track/4iV5W9uYEdYUVa79Axb7Rh]
+
+		:media[https://sketchfab.com/3d-models/the-great-drawing-room-2QpgjMeXKHq6L8KIBAJjRrFV3jg]
+		CARVE;
+		$defaultCarve = preg_replace('/^\t\t/m', '', $defaultCarve) ?? $defaultCarve;
+
+		$carve = (string)($this->request->getData('carve') ?? '');
+		if (!$this->request->is('post')) {
+			$carve = $defaultCarve;
+		}
+
+		$converter = new CarveConverter();
+		$converter->addExtension(new MediaEmbedExtension());
+
+		$output = '';
+		$error = null;
+		try {
+			$output = $converter->convert($carve);
+		} catch (Throwable $e) {
+			$error = $e->getMessage();
+		}
+
+		$this->set(compact('carve', 'output', 'error'));
 	}
 
 	/**
@@ -1665,7 +1710,7 @@ CARVE,
 	 *
 	 * @param string $name
 	 * @param string $filterMode
-	 * @return \Carve\Profile|null
+	 * @return \MarkupCarve\Carve\Profile|null
 	 */
 	protected function getProfile(string $name, string $filterMode): ?Profile {
 		$profile = match ($name) {
@@ -2005,7 +2050,7 @@ HTML;
 	 *
 	 * @param string $mode RenderMode::INTERACTIVE or RenderMode::STATIC.
 	 * @param array<string, \Closure(string): string> $renderers
-	 * @return \Carve\CarveConverter
+	 * @return \MarkupCarve\Carve\CarveConverter
 	 */
 	protected function demoHtmlConverter(string $mode, array $renderers = []): CarveConverter {
 		$converter = new CarveConverter(xhtml: true, mode: $mode, renderers: $renderers);
@@ -2264,7 +2309,7 @@ composer require markup-carve/carve-php
 :::
 ::: tab [Usage]
 ``` php
-$html = (new Carve\CarveConverter())->convert($carve);
+$html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
 ```
 :::
 ::::
