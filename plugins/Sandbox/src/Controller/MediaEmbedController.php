@@ -44,7 +44,7 @@ class MediaEmbedController extends SandboxAppController {
 			$this->set(compact('bbcode'));
 		}
 
-		$bbcodeExample = '[video=youtube]Jh7oFiMVCZM[/video]';
+		$bbcodeExample = '[video=youtube]dQw4w9WgXcQ[/video]';
 
 		$this->set(compact('bbcodeExample'));
 	}
