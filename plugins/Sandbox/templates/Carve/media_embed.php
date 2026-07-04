@@ -30,6 +30,12 @@
 	<code>:media[URL]</code> (auto-detect),
 	plus any supported provider slug.
 </p>
+<p class="text-muted small">
+	Each rendered embed is stamped with a <code>data-carve-source</code> attribute carrying the
+	original directive (e.g. <code>:youtube[ID]</code>). Because media-embed is a one-way transform
+	- the iframe URL cannot be reversed back to the directive - this stamp lets a WYSIWYG editor
+	round-trip the embed back to its exact Carve source. Look for it in the HTML output below.
+</p>
 
 <?php
 echo $this->Form->create();

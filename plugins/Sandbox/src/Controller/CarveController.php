@@ -52,6 +52,7 @@ use MarkupCarve\Carve\Extension\SpoilerExtension;
 use MarkupCarve\Carve\Extension\TableOfContentsExtension;
 use MarkupCarve\Carve\Extension\TabNormalizeExtension;
 use MarkupCarve\Carve\Extension\TabsExtension;
+use MarkupCarve\Carve\Extension\TocPlacementExtension;
 use MarkupCarve\Carve\Extension\WikilinksExtension;
 use MarkupCarve\Carve\Profile;
 use MarkupCarve\Carve\Renderer\RenderMode;
@@ -469,7 +470,7 @@ CARVE,
 	protected function extensionGroups(): array {
 		return [
 			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference', 'glossary', 'index'],
-			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc'],
+			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc', 'toc_placement'],
 			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
 			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'code_callouts', 'list_table'],
 			'Client-rendered & Math' => ['math_block', 'mermaid', 'chart'],
@@ -571,6 +572,10 @@ CARVE,
 							break;
 						case 'toc_bottom':
 							$converter->addExtension(new TableOfContentsExtension(position: 'bottom'));
+
+							break;
+						case 'toc_placement':
+							$converter->addExtension(new TocPlacementExtension());
 
 							break;
 						case 'default_attributes':
@@ -881,6 +886,43 @@ CARVE,
 					'listType' => "'ul'",
 					'cssClass' => "'toc'",
 					'position' => "null, 'top', or 'bottom'",
+				],
+			],
+			'toc_placement' => [
+				'name' => 'TocPlacementExtension',
+				'description' => 'In-document placement directives. `::: toc` renders a `<nav class="toc">` exactly where written (unlike TableOfContentsExtension, which injects one TOC at the document top or bottom), so a long document can place its contents after an intro. A `{depth=N}` or `{from=X to=Y}` attribute line before the opener sets an optional level window. `::: footnotes` (always-on core, no toggle needed) relocates the endnotes section to the marker. Both render byte-identical to carve-js.',
+				'class' => TocPlacementExtension::class,
+				'example_carve' => <<<'CARVE'
+# Guide
+
+Intro paragraph shown before the contents.
+
+{depth=2}
+::: toc
+:::
+
+## Setup
+
+Install steps[^install].
+
+### Requirements
+
+PHP 8.2+.
+
+## Usage
+
+Run it[^run].
+
+[^install]: Install via Composer.
+[^run]: See the CLI docs.
+
+::: footnotes
+:::
+CARVE,
+				'options' => [
+					'depth' => 'N - include levels 1-N',
+					'from' => 'X - window start level',
+					'to' => 'Y - window end level',
 				],
 			],
 			'semantic_span' => [

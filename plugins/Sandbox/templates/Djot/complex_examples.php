@@ -321,6 +321,22 @@ This section can be linked with [jump to intro](#intro).
 And this with [jump to conclusion](#conclusion).
 DJOT,
 	],
+	'List Item Attributes' => [
+		'description' => 'A brace directly after a list marker (no space) attaches attributes to the <li>. Works for bullets, ordered, parenthesized, alpha, and task markers. A space before the brace keeps the old meaning (the brace becomes item content).',
+		'code' => <<<'DJOT'
+-{.blue} A styled bullet item.
+-{#first .done} Item with an id and class.
+
+1.{data-step="1"} First numbered step.
+2.{data-step="2"} Second step.
+
+(a){.bar} Parenthesized marker with a class.
+
+- [x]{.done} Completed task with a class.
+
+- {.blue} A space before the brace: this stays plain item content.
+DJOT,
+	],
 ];
 
 // Encode djot for URL sharing (matches the JS compress function).
