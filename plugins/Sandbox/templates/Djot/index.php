@@ -838,6 +838,29 @@ This div is never closed.</code></pre>
 	viewSource.addEventListener('change', updateView);
 	btnShare.addEventListener('click', share);
 
+	// Proportional scroll sync between the editor and the visible output pane.
+	// A guard flag stops the programmatic scroll from echoing back into a
+	// feedback loop.
+	let isSyncingScroll = false;
+	function activeOutput() {
+		return outputSource.classList.contains('d-none') ? outputRendered : outputSource;
+	}
+	function syncScroll(from, to) {
+		if (isSyncingScroll) {
+			return;
+		}
+		isSyncingScroll = true;
+		const range = from.scrollHeight - from.clientHeight;
+		const ratio = range > 0 ? from.scrollTop / range : 0;
+		to.scrollTop = ratio * (to.scrollHeight - to.clientHeight);
+		requestAnimationFrame(() => {
+			isSyncingScroll = false;
+		});
+	}
+	input.addEventListener('scroll', () => syncScroll(input, activeOutput()));
+	outputRendered.addEventListener('scroll', () => syncScroll(outputRendered, input));
+	outputSource.addEventListener('scroll', () => syncScroll(outputSource, input));
+
 	// Toolbar functionality
 	document.getElementById('djot-toolbar').addEventListener('click', function(e) {
 		const btn = e.target.closest('button');
