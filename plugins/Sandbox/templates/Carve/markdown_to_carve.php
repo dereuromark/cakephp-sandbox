@@ -43,7 +43,7 @@ MARKDOWN;
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>,sub,</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>{,sub,}</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>

@@ -75,7 +75,7 @@ DJOT;
 	</tbody>
 </table>
 <p class="text-muted small">
-	Constructs that mean the same in both (<code>^sup^</code>, <code>{+ins+}</code>, <code>{-del-}</code>, reference links) are left unchanged.
+	Constructs that mean the same in both (<code>{+ins+}</code>, <code>{-del-}</code>, reference links) are left unchanged.
 </p>
 <p class="text-muted small">
 	<strong>Nested delimiters compose.</strong> Each rewrite edits only its delimiters, never the wrapped text, so a strictly nested pair like

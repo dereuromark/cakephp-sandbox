@@ -11,7 +11,7 @@ This document is converted to /HTML/ and back to *Carve* to check for drift.
 ## Features
 
 - /emphasis/ and *strong* text
-- _underline_, ~strike~, ^super^ and ,sub,
+- _underline_, ~strike~, {^super^} and {,sub,}
 - Links: [Carve docs](https://github.com/markup-carve/carve)
 - Inline `code` spans
 

@@ -144,7 +144,7 @@ Water molecule: H{,2,}O
 
 The 10{^th^} power of 2 is 2{^10^} = 1024
 
-Carbon dioxide: CO,2,
+Carbon dioxide: CO{,2,}
 CARVE,
 	],
 	'All Inline Formatting' => [
