@@ -5973,12 +5973,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "2488e1d76e765648cfa21210538dcc6070ed22b6"
+                "reference": "32925b73056ebee5097ebb9516a017bc56cb8e66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/2488e1d76e765648cfa21210538dcc6070ed22b6",
-                "reference": "2488e1d76e765648cfa21210538dcc6070ed22b6",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/32925b73056ebee5097ebb9516a017bc56cb8e66",
+                "reference": "32925b73056ebee5097ebb9516a017bc56cb8e66",
                 "shasum": ""
             },
             "require": {
@@ -6035,7 +6035,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-14T10:00:07+00:00"
+            "time": "2026-07-16T16:47:22+00:00"
         },
         {
             "name": "markup-carve/carve-php-media-embed",
@@ -9924,16 +9924,16 @@
         },
         {
             "name": "tecnickcom/tc-lib-pdf",
-            "version": "8.65.9",
+            "version": "8.66.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf.git",
-                "reference": "f71054d006ac20617797d806c8ed8ad7902b296a"
+                "reference": "b043b678dd0302008465e5fe8f80121164f719af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf/zipball/f71054d006ac20617797d806c8ed8ad7902b296a",
-                "reference": "f71054d006ac20617797d806c8ed8ad7902b296a",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf/zipball/b043b678dd0302008465e5fe8f80121164f719af",
+                "reference": "b043b678dd0302008465e5fe8f80121164f719af",
                 "shasum": ""
             },
             "require": {
@@ -9942,11 +9942,12 @@
                 "tecnickcom/tc-lib-color": "^2.12",
                 "tecnickcom/tc-lib-file": "^3.6",
                 "tecnickcom/tc-lib-pdf-encrypt": "^2.8",
-                "tecnickcom/tc-lib-pdf-font": "^3.10",
+                "tecnickcom/tc-lib-pdf-font": "^3.11",
                 "tecnickcom/tc-lib-pdf-graph": "^2.14",
                 "tecnickcom/tc-lib-pdf-image": "^3.11",
                 "tecnickcom/tc-lib-pdf-page": "^4.13",
                 "tecnickcom/tc-lib-pdf-parser": "^3.13",
+                "tecnickcom/tc-lib-pdf-sign": "^1.0",
                 "tecnickcom/tc-lib-unicode": "^2.10",
                 "tecnickcom/tc-lib-unicode-data": "^2.6"
             },
@@ -9990,7 +9991,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T10:43:00+00:00"
+            "time": "2026-07-16T11:14:51+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-encrypt",
@@ -10122,16 +10123,16 @@
         },
         {
             "name": "tecnickcom/tc-lib-pdf-font",
-            "version": "3.10.2",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-font.git",
-                "reference": "9a18b5c89463198e8f10f148fa6072af3d0ffd37"
+                "reference": "8be09def7c8d6d020d4b0ba88f5c1fc08c16333f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-font/zipball/9a18b5c89463198e8f10f148fa6072af3d0ffd37",
-                "reference": "9a18b5c89463198e8f10f148fa6072af3d0ffd37",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-font/zipball/8be09def7c8d6d020d4b0ba88f5c1fc08c16333f",
+                "reference": "8be09def7c8d6d020d4b0ba88f5c1fc08c16333f",
                 "shasum": ""
             },
             "require": {
@@ -10184,7 +10185,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T10:39:16+00:00"
+            "time": "2026-07-15T09:47:12+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-graph",
@@ -10432,6 +10433,74 @@
                 }
             ],
             "time": "2026-07-13T08:24:15+00:00"
+        },
+        {
+            "name": "tecnickcom/tc-lib-pdf-sign",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tecnickcom/tc-lib-pdf-sign.git",
+                "reference": "436ac39945f94e67c8f2479ba5d0fd73de847133"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-sign/zipball/436ac39945f94e67c8f2479ba5d0fd73de847133",
+                "reference": "436ac39945f94e67c8f2479ba5d0fd73de847133",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-openssl": "*",
+                "php": ">=8.2"
+            },
+            "require-dev": {
+                "pdepend/pdepend": "^2.16",
+                "phpunit/phpunit": "^11.5 || ^12.5 || ^13.2"
+            },
+            "suggest": {
+                "ext-posix": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Com\\Tecnick\\Pdf\\Sign\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Nicola Asuni",
+                    "email": "info@tecnick.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "PHP library to create and embed digital signatures (PKCS#7 / CAdES / PAdES) in PDF documents",
+            "homepage": "https://tcpdf.org",
+            "keywords": [
+                "cades",
+                "digital-signature",
+                "pades",
+                "pdf",
+                "pkcs7",
+                "sign",
+                "signature",
+                "tc-lib-pdf-sign",
+                "timestamp"
+            ],
+            "support": {
+                "issues": "https://github.com/tecnickcom/tc-lib-pdf-sign/issues",
+                "source": "https://github.com/tecnickcom/tc-lib-pdf-sign"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/tecnickcom",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-07-16T08:34:42+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-unicode",
