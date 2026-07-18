@@ -90,6 +90,7 @@ class DjotController extends SandboxAppController {
 					profile: $profile,
 					blocksInterruptParagraphs: $blocksInterruptParagraphs,
 					nestedListsWithoutBlankLine: $nestedListsWithoutBlankLine,
+					sourceLines: true,
 				);
 				// Tabs in code render at the browser default width (usually 8);
 				// expand them to spaces by default for consistent playground output.
@@ -1168,8 +1169,10 @@ DJOT,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'djot-sandbox');
-		$config->set('HTML.DefinitionRev', 9);
-		$config->set('HTML.Allowed', 'p[class|id],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id],ol[start|type|class|id],li[class|id],dl[class|id],dt[class|id],dd[class|id],blockquote[class|id],pre[class|id],code[class|id],h1[class|id],h2[class|id],h3[class|id],h4[class|id],h5[class|id],h6[class|id],table[class|id],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id],div[class|id|role|aria-labelledby|hidden],span[class|id],section[class|id|role],nav[class|id],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open],summary[class|id],figure[class|id],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
+		$config->set('HTML.DefinitionRev', 10);
+		// data-source-line on block elements: scroll-sync anchors stamped by the
+		// converter (sourceLines: true); li/dt/dd included for nested stamping.
+		$config->set('HTML.Allowed', 'p[class|id|data-source-line],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role],img[src|alt|title|loading|decoding|class|id],ul[class|id|data-source-line],ol[start|type|class|id|data-source-line],li[class|id|data-source-line],dl[class|id|data-source-line],dt[class|id|data-source-line],dd[class|id|data-source-line],blockquote[class|id|data-source-line],pre[class|id|data-source-line],code[class|id],h1[class|id|data-source-line],h2[class|id|data-source-line],h3[class|id|data-source-line],h4[class|id|data-source-line],h5[class|id|data-source-line],h6[class|id|data-source-line],table[class|id|data-source-line],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id|data-source-line],div[class|id|role|aria-labelledby|hidden|data-source-line],span[class|id],section[class|id|role|data-source-line],nav[class|id|data-source-line],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open|data-source-line],summary[class|id],figure[class|id|data-source-line],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],abbr[title|class|id]');
 		$config->set('CSS.AllowedProperties', 'text-align');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
@@ -1217,6 +1220,16 @@ DJOT,
 			$def->addElement('label', 'Inline', 'Inline', 'Common', [
 				'for' => 'CDATA',
 			]);
+			// Scroll-sync anchors: the converter stamps top-level blocks with
+			// data-source-line (sourceLines: true); keep it through purification.
+			$sourceLineElements = [
+				'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li',
+				'dl', 'dt', 'dd', 'blockquote', 'pre', 'div', 'table', 'hr',
+				'section', 'figure', 'details', 'nav',
+			];
+			foreach ($sourceLineElements as $element) {
+				$def->addAttribute($element, 'data-source-line', 'Number');
+			}
 		}
 
 		$purifier = new HTMLPurifier($config);

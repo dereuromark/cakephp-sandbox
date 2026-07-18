@@ -175,6 +175,24 @@ class DjotControllerTest extends TestCase {
 	}
 
 	/**
+	 * Top-level blocks carry data-source-line scroll-sync anchors, and the
+	 * HTML purifier must let them through.
+	 *
+	 * @return void
+	 */
+	public function testConvertStampsSourceLineAnchors(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Djot', 'action' => 'convert'], [
+			'djot' => "# Heading\n\nPara one.",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<h1 data-source-line="1"', $response['html']);
+		$this->assertStringContainsString('<p data-source-line="3"', $response['html']);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertWithBlocksInterruptParagraphs(): void {
@@ -186,9 +204,10 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// The list interrupts the paragraph without a blank line.
-		$this->assertStringContainsString('<p>Here:</p>', $response['html']);
-		$this->assertStringContainsString('<ul>', $response['html']);
+		// The list interrupts the paragraph without a blank line. Block tags
+		// carry a data-source-line scroll-sync anchor, so match tolerantly.
+		$this->assertMatchesRegularExpression('#<p[^>]*>Here:</p>#', $response['html']);
+		$this->assertStringContainsString('<ul', $response['html']);
 	}
 
 	/**
@@ -203,8 +222,9 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// The indented sublist nests without a blank line, producing two <ul>.
-		$this->assertSame(2, substr_count($response['html'], '<ul>'));
+		// The indented sublist nests without a blank line, producing two <ul>
+		// (the top-level one carries a data-source-line anchor).
+		$this->assertSame(2, substr_count($response['html'], '<ul'));
 		$this->assertStringContainsString('Sub one', $response['html']);
 	}
 
@@ -221,7 +241,7 @@ class DjotControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame(2, substr_count($response['html'], '<ul>'));
+		$this->assertSame(2, substr_count($response['html'], '<ul'));
 		$this->assertStringContainsString('Sub one', $response['html']);
 	}
 

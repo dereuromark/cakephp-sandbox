@@ -8,7 +8,9 @@ $this->append('css');
 <style>
 /* Tiptap editor styles */
 #tiptap-editor {
-	min-height: 400px;
+	min-height: 300px;
+	max-height: 55vh;
+	overflow-y: auto;
 	padding: 20px;
 	padding-top: 0;
 	border: 1px solid #dee2e6;
@@ -322,6 +324,27 @@ $this->append('css');
 	overflow: auto;
 	line-height: 1.6;
 }
+/* Rendered Preview tab: normal prose instead of monospace source */
+.output-content.rendered-mode {
+	font-family: inherit;
+	font-size: 14px;
+	white-space: normal;
+	color: inherit;
+}
+/* Cursor-follow highlight: source lines of the block the TipTap cursor is in */
+.output-content .src-line.src-line-active {
+	background: #fff3cd;
+	border-radius: 2px;
+}
+/* Cursor-follow highlight in the rendered preview + click affordance */
+.output-content.rendered-mode [data-startpos] {
+	cursor: pointer;
+}
+.output-content.rendered-mode .pos-active {
+	outline: 2px solid rgba(13, 110, 253, 0.35);
+	background: rgba(13, 110, 253, 0.08);
+	border-radius: 2px;
+}
 </style>
 <?php
 $this->end();
@@ -338,6 +361,10 @@ $this->end();
 	with <a href="https://djot.net" target="_blank">Djot</a> output.
 	Uses the <code>DjotKit</code> module from
 	<a href="https://github.com/php-collective/djot-grammars" target="_blank">djot-grammars</a>.
+	Source mapping (via djot.js <code>sourcePositions</code>): the <em>Djot Output</em> tab
+	highlights the source lines of the block your cursor is in; the <em>Rendered Preview</em> tab
+	follows the cursor too, jumps back to the editor on click, and shows each element's exact
+	<code>line:col:offset</code> range on hover (inline elements included).
 </p>
 
 <div class="alert alert-info py-2">
@@ -449,7 +476,10 @@ $this->end();
 				<button class="nav-link active" data-tab="djot">Djot Output</button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" data-tab="html">HTML Preview</button>
+				<button class="nav-link" data-tab="rendered">Rendered Preview</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-tab="html">HTML Source</button>
 			</li>
 			<li class="nav-item">
 				<button class="nav-link" data-tab="json">Document JSON</button>
@@ -716,6 +746,7 @@ editor = new Editor({
 	],
 	content: initialContent,
 	onUpdate: () => {
+		invalidatePositions();
 		updateOutput();
 		updateToolbarState();
 	},
@@ -723,17 +754,93 @@ editor = new Editor({
 		updateToolbarState();
 		updateCodeLanguageDropdown();
 		updateTableControls();
+		scheduleCursorSync();
 	},
 });
 
 window.tiptapEditor = editor;
 
+// --- Source-position mapping (djot.js sourcePositions) -------------------
+//
+// The serialized Djot text is re-parsed with `sourcePositions: true`, which
+// attaches {start, end} = {line, col, offset} ranges to every AST node
+// (blocks AND inlines). Top-level PM nodes and top-level Djot AST nodes
+// correspond 1:1 by index (the serializer emits them in order), which gives:
+//   - forward sync: TipTap cursor -> highlight the block's full source line
+//     range in the Djot Output tab / its element in the Rendered Preview tab
+//   - reverse sync: click a rendered element -> select the matching block in
+//     the TipTap editor (offset containment on top-level ranges)
+// The rendered preview also exposes djot.js's data-startpos/data-endpos on
+// every element; hover any element (inlines included) to see its exact
+// line:col:offset range as a tooltip.
+let positionsCache = null;
+
+function invalidatePositions() {
+	positionsCache = null;
+}
+
+function getPositions() {
+	if (positionsCache) {
+		return positionsCache;
+	}
+	const text = serializeToDjot(editor.getJSON());
+	let ast = null;
+	try {
+		ast = djot.parse(text, { sourcePositions: true });
+	} catch (e) {
+		ast = null;
+	}
+	positionsCache = { text, ast, blocks: ast ? flattenBlocks(ast.children) : [] };
+
+	return positionsCache;
+}
+
+// djot.js wraps headings and their content into nested `section` AST nodes;
+// the ProseMirror document is flat. Flattening sections restores the 1:1
+// index correspondence between PM top-level nodes and Djot blocks.
+function flattenBlocks(children) {
+	const out = [];
+	for (const node of children || []) {
+		if (node.tag === 'section') {
+			out.push(...flattenBlocks(node.children));
+		} else {
+			out.push(node);
+		}
+	}
+
+	return out;
+}
+
+function escapeHtml(text) {
+	const div = document.createElement('div');
+	div.textContent = text;
+
+	return div.innerHTML;
+}
+
 function updateOutput() {
 	const outputEl = document.getElementById('output');
 	const doc = editor.getJSON();
+	outputEl.classList.toggle('rendered-mode', currentTab === 'rendered');
 
 	if (currentTab === 'djot') {
-		outputEl.textContent = serializeToDjot(doc);
+		// One span per line so cursor-follow can highlight a line range.
+		const text = serializeToDjot(doc);
+		outputEl.innerHTML = text.split('\n')
+			.map((line, i) => `<span class="src-line" data-line="${i + 1}">${escapeHtml(line)}\n</span>`)
+			.join('');
+	} else if (currentTab === 'rendered') {
+		try {
+			const { ast } = getPositions();
+			outputEl.innerHTML = ast ? djot.renderHTML(ast) : '';
+			// Tooltip with the exact source range on every positioned element,
+			// inline elements included - hover to inspect.
+			outputEl.querySelectorAll('[data-startpos]').forEach(el => {
+				el.title = 'source ' + el.getAttribute('data-startpos') + ' → ' + el.getAttribute('data-endpos');
+			});
+		} catch (e) {
+			outputEl.textContent = 'Error: ' + e.message;
+		}
 	} else if (currentTab === 'html') {
 		try {
 			const djotText = serializeToDjot(doc);
@@ -745,7 +852,146 @@ function updateOutput() {
 	} else if (currentTab === 'json') {
 		outputEl.textContent = JSON.stringify(doc, null, 2);
 	}
+	scheduleCursorSync();
 }
+
+// Forward sync: TipTap cursor -> highlight in the active output tab.
+let cursorSyncScheduled = false;
+
+function scheduleCursorSync() {
+	if (cursorSyncScheduled || (currentTab !== 'djot' && currentTab !== 'rendered')) {
+		return;
+	}
+	cursorSyncScheduled = true;
+	requestAnimationFrame(() => {
+		cursorSyncScheduled = false;
+		syncCursorHighlight();
+	});
+}
+
+function topLevelAstNode() {
+	const { blocks } = getPositions();
+	if (!blocks.length) {
+		return null;
+	}
+	const index = editor.state.selection.$anchor.index(0);
+	const node = blocks[index];
+	if (!node || !node.pos) {
+		return null;
+	}
+	// djot.js end positions can overshoot into the following blank line /
+	// next block (observed with tables); clamp to the next block's start.
+	const next = blocks[index + 1];
+	let endLine = node.pos.end.line;
+	if (next && next.pos && next.pos.start.line <= endLine) {
+		endLine = Math.max(node.pos.start.line, next.pos.start.line - 2);
+	}
+
+	return { node, endLine };
+}
+
+// Scroll only within the output pane - scrollIntoView would also scroll the
+// page itself (e.g. jumping down to the output panel on initial load).
+function scrollPaneTo(outputEl, el) {
+	const offset = el.getBoundingClientRect().top - outputEl.getBoundingClientRect().top + outputEl.scrollTop;
+	outputEl.scrollTop = Math.max(0, offset - outputEl.clientHeight / 3);
+}
+
+function syncCursorHighlight() {
+	const outputEl = document.getElementById('output');
+	const target = topLevelAstNode();
+	if (!target) {
+		return;
+	}
+	const node = target.node;
+	if (currentTab === 'djot') {
+		outputEl.querySelectorAll('.src-line-active').forEach(el => el.classList.remove('src-line-active'));
+		let firstLine = null;
+		for (let line = node.pos.start.line; line <= target.endLine; line++) {
+			const el = outputEl.querySelector(`.src-line[data-line="${line}"]`);
+			if (!el || (line > node.pos.start.line && line === target.endLine && el.textContent.trim() === '')) {
+				continue;
+			}
+			el.classList.add('src-line-active');
+			firstLine = firstLine || el;
+		}
+		if (firstLine && editor.isFocused) {
+			scrollPaneTo(outputEl, firstLine);
+		}
+	} else if (currentTab === 'rendered') {
+		outputEl.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
+		const sp = node.pos.start;
+		const el = outputEl.querySelector(`[data-startpos="${sp.line}:${sp.col}:${sp.offset}"]`);
+		if (el) {
+			el.classList.add('pos-active');
+			if (editor.isFocused) {
+				scrollPaneTo(outputEl, el);
+			}
+		}
+	}
+}
+
+// Reverse sync: click a rendered element -> select that block in TipTap.
+document.getElementById('output').addEventListener('click', (e) => {
+	if (currentTab !== 'rendered') {
+		return;
+	}
+	// The preview is for navigation back to the editor - never follow links.
+	e.preventDefault();
+	const el = e.target.closest('[data-startpos]');
+	if (!el) {
+		return;
+	}
+	const offset = parseInt(el.getAttribute('data-startpos').split(':')[2], 10);
+	const { blocks } = getPositions();
+	if (!blocks.length || isNaN(offset)) {
+		return;
+	}
+	// Match by start offsets only: djot.js end positions of lazy-closing
+	// containers (lists, tables, dl) overshoot into the next block, so
+	// range containment would attribute the next block's start to them.
+	// The last block starting at or before the clicked offset is the owner.
+	let index = -1;
+	for (let i = 0; i < blocks.length; i++) {
+		if (blocks[i].pos && blocks[i].pos.start.offset <= offset) {
+			index = i;
+		} else {
+			break;
+		}
+	}
+	if (index < 0 || index >= editor.state.doc.childCount) {
+		return;
+	}
+	let pmPos = 0;
+	for (let i = 0; i < index; i++) {
+		pmPos += editor.state.doc.child(i).nodeSize;
+	}
+	// Focus the first text position inside the block - focusing a block-only
+	// position (table, definition list) triggers ProseMirror warnings.
+	const blockNode = editor.state.doc.child(index);
+	let focusPos = pmPos + 1;
+	if (!blockNode.isTextblock) {
+		let found = false;
+		editor.state.doc.nodesBetween(pmPos, pmPos + blockNode.nodeSize, (n, pos) => {
+			if (!found && n.isTextblock) {
+				focusPos = pos + 1;
+				found = true;
+			}
+
+			return !found;
+		});
+	}
+	editor.chain().focus(focusPos).run();
+	// Navigate visually too: scroll the editor pane to the selected block.
+	// Pane-internal only - the page itself must not move.
+	requestAnimationFrame(() => {
+		const dom = editor.view.domAtPos(editor.state.selection.anchor).node;
+		const el = dom.nodeType === Node.ELEMENT_NODE ? dom : dom.parentElement;
+		if (el) {
+			scrollPaneTo(document.getElementById('tiptap-editor'), el);
+		}
+	});
+});
 
 function updateToolbarState() {
 	document.querySelectorAll('#menubar button[data-cmd]').forEach(btn => {
