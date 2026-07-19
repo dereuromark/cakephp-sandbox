@@ -7,7 +7,9 @@ $this->append('css');
 ?>
 <style>
 #tiptap-editor {
-	min-height: 360px;
+	min-height: 300px;
+	max-height: 55vh;
+	overflow-y: auto;
 	padding: 20px;
 	padding-top: 0;
 	border: 1px solid #dee2e6;
@@ -107,6 +109,20 @@ $this->append('css');
 	align-self: stretch;
 }
 .output-panel { background: #fff; border: 1px solid #dee2e6; border-radius: 0.375rem; }
+/* Cursor-follow highlight: source lines of the block the cursor is in */
+.output-content .src-line.src-line-active {
+	background: #fff3cd;
+	border-radius: 2px;
+}
+/* Cursor-follow highlight in the rendered preview + click affordance */
+.output-content.preview-render [data-source-line] {
+	cursor: pointer;
+}
+.output-content.preview-render .pos-active {
+	outline: 2px solid rgba(13, 110, 253, 0.35);
+	background: rgba(13, 110, 253, 0.08);
+	border-radius: 2px;
+}
 .output-header {
 	background: #f8f9fa;
 	padding: 0 15px;
@@ -158,9 +174,12 @@ $this->end();
 	<i class="bi bi-info-circle"></i>
 	Powered by Tiptap with the <code>CarveKit</code> extensions from
 	<a href="https://github.com/markup-carve/carve-grammars" target="_blank">carve-grammars</a>.
-	The document is serialized to Carve markup in the browser (<code>serializeToCarve</code>); the
-	preview is that Carve rendered to sanitized HTML by <code>CarveConverter</code>. Output updates
-	shortly after you stop typing.
+	The document is serialized to Carve markup in the browser (<code>serializeToCarve</code>).
+	The preview renderer is switchable: <strong>carve-php</strong> (default) renders on the server
+	via <code>CarveConverter</code> with sanitized HTML; <strong>carve-js</strong>
+	(<a href="https://github.com/markup-carve/carve-js" target="_blank">reference TypeScript
+	implementation</a>) renders instantly in the browser. Both emit identical
+	<code>data-source-line</code> anchors, so editor/preview cursor sync works the same either way.
 </div>
 
 <div class="mb-3">
@@ -215,14 +234,22 @@ $this->end();
 	<div class="output-header">
 		<ul class="nav output-tabs" role="tablist">
 			<li class="nav-item"><button class="nav-link active" data-tab="carve">Carve Source</button></li>
-			<li class="nav-item"><button class="nav-link" data-tab="html">HTML Preview</button></li>
+			<li class="nav-item"><button class="nav-link" data-tab="html">Rendered Preview</button></li>
+			<li class="nav-item"><button class="nav-link" data-tab="htmlsource">HTML Source</button></li>
+			<li class="nav-item"><button class="nav-link" data-tab="json">Document JSON</button></li>
 		</ul>
-		<div>
+		<div class="d-flex align-items-center gap-2">
+			<select class="form-select form-select-sm" id="renderEngine" style="width: auto;" title="Preview renderer">
+				<option value="php" selected>carve-php (server)</option>
+				<option value="js">carve-js (browser)</option>
+			</select>
 			<button type="button" class="btn btn-sm btn-outline-secondary" id="copy-btn"><i class="bi bi-clipboard"></i> Copy</button>
 		</div>
 	</div>
 	<div class="output-content source" id="output-carve"><span class="text-muted">Start typing above...</span></div>
 	<div class="output-content preview-render carve-rendered d-none" id="output-html"></div>
+	<div class="output-content source d-none" id="output-html-source"></div>
+	<div class="output-content source d-none" id="output-json"></div>
 </div>
 
 </div>
@@ -250,7 +277,8 @@ $this->end();
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break",
-		"carve-grammars/serializer.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/serializer.js"
+		"carve-grammars/serializer.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/serializer.js",
+		"carve-js": "https://esm.sh/gh/markup-carve/carve-js@689b8f0/src/index.ts"
 	}
 }
 </script>
@@ -293,6 +321,13 @@ let currentTab = 'carve';
 let timer;
 let requestSeq = 0;
 let lastResult = { carve: '', html: '' };
+// Preview renderer: 'php' renders via the server convert endpoint (canonical
+// carve-php output, HTMLPurifier-sanitized); 'js' renders in the browser with
+// carve-js (the reference TypeScript implementation) - instant, no round-trip.
+// Both stamp identical data-source-line anchors, so cursor sync is unaffected.
+let renderEngine = 'php';
+// carve-js is loaded lazily on first opt-in so the default path costs nothing.
+let carveJs = null;
 
 const editor = new Editor({
 	element: document.getElementById('tiptap-editor'),
@@ -309,23 +344,49 @@ const editor = new Editor({
 		scheduleConvert();
 		updateToolbarState();
 	},
-	onSelectionUpdate: updateToolbarState,
+	onSelectionUpdate: () => {
+		updateToolbarState();
+		scheduleCursorSync();
+	},
 });
 
 window.tiptapEditor = editor;
 
 function scheduleConvert() {
 	clearTimeout(timer);
-	timer = setTimeout(convert, 300);
+	// Client render is instant; only the server round-trip needs a real debounce.
+	timer = setTimeout(convert, renderEngine === 'js' ? 50 : 300);
 }
 
 async function convert() {
 	// Serialize the editor document straight to Carve markup on the client.
 	const carve = serializeToCarve(editor.getJSON());
-	// Render that Carve to sanitized HTML via the standard convert endpoint
-	// (the canonical Carve -> HTML direction; no HTML-to-Carve round-trip).
 	// Guard against out-of-order responses: only the latest request may update output.
 	const seq = ++requestSeq;
+	if (renderEngine === 'js') {
+		// Client render with carve-js: instant, no server round-trip. Unlike
+		// the server path there is no HTMLPurifier pass, so raw HTML blocks
+		// render verbatim (self-inflicted only - this is a playground).
+		try {
+			if (!carveJs) {
+				carveJs = await import('carve-js');
+			}
+			if (seq !== requestSeq) {
+				return;
+			}
+			lastResult = { carve, html: carveJs.carveToHtml(carve, { sourceLine: true }) };
+		} catch (e) {
+			if (seq !== requestSeq) {
+				return;
+			}
+			lastResult = { carve, html: '<div class="alert alert-danger">carve-js failed: ' + escapeHtml(e.message) + '</div>' };
+		}
+		renderOutput();
+
+		return;
+	}
+	// Server render via the standard convert endpoint (the canonical
+	// carve-php Carve -> HTML direction, sanitized by HTMLPurifier).
 	try {
 		const response = await fetch(convertUrl, {
 			method: 'POST',
@@ -353,9 +414,293 @@ async function convert() {
 function renderOutput() {
 	const carveEl = document.getElementById('output-carve');
 	const htmlEl = document.getElementById('output-html');
-	carveEl.textContent = lastResult.carve || '';
+	// One span per line so cursor-follow can highlight a line range.
+	carveEl.innerHTML = (lastResult.carve || '').split('\n')
+		.map((line, i) => `<span class="src-line" data-line="${i + 1}">${escapeHtml(line)}\n</span>`)
+		.join('');
 	htmlEl.innerHTML = lastResult.html || '<span class="text-muted">No output</span>';
+	// Debug views: HTML as text (without the internal scroll-sync anchors)
+	// and the raw ProseMirror document.
+	document.getElementById('output-html-source').textContent = (lastResult.html || '').replace(/ data-source-line="\d+"/g, '');
+	document.getElementById('output-json').textContent = JSON.stringify(editor.getJSON(), null, 2);
+	scheduleCursorSync();
 }
+
+// --- Cursor sync via server-side data-source-line anchors -----------------
+//
+// The convert endpoint renders with carve-php's sourceLines option, so the
+// preview HTML carries `data-source-line` anchors (1-based line in the
+// serialized Carve source). Top-level ProseMirror nodes correspond 1:1 by
+// index to the preview's top-level block elements (sections are flattened),
+// which gives:
+//   - forward sync: cursor block -> highlight its source line range in the
+//     Carve Source tab / its element in the HTML Preview tab
+//   - reverse sync: click a preview element -> select the matching block in
+//     the editor
+// All with our own lean line anchors - no client-side Carve parser needed.
+
+// Top-level preview blocks in document order, sections flattened (headings
+// get wrapped in <section> by the renderer; the PM document is flat).
+function flatBlocks() {
+	const htmlEl = document.getElementById('output-html');
+	const out = [];
+	const walk = (container) => {
+		for (const el of container.children) {
+			// The footnotes section renders at the bottom with mid-document
+			// source lines and has no ProseMirror counterpart - skip it so
+			// the index mapping stays 1:1 with the editor document.
+			if (el.tagName === 'SECTION' && el.getAttribute('role') === 'doc-endnotes') {
+				continue;
+			}
+			if (el.tagName === 'SECTION') {
+				walk(el);
+			} else {
+				out.push(el);
+			}
+		}
+	};
+	walk(htmlEl);
+
+	return out;
+}
+
+// Block-level element children of a preview node (skips inline markup and
+// non-content wrappers like task-list checkboxes/labels).
+const BLOCK_TAGS = new Set(['P', 'UL', 'OL', 'LI', 'DL', 'DT', 'DD', 'BLOCKQUOTE', 'PRE', 'DIV', 'TABLE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'FIGURE', 'ASIDE', 'HR', 'DETAILS']);
+
+function blockChildren(el) {
+	return [...el.children].filter(child => BLOCK_TAGS.has(child.tagName));
+}
+
+// A tight list item renders its lead paragraph as bare inline content inside
+// the <li>; its block-element children then correspond to PM child indexes
+// shifted by one (PM index 0 is the omitted lead paragraph).
+function hasBareLeadText(el) {
+	if (el.tagName !== 'LI') {
+		return false;
+	}
+	for (const node of el.childNodes) {
+		if (node.nodeType === Node.TEXT_NODE) {
+			if (node.textContent.trim() !== '') {
+				return true;
+			}
+			continue;
+		}
+		if (node.nodeType !== Node.ELEMENT_NODE) {
+			continue;
+		}
+		if (BLOCK_TAGS.has(node.tagName)) {
+			return false;
+		}
+		// Task-list checkbox chrome does not count as lead text.
+		if (node.tagName === 'INPUT' || node.tagName === 'LABEL') {
+			continue;
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+// Deepest preview element for the current editor selection: start from the
+// top-level block (1:1 by index) and descend the ProseMirror ancestor path,
+// matching child indexes against the preview's block children. Structure
+// mismatches (e.g. task items whose text is not wrapped) gracefully stop at
+// the last matching level. Returns an element carrying data-source-line.
+function selectionBlockEl() {
+	const $anchor = editor.state.selection.$anchor;
+	const blocks = flatBlocks();
+	let el = blocks[$anchor.index(0)];
+	if (!el) {
+		return null;
+	}
+	for (let depth = 1; depth <= $anchor.depth; depth++) {
+		const kids = blockChildren(el);
+		let idx = $anchor.index(depth);
+		if (hasBareLeadText(el)) {
+			// Cursor in the omitted lead paragraph: the <li> itself is the
+			// deepest matching preview element.
+			if (idx === 0) {
+				break;
+			}
+			idx -= 1;
+		}
+		if (idx >= kids.length) {
+			break;
+		}
+		el = kids[idx];
+	}
+	while (el && !el.hasAttribute('data-source-line')) {
+		el = el.parentElement && el.parentElement.closest('[data-source-line]');
+	}
+
+	return el;
+}
+
+// Source line range [start, end] of an anchored preview element: from its own
+// anchor up to (excluding) the next anchor in document order with a later line.
+function elementLineRange(el) {
+	if (!el || !el.hasAttribute('data-source-line')) {
+		return null;
+	}
+	const start = parseInt(el.getAttribute('data-source-line'), 10);
+	if (isNaN(start)) {
+		return null;
+	}
+	let end = (lastResult.carve || '').split('\n').length;
+	const anchors = [...document.getElementById('output-html').querySelectorAll('[data-source-line]')];
+	for (let i = anchors.indexOf(el) + 1; i < anchors.length; i++) {
+		const line = parseInt(anchors[i].getAttribute('data-source-line'), 10);
+		if (!isNaN(line) && line > start) {
+			end = line - 1;
+			break;
+		}
+	}
+
+	return { start, end: Math.max(start, end), el };
+}
+
+// Scroll only within the given pane - never the page itself.
+function scrollPaneTo(paneEl, el) {
+	const offset = el.getBoundingClientRect().top - paneEl.getBoundingClientRect().top + paneEl.scrollTop;
+	paneEl.scrollTop = Math.max(0, offset - paneEl.clientHeight / 3);
+}
+
+let cursorSyncScheduled = false;
+
+function scheduleCursorSync() {
+	if (cursorSyncScheduled || (currentTab !== 'carve' && currentTab !== 'html')) {
+		return;
+	}
+	cursorSyncScheduled = true;
+	requestAnimationFrame(() => {
+		cursorSyncScheduled = false;
+		syncCursorHighlight();
+	});
+}
+
+function syncCursorHighlight() {
+	const range = elementLineRange(selectionBlockEl());
+	if (!range) {
+		return;
+	}
+	if (currentTab === 'carve') {
+		const carveEl = document.getElementById('output-carve');
+		carveEl.querySelectorAll('.src-line-active').forEach(el => el.classList.remove('src-line-active'));
+		let firstLine = null;
+		for (let line = range.start; line <= range.end; line++) {
+			const el = carveEl.querySelector(`.src-line[data-line="${line}"]`);
+			if (!el || (line > range.start && line === range.end && el.textContent.trim() === '')) {
+				continue;
+			}
+			el.classList.add('src-line-active');
+			firstLine = firstLine || el;
+		}
+		if (firstLine && editor.isFocused) {
+			scrollPaneTo(carveEl, firstLine);
+		}
+	} else if (currentTab === 'html') {
+		const htmlEl = document.getElementById('output-html');
+		htmlEl.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
+		range.el.classList.add('pos-active');
+		if (editor.isFocused) {
+			scrollPaneTo(htmlEl, range.el);
+		}
+	}
+}
+
+// Reverse sync: click a preview element -> select that block in the editor.
+document.getElementById('output-html').addEventListener('click', (e) => {
+	// Leave native interactive controls (details/summary toggles, checkboxes,
+	// copy buttons, ...) fully functional - no editor jump.
+	if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
+		return;
+	}
+	// Only links need their default cancelled, so the preview never
+	// navigates away; the click still selects the block in the editor.
+	if (e.target.closest('a')) {
+		e.preventDefault();
+	}
+	const anchorEl = e.target.closest('[data-source-line]');
+	if (!anchorEl) {
+		return;
+	}
+	// Resolve the clicked element to its top-level block, recording the
+	// child-index path on the way (nested blocks map to nested PM nodes).
+	const blocks = flatBlocks();
+	const htmlEl = document.getElementById('output-html');
+	let top = anchorEl;
+	const path = [];
+	while (top && top.parentElement && !blocks.includes(top)) {
+		const parent = top.parentElement === htmlEl || top.parentElement.tagName === 'SECTION'
+			? null
+			: top.parentElement;
+		if (!parent) {
+			break;
+		}
+		const idx = blockChildren(parent).indexOf(top);
+		if (idx < 0) {
+			// Non-block wrapper in between - fall back to the block level.
+			path.length = 0;
+			top = top.closest('[data-source-line]');
+			break;
+		}
+		// Tight <li>: PM child 0 is the omitted lead paragraph, so DOM block
+		// children start at PM index 1.
+		path.unshift(hasBareLeadText(parent) ? idx + 1 : idx);
+		top = parent;
+	}
+	while (top && top !== htmlEl && !blocks.includes(top)) {
+		path.length = 0;
+		top = top.parentElement;
+	}
+	const index = blocks.indexOf(top);
+	if (index < 0 || index >= editor.state.doc.childCount) {
+		return;
+	}
+	// Walk the PM document along the recorded path (bounds-guarded; a
+	// structure mismatch just stops at the deepest matching node).
+	let pmPos = 0;
+	for (let i = 0; i < index; i++) {
+		pmPos += editor.state.doc.child(i).nodeSize;
+	}
+	let node = editor.state.doc.child(index);
+	for (const idx of path) {
+		if (idx >= node.childCount) {
+			break;
+		}
+		let off = pmPos + 1;
+		for (let i = 0; i < idx; i++) {
+			off += node.child(i).nodeSize;
+		}
+		node = node.child(idx);
+		pmPos = off;
+	}
+	// Focus the first text position inside the node - focusing a block-only
+	// position (table, task list) triggers ProseMirror warnings.
+	let focusPos = pmPos + 1;
+	if (!node.isTextblock) {
+		let found = false;
+		editor.state.doc.nodesBetween(pmPos, pmPos + node.nodeSize, (n, pos) => {
+			if (!found && n.isTextblock) {
+				focusPos = pos + 1;
+				found = true;
+			}
+
+			return !found;
+		});
+	}
+	editor.chain().focus(focusPos).run();
+	// Pane-internal scroll only - the page itself must not move.
+	requestAnimationFrame(() => {
+		const dom = editor.view.domAtPos(editor.state.selection.anchor).node;
+		const el = dom.nodeType === Node.ELEMENT_NODE ? dom : dom.parentElement;
+		if (el) {
+			scrollPaneTo(document.getElementById('tiptap-editor'), el);
+		}
+	});
+});
 
 function escapeHtml(text) {
 	const div = document.createElement('div');
@@ -447,11 +792,24 @@ document.querySelectorAll('.output-tabs button').forEach(btn => {
 		currentTab = btn.dataset.tab;
 		document.getElementById('output-carve').classList.toggle('d-none', currentTab !== 'carve');
 		document.getElementById('output-html').classList.toggle('d-none', currentTab !== 'html');
+		document.getElementById('output-html-source').classList.toggle('d-none', currentTab !== 'htmlsource');
+		document.getElementById('output-json').classList.toggle('d-none', currentTab !== 'json');
+		scheduleCursorSync();
 	});
 });
 
+document.getElementById('renderEngine').addEventListener('change', (e) => {
+	renderEngine = e.target.value;
+	convert();
+});
+
 document.getElementById('copy-btn').addEventListener('click', () => {
-	const text = currentTab === 'carve' ? lastResult.carve : lastResult.html;
+	// Strip the internal scroll-sync anchors from copied HTML.
+	const text = currentTab === 'carve'
+		? lastResult.carve
+		: (currentTab === 'json'
+			? JSON.stringify(editor.getJSON(), null, 2)
+			: (lastResult.html || '').replace(/ data-source-line="\d+"/g, ''));
 	navigator.clipboard.writeText(text || '').then(() => {
 		const btn = document.getElementById('copy-btn');
 		const original = btn.innerHTML;

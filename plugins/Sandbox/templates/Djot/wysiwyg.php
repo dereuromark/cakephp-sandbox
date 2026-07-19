@@ -936,8 +936,16 @@ document.getElementById('output').addEventListener('click', (e) => {
 	if (currentTab !== 'rendered') {
 		return;
 	}
-	// The preview is for navigation back to the editor - never follow links.
-	e.preventDefault();
+	// Leave native interactive controls (details/summary toggles, checkboxes,
+	// copy buttons, ...) fully functional - no editor jump.
+	if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
+		return;
+	}
+	// Only links need their default cancelled, so the preview never
+	// navigates away; the click still selects the block in the editor.
+	if (e.target.closest('a')) {
+		e.preventDefault();
+	}
 	const el = e.target.closest('[data-startpos]');
 	if (!el) {
 		return;

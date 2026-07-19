@@ -105,7 +105,7 @@ class DjotControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('<strong>Bold</strong>', $response['html']);
 		$this->assertStringContainsString('<code>code</code>', $response['html']);
-		$this->assertStringContainsString('<li>', $response['html']);
+		$this->assertStringContainsString('<li', $response['html']);
 		$this->assertStringNotContainsString('<a href', $response['html']);
 		$this->assertNotEmpty($response['violations']);
 	}

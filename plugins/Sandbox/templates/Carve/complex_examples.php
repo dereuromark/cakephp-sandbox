@@ -324,6 +324,17 @@ This section can be linked with [jump to intro](#intro).
 And this with [jump to conclusion](#conclusion).
 CARVE,
 	],
+	'Boolean Attributes' => [
+		'description' => 'A bare word in a `{...}` block (no `#`, `.` or `=`) becomes a value-less boolean attribute. Here `download` rides on a link (inline, trailing) and `reversed` on an ordered list (block, preceding line); both flow straight onto the rendered element.',
+		'code' => <<<'CARVE'
+[Download the spec](/files/carve-spec.pdf){download .btn}
+
+{reversed}
+1. Third place
+2. Second place
+3. First place
+CARVE,
+	],
 ];
 
 // Encode Carve markup for URL sharing (matches the JS compress function).

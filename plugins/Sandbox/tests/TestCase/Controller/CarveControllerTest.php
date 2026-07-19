@@ -106,7 +106,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('<strong>Bold</strong>', $response['html']);
 		$this->assertStringContainsString('<code>code</code>', $response['html']);
-		$this->assertStringContainsString('<li>', $response['html']);
+		$this->assertStringContainsString('<li', $response['html']);
 		$this->assertStringNotContainsString('<a href', $response['html']);
 		$this->assertNotEmpty($response['violations']);
 	}
@@ -163,6 +163,21 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertStampsSourceLineAnchors(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Heading\n\nPara one.",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('<h1 data-source-line="1"', $response['html']);
+		$this->assertStringContainsString('<p data-source-line="3"', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertInterruptsParagraphsByDefault(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "Section\n# Heading",
@@ -172,8 +187,9 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		// Carve interrupts paragraphs by default (§10): the heading starts
-		// without a blank line in between.
-		$this->assertStringContainsString('<p>Section</p>', $response['html']);
+		// without a blank line in between. Blocks carry a data-source-line
+		// scroll-sync anchor, so match tolerantly.
+		$this->assertMatchesRegularExpression('#<p[^>]*>Section</p>#', $response['html']);
 		$this->assertStringContainsString('<h1', $response['html']);
 	}
 
@@ -208,7 +224,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		// Interruption is unconditional, so the nested ">" becomes a real
 		// blockquote inside the list item.
-		$this->assertStringContainsString('<blockquote>', $response['html']);
+		$this->assertStringContainsString('<blockquote', $response['html']);
 		$this->assertStringContainsString('nested quote', $response['html']);
 	}
 

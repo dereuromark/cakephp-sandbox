@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "8fccd79655091b3db1f5fe8f11f1d8291b61bafd"
+                "reference": "49ceb6fe76222c14aae363543e677c1b75f66d4c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/8fccd79655091b3db1f5fe8f11f1d8291b61bafd",
-                "reference": "8fccd79655091b3db1f5fe8f11f1d8291b61bafd",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/49ceb6fe76222c14aae363543e677c1b75f66d4c",
+                "reference": "49ceb6fe76222c14aae363543e677c1b75f66d4c",
                 "shasum": ""
             },
             "require": {
@@ -425,7 +425,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-07-14T09:15:52+00:00"
+            "time": "2026-07-17T03:01:52+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -606,16 +606,16 @@
         },
         {
             "name": "cakephp/migrations",
-            "version": "5.2.3",
+            "version": "5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/migrations.git",
-                "reference": "ab5e25e185b751db9c19269c55036063d216f1cd"
+                "reference": "6f5444bb64bf89454a1eeabc25ff030fab796345"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/migrations/zipball/ab5e25e185b751db9c19269c55036063d216f1cd",
-                "reference": "ab5e25e185b751db9c19269c55036063d216f1cd",
+                "url": "https://api.github.com/repos/cakephp/migrations/zipball/6f5444bb64bf89454a1eeabc25ff030fab796345",
+                "reference": "6f5444bb64bf89454a1eeabc25ff030fab796345",
                 "shasum": ""
             },
             "require": {
@@ -663,7 +663,7 @@
                 "issues": "https://github.com/cakephp/migrations/issues",
                 "source": "https://github.com/cakephp/migrations"
             },
-            "time": "2026-07-05T16:39:17+00:00"
+            "time": "2026-07-17T18:44:35+00:00"
         },
         {
             "name": "cakephp/plugin-installer",
@@ -944,16 +944,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.12",
+            "version": "1.5.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "00a2f4201641d5c53f7fc0195e6c8d9fcc321a78"
+                "reference": "c008272789979f709f7fcb32c2ecf1d2db5e84e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/00a2f4201641d5c53f7fc0195e6c8d9fcc321a78",
-                "reference": "00a2f4201641d5c53f7fc0195e6c8d9fcc321a78",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/c008272789979f709f7fcb32c2ecf1d2db5e84e5",
+                "reference": "c008272789979f709f7fcb32c2ecf1d2db5e84e5",
                 "shasum": ""
             },
             "require": {
@@ -1000,7 +1000,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.12"
+                "source": "https://github.com/composer/ca-bundle/tree/1.5.13"
             },
             "funding": [
                 {
@@ -1012,7 +1012,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-05-19T11:26:22+00:00"
+            "time": "2026-07-18T12:35:13+00:00"
         },
         {
             "name": "composer/class-map-generator",
@@ -2535,17 +2535,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "8037f2eed24c94b35bc89f82eb55b2a77b3dc7c9"
+                "reference": "1e00f45159cca47296793ed4838c5dfac9335d9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/8037f2eed24c94b35bc89f82eb55b2a77b3dc7c9",
-                "reference": "8037f2eed24c94b35bc89f82eb55b2a77b3dc7c9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/1e00f45159cca47296793ed4838c5dfac9335d9b",
+                "reference": "1e00f45159cca47296793ed4838c5dfac9335d9b",
                 "shasum": ""
             },
             "require": {
                 "brick/varexporter": "^0.5.0 || ^0.6.0 || ^0.7.0",
-                "cakephp/cakephp": "^5.1.1",
+                "cakephp/cakephp": "^5.3.4",
                 "php": ">=8.2",
                 "php-collective/file-storage": "^1.0.0"
             },
@@ -2604,7 +2604,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-07-03T16:39:20+00:00"
+            "time": "2026-07-17T11:22:21+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -3560,12 +3560,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tinyauth.git",
-                "reference": "2fb7188c262cd2c32f81e241405d99b530ec1343"
+                "reference": "4c9a2a86aa2ed9a188da03077e4b9428d9010ae8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/2fb7188c262cd2c32f81e241405d99b530ec1343",
-                "reference": "2fb7188c262cd2c32f81e241405d99b530ec1343",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tinyauth/zipball/4c9a2a86aa2ed9a188da03077e4b9428d9010ae8",
+                "reference": "4c9a2a86aa2ed9a188da03077e4b9428d9010ae8",
                 "shasum": ""
             },
             "require": {
@@ -3616,7 +3616,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tinyauth/issues",
                 "source": "https://github.com/dereuromark/cakephp-tinyauth"
             },
-            "time": "2026-06-28T09:42:35+00:00"
+            "time": "2026-07-17T10:28:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-tools",
@@ -3624,12 +3624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-tools.git",
-                "reference": "90d1e371fd5ad022624ed4388fb677226f4e2f71"
+                "reference": "106366692218360d44d05a8f89caaf7279232c82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/90d1e371fd5ad022624ed4388fb677226f4e2f71",
-                "reference": "90d1e371fd5ad022624ed4388fb677226f4e2f71",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-tools/zipball/106366692218360d44d05a8f89caaf7279232c82",
+                "reference": "106366692218360d44d05a8f89caaf7279232c82",
                 "shasum": ""
             },
             "require": {
@@ -3686,7 +3686,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-tools/issues",
                 "source": "https://github.com/dereuromark/cakephp-tools"
             },
-            "time": "2026-06-28T09:42:44+00:00"
+            "time": "2026-07-18T16:56:14+00:00"
         },
         {
             "name": "dereuromark/cakephp-translate",
@@ -5973,12 +5973,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "32925b73056ebee5097ebb9516a017bc56cb8e66"
+                "reference": "2dea929b97cab2ae9b7b3884c004dd6228a8df9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/32925b73056ebee5097ebb9516a017bc56cb8e66",
-                "reference": "32925b73056ebee5097ebb9516a017bc56cb8e66",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/2dea929b97cab2ae9b7b3884c004dd6228a8df9d",
+                "reference": "2dea929b97cab2ae9b7b3884c004dd6228a8df9d",
                 "shasum": ""
             },
             "require": {
@@ -6035,7 +6035,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-16T16:47:22+00:00"
+            "time": "2026-07-19T08:59:20+00:00"
         },
         {
             "name": "markup-carve/carve-php-media-embed",
@@ -6433,16 +6433,16 @@
         },
         {
             "name": "nette/utils",
-            "version": "v4.1.4",
+            "version": "v4.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "7da6c396d7ebe142bc857c20479d5e70a5e1aac7"
+                "reference": "b043439dbdf954e6c28b5ea7e34b0100f83165e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/7da6c396d7ebe142bc857c20479d5e70a5e1aac7",
-                "reference": "7da6c396d7ebe142bc857c20479d5e70a5e1aac7",
+                "url": "https://api.github.com/repos/nette/utils/zipball/b043439dbdf954e6c28b5ea7e34b0100f83165e0",
+                "reference": "b043439dbdf954e6c28b5ea7e34b0100f83165e0",
                 "shasum": ""
             },
             "require": {
@@ -6462,7 +6462,7 @@
             },
             "suggest": {
                 "ext-gd": "to use Image",
-                "ext-iconv": "to use Strings::webalize(), toAscii(), chr() and reverse()",
+                "ext-iconv": "to use Strings::chr(), ord() and reverse()",
                 "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
                 "ext-json": "to use Nette\\Utils\\Json",
                 "ext-mbstring": "to use Strings::lower() etc...",
@@ -6518,9 +6518,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.1.4"
+                "source": "https://github.com/nette/utils/tree/v4.1.5"
             },
-            "time": "2026-05-11T20:49:54+00:00"
+            "time": "2026-07-17T23:02:45+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -6641,12 +6641,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/djot-php.git",
-                "reference": "2cb432a1965a0e29cfd7a9fbff9ddc4fb2cee78d"
+                "reference": "5c29c6e81554d5750a5391ceaaf0d66cc1cf9525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/2cb432a1965a0e29cfd7a9fbff9ddc4fb2cee78d",
-                "reference": "2cb432a1965a0e29cfd7a9fbff9ddc4fb2cee78d",
+                "url": "https://api.github.com/repos/php-collective/djot-php/zipball/5c29c6e81554d5750a5391ceaaf0d66cc1cf9525",
+                "reference": "5c29c6e81554d5750a5391ceaaf0d66cc1cf9525",
                 "shasum": ""
             },
             "require": {
@@ -6700,7 +6700,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-18T12:37:18+00:00"
+            "time": "2026-07-18T15:41:14+00:00"
         },
         {
             "name": "php-collective/dto",
@@ -9699,23 +9699,23 @@
         },
         {
             "name": "tecnickcom/tc-lib-barcode",
-            "version": "2.11.4",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-barcode.git",
-                "reference": "8e8486a84b12ae55f8b233588a1ae64f08bf1b6d"
+                "reference": "0614e905c903600c2491d3a90174a9a87a2fab9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-barcode/zipball/8e8486a84b12ae55f8b233588a1ae64f08bf1b6d",
-                "reference": "8e8486a84b12ae55f8b233588a1ae64f08bf1b6d",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-barcode/zipball/0614e905c903600c2491d3a90174a9a87a2fab9b",
+                "reference": "0614e905c903600c2491d3a90174a9a87a2fab9b",
                 "shasum": ""
             },
             "require": {
                 "ext-bcmath": "*",
                 "ext-gd": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-color": "^2.12"
+                "tecnickcom/tc-lib-color": "^2.13"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -9791,20 +9791,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:24:02+00:00"
+            "time": "2026-07-17T19:05:47+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-color",
-            "version": "2.12.5",
+            "version": "2.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-color.git",
-                "reference": "71b30de968ca51832b64728a2727210adb3a1708"
+                "reference": "38303066464928bbcfe8e54d006c828b02e4c62f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-color/zipball/71b30de968ca51832b64728a2727210adb3a1708",
-                "reference": "71b30de968ca51832b64728a2727210adb3a1708",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-color/zipball/38303066464928bbcfe8e54d006c828b02e4c62f",
+                "reference": "38303066464928bbcfe8e54d006c828b02e4c62f",
                 "shasum": ""
             },
             "require": {
@@ -9857,20 +9857,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:22:14+00:00"
+            "time": "2026-07-17T19:02:53+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-file",
-            "version": "3.6.4",
+            "version": "3.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-file.git",
-                "reference": "416d76ff84a12b2144d47ac08ffde88fd98e99cc"
+                "reference": "45a9b04e530b80b0212af6de1c6c111c37f8eb35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-file/zipball/416d76ff84a12b2144d47ac08ffde88fd98e99cc",
-                "reference": "416d76ff84a12b2144d47ac08ffde88fd98e99cc",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-file/zipball/45a9b04e530b80b0212af6de1c6c111c37f8eb35",
+                "reference": "45a9b04e530b80b0212af6de1c6c111c37f8eb35",
                 "shasum": ""
             },
             "require": {
@@ -9920,36 +9920,36 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:22:36+00:00"
+            "time": "2026-07-17T19:03:05+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf",
-            "version": "8.66.0",
+            "version": "8.67.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf.git",
-                "reference": "b043b678dd0302008465e5fe8f80121164f719af"
+                "reference": "2c8df69476e6140d4ec7a3555fbcac4a6f1a329b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf/zipball/b043b678dd0302008465e5fe8f80121164f719af",
-                "reference": "b043b678dd0302008465e5fe8f80121164f719af",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf/zipball/2c8df69476e6140d4ec7a3555fbcac4a6f1a329b",
+                "reference": "2c8df69476e6140d4ec7a3555fbcac4a6f1a329b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-barcode": "^2.11",
-                "tecnickcom/tc-lib-color": "^2.12",
-                "tecnickcom/tc-lib-file": "^3.6",
-                "tecnickcom/tc-lib-pdf-encrypt": "^2.8",
-                "tecnickcom/tc-lib-pdf-font": "^3.11",
-                "tecnickcom/tc-lib-pdf-graph": "^2.14",
-                "tecnickcom/tc-lib-pdf-image": "^3.11",
-                "tecnickcom/tc-lib-pdf-page": "^4.13",
-                "tecnickcom/tc-lib-pdf-parser": "^3.13",
-                "tecnickcom/tc-lib-pdf-sign": "^1.0",
-                "tecnickcom/tc-lib-unicode": "^2.10",
-                "tecnickcom/tc-lib-unicode-data": "^2.6"
+                "tecnickcom/tc-lib-barcode": "^2.12",
+                "tecnickcom/tc-lib-color": "^2.13",
+                "tecnickcom/tc-lib-file": "^3.7",
+                "tecnickcom/tc-lib-pdf-encrypt": "^2.9",
+                "tecnickcom/tc-lib-pdf-font": "^3.12",
+                "tecnickcom/tc-lib-pdf-graph": "^2.15",
+                "tecnickcom/tc-lib-pdf-image": "^3.12",
+                "tecnickcom/tc-lib-pdf-page": "^4.14",
+                "tecnickcom/tc-lib-pdf-parser": "^3.14",
+                "tecnickcom/tc-lib-pdf-sign": "^1.1",
+                "tecnickcom/tc-lib-unicode": "^2.11",
+                "tecnickcom/tc-lib-unicode-data": "^2.7"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -9991,20 +9991,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-16T11:14:51+00:00"
+            "time": "2026-07-17T21:39:15+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-encrypt",
-            "version": "2.8.4",
+            "version": "2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-encrypt.git",
-                "reference": "33265cd5cc0758fc15479716f15b9c33cd0206aa"
+                "reference": "c13ae45c9ac5be8c1974c43727879411f0c557e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-encrypt/zipball/33265cd5cc0758fc15479716f15b9c33cd0206aa",
-                "reference": "33265cd5cc0758fc15479716f15b9c33cd0206aa",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-encrypt/zipball/c13ae45c9ac5be8c1974c43727879411f0c557e4",
+                "reference": "c13ae45c9ac5be8c1974c43727879411f0c557e4",
                 "shasum": ""
             },
             "require": {
@@ -10056,20 +10056,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:22:49+00:00"
+            "time": "2026-07-17T19:03:18+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-filter",
-            "version": "2.9.4",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-filter.git",
-                "reference": "32e5972f111437e20024d17e0f66521858d3e389"
+                "reference": "72d7606dbc56f475870222557488edec3d707e8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-filter/zipball/32e5972f111437e20024d17e0f66521858d3e389",
-                "reference": "32e5972f111437e20024d17e0f66521858d3e389",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-filter/zipball/72d7606dbc56f475870222557488edec3d707e8c",
+                "reference": "72d7606dbc56f475870222557488edec3d707e8c",
                 "shasum": ""
             },
             "require": {
@@ -10119,29 +10119,29 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:23:01+00:00"
+            "time": "2026-07-17T19:03:30+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-font",
-            "version": "3.11.0",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-font.git",
-                "reference": "8be09def7c8d6d020d4b0ba88f5c1fc08c16333f"
+                "reference": "e84e765474d15f2d7f19f5ff8f42604c69a3a41a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-font/zipball/8be09def7c8d6d020d4b0ba88f5c1fc08c16333f",
-                "reference": "8be09def7c8d6d020d4b0ba88f5c1fc08c16333f",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-font/zipball/e84e765474d15f2d7f19f5ff8f42604c69a3a41a",
+                "reference": "e84e765474d15f2d7f19f5ff8f42604c69a3a41a",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-zlib": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-file": "^3.6",
-                "tecnickcom/tc-lib-pdf-encrypt": "^2.8",
-                "tecnickcom/tc-lib-unicode-data": "^2.6"
+                "tecnickcom/tc-lib-file": "^3.7",
+                "tecnickcom/tc-lib-pdf-encrypt": "^2.9",
+                "tecnickcom/tc-lib-unicode-data": "^2.7"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10185,27 +10185,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-15T09:47:12+00:00"
+            "time": "2026-07-17T19:22:14+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-graph",
-            "version": "2.14.4",
+            "version": "2.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-graph.git",
-                "reference": "ad743a179610f80c00b2964641f1dadc260732b6"
+                "reference": "cdd4ee1ceafc0f2cfa525ef8f395c80e7c024495"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-graph/zipball/ad743a179610f80c00b2964641f1dadc260732b6",
-                "reference": "ad743a179610f80c00b2964641f1dadc260732b6",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-graph/zipball/cdd4ee1ceafc0f2cfa525ef8f395c80e7c024495",
+                "reference": "cdd4ee1ceafc0f2cfa525ef8f395c80e7c024495",
                 "shasum": ""
             },
             "require": {
                 "ext-zlib": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-color": "^2.12",
-                "tecnickcom/tc-lib-pdf-encrypt": "^2.8"
+                "tecnickcom/tc-lib-color": "^2.13",
+                "tecnickcom/tc-lib-pdf-encrypt": "^2.9"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10247,29 +10247,29 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:24:53+00:00"
+            "time": "2026-07-17T19:18:50+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-image",
-            "version": "3.11.4",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-image.git",
-                "reference": "1f050dea3b01ebdf58f2c7932d19819c588c9c85"
+                "reference": "d20db0e8e371ba1a44c2dc8358320599360be7f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-image/zipball/1f050dea3b01ebdf58f2c7932d19819c588c9c85",
-                "reference": "1f050dea3b01ebdf58f2c7932d19819c588c9c85",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-image/zipball/d20db0e8e371ba1a44c2dc8358320599360be7f1",
+                "reference": "d20db0e8e371ba1a44c2dc8358320599360be7f1",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
                 "ext-zlib": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-color": "^2.12",
-                "tecnickcom/tc-lib-file": "^3.6",
-                "tecnickcom/tc-lib-pdf-encrypt": "^2.8"
+                "tecnickcom/tc-lib-color": "^2.13",
+                "tecnickcom/tc-lib-file": "^3.7",
+                "tecnickcom/tc-lib-pdf-encrypt": "^2.9"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10312,27 +10312,27 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:25:05+00:00"
+            "time": "2026-07-17T19:20:33+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-page",
-            "version": "4.13.4",
+            "version": "4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-page.git",
-                "reference": "83b494c501130107bd1b1b2d883a254005400995"
+                "reference": "a068a4b2da222bd9909bb1e9edeec901a69a6484"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-page/zipball/83b494c501130107bd1b1b2d883a254005400995",
-                "reference": "83b494c501130107bd1b1b2d883a254005400995",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-page/zipball/a068a4b2da222bd9909bb1e9edeec901a69a6484",
+                "reference": "a068a4b2da222bd9909bb1e9edeec901a69a6484",
                 "shasum": ""
             },
             "require": {
                 "ext-zlib": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-color": "^2.12",
-                "tecnickcom/tc-lib-pdf-encrypt": "^2.8"
+                "tecnickcom/tc-lib-color": "^2.13",
+                "tecnickcom/tc-lib-pdf-encrypt": "^2.9"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10373,25 +10373,25 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:24:41+00:00"
+            "time": "2026-07-17T19:17:39+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-parser",
-            "version": "3.13.4",
+            "version": "3.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-parser.git",
-                "reference": "06674e069863a7684521e18ec37edad0e159a281"
+                "reference": "8a1b64ba7a8f8c7d862765ad2fcd1841982ab5bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-parser/zipball/06674e069863a7684521e18ec37edad0e159a281",
-                "reference": "06674e069863a7684521e18ec37edad0e159a281",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-parser/zipball/8a1b64ba7a8f8c7d862765ad2fcd1841982ab5bb",
+                "reference": "8a1b64ba7a8f8c7d862765ad2fcd1841982ab5bb",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-pdf-filter": "^2.9"
+                "tecnickcom/tc-lib-pdf-filter": "^2.10"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10432,20 +10432,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:24:15+00:00"
+            "time": "2026-07-17T19:15:54+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-pdf-sign",
-            "version": "1.0.1",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-pdf-sign.git",
-                "reference": "436ac39945f94e67c8f2479ba5d0fd73de847133"
+                "reference": "c9d5125cdcfe6225951ce2bc165f46b4d0f79bc5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-sign/zipball/436ac39945f94e67c8f2479ba5d0fd73de847133",
-                "reference": "436ac39945f94e67c8f2479ba5d0fd73de847133",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-pdf-sign/zipball/c9d5125cdcfe6225951ce2bc165f46b4d0f79bc5",
+                "reference": "c9d5125cdcfe6225951ce2bc165f46b4d0f79bc5",
                 "shasum": ""
             },
             "require": {
@@ -10500,26 +10500,26 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-16T08:34:42+00:00"
+            "time": "2026-07-17T19:03:43+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-unicode",
-            "version": "2.10.4",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-unicode.git",
-                "reference": "b176de5e4d073eb1027adab3b1a256dfce399e7e"
+                "reference": "ffc77054b8ea2b7de8cd3fd1c02ce8fd10bb17b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-unicode/zipball/b176de5e4d073eb1027adab3b1a256dfce399e7e",
-                "reference": "b176de5e4d073eb1027adab3b1a256dfce399e7e",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-unicode/zipball/ffc77054b8ea2b7de8cd3fd1c02ce8fd10bb17b5",
+                "reference": "ffc77054b8ea2b7de8cd3fd1c02ce8fd10bb17b5",
                 "shasum": ""
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": ">=8.2",
-                "tecnickcom/tc-lib-unicode-data": "^2.6"
+                "tecnickcom/tc-lib-unicode-data": "^2.7"
             },
             "require-dev": {
                 "pdepend/pdepend": "^2.16",
@@ -10561,20 +10561,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:24:28+00:00"
+            "time": "2026-07-17T19:09:36+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-unicode-data",
-            "version": "2.6.4",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/tc-lib-unicode-data.git",
-                "reference": "2489b2d64e2778d2c02ed72158e042f2b0373cb0"
+                "reference": "9354f1661e7bafcf2ee68e408ed07a3fcf264b98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/tc-lib-unicode-data/zipball/2489b2d64e2778d2c02ed72158e042f2b0373cb0",
-                "reference": "2489b2d64e2778d2c02ed72158e042f2b0373cb0",
+                "url": "https://api.github.com/repos/tecnickcom/tc-lib-unicode-data/zipball/9354f1661e7bafcf2ee68e408ed07a3fcf264b98",
+                "reference": "9354f1661e7bafcf2ee68e408ed07a3fcf264b98",
                 "shasum": ""
             },
             "require": {
@@ -10620,7 +10620,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-13T08:23:15+00:00"
+            "time": "2026-07-17T19:03:56+00:00"
         },
         {
             "name": "thecodingmachine/safe",
@@ -11222,12 +11222,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-ide-helper.git",
-                "reference": "499be260a2d42cfe873aafe520bf01316b08649c"
+                "reference": "4c6f82b1e82499ed70d4bdcc59a86b218b10095f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/499be260a2d42cfe873aafe520bf01316b08649c",
-                "reference": "499be260a2d42cfe873aafe520bf01316b08649c",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-ide-helper/zipball/4c6f82b1e82499ed70d4bdcc59a86b218b10095f",
+                "reference": "4c6f82b1e82499ed70d4bdcc59a86b218b10095f",
                 "shasum": ""
             },
             "require": {
@@ -11293,7 +11293,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-01T19:29:35+00:00"
+            "time": "2026-07-17T09:09:40+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper-extra",
@@ -12261,27 +12261,28 @@
         },
         {
             "name": "phpstan/phpstan-strict-rules",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-strict-rules.git",
-                "reference": "9b000a578b85b32945b358b172c7b20e91189024"
+                "reference": "2bc5ae19ae965663b62ac907ee6342c3903ec93b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/9b000a578b85b32945b358b172c7b20e91189024",
-                "reference": "9b000a578b85b32945b358b172c7b20e91189024",
+                "url": "https://api.github.com/repos/phpstan/phpstan-strict-rules/zipball/2bc5ae19ae965663b62ac907ee6342c3903ec93b",
+                "reference": "2bc5ae19ae965663b62ac907ee6342c3903ec93b",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4 || ^8.0",
-                "phpstan/phpstan": "^2.1.39"
+                "phpstan/phpstan": "^2.1.52"
             },
             "require-dev": {
                 "php-parallel-lint/php-parallel-lint": "^1.2",
                 "phpstan/phpstan-deprecation-rules": "^2.0",
                 "phpstan/phpstan-phpunit": "^2.0",
-                "phpunit/phpunit": "^9.6"
+                "phpunit/phpunit": "^9.6",
+                "shipmonk/name-collision-detector": "^2.1"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -12306,9 +12307,9 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan-strict-rules/issues",
-                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.0.11"
+                "source": "https://github.com/phpstan/phpstan-strict-rules/tree/2.0.12"
             },
-            "time": "2026-05-02T06:54:10+00:00"
+            "time": "2026-07-19T07:24:06+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

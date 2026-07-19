@@ -315,6 +315,15 @@ DJOT;
 	border-left: 3px solid #dee2e6;
 	font-style: italic;
 }
+/* Cursor-follow highlight + click-to-jump affordance (scroll-sync anchors) */
+#output-rendered [data-source-line] {
+	cursor: pointer;
+}
+#output-rendered .pos-active {
+	outline: 2px solid rgba(13, 110, 253, 0.35);
+	background: rgba(13, 110, 253, 0.08);
+	border-radius: 2px;
+}
 #output-rendered dl {
 	width: auto;
 	line-height: 1.5em;
@@ -1024,6 +1033,67 @@ This div is never closed.</code></pre>
 	}
 	input.addEventListener('scroll', () => syncScroll(input));
 	outputRendered.addEventListener('scroll', () => syncScroll(outputRendered));
+
+	// Cursor-follow: outline the rendered block whose source range contains
+	// the caret (deepest anchor starting at or before the caret line).
+	function caretLine() {
+		return input.value.slice(0, input.selectionStart).split('\n').length;
+	}
+	function highlightCaretBlock() {
+		const line = caretLine();
+		// Pick by LARGEST anchor line at or before the caret, not by DOM
+		// order: the footnotes section renders at the bottom with
+		// mid-document source lines and would otherwise win for every
+		// caret position past the footnote definition.
+		let target = null;
+		let bestLine = -1;
+		outputRendered.querySelectorAll('[data-source-line]').forEach(el => {
+			const l = parseInt(el.getAttribute('data-source-line'), 10);
+			if (!isNaN(l) && l <= line && l >= bestLine) {
+				bestLine = l;
+				target = el;
+			}
+		});
+		outputRendered.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
+		if (target) {
+			target.classList.add('pos-active');
+		}
+	}
+	['keyup', 'click', 'focus'].forEach(ev => input.addEventListener(ev, highlightCaretBlock));
+
+	// Click a rendered block to jump the editor caret to its source line.
+	outputRendered.addEventListener('click', (e) => {
+		// Leave native interactive controls (details/summary toggles,
+		// checkboxes, copy buttons, ...) fully functional - no caret jump.
+		if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
+			return;
+		}
+		// Only links need their default cancelled, so they don't navigate
+		// away from the playground; the click still jumps the caret.
+		if (e.target.closest('a')) {
+			e.preventDefault();
+		}
+		const el = e.target.closest('[data-source-line]');
+		if (!el) {
+			return;
+		}
+		const line = parseInt(el.getAttribute('data-source-line'), 10);
+		const lines = input.value.split('\n');
+		if (isNaN(line) || line > lines.length) {
+			return;
+		}
+		const pos = lines.slice(0, line - 1).join('\n').length + (line > 1 ? 1 : 0);
+		input.focus();
+		input.setSelectionRange(pos, pos);
+		const offsets = lineOffsets();
+		isSyncingScroll = true;
+		input.scrollTop = clampScroll(input, (offsets[line - 1] || 0) - input.clientHeight / 3);
+		requestAnimationFrame(() => {
+			isSyncingScroll = false;
+		});
+		highlightCaretBlock();
+	});
+
 	outputSource.addEventListener('scroll', () => syncScroll(outputSource));
 
 	// Toolbar functionality

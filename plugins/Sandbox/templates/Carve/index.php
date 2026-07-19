@@ -316,6 +316,17 @@ CARVE;
 		<textarea id="carve-input" class="form-control font-monospace" rows="20" placeholder="Enter Carve markup..."><?= h($defaultCarve) ?></textarea>
 	</div>
 	<div class="col-md-6">
+<style>
+/* Cursor-follow highlight + click-to-jump affordance (scroll-sync anchors) */
+#output-rendered [data-source-line] {
+	cursor: pointer;
+}
+#output-rendered .pos-active {
+	outline: 2px solid rgba(13, 110, 253, 0.35);
+	background: rgba(13, 110, 253, 0.08);
+	border-radius: 2px;
+}
+</style>
 		<div id="output-rendered" class="carve-rendered border rounded p-3 bg-white" style="min-height: 100%; max-height: 480px; overflow-y: auto;"></div>
 		<pre id="output-source" class="border rounded p-3 bg-light d-none" style="min-height: 100%; max-height: 480px; overflow-y: auto; margin: 0;"><code></code></pre>
 	</div>
@@ -488,6 +499,7 @@ This div is never closed.</code></pre>
 
 	let debounceTimer;
 	let currentRequest;
+	let lineOffsetsCache = null;
 
 	function compress(str) {
 		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode('0x' + p1)));
@@ -569,6 +581,9 @@ This div is never closed.</code></pre>
 	}
 
 	function convert() {
+		// Text may have been set programmatically (example load, share
+		// restore) without an 'input' event; drop the line-offset cache.
+		lineOffsetsCache = null;
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(doConvert, 150);
 	}
@@ -645,7 +660,9 @@ This div is never closed.</code></pre>
 			if (window.spoilerWire) {
 				window.spoilerWire(outputRendered);
 			}
-			outputSource.querySelector('code').textContent = data.html || '';
+			// The scroll-sync anchors are an internal aid; keep the displayed
+		// HTML source clean of them.
+		outputSource.querySelector('code').textContent = (data.html || '').replace(/ data-source-line="\d+"/g, '');
 
 			if (data.ms !== null && data.ms !== undefined) {
 				renderTime.textContent = '⚡ ' + data.ms + ' ms · ' + (data.bytes || 0) + ' B';
@@ -741,28 +758,248 @@ This div is never closed.</code></pre>
 	viewSource.addEventListener('change', updateView);
 	btnShare.addEventListener('click', share);
 
-	// Proportional scroll sync between the editor and the visible output pane.
+	// Scroll sync between the editor and the visible output pane.
+	//
+	// The rendered pane carries `data-source-line` anchors (1-based source
+	// lines, stamped by the converter's sourceLines option). Editor <->
+	// rendered sync maps the viewport top through those anchors and
+	// interpolates between them, so blocks line up exactly instead of
+	// drifting like pure percentage sync. The HTML source pane has no
+	// anchors and keeps proportional sync as fallback (as does the rendered
+	// pane when no anchors are present, e.g. on an error).
+	//
 	// A guard flag stops the programmatic scroll from echoing back into a
 	// feedback loop.
 	let isSyncingScroll = false;
 	function activeOutput() {
 		return outputSource.classList.contains('d-none') ? outputRendered : outputSource;
 	}
-	function syncScroll(from, to) {
+
+	// Visual y offset of each source line start inside the (soft-wrapping)
+	// textarea, measured via a hidden mirror element. offsets[i] = top of
+	// 0-based line i; one sentinel entry past the end. Cached until the text
+	// or layout changes (`lineOffsetsCache`, declared with the other state).
+	function lineOffsets() {
+		if (lineOffsetsCache) {
+			return lineOffsetsCache;
+		}
+		const cs = getComputedStyle(input);
+		const mirror = document.createElement('div');
+		mirror.style.position = 'absolute';
+		mirror.style.visibility = 'hidden';
+		mirror.style.left = '-9999px';
+		mirror.style.top = '0';
+		mirror.style.boxSizing = 'border-box';
+		mirror.style.width = input.clientWidth + 'px';
+		mirror.style.whiteSpace = 'pre-wrap';
+		mirror.style.overflowWrap = 'break-word';
+		for (const prop of ['fontFamily', 'fontSize', 'fontWeight', 'lineHeight', 'letterSpacing', 'tabSize', 'paddingLeft', 'paddingRight']) {
+			mirror.style[prop] = cs[prop];
+		}
+		const lines = input.value.split('\n');
+		for (const line of lines) {
+			const div = document.createElement('div');
+			div.textContent = line !== '' ? line : ' ';
+			mirror.appendChild(div);
+		}
+		document.body.appendChild(mirror);
+		const paddingTop = parseFloat(cs.paddingTop) || 0;
+		const offsets = Array.from(mirror.children, el => el.offsetTop + paddingTop);
+		offsets.push(mirror.offsetHeight + paddingTop);
+		document.body.removeChild(mirror);
+		lineOffsetsCache = offsets;
+		return offsets;
+	}
+	input.addEventListener('input', () => {
+		lineOffsetsCache = null;
+	});
+	window.addEventListener('resize', () => {
+		lineOffsetsCache = null;
+	});
+
+	// Monotonic (line, top) anchor points in the rendered pane, in scroll
+	// coordinates, with a sentinel point for the end of the document.
+	function anchorPoints() {
+		const paneTop = outputRendered.getBoundingClientRect().top;
+		const points = [];
+		outputRendered.querySelectorAll('[data-source-line]').forEach(el => {
+			const line = parseInt(el.getAttribute('data-source-line'), 10);
+			if (isNaN(line)) {
+				return;
+			}
+			const top = el.getBoundingClientRect().top - paneTop + outputRendered.scrollTop;
+			const last = points[points.length - 1];
+			if (!last || (line > last.line && top >= last.top)) {
+				points.push({line: line, top: top});
+			}
+		});
+		if (!points.length) {
+			return null;
+		}
+		if (points[0].line > 1) {
+			points.unshift({line: 1, top: 0});
+		}
+		const totalLines = input.value.split('\n').length;
+		points.push({
+			line: totalLines + 1,
+			top: Math.max(outputRendered.scrollHeight, points[points.length - 1].top),
+		});
+		return points;
+	}
+
+	// Fractional 1-based source line at the top of the editor viewport.
+	function editorTopLine() {
+		const offsets = lineOffsets();
+		const y = input.scrollTop;
+		let lo = 0;
+		let hi = offsets.length - 2;
+		while (lo < hi) {
+			const mid = (lo + hi + 1) >> 1;
+			if (offsets[mid] <= y) {
+				lo = mid;
+			} else {
+				hi = mid - 1;
+			}
+		}
+		const span = offsets[lo + 1] - offsets[lo];
+		return lo + 1 + (span > 0 ? Math.max(0, y - offsets[lo]) / span : 0);
+	}
+
+	function clampScroll(el, top) {
+		return Math.max(0, Math.min(top, el.scrollHeight - el.clientHeight));
+	}
+
+	function syncProportional(from, to) {
+		const range = from.scrollHeight - from.clientHeight;
+		const ratio = range > 0 ? from.scrollTop / range : 0;
+		to.scrollTop = ratio * (to.scrollHeight - to.clientHeight);
+	}
+
+	function syncEditorToRendered() {
+		const points = anchorPoints();
+		if (!points) {
+			syncProportional(input, outputRendered);
+
+			return;
+		}
+		const line = editorTopLine();
+		let i = 0;
+		while (i < points.length - 2 && points[i + 1].line <= line) {
+			i++;
+		}
+		const a = points[i];
+		const b = points[i + 1];
+		const frac = b.line > a.line ? Math.max(0, Math.min(1, (line - a.line) / (b.line - a.line))) : 0;
+		outputRendered.scrollTop = clampScroll(outputRendered, a.top + frac * (b.top - a.top));
+	}
+
+	function syncRenderedToEditor() {
+		const points = anchorPoints();
+		if (!points) {
+			syncProportional(outputRendered, input);
+
+			return;
+		}
+		const y = outputRendered.scrollTop;
+		let i = 0;
+		while (i < points.length - 2 && points[i + 1].top <= y) {
+			i++;
+		}
+		const a = points[i];
+		const b = points[i + 1];
+		const frac = b.top > a.top ? Math.max(0, Math.min(1, (y - a.top) / (b.top - a.top))) : 0;
+		const line = a.line + frac * (b.line - a.line);
+		const offsets = lineOffsets();
+		const idx = Math.max(0, Math.min(offsets.length - 2, Math.floor(line - 1)));
+		const lineFrac = Math.max(0, Math.min(1, line - 1 - idx));
+		input.scrollTop = clampScroll(input, offsets[idx] + lineFrac * (offsets[idx + 1] - offsets[idx]));
+	}
+
+	function syncScroll(from) {
 		if (isSyncingScroll) {
 			return;
 		}
 		isSyncingScroll = true;
-		const range = from.scrollHeight - from.clientHeight;
-		const ratio = range > 0 ? from.scrollTop / range : 0;
-		to.scrollTop = ratio * (to.scrollHeight - to.clientHeight);
+		if (from === input) {
+			const target = activeOutput();
+			if (target === outputRendered) {
+				syncEditorToRendered();
+			} else {
+				syncProportional(input, outputSource);
+			}
+		} else if (from === outputRendered) {
+			syncRenderedToEditor();
+		} else {
+			syncProportional(outputSource, input);
+		}
 		requestAnimationFrame(() => {
 			isSyncingScroll = false;
 		});
 	}
-	input.addEventListener('scroll', () => syncScroll(input, activeOutput()));
-	outputRendered.addEventListener('scroll', () => syncScroll(outputRendered, input));
-	outputSource.addEventListener('scroll', () => syncScroll(outputSource, input));
+	input.addEventListener('scroll', () => syncScroll(input));
+	outputRendered.addEventListener('scroll', () => syncScroll(outputRendered));
+
+	// Cursor-follow: outline the rendered block whose source range contains
+	// the caret (deepest anchor starting at or before the caret line).
+	function caretLine() {
+		return input.value.slice(0, input.selectionStart).split('\n').length;
+	}
+	function highlightCaretBlock() {
+		const line = caretLine();
+		// Pick by LARGEST anchor line at or before the caret, not by DOM
+		// order: the footnotes section renders at the bottom with
+		// mid-document source lines and would otherwise win for every
+		// caret position past the footnote definition.
+		let target = null;
+		let bestLine = -1;
+		outputRendered.querySelectorAll('[data-source-line]').forEach(el => {
+			const l = parseInt(el.getAttribute('data-source-line'), 10);
+			if (!isNaN(l) && l <= line && l >= bestLine) {
+				bestLine = l;
+				target = el;
+			}
+		});
+		outputRendered.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
+		if (target) {
+			target.classList.add('pos-active');
+		}
+	}
+	['keyup', 'click', 'focus'].forEach(ev => input.addEventListener(ev, highlightCaretBlock));
+
+	// Click a rendered block to jump the editor caret to its source line.
+	outputRendered.addEventListener('click', (e) => {
+		// Leave native interactive controls (details/summary toggles,
+		// checkboxes, copy buttons, ...) fully functional - no caret jump.
+		if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
+			return;
+		}
+		// Only links need their default cancelled, so they don't navigate
+		// away from the playground; the click still jumps the caret.
+		if (e.target.closest('a')) {
+			e.preventDefault();
+		}
+		const el = e.target.closest('[data-source-line]');
+		if (!el) {
+			return;
+		}
+		const line = parseInt(el.getAttribute('data-source-line'), 10);
+		const lines = input.value.split('\n');
+		if (isNaN(line) || line > lines.length) {
+			return;
+		}
+		const pos = lines.slice(0, line - 1).join('\n').length + (line > 1 ? 1 : 0);
+		input.focus();
+		input.setSelectionRange(pos, pos);
+		const offsets = lineOffsets();
+		isSyncingScroll = true;
+		input.scrollTop = clampScroll(input, (offsets[line - 1] || 0) - input.clientHeight / 3);
+		requestAnimationFrame(() => {
+			isSyncingScroll = false;
+		});
+		highlightCaretBlock();
+	});
+
+	outputSource.addEventListener('scroll', () => syncScroll(outputSource));
 
 	// Toolbar functionality
 	document.getElementById('carve-toolbar').addEventListener('click', function(e) {

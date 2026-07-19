@@ -337,6 +337,17 @@ DJOT,
 - {.blue} A space before the brace: this stays plain item content.
 DJOT,
 	],
+	'Boolean Attributes' => [
+		'description' => 'A bare word in a `{...}` block (no `#`, `.` or `=`) becomes a value-less boolean attribute. Here `download` rides on a link (inline, trailing) and `reversed` on an ordered list (block, preceding line); both flow straight onto the rendered element.',
+		'code' => <<<'DJOT'
+[Download the spec](/files/spec.pdf){download .btn}
+
+{reversed}
+1. Third place
+2. Second place
+3. First place
+DJOT,
+	],
 ];
 
 // Encode djot for URL sharing (matches the JS compress function).
