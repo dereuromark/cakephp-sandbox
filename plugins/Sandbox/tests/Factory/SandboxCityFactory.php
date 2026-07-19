@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Test\Factory;
 
+use App\Test\Factory\CountryFactory;
 use CakephpFixtureFactories\Factory\BaseFactory;
 use CakephpFixtureFactories\Generator\GeneratorInterface;
 
@@ -29,10 +30,19 @@ class SandboxCityFactory extends BaseFactory {
 		return [
 			'name' => $generator->city(),
 			'alias' => $generator->word(),
-			'country_id' => 1,
 			'lat' => $generator->randomFloat(6, -90, 90),
 			'lng' => $generator->randomFloat(6, -180, 180),
 		];
+	}
+
+	/**
+	 * Compose the parent via the association instead of a dangling FK id in
+	 * definition() (strict-definition rule).
+	 *
+	 * @return static
+	 */
+	protected function configure(): static {
+		return $this->with('Countries', CountryFactory::new());
 	}
 
 }

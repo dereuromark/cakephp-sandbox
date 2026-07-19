@@ -63,10 +63,21 @@ class UserFactory extends BaseFactory {
 			'username' => $generator->unique()->userName(),
 			'email' => $generator->unique()->safeEmail(),
 			'password' => static::$defaultPasswordHash ??= (new DefaultPasswordHasher())->hash('123'),
-			'role_id' => static::ROLE_USER,
 			'active' => true,
 			'logins' => 0,
 		];
+	}
+
+	/**
+	 * The default role rides as a configure()-state, not in definition():
+	 * role ids point at the seeded static roles rows, and the strict
+	 * definition detector flags FK columns in definition() output. A state
+	 * keeps asAdmin()/asMod()/call-site overrides working unchanged.
+	 *
+	 * @return static
+	 */
+	protected function configure(): static {
+		return $this->state(['role_id' => static::ROLE_USER]);
 	}
 
 	/**

@@ -27,11 +27,20 @@ class SandboxRatingFactory extends BaseFactory {
 	 */
 	public function definition(GeneratorInterface $generator): array {
 		return [
-			'user_id' => 1,
 			'foreign_key' => 1,
 			'model' => 'Posts',
 			'value' => $generator->numberBetween(1, 5),
 		];
+	}
+
+	/**
+	 * Compose the parent via the association instead of a dangling FK id in
+	 * definition() (strict-definition rule).
+	 *
+	 * @return static
+	 */
+	protected function configure(): static {
+		return $this->with('Users');
 	}
 
 }
