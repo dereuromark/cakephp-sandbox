@@ -278,7 +278,7 @@ $this->end();
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break",
 		"carve-grammars/serializer.js": "https://esm.sh/gh/markup-carve/carve-grammars@13c832d/tiptap/serializer.js",
-		"carve-js": "https://esm.sh/gh/markup-carve/carve-js@689b8f0/src/index.ts"
+		"carve-js": "https://esm.sh/gh/markup-carve/carve-js@672a496/src/index.ts"
 	}
 }
 </script>
