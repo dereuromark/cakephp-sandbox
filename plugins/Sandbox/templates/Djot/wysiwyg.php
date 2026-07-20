@@ -337,7 +337,8 @@ $this->append('css');
 	border-radius: 2px;
 }
 /* Cursor-follow highlight in the rendered preview + click affordance */
-.output-content.rendered-mode [data-startpos] {
+.output-content.rendered-mode [data-startpos],
+.output-content.rendered-mode [data-source-line] {
 	cursor: pointer;
 }
 .output-content.rendered-mode .pos-active {
@@ -361,10 +362,14 @@ $this->end();
 	with <a href="https://djot.net" target="_blank">Djot</a> output.
 	Uses the <code>DjotKit</code> module from
 	<a href="https://github.com/php-collective/djot-grammars" target="_blank">djot-grammars</a>.
-	Source mapping (via djot.js <code>sourcePositions</code>): the <em>Djot Output</em> tab
-	highlights the source lines of the block your cursor is in; the <em>Rendered Preview</em> tab
-	follows the cursor too, jumps back to the editor on click, and shows each element's exact
-	<code>line:col:offset</code> range on hover (inline elements included).
+	The <em>Djot Output</em> tab highlights the source lines of the block your cursor is in; the
+	<em>Rendered Preview</em> tab follows the cursor too and jumps back to the editor on click.
+	The preview renderer is switchable: <strong>djot-php</strong> (default) renders on the server
+	with <code>data-source-line</code> anchors on nested blocks as well, so the cursor resolves to
+	the exact paragraph inside a quote or list item; <strong>djot.js</strong> renders instantly in
+	the browser and shows each element's exact <code>line:col:offset</code> range on hover (inline
+	elements included), but syncs at top level only - djot.js end positions of lazy-closing
+	containers overshoot into the next block.
 </p>
 
 <div class="alert alert-info py-2">
@@ -485,13 +490,20 @@ $this->end();
 				<button class="nav-link" data-tab="json">Document JSON</button>
 			</li>
 		</ul>
-		<div>
+		<div class="d-flex align-items-center gap-2">
+			<select class="form-select form-select-sm" id="renderEngine" style="width: auto;" title="Preview renderer">
+				<option value="php" selected>djot-php (server)</option>
+				<option value="js">djot.js (browser)</option>
+			</select>
 			<button type="button" class="btn btn-sm btn-outline-secondary" id="copy-btn">
 				<i class="bi bi-clipboard"></i> Copy
 			</button>
 		</div>
 	</div>
-	<div class="output-content" id="output"></div>
+	<div class="output-content" id="output-djot"></div>
+	<div class="output-content rendered-mode d-none" id="output-rendered"></div>
+	<div class="output-content d-none" id="output-html"></div>
+	<div class="output-content d-none" id="output-json"></div>
 </div>
 
 <div class="modal fade" id="imageModal" tabindex="-1">
@@ -735,8 +747,16 @@ echo "Hello, Djot!";</code></pre>
 	<p>Edit the content above and see the Djot output below!</p>
 `;
 
+const convertUrl = <?= json_encode($this->Url->build(['action' => 'convert'])) ?>;
+
 let currentTab = 'djot';
 let editor;
+let convertTimer;
+let lastResult = { djot: '', html: '' };
+// Preview renderer: 'php' renders on the server (djot-php, sanitized, nested
+// `data-source-line` anchors); 'js' renders in the browser with djot.js
+// (instant, inline-level `data-startpos` tooltips, top-level sync only).
+let renderEngine = 'php';
 
 editor = new Editor({
 	element: document.getElementById('tiptap-editor'),
@@ -747,7 +767,7 @@ editor = new Editor({
 	content: initialContent,
 	onUpdate: () => {
 		invalidatePositions();
-		updateOutput();
+		scheduleConvert();
 		updateToolbarState();
 	},
 	onSelectionUpdate: () => {
@@ -818,40 +838,213 @@ function escapeHtml(text) {
 	return div.innerHTML;
 }
 
-function updateOutput() {
-	const outputEl = document.getElementById('output');
-	const doc = editor.getJSON();
-	outputEl.classList.toggle('rendered-mode', currentTab === 'rendered');
+// --- Nested cursor sync via server-side data-source-line anchors -----------
+//
+// Used in `php` render mode. Top-level ProseMirror nodes correspond 1:1 by
+// index to the preview's top-level block elements (sections are flattened);
+// deeper levels are matched by descending the ProseMirror ancestor path
+// against the preview's block children, so a cursor inside a quoted list
+// item resolves to that exact element rather than its top-level container.
 
-	if (currentTab === 'djot') {
-		// One span per line so cursor-follow can highlight a line range.
-		const text = serializeToDjot(doc);
-		outputEl.innerHTML = text.split('\n')
-			.map((line, i) => `<span class="src-line" data-line="${i + 1}">${escapeHtml(line)}\n</span>`)
-			.join('');
-	} else if (currentTab === 'rendered') {
+// Top-level preview blocks in document order, sections flattened (headings
+// get wrapped in <section> by the renderer; the PM document is flat).
+function flatBlocks() {
+	const renderedEl = document.getElementById('output-rendered');
+	const out = [];
+	const walk = (container) => {
+		for (const el of container.children) {
+			// The footnotes section renders at the bottom with mid-document
+			// source lines and has no ProseMirror counterpart - skip it so
+			// the index mapping stays 1:1 with the editor document.
+			if (el.tagName === 'SECTION' && el.getAttribute('role') === 'doc-endnotes') {
+				continue;
+			}
+			if (el.tagName === 'SECTION') {
+				walk(el);
+			} else {
+				out.push(el);
+			}
+		}
+	};
+	walk(renderedEl);
+
+	return out;
+}
+
+// Block-level element children of a preview node (skips inline markup and
+// non-content wrappers like task-list checkboxes/labels).
+const BLOCK_TAGS = new Set(['P', 'UL', 'OL', 'LI', 'DL', 'DT', 'DD', 'BLOCKQUOTE', 'PRE', 'DIV', 'TABLE', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'FIGURE', 'ASIDE', 'HR', 'DETAILS']);
+
+function blockChildren(el) {
+	return [...el.children].filter(child => BLOCK_TAGS.has(child.tagName));
+}
+
+// A tight list item renders its lead paragraph as bare inline content inside
+// the <li>; its block-element children then correspond to PM child indexes
+// shifted by one (PM index 0 is the omitted lead paragraph).
+function hasBareLeadText(el) {
+	if (el.tagName !== 'LI') {
+		return false;
+	}
+	for (const node of el.childNodes) {
+		if (node.nodeType === Node.TEXT_NODE) {
+			if (node.textContent.trim() !== '') {
+				return true;
+			}
+			continue;
+		}
+		if (node.nodeType !== Node.ELEMENT_NODE) {
+			continue;
+		}
+		if (BLOCK_TAGS.has(node.tagName)) {
+			return false;
+		}
+		// Task-list checkbox chrome does not count as lead text.
+		if (node.tagName === 'INPUT' || node.tagName === 'LABEL') {
+			continue;
+		}
+
+		return true;
+	}
+
+	return false;
+}
+
+// Deepest preview element for the current editor selection. Structure
+// mismatches (e.g. task items whose text is not wrapped) gracefully stop at
+// the last matching level. Returns an element carrying data-source-line.
+function selectionBlockEl() {
+	const $anchor = editor.state.selection.$anchor;
+	const blocks = flatBlocks();
+	let el = blocks[$anchor.index(0)];
+	if (!el) {
+		return null;
+	}
+	for (let depth = 1; depth <= $anchor.depth; depth++) {
+		const kids = blockChildren(el);
+		let idx = $anchor.index(depth);
+		if (hasBareLeadText(el)) {
+			// Cursor in the omitted lead paragraph: the <li> itself is the
+			// deepest matching preview element.
+			if (idx === 0) {
+				break;
+			}
+			idx -= 1;
+		}
+		if (idx >= kids.length) {
+			break;
+		}
+		el = kids[idx];
+	}
+	while (el && !el.hasAttribute('data-source-line')) {
+		el = el.parentElement && el.parentElement.closest('[data-source-line]');
+	}
+
+	return el;
+}
+
+// Source line range [start, end] of an anchored preview element: from its own
+// anchor up to (excluding) the next anchor in document order with a later line.
+function elementLineRange(el) {
+	if (!el || !el.hasAttribute('data-source-line')) {
+		return null;
+	}
+	const start = parseInt(el.getAttribute('data-source-line'), 10);
+	if (isNaN(start)) {
+		return null;
+	}
+	let end = (lastResult.djot || '').split('\n').length;
+	const anchors = [...document.getElementById('output-rendered').querySelectorAll('[data-source-line]')];
+	for (let i = anchors.indexOf(el) + 1; i < anchors.length; i++) {
+		const line = parseInt(anchors[i].getAttribute('data-source-line'), 10);
+		if (!isNaN(line) && line > start) {
+			end = line - 1;
+			break;
+		}
+	}
+
+	return { start, end: Math.max(start, end), el };
+}
+
+// --- Preview rendering ----------------------------------------------------
+//
+// Two interchangeable renderers, switchable in the output header:
+//   php - the server `convert` endpoint (djot-php with its sourceLines
+//         option). The preview HTML carries `data-source-line` anchors on
+//         block elements INCLUDING NESTED ONES (blocks inside quotes, divs,
+//         list items, footnote and definition bodies, plus li/dt/dd), which
+//         is what makes nested cursor sync possible.
+//   js  - djot.js in the browser: instant, and its `data-startpos` anchors
+//         cover inline elements too (hover any element for its exact
+//         line:col:offset). Sync stays TOP-LEVEL only here, because djot.js
+//         end positions of lazy-closing containers overshoot into the next
+//         block (djot.js issue 141), so nested containment is unreliable.
+let requestSeq = 0;
+
+function scheduleConvert() {
+	clearTimeout(convertTimer);
+	// Client render is instant; only the server round-trip needs a real debounce.
+	convertTimer = setTimeout(convert, renderEngine === 'js' ? 50 : 300);
+}
+
+async function convert() {
+	const doc = editor.getJSON();
+	const djotText = serializeToDjot(doc);
+	// Guard against out-of-order responses: only the latest request may update output.
+	const seq = ++requestSeq;
+	if (renderEngine === 'js') {
 		try {
 			const { ast } = getPositions();
-			outputEl.innerHTML = ast ? djot.renderHTML(ast) : '';
-			// Tooltip with the exact source range on every positioned element,
-			// inline elements included - hover to inspect.
-			outputEl.querySelectorAll('[data-startpos]').forEach(el => {
-				el.title = 'source ' + el.getAttribute('data-startpos') + ' → ' + el.getAttribute('data-endpos');
-			});
+			lastResult = { djot: djotText, html: ast ? djot.renderHTML(ast) : '' };
 		} catch (e) {
-			outputEl.textContent = 'Error: ' + e.message;
+			lastResult = { djot: djotText, html: '<div class="alert alert-danger">' + escapeHtml(e.message) + '</div>' };
 		}
-	} else if (currentTab === 'html') {
-		try {
-			const djotText = serializeToDjot(doc);
-			const parsed = djot.parse(djotText);
-			outputEl.textContent = djot.renderHTML(parsed);
-		} catch (e) {
-			outputEl.textContent = 'Error: ' + e.message;
-		}
-	} else if (currentTab === 'json') {
-		outputEl.textContent = JSON.stringify(doc, null, 2);
+		renderOutput();
+
+		return;
 	}
+	try {
+		const response = await fetch(convertUrl, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+			body: new URLSearchParams({ djot: djotText }),
+		});
+		const result = await response.json();
+		if (seq !== requestSeq) {
+			return;
+		}
+		lastResult = result.error
+			? { djot: djotText, html: '<div class="alert alert-danger">' + escapeHtml(result.error) + '</div>' }
+			: { djot: djotText, html: result.html || '' };
+	} catch (e) {
+		if (seq !== requestSeq) {
+			return;
+		}
+		lastResult = { djot: djotText, html: '<div class="alert alert-danger">Request failed: ' + escapeHtml(e.message) + '</div>' };
+	}
+	renderOutput();
+}
+
+function renderOutput() {
+	// One span per line so cursor-follow can highlight a line range.
+	document.getElementById('output-djot').innerHTML = (lastResult.djot || '').split('\n')
+		.map((line, i) => `<span class="src-line" data-line="${i + 1}">${escapeHtml(line)}\n</span>`)
+		.join('');
+	const renderedEl = document.getElementById('output-rendered');
+	renderedEl.innerHTML = lastResult.html || '<span class="text-muted">No output</span>';
+	if (renderEngine === 'js') {
+		// Tooltip with the exact source range on every positioned element,
+		// inline elements included - hover to inspect.
+		renderedEl.querySelectorAll('[data-startpos]').forEach(el => {
+			el.title = 'source ' + el.getAttribute('data-startpos') + ' → ' + el.getAttribute('data-endpos');
+		});
+	}
+	// Debug views: HTML as text (without the internal scroll-sync anchors)
+	// and the raw ProseMirror document.
+	document.getElementById('output-html').textContent = (lastResult.html || '')
+		.replace(/ data-source-line="\d+"/g, '')
+		.replace(/ data-(?:startpos|endpos)="[^"]*"/g, '');
+	document.getElementById('output-json').textContent = JSON.stringify(editor.getJSON(), null, 2);
 	scheduleCursorSync();
 }
 
@@ -897,63 +1090,126 @@ function scrollPaneTo(outputEl, el) {
 	outputEl.scrollTop = Math.max(0, offset - outputEl.clientHeight / 3);
 }
 
-function syncCursorHighlight() {
-	const outputEl = document.getElementById('output');
+// Current cursor target, per renderer: `php` resolves the deepest anchored
+// preview element (nested), `js` the top-level Djot AST block. Both yield a
+// source line range plus the preview element to highlight.
+function cursorTarget() {
+	if (renderEngine === 'php') {
+		return elementLineRange(selectionBlockEl());
+	}
 	const target = topLevelAstNode();
 	if (!target) {
+		return null;
+	}
+	const sp = target.node.pos.start;
+	const el = document.getElementById('output-rendered')
+		.querySelector(`[data-startpos="${sp.line}:${sp.col}:${sp.offset}"]`);
+
+	return { start: sp.line, end: target.endLine, el };
+}
+
+function syncCursorHighlight() {
+	const range = cursorTarget();
+	if (!range) {
 		return;
 	}
-	const node = target.node;
 	if (currentTab === 'djot') {
-		outputEl.querySelectorAll('.src-line-active').forEach(el => el.classList.remove('src-line-active'));
+		const sourceEl = document.getElementById('output-djot');
+		sourceEl.querySelectorAll('.src-line-active').forEach(el => el.classList.remove('src-line-active'));
 		let firstLine = null;
-		for (let line = node.pos.start.line; line <= target.endLine; line++) {
-			const el = outputEl.querySelector(`.src-line[data-line="${line}"]`);
-			if (!el || (line > node.pos.start.line && line === target.endLine && el.textContent.trim() === '')) {
+		for (let line = range.start; line <= range.end; line++) {
+			const el = sourceEl.querySelector(`.src-line[data-line="${line}"]`);
+			if (!el || (line > range.start && line === range.end && el.textContent.trim() === '')) {
 				continue;
 			}
 			el.classList.add('src-line-active');
 			firstLine = firstLine || el;
 		}
 		if (firstLine && editor.isFocused) {
-			scrollPaneTo(outputEl, firstLine);
+			scrollPaneTo(sourceEl, firstLine);
 		}
 	} else if (currentTab === 'rendered') {
-		outputEl.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
-		const sp = node.pos.start;
-		const el = outputEl.querySelector(`[data-startpos="${sp.line}:${sp.col}:${sp.offset}"]`);
-		if (el) {
-			el.classList.add('pos-active');
+		const renderedEl = document.getElementById('output-rendered');
+		renderedEl.querySelectorAll('.pos-active').forEach(el => el.classList.remove('pos-active'));
+		if (range.el) {
+			range.el.classList.add('pos-active');
 			if (editor.isFocused) {
-				scrollPaneTo(outputEl, el);
+				scrollPaneTo(renderedEl, range.el);
 			}
 		}
 	}
 }
 
-// Reverse sync: click a rendered element -> select that block in TipTap.
-document.getElementById('output').addEventListener('click', (e) => {
-	if (currentTab !== 'rendered') {
-		return;
+// Resolve a clicked preview element to a ProseMirror position.
+//   php - walk up to the top-level block recording the child-index path, so
+//         a nested block maps to the matching nested PM node.
+//   js  - top-level only, matched by start offsets (see the comment inside).
+function clickTargetPos(target) {
+	if (renderEngine === 'php') {
+		const anchorEl = target.closest('[data-source-line]');
+		if (!anchorEl) {
+			return null;
+		}
+		const blocks = flatBlocks();
+		const renderedEl = document.getElementById('output-rendered');
+		let top = anchorEl;
+		const path = [];
+		while (top && top.parentElement && !blocks.includes(top)) {
+			const parent = top.parentElement === renderedEl || top.parentElement.tagName === 'SECTION'
+				? null
+				: top.parentElement;
+			if (!parent) {
+				break;
+			}
+			const idx = blockChildren(parent).indexOf(top);
+			if (idx < 0) {
+				// Non-block wrapper in between - fall back to the block level.
+				path.length = 0;
+				top = top.closest('[data-source-line]');
+				break;
+			}
+			// Tight <li>: PM child 0 is the omitted lead paragraph, so DOM block
+			// children start at PM index 1.
+			path.unshift(hasBareLeadText(parent) ? idx + 1 : idx);
+			top = parent;
+		}
+		while (top && top !== renderedEl && !blocks.includes(top)) {
+			path.length = 0;
+			top = top.parentElement;
+		}
+		const index = blocks.indexOf(top);
+		if (index < 0 || index >= editor.state.doc.childCount) {
+			return null;
+		}
+		// Walk the PM document along the recorded path (bounds-guarded; a
+		// structure mismatch just stops at the deepest matching node).
+		let pmPos = 0;
+		for (let i = 0; i < index; i++) {
+			pmPos += editor.state.doc.child(i).nodeSize;
+		}
+		let node = editor.state.doc.child(index);
+		for (const idx of path) {
+			if (idx >= node.childCount) {
+				break;
+			}
+			let off = pmPos + 1;
+			for (let i = 0; i < idx; i++) {
+				off += node.child(i).nodeSize;
+			}
+			node = node.child(idx);
+			pmPos = off;
+		}
+
+		return { pmPos, node };
 	}
-	// Leave native interactive controls (details/summary toggles, checkboxes,
-	// copy buttons, ...) fully functional - no editor jump.
-	if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
-		return;
-	}
-	// Only links need their default cancelled, so the preview never
-	// navigates away; the click still selects the block in the editor.
-	if (e.target.closest('a')) {
-		e.preventDefault();
-	}
-	const el = e.target.closest('[data-startpos]');
+	const el = target.closest('[data-startpos]');
 	if (!el) {
-		return;
+		return null;
 	}
 	const offset = parseInt(el.getAttribute('data-startpos').split(':')[2], 10);
 	const { blocks } = getPositions();
 	if (!blocks.length || isNaN(offset)) {
-		return;
+		return null;
 	}
 	// Match by start offsets only: djot.js end positions of lazy-closing
 	// containers (lists, tables, dl) overshoot into the next block, so
@@ -968,19 +1224,39 @@ document.getElementById('output').addEventListener('click', (e) => {
 		}
 	}
 	if (index < 0 || index >= editor.state.doc.childCount) {
-		return;
+		return null;
 	}
 	let pmPos = 0;
 	for (let i = 0; i < index; i++) {
 		pmPos += editor.state.doc.child(i).nodeSize;
 	}
-	// Focus the first text position inside the block - focusing a block-only
+
+	return { pmPos, node: editor.state.doc.child(index) };
+}
+
+// Reverse sync: click a rendered element -> select that block in TipTap.
+document.getElementById('output-rendered').addEventListener('click', (e) => {
+	// Leave native interactive controls (details/summary toggles, checkboxes,
+	// copy buttons, ...) fully functional - no editor jump.
+	if (e.target.closest('summary, input, button, select, textarea, label, audio, video')) {
+		return;
+	}
+	// Only links need their default cancelled, so the preview never
+	// navigates away; the click still selects the block in the editor.
+	if (e.target.closest('a')) {
+		e.preventDefault();
+	}
+	const hit = clickTargetPos(e.target);
+	if (!hit) {
+		return;
+	}
+	const { pmPos, node } = hit;
+	// Focus the first text position inside the node - focusing a block-only
 	// position (table, definition list) triggers ProseMirror warnings.
-	const blockNode = editor.state.doc.child(index);
 	let focusPos = pmPos + 1;
-	if (!blockNode.isTextblock) {
+	if (!node.isTextblock) {
 		let found = false;
-		editor.state.doc.nodesBetween(pmPos, pmPos + blockNode.nodeSize, (n, pos) => {
+		editor.state.doc.nodesBetween(pmPos, pmPos + node.nodeSize, (n, pos) => {
 			if (!found && n.isTextblock) {
 				focusPos = pos + 1;
 				found = true;
@@ -1201,13 +1477,28 @@ document.querySelectorAll('.output-tabs button').forEach(btn => {
 		document.querySelectorAll('.output-tabs button').forEach(b => b.classList.remove('active'));
 		btn.classList.add('active');
 		currentTab = btn.dataset.tab;
-		updateOutput();
+		document.getElementById('output-djot').classList.toggle('d-none', currentTab !== 'djot');
+		document.getElementById('output-rendered').classList.toggle('d-none', currentTab !== 'rendered');
+		document.getElementById('output-html').classList.toggle('d-none', currentTab !== 'html');
+		document.getElementById('output-json').classList.toggle('d-none', currentTab !== 'json');
+		scheduleCursorSync();
 	});
+});
+
+// Renderer switch
+document.getElementById('renderEngine').addEventListener('change', (e) => {
+	renderEngine = e.target.value;
+	convert();
 });
 
 // Copy button
 document.getElementById('copy-btn').addEventListener('click', () => {
-	const text = document.getElementById('output').textContent;
+	const tabEl = { djot: 'output-djot', rendered: 'output-rendered', html: 'output-html', json: 'output-json' }[currentTab];
+	const text = currentTab === 'rendered'
+		? (lastResult.html || '')
+			.replace(/ data-source-line="\d+"/g, '')
+			.replace(/ data-(?:startpos|endpos)="[^"]*"/g, '')
+		: document.getElementById(tabEl).textContent;
 	navigator.clipboard.writeText(text).then(() => {
 		const btn = document.getElementById('copy-btn');
 		const originalHtml = btn.innerHTML;
@@ -1312,6 +1603,6 @@ function getVideoEmbed(url) {
 }
 
 // Initial render
-updateOutput();
+convert();
 updateToolbarState();
 </script>
