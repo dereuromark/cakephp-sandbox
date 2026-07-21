@@ -7,6 +7,19 @@
  */
 ?>
 
+<?php
+/**
+ * Nothing may precede the <nav>: the layout only wraps the view in a Bootstrap
+ * row when the content starts with it (templates/layout/default.php), and
+ * without that row the sidebar and content stack instead of sitting side by
+ * side. Page styles therefore live inside the content column below.
+ */
+?>
+<nav class="actions col-md-2 col-sm-3 col-12">
+	<?= $this->element('navigation/carve') ?>
+</nav>
+<div class="col-md-10 col-sm-9 col-12">
+
 <style>
 /* A chat client shows a heading a little larger, not page-title large. */
 .chat-preview h1, .chat-preview h2, .chat-preview h3,
@@ -16,14 +29,12 @@
 	margin: 0 0 .4rem;
 }
 .chat-preview p { margin: 0 0 .5rem; }
-.chat-preview > :last-child { margin-bottom: 0; }
 .chat-preview pre { margin: 0 0 .5rem; }
+.chat-preview > :last-child { margin-bottom: 0; }
+/* A range-based target sends one plain-text body, so its newlines are the
+   only structure there is. */
+.chat-preview .chat-plain { white-space: pre-wrap; overflow-wrap: anywhere; }
 </style>
-
-<nav class="actions col-md-2 col-sm-3 col-12">
-	<?= $this->element('navigation/carve') ?>
-</nav>
-<div class="col-md-10 col-sm-9 col-12">
 
 <h2>Carve &rarr; Chat Platforms</h2>
 <p>
@@ -164,7 +175,7 @@ echo $this->Form->end();
 		files differ by one key.
 	</p>
 
-	<h3>Why Signal emits no markup at all</h3>
+	<h3>Why Signal looks styled but sends plain text</h3>
 	<p>
 		Signal does not parse markup in message bodies. Its documentation states that Markdown
 		<q>is not supported at this time and is not planned</q> - formatting is applied by
@@ -173,10 +184,10 @@ echo $this->Form->end();
 	</p>
 	<p>
 		The message still <em>displays</em> as bold, though - the style just rides alongside
-		the text. So <code>signal</code> is a <strong>range-based</strong> flavor: the
-		<em>Sent</em> tab is plain text with no delimiters, and the <em>Ranges</em> tab lists
-		the offsets that carry the formatting. Its preview is styled like any other, because
-		that is what the reader sees.
+		the text. That is why its two tabs disagree, and both are correct: the
+		<em>Sent</em> tab is plain text with no delimiters, the <em>Ranges</em> tab lists the
+		offsets carrying the formatting, and the <em>Preview</em> is styled because that is
+		what the reader ends up seeing.
 	</p>
 	<p>
 		That splits every target into two families, which a flavor declares with
