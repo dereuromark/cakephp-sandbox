@@ -82,6 +82,7 @@
 		"php-collective/djot": "dev-master",
 		"markup-carve/carve-php": "dev-main as 0.1.2",
 		"markup-carve/carve-php-media-embed": "dev-main",
+		"markup-carve/carve-php-chat": "dev-main",
 		"ezyang/htmlpurifier": "^4.19",
 		"josbeir/cakephp-mercure": "^0.2.0",
 		"php-collective/toml": "dev-master",

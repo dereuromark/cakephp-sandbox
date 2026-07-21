@@ -57,6 +57,8 @@ use MarkupCarve\Carve\Extension\WikilinksExtension;
 use MarkupCarve\Carve\Profile;
 use MarkupCarve\Carve\Renderer\RenderMode;
 use MarkupCarve\Carve\Renderer\SoftBreakMode;
+use MarkupCarve\Chat\ChatRenderer;
+use MarkupCarve\Chat\FlavorRegistry;
 use MarkupCarve\MediaEmbed\MediaEmbedExtension;
 use Throwable;
 
@@ -322,6 +324,104 @@ class CarveController extends SandboxAppController {
 		}
 
 		$this->set(compact('carve', 'output', 'error'));
+	}
+
+	/**
+	 * Chat-platform export showcase: one Carve source rendered side by side into
+	 * WhatsApp, Slack, Telegram and Discord markup, with the degradations each
+	 * target forces listed underneath.
+	 *
+	 * Pandoc has no writer for any chat platform, so this is not reachable through
+	 * the pandoc bridge - each platform is a JSON flavor table in
+	 * `markup-carve/carve-php-chat`.
+	 *
+	 * @return void
+	 */
+	public function chatExport(): void {
+		$defaultCarve = <<<'CARVE'
+		# Release notes
+
+		Shipped /today/: *bold*, ~struck~ and `inline code`.
+
+		See the [changelog](https://example.com/changelog) for details.
+
+		- First item
+		- Second item
+
+		> A quoted line.
+
+		| Feature | State |
+		|---------|-------|
+		| Export  | done  |
+		| Split   | open  |
+
+		A claim needing a source[^1].
+
+		[^1]: The footnote body.
+		CARVE;
+		$defaultCarve = preg_replace('/^\t\t/m', '', $defaultCarve) ?? $defaultCarve;
+
+		$carve = (string)($this->request->getData('carve') ?? '');
+		if (!$this->request->is('post')) {
+			$carve = $defaultCarve;
+		}
+
+		$registry = new FlavorRegistry();
+		$converter = CarveConverter::create();
+
+		$results = [];
+		$error = null;
+
+		try {
+			$document = $converter->parse($carve);
+			foreach ($registry->ids() as $id) {
+				$flavor = $registry->get($id);
+				$result = (new ChatRenderer($flavor))->renderResult($document);
+				$results[$id] = [
+					'label' => $flavor->label(),
+					'limit' => $flavor->messageLimit(),
+					'length' => strlen($result->text),
+					'text' => $result->text,
+					'losses' => $result->losses,
+				];
+			}
+		} catch (Throwable $e) {
+			$error = $e->getMessage();
+		}
+
+		$this->set(compact('carve', 'results', 'error'));
+	}
+
+	/**
+	 * Pandoc bridge showcase: Carve source converted to Pandoc's JSON AST, which
+	 * unlocks every pandoc writer (LaTeX, Typst, DOCX, RST, EPUB, JATS, ...).
+	 *
+	 * Runs entirely in the browser. `pandoc-carve` is a TypeScript package, and
+	 * emitting the JSON AST needs no pandoc binary at all - only converting that
+	 * JSON onwards to a real format does. So the demo stays server-dependency
+	 * free, matching the client-side path the WYSIWYG demo already uses.
+	 *
+	 * @return void
+	 */
+	public function pandoc(): void {
+		$defaultCarve = <<<'CARVE'
+		# Bridge demo
+
+		Carve maps /node by node/, so *emphasis*, tables with spans,
+		footnotes and math all arrive intact[^why].
+
+		| Format | Reachable |
+		|--------|-----------|
+		| LaTeX  | yes       |
+		| DOCX   | yes       |
+		| Slack  | no        |
+
+		[^why]: Target-routed raw spans fire too: `\alpha`{=latex} becomes a
+		Pandoc RawInline that only the LaTeX writer emits.
+		CARVE;
+		$defaultCarve = preg_replace('/^\t\t/m', '', $defaultCarve) ?? $defaultCarve;
+
+		$this->set('carve', $defaultCarve);
 	}
 
 	/**

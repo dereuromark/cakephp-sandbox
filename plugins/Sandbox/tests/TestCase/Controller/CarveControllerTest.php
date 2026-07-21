@@ -28,6 +28,46 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testPandoc(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'pandoc']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Carve &rarr; Pandoc');
+		$this->assertResponseContains('pandoc-carve');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testChatExport(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'chatExport']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Carve &rarr; Chat Platforms');
+		$this->assertResponseContains('discord-bot');
+	}
+
+	/**
+	 * A link has no representation in WhatsApp markup, so it degrades to
+	 * `text (url)` and the degradation is reported rather than hidden.
+	 *
+	 * @return void
+	 */
+	public function testChatExportReportsDegradations(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'chatExport'], [
+			'carve' => 'See [docs](https://example.com).',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('docs (https://example.com)');
+		$this->assertResponseContains('degradation');
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvert(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => 'Hello *world*!',

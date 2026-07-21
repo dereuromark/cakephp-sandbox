@@ -18,6 +18,8 @@ $action = $this->request->getParam('action');
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Code Blocks', ['action' => 'codeBlocks'], ['class' => 'nav-link' . ($action === 'codeBlocks' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Media Embeds', ['action' => 'mediaEmbed'], ['class' => 'nav-link' . ($action === 'mediaEmbed' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Chat Export', ['action' => 'chatExport'], ['class' => 'nav-link' . ($action === 'chatExport' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Pandoc Bridge', ['action' => 'pandoc'], ['class' => 'nav-link' . ($action === 'pandoc' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Graceful Degradation', ['action' => 'demo'], ['class' => 'nav-link' . ($action === 'demo' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
