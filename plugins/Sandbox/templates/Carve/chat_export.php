@@ -112,7 +112,7 @@ echo $this->Form->end();
 										<code><?= h($result['offsetUnit']) ?></code> units.
 									</p>
 									<table class="table table-sm small mb-0">
-										<thead><tr><th>Style</th><th>Start</th><th>Length</th><th>Selects</th></tr></thead>
+										<thead><tr><th>Style</th><th>Start</th><th>Length</th><th>Selects</th><th>Payload</th></tr></thead>
 										<tbody>
 											<?php foreach ($result['ranges'] as $index => $range) { ?>
 												<tr>
@@ -120,6 +120,11 @@ echo $this->Form->end();
 													<td><?= $range->start ?></td>
 													<td><?= $range->length ?></td>
 													<td><code><?= h($result['selections'][$index]) ?></code></td>
+													<td>
+														<?php foreach ($range->data as $key => $value) { ?>
+															<code><?= h($key) ?>=<?= h($value) ?></code>
+														<?php } ?>
+													</td>
 												</tr>
 											<?php } ?>
 										</tbody>
