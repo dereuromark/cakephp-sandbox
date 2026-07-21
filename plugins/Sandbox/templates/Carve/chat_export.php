@@ -18,7 +18,7 @@
 	package renders a Carve document into the markup a chat client actually accepts.
 	WhatsApp, Slack, Telegram and Discord each take a small, mutually incompatible subset
 	of Markdown-like syntax, with different link forms, different escaping rules and
-	different length caps.
+	different length caps. Signal takes none at all - see below.
 </p>
 <p class="text-muted small">
 	Pandoc has no writer for any chat platform, so this is not reachable through the
@@ -103,6 +103,27 @@ echo $this->Form->end();
 		innocent-looking text. So <code>discord</code> degrades links to <code>text (url)</code>
 		and <code>discord-bot</code> extends it with masked links enabled - the two flavor
 		files differ by one key.
+	</p>
+
+	<h3>Why Signal emits no markup at all</h3>
+	<p>
+		Signal does not parse markup in message bodies. Its documentation states that Markdown
+		<q>is not supported at this time and is not planned</q> - formatting is applied by
+		selecting text in the UI, and travels as out-of-band style metadata rather than as
+		delimiters. A typed <code>*bold*</code> stays literally <code>*bold*</code>.
+	</p>
+	<p>
+		So the <code>signal</code> flavor emits clean plain text and reports the most
+		degradations of any target. That list is the point: it names exactly which spans you
+		need to re-apply by hand after pasting.
+	</p>
+	<p class="text-muted small">
+		Signal also marks the edge of this model. Chat targets split into two families:
+		<strong>delimiter-based</strong> (WhatsApp, Slack, Telegram <code>parse_mode</code>,
+		Discord), where formatting lives inside the string, and <strong>range-based</strong>
+		(Signal, Telegram's <code>entities</code> API, Slack Block Kit), where it is plain text
+		plus style offsets. This package handles the first family; the second would need an
+		<code>"output": "markup" | "ranges"</code> mode in the flavor schema.
 	</p>
 
 	<h3>Adding a platform</h3>
