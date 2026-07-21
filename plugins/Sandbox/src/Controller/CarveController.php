@@ -473,7 +473,7 @@ CARVE,
 			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc', 'toc_placement'],
 			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
 			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'code_callouts', 'list_table'],
-			'Client-rendered & Math' => ['math_block', 'mermaid', 'chart'],
+			'Client-rendered & Math' => ['math_block', 'mermaid', 'plantuml', 'wavedrom', 'vega_lite', 'chart'],
 			'Document & Attributes' => ['frontmatter', 'default_attributes'],
 		];
 	}
@@ -602,6 +602,26 @@ CARVE,
 							break;
 						case 'mermaid':
 							$converter->addExtension(FencedRenderExtension::mermaid());
+
+							break;
+						case 'plantuml':
+							$converter->addExtension(FencedRenderExtension::plantuml());
+
+							break;
+						case 'wavedrom':
+							$converter->addExtension(FencedRenderExtension::wavedrom());
+
+							break;
+						case 'vega_lite':
+							// Text mode (not the json-mode vegaLite() preset) so the
+							// spec rides in <pre class="vega-lite"> as escaped text and
+							// survives HTML sanitizing; the json preset's inert
+							// <script type="application/json"> wrapper would be stripped.
+							$converter->addExtension(new FencedRenderExtension(
+								language: 'vega-lite',
+								contentMode: FencedRenderExtension::MODE_TEXT,
+								cssClass: 'vega-lite',
+							));
 
 							break;
 						case 'admonition':
@@ -1011,6 +1031,94 @@ CARVE,
 					'cssClass' => "'mermaid'",
 					'wrapInFigure' => 'false',
 					'figureClass' => "'mermaid-figure'",
+				],
+			],
+			'plantuml' => [
+				'name' => 'FencedRenderExtension::plantuml()',
+				'description' => 'Renders `plantuml` / `puml` fenced blocks as full UML and beyond - things Mermaid has no equivalent for, like GUI wireframes (Salt) and rich deployment/component diagrams. The block is emitted as <pre class="plantuml"> and drawn client-side via the Kroki service (kroki.io). Languages: plantuml, puml.',
+				'class' => FencedRenderExtension::class,
+				'example_carve' => <<<'CARVE'
+A GUI wireframe (Salt) - Mermaid cannot draw UI mockups:
+
+``` plantuml
+@startsalt
+{
+  Login
+  {+
+    Username | "         "
+    Password | "****     "
+    [ ] Remember me
+    [Cancel] | [  OK  ]
+  }
+}
+@endsalt
+```
+
+A deployment diagram with nested nodes:
+
+``` plantuml
+@startuml
+node "Web Server" {
+  [CakePHP App] as app
+  [Carve Renderer] as carve
+}
+database "MariaDB" as db
+app --> carve
+app --> db : SQL
+@enduml
+```
+CARVE,
+				'options' => [
+					'language' => "['plantuml', 'puml']",
+					'cssClass' => "'plantuml'",
+				],
+			],
+			'wavedrom' => [
+				'name' => 'FencedRenderExtension::wavedrom()',
+				'description' => 'Renders `wavedrom` fenced blocks as digital timing / waveform diagrams - a domain Mermaid does not cover at all. The JSON spec is emitted as <pre class="wavedrom"> and drawn client-side by WaveDrom.',
+				'class' => FencedRenderExtension::class,
+				'example_carve' => <<<'CARVE'
+``` wavedrom
+{ "signal": [
+  { "name": "clk",  "wave": "p.....|..." },
+  { "name": "data", "wave": "x.345x|=.x", "data": ["a", "b", "c", "d"] },
+  { "name": "req",  "wave": "0.1..0|1.0" }
+]}
+```
+CARVE,
+				'options' => [
+					'language' => "'wavedrom'",
+					'cssClass' => "'wavedrom'",
+				],
+			],
+			'vega_lite' => [
+				'name' => 'FencedRenderExtension (vega-lite)',
+				'description' => 'Renders `vega-lite` fenced blocks as statistical data visualizations (bar/line/area/scatter, aggregations, faceting) - real analytical charts beyond Mermaid\'s scope. Text mode keeps the JSON spec in <pre class="vega-lite"> so it survives HTML sanitizing; Vega-Embed draws it client-side.',
+				'class' => FencedRenderExtension::class,
+				'example_carve' => <<<'CARVE'
+``` vega-lite
+{
+  "description": "Monthly page views",
+  "data": { "values": [
+    {"month": "Jan", "views": 120},
+    {"month": "Feb", "views": 180},
+    {"month": "Mar", "views": 90},
+    {"month": "Apr", "views": 240},
+    {"month": "May", "views": 200}
+  ]},
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "month", "type": "nominal", "sort": null},
+    "y": {"field": "views", "type": "quantitative"},
+    "color": {"field": "views", "type": "quantitative"}
+  }
+}
+```
+CARVE,
+				'options' => [
+					'language' => "'vega-lite'",
+					'contentMode' => 'MODE_TEXT (survives sanitizing)',
+					'cssClass' => "'vega-lite'",
 				],
 			],
 			'admonition' => [

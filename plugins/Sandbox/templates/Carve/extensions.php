@@ -104,6 +104,137 @@ window.mermaidRender = async function(container) {
 		}
 	}
 };
+// PlantUML (FencedRenderExtension::plantuml()): <pre class="plantuml"> holds the
+// diagram source. Mermaid has no equivalent for Salt GUI mockups or full
+// deployment/component UML, so this renders via the Kroki service - deflate the
+// source, base64url it, and load the SVG. pako is imported lazily so the page
+// only pays for it when a PlantUML block is on screen.
+let pakoPromise = null;
+function loadPako() {
+	if (!pakoPromise) {
+		pakoPromise = import('https://cdn.jsdelivr.net/npm/pako@2.1.0/+esm');
+	}
+	return pakoPromise;
+}
+function krokiEncode(pako, source) {
+	const bytes = pako.deflate(new TextEncoder().encode(source), { level: 9 });
+	let bin = '';
+	for (const b of bytes) bin += String.fromCharCode(b);
+	return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_');
+}
+window.plantumlRender = async function(container) {
+	const blocks = container.querySelectorAll('pre.plantuml');
+	if (!blocks.length) return;
+	let pako;
+	try {
+		pako = await loadPako();
+	} catch (e) {
+		return;
+	}
+	for (const el of blocks) {
+		if (el.dataset.processed) continue;
+		el.dataset.processed = 'true';
+		try {
+			const encoded = krokiEncode(pako, el.textContent.trim());
+			const img = document.createElement('img');
+			img.src = 'https://kroki.io/plantuml/svg/' + encoded;
+			img.alt = 'PlantUML diagram';
+			img.loading = 'lazy';
+			img.style.maxWidth = '100%';
+			img.onerror = () => {
+				const err = document.createElement('div');
+				err.className = 'alert alert-danger';
+				err.textContent = 'PlantUML render failed (Kroki unreachable).';
+				img.replaceWith(err);
+			};
+			el.replaceWith(img);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'PlantUML error: ' + e.message;
+			el.replaceWith(err);
+		}
+	}
+};
+// WaveDrom (FencedRenderExtension::wavedrom()): <pre class="wavedrom"> holds the
+// timing-diagram JSON. Digital waveforms are outside Mermaid's scope entirely.
+let wavedromPromise = null;
+window.wavedromRender = async function(container) {
+	const blocks = container.querySelectorAll('pre.wavedrom');
+	if (!blocks.length) return;
+	if (!wavedromPromise) {
+		wavedromPromise = import('https://cdn.jsdelivr.net/npm/wavedrom@3.5.0/+esm').catch(() => null);
+	}
+	const wavedrom = (await wavedromPromise)?.default;
+	if (!wavedrom) return;
+	blocks.forEach((el, i) => {
+		if (el.dataset.processed) return;
+		el.dataset.processed = 'true';
+		let spec;
+		try {
+			// WaveDrom specs are JS object literals (unquoted keys); eval in a
+			// sandboxed Function is the library's own accepted input form.
+			spec = Function('return (' + el.textContent + ')')();
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'WaveDrom JSON error: ' + e.message;
+			el.replaceWith(err);
+			return;
+		}
+		try {
+			// renderAny returns an onml tree; stringify it to a standalone SVG
+			// and inject it (no id-based DOM lookup, so it works out of a live
+			// document tree).
+			const svg = wavedrom.onml.stringify(wavedrom.renderAny(i, spec, wavedrom.waveSkin));
+			const wrap = document.createElement('div');
+			wrap.innerHTML = svg;
+			el.replaceWith(wrap);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'WaveDrom error: ' + e.message;
+			el.replaceWith(err);
+		}
+	});
+};
+// Vega-Lite (FencedRenderExtension text mode): <pre class="vega-lite"> holds the
+// spec JSON. Real statistical charts (aggregation, faceting) beyond Mermaid.
+let vegaPromise = null;
+window.vegaLiteRender = async function(container) {
+	const blocks = container.querySelectorAll('pre.vega-lite');
+	if (!blocks.length) return;
+	if (!vegaPromise) {
+		vegaPromise = import('https://cdn.jsdelivr.net/npm/vega-embed@6/+esm').catch(() => null);
+	}
+	const mod = await vegaPromise;
+	const embed = mod?.default;
+	if (!embed) return;
+	for (const el of blocks) {
+		if (el.dataset.processed) continue;
+		el.dataset.processed = 'true';
+		let spec;
+		try {
+			spec = JSON.parse(el.textContent);
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Vega-Lite JSON error: ' + e.message;
+			el.replaceWith(err);
+			continue;
+		}
+		const wrap = document.createElement('div');
+		el.replaceWith(wrap);
+		try {
+			await embed(wrap, spec, { actions: false });
+		} catch (e) {
+			const err = document.createElement('div');
+			err.className = 'alert alert-danger';
+			err.textContent = 'Vega-Lite error: ' + e.message;
+			wrap.replaceWith(err);
+		}
+	}
+};
 </script>
 <?php
 $this->end();
@@ -1079,6 +1210,15 @@ Or contact @alice and @bob directly.</textarea>
 					// Render Mermaid diagrams if present
 					if (window.mermaidRender) {
 						await window.mermaidRender(htmlOutput);
+					}
+					if (window.plantumlRender) {
+						await window.plantumlRender(htmlOutput);
+					}
+					if (window.wavedromRender) {
+						await window.wavedromRender(htmlOutput);
+					}
+					if (window.vegaLiteRender) {
+						await window.vegaLiteRender(htmlOutput);
 					}
 					if (window.mathRender) {
 						window.mathRender(htmlOutput);
