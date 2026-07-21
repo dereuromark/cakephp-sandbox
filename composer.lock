@@ -311,12 +311,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "82328ac6bfd47cf7fb62fdba1aa30425c74be6ca"
+                "reference": "a20fe7c56115ef3b56d2e1c9baaef9f908980584"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/82328ac6bfd47cf7fb62fdba1aa30425c74be6ca",
-                "reference": "82328ac6bfd47cf7fb62fdba1aa30425c74be6ca",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/a20fe7c56115ef3b56d2e1c9baaef9f908980584",
+                "reference": "a20fe7c56115ef3b56d2e1c9baaef9f908980584",
                 "shasum": ""
             },
             "require": {
@@ -429,7 +429,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-07-19T15:31:30+00:00"
+            "time": "2026-07-20T19:39:15+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -4045,16 +4045,16 @@
         },
         {
             "name": "dompdf/dompdf",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dompdf/dompdf.git",
-                "reference": "f11ead23a8a76d0ff9bbc6c7c8fd7e05ca328496"
+                "reference": "6d4b4eb8500f7a786da8868ba463a71b725a4005"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/f11ead23a8a76d0ff9bbc6c7c8fd7e05ca328496",
-                "reference": "f11ead23a8a76d0ff9bbc6c7c8fd7e05ca328496",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/6d4b4eb8500f7a786da8868ba463a71b725a4005",
+                "reference": "6d4b4eb8500f7a786da8868ba463a71b725a4005",
                 "shasum": ""
             },
             "require": {
@@ -4103,9 +4103,9 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
-                "source": "https://github.com/dompdf/dompdf/tree/v3.1.5"
+                "source": "https://github.com/dompdf/dompdf/tree/v3.1.6"
             },
-            "time": "2026-03-03T13:54:37+00:00"
+            "time": "2026-07-20T12:29:38+00:00"
         },
         {
             "name": "dompdf/php-font-lib",
@@ -5977,12 +5977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "2dea929b97cab2ae9b7b3884c004dd6228a8df9d"
+                "reference": "14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/2dea929b97cab2ae9b7b3884c004dd6228a8df9d",
-                "reference": "2dea929b97cab2ae9b7b3884c004dd6228a8df9d",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb",
+                "reference": "14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb",
                 "shasum": ""
             },
             "require": {
@@ -6039,7 +6039,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-19T08:59:20+00:00"
+            "time": "2026-07-21T08:10:05+00:00"
         },
         {
             "name": "markup-carve/carve-php-media-embed",
