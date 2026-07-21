@@ -5977,12 +5977,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb"
+                "reference": "5d1c2d283aa9aba56cb0d4be21098df68b791498"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb",
-                "reference": "14ff5d228cfe13f2bb0dd1b7642fe652f5db0abb",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/5d1c2d283aa9aba56cb0d4be21098df68b791498",
+                "reference": "5d1c2d283aa9aba56cb0d4be21098df68b791498",
                 "shasum": ""
             },
             "require": {
@@ -6039,7 +6039,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-21T08:10:05+00:00"
+            "time": "2026-07-21T13:18:30+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",
@@ -6047,16 +6047,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php-chat.git",
-                "reference": "486b5f1b86ae8fc51c82dc3a7fb678d2cc41ea3e"
+                "reference": "6a80944f881e60f75f2207c47c898a976bfa365c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php-chat/zipball/486b5f1b86ae8fc51c82dc3a7fb678d2cc41ea3e",
-                "reference": "486b5f1b86ae8fc51c82dc3a7fb678d2cc41ea3e",
+                "url": "https://api.github.com/repos/markup-carve/carve-php-chat/zipball/6a80944f881e60f75f2207c47c898a976bfa365c",
+                "reference": "6a80944f881e60f75f2207c47c898a976bfa365c",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
+                "ext-mbstring": "*",
                 "markup-carve/carve-php": "^0.1.2",
                 "php": ">=8.2"
             },
@@ -6105,7 +6106,7 @@
                 "issues": "https://github.com/markup-carve/carve-php-chat/issues",
                 "source": "https://github.com/markup-carve/carve-php-chat"
             },
-            "time": "2026-07-21T13:47:47+00:00"
+            "time": "2026-07-21T13:57:26+00:00"
         },
         {
             "name": "markup-carve/carve-php-media-embed",

@@ -7,6 +7,19 @@
  */
 ?>
 
+<style>
+/* A chat client shows a heading a little larger, not page-title large. */
+.chat-preview h1, .chat-preview h2, .chat-preview h3,
+.chat-preview h4, .chat-preview h5, .chat-preview h6 {
+	font-size: 1.05rem;
+	font-weight: 700;
+	margin: 0 0 .4rem;
+}
+.chat-preview p { margin: 0 0 .5rem; }
+.chat-preview > :last-child { margin-bottom: 0; }
+.chat-preview pre { margin: 0 0 .5rem; }
+</style>
+
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
 </nav>
@@ -55,8 +68,54 @@ echo $this->Form->end();
 						<code class="small text-muted"><?= h($id) ?></code>
 					</div>
 					<div class="card-body">
-						<?php // Soft-wrap long lines the way a chat client would; real newlines are preserved. ?>
-						<pre class="mb-2" style="white-space: pre-wrap; overflow-wrap: anywhere;"><?= h($result['text']) ?></pre>
+						<?php $tabId = 'flavor-' . preg_replace('/[^a-z0-9]+/', '-', $id); ?>
+						<ul class="nav nav-tabs nav-sm mb-2" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" data-bs-toggle="tab" data-bs-target="#<?= $tabId ?>-preview" type="button" role="tab">Preview</button>
+							</li>
+							<li class="nav-item" role="presentation">
+								<button class="nav-link" data-bs-toggle="tab" data-bs-target="#<?= $tabId ?>-markup" type="button" role="tab">Sent</button>
+							</li>
+							<?php if ($result['isRangeBased']) { ?>
+								<li class="nav-item" role="presentation">
+									<button class="nav-link" data-bs-toggle="tab" data-bs-target="#<?= $tabId ?>-ranges" type="button" role="tab">
+										Ranges <span class="badge bg-secondary"><?= count($result['ranges']) ?></span>
+									</button>
+								</li>
+							<?php } ?>
+						</ul>
+
+						<div class="tab-content mb-2">
+							<div class="tab-pane fade show active" id="<?= $tabId ?>-preview" role="tabpanel">
+								<?php // Escaped by ChatPreviewRenderer; no document content reaches here as live markup. ?>
+								<div class="border rounded p-2 chat-preview"><?= $result['preview'] ?></div>
+							</div>
+							<div class="tab-pane fade" id="<?= $tabId ?>-markup" role="tabpanel">
+								<?php // Soft-wrap long lines the way a chat client would; real newlines are preserved. ?>
+								<pre class="mb-0" style="white-space: pre-wrap; overflow-wrap: anywhere;"><?= h($result['text']) ?></pre>
+							</div>
+							<?php if ($result['isRangeBased']) { ?>
+								<div class="tab-pane fade" id="<?= $tabId ?>-ranges" role="tabpanel">
+									<p class="small text-muted mb-1">
+										Plain-text body plus style offsets, counted in
+										<code><?= h($result['offsetUnit']) ?></code> units.
+									</p>
+									<table class="table table-sm small mb-0">
+										<thead><tr><th>Style</th><th>Start</th><th>Length</th><th>Selects</th></tr></thead>
+										<tbody>
+											<?php foreach ($result['ranges'] as $index => $range) { ?>
+												<tr>
+													<td><code><?= h($range->style) ?></code></td>
+													<td><?= $range->start ?></td>
+													<td><?= $range->length ?></td>
+													<td><code><?= h($result['selections'][$index]) ?></code></td>
+												</tr>
+											<?php } ?>
+										</tbody>
+									</table>
+								</div>
+							<?php } ?>
+						</div>
 
 						<p class="small text-muted mb-1">
 							<?= $this->Number->format($result['length']) ?> chars<?php
@@ -113,17 +172,28 @@ echo $this->Form->end();
 		delimiters. A typed <code>*bold*</code> stays literally <code>*bold*</code>.
 	</p>
 	<p>
-		So the <code>signal</code> flavor emits clean plain text and reports the most
-		degradations of any target. That list is the point: it names exactly which spans you
-		need to re-apply by hand after pasting.
+		The message still <em>displays</em> as bold, though - the style just rides alongside
+		the text. So <code>signal</code> is a <strong>range-based</strong> flavor: the
+		<em>Sent</em> tab is plain text with no delimiters, and the <em>Ranges</em> tab lists
+		the offsets that carry the formatting. Its preview is styled like any other, because
+		that is what the reader sees.
 	</p>
+	<p>
+		That splits every target into two families, which a flavor declares with
+		<code>output</code>:
+	</p>
+	<ul>
+		<li><strong>markup</strong> - formatting lives inside the message string as delimiters
+			(WhatsApp, Slack, Telegram <code>parse_mode</code>, Discord).</li>
+		<li><strong>ranges</strong> - the body is plain text and the styles travel beside it as
+			offsets (Signal, Telegram's <code>entities</code> field, Slack Block Kit).</li>
+	</ul>
 	<p class="text-muted small">
-		Signal also marks the edge of this model. Chat targets split into two families:
-		<strong>delimiter-based</strong> (WhatsApp, Slack, Telegram <code>parse_mode</code>,
-		Discord), where formatting lives inside the string, and <strong>range-based</strong>
-		(Signal, Telegram's <code>entities</code> API, Slack Block Kit), where it is plain text
-		plus style offsets. This package handles the first family; the second would need an
-		<code>"output": "markup" | "ranges"</code> mode in the flavor schema.
+		Offsets are counted in a unit the flavor declares, which is not guessable: Telegram
+		documents its entity offsets in <strong>UTF-16 code units</strong>, so a character
+		outside the BMP counts as two. In <code>👍 *bold*</code> the bold span starts at 3 in
+		UTF-16, 5 in UTF-8 and 2 in codepoints - measure wrongly and every range after that
+		emoji is off.
 	</p>
 
 	<h3>Adding a platform</h3>

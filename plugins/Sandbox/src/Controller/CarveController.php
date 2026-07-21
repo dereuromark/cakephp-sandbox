@@ -57,8 +57,11 @@ use MarkupCarve\Carve\Extension\WikilinksExtension;
 use MarkupCarve\Carve\Profile;
 use MarkupCarve\Carve\Renderer\RenderMode;
 use MarkupCarve\Carve\Renderer\SoftBreakMode;
+use MarkupCarve\Chat\ChatPreviewRenderer;
 use MarkupCarve\Chat\ChatRenderer;
 use MarkupCarve\Chat\FlavorRegistry;
+use MarkupCarve\Chat\OffsetUnit;
+use MarkupCarve\Chat\OutputMode;
 use MarkupCarve\MediaEmbed\MediaEmbedExtension;
 use Throwable;
 
@@ -383,6 +386,13 @@ class CarveController extends SandboxAppController {
 					'length' => strlen($result->text),
 					'text' => $result->text,
 					'losses' => $result->losses,
+					// Escaped by the preview renderer itself; nothing from the
+					// document reaches the page as live markup.
+					'preview' => (new ChatPreviewRenderer($flavor))->render($document),
+					'ranges' => $result->ranges,
+					'selections' => $this->sliceRanges($result->text, $result->ranges, $flavor->offsetUnit()),
+					'offsetUnit' => $flavor->offsetUnit()->value,
+					'isRangeBased' => $flavor->output() === OutputMode::Ranges,
 				];
 			}
 		} catch (Throwable $e) {
@@ -390,6 +400,40 @@ class CarveController extends SandboxAppController {
 		}
 
 		$this->set(compact('carve', 'results', 'error'));
+	}
+
+	/**
+	 * Slices the text each style range selects, in the unit that range is
+	 * counted in.
+	 *
+	 * Not interchangeable with mb_substr(): UTF-16 offsets and codepoint offsets
+	 * disagree on any character outside the BMP, which is exactly where a naive
+	 * preview would start showing the wrong span.
+	 *
+	 * @param string $text
+	 * @param array<\MarkupCarve\Chat\StyleRange> $ranges
+	 * @param \MarkupCarve\Chat\OffsetUnit $unit
+	 * @return array<int, string>
+	 */
+	protected function sliceRanges(string $text, array $ranges, OffsetUnit $unit): array {
+		$slices = [];
+		foreach ($ranges as $range) {
+			$slices[] = match ($unit) {
+				OffsetUnit::Utf8 => substr($text, $range->start, $range->length),
+				OffsetUnit::Codepoints => mb_substr($text, $range->start, $range->length, 'UTF-8'),
+				OffsetUnit::Utf16 => (string)mb_convert_encoding(
+					substr(
+						(string)mb_convert_encoding($text, 'UTF-16LE', 'UTF-8'),
+						$range->start * 2,
+						$range->length * 2,
+					),
+					'UTF-8',
+					'UTF-16LE',
+				),
+			};
+		}
+
+		return $slices;
 	}
 
 	/**
