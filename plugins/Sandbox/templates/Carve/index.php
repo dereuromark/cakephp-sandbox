@@ -641,6 +641,18 @@ This div is never closed.</code></pre>
 				alertContainer.innerHTML += warningHtml;
 			}
 
+			// Markdown habits are their own pass: the document is valid, so no
+			// parse warning fires - it just renders as something else.
+			if (data.lint && data.lint.length > 0) {
+				let lintHtml = '<div class="alert alert-primary py-2"><strong><i class="bi bi-magic"></i> Markdown habits:</strong> these parse fine but render as literal text.<ul class="mb-0 ps-3 mt-1">';
+				data.lint.forEach(function(l) {
+					lintHtml += '<li>' + escapeHtml(l.message)
+						+ ' <span class="text-muted small">(line ' + l.line + ':' + l.column + ', <code>' + escapeHtml(l.rule) + '</code>)</span></li>';
+				});
+				lintHtml += '</ul></div>';
+				alertContainer.innerHTML += lintHtml;
+			}
+
 			if (data.violations && data.violations.length > 0) {
 				let violationHtml = '<details class="alert alert-info py-2"><summary style="cursor: pointer;"><strong>Profile Violations:</strong> ' + data.violations.length + ' element(s) filtered.</summary><ul class="mb-0 ps-3 mt-2">';
 				data.violations.forEach(function(v) {

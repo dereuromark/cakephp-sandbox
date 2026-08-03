@@ -69,6 +69,7 @@ MARKDOWN;
 			</div>
 		</div>
 		<textarea id="carve-output" class="form-control font-monospace" rows="20" readonly placeholder="Carve output will appear here..."></textarea>
+		<div id="lint-container" class="mt-2"></div>
 	</div>
 </div>
 
@@ -150,6 +151,7 @@ MARKDOWN;
 	const markdownInput = document.getElementById('markdown-input');
 	const carveOutput = document.getElementById('carve-output');
 	const alertContainer = document.getElementById('alert-container');
+	const lintContainer = document.getElementById('lint-container');
 	const loadingIndicator = document.getElementById('loading-indicator');
 	const btnCopy = document.getElementById('btn-copy');
 	const btnTry = document.getElementById('btn-try');
@@ -196,6 +198,21 @@ MARKDOWN;
 			}
 
 			carveOutput.value = data.carve || '';
+
+			// The linter runs on the OUTPUT: a Markdown habit that survived the
+			// conversion renders as literal text from here on.
+			if (!data.carve) {
+				lintContainer.innerHTML = '';
+			} else if (data.lint && data.lint.length > 0) {
+				let lintHtml = '<div class="alert alert-primary py-2 mb-0 small"><strong><i class="bi bi-magic"></i> Markdown habits left in the output:</strong><ul class="mb-0 ps-3 mt-1">';
+				data.lint.forEach(function(l) {
+					lintHtml += '<li>' + escapeHtml(l.message) + ' <span class="text-muted">(line ' + l.line + ':' + l.column + ')</span></li>';
+				});
+				lintHtml += '</ul></div>';
+				lintContainer.innerHTML = lintHtml;
+			} else {
+				lintContainer.innerHTML = '<div class="text-success small"><i class="bi bi-check-circle"></i> No Markdown habits left in the output.</div>';
+			}
 		})
 		.catch(err => {
 			loadingIndicator.style.transition = 'opacity 0.8s';

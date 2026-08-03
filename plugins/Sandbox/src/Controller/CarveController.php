@@ -16,6 +16,7 @@ use HTMLPurifier_AttrDef;
 use HTMLPurifier_AttrDef_CSS_Color;
 use HTMLPurifier_Config;
 use LengthException;
+use MarkupCarve\Carve\Ast\AstCodec;
 use MarkupCarve\Carve\CarveConverter;
 use MarkupCarve\Carve\Converter\BbcodeToCarve;
 use MarkupCarve\Carve\Converter\DjotToCarve;
@@ -37,8 +38,10 @@ use MarkupCarve\Carve\Extension\FencedRenderExtension;
 use MarkupCarve\Carve\Extension\FrontmatterExtension;
 use MarkupCarve\Carve\Extension\GlossaryExtension;
 use MarkupCarve\Carve\Extension\HeadingLevelShiftExtension;
+use MarkupCarve\Carve\Extension\HeadingNumbersExtension;
 use MarkupCarve\Carve\Extension\HeadingPermalinksExtension;
 use MarkupCarve\Carve\Extension\HeadingReferenceExtension;
+use MarkupCarve\Carve\Extension\ImgFenceExtension;
 use MarkupCarve\Carve\Extension\IndexExtension;
 use MarkupCarve\Carve\Extension\InlineFootnotesExtension;
 use MarkupCarve\Carve\Extension\ListTableExtension;
@@ -49,12 +52,17 @@ use MarkupCarve\Carve\Extension\PlusBulletExtension;
 use MarkupCarve\Carve\Extension\SemanticSpanExtension;
 use MarkupCarve\Carve\Extension\SmartQuotesExtension;
 use MarkupCarve\Carve\Extension\SpoilerExtension;
+use MarkupCarve\Carve\Extension\SvgSanitizer;
 use MarkupCarve\Carve\Extension\TableOfContentsExtension;
 use MarkupCarve\Carve\Extension\TabNormalizeExtension;
 use MarkupCarve\Carve\Extension\TabsExtension;
 use MarkupCarve\Carve\Extension\TocPlacementExtension;
 use MarkupCarve\Carve\Extension\WikilinksExtension;
+use MarkupCarve\Carve\Lint\MarkdownHabitLinter;
+use MarkupCarve\Carve\Parser\BlockParser;
 use MarkupCarve\Carve\Profile;
+use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
+use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
 use MarkupCarve\Carve\Renderer\RenderMode;
 use MarkupCarve\Carve\Renderer\SoftBreakMode;
 use MarkupCarve\Chat\ChatPreviewRenderer;
@@ -143,6 +151,32 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
+	 * Reports Markdown habits that parse as valid Carve but render as something
+	 * the author did not intend.
+	 *
+	 * This is a separate pass from parse warnings on purpose: `**bold**` is a
+	 * perfectly valid document, so nothing complains - it just renders as
+	 * literal asterisks. Only forms that are never meaningful Carve are
+	 * reported, so `*strong*` and `_underline_` (correct Carve) stay silent.
+	 *
+	 * @param string $source Carve source.
+	 * @return array<array<string, mixed>>
+	 */
+	protected function lintMarkdownHabits(string $source): array {
+		$warnings = [];
+		foreach ((new MarkdownHabitLinter())->lint($source) as $warning) {
+			$warnings[] = [
+				'line' => $warning->line,
+				'column' => $warning->column,
+				'rule' => $warning->rule,
+				'message' => $warning->message,
+			];
+		}
+
+		return $warnings;
+	}
+
+	/**
 	 * Demo stub target for the Wikilinks extension. There is no real wiki; any
 	 * [[Page]] link from the playground lands here so the links resolve.
 	 *
@@ -206,6 +240,7 @@ class CarveController extends SandboxAppController {
 		$result = [
 			'html' => '',
 			'warnings' => [],
+			'lint' => [],
 			'violations' => [],
 			'ms' => null,
 			'bytes' => strlen($carve),
@@ -213,6 +248,10 @@ class CarveController extends SandboxAppController {
 		];
 
 		if ($carve) {
+			// Runs outside the try: a Markdown habit is worth reporting even when
+			// the document fails to parse for an unrelated reason.
+			$result['lint'] = $this->lintMarkdownHabits($carve);
+
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
 				// Carve interrupts paragraphs unconditionally (§10 default); there
@@ -614,10 +653,10 @@ CARVE,
 	protected function extensionGroups(): array {
 		return [
 			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference', 'glossary', 'index'],
-			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'toc', 'toc_placement'],
+			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'heading_numbers', 'toc', 'toc_placement'],
 			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
 			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'code_callouts', 'list_table'],
-			'Client-rendered & Math' => ['math_block', 'mermaid', 'plantuml', 'wavedrom', 'vega_lite', 'chart'],
+			'Client-rendered & Math' => ['math_block', 'mermaid', 'plantuml', 'wavedrom', 'vega_lite', 'chart', 'img_fence'],
 			'Document & Attributes' => ['frontmatter', 'default_attributes'],
 		];
 	}
@@ -682,6 +721,10 @@ CARVE,
 				$converter = new CarveConverter();
 				$tocExtension = null;
 				$frontmatterExtension = null;
+				// Only the img fence produces the sanitized SVG data URI that
+				// HTMLPurifier would otherwise drop; keep the allowance off for
+				// every other extension set.
+				$svgFence = false;
 
 				foreach ($enabledExtensions as $ext) {
 					switch ($ext) {
@@ -868,11 +911,20 @@ CARVE,
 							));
 
 							break;
+						case 'img_fence':
+							$converter->addExtension(new ImgFenceExtension());
+							$svgFence = true;
+
+							break;
+						case 'heading_numbers':
+							$converter->addExtension(new HeadingNumbersExtension());
+
+							break;
 					}
 				}
 
 				$rawHtml = $converter->convert($carve);
-				$result['html'] = $this->sanitizeHtml($rawHtml);
+				$result['html'] = $this->sanitizeHtml($rawHtml, allowSanitizedSvg: $svgFence);
 				if (Configure::read('debug')) {
 					$result['rawHtml'] = $rawHtml;
 				}
@@ -1306,28 +1358,28 @@ CARVE,
 			],
 			'tabs' => [
 				'name' => 'TabsExtension',
-				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). The tab name comes from the opener [Label] (canonical, carve#201), falling back to a leading content heading. Use more colons (`::::`) for the outer tabs container to nest the inner tab divs.',
+				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). The tab name comes from the opener [Label] (canonical, carve#201), falling back to a leading content heading. Fences widen inward (carve#439): the outer `tabs` container keeps `:::` and each nested `tab` div widens to `::::`, because a bare closer only closes a container whose colon count it matches exactly.',
 				'class' => TabsExtension::class,
 				'example_carve' => <<<'CARVE'
-:::: tabs
+::: tabs
 
-::: tab [Installation]
+:::: tab [Installation]
 Install the package with Composer:
 
 `composer require markup-carve/carve-php`
-:::
+::::
 
-::: tab [Usage]
+:::: tab [Usage]
 Convert Carve to HTML:
 
 `$html = $converter->convert($carve);`
-:::
-
-::: tab [Configuration]
-Configure options as needed.
-:::
-
 ::::
+
+:::: tab [Configuration]
+Configure options as needed.
+::::
+
+:::
 CARVE,
 				'options' => [
 					'mode' => "'css' (default) or 'aria'",
@@ -1663,6 +1715,59 @@ $html = $converter->convert($source); <3>
 <3> Convert; callouts render as numbered bubbles.
 CARVE,
 			],
+			'img_fence' => [
+				'name' => 'ImgFenceExtension',
+				'description' => 'Renders a ``` img fenced block as the SVG it contains instead of showing the source, after running it through a hand-written tokenizing sanitizer (not a regex scrub). Presentational elements survive; <script>, event handlers, <foreignObject>, external references and javascript: URLs are dropped together with their subtrees. The default emit mode is a sandboxed data:image/svg+xml image, so the SVG cannot reach the page DOM at all. The fence words svg and xml are deliberately NOT claimed, so SVG source can still be syntax-highlighted.',
+				'class' => ImgFenceExtension::class,
+				'example_carve' => <<<'CARVE'
+``` img
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64">
+  <rect width="240" height="64" rx="8" fill="#3b82f6"/>
+  <text x="16" y="40" fill="white" font-size="24" font-family="sans-serif">Carve</text>
+  <circle cx="210" cy="20" r="8" fill="#fbbf24"/>
+  <script>alert('this never runs')</script>
+  <a href="javascript:alert('nor this')"><rect x="0" y="0" width="240" height="64"/></a>
+</svg>
+```
+
+The `script` element and the `javascript:` link above are gone from the rendered
+image - dropped with their subtrees, not escaped.
+CARVE,
+				'options' => [
+					'language' => "'img' (fence info word to match; alias 'image')",
+					'allowStyle' => 'false (keep <style> and style="" - active CSS)',
+					'allowLinks' => 'false (keep <a>, safe schemes only)',
+					'allowAnimation' => 'false (keep SMIL animate/set elements)',
+					'allowExternalImages' => 'false (keep <image> with an external href)',
+					'allowInline' => 'false (emit inline <svg> instead of a sandboxed data: image)',
+				],
+			],
+			'heading_numbers' => [
+				'name' => 'HeadingNumbersExtension',
+				'description' => 'Auto-numbers sections at render time and rewrites auto-filled </#id> cross-references to "Section 1.2 - Title". No new syntax: it reads the heading tree and honors a {.unnumbered} class (written on the line ABOVE the heading, since Carve takes no trailing attribute block on a heading). Numbers render as <span class="section-number">.',
+				'class' => HeadingNumbersExtension::class,
+				'example_carve' => <<<'CARVE'
+# Installation
+
+## Requirements
+
+See </#configuration> for what to set afterwards.
+
+## Configuration
+
+Numbering follows the heading tree, so this is 1.2.
+
+{.unnumbered}
+# Appendix
+
+An unnumbered heading is skipped by the counter.
+CARVE,
+				'options' => [
+					'minLevel' => '1 (first heading level that gets a number)',
+					'label' => "'Section' (word used in a rewritten cross-reference)",
+					'crossref' => "'number-title' (or 'number' / 'title')",
+				],
+			],
 		];
 	}
 
@@ -1698,6 +1803,7 @@ CARVE,
 
 		$result = [
 			'carve' => '',
+			'lint' => [],
 			'error' => null,
 		];
 
@@ -1705,6 +1811,9 @@ CARVE,
 			try {
 				$converter = new MarkdownToCarve();
 				$result['carve'] = $converter->convert($markdown);
+				// Lint the OUTPUT: a habit surviving the conversion is a
+				// converter gap, and it renders as literal text from here on.
+				$result['lint'] = $this->lintMarkdownHabits($result['carve']);
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -1963,6 +2072,200 @@ CARVE,
 	}
 
 	/**
+	 * AST inspector: the parsed document as PART 12 JSON, in both directions.
+	 *
+	 * @return void
+	 */
+	public function ast(): void {
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * AJAX endpoint for the AST inspector.
+	 *
+	 * Two directions, selected by `direction`:
+	 *
+	 * - `encode`: Carve source -> PART 12 JSON tree. Source positions (§4) are
+	 *   opt-in because tracking them costs work on every parse. The tree is
+	 *   decoded again and re-rendered to prove the round trip is lossless -
+	 *   which HTML round-tripping is not.
+	 * - `decode`: a JSON tree (from ANY engine) -> rendered HTML plus the Carve
+	 *   source it serializes back to. The field names are the ones the spec
+	 *   pins, so a carve-js or carve-rs tree reads here; one this decoder would
+	 *   lose fields from is rejected outright rather than silently mangled.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertAst(): Response {
+		$this->request->allowMethod(['post']);
+
+		$direction = (string)$this->request->getData('direction') === 'decode' ? 'decode' : 'encode';
+		$withPositions = (bool)$this->request->getData('positions');
+
+		$result = [
+			'json' => '',
+			'html' => '',
+			'carve' => '',
+			'nodes' => 0,
+			'placed' => 0,
+			'stable' => false,
+			'ms' => null,
+			'error' => null,
+		];
+
+		$codec = new AstCodec();
+		$flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
+
+		try {
+			if ($direction === 'decode') {
+				$tree = (string)$this->request->getData('tree');
+				if (!trim($tree)) {
+					return $this->astResponse($result);
+				}
+
+				$start = microtime(true);
+				$document = $codec->decodeJson($tree);
+				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
+				$result['html'] = $this->sanitizeHtml((new CarveConverter())->render($document));
+				$result['carve'] = CarveConverter::carve()->render($document);
+				$result['nodes'] = $this->countAstNodes($codec->encode($document));
+
+				return $this->astResponse($result);
+			}
+
+			$carve = (string)$this->request->getData('carve');
+			if (!trim($carve)) {
+				return $this->astResponse($result);
+			}
+
+			$converter = new CarveConverter(parser: new BlockParser(trackPositions: $withPositions));
+			$start = microtime(true);
+			$document = $converter->parse($carve);
+			$encoded = $codec->encode($document);
+			$result['ms'] = round((microtime(true) - $start) * 1000, 2);
+			$result['json'] = (string)json_encode($encoded, $flags);
+			$result['nodes'] = $this->countAstNodes($encoded);
+			$result['placed'] = $this->countAstNodes($encoded, 'pos');
+			// The round trip is the claim worth checking: decode what was just
+			// encoded and render both. Equal output means the tree carried
+			// everything the renderer needs.
+			$result['stable'] = $converter->render($codec->decodeJson($result['json'])) === $converter->render($document);
+		} catch (Throwable $e) {
+			$result['error'] = $e->getMessage();
+		}
+
+		return $this->astResponse($result);
+	}
+
+	/**
+	 * @param array<string, mixed> $result
+	 * @return \Cake\Http\Response
+	 */
+	protected function astResponse(array $result): Response {
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * Counts encoded AST nodes, or those carrying a given field.
+	 *
+	 * @param array<string, mixed> $node
+	 * @param string|null $field Count only nodes that carry this field.
+	 * @return int
+	 */
+	protected function countAstNodes(array $node, ?string $field = null): int {
+		$count = isset($node['type']) && ($field === null || isset($node[$field])) ? 1 : 0;
+
+		foreach ($node as $value) {
+			if (!is_array($value)) {
+				continue;
+			}
+			foreach ($value as $child) {
+				if (is_array($child) && isset($child['type'])) {
+					$count += $this->countAstNodes($child, $field);
+				}
+			}
+		}
+
+		return $count;
+	}
+
+	/**
+	 * ProseMirror / Tiptap bridge, rendered by carve-php - no Node runtime.
+	 *
+	 * @return void
+	 */
+	public function proseMirror(): void {
+		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * AJAX endpoint for the ProseMirror bridge.
+	 *
+	 * Carve -> ProseMirror document -> Carve, entirely server-side. The
+	 * fidelity report is the point: types the editor model cannot hold are
+	 * named by droppedTypes()/degradedTypes() instead of vanishing quietly.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertProseMirror(): Response {
+		$this->request->allowMethod(['post']);
+
+		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+
+		$result = [
+			'pm' => '',
+			'carve' => '',
+			'canonical' => '',
+			'html' => '',
+			'dropped' => [],
+			'degraded' => [],
+			'stable' => false,
+			'carveStable' => false,
+			'msToPm' => null,
+			'msToCarve' => null,
+			'error' => null,
+		];
+
+		if (trim($carve)) {
+			try {
+				$converter = new CarveConverter();
+				$renderer = new ProseMirrorRenderer();
+
+				$start = microtime(true);
+				$document = $renderer->render($converter->parse($carve));
+				$result['msToPm'] = round((microtime(true) - $start) * 1000, 2);
+				$result['pm'] = (string)json_encode($document, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+				$result['dropped'] = $renderer->droppedTypes();
+				$result['degraded'] = $renderer->degradedTypes();
+
+				$start = microtime(true);
+				$back = (new ProseMirrorToCarve())->convert($document);
+				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
+				$result['carve'] = CarveConverter::carve()->render($back);
+				$result['html'] = $this->sanitizeHtml($converter->render($back));
+				$result['stable'] = $converter->convert($carve) === $converter->render($back);
+				// The HTML verdict alone is a check that cannot fail on the loss
+				// that matters here: `::: note` and `{.note}` + a bare fence are
+				// the same document semantically and render byte-identical, so
+				// comparing HTML can never see the authored form disappear.
+				// Comparing the canonical Carve of both sides can. The input is
+				// canonicalized first, so ordinary formatting normalization does
+				// not masquerade as a loss.
+				$result['canonical'] = CarveConverter::carve()->render($converter->parse($carve));
+				$result['carveStable'] = $result['canonical'] === $result['carve'];
+			} catch (Throwable $e) {
+				$result['error'] = $e->getMessage();
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
 	 * Djot to Carve converter playground.
 	 *
 	 * @return void
@@ -2031,9 +2334,15 @@ CARVE,
 	 * Sanitize HTML output to prevent XSS attacks.
 	 *
 	 * @param string $html
+	 * @param bool $allowSanitizedSvg Keep the img fence's sanitized SVG images.
 	 * @return string
 	 */
-	protected function sanitizeHtml(string $html): string {
+	protected function sanitizeHtml(string $html, bool $allowSanitizedSvg = false): string {
+		$svgImages = [];
+		if ($allowSanitizedSvg) {
+			$html = $this->stashSvgImages($html, $svgImages);
+		}
+
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
@@ -2140,8 +2449,107 @@ CARVE,
 		}
 
 		$purifier = new HTMLPurifier($config);
+		$clean = $purifier->purify($html);
 
-		return $purifier->purify($html);
+		return $svgImages ? $this->restoreSvgImages($clean, $svgImages) : $clean;
+	}
+
+	/**
+	 * Replaces the img fence's SVG images with an inert placeholder so they
+	 * survive purification, re-checking each payload on the way out.
+	 *
+	 * HTMLPurifier's `data:` filter accepts only base64-encoded raster images
+	 * (it validates them with getimagesize), so a percent-encoded
+	 * `data:image/svg+xml` image is dropped outright and the fence renders as
+	 * nothing. Rather than widening the purifier, each payload is decoded and
+	 * run through the SAME {@see \MarkupCarve\Carve\Extension\SvgSanitizer} the
+	 * extension used. It is stashed only when that second pass returns the
+	 * byte-identical string, so anything the sanitizer would still alter - a
+	 * hand-written data: URI in a raw HTML block, say - keeps being dropped.
+	 * What {@see self::restoreSvgImages()} puts back is markup built here from
+	 * sanitizer output, never markup the request supplied.
+	 *
+	 * The authored `alt`, `id` and `class` travel with the payload. The img
+	 * fence derives the alt from the SVG's `<title>` and puts an attribute
+	 * line's `{#logo .wide}` on the tag, so rebuilding it from the src alone
+	 * would strip the accessible name and the styling hooks from exactly the
+	 * images that carry them. Nothing else is carried, and the three that are
+	 * get validated here rather than trusted: these attributes bypass
+	 * HTMLPurifier (the placeholder it sees has none of them), so `id` and
+	 * `class` must match the shape the purifier would have allowed, and the alt
+	 * is re-escaped as the authored text it is.
+	 *
+	 * @param string $html
+	 * @param array<string, array{svg: string, alt: string, id: string, class: string}> $stash
+	 * @return string
+	 */
+	protected function stashSvgImages(string $html, array &$stash): string {
+		return (string)preg_replace_callback(
+			'#<img\b[^>]*\bsrc="data:image/svg\+xml,([^"]*)"[^>]*>#i',
+			function (array $match) use (&$stash): string {
+				$svg = rawurldecode($match[1]);
+				$sanitized = SvgSanitizer::sanitize($svg);
+				if (!$sanitized['ok'] || $sanitized['svg'] !== $svg) {
+					return '';
+				}
+
+				$token = 'carve-svg-' . count($stash);
+				$stash[$token] = [
+					'svg' => $svg,
+					'alt' => $this->svgImageAttribute($match[0], 'alt'),
+					'id' => $this->svgImageAttribute($match[0], 'id', '/^[A-Za-z][\w:.-]*$/'),
+					'class' => $this->svgImageAttribute($match[0], 'class', '/^[\w-]+(?: [\w-]+)*$/'),
+				];
+
+				return '<span class="' . $token . '"></span>';
+			},
+			$html,
+		);
+	}
+
+	/**
+	 * Reads one attribute off a stashed `<img>` tag, dropping anything that does
+	 * not match the shape the purifier would have accepted.
+	 *
+	 * @param string $tag
+	 * @param string $name
+	 * @param string|null $shape Pattern the decoded value must match, if any.
+	 * @return string
+	 */
+	protected function svgImageAttribute(string $tag, string $name, ?string $shape = null): string {
+		if (preg_match('#\b' . preg_quote($name, '#') . '="([^"]*)"#i', $tag, $match) !== 1) {
+			return '';
+		}
+
+		$value = html_entity_decode($match[1], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+		return $shape === null || preg_match($shape, $value) === 1 ? $value : '';
+	}
+
+	/**
+	 * Swaps the placeholders from {@see self::stashSvgImages()} back for images.
+	 *
+	 * @param string $html
+	 * @param array<string, array{svg: string, alt: string, id: string, class: string}> $stash
+	 * @return string
+	 */
+	protected function restoreSvgImages(string $html, array $stash): string {
+		foreach ($stash as $token => $image) {
+			$alt = htmlspecialchars($image['alt'], ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+			$classes = trim($image['class'] . ' carve-svg');
+			$img = '<img src="data:image/svg+xml,' . rawurlencode($image['svg']) . '"'
+				. ' alt="' . $alt . '"'
+				. ($image['id'] !== '' ? ' id="' . $image['id'] . '"' : '')
+				. ' class="' . $classes . '">';
+			$html = (string)preg_replace_callback(
+				'#<span class="' . preg_quote($token, '#') . '"></span>#',
+				static fn (): string => $img,
+				$html,
+				1,
+			);
+		}
+
+		return $html;
 	}
 
 	/**
@@ -2609,27 +3017,27 @@ HTML;
 The same source below renders differently per target. Interactive constructs
 flatten or reveal when the medium cannot run client scripts.
 
-:::: tabs
-::: tab [Install]
+::: tabs
+:::: tab [Install]
 ``` bash
 composer require markup-carve/carve-php
 ```
-:::
-::: tab [Usage]
+::::
+:::: tab [Usage]
 ``` php
 $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
 ```
-:::
 ::::
+:::
 
-:::: code-group
+::: code-group
 ``` js [config.js]
 export default { mode: 'static' };
 ```
 ``` json [config.json]
 { "mode": "static" }
 ```
-::::
+:::
 
 ::: details "Show the details"
 Hidden content that a static target reveals inline.

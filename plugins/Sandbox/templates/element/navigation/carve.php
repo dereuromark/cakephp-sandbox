@@ -10,11 +10,13 @@ $action = $this->request->getParam('action');
 	<li class="nav-item"><?= $this->Html->link('Carve Playground', ['action' => 'index'], ['class' => 'nav-link' . ($action === 'index' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('WYSIWYG Editor', ['action' => 'wysiwyg'], ['class' => 'nav-link' . ($action === 'wysiwyg' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Roundtrip Test', ['action' => 'roundtrip'], ['class' => 'nav-link' . ($action === 'roundtrip' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('ProseMirror Bridge', ['action' => 'proseMirror'], ['class' => 'nav-link' . ($action === 'proseMirror' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Paragraph Interruption', ['action' => 'interruption'], ['class' => 'nav-link' . ($action === 'interruption' ? ' active' : '')]) ?></li>
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Showcase') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Complex Examples', ['action' => 'complexExamples'], ['class' => 'nav-link' . ($action === 'complexExamples' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('AST Inspector', ['action' => 'ast'], ['class' => 'nav-link' . ($action === 'ast' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Code Blocks', ['action' => 'codeBlocks'], ['class' => 'nav-link' . ($action === 'codeBlocks' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Media Embeds', ['action' => 'mediaEmbed'], ['class' => 'nav-link' . ($action === 'mediaEmbed' ? ' active' : '')]) ?></li>

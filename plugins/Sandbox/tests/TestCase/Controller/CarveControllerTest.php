@@ -1084,4 +1084,418 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('One exception - lists.');
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testAst(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'ast']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('AST Inspector');
+	}
+
+	/**
+	 * Encoding publishes the PART 12 shape, and decoding it again renders the
+	 * same document - which is the claim the page makes.
+	 *
+	 * @return void
+	 */
+	public function testConvertAstEncode(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'encode',
+			'carve' => "# Title\n\nText with *strong*.\n",
+			'positions' => '0',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertTrue($response['stable']);
+		$this->assertGreaterThan(0, $response['nodes']);
+
+		$tree = json_decode($response['json'], true);
+		$this->assertSame('document', $tree['type']);
+		$this->assertArrayHasKey('srcByteLength', $tree);
+		$this->assertSame('heading', $tree['children'][0]['type']);
+		// A heading always publishes its level, default or not.
+		$this->assertSame(1, $tree['children'][0]['level']);
+		// Positions were not asked for, so §4 forbids inventing them.
+		$this->assertArrayNotHasKey('pos', $tree['children'][0]);
+		$this->assertSame(0, $response['placed']);
+	}
+
+	/**
+	 * Source positions are opt-in because tracking them costs work on every
+	 * parse; asking for them puts a complete six-field span on the nodes.
+	 *
+	 * @return void
+	 */
+	public function testConvertAstEncodeWithPositions(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'encode',
+			'carve' => "# Title\n\nText.\n",
+			'positions' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertGreaterThan(0, $response['placed']);
+
+		$tree = json_decode($response['json'], true);
+		$pos = $tree['children'][0]['pos'];
+		$this->assertSame(
+			['startLine', 'endLine', 'startColumn', 'endColumn', 'startOffset', 'endOffset'],
+			array_keys($pos),
+		);
+		$this->assertSame(1, $pos['startLine']);
+	}
+
+	/**
+	 * The field names are spec-pinned, so a tree written by hand (or by another
+	 * engine) renders here without carve-php having produced it.
+	 *
+	 * @return void
+	 */
+	public function testConvertAstDecodeForeignTree(): void {
+		$tree = [
+			'type' => 'document',
+			'srcByteLength' => 24,
+			'children' => [
+				[
+					'type' => 'heading',
+					'level' => 2,
+					'children' => [['type' => 'text', 'value' => 'From elsewhere']],
+				],
+			],
+		];
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'decode',
+			'tree' => json_encode($tree),
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('From elsewhere', $response['html']);
+		$this->assertStringContainsString('## From elsewhere', $response['carve']);
+	}
+
+	/**
+	 * A tree carrying a field this decoder does not read is refused outright,
+	 * rather than silently decoded into a different document.
+	 *
+	 * @return void
+	 */
+	public function testConvertAstDecodeRejectsLossyTree(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'decode',
+			'tree' => '{"type":"document","srcByteLength":2,"children":[{"type":"paragraph","bogus":1,"children":[]}]}',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNotNull($response['error']);
+		$this->assertStringContainsString('bogus', $response['error']);
+		$this->assertSame('', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testProseMirror(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'proseMirror']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('ProseMirror Bridge');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertProseMirror(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "# Title\n\nText with *strong* and /emphasis/.\n\n- a\n- b\n",
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertTrue($response['stable']);
+		$this->assertTrue($response['carveStable']);
+		$this->assertSame([], $response['dropped']);
+
+		$document = json_decode($response['pm'], true);
+		$this->assertSame('doc', $document['type']);
+		$this->assertSame('heading', $document['content'][0]['type']);
+		// And all the way back, without a Node runtime anywhere.
+		$this->assertStringContainsString('# Title', $response['carve']);
+		$this->assertStringContainsString('*strong*', $response['carve']);
+	}
+
+	/**
+	 * A typed div keeps its authored spelling across the ProseMirror bridge.
+	 *
+	 * It did not until carve-php#609: `carveDiv` carried only the class, so the
+	 * div came back untyped and the writer fell back to an attribute block plus
+	 * an anonymous fence. Both spellings render byte-identical HTML, so the HTML
+	 * check passed either way - only comparing canonical Carve saw it. The
+	 * bridge now records `carveTyped` alongside the authored attributes, and
+	 * `carveStable` is what pins that here.
+	 *
+	 * @return void
+	 */
+	public function testConvertProseMirrorKeepsTypedDivSpelling(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "::: note\nHi.\n:::\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		// Same meaning...
+		$this->assertTrue($response['stable']);
+		// ...and now the same spelling.
+		$this->assertTrue($response['carveStable']);
+		$this->assertStringContainsString("::: note\n", $response['canonical']);
+		$this->assertStringContainsString("::: note\n", $response['carve']);
+		// Nothing was lost, so the fidelity report stays empty.
+		$this->assertSame([], $response['dropped']);
+		$this->assertSame([], $response['degraded']);
+
+		$document = json_decode($response['pm'], true);
+		$this->assertSame('carveDiv', $document['content'][0]['type']);
+		$this->assertTrue($document['content'][0]['attrs']['carveTyped']);
+	}
+
+	/**
+	 * What the bridge still cannot carry is NAMED rather than lost quietly.
+	 *
+	 * An autolink is a plain link mark in the editor model, so it comes back
+	 * written as `[url](url)` - the same document, a different authored form.
+	 * The point of the demo is that `degradedTypes()` says so, which is what
+	 * separates this from the typed-div gap it used to characterize.
+	 *
+	 * @return void
+	 */
+	public function testConvertProseMirrorReportsDegradedAutolink(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "See <https://example.com> now.\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertFalse($response['carveStable']);
+		$this->assertStringContainsString('<https://example.com>', $response['canonical']);
+		$this->assertStringContainsString('[https://example.com](https://example.com)', $response['carve']);
+		// And the report names it.
+		$this->assertArrayHasKey('autolink', $response['degraded']);
+	}
+
+	/**
+	 * A Markdown habit parses as a valid document, so no parse warning fires -
+	 * it just renders as literal asterisks. That is what the separate lint pass
+	 * is for.
+	 *
+	 * @return void
+	 */
+	public function testConvertReportsMarkdownHabits(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => 'This is **not bold** in Carve.',
+			'warnings' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame([], $response['warnings']);
+		$this->assertCount(1, $response['lint']);
+		$this->assertSame('markdown-strong-asterisks', $response['lint'][0]['rule']);
+		$this->assertSame(1, $response['lint'][0]['line']);
+	}
+
+	/**
+	 * Correct Carve stays silent: `*x*` is strong and `_x_` is underline, so
+	 * warning on them would punish authors writing the language properly.
+	 *
+	 * @return void
+	 */
+	public function testConvertDoesNotReportCorrectCarve(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => 'This is *strong* and _underlined_ and ~struck~.',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame([], $response['lint']);
+	}
+
+	/**
+	 * A habit surviving the Markdown conversion would be a converter gap.
+	 *
+	 * @return void
+	 */
+	public function testConvertMarkdownLeavesNoHabits(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertMarkdown'], [
+			'markdown' => "**bold** and *italic* and ~~struck~~\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame([], $response['lint']);
+		$this->assertStringContainsString('*bold*', $response['carve']);
+	}
+
+	/**
+	 * The img fence renders the SVG body, sanitized: the script element and the
+	 * javascript: link are dropped with their subtrees, and what survives comes
+	 * back through the page sanitizer as a data: image.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsImgFence(): void {
+		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 20">'
+			. '<rect width="60" height="20" fill="#3b82f6"/>'
+			. '<script>alert(1)</script>'
+			. '<a href="javascript:alert(2)"><circle cx="50" cy="10" r="4"/></a>'
+			. '</svg>';
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "``` img\n" . $svg . "\n```\n",
+			'extensions' => ['img_fence'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('data:image/svg+xml,', $response['html']);
+		$this->assertStringContainsString('rect', rawurldecode($response['html']));
+		$this->assertStringNotContainsString('alert', rawurldecode($response['html']));
+		$this->assertStringNotContainsString('javascript:', rawurldecode($response['html']));
+	}
+
+	/**
+	 * The accessible name and the styling hooks survive the sanitizer detour.
+	 *
+	 * The img fence derives the alt text from the SVG's `<title>` and puts an
+	 * attribute line's `{#logo .wide}` on the tag, but the payload has to be
+	 * stashed around HTMLPurifier (which drops percent-encoded `data:` SVGs) and
+	 * the tag rebuilt afterwards. Rebuilding it from the src alone would strip
+	 * both from exactly the images that carry them, and no other assertion here
+	 * would notice.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsImgFenceKeepsAltAndAttributes(): void {
+		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 20">'
+			. '<title>Blue "badge" &amp; label</title>'
+			. '<rect width="60" height="20" fill="#3b82f6"/>'
+			. '</svg>';
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "{#logo .wide}\n``` img\n" . $svg . "\n```\n",
+			'extensions' => ['img_fence'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('data:image/svg+xml,', $response['html']);
+		// Quotes and ampersands stay escaped - the alt is authored text.
+		$this->assertStringContainsString('alt="Blue &quot;badge&quot; &amp; label"', $response['html']);
+		$this->assertStringContainsString('id="logo"', $response['html']);
+		$this->assertStringContainsString('class="wide carve-svg"', $response['html']);
+	}
+
+	/**
+	 * The three carried attributes bypass HTMLPurifier - the placeholder it sees
+	 * has none of them - so an id it would have rejected is dropped here instead
+	 * of riding back into the document.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsImgFenceDropsUnusableId(): void {
+		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><title>T</title></svg>';
+
+		// An id starting with a digit is not a valid HTML id, and the purifier
+		// strips it from an ordinary <img> - so it has to go here too.
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "{id=\"1logo\"}\n``` img\n" . $svg . "\n```\n",
+			'extensions' => ['img_fence'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('data:image/svg+xml,', $response['html']);
+		$this->assertStringNotContainsString('id=', $response['html']);
+	}
+
+	/**
+	 * Without the extension the same fence stays verbatim source, so the
+	 * sanitized-SVG allowance is not on for every render.
+	 *
+	 * @return void
+	 */
+	public function testConvertWithExtensionsWithoutImgFence(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "``` img\n<svg xmlns=\"http://www.w3.org/2000/svg\"></svg>\n```\n",
+			'extensions' => [],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringNotContainsString('data:image/svg+xml', $response['html']);
+		$this->assertStringContainsString('<pre', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsHeadingNumbers(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "# One\n\n## Sub\n\n## Sub two\n",
+			'extensions' => ['heading_numbers'],
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('<span class="section-number">1</span>', $response['html']);
+		$this->assertStringContainsString('<span class="section-number">1.2</span>', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExtensionsShowcaseListsTheNewExtensions(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'extensions']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('ImgFenceExtension');
+		$this->assertResponseContains('HeadingNumbersExtension');
+	}
+
 }

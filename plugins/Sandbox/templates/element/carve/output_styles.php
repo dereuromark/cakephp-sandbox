@@ -464,6 +464,25 @@
 :is(.carve-rendered, .html-output) .code-pill-copy:hover {
 	border-color: #0d6efd;
 }
+
+/*
+ * HeadingNumbers. The number is a <span class="section-number"> ahead of the
+ * heading text; keep it slightly muted so the title still reads first.
+ */
+:is(.carve-rendered, .html-output) .section-number {
+	color: #6c757d;
+	font-variant-numeric: tabular-nums;
+	margin-right: 0.4em;
+}
+
+/*
+ * ImgFence. The sanitized SVG rides in as a data: image, so it is a plain
+ * replaced element - cap it so a viewBox-less drawing cannot blow up the pane.
+ */
+:is(.carve-rendered, .html-output) img.carve-svg {
+	max-width: 100%;
+	height: auto;
+}
 </style>
 <script>
 /*
