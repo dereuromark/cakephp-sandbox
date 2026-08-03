@@ -22,7 +22,7 @@ echo "Waiting for queue worker to finish current job..."
 docker compose -f "$DOCKER_DIR/docker-compose.yml" stop -t 120 queue
 
 echo "### Composer install ###"
-composer install --prefer-dist --no-dev -a --no-interaction
+composer install --prefer-dist --no-dev -o --no-interaction
 
 echo "### DB MIGRATION ###"
 composer migrate --no-interaction
