@@ -184,6 +184,7 @@ $config = [
 	],
 
 	'App' => [
+		'container' => 'cake',
 		'monitorHeaders' => 1,
 		'defaultOutputTimezone' => 'Europe/Berlin',
 		'stats' => false,
