@@ -1282,14 +1282,41 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * What the bridge still cannot carry is NAMED rather than lost quietly.
 	 *
-	 * An autolink is a plain link mark in the editor model, so it comes back
-	 * written as `[url](url)` - the same document, a different authored form.
-	 * The point of the demo is that `degradedTypes()` says so, which is what
-	 * separates this from the typed-div gap it used to characterize.
+	 * A link with an empty label has no text to hang the mark on, so the editor
+	 * model cannot hold it at all and it comes back gone. That is a real loss
+	 * rather than a different spelling, which is why the demo's claim is the
+	 * REPORT, not the round trip: `degradedTypes()` says what happened.
+	 *
+	 * An autolink used to be the case here. It stopped being one when carve-php
+	 * taught the bridge to carry the authored spelling (its #629), which is the
+	 * same direction the typed-div gap went - the losses shrink, the report is
+	 * what has to keep pace.
 	 *
 	 * @return void
 	 */
-	public function testConvertProseMirrorReportsDegradedAutolink(): void {
+	public function testConvertProseMirrorReportsDegradedEmptyLink(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "[](https://example.com)\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertFalse($response['carveStable']);
+		$this->assertStringContainsString('[](https://example.com)', $response['canonical']);
+		$this->assertStringNotContainsString('example.com', $response['carve']);
+		// And the report names it.
+		$this->assertArrayHasKey('link', $response['degraded']);
+	}
+
+	/**
+	 * An autolink survives the bridge now (carve-php#629): it comes back as the
+	 * `<url>` the author wrote, not as `[url](url)`.
+	 *
+	 * @return void
+	 */
+	public function testConvertProseMirrorKeepsAutolinkSpelling(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
 			'carve' => "See <https://example.com> now.\n",
 		]);
@@ -1298,11 +1325,9 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertFalse($response['carveStable']);
-		$this->assertStringContainsString('<https://example.com>', $response['canonical']);
-		$this->assertStringContainsString('[https://example.com](https://example.com)', $response['carve']);
-		// And the report names it.
-		$this->assertArrayHasKey('autolink', $response['degraded']);
+		$this->assertTrue($response['carveStable']);
+		$this->assertStringContainsString('<https://example.com>', $response['carve']);
+		$this->assertSame([], $response['degraded']);
 	}
 
 	/**
