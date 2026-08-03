@@ -1,5 +1,7 @@
 <?php
 
+use App\Plugin\MercurePlugin;
+
 return [
 	'Migrations' => ['onlyCli' => true],
 	'DebugKit' => ['onlyDebug' => true],
@@ -39,7 +41,9 @@ return [
 	'AuditStash' => [],
 	'FileStorage' => [],
 	'Bouncer' => [],
-	'Mercure' => [],
+	// Subclassed so the services register without a League provider, which the
+	// CakePHP container (App.container) rejects. See the class docblock.
+	MercurePlugin::class => [],
 	'Workflow' => [],
 
 	// inside /plugins
