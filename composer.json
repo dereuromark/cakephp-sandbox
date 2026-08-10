@@ -83,7 +83,6 @@
 		"markup-carve/carve-php": "dev-main as 0.1.4",
 		"markup-carve/carve-php-media-embed": "dev-main",
 		"markup-carve/carve-php-chat": "dev-main",
-		"cweagans/composer-patches": "^2.0",
 		"ezyang/htmlpurifier": "^4.19",
 		"josbeir/cakephp-mercure": "^0.2.0",
 		"php-collective/toml": "dev-master",
@@ -173,13 +172,6 @@
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-sandbox"
 	},
-	"extra": {
-		"patches": {
-			"markup-carve/carve-php-chat": {
-				"Compatibility with carve-php's public renderer depth contract": "patches/carve-php-chat-render-depth.patch"
-			}
-		}
-	},
 	"prefer-stable": true,
 	"minimum-stability": "dev",
 	"config": {
@@ -189,7 +181,6 @@
 			"php": "8.4.1"
 		},
 		"allow-plugins": {
-			"cweagans/composer-patches": true,
 			"dealerdirect/phpcodesniffer-composer-installer": true,
 			"cakephp/plugin-installer": true,
 			"php-http/discovery": true
