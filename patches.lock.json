@@ -1,0 +1,17 @@
+{
+    "_hash": "8610b56f5dcb284048f0cbd87944010f371f011d8f54d3eda66a290dd8b020e0",
+    "patches": {
+        "markup-carve/carve-php-chat": [
+            {
+                "package": "markup-carve/carve-php-chat",
+                "description": "Compatibility with carve-php's public renderer depth contract",
+                "url": "patches/carve-php-chat-render-depth.patch",
+                "sha256": "88f18e97eb596a4eea246981ede20de240a567238b4fbb432bc147c8e91a0d69",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}
