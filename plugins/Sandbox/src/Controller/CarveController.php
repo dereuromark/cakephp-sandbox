@@ -17,6 +17,7 @@ use HTMLPurifier_AttrDef_CSS_Color;
 use HTMLPurifier_Config;
 use LengthException;
 use MarkupCarve\Carve\Ast\AstCodec;
+use MarkupCarve\Carve\Ast\StoredPayloadUpgrade;
 use MarkupCarve\Carve\CarveConverter;
 use MarkupCarve\Carve\Converter\BbcodeToCarve;
 use MarkupCarve\Carve\Converter\DjotToCarve;
@@ -2101,6 +2102,7 @@ CARVE,
 
 		$direction = (string)$this->request->getData('direction') === 'decode' ? 'decode' : 'encode';
 		$withPositions = (bool)$this->request->getData('positions');
+		$upgradeStoredPayload = (bool)$this->request->getData('upgrade');
 
 		$result = [
 			'json' => '',
@@ -2124,6 +2126,10 @@ CARVE,
 				}
 
 				$start = microtime(true);
+				if ($upgradeStoredPayload) {
+					$tree = StoredPayloadUpgrade::upgradeJson($tree, $flags);
+					$result['json'] = $tree;
+				}
 				$document = $codec->decodeJson($tree);
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
 				$result['html'] = $this->sanitizeHtml((new CarveConverter())->render($document));

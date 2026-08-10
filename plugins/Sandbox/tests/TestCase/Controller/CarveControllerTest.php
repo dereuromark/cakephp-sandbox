@@ -35,6 +35,8 @@ class CarveControllerTest extends TestCase {
 		$this->assertNoRedirect();
 		$this->assertResponseContains('Carve &rarr; Pandoc');
 		$this->assertResponseContains('pandoc-carve');
+		$this->assertResponseContains('carve-js@60b74ac');
+		$this->assertResponseContains('pandoc-carve@2b6e192');
 	}
 
 	/**
@@ -1521,6 +1523,86 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$this->assertResponseContains('ImgFenceExtension');
 		$this->assertResponseContains('HeadingNumbersExtension');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testCodeBlocks(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'codeBlocks']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Code Blocks');
+		$this->assertResponseContains('language-php');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMediaEmbed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'mediaEmbed']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Carve &rarr; Media Embeds');
+		$this->assertResponseContains('data-carve-source');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testGracefulDegradation(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'demo']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Graceful Degradation');
+		$this->assertResponseContains('Static HTML');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testGracefulDegradationMarkdownTarget(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'demo'], [
+			'target' => 'markdown',
+			'carve' => '# Export',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('# Export');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertAstUpgradesLegacyStoredPayload(): void {
+		$tree = '{"type":"document","srcByteLength":6,"children":[{"type":"paragraph","children":[{"type":"raw_text","content":"legacy"}]}]}';
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'decode',
+			'tree' => $tree,
+			'upgrade' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('legacy', $response['html']);
+		$this->assertStringContainsString('"type": "text"', $response['json']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertAstPreservesThematicBreakMarker(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
+			'direction' => 'encode',
+			'carve' => "***\n",
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('"marker": "*"', $response['json']);
+		$this->assertTrue($response['stable']);
 	}
 
 }

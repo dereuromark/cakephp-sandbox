@@ -120,6 +120,10 @@ JSON;
 			</button>
 		</div>
 		<textarea id="tree-input" class="form-control font-monospace" rows="16" style="font-size: 0.82em;"><?= h($defaultTree) ?></textarea>
+		<div class="form-check mt-2">
+			<input class="form-check-input" type="checkbox" id="opt-upgrade">
+			<label class="form-check-label" for="opt-upgrade">Upgrade legacy stored payload before decoding</label>
+		</div>
 	</div>
 	<div class="col-md-6">
 		<label class="form-label"><strong>Rendered HTML</strong></label>
@@ -133,6 +137,7 @@ JSON;
 
 <h3 class="mt-4">In PHP</h3>
 <pre class="bg-light p-3 border rounded"><code class="language-php">use MarkupCarve\Carve\Ast\AstCodec;
+use MarkupCarve\Carve\Ast\StoredPayloadUpgrade;
 use MarkupCarve\Carve\CarveConverter;
 use MarkupCarve\Carve\Parser\BlockParser;
 
@@ -144,6 +149,10 @@ $document = $converter->parse($source);
 
 $json = $codec->encodeJson($document, JSON_PRETTY_PRINT);
 $again = $codec->decodeJson($json);
+
+// Migrate AST JSON stored before the current PART 12 shape.
+$upgradedJson = StoredPayloadUpgrade::upgradeJson($legacyJson);
+$legacyDocument = $codec->decodeJson($upgradedJson);
 
 $converter->render($again); // identical to render($document)</code></pre>
 
@@ -165,6 +174,7 @@ $converter->render($again); // identical to render($document)</code></pre>
 	const decodeCarve = document.getElementById('decode-carve');
 	const decodeAlert = document.getElementById('decode-alert');
 	const btnFillTree = document.getElementById('btn-fill-tree');
+	const optUpgrade = document.getElementById('opt-upgrade');
 
 	const convertUrl = <?= json_encode($this->Url->build(['action' => 'convertAst'])) ?>;
 
@@ -227,7 +237,11 @@ $converter->render($again); // identical to render($document)</code></pre>
 	}
 
 	function doDecode() {
-		post({ direction: 'decode', tree: treeInput.value }).then(data => {
+		post({
+			direction: 'decode',
+			tree: treeInput.value,
+			upgrade: optUpgrade.checked ? '1' : '0'
+		}).then(data => {
 			decodeAlert.innerHTML = '';
 			if (data.error) {
 				decodeAlert.innerHTML = '<div class="alert alert-danger py-2 mb-0"><strong>Rejected:</strong> ' + escapeHtml(data.error) + '</div>';
@@ -259,6 +273,7 @@ $converter->render($again); // identical to render($document)</code></pre>
 	carveInput.addEventListener('input', encode);
 	optPositions.addEventListener('change', doEncode);
 	treeInput.addEventListener('input', decode);
+	optUpgrade.addEventListener('change', doDecode);
 	btnCopyAst.addEventListener('click', () => copyToClipboard(astOutput.value, btnCopyAst));
 	btnFillTree.addEventListener('click', () => {
 		if (astOutput.value) {
