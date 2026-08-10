@@ -1,0 +1,26 @@
+diff --git a/src/ChatRenderer.php b/src/ChatRenderer.php
+index 49ae4e2..2d3be1c 100644
+--- a/src/ChatRenderer.php
++++ b/src/ChatRenderer.php
+@@ -66,7 +66,7 @@ final class ChatRenderer implements RendererInterface
+     /**
+      * @var int
+      */
+-    private const MAX_RENDER_DEPTH = 512;
++    public const MAX_RENDER_DEPTH = 512;
+ 
+     private int $renderDepth = 0;
+ 
+diff --git a/src/ChatPreviewRenderer.php b/src/ChatPreviewRenderer.php
+index f9c9aa4..20301c4 100644
+--- a/src/ChatPreviewRenderer.php
++++ b/src/ChatPreviewRenderer.php
+@@ -54,7 +54,7 @@ final class ChatPreviewRenderer implements RendererInterface
+     /**
+      * @var int
+      */
+-    private const MAX_RENDER_DEPTH = 512;
++    public const MAX_RENDER_DEPTH = 512;
+ 
+     /**
+      * Supported inline marks and the tag that shows them. Not per-platform:
