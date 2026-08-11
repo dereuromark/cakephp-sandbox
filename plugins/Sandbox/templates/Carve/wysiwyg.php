@@ -6,6 +6,11 @@
 $this->append('css');
 ?>
 <style>
+/* Scroll sync writes offsets directly. Smooth scrolling would turn every write into a
+   multi-frame animation whose intermediate offsets echo back as user scrolls. */
+#tiptap-editor, #output-carve, #output-html {
+	scroll-behavior: auto;
+}
 #tiptap-editor {
 	min-height: 300px;
 	max-height: 55vh;
@@ -564,7 +569,12 @@ function elementLineRange(el) {
 // Scroll only within the given pane - never the page itself.
 function scrollPaneTo(paneEl, el) {
 	const offset = el.getBoundingClientRect().top - paneEl.getBoundingClientRect().top + paneEl.scrollTop;
-	paneEl.scrollTop = Math.max(0, offset - paneEl.clientHeight / 3);
+	const next = Math.max(0, offset - paneEl.clientHeight / 3);
+	if (Math.abs(paneEl.scrollTop - next) < 1) {
+		// A sub-pixel write still fires `scroll` in some engines.
+		return;
+	}
+	paneEl.scrollTop = next;
 }
 
 let cursorSyncScheduled = false;

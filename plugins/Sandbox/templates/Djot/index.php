@@ -181,6 +181,11 @@ DJOT;
 <div id="alert-container"></div>
 
 <style>
+/* Scroll sync writes offsets directly. Smooth scrolling would turn every write into a
+   multi-frame animation whose intermediate offsets echo back as user scrolls. */
+#djot-input, #output-rendered, #output-source {
+	scroll-behavior: auto;
+}
 #output-rendered ul.task-list,
 #output-rendered ul.task {
 	list-style: none;
@@ -765,6 +770,7 @@ This div is never closed.</code></pre>
 				alertContainer.innerHTML += violationHtml;
 			}
 
+			const renderedScrollTop = outputRendered.scrollTop;
 			outputRendered.innerHTML = data.html || '<span class="text-muted">Enter some Djot markup...</span>';
 			// The scroll-sync anchors are an internal aid; keep the displayed
 			// HTML source clean of them.
@@ -775,6 +781,8 @@ This div is never closed.</code></pre>
 				el.removeAttribute('data-highlighted');
 				hljs.highlightElement(el);
 			});
+			// Restore last because rendering and highlighting change the pane's height.
+			setScrollTop(outputRendered, renderedScrollTop);
 		})
 		.catch(err => {
 			loadingIndicator.style.transition = 'opacity 0.8s';
@@ -862,10 +870,6 @@ This div is never closed.</code></pre>
 	// drifting like pure percentage sync. The HTML source pane has no
 	// anchors and keeps proportional sync as fallback (as does the rendered
 	// pane when no anchors are present, e.g. on an error).
-	//
-	// A guard flag stops the programmatic scroll from echoing back into a
-	// feedback loop.
-	let isSyncingScroll = false;
 	function activeOutput() {
 		return outputSource.classList.contains('d-none') ? outputRendered : outputSource;
 	}
@@ -964,10 +968,40 @@ This div is never closed.</code></pre>
 		return Math.max(0, Math.min(top, el.scrollHeight - el.clientHeight));
 	}
 
+	// Offsets we wrote ourselves. The `scroll` event they produce is an echo, not a user
+	// gesture, and must not be synced back. Matching by value instead of by a timer works
+	// no matter which frame the engine dispatches the event in; the tolerance covers
+	// engines that keep fractional offsets while others round to integers.
+	const expectedScroll = new WeakMap();
+
+	function setScrollTop(el, top) {
+		const next = clampScroll(el, top);
+		if (Math.abs(el.scrollTop - next) < 1) {
+			// A sub-pixel write still fires `scroll` in some engines, which is enough to
+			// keep an echo loop alive on its own.
+			return;
+		}
+		expectedScroll.set(el, next);
+		el.scrollTop = next;
+	}
+
+	function isEcho(el) {
+		const expected = expectedScroll.get(el);
+		if (expected === undefined) {
+			return false;
+		}
+		// Consumed either way: a write whose echo never arrived (the engine coalesced it,
+		// or a re-render clamped the offset) must not swallow a later real gesture that
+		// happens to land on the same offset.
+		expectedScroll.delete(el);
+
+		return Math.abs(el.scrollTop - expected) < 1;
+	}
+
 	function syncProportional(from, to) {
 		const range = from.scrollHeight - from.clientHeight;
 		const ratio = range > 0 ? from.scrollTop / range : 0;
-		to.scrollTop = ratio * (to.scrollHeight - to.clientHeight);
+		setScrollTop(to, ratio * (to.scrollHeight - to.clientHeight));
 	}
 
 	function syncEditorToRendered() {
@@ -985,7 +1019,7 @@ This div is never closed.</code></pre>
 		const a = points[i];
 		const b = points[i + 1];
 		const frac = b.line > a.line ? Math.max(0, Math.min(1, (line - a.line) / (b.line - a.line))) : 0;
-		outputRendered.scrollTop = clampScroll(outputRendered, a.top + frac * (b.top - a.top));
+		setScrollTop(outputRendered, a.top + frac * (b.top - a.top));
 	}
 
 	function syncRenderedToEditor() {
@@ -1007,14 +1041,34 @@ This div is never closed.</code></pre>
 		const offsets = lineOffsets();
 		const idx = Math.max(0, Math.min(offsets.length - 2, Math.floor(line - 1)));
 		const lineFrac = Math.max(0, Math.min(1, line - 1 - idx));
-		input.scrollTop = clampScroll(input, offsets[idx] + lineFrac * (offsets[idx + 1] - offsets[idx]));
+		setScrollTop(input, offsets[idx] + lineFrac * (offsets[idx + 1] - offsets[idx]));
 	}
 
+	// Only the pane the user is actually driving may push the other one. Without this a
+	// single stray echo is enough to start the two panes pushing each other indefinitely.
+	let scrollOwner = null;
+
+	function claimScroll(el) {
+		scrollOwner = el;
+	}
+
+	[input, outputRendered, outputSource].forEach(el => {
+		el.addEventListener('pointerenter', () => claimScroll(el));
+		el.addEventListener('wheel', () => claimScroll(el), {passive: true});
+		el.addEventListener('touchstart', () => claimScroll(el), {passive: true});
+	});
+	// Typing moves the caret and scrolls the textarea, which must keep driving the preview
+	// even while the pointer rests over the preview pane.
+	input.addEventListener('focus', () => claimScroll(input));
+	input.addEventListener('keydown', () => claimScroll(input));
+
 	function syncScroll(from) {
-		if (isSyncingScroll) {
+		if (isEcho(from)) {
 			return;
 		}
-		isSyncingScroll = true;
+		if (scrollOwner && scrollOwner !== from) {
+			return;
+		}
 		if (from === input) {
 			const target = activeOutput();
 			if (target === outputRendered) {
@@ -1027,10 +1081,8 @@ This div is never closed.</code></pre>
 		} else {
 			syncProportional(outputSource, input);
 		}
-		requestAnimationFrame(() => {
-			isSyncingScroll = false;
-		});
 	}
+
 	input.addEventListener('scroll', () => syncScroll(input));
 	outputRendered.addEventListener('scroll', () => syncScroll(outputRendered));
 
@@ -1086,11 +1138,7 @@ This div is never closed.</code></pre>
 		input.focus();
 		input.setSelectionRange(pos, pos);
 		const offsets = lineOffsets();
-		isSyncingScroll = true;
-		input.scrollTop = clampScroll(input, (offsets[line - 1] || 0) - input.clientHeight / 3);
-		requestAnimationFrame(() => {
-			isSyncingScroll = false;
-		});
+		setScrollTop(input, (offsets[line - 1] || 0) - input.clientHeight / 3);
 		highlightCaretBlock();
 	});
 
