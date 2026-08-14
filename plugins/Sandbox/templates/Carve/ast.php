@@ -16,8 +16,7 @@ Admonitions are divs carrying a class.
 - one
 - two
 
-| Lang  |= Engine    |
-|-------|------------|
+|= Lang |= Engine    |
 | PHP   | carve-php  |
 | JS    | carve-js   |
 

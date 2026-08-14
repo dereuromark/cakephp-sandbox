@@ -12,6 +12,10 @@ Subscript like H~2~O and a {=highlight=} get rewritten too.
 
 Intraword superscript like 2^10^ gets the forced {^..^} wrap in Carve.
 
+Braced forms convert as well: H{~2~}O becomes comma subscript, E=mc{^2^} stays braced.
+
+Intraword braced emphasis like intra{_word_}emphasis converts instead of staying literal.
+
 Markdown-isms such as **bold** and ~~strike~~ are normalized.
 
 Nested delimiters compose in one pass: **_bold italic_**, ~~_struck italic_~~, and partial overlaps like **bold with _italic_ inside** all rewrite cleanly.

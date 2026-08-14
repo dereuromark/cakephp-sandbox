@@ -30,7 +30,7 @@ echo "Hello, World!";</code></pre>
 
 <blockquote>
     <p>The best way to predict the future is to invent it.</p>
-    <p><em>Alan Kay</em></p>
+    <footer>Alan Kay</footer>
 </blockquote>
 
 <h3>Table</h3>
@@ -120,7 +120,7 @@ HTML;
 		<ul class="small">
 			<li><code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code> - Headings</li>
 			<li><code>&lt;p&gt;</code> - Paragraphs</li>
-			<li><code>&lt;blockquote&gt;</code> - Blockquotes</li>
+			<li><code>&lt;blockquote&gt;</code> - Blockquotes (a trailing <code>&lt;footer&gt;</code>/<code>&lt;cite&gt;</code> becomes a <code>^</code> attribution)</li>
 			<li><code>&lt;pre&gt;&lt;code&gt;</code> - Code blocks</li>
 			<li><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> - Lists</li>
 			<li><code>&lt;table&gt;</code> - Tables</li>
