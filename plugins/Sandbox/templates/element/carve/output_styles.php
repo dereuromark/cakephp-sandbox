@@ -162,22 +162,17 @@
 	margin: 1em 0;
 	padding: 0;
 }
-/* Image/table figures keep figcaption; a quote's `^ Author` caption now
-   renders as a <footer> INSIDE the <blockquote> (attribution), not as a
-   figure/figcaption wrapper - style both the same way. */
-.carve-rendered figcaption,
-.carve-rendered blockquote > footer {
+.carve-rendered figure blockquote {
+	margin-bottom: 0.5em;
+}
+.carve-rendered figcaption {
 	font-style: italic;
 	color: #666;
 	font-size: 0.9em;
 	padding-left: 1em;
 }
-.carve-rendered figcaption::before,
-.carve-rendered blockquote > footer::before {
+.carve-rendered figcaption::before {
 	content: "— ";
-}
-.carve-rendered blockquote > footer {
-	margin-top: 0.5em;
 }
 .carve-rendered table {
 	width: 100%;

@@ -117,24 +117,6 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * A quote's `^ Author` caption renders as a <footer> inside the
-	 * <blockquote>; the sanitizer must let it through.
-	 *
-	 * @return void
-	 */
-	public function testConvertKeepsQuoteAttributionFooter(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "> To be, or not to be\n^ Hamlet",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('<blockquote', $response['html']);
-		$this->assertStringContainsString('<footer>Hamlet</footer>', $response['html']);
-	}
-
-	/**
 	 * Core semantic spans emit <time datetime> and (via the extension) <cite>;
 	 * both must survive sanitization.
 	 *

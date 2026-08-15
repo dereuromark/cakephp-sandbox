@@ -19,7 +19,7 @@ $examples = [
 CARVE,
 	],
 	'Attributed Quotes' => [
-		'description' => 'Blockquotes with author attribution: the `^` caption renders as a `<footer>` inside the `<blockquote>`.',
+		'description' => 'Blockquotes with author attribution using figure/figcaption.',
 		'code' => <<<'CARVE'
 > To be or not to be,
 > that is the question.
