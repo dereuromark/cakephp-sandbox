@@ -60,6 +60,9 @@ use MarkupCarve\Carve\Extension\TabsExtension;
 use MarkupCarve\Carve\Extension\TocPlacementExtension;
 use MarkupCarve\Carve\Extension\WikilinksExtension;
 use MarkupCarve\Carve\Lint\MarkdownHabitLinter;
+use MarkupCarve\Carve\Lint\RetiredSpellingLinter;
+use MarkupCarve\Carve\Lint\SemanticAttributeLinter;
+use MarkupCarve\Carve\Lint\TemplateSourceLinter;
 use MarkupCarve\Carve\Parser\BlockParser;
 use MarkupCarve\Carve\Profile;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
@@ -178,6 +181,55 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
+	 * Runs every shipped lint pass over the source: the source-scanning
+	 * Markdown-habit pass plus the AST-walking passes (semantic attribute
+	 * misuse, retired spellings, template tags read as comments).
+	 *
+	 * The habit pass runs unguarded so its findings survive even when the
+	 * AST passes cannot parse the document for an unrelated reason.
+	 *
+	 * @param string $source Carve source.
+	 * @param bool $withExtensions Whether the caller renders with the default
+	 *   extension set; the semantic linter reads its element names off the
+	 *   renderer those extensions configure.
+	 * @return array<array<string, mixed>>
+	 */
+	protected function lintCarve(string $source, bool $withExtensions = true): array {
+		$warnings = $this->lintMarkdownHabits($source);
+
+		$semanticOptions = [];
+		if ($withExtensions) {
+			$probe = new CarveConverter();
+			$this->addDefaultExtensions($probe);
+			$semanticOptions['extensions'] = $probe->getExtensions();
+		}
+
+		try {
+			$lintWarnings = array_merge(
+				(new SemanticAttributeLinter())->lint($source, $semanticOptions),
+				(new RetiredSpellingLinter())->lint($source),
+				(new TemplateSourceLinter())->lint($source),
+			);
+			foreach ($lintWarnings as $warning) {
+				$warnings[] = [
+					'line' => $warning->line,
+					'column' => $warning->column,
+					'rule' => $warning->rule,
+					'message' => $warning->message,
+				];
+			}
+		} catch (Throwable) {
+			// The document did not parse; the convert path reports that error.
+		}
+
+		usort($warnings, function (array $a, array $b): int {
+			return $a['line'] <=> $b['line'] ?: $a['column'] <=> $b['column'];
+		});
+
+		return $warnings;
+	}
+
+	/**
 	 * Demo stub target for the Wikilinks extension. There is no real wiki; any
 	 * [[Page]] link from the playground lands here so the links resolve.
 	 *
@@ -251,7 +303,7 @@ class CarveController extends SandboxAppController {
 		if ($carve) {
 			// Runs outside the try: a Markdown habit is worth reporting even when
 			// the document fails to parse for an unrelated reason.
-			$result['lint'] = $this->lintMarkdownHabits($carve);
+			$result['lint'] = $this->lintCarve($carve, !$disableExtensions);
 
 			try {
 				$profile = $this->getProfile($profileName, $filterMode);
@@ -1842,6 +1894,14 @@ CARVE,
 		$this->request->allowMethod(['post']);
 
 		$html = (string)$this->request->getData('html');
+		$adapter = (string)$this->request->getData('adapter') ?: 'generic';
+		// Provenance declaration: which editor/exporter produced the HTML. The
+		// word and google-docs adapters additionally read footnote-shaped HTML
+		// back as real [^N] references and definitions.
+		$adapters = ['generic', 'tiptap', 'prosemirror', 'ckeditor', 'tinymce', 'word', 'google-docs'];
+		if (!in_array($adapter, $adapters, true)) {
+			$adapter = 'generic';
+		}
 
 		$result = [
 			'carve' => '',
@@ -1850,7 +1910,7 @@ CARVE,
 
 		if ($html) {
 			try {
-				$converter = new HtmlToCarve();
+				$converter = new HtmlToCarve(importAdapter: $adapter);
 				$result['carve'] = $converter->convert($html);
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();

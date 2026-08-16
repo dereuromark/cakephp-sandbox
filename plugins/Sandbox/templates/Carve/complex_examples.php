@@ -30,6 +30,19 @@ CARVE,
 ^ William Shakespeare, *Hamlet*
 CARVE,
 	],
+	'Composite Figures' => [
+		'description' => 'A bare `::: figure` container is one figure of ordered panels: its captionable children (images, quotes, code listings, tables) group under a single caption - the `^` line after the closing fence - and a crossref to a panel resolves as the group number plus a letter ("Figure 1a").',
+		'code' => <<<'CARVE'
+::: figure
+![Pass](/img/test-pass-icon.png)
+^ The suite before the change
+
+![Fail](/img/test-fail-icon.png)
+^ The suite after the change
+:::
+^ One numbered figure, two lettered panels
+CARVE,
+	],
 	'Table with Caption' => [
 		'description' => 'Tables use header markers (`|=`) with glued alignment markers - `|=<` left, `|=~` center, `|=>` right - instead of a Markdown separator row.',
 		'code' => <<<'CARVE'
@@ -291,11 +304,18 @@ Also \`backticks\` and \[brackets\].
 CARVE,
 	],
 	'Comments (Hidden)' => [
-		'description' => 'Comments that do not appear in the output.',
+		'description' => 'Three comment forms render nothing: `{% ... %}` closes explicitly and works mid-sentence (transparent to inline structure), `%%` hides the rest of its paragraph, `%%%` fences off whole blocks.',
 		'code' => <<<'CARVE'
-This text is visible.
+Prose flows {% a delimited comment %} around a hidden note.
 
-{% This comment will not appear in the output %}
+Even *bo{% hidden %}ld* stays one strong span.
+
+The trailing form hides the rest %% of this paragraph
+
+%%%
+A block comment: everything up to the
+closing fence stays out of the output.
+%%%
 
 This text is also visible.
 CARVE,

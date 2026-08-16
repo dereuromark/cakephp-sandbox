@@ -791,6 +791,46 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * The word adapter binds Word's footnote-shaped anchors (reference fragment
+	 * plus back-link) into real [^N] references and definitions; the generic
+	 * adapter would keep them as the literal links the HTML spelled.
+	 *
+	 * @return void
+	 */
+	public function testConvertHtmlWordAdapterReadsFootnotes(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
+			'html' => '<p>Text<a href="#_ftn1" name="_ftnref1"><sup>[1]</sup></a> here.</p>'
+				. '<hr><div><p><a href="#_ftnref1" name="_ftn1"><sup>[1]</sup></a> The note.</p></div>',
+			'adapter' => 'word',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('Text[^1] here.', $response['carve']);
+		$this->assertStringContainsString('[^1]: The note.', $response['carve']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * An unknown adapter name falls back to generic instead of erroring.
+	 *
+	 * @return void
+	 */
+	public function testConvertHtmlUnknownAdapterFallsBackToGeneric(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
+			'html' => '<p>Hello <strong>world</strong>!</p>',
+			'adapter' => 'nonsense',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('*world*', $response['carve']);
+		$this->assertNull($response['error']);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertHtmlGetMethodNotAllowed(): void {
@@ -1370,6 +1410,45 @@ class CarveControllerTest extends TestCase {
 		$this->assertCount(1, $response['lint']);
 		$this->assertSame('markdown-strong-asterisks', $response['lint'][0]['rule']);
 		$this->assertSame(1, $response['lint'][0]['line']);
+	}
+
+	/**
+	 * The lint pass also runs the AST-walking linters: a value on a semantic
+	 * span name that only selects its wrapper reaches no output, so the
+	 * document is valid but the value is silently discarded.
+	 *
+	 * @return void
+	 */
+	public function testConvertReportsSemanticAttributeLint(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => '[text]{kbd=value}',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertCount(1, $response['lint']);
+		$this->assertSame('semantic-attribute-value-ignored', $response['lint'][0]['rule']);
+	}
+
+	/**
+	 * The semantic linter reads element names off the renderer the playground's
+	 * default extensions configure: `samp` is SemanticSpanExtension tier, not
+	 * core, so this only fires because the lint pass gets the same set.
+	 *
+	 * @return void
+	 */
+	public function testConvertReportsExtensionTierSemanticAttributeLint(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => '[text]{samp=value}',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertCount(1, $response['lint']);
+		$this->assertSame('semantic-attribute-value-ignored', $response['lint'][0]['rule']);
+		$this->assertStringContainsString('samp', $response['lint'][0]['message']);
 	}
 
 	/**

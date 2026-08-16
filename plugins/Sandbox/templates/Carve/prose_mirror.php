@@ -285,7 +285,9 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
 		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
-		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@d11ff98/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break"
+		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@2",
+		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@2",
+		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@e09b460/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list"
 	}
 }
 </script>

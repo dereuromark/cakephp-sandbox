@@ -60,9 +60,16 @@
 
 <h3>Converting onwards</h3>
 <p>Once you have the JSON, any pandoc writer takes it:</p>
-<pre><code>pandoc-carve doc.crv | pandoc -f json -t latex -o doc.tex
+<pre><code># pandoc-carve prints the JSON AST to stdout; the pipe (|) hands it to the
+# pandoc binary, which reads it (-f json) and writes the target format (-t).
+pandoc-carve doc.crv | pandoc -f json -t latex -o doc.tex
 pandoc-carve doc.crv | pandoc -f json -t docx  -o doc.docx
 pandoc-carve doc.crv | pandoc -f json -t typst -o doc.typ</code></pre>
+<p class="text-muted small">
+	Two separate programs: the first needs no pandoc install (it is the pure
+	bridge, the same code running on this page), the second is stock
+	<a href="https://pandoc.org/" target="_blank">pandoc</a> with its ~60 output writers.
+</p>
 
 <p class="text-muted small">
 	The bridge also runs in reverse: <code>pandocToCarve()</code> turns anything pandoc reads

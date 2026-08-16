@@ -64,6 +64,25 @@ echo "Hello, World!";</code></pre>
     <dd>The predecessors that inspired Carve.</dd>
 </dl>
 HTML;
+
+// Footnote-shaped HTML as Word's clipboard/export spells it: anchors pairing
+// a reference fragment with its note's back-link. Only the word (and
+// google-docs) adapters bind these into real [^N] references; generic keeps
+// the literal links.
+$wordFootnoteHtml = <<<'HTML'
+<p>Carve began as a rethink<a href="#_ftn1" name="_ftnref1"><sup>[1]</sup></a>
+of ideas from Djot and CommonMark.</p>
+
+<p>Its table syntax borrows from MediaWiki<a href="#_ftn2" name="_ftnref2"><sup>[2]</sup></a>
+rather than from Markdown pipes.</p>
+
+<hr>
+
+<div>
+    <p><a href="#_ftnref1" name="_ftn1"><sup>[1]</sup></a> Strictly speaking, a reimagining, not a fork.</p>
+    <p><a href="#_ftnref2" name="_ftn2"><sup>[2]</sup></a> Header markers instead of a separator row.</p>
+</div>
+HTML;
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -91,8 +110,30 @@ HTML;
 
 <div class="row">
 	<div class="col-md-6">
-		<label class="form-label"><strong>HTML Input</strong></label>
+		<div class="d-flex justify-content-between align-items-center mb-1">
+			<label class="form-label mb-0"><strong>HTML Input</strong></label>
+			<div class="d-flex align-items-center gap-2">
+				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-word-sample" title="Load Word-style footnote HTML and switch to the word adapter">
+					<i class="bi bi-file-earmark-word"></i> Word footnote sample
+				</button>
+				<label for="adapter-select" class="form-label mb-0 small text-muted">Adapter</label>
+				<select id="adapter-select" class="form-select form-select-sm" style="width: auto;" title="Which editor/exporter produced the HTML">
+					<option value="generic" selected>generic</option>
+					<option value="tiptap">tiptap</option>
+					<option value="prosemirror">prosemirror</option>
+					<option value="ckeditor">ckeditor</option>
+					<option value="tinymce">tinymce</option>
+					<option value="word">word</option>
+					<option value="google-docs">google-docs</option>
+				</select>
+			</div>
+		</div>
 		<textarea id="html-input" class="form-control font-monospace" rows="20" placeholder="Enter HTML..."><?= h($defaultHtml) ?></textarea>
+		<p class="text-muted small mt-1 mb-0">
+			The adapter declares the HTML's provenance. <code>word</code> and <code>google-docs</code>
+			additionally read footnote-shaped HTML back as real <code>[^N]</code> references and
+			definitions; <code>generic</code> reads only what a Carve engine writes.
+		</p>
 	</div>
 	<div class="col-md-6">
 		<div class="d-flex justify-content-between align-items-center mb-1">
@@ -163,6 +204,9 @@ HTML;
 	const loadingIndicator = document.getElementById('loading-indicator');
 	const btnCopy = document.getElementById('btn-copy');
 	const btnTry = document.getElementById('btn-try');
+	const btnWordSample = document.getElementById('btn-word-sample');
+	const adapterSelect = document.getElementById('adapter-select');
+	const wordFootnoteHtml = <?= json_encode($wordFootnoteHtml) ?>;
 
 	let debounceTimer;
 	let currentRequest;
@@ -185,6 +229,7 @@ HTML;
 
 		const formData = new FormData();
 		formData.append('html', htmlInput.value);
+		formData.append('adapter', adapterSelect.value);
 
 		fetch('<?= $this->Url->build(['action' => 'convertHtml']) ?>', {
 			method: 'POST',
@@ -247,6 +292,13 @@ HTML;
 	}
 
 	htmlInput.addEventListener('input', convert);
+	adapterSelect.addEventListener('change', convert);
+
+	btnWordSample.addEventListener('click', function() {
+		htmlInput.value = wordFootnoteHtml;
+		adapterSelect.value = 'word';
+		convert();
+	});
 
 	btnTry.addEventListener('click', function() {
 		const carve = carveOutput.value;

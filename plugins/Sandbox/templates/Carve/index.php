@@ -646,10 +646,12 @@ This div is never closed.</code></pre>
 				alertContainer.innerHTML += warningHtml;
 			}
 
-			// Markdown habits are their own pass: the document is valid, so no
-			// parse warning fires - it just renders as something else.
+			// Lint is its own pass: the document is valid, so no parse warning
+			// fires - it just renders as something the author did not mean.
+			// Covers Markdown habits, ignored semantic attribute values,
+			// retired spellings and template tags read as comments.
 			if (data.lint && data.lint.length > 0) {
-				let lintHtml = '<div class="alert alert-primary py-2"><strong><i class="bi bi-magic"></i> Markdown habits:</strong> these parse fine but render as literal text.<ul class="mb-0 ps-3 mt-1">';
+				let lintHtml = '<div class="alert alert-primary py-2"><strong><i class="bi bi-magic"></i> Lint:</strong> valid Carve, but likely not what was meant.<ul class="mb-0 ps-3 mt-1">';
 				data.lint.forEach(function(l) {
 					lintHtml += '<li>' + escapeHtml(l.message)
 						+ ' <span class="text-muted small">(line ' + l.line + ':' + l.column + ', <code>' + escapeHtml(l.rule) + '</code>)</span></li>';
