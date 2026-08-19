@@ -191,6 +191,17 @@
 	border-bottom: 2px solid #dee2e6;
 	background-color: #f8f9fa;
 }
+/* Row partitions: an explicit {footer-rows=N} tfoot, and the repeated tbody a
+   list-table's local {header-row} cells open. Both need a visible seam. */
+.carve-rendered table tfoot th,
+.carve-rendered table tfoot td {
+	border-top: 2px solid #dee2e6;
+	background-color: #f8f9fa;
+	font-weight: 600;
+}
+.carve-rendered table tbody + tbody {
+	border-top: 2px solid #dee2e6;
+}
 /* list-table cells can hold block content; drop stray outer margins */
 .carve-rendered table td > :first-child,
 .carve-rendered table th > :first-child {

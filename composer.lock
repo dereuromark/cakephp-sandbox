@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7f281a18db82d38eb3405dad6b70296",
+    "content-hash": "7a94ae2ec5cda2f36d5943d8427261a3",
     "packages": [
         {
             "name": "brick/math",
@@ -2747,12 +2747,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-markup.git",
-                "reference": "446cb4f30a895ce70b2809008ab873f75eae36f4"
+                "reference": "2d91c2afdcf75699f16ce65172e200b42392c5b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/446cb4f30a895ce70b2809008ab873f75eae36f4",
-                "reference": "446cb4f30a895ce70b2809008ab873f75eae36f4",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-markup/zipball/2d91c2afdcf75699f16ce65172e200b42392c5b5",
+                "reference": "2d91c2afdcf75699f16ce65172e200b42392c5b5",
                 "shasum": ""
             },
             "require": {
@@ -2805,7 +2805,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-markup/issues",
                 "source": "https://github.com/dereuromark/cakephp-markup"
             },
-            "time": "2026-07-09T08:40:14+00:00"
+            "time": "2026-08-18T09:01:44+00:00"
         },
         {
             "name": "dereuromark/cakephp-menu",
@@ -5977,18 +5977,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "104fb849dfc008cd86398fb1d319f2cc182e7d80"
+                "reference": "05d0177f0068cc21410807372c49c6a26078635f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/104fb849dfc008cd86398fb1d319f2cc182e7d80",
-                "reference": "104fb849dfc008cd86398fb1d319f2cc182e7d80",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/05d0177f0068cc21410807372c49c6a26078635f",
+                "reference": "05d0177f0068cc21410807372c49c6a26078635f",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2"
             },
             "require-dev": {
+                "brianium/paratest": "^7.8",
                 "nikic/php-fuzzer": "^0.0.11",
                 "php-collective/code-sniffer": "^0.6.8",
                 "phpstan/phpstan": "^2.1.32",
@@ -6039,7 +6040,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-16T14:27:57+00:00"
+            "time": "2026-08-19T13:16:22+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",
@@ -6114,17 +6115,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php-media-embed.git",
-                "reference": "0b8131612d789c58a87cb4c42db21c1b939caf24"
+                "reference": "0c9e4d6abbc8582f8157b0e1fa6fdd4424046688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php-media-embed/zipball/0b8131612d789c58a87cb4c42db21c1b939caf24",
-                "reference": "0b8131612d789c58a87cb4c42db21c1b939caf24",
+                "url": "https://api.github.com/repos/markup-carve/carve-php-media-embed/zipball/0c9e4d6abbc8582f8157b0e1fa6fdd4424046688",
+                "reference": "0c9e4d6abbc8582f8157b0e1fa6fdd4424046688",
                 "shasum": ""
             },
             "require": {
                 "dereuromark/media-embed": "^1.0",
-                "markup-carve/carve-php": "^0.1.4",
+                "markup-carve/carve-php": "^0.1.5",
                 "php": ">=8.2"
             },
             "require-dev": {
@@ -6171,28 +6172,28 @@
                 "issues": "https://github.com/markup-carve/carve-php-media-embed/issues",
                 "source": "https://github.com/markup-carve/carve-php-media-embed"
             },
-            "time": "2026-08-10T21:15:40+00:00"
+            "time": "2026-08-18T13:51:59+00:00"
         },
         {
             "name": "masterminds/html5",
-            "version": "2.10.1",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Masterminds/html5-php.git",
-                "reference": "fd5018f6815fff903946d0564977b44ce8010e29"
+                "reference": "a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/fd5018f6815fff903946d0564977b44ce8010e29",
-                "reference": "fd5018f6815fff903946d0564977b44ce8010e29",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7",
+                "reference": "a1e7a2f88ee13635d86fc61cfbdf2306a76ddfc7",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "php": ">=5.3.0"
+                "php": ">=7.4"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8.35 || ^5.7.21 || ^6 || ^7 || ^8 || ^9 || ^10"
+                "phpunit/phpunit": "^6 || ^7 || ^8 || ^9 || ^10"
             },
             "type": "library",
             "extra": {
@@ -6236,9 +6237,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Masterminds/html5-php/issues",
-                "source": "https://github.com/Masterminds/html5-php/tree/2.10.1"
+                "source": "https://github.com/Masterminds/html5-php/tree/2.11.0"
             },
-            "time": "2026-06-23T18:43:15+00:00"
+            "time": "2026-08-18T06:18:41+00:00"
         },
         {
             "name": "mjohnson/decoda",
@@ -6437,16 +6438,16 @@
         },
         {
             "name": "nette/schema",
-            "version": "v1.3.5",
+            "version": "v1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/schema.git",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002"
+                "reference": "c54350438cd6914616f790a49cb424605f421562"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/schema/zipball/f0ab1a3cda782dbc5da270d28545236aa80c4002",
-                "reference": "f0ab1a3cda782dbc5da270d28545236aa80c4002",
+                "url": "https://api.github.com/repos/nette/schema/zipball/c54350438cd6914616f790a49cb424605f421562",
+                "reference": "c54350438cd6914616f790a49cb424605f421562",
                 "shasum": ""
             },
             "require": {
@@ -6498,9 +6499,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/schema/issues",
-                "source": "https://github.com/nette/schema/tree/v1.3.5"
+                "source": "https://github.com/nette/schema/tree/v1.3.6"
             },
-            "time": "2026-02-23T03:47:12+00:00"
+            "time": "2026-08-16T21:58:41+00:00"
         },
         {
             "name": "nette/utils",
@@ -14400,8 +14401,8 @@
         {
             "package": "markup-carve/carve-php",
             "version": "dev-main",
-            "alias": "0.1.4",
-            "alias_normalized": "0.1.4.0"
+            "alias": "0.1.5",
+            "alias_normalized": "0.1.5.0"
         },
         {
             "package": "php-collective/file-storage",

@@ -1618,12 +1618,12 @@ CARVE,
 			],
 			'list_table' => [
 				'name' => 'ListTableExtension',
-				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The preceding line carries optional {header-rows=N} / {header-cols=N} counts, or their boolean form ({header-rows} marks just the first row/column).',
+				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The preceding line carries optional {header-rows=N} / {header-cols=N} / {footer-rows=N} counts, or their boolean form ({header-rows} marks just the first row/column). A cell carries its own attributes glued to its bullet: -{header-row} makes the row a local header and opens a new <tbody> partition, -{header} promotes the single cell, and -{align=...}/-{valign=...} set that cell alignment.',
 				'class' => ListTableExtension::class,
 				'example_carve' => <<<'CARVE'
-{header-rows=1}
+{footer-rows=1}
 ::: list-table "Quarterly results"
-- - Region
+- -{header-row} Region
   - Notes
 - - EMEA
   - Strong quarter.
@@ -1632,6 +1632,12 @@ CARVE,
 
     - new logos
     - renewals
+- -{header-row} Region
+  - Notes
+- - APAC
+  -{align=right valign=bottom} Flat.
+- - Total
+  -{header} 2 regions
 :::
 CARVE,
 			],
@@ -2412,14 +2418,17 @@ CARVE,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
-		$config->set('HTML.DefinitionRev', 15);
-		$config->set('HTML.Allowed', 'p[class|id|data-source-line],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],b[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role|download],img[src|alt|title|loading|decoding|class|id],ul[class|id|data-source-line],ol[start|type|class|id|data-source-line|reversed],li[class|id|value|data-source-line],dl[class|id|data-source-line],dt[class|id|data-source-line],dd[class|id|data-source-line],blockquote[class|id|data-source-line],pre[class|id|data-source-line],code[class|id],aside[class|id|data-source-line],h1[class|id|data-source-line],h2[class|id|data-source-line],h3[class|id|data-source-line],h4[class|id|data-source-line],h5[class|id|data-source-line],h6[class|id|data-source-line],table[class|id|data-source-line],caption[class|id],thead[class|id],tbody[class|id],tr[class|id],th[align|colspan|rowspan|style|class|id],td[align|colspan|rowspan|style|class|id],hr[class|id|data-source-line],div[class|id|role|aria-labelledby|hidden|data-source-line],span[class|id|style],section[class|id|role|data-source-line],nav[class|id|data-source-line],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open|data-source-line],summary[class|id],figure[class|id|data-source-line],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],cite[class|id],abbr[title|class|id],time[datetime|class|id]');
+		$config->set('HTML.DefinitionRev', 16);
+		$config->set('HTML.Allowed', 'p[class|id|data-source-line],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],b[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role|download],img[src|alt|title|loading|decoding|class|id],ul[class|id|data-source-line],ol[start|type|class|id|data-source-line|reversed],li[class|id|value|data-source-line],dl[class|id|data-source-line],dt[class|id|data-source-line],dd[class|id|data-source-line],blockquote[class|id|data-source-line],pre[class|id|data-source-line],code[class|id],aside[class|id|data-source-line],h1[class|id|data-source-line],h2[class|id|data-source-line],h3[class|id|data-source-line],h4[class|id|data-source-line],h5[class|id|data-source-line],h6[class|id|data-source-line],table[class|id|data-source-line],caption[class|id],thead[class|id],tbody[class|id],tfoot[class|id],colgroup[class|id],col[span|style|class|id],tr[class|id],th[align|colspan|rowspan|scope|style|class|id],td[align|colspan|rowspan|scope|style|class|id],hr[class|id|data-source-line],div[class|id|role|aria-labelledby|hidden|data-source-line],span[class|id|style],section[class|id|role|data-source-line],nav[class|id|data-source-line],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open|data-source-line],summary[class|id],figure[class|id|data-source-line],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],cite[class|id],abbr[title|class|id],time[datetime|class|id]');
 		// background-color is needed for the ColorSwatch extension's chip; the
 		// value is validated as a CSS color by HTMLPurifier, so it cannot inject.
 		// background + color additionally cover the {contrast} label variant
 		// (value inside a filled box, auto black/white text). Each is color-
 		// validated by HTMLPurifier, so none can break out of the declaration.
-		$config->set('CSS.AllowedProperties', 'text-align, background-color, background, color');
+		// vertical-align carries the per-cell valign markers (|?^ / |?v and the
+		// list-table {valign=...} attribute); width carries the <col> widths a
+		// list-table colgroup emits. Both are value-validated by HTMLPurifier.
+		$config->set('CSS.AllowedProperties', 'text-align, vertical-align, width, background-color, background, color');
 		$config->set('Attr.EnableID', true);
 		$config->set('Attr.AllowedFrameTargets', ['_blank']);
 		$config->set('HTML.TargetBlank', false);

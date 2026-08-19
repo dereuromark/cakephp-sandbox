@@ -67,6 +67,29 @@ CARVE,
 ^ Rowspan (^), colspan (<) and a right-aligned price column
 CARVE,
 	],
+	'Table Row Partitions' => [
+		'description' => '`{header-rows=N}` and `{footer-rows=N}` on the line above the table name the partitions explicitly: the first N rows become the `<thead>` (cells promoted to `<th>`), the last N the `<tfoot>`. Naming either key replaces the automatic `|=` detection, so name both where the table also has a header.',
+		'code' => <<<'CARVE'
+{header-rows=1 footer-rows=1}
+|=< Item |=> Qty |=> Price |
+| Coffee | 2 | 8.00 |
+| Tea | 1 | 3.50 |
+| Total | 3 | 11.50 |
+
+^ First row is the thead, last row the tfoot
+CARVE,
+	],
+	'Inherited Cell Alignment' => [
+		'description' => '`?` inherits the column\'s horizontal alignment, which frees a cell to set only its vertical one: `|?^` top, `|?~` middle, `|?v` bottom. A vertical marker needs that horizontal partner - a lone `|^` / `|v` has none and stays literal text.',
+		'code' => <<<'CARVE'
+|=< Phase |=> Hours |
+|?v Design | 12 |
+| ^ | 8 |
+| Build | 20 |
+
+^ Design spans two rows, keeps the column's left alignment and sits on the bottom edge
+CARVE,
+	],
 	'Definition List (Multiple Terms/Definitions)' => [
 		'description' => 'Multiple terms can share a single definition and vice versa.',
 		'code' => <<<'CARVE'

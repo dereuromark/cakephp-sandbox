@@ -85,6 +85,93 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * Explicit row partitions survive the playground's sanitizer.
+	 *
+	 * `{header-rows=N footer-rows=N}` renders a `<tfoot>`, which HTMLPurifier
+	 * drops unless the element is on the allowlist - and a dropped `tfoot` reads
+	 * as an extra `tbody`, so the demo would show the feature as a no-op.
+	 * HTMLPurifier reorders `tfoot` ahead of `tbody` (the HTML4 order); CSS
+	 * places a footer group at the bottom either way.
+	 *
+	 * @return void
+	 */
+	public function testConvertKeepsExplicitTableRowPartitions(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "{header-rows=1 footer-rows=1}\n|=< Item |=> Qty |\n| Coffee | 2 |\n| Total | 2 |\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('<thead>', $response['html']);
+		$this->assertStringContainsString('<tfoot><tr><td', $response['html']);
+		$this->assertStringContainsString('Total', $response['html']);
+	}
+
+	/**
+	 * The `?` prefix inherits the column's horizontal alignment so a cell can set
+	 * only its vertical one, and the resulting `vertical-align` declaration has to
+	 * survive the sanitizer's CSS allowlist.
+	 *
+	 * @return void
+	 */
+	public function testConvertKeepsInheritedCellAlignment(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "|=< Phase |=> Hours |\n|?v Design | 12 |\n| ^ | 8 |\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('vertical-align:bottom;', $response['html']);
+		$this->assertStringContainsString('rowspan="2"', $response['html']);
+	}
+
+	/**
+	 * A vertical marker needs a horizontal partner: a lone `|^` prefix is content,
+	 * not alignment. The playground is where an author would try it.
+	 *
+	 * @return void
+	 */
+	public function testConvertKeepsLoneVerticalMarkerAsText(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "|=< Phase |=> Hours |\n|^ Design | 12 |\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('^ Design', $response['html']);
+		$this->assertStringNotContainsString('vertical-align', $response['html']);
+	}
+
+	/**
+	 * A list-table's local `{header-row}` cells open a fresh `<tbody>` partition,
+	 * `{header}` promotes a single cell, and per-cell `{align=}` / `{valign=}` land
+	 * as inline styles. All of it has to clear the sanitizer.
+	 *
+	 * @return void
+	 */
+	public function testConvertKeepsListTableLocalHeaders(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "::: list-table\n- -{header-row} Region\n  - Notes\n- - EMEA\n  -{align=right valign=bottom} Flat.\n- - Total\n  -{header} 2 regions\n:::\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		// The playground parses with source lines on, so a cell's single paragraph
+		// keeps its `<p data-source-line>` wrapper instead of collapsing inline.
+		$this->assertStringContainsString('<th scope="col"><p data-source-line="2">Region</p></th>', $response['html']);
+		$this->assertStringContainsString('<th scope="row"><p data-source-line="7">2 regions</p></th>', $response['html']);
+		$this->assertStringContainsString('text-align:right;vertical-align:bottom;', $response['html']);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertWithArticleProfile(): void {
@@ -1340,21 +1427,19 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * What the bridge still cannot carry is NAMED rather than lost quietly.
+	 * A link with an empty label used to be a real loss: the editor model had no
+	 * text to hang the mark on, so it came back gone and `degradedTypes()` named
+	 * it. carve-php now carries such a mark as a `carveEmptyMark` node, for the
+	 * five mark types the published schema gives a carrier (link, span,
+	 * abbreviation, insert, delete), so the round trip is exact and the report is
+	 * empty.
 	 *
-	 * A link with an empty label has no text to hang the mark on, so the editor
-	 * model cannot hold it at all and it comes back gone. That is a real loss
-	 * rather than a different spelling, which is why the demo's claim is the
-	 * REPORT, not the round trip: `degradedTypes()` says what happened.
-	 *
-	 * An autolink used to be the case here. It stopped being one when carve-php
-	 * taught the bridge to carry the authored spelling (its #629), which is the
-	 * same direction the typed-div gap went - the losses shrink, the report is
-	 * what has to keep pace.
+	 * The same direction the autolink (its #629) and the typed-div gap went - the
+	 * losses shrink, and this suite is what keeps the demo's claim in step.
 	 *
 	 * @return void
 	 */
-	public function testConvertProseMirrorReportsDegradedEmptyLink(): void {
+	public function testConvertProseMirrorCarriesEmptyLinkMark(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
 			'carve' => "[](https://example.com)\n",
 		]);
@@ -1363,9 +1448,37 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertFalse($response['carveStable']);
+		$this->assertTrue($response['carveStable']);
 		$this->assertStringContainsString('[](https://example.com)', $response['canonical']);
-		$this->assertStringNotContainsString('example.com', $response['carve']);
+		$this->assertStringContainsString('[](https://example.com)', $response['carve']);
+		$this->assertSame([], $response['degraded']);
+
+		$document = json_decode($response['pm'], true);
+		$this->assertSame('carveEmptyMark', $document['content'][0]['content'][0]['type']);
+	}
+
+	/**
+	 * What the bridge still cannot carry is NAMED rather than lost quietly.
+	 *
+	 * An unresolved reference has no editor counterpart, so it rides across as
+	 * its literal source and comes back as escaped text. That is a real loss
+	 * rather than a different spelling, which is why the demo's claim is the
+	 * REPORT, not the round trip: `degradedTypes()` says what happened.
+	 *
+	 * @return void
+	 */
+	public function testConvertProseMirrorReportsDegradedUnresolvedReference(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "See [text][nope] here.\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertFalse($response['carveStable']);
+		$this->assertStringContainsString('[text][nope]', $response['canonical']);
+		$this->assertStringNotContainsString('[text][nope]', $response['carve']);
 		// And the report names it.
 		$this->assertArrayHasKey('link', $response['degraded']);
 	}
