@@ -80,7 +80,7 @@ CARVE,
 CARVE,
 	],
 	'Inherited Cell Alignment' => [
-		'description' => '`?` inherits the column\'s horizontal alignment, which frees a cell to set only its vertical one: `|?^` top, `|?~` middle, `|?v` bottom. A vertical marker needs that horizontal partner - a lone `|^` / `|v` has none and stays literal text.',
+		'description' => '`?` inherits the column\'s horizontal alignment, which frees a cell to set only its vertical one: `|?^` top, `|?~` middle, `|?v` bottom. The run is glued to the pipe and ends at the first space.',
 		'code' => <<<'CARVE'
 |=< Phase |=> Hours |
 |?v Design | 12 |

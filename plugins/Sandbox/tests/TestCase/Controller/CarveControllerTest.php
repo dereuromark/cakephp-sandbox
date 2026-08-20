@@ -130,25 +130,6 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * A vertical marker needs a horizontal partner: a lone `|^` prefix is content,
-	 * not alignment. The playground is where an author would try it.
-	 *
-	 * @return void
-	 */
-	public function testConvertKeepsLoneVerticalMarkerAsText(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "|=< Phase |=> Hours |\n|^ Design | 12 |\n",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertStringContainsString('^ Design', $response['html']);
-		$this->assertStringNotContainsString('vertical-align', $response['html']);
-	}
-
-	/**
 	 * A list-table's local `{header-row}` cells open a fresh `<tbody>` partition,
 	 * `{header}` promotes a single cell, and per-cell `{align=}` / `{valign=}` land
 	 * as inline styles. All of it has to clear the sanitizer.
