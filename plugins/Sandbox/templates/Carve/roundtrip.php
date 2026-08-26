@@ -17,13 +17,13 @@ This document is converted to /HTML/ and back to *Carve* to check for drift.
 
 > A blockquote with a single line.
 
-``` php
+```php
 echo "Hello, World!";
 ```
 
-|= Name |= Type  |
+|= Name |= Type |
 | Carve | Markup |
-| PHP   | Code   |
+| PHP | Code |
 CARVE;
 ?>
 

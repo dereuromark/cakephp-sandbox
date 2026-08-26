@@ -259,10 +259,10 @@ class CarveController extends SandboxAppController {
 			'WikilinksExtension' => '[[Page]] and [[Page|label]] link to the /sandbox/carve/wiki/... stub.',
 			'DetailsExtension' => '::: details "Title" renders as a native <details>/<summary> disclosure widget.',
 			'ListTableExtension' => '::: list-table blocks (nested lists) render as real HTML tables with block-level cells.',
-			'MathBlockExtension' => '``` math fenced blocks render as display math for KaTeX / MathJax.',
+			'MathBlockExtension' => '```math fenced blocks render as display math for KaTeX / MathJax.',
 			'CitationsExtension' => '[@key] citations with an in-document bibliography ([@key]: ...) collected as a numbered reference list.',
 			'LowercaseHeadingIdsExtension' => 'Heading ids are lowercased for GitHub/SSG-style anchors.',
-			'FencedRenderExtension (chart)' => '``` chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
+			'FencedRenderExtension (chart)' => '```chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
 			'SpoilerExtension' => ':spoiler[text] becomes a click-to-reveal blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
 			'ColorSwatchExtension' => ':color[#3b82f6] renders a small color chip next to the value when it is a valid CSS color.',
 			'GlossaryExtension' => ':term[word] links a use to its definition in a glossary definition list.',
@@ -588,7 +588,7 @@ class CarveController extends SandboxAppController {
 				'title' => 'Syntax highlighting',
 				'description' => 'A fenced block with a language info string renders as <pre><code class="language-X">; highlight.js colors it on the page. Carve highlights nothing itself, so any highlighter works.',
 				'carve' => <<<'CARVE'
-``` php
+```php
 function greet(string $name): string
 {
     return "Hello, {$name}!";
@@ -600,8 +600,8 @@ CARVE,
 				'title' => 'Line numbers',
 				'description' => 'Add the .line-numbers class on the preceding attribute line to get a gutter. Use data-line-start to offset the first number (handy for excerpts).',
 				'carve' => <<<'CARVE'
-{.line-numbers data-line-start="42"}
-``` js
+{.line-numbers data-line-start=42}
+```js
 const items = await fetch('/api/items').then(r => r.json());
 for (const item of items) {
   render(item);
@@ -613,8 +613,8 @@ CARVE,
 				'title' => 'Highlighted lines',
 				'description' => 'data-highlight takes a comma list of line numbers and ranges (e.g. "2,4-6"). Those lines get a marker background. Works with or without the gutter.',
 				'carve' => <<<'CARVE'
-{.line-numbers data-highlight="2,4-5"}
-``` php
+{.line-numbers data-highlight=2,4-5}
+```php
 $user = $this->Users->get($id);
 $user->verified = true;          // changed
 $user->verified_at = new DateTime();
@@ -627,8 +627,8 @@ CARVE,
 				'title' => 'Diff (add / remove)',
 				'description' => 'data-add and data-remove mark inserted and deleted lines with +/- gutters and green/red backgrounds, like a code review diff.',
 				'carve' => <<<'CARVE'
-{.line-numbers data-remove="2" data-add="3"}
-``` php
+{.line-numbers data-remove=2 data-add=3}
+```php
 $query = $table->find();
 $query->where(['active' => 1]);
 $query->where(['active' => true]);
@@ -640,8 +640,8 @@ CARVE,
 				'title' => 'Focus',
 				'description' => 'data-focus dims every line except the listed ones, so the eye jumps to what matters; hovering the block restores full contrast.',
 				'carve' => <<<'CARVE'
-{.line-numbers data-focus="3-4"}
-``` php
+{.line-numbers data-focus=3-4}
+```php
 class PaymentService
 {
     public function charge(Money $amount): Receipt
@@ -657,7 +657,7 @@ CARVE,
 				'description' => 'A quoted "header" right on the fence opener (the spec-native form from carve#201) renders a filename header above the block; the language shows as a badge. A {title="..."} attribute line does the same and wins if both are present. A copy-to-clipboard button is added to every block.',
 				'carve' => <<<'CARVE'
 {.line-numbers}
-``` php "config/app.php"
+```php "config/app.php"
 return [
     'debug' => filter_var(env('DEBUG', false), FILTER_VALIDATE_BOOLEAN),
 ];
@@ -668,8 +668,8 @@ CARVE,
 				'title' => 'Everything together',
 				'description' => 'Fence-opener header, line numbers, a highlighted line and a diff in one block.',
 				'carve' => <<<'CARVE'
-{.line-numbers data-highlight="4" data-remove="5" data-add="6"}
-``` php "src/Middleware/AuthMiddleware.php"
+{.line-numbers data-highlight=4 data-remove=5 data-add=6}
+```php "src/Middleware/AuthMiddleware.php"
 public function process($request, $handler)
 {
     $identity = $this->authenticate($request);
@@ -1023,7 +1023,7 @@ Check out this [link to Carve](https://github.com/markup-carve/carve).
 | Tables   | Yes      |
 | Images   | Yes      |
 
-``` php
+```php
 echo "Hello World";
 ```
 CARVE,
@@ -1260,7 +1260,7 @@ CARVE,
 				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams (flowcharts, sequence, class diagrams, and more). Mermaid is a preset of the generic FencedRenderExtension; presets for d2, graphviz, wavedrom and abc also exist.',
 				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
-``` mermaid
+```mermaid
 graph TD;
     A[Start] --> B{Decision};
     B -->|Yes| C[Do Something];
@@ -1269,7 +1269,7 @@ graph TD;
     D --> E;
 ```
 
-``` mermaid
+```mermaid
 sequenceDiagram
     Alice->>Bob: Hello Bob!
     Bob->>Alice: Hi Alice!
@@ -1289,7 +1289,7 @@ CARVE,
 				'example_carve' => <<<'CARVE'
 A GUI wireframe (Salt) - Mermaid cannot draw UI mockups:
 
-``` plantuml
+```plantuml
 @startsalt
 {
   Login
@@ -1305,7 +1305,7 @@ A GUI wireframe (Salt) - Mermaid cannot draw UI mockups:
 
 A deployment diagram with nested nodes:
 
-``` plantuml
+```plantuml
 @startuml
 node "Web Server" {
   [CakePHP App] as app
@@ -1327,7 +1327,7 @@ CARVE,
 				'description' => 'Renders `wavedrom` fenced blocks as digital timing / waveform diagrams - a domain Mermaid does not cover at all. The JSON spec is emitted as <pre class="wavedrom"> and drawn client-side by WaveDrom.',
 				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
-``` wavedrom
+```wavedrom
 { "signal": [
   { "name": "clk",  "wave": "p.....|..." },
   { "name": "data", "wave": "x.345x|=.x", "data": ["a", "b", "c", "d"] },
@@ -1345,7 +1345,7 @@ CARVE,
 				'description' => 'Renders `vega-lite` fenced blocks as statistical data visualizations (bar/line/area/scatter, aggregations, faceting) - real analytical charts beyond Mermaid\'s scope. Text mode keeps the JSON spec in <pre class="vega-lite"> so it survives HTML sanitizing; Vega-Embed draws it client-side.',
 				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
-``` vega-lite
+```vega-lite
 {
   "description": "Monthly page views",
   "data": { "values": [
@@ -1449,15 +1449,15 @@ CARVE,
 				'example_carve' => <<<'CARVE'
 ::: code-group
 
-``` bash [Composer]
+```bash [Composer]
 composer require markup-carve/carve-php
 ```
 
-``` bash [NPM]
+```bash [NPM]
 npm install @example/carve
 ```
 
-``` bash [Pip]
+```bash [Pip]
 pip install carve
 ```
 
@@ -1594,7 +1594,7 @@ CARVE,
 				'description' => 'Expands literal tabs in code blocks and inline code to a fixed number of spaces at render time. Carve preserves tabs by default (a CSS tab-size concern); this is useful for fixed-width output without CSS, e.g. email, RSS or plain HTML. This demo uses width 4.',
 				'class' => TabNormalizeExtension::class,
 				'example_carve' => <<<CARVE
-``` js
+```js
 function greet() {
 \treturn "hi";
 }
@@ -1643,10 +1643,10 @@ CARVE,
 			],
 			'math_block' => [
 				'name' => 'MathBlockExtension',
-				'description' => 'Renders a fenced ``` math ``` block as block-level display math (<div class="math display">\[…\]</div>), matching how inline and display $…$ math is emitted so KaTeX / MathJax can pick it up.',
+				'description' => 'Renders a fenced ```math ```block as block-level display math (<div class="math display">\[…\]</div>), matching how inline and display $…$ math is emitted so KaTeX / MathJax can pick it up.',
 				'class' => MathBlockExtension::class,
 				'example_carve' => <<<'CARVE'
-``` math
+```math
 \int_0^1 x^2 \, dx = \frac{1}{3}
 ```
 CARVE,
@@ -1698,10 +1698,10 @@ CARVE,
 			],
 			'chart' => [
 				'name' => 'FencedRenderExtension::chart() (text mode)',
-				'description' => 'Renders a ``` chart fenced block (Chart.js JSON config) as a client-rendered chart. Configured in text mode so the JSON rides in <pre class="chart"> as escaped text and survives HTML sanitizing, instead of the json preset\'s <script type="application/json"> wrapper (which a sanitizer strips). Chart.js must be loaded on the page.',
+				'description' => 'Renders a ```chart fenced block (Chart.js JSON config) as a client-rendered chart. Configured in text mode so the JSON rides in <pre class="chart"> as escaped text and survives HTML sanitizing, instead of the json preset\'s <script type="application/json"> wrapper (which a sanitizer strips). Chart.js must be loaded on the page.',
 				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
-``` chart
+```chart
 {
   "type": "bar",
   "data": {
@@ -1743,10 +1743,10 @@ CARVE,
 Carve is built on the :term[djot] data model and adds a few :term[extension]s.
 
 :: djot
-:  A light markup language with a clean, unambiguous grammar.
+: A light markup language with a clean, unambiguous grammar.
 
 :: extension
-:  An opt-in feature that adds inline or block behavior.
+: An opt-in feature that adds inline or block behavior.
 CARVE,
 			],
 			'index' => [
@@ -1762,7 +1762,7 @@ CARVE,
 				'description' => 'Annotate code with numbered callouts. A `<n>` marker at the end of a fenced-code line becomes a numbered bubble (<b class="callout">), and an immediately-following paragraph of `<n> text` lines binds to it as a `<ol class="callouts">` explanation list. Markers in the code round-trip unchanged.',
 				'class' => CodeCalloutsExtension::class,
 				'example_carve' => <<<'CARVE'
-``` php
+```php
 $converter = new CarveConverter(); <1>
 $converter->addExtension(new CodeCalloutsExtension()); <2>
 
@@ -1776,10 +1776,10 @@ CARVE,
 			],
 			'img_fence' => [
 				'name' => 'ImgFenceExtension',
-				'description' => 'Renders a ``` img fenced block as the SVG it contains instead of showing the source, after running it through a hand-written tokenizing sanitizer (not a regex scrub). Presentational elements survive; <script>, event handlers, <foreignObject>, external references and javascript: URLs are dropped together with their subtrees. The default emit mode is a sandboxed data:image/svg+xml image, so the SVG cannot reach the page DOM at all. The fence words svg and xml are deliberately NOT claimed, so SVG source can still be syntax-highlighted.',
+				'description' => 'Renders a ```img fenced block as the SVG it contains instead of showing the source, after running it through a hand-written tokenizing sanitizer (not a regex scrub). Presentational elements survive; <script>, event handlers, <foreignObject>, external references and javascript: URLs are dropped together with their subtrees. The default emit mode is a sandboxed data:image/svg+xml image, so the SVG cannot reach the page DOM at all. The fence words svg and xml are deliberately NOT claimed, so SVG source can still be syntax-highlighted.',
 				'class' => ImgFenceExtension::class,
 				'example_carve' => <<<'CARVE'
-``` img
+```img
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64">
   <rect width="240" height="64" rx="8" fill="#3b82f6"/>
   <text x="16" y="40" fill="white" font-size="24" font-family="sans-serif">Carve</text>
@@ -3115,22 +3115,22 @@ flatten or reveal when the medium cannot run client scripts.
 
 ::: tabs
 :::: tab [Install]
-``` bash
+```bash
 composer require markup-carve/carve-php
 ```
 ::::
 :::: tab [Usage]
-``` php
+```php
 $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
 ```
 ::::
 :::
 
 ::: code-group
-``` js [config.js]
+```js [config.js]
 export default { mode: 'static' };
 ```
-``` json [config.json]
+```json [config.json]
 { "mode": "static" }
 ```
 :::
@@ -3145,16 +3145,16 @@ Inline secret: :spoiler[the answer is 42] and a block spoiler below.
 This stays blurred online but is revealed for print and text targets.
 :::
 
-``` mermaid
+```mermaid
 graph TD
   A[Source] --> B{Target?}
   B -->|HTML| C[Interactive]
   B -->|PDF| D[Static]
 ```
 
-Display math (a ``` math fence, handled by the math renderer in static mode):
+Display math (a ```math fence, handled by the math renderer in static mode):
 
-``` math
+```math
 \int_0^1 x^2 \, dx = \frac{1}{3}
 ```
 

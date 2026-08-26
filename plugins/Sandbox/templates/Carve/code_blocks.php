@@ -33,8 +33,8 @@ $this->end();
 		<li><code>{data-highlight="2,4-6"}</code> - highlight those lines.</li>
 		<li><code>{data-add="3" data-remove="2"}</code> - diff markers (green / red).</li>
 		<li><code>{data-focus="3-4"}</code> - dim everything else (hover to restore).</li>
-		<li><code>``` lang "Header"</code> - filename header right on the fence (spec-native, carve#201); <code>{title="path/to/file.php"}</code> does the same and wins if both are set.</li>
-		<li><code>``` lang "Header" [Label]</code> - the bracketed <code>[Label]</code> is inert in core (the Code Groups extension uses it for tab names).</li>
+		<li><code>```lang "Header"</code> - filename header right on the fence (spec-native, carve#201); <code>{title="path/to/file.php"}</code> does the same and wins if both are set.</li>
+		<li><code>```lang "Header" [Label]</code> - the bracketed <code>[Label]</code> is inert in core (the Code Groups extension uses it for tab names).</li>
 	</ul>
 </div>
 

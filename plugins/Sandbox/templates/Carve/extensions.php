@@ -15,7 +15,7 @@ import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.mi
 import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.6/auto/+esm';
 mermaid.initialize({ startOnLoad: false, theme: 'default' });
-// Render ``` chart blocks (FencedRenderExtension text mode): <pre class="chart">
+// Render ```chart blocks (FencedRenderExtension text mode): <pre class="chart">
 // holds the Chart.js JSON config as escaped text; parse it and draw a canvas.
 window.chartRender = function(container) {
 	for (const el of container.querySelectorAll('pre.chart')) {
@@ -71,7 +71,7 @@ window.spoilerWire = function(container) {
 		});
 	}
 };
-// Render inline ($...$) and block (\[...\], ``` math) math via KaTeX.
+// Render inline ($...$) and block (\[...\], ```math) math via KaTeX.
 window.mathRender = function(container) {
 	try {
 		renderMathInElement(container, {

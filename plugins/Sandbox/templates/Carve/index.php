@@ -17,7 +17,7 @@ echo $this->Html->script('Sandbox.hljs-carve.js');
 <script type="module">
 import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
 import Chart from 'https://cdn.jsdelivr.net/npm/chart.js@4.4.6/auto/+esm';
-// Render inline ($...$) and block (\[...\], ``` math) math via KaTeX.
+// Render inline ($...$) and block (\[...\], ```math) math via KaTeX.
 window.mathRender = function(container) {
 	try {
 		renderMathInElement(container, {
@@ -33,7 +33,7 @@ window.mathRender = function(container) {
 		// Leave the raw \[...\] text in place if KaTeX fails.
 	}
 };
-// Render ``` chart blocks (FencedRenderExtension text mode): <pre class="chart">
+// Render ```chart blocks (FencedRenderExtension text mode): <pre class="chart">
 // holds the Chart.js JSON config as escaped text; parse it and draw a canvas.
 window.chartRender = function(container) {
 	for (const el of container.querySelectorAll('pre.chart')) {
@@ -124,19 +124,17 @@ echo "Hello, World!";
 ### Table
 
 {.table .table-striped}
-|= Name  |= Type  |
-| Carve  | Markup |
-| PHP    | Code   |
+|= Name |= Type |
+| Carve | Markup |
+| PHP | Code |
 
 ### Lists
 
 1. A *cool*
-1. automatically *numbered*
-
-  - sub
-    - subsub
-
-1. nested *list*
+2. automatically *numbered*
+   - sub
+     - subsub
+3. nested *list*
 
 ### Task List
 
@@ -147,11 +145,10 @@ echo "Hello, World!";
 ### Definition List
 
 :: Carve
-:  A lightweight markup language with clean syntax.
-
+: A lightweight markup language with clean syntax.
 :: Markdown
 :: Djot
-:  The predecessors that inspired Carve.
+: The predecessors that inspired Carve.
 
 ### Super/Subscript
 
@@ -164,8 +161,6 @@ Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
 
 Jump back to the </#features> section.
 
-[^1]: This is the footnote content.
-
 ### Extensions (on by default)
 
 Bare links autolink: https://github.com/markup-carve/carve. Press [Esc]{kbd} to
@@ -176,6 +171,8 @@ close, and [HTML]{abbr="HyperText Markup Language"} gets a tooltip. See the
 Admonitions render as styled callouts. Tick "Disable extensions" above to turn
 all of this back into plain text.
 :::
+
+[^1]: This is the footnote content.
 CARVE;
 ?>
 
@@ -382,7 +379,7 @@ CARVE;
 
 *Bold*, /italic/, =highlight=, `code` - all allowed!
 
-``` =html
+```=html
 &lt;script&gt;alert('This raw block is filtered')&lt;/script&gt;
 ```
 
@@ -429,7 +426,7 @@ Links like [this](https://example.com) are filtered.</code></pre>
 
 Block raw HTML:
 
-``` =html
+```=html
 &lt;div class="alert alert-info"&gt;
   &lt;strong&gt;Note:&lt;/strong&gt; This is raw HTML!
 &lt;/div&gt;

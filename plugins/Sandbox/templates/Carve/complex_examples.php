@@ -125,14 +125,13 @@ CARVE,
 		'description' => 'Multiple terms can share a single definition and vice versa.',
 		'code' => <<<'CARVE'
 :: Carve
-:  A lightweight markup language designed by John MacFarlane,
-   creator of Pandoc and CommonMark.
-:  Enhanced by Mark Scherer and the Carve PHP implementation to support more awesomeness.
-
+: A lightweight markup language designed by John MacFarlane,
+  creator of Pandoc and CommonMark.
+: Enhanced by Mark Scherer and the Carve PHP implementation to support more awesomeness.
 :: Markdown
 :: CommonMark
 :: GFM
-:  Earlier markup languages that inspired Carve's design, but with less consistent parsing rules.
+: Earlier markup languages that inspired Carve's design, but with less consistent parsing rules.
 CARVE,
 	],
 	'Nested Lists' => [
