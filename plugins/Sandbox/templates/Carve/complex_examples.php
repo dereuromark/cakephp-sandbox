@@ -137,17 +137,14 @@ CARVE,
 	'Nested Lists' => [
 		'description' => 'Complex nested lists with mixed markers and content blocks. Carve nests sublists tight - no blank line needed before a nested list.',
 		'code' => <<<'CARVE'
-1. First level item
-   - Nested bullet point
-   - Another bullet
-     1. Third level numbered
-     2. With continuation
-
-        Paragraph inside list item.
-   - Back to second level
-2. Continue first level
-
-   > Blockquote inside list
+. First level item
+  - Nested bullet point
+  - Another bullet
+    . Third level numbered
+    . With continuation
+  - Back to second level
+. Continue first level
+  > Blockquote inside list
 CARVE,
 	],
 	'Divs with Attributes' => [

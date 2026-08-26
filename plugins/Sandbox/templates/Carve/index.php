@@ -130,11 +130,11 @@ echo "Hello, World!";
 
 ### Lists
 
-1. A *cool*
-2. automatically *numbered*
-   - sub
-     - subsub
-3. nested *list*
+. A *cool*
+. automatically *numbered*
+  - sub
+    - subsub
+. nested *list*
 
 ### Task List
 
