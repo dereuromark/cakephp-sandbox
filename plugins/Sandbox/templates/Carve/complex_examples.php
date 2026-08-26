@@ -90,6 +90,37 @@ CARVE,
 ^ Design spans two rows, keeps the column's left alignment and sits on the bottom edge
 CARVE,
 	],
+	'Fenced Block Quote' => [
+		'description' => 'A `::: >` fence opens a quote whose body is ordinary block content - no `>` prefix to maintain on every line, and the same node the prefixed form produces. The source records which spelling was authored, so `carve fmt` writes it back unchanged. Widen the fence to nest.',
+		'code' => <<<'CARVE'
+::: >
+Fenced quotes hold whatever a block can hold:
+
+- a list
+- another item
+
+:::: >
+And a nested quote, on a wider fence.
+::::
+:::
+
+^ Same node as the prefixed form, easier to edit
+CARVE,
+	],
+	'Spelled List Looseness' => [
+		'description' => 'Looseness normally follows from blank lines between items. `{loose}` on the line above says it outright, so every item renders its content in block wrappers without the author padding the source with blank lines.',
+		'code' => <<<'CARVE'
+{loose}
+- Each item is wrapped in a paragraph
+- Even though the source is tight
+- No blank lines needed
+
+Compare with the same list, unmarked:
+
+- Each item stays inline
+- Because nothing said otherwise
+CARVE,
+	],
 	'Definition List (Multiple Terms/Definitions)' => [
 		'description' => 'Multiple terms can share a single definition and vice versa.',
 		'code' => <<<'CARVE'

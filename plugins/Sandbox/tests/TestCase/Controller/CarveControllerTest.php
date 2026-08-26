@@ -105,7 +105,10 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertStringContainsString('<thead>', $response['html']);
-		$this->assertStringContainsString('<tfoot><tr><td', $response['html']);
+		// Since carve-php#1503 every table section writes one row per line, so the
+		// footer row sits on its own line inside `<tfoot>` like a `<tbody>` row.
+		$this->assertStringContainsString('<tfoot>', $response['html']);
+		$this->assertStringContainsString('<tr><td style="text-align:left;">Total</td>', $response['html']);
 		$this->assertStringContainsString('Total', $response['html']);
 	}
 
@@ -859,6 +862,91 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * `safe` drops an element Carve has no spelling for, and the report names it.
+	 *
+	 * @return void
+	 */
+	public function testConvertHtmlSafeModeReportsDroppedElement(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
+			'html' => '<p>Keep me.</p><iframe src="https://example.com/x"></iframe>',
+			'mode' => 'safe',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame('safe', $response['mode']);
+		$this->assertStringContainsString('Keep me.', $response['carve']);
+		$this->assertStringNotContainsString('iframe', $response['carve']);
+		$codes = array_column($response['diagnostics'], 'code');
+		$this->assertContains('element-dropped', $codes);
+	}
+
+	/**
+	 * `roundtrip` keeps the same element byte for byte as a raw `{=html}` span,
+	 * and reports that it did rather than staying silent.
+	 *
+	 * @return void
+	 */
+	public function testConvertHtmlRoundtripModePreservesRawElement(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
+			'html' => '<p>Keep me.</p><iframe src="https://example.com/x"></iframe>',
+			'mode' => 'roundtrip',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame('roundtrip', $response['mode']);
+		$this->assertStringContainsString('<iframe src="https://example.com/x"></iframe>', $response['carve']);
+		$this->assertStringContainsString('{=html}', $response['carve']);
+		$codes = array_column($response['diagnostics'], 'code');
+		$this->assertContains('raw-preserved', $codes);
+	}
+
+	/**
+	 * An unknown mode falls back to `safe` rather than reaching the converter,
+	 * which would throw on it.
+	 *
+	 * @return void
+	 */
+	public function testConvertHtmlUnknownModeFallsBackToSafe(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
+			'html' => '<p>Text.</p>',
+			'mode' => 'nonsense',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame('safe', $response['mode']);
+	}
+
+	/**
+	 * A `::: >` fence is a block quote whose body is ordinary block content, and
+	 * `{loose}` spells a looseness no blank line was written for.
+	 *
+	 * @return void
+	 */
+	public function testConvertRendersFencedQuoteAndSpelledLooseness(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "::: >\nQuoted.\n:::\n\n{loose}\n- one\n- two\n",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('<blockquote', $response['html']);
+		$this->assertStringContainsString('Quoted.', $response['html']);
+		// Loose items wrap their content in a paragraph; a tight one would not.
+		$this->assertMatchesRegularExpression('#<li[^>]*>\s*<p[^>]*>one</p>#', $response['html']);
+	}
+
+	/**
 	 * The word adapter binds Word's footnote-shaped anchors (reference fragment
 	 * plus back-link) into real [^N] references and definitions; the generic
 	 * adapter would keep them as the literal links the HTML spelled.
@@ -1458,8 +1546,10 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertFalse($response['carveStable']);
-		$this->assertStringContainsString('[text][nope]', $response['canonical']);
-		$this->assertStringNotContainsString('[text][nope]', $response['carve']);
+		$this->assertStringContainsString('See [text][nope] here.', $response['canonical']);
+		// It comes back as escaped prose - the brackets are literal text now, not a
+		// reference the editor model ever held.
+		$this->assertStringContainsString('See \\[text][nope] here.', $response['carve']);
 		// And the report names it.
 		$this->assertArrayHasKey('link', $response['degraded']);
 	}

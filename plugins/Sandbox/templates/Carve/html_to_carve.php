@@ -83,6 +83,24 @@ rather than from Markdown pipes.</p>
     <p><a href="#_ftnref2" name="_ftn2"><sup>[2]</sup></a> Header markers instead of a separator row.</p>
 </div>
 HTML;
+
+// Elements Carve has no spelling for. `safe` and `semantic` drop them and say
+// so; `roundtrip` keeps them byte for byte as raw `{=html}` spans.
+$rawHtmlSample = <<<'HTML'
+<h2>Embed heavy page</h2>
+
+<p>The prose imports the same way in every mode.</p>
+
+<iframe src="https://example.com/player" width="560" height="315"></iframe>
+
+<form action="/subscribe" method="post">
+    <label for="mail">Email</label>
+    <input type="email" id="mail" name="mail">
+    <button type="submit">Subscribe</button>
+</form>
+
+<p>So does the text below it.</p>
+HTML;
 ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -116,6 +134,15 @@ HTML;
 				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-word-sample" title="Load Word-style footnote HTML and switch to the word adapter">
 					<i class="bi bi-file-earmark-word"></i> Word footnote sample
 				</button>
+				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-raw-sample" title="Load HTML holding elements Carve cannot spell and switch to roundtrip mode">
+					<i class="bi bi-code-square"></i> Unspellable sample
+				</button>
+				<label for="mode-select" class="form-label mb-0 small text-muted">Mode</label>
+				<select id="mode-select" class="form-select form-select-sm" style="width: auto;" title="How much of the HTML the import may keep">
+					<option value="safe" selected>safe</option>
+					<option value="semantic">semantic</option>
+					<option value="roundtrip">roundtrip</option>
+				</select>
 				<label for="adapter-select" class="form-label mb-0 small text-muted">Adapter</label>
 				<select id="adapter-select" class="form-select form-select-sm" style="width: auto;" title="Which editor/exporter produced the HTML">
 					<option value="generic" selected>generic</option>
@@ -134,6 +161,12 @@ HTML;
 			additionally read footnote-shaped HTML back as real <code>[^N]</code> references and
 			definitions; <code>generic</code> reads only what a Carve engine writes.
 		</p>
+		<p class="text-muted small mt-1 mb-0">
+			The mode decides what happens to HTML that Carve cannot spell. <code>safe</code> and
+			<code>semantic</code> drop it, <code>roundtrip</code> preserves it byte for byte as a raw
+			<code>{=html}</code> span. Either way the import <em>reports</em> what it did - that report
+			is the panel below the output.
+		</p>
 	</div>
 	<div class="col-md-6">
 		<div class="d-flex justify-content-between align-items-center mb-1">
@@ -151,6 +184,7 @@ HTML;
 			</div>
 		</div>
 		<textarea id="carve-output" class="form-control font-monospace" rows="20" readonly placeholder="Carve output will appear here..."></textarea>
+		<div id="import-report" class="mt-2"></div>
 	</div>
 </div>
 
@@ -205,8 +239,12 @@ HTML;
 	const btnCopy = document.getElementById('btn-copy');
 	const btnTry = document.getElementById('btn-try');
 	const btnWordSample = document.getElementById('btn-word-sample');
+	const btnRawSample = document.getElementById('btn-raw-sample');
 	const adapterSelect = document.getElementById('adapter-select');
+	const modeSelect = document.getElementById('mode-select');
+	const importReport = document.getElementById('import-report');
 	const wordFootnoteHtml = <?= json_encode($wordFootnoteHtml) ?>;
+	const rawHtmlSample = <?= json_encode($rawHtmlSample) ?>;
 
 	let debounceTimer;
 	let currentRequest;
@@ -230,6 +268,7 @@ HTML;
 		const formData = new FormData();
 		formData.append('html', htmlInput.value);
 		formData.append('adapter', adapterSelect.value);
+		formData.append('mode', modeSelect.value);
 
 		fetch('<?= $this->Url->build(['action' => 'convertHtml']) ?>', {
 			method: 'POST',
@@ -251,6 +290,7 @@ HTML;
 			}
 
 			carveOutput.value = data.carve || '';
+			renderReport(data);
 		})
 		.catch(err => {
 			loadingIndicator.style.transition = 'opacity 0.8s';
@@ -259,6 +299,36 @@ HTML;
 				console.error('Conversion error:', err);
 			}
 		});
+	}
+
+	const severityClass = {
+		error: 'text-bg-danger',
+		warning: 'text-bg-warning',
+		info: 'text-bg-secondary'
+	};
+
+	function renderReport(data) {
+		const diagnostics = data.diagnostics || [];
+		const head = '<span class="text-muted">mode <code>' + escapeHtml(data.mode || '') + '</code>, adapter <code>'
+			+ escapeHtml(data.adapter || '') + '</code></span>';
+
+		if (!diagnostics.length) {
+			importReport.innerHTML = '<div class="small">' + head
+				+ ' - <span class="text-success">nothing lost, nothing preserved as raw</span></div>';
+			return;
+		}
+
+		const rows = diagnostics.map(function(d) {
+			const badge = severityClass[d.severity] || 'text-bg-secondary';
+			return '<li class="mb-1"><span class="badge ' + badge + '">' + escapeHtml(d.severity) + '</span> '
+				+ '<code>' + escapeHtml(d.code) + '</code> ' + escapeHtml(d.message)
+				+ (d.path ? ' <span class="text-muted">at ' + escapeHtml(d.path) + '</span>' : '')
+				+ '</li>';
+		}).join('');
+
+		importReport.innerHTML = '<div class="border rounded p-2 small">'
+			+ '<div class="mb-1"><strong>Import report</strong> - ' + head + '</div>'
+			+ '<ul class="list-unstyled mb-0">' + rows + '</ul></div>';
 	}
 
 	function escapeHtml(text) {
@@ -293,10 +363,17 @@ HTML;
 
 	htmlInput.addEventListener('input', convert);
 	adapterSelect.addEventListener('change', convert);
+	modeSelect.addEventListener('change', convert);
 
 	btnWordSample.addEventListener('click', function() {
 		htmlInput.value = wordFootnoteHtml;
 		adapterSelect.value = 'word';
+		convert();
+	});
+
+	btnRawSample.addEventListener('click', function() {
+		htmlInput.value = rawHtmlSample;
+		modeSelect.value = 'roundtrip';
 		convert();
 	});
 

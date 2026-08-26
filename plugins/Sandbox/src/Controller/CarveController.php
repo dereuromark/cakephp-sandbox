@@ -1908,16 +1908,33 @@ CARVE,
 		if (!in_array($adapter, $adapters, true)) {
 			$adapter = 'generic';
 		}
+		// How much of the HTML the import is allowed to keep. `safe` and
+		// `semantic` drop what Carve has no spelling for; `roundtrip` preserves
+		// it byte for byte as a raw `{=html}` span. Every mode reports what it
+		// did, which is what the demo shows next to the output.
+		$mode = (string)$this->request->getData('mode') ?: 'safe';
+		$modes = ['safe', 'semantic', 'roundtrip'];
+		if (!in_array($mode, $modes, true)) {
+			$mode = 'safe';
+		}
 
 		$result = [
 			'carve' => '',
+			'mode' => $mode,
+			'adapter' => $adapter,
+			'diagnostics' => [],
 			'error' => null,
 		];
 
 		if ($html) {
 			try {
-				$converter = new HtmlToCarve(importAdapter: $adapter);
-				$result['carve'] = $converter->convert($html);
+				$converter = new HtmlToCarve(importMode: $mode, importAdapter: $adapter);
+				$import = $converter->convertWithReport($html);
+				$result['carve'] = $import->value;
+				$report = $import->report();
+				$result['mode'] = $report['mode'];
+				$result['adapter'] = $report['adapter'];
+				$result['diagnostics'] = $report['diagnostics'];
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
