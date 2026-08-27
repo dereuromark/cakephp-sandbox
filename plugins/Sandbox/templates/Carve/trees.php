@@ -7,6 +7,11 @@
 
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+// The same stylesheet every other Carve consumer installs, rather than a copy
+// of it kept here. `recipes.css` is a separate import because it is opt-in
+// upstream: it styles the constructs the engine has no handler for.
+echo $this->Html->css('/assets/@markup-carve/carve-css/src/carve.css');
+echo $this->Html->css('/assets/@markup-carve/carve-css/src/recipes.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
 $this->end();
@@ -62,7 +67,7 @@ foreach ($examples as $key => $example) {
 			</div>
 			<div class="col-lg-6">
 				<h6 class="text-muted">Rendered</h6>
-				<div class="carve-rendered border rounded p-3 mb-3"><?= $example['html'] ?></div>
+				<div class="carve border rounded p-3 mb-3"><?= $example['html'] ?></div>
 			</div>
 		</div>
 		<details>
@@ -126,7 +131,6 @@ foreach ($examples as $key => $example) {
 </div>
 </div>
 
-<?= $this->element('carve/output_styles') ?>
 
 <script>
 document.querySelectorAll('.tree.js-collapsible li:has(> ul)').forEach(function (li) {
