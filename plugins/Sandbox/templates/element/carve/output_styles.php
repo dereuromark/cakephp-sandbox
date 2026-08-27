@@ -494,6 +494,114 @@
 	max-width: 100%;
 	height: auto;
 }
+
+/*
+ * Tree containers. `::: tree` is not a recognized container type, so the core
+ * renderer emits a generic <div class="tree"> around an ordinary nested list -
+ * no extension involved. Everything visual below is drawn on that markup:
+ * connectors are pseudo-elements on the list items, so the tree stays a real
+ * <ul> for a screen reader and every node keeps its links.
+ */
+.carve-rendered .tree {
+	font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+	font-size: 0.875em;
+	line-height: 1.85;
+}
+.carve-rendered .tree ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0.95em;
+}
+.carve-rendered .tree > ul {
+	padding-left: 0;
+}
+.carve-rendered .tree li {
+	position: relative;
+	padding-left: 1.4em;
+}
+.carve-rendered .tree > ul > li {
+	padding-left: 0;
+}
+.carve-rendered .tree li::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	border-left: 1px solid #b9c3c9;
+}
+.carve-rendered .tree li::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0.92em;
+	width: 0.85em;
+	border-top: 1px solid #b9c3c9;
+}
+/* The last child's vertical guide stops at its own elbow. */
+.carve-rendered .tree li:last-child::before {
+	bottom: auto;
+	height: 0.92em;
+}
+/* Top-level entries are roots; they have no parent to connect to. */
+.carve-rendered .tree > ul > li::before,
+.carve-rendered .tree > ul > li::after {
+	display: none;
+}
+/*
+ * Per-instance variation comes from the attribute line above the opener, which
+ * puts arbitrary classes and data-* pairs on the div. Nothing here is known to
+ * the parser.
+ */
+.carve-rendered .tree.compact {
+	line-height: 1.5;
+}
+.carve-rendered .tree[data-guides="dotted"] li::before {
+	border-left-style: dotted;
+}
+.carve-rendered .tree[data-guides="dotted"] li::after {
+	border-top-style: dotted;
+}
+/* The quoted opener header renders as the container's title paragraph. */
+.carve-rendered .tree > .admonition-title {
+	font-family: inherit;
+	font-weight: 600;
+	margin: 0 0 0.4rem;
+}
+/*
+ * Collapsible variants. A <details> reaches this markup three different ways -
+ * nested `::: details` containers, the page script, or the host extension - and
+ * all three land on the same selector.
+ */
+.carve-rendered .tree summary {
+	cursor: pointer;
+	list-style: none;
+}
+.carve-rendered .tree summary::-webkit-details-marker {
+	display: none;
+}
+.carve-rendered .tree summary::before {
+	content: "\25B8";
+	display: inline-block;
+	width: 1em;
+	color: #8a969c;
+	transition: transform 0.12s ease;
+}
+.carve-rendered .tree details[open] > summary::before {
+	transform: rotate(90deg);
+}
+@media (prefers-reduced-motion: reduce) {
+	.carve-rendered .tree summary::before {
+		transition: none;
+	}
+}
+/* A branch's own guide has to span the disclosure body, not just its label. */
+.carve-rendered .tree details {
+	display: block;
+}
+.carve-rendered .tree details > ul {
+	padding-left: 0.95em;
+}
 </style>
 <script>
 /*

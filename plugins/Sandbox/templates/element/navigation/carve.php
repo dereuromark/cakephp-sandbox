@@ -16,6 +16,7 @@ $action = $this->request->getParam('action');
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Showcase') ?></li>
 	<li class="nav-item"><?= $this->Html->link('Complex Examples', ['action' => 'complexExamples'], ['class' => 'nav-link' . ($action === 'complexExamples' ? ' active' : '')]) ?></li>
+	<li class="nav-item"><?= $this->Html->link('Trees', ['action' => 'trees'], ['class' => 'nav-link' . ($action === 'trees' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('AST Inspector', ['action' => 'ast'], ['class' => 'nav-link' . ($action === 'ast' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Extensions', ['action' => 'extensions'], ['class' => 'nav-link' . ($action === 'extensions' ? ' active' : '')]) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Code Blocks', ['action' => 'codeBlocks'], ['class' => 'nav-link' . ($action === 'codeBlocks' ? ' active' : '')]) ?></li>

@@ -75,6 +75,7 @@ use MarkupCarve\Chat\FlavorRegistry;
 use MarkupCarve\Chat\OffsetUnit;
 use MarkupCarve\Chat\OutputMode;
 use MarkupCarve\MediaEmbed\MediaEmbedExtension;
+use Sandbox\Carve\TreeExtension;
 use Throwable;
 
 class CarveController extends SandboxAppController {
@@ -678,6 +679,227 @@ public function process($request, $handler)
     return $handler->handle($request->withAttribute('identity', $identity));
 }
 ```
+CARVE,
+			],
+		];
+	}
+
+	/**
+	 * Tree containers, from the bare zero-code form up to the custom extension.
+	 *
+	 * @return void
+	 */
+	public function trees(): void {
+		$converters = [
+			'plain' => new CarveConverter(),
+			'details' => new CarveConverter(),
+			'custom' => new CarveConverter(),
+		];
+		$converters['details']->addExtension(new DetailsExtension());
+		$converters['custom']->addExtension(new TreeExtension());
+
+		$examples = [];
+		foreach ($this->getTreeExamples() as $key => $example) {
+			$converter = $converters[$example['mode'] ?? 'plain'];
+			$example['html'] = $converter->convert($example['carve']);
+			$examples[$key] = $example;
+		}
+
+		$extensionSource = file_get_contents(
+			dirname(__DIR__) . DIRECTORY_SEPARATOR . 'Carve' . DIRECTORY_SEPARATOR . 'TreeExtension.php',
+		);
+
+		$this->set(compact('examples', 'extensionSource'));
+	}
+
+	/**
+	 * Source examples for the tree showcase, ordered from zero-code to custom
+	 * extension. Each carries the Carve source; the rendered HTML is added in
+	 * {@link self::trees()}. The `mode` key picks the converter: `plain` has no
+	 * extensions at all, `details` enables the shipped
+	 * {@link \MarkupCarve\Carve\Extension\DetailsExtension}, and `custom` enables
+	 * the sandbox's own {@link \Sandbox\Carve\TreeExtension}.
+	 *
+	 * @return array<string, array<string, mixed>>
+	 */
+	protected function getTreeExamples(): array {
+		return [
+			'basics' => [
+				'level' => 'Level 0 - nothing but CSS',
+				'title' => 'A tree, with no extension at all',
+				'description' => 'The `::: name` container syntax is core and always on. `tree` is not a recognized type, so it falls through to a generic `<div class="tree">` wrapping an ordinary nested list. That is already a correct tree: real list semantics, real nesting, no new node type. The connectors are CSS drawn on that markup - the HTML came out of the released package untouched.',
+				'carve' => <<<'CARVE'
+::: tree
+- src/
+  - parser/
+    - blocks.crv
+    - inline.crv
+  - render/
+    - html.crv
+    - ansi.crv
+- tests/
+:::
+CARVE,
+			],
+			'rich_nodes' => [
+				'level' => 'Level 0 - nothing but CSS',
+				'title' => 'Nodes are ordinary inline content',
+				'description' => 'Because the body is a real list, every node is real Carve. Links, emphasis and code spans all work inside a node, and each one stays selectable, searchable and linkable. Pasted ASCII art in a code fence can do none of that.',
+				'carve' => <<<'CARVE'
+::: tree
+- *src/*
+  - [parser/](https://github.com/markup-carve/carve-php)
+    - `BlockParser.php` - opens blocks
+    - `InlineParser.php` - emphasis, links
+  - *render/*
+    - `HtmlRenderer.php`
+- /tests/ - _mirrors_ the source layout
+:::
+CARVE,
+			],
+			'attributes' => [
+				'level' => 'Level 0 - nothing but CSS',
+				'title' => 'Attributes flow onto the container',
+				'description' => 'An attribute line above the opener puts an id, extra classes and any `data-*` pair straight onto the `<div>`. That is the whole styling and scripting seam: a theme can vary a tree per instance without the markup language knowing anything about themes.',
+				'carve' => <<<'CARVE'
+{#project-layout .compact data-guides="dotted"}
+::: tree
+- app/
+  - Controller/
+  - Model/
+- config/
+:::
+CARVE,
+			],
+			'titled' => [
+				'level' => 'Level 0 - nothing but CSS',
+				'title' => 'A titled container',
+				'description' => 'The quoted opener header works on any container type, so a tree can name itself without a separate heading.',
+				'carve' => <<<'CARVE'
+::: tree "Deployment targets"
+- production/
+  - eu-west/
+  - us-east/
+- staging/
+:::
+CARVE,
+			],
+			'taxonomy' => [
+				'level' => 'Level 0 - nothing but CSS',
+				'title' => 'Not only directories',
+				'description' => 'Nothing here is filesystem-specific. Any hierarchy fits - a taxonomy, an org chart, a decision tree, a spec outline - and each node can link to the page that documents it.',
+				'carve' => <<<'CARVE'
+::: tree
+- Markup languages
+  - *Markdown family*
+    - CommonMark
+    - GitHub Flavored Markdown
+  - *Djot family*
+    - [Djot](https://djot.net)
+    - [Carve](https://markup-carve.github.io/carve/)
+  - *Other*
+    - reStructuredText
+    - AsciiDoc
+:::
+CARVE,
+			],
+			'details_nested' => [
+				'level' => 'Level 1 - a shipped extension, still no custom code',
+				'title' => 'Collapsible with the stock Details extension',
+				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard-tier extension present in all three engines, off by default, and a host turns it on with a single `addExtension()` call. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: the branch is now a container, so the fence has to widen at every level.',
+				'mode' => 'details',
+				'carve' => <<<'CARVE'
+::: tree
+- :::: details "src/"
+  - ::::: details "Parser/"
+    - BlockParser.php
+    - InlineParser.php
+    :::::
+  - ::::: details "Renderer/"
+    - HtmlRenderer.php
+    - AnsiRenderer.php
+    :::::
+  ::::
+- tests/
+:::
+CARVE,
+			],
+			'progressive' => [
+				'level' => 'Level 2 - the bare markup plus page JavaScript',
+				'title' => 'Collapsible with six lines of page script',
+				'description' => 'If the noisier source is the problem but a PHP extension is more than you want, the bare Level 0 markup is enough: a small script on the page turns every branch of a `.js-collapsible` tree into a `<details>` after render. The Carve source stays exactly the plain one, nothing server-side changes, and a reader with JavaScript disabled still gets the full static tree. The script is at the bottom of this page.',
+				'carve' => <<<'CARVE'
+{.js-collapsible}
+::: tree
+- app/
+  - Controller/
+    - CarveController.php
+    - DjotController.php
+  - Model/
+    - Table/
+    - Entity/
+- config/
+  - app.php
+:::
+CARVE,
+			],
+			'collapsible' => [
+				'level' => 'Level 3 - a host extension, ~60 lines',
+				'title' => 'Collapsible with a clean source spelling',
+				'description' => 'The cleanest authoring, and still no engine change. The sandbox registers its own extension on the `render.div` hook; it claims a tree marked `{.collapsible}` and emits nested `<details>`/`<summary>` itself. The author writes the same list as Level 0 plus one class, there is no JavaScript, and it survives a print or PDF render. This is a working prototype of the Tier-2 Tree extension being proposed for the spec.',
+				'mode' => 'custom',
+				'carve' => <<<'CARVE'
+{.collapsible}
+::: tree
+- src/
+  - Parser/
+    - BlockParser.php
+    - InlineParser.php
+  - Renderer/
+    - HtmlRenderer.php
+    - AnsiRenderer.php
+    - MarkdownRenderer.php
+  - Extension/
+    - DetailsExtension.php
+    - SpoilerExtension.php
+- tests/
+  - TestCase/
+:::
+CARVE,
+			],
+			'collapsed' => [
+				'level' => 'Level 3 - a host extension, ~60 lines',
+				'title' => 'Collapsed by default',
+				'description' => 'One more class starts every branch closed - the right default for a deep tree used as navigation rather than as documentation.',
+				'mode' => 'custom',
+				'carve' => <<<'CARVE'
+{.collapsible .collapsed}
+::: tree
+- vendor/
+  - markup-carve/
+    - carve-php/
+      - src/
+      - tests/
+  - cakephp/
+    - cakephp/
+:::
+CARVE,
+			],
+			'mixed' => [
+				'level' => 'Level 3 - a host extension, ~60 lines',
+				'title' => 'Leaves stay leaves',
+				'description' => 'Only a node that actually has children becomes a disclosure. A leaf renders as a plain list item, because a widget with nothing to disclose is noise for a screen reader.',
+				'mode' => 'custom',
+				'carve' => <<<'CARVE'
+{.collapsible}
+::: tree
+- README.md
+- composer.json
+- src/
+  - Carve/
+    - TreeExtension.php
+- LICENSE
+:::
 CARVE,
 			],
 		];
