@@ -35,8 +35,8 @@ class CarveControllerTest extends TestCase {
 		$this->assertNoRedirect();
 		$this->assertResponseContains('Carve &rarr; Pandoc');
 		$this->assertResponseContains('pandoc-carve');
-		$this->assertResponseContains('carve-js@64687f7');
-		$this->assertResponseContains('pandoc-carve@bfc5136');
+		$this->assertResponseContains('carve-js@72760e6');
+		$this->assertResponseContains('pandoc-carve@766fbc7');
 	}
 
 	/**
