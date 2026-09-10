@@ -287,7 +287,8 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
 		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@2",
 		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@2",
-		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@8c26020/tiptap/carve-kit.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list"
+		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@8c26020/tiptap/carve-kit.js?external=node-diff3,@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list",
+		"node-diff3": "https://cdn.jsdelivr.net/npm/node-diff3@3.2.1/dist/diff3.mjs"
 	}
 }
 </script>
