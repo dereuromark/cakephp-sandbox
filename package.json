@@ -3,9 +3,9 @@
 	"version": "1.0.0",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^6.7.2",
-		"@markup-carve/carve": "git+https://github.com/markup-carve/carve-js.git#64687f7100a705cfdc249671839137b607584459",
-		"@markup-carve/carve-css": "^0.1.0",
-		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#e41a571a9a969f5c42956aa78aa8ddf865411989",
+		"@markup-carve/carve": "git+https://github.com/markup-carve/carve-js.git#72760e6b0857b7190dd2b220d9ae0c091995e452",
+		"@markup-carve/carve-css": "^0.1.1",
+		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#8c26020845475b18ac8f4cabfbe7ce4567c0bd49",
 		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
 		"djot-grammars": "github:php-collective/djot-grammars",
