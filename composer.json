@@ -62,7 +62,7 @@
 		"dereuromark/cakephp-dto": "dev-master as 3.0.0",
 		"php-collective/dto": "^0.1.8",
 		"dereuromark/cakephp-decimal": "dev-master",
-		"brick/math": "^0.19.0",
+		"brick/math": "^1.0",
 		"league/commonmark": "^2.0",
 		"doctrine/sql-formatter": "^1.5.2",
 		"mjohnson/decoda": "^6.12",
@@ -95,7 +95,6 @@
 		"php-collective/code-sniffer": "^0.6.0",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"phpstan/phpstan": "^2.0.0",
-		"rector/type-perfect": "^2.1",
 		"phpstan/phpstan-strict-rules": "^2.0",
 		"dereuromark/cakephp-ide-helper": "dev-master as 2.11.0",
 		"dereuromark/cakephp-ide-helper-extra": "dev-master",
@@ -103,7 +102,8 @@
 		"phpunit/phpunit": "^13.1.10",
 		"cakedc/cakephp-phpstan": "^4.2.0",
 		"dereuromark/cakephp-fixture-factories": "^2.0.0",
-		"johnykvsky/dummygenerator": "^0.2"
+		"johnykvsky/dummygenerator": "^0.2",
+		"tomasvotruba/type-coverage": "^2.3"
 	},
 	"autoload": {
 		"psr-4": {

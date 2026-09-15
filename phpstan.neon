@@ -1,7 +1,7 @@
 includes:
 	- vendor/cakedc/cakephp-phpstan/extension.neon
 	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
-	- vendor/rector/type-perfect/config/extension.neon
+	- vendor/tomasvotruba/type-coverage/config/extension.neon
 	- vendor/phpstan/phpstan-strict-rules/rules.neon
 
 parameters:
@@ -30,6 +30,11 @@ parameters:
 		no_mixed_property: true
 		no_mixed_caller: true
 		null_over_false: true
+	type_coverage:
+		return: 0
+		param: 0
+		property: 0
+		constant: 0
 	strictRules:
 		disallowedLooseComparison: false
 		booleansInConditions: false
