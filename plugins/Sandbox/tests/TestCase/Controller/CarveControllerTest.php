@@ -85,6 +85,88 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function testIndexListsConfigBackedIncludeLibrary(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'index']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Config-backed include library');
+		$this->assertResponseContains('library/intro.crv');
+		$this->assertResponseContains('Try config includes');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertResolvesConfigBackedIncludes(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "# Includes\n\n{{ library/intro.crv }}\n\n{{ library/chapter.crv }}\n",
+			'warnings' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('From the snippet library', $response['html']);
+		$this->assertStringContainsString('Resolved relative to the including catalog snippet.', $response['html']);
+		$this->assertSame([], $response['warnings']);
+		$this->assertSame([
+			['target' => 'library/intro.crv', 'resolved' => true],
+			['target' => 'library/chapter.crv', 'resolved' => true],
+			['target' => 'library/sign-off.crv', 'resolved' => true],
+		], $response['dependencies']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertLeavesUnknownIncludeLiteral(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "{{ library/missing.crv }}\n",
+			'warnings' => '1',
+		]);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('{{ library/missing.crv }}', $response['html']);
+		$this->assertSame('include', $response['warnings'][0]['category']);
+		$this->assertSame('include-unresolved', $response['warnings'][0]['rule']);
+		$this->assertSame([
+			['target' => 'library/missing.crv', 'resolved' => false],
+		], $response['dependencies']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertIncludeLibraryCannotEscapeItsNamespace(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "{{ library/../../config/app.php }}\n",
+			'warnings' => '1',
+		]);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('{{ library/../../config/app.php }}', $response['html']);
+		$this->assertSame('include-unresolved', $response['warnings'][0]['rule']);
+		$this->assertFalse($response['dependencies'][0]['resolved']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertReportsIncludeCycle(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "{{ library/cycle.crv }}\n",
+			'warnings' => '1',
+		]);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('{{ cycle.crv }}', $response['html']);
+		$this->assertSame('include-cycle', $response['warnings'][0]['rule']);
+	}
+
+	/**
 	 * Explicit row partitions survive the playground's sanitizer.
 	 *
 	 * `{header-rows=N footer-rows=N}` renders a `<tfoot>`, which HTMLPurifier

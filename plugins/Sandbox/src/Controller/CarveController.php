@@ -69,12 +69,14 @@ use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
 use MarkupCarve\Carve\Renderer\RenderMode;
 use MarkupCarve\Carve\Renderer\SoftBreakMode;
+use MarkupCarve\Carve\Transform\IncludeExpander;
 use MarkupCarve\Chat\ChatPreviewRenderer;
 use MarkupCarve\Chat\ChatRenderer;
 use MarkupCarve\Chat\FlavorRegistry;
 use MarkupCarve\Chat\OffsetUnit;
 use MarkupCarve\Chat\OutputMode;
 use MarkupCarve\MediaEmbed\MediaEmbedExtension;
+use Sandbox\Carve\SnippetCatalogResolver;
 use Sandbox\Carve\TreeExtension;
 use Throwable;
 
@@ -93,6 +95,17 @@ class CarveController extends SandboxAppController {
 		$this->set('debugMode', Configure::read('debug'));
 		$this->set('carveVersion', $carveVersion);
 		$this->set('enabledExtensions', $this->defaultExtensionInfo());
+		$this->set('carveSnippets', $this->snippetCatalog());
+	}
+
+	/**
+	 * @return array<string, array{title: string, source: string}>
+	 */
+	protected function snippetCatalog(): array {
+		/** @var array<string, array{title: string, source: string}> $snippets */
+		$snippets = Configure::read('CarveSnippets', []);
+
+		return $snippets;
 	}
 
 	/**
@@ -294,6 +307,7 @@ class CarveController extends SandboxAppController {
 		$result = [
 			'html' => '',
 			'warnings' => [],
+			'dependencies' => [],
 			'lint' => [],
 			'violations' => [],
 			'ms' => null,
@@ -321,19 +335,38 @@ class CarveController extends SandboxAppController {
 					$this->addDefaultExtensions($converter);
 				}
 				$start = microtime(true);
-				$html = $converter->convert($carve);
+				$document = $converter->parse($carve);
+				$includes = new IncludeExpander(
+					resolver: new SnippetCatalogResolver($this->snippetCatalog()),
+					currentPath: 'playground/main.crv',
+					depthLimit: 8,
+					byteBudget: 262_144,
+					source: $carve,
+					resolverCallLimit: 64,
+					warningLimit: 50,
+				);
+				$document = $converter->transform($document, $includes);
+				$html = $converter->render($document);
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
 				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
 				if ($collectWarnings) {
-					foreach ($converter->getWarnings() as $warning) {
+					foreach (array_merge($converter->getWarnings(), $includes->getWarnings()) as $warning) {
 						$result['warnings'][] = [
 							'message' => $warning->getMessage(),
 							'line' => $warning->getLine(),
 							'column' => $warning->getColumn(),
 							'category' => $warning->getCategory(),
+							'rule' => $warning->getRule(),
+							'file' => $warning->getFile(),
 							'suggestion' => $warning->getSuggestion(),
 						];
 					}
+				}
+				foreach ($includes->getDependencies() as $dependency) {
+					$result['dependencies'][] = [
+						'target' => $dependency->getTarget(),
+						'resolved' => $dependency->isResolved(),
+					];
 				}
 				if ($profile) {
 					foreach ($converter->getProfileViolations() as $violation) {

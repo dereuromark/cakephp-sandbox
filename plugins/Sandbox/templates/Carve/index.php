@@ -4,6 +4,7 @@
  * @var bool $debugMode
  * @var string|null $carveVersion
  * @var array<string, string> $enabledExtensions
+ * @var array<string, array{title: string, source: string}> $carveSnippets
  */
 
 $this->append('css');
@@ -456,6 +457,39 @@ This div is never closed.</code></pre>
 	</div>
 </div>
 
+<div class="card mb-3">
+	<div class="card-header"><strong>Config-backed include library</strong></div>
+	<div class="card-body">
+		<p class="small text-muted">
+			The public demo resolves only these predefined <code>library/...</code>
+			targets. They come from <code>config/carve_snippets.php</code>; the
+			resolver has no filesystem or network access.
+		</p>
+		<div class="table-responsive">
+			<table class="table table-sm align-middle">
+				<thead><tr><th>Path</th><th>Purpose</th></tr></thead>
+				<tbody>
+				<?php foreach ($carveSnippets as $path => $snippet) { ?>
+					<tr><td><code><?= h($path) ?></code></td><td><?= h($snippet['title']) ?></td></tr>
+				<?php } ?>
+				</tbody>
+			</table>
+		</div>
+		<pre class="bg-light p-2 border rounded"><code class="language-carve"># Reusable content
+
+{{ library/intro.crv }}
+
+## Included list
+
+{{ library/features.crv }}
+
+This sentence contains {{ library/inline.crv }}.
+
+{{ library/chapter.crv @shift:auto }}</code></pre>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try config includes</button>
+	</div>
+</div>
+
 <hr class="mt-4">
 <details class="small text-muted mb-3">
 	<summary class="text-secondary" style="cursor: pointer;">Enabled extensions (on by default)</summary>
@@ -664,6 +698,15 @@ This div is never closed.</code></pre>
 				});
 				violationHtml += '</ul></details>';
 				alertContainer.innerHTML += violationHtml;
+			}
+
+			if (data.dependencies && data.dependencies.length > 0) {
+				let dependencyHtml = '<details class="alert alert-secondary py-2"><summary style="cursor: pointer;"><strong>Includes:</strong> ' + data.dependencies.length + ' target(s)</summary><ul class="mb-0 ps-3 mt-2">';
+				data.dependencies.forEach(function(dependency) {
+					dependencyHtml += '<li><code>' + escapeHtml(dependency.target) + '</code> - ' + (dependency.resolved ? 'resolved' : 'unresolved') + '</li>';
+				});
+				dependencyHtml += '</ul></details>';
+				alertContainer.innerHTML += dependencyHtml;
 			}
 
 			const renderedScrollTop = outputRendered.scrollTop;
