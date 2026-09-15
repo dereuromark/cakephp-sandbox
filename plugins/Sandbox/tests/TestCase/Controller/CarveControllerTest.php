@@ -371,6 +371,7 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNotNull($response['error']);
+		$this->assertStringContainsString('Unclosed code fence', $response['error']);
 	}
 
 	/**

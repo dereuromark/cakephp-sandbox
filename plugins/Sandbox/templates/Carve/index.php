@@ -450,9 +450,9 @@ This has an undefined footnote[^missing].</code></pre>
 	</div>
 	<div class="col-md-6">
 		<h6>Strict Mode Example</h6>
-		<p class="text-muted small">Loads with "Strict" checkbox enabled.</p>
-		<pre class="bg-light p-2 border rounded"><code class="language-carve">::: warning
-This div is never closed.</code></pre>
+		<p class="text-muted small">Loads with "Strict" enabled and reports an unclosed code fence as an error.</p>
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">``` php
+This code fence is never closed.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-strict="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
