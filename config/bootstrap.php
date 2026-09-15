@@ -92,6 +92,7 @@ try {
 
 Configure::load('app_custom');
 Configure::load('app_local');
+Configure::load('carve_snippets');
 if (file_exists(CONFIG . 'app_mercure.php')) {
 	Configure::load('app_mercure');
 }
