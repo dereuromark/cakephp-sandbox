@@ -91,10 +91,12 @@ class CarveControllerTest extends TestCase {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'index']);
 
 		$this->assertResponseCode(200);
-		$this->assertResponseContains('Config-backed include library');
+		$this->assertResponseContains('Include Library');
 		$this->assertResponseContains('library/intro.crv');
 		$this->assertResponseContains('Try config includes');
-		$this->assertResponseContains('id="config-backed-include-library"');
+		$this->assertResponseContains('id="include-library"');
+		$this->assertResponseContains('https://markup-carve.github.io/carve/includes');
+		$this->assertResponseContains('transclusion');
 		$this->assertResponseContains('href="#strict-mode-example"');
 		$this->assertResponseContains('data-copy-anchor="enabled-extensions"');
 	}

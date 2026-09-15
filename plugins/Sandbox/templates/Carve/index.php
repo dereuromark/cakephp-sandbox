@@ -471,13 +471,16 @@ This code fence is never closed.</code></pre>
 	</div>
 </div>
 
-<div class="card mb-3" id="config-backed-include-library">
-	<div class="card-header"><strong>Config-backed include library</strong> <a class="section-copy-link" href="#config-backed-include-library" data-copy-anchor="config-backed-include-library" aria-label="Copy link to Config-backed include library" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
+<div class="card mb-3" id="include-library">
+	<div class="card-header"><strong>Include Library</strong> <a class="section-copy-link" href="#include-library" data-copy-anchor="include-library" aria-label="Copy link to Include Library" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 	<div class="card-body">
 		<p class="small text-muted">
-			The public demo resolves only these predefined <code>library/...</code>
-			targets. They come from <code>config/carve_snippets.php</code>; the
-			resolver has no filesystem or network access.
+			Includes are supplied by an application resolver. This demo reads predefined
+			<code>library/...</code> targets from <code>config/carve_snippets.php</code>,
+			but the same interface can load approved snippets from a database, CMS,
+			object storage, or an online API. This is <strong>transclusion</strong>:
+			see the <a href="https://markup-carve.github.io/carve/includes" target="_blank" rel="noopener">file-inclusion documentation</a>
+			for the syntax, resolver contract, and safety limits.
 		</p>
 		<div class="table-responsive">
 			<table class="table table-sm align-middle">
