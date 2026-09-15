@@ -439,7 +439,7 @@ Block raw HTML:
 <h5>Warnings &amp; Errors</h5>
 <p class="text-muted small">Click "Try this" to load examples with appropriate settings:</p>
 
-<div class="row">
+<div class="row mb-4">
 	<div class="col-md-6">
 		<h6>Warning Example</h6>
 		<p class="text-muted small">Loads with "Warnings" checkbox enabled.</p>
