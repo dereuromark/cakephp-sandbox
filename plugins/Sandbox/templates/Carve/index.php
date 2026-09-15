@@ -329,6 +329,20 @@ CARVE;
 	background: rgba(13, 110, 253, 0.08);
 	border-radius: 2px;
 }
+.section-copy-link {
+	font-size: 0.75em;
+	opacity: 0.45;
+	text-decoration: none;
+}
+.section-copy-link:hover,
+.section-copy-link:focus {
+	opacity: 1;
+}
+.section-heading {
+	display: flex;
+	align-items: baseline;
+	gap: 0.25rem;
+}
 </style>
 		<div id="output-rendered" class="carve-rendered border rounded p-3 bg-white" style="min-height: 100%; max-height: 480px; overflow-y: auto;"></div>
 		<pre id="output-source" class="border rounded p-3 bg-light d-none" style="min-height: 100%; max-height: 480px; overflow-y: auto; margin: 0;"><code></code></pre>
@@ -367,14 +381,14 @@ CARVE;
 	</div>
 </div>
 
-<h3 class="mt-4">Test Examples</h3>
+<div class="section-heading"><h3 class="mt-4" id="test-examples">Test Examples</h3><a class="section-copy-link" href="#test-examples" data-copy-anchor="test-examples" aria-label="Copy link to Test Examples" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 
-<h5>Profile Feature Restriction</h5>
+<div class="section-heading"><h5 id="profile-feature-restriction">Profile Feature Restriction</h5><a class="section-copy-link" href="#profile-feature-restriction" data-copy-anchor="profile-feature-restriction" aria-label="Copy link to Profile Feature Restriction" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 <p class="text-muted small">Select different profiles to see how content gets filtered. Violations show which elements were converted to plain text.</p>
 
 <div class="row mb-4">
 	<div class="col-md-6">
-		<h6>Article Profile Test</h6>
+		<div class="section-heading"><h6 id="article-profile-test">Article Profile Test</h6><a class="section-copy-link" href="#article-profile-test" data-copy-anchor="article-profile-test" aria-label="Copy link to Article Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve"># Full Formatting Works
 
@@ -388,7 +402,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="article"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
-		<h6>Comment Profile Test</h6>
+		<div class="section-heading"><h6 id="comment-profile-test">Comment Profile Test</h6><a class="section-copy-link" href="#comment-profile-test" data-copy-anchor="comment-profile-test" aria-label="Copy link to Comment Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve"># This heading will be filtered
 
@@ -408,7 +422,7 @@ Tables, images, footnotes all work in article mode.</code></pre>
 
 <div class="row mb-4">
 	<div class="col-md-6">
-		<h6>Minimal Profile Test</h6>
+		<div class="section-heading"><h6 id="minimal-profile-test">Minimal Profile Test</h6><a class="section-copy-link" href="#minimal-profile-test" data-copy-anchor="minimal-profile-test" aria-label="Copy link to Minimal Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">*Bold*, /italic/, `code`, 2{^10^}, {+insert+}, {-delete-} work!
 
@@ -421,7 +435,7 @@ Links like [this](https://example.com) are filtered.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="minimal"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
-		<h6>Raw HTML Test</h6>
+		<div class="section-heading"><h6 id="raw-html-test">Raw HTML Test</h6><a class="section-copy-link" href="#raw-html-test" data-copy-anchor="raw-html-test" aria-label="Copy link to Raw HTML Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Raw HTML requires "No filter" profile and "Raw" mode enabled.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">Inline raw: `&lt;span style="color:red"&gt;red text&lt;/span&gt;`{=html}
 
@@ -436,12 +450,12 @@ Block raw HTML:
 	</div>
 </div>
 
-<h5>Warnings &amp; Errors</h5>
+<div class="section-heading"><h5 id="warnings-errors">Warnings &amp; Errors</h5><a class="section-copy-link" href="#warnings-errors" data-copy-anchor="warnings-errors" aria-label="Copy link to Warnings and Errors" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 <p class="text-muted small">Click "Try this" to load examples with appropriate settings:</p>
 
 <div class="row mb-4">
 	<div class="col-md-6">
-		<h6>Warning Example</h6>
+		<div class="section-heading"><h6 id="warning-example">Warning Example</h6><a class="section-copy-link" href="#warning-example" data-copy-anchor="warning-example" aria-label="Copy link to Warning Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Loads with "Warnings" checkbox enabled.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">[undefined link][missing-ref]
 
@@ -449,7 +463,7 @@ This has an undefined footnote[^missing].</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
-		<h6>Strict Mode Example</h6>
+		<div class="section-heading"><h6 id="strict-mode-example">Strict Mode Example</h6><a class="section-copy-link" href="#strict-mode-example" data-copy-anchor="strict-mode-example" aria-label="Copy link to Strict Mode Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Loads with "Strict" enabled and reports an unclosed code fence as an error.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">``` php
 This code fence is never closed.</code></pre>
@@ -457,8 +471,8 @@ This code fence is never closed.</code></pre>
 	</div>
 </div>
 
-<div class="card mb-3">
-	<div class="card-header"><strong>Config-backed include library</strong></div>
+<div class="card mb-3" id="config-backed-include-library">
+	<div class="card-header"><strong>Config-backed include library</strong> <a class="section-copy-link" href="#config-backed-include-library" data-copy-anchor="config-backed-include-library" aria-label="Copy link to Config-backed include library" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 	<div class="card-body">
 		<p class="small text-muted">
 			The public demo resolves only these predefined <code>library/...</code>
@@ -491,8 +505,8 @@ This sentence contains {{ library/inline.crv }}.
 </div>
 
 <hr class="mt-4">
-<details class="small text-muted mb-3">
-	<summary class="text-secondary" style="cursor: pointer;">Enabled extensions (on by default)</summary>
+<details class="small text-muted mb-3" id="enabled-extensions">
+	<summary class="text-secondary" style="cursor: pointer;">Enabled extensions (on by default) <a class="section-copy-link" href="#enabled-extensions" data-copy-anchor="enabled-extensions" aria-label="Copy link to Enabled extensions" title="Copy link"><i class="bi bi-link-45deg"></i></a></summary>
 	<div class="mt-2 ps-3 border-start">
 		<p class="mb-2">
 			This playground renders with a curated, safe set of
@@ -598,6 +612,33 @@ This sentence contains {{ library/inline.crv }}.
 			return Promise.reject(e);
 		}
 	}
+
+	document.querySelectorAll('[data-copy-anchor]').forEach(link => {
+		const originalLabel = link.getAttribute('aria-label');
+		let resetTimer;
+		link.addEventListener('click', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			const url = new URL(window.location.href);
+			url.hash = this.dataset.copyAnchor;
+			if (window.location.hash !== url.hash) {
+				window.history.pushState(null, '', url);
+			}
+			document.getElementById(this.dataset.copyAnchor).scrollIntoView();
+			copyToClipboard(url.toString()).then(() => {
+				const icon = this.querySelector('i');
+				clearTimeout(resetTimer);
+				icon.className = 'bi bi-check';
+				this.title = 'Copied!';
+				this.setAttribute('aria-label', 'Link copied');
+				resetTimer = setTimeout(() => {
+					icon.className = 'bi bi-link-45deg';
+					this.title = 'Copy link';
+					this.setAttribute('aria-label', originalLabel);
+				}, 1500);
+			});
+		});
+	});
 
 	function share() {
 		const url = getShareUrl();

@@ -94,6 +94,9 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('Config-backed include library');
 		$this->assertResponseContains('library/intro.crv');
 		$this->assertResponseContains('Try config includes');
+		$this->assertResponseContains('id="config-backed-include-library"');
+		$this->assertResponseContains('href="#strict-mode-example"');
+		$this->assertResponseContains('data-copy-anchor="enabled-extensions"');
 	}
 
 	/**
