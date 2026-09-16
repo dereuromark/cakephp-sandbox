@@ -130,6 +130,32 @@
 	padding: 0.05em 0.25em;
 	border-radius: 0.2em;
 }
+/* Language-aware {.diff} fences. The marker has its own column so copied code
+   keeps the authored patch spelling while the code remains aligned. */
+.carve-rendered pre.has-diff code {
+	display: block;
+}
+.carve-rendered pre.has-diff .line {
+	display: block;
+	min-height: 1lh;
+}
+.carve-rendered pre.has-diff .line.diff.add {
+	background: rgba(46, 160, 67, 0.15);
+}
+.carve-rendered pre.has-diff .line.diff.remove {
+	background: rgba(248, 81, 73, 0.15);
+}
+.carve-rendered pre.has-diff .diff-marker {
+	display: inline-block;
+	width: 1ch;
+	font-weight: 700;
+}
+.carve-rendered pre.has-diff .line.diff.add .diff-marker {
+	color: #1a7f37;
+}
+.carve-rendered pre.has-diff .line.diff.remove .diff-marker {
+	color: #cf222e;
+}
 .carve-rendered .class1 {
 	color: #0d6efd;
 }

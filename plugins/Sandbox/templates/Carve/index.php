@@ -90,6 +90,35 @@ window.spoilerWire = function(container) {
 		});
 	}
 };
+// Present {.diff} language fences without losing highlight.js token markup.
+window.carveRenderLanguageDiff = function(code) {
+	const escape = function(text) {
+		const div = document.createElement('div');
+		div.textContent = text;
+
+		return div.innerHTML;
+	};
+	const pre = code.parentElement;
+	if (!pre || !pre.classList.contains('diff')) {
+		return false;
+	}
+	const languageClass = Array.from(code.classList).find(name => name.startsWith('language-'));
+	const language = languageClass ? languageClass.slice('language-'.length) : '';
+	const lines = code.textContent.replace(/\n$/, '').split('\n');
+	code.innerHTML = lines.map(line => {
+		const marker = line[0] === '+' || line[0] === '-' || line[0] === ' ' ? line[0] : ' ';
+		const body = marker === line[0] ? line.slice(1) : line;
+		const highlighted = language && hljs.getLanguage(language)
+			? hljs.highlight(body, { language }).value
+			: escape(body);
+		const kind = marker === '+' ? ' diff add' : marker === '-' ? ' diff remove' : '';
+		return '<span class="line' + kind + '"><span class="diff-marker" aria-hidden="true">'
+			+ escape(marker) + '</span><span class="diff-content">' + highlighted + '</span></span>';
+	}).join('\n');
+	pre.classList.add('has-diff');
+	code.setAttribute('data-highlighted', 'yes');
+	return true;
+};
 </script>
 <?php
 $this->end();
@@ -115,6 +144,15 @@ Try editing this text!
 ```php
 <?php
 echo "Hello, World!";
+```
+
+### Language Diff
+
+{.diff}
+```js
+  let fileIcon = document.querySelector("li.file-entry > span.icon");
+- fileIcon.classList.add("icon-file-text");
++ fileIcon.classList.remove("icon-file-text");
 ```
 
 ### Blockquote
@@ -780,6 +818,9 @@ This sentence contains {{ library/inline.crv }}.
 			// would strip the <b class="callout"> markers, so leave those plain.
 			outputRendered.querySelectorAll('pre code').forEach(el => {
 				if (el.querySelector('b.callout')) {
+					return;
+				}
+				if (window.carveRenderLanguageDiff && window.carveRenderLanguageDiff(el)) {
 					return;
 				}
 				el.removeAttribute('data-highlighted');
