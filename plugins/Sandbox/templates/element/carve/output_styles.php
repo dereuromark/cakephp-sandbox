@@ -136,7 +136,8 @@
 	display: block;
 }
 .carve-rendered pre.has-diff .line {
-	display: block;
+	display: inline-block;
+	width: 100%;
 	min-height: 1lh;
 }
 .carve-rendered pre.has-diff .line.diff.add {
