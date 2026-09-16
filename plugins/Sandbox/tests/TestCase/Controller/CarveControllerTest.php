@@ -26,6 +26,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('window.carveRenderLanguageDiff');
 		$this->assertResponseContains('const escape = function(text)');
 		$this->assertResponseContains('pre.has-diff .line.diff.add');
+		$this->assertResponseContains('display: inline-block');
 		$this->assertResponseContains('{.diff}');
 	}
 
