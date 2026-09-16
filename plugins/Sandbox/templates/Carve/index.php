@@ -92,6 +92,12 @@ window.spoilerWire = function(container) {
 };
 // Present {.diff} language fences without losing highlight.js token markup.
 window.carveRenderLanguageDiff = function(code) {
+	const escape = function(text) {
+		const div = document.createElement('div');
+		div.textContent = text;
+
+		return div.innerHTML;
+	};
 	const pre = code.parentElement;
 	if (!pre || !pre.classList.contains('diff')) {
 		return false;
@@ -104,10 +110,10 @@ window.carveRenderLanguageDiff = function(code) {
 		const body = marker === line[0] ? line.slice(1) : line;
 		const highlighted = language && hljs.getLanguage(language)
 			? hljs.highlight(body, { language }).value
-			: escapeHtml(body);
+			: escape(body);
 		const kind = marker === '+' ? ' diff add' : marker === '-' ? ' diff remove' : '';
 		return '<span class="line' + kind + '"><span class="diff-marker" aria-hidden="true">'
-			+ escapeHtml(marker) + '</span><span class="diff-content">' + highlighted + '</span></span>';
+			+ escape(marker) + '</span><span class="diff-content">' + highlighted + '</span></span>';
 	}).join('\n');
 	pre.classList.add('has-diff');
 	code.setAttribute('data-highlighted', 'yes');
