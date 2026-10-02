@@ -9,8 +9,8 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Menu;
-use Menu\Renderer\Bootstrap5SidebarRenderer;
+use CakeMenu\Menu;
+use CakeMenu\Renderer\Bootstrap5SidebarRenderer;
 
 $menu = Menu::create();
 $menu->addItem('Dashboard', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'])

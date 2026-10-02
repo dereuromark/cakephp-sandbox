@@ -20,7 +20,7 @@ class MenuSandboxController extends AppController {
 	public function initialize(): void {
 		parent::initialize();
 
-		$this->viewBuilder()->addHelpers(['Menu.Menu']);
+		$this->viewBuilder()->addHelpers(['CakeMenu.Menu']);
 	}
 
 	/**

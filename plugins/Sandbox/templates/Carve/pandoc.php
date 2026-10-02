@@ -79,8 +79,8 @@ pandoc-carve doc.crv | pandoc -f json -t typst -o doc.typ</code></pre>
 <script type="importmap">
 {
 	"imports": {
-		"@markup-carve/carve": "https://esm.sh/gh/markup-carve/carve-js@72760e6/src/index.ts",
-		"pandoc-carve": "https://esm.sh/gh/markup-carve/pandoc-carve@766fbc7/src/index.ts?external=@markup-carve/carve"
+		"@markup-carve/carve": "https://esm.sh/gh/markup-carve/carve-js@e45535d/src/index.ts",
+		"pandoc-carve": "https://esm.sh/gh/markup-carve/pandoc-carve@6709931/src/index.ts?external=@markup-carve/carve"
 	}
 }
 </script>

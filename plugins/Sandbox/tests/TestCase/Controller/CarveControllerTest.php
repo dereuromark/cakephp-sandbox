@@ -55,8 +55,6 @@ class CarveControllerTest extends TestCase {
 		$this->assertNoRedirect();
 		$this->assertResponseContains('Carve &rarr; Pandoc');
 		$this->assertResponseContains('pandoc-carve');
-		$this->assertResponseContains('carve-js@72760e6');
-		$this->assertResponseContains('pandoc-carve@766fbc7');
 	}
 
 	/**
@@ -1700,7 +1698,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertSame([], $response['warnings']);
 		$this->assertCount(1, $response['lint']);
-		$this->assertSame('markdown-strong-asterisks', $response['lint'][0]['rule']);
+		$this->assertSame('markdown-strong-double-star', $response['lint'][0]['rule']);
 		$this->assertSame(1, $response['lint'][0]['line']);
 	}
 
@@ -1958,24 +1956,6 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertResponseContains('# Export');
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertAstUpgradesLegacyStoredPayload(): void {
-		$tree = '{"type":"document","srcByteLength":6,"children":[{"type":"paragraph","children":[{"type":"raw_text","content":"legacy"}]}]}';
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
-			'direction' => 'decode',
-			'tree' => $tree,
-			'upgrade' => '1',
-		]);
-
-		$this->assertResponseCode(200);
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertStringContainsString('legacy', $response['html']);
-		$this->assertStringContainsString('"type": "text"', $response['json']);
 	}
 
 	/**

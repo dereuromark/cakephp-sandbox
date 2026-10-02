@@ -3,9 +3,8 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Menu;
-use Menu\Renderer\Bootstrap5Renderer;
-use Menu\Renderer\BreadcrumbRenderer;
+use CakeMenu\Menu;
+use CakeMenu\Renderer\Bootstrap5Renderer;
 ?>
 
 <div class="row">
@@ -30,15 +29,23 @@ use Menu\Renderer\BreadcrumbRenderer;
 	?>
 
 	<p><b>Via the core Breadcrumbs helper:</b></p>
-	<?php echo $this->Menu->renderBreadcrumbs('docs'); ?>
+	<?php
+	$this->Menu->populateBreadcrumbs('docs');
+	echo $this->Breadcrumbs->render();
+	?>
 
 	<p class="mt-3"><b>Via the built-in breadcrumb renderer:</b></p>
-	<?php echo $this->Menu->renderBreadcrumbs('docs', ['renderer' => BreadcrumbRenderer::class]); ?>
+	<?php echo $this->Menu->renderBreadcrumbs('docs'); ?>
 
 	<pre><code>$this-&gt;Menu-&gt;register('docs', function ($menu) {
     $node = $menu-&gt;addItem('Menu Sandbox', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);
     $node-&gt;getSubMenu()-&gt;addItem('Advanced', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'advanced']);
 });
+// Cake's Breadcrumbs helper
+$this-&gt;Menu-&gt;populateBreadcrumbs('docs');
+echo $this-&gt;Breadcrumbs-&gt;render();
+
+// Built-in BreadcrumbRenderer
 echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 
 	<h4 class="mt-4">Array import / export</h4>
@@ -196,7 +203,7 @@ $merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code><
 		<code>addItems()</code> validates the whole batch first (type + id/key uniqueness across the batch
 		and the tree) and rejects the lot atomically on the first conflict. Then look items up by their
 		stable <code>key</code> with <code>getByKey()</code> / <code>hasKey()</code>, and search the entire
-		tree recursively with <code>find(callable)</code>.
+		tree recursively with <code>find(Closure)</code>.
 	</p>
 
 	<?php

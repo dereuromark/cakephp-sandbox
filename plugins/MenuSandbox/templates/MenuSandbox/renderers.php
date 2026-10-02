@@ -3,8 +3,8 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Renderer\Bootstrap5Renderer;
-use Menu\Renderer\JsonRenderer;
+use CakeMenu\Renderer\Bootstrap5Renderer;
+use CakeMenu\Renderer\JsonRenderer;
 
 /**
  * Builds the same little tree of real sandbox links fresh for each renderer.
@@ -12,10 +12,10 @@ use Menu\Renderer\JsonRenderer;
  * @param \App\View\AppView $view
  * @param string $name
  * @param string $menuClass
- * @return \Menu\MenuInterface
+ * @return \CakeMenu\MenuInterface
  */
 $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
-	$menu = $view->Menu->create($name, ['menuAttributes' => ['class' => $menuClass]]);
+	$menu = $view->Menu->create($name, ['attributes' => ['class' => $menuClass]]);
 	$menu->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
 	$account = $menu->addItem('Account', '#');
 	$account->getSubMenu()->addItem('Login', ['plugin' => false, 'controller' => 'Account', 'action' => 'login']);
@@ -59,7 +59,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	?>
 	</nav>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render($menu, ['renderer' =&gt; \Menu\Renderer\Bootstrap5Renderer::class]);</code></pre>
+	<pre><code>echo $this-&gt;Menu-&gt;render($menu, ['renderer' =&gt; \CakeMenu\Renderer\Bootstrap5Renderer::class]);</code></pre>
 
 	<h4 class="mt-4">JSON renderer</h4>
 	<p>Serialize the tree for an API or a JS front-end (<code>['pretty' =&gt; true]</code> for readable output).</p>

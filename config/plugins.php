@@ -32,7 +32,7 @@ return [
 	'BootstrapUI' => [],
 	'Markup' => [],
 	'Feedback' => [],
-	'Menu' => [],
+	'CakeMenu' => [],
 	'Expose' => [],
 	'Translate' => [],
 	'Favorites' => [],
