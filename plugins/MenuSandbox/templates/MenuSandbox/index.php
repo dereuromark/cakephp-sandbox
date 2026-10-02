@@ -3,9 +3,9 @@
  * @var \App\View\AppView $this
  */
 
-use Menu\Renderer\NavbarRenderer;
+use CakeMenu\Renderer\NavbarRenderer;
 
-$navbar = $this->Menu->create('navbar', ['menuAttributes' => ['class' => 'navbar-nav me-auto']]);
+$navbar = $this->Menu->create('navbar', ['attributes' => ['class' => 'navbar-nav me-auto']]);
 $navbar->addItem('Home', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index'], ['icon' => 'bi bi-house']);
 $nbFeatures = $navbar->addItem('Features', '#', ['id' => 'nav-features', 'icon' => 'bi bi-stars']);
 $nbFeatures->getSubMenu()->addItem('Resolvers', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'resolvers']);
@@ -66,10 +66,10 @@ $trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->M
 		</small>
 	</p>
 
-	<pre><code>$navbar = $this-&gt;Menu-&gt;create('navbar', ['menuAttributes' =&gt; ['class' =&gt; 'navbar-nav']]);
+	<pre><code>$navbar = $this-&gt;Menu-&gt;create('navbar', ['attributes' =&gt; ['class' =&gt; 'navbar-nav']]);
 $navbar-&gt;addItem('Home', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index'], ['icon' =&gt; 'bi bi-house']);
 $reactions = $navbar-&gt;addItem('Reactions', '/sandbox/reaction-examples', ['icon' =&gt; 'bi bi-emoji-smile', 'badge' =&gt; 'NEW', 'badgeType' =&gt; 'bg-success']);
-echo $this-&gt;Menu-&gt;render('navbar', ['renderer' =&gt; \Menu\Renderer\NavbarRenderer::class, 'brand' =&gt; 'Menu Sandbox']);</code></pre>
+echo $this-&gt;Menu-&gt;render('navbar', ['renderer' =&gt; \CakeMenu\Renderer\NavbarRenderer::class, 'brand' =&gt; 'Menu Sandbox']);</code></pre>
 
 	<h4>Collapsible sidebar (Bootstrap5SidebarRenderer)</h4>
 	<p>
