@@ -26,6 +26,7 @@
 
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Advanced Features') ?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Deduplication', ['action' => 'deduplication'], ['class' => 'nav-link'])?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Image Cropping', ['action' => 'imageCropping'], ['class' => 'nav-link'])?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Drag & Drop Upload', ['action' => 'dragDropUpload'], ['class' => 'nav-link'])?></li>
 </ul>

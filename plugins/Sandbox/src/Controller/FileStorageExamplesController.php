@@ -2,10 +2,12 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Database\Expression\QueryExpression;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
 use DateTime;
 use Exception;
+use FileStorage\Service\CleanupService;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
 
@@ -233,6 +235,152 @@ class FileStorageExamplesController extends SandboxAppController {
 			->toArray();
 
 		$this->set(compact('fileStorage', 'files'));
+	}
+
+	/**
+	 * Upload deduplication demo
+	 *
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function deduplication() {
+		$this->FileStorage = $this->fetchTable('FileStorage.FileStorage');
+		$fileStorage = $this->FileStorage->newEmptyEntity();
+
+		if ($this->request->is('post')) {
+			// Check max count limit (6 files max)
+			$currentCount = $this->FileStorage->find()
+				->where([
+					'FileStorage.model' => 'FileStorage',
+					'FileStorage.collection' => 'dedup',
+				])
+				->count();
+
+			if ($currentCount >= 6) {
+				$this->Flash->error('Maximum 6 files allowed. Please delete an existing file first.');
+
+				return $this->redirect(['action' => 'deduplication']);
+			}
+
+			$data = $this->request->getData();
+			$data['model'] = 'FileStorage';
+			$data['collection'] = 'dedup';
+
+			// Validate using custom validator for general files
+			$validator = new FileUploadValidator();
+
+			$errors = $validator->validate($data);
+			if (!empty($errors)) {
+				$fileStorage->setErrors($errors);
+				$this->Flash->error('Could not upload file. Please check the errors below.');
+
+				return $this->redirect(['action' => 'deduplication']);
+			}
+
+			$fileStorage = $this->FileStorage->patchEntity($fileStorage, $data);
+
+			if ($this->FileStorage->save($fileStorage)) {
+				$referenceCount = $this->FileStorage->find()
+					->where(['FileStorage.blob_id' => $fileStorage->blob_id])
+					->count();
+				$this->Flash->success($referenceCount > 1
+					? 'File uploaded successfully. Existing stored content was reused.'
+					: 'File uploaded successfully. New content was stored.');
+
+				return $this->redirect(['action' => 'deduplication']);
+			}
+
+			$this->Flash->error('Could not upload file. Please check the errors below.');
+		}
+
+		$files = $this->FileStorage->find()
+			->where([
+				'FileStorage.model' => 'FileStorage',
+				'FileStorage.collection' => 'dedup',
+			])
+			->orderByDesc('FileStorage.created')
+			->toArray();
+
+		$blobIds = [];
+		$logicalBytes = 0;
+		$storedBytes = 0;
+		foreach ($files as $file) {
+			$logicalBytes += (int)$file->filesize;
+			if ($file->blob_id !== null && !isset($blobIds[$file->blob_id])) {
+				$blobIds[$file->blob_id] = true;
+				$storedBytes += (int)$file->filesize;
+			}
+		}
+
+		$blobTable = $this->fetchTable('FileStorage.FileStorageBlobs');
+		$blobs = $blobTable->find()
+			->where(function (QueryExpression $exp) use ($blobIds): QueryExpression {
+				$localBlobs = $exp->and([
+					'FileStorageBlobs.adapter' => 'Local',
+					'FileStorageBlobs.path LIKE' => 'blobs/%',
+				]);
+				if (!$blobIds) {
+					return $localBlobs;
+				}
+
+				return $exp->or([
+					$localBlobs,
+					$exp->in('FileStorageBlobs.id', array_keys($blobIds), 'integer'),
+				]);
+			})
+			->orderByDesc('FileStorageBlobs.created')
+			->toArray();
+
+		$referenceCounts = [];
+		if ($blobs) {
+			$query = $this->FileStorage->find();
+			$references = $query
+				->select([
+					'blob_id' => 'FileStorage.blob_id',
+					'reference_count' => $query->func()->count('FileStorage.id'),
+				])
+				->where(function (QueryExpression $exp) use ($blobs): QueryExpression {
+					return $exp->in('FileStorage.blob_id', array_map(function ($blob) {
+						return $blob->id;
+					}, $blobs), 'integer');
+				})
+				->groupBy('FileStorage.blob_id')
+				->toArray();
+			foreach ($references as $reference) {
+				$referenceCounts[$reference->blob_id] = (int)$reference->reference_count;
+			}
+		}
+		foreach ($blobs as $blob) {
+			$blob->set('reference_count', $referenceCounts[$blob->id] ?? 0);
+		}
+
+		$rowCount = count($files);
+		$blobCount = count($blobs);
+		$this->set(compact('fileStorage', 'files', 'blobs', 'rowCount', 'blobCount', 'logicalBytes', 'storedBytes'));
+	}
+
+	/**
+	 * Remove unreferenced stored files after the grace period.
+	 *
+	 * @return \Cake\Http\Response|null
+	 */
+	public function deduplicationCleanup() {
+		$this->request->allowMethod(['post']);
+
+		// Only the blob passes: a full run would also delete every demo row, since none has a foreign key.
+		$report = (new CleanupService())->runBlobs(false);
+		$message = sprintf(
+			'Cleanup: %d blobs removed, %d stray files removed, %d blobs skipped.',
+			count($report->deletedBlobs),
+			count($report->deletedStrayBlobs),
+			$report->skippedBlobs,
+		);
+		if ($report->warnings) {
+			$this->Flash->warning($message . ' Warning: ' . $report->warnings[0]);
+		} else {
+			$this->Flash->success($message);
+		}
+
+		return $this->redirect(['action' => 'deduplication']);
 	}
 
 	/**

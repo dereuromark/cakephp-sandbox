@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3941f16fe516c4420c9b1e7f660f10a",
+    "content-hash": "a40db4f40b6c25822a0fdfe2c8850f03",
     "packages": [
         {
             "name": "brick/math",
@@ -2538,23 +2538,23 @@
         },
         {
             "name": "dereuromark/cakephp-file-storage",
-            "version": "dev-master",
+            "version": "dev-dedup-integration",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9"
+                "reference": "7f0934f877a5cf882d3be7d83d632fe8c3ac3361"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9",
-                "reference": "e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/7f0934f877a5cf882d3be7d83d632fe8c3ac3361",
+                "reference": "7f0934f877a5cf882d3be7d83d632fe8c3ac3361",
                 "shasum": ""
             },
             "require": {
                 "brick/varexporter": "^0.5.0 || ^0.6.0 || ^0.7.0",
                 "cakephp/cakephp": "^5.3.4",
                 "php": ">=8.2",
-                "php-collective/file-storage": "^1.0.0"
+                "php-collective/file-storage": "dev-content-hash-path as 1.1.0"
             },
             "conflict": {
                 "cakephp/migrations": "<4.5"
@@ -2571,7 +2571,6 @@
                 "dereuromark/cakephp-queue": "For background image-variant regeneration from the admin UI.",
                 "php-collective/file-storage-image-processor": "Required if you want to use the image processing feature of FileStorage"
             },
-            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2611,7 +2610,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-07-31T00:28:18+00:00"
+            "time": "2026-10-06T21:48:38+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -6837,16 +6836,16 @@
         },
         {
             "name": "php-collective/file-storage",
-            "version": "dev-master",
+            "version": "dev-content-hash-path",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage.git",
-                "reference": "d91cbb59d36d01618b9a27bf1650d6151b5ee4b1"
+                "reference": "3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/d91cbb59d36d01618b9a27bf1650d6151b5ee4b1",
-                "reference": "d91cbb59d36d01618b9a27bf1650d6151b5ee4b1",
+                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d",
+                "reference": "3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d",
                 "shasum": ""
             },
             "require": {
@@ -6866,7 +6865,6 @@
             "suggest": {
                 "php-collective/file-storage-image-processor": "For image processing"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -6903,9 +6901,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/file-storage/issues",
-                "source": "https://github.com/php-collective/file-storage/tree/master"
+                "source": "https://github.com/php-collective/file-storage/tree/content-hash-path"
             },
-            "time": "2026-04-29T12:55:30+00:00"
+            "time": "2026-10-06T21:02:28+00:00"
         },
         {
             "name": "php-collective/file-storage-factories",
@@ -14423,7 +14421,7 @@
         },
         {
             "package": "dereuromark/cakephp-file-storage",
-            "version": "9999999-dev",
+            "version": "dev-dedup-integration",
             "alias": "1.0.0",
             "alias_normalized": "1.0.0.0"
         },
@@ -14459,7 +14457,7 @@
         },
         {
             "package": "php-collective/file-storage",
-            "version": "9999999-dev",
+            "version": "dev-content-hash-path",
             "alias": "1.0.0",
             "alias_normalized": "1.0.0.0"
         },

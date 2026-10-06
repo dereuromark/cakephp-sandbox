@@ -65,6 +65,15 @@
 	<h3>Advanced Features</h3>
 	<div class="row">
 		<div class="col-md-4 mb-3">
+			<div class="card border-primary">
+				<div class="card-body">
+					<h5 class="card-title">Deduplication</h5>
+					<p class="card-text">Upload identical files and inspect their shared storage, references, and cleanup.</p>
+					<?php echo $this->Html->link('Try it', ['action' => 'deduplication'], ['class' => 'btn btn-primary']); ?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 mb-3">
 			<div class="card border-success">
 				<div class="card-body">
 					<h5 class="card-title">
