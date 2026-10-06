@@ -251,7 +251,7 @@ class FileStorageExamplesController extends SandboxAppController {
 			$currentCount = $this->FileStorage->find()
 				->where([
 					'FileStorage.model' => 'FileStorage',
-					'FileStorage.collection' => 'dedup',
+					'FileStorage.collection' => 'documents',
 				])
 				->count();
 
@@ -263,7 +263,7 @@ class FileStorageExamplesController extends SandboxAppController {
 
 			$data = $this->request->getData();
 			$data['model'] = 'FileStorage';
-			$data['collection'] = 'dedup';
+			$data['collection'] = 'documents';
 
 			// Validate using custom validator for general files
 			$validator = new FileUploadValidator();
@@ -295,7 +295,7 @@ class FileStorageExamplesController extends SandboxAppController {
 		$files = $this->FileStorage->find()
 			->where([
 				'FileStorage.model' => 'FileStorage',
-				'FileStorage.collection' => 'dedup',
+				'FileStorage.collection' => 'documents',
 			])
 			->orderByDesc('FileStorage.created')
 			->toArray();

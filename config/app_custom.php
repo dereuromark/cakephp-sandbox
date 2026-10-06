@@ -534,7 +534,7 @@ $config = [
 			'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 			'pathPrefix' => 'files/uploads/',
 			'deduplicate' => [
-				'collections' => ['FileStorage' => ['dedup' => true]],
+				'collections' => ['FileStorage' => ['documents' => true]],
 				'gracePeriod' => 60, // 60 seconds is for the demo.
 				'root' => 'blobs',
 			],
@@ -545,7 +545,7 @@ $config = [
 					'images' => $imageVariants->toArray(),
 					'pdfs' => $pdfVariants->toArray(), // PDF preview variants
 					'general' => [], // No variants for general files
-					'dedup' => [],
+					'documents' => [],
 				],
 			],
 			'behaviorConfig' => [

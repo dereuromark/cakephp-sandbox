@@ -67,7 +67,7 @@
 	<div class="table-responsive">
 		<table class="table table-striped">
 			<thead>
-				<tr><th>Filename</th><th>Size</th><th>Hash</th><th>Blob id</th><th>Path</th><th>Created</th><th class="actions">Actions</th></tr>
+				<tr><th>Filename</th><th>Size</th><th>Hash</th><th>Blob id</th><th>Created</th><th class="actions">Actions</th></tr>
 			</thead>
 			<tbody>
 				<?php foreach ($files as $file) { ?>
@@ -76,7 +76,6 @@
 					<td><?php echo $this->Number->toReadableSize($file->filesize); ?></td>
 					<td><code title="<?php echo h($file->hash); ?>"><?php echo h(substr((string)$file->hash, 0, 12)); ?></code></td>
 					<td><?php echo h($file->blob_id); ?></td>
-					<td><code><?php echo h($file->path); ?></code></td>
 					<td><small class="text-muted"><?php echo h($file->created->timeAgoInWords()); ?></small></td>
 					<td class="actions">
 						<?php echo $this->Html->link('Download', ['action' => 'view', $file->id], ['class' => 'btn btn-sm btn-info']); ?>
@@ -106,7 +105,7 @@
 				<tr>
 					<td><?php echo h($blob->id); ?></td>
 					<td><code title="<?php echo h($blob->hash); ?>"><?php echo h(substr((string)$blob->hash, 0, 12)); ?></code></td>
-					<td><code><?php echo h($blob->path); ?></code></td>
+					<td><code title="<?php echo h($blob->path); ?>"><?php echo h($this->Text->truncate((string)$blob->path, 34, ['exact' => true]) . substr((string)$blob->path, -10)); ?></code></td>
 					<td>
 						<?php echo $this->Number->format($blob->reference_count); ?>
 						<?php if (!$blob->reference_count) { ?>
@@ -126,12 +125,12 @@
 		<summary>Configuration</summary>
 		<pre><code>'FileStorage' => [
 	'deduplicate' => [
-		'collections' => ['FileStorage' => ['dedup' => true]],
+		'collections' => ['FileStorage' => ['documents' => true]],
 		'gracePeriod' => 60, // 60 seconds is for the demo.
 		'root' => 'blobs',
 	],
 	'imageVariants' => [
-		'FileStorage' => ['dedup' => []],
+		'FileStorage' => ['documents' => []],
 	],
 ]</code></pre>
 	</details>
