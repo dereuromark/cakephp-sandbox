@@ -328,30 +328,19 @@ class FileStorageExamplesController extends SandboxAppController {
 				]);
 			})
 			->orderByDesc('FileStorageBlobs.created')
+			->disableHydration()
 			->toArray();
 
 		$referenceCounts = [];
-		if ($blobs) {
-			$query = $this->FileStorage->find();
-			$references = $query
-				->select([
-					'blob_id' => 'FileStorage.blob_id',
-					'reference_count' => $query->func()->count('FileStorage.id'),
-				])
-				->where(function (QueryExpression $exp) use ($blobs): QueryExpression {
-					return $exp->in('FileStorage.blob_id', array_map(function ($blob) {
-						return $blob->id;
-					}, $blobs), 'integer');
-				})
-				->groupBy('FileStorage.blob_id')
-				->toArray();
-			foreach ($references as $reference) {
-				$referenceCounts[$reference->blob_id] = (int)$reference->reference_count;
-			}
+		foreach ($this->FileStorage->find()->select(['blob_id'])->where(['FileStorage.blob_id IS NOT' => null])->disableHydration()->toArray() as $row) {
+			$blobId = (int)$row['blob_id'];
+			$referenceCounts[$blobId] = ($referenceCounts[$blobId] ?? 0) + 1;
 		}
-		foreach ($blobs as $blob) {
-			$blob->set('reference_count', $referenceCounts[$blob->id] ?? 0);
-		}
+		$blobs = array_map(function (array $blob) use ($referenceCounts): array {
+			$blob['reference_count'] = $referenceCounts[(int)$blob['id']] ?? 0;
+
+			return $blob;
+		}, $blobs);
 
 		$rowCount = count($files);
 		$blobCount = count($blobs);
