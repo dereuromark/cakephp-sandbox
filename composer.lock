@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a40db4f40b6c25822a0fdfe2c8850f03",
+    "content-hash": "127f7a1ad9fdcb99bae6ce255db97aa7",
     "packages": [
         {
             "name": "brick/math",
@@ -2538,16 +2538,16 @@
         },
         {
             "name": "dereuromark/cakephp-file-storage",
-            "version": "dev-dedup-integration",
+            "version": "dev-dedup-attach-by-hash",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "7f0934f877a5cf882d3be7d83d632fe8c3ac3361"
+                "reference": "f7abf200e7b7703af6162f0df1b000320cd2bd54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/7f0934f877a5cf882d3be7d83d632fe8c3ac3361",
-                "reference": "7f0934f877a5cf882d3be7d83d632fe8c3ac3361",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/f7abf200e7b7703af6162f0df1b000320cd2bd54",
+                "reference": "f7abf200e7b7703af6162f0df1b000320cd2bd54",
                 "shasum": ""
             },
             "require": {
@@ -2610,7 +2610,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-10-06T21:48:38+00:00"
+            "time": "2026-10-06T22:09:40+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -14421,7 +14421,7 @@
         },
         {
             "package": "dereuromark/cakephp-file-storage",
-            "version": "dev-dedup-integration",
+            "version": "dev-dedup-attach-by-hash",
             "alias": "1.0.0",
             "alias_normalized": "1.0.0.0"
         },

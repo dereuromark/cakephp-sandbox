@@ -7,7 +7,11 @@ use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
 use DateTime;
 use Exception;
+use FileStorage\Exception\BlobAttachDeniedException;
+use FileStorage\Exception\BlobNotAvailableException;
+use FileStorage\Service\BlobAttacher;
 use FileStorage\Service\CleanupService;
+use InvalidArgumentException;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
 
@@ -345,6 +349,112 @@ class FileStorageExamplesController extends SandboxAppController {
 		$rowCount = count($files);
 		$blobCount = count($blobs);
 		$this->set(compact('fileStorage', 'files', 'blobs', 'rowCount', 'blobCount', 'logicalBytes', 'storedBytes'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function instantUpload(): void {
+		$this->request->allowMethod(['get']);
+		$table = $this->fetchTable('FileStorage.FileStorage');
+		$files = $table->find()
+			->select(['id', 'filename', 'filesize', 'hash'])
+			->where(['model' => 'FileStorage', 'collection' => 'documents'])
+			->orderByDesc('created')
+			->disableHydration()
+			->toArray();
+		$files = array_map(static function (array $file): array {
+			$file['hash'] = substr((string)$file['hash'], 0, 12);
+
+			return $file;
+		}, $files);
+		$ownedHashesCount = count($this->request->getSession()->read('FileStorageDemo.ownedHashes') ?? []);
+		$maxFiles = 6;
+		$this->set(compact('files', 'ownedHashesCount', 'maxFiles'));
+	}
+
+	/**
+	 * @return \Cake\Http\Response
+	 */
+	public function instantUploadCheck() {
+		$this->request->allowMethod(['post']);
+		$table = $this->fetchTable('FileStorage.FileStorage');
+		if ($table->find()->where(['model' => 'FileStorage', 'collection' => 'documents'])->count() >= 6) {
+			return $this->response->withType('application/json')->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Maximum 6 files allowed. Please delete an existing file first.',
+			]));
+		}
+
+		$ownedHashes = $this->request->getSession()->read('FileStorageDemo.ownedHashes') ?? [];
+		$filename = mb_substr(basename((string)$this->request->getData('filename')), 0, 190);
+		try {
+			$file = (new BlobAttacher())->attach(
+				(string)$this->request->getData('hash'),
+				['model' => 'FileStorage', 'collection' => 'documents', 'filename' => $filename],
+				['ownedHashes' => $ownedHashes],
+			);
+		} catch (BlobAttachDeniedException | BlobNotAvailableException | InvalidArgumentException) {
+			return $this->response->withType('application/json')->withStringBody((string)json_encode(['status' => 'upload']));
+		}
+
+		return $this->response->withType('application/json')->withStringBody((string)json_encode([
+			'status' => 'attached',
+			'id' => $file->get('id'),
+			'filename' => $file->get('filename'),
+			'filesize' => $file->get('filesize'),
+		]));
+	}
+
+	/**
+	 * @return \Cake\Http\Response
+	 */
+	public function instantUploadStore() {
+		$this->request->allowMethod(['post']);
+		$table = $this->fetchTable('FileStorage.FileStorage');
+		if ($table->find()->where(['model' => 'FileStorage', 'collection' => 'documents'])->count() >= 6) {
+			return $this->response->withType('application/json')->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Maximum 6 files allowed. Please delete an existing file first.',
+			]));
+		}
+
+		$data = ['file' => $this->request->getData('file'), 'model' => 'FileStorage', 'collection' => 'documents'];
+		$errors = (new FileUploadValidator())->validate($data);
+		if ($errors) {
+			$errorMessage = 'Validation failed';
+			if (isset($errors['file'])) {
+				$errorMessage = is_array($errors['file']) ? implode(', ', array_filter($errors['file'], 'is_string')) : $errors['file'];
+			}
+
+			return $this->response->withType('application/json')->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => $errorMessage,
+			]));
+		}
+
+		$file = $table->newEntity($data);
+		if (!$table->save($file)) {
+			return $this->response->withType('application/json')->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Could not save file. Please try again.',
+			]));
+		}
+
+		$session = $this->request->getSession();
+		$ownedHashes = $session->read('FileStorageDemo.ownedHashes') ?? [];
+		$ownedHashes[] = $file->get('hash');
+		$session->write('FileStorageDemo.ownedHashes', array_values(array_unique($ownedHashes)));
+		$reused = $file->get('blob_id') !== null
+			&& $table->find()->where(['blob_id' => $file->get('blob_id')])->count() > 1;
+
+		return $this->response->withType('application/json')->withStringBody((string)json_encode([
+			'status' => 'uploaded',
+			'id' => $file->get('id'),
+			'filename' => $file->get('filename'),
+			'filesize' => $file->get('filesize'),
+			'reused' => $reused,
+		]));
 	}
 
 	/**

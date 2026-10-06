@@ -19,6 +19,13 @@ class FileStorageExamplesControllerTest extends TestCase {
 	use IntegrationTestTrait;
 
 	/**
+	 * @var array<string>
+	 */
+	public array $fixtures = [
+		'plugin.FileStorage.FileStorageBlobs',
+	];
+
+	/**
 	 * setUpBeforeClass method
 	 *
 	 * @return void
@@ -1052,6 +1059,48 @@ PDF;
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testInstantUpload(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'instantUpload']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testInstantUploadCheckUnknownHash(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'instantUploadCheck'], [
+			'hash' => str_repeat('a', 64),
+			'filename' => 'unknown.txt',
+			'size' => 10,
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('upload', $response['status']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testInstantUploadCheckInvalidHash(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'instantUploadCheck'], [
+			'hash' => 'nope',
+			'filename' => 'unknown.txt',
+			'size' => 10,
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('upload', $response['status']);
 	}
 
 	/**

@@ -535,6 +535,10 @@ $config = [
 			'pathPrefix' => 'files/uploads/',
 			'deduplicate' => [
 				'collections' => ['FileStorage' => ['documents' => true]],
+				// Session scoped, demo only.
+				'attachAuthorizer' => static function (string $hash, array $data, array $context): bool {
+					return in_array($hash, $context['ownedHashes'] ?? [], true);
+				},
 				'gracePeriod' => 60, // 60 seconds is for the demo.
 				'root' => 'blobs',
 			],
