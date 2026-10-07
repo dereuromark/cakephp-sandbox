@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	const headers = {'X-Requested-With': 'XMLHttpRequest'};
 	const maxFileSize = <?php echo json_encode($maxFileSize); ?>;
 	const chunkSize = 8 * 1024 * 1024;
-	const canHashWasm = Boolean(window.hashwasm && window.hashwasm.createSHA256);
-	const canHash = canHashWasm || Boolean(window.crypto && window.crypto.subtle);
+	let canHashWasm = Boolean(window.hashwasm && window.hashwasm.createSHA256);
+	const canHashCrypto = Boolean(window.crypto && window.crypto.subtle);
 	const dropZone = document.getElementById('instantDropZone');
 	const input = document.getElementById('instantFileInput');
 	const results = document.getElementById('instantResults');
@@ -94,12 +94,29 @@ document.addEventListener('DOMContentLoaded', function() {
 	let sent = 0;
 	let saved = 0;
 	let local = 0;
-	if (!canHashWasm && canHash) {
+	function showHashingNotice() {
 		const notice = document.getElementById('cryptoNotice');
-		notice.textContent = 'Chunked hashing is unavailable. Files up to ' + readable(maxFileSize) + ' can be hashed, but larger files cannot be hashed in this browser context and will not be sent.';
+		if (canHashCrypto) {
+			notice.textContent = 'Chunked hashing is unavailable. Files up to ' + readable(maxFileSize) + ' can be hashed, but larger files cannot be hashed in this browser context and will not be sent.';
+		}
 		notice.hidden = false;
-	} else if (!canHash) {
-		document.getElementById('cryptoNotice').hidden = false;
+	}
+	if (!canHashWasm) {
+		showHashingNotice();
+	}
+
+	// WebAssembly can be blocked (CSP, browser policy) even when the script loaded.
+	async function createWasmHasher() {
+		if (!canHashWasm) {
+			return null;
+		}
+		try {
+			return await window.hashwasm.createSHA256();
+		} catch (error) {
+			canHashWasm = false;
+			showHashingNotice();
+			return null;
+		}
 	}
 
 	function readable(bytes) {
@@ -136,11 +153,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		let bytesSent = 0;
 		let hash = '';
 		try {
-			if (file.size > maxFileSize && !canHashWasm) {
+			const hasher = await createWasmHasher();
+			if (file.size > maxFileSize && !hasher) {
 				throw new Error('Large files cannot be hashed in this browser context. Nothing was sent.');
 			}
 			let data = {status: 'upload'};
-			if (canHash) {
+			if (hasher || canHashCrypto) {
 				row.cells[4].textContent = 'Hashing';
 				const start = performance.now();
 				const progress = document.createElement('progress');
@@ -156,8 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
 					progressText.textContent = ' ' + percent.toFixed(1) + '% | ' + throughput(bytes, elapsed) + ' MB/s';
 				}
 				updateProgress(0);
-				if (canHashWasm) {
-					const hasher = await window.hashwasm.createSHA256();
+				if (hasher) {
 					hasher.init();
 					for (let offset = 0; offset < file.size; offset += chunkSize) {
 						const end = Math.min(offset + chunkSize, file.size);
