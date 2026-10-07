@@ -105,11 +105,11 @@
 				<tr>
 					<td><?php echo h($blob['id']); ?></td>
 					<td><code title="<?php echo h($blob['hash']); ?>"><?php echo h(substr((string)$blob['hash'], 0, 12)); ?></code></td>
-					<td><code title="<?php echo h($blob['path']); ?>"><?php echo h($this->Text->truncate((string)$blob['path'], 34, ['exact' => true]) . substr((string)$blob['path'], -10)); ?></code></td>
+					<td class="text-nowrap"><code title="<?php echo h($blob['path']); ?>"><?php echo h($this->Text->truncate((string)$blob['path'], 34, ['exact' => true]) . substr((string)$blob['path'], -10)); ?></code></td>
 					<td>
 						<?php echo $this->Number->format($blob['reference_count']); ?>
 						<?php if (!$blob['reference_count']) { ?>
-						<span class="badge badge-warning">unreferenced, removed by cleanup after the grace period</span>
+						<span class="badge badge-warning" title="Removed by cleanup after the grace period">unreferenced</span>
 						<?php } ?>
 					</td>
 					<td><?php echo h($blob['touched']); ?></td>
