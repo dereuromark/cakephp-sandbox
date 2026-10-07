@@ -30,6 +30,11 @@ use Throwable;
 class FileStorageExamplesController extends SandboxAppController {
 
 	/**
+	 * @var int
+	 */
+	protected const MAX_FILE_SIZE = 2 * 1024 * 1024;
+
+	/**
 	 * Seconds between automatic blob cleanups.
 	 *
 	 * @var int
@@ -386,7 +391,8 @@ class FileStorageExamplesController extends SandboxAppController {
 		}, $files);
 		$ownedHashesCount = count($this->request->getSession()->read('FileStorageDemo.ownedHashes') ?? []);
 		$maxFiles = 6;
-		$this->set(compact('files', 'ownedHashesCount', 'maxFiles'));
+		$maxFileSize = static::MAX_FILE_SIZE;
+		$this->set(compact('files', 'ownedHashesCount', 'maxFiles', 'maxFileSize'));
 	}
 
 	/**
