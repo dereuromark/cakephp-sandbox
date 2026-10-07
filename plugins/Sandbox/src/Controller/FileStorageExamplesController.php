@@ -28,6 +28,13 @@ use Sandbox\Validation\FileUploadValidator;
 class FileStorageExamplesController extends SandboxAppController {
 
 	/**
+	 * Seconds between automatic blob cleanups.
+	 *
+	 * @var int
+	 */
+	protected const BLOB_CLEANUP_INTERVAL = 600;
+
+	/**
 	 * @var \FileStorage\Model\Table\FileStorageTable
 	 */
 	protected $FileStorage;
@@ -869,6 +876,29 @@ class FileStorageExamplesController extends SandboxAppController {
 		foreach ($oldFiles as $file) {
 			$fileStorageTable->delete($file);
 		}
+
+		$this->cleanupUnreferencedBlobs();
+	}
+
+	/**
+	 * Deleting a deduplicated row leaves its stored file for the blob cleanup.
+	 * Nothing schedules that here, so without this the demo would keep every
+	 * file ever uploaded. Throttled, because it lists the blob directory.
+	 *
+	 * @return void
+	 */
+	protected function cleanupUnreferencedBlobs(): void {
+		// The cleanup refuses to run inside a transaction, which is the case in tests.
+		if ($this->fetchTable('FileStorage.FileStorage')->getConnection()->inTransaction()) {
+			return;
+		}
+		$marker = TMP . 'file_storage_demo_blob_cleanup';
+		if (is_file($marker) && filemtime($marker) > time() - static::BLOB_CLEANUP_INTERVAL) {
+			return;
+		}
+		touch($marker);
+
+		(new CleanupService())->runBlobs(false);
 	}
 
 }
