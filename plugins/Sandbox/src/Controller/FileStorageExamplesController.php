@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Log\Log;
 use DateTime;
 use Exception;
 use FileStorage\Exception\BlobAttachDeniedException;
@@ -14,6 +15,7 @@ use FileStorage\Service\CleanupService;
 use InvalidArgumentException;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
+use Throwable;
 
 /**
  * FileStorage Examples Controller
@@ -26,6 +28,20 @@ use Sandbox\Validation\FileUploadValidator;
  * @property \FileStorage\Model\Table\FileStorageTable $FileStorage
  */
 class FileStorageExamplesController extends SandboxAppController {
+
+	/**
+	 * Seconds between automatic blob cleanups.
+	 *
+	 * @var int
+	 */
+	protected const BLOB_CLEANUP_INTERVAL = 600;
+
+	/**
+	 * Seconds until the next attempt after a failed blob cleanup.
+	 *
+	 * @var int
+	 */
+	protected const BLOB_CLEANUP_RETRY = 60;
 
 	/**
 	 * @var \FileStorage\Model\Table\FileStorageTable
@@ -868,6 +884,38 @@ class FileStorageExamplesController extends SandboxAppController {
 		// Delete each file (this will trigger the behavior to delete physical files)
 		foreach ($oldFiles as $file) {
 			$fileStorageTable->delete($file);
+		}
+
+		$this->cleanupUnreferencedBlobs();
+	}
+
+	/**
+	 * Deleting a deduplicated row leaves its stored file for the blob cleanup.
+	 * Nothing schedules that here, so without this the demo would keep every
+	 * file ever uploaded. Throttled, because it lists the blob directory.
+	 *
+	 * @return void
+	 */
+	protected function cleanupUnreferencedBlobs(): void {
+		// The cleanup refuses to run inside a transaction, which is the case in tests.
+		if ($this->fetchTable('FileStorage.FileStorage')->getConnection()->inTransaction()) {
+			return;
+		}
+		$marker = TMP . 'file_storage_demo_blob_cleanup';
+		if (is_file($marker) && filemtime($marker) > time() - static::BLOB_CLEANUP_INTERVAL) {
+			return;
+		}
+		// Without a marker the cleanup would run on every request.
+		if (!touch($marker)) {
+			return;
+		}
+
+		try {
+			(new CleanupService())->runBlobs(false);
+		} catch (Throwable $exception) {
+			// A demo page must not fail over housekeeping. Try again in a minute.
+			touch($marker, time() - static::BLOB_CLEANUP_INTERVAL + static::BLOB_CLEANUP_RETRY);
+			Log::warning('File storage demo blob cleanup failed: ' . $exception->getMessage());
 		}
 	}
 
