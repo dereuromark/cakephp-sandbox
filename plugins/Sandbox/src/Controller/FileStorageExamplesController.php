@@ -5,6 +5,7 @@ namespace Sandbox\Controller;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
+use Cake\Log\Log;
 use DateTime;
 use Exception;
 use FileStorage\Exception\BlobAttachDeniedException;
@@ -14,6 +15,7 @@ use FileStorage\Service\CleanupService;
 use InvalidArgumentException;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
+use Throwable;
 
 /**
  * FileStorage Examples Controller
@@ -33,6 +35,13 @@ class FileStorageExamplesController extends SandboxAppController {
 	 * @var int
 	 */
 	protected const BLOB_CLEANUP_INTERVAL = 600;
+
+	/**
+	 * Seconds until the next attempt after a failed blob cleanup.
+	 *
+	 * @var int
+	 */
+	protected const BLOB_CLEANUP_RETRY = 60;
 
 	/**
 	 * @var \FileStorage\Model\Table\FileStorageTable
@@ -896,9 +905,18 @@ class FileStorageExamplesController extends SandboxAppController {
 		if (is_file($marker) && filemtime($marker) > time() - static::BLOB_CLEANUP_INTERVAL) {
 			return;
 		}
-		touch($marker);
+		// Without a marker the cleanup would run on every request.
+		if (!touch($marker)) {
+			return;
+		}
 
-		(new CleanupService())->runBlobs(false);
+		try {
+			(new CleanupService())->runBlobs(false);
+		} catch (Throwable $exception) {
+			// A demo page must not fail over housekeeping. Try again in a minute.
+			touch($marker, time() - static::BLOB_CLEANUP_INTERVAL + static::BLOB_CLEANUP_RETRY);
+			Log::warning('File storage demo blob cleanup failed: ' . $exception->getMessage());
+		}
 	}
 
 }
