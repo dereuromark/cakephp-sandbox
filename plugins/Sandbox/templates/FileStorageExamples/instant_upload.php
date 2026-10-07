@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var array<array<string, mixed>> $files
  * @var int $ownedHashesCount
+ * @var int $maxFileSize
  * @var int $maxFiles
  */
 ?>
@@ -11,18 +12,19 @@
 </nav>
 <div class="page form col-sm-8 col-12">
 	<h2>Upload Without Re-sending</h2>
-	<p>Your browser hashes each file before asking the server to attach it. File bytes are uploaded only when this session has not uploaded that content before, or the stored blob is no longer available.</p>
+	<p>Your browser hashes files of any size in chunks. For files up to 2 MB, it asks the server whether an upload is needed. Larger files are hashed locally only. File bytes are uploaded only when this session has not uploaded that content before, or the stored blob is no longer available.</p>
 	<h4>Try this</h4>
 	<ol>
 		<li>Drop a file: it is hashed in the browser and uploaded.</li>
 		<li>Drop the same file again, or a renamed copy: no file bytes are transferred.</li>
 		<li>Delete the rows on the Deduplication page and drop it again: no file bytes are transferred while the blob exists.</li>
 		<li>Open this page in a private window and drop the same file: it uploads, because that session never sent it.</li>
+		<li>Pick a large file, a video or an ISO: it is hashed in chunks in your browser and nothing is sent, because this demo stores at most 2 MB per file.</li>
 	</ol>
 	<p>When this page loaded, your session had uploaded <?php echo h($ownedHashesCount); ?> distinct file(s). The collection allows <?php echo h($maxFiles); ?> rows.</p>
-	<div id="cryptoNotice" class="alert alert-warning" hidden>Browser hashing is unavailable in this context. Files will always be uploaded. Use HTTPS or localhost to enable hashing.</div>
+	<div id="cryptoNotice" class="alert alert-warning" hidden>Browser hashing is unavailable in this context. Files up to 2 MB will always be uploaded. Larger files cannot be hashed and will not be sent. Use HTTPS or localhost to enable hashing.</div>
 	<div class="card mb-4">
-		<div class="card-header"><h4>Select Files</h4><small class="text-muted">Any type | Max 2 MB per file</small></div>
+		<div class="card-header"><h4>Select Files</h4><small class="text-muted">Any type | Hash any size | Store at most 2 MB per file</small></div>
 		<div class="card-body">
 			<div id="instantDropZone" class="drop-zone"><h3>Drag &amp; Drop Files Here</h3><p>or click to browse</p></div>
 			<label for="instantFileInput" class="mt-3">Choose files</label>
@@ -34,14 +36,16 @@
 		<div class="col"><strong>Bytes sent</strong><br><span id="sentBytes">0 B</span></div>
 		<div class="col"><strong>Bytes not sent</strong><br><span id="savedBytes">0 B</span></div>
 	</div>
-	<p class="text-muted">The demo caps files at 2 MB; the saving grows with file size. Counters cover successful files on this page. Bytes sent counts file content, excluding request metadata and multipart overhead.</p>
+	<div class="mb-3" aria-live="polite"><strong>Hashed locally only</strong><br><span id="localBytes">0 B</span><br><small class="text-muted">These bytes never left the browser. The demo stores nothing above 2 MB per file.</small></div>
+	<p class="text-muted">Files above 2 MB are hashed but neither sent nor stored. The three counters above cover successful server interactions on this page. Bytes sent counts file content, excluding request metadata and multipart overhead.</p>
 	<h3>Results</h3>
 	<div class="table-responsive">
 		<table class="table table-striped">
-			<thead><tr><th>Filename</th><th>Size</th><th>Hash time (ms)</th><th>Result</th><th>Bytes sent</th></tr></thead>
+			<thead><tr><th>Filename</th><th>Size</th><th>Hash time</th><th>Throughput</th><th>Result</th><th>Bytes sent</th></tr></thead>
 			<tbody id="instantResults" aria-live="polite"></tbody>
 		</table>
 	</div>
+	<p class="text-muted">For files marked “hashed only”, a real application would send the 64 character hash and upload the file only if the server does not have that content for this user.</p>
 	<h3>Current Rows</h3>
 	<p><?php echo $this->Html->link('Manage rows and blobs on the Deduplication page', ['action' => 'deduplication']); ?></p>
 	<div class="table-responsive">
@@ -55,7 +59,7 @@
 		</table>
 	</div>
 	<h3>How it works</h3>
-	<p>The browser reads the file and computes its SHA-256 hash, then posts the hash, filename, and size. The server attaches stored content if this session owns the hash. Otherwise, the browser uploads the file, and the server remembers its saved hash in the session.</p>
+	<p>The browser computes SHA-256 with <a href="https://github.com/Daninet/hash-wasm">hash-wasm</a>, reading one 8 MiB chunk at a time so file memory use stays at one chunk. For files up to 2 MB, it then posts the hash, filename, and size. Larger files stay in the browser. The server attaches stored content if this session owns the hash. Otherwise, the browser uploads the file, and the server remembers its saved hash in the session.</p>
 	<div class="alert alert-warning">This authorization rule is session scoped and for the demo only. Unknown content and content uploaded by another session both receive “upload needed.” A real application must check ownership before attaching: allowing arbitrary hashes can give users access to other users' files.</div>
 </div>
 <style>
@@ -72,12 +76,16 @@
 	background: #cfe2ff;
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/hash-wasm@4.12.0/dist/sha256.umd.min.js" integrity="sha384-Wgjx+8tLxXJSOx0qsuYHWUruquWEGSmkfn24UY1UGLJpwzCAMKZ3kbRI89jpYIVm" crossorigin="anonymous"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 	const checkUrl = <?php echo json_encode($this->Url->build(['action' => 'instantUploadCheck'])); ?>;
 	const storeUrl = <?php echo json_encode($this->Url->build(['action' => 'instantUploadStore'])); ?>;
 	const headers = {'X-Requested-With': 'XMLHttpRequest'};
-	const canHash = Boolean(window.crypto && window.crypto.subtle);
+	const maxFileSize = <?php echo json_encode($maxFileSize); ?>;
+	const chunkSize = 8 * 1024 * 1024;
+	const canHashWasm = Boolean(window.hashwasm && window.hashwasm.createSHA256);
+	const canHash = canHashWasm || Boolean(window.crypto && window.crypto.subtle);
 	const dropZone = document.getElementById('instantDropZone');
 	const input = document.getElementById('instantFileInput');
 	const results = document.getElementById('instantResults');
@@ -85,7 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
 	let handled = 0;
 	let sent = 0;
 	let saved = 0;
-	if (!canHash) {
+	let local = 0;
+	if (!canHashWasm && canHash) {
+		const notice = document.getElementById('cryptoNotice');
+		notice.textContent = 'Chunked hashing is unavailable. Files up to ' + readable(maxFileSize) + ' can be hashed, but larger files cannot be hashed in this browser context and will not be sent.';
+		notice.hidden = false;
+	} else if (!canHash) {
 		document.getElementById('cryptoNotice').hidden = false;
 	}
 
@@ -96,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
 		const units = ['B', 'KB', 'MB', 'GB'];
 		const exponent = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
 		return (bytes / Math.pow(1024, exponent)).toLocaleString(undefined, {maximumFractionDigits: 2}) + ' ' + units[exponent];
+	}
+
+	function throughput(bytes, elapsed) {
+		return (elapsed > 0 ? bytes / (1024 * 1024) / (elapsed / 1000) : 0).toFixed(1);
 	}
 
 	function addRow(body, values) {
@@ -115,30 +132,70 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	async function processFile(file) {
-		const row = addRow(results, [file.name, readable(file.size), 'N/A', 'Waiting', '0 B']);
+		const row = addRow(results, [file.name, readable(file.size), 'N/A', 'N/A', 'Waiting', '0 B']);
 		let bytesSent = 0;
 		let hash = '';
 		try {
-			if (file.size > 2 * 1024 * 1024) {
-				throw new Error('File too large. Maximum size is 2 MB.');
+			if (file.size > maxFileSize && !canHashWasm) {
+				throw new Error('Large files cannot be hashed in this browser context. Nothing was sent.');
 			}
 			let data = {status: 'upload'};
 			if (canHash) {
-				row.cells[3].textContent = 'Hashing';
+				row.cells[4].textContent = 'Hashing';
 				const start = performance.now();
-				const buffer = await file.arrayBuffer();
-				const digest = await window.crypto.subtle.digest('SHA-256', buffer);
-				hash = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
-				row.cells[2].textContent = (performance.now() - start).toFixed(1);
-				row.cells[3].textContent = 'Checking';
+				const progress = document.createElement('progress');
+				progress.max = 100;
+				progress.value = 0;
+				progress.setAttribute('aria-label', 'Hashing ' + file.name);
+				const progressText = document.createElement('span');
+				row.cells[4].replaceChildren(progress, progressText);
+				function updateProgress(bytes) {
+					const percent = file.size === 0 ? 100 : bytes / file.size * 100;
+					const elapsed = performance.now() - start;
+					progress.value = percent;
+					progressText.textContent = ' ' + percent.toFixed(1) + '% | ' + throughput(bytes, elapsed) + ' MB/s';
+				}
+				updateProgress(0);
+				if (canHashWasm) {
+					const hasher = await window.hashwasm.createSHA256();
+					hasher.init();
+					for (let offset = 0; offset < file.size; offset += chunkSize) {
+						const end = Math.min(offset + chunkSize, file.size);
+						hasher.update(new Uint8Array(await file.slice(offset, end).arrayBuffer()));
+						updateProgress(end);
+						await new Promise(resolve => setTimeout(resolve, 0));
+					}
+					hash = hasher.digest('hex');
+				} else {
+					const buffer = await file.arrayBuffer();
+					const digest = await window.crypto.subtle.digest('SHA-256', buffer);
+					hash = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
+				}
+				updateProgress(file.size);
+				const elapsed = performance.now() - start;
+				row.cells[2].textContent = elapsed >= 1000 ? (elapsed / 1000).toFixed(1) + ' s' : elapsed.toFixed(1) + ' ms';
+				row.cells[3].textContent = throughput(file.size, elapsed) + ' MB/s';
+				if (file.size > maxFileSize) {
+					const badge = document.createElement('span');
+					badge.className = 'badge badge-secondary bg-secondary';
+					badge.textContent = 'hashed only';
+					const hashText = document.createElement('code');
+					hashText.className = 'd-block text-break';
+					hashText.textContent = hash;
+					row.cells[4].replaceChildren(badge, hashText);
+					local += file.size;
+					document.getElementById('localBytes').textContent = readable(local);
+					return;
+				}
+				row.cells[4].textContent = 'Checking';
 				data = await post(checkUrl, new URLSearchParams({hash, filename: file.name, size: String(file.size)}));
 			}
 			if (data.status === 'upload') {
 				const body = new FormData();
 				body.append('file', file);
-				row.cells[3].textContent = 'Uploading';
+				row.cells[4].textContent = 'Uploading';
 				bytesSent = file.size;
-				row.cells[4].textContent = readable(bytesSent);
+				row.cells[5].textContent = readable(bytesSent);
 				data = await post(storeUrl, body);
 			}
 			if (data.status === 'error') {
@@ -150,8 +207,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			const badge = document.createElement('span');
 			badge.className = 'badge badge-success bg-success';
 			badge.textContent = data.status === 'attached' ? 'attached, nothing sent' : 'uploaded';
-			row.cells[3].replaceChildren(badge);
-			row.cells[4].textContent = readable(bytesSent);
+			row.cells[4].replaceChildren(badge);
+			row.cells[5].textContent = readable(bytesSent);
 			handled += file.size;
 			sent += bytesSent;
 			saved += file.size - bytesSent;
@@ -160,8 +217,8 @@ document.addEventListener('DOMContentLoaded', function() {
 			document.getElementById('savedBytes').textContent = readable(saved);
 			addRow(document.getElementById('instantRows'), [data.id, data.filename, readable(data.filesize), hash ? hash.slice(0, 12) : 'Unavailable without browser hashing']);
 		} catch (error) {
-			row.cells[3].textContent = error.message;
-			row.cells[3].classList.add('text-danger');
+			row.cells[4].textContent = error.message;
+			row.cells[4].classList.add('text-danger');
 		}
 	}
 

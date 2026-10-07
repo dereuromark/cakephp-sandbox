@@ -1069,6 +1069,8 @@ PDF;
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+		$this->assertResponseContains('https://cdn.jsdelivr.net/npm/hash-wasm@4.12.0/dist/sha256.umd.min.js');
+		$this->assertResponseContains('Hashed locally only');
 	}
 
 	/**
