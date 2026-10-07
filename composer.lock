@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "127f7a1ad9fdcb99bae6ce255db97aa7",
+    "content-hash": "7a56b390abb7253da57ef54838af52f1",
     "packages": [
         {
             "name": "brick/math",
@@ -2542,19 +2542,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "f7abf200e7b7703af6162f0df1b000320cd2bd54"
+                "reference": "b4e47bfab57b56b8381fd293cf1505d0a0aa5ddf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/f7abf200e7b7703af6162f0df1b000320cd2bd54",
-                "reference": "f7abf200e7b7703af6162f0df1b000320cd2bd54",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/b4e47bfab57b56b8381fd293cf1505d0a0aa5ddf",
+                "reference": "b4e47bfab57b56b8381fd293cf1505d0a0aa5ddf",
                 "shasum": ""
             },
             "require": {
                 "brick/varexporter": "^0.5.0 || ^0.6.0 || ^0.7.0",
                 "cakephp/cakephp": "^5.3.4",
                 "php": ">=8.2",
-                "php-collective/file-storage": "dev-content-hash-path as 1.1.0"
+                "php-collective/file-storage": "dev-master as 1.1.0"
             },
             "conflict": {
                 "cakephp/migrations": "<4.5"
@@ -2610,7 +2610,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-10-06T22:09:40+00:00"
+            "time": "2026-10-07T15:56:01+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -6836,16 +6836,16 @@
         },
         {
             "name": "php-collective/file-storage",
-            "version": "dev-content-hash-path",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage.git",
-                "reference": "3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d"
+                "reference": "51005b1f21c7a7be33e48e8f4af4028fc0c41104"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d",
-                "reference": "3722e14a6659a05c81c29e0ea6ba7f2fc44f9d5d",
+                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/51005b1f21c7a7be33e48e8f4af4028fc0c41104",
+                "reference": "51005b1f21c7a7be33e48e8f4af4028fc0c41104",
                 "shasum": ""
             },
             "require": {
@@ -6865,6 +6865,7 @@
             "suggest": {
                 "php-collective/file-storage-image-processor": "For image processing"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -6901,9 +6902,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-collective/file-storage/issues",
-                "source": "https://github.com/php-collective/file-storage/tree/content-hash-path"
+                "source": "https://github.com/php-collective/file-storage/tree/master"
             },
-            "time": "2026-10-06T21:02:28+00:00"
+            "time": "2026-10-07T15:37:20+00:00"
         },
         {
             "name": "php-collective/file-storage-factories",
@@ -14457,7 +14458,7 @@
         },
         {
             "package": "php-collective/file-storage",
-            "version": "dev-content-hash-path",
+            "version": "9999999-dev",
             "alias": "1.0.0",
             "alias_normalized": "1.0.0.0"
         },
