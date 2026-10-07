@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3941f16fe516c4420c9b1e7f660f10a",
+    "content-hash": "74e34cabd1d54c950bb31edf8cf7f0a3",
     "packages": [
         {
             "name": "brick/math",
@@ -2542,19 +2542,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9"
+                "reference": "c8fce438fabe0af35818dff011caf2f9b6d44394"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9",
-                "reference": "e6e49d4ae398a3d66363d4cb6bade5a9ff52fef9",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/c8fce438fabe0af35818dff011caf2f9b6d44394",
+                "reference": "c8fce438fabe0af35818dff011caf2f9b6d44394",
                 "shasum": ""
             },
             "require": {
                 "brick/varexporter": "^0.5.0 || ^0.6.0 || ^0.7.0",
                 "cakephp/cakephp": "^5.3.4",
                 "php": ">=8.2",
-                "php-collective/file-storage": "^1.0.0"
+                "php-collective/file-storage": "^1.1.0"
             },
             "conflict": {
                 "cakephp/migrations": "<4.5"
@@ -2611,7 +2611,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-07-31T00:28:18+00:00"
+            "time": "2026-10-07T17:03:54+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -6841,12 +6841,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-collective/file-storage.git",
-                "reference": "d91cbb59d36d01618b9a27bf1650d6151b5ee4b1"
+                "reference": "0ee514074caac78f8cd65a049f2310b0f1e58c07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/d91cbb59d36d01618b9a27bf1650d6151b5ee4b1",
-                "reference": "d91cbb59d36d01618b9a27bf1650d6151b5ee4b1",
+                "url": "https://api.github.com/repos/php-collective/file-storage/zipball/0ee514074caac78f8cd65a049f2310b0f1e58c07",
+                "reference": "0ee514074caac78f8cd65a049f2310b0f1e58c07",
                 "shasum": ""
             },
             "require": {
@@ -6905,7 +6905,7 @@
                 "issues": "https://github.com/php-collective/file-storage/issues",
                 "source": "https://github.com/php-collective/file-storage/tree/master"
             },
-            "time": "2026-04-29T12:55:30+00:00"
+            "time": "2026-10-07T15:59:24+00:00"
         },
         {
             "name": "php-collective/file-storage-factories",
@@ -14460,8 +14460,8 @@
         {
             "package": "php-collective/file-storage",
             "version": "9999999-dev",
-            "alias": "1.0.0",
-            "alias_normalized": "1.0.0.0"
+            "alias": "1.1.0",
+            "alias_normalized": "1.1.0.0"
         },
         {
             "package": "php-collective/file-storage-image-processor",

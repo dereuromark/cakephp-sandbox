@@ -533,6 +533,11 @@ $config = [
 			},
 			'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 			'pathPrefix' => 'files/uploads/',
+			'deduplicate' => [
+				'collections' => ['FileStorage' => ['documents' => true]],
+				'gracePeriod' => 60, // 60 seconds is for the demo.
+				'root' => 'blobs',
+			],
 			// Image variants configuration per model/collection
 			// Model name is the Table alias (FileStorage), not the custom model field value
 			'imageVariants' => [
@@ -540,6 +545,7 @@ $config = [
 					'images' => $imageVariants->toArray(),
 					'pdfs' => $pdfVariants->toArray(), // PDF preview variants
 					'general' => [], // No variants for general files
+					'documents' => [],
 				],
 			],
 			'behaviorConfig' => [

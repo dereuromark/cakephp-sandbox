@@ -1047,6 +1047,16 @@ PDF;
 	/**
 	 * @return void
 	 */
+	public function testDeduplication(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'deduplication']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testImages(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'images']);
 
