@@ -28,6 +28,7 @@
 	<li class="heading"><?= __('Advanced Features') ?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Upload Without Re-sending', ['action' => 'instantUpload'], ['class' => 'nav-link'])?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Deduplication', ['action' => 'deduplication'], ['class' => 'nav-link'])?></li>
+	<li class="nav-item"><?php echo $this->Navigation->link('Resumable Upload', ['action' => 'resumableUpload'], ['class' => 'nav-link'])?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Image Cropping', ['action' => 'imageCropping'], ['class' => 'nav-link'])?></li>
 	<li class="nav-item"><?php echo $this->Navigation->link('Drag & Drop Upload', ['action' => 'dragDropUpload'], ['class' => 'nav-link'])?></li>
 </ul>

@@ -2,16 +2,20 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Log\Log;
+use Cake\Utility\Text;
 use DateTime;
 use Exception;
 use FileStorage\Exception\BlobAttachDeniedException;
 use FileStorage\Exception\BlobNotAvailableException;
+use FileStorage\Exception\UploadException;
 use FileStorage\Service\BlobAttacher;
 use FileStorage\Service\CleanupService;
+use FileStorage\Service\ResumableUploads;
 use InvalidArgumentException;
 use Laminas\Diactoros\UploadedFile;
 use Sandbox\Validation\FileUploadValidator;
@@ -370,6 +374,82 @@ class FileStorageExamplesController extends SandboxAppController {
 		$rowCount = count($files);
 		$blobCount = count($blobs);
 		$this->set(compact('fileStorage', 'files', 'blobs', 'rowCount', 'blobCount', 'logicalBytes', 'storedBytes'));
+	}
+
+	/**
+	 * @return void
+	 */
+	public function resumableUpload(): void {
+		$this->request->allowMethod(['get']);
+		$session = $this->request->getSession();
+		$owner = $session->read('FileStorageDemo.uploadOwner');
+		if (!$owner) {
+			$owner = Text::uuid();
+			$session->write('FileStorageDemo.uploadOwner', $owner);
+		}
+		$files = $this->fetchTable('FileStorage.FileStorage')->find()
+			->select(['id', 'filename', 'filesize', 'hash'])
+			->where(['model' => 'FileStorage', 'collection' => 'large'])
+			->orderByDesc('created')
+			->disableHydration()
+			->toArray();
+		// Uploads are a local-only demo: the live sandbox would otherwise host arbitrary large files.
+		$uploadsEnabled = (bool)Configure::read('debug');
+		$this->set(compact('files', 'owner', 'uploadsEnabled'));
+	}
+
+	/**
+	 * @return \Cake\Http\Response
+	 */
+	public function resumableUploadConsume() {
+		$this->request->allowMethod(['post']);
+		$response = $this->response->withType('application/json');
+		if (!Configure::read('debug')) {
+			return $response->withStatus(403)->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Uploads are only enabled when the sandbox runs locally in debug mode.',
+			]));
+		}
+		$lock = fopen(TMP . 'file_storage_demo_large.lock', 'c');
+		if ($lock === false || !flock($lock, LOCK_EX | LOCK_NB)) {
+			if (is_resource($lock)) {
+				fclose($lock);
+			}
+
+			return $response->withStatus(409)->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Another file is being saved. Please try again.',
+			]));
+		}
+		try {
+			$table = $this->fetchTable('FileStorage.FileStorage');
+			if ($table->find()->where(['model' => 'FileStorage', 'collection' => 'large'])->count() >= 3) {
+				return $response->withStatus(409)->withStringBody((string)json_encode([
+					'status' => 'error',
+					'error' => 'Maximum 3 files allowed. Please delete an existing file first.',
+				]));
+			}
+			$file = (new ResumableUploads())->consume(
+				(string)$this->request->getData('uploadId'),
+				[],
+				['userId' => $this->request->getSession()->read('FileStorageDemo.uploadOwner')],
+			);
+
+			return $response->withStringBody((string)json_encode([
+				'status' => 'saved',
+				'id' => $file->get('id'),
+				'filename' => $file->get('filename'),
+				'filesize' => $file->get('filesize'),
+				'hash' => $file->get('hash'),
+			]));
+		} catch (UploadException $exception) {
+			return $response->withStatus($exception->status)->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => $exception->status >= 500 ? 'Could not save the upload. Please try again.' : $exception->getMessage(),
+			]));
+		} finally {
+			fclose($lock);
+		}
 	}
 
 	/**
@@ -893,6 +973,29 @@ class FileStorageExamplesController extends SandboxAppController {
 		}
 
 		$this->cleanupUnreferencedBlobs();
+		$this->cleanupExpiredUploads();
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function cleanupExpiredUploads(): void {
+		if ($this->fetchTable('FileStorage.FileStorage')->getConnection()->inTransaction()) {
+			return;
+		}
+		$marker = TMP . 'file_storage_demo_upload_cleanup';
+		if (is_file($marker) && filemtime($marker) > time() - static::BLOB_CLEANUP_INTERVAL) {
+			return;
+		}
+		if (!touch($marker)) {
+			return;
+		}
+		try {
+			(new ResumableUploads())->cleanup();
+		} catch (Throwable $exception) {
+			touch($marker, time() - static::BLOB_CLEANUP_INTERVAL + static::BLOB_CLEANUP_RETRY);
+			Log::warning('File storage demo upload cleanup failed: ' . $exception->getMessage());
+		}
 	}
 
 	/**

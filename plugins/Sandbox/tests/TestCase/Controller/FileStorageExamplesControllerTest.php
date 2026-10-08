@@ -5,6 +5,7 @@ namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
 use Cake\Datasource\Exception\RecordNotFoundException;
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\TestSuite\IntegrationTestTrait;
 use Laminas\Diactoros\UploadedFile;
 use Shim\TestSuite\TestCase;
@@ -1143,6 +1144,81 @@ PDF;
 		$this->expectException(RecordNotFoundException::class);
 
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'view', 999999]);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testResumableUpload(): void {
+		$this->enableCsrfToken();
+		$this->enableSecurityToken();
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUpload']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		$this->assertResponseContains('Resumable Uploads');
+		$this->assertResponseContains('https://cdn.jsdelivr.net/npm/tus-js-client@4.3.1/dist/tus.min.js');
+	}
+
+	/**
+	 * consume() refuses outer transactions, and every test runs in one, so this covers the limit check that runs before it.
+	 *
+	 * @return void
+	 */
+	public function testResumableUploadConsumeRefusedWhenFull(): void {
+		$FileStorage = $this->getTableLocator()->get('FileStorage.FileStorage');
+		for ($i = 1; $i <= 3; $i++) {
+			$tmpFile = TMP . 'test_resumable_' . $i . '_' . uniqid() . '.txt';
+			file_put_contents($tmpFile, 'resumable demo row ' . $i);
+			$FileStorage->saveOrFail($FileStorage->newEntity([
+				'file' => $this->createUploadedFile($tmpFile, 'row-' . $i . '.txt', 'text/plain'),
+				'model' => 'FileStorage',
+				'collection' => 'large',
+			]));
+		}
+
+		$token = (new CsrfProtectionMiddleware())->createToken();
+		$this->cookie('csrfToken', $token);
+		$this->configRequest(['headers' => ['Content-Type' => 'application/json', 'X-CSRF-Token' => $token]]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUploadConsume'], (string)json_encode([
+			'uploadId' => '00000000-0000-4000-8000-000000000000',
+		]));
+
+		$this->assertResponseCode(409);
+		$this->assertContentType('application/json');
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('error', $response['status']);
+		$this->assertStringContainsString('Maximum 3 files', $response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testResumableUploadDisabledWithoutDebug(): void {
+		Configure::write('debug', false);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUpload']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Uploading is disabled on the live sandbox');
+		$this->assertResponseNotContains('tus.min.js');
+		$this->assertResponseNotContains('id="resumableFile"');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testResumableUploadConsumeRefusedWithoutDebug(): void {
+		Configure::write('debug', false);
+		$token = (new CsrfProtectionMiddleware())->createToken();
+		$this->cookie('csrfToken', $token);
+		$this->configRequest(['headers' => ['Content-Type' => 'application/json', 'X-CSRF-Token' => $token]]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUploadConsume'], (string)json_encode([
+			'uploadId' => '00000000-0000-4000-8000-000000000000',
+		]));
+
+		$this->assertResponseCode(403);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('error', $response['status']);
 	}
 
 }
