@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f220c36c7e692fcde640ca4adcaec3ba",
+    "content-hash": "74e34cabd1d54c950bb31edf8cf7f0a3",
     "packages": [
         {
             "name": "brick/math",
@@ -2538,16 +2538,16 @@
         },
         {
             "name": "dereuromark/cakephp-file-storage",
-            "version": "dev-resumable-uploads",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "42d94c4fa35210be007609d507248f91124c19a2"
+                "reference": "3592e26cc283a35ab9f4bf320727f140441e5f0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/42d94c4fa35210be007609d507248f91124c19a2",
-                "reference": "42d94c4fa35210be007609d507248f91124c19a2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/3592e26cc283a35ab9f4bf320727f140441e5f0a",
+                "reference": "3592e26cc283a35ab9f4bf320727f140441e5f0a",
                 "shasum": ""
             },
             "require": {
@@ -2571,6 +2571,7 @@
                 "dereuromark/cakephp-queue": "For background image-variant regeneration from the admin UI.",
                 "php-collective/file-storage-image-processor": "Required if you want to use the image processing feature of FileStorage"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "autoload": {
                 "psr-4": {
@@ -2610,7 +2611,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-10-08T10:51:16+00:00"
+            "time": "2026-10-08T10:57:09+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
@@ -14422,7 +14423,7 @@
         },
         {
             "package": "dereuromark/cakephp-file-storage",
-            "version": "dev-resumable-uploads",
+            "version": "9999999-dev",
             "alias": "1.0.0",
             "alias_normalized": "1.0.0.0"
         },
