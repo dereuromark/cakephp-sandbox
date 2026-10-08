@@ -2,6 +2,7 @@
 
 namespace Sandbox\Controller;
 
+use Cake\Core\Configure;
 use Cake\Database\Expression\QueryExpression;
 use Cake\Event\EventInterface;
 use Cake\Http\Exception\NotFoundException;
@@ -392,7 +393,9 @@ class FileStorageExamplesController extends SandboxAppController {
 			->orderByDesc('created')
 			->disableHydration()
 			->toArray();
-		$this->set(compact('files', 'owner'));
+		// Uploads are a local-only demo: the live sandbox would otherwise host arbitrary large files.
+		$uploadsEnabled = (bool)Configure::read('debug');
+		$this->set(compact('files', 'owner', 'uploadsEnabled'));
 	}
 
 	/**
@@ -401,6 +404,12 @@ class FileStorageExamplesController extends SandboxAppController {
 	public function resumableUploadConsume() {
 		$this->request->allowMethod(['post']);
 		$response = $this->response->withType('application/json');
+		if (!Configure::read('debug')) {
+			return $response->withStatus(403)->withStringBody((string)json_encode([
+				'status' => 'error',
+				'error' => 'Uploads are only enabled when the sandbox runs locally in debug mode.',
+			]));
+		}
 		$lock = fopen(TMP . 'file_storage_demo_large.lock', 'c');
 		if ($lock === false || !flock($lock, LOCK_EX | LOCK_NB)) {
 			if (is_resource($lock)) {

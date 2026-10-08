@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var array<array<string, mixed>> $files
  * @var string $owner
+ * @var bool $uploadsEnabled
  */
 ?>
 <nav class="actions col-sm-4 col-12">
@@ -11,6 +12,9 @@
 <div class="page form col-sm-8 col-12">
 	<h2>Resumable Uploads</h2>
 	<div class="alert alert-info">Chunks go to the app server and survive dropped connections. Select the same file after a page reload or tab close to resume. On completion, consume sends the file through the normal save pipeline with validation, deduplication, and events. This demo allows files up to 1 GiB and keeps at most 3 rows. Saved rows expire after a day; unfinished uploads expire after an hour without a chunk.</div>
+	<?php if (!$uploadsEnabled) { ?>
+	<div class="alert alert-warning">Uploading is disabled on the live sandbox, so it cannot be used to host arbitrary large files. To try chunked uploads with pause and resume, run the <a href="https://github.com/dereuromark/cakephp-sandbox">sandbox</a> locally with debug mode on, for example with ddev.</div>
+	<?php } else { ?>
 	<div class="card mb-4">
 		<div class="card-body">
 			<label for="resumableFile">Choose a file</label>
@@ -32,6 +36,7 @@
 	<p id="uploadStatus" aria-live="polite">Choose a file to start.</p>
 	<h3>Events</h3>
 	<ul id="uploadLog" aria-live="polite"></ul>
+	<?php } ?>
 	<h3>Current Rows</h3>
 	<div class="table-responsive">
 		<table class="table table-striped">
@@ -44,7 +49,8 @@
 		</table>
 	</div>
 </div>
-<?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/tus-js-client@4.3.1/dist/tus.min.js'); ?>
+<?php if ($uploadsEnabled) { ?>
+<?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/tus-js-client@4.3.1/dist/tus.min.js', ['integrity' => 'sha384-UlHjK3F7TCQCEUpnoa1ohMbP2oaWB3Aypv4gMo511vaZ86uUZ0Zv7UzZ0J1zRUT1', 'crossorigin' => 'anonymous']); ?>
 <?php echo $this->Html->script('https://cdn.jsdelivr.net/npm/hash-wasm@4.12.0/dist/sha256.umd.min.js', ['integrity' => 'sha384-Wgjx+8tLxXJSOx0qsuYHWUruquWEGSmkfn24UY1UGLJpwzCAMKZ3kbRI89jpYIVm', 'crossorigin' => 'anonymous']); ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -276,3 +282,4 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 });
 </script>
+<?php } ?>

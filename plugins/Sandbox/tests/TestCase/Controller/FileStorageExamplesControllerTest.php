@@ -1191,4 +1191,34 @@ PDF;
 		$this->assertStringContainsString('Maximum 3 files', $response['error']);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testResumableUploadDisabledWithoutDebug(): void {
+		Configure::write('debug', false);
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUpload']);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Uploading is disabled on the live sandbox');
+		$this->assertResponseNotContains('tus.min.js');
+		$this->assertResponseNotContains('id="resumableFile"');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testResumableUploadConsumeRefusedWithoutDebug(): void {
+		Configure::write('debug', false);
+		$token = (new CsrfProtectionMiddleware())->createToken();
+		$this->cookie('csrfToken', $token);
+		$this->configRequest(['headers' => ['Content-Type' => 'application/json', 'X-CSRF-Token' => $token]]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'FileStorageExamples', 'action' => 'resumableUploadConsume'], (string)json_encode([
+			'uploadId' => '00000000-0000-4000-8000-000000000000',
+		]));
+
+		$this->assertResponseCode(403);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('error', $response['status']);
+	}
+
 }

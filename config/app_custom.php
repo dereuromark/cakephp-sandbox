@@ -536,7 +536,7 @@ $config = [
 			'pathPrefix' => 'files/uploads/',
 			'resumable' => [
 				'authorizer' => static function (string $action, array $upload, array $context): array|false {
-					if (($upload['model'] ?? null) !== 'FileStorage' || ($upload['collection'] ?? null) !== 'large') {
+					if (!Configure::read('debug') || ($upload['model'] ?? null) !== 'FileStorage' || ($upload['collection'] ?? null) !== 'large') {
 						return false;
 					}
 					if ($action === 'consume') {
