@@ -1,5 +1,6 @@
 <?php
 
+use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
@@ -40,6 +41,13 @@ return static function (RouteBuilder $routes) {
 		// you do not need to include the /admin prefix
 		// or the admin route element.
 		$routes->fallbacks();
+	});
+
+	$routes->registerMiddleware('resumableCsrf', new CsrfProtectionMiddleware());
+	$routes->plugin('FileStorage', function (RouteBuilder $routes) {
+		$routes->applyMiddleware('resumableCsrf');
+		$routes->connect('/uploads', ['controller' => 'Uploads', 'action' => 'collection']);
+		$routes->connect('/uploads/{id}', ['controller' => 'Uploads', 'action' => 'resource'], ['pass' => ['id']]);
 	});
 
 	// TMP

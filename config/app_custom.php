@@ -4,6 +4,7 @@ use App\Healthcheck\Check\Tools\GraphvizCheck;
 use Cake\Cache\Engine\RedisEngine;
 use Cake\Core\Configure;
 use Cake\Event\EventInterface;
+use Cake\Utility\Text;
 use CakephpFixtureFactories\TestSuite\FactoryTransactionStrategy;
 use Favorites\View\Helper\FavoritesHelper;
 use IdeHelper\Annotator\EntityAnnotator;
@@ -533,8 +534,37 @@ $config = [
 			},
 			'adminBackUrl' => ['plugin' => false, 'prefix' => 'Admin', 'controller' => 'Overview', 'action' => 'index'],
 			'pathPrefix' => 'files/uploads/',
+			'resumable' => [
+				'authorizer' => static function (string $action, array $upload, array $context): array|false {
+					if (($upload['model'] ?? null) !== 'FileStorage' || ($upload['collection'] ?? null) !== 'large') {
+						return false;
+					}
+					if ($action === 'consume') {
+						$userId = $context['userId'] ?? null;
+					} else {
+						// A random per-session owner, so the session id itself never lands in the database.
+						/** @var \Cake\Http\ServerRequest $request */
+						$request = $context['request'];
+						$session = $request->getSession();
+						$userId = $session->read('FileStorageDemo.uploadOwner');
+						if (!$userId) {
+							$userId = Text::uuid();
+							$session->write('FileStorageDemo.uploadOwner', $userId);
+						}
+					}
+
+					return is_string($userId) && $userId !== '' ? ['userId' => $userId] : false;
+				},
+				'maxSize' => 1024 ** 3,
+				'maxSessions' => 3,
+				'maxBytesPerOwner' => 2 * 1024 ** 3,
+				'maxReservedBytes' => 5 * 1024 ** 3,
+				'minFreeBytes' => 1024 ** 3,
+				'expires' => 3600,
+				'completedExpires' => 3600,
+			],
 			'deduplicate' => [
-				'collections' => ['FileStorage' => ['documents' => true]],
+				'collections' => ['FileStorage' => ['documents' => true, 'large' => true]],
 				// Session scoped, demo only.
 				'attachAuthorizer' => static function (string $hash, array $data, array $context): bool {
 					return in_array($hash, $context['ownedHashes'] ?? [], true);

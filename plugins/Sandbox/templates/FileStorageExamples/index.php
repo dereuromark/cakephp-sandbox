@@ -67,6 +67,15 @@
 		<div class="col-md-4 mb-3">
 			<div class="card border-primary">
 				<div class="card-body">
+					<h5 class="card-title">Resumable Uploads</h5>
+					<p class="card-text">Upload files up to 1 GiB in chunks. Pause and resume, even after a page reload.</p>
+					<?php echo $this->Html->link('Try it', ['action' => 'resumableUpload'], ['class' => 'btn btn-primary']); ?>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 mb-3">
+			<div class="card border-primary">
+				<div class="card-body">
 					<h5 class="card-title">Upload Without Re-sending</h5>
 					<p class="card-text">Hash files in the browser and attach content this session already uploaded. Compare file bytes with bytes sent.</p>
 					<?php echo $this->Html->link('Try it', ['action' => 'instantUpload'], ['class' => 'btn btn-primary']); ?>
