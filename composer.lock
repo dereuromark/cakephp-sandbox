@@ -2542,12 +2542,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-file-storage.git",
-                "reference": "e56d9f049b58ad63f7fd92cf34adf36374360a85"
+                "reference": "42d94c4fa35210be007609d507248f91124c19a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/e56d9f049b58ad63f7fd92cf34adf36374360a85",
-                "reference": "e56d9f049b58ad63f7fd92cf34adf36374360a85",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-file-storage/zipball/42d94c4fa35210be007609d507248f91124c19a2",
+                "reference": "42d94c4fa35210be007609d507248f91124c19a2",
                 "shasum": ""
             },
             "require": {
@@ -2610,7 +2610,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-file-storage/issues",
                 "source": "https://github.com/dereuromark/cakephp-file-storage"
             },
-            "time": "2026-10-08T02:02:22+00:00"
+            "time": "2026-10-08T10:51:16+00:00"
         },
         {
             "name": "dereuromark/cakephp-flash",
