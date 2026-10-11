@@ -66,6 +66,7 @@ use MarkupCarve\Carve\Parser\BlockParser;
 use MarkupCarve\Carve\Profile;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
+use MarkupCarve\Carve\Renderer\MarkdownRenderer;
 use MarkupCarve\Carve\Renderer\RenderMode;
 use MarkupCarve\Carve\Renderer\SoftBreakMode;
 use MarkupCarve\Carve\Transform\IncludeExpander;
@@ -2354,6 +2355,11 @@ CARVE,
 	 * signal; the Carve text itself is normalized on the way back, so an exact
 	 * text match is the stricter, less common outcome.
 	 *
+	 * `exports` repeats the trip through the chosen `format` twice, once plain
+	 * and once with the roundtrip export option (HTML carriers, PART 10 §13;
+	 * Markdown carrier markers, PART 11 §10s), so the page can show what the
+	 * option keeps.
+	 *
 	 * @return \Cake\Http\Response
 	 */
 	public function convertRoundtrip(): Response {
@@ -2363,8 +2369,11 @@ CARVE,
 		// converter emits LF; normalize so the stability comparison is not
 		// thrown off by line-ending differences alone.
 		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+		$format = $this->request->getData('format') === 'markdown' ? 'markdown' : 'html';
 
 		$result = [
+			'format' => $format,
+			'exports' => null,
 			'html1' => '',
 			'carve2' => '',
 			'html2' => '',
@@ -2397,6 +2406,10 @@ CARVE,
 				// fidelity, not what the sanitizer happens to normalize away.
 				$result['htmlStable'] = $rawHtml1 === $rawHtml2;
 				$result['carveStable'] = trim($carve) === trim($carve2);
+				$result['exports'] = [
+					'plain' => $this->roundtripExport($carve, $format, false),
+					'roundtrip' => $this->roundtripExport($carve, $format, true),
+				];
 			} catch (ParseException $e) {
 				$result['error'] = $e->getMessage();
 			} catch (Throwable $e) {
@@ -2407,6 +2420,29 @@ CARVE,
 		return $this->response
 			->withType('application/json')
 			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * One Carve -> format -> Carve trip, with or without the roundtrip export option.
+	 *
+	 * @param string $carve
+	 * @param string $format `html` or `markdown`
+	 * @param bool $carry
+	 * @return array{exported: string, carve: string, carveStable: bool}
+	 */
+	protected function roundtripExport(string $carve, string $format, bool $carry): array {
+		// One option for both targets; the renderer decides which carriers it writes.
+		$renderer = $format === 'markdown' ? new MarkdownRenderer() : null;
+		$exported = (new CarveConverter(roundTripMode: $carry, renderer: $renderer))->convert($carve);
+		$back = $format === 'markdown'
+			? (new MarkdownToCarve())->convert($exported)
+			: (new HtmlToCarve())->convert($exported);
+
+		return [
+			'exported' => $exported,
+			'carve' => $back,
+			'carveStable' => trim($carve) === trim($back),
+		];
 	}
 
 	/**
