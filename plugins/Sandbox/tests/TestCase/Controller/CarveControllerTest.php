@@ -1323,6 +1323,20 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+		$this->assertResponseContains('id="format-html" value="html" checked');
+	}
+
+	/**
+	 * A shared link with `?format=markdown` opens on the Markdown export.
+	 *
+	 * @return void
+	 */
+	public function testRoundtripFormatFromQuery(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'roundtrip', '?' => ['format' => 'markdown']]);
+
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('id="format-markdown" value="markdown" checked');
+		$this->assertResponseNotContains('id="format-html" value="html" checked');
 	}
 
 	/**
@@ -1360,6 +1374,54 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertTrue($response['carveStable']);
 		$this->assertTrue($response['htmlStable']);
+	}
+
+	/**
+	 * The HTML roundtrip export keeps a thematic-break character and a reference
+	 * link that the plain export normalizes away.
+	 *
+	 * @return void
+	 */
+	public function testConvertRoundtripHtmlExportCarriers(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
+			'carve' => "See [docs][d].\n\n***\n\n[d]: https://example.org",
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('html', $response['format']);
+		$plain = $response['exports']['plain'];
+		$roundtrip = $response['exports']['roundtrip'];
+		$this->assertStringNotContainsString('data-carve-ref', $plain['exported']);
+		$this->assertStringContainsString('data-carve-ref="d"', $roundtrip['exported']);
+		$this->assertStringContainsString('data-char="*"', $roundtrip['exported']);
+		$this->assertFalse($plain['carveStable']);
+		$this->assertTrue($roundtrip['carveStable']);
+	}
+
+	/**
+	 * The Markdown roundtrip export brackets an element-less container with
+	 * carrier markers, so the container comes back.
+	 *
+	 * @return void
+	 */
+	public function testConvertRoundtripMarkdownCarrierMarkers(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
+			'carve' => "::: aside\nBoxed.\n:::",
+			'format' => 'markdown',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertSame('markdown', $response['format']);
+		$plain = $response['exports']['plain'];
+		$roundtrip = $response['exports']['roundtrip'];
+		$this->assertStringNotContainsString('<!-- carve:', $plain['exported']);
+		$this->assertStringContainsString('<!-- carve: ::: aside -->', $roundtrip['exported']);
+		$this->assertStringNotContainsString(':::', $plain['carve']);
+		$this->assertTrue($roundtrip['carveStable']);
 	}
 
 	/**
