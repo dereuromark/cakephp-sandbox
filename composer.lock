@@ -5969,12 +5969,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "af75bf33121ac814ec6f4afc5c05c13583eb5448"
+                "reference": "cb2b17f6ba575461e075ce35052366c43b713f2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/af75bf33121ac814ec6f4afc5c05c13583eb5448",
-                "reference": "af75bf33121ac814ec6f4afc5c05c13583eb5448",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/cb2b17f6ba575461e075ce35052366c43b713f2c",
+                "reference": "cb2b17f6ba575461e075ce35052366c43b713f2c",
                 "shasum": ""
             },
             "require": {
@@ -6033,7 +6033,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-11T22:00:32+00:00"
+            "time": "2026-10-11T23:40:09+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",

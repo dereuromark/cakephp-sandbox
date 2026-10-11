@@ -57,10 +57,11 @@ $markdownFormat = $this->request->getQuery('format') === 'markdown';
 		and the importer reads the authored spelling back from them.
 	</li>
 	<li>
-		<strong>Markdown</strong> (spec PART 11 &sect;10s):
-		a container that has no Markdown element of its own is bracketed with
-		<code>&lt;!-- carve: ::: --&gt;</code> comments. That is the only thing Markdown carries,
-		so marker style, reference links and autolinks still come back normalized.
+		<strong>Markdown</strong> (spec PART 11 &sect;10s, &sect;10t):
+		what Markdown has no spelling for is carried in <code>&lt;!-- carve: ... --&gt;</code> comments:
+		containers and line blocks, attribute lines such as a heading's <code>{#id}</code>,
+		definition lists and captions. The document's structure comes back; spellings Markdown
+		writes its own way (marker style, reference links, autolinks) still come back normalized.
 	</li>
 </ul>
 <p class="text-muted small">
