@@ -111,7 +111,7 @@ class BaseDto extends AbstractDto {
 		],
 		'user' => [
 			'name' => 'user',
-			'type' => '\Sandbox\Dto\Github\UserDto',
+			'type' => '\\Sandbox\\Dto\\Github\\UserDto',
 			'required' => true,
 			'defaultValue' => null,
 			'dto' => 'Github/User',
@@ -133,7 +133,7 @@ class BaseDto extends AbstractDto {
 		],
 		'repo' => [
 			'name' => 'repo',
-			'type' => '\Sandbox\Dto\Github\RepoDto',
+			'type' => '\\Sandbox\\Dto\\Github\\RepoDto',
 			'required' => true,
 			'defaultValue' => null,
 			'dto' => 'Github/Repo',

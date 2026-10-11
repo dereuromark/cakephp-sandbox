@@ -144,7 +144,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 		],
 		'role' => [
 			'name' => 'role',
-			'type' => '\App\Dto\RoleProjectionDto',
+			'type' => '\\App\\Dto\\RoleProjectionDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'RoleProjection',
@@ -166,7 +166,7 @@ class UserProjectionDto extends AbstractImmutableDto {
 		],
 		'created' => [
 			'name' => 'created',
-			'type' => '\Cake\I18n\DateTime',
+			'type' => '\\Cake\\I18n\\DateTime',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,

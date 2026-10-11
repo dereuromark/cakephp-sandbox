@@ -166,7 +166,7 @@ class PostDto extends AbstractImmutableDto {
 		],
 		'tags' => [
 			'name' => 'tags',
-			'type' => '\App\Dto\TagDto[]',
+			'type' => '\\App\\Dto\\TagDto[]',
 			'collectionType' => 'array',
 			'required' => false,
 			'defaultValue' => null,
@@ -185,9 +185,9 @@ class PostDto extends AbstractImmutableDto {
 			'max' => null,
 			'pattern' => null,
 			'lazy' => false,
-			'singularType' => '\App\Dto\TagDto',
+			'singularType' => '\\App\\Dto\\TagDto',
 			'singularNullable' => false,
-			'singularTypeHint' => '\App\Dto\TagDto',
+			'singularTypeHint' => '\\App\\Dto\\TagDto',
 		],
 	];
 

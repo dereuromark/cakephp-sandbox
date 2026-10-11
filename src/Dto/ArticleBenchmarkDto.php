@@ -144,7 +144,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 		],
 		'author' => [
 			'name' => 'author',
-			'type' => '\App\Dto\AuthorBenchmarkDto',
+			'type' => '\\App\\Dto\\AuthorBenchmarkDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'AuthorBenchmark',
@@ -166,7 +166,7 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 		],
 		'comments' => [
 			'name' => 'comments',
-			'type' => '\App\Dto\CommentBenchmarkDto[]',
+			'type' => '\\App\\Dto\\CommentBenchmarkDto[]',
 			'collectionType' => 'array',
 			'required' => false,
 			'defaultValue' => null,
@@ -185,9 +185,9 @@ class ArticleBenchmarkDto extends AbstractImmutableDto {
 			'max' => null,
 			'pattern' => null,
 			'lazy' => false,
-			'singularType' => '\App\Dto\CommentBenchmarkDto',
+			'singularType' => '\\App\\Dto\\CommentBenchmarkDto',
 			'singularNullable' => false,
-			'singularTypeHint' => '\App\Dto\CommentBenchmarkDto',
+			'singularTypeHint' => '\\App\\Dto\\CommentBenchmarkDto',
 		],
 	];
 

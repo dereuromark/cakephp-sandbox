@@ -144,7 +144,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 		],
 		'created' => [
 			'name' => 'created',
-			'type' => '\Cake\I18n\DateTime',
+			'type' => '\\Cake\\I18n\\DateTime',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
@@ -168,7 +168,7 @@ class UserWithMatchingTypedDto extends AbstractImmutableDto {
 		],
 		'_matchingData' => [
 			'name' => '_matchingData',
-			'type' => '\App\Dto\MatchingDataDto',
+			'type' => '\\App\\Dto\\MatchingDataDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'MatchingData',
