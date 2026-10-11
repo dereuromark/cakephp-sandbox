@@ -144,7 +144,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 		],
 		'status' => [
 			'name' => 'status',
-			'type' => '\\Sandbox\\Model\\Enum\\UserStatus',
+			'type' => '\Sandbox\Model\Enum\UserStatus',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,
@@ -168,7 +168,7 @@ class SandboxUserProjectionDto extends AbstractImmutableDto {
 		],
 		'created' => [
 			'name' => 'created',
-			'type' => '\\Cake\\I18n\\DateTime',
+			'type' => '\Cake\I18n\DateTime',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,

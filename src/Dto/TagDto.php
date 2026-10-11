@@ -166,7 +166,7 @@ class TagDto extends AbstractImmutableDto {
 		],
 		'_joinData' => [
 			'name' => '_joinData',
-			'type' => '\\App\\Dto\\TaggedDto',
+			'type' => '\App\Dto\TaggedDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'Tagged',

@@ -166,7 +166,7 @@ class TaggedDto extends AbstractImmutableDto {
 		],
 		'created' => [
 			'name' => 'created',
-			'type' => '\\Cake\\I18n\\DateTime',
+			'type' => '\Cake\I18n\DateTime',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,

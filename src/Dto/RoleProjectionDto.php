@@ -100,7 +100,7 @@ class RoleProjectionDto extends AbstractImmutableDto {
 		],
 		'users' => [
 			'name' => 'users',
-			'type' => '\\App\\Dto\\UserSimpleProjectionDto[]',
+			'type' => '\App\Dto\UserSimpleProjectionDto[]',
 			'collectionType' => 'array',
 			'required' => false,
 			'defaultValue' => null,
@@ -119,9 +119,9 @@ class RoleProjectionDto extends AbstractImmutableDto {
 			'max' => null,
 			'pattern' => null,
 			'lazy' => false,
-			'singularType' => '\\App\\Dto\\UserSimpleProjectionDto',
+			'singularType' => '\App\Dto\UserSimpleProjectionDto',
 			'singularNullable' => false,
-			'singularTypeHint' => '\\App\\Dto\\UserSimpleProjectionDto',
+			'singularTypeHint' => '\App\Dto\UserSimpleProjectionDto',
 		],
 	];
 

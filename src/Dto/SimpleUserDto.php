@@ -144,7 +144,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 		],
 		'role' => [
 			'name' => 'role',
-			'type' => '\\App\\Dto\\SimpleRoleBasicDto',
+			'type' => '\App\Dto\SimpleRoleBasicDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'SimpleRoleBasic',
@@ -166,7 +166,7 @@ class SimpleUserDto extends AbstractImmutableDto {
 		],
 		'created' => [
 			'name' => 'created',
-			'type' => '\\Cake\\I18n\\DateTime',
+			'type' => '\Cake\I18n\DateTime',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => null,

@@ -100,7 +100,7 @@ class SimpleRoleDto extends AbstractImmutableDto {
 		],
 		'users' => [
 			'name' => 'users',
-			'type' => '\\App\\Dto\\SimpleUserBasicDto[]',
+			'type' => '\App\Dto\SimpleUserBasicDto[]',
 			'collectionType' => 'array',
 			'required' => false,
 			'defaultValue' => null,
@@ -119,9 +119,9 @@ class SimpleRoleDto extends AbstractImmutableDto {
 			'max' => null,
 			'pattern' => null,
 			'lazy' => false,
-			'singularType' => '\\App\\Dto\\SimpleUserBasicDto',
+			'singularType' => '\App\Dto\SimpleUserBasicDto',
 			'singularNullable' => false,
-			'singularTypeHint' => '\\App\\Dto\\SimpleUserBasicDto',
+			'singularTypeHint' => '\App\Dto\SimpleUserBasicDto',
 		],
 	];
 

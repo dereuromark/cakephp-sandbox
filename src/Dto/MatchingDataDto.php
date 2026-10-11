@@ -34,7 +34,7 @@ class MatchingDataDto extends AbstractImmutableDto {
 	protected array $_metadata = [
 		'Roles' => [
 			'name' => 'Roles',
-			'type' => '\\App\\Dto\\SimpleRoleBasicDto',
+			'type' => '\App\Dto\SimpleRoleBasicDto',
 			'required' => false,
 			'defaultValue' => null,
 			'dto' => 'SimpleRoleBasic',
