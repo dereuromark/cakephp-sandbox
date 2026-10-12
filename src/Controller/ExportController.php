@@ -51,6 +51,24 @@ class ExportController extends AppController {
 
 	/**
 	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
+	 * @return \Cake\Http\Response|null|void
+	 */
+	public function beforeRender(EventInterface $event) {
+		parent::beforeRender($event);
+
+		// XmlView cannot serialize an empty list, so render an empty root node instead.
+		$serialize = $this->viewBuilder()->getOption('serialize');
+		if (
+			$this->request->getParam('_ext') === 'xml'
+			&& is_string($serialize)
+			&& $this->viewBuilder()->getVar($serialize) === []
+		) {
+			$this->set($serialize, ['response' => []]);
+		}
+	}
+
+	/**
+	 * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event
 	 * @return void
 	 */
 	public function afterFilter(EventInterface $event): void {

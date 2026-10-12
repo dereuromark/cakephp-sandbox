@@ -193,6 +193,9 @@ $config = [
 
 	'CakeDto' => [
 		'strictTypes' => false,
+		'adminAccess' => function (): bool {
+			return true;
+		},
 	],
 
 	'DebugKit' => [

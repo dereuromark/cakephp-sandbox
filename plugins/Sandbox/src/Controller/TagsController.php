@@ -151,7 +151,8 @@ class TagsController extends SandboxAppController {
 
 		$category = $sandboxCategoriesTable->newEmptyEntity();
 		if ($this->request->is('post')) {
-			$category = $sandboxCategoriesTable->patchEntity($category, $this->request->getData());
+			// Only the tag parsing is demonstrated, so the table's own rules (required name) do not apply.
+			$category = $sandboxCategoriesTable->patchEntity($category, $this->request->getData(), ['validate' => false]);
 			if (!$category->getErrors()) {
 				// We simulate save only
 				$this->Flash->success('Tags saved with colors!');

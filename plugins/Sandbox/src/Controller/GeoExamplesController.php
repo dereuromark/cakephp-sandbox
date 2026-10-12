@@ -289,11 +289,15 @@ class GeoExamplesController extends SandboxAppController {
 	protected function getSpatialInfo(): array {
 		$connection = $this->fetchTable('Sandbox.SandboxCities')->getConnection();
 
-		// Get column SRID from information schema
-		$sridResult = $connection->execute(
-			"SELECT SRS_ID FROM INFORMATION_SCHEMA.ST_GEOMETRY_COLUMNS
-			WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'sandbox_cities' AND COLUMN_NAME = 'coordinates'",
-		)->fetchAll('assoc');
+		// Get column SRID from information schema; MariaDB has no ST_GEOMETRY_COLUMNS
+		$driver = $connection->getDriver();
+		$sridSql = "SELECT SRS_ID FROM INFORMATION_SCHEMA.ST_GEOMETRY_COLUMNS
+			WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'sandbox_cities' AND COLUMN_NAME = 'coordinates'";
+		if ($driver instanceof Mysql && $driver->isMariadb()) {
+			$sridSql = "SELECT NULLIF(SRID, 0) AS SRS_ID FROM INFORMATION_SCHEMA.GEOMETRY_COLUMNS
+				WHERE G_TABLE_SCHEMA = DATABASE() AND G_TABLE_NAME = 'sandbox_cities' AND G_GEOMETRY_COLUMN = 'coordinates'";
+		}
+		$sridResult = $connection->execute($sridSql)->fetchAll('assoc');
 		$columnSrid = $sridResult[0]['SRS_ID'] ?? null;
 
 		// Get data SRID from actual data
