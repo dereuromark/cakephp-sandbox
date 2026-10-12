@@ -210,11 +210,11 @@ class DtoExamplesController extends SandboxAppController {
 
 		// Single iteration for detailed breakdown
 		$singleEntityStart = microtime(true);
-		$singleEntities = $usersTable->find()->contain(['Roles'])->limit(50)->toArray();
+		$usersTable->find()->contain(['Roles'])->limit(50)->toArray();
 		$singleEntityTime = (microtime(true) - $singleEntityStart) * 1000;
 
 		$singleDtoStart = microtime(true);
-		$singleDtos = $usersTable->find()->contain(['Roles'])->limit(50)->projectAs(UserProjectionDto::class)->toArray();
+		$usersTable->find()->contain(['Roles'])->limit(50)->projectAs(UserProjectionDto::class)->toArray();
 		$singleDtoTime = (microtime(true) - $singleDtoStart) * 1000;
 
 		$results = [

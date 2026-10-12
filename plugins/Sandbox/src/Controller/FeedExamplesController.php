@@ -39,7 +39,7 @@ class FeedExamplesController extends SandboxAppController {
 		$news = $this->_feedData();
 
 		$items = [];
-		foreach ($news as $key => $val) {
+		foreach ($news as $val) {
 			$description = h($val['content']);
 			// We render the content as mini-template to use helpers etc.
 			$this->viewBuilder()->setVar('text', $description)->disableAutoLayout();
@@ -117,7 +117,7 @@ TXT;
 		];
 
 		$res = [];
-		foreach ($records as $k => $v) {
+		foreach ($records as $v) {
 			$v['User'] = [
 				'username' => 'Some user',
 			];

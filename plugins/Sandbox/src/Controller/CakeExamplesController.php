@@ -109,7 +109,6 @@ class CakeExamplesController extends SandboxAppController {
 			],
 		];
 
-		$result = null;
 		$type = $this->request->getQuery('type');
 		$result = null;
 		if ($type) {

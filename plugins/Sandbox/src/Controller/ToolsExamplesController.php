@@ -562,7 +562,6 @@ class ToolsExamplesController extends SandboxAppController {
 	protected function autoSeed(array $records): void {
 		if (PHP_SAPI !== 'cli' && !$records) {
 			$bitmaskedRecordsTable = $this->fetchTable('Sandbox.BitmaskedRecords');
-			$records = [];
 			$records[] = $bitmaskedRecordsTable->newEntity([
 				'name' => 'Careful',
 				'flag_optional' => BitmaskedRecord::STATUS_FLAGGED,

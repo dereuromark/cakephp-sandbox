@@ -133,7 +133,7 @@ class RepoDto extends AbstractDto {
 		],
 		'owner' => [
 			'name' => 'owner',
-			'type' => '\Sandbox\Dto\Github\UserDto',
+			'type' => '\\Sandbox\\Dto\\Github\\UserDto',
 			'required' => true,
 			'defaultValue' => null,
 			'dto' => 'Github/User',
