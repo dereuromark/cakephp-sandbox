@@ -14,6 +14,9 @@ $this->append('script');
 echo $this->Html->css('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
+// The editor reads list structure through the engine; it degrades to plain editing until it has loaded.
+echo $this->Html->script('carve-js.min.js', ['defer' => true]);
+echo $this->Html->script('Sandbox.carve-editor.min.js');
 ?>
 <script type="module">
 import renderMathInElement from 'https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.mjs';
@@ -301,7 +304,7 @@ CARVE;
 
 <?= $this->element('carve/output_styles') ?>
 
-<div class="row">
+<div class="row" id="carve-workspace">
 	<div class="col-md-6">
 		<div class="btn-toolbar mb-1" role="toolbar" id="carve-toolbar" style="row-gap: 0.3rem;">
 			<!-- Primary row: the common formatting, always visible. -->
@@ -348,8 +351,12 @@ CARVE;
 				<button type="button" class="btn btn-outline-secondary" data-block="---\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="::: note\n\n:::\n" data-cursor="-5" title="Admonition (note / tip / warning / ...)"><i class="bi bi-info-square"></i></button>
 			</div>
+			<div class="btn-group btn-group-sm ms-auto" role="group">
+				<button type="button" class="btn btn-outline-secondary" id="btn-wrap" aria-pressed="false" title="Wrap long lines (off: scroll horizontally, keeps aligned tables readable)"><i class="bi bi-text-wrap"></i></button>
+				<button type="button" class="btn btn-outline-secondary" id="btn-fullscreen" aria-pressed="false" title="Full screen editor and preview (Esc to exit)"><i class="bi bi-arrows-fullscreen"></i></button>
+			</div>
 		</div>
-		<textarea id="carve-input" class="form-control font-monospace" rows="20" placeholder="Enter Carve markup..."><?= h($defaultCarve) ?></textarea>
+		<textarea id="carve-input" class="form-control font-monospace" rows="20" wrap="off" placeholder="Enter Carve markup..."><?= h($defaultCarve) ?></textarea>
 	</div>
 	<div class="col-md-6">
 <style>
@@ -357,6 +364,56 @@ CARVE;
    multi-frame animation whose intermediate offsets echo back as user scrolls. */
 #carve-input, #output-rendered, #output-source {
 	scroll-behavior: auto;
+}
+#carve-input[wrap="off"] {
+	white-space: pre;
+	overflow-x: auto;
+}
+.carve-cm {
+	height: 30rem;
+}
+/* Line numbers go into the page margin where the container leaves one. */
+@media (min-width: 1400px) {
+	#carve-workspace:not(.carve-fullscreen) .carve-cm {
+		margin-left: calc(-1 * var(--carve-gutter-w, 0px));
+	}
+}
+#carve-workspace.carve-fullscreen {
+	position: fixed;
+	inset: 0;
+	z-index: 1050;
+	margin: 0;
+	padding: 0.75rem 0.5rem;
+	flex-wrap: nowrap;
+	background: var(--bs-body-bg, #fff);
+}
+#carve-workspace.carve-fullscreen > .col-md-6 {
+	flex: 1 1 0;
+	width: auto;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+#carve-workspace.carve-fullscreen #carve-input,
+#carve-workspace.carve-fullscreen .carve-cm,
+#carve-workspace.carve-fullscreen #output-rendered,
+#carve-workspace.carve-fullscreen #output-source {
+	flex: 1 1 auto;
+	min-height: 0 !important;
+	max-height: none !important;
+	height: auto;
+	resize: none;
+}
+@media (max-width: 767.98px) {
+	#carve-workspace.carve-fullscreen {
+		flex-direction: column;
+	}
+	#carve-workspace.carve-fullscreen > .col-md-6 {
+		min-height: 0;
+	}
+}
+body.carve-fullscreen-open {
+	overflow: hidden;
 }
 /* Cursor-follow highlight + click-to-jump affordance (scroll-sync anchors) */
 #output-rendered [data-source-line] {
@@ -571,7 +628,11 @@ This sentence contains {{ library/inline.crv }}.
 
 <?php $this->Html->scriptStart(['block' => true]); ?>
 (function() {
-	const input = document.getElementById('carve-input');
+	// CodeMirror when its bundle is present (`composer assets`), else the plain textarea.
+	// The editor object mirrors the textarea members used below.
+	const textarea = document.getElementById('carve-input');
+	const editor = window.CarveEditor ? CarveEditor.create(textarea) : null;
+	const input = editor || textarea;
 	const outputRendered = document.getElementById('output-rendered');
 	const outputSource = document.getElementById('output-source');
 	const alertContainer = document.getElementById('alert-container');
@@ -858,7 +919,7 @@ This sentence contains {{ library/inline.crv }}.
 	}
 
 	input.addEventListener('input', convert);
-	input.addEventListener('keydown', function(e) {
+	textarea.addEventListener('keydown', function(e) {
 		if (e.key === 'Tab') {
 			e.preventDefault();
 			const start = input.selectionStart;
@@ -918,11 +979,14 @@ This sentence contains {{ library/inline.crv }}.
 		return outputSource.classList.contains('d-none') ? outputRendered : outputSource;
 	}
 
-	// Visual y offset of each source line start inside the (soft-wrapping)
+	// Visual y offset of each source line start inside the (optionally soft-wrapping)
 	// textarea, measured via a hidden mirror element. offsets[i] = top of
 	// 0-based line i; one sentinel entry past the end. Cached until the text
 	// or layout changes (`lineOffsetsCache`, declared with the other state).
 	function lineOffsets() {
+		if (editor) {
+			return editor.lineTops();
+		}
 		if (lineOffsetsCache) {
 			return lineOffsetsCache;
 		}
@@ -934,8 +998,12 @@ This sentence contains {{ library/inline.crv }}.
 		mirror.style.top = '0';
 		mirror.style.boxSizing = 'border-box';
 		mirror.style.width = input.clientWidth + 'px';
-		mirror.style.whiteSpace = 'pre-wrap';
-		mirror.style.overflowWrap = 'break-word';
+		if (input.getAttribute('wrap') === 'off') {
+			mirror.style.whiteSpace = 'pre';
+		} else {
+			mirror.style.whiteSpace = 'pre-wrap';
+			mirror.style.overflowWrap = 'break-word';
+		}
 		for (const prop of ['fontFamily', 'fontSize', 'fontWeight', 'lineHeight', 'letterSpacing', 'tabSize', 'paddingLeft', 'paddingRight']) {
 			mirror.style[prop] = cs[prop];
 		}
@@ -958,6 +1026,46 @@ This sentence contains {{ library/inline.crv }}.
 	});
 	window.addEventListener('resize', () => {
 		lineOffsetsCache = null;
+	});
+
+	const btnWrap = document.getElementById('btn-wrap');
+	function setWrap(on) {
+		input.setAttribute('wrap', on ? 'soft' : 'off');
+		btnWrap.classList.toggle('active', on);
+		btnWrap.setAttribute('aria-pressed', on ? 'true' : 'false');
+		lineOffsetsCache = null;
+	}
+	try {
+		setWrap(localStorage.getItem('carve-editor-wrap') === '1');
+	} catch (e) {
+		setWrap(false);
+	}
+	btnWrap.addEventListener('click', () => {
+		const on = input.getAttribute('wrap') === 'off';
+		setWrap(on);
+		try {
+			localStorage.setItem('carve-editor-wrap', on ? '1' : '0');
+		} catch (e) {
+		}
+	});
+
+	const workspace = document.getElementById('carve-workspace');
+	const btnFullscreen = document.getElementById('btn-fullscreen');
+	function setFullscreen(on) {
+		workspace.classList.toggle('carve-fullscreen', on);
+		document.body.classList.toggle('carve-fullscreen-open', on);
+		btnFullscreen.classList.toggle('active', on);
+		btnFullscreen.setAttribute('aria-pressed', on ? 'true' : 'false');
+		btnFullscreen.querySelector('i').className = on ? 'bi bi-fullscreen-exit' : 'bi bi-arrows-fullscreen';
+		lineOffsetsCache = null;
+	}
+	btnFullscreen.addEventListener('click', () => {
+		setFullscreen(!workspace.classList.contains('carve-fullscreen'));
+	});
+	document.addEventListener('keydown', e => {
+		if (e.key === 'Escape' && workspace.classList.contains('carve-fullscreen') && !document.querySelector('.dropdown-menu.show')) {
+			setFullscreen(false);
+		}
 	});
 
 	// Monotonic (line, top) anchor points in the rendered pane, in scroll
@@ -1193,6 +1301,7 @@ This sentence contains {{ library/inline.crv }}.
 		const btn = e.target.closest('button');
 		if (!btn) return;
 
+		if (btn.id === 'btn-wrap' || btn.id === 'btn-fullscreen') return;
 		if (btn.id === 'toggle-more') {
 			const more = document.getElementById('toolbar-more');
 			more.classList.toggle('d-none');
