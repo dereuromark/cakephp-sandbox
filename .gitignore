@@ -35,3 +35,4 @@ docker/check_queue.conf
 /docs/superpowers/
 /.playwright-mcp/
 /plugins/WorkflowSandbox/config/Migrations/schema-dump-default.lock
+/plugins/Sandbox/webroot/css/carve/

@@ -156,6 +156,7 @@
 			"mkdir -p plugins/Sandbox/webroot/js/tiptap",
 			"cp node_modules/djot-grammars/highlightjs/djot.js plugins/Sandbox/webroot/js/hljs-djot.js",
 			"cp node_modules/@markup-carve/carve-grammars/highlightjs/carve.js plugins/Sandbox/webroot/js/hljs-carve.js",
+			"mkdir -p plugins/Sandbox/webroot/css/carve && cp node_modules/@markup-carve/carve-grammars/shiki/table-tokens.css plugins/Sandbox/webroot/css/carve/table-tokens.css",
 			"cp -R node_modules/djot-grammars/tiptap/* plugins/Sandbox/webroot/js/tiptap/",
 			"node_modules/.bin/esbuild node_modules/@markup-carve/carve/dist/index.js --bundle --format=iife --global-name=CarveJS --minify --outfile=webroot/js/carve-js.min.js",
 			"node_modules/.bin/esbuild resources/js/carve-editor.ts --bundle --format=iife --global-name=CarveEditor --minify --alias:@markup-carve/carve=./resources/js/carve-global.ts --outfile=plugins/Sandbox/webroot/js/carve-editor.min.js"

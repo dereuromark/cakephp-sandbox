@@ -203,7 +203,22 @@ export interface EditorFacade {
   addEventListener(type: string, listener: EventListener, options?: AddEventListenerOptions): void
   /** Top of each 0-based source line in scroll coordinates, plus a sentinel past the end. */
   lineTops(): number[]
+  /** The source to render: `value` without the empty list marker the cursor sits on. */
+  readonly renderValue: string
   view: EditorView
+}
+
+// A continuation leaves `- ` on the new line, which Carve reads as text, so the
+// preview would show a stray marker until the item gets content. Render without it.
+function renderSource(state: EditorState): string {
+  const text = state.doc.toString()
+  const sel = state.selection
+  if (sel.ranges.length !== 1 || !sel.main.empty) return text
+  const line = state.doc.lineAt(sel.main.head)
+  const lead = /^(?:[ \t]*> ?)*[ \t]*/.exec(line.text)![0]
+  const rest = line.text.slice(lead.length)
+  if (sel.main.head !== line.to || !rest || !BARE_MARKER.test(rest) || inCodeBlock(text, line.number)) return text
+  return text.slice(0, line.from + lead.length).replace(/[ \t]+$/, '') + text.slice(line.to)
 }
 
 export function create(textarea: HTMLTextAreaElement): EditorFacade {
@@ -215,6 +230,7 @@ export function create(textarea: HTMLTextAreaElement): EditorFacade {
   const wrapping = new Compartment()
   let wrap = textarea.getAttribute('wrap') !== 'off'
   const inputListeners: EventListener[] = []
+  let lastRender = textarea.value
   let highlightTimer: ReturnType<typeof setTimeout> | undefined
 
   const syncGutterWidth = (v: EditorView): void => {
@@ -256,11 +272,16 @@ export function create(textarea: HTMLTextAreaElement): EditorFacade {
         theme,
         EditorView.updateListener.of((u) => {
           if (u.geometryChanged) syncGutterWidth(u.view)
-          if (!u.docChanged) return
-          textarea.value = u.state.doc.toString()
-          const event = new Event('input')
-          inputListeners.forEach((fn) => fn(event))
-          scheduleHighlight()
+          const render = renderSource(u.state)
+          const renderChanged = render !== lastRender
+          lastRender = render
+          if (u.docChanged) textarea.value = u.state.doc.toString()
+          // Moving off an empty marker changes what renders without changing the text.
+          if (u.docChanged || renderChanged) {
+            const event = new Event('input')
+            inputListeners.forEach((fn) => fn(event))
+          }
+          if (u.docChanged) scheduleHighlight()
         }),
       ],
     }),
@@ -337,6 +358,9 @@ export function create(textarea: HTMLTextAreaElement): EditorFacade {
       else if (type === 'scroll') view.scrollDOM.addEventListener(type, listener, options)
       else if (['keydown', 'keyup', 'click', 'focus'].includes(type)) view.contentDOM.addEventListener(type, listener, options)
       else view.dom.addEventListener(type, listener, options)
+    },
+    get renderValue() {
+      return renderSource(view.state)
     },
     lineTops() {
       const docTop = view.documentTop - view.scrollDOM.getBoundingClientRect().top + view.scrollDOM.scrollTop
