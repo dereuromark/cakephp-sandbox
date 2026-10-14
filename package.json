@@ -9,7 +9,7 @@
 		"@fortawesome/fontawesome-free": "^6.7.2",
 		"@markup-carve/carve": "git+https://github.com/markup-carve/carve-js.git#e45535d6189edda71d7e08b6f7077698e1bc30e3",
 		"@markup-carve/carve-css": "^0.1.2",
-		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#6b2fa22be1c98cea0ec7264ea3905468b2b48558",
+		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#53f4fec337da5761a3dbdf3f5361bb4af909a73e",
 		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
 		"djot-grammars": "github:php-collective/djot-grammars",
