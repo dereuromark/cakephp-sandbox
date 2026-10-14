@@ -7,9 +7,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+# Only PR runs share a group; every other run gets its own so none is dropped.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   testsuite:
