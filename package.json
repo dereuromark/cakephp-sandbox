@@ -9,12 +9,13 @@
 		"@fortawesome/fontawesome-free": "^6.7.2",
 		"@markup-carve/carve": "git+https://github.com/markup-carve/carve-js.git#e45535d6189edda71d7e08b6f7077698e1bc30e3",
 		"@markup-carve/carve-css": "^0.1.2",
-		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#76d451256cd367e27d2d9c05beab024cbea6ffdf",
+		"@markup-carve/carve-grammars": "git+https://github.com/markup-carve/carve-grammars.git#6b2fa22be1c98cea0ec7264ea3905468b2b48558",
 		"@popperjs/core": "^2.9.2",
 		"bootstrap-icons": "^1.10.0",
 		"djot-grammars": "github:php-collective/djot-grammars",
 		"esbuild": "^0.25.0",
 		"feather-icons": "^4.29.0",
-		"material-symbols": "^0.4.2"
+		"material-symbols": "^0.4.2",
+		"vscode-languageserver-types": "^3.18.4"
 	}
 }

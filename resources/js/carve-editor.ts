@@ -18,7 +18,7 @@ import {
 import { defaultKeymap, history, historyKeymap, indentMore, indentLess } from '@codemirror/commands'
 import { searchKeymap, highlightSelectionMatches } from '@codemirror/search'
 import { parse } from './carve-global'
-import { continuationPrefix, listContinuationEdits, listIndentEdits, type ContinuationEdit } from './carve-lsp/format'
+import { BARE_CONTINUATION_MARKER, continuationPrefix, listContinuationEdits, listIndentEdits, type ContinuationEdit } from './carve-lsp/format'
 import { bareMarkerItem, listItems } from './carve-lsp/list-items'
 
 type Hljs = { getLanguage(name: string): unknown; highlight(code: string, o: { language: string; ignoreIllegals?: boolean }): { value: string } }
@@ -119,14 +119,19 @@ const continueOnEnter: Command = (v) => {
     return true
   }
   const prefix = continuationPrefix(text, line.number)
-  if (!prefix || inCodeBlock(text, line.number)) return false
+  // The server checks closers against code itself, and a new fence opener reads as inside its own block.
+  if (!prefix || (!prefix.startsWith('\n') && inCodeBlock(text, line.number))) return false
+  // A pipe-led line that is neither a table row nor a line-block line is text.
+  if (/^[ \t]*\| $/.test(prefix) && !/^[ \t]*\|.*\|[ \t]*$/.test(line.text) && !/^[ \t]*\| /.test(line.text)) return false
   // A container closer (`\n:::`) goes below the cursor; a quote or table prefix goes before it.
   applyEdits(v, [{ range: { start: position, end: position }, newText: prefix }], base, prefix.startsWith('\n') ? -1 : 1)
   return true
 }
 
 // A content-less marker as the continuation writes it: `- `, `- [ ] `, `2. `, `b) `.
-const BARE_MARKER = /^(?:[-*] [ \t]*(?:\[[ xX_>?-]\] [ \t]*)?|(?:\.|(?:[0-9]+|[A-Za-z]|[ivxlcdm]+|[IVXLCDM]+)[.)]) [ \t]*)$/
+const BARE_LIST_MARKER = /^(?:[-*] [ \t]*(?:\[[ xX_>?-]\] [ \t]*)?|(?:\.|(?:[0-9]+|[A-Za-z]|[ivxlcdm]+|[IVXLCDM]+)[.)]) [ \t]*)$/
+// Checked task boxes too, plus the server's own set, which adds a bare description `: `.
+const BARE_MARKER = { test: (rest: string) => BARE_LIST_MARKER.test(rest) || BARE_CONTINUATION_MARKER.test(rest) }
 
 // Backspace at the end of an empty item removes the whole marker, keeping the
 // indent and any quote prefix.
