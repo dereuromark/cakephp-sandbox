@@ -1,0 +1,13 @@
+/* Classes the Carve highlight.js grammar emits that the stock github theme leaves uncolored. */
+.hljs-link {
+	color: #032f62;
+	text-decoration: underline;
+}
+
+.hljs-function {
+	color: #6f42c1;
+}
+
+.hljs-punctuation {
+	color: #959da5;
+}

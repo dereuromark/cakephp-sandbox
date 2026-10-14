@@ -7,6 +7,7 @@
 
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css');
+echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'force']);
 // The same stylesheet every other Carve consumer installs, rather than a copy
 // of it kept here. `recipes.css` is a separate import because it is opt-in
 // upstream: it styles the constructs the engine has no handler for.
