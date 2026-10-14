@@ -2,12 +2,20 @@ name: CI
 
 on:
   push:
+    branches:
+      - master
   pull_request:
   workflow_dispatch:
+
+# Only PR runs share a group; every other run gets its own so none is dropped.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   testsuite:
     runs-on: ubuntu-22.04
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -42,7 +50,11 @@ jobs:
         coverage: pcov
 
     - name: Install Ghostscript
-      run: sudo apt-get update && sudo apt-get install -y ghostscript
+      timeout-minutes: 5
+      run: |
+        if ! command -v gs >/dev/null; then
+          sudo apt-get update && sudo apt-get install -y --no-install-recommends ghostscript
+        fi
 
     - name: Get composer cache directory
       id: composercache
@@ -63,8 +75,37 @@ jobs:
     - name: Composer install
       run: composer install --no-progress --prefer-dist --optimize-autoloader
 
+    # The composer "assets" script and resources/js define what gets built.
+    - name: Restore assets
+      id: assets-cache
+      uses: actions/cache/restore@v5
+      with:
+        path: |
+          webroot/assets
+          webroot/css/webfonts
+          webroot/css/ccss
+          webroot/js/carve-js.min.js
+          plugins/Sandbox/webroot/js
+          plugins/Sandbox/webroot/css/carve
+        key: assets-${{ hashFiles('bower.json', '.bowerrc', 'package.json', 'package-lock.json', 'composer.json', 'resources/js/**') }}
+
     - name: Assets install
+      if: steps.assets-cache.outputs.cache-hit != 'true'
       run: npm install -g bower && bower install --allow-root && composer assets
+
+    # Saved right after the build so files written by later steps stay out of the cache.
+    - name: Save assets
+      if: steps.assets-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v5
+      with:
+        path: |
+          webroot/assets
+          webroot/css/webfonts
+          webroot/css/ccss
+          webroot/js/carve-js.min.js
+          plugins/Sandbox/webroot/js
+          plugins/Sandbox/webroot/css/carve
+        key: ${{ steps.assets-cache.outputs.cache-primary-key }}
 
     - name: Run PHPUnit
       run: |
@@ -108,6 +149,7 @@ jobs:
   validation:
     name: Coding Standard & Static Analysis
     runs-on: ubuntu-22.04
+    timeout-minutes: 20
 
     steps:
     - uses: actions/checkout@v4
@@ -118,9 +160,6 @@ jobs:
         php-version: '8.4'
         extensions: mbstring, intl, pdo_sqlite, imagick
         coverage: none
-
-    - name: Install Ghostscript
-      run: sudo apt-get update && sudo apt-get install -y ghostscript
 
     - name: Get composer cache directory
       id: composercache
@@ -145,8 +184,37 @@ jobs:
     - name: Migrations
       run: composer migrate
 
+    # The composer "assets" script and resources/js define what gets built.
+    - name: Restore assets
+      id: assets-cache
+      uses: actions/cache/restore@v5
+      with:
+        path: |
+          webroot/assets
+          webroot/css/webfonts
+          webroot/css/ccss
+          webroot/js/carve-js.min.js
+          plugins/Sandbox/webroot/js
+          plugins/Sandbox/webroot/css/carve
+        key: assets-${{ hashFiles('bower.json', '.bowerrc', 'package.json', 'package-lock.json', 'composer.json', 'resources/js/**') }}
+
     - name: Assets install
+      if: steps.assets-cache.outputs.cache-hit != 'true'
       run: npm install -g bower && bower install --allow-root && composer assets
+
+    # Saved right after the build so files written by later steps stay out of the cache.
+    - name: Save assets
+      if: steps.assets-cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v5
+      with:
+        path: |
+          webroot/assets
+          webroot/css/webfonts
+          webroot/css/ccss
+          webroot/js/carve-js.min.js
+          plugins/Sandbox/webroot/js
+          plugins/Sandbox/webroot/css/carve
+        key: ${{ steps.assets-cache.outputs.cache-primary-key }}
 
     - name: DTO check
       run: bin/cake dto generate -v -d && bin/cake dto generate -p Sandbox -v -d
