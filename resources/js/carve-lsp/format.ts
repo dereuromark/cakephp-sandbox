@@ -5,17 +5,24 @@
  * cosmetic can be structural: a second blank line detaches captions, trailing
  * blank lines can belong to an unclosed fence, and trailing spaces are content
  * in line blocks. Preserve every source byte except for adding a missing final
- * line ending, which is render-equivalent and keeps the formatter idempotent.
+ * line ending, and only when the render confirms it changes nothing.
  */
 
-import { parse } from '@markup-carve/carve'
-import { colonFenceStructure } from './colon-fences.js'
-import { sourceLines } from './position.js'
+import { carveToHtml, parse } from '@markup-carve/carve'
+import { colonFenceStructure, type FenceSite } from './colon-fences.js'
+import { astColumnToCharacter, sourceLines } from './position.js'
+import { walkNodes } from './ast-walk.js'
 import { bareMarkerItem, completedItem, listItems, listTree, type ItemSite, type TreeItem } from './list-items.js'
 
 export function formatDocument(source: string): string {
   if (source === '' || source.endsWith('\n')) return source
-  return source + (source.includes('\r\n') ? '\r\n' : '\n')
+  const formatted = source + (source.includes('\r\n') ? '\r\n' : '\n')
+  // An unclosed code block at the end takes the line ending into its content.
+  try {
+    return carveToHtml(formatted) === carveToHtml(source) ? formatted : source
+  } catch {
+    return source
+  }
 }
 
 export function formatRange(source: string, startLine: number, endLine: number): string {
@@ -24,26 +31,34 @@ export function formatRange(source: string, startLine: number, endLine: number):
 }
 
 /**
- * Prefix inserted after Enter for container-shaped lines. A prefix starting
- * with a newline is a closer, which goes below the cursor.
+ * Text inserted at the cursor after Enter on a container-shaped line. The part
+ * before the first `\n` goes before the cursor and the rest after it: a closer
+ * comes back as `\n:::` (cursor line empty), and a colon fence opened in a
+ * quote, list item or footnote as `> \n> :::` or `  \n  :::`, so the cursor
+ * line already carries the prefix that keeps the body inside the container.
  */
 export function continuationPrefix(source: string, line: number): string {
   const lines = sourceLines(source)
   const previous = lines[line - 1] ?? ''
   const cursorBlank = (lines[line] ?? '').trim() === ''
-  const container = /^(\s*)(:{3,}) [^\s].*$/.exec(previous)
-  if (container) {
-    if (!cursorBlank || inVerbatim(source, line - 1)) return ''
-    // An opener that already has its closer gets no second one.
-    if (colonFenceStructure(source).pairs.some(({ opener }) => opener.range.start.line === line - 1)) return ''
-    return `\n${container[1]}${container[2]}`
-  }
   if (cursorBlank && /^[ \t]*[`~]/.test(previous)) {
     const closer = codeFenceCloser(source, lines, line)
     if (closer) return closer
   }
-  const quote = /^(\s*(?:> )+)/.exec(previous)
+  if (cursorBlank && previous.includes(':::')) {
+    // A bare run may be meant as a closer, so only an opener with a type or title gets one.
+    const opener = colonFenceStructure(source).openers.find((site) => site.range.start.line === line - 1 &&
+      /\S/.test(previous.slice(site.range.end.character)))
+    if (opener) return colonFenceContinuation(source, lines, line, opener)
+  }
+  if (/^\s*:{3,} [^\s]/.test(previous)) return ''
+  // Only a quote, table or description line continues; skip the parse for anything else.
+  if (!/^[ \t]*(?:> |\||: +)/.test(previous)) return ''
+  // In a code, raw or comment block only the container prefix before the block continues.
+  const verbatim = verbatimColumn(source, lines, line - 1)
+  const quote = /^(\s*(?:> )+)/.exec(verbatim === null ? previous : previous.slice(0, verbatim))
   if (quote) return quote[1]!
+  if (verbatim !== null && !/^[ \t]*: +/.test(previous.slice(0, verbatim))) return ''
   const table = /^(\s*)\|/.exec(previous)
   if (table) return `${table[1]}| `
   // A description marker is a colon, a run of SPACES, then something. PART 2
@@ -62,7 +77,48 @@ export function continuationPrefix(source: string, line: number): string {
   return ''
 }
 
-interface AstNode { type?: string; pos?: { startLine?: number; endLine?: number }; [key: string]: unknown }
+/**
+ * The continuation for a colon fence opened on the line above the cursor: the
+ * container lead for the cursor line, then the closer when the fence has none.
+ * The lead repeats quote markers and turns a list marker or footnote label into
+ * the indent its body needs; the parser confirms the body and closer land inside.
+ */
+function colonFenceContinuation(source: string, lines: string[], line: number, opener: FenceSite): string {
+  const lead = containerLead((lines[line - 1] ?? '').slice(0, opener.range.start.character))
+  // Judge closedness with the lead on the cursor line: a bare blank line would end a quote.
+  const withLead = [...lines.slice(0, line), `${lead}${lines[line] ?? ''}`, ...lines.slice(line + 1)].join('\n')
+  const closed = colonFenceStructure(withLead).pairs.some((pair) => pair.opener.range.start.line === line - 1)
+  const after = closed ? '' : `\n${lead}${':'.repeat(opener.width)}`
+  const completed = [...lines.slice(0, line), `${lead}x${after}${lines[line] ?? ''}`, ...lines.slice(line + 1)].join('\n')
+  return bodyInsideFence(completed, line, closed ? null : line + 1) ? lead + after : ''
+}
+
+/** The prefix before an opener's `:::` as the lines below must write it: quote markers kept, list markers and labels as indent. */
+function containerLead(prefix: string): string {
+  return continuationLead(prefix).replace(/(?<=^|[ \t>])(?:[-*.]|[0-9]+[.)]|[A-Za-z]+[.)])(?:\{[^}\n]*\})?(?=[ \t])/g, (marker) => ' '.repeat(marker.length))
+}
+
+/** Line `line` opens a paragraph inside the container opened on the line above, closed on `closerLine` when given. */
+function bodyInsideFence(completed: string, line: number, closerLine: number | null): boolean {
+  const structure = colonFenceStructure(completed)
+  if (closerLine !== null && !structure.pairs.some((pair) => pair.opener.range.start.line === line - 1 && pair.closer.range.start.line === closerLine)) return false
+  let document: unknown
+  try {
+    document = parse(completed, { positions: true })
+  } catch {
+    return false
+  }
+  const openerLine = sourceLines(completed)[line - 1] ?? ''
+  let inside = false
+  walkNodes(document, (node, ancestors) => {
+    if (node.type !== 'paragraph' || node.pos?.startLine !== line + 1) return
+    inside ||= ancestors.some(({ pos }) => pos?.startLine === line && pos.startColumn !== undefined &&
+      /^:{3,}/.test(openerLine.slice(astColumnToCharacter(openerLine, pos.startColumn))))
+  })
+  return inside
+}
+
+interface AstNode { type?: string; pos?: { startLine?: number; endLine?: number; startColumn?: number }; [key: string]: unknown }
 
 function walkAst(source: string, visit: (node: AstNode) => void): void {
   let document: unknown
@@ -81,6 +137,20 @@ function walkAst(source: string, visit: (node: AstNode) => void): void {
 }
 
 const VERBATIM_TYPES = new Set(['code_block', 'raw_block', 'comment'])
+
+/** The UTF-16 column where the code, raw or comment block holding zero-based `line` starts, or null. */
+function verbatimColumn(source: string, lines: string[], line: number): number | null {
+  let column: number | null = null
+  walkAst(source, (node) => {
+    const { startLine, endLine, startColumn } = node.pos ?? {}
+    // A `%%` line comment is inline: the text before it is ordinary.
+    if (!VERBATIM_TYPES.has(node.type ?? '') || node.block === false || startLine === undefined || endLine === undefined || startColumn === undefined) return
+    if (line + 1 < startLine || line + 1 > endLine) return
+    const at = astColumnToCharacter(lines[startLine - 1] ?? '', startColumn)
+    column = column === null ? at : Math.min(column, at)
+  })
+  return column
+}
 
 /** Zero-based `line` lies in a code, raw or comment block, fences included. */
 function inVerbatim(source: string, line: number): boolean {
@@ -163,6 +233,8 @@ export function listContinuationEdits(source: string, position: { line: number; 
   const lines = sourceLines(source)
   const current = lines[position.line] ?? ''
   if (current.trim() !== '' || position.line === 0) return null
+  // A colon fence opened on a marker line is continued by `continuationPrefix`.
+  if (colonFenceStructure(source).openers.some((site) => site.range.start.line === position.line - 1)) return null
   return listEdits(source, lines, position) ?? descriptionEdits(source, lines, position) ?? quoteEndEdits(source, lines, position)
 }
 
@@ -277,7 +349,7 @@ function continuationLead(lead: string): string {
 export type ListIndentDirection = 'indent' | 'outdent'
 
 // A list marker and its separator, read at the column the parse puts the item.
-const ITEM_MARKER = /^([-*.]|(?:[0-9]+|[A-Za-z]+)[.)])([ \t]+)/
+const ITEM_MARKER = /^([-*.]|(?:[0-9]+|[A-Za-z]+)[.)])((?:\{[^}\n]*\})?[ \t]+)/
 // The part of a line's lead that belongs to containers (quotes, a footnote
 // label, a description colon), which indenting never touches.
 const CONTAINER_LEAD = /^(?:[ \t]*> ?)*(?:[ \t]*\[\^[^\]]*\]: +|[ \t]*: +)?/

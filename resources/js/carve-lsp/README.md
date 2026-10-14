@@ -1,1 +1,1 @@
-Copied from markup-carve/carve-lsp src/ at ff6bb62 (format.ts, list-items.ts, position.ts, colon-fences.ts). The editor bundle aliases @markup-carve/carve to ../carve-global.ts. Re-copy rather than edit.
+Copied from markup-carve/carve-lsp src/ at 6c9239c (format.ts, list-items.ts, position.ts, colon-fences.ts, ast-walk.ts). The editor bundle aliases @markup-carve/carve to ../carve-global.ts. Re-copy rather than edit.

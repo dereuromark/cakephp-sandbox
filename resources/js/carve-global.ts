@@ -8,3 +8,9 @@ export function parse(source: string, options?: Record<string, unknown>): unknow
   if (!engine) throw new Error('CarveJS is not loaded')
   return engine.parse(source, options)
 }
+
+export function carveToHtml(source: string, options?: Record<string, unknown>): string {
+  const engine = (globalThis as { CarveJS?: { carveToHtml: (s: string, o?: Record<string, unknown>) => string } }).CarveJS
+  if (!engine) throw new Error('CarveJS is not loaded')
+  return engine.carveToHtml(source, options)
+}

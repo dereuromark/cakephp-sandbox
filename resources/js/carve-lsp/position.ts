@@ -20,19 +20,16 @@ import { parse } from '@markup-carve/carve'
  */
 export function codepointColumnToUtf16(lineText: string, column: number): number {
   if (column <= 1) return 0
-
-  let codepointColumn = 1
-  let index = 0
-  while (index < lineText.length && codepointColumn < column) {
-    index += (lineText.codePointAt(index) ?? 0) > 0xffff ? 2 : 1
-    codepointColumn++
-  }
+  const { starts } = lineIndex(lineText)
+  if (!starts) return column - 1
 
   // A column past the line's last character is normal: end columns are
   // exclusive, so a construct ending the line reports length + 1. Anything
   // further past the end keeps its distance rather than collapsing onto it,
   // so a range can never come back inverted.
-  return index + Math.max(0, column - codepointColumn)
+  const codepoint = column - 1
+  const last = starts.length - 1
+  return codepoint <= last ? starts[codepoint]! : starts[last]! + codepoint - last
 }
 
 /**
@@ -44,14 +41,43 @@ export function codepointColumnToUtf16(lineText: string, column: number): number
  * client only produces one by placing a cursor inside one.
  */
 export function utf16CharToCodepointColumn(lineText: string, character: number): number {
-  let codepointColumn = 1
-  let index = 0
-  while (index < lineText.length && index < character) {
-    index += (lineText.codePointAt(index) ?? 0) > 0xffff ? 2 : 1
-    codepointColumn++
-  }
+  const { columns } = lineIndex(lineText)
+  if (!columns) return Math.max(0, character) + 1
+  const last = columns.length - 1
+  return character <= last ? columns[Math.max(0, character)]! : columns[last]! + character - last
+}
 
-  return codepointColumn + Math.max(0, character - index)
+interface LineIndex {
+  /** UTF-16 index of each codepoint, then the line length. Absent on a line without astral characters. */
+  starts?: Uint32Array
+  /** 1-based codepoint column for each UTF-16 index up to the line length. Absent likewise. */
+  columns?: Uint32Array
+}
+
+// One entry is enough: callers convert many columns on one line before moving on.
+let indexedLine: string | undefined
+let indexed: LineIndex = {}
+
+function lineIndex(lineText: string): LineIndex {
+  if (lineText === indexedLine) return indexed
+  indexedLine = lineText
+  indexed = {}
+  if (!/[\uD800-\uDFFF]/.test(lineText)) return indexed
+
+  const starts: number[] = []
+  const columns = new Uint32Array(lineText.length + 1)
+  columns[0] = 1
+  let index = 0
+  while (index < lineText.length) {
+    starts.push(index)
+    const width = (lineText.codePointAt(index) ?? 0) > 0xffff ? 2 : 1
+    // An index inside a surrogate pair resolves to the column after the pair.
+    for (let step = 1; step <= width && index + step <= lineText.length; step++) columns[index + step] = starts.length + 1
+    index += width
+  }
+  starts.push(lineText.length)
+  indexed = { starts: Uint32Array.from(starts), columns }
+  return indexed
 }
 
 /**

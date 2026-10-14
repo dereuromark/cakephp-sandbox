@@ -50,25 +50,29 @@ function tokenize(text: string): DecorationSet | null {
   if (!hljs || !hljs.getLanguage('carve')) return null
   const tpl = document.createElement('template')
   tpl.innerHTML = hljs.highlight(text, { language: 'carve', ignoreIllegals: true }).value
-  const builder = new RangeSetBuilder<Decoration>()
+  // One mark per highlighted element, so spans nest as in hljs output and an inner
+  // class (a keyword in an embedded fence language) keeps its own color.
+  const ranges: Array<{ from: number; to: number; cls: string }> = []
   let pos = 0
-  const walk = (node: Node, classes: string): void => {
+  const walk = (node: Node): void => {
     if (node.nodeType === Node.TEXT_NODE) {
-      const len = (node as Text).data.length
-      if (classes && len) builder.add(pos, pos + len, markFor(classes))
-      pos += len
+      pos += (node as Text).data.length
       return
     }
     const own = node instanceof Element ? node.className : ''
-    const next = own ? (classes ? `${classes} ${own}` : own) : classes
-    node.childNodes.forEach((child) => walk(child, next))
+    const from = pos
+    node.childNodes.forEach(walk)
+    if (own && pos > from) ranges.push({ from, to: pos, cls: own })
   }
-  tpl.content.childNodes.forEach((child) => walk(child, ''))
+  tpl.content.childNodes.forEach(walk)
+  ranges.sort((a, b) => a.from - b.from || b.to - a.to)
+  const builder = new RangeSetBuilder<Decoration>()
+  for (const r of ranges) builder.add(r.from, r.to, markFor(r.cls))
   return builder.finish()
 }
 
 // --- List and container editing, from carve-lsp's on-type rules (resources/js/carve-lsp).
-function applyEdits(v: EditorView, edits: ContinuationEdit[], base?: { from: number; insert: string }, assoc: 1 | -1 = 1): void {
+function applyEdits(v: EditorView, edits: ContinuationEdit[], base?: { from: number; insert: string }, assoc: 1 | -1 = 1, shift = 0): void {
   const mid = base ? v.state.update({ changes: base }) : null
   const state = mid ? mid.state : v.state
   const at = (p: { line: number; character: number }) => state.doc.line(p.line + 1).from + p.character
@@ -76,7 +80,7 @@ function applyEdits(v: EditorView, edits: ContinuationEdit[], base?: { from: num
   const cursor = base ? base.from + base.insert.length : v.state.selection.main.head
   v.dispatch({
     changes: mid ? mid.changes.compose(changes) : changes,
-    selection: { anchor: changes.mapPos(cursor, assoc) },
+    selection: { anchor: changes.mapPos(cursor, assoc) + shift },
     scrollIntoView: true,
     userEvent: 'input',
   })
@@ -119,12 +123,13 @@ const continueOnEnter: Command = (v) => {
     return true
   }
   const prefix = continuationPrefix(text, line.number)
+  // Text before the first newline goes before the cursor, a closer (`\n:::`, `> \n> :::`) after it.
+  const lead = prefix.split('\n', 1)[0]!
   // The server checks closers against code itself, and a new fence opener reads as inside its own block.
-  if (!prefix || (!prefix.startsWith('\n') && inCodeBlock(text, line.number))) return false
+  if (!prefix || (lead === prefix && inCodeBlock(text, line.number))) return false
   // A pipe-led line that is neither a table row nor a line-block line is text.
   if (/^[ \t]*\| $/.test(prefix) && !/^[ \t]*\|.*\|[ \t]*$/.test(line.text) && !/^[ \t]*\| /.test(line.text)) return false
-  // A container closer (`\n:::`) goes below the cursor; a quote or table prefix goes before it.
-  applyEdits(v, [{ range: { start: position, end: position }, newText: prefix }], base, prefix.startsWith('\n') ? -1 : 1)
+  applyEdits(v, [{ range: { start: position, end: position }, newText: prefix }], base, -1, lead.length)
   return true
 }
 
