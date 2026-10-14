@@ -312,12 +312,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "b3717bf1d4d5b9a5db23f2915c946d21a5d19039"
+                "reference": "964e9a0069ce5072d7142199432ecc17fd337d5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/b3717bf1d4d5b9a5db23f2915c946d21a5d19039",
-                "reference": "b3717bf1d4d5b9a5db23f2915c946d21a5d19039",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/964e9a0069ce5072d7142199432ecc17fd337d5f",
+                "reference": "964e9a0069ce5072d7142199432ecc17fd337d5f",
                 "shasum": ""
             },
             "require": {
@@ -429,7 +429,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-10-10T05:16:52+00:00"
+            "time": "2026-10-14T13:59:00+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -6004,12 +6004,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "6157ceadc79100aa9e5ae1e8d1b4f66361268416"
+                "reference": "36bba93c767db460939d9d0f5a5a33940e6546fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/6157ceadc79100aa9e5ae1e8d1b4f66361268416",
-                "reference": "6157ceadc79100aa9e5ae1e8d1b4f66361268416",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/36bba93c767db460939d9d0f5a5a33940e6546fa",
+                "reference": "36bba93c767db460939d9d0f5a5a33940e6546fa",
                 "shasum": ""
             },
             "require": {
@@ -6068,7 +6068,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-12T00:37:07+00:00"
+            "time": "2026-10-14T18:59:31+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",
@@ -6076,18 +6076,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php-chat.git",
-                "reference": "f12801cd21f2eb9e5d0454325a4163b7ed402def"
+                "reference": "8490f10c5adff081c13eee0acc55a97b96861680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php-chat/zipball/f12801cd21f2eb9e5d0454325a4163b7ed402def",
-                "reference": "f12801cd21f2eb9e5d0454325a4163b7ed402def",
+                "url": "https://api.github.com/repos/markup-carve/carve-php-chat/zipball/8490f10c5adff081c13eee0acc55a97b96861680",
+                "reference": "8490f10c5adff081c13eee0acc55a97b96861680",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "markup-carve/carve-php": "^0.1.10",
+                "markup-carve/carve-php": "^0.1.12",
                 "php": ">=8.2"
             },
             "require-dev": {
@@ -6135,7 +6135,7 @@
                 "issues": "https://github.com/markup-carve/carve-php-chat/issues",
                 "source": "https://github.com/markup-carve/carve-php-chat"
             },
-            "time": "2026-10-08T15:57:12+00:00"
+            "time": "2026-10-14T15:49:50+00:00"
         },
         {
             "name": "markup-carve/carve-php-media-embed",
@@ -8391,16 +8391,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v8.1.8",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4b81146e3ee248ea969186f85499b54fbc78db08"
+                "reference": "630e74196a2635ec0f06c12bd3fb47cfedf85157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4b81146e3ee248ea969186f85499b54fbc78db08",
-                "reference": "4b81146e3ee248ea969186f85499b54fbc78db08",
+                "url": "https://api.github.com/repos/symfony/console/zipball/630e74196a2635ec0f06c12bd3fb47cfedf85157",
+                "reference": "630e74196a2635ec0f06c12bd3fb47cfedf85157",
                 "shasum": ""
             },
             "require": {
@@ -8467,7 +8467,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v8.1.8"
+                "source": "https://github.com/symfony/console/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -8487,7 +8487,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-18T16:00:27+00:00"
+            "time": "2026-10-12T19:11:16+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -8562,16 +8562,16 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v8.1.6",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "7599ebb855fede59413ddb7f15198d67bfcae7ba"
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/7599ebb855fede59413ddb7f15198d67bfcae7ba",
-                "reference": "7599ebb855fede59413ddb7f15198d67bfcae7ba",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2",
                 "shasum": ""
             },
             "require": {
@@ -8609,7 +8609,7 @@
             "description": "Provides basic utilities for the filesystem",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/filesystem/tree/v8.1.6"
+                "source": "https://github.com/symfony/filesystem/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -8629,7 +8629,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-23T10:06:25+00:00"
+            "time": "2026-10-06T20:05:50+00:00"
         },
         {
             "name": "symfony/finder",
@@ -8701,16 +8701,16 @@
         },
         {
             "name": "symfony/http-client",
-            "version": "v8.1.8",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-client.git",
-                "reference": "e20aca4ceaa888197de5c792ffc551d99e43d98a"
+                "reference": "f892301df77ac25613b19fc2450139c950d1368a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-client/zipball/e20aca4ceaa888197de5c792ffc551d99e43d98a",
-                "reference": "e20aca4ceaa888197de5c792ffc551d99e43d98a",
+                "url": "https://api.github.com/repos/symfony/http-client/zipball/f892301df77ac25613b19fc2450139c950d1368a",
+                "reference": "f892301df77ac25613b19fc2450139c950d1368a",
                 "shasum": ""
             },
             "require": {
@@ -8774,7 +8774,7 @@
                 "http"
             ],
             "support": {
-                "source": "https://github.com/symfony/http-client/tree/v8.1.8"
+                "source": "https://github.com/symfony/http-client/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -8794,7 +8794,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T11:09:32+00:00"
+            "time": "2026-10-13T15:31:40+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -9619,16 +9619,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v8.1.7",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "10823b09358e690df4ff943e24e8492bb1019fc3"
+                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/10823b09358e690df4ff943e24e8492bb1019fc3",
-                "reference": "10823b09358e690df4ff943e24e8492bb1019fc3",
+                "url": "https://api.github.com/repos/symfony/process/zipball/59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
+                "reference": "59a682fd049b2d4d37c444f5ac21b7d01b8c7189",
                 "shasum": ""
             },
             "require": {
@@ -9660,7 +9660,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v8.1.7"
+                "source": "https://github.com/symfony/process/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -9680,7 +9680,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-02T12:40:29+00:00"
+            "time": "2026-10-08T16:57:43+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -9771,16 +9771,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v8.1.7",
+            "version": "v8.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "d950140b5f56f31901e5b7a0c04ffc3a3deb943c"
+                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/d950140b5f56f31901e5b7a0c04ffc3a3deb943c",
-                "reference": "d950140b5f56f31901e5b7a0c04ffc3a3deb943c",
+                "url": "https://api.github.com/repos/symfony/string/zipball/07fb208558f941eab50ec49c89c2a6a93fb11f01",
+                "reference": "07fb208558f941eab50ec49c89c2a6a93fb11f01",
                 "shasum": ""
             },
             "require": {
@@ -9837,7 +9837,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v8.1.7"
+                "source": "https://github.com/symfony/string/tree/v8.1.9"
             },
             "funding": [
                 {
@@ -9857,7 +9857,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-11T14:51:16+00:00"
+            "time": "2026-10-03T15:16:03+00:00"
         },
         {
             "name": "tecnickcom/tc-lib-barcode",
@@ -11247,16 +11247,16 @@
         },
         {
             "name": "dereuromark/cakephp-fixture-factories",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-fixture-factories.git",
-                "reference": "4ad0d6afafa43fdf13310c0c7b3d6e28f0fdbc2f"
+                "reference": "5821b5917c89e5c5bf6c94d3054ebd6be56601cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/4ad0d6afafa43fdf13310c0c7b3d6e28f0fdbc2f",
-                "reference": "4ad0d6afafa43fdf13310c0c7b3d6e28f0fdbc2f",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-fixture-factories/zipball/5821b5917c89e5c5bf6c94d3054ebd6be56601cc",
+                "reference": "5821b5917c89e5c5bf6c94d3054ebd6be56601cc",
                 "shasum": ""
             },
             "require": {
@@ -11325,7 +11325,7 @@
                 "issues": "https://github.com/dereuromark/cakephp-fixture-factories/issues",
                 "source": "https://github.com/dereuromark/cakephp-fixture-factories"
             },
-            "time": "2026-05-28T14:07:03+00:00"
+            "time": "2026-10-11T16:25:39+00:00"
         },
         {
             "name": "dereuromark/cakephp-ide-helper",
@@ -11543,16 +11543,16 @@
         },
         {
             "name": "entropy/entropy",
-            "version": "0.4.30",
+            "version": "0.4.31",
             "source": {
                 "type": "git",
                 "url": "https://github.com/TomasVotruba/entropy.git",
-                "reference": "733042a17988ba7c2c58f5245e9257cb687b7904"
+                "reference": "e31f93b8e987982e8d579c7c7f0cfa8aa7ae7e18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/TomasVotruba/entropy/zipball/733042a17988ba7c2c58f5245e9257cb687b7904",
-                "reference": "733042a17988ba7c2c58f5245e9257cb687b7904",
+                "url": "https://api.github.com/repos/TomasVotruba/entropy/zipball/e31f93b8e987982e8d579c7c7f0cfa8aa7ae7e18",
+                "reference": "e31f93b8e987982e8d579c7c7f0cfa8aa7ae7e18",
                 "shasum": ""
             },
             "require": {
@@ -11588,9 +11588,9 @@
             "description": "Entropy framework",
             "support": {
                 "issues": "https://github.com/TomasVotruba/entropy/issues",
-                "source": "https://github.com/TomasVotruba/entropy/tree/0.4.30"
+                "source": "https://github.com/TomasVotruba/entropy/tree/0.4.31"
             },
-            "time": "2026-10-10T07:02:38+00:00"
+            "time": "2026-10-13T12:04:57+00:00"
         },
         {
             "name": "fig-r/psr2r-sniffer",
@@ -12858,16 +12858,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "13.4.1",
+            "version": "13.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "ccde40327c501eebff192614b0dcf11806418901"
+                "reference": "7b9ba83328f01ce299ef82161720195bd827a4bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/ccde40327c501eebff192614b0dcf11806418901",
-                "reference": "ccde40327c501eebff192614b0dcf11806418901",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7b9ba83328f01ce299ef82161720195bd827a4bb",
+                "reference": "7b9ba83328f01ce299ef82161720195bd827a4bb",
                 "shasum": ""
             },
             "require": {
@@ -12938,7 +12938,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.4.1"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.4.2"
             },
             "funding": [
                 {
@@ -12946,7 +12946,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-10-05T05:51:21+00:00"
+            "time": "2026-10-12T15:29:04+00:00"
         },
         {
             "name": "sebastian/cli-parser",
