@@ -171,13 +171,13 @@ $this->end();
 
 <h2>Carve WYSIWYG Editor</h2>
 <p>
-	A rich text editor powered by <a href="https://tiptap.dev" target="_blank">Tiptap</a> with
+	A rich text editor powered by <a href="https://tiptap.dev" target="_blank">Tiptap 3</a> with
 	<a href="https://github.com/markup-carve/carve-php" target="_blank">Carve</a> output.
 </p>
 
 <div class="alert alert-info py-2">
 	<i class="bi bi-info-circle"></i>
-	Powered by Tiptap with the <code>CarveKit</code> extensions from
+	Powered by Tiptap 3 with the <code>CarveKit</code> extensions from
 	<a href="https://github.com/markup-carve/carve-grammars" target="_blank">carve-grammars</a>.
 	The document is serialized to Carve markup in the browser (<code>serializeToCarve</code>).
 	The preview renderer is switchable: <strong>carve-php</strong> (default) renders on the server
@@ -262,28 +262,28 @@ $this->end();
 <script type="importmap">
 {
 	"imports": {
-		"@tiptap/core": "https://esm.sh/@tiptap/core@2",
-		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@2",
-		"@tiptap/extension-code": "https://esm.sh/@tiptap/extension-code@2",
-		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@2",
-		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@2",
-		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
-		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
-		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@2",
-		"@tiptap/extension-link": "https://esm.sh/@tiptap/extension-link@2",
-		"@tiptap/extension-placeholder": "https://esm.sh/@tiptap/extension-placeholder@2",
-		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@2",
-		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@2",
-		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@2",
-		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@2",
-		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
-		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
-		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
-		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
-		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
-		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
-		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@2",
-		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@2",
+		"@tiptap/core": "https://esm.sh/@tiptap/core@3.32.0",
+		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@3.32.0",
+		"@tiptap/extension-code": "https://esm.sh/@tiptap/extension-code@3.32.0",
+		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@3.32.0",
+		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@3.32.0",
+		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@3.32.0",
+		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@3.32.0",
+		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@3.32.0",
+		"@tiptap/extension-link": "https://esm.sh/@tiptap/extension-link@3.32.0",
+		"@tiptap/extension-placeholder": "https://esm.sh/@tiptap/extension-placeholder@3.32.0",
+		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@3.32.0",
+		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@3.32.0",
+		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@3.32.0",
+		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@3.32.0",
+		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@3.32.0",
+		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@3.32.0",
+		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@3.32.0",
+		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@3.32.0",
+		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@3.32.0",
+		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@3.32.0",
+		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@3.32.0",
+		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@3.32.0",
 		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@414f9bbd/tiptap/carve-kit.js?external=node-diff3,@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list",
 		"carve-grammars/serializer.js": "https://esm.sh/gh/markup-carve/carve-grammars@414f9bbd/tiptap/serializer.js?external=node-diff3",
 		"node-diff3": "https://cdn.jsdelivr.net/npm/node-diff3@3.2.1/dist/diff3.mjs",
@@ -342,6 +342,7 @@ const editor = new Editor({
 	element: document.getElementById('tiptap-editor'),
 	extensions: [
 		CarveKit.configure({
+			starterKit: { trailingNode: false },
 			link: { openOnClick: false },
 			table: { resizable: false },
 			taskItem: { nested: true },
