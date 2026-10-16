@@ -37,7 +37,7 @@ CARVE;
 	Carve <i class="bi bi-arrow-right"></i> ProseMirror document
 	<i class="bi bi-arrow-right"></i> Carve, done entirely by
 	<strong>carve-php</strong>. No Node runtime is involved, so a
-	<a href="https://tiptap.dev/" target="_blank">Tiptap</a> editor in the browser
+	<a href="https://tiptap.dev/" target="_blank">Tiptap 3</a> editor in the browser
 	and PHP rendering on the server can share one source of truth.
 </p>
 
@@ -89,9 +89,8 @@ CARVE;
 <p class="text-muted small">
 	The document below is mounted straight from the JSON the <em>server</em>
 	produced - the browser never parsed the Carve source. The names have to line
-	up on both sides: ProseMirror refuses a whole document over a single mark its
-	schema does not declare, so a mismatch is not a partial loss, it is an empty
-	editor.
+	up on both sides. The browser rejects JSON with a node or mark missing from
+	the editor schema and reports the error below.
 </p>
 <p class="small">
 	<button type="button" class="btn btn-sm btn-outline-warning" id="btn-skew">
@@ -100,9 +99,8 @@ CARVE;
 	<span class="text-muted ms-2">
 		A live check on that: <code>{# ... #}</code> becomes a
 		<code>carveCriticComment</code> mark, which only a CarveKit new enough to
-		declare it can hold. Pinning an older build is enough to empty this pane
-		while the round trip above still reports success - which is why the check
-		below compares node counts instead of trusting that nothing threw.
+		declare it can hold. Pinning an older build can make this editor reject
+		the document while the server round trip still reports success.
 	</span>
 </p>
 <div id="editor-status" class="small text-muted mb-2">Loading editor...</div>
@@ -267,27 +265,27 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 <script type="importmap">
 {
 	"imports": {
-		"@tiptap/core": "https://esm.sh/@tiptap/core@2",
-		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@2",
-		"@tiptap/extension-code": "https://esm.sh/@tiptap/extension-code@2",
-		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@2",
-		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@2",
-		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@2",
-		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@2",
-		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@2",
-		"@tiptap/extension-link": "https://esm.sh/@tiptap/extension-link@2",
-		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@2",
-		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@2",
-		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@2",
-		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@2",
-		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@2",
-		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@2",
-		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@2",
-		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@2",
-		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@2",
-		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@2",
-		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@2",
-		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@2",
+		"@tiptap/core": "https://esm.sh/@tiptap/core@3.32.0",
+		"@tiptap/starter-kit": "https://esm.sh/@tiptap/starter-kit@3.32.0",
+		"@tiptap/extension-code": "https://esm.sh/@tiptap/extension-code@3.32.0",
+		"@tiptap/extension-code-block": "https://esm.sh/@tiptap/extension-code-block@3.32.0",
+		"@tiptap/extension-highlight": "https://esm.sh/@tiptap/extension-highlight@3.32.0",
+		"@tiptap/extension-subscript": "https://esm.sh/@tiptap/extension-subscript@3.32.0",
+		"@tiptap/extension-superscript": "https://esm.sh/@tiptap/extension-superscript@3.32.0",
+		"@tiptap/extension-underline": "https://esm.sh/@tiptap/extension-underline@3.32.0",
+		"@tiptap/extension-link": "https://esm.sh/@tiptap/extension-link@3.32.0",
+		"@tiptap/extension-image": "https://esm.sh/@tiptap/extension-image@3.32.0",
+		"@tiptap/extension-table": "https://esm.sh/@tiptap/extension-table@3.32.0",
+		"@tiptap/extension-table-row": "https://esm.sh/@tiptap/extension-table-row@3.32.0",
+		"@tiptap/extension-table-cell": "https://esm.sh/@tiptap/extension-table-cell@3.32.0",
+		"@tiptap/extension-table-header": "https://esm.sh/@tiptap/extension-table-header@3.32.0",
+		"@tiptap/extension-task-list": "https://esm.sh/@tiptap/extension-task-list@3.32.0",
+		"@tiptap/extension-task-item": "https://esm.sh/@tiptap/extension-task-item@3.32.0",
+		"@tiptap/extension-bullet-list": "https://esm.sh/@tiptap/extension-bullet-list@3.32.0",
+		"@tiptap/extension-list-item": "https://esm.sh/@tiptap/extension-list-item@3.32.0",
+		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@3.32.0",
+		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@3.32.0",
+		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@3.32.0",
 		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@414f9bbd/tiptap/carve-kit.js?external=node-diff3,@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list",
 		"node-diff3": "https://cdn.jsdelivr.net/npm/node-diff3@3.2.1/dist/diff3.mjs"
 	}
@@ -306,15 +304,13 @@ try {
 
 	const editor = new Editor({
 		element: document.getElementById('tiptap-editor'),
-		extensions: [CarveKit],
+		extensions: [CarveKit.configure({ starterKit: { trailingNode: false } })],
 		content: { type: 'doc', content: [] },
 		editable: true,
 	});
 
-	// Tiptap does not throw on a document its schema cannot hold - it warns to
-	// the console and falls back to an empty document, which is ONE empty
-	// paragraph, not zero nodes. So neither "no exception" nor "childCount > 0"
-	// proves anything; compare the node count against what was handed in.
+	// Tiptap 3 can reject invalid JSON when requested. Check the mounted node
+	// count as well, since a normalized document may contain fewer blocks.
 	window.carveMountProseMirror = function (json) {
 		let parsed;
 		try {
@@ -327,14 +323,21 @@ try {
 		}
 
 		const expected = (parsed.content || []).length;
-		editor.commands.setContent(parsed, false);
+		try {
+			editor.commands.setContent(parsed, { emitUpdate: false, errorOnInvalidContent: true });
+		} catch (e) {
+			const error = document.createElement('span');
+			error.className = 'text-danger';
+			error.textContent = 'The editor rejected the server document: ' + (e && e.message ? e.message : e);
+			status.replaceChildren(error);
+			return;
+		}
 		const mounted = editor.state.doc.content.childCount;
 
 		if (expected > 0 && mounted < expected) {
 			status.innerHTML = '<span class="text-danger"><i class="bi bi-x-circle"></i> '
-				+ 'The editor rejected the document (' + expected + ' top-level nodes in, ' + mounted + ' mounted). '
-				+ 'ProseMirror discards the whole document over one undeclared node or mark - see the console warning '
-				+ 'for which name is missing from the browser schema.</span>';
+				+ 'The editor mounted only ' + mounted + ' of ' + expected + ' top-level nodes. '
+				+ 'Check whether the browser schema supports every node in the server document.</span>';
 
 			return;
 		}
