@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Sandbox\Test\TestCase\Controller;
 
+use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -1156,10 +1157,107 @@ class CarveControllerTest extends TestCase {
 	 * @return void
 	 */
 	public function testWysiwyg(): void {
+		Configure::write('plugins.Sandbox', dirname(__DIR__, 3) . DIRECTORY_SEPARATOR);
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwyg']);
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+		$this->assertResponseContains('Export PDF');
+		$this->assertResponseContains('serializeToCarveWithReport');
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfRejectsEmptySource(): void {
+		$this->postEditorPdf(['carve' => '']);
+
+		$this->assertResponseCode(400);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfRejectsFormPost(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'exportEditorPdf'], ['carve' => '# Export']);
+
+		$this->assertResponseCode(403);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfIsDisabledOutsideLocalSandbox(): void {
+		$previous = Configure::read('debug');
+		Configure::write('debug', false);
+		try {
+			$this->postEditorPdf(['carve' => '# Export']);
+			$this->assertResponseCode(403);
+		} finally {
+			Configure::write('debug', $previous);
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfRequiresConfiguredBinary(): void {
+		$previous = getenv('CARVE_PDF_BIN');
+		putenv('CARVE_PDF_BIN=/missing/crv2pdf.sh');
+		try {
+			$this->postEditorPdf(['carve' => '# Export']);
+			$this->assertResponseCode(503);
+			$this->assertResponseContains('CARVE_PDF_BIN');
+		} finally {
+			$previous === false ? putenv('CARVE_PDF_BIN') : putenv('CARVE_PDF_BIN=' . $previous);
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfLimitsConcurrentRuns(): void {
+		$previous = getenv('CARVE_PDF_BIN');
+		putenv('CARVE_PDF_BIN=' . PHP_BINARY);
+		$lock = fopen(CACHE . 'carve_pdf.lock', 'c');
+		$this->assertIsResource($lock);
+		flock($lock, LOCK_EX);
+		try {
+			$this->postEditorPdf(['carve' => '# Export']);
+			$this->assertResponseCode(429);
+			$this->assertContentType('text/plain');
+		} finally {
+			flock($lock, LOCK_UN);
+			fclose($lock);
+			$previous === false ? putenv('CARVE_PDF_BIN') : putenv('CARVE_PDF_BIN=' . $previous);
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testExportEditorPdfWithInstalledCarvePdf(): void {
+		$binary = getenv('CARVE_PDF_BIN');
+		if (!$binary || !is_executable($binary)) {
+			$this->markTestSkipped('Set CARVE_PDF_BIN to run the PDF integration test.');
+		}
+
+		$this->postEditorPdf([
+			'carve' => "# Tiptap JSON export\n\nA *strong* result.",
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/pdf');
+		$this->assertStringStartsWith('%PDF-', (string)$this->_response->getBody());
+	}
+
+	/**
+	 * @param array<string, string> $data
+	 * @return void
+	 */
+	protected function postEditorPdf(array $data): void {
+		$this->configRequest(['headers' => ['X-Requested-With' => 'XMLHttpRequest']]);
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'exportEditorPdf'], $data);
 	}
 
 	/**
