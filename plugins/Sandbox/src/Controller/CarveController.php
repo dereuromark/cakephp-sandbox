@@ -6,6 +6,7 @@ use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Http\Client;
 use Cake\Http\Response;
+use Cake\Log\Log;
 use Cake\Routing\Router;
 use Closure;
 use Composer\InstalledVersions;
@@ -2218,6 +2219,88 @@ CARVE,
 	 * @return void
 	 */
 	public function wysiwyg(): void {
+		$binary = getenv('CARVE_PDF_BIN');
+		$this->set('pdfExportAvailable', Configure::read('debug') && $binary && is_file($binary) && is_executable($binary));
+	}
+
+	/**
+	 * Export Carve serialized from the editor's JSON with carve-pdf.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function exportEditorPdf(): Response {
+		$this->request->allowMethod(['post']);
+		if (!Configure::read('debug')) {
+			return $this->response->withStatus(403)->withType('text')->withStringBody('PDF export is available in the local sandbox only.');
+		}
+		if (!$this->request->is('ajax')) {
+			return $this->response->withStatus(403)->withType('text')->withStringBody('PDF export requires a same-origin editor request.');
+		}
+		$source = $this->request->getData('carve');
+		if (!is_string($source) || trim($source) === '' || strlen($source) > 1024 * 1024) {
+			return $this->response->withStatus(400)->withType('text')->withStringBody('Carve source must contain 1 to 1048576 bytes.');
+		}
+		$binary = getenv('CARVE_PDF_BIN');
+		if (!$binary || !is_file($binary) || !is_executable($binary)) {
+			return $this->response->withStatus(503)->withType('text')->withStringBody('PDF export is unavailable. Set CARVE_PDF_BIN to an executable crv2pdf.sh.');
+		}
+		$lock = @fopen(CACHE . 'carve_pdf.lock', 'c');
+		if (!$lock || !flock($lock, LOCK_EX | LOCK_NB)) {
+			if ($lock) {
+				fclose($lock);
+			}
+
+			return $this->response->withStatus(429)->withType('text')->withStringBody('A PDF export is already running. Try again shortly.');
+		}
+
+		$directory = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'sandbox-carve-pdf-' . bin2hex(random_bytes(8));
+		if (!mkdir($directory, 0700)) {
+			fclose($lock);
+
+			return $this->response->withStatus(500)->withType('text')->withStringBody('Could not prepare the PDF export.');
+		}
+		$input = $directory . DIRECTORY_SEPARATOR . 'document.crv';
+		$output = $directory . DIRECTORY_SEPARATOR . 'document.pdf';
+		$stderr = $directory . DIRECTORY_SEPARATOR . 'stderr.log';
+		$stdout = $directory . DIRECTORY_SEPARATOR . 'stdout.log';
+		try {
+			if (file_put_contents($input, $source) === false) {
+				return $this->response->withStatus(500)->withType('text')->withStringBody('Could not prepare the PDF export.');
+			}
+			$process = @proc_open(
+				['timeout', '--signal=TERM', '--kill-after=5s', '90s', $binary, $input, $output, '--pdf', '--no-includes'],
+				[0 => ['pipe', 'r'], 1 => ['file', $stdout, 'w'], 2 => ['file', $stderr, 'w']],
+				$pipes,
+			);
+			if (!is_resource($process)) {
+				return $this->response->withStatus(503)->withType('text')->withStringBody('carve-pdf could not start. Check the server log.');
+			}
+			fclose($pipes[0]);
+			$exitCode = proc_close($process);
+			if ($exitCode === 124 || $exitCode === 137) {
+				return $this->response->withStatus(504)->withType('text')->withStringBody('PDF export timed out.');
+			}
+			$pdf = is_file($output) ? file_get_contents($output) : false;
+			if ($exitCode !== 0 || !is_string($pdf) || !str_starts_with($pdf, '%PDF-')) {
+				$error = is_file($stderr) ? file_get_contents($stderr) : false;
+				Log::error('carve-pdf export failed: ' . json_encode(substr($error ?: 'No PDF output', 0, 4096)));
+
+				return $this->response->withStatus(503)->withType('text')->withStringBody('PDF export failed. Check the server log.');
+			}
+
+			return $this->response
+				->withType('pdf')
+				->withHeader('Content-Disposition', 'attachment; filename="carve-editor.pdf"')
+				->withStringBody($pdf);
+		} finally {
+			@unlink($input);
+			@unlink($output);
+			@unlink($stdout);
+			@unlink($stderr);
+			@rmdir($directory);
+			flock($lock, LOCK_UN);
+			fclose($lock);
+		}
 	}
 
 	/**

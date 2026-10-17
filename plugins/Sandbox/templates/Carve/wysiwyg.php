@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
+ * @var bool $pdfExportAvailable
  */
 
 $this->append('css');
@@ -185,6 +186,8 @@ $this->end();
 	(<a href="https://github.com/markup-carve/carve-js" target="_blank">reference TypeScript
 	implementation</a>) renders instantly in the browser. Both emit identical
 	<code>data-source-line</code> anchors, so editor/preview cursor sync works the same either way.
+	Save JSON keeps this document in your browser. Export PDF serializes the current JSON
+	through Carve in the local sandbox when <code>CARVE_PDF_BIN</code> is configured.
 </div>
 
 <div class="mb-3">
@@ -244,6 +247,9 @@ $this->end();
 			<li class="nav-item"><button class="nav-link" data-tab="json">Document JSON</button></li>
 		</ul>
 		<div class="d-flex align-items-center gap-2">
+			<button type="button" class="btn btn-sm btn-outline-secondary" id="save-json">Save JSON</button>
+			<button type="button" class="btn btn-sm btn-outline-secondary" id="load-json">Load JSON</button>
+			<button type="button" class="btn btn-sm btn-outline-primary" id="export-pdf" <?= $pdfExportAvailable ? '' : 'disabled title="PDF export requires a local sandbox with CARVE_PDF_BIN configured"' ?>>Export PDF</button>
 			<select class="form-select form-select-sm" id="renderEngine" style="width: auto;" title="Preview renderer">
 				<option value="php" selected>carve-php (server)</option>
 				<option value="js">carve-js (browser)</option>
@@ -256,6 +262,7 @@ $this->end();
 	<div class="output-content source d-none" id="output-html-source"></div>
 	<div class="output-content source d-none" id="output-json"></div>
 </div>
+<div id="editor-export-status" class="small mt-2" role="status" aria-live="polite"></div>
 
 </div>
 
@@ -299,9 +306,11 @@ import Placeholder from '@tiptap/extension-placeholder';
 // serializeToCarve turns the editor document straight into Carve markup, so
 // there is no HTML-to-Carve round-trip through the server anymore.
 import { CarveKit } from 'carve-grammars/carve-kit.js';
-import { serializeToCarve } from 'carve-grammars/serializer.js';
+import { serializeToCarveWithReport } from 'carve-grammars/serializer.js';
 
 const convertUrl = <?= json_encode($this->Url->build(['action' => 'convert'])) ?>;
+const pdfUrl = <?= json_encode($this->Url->build(['action' => 'exportEditorPdf'])) ?>;
+const savedJsonKey = 'sandbox-carve-tiptap3-document';
 
 const initialContent = `
 	<h1>Carve WYSIWYG Demo</h1>
@@ -373,7 +382,7 @@ async function convert() {
 	const seq = ++requestSeq;
 	let carve;
 	try {
-		carve = serializeToCarve(editor.getJSON());
+		carve = serializeToCarveWithReport(editor.getJSON()).source;
 	} catch (e) {
 		lastResult = { carve: '', html: '<div class="alert alert-danger">Carve export failed: ' + escapeHtml(e.message) + '</div>' };
 		renderOutput();
@@ -822,6 +831,66 @@ document.querySelectorAll('.output-tabs button').forEach(btn => {
 document.getElementById('renderEngine').addEventListener('change', (e) => {
 	renderEngine = e.target.value;
 	convert();
+});
+
+const exportStatus = document.getElementById('editor-export-status');
+function setExportStatus(message, error = false) {
+	exportStatus.textContent = message;
+	exportStatus.classList.toggle('text-danger', error);
+}
+
+document.getElementById('save-json').addEventListener('click', () => {
+	try {
+		localStorage.setItem(savedJsonKey, JSON.stringify(editor.getJSON()));
+		setExportStatus('Tiptap 3 JSON saved in this browser.');
+	} catch (error) {
+		setExportStatus('Could not save JSON: ' + error.message, true);
+	}
+});
+
+document.getElementById('load-json').addEventListener('click', () => {
+	try {
+		const saved = localStorage.getItem(savedJsonKey);
+		if (!saved) throw new Error('No saved document in this browser.');
+		const documentJson = JSON.parse(saved);
+		editor.schema.nodeFromJSON(documentJson);
+		editor.commands.setContent(documentJson);
+		setExportStatus('Saved Tiptap 3 JSON loaded.');
+	} catch (error) {
+		setExportStatus('Could not load JSON: ' + error.message, true);
+	}
+});
+
+document.getElementById('export-pdf').addEventListener('click', async (event) => {
+	const button = event.currentTarget;
+	button.disabled = true;
+	try {
+		const { source, dropped, degraded } = serializeToCarveWithReport(editor.getJSON());
+		const losses = [...Object.keys(dropped), ...Object.keys(degraded)];
+		if (losses.length) {
+			setExportStatus('PDF export stopped: Carve serialization reported ' + losses.join(', ') + '.', true);
+			return;
+		}
+		const response = await fetch(pdfUrl, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'X-Requested-With': 'XMLHttpRequest' },
+			body: new URLSearchParams({ carve: source }),
+		});
+		if (!response.ok) throw new Error(await response.text());
+		const blob = await response.blob();
+		if (blob.type !== 'application/pdf') throw new Error('The server did not return a PDF.');
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = 'carve-editor.pdf';
+		link.click();
+		setTimeout(() => URL.revokeObjectURL(url), 60000);
+		setExportStatus('PDF exported from the current Tiptap 3 JSON.');
+	} catch (error) {
+		setExportStatus('PDF export failed: ' + error.message, true);
+	} finally {
+		button.disabled = false;
+	}
 });
 
 document.getElementById('copy-btn').addEventListener('click', () => {
