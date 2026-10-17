@@ -48,6 +48,11 @@ Start the container(s):
 ddev start
 ```
 
+The DDEV web image includes carve-pdf, Chromium, and its Python WebSocket
+dependency. After `composer install`, the local Carve WYSIWYG page can export
+PDFs without extra configuration. Open `/sandbox/carve/wysiwyg` on the DDEV site
+and use **Export PDF**.
+
 Once up and running, you can log into the container:
 ```
 ddev ssh

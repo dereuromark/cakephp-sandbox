@@ -1,0 +1,16 @@
+ARG CARVE_PDF_VERSION=0.1.1
+ARG CARVE_PDF_SHA256=8ba029c10a95cab2c4e4084a4884b17e6bc40fc6f987828eb480f3c4f42dd946
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends chromium python3-websocket \
+    && rm -rf /var/lib/apt/lists/* \
+    && python3 -c 'import websocket' \
+    && chromium --version
+
+RUN curl -fsSL -o /tmp/carve-pdf.tar.gz \
+        "https://github.com/markup-carve/carve-pdf/archive/refs/tags/${CARVE_PDF_VERSION}.tar.gz" \
+    && echo "${CARVE_PDF_SHA256}  /tmp/carve-pdf.tar.gz" | sha256sum -c - \
+    && mkdir -p /opt/carve-pdf \
+    && tar -xzf /tmp/carve-pdf.tar.gz -C /opt/carve-pdf --strip-components=1 \
+    && rm /tmp/carve-pdf.tar.gz \
+    && /opt/carve-pdf/crv2pdf.sh --version
