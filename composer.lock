@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b19d869b19aa8bd64339a674edbd9c7c",
+    "content-hash": "2f2ee5b78a9ec7042f861980b054852b",
     "packages": [
         {
             "name": "brick/math",
@@ -6000,16 +6000,16 @@
         },
         {
             "name": "markup-carve/carve-php",
-            "version": "dev-main",
+            "version": "0.1.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "36bba93c767db460939d9d0f5a5a33940e6546fa"
+                "reference": "04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/36bba93c767db460939d9d0f5a5a33940e6546fa",
-                "reference": "36bba93c767db460939d9d0f5a5a33940e6546fa",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f",
+                "reference": "04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f",
                 "shasum": ""
             },
             "require": {
@@ -6026,7 +6026,6 @@
                 "ext-dom": "Required for HTML import and HTML heading-ID conversion.",
                 "ext-intl": "Recommended for heading-ID transliteration: enables ICU romanization of non-Latin scripts (e.g. CJK, Arabic). Without it, a baked map covers Latin/Cyrillic/punctuation identically and other scripts fall back to the generated `section` id."
             },
-            "default-branch": true,
             "bin": [
                 "bin/carve"
             ],
@@ -6060,7 +6059,7 @@
             ],
             "support": {
                 "issues": "https://github.com/markup-carve/carve-php/issues",
-                "source": "https://github.com/markup-carve/carve-php/tree/main"
+                "source": "https://github.com/markup-carve/carve-php/tree/0.1.13"
             },
             "funding": [
                 {
@@ -6068,7 +6067,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-14T18:59:31+00:00"
+            "time": "2026-10-18T01:19:30+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",
@@ -14342,12 +14341,6 @@
             "alias_normalized": "3.12.9.0"
         },
         {
-            "package": "markup-carve/carve-php",
-            "version": "dev-main",
-            "alias": "0.1.999",
-            "alias_normalized": "0.1.999.0"
-        },
-        {
             "package": "php-collective/file-storage",
             "version": "9999999-dev",
             "alias": "1.1.0",
@@ -14400,7 +14393,6 @@
         "dereuromark/cakephp-translate": 20,
         "dereuromark/cakephp-workflow": 20,
         "fig-r/psr2r-sniffer": 20,
-        "markup-carve/carve-php": 20,
         "markup-carve/carve-php-chat": 20,
         "markup-carve/carve-php-media-embed": 20,
         "php-collective/djot": 20,
