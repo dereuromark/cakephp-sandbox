@@ -17,6 +17,7 @@ $this->append('script');
 echo $this->Html->css('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js', ['timestamp' => 'force']);
+echo $this->Html->script('Sandbox.hljs-carve-delimited.js', ['timestamp' => 'force']);
 // The editor reads list structure through the engine; it degrades to plain editing until it has loaded.
 echo $this->Html->script('carve-js.min.js', ['defer' => true, 'timestamp' => 'force']);
 // Built by `composer assets`, so the URL carries the file time to outlive browser caches across deploys.
