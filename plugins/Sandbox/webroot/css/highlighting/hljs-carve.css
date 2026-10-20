@@ -17,11 +17,11 @@
 	background-color: #fff3cd;
 }
 
-.cm-editor .hljs-carve-underline {
+.cm-editor .cm-carve-underline-content {
 	text-decoration: underline;
 }
 
-.cm-editor .hljs-carve-strike {
+.cm-editor .cm-carve-strike-content {
 	text-decoration: line-through;
 }
 
