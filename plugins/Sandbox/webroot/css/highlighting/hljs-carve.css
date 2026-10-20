@@ -11,3 +11,28 @@
 .hljs-punctuation {
 	color: #959da5;
 }
+
+.cm-editor .hljs-carve-highlight {
+	color: #664d03;
+	background-color: #fff3cd;
+}
+
+.cm-editor .cm-carve-underline-content {
+	text-decoration: underline;
+}
+
+.cm-editor .cm-carve-strike-content {
+	text-decoration: line-through;
+}
+
+.cm-editor .cm-carve-diff-add {
+	color: #22863a;
+	background-color: #f0fff4;
+	font-weight: 700;
+}
+
+.cm-editor .cm-carve-diff-remove {
+	color: #b31d28;
+	background-color: #ffeef0;
+	font-weight: 700;
+}
