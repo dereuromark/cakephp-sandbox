@@ -23,8 +23,8 @@ import { bareMarkerItem, listItems } from './carve-lsp/list-items'
 
 type Hljs = { getLanguage(name: string): unknown; highlight(code: string, o: { language: string; ignoreIllegals?: boolean }): { value: string } }
 
-// --- Highlighting: highlight.js with the Carve grammar the page already loads, so the
-// editor and the rendered code blocks share token classes and the github.css colors.
+// --- Highlighting: highlight.js with the Carve grammar the page already loads.
+// The editor gives Carve's overloaded inline token classes their own styling.
 const setTokens = StateEffect.define<DecorationSet>()
 const tokenField = StateField.define<DecorationSet>({
   create: () => Decoration.none,
@@ -45,6 +45,75 @@ function markFor(cls: string): Decoration {
   return m
 }
 
+// highlight.js shares palette classes across distinct Carve inline constructs.
+function editorTokenClass(cls: string, text: string, from: number, to: number, substitutionInsertion: boolean, substitution: boolean): string {
+  const first = text[from]
+  const braced = text[from] === '{' ? text[from + 1] : ''
+  const last = text[to - 1]
+  const bracedLast = text.slice(to - 2, to)
+  if (cls === 'hljs-addition' && !substitutionInsertion
+    && ((first === '=' && last === '=') || (braced === '=' && bracedLast === '=}'))) {
+    return 'hljs-carve-highlight'
+  }
+  if (cls === 'hljs-emphasis' && ((first === '_' && last === '_') || (braced === '_' && bracedLast === '_}'))) {
+    return 'hljs-carve-underline'
+  }
+  if (cls === 'hljs-deletion' && !substitution && ((first === '~' && last === '~')
+    || (braced === '~' && bracedLast === '~}'))) {
+    return 'hljs-carve-strike'
+  }
+  return cls
+}
+
+function diffMarkerRanges(text: string): Array<{ from: number; to: number; cls: string }> {
+  if (!/diff/i.test(text)) return []
+  const lines = text.split('\n')
+  const lineStarts: number[] = []
+  let offset = 0
+  for (const line of lines) {
+    lineStarts.push(offset)
+    offset += line.length + 1
+  }
+  const ranges: Array<{ from: number; to: number; cls: string }> = []
+  const visit = (value: unknown): void => {
+    if (value === null || typeof value !== 'object') return
+    if (Array.isArray(value)) {
+      value.forEach(visit)
+      return
+    }
+    const node = value as {
+      type?: string
+      lang?: string
+      attrs?: { classes?: string[] }
+      content?: string
+      pos?: { startLine?: number }
+    }
+    if (node.type === 'code_block' && (node.lang?.toLowerCase() === 'diff' || node.attrs?.classes?.includes('diff'))
+      && node.pos?.startLine && node.content) {
+      node.content.split('\n').forEach((contentLine, index) => {
+        const marker = contentLine[0]
+        if (marker !== '+' && marker !== '-') return
+        const sourceLineIndex = node.pos!.startLine! + index
+        const sourceLine = lines[sourceLineIndex]
+        const column = sourceLine?.lastIndexOf(contentLine) ?? -1
+        if (column < 0) return
+        const from = lineStarts[sourceLineIndex] + column
+        ranges.push({ from, to: from + 1, cls: marker === '+' ? 'cm-carve-diff-add' : 'cm-carve-diff-remove' })
+      })
+      return
+    }
+    for (const [key, child] of Object.entries(node)) {
+      if (key !== 'pos' && key !== 'attrs') visit(child)
+    }
+  }
+  try {
+    visit(parse(text, { positions: true }))
+  } catch {
+    return []
+  }
+  return ranges
+}
+
 function tokenize(text: string): DecorationSet | null {
   const hljs = (globalThis as { hljs?: Hljs }).hljs
   if (!hljs || !hljs.getLanguage('carve')) return null
@@ -54,17 +123,26 @@ function tokenize(text: string): DecorationSet | null {
   // class (a keyword in an embedded fence language) keeps its own color.
   const ranges: Array<{ from: number; to: number; cls: string }> = []
   let pos = 0
-  const walk = (node: Node): void => {
+  const walk = (node: Node, inSubLanguage = false): void => {
     if (node.nodeType === Node.TEXT_NODE) {
       pos += (node as Text).data.length
       return
     }
     const own = node instanceof Element ? node.className : ''
+    const embedded = inSubLanguage || own.split(/\s+/).some((cls) => cls.startsWith('language-'))
     const from = pos
-    node.childNodes.forEach(walk)
-    if (own && pos > from) ranges.push({ from, to: pos, cls: own })
+    node.childNodes.forEach((child) => walk(child, embedded))
+    if (own && pos > from) {
+      const previous = node instanceof Element ? node.previousElementSibling : null
+      const substitutionInsertion = previous?.classList.contains('hljs-punctuation') && previous.textContent === '~>'
+      const substitution = node instanceof Element && Array.from(node.children).some((child) =>
+        child.classList.contains('hljs-punctuation') && child.textContent === '~>')
+      const cls = embedded ? own : editorTokenClass(own, text, from, pos, !!substitutionInsertion, substitution)
+      ranges.push({ from, to: pos, cls })
+    }
   }
-  tpl.content.childNodes.forEach(walk)
+  tpl.content.childNodes.forEach((child) => walk(child))
+  ranges.push(...diffMarkerRanges(text))
   ranges.sort((a, b) => a.from - b.from || b.to - a.to)
   const builder = new RangeSetBuilder<Decoration>()
   for (const r of ranges) builder.add(r.from, r.to, markFor(r.cls))
@@ -298,6 +376,9 @@ export function create(textarea: HTMLTextAreaElement): EditorFacade {
   })
   syncGutterWidth(view)
   scheduleHighlight(0)
+  if (!(globalThis as { CarveJS?: unknown }).CarveJS) {
+    window.addEventListener('load', () => scheduleHighlight(0), { once: true })
+  }
 
   const select = (anchor: number, head: number): void => {
     const len = view.state.doc.length
