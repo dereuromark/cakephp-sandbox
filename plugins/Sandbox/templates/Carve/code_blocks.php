@@ -11,6 +11,7 @@ echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11
 echo $this->Html->script('Sandbox.hljs-carve.js');
 $this->end();
 ?>
+<?= $this->element('carve/package_styles') ?>
 
 <div class="row">
 <nav class="actions col-md-2 col-sm-3 col-12">
@@ -53,7 +54,7 @@ $this->end();
 			</div>
 			<div class="col-lg-6">
 				<h6 class="text-muted">Rendered</h6>
-				<div class="cb-output"><?= $example['html'] ?></div>
+				<div class="cb-output carve"><?= $example['html'] ?></div>
 			</div>
 		</div>
 	</div>
@@ -66,6 +67,8 @@ $this->end();
 <style>
 .cb-output pre {
 	margin: 0;
+	padding: 0;
+	font-size: inherit;
 	background: #f6f8fa;
 	border: 1px solid #d0d7de;
 	border-radius: 6px;

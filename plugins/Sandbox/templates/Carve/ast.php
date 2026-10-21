@@ -47,6 +47,7 @@ $defaultTree = <<<'JSON'
 }
 JSON;
 ?>
+<?= $this->element('carve/output_styles') ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
@@ -122,7 +123,7 @@ JSON;
 	</div>
 	<div class="col-md-6">
 		<label class="form-label"><strong>Rendered HTML</strong></label>
-		<div id="decode-html" class="border rounded p-3 bg-white carve-rendered" style="min-height: 120px;"></div>
+		<div id="decode-html" class="border rounded p-3 bg-white carve carve-rendered" style="min-height: 120px;"></div>
 		<label class="form-label mt-3" for="decode-carve"><strong>Serialized back to Carve</strong></label>
 		<textarea id="decode-carve" class="form-control font-monospace" rows="8" readonly style="font-size: 0.82em;"></textarea>
 	</div>
@@ -145,8 +146,6 @@ $json = $codec->encodeJson($document, JSON_PRETTY_PRINT);
 $again = $codec->decodeJson($json);
 
 $converter->render($again); // identical to render($document)</code></pre>
-
-<?= $this->element('carve/output_styles') ?>
 
 </div>
 

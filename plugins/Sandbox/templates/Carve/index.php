@@ -443,7 +443,7 @@ body.carve-fullscreen-open {
 	gap: 0.25rem;
 }
 </style>
-		<div id="output-rendered" class="carve-rendered border rounded p-3 bg-white" style="min-height: 100%; max-height: 480px; overflow-y: auto;"></div>
+		<div id="output-rendered" class="carve carve-rendered border rounded p-3 bg-white" style="min-height: 100%; max-height: 480px; overflow-y: auto;"></div>
 		<pre id="output-source" class="border rounded p-3 bg-light d-none" style="min-height: 100%; max-height: 480px; overflow-y: auto; margin: 0;"><code></code></pre>
 	</div>
 </div>

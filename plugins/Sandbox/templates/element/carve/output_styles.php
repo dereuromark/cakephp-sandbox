@@ -11,125 +11,16 @@
  * @var \App\View\AppView $this
  */
 ?>
+<?= $this->element('carve/package_styles') ?>
 <style>
-/*
- * Task lists. Carve emits a plain <ul><li><input type="checkbox"> with no
- * task-list class (unlike Djot), so target the checkbox structurally: drop the
- * bullet only on items that contain a checkbox, and pull the box into the
- * gutter. Regular items in the same list keep their marker.
- */
-.carve-rendered li:has(> input[type="checkbox"]) {
-	list-style: none;
-	position: relative;
-	padding-left: 0.25em;
-}
-.carve-rendered li > input[type="checkbox"] {
-	position: absolute;
-	left: -1.3em;
-	top: 0.3em;
-	margin: 0;
-}
-/*
- * Admonitions. Carve renders the eight canonical types
- * (note, tip, warning, danger, info, success, example, quote) as a semantic
- * <aside class="admonition {type}"> and any other custom type as a generic
- * <div class="{type}">. Selectors are class-only so both elements match;
- * caution/important are covered as Tier-2 <div> aliases.
- */
-.carve-rendered .warning,
-.carve-rendered .note,
-.carve-rendered .info,
-.carve-rendered .tip,
-.carve-rendered .caution,
-.carve-rendered .important,
-.carve-rendered .danger,
-.carve-rendered .success,
-.carve-rendered .example,
-.carve-rendered .quote {
-	padding: 1rem;
-	margin: 1rem 0;
-	border-radius: 0.25rem;
-	border-left: 4px solid;
-}
-.carve-rendered .warning {
-	background-color: #fff3cd;
-	border-color: #ffc107;
-}
-.carve-rendered .note,
-.carve-rendered .info {
-	background-color: #cff4fc;
-	border-color: #0dcaf0;
-}
-.carve-rendered .tip,
-.carve-rendered .success {
-	background-color: #d1e7dd;
-	border-color: #198754;
-}
-.carve-rendered .caution,
-.carve-rendered .important,
-.carve-rendered .danger {
-	background-color: #f8d7da;
-	border-color: #dc3545;
-}
-.carve-rendered .example {
-	background-color: #e2e3e5;
-	border-color: #6c757d;
-}
-.carve-rendered .quote {
-	background-color: #e9ecef;
-	border-color: #adb5bd;
-}
-.carve-rendered .admonition-title {
-	font-weight: 600;
-	margin-bottom: 0.5rem;
-}
-.carve-rendered .warning > *:first-child,
-.carve-rendered .note > *:first-child,
-.carve-rendered .info > *:first-child,
-.carve-rendered .tip > *:first-child,
-.carve-rendered .caution > *:first-child,
-.carve-rendered .important > *:first-child,
-.carve-rendered .danger > *:first-child,
-.carve-rendered .success > *:first-child,
-.carve-rendered .example > *:first-child,
-.carve-rendered .quote > *:first-child {
-	margin-top: 0;
-}
-.carve-rendered .warning > *:last-child,
-.carve-rendered .note > *:last-child,
-.carve-rendered .info > *:last-child,
-.carve-rendered .tip > *:last-child,
-.carve-rendered .caution > *:last-child,
-.carve-rendered .important > *:last-child,
-.carve-rendered .danger > *:last-child,
-.carve-rendered .success > *:last-child,
-.carve-rendered .example > *:last-child,
-.carve-rendered .quote > *:last-child {
-	margin-bottom: 0;
-}
+/* Local preview affordances. Construct styling comes from carve-css. */
+
 .carve-rendered .highlight {
 	background-color: #fff3cd;
 	padding: 0.1em 0.3em;
 	border-radius: 0.2em;
 }
-.carve-rendered .term {
-	font-style: italic;
-	border-bottom: 1px dotted #666;
-}
-.carve-rendered ins {
-	color: #0f5132;
-	background-color: #d1e7dd;
-	text-decoration: none;
-	padding: 0.05em 0.25em;
-	border-radius: 0.2em;
-}
-.carve-rendered del {
-	color: #842029;
-	background-color: #f8d7da;
-	text-decoration: line-through;
-	padding: 0.05em 0.25em;
-	border-radius: 0.2em;
-}
+
 /* Language-aware {.diff} fences. The marker has its own column so copied code
    keeps the authored patch spelling while the code remains aligned. */
 .carve-rendered pre.has-diff code {
@@ -172,80 +63,54 @@
 	padding-left: 1em;
 	border-left: 3px solid #dee2e6;
 }
-.carve-rendered dl {
-	width: auto;
-	line-height: 1.5em;
-}
-.carve-rendered dt {
-	font-weight: bold;
-	width: auto;
-	margin-top: 0.5em;
-}
-.carve-rendered dd {
-	margin-left: 1.5em;
-	margin-top: 0;
-}
-.carve-rendered figure {
-	margin: 1em 0;
-	padding: 0;
-}
-.carve-rendered figure blockquote {
-	margin-bottom: 0.5em;
-}
-.carve-rendered figcaption {
-	font-style: italic;
-	color: #666;
-	font-size: 0.9em;
-	padding-left: 1em;
-}
+
 .carve-rendered figcaption::before {
 	content: "— ";
-}
-.carve-rendered table {
-	width: 100%;
-	margin-bottom: 1rem;
-	color: #212529;
-	border-collapse: collapse;
-}
-.carve-rendered table th,
-.carve-rendered table td {
-	padding: 0.5rem;
-	border: 1px solid #dee2e6;
-	vertical-align: top;
-	text-align: left;
-}
-.carve-rendered table thead th {
-	border-bottom: 2px solid #dee2e6;
-	background-color: #f8f9fa;
-}
-/* Row partitions: an explicit {footer-rows=N} tfoot, and the repeated tbody a
-   list-table's local {header-row} cells open. Both need a visible seam. */
-.carve-rendered table tfoot th,
-.carve-rendered table tfoot td {
-	border-top: 2px solid #dee2e6;
-	background-color: #f8f9fa;
-	font-weight: 600;
-}
-.carve-rendered table tbody + tbody {
-	border-top: 2px solid #dee2e6;
-}
-/* list-table cells can hold block content; drop stray outer margins */
-.carve-rendered table td > :first-child,
-.carve-rendered table th > :first-child {
-	margin-top: 0;
-}
-.carve-rendered table td > :last-child,
-.carve-rendered table th > :last-child {
-	margin-bottom: 0;
 }
 .carve-rendered table caption {
 	caption-side: bottom;
 	font-style: italic;
 	color: #666;
 	font-size: 0.9em;
-	padding-top: 0.5em;
 	text-align: left;
 }
+.carve-rendered div:is(.caution, .important):not(.admonition) {
+	background: #f8d7da;
+	border-left: 4px solid #dc3545;
+	padding: 0.75em 1em;
+	margin: 1em 0;
+}
+.carve-rendered .admonition:is(.caution, .important) {
+	--carve-adm: #dc3545;
+	--carve-adm-wash: #f8d7da;
+}
+.carve-rendered .admonition.example { --carve-adm: #6f42c1; --carve-adm-wash: #f3eaf9; }
+.carve-rendered .admonition.quote { --carve-adm: #adb5bd; --carve-adm-wash: #e9ecef; }
+.carve-rendered .swatch-chip-round,
+.carve-rendered .swatch-chip-ring { border-radius: 50%; }
+.carve-rendered .swatch-chip-ring { background: transparent; border-width: 2px; }
+.carve-rendered .swatch-chip-only .swatch-chip { margin-right: 0; cursor: help; }
+.carve-rendered .swatch-tint { padding: 0 0.25em; border-radius: 4px; }
+.carve-rendered .swatch-label {
+	display: inline-block;
+	padding: 0.05em 0.45em;
+	border-radius: 3px;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+	font-size: 0.9em;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.carve-rendered kbd {
+	background: #f8f9fa;
+	border: 1px solid #dee2e6;
+	border-radius: 3px;
+	padding: 0.1em 0.35em;
+	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+	color: #212529;
+}
+.carve-rendered dfn { font-style: italic; font-weight: 500; color: #0d6efd; }
+.carve-rendered abbr[title] { text-decoration: underline dotted; cursor: help; }
+:is(.carve-rendered, .html-output) img.carve-svg { max-width: 100%; height: auto; }
+
 /* SpoilerExtension: blurred until CLICKED (JS toggles .revealed); details is native */
 .carve-rendered span.spoiler,
 .carve-rendered div.spoiler {
@@ -262,11 +127,13 @@
 	display: block;
 	filter: blur(0.4em);
 	padding: 0.6rem 0.9rem;
+	border: 0;
 	border-left: 3px solid #e0af68;
 }
 .carve-rendered span.spoiler {
 	padding: 0 0.15em;
 }
+.carve-rendered span.spoiler:not(.revealed, .masked):hover { filter: blur(0.3em); }
 .carve-rendered span.spoiler.revealed,
 .carve-rendered div.spoiler.revealed {
 	filter: none;
@@ -321,138 +188,7 @@
 .carve-rendered details.spoiler[open] > summary {
 	margin-bottom: 0.5rem;
 }
-/* ColorSwatchExtension: inline color chip + shape / tint options */
-.carve-rendered .swatch-chip {
-	display: inline-block;
-	width: 0.9em;
-	height: 0.9em;
-	margin-right: 0.15em;
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	border-radius: 3px;
-	vertical-align: -0.1em;
-}
-.carve-rendered .swatch-chip-round {
-	border-radius: 50%;
-}
-.carve-rendered .swatch-chip-ring {
-	background: transparent;
-	border-width: 2px;
-	border-radius: 50%;
-}
-.carve-rendered .swatch-chip-only .swatch-chip {
-	margin-right: 0;
-	cursor: help;
-}
-.carve-rendered .swatch-tint {
-	padding: 0 0.25em;
-	border-radius: 4px;
-}
-/* ColorSwatch {contrast}: value sits inside a filled box, text auto black/white */
-.carve-rendered .swatch-label {
-	display: inline-block;
-	padding: 0.05em 0.45em;
-	border-radius: 3px;
-	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-	font-size: 0.9em;
-	border: 1px solid rgba(0, 0, 0, 0.15);
-}
-/* CodeCalloutsExtension: <n> markers become numbered bubbles + an explanation list */
-.carve-rendered b.callout {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	min-width: 1.4em;
-	height: 1.4em;
-	padding: 0 0.35em;
-	margin-left: 0.3em;
-	border-radius: 999px;
-	background-color: #0d6efd;
-	color: #fff;
-	font-size: 0.8em;
-	font-weight: 700;
-	line-height: 1;
-	vertical-align: middle;
-}
-.carve-rendered ol.callouts {
-	list-style: none;
-	padding-left: 0;
-	margin: 0.6rem 0 1rem;
-}
-.carve-rendered ol.callouts li {
-	position: relative;
-	padding-left: 2em;
-	margin: 0.35em 0;
-}
-.carve-rendered ol.callouts li::before {
-	content: attr(value);
-	position: absolute;
-	left: 0;
-	top: 0.05em;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	width: 1.4em;
-	height: 1.4em;
-	border-radius: 999px;
-	background-color: #0d6efd;
-	color: #fff;
-	font-size: 0.8em;
-	font-weight: 700;
-}
-/* GlossaryExtension: term use */
-.carve-rendered .term {
-	border-bottom: 1px dotted #6c757d;
-	cursor: help;
-}
-/* Semantic spans: kbd/abbr/time are core; samp/var/cite/dfn via SemanticSpanExtension */
-.carve-rendered kbd {
-	background-color: #f8f9fa;
-	border: 1px solid #dee2e6;
-	border-radius: 3px;
-	padding: 0.1em 0.4em;
-	font-family: SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-	font-size: 0.9em;
-	box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-	color: #212529;
-}
-.carve-rendered dfn {
-	font-style: italic;
-	font-weight: 500;
-	color: #0d6efd;
-}
-.carve-rendered abbr[title] {
-	text-decoration: underline dotted;
-	cursor: help;
-}
-/* WikilinksExtension */
-.carve-rendered .wikilink {
-	color: #0969da;
-	text-decoration: none;
-	border-bottom: 1px dashed #0969da;
-}
-.carve-rendered .wikilink:hover {
-	border-bottom-style: solid;
-}
-/* InlineFootnotesExtension */
-.carve-rendered a[role="doc-noteref"] {
-	text-decoration: none;
-	font-weight: 600;
-}
-.carve-rendered section[role="doc-endnotes"] {
-	margin-top: 1.5rem;
-	padding-top: 0.5rem;
-	font-size: 0.9em;
-	color: #495057;
-}
-.carve-rendered section[role="doc-endnotes"] hr {
-	border: none;
-	border-top: 1px solid #dee2e6;
-	margin: 0 0 0.75rem;
-}
-.carve-rendered a[role="doc-backlink"] {
-	text-decoration: none;
-	margin-left: 0.25em;
-}
+
 /* External links (ExternalLinksExtension) get an outbound marker */
 .carve-rendered a[target="_blank"]::after {
 	content: " \f1c5";
@@ -501,25 +237,6 @@
 }
 :is(.carve-rendered, .html-output) .code-pill-copy:hover {
 	border-color: #0d6efd;
-}
-
-/*
- * HeadingNumbers. The number is a <span class="section-number"> ahead of the
- * heading text; keep it slightly muted so the title still reads first.
- */
-:is(.carve-rendered, .html-output) .section-number {
-	color: #6c757d;
-	font-variant-numeric: tabular-nums;
-	margin-right: 0.4em;
-}
-
-/*
- * ImgFence. The sanitized SVG rides in as a data: image, so it is a plain
- * replaced element - cap it so a viewBox-less drawing cannot blow up the pane.
- */
-:is(.carve-rendered, .html-output) img.carve-svg {
-	max-width: 100%;
-	height: auto;
 }
 
 </style>

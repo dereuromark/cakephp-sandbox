@@ -34,6 +34,7 @@ A GFM separator row is an accepted alias. Only the HTML carrier keeps it:
 CARVE;
 $markdownFormat = $this->request->getQuery('format') === 'markdown';
 ?>
+<?= $this->element('carve/output_styles') ?>
 
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
@@ -106,11 +107,9 @@ $markdownFormat = $this->request->getQuery('format') === 'markdown';
 </div>
 
 <h3 class="mt-2">Rendered HTML Preview <small class="text-muted">(first pass)</small></h3>
-<div id="html-preview" class="carve-rendered border rounded p-3"></div>
+<div id="html-preview" class="carve carve-rendered border rounded p-3"></div>
 
 </div>
-
-<?= $this->element('carve/output_styles') ?>
 
 <style>
 .roundtrip-carrier {
