@@ -74,11 +74,15 @@
 	font-size: 0.9em;
 	text-align: left;
 }
-.carve-rendered :is(.caution, .important) {
+.carve-rendered div:is(.caution, .important):not(.admonition) {
 	background: #f8d7da;
 	border-left: 4px solid #dc3545;
 	padding: 0.75em 1em;
 	margin: 1em 0;
+}
+.carve-rendered .admonition:is(.caution, .important) {
+	--carve-adm: #dc3545;
+	--carve-adm-wash: #f8d7da;
 }
 .carve-rendered .admonition.example { --carve-adm: #6f42c1; --carve-adm-wash: #f3eaf9; }
 .carve-rendered .admonition.quote { --carve-adm: #adb5bd; --carve-adm-wash: #e9ecef; }
