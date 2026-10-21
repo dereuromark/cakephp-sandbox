@@ -14,6 +14,7 @@
  * @var array<string, string> $targets
  */
 ?>
+<?= $this->element('carve/output_styles') ?>
 <nav class="actions col-md-2 col-sm-3 col-12">
 	<?= $this->element('navigation/carve') ?>
 </nav>
@@ -67,7 +68,7 @@
 		<?php if ($isHtml) { ?>
 			<div class="col-md-6">
 				<h5>Rendered output <small class="text-muted">(<?= h($targets[$target] ?? $target) ?>)</small></h5>
-				<div class="html-output border rounded p-3"><?= $rendered ?></div>
+				<div class="html-output carve carve-rendered border rounded p-3"><?= $rendered ?></div>
 			</div>
 			<div class="col-md-6">
 				<h5>HTML source</h5>

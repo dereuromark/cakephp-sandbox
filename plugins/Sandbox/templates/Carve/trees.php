@@ -11,8 +11,7 @@ echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'fo
 // The same stylesheet every other Carve consumer installs, rather than a copy
 // of it kept here. `recipes.css` is a separate import because it is opt-in
 // upstream: it styles the constructs the engine has no handler for.
-echo $this->Html->css('/assets/@markup-carve/carve-css/src/carve.css');
-echo $this->Html->css('/assets/@markup-carve/carve-css/src/recipes.css');
+echo $this->element('carve/package_styles');
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
 $this->end();

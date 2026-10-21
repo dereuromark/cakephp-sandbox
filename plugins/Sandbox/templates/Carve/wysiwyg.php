@@ -258,7 +258,7 @@ $this->end();
 		</div>
 	</div>
 	<div class="output-content source" id="output-carve"><span class="text-muted">Start typing above...</span></div>
-	<div class="output-content preview-render carve-rendered d-none" id="output-html"></div>
+	<div class="output-content preview-render carve carve-rendered d-none" id="output-html"></div>
 	<div class="output-content source d-none" id="output-html-source"></div>
 	<div class="output-content source d-none" id="output-json"></div>
 </div>
