@@ -11,6 +11,7 @@ use Cake\View\View;
  * @property \Markup\View\Helper\BbcodeHelper $Bbcode
  * @property \Calendar\View\Helper\CalendarHelper $Calendar
  * @property \Captcha\View\Helper\CaptchaHelper $Captcha
+ * @property \MarkupCarve\CakeCarve\View\Helper\CarveHelper $Carve
  * @property \Comments\View\Helper\CommentsHelper $Comments
  * @property \Tools\View\Helper\CommonHelper $Common
  * @property \Shim\View\Helper\ConfigureHelper $Configure
@@ -56,7 +57,6 @@ use Cake\View\View;
  * @property \Tools\View\Helper\TypographyHelper $Typography
  * @property \Tools\View\Helper\UrlHelper $Url
  * @property \Workflow\View\Helper\WorkflowHelper $Workflow
- * @property \MarkupCarve\CakeCarve\View\Helper\CarveHelper $Carve
  */
 class AppView extends View {
 
