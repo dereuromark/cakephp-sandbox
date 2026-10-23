@@ -3,13 +3,13 @@
  * @var \App\View\AppView $this
  */
 
-$this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css', ['block' => true]);
+$this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css', ['block' => true]);
 $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['block' => true, 'timestamp' => 'force']);
 
 $this->append('script');
 $bundle = WWW_ROOT . 'js' . DS . 'carve-js.min.js';
 $bundleVersion = is_file($bundle) ? (string)filemtime($bundle) : '1';
-echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
+echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
 echo $this->Html->script('Sandbox.hljs-carve-delimited.js');
 echo $this->Html->script('carve-js.min.js?v=' . $bundleVersion);
