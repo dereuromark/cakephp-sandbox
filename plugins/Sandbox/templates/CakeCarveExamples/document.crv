@@ -1,0 +1,6 @@
+---json
+{"title": "A CarveView page"}
+---
+Hello, {{name}}. This template is a `.crv` file rendered by `CarveView`.
+
+Its title comes from the frontmatter above and is placed by the layout.

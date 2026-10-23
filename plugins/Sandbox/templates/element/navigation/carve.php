@@ -38,6 +38,7 @@ $action = $this->request->getParam('action');
 </ul>
 <ul class="side-nav nav nav-pills nav-stacked flex-column">
 	<li class="heading"><?= __('Links') ?></li>
+	<li class="nav-item"><?= $this->Html->link('CakePHP Plugin examples', ['controller' => 'CakeCarveExamples', 'action' => 'index'], ['class' => 'nav-link']) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Carve-PHP', 'https://github.com/markup-carve/carve-php', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 	<li class="nav-item"><?= $this->Html->link('Carve Spec', 'https://github.com/markup-carve/carve', ['target' => '_blank', 'class' => 'nav-link']) ?></li>
 </ul>

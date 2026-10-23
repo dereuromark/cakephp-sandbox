@@ -23,6 +23,13 @@
 						</div>
 
 						<div class="plugin-item">
+							<h4 class="h6">Carve Plugin <span class="badge bg-success ms-2">NEW</span></h4>
+							<ul class="mb-3">
+								<li><?php echo $this->Html->link('Carve rendering, validation and behavior', ['controller' => 'CakeCarveExamples', 'action' => 'index']); ?></li>
+							</ul>
+						</div>
+
+						<div class="plugin-item">
 							<h4 class="h6">Workflow Plugin <span class="badge bg-success ms-2">NEW</span></h4>
 							<ul class="mb-3">
 								<li><?php echo $this->Html->link('Workflow Examples', ['plugin' => 'WorkflowSandbox', 'controller' => 'WorkflowSandbox', 'action' => 'index']); ?></li>
