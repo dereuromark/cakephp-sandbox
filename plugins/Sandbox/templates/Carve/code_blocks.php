@@ -9,6 +9,7 @@ echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.
 echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'force']);
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
+echo $this->Html->script('Sandbox.hljs-carve-delimited.js');
 $this->end();
 ?>
 <?= $this->element('carve/package_styles') ?>
