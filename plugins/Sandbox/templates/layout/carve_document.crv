@@ -1,0 +1,5 @@
+# {{carve.meta.title}}
+
+{{content}}
+
+The heading and this line come from the Carve layout `carve_document.crv`.

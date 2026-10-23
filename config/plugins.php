@@ -31,6 +31,7 @@ return [
 	'Cake/Localized' => [],
 	'BootstrapUI' => [],
 	'Markup' => [],
+	'MarkupCarve/CakeCarve' => [],
 	'Feedback' => [],
 	'CakeMenu' => [],
 	'Expose' => [],

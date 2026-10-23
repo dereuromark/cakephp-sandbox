@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f2ee5b78a9ec7042f861980b054852b",
+    "content-hash": "f8acc7de418d3283a31701aa067034ee",
     "packages": [
         {
             "name": "brick/math",
@@ -312,17 +312,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "964e9a0069ce5072d7142199432ecc17fd337d5f"
+                "reference": "777dd418464bfbd3783abef1d842824c52340fcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/964e9a0069ce5072d7142199432ecc17fd337d5f",
-                "reference": "964e9a0069ce5072d7142199432ecc17fd337d5f",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/777dd418464bfbd3783abef1d842824c52340fcc",
+                "reference": "777dd418464bfbd3783abef1d842824c52340fcc",
                 "shasum": ""
             },
             "require": {
                 "cakephp/chronos": "^3.3",
-                "composer/ca-bundle": "^1.5",
+                "composer/ca-bundle": "^1.6",
                 "ext-intl": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
@@ -368,7 +368,7 @@
                 "cakephp/validation": "self.version"
             },
             "require-dev": {
-                "boundwize/structarmed": "^0.14",
+                "boundwize/structarmed": "^0.19",
                 "cakephp/cakephp-codesniffer": "^5.3",
                 "http-interop/http-factory-tests": "^2.0",
                 "mockery/mockery": "^1.6",
@@ -429,7 +429,7 @@
                 "issues": "https://github.com/cakephp/cakephp/issues",
                 "source": "https://github.com/cakephp/cakephp"
             },
-            "time": "2026-10-14T13:59:00+00:00"
+            "time": "2026-10-22T16:52:23+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -954,16 +954,16 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.5.14",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "0c8abba0634f637bd78c4e451981da368d403463"
+                "reference": "2c99cf2e92516985dea4914812b93d9daf01cdd6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/0c8abba0634f637bd78c4e451981da368d403463",
-                "reference": "0c8abba0634f637bd78c4e451981da368d403463",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/2c99cf2e92516985dea4914812b93d9daf01cdd6",
+                "reference": "2c99cf2e92516985dea4914812b93d9daf01cdd6",
                 "shasum": ""
             },
             "require": {
@@ -1010,7 +1010,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.5.14"
+                "source": "https://github.com/composer/ca-bundle/tree/1.6.0"
             },
             "funding": [
                 {
@@ -1022,7 +1022,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-21T14:57:29+00:00"
+            "time": "2026-10-20T20:14:05+00:00"
         },
         {
             "name": "composer/class-map-generator",
@@ -5999,17 +5999,73 @@
             "time": "2025-04-26T03:30:46+00:00"
         },
         {
-            "name": "markup-carve/carve-php",
-            "version": "0.1.13",
+            "name": "markup-carve/cakephp-carve",
+            "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/markup-carve/carve-php.git",
-                "reference": "04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f"
+                "url": "https://github.com/markup-carve/cakephp-carve.git",
+                "reference": "0e542f53779ef0b81233efdeb70f174b115c144e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f",
-                "reference": "04f6fb4f010b3a20ff9dc2c34cfca426c46eb69f",
+                "url": "https://api.github.com/repos/markup-carve/cakephp-carve/zipball/0e542f53779ef0b81233efdeb70f174b115c144e",
+                "reference": "0e542f53779ef0b81233efdeb70f174b115c144e",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^5.2",
+                "markup-carve/carve-php": "^0.1.14",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "php-collective/code-sniffer": "^0.6.0",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0"
+            },
+            "default-branch": true,
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "MarkupCarve\\CakeCarve\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Markup Carve",
+                    "homepage": "https://github.com/markup-carve"
+                }
+            ],
+            "description": "CakePHP plugin for Carve: rendering, views, validation, ORM behavior, commands and caching",
+            "homepage": "https://github.com/markup-carve/cakephp-carve",
+            "keywords": [
+                "cakephp",
+                "carve",
+                "markup",
+                "parser",
+                "plugin"
+            ],
+            "support": {
+                "issues": "https://github.com/markup-carve/cakephp-carve/issues",
+                "source": "https://github.com/markup-carve/cakephp-carve"
+            },
+            "time": "2026-10-23T14:13:49+00:00"
+        },
+        {
+            "name": "markup-carve/carve-php",
+            "version": "0.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markup-carve/carve-php.git",
+                "reference": "8f1822274f6ae89ba5728107ec6458a35ace5311"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markup-carve/carve-php/zipball/8f1822274f6ae89ba5728107ec6458a35ace5311",
+                "reference": "8f1822274f6ae89ba5728107ec6458a35ace5311",
                 "shasum": ""
             },
             "require": {
@@ -6059,7 +6115,7 @@
             ],
             "support": {
                 "issues": "https://github.com/markup-carve/carve-php/issues",
-                "source": "https://github.com/markup-carve/carve-php/tree/0.1.13"
+                "source": "https://github.com/markup-carve/carve-php/tree/0.1.14"
             },
             "funding": [
                 {
@@ -6067,7 +6123,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-18T01:19:30+00:00"
+            "time": "2026-10-23T04:17:52+00:00"
         },
         {
             "name": "markup-carve/carve-php-chat",
@@ -14393,6 +14449,7 @@
         "dereuromark/cakephp-translate": 20,
         "dereuromark/cakephp-workflow": 20,
         "fig-r/psr2r-sniffer": 20,
+        "markup-carve/cakephp-carve": 20,
         "markup-carve/carve-php-chat": 20,
         "markup-carve/carve-php-media-embed": 20,
         "php-collective/djot": 20,
