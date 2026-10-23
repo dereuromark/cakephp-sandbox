@@ -200,6 +200,26 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertSelectsRegionsCodeAndCsvFromTheLibrary(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "{{ library/setup.crv @region:requirements }}\n\n{{ library/server.js @region:start @code:js }}\n\n{table}\n{{ library/plans.csv @code:csv }}\n",
+			'warnings' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame([], $response['warnings']);
+		$this->assertStringContainsString('<li>PHP 8.2 or newer</li>', $response['html']);
+		$this->assertStringNotContainsString('Text after the region is skipped.', $response['html']);
+		$this->assertStringContainsString('<code class="language-js">const server', $response['html']);
+		$this->assertStringNotContainsString('export default server', $response['html']);
+		$this->assertStringContainsString('<td>Enterprise, annual</td>', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertLeavesUnknownIncludeLiteral(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "{{ library/missing.crv }}\n",
@@ -592,6 +612,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('CSV Table');
 		$this->assertResponseContains('TSV Table without Header');
 		$this->assertResponseContains('Task States');
+		$this->assertResponseContains('Continuation Marker');
 	}
 
 	/**

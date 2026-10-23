@@ -175,6 +175,19 @@ CARVE,
   > Blockquote inside list
 CARVE,
 	],
+	'Continuation Marker' => [
+		'description' => 'A lone `+` attaches the next block to the open list item, block quote, footnote or description without indenting it. The list stays tight. The formatter writes the attached block indented instead.',
+		'code' => <<<'CARVE'
+- Install the plugin
++
+> Run composer from the project root.
+- Load the plugin
++
+```php
+$this->addPlugin('MarkupCarve/CakeCarve');
+```
+CARVE,
+	],
 	'Divs with Attributes' => [
 		'description' => 'Custom divs with classes and IDs for styling.',
 		'code' => <<<'CARVE'

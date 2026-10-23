@@ -23,6 +23,18 @@ return [
 			'title' => 'Inline phrase',
 			'source' => "a config-backed inline snippet\n",
 		],
+		'library/setup.crv' => [
+			'title' => 'Named region (@region:requirements)',
+			'source' => "## Setup\n\nOnly the marked region below is included.\n\n%% #region requirements\n- PHP 8.2 or newer\n- Composer 2\n%% #endregion requirements\n\nText after the region is skipped.\n",
+		],
+		'library/server.js' => [
+			'title' => 'Source file included as code (@code:js)',
+			'source' => "import { createServer } from 'node:http'\n\n// #region start\nconst server = createServer((request, response) => {\n  response.end('hello')\n})\nserver.listen(8080)\n// #endregion start\n\nexport default server\n",
+		],
+		'library/plans.csv' => [
+			'title' => 'CSV data rendered as a table ({table} + @code:csv)',
+			'source' => "Plan,Seats,Price\nStarter,1,0\nTeam,10,49\n\"Enterprise, annual\",unlimited,\"on request\"\n",
+		],
 		'library/cycle.crv' => [
 			'title' => 'Cycle guard',
 			'source' => "{{ cycle.crv }}\n",

@@ -611,7 +611,20 @@ This code fence is never closed.</code></pre>
 
 This sentence contains {{ library/inline.crv }}.
 
-{{ library/chapter.crv @shift:auto }}</code></pre>
+{{ library/chapter.crv @shift:auto }}
+
+## A named region
+
+{{ library/setup.crv @region:requirements }}
+
+## Source as code
+
+{{ library/server.js @region:start @code:js }}
+
+## CSV data as a table
+
+{table}
+{{ library/plans.csv @code:csv }}</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try config includes</button>
 	</div>
 </div>
