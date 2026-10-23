@@ -405,6 +405,38 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
+	 * AJAX endpoint that rewrites the editor source into canonical Carve.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function format(): Response {
+		$this->request->allowMethod(['post']);
+
+		// Multipart form-data normalizes field newlines to CRLF; the writer emits LF.
+		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+		$alignTables = (bool)$this->request->getData('alignTables');
+
+		$result = [
+			'carve' => null,
+			'error' => null,
+		];
+
+		if (trim($carve) === '') {
+			$result['error'] = __('Nothing to format: the editor is empty.');
+		} else {
+			try {
+				$result['carve'] = CarveConverter::toCarve($carve, alignTables: $alignTables);
+			} catch (Throwable $e) {
+				$result['error'] = __('Could not format: {0}', $e->getMessage());
+			}
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
+	}
+
+	/**
 	 * Complex Carve examples showcase.
 	 *
 	 * @return void

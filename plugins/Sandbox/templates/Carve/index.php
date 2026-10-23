@@ -356,7 +356,16 @@ CARVE;
 				<button type="button" class="btn btn-outline-secondary" data-block="---\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="::: note\n\n:::\n" data-cursor="-5" title="Admonition (note / tip / warning / ...)"><i class="bi bi-info-square"></i></button>
 			</div>
-			<div class="btn-group btn-group-sm ms-auto" role="group">
+			<div class="d-flex ms-auto me-1">
+				<!-- Fixed-width slot: showing or clearing the hint never moves the buttons. -->
+				<span class="small text-muted text-end text-truncate align-self-center me-2" id="format-hint" aria-live="polite" style="width: 12rem;"></span>
+				<div class="btn-group btn-group-sm" role="group">
+					<button type="button" class="btn btn-outline-secondary" id="btn-format" title="Format: rewrite the source as canonical Carve (Ctrl+Z undoes it)"><i class="bi bi-magic"></i> Format</button>
+					<input type="checkbox" class="btn-check" id="opt-align-tables" autocomplete="off">
+					<label class="btn btn-outline-secondary" for="opt-align-tables" title="When formatting, pad table cells so the columns line up"><i class="bi bi-table"></i> Align tables</label>
+				</div>
+			</div>
+			<div class="btn-group btn-group-sm" role="group">
 				<button type="button" class="btn btn-outline-secondary" id="btn-wrap" aria-pressed="false" title="Wrap long lines (off: scroll horizontally, keeps aligned tables readable)"><i class="bi bi-text-wrap"></i></button>
 				<button type="button" class="btn btn-outline-secondary" id="btn-fullscreen" aria-pressed="false" title="Full screen editor and preview (Esc to exit)"><i class="bi bi-arrows-fullscreen"></i></button>
 			</div>
@@ -1054,6 +1063,115 @@ This sentence contains {{ library/inline.crv }}.
 		}
 	});
 
+	const btnFormat = document.getElementById('btn-format');
+	const optAlignTables = document.getElementById('opt-align-tables');
+	try {
+		optAlignTables.checked = localStorage.getItem('carve-editor-align-tables') === '1';
+	} catch (e) {
+	}
+	optAlignTables.addEventListener('change', () => {
+		try {
+			localStorage.setItem('carve-editor-align-tables', optAlignTables.checked ? '1' : '0');
+		} catch (e) {
+		}
+	});
+
+	// Same line and column as before, clamped to the new text.
+	function samePosition(prev, next, pos) {
+		const before = prev.slice(0, pos);
+		const line = before.split('\n').length - 1;
+		const column = pos - (before.lastIndexOf('\n') + 1);
+		const lines = next.split('\n');
+		const target = Math.min(line, lines.length - 1);
+		let offset = 0;
+		for (let i = 0; i < target; i++) {
+			offset += lines[i].length + 1;
+		}
+		return offset + Math.min(column, lines[target].length);
+	}
+
+	function replaceSource(next) {
+		const prev = input.value;
+		const pos = samePosition(prev, next, input.selectionStart);
+		if (editor && editor.view) {
+			let start = 0;
+			while (start < prev.length && start < next.length && prev[start] === next[start]) start++;
+			let endPrev = prev.length;
+			let endNext = next.length;
+			while (endPrev > start && endNext > start && prev[endPrev - 1] === next[endNext - 1]) {
+				endPrev--;
+				endNext--;
+			}
+			// Own userEvent: CodeMirror history never merges it into adjacent typing, so one Ctrl+Z reverts the format.
+			editor.view.dispatch({
+				changes: {from: start, to: endPrev, insert: next.slice(start, endNext)},
+				selection: {anchor: pos},
+				userEvent: 'input.format',
+				scrollIntoView: true,
+			});
+			editor.focus();
+			return;
+		}
+		textarea.focus();
+		textarea.select();
+		// insertText keeps the native undo stack; fall back to a plain assignment where it is unsupported.
+		if (!document.execCommand('insertText', false, next)) {
+			textarea.value = next;
+		}
+		textarea.setSelectionRange(pos, pos);
+		convert();
+	}
+
+	const formatHint = document.getElementById('format-hint');
+	function showFormatHint(text, isError) {
+		formatHint.textContent = text;
+		formatHint.title = text;
+		formatHint.classList.toggle('text-danger', isError);
+		formatHint.classList.toggle('text-muted', !isError);
+	}
+	input.addEventListener('input', () => {
+		showFormatHint('', false);
+	});
+
+	btnFormat.addEventListener('click', () => {
+		const submitted = input.value;
+		const formData = new FormData();
+		formData.append('carve', submitted);
+		formData.append('alignTables', optAlignTables.checked ? '1' : '0');
+		btnFormat.disabled = true;
+		fetch('<?= $this->Url->build(['action' => 'format']) ?>', {
+			method: 'POST',
+			body: formData,
+			headers: {
+				'X-Requested-With': 'XMLHttpRequest'
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.error) {
+				showFormatHint('format failed: ' + data.error, true);
+				return;
+			}
+			// Typed while the request was in flight: drop the stale result.
+			if (input.value !== submitted) {
+				return;
+			}
+			if (data.carve === submitted) {
+				showFormatHint('already formatted', false);
+				return;
+			}
+			replaceSource(data.carve);
+			// After the replace: its own input event clears the hint.
+			showFormatHint('formatted', false);
+		})
+		.catch(() => {
+			showFormatHint('format failed: the request did not complete', true);
+		})
+		.finally(() => {
+			btnFormat.disabled = false;
+		});
+	});
+
 	const workspace = document.getElementById('carve-workspace');
 	const btnFullscreen = document.getElementById('btn-fullscreen');
 	function setFullscreen(on) {
@@ -1306,7 +1424,7 @@ This sentence contains {{ library/inline.crv }}.
 		const btn = e.target.closest('button');
 		if (!btn) return;
 
-		if (btn.id === 'btn-wrap' || btn.id === 'btn-fullscreen') return;
+		if (btn.id === 'btn-wrap' || btn.id === 'btn-fullscreen' || btn.id === 'btn-format') return;
 		if (btn.id === 'toggle-more') {
 			const more = document.getElementById('toolbar-more');
 			more.classList.toggle('d-none');

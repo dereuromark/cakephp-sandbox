@@ -106,6 +106,61 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testFormatKeepsTablesUnaligned(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'format'], [
+			'carve' => "| Name | Qty |\r\n|---|---|\r\n| Banana split | 12 |\r\n",
+			'alignTables' => '0',
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame("| Name | Qty |\n|---|---|\n| Banana split | 12 |\n", $response['carve']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormatAlignsTables(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'format'], [
+			'carve' => "| Name | Qty |\n|---|---|\n| Banana split | 12 |\n",
+			'alignTables' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame("| Name         | Qty |\n|---           |---  |\n| Banana split | 12  |\n", $response['carve']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormatReportsEmptySource(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'format'], [
+			'carve' => " \n",
+			'alignTables' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['carve']);
+		$this->assertSame(__('Nothing to format: the editor is empty.'), $response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testFormatRejectsGet(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'format']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testIndexListsConfigBackedIncludeLibrary(): void {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'index']);
 
