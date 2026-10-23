@@ -19,7 +19,8 @@ echo $this->element('cake_carve/highlighting');
 	<h3>Validation</h3>
 	<p>
 		<code>CarveValidation</code> is a validator provider. It fails on markup the preset's profile disallows,
-		on lint findings when <code>lint</code> is on, and on rendered text longer than <code>maxLength</code>.
+		on lint findings when <code>lint</code> is on, on parse warnings (such as an unclosed fence) when <code>strict</code> is on,
+		and on rendered text longer than <code>maxLength</code>.
 		The prefilled heading fails under the <code>comment</code> preset; switch to <code>default</code> and it passes.
 	</p>
 
@@ -28,6 +29,7 @@ echo $this->element('cake_carve/highlighting');
 	<?php echo $this->Form->control('preset', ['type' => 'select', 'options' => ['default' => 'default', 'comment' => 'comment'], 'value' => $data['preset']]); ?>
 	<?php echo $this->Form->control('maxLength', ['type' => 'number', 'value' => $data['maxLength'], 'min' => 1]); ?>
 	<?php echo $this->Form->control('lint', ['type' => 'checkbox', 'checked' => $data['lint']]); ?>
+	<?php echo $this->Form->control('strict', ['type' => 'checkbox', 'checked' => $data['strict'], 'label' => 'Strict (reject parse warnings)']); ?>
 	<?php echo $this->Form->button('Validate', ['class' => 'btn btn-primary']); ?>
 	<?php echo $this->Form->end(); ?>
 
@@ -42,7 +44,7 @@ use MarkupCarve\CakeCarve\Validation\CarveValidation;
 
 $validator->setProvider('carve', CarveValidation::class)
 	->add('body', 'carve', [
-		'rule' => ['valid', ['preset' => 'comment', 'maxLength' => 200, 'lint' => true]],
+		'rule' => ['valid', ['preset' => 'comment', 'maxLength' => 200, 'lint' => true, 'strict' => true]],
 		'provider' => 'carve',
 	]);
 PHP, 'lang' => 'php']); ?>

@@ -20,7 +20,7 @@ class CakeCarveExamplesController extends SandboxAppController {
 
 	public function validation(): void {
 		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve', ['debug' => false]);
-		$data = ['body' => "# Comment\n\nThis heading is disallowed by the comment profile.", 'preset' => 'comment', 'maxLength' => 200, 'lint' => false];
+		$data = ['body' => "# Comment\n\nThis heading is disallowed by the comment profile.", 'preset' => 'comment', 'maxLength' => 200, 'lint' => false, 'strict' => false];
 		$errors = [];
 		$form = new Form();
 		$renderedBody = null;
@@ -34,17 +34,18 @@ class CakeCarveExamplesController extends SandboxAppController {
 				$maxLength = 200;
 			}
 			$lint = !empty($data['lint']);
+			$strict = !empty($data['strict']);
 			$body = is_string($data['body'] ?? null) ? $data['body'] : '';
 			$validator = new Validator();
 			$validator->setProvider('carve', CarveValidation::class)
-				->add('body', 'carve', ['rule' => ['valid', ['preset' => $preset, 'maxLength' => $maxLength, 'lint' => $lint]], 'provider' => 'carve']);
+				->add('body', 'carve', ['rule' => ['valid', ['preset' => $preset, 'maxLength' => $maxLength, 'lint' => $lint, 'strict' => $strict]], 'provider' => 'carve']);
 			$errors += $validator->validate(['body' => $body]);
 			$form->setErrors($errors);
 			if (!$errors) {
 				$renderedBody = $body;
 				$renderedPreset = $preset;
 			}
-			$data = compact('body', 'preset', 'maxLength', 'lint');
+			$data = compact('body', 'preset', 'maxLength', 'lint', 'strict');
 		}
 		$this->set(compact('data', 'form', 'renderedBody', 'renderedPreset'));
 	}
