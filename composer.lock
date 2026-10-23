@@ -6004,12 +6004,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/markup-carve/cakephp-carve.git",
-                "reference": "980df88a435cd91207d2e53ec3801f57da38a157"
+                "reference": "e778cdc7a7574cb69d30bb8d93788ade3fe7976e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/markup-carve/cakephp-carve/zipball/980df88a435cd91207d2e53ec3801f57da38a157",
-                "reference": "980df88a435cd91207d2e53ec3801f57da38a157",
+                "url": "https://api.github.com/repos/markup-carve/cakephp-carve/zipball/e778cdc7a7574cb69d30bb8d93788ade3fe7976e",
+                "reference": "e778cdc7a7574cb69d30bb8d93788ade3fe7976e",
                 "shasum": ""
             },
             "require": {
@@ -6020,7 +6020,12 @@
             "require-dev": {
                 "php-collective/code-sniffer": "^0.6.0",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0"
+                "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
+                "symfony/yaml": "^7.0 || ^8.0"
+            },
+            "suggest": {
+                "ext-yaml": "Alternative YAML frontmatter parser",
+                "symfony/yaml": "Parses YAML frontmatter for RenderedCarve::meta() and CarveView"
             },
             "default-branch": true,
             "type": "cakephp-plugin",
@@ -6052,7 +6057,7 @@
                 "issues": "https://github.com/markup-carve/cakephp-carve/issues",
                 "source": "https://github.com/markup-carve/cakephp-carve"
             },
-            "time": "2026-10-23T14:50:23+00:00"
+            "time": "2026-10-23T16:32:11+00:00"
         },
         {
             "name": "markup-carve/carve-php",

@@ -41,6 +41,12 @@ class CakeCarveExamplesControllerTest extends TestCase {
 		libxml_clear_errors();
 		libxml_use_internal_errors($previous);
 		$xpath = new DOMXPath($document);
+		$stripped = $xpath->query('//div[@data-preset="raw html stripped"]/div[contains(@class, "carve-output")]')->item(0);
+		$this->assertNotNull($stripped);
+		$this->assertStringNotContainsString('Raw HTML', (string)$stripped->textContent);
+		$default = $xpath->query('//div[@data-preset="default"]/div[contains(@class, "carve-output")]')->item(0);
+		$this->assertNotNull($default);
+		$this->assertStringContainsString('Raw HTML', (string)$default->textContent);
 		foreach (['default', 'comment', 'strict'] as $preset) {
 			$output = $xpath->query('//div[@data-preset="' . $preset . '"]/div[contains(@class, "carve-output")]')->item(0);
 			$this->assertNotNull($output);
@@ -59,6 +65,12 @@ class CakeCarveExamplesControllerTest extends TestCase {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'CakeCarveExamples', 'action' => 'validation'], ['body' => '# Disallowed heading', 'preset' => 'comment', 'maxLength' => 200]);
 		$this->assertResponseCode(200);
 		$this->assertResponseContains('Carve content contains markup disallowed by its profile.');
+	}
+
+	public function testValidationStrictRejectsParseWarnings(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'CakeCarveExamples', 'action' => 'validation'], ['body' => "```carve\nunclosed", 'preset' => 'default', 'maxLength' => 200, 'strict' => '1']);
+		$this->assertResponseCode(200);
+		$this->assertResponseContains('Carve content has parse warnings');
 	}
 
 	public function testValidationSuccess(): void {

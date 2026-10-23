@@ -24,6 +24,7 @@ $examples = [
 	'comment' => ['preset' => 'comment'],
 	'trusted' => ['preset' => 'trusted'],
 	'strict' => ['safeMode' => 'strict'],
+	'raw html stripped' => ['rawHtml' => 'strip'],
 ];
 $document = <<<'CARVE'
 ---json
@@ -67,6 +68,7 @@ PHP, 'lang' => 'php']); ?>
 	<p>
 		One source rendered with each option set. <code>comment</code> uses the comment profile and strict safe mode,
 		<code>strict</code> only tightens safe mode, and <code>trusted</code> turns safe mode off.
+		<code>raw html stripped</code> sets <code>rawHtml: 'strip'</code>, which removes raw HTML blocks instead of escaping them as the default does.
 	</p>
 	<?php echo $this->element('cake_carve/code', ['code' => $source, 'lang' => 'carve']); ?>
 
@@ -94,8 +96,9 @@ PHP, 'lang' => 'php']); ?>
 	<h3>Commands</h3>
 	<?php echo $this->element('cake_carve/code', ['code' => <<<'BASH'
 bin/cake carve render document.crv --preset comment
+bin/cake carve render document.crv --format ansi
 bin/cake carve convert article.md --from markdown --output article.crv
-bin/cake carve format document.crv --check
+bin/cake carve format document.crv --check --align-tables
 bin/cake carve lint document.crv
 BASH, 'lang' => 'bash']); ?>
 
