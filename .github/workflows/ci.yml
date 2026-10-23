@@ -49,11 +49,21 @@ jobs:
         extensions: mbstring, intl, pdo_${{ matrix.db-type }}, imagick
         coverage: pcov
 
+    # The Azure apt mirror is slow at times; cached .debs skip most of the download.
+    - name: Cache Ghostscript packages
+      uses: actions/cache@v5
+      with:
+        path: ~/apt-cache
+        key: apt-ghostscript-${{ runner.os }}-22.04-v1
+
     - name: Install Ghostscript
-      timeout-minutes: 5
+      timeout-minutes: 10
       run: |
         if ! command -v gs >/dev/null; then
-          sudo apt-get update && sudo apt-get install -y --no-install-recommends ghostscript
+          mkdir -p ~/apt-cache/partial
+          sudo apt-get update -o Acquire::Retries=3
+          sudo apt-get install -y --no-install-recommends -o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Dir::Cache::Archives="$HOME/apt-cache" ghostscript
+          sudo chown -R "$USER" ~/apt-cache
         fi
 
     - name: Get composer cache directory
