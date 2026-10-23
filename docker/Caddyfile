@@ -26,6 +26,7 @@
             mercure {
                 publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY}
                 subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY}
+                protocol_version_compatibility 8
                 anonymous
                 subscriptions
             }
