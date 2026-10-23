@@ -56,6 +56,7 @@ use Cake\View\View;
  * @property \Tools\View\Helper\TypographyHelper $Typography
  * @property \Tools\View\Helper\UrlHelper $Url
  * @property \Workflow\View\Helper\WorkflowHelper $Workflow
+ * @property \MarkupCarve\CakeCarve\View\Helper\CarveHelper $Carve
  */
 class AppView extends View {
 

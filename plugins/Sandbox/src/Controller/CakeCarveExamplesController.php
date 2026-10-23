@@ -12,14 +12,14 @@ use Cake\Validation\Validator;
 use MarkupCarve\CakeCarve\Validation\CarveValidation;
 use RuntimeException;
 
-class CarveCakephpController extends SandboxAppController {
+class CakeCarveExamplesController extends SandboxAppController {
 
 	public function index(): void {
-		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve');
+		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve', ['debug' => false]);
 	}
 
 	public function validation(): void {
-		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve');
+		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve', ['debug' => false]);
 		$data = ['body' => "# Comment\n\nThis heading is disallowed by the comment profile.", 'preset' => 'comment', 'maxLength' => 200, 'lint' => false];
 		$errors = [];
 		$form = new Form();
@@ -75,7 +75,12 @@ class CarveCakephpController extends SandboxAppController {
 		$this->set(compact('data', 'row'));
 	}
 
-	public function view(): Response {
+	public function view(): void {
+		$this->set('template', (string)file_get_contents(dirname(__DIR__, 2) . '/templates/CakeCarveExamples/document.crv'));
+		$this->set('layout', (string)file_get_contents(dirname(__DIR__, 2) . '/templates/layout/carve_document.crv'));
+	}
+
+	public function document(): Response {
 		$this->viewBuilder()
 			->setClassName('MarkupCarve/CakeCarve.Carve')
 			->setLayout('Sandbox.carve_document')

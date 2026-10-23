@@ -46,6 +46,16 @@ This site combines useful code snippets with their live result.
 			</ul>
 		</div>
 	</div>
+	<div class="col-sm-6">
+		<div class="alert alert-primary h-100 mb-0">
+			<h4><strong>NEW: Carve markup</strong></h4>
+			<p>A markup language for content that outgrows Markdown, with a CakePHP plugin from <?php echo $this->Html->link('cakephp-carve', 'https://github.com/markup-carve/cakephp-carve', ['target' => '_blank']); ?>:</p>
+			<ul class="mb-0">
+				<li><?php echo $this->Html->link('Carve Playground', ['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'index']); ?> - Live editor, converters and examples</li>
+				<li><?php echo $this->Html->link('CakePHP Plugin', ['plugin' => 'Sandbox', 'controller' => 'CakeCarveExamples', 'action' => 'index']); ?> - Helper, validation, behavior and <code>.crv</code> views</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
 <p>Also fully updated/reworked: Translate and TestHelper plugins.</p>
