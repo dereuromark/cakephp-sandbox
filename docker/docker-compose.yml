@@ -13,6 +13,7 @@ services:
     volumes:
       - /var/www/dereuromark/sandbox5:/app
       - ./Caddyfile:/etc/frankenphp/Caddyfile
+      - /etc/php-cve/zz-cve-2026-10.ini:/usr/local/etc/php/conf.d/zz-cve-2026-10.ini:ro
       - caddy_data:/data
       - caddy_config:/config
     environment:
