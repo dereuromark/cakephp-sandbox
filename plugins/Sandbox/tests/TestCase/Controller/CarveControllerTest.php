@@ -534,6 +534,9 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
+		$this->assertResponseContains('CSV Table');
+		$this->assertResponseContains('TSV Table without Header');
+		$this->assertResponseContains('Task States');
 	}
 
 	/**

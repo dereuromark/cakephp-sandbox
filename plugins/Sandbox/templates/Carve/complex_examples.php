@@ -92,6 +92,32 @@ CARVE,
 ^ Design spans two rows, keeps the column's left alignment and sits on the bottom edge
 CARVE,
 	],
+	'CSV Table' => [
+		'description' => 'A `{table}` flag above a `csv` fence turns the data into a table. The first record is the header row, and fields follow RFC 4180 quoting: a quoted field can hold a comma or a newline, and `""` is a literal quote.',
+		'code' => <<<'CARVE'
+{table}
+```csv
+Item,Qty,Note
+Apple,12,fresh
+"Pear, green",3,"says ""ripe"""
+Plum,7,"picked
+today"
+```
+^ Stock on hand
+CARVE,
+	],
+	'TSV Table without Header' => [
+		'description' => 'A `tsv` fence splits on TAB. The other table attributes apply too: `header-rows=0` drops the header row and `aligns` sets per-column alignment.',
+		'code' => <<<'CARVE'
+{header-rows=0 aligns=left,right}
+{table}
+```tsv
+Apple	12
+Pear	3
+Plum	7
+```
+CARVE,
+	],
 	'Fenced Block Quote' => [
 		'description' => 'A `::: >` fence opens a quote whose body is ordinary block content - no `>` prefix to maintain on every line, and the same node the prefixed form produces. The source records which spelling was authored, so `carve fmt` writes it back unchanged. Widen the fence to nest.',
 		'code' => <<<'CARVE'
@@ -177,15 +203,19 @@ You can also use [multiple classes]{.class1 .class2} on spans.
 CARVE,
 	],
 	'Footnotes' => [
-		'description' => 'Footnotes with references.',
+		'description' => 'Footnotes with references. An authored `{#id}` on a reference becomes its anchor.',
 		'code' => <<<'CARVE'
 Here is a sentence with a footnote[^1] and another[^note2].
+
+An id on a reference[^note3]{#third-ref} replaces the generated one, and the note's backlink points at it.
 
 Regular paragraph continues here.
 
 [^1]: Simple footnote content.
 
 [^note2]: A longer footnote with more detail about the topic.
+
+[^note3]: Its backlink returns to `#third-ref`.
 CARVE,
 	],
 	'Task Lists' => [
@@ -198,6 +228,16 @@ CARVE,
   With additional content under the task.
 
 - [x] Final completed item
+CARVE,
+	],
+	'Task States' => [
+		'description' => 'Besides `[ ]` and `[x]`, the markers `[-]` (canceled), `[_]` (paused), `[>]` (deferred) and `[?]` (unsure) render an unchecked box and keep the marker as `data-task-state`, so a stylesheet can show which state an item is in.',
+		'code' => <<<'CARVE'
+- [x] Write the draft
+- [-] Translate it
+- [_] Record the audio version
+- [>] Add a glossary
+- [?] Split it into two parts
 CARVE,
 	],
 	'Superscript & Subscript' => [
