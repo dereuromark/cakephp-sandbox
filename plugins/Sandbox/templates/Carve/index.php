@@ -10,7 +10,7 @@
 $this->append('css');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css');
 echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'force']);
-// Table marker colors for highlight.js: header, span markers and separators by meaning.
+// Table marker colors for highlight.js: boundaries, headers, alignment, spans and continuations.
 echo $this->Html->css('Sandbox.carve/table-tokens.css', ['timestamp' => 'force']);
 $this->end();
 $this->append('script');
