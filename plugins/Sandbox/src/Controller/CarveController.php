@@ -2835,8 +2835,8 @@ CARVE,
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Cache.DefinitionImpl', null);
 		$config->set('HTML.DefinitionID', 'carve-sandbox');
-		$config->set('HTML.DefinitionRev', 16);
-		$config->set('HTML.Allowed', 'p[class|id|data-source-line],br[class|id],strong[class|id],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id],b[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role|download],img[src|alt|title|loading|decoding|class|id],ul[class|id|data-source-line],ol[start|type|class|id|data-source-line|reversed],li[class|id|value|data-source-line],dl[class|id|data-source-line],dt[class|id|data-source-line],dd[class|id|data-source-line],blockquote[class|id|data-source-line],pre[class|id|data-source-line],code[class|id],aside[class|id|data-source-line],h1[class|id|data-source-line],h2[class|id|data-source-line],h3[class|id|data-source-line],h4[class|id|data-source-line],h5[class|id|data-source-line],h6[class|id|data-source-line],table[class|id|data-source-line],caption[class|id],thead[class|id],tbody[class|id],tfoot[class|id],colgroup[class|id],col[span|style|class|id],tr[class|id],th[align|colspan|rowspan|scope|style|class|id],td[align|colspan|rowspan|scope|style|class|id],hr[class|id|data-source-line],div[class|id|role|aria-labelledby|hidden|data-source-line],span[class|id|style],section[class|id|role|data-source-line],nav[class|id|data-source-line],input[type|name|id|checked|disabled|class],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open|data-source-line],summary[class|id],figure[class|id|data-source-line],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],cite[class|id],abbr[title|class|id],time[datetime|class|id]');
+		$config->set('HTML.DefinitionRev', 17);
+		$config->set('HTML.Allowed', 'p[class|id|lang|data-source-line],br[class|id],strong[class|id|title],em[class|id],u[class|id],s[class|id],del[class|id],ins[class|id],mark[class|id],sub[class|id],sup[class|id|data-carve-footnote-label],b[class|id],a[href|title|class|id|target|rel|data-username|aria-label|role|download],img[src|alt|title|loading|decoding|class|id],ul[class|id|data-source-line],ol[start|type|class|id|data-source-line|reversed|data-delim],li[class|id|value|title|data-source-line|data-task-state],dl[class|id|data-source-line],dt[class|id|data-source-line],dd[class|id|data-source-line],blockquote[class|id|lang|data-source-line],pre[class|id|title|data-source-line],code[class|id],aside[class|id|title|role|aria-label|aria-labelledby|data-source-line],h1[class|id|title|data-source-line],h2[class|id|title|data-source-line],h3[class|id|title|data-source-line],h4[class|id|title|data-source-line],h5[class|id|title|data-source-line],h6[class|id|title|data-source-line],table[class|id|data-source-line],caption[class|id],thead[class|id],tbody[class|id],tfoot[class|id],colgroup[class|id],col[span|style|class|id],tr[class|id],th[align|colspan|rowspan|scope|style|class|id],td[align|colspan|rowspan|scope|style|class|id],hr[class|id|data-source-line],div[class|id|role|aria-labelledby|hidden|data-source-line],span[class|id|style|lang|title|role|aria-label],section[class|id|role|aria-label|aria-labelledby|data-source-line],nav[class|id|data-source-line],input[type|name|id|checked|disabled|class|aria-label],label[for|class|id],button[role|id|class|tabindex|aria-selected|aria-controls],details[class|id|open|data-source-line],summary[class|id],figure[class|id|data-source-line],figcaption[class|id],kbd[class|id],dfn[class|id],samp[class|id],var[class|id],cite[class|id],abbr[title|class|id],time[datetime|class|id]');
 		// background-color is needed for the ColorSwatch extension's chip; the
 		// value is validated as a CSS color by HTMLPurifier, so it cannot inject.
 		// background + color additionally cover the {contrast} label variant
@@ -2922,6 +2922,18 @@ CARVE,
 			$def->addAttribute('div', 'aria-labelledby', 'Text');
 			$def->addAttribute('div', 'hidden', 'Bool');
 			$def->addAttribute('section', 'role', 'Text');
+			// Engine-emitted state and accessibility attributes: task states drive
+			// the carve-css task boxes, the rest name landmarks and checkboxes.
+			$def->addAttribute('li', 'data-task-state', 'Enum#x,/,!,_,-,>,?');
+			$def->addAttribute('ol', 'data-delim', 'Enum#),.');
+			$def->addAttribute('sup', 'data-carve-footnote-label', 'Text');
+			$def->addAttribute('span', 'role', 'Text');
+			$def->addAttribute('span', 'aria-label', 'Text');
+			foreach (['aside', 'section'] as $landmark) {
+				$def->addAttribute($landmark, 'aria-label', 'Text');
+				$def->addAttribute($landmark, 'aria-labelledby', 'Text');
+			}
+			$def->addAttribute('aside', 'role', 'Text');
 			$def->addElement('samp', 'Inline', 'Inline', 'Common');
 			$def->addElement('var', 'Inline', 'Inline', 'Common');
 			// Core semantic span: [now]{time="2026-01-01"} renders <time datetime>.
@@ -2933,6 +2945,7 @@ CARVE,
 				'name' => 'Text',
 				'checked' => 'Bool',
 				'disabled' => 'Bool',
+				'aria-label' => 'Text',
 			]);
 			$def->addElement('label', 'Inline', 'Inline', 'Common', [
 				'for' => 'CDATA',
