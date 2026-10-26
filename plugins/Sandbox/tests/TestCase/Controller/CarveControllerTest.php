@@ -34,6 +34,21 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
+	public function testConvertKeepsARowCoveredByRowspans(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "|= a |= b |\n| x | y |\n| ^ | ^ |\n",
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('rowspan="2"', $response['html']);
+		$this->assertSame(3, substr_count($response['html'], '<tr'));
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertKeepsTaskStatesAndCheckboxLabels(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
 			'carve' => "- [x] Draft\n- [/] Review\n- [!] Approval pending\n- [_] Alias\n- [-] Dropped\n- [ ] Open\n",
