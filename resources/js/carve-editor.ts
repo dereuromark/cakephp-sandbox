@@ -137,15 +137,16 @@ function tokenize(text: string): DecorationSet | null {
       const substitutionInsertion = previous?.classList.contains('hljs-punctuation') && previous.textContent === '~>'
       const substitution = node instanceof Element && Array.from(node.children).some((child) =>
         child.classList.contains('hljs-punctuation') && child.textContent === '~>')
-      const cls = embedded ? own : editorTokenClass(own, text, from, pos, !!substitutionInsertion, substitution)
+      const tokenClass = embedded ? own : editorTokenClass(own, text, from, pos, !!substitutionInsertion, substitution)
+      const cls = embedded ? tokenClass : `${tokenClass} carve-root-token`
       ranges.push({ from, to: pos, cls })
-      if (cls === 'hljs-carve-underline' || cls === 'hljs-carve-strike') {
+      if (tokenClass === 'hljs-carve-underline' || tokenClass === 'hljs-carve-strike') {
         const delimiterWidth = text[from] === '{' ? 2 : 1
         if (pos - from > 2 * delimiterWidth) {
           ranges.push({
             from: from + delimiterWidth,
             to: pos - delimiterWidth,
-            cls: cls === 'hljs-carve-underline' ? 'cm-carve-underline-content' : 'cm-carve-strike-content',
+            cls: tokenClass === 'hljs-carve-underline' ? 'cm-carve-underline-content' : 'cm-carve-strike-content',
           })
         }
       }
