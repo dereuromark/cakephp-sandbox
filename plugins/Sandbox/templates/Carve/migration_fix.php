@@ -5,6 +5,7 @@
 
 $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css', ['block' => true]);
 $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['block' => true, 'timestamp' => 'force']);
+$this->Html->css('Sandbox.highlighting/carve-code.css', ['block' => true, 'timestamp' => 'force']);
 
 $this->append('script');
 $bundle = WWW_ROOT . 'js' . DS . 'carve-js.min.js';

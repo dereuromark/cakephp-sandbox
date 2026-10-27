@@ -6,6 +6,7 @@
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css');
 echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'force']);
+echo $this->Html->css('Sandbox.highlighting/carve-code.css', ['timestamp' => 'force']);
 echo $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js');
 echo $this->Html->script('Sandbox.hljs-carve.js');
 echo $this->Html->script('Sandbox.hljs-carve-delimited.js');

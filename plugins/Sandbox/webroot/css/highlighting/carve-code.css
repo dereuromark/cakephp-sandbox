@@ -1,0 +1,44 @@
+/* Generated from themes/palette.json. Load after the Prism or highlight.js theme. */
+:root, .light, .vscode-light, [data-theme="light"] {
+  --carve-syntax-background: #ffffff;
+  --carve-syntax-foreground: #24292f;
+  --carve-syntax-code-background: #f6f8fa;
+  --carve-syntax-definition: #6f42c1;
+  --carve-syntax-list: #735c0f;
+  --carve-syntax-task: #1a7f37;
+  --carve-syntax-language: #0969da;
+  --carve-syntax-muted: #57606a;
+  --carve-syntax-table-boundary: #959da5;
+  --carve-syntax-table-header: #005cc5;
+  --carve-syntax-table-operator: #e36209;
+  --carve-syntax-table-span: #6f42c1;
+  --carve-syntax-table-continuation: #22863a;
+}
+
+.dark, .vscode-dark, [data-theme="dark"] {
+  --carve-syntax-background: #0d1117;
+  --carve-syntax-foreground: #c9d1d9;
+  --carve-syntax-code-background: #0d1117;
+  --carve-syntax-definition: #d2a8ff;
+  --carve-syntax-list: #f2cc60;
+  --carve-syntax-task: #3fb950;
+  --carve-syntax-language: #79c0ff;
+  --carve-syntax-muted: #8b949e;
+  --carve-syntax-table-boundary: #6a737d;
+  --carve-syntax-table-header: #79b8ff;
+  --carve-syntax-table-operator: #ffab70;
+  --carve-syntax-table-span: #b392f0;
+  --carve-syntax-table-continuation: #85e89d;
+}
+
+:where(code.language-carve, code.language-crv, .language-carve > code, .language-crv > code) > .hljs-title,
+:where(.language-carve, .language-crv) .token.definition-term { color: var(--carve-syntax-definition); }
+:where(code.language-carve, code.language-crv, .language-carve > code, .language-crv > code) > .hljs-bullet,
+:where(.language-carve, .language-crv) .token.list.punctuation { color: var(--carve-syntax-list); font-weight: 700; }
+:where(.language-carve, .language-crv) .token.definition-term .token.punctuation,
+:where(.language-carve, .language-crv) .token.definition-list > .token.punctuation { color: var(--carve-syntax-definition); }
+:where(.language-carve, .language-crv) .token.list .token.constant { color: var(--carve-syntax-task); }
+:where(.language-carve, .language-crv) .token.code-block > .token.punctuation,
+:where(.language-carve, .language-crv) .hljs-code > .hljs-keyword { color: var(--carve-syntax-muted); }
+:where(.language-carve, .language-crv) .token.code-block > .token.language,
+:where(.language-carve, .language-crv) .hljs-code > .hljs-title { color: var(--carve-syntax-language); }

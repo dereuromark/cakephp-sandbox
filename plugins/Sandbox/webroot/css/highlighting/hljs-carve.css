@@ -1,15 +1,18 @@
 /* Classes the Carve highlight.js grammar emits that the stock github theme leaves uncolored. */
-.hljs-link {
-	color: #032f62;
+:where(code.language-carve, code.language-crv) > .hljs-link,
+.carve-cm .carve-root-token.hljs-link {
+	color: var(--carve-syntax-language);
 	text-decoration: underline;
 }
 
-.hljs-function {
-	color: #6f42c1;
+:where(code.language-carve, code.language-crv) > .hljs-function,
+.carve-cm .carve-root-token.hljs-function {
+	color: var(--carve-syntax-definition);
 }
 
-.hljs-punctuation {
-	color: #959da5;
+:where(code.language-carve, code.language-crv) > .hljs-punctuation,
+.carve-cm .carve-root-token.hljs-punctuation {
+	color: var(--carve-syntax-muted);
 }
 
 .cm-editor .hljs-carve-highlight {
@@ -36,3 +39,8 @@
 	background-color: #ffeef0;
 	font-weight: 700;
 }
+
+.carve-cm .carve-root-token.hljs-title { color: var(--carve-syntax-definition); }
+.carve-cm .carve-root-token.hljs-bullet { color: var(--carve-syntax-list); font-weight: 700; }
+.carve-cm .carve-root-token.hljs-code > .carve-root-token.hljs-keyword { color: var(--carve-syntax-muted); }
+.carve-cm .carve-root-token.hljs-code > .carve-root-token.hljs-title { color: var(--carve-syntax-language); }
