@@ -1,5 +1,3 @@
-@import url("./carve-code.css?v=cf70a81c");
-
 /* Classes the Carve highlight.js grammar emits that the stock github theme leaves uncolored. */
 .hljs-link {
 	color: #032f62;
@@ -11,7 +9,7 @@
 }
 
 .hljs-punctuation {
-	color: var(--carve-syntax-muted);
+	color: #959da5;
 }
 
 .cm-editor .hljs-carve-highlight {
@@ -41,5 +39,5 @@
 
 .carve-cm .hljs-title { color: var(--carve-syntax-definition); }
 .carve-cm .hljs-bullet { color: var(--carve-syntax-list); font-weight: 700; }
-.carve-cm .hljs-code > .hljs-keyword { color: var(--carve-syntax-muted); }
+.carve-cm .hljs-code > .hljs-keyword { color: #959da5; }
 .carve-cm .hljs-code > .hljs-title { color: var(--carve-syntax-language); }
