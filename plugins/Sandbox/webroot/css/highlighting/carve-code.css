@@ -31,9 +31,9 @@
   --carve-syntax-table-continuation: #85e89d;
 }
 
-:where(.language-carve, .language-crv) .hljs-title,
+:where(code.language-carve, code.language-crv, .language-carve > code, .language-crv > code) > .hljs-title,
 :where(.language-carve, .language-crv) .token.definition-term { color: var(--carve-syntax-definition); }
-:where(.language-carve, .language-crv) .hljs-bullet,
+:where(code.language-carve, code.language-crv, .language-carve > code, .language-crv > code) > .hljs-bullet,
 :where(.language-carve, .language-crv) .token.list.punctuation { color: var(--carve-syntax-list); font-weight: 700; }
 :where(.language-carve, .language-crv) .token.definition-term .token.punctuation,
 :where(.language-carve, .language-crv) .token.definition-list > .token.punctuation { color: var(--carve-syntax-definition); }
