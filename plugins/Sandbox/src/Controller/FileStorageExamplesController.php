@@ -496,7 +496,7 @@ class FileStorageExamplesController extends SandboxAppController {
 				['model' => 'FileStorage', 'collection' => 'documents', 'filename' => $filename],
 				['ownedHashes' => $ownedHashes],
 			);
-		} catch (BlobAttachDeniedException | BlobNotAvailableException | InvalidArgumentException) {
+		} catch (BlobAttachDeniedException|BlobNotAvailableException|InvalidArgumentException) {
 			return $this->response->withType('application/json')->withStringBody((string)json_encode(['status' => 'upload']));
 		}
 
