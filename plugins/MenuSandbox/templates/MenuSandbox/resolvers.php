@@ -171,8 +171,9 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	?>
 	<p class="text-muted"><small>The "Resolvers" item is active (current URL) and "Members only" only appears while logged in.</small></p>
 	<p>
-		Visibility decisions combine with <b>AND</b>: any resolver can hide an item, and a later one cannot show it
-		again. Below, the authorization callback allows everything, yet "Members only" stays hidden for guests
+		The login, permission and authorization resolvers combine with <b>AND</b>: they can only hide an item, so
+		once one of them hid it, a later one does not show it again (a custom <code>CallbackResolver</code> still
+		can). Below, the authorization callback allows everything, yet "Members only" stays hidden for guests
 		because <code>LoggedInResolver</code> already hid it:
 	</p>
 	<?php
