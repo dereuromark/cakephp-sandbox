@@ -23,10 +23,17 @@
         }
 
         handle {
+            # Issuer and resource identifier must match the app's Mercure jwt.issuer and audience.
             mercure {
-                publisher_jwt {env.MERCURE_PUBLISHER_JWT_KEY}
-                subscriber_jwt {env.MERCURE_SUBSCRIBER_JWT_KEY}
-                protocol_version_compatibility 8
+                resource_identifier https://sandbox.dereuromark.de/.well-known/mercure
+                issuer https://sandbox.dereuromark.de {
+                    publisher {
+                        jwt {env.MERCURE_PUBLISHER_JWT_KEY} HS256
+                    }
+                    subscriber {
+                        jwt {env.MERCURE_SUBSCRIBER_JWT_KEY} HS256
+                    }
+                }
                 anonymous
                 subscriptions
             }

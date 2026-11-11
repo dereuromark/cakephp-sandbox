@@ -34,9 +34,17 @@
 			respond 204
 		}
 
+		# Issuer and resource identifier must match the app's jwt.issuer and audience (config/app_mercure.php).
 		mercure {
-			publisher_jwt {$MERCURE_PUBLISHER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!}
-			subscriber_jwt {$MERCURE_SUBSCRIBER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!}
+			resource_identifier {$DDEV_PRIMARY_URL}/.well-known/mercure
+			issuer {$DDEV_PRIMARY_URL} {
+				publisher {
+					jwt {$MERCURE_PUBLISHER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!} HS256
+				}
+				subscriber {
+					jwt {$MERCURE_SUBSCRIBER_JWT_KEY:SandboxMercureSecretKey2024-padded-for-HS256!} HS256
+				}
+			}
 			anonymous
 			subscriptions
 		}

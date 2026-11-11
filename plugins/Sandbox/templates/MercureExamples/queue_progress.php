@@ -147,7 +147,7 @@ Publisher::publish(JsonUpdate::create(
 
     // Build subscription URL
     const url = new URL(mercureUrl);
-    url.searchParams.append('topic', topic);
+    url.searchParams.append('match', topic);
 
     log('Connecting to Mercure hub...');
     log('Topic: ' + topic);

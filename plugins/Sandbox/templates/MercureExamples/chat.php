@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Subscribe to Mercure topic
 	const url = new URL(mercureUrl);
-	url.searchParams.append('topic', topic);
+	url.searchParams.append('match', topic);
 
 	const eventSource = new EventSource(url);
 

@@ -45,7 +45,7 @@ $url = $this->Mercure->url();  // Uses defaultTopics from config</code></pre>
 
 <h4>JavaScript Subscription</h4>
 <pre><code class="language-javascript">// Create EventSource connection
-const hubUrl = '<?php echo $mercureConfigured ? $this->Mercure->url(['/sandbox/demo']) : 'https://hub.example.com/.well-known/mercure?topic=/sandbox/demo'; ?>';
+const hubUrl = '<?php echo $mercureConfigured ? $this->Mercure->url(['/sandbox/demo']) : 'https://hub.example.com/.well-known/mercure?match=/sandbox/demo'; ?>';
 const eventSource = new EventSource(hubUrl);
 
 // Handle incoming messages
@@ -173,15 +173,19 @@ eventSource.onerror = (error) => {
 <?php } ?>
 
 <h4>Topic Patterns</h4>
-<p>Mercure supports topic patterns for flexible subscriptions:</p>
+<p>Mercure 1.x matches a plain topic exactly. For patterns, use an explicit URL Pattern matcher:</p>
 <pre><code class="language-javascript">// Exact topic
-const url = hubUrl + '?topic=/books/123';
+const url = hubUrl + '?match=/books/123';
 
-// Wildcard pattern (all books)
-const url = hubUrl + '?topic=/books/*';
+// URL Pattern (all books)
+const url = hubUrl + '?match_urlpattern=' + encodeURIComponent('https://example.com/books/:id');
 
 // Multiple topics
-const url = hubUrl + '?topic=/books/123&amp;topic=/notifications';</code></pre>
+const url = hubUrl + '?match=/books/123&amp;match=/notifications';</code></pre>
+<p>On the PHP side, pass the same matcher to <code>$this->Mercure->url()</code>:</p>
+<pre><code class="language-php">$url = $this->Mercure->url([
+    ['match' => 'https://example.com/books/:id', 'match_type' => 'urlpattern'],
+]);</code></pre>
 
 <h4>Private Topics</h4>
 <p>For private topics, ensure the authorization cookie is set before connecting:</p>

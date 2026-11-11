@@ -16,6 +16,7 @@ use Cake\Http\Cookie\CookieInterface;
  *     -e MERCURE_PUBLISHER_JWT_KEY='your-secret-here-must-be-32-plus-bytes' \
  *     -e MERCURE_SUBSCRIBER_JWT_KEY='your-secret-here-must-be-32-plus-bytes' \
  *     -e MERCURE_CORS_ALLOWED_ORIGINS='*' \
+ *     -e MERCURE_EXTRA_DIRECTIVES=$'anonymous\ncookie_name mercure_access_token' \
  *     -p 3080:3080 dunglas/mercure
  */
 
@@ -28,10 +29,13 @@ if ($isDdev) {
 	$mercureUrl = 'http://localhost/.well-known/mercure';
 	// External URL for browser EventSource connections
 	$mercurePublicUrl = getenv('DDEV_PRIMARY_URL') . '/.well-known/mercure';
+	// Must match the hub's `issuer` in .ddev/frankenphp/Caddyfile
+	$mercureIssuer = (string)getenv('DDEV_PRIMARY_URL');
 } else {
 	// Standalone/devilbox - separate Mercure container
 	$mercureUrl = 'http://localhost:3080/.well-known/mercure';
 	$mercurePublicUrl = $mercureUrl;
+	$mercureIssuer = 'https://localhost';
 }
 
 return [
@@ -49,10 +53,12 @@ return [
 			'algorithm' => 'HS256',
 			'publish' => ['*'],
 			'subscribe' => [],
+			'issuer' => $mercureIssuer,
 		],
 
 		'cookie' => [
-			'name' => 'mercureAuthorization',
+			// The default `__Secure-` name needs HTTPS; plain HTTP needs the same `cookie_name` on the hub
+			'name' => $isDdev ? '__Secure-mercure_access_token' : 'mercure_access_token',
 			'secure' => $isDdev, // true for ddev (HTTPS), false for devilbox
 			'httponly' => true,
 			'samesite' => CookieInterface::SAMESITE_LAX,

@@ -64,10 +64,10 @@
 
 <h5>Fluent Builder Pattern</h5>
 <p>Build up authorization with multiple topics and claims:</p>
-<pre><code class="language-php">// Chain topics and authorize
+<pre><code class="language-php">// Chain topics and authorize; a URL Pattern matcher grants a whole topic family
 $this->Mercure
     ->addSubscribe('/books/123', ['sub' => $userId])
-    ->addSubscribe('/notifications/*', ['role' => 'user'])
+    ->addSubscribe(['match' => 'https://example.com/notifications/:id', 'match_type' => 'urlpattern'], ['role' => 'user'])
     ->authorize();
 
 // With discovery headers
@@ -80,12 +80,15 @@ $this->Mercure
 <h5>Direct Authorization</h5>
 <p>Authorize with explicit topics array:</p>
 <pre><code class="language-php">// Simple authorization
-$this->Mercure->authorize(['/feeds/123', '/notifications/*']);
+$this->Mercure->authorize([
+    '/feeds/123',
+    ['match' => 'https://example.com/notifications/:id', 'match_type' => 'urlpattern'],
+]);
 
 // With additional JWT claims
 $this->Mercure->authorize(
     subscribe: ['/users/123/private'],
-    additionalClaims: ['sub' => $userId, 'aud' => 'my-app'],
+    additionalClaims: ['sub' => $userId],
 );</code></pre>
 
 <h5>Clear Authorization</h5>
