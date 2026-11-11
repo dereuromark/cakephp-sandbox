@@ -47,9 +47,9 @@ CARVE,
 CARVE,
 	],
 	'Table with Caption' => [
-		'description' => 'Tables use header markers (`|=`) with glued alignment markers - `|=<` left, `|=~` center, `|=>` right - instead of a Markdown separator row.',
+		'description' => 'Tables use header markers (`|=`) with alignment in braces glued to the marker - `|={<}` left, `|={~}` center, `|={>}` right - instead of a Markdown separator row.',
 		'code' => <<<'CARVE'
-|=< Feature |=~ Markdown |=> Carve |
+|={<} Feature |={~} Markdown |={>} Carve |
 | Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
 | Strikethrough | `~~text~~` | `~text~` |
@@ -61,7 +61,7 @@ CARVE,
 	'Table with Cell Spans' => [
 		'description' => 'Cells merge with `^` (rowspan, continues the cell above) and `<` (colspan, merges with the cell to the left). Per-cell markers like `|>` override the column alignment.',
 		'code' => <<<'CARVE'
-|= Category |= Item |=> Price |
+|= Category |= Item |={>} Price |
 | Fruit | Apple | $1.00 |
 | ^ | Banana | $0.50 |
 | Vegetable | Carrot | $0.30 |
@@ -74,7 +74,7 @@ CARVE,
 		'description' => '`{header-rows=N}` and `{footer-rows=N}` on the line above the table name the partitions explicitly: the first N rows become the `<thead>` (cells promoted to `<th>`), the last N the `<tfoot>`. Naming either key replaces the automatic `|=` detection, so name both where the table also has a header.',
 		'code' => <<<'CARVE'
 {header-rows=1 footer-rows=1}
-|=< Item |=> Qty |=> Price |
+|={<} Item |={>} Qty |={>} Price |
 | Coffee | 2 | 8.00 |
 | Tea | 1 | 3.50 |
 | Total | 3 | 11.50 |
@@ -83,10 +83,10 @@ CARVE,
 CARVE,
 	],
 	'Inherited Cell Alignment' => [
-		'description' => '`?` inherits the column\'s horizontal alignment, which frees a cell to set only its vertical one: `|?^` top, `|?~` middle, `|?v` bottom. The run is glued to the pipe and ends at the first space.',
+		'description' => '`?` inherits the column\'s horizontal alignment, which frees a cell to set only its vertical one: `|{?^}` top, `|{?~}` middle, `|{?v}` bottom, glued to the pipe.',
 		'code' => <<<'CARVE'
-|=< Phase |=> Hours |
-|?v Design | 12 |
+|={<} Phase |={>} Hours |
+|{?v} Design | 12 |
 | ^ | 8 |
 | Build | 20 |
 

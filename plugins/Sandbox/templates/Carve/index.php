@@ -138,7 +138,7 @@ $defaultCarve = <<<'CARVE'
 This is a *Carve* markup demo.
 Try editing this text!
 
----
+***
 
 ## Features
 

@@ -20,7 +20,7 @@ See the [Carve spec][spec] or visit <https://github.com/markup-carve>.
 A plain container with no attributes.
 :::
 
-|=< Name |=> Type |
+|={<} Name |={>} Type |
 | Carve | Markup |
 | PHP | Code |
 

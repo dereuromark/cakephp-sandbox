@@ -872,20 +872,20 @@ CARVE,
 			'details_nested' => [
 				'level' => 'Level 1 - a shipped extension, still no custom code',
 				'title' => 'Collapsible with the stock Details extension',
-				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard-tier extension present in all three engines, off by default, and a host turns it on with a single `addExtension()` call. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: the branch is now a container, so the fence has to widen at every level.',
+				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard-tier extension present in all three engines, off by default, and a host turns it on with a single `addExtension()` call. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: every branch is now a container with its own `:::` fence and closer.',
 				'mode' => 'details',
 				'carve' => <<<'CARVE'
 ::: tree
-- :::: details "src/"
-  - ::::: details "Parser/"
+- ::: details "src/"
+  - ::: details "Parser/"
     - BlockParser.php
     - InlineParser.php
-    :::::
-  - ::::: details "Renderer/"
+    :::
+  - ::: details "Renderer/"
     - HtmlRenderer.php
     - AnsiRenderer.php
-    :::::
-  ::::
+    :::
+  :::
 - tests/
 :::
 CARVE,
@@ -2098,7 +2098,7 @@ CARVE,
 
 ## Requirements
 
-See </#configuration> for what to set afterwards.
+See </#Configuration> for what to set afterwards.
 
 ## Configuration
 
