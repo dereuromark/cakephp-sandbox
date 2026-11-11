@@ -89,7 +89,7 @@
 		"dereuromark/cakephp-workflow": "dev-master",
 		"nette/neon": "^4.0",
 		"dereuromark/cakephp-reactions": "dev-master",
-		"dereuromark/cakephp-menu": "^0.2.0",
+		"dereuromark/cakephp-menu": "^0.3.0",
 		"markup-carve/cakephp-carve": "dev-main"
 	},
 	"require-dev": {
