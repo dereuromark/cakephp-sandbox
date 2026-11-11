@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de4f03ac19dd2d272fcb68841e336f2c",
+    "content-hash": "9d30c70d2a3da1befb8bbbf8a70be90a",
     "packages": [
         {
             "name": "brick/math",
@@ -2868,16 +2868,16 @@
         },
         {
             "name": "dereuromark/cakephp-menu",
-            "version": "0.2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dereuromark/cakephp-menu.git",
-                "reference": "ea18c17b638339ec9ff5fd8357f888cc5632e7e2"
+                "reference": "7f4fed8fb07a318d1441741bdda298d62016be83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/ea18c17b638339ec9ff5fd8357f888cc5632e7e2",
-                "reference": "ea18c17b638339ec9ff5fd8357f888cc5632e7e2",
+                "url": "https://api.github.com/repos/dereuromark/cakephp-menu/zipball/7f4fed8fb07a318d1441741bdda298d62016be83",
+                "reference": "7f4fed8fb07a318d1441741bdda298d62016be83",
                 "shasum": ""
             },
             "require": {
@@ -2889,6 +2889,7 @@
                 "phpstan/phpstan": "^2.1",
                 "phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
             },
+            "default-branch": true,
             "type": "cakephp-plugin",
             "extra": {
                 "branch-alias": {
@@ -2931,8 +2932,8 @@
                 "issues": "https://github.com/dereuromark/cakephp-menu/issues",
                 "source": "https://github.com/dereuromark/cakephp-menu"
             },
-            "time": "2026-10-02T21:51:04+00:00",
-            "published-time": "2026-10-02T21:52:10+00:00"
+            "time": "2026-11-11T02:23:15+00:00",
+            "published-time": "2026-11-11T02:23:20+00:00"
         },
         {
             "name": "dereuromark/cakephp-meta",
@@ -14541,6 +14542,7 @@
         "dereuromark/cakephp-ide-helper": 20,
         "dereuromark/cakephp-ide-helper-extra": 20,
         "dereuromark/cakephp-markup": 20,
+        "dereuromark/cakephp-menu": 20,
         "dereuromark/cakephp-meta": 20,
         "dereuromark/cakephp-qrcode": 20,
         "dereuromark/cakephp-queue": 20,
