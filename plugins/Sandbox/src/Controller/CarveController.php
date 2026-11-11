@@ -2734,7 +2734,7 @@ CARVE,
 				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
 				$result['carve'] = CarveConverter::carve()->render($back);
 				$result['html'] = $this->sanitizeHtml($converter->render($back));
-				$result['stable'] = $converter->convert($carve) === $converter->render($back);
+				$result['stable'] = $converter->render($converter->parse($carve)) === $converter->render($back);
 				// The HTML verdict alone is a check that cannot fail on the loss
 				// that matters here: `::: note` and `{.note}` + a bare fence are
 				// the same document semantically and render byte-identical, so

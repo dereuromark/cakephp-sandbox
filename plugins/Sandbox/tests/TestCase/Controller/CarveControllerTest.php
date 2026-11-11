@@ -148,7 +148,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertSame("| Name | Qty |\n|---|---|\n| Banana split | 12 |\n", $response['carve']);
+		$this->assertSame("|= Name |= Qty |\n| Banana split | 12 |\n", $response['carve']);
 	}
 
 	/**
@@ -163,7 +163,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertSame("| Name         | Qty |\n|---           |---  |\n| Banana split | 12  |\n", $response['carve']);
+		$this->assertSame("|= Name        |= Qty |\n| Banana split | 12   |\n", $response['carve']);
 	}
 
 	/**

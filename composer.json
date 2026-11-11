@@ -80,14 +80,14 @@
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
 		"php-collective/djot": "dev-master",
-		"markup-carve/carve-php": "^0.1.16",
+		"markup-carve/carve-php": "dev-main as 0.1.17",
 		"markup-carve/carve-php-media-embed": "dev-main",
 		"markup-carve/carve-php-chat": "dev-main",
 		"ezyang/htmlpurifier": "^4.19",
-		"josbeir/cakephp-mercure": "^0.2.0",
+		"josbeir/cakephp-mercure": "^0.2.1",
 		"php-collective/toml": "dev-master",
 		"dereuromark/cakephp-workflow": "dev-master",
-		"nette/neon": "^3.4",
+		"nette/neon": "^4.0",
 		"dereuromark/cakephp-reactions": "dev-master",
 		"dereuromark/cakephp-menu": "^0.2.0",
 		"markup-carve/cakephp-carve": "dev-main"
@@ -103,7 +103,7 @@
 		"phpunit/phpunit": "^13.1.10",
 		"cakedc/cakephp-phpstan": "^4.2.0",
 		"dereuromark/cakephp-fixture-factories": "^2.0.0",
-		"johnykvsky/dummygenerator": "^0.2",
+		"johnykvsky/dummygenerator": "^0.3",
 		"tomasvotruba/type-coverage": "^2.3"
 	},
 	"autoload": {
