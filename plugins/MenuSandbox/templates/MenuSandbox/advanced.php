@@ -37,6 +37,9 @@ use CakeMenu\Renderer\Bootstrap5Renderer;
 	<p class="mt-3"><b>Via the built-in breadcrumb renderer:</b></p>
 	<?php echo $this->Menu->renderBreadcrumbs('docs'); ?>
 
+	<p class="mt-3"><b>With the current crumb linked</b> (<code>linkCurrent</code>; it keeps <code>aria-current="page"</code>):</p>
+	<?php echo $this->Menu->renderBreadcrumbs('docs', ['linkCurrent' => true]); ?>
+
 	<pre><code>$this-&gt;Menu-&gt;register('docs', function ($menu) {
     $node = $menu-&gt;addItem('Menu Sandbox', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);
     $node-&gt;getSubMenu()-&gt;addItem('Advanced', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'advanced']);
@@ -46,7 +49,8 @@ $this-&gt;Menu-&gt;populateBreadcrumbs('docs');
 echo $this-&gt;Breadcrumbs-&gt;render();
 
 // Built-in BreadcrumbRenderer
-echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
+echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');
+echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs', ['linkCurrent' =&gt; true]);</code></pre>
 
 	<h4 class="mt-4">Array import / export</h4>
 	<p>Define a whole tree as data with <code>Menu::fromArray()</code> and serialize it back with <code>toArray()</code>.</p>
@@ -250,5 +254,6 @@ $merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code><
 	.menu-tree li > a:hover { background: var(--bs-secondary-bg, #f1f3f5); }
 	.menu-tree li.active > a,
 	.menu-tree li.active > span { font-weight: 600; }
+	.page pre { white-space: pre-wrap; word-break: break-word; }
 </style>
 <?php $this->end(); ?>

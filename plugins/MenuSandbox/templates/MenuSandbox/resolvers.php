@@ -169,6 +169,22 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	]);
 	?>
 	<p class="text-muted"><small>The "Resolvers" item is active (current URL) and "Members only" only appears while logged in.</small></p>
+	<p>
+		Visibility decisions combine with <b>AND</b>: any resolver can hide an item, and a later one cannot show it
+		again. Below, the authorization callback allows everything, yet "Members only" stays hidden for guests
+		because <code>LoggedInResolver</code> already hid it:
+	</p>
+	<?php
+	$and = $this->Menu->create('combo_and', ['attributes' => ['class' => 'nav nav-pills menu-demo-active']]);
+	$and->addItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
+	$and->addItem('Members only', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['auth' => 'loggedIn']]);
+	echo $this->Menu->render('combo_and', [
+		'renderer' => Bootstrap5Renderer::class,
+		'resolver' => (new ResolverCollection())
+			->add(new LoggedInResolver($loggedIn))
+			->add(new AuthorizationResolver(static fn (): bool => true)),
+	]);
+	?>
 
 	<h4 class="mt-4">Adding to the default resolvers</h4>
 	<p>
@@ -251,6 +267,7 @@ echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($reque
 	/* Make the active item legible: Bootstrap's default .nav-link.active is color-only and theme-dependent. */
 	.menu-demo-active li.active > a,
 	.menu-demo-active li.active > span,
-	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); }
+	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); color: var(--bs-emphasis-color, #000); }
+	.page pre { white-space: pre-wrap; word-break: break-word; }
 </style>
 <?php $this->end(); ?>
