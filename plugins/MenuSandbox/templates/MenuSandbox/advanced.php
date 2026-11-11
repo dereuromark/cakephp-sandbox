@@ -7,6 +7,7 @@ use CakeMenu\Menu;
 use CakeMenu\Renderer\Bootstrap5Renderer;
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -40,7 +41,7 @@ use CakeMenu\Renderer\Bootstrap5Renderer;
 	<p class="mt-3"><b>With the current crumb linked</b> (<code>linkCurrent</code>; it keeps <code>aria-current="page"</code>):</p>
 	<?php echo $this->Menu->renderBreadcrumbs('docs', ['linkCurrent' => true]); ?>
 
-	<pre><code>$this-&gt;Menu-&gt;register('docs', function ($menu) {
+	<pre><code class="language-php">$this-&gt;Menu-&gt;register('docs', function ($menu) {
     $node = $menu-&gt;addItem('Menu Sandbox', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);
     $node-&gt;getSubMenu()-&gt;addItem('Advanced', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'advanced']);
 });
@@ -78,7 +79,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs', ['linkCurrent' =&gt; true]);</
 	?>
 
 	<p class="mt-2"><code>toArray()</code> output:</p>
-	<pre><code><?php echo h(json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></code></pre>
+	<pre><code class="language-json"><?php echo h(json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></code></pre>
 
 	<h4 class="mt-4">Build from flat rows</h4>
 	<p>
@@ -105,7 +106,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs', ['linkCurrent' =&gt; true]);</
 	echo $this->Menu->render($tree);
 	?>
 
-	<pre><code>$tree = Menu::fromFlat($rows, fn (array $row) =&gt; [
+	<pre><code class="language-php">$tree = Menu::fromFlat($rows, fn (array $row) =&gt; [
     'key' =&gt; (string)$row['id'],
     'parent' =&gt; $row['parent_id'] !== null ? (string)$row['parent_id'] : null,
     'label' =&gt; $row['title'],
@@ -195,7 +196,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs', ['linkCurrent' =&gt; true]);</
 	<p class="mb-1 mt-3"><b><code>merge()</code> + <code>insertBefore()</code></b> (adds a GitHub link before <code>advanced</code>):</p>
 	<?php echo $this->Menu->render($merged, ['renderer' => Bootstrap5Renderer::class]); ?>
 
-	<pre><code>$reordered = clone $source;
+	<pre><code class="language-php">$reordered = clone $source;
 $reordered-&gt;reorder(['advanced', 'home', 'renderers', 'resolvers']);
 
 $firstTwo = $source-&gt;slice(0, 2);              // new menu, items deep-cloned

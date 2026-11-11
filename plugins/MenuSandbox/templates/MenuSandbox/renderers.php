@@ -32,6 +32,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 };
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -60,7 +61,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	?>
 	</nav>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render($menu, ['renderer' =&gt; \CakeMenu\Renderer\Bootstrap5Renderer::class]);</code></pre>
+	<pre><code class="language-php">echo $this-&gt;Menu-&gt;render($menu, ['renderer' =&gt; \CakeMenu\Renderer\Bootstrap5Renderer::class]);</code></pre>
 
 	<h4 class="mt-4">JSON renderer</h4>
 	<p>Serialize the tree for an API or a JS front-end (<code>['pretty' =&gt; true]</code> for readable output).</p>
@@ -68,7 +69,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	$build($this, 'json_demo');
 	$json = $this->Menu->render('json_demo', ['renderer' => JsonRenderer::class, 'pretty' => true]);
 	?>
-	<pre class="menu-json"><code><?php echo h($json); ?></code></pre>
+	<pre class="menu-json"><code class="language-json"><?php echo h($json); ?></code></pre>
 
 	<h4 class="mt-4">Per-render template override</h4>
 	<p>Override individual templates inline, e.g. wrap the list in a <code>&lt;nav&gt;</code> element:</p>
@@ -81,7 +82,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	]);
 	?>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render($menu, [
+	<pre><code class="language-php">echo $this-&gt;Menu-&gt;render($menu, [
     'templates' =&gt; [
         'menuWrapper' =&gt; '&lt;nav&gt;&lt;ul{{attributes}}&gt;{{items}}&lt;/ul&gt;&lt;/nav&gt;',
     ],
@@ -106,7 +107,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 		$activeDemo($this, 'active_on_' . $activeOn);
 		$html = $this->Menu->render('active_on_' . $activeOn, ['activeOn' => $activeOn]);
 		echo '<p class="mb-1 mt-2"><code>activeOn =&gt; \'' . $activeOn . '\'</code>:</p>';
-		echo '<pre><code>' . h($html) . '</code></pre>';
+		echo '<pre><code class="language-html">' . h($html) . '</code></pre>';
 	}
 	?>
 
@@ -133,7 +134,7 @@ $build = function ($view, string $name, string $menuClass = 'nav nav-pills') {
 	echo $this->Menu->render('icon_demo_own', ['renderer' => Bootstrap5Renderer::class, 'iconTemplate' => '{{icon}} ']);
 	?>
 
-	<pre><code>$menu-&gt;addItem('Own markup', '#', [
+	<pre><code class="language-php">$menu-&gt;addItem('Own markup', '#', [
     'icon' =&gt; '&lt;i class="bi bi-stars" aria-hidden="true"&gt;&lt;/i&gt;',
     'escapeIcon' =&gt; false,
 ]);
@@ -164,7 +165,7 @@ echo $this-&gt;Menu-&gt;render($menu, ['iconTemplate' =&gt; '{{icon}} ']);</code
 	echo $sidebarHtml;
 	?>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render($menu, [
+	<pre><code class="language-php">echo $this-&gt;Menu-&gt;render($menu, [
     'renderer' =&gt; Bootstrap5SidebarRenderer::class,
     'depth' =&gt; 1,
 ]);

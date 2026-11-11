@@ -21,6 +21,7 @@ $loggedIn = (bool)$request->getQuery('loggedIn');
 $canAccessAdmin = (bool)$request->getQuery('admin');
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -49,7 +50,7 @@ $canAccessAdmin = (bool)$request->getQuery('admin');
 	echo $this->Menu->render('auth', ['renderer' => Bootstrap5Renderer::class, 'resolver' => new LoggedInResolver($loggedIn)]);
 	?>
 
-	<pre><code>$menu-&gt;addItem('Login', '/login', ['data' =&gt; ['auth' =&gt; 'loggedOut']]);
+	<pre><code class="language-php">$menu-&gt;addItem('Login', '/login', ['data' =&gt; ['auth' =&gt; 'loggedOut']]);
 $menu-&gt;addItem('Logout', '/logout', ['data' =&gt; ['auth' =&gt; 'loggedIn']]);
 echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($identity !== null)]);</code></pre>
 
@@ -201,7 +202,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	echo $this->Menu->render('extra', ['renderer' => Bootstrap5Renderer::class, 'additionalResolvers' => [new LoggedInResolver($loggedIn)]]);
 	?>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
+	<pre><code class="language-php">echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
 
 	<h4 class="mt-4">Single active trail</h4>
 	<p>
@@ -249,7 +250,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	echo $this->Menu->render('regex', ['resolver' => new RegexResolver($request)]);
 	?>
 
-	<pre><code>$item-&gt;setData('match', '#^/menu-sandbox/#');             // single pattern
+	<pre><code class="language-php">$item-&gt;setData('match', '#^/menu-sandbox/#');             // single pattern
 $item-&gt;setData('match', ['#^/login#', '#^/register#']);  // any of several
 echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($request)]);</code></pre>
 

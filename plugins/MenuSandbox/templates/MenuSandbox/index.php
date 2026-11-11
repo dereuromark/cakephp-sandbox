@@ -26,6 +26,7 @@ $current = $this->Menu->getCurrentItem('navbar');
 $trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->Menu->extractPath($current)) : [];
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -66,7 +67,7 @@ $trail = $current ? array_map(static fn ($i) => (string)$i->getLabel(), $this->M
 		</small>
 	</p>
 
-	<pre><code>$navbar = $this-&gt;Menu-&gt;create('navbar', ['attributes' =&gt; ['class' =&gt; 'navbar-nav']]);
+	<pre><code class="language-php">$navbar = $this-&gt;Menu-&gt;create('navbar', ['attributes' =&gt; ['class' =&gt; 'navbar-nav']]);
 $navbar-&gt;addItem('Home', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index'], ['icon' =&gt; 'bi bi-house']);
 $reactions = $navbar-&gt;addItem('Reactions', '/sandbox/reaction-examples', ['icon' =&gt; 'bi bi-emoji-smile', 'badge' =&gt; 'NEW', 'badgeType' =&gt; 'bg-success']);
 echo $this-&gt;Menu-&gt;render('navbar', ['renderer' =&gt; \CakeMenu\Renderer\NavbarRenderer::class, 'brand' =&gt; 'Menu Sandbox']);</code></pre>
