@@ -30,7 +30,6 @@ $document = <<<'CARVE'
 ---json
 {"title": "Document metadata"}
 ---
-
 # First heading
 
 A short document.

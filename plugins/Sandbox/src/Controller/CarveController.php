@@ -1454,7 +1454,6 @@ Intro paragraph shown before the contents.
 
 {depth=2}
 ::: toc
-
 :::
 
 ## Setup
@@ -1469,13 +1468,11 @@ PHP 8.2+.
 
 Run it[^run].
 
-::: footnotes
-
-:::
-
 [^install]: Install via Composer.
-
 [^run]: See the CLI docs.
+
+::: footnotes
+:::
 CARVE,
 				'options' => [
 					'depth' => 'N - include levels 1-N',
@@ -1913,7 +1910,6 @@ CARVE,
 - -{header-row} Region
   - Notes
 - - EMEA
-
   - Strong quarter.
 
     Drivers:
@@ -3535,7 +3531,6 @@ flatten or reveal when the medium cannot run client scripts.
 composer require markup-carve/carve-php
 ```
 ::::
-
 :::: tab [Usage]
 ```php
 $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
@@ -3547,7 +3542,6 @@ $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
 ```js [config.js]
 export default { mode: 'static' };
 ```
-
 ```json [config.json]
 { "mode": "static" }
 ```

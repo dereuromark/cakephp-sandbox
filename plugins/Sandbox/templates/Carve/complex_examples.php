@@ -240,9 +240,7 @@ CARVE,
 		'description' => 'Interactive task/checkbox lists.',
 		'code' => <<<'CARVE'
 - [ ] Uncompleted task
-
 - [x] Completed task
-
 - [ ] Another pending item
 
   With additional content under the task.
@@ -357,9 +355,7 @@ Check out [Carve's homepage][carve] or the [PHP implementation][carve-php].
 You can also use [implicit][] references.
 
 [carve]: https://github.com/markup-carve/carve "Carve Markup Language"
-
 [carve-php]: https://github.com/markup-carve/carve-php
-
 [implicit]: https://example.com
 CARVE,
 	],
