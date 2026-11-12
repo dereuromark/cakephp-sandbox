@@ -618,7 +618,7 @@ class CarveController extends SandboxAppController {
 		| Slack   | no         |
 
 		[^why]: Target-routed raw spans fire too: `\alpha`{=latex} becomes a
-		Pandoc RawInline that only the LaTeX writer emits.
+		  Pandoc RawInline that only the LaTeX writer emits.
 		CARVE;
 		$defaultCarve = preg_replace('/^\t\t/m', '', $defaultCarve) ?? $defaultCarve;
 
@@ -819,7 +819,7 @@ CARVE,
     - `InlineParser.php` - emphasis, links
   - *render/*
     - `HtmlRenderer.php`
-- /tests/ - _mirrors_ the source layout
+- /tests/ - /mirrors/ the source layout
 :::
 CARVE,
 			],
@@ -828,7 +828,7 @@ CARVE,
 				'title' => 'Attributes flow onto the container',
 				'description' => 'An attribute line above the opener puts an id, extra classes and any `data-*` pair straight onto the `<div>`. That is the whole styling and scripting seam: a theme can vary a tree per instance without the markup language knowing anything about themes.',
 				'carve' => <<<'CARVE'
-{#project-layout .compact data-guides="dotted"}
+{#project-layout .compact data-guides=dotted}
 ::: tree
 - app/
   - Controller/
@@ -1454,6 +1454,7 @@ Intro paragraph shown before the contents.
 
 {depth=2}
 ::: toc
+
 :::
 
 ## Setup
@@ -1468,11 +1469,13 @@ PHP 8.2+.
 
 Run it[^run].
 
-[^install]: Install via Composer.
-[^run]: See the CLI docs.
-
 ::: footnotes
+
 :::
+
+[^install]: Install via Composer.
+
+[^run]: See the CLI docs.
 CARVE,
 				'options' => [
 					'depth' => 'N - include levels 1-N',
@@ -1703,7 +1706,6 @@ CARVE,
 				'class' => TabsExtension::class,
 				'example_carve' => <<<'CARVE'
 ::: tabs
-
 :::: tab [Installation]
 Install the package with Composer:
 
@@ -1719,7 +1721,6 @@ Convert Carve to HTML:
 :::: tab [Configuration]
 Configure options as needed.
 ::::
-
 :::
 CARVE,
 				'options' => [
@@ -1736,7 +1737,6 @@ CARVE,
 				'class' => CodeGroupExtension::class,
 				'example_carve' => <<<'CARVE'
 ::: code-group
-
 ```bash [Composer]
 composer require markup-carve/carve-php
 ```
@@ -1748,7 +1748,6 @@ npm install @example/carve
 ```bash [Pip]
 pip install carve
 ```
-
 :::
 CARVE,
 				'options' => [
@@ -1806,7 +1805,7 @@ CARVE,
 				'example_carve' => <<<'CARVE'
 Carve supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
 
-Footnote content can include _emphasis_ and `code`[Footnotes support full inline formatting.]{.fn} too.
+Footnote content can include /emphasis/ and `code`[Footnotes support full inline formatting.]{.fn} too.
 CARVE,
 				'options' => [
 					'cssClass' => "'fn'",
@@ -1914,6 +1913,7 @@ CARVE,
 - -{header-row} Region
   - Notes
 - - EMEA
+
   - Strong quarter.
 
     Drivers:
@@ -2032,7 +2032,6 @@ Carve is built on the :term[djot] data model and adds a few :term[extension]s.
 
 :: djot
 : A light markup language with a clean, unambiguous grammar.
-
 :: extension
 : An opt-in feature that adds inline or block behavior.
 CARVE,
@@ -3536,6 +3535,7 @@ flatten or reveal when the medium cannot run client scripts.
 composer require markup-carve/carve-php
 ```
 ::::
+
 :::: tab [Usage]
 ```php
 $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
@@ -3547,6 +3547,7 @@ $html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
 ```js [config.js]
 export default { mode: 'static' };
 ```
+
 ```json [config.json]
 { "mode": "static" }
 ```
@@ -3569,7 +3570,7 @@ graph TD
   B -->|PDF| D[Static]
 ```
 
-Display math (a ```math fence, handled by the math renderer in static mode):
+Display math (a `math` fence, handled by the math renderer in static mode):
 
 ```math
 \int_0^1 x^2 \, dx = \frac{1}{3}
