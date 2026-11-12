@@ -16,7 +16,7 @@ Here is /emphasis/ and a [safe link](https://example.com).
 <div>Raw HTML <a href="javascript:alert(1)" onclick="alert(1)">Unsafe raw link</a></div>
 ```
 
-{onclick="alert(1)"}
+{onclick=alert(1)}
 A paragraph with an event attribute.
 CARVE;
 $examples = [
@@ -30,6 +30,7 @@ $document = <<<'CARVE'
 ---json
 {"title": "Document metadata"}
 ---
+
 # First heading
 
 A short document.

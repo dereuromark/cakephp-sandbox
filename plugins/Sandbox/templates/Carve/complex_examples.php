@@ -17,7 +17,6 @@ $examples = [
 		'description' => 'Images can have captions using the ^ syntax.',
 		'code' => <<<'CARVE'
 ![RSS Logo](/img/statics/logo_rss.png)
-
 ^ The logo used for this website
 CARVE,
 	],
@@ -29,7 +28,6 @@ CARVE,
 >
 > Whether 'tis nobler in the mind to suffer
 > the slings and arrows of outrageous fortune...
-
 ^ William Shakespeare, *Hamlet*
 CARVE,
 	],
@@ -54,7 +52,6 @@ CARVE,
 | Strong | `**text**` | `*text*` |
 | Strikethrough | `~~text~~` | `~text~` |
 | Highlight | N/A | `=text=` |
-
 ^ Syntax comparison between Markdown and Carve
 CARVE,
 	],
@@ -66,8 +63,18 @@ CARVE,
 | ^ | Banana | $0.50 |
 | Vegetable | Carrot | $0.30 |
 | Total | < | $1.80 |
-
 ^ Rowspan (^), colspan (<) and a right-aligned price column
+CARVE,
+	],
+	'Table Continuation Rows' => [
+		'description' => 'A row that starts with `+` instead of `|` continues the row above: each of its cells is appended to the cell in the same column, so long text can wrap over several source lines. Empty cells leave their column unchanged.',
+		'code' => <<<'CARVE'
+|= Package |={>} Version |= Notes |
+| carve-php | 0.1.17 | Parser, renderer |
++ | | and formatter |
+| cakephp-carve | 0.1.4 | Helper, behavior |
++ | | and CarveView |
+^ Two logical rows, each written over two source lines
 CARVE,
 	],
 	'Table Row Partitions' => [
@@ -78,7 +85,6 @@ CARVE,
 | Coffee | 2 | 8.00 |
 | Tea | 1 | 3.50 |
 | Total | 3 | 11.50 |
-
 ^ First row is the thead, last row the tfoot
 CARVE,
 	],
@@ -89,7 +95,6 @@ CARVE,
 |{?v} Design | 12 |
 | ^ | 8 |
 | Build | 20 |
-
 ^ Design spans two rows, keeps the column's left alignment and sits on the bottom edge
 CARVE,
 	],
@@ -132,7 +137,6 @@ Fenced quotes hold whatever a block can hold:
 And a nested quote, on a wider fence.
 ::::
 :::
-
 ^ Same node as the prefixed form, easier to edit
 CARVE,
 	],
@@ -236,7 +240,9 @@ CARVE,
 		'description' => 'Interactive task/checkbox lists.',
 		'code' => <<<'CARVE'
 - [ ] Uncompleted task
+
 - [x] Completed task
+
 - [ ] Another pending item
 
   With additional content under the task.
@@ -351,7 +357,9 @@ Check out [Carve's homepage][carve] or the [PHP implementation][carve-php].
 You can also use [implicit][] references.
 
 [carve]: https://github.com/markup-carve/carve "Carve Markup Language"
+
 [carve-php]: https://github.com/markup-carve/carve-php
+
 [implicit]: https://example.com
 CARVE,
 	],
@@ -424,6 +432,15 @@ closing fence stays out of the output.
 %%%
 
 This text is also visible.
+CARVE,
+	],
+	'Comment Lines in Lists' => [
+		'description' => 'A `%%` comment line between list items is not a blank line, so the list stays tight: the items render without paragraph wrappers, and the note never reaches the output.',
+		'code' => <<<'CARVE'
+- Milk
+%% check the date before buying
+- Bread
+- Coffee
 CARVE,
 	],
 	'Link with Attributes' => [

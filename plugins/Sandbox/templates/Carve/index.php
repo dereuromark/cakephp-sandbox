@@ -207,7 +207,7 @@ echo "Hello, World!";
 
 Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
 
-Jump back to the </#features> section.
+Jump back to the </#Features> section.
 
 ### Extensions (on by default)
 
