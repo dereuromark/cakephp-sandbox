@@ -21,6 +21,7 @@ $loggedIn = (bool)$request->getQuery('loggedIn');
 $canAccessAdmin = (bool)$request->getQuery('admin');
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -49,7 +50,7 @@ $canAccessAdmin = (bool)$request->getQuery('admin');
 	echo $this->Menu->render('auth', ['renderer' => Bootstrap5Renderer::class, 'resolver' => new LoggedInResolver($loggedIn)]);
 	?>
 
-	<pre><code>$menu-&gt;addItem('Login', '/login', ['data' =&gt; ['auth' =&gt; 'loggedOut']]);
+	<pre><code class="language-php">$menu-&gt;addItem('Login', '/login', ['data' =&gt; ['auth' =&gt; 'loggedOut']]);
 $menu-&gt;addItem('Logout', '/logout', ['data' =&gt; ['auth' =&gt; 'loggedIn']]);
 echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($identity !== null)]);</code></pre>
 
@@ -169,6 +170,23 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	]);
 	?>
 	<p class="text-muted"><small>The "Resolvers" item is active (current URL) and "Members only" only appears while logged in.</small></p>
+	<p>
+		The login, permission and authorization resolvers combine with <b>AND</b>: they can only hide an item, so
+		once one of them hid it, a later one does not show it again (a custom <code>CallbackResolver</code> still
+		can). Below, the authorization callback allows everything, yet "Members only" stays hidden for guests
+		because <code>LoggedInResolver</code> already hid it:
+	</p>
+	<?php
+	$and = $this->Menu->create('combo_and', ['attributes' => ['class' => 'nav nav-pills menu-demo-active']]);
+	$and->addItem('Overview', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'index']);
+	$and->addItem('Members only', ['plugin' => 'MenuSandbox', 'controller' => 'MenuSandbox', 'action' => 'advanced'], ['data' => ['auth' => 'loggedIn']]);
+	echo $this->Menu->render('combo_and', [
+		'renderer' => Bootstrap5Renderer::class,
+		'resolver' => (new ResolverCollection())
+			->add(new LoggedInResolver($loggedIn))
+			->add(new AuthorizationResolver(static fn (): bool => true)),
+	]);
+	?>
 
 	<h4 class="mt-4">Adding to the default resolvers</h4>
 	<p>
@@ -185,7 +203,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	echo $this->Menu->render('extra', ['renderer' => Bootstrap5Renderer::class, 'additionalResolvers' => [new LoggedInResolver($loggedIn)]]);
 	?>
 
-	<pre><code>echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
+	<pre><code class="language-php">echo $this-&gt;Menu-&gt;render('extra', ['additionalResolvers' =&gt; [new LoggedInResolver($identity !== null)]]);</code></pre>
 
 	<h4 class="mt-4">Single active trail</h4>
 	<p>
@@ -233,7 +251,7 @@ echo $this-&gt;Menu-&gt;render('auth', ['resolver' =&gt; new LoggedInResolver($i
 	echo $this->Menu->render('regex', ['resolver' => new RegexResolver($request)]);
 	?>
 
-	<pre><code>$item-&gt;setData('match', '#^/menu-sandbox/#');             // single pattern
+	<pre><code class="language-php">$item-&gt;setData('match', '#^/menu-sandbox/#');             // single pattern
 $item-&gt;setData('match', ['#^/login#', '#^/register#']);  // any of several
 echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($request)]);</code></pre>
 
@@ -251,6 +269,7 @@ echo $this-&gt;Menu-&gt;render($menu, ['resolver' =&gt; new RegexResolver($reque
 	/* Make the active item legible: Bootstrap's default .nav-link.active is color-only and theme-dependent. */
 	.menu-demo-active li.active > a,
 	.menu-demo-active li.active > span,
-	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); }
+	.menu-demo-active .nav-link.active { font-weight: 600; background: var(--bs-secondary-bg, #e9ecef); color: var(--bs-emphasis-color, #000); }
+	.page pre { white-space: pre-wrap; word-break: break-word; }
 </style>
 <?php $this->end(); ?>

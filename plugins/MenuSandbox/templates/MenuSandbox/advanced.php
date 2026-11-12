@@ -7,6 +7,7 @@ use CakeMenu\Menu;
 use CakeMenu\Renderer\Bootstrap5Renderer;
 ?>
 
+<?php echo $this->element('MenuSandbox.code_highlighting'); ?>
 <div class="row">
 <nav class="actions col-sm-4 col-12">
 	<?php echo $this->element('sidebar'); ?>
@@ -37,7 +38,10 @@ use CakeMenu\Renderer\Bootstrap5Renderer;
 	<p class="mt-3"><b>Via the built-in breadcrumb renderer:</b></p>
 	<?php echo $this->Menu->renderBreadcrumbs('docs'); ?>
 
-	<pre><code>$this-&gt;Menu-&gt;register('docs', function ($menu) {
+	<p class="mt-3"><b>With the current crumb linked</b> (<code>linkCurrent</code>; it keeps <code>aria-current="page"</code>):</p>
+	<?php echo $this->Menu->renderBreadcrumbs('docs', ['linkCurrent' => true]); ?>
+
+	<pre><code class="language-php">$this-&gt;Menu-&gt;register('docs', function ($menu) {
     $node = $menu-&gt;addItem('Menu Sandbox', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'index']);
     $node-&gt;getSubMenu()-&gt;addItem('Advanced', ['controller' =&gt; 'MenuSandbox', 'action' =&gt; 'advanced']);
 });
@@ -46,7 +50,8 @@ $this-&gt;Menu-&gt;populateBreadcrumbs('docs');
 echo $this-&gt;Breadcrumbs-&gt;render();
 
 // Built-in BreadcrumbRenderer
-echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
+echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');
+echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs', ['linkCurrent' =&gt; true]);</code></pre>
 
 	<h4 class="mt-4">Array import / export</h4>
 	<p>Define a whole tree as data with <code>Menu::fromArray()</code> and serialize it back with <code>toArray()</code>.</p>
@@ -74,7 +79,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	?>
 
 	<p class="mt-2"><code>toArray()</code> output:</p>
-	<pre><code><?php echo h(json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></code></pre>
+	<pre><code class="language-json"><?php echo h(json_encode($export, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)); ?></code></pre>
 
 	<h4 class="mt-4">Build from flat rows</h4>
 	<p>
@@ -101,7 +106,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	echo $this->Menu->render($tree);
 	?>
 
-	<pre><code>$tree = Menu::fromFlat($rows, fn (array $row) =&gt; [
+	<pre><code class="language-php">$tree = Menu::fromFlat($rows, fn (array $row) =&gt; [
     'key' =&gt; (string)$row['id'],
     'parent' =&gt; $row['parent_id'] !== null ? (string)$row['parent_id'] : null,
     'label' =&gt; $row['title'],
@@ -191,7 +196,7 @@ echo $this-&gt;Menu-&gt;renderBreadcrumbs('docs');</code></pre>
 	<p class="mb-1 mt-3"><b><code>merge()</code> + <code>insertBefore()</code></b> (adds a GitHub link before <code>advanced</code>):</p>
 	<?php echo $this->Menu->render($merged, ['renderer' => Bootstrap5Renderer::class]); ?>
 
-	<pre><code>$reordered = clone $source;
+	<pre><code class="language-php">$reordered = clone $source;
 $reordered-&gt;reorder(['advanced', 'home', 'renderers', 'resolvers']);
 
 $firstTwo = $source-&gt;slice(0, 2);              // new menu, items deep-cloned
@@ -250,5 +255,6 @@ $merged-&gt;insertBefore($merged-&gt;newItem('NEW', '...'), 'advanced');</code><
 	.menu-tree li > a:hover { background: var(--bs-secondary-bg, #f1f3f5); }
 	.menu-tree li.active > a,
 	.menu-tree li.active > span { font-weight: 600; }
+	.page pre { white-space: pre-wrap; word-break: break-word; }
 </style>
 <?php $this->end(); ?>
