@@ -280,6 +280,12 @@ CARVE;
 	</div>
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
+			<input class="form-check-input" type="checkbox" id="opt-strict">
+			<label class="form-check-label" for="opt-strict" title="Like carve render --strict (C2-T-051): any parse or render entry fails the render, the HTML is still shown">Strict</label>
+		</div>
+	</div>
+	<div class="col-auto">
+		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-disable-ext">
 			<label class="form-check-label" for="opt-disable-ext" title="Render plain spec Carve without the default extension set (see bottom of page)">Disable extensions</label>
 		</div>
@@ -568,11 +574,18 @@ This code fence is never closed.</code></pre>
 	</div>
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="violation-error-example">Violation as Error Example</h6><a class="section-copy-link" href="#violation-error-example" data-copy-anchor="violation-error-example" aria-label="Copy link to Violation as Error Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-		<p class="text-muted small">Loads the "Comment" profile with "On violation: Error": headings are not allowed there, so the render fails. (The 0.1 "Strict" option is gone; parse errors show under "Warnings".)</p>
+		<p class="text-muted small">Loads the "Comment" profile with "On violation: Error": headings are not allowed there, so the render fails. </p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">= Headings are not allowed in comments
 
 The rest of this comment is fine.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="comment" data-filter-mode="error"><i class="bi bi-play-fill"></i> Try this</button>
+	</div>
+	<div class="col-md-6">
+		<div class="section-heading"><h6 id="strict-mode-example">Strict Mode Example</h6><a class="section-copy-link" href="#strict-mode-example" data-copy-anchor="strict-mode-example" aria-label="Copy link to Strict Mode Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
+		<p class="text-muted small">Loads with "Strict" enabled and reports an unclosed code fence as an error. As with <code>carve render --strict</code>, any parse or render entry fails the render; the HTML is still shown.</p>
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">``` php
+This code fence is never closed.</code></pre>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="" data-strict="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
 
@@ -664,6 +677,7 @@ The rest of this comment is fine.</code></pre>
 	const optFilterMode = document.getElementById('opt-filter-mode');
 	const optSoftBreakBr = document.getElementById('opt-soft-break-br');
 	const optWarnings = document.getElementById('opt-warnings');
+	const optStrict = document.getElementById('opt-strict');
 	const optDisableExt = document.getElementById('opt-disable-ext');
 	const optRaw = document.getElementById('opt-raw');
 	const viewRendered = document.getElementById('view-rendered');
@@ -700,6 +714,7 @@ The rest of this comment is fine.</code></pre>
 		if (params.get('filter_mode') === 'error') optFilterMode.value = 'error';
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
 		if (params.get('warnings') === '1') optWarnings.checked = true;
+		if (params.get('strict') === '1') optStrict.checked = true;
 		if (params.get('disable_ext') === '1') optDisableExt.checked = true;
 	}
 
@@ -710,6 +725,7 @@ The rest of this comment is fine.</code></pre>
 		if (optFilterMode.value !== 'to_text') url.searchParams.set('filter_mode', optFilterMode.value);
 		if (optSoftBreakBr.checked) url.searchParams.set('soft_break_br', '1');
 		if (optWarnings.checked) url.searchParams.set('warnings', '1');
+		if (optStrict.checked) url.searchParams.set('strict', '1');
 		if (optDisableExt.checked) url.searchParams.set('disable_ext', '1');
 		return url.toString();
 	}
@@ -804,6 +820,7 @@ The rest of this comment is fine.</code></pre>
 		formData.append('filter_mode', optFilterMode.value);
 		formData.append('soft_break_br', optSoftBreakBr.checked ? '1' : '0');
 		formData.append('warnings', optWarnings.checked ? '1' : '0');
+		formData.append('strict', optStrict.checked ? '1' : '0');
 		formData.append('disable_ext', optDisableExt.checked ? '1' : '0');
 		formData.append('raw', optRaw && optRaw.checked ? '1' : '0');
 
@@ -984,6 +1001,7 @@ The rest of this comment is fine.</code></pre>
 	optFilterMode.addEventListener('change', convert);
 	optSoftBreakBr.addEventListener('change', convert);
 	optWarnings.addEventListener('change', convert);
+	optStrict.addEventListener('change', convert);
 	optDisableExt.addEventListener('change', convert);
 	if (optRaw) optRaw.addEventListener('change', convert);
 	viewRendered.addEventListener('change', updateView);
@@ -1576,6 +1594,7 @@ The rest of this comment is fine.</code></pre>
 					optWarnings.checked = false;
 				}
 				optFilterMode.value = this.dataset.filterMode === 'error' ? 'error' : 'to_text';
+				optStrict.checked = this.dataset.strict === '1';
 				if (optRaw && this.dataset.raw === '1') {
 					optRaw.checked = true;
 				} else if (optRaw) {

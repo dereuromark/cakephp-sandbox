@@ -261,6 +261,7 @@ class CarveController extends SandboxAppController {
 
 		$carve = (string)$this->request->getData('carve');
 		$collectWarnings = (bool)$this->request->getData('warnings');
+		$strict = (bool)$this->request->getData('strict');
 		$raw = (bool)$this->request->getData('raw') && Configure::read('debug');
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
@@ -319,6 +320,9 @@ class CarveController extends SandboxAppController {
 				// Under strictLosses a render with a loss returns no HTML and reports the losses.
 				if (($options['strictLosses'] ?? false) && $result['violations']) {
 					$result['error'] = 'Profile violation: ' . $result['violations'][0]['message'];
+				} elseif ($strict && $rendered->diagnostics) {
+					// `carve render --strict` (C2-T-051): any entry fails the render, the HTML is still written.
+					$result['error'] = sprintf('Strict: %d %s, first: %s', count($rendered->diagnostics), count($rendered->diagnostics) === 1 ? 'entry' : 'entries', $rendered->diagnostics[0]->message);
 				}
 				foreach (Carve::includeDependencies($carve, ['includes' => $includes]) as $dependency) {
 					$result['dependencies'][] = [
@@ -1153,6 +1157,10 @@ CARVE,
 					}
 				}
 				$rawHtml = $this->renderCarve($carve, $extensions, $options)->html;
+				if (in_array('toc', $enabledExtensions, true)) {
+					[$toc, $rawHtml] = $this->splitToc($rawHtml);
+					$result['toc'] = $this->sanitizeHtml($toc);
+				}
 				$result['html'] = $this->sanitizeHtml($rawHtml, allowSanitizedSvg: $svgFence);
 				if (Configure::read('debug')) {
 					$result['rawHtml'] = $rawHtml;
@@ -1165,6 +1173,11 @@ CARVE,
 							'format' => $first->f['format'] ?? null,
 							'content' => $first->f['value'] ?? '',
 						];
+						// Host code: frontmatter renders nothing (C2-H-070), so the page writes the comment itself.
+						if ($result['rawHtml'] !== '' && $this->request->getData('frontmatter_as_comment')) {
+							$result['rawHtml'] = '<!-- frontmatter (' . $result['frontmatter']['format'] . ")\n"
+								. str_replace('--', '- -', rtrim($result['frontmatter']['content'], "\n")) . "\n-->\n" . $result['rawHtml'];
+						}
 					}
 				}
 			} catch (Throwable $e) {
@@ -1175,6 +1188,26 @@ CARVE,
 		return $this->response
 			->withType('application/json')
 			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * Splits the leading `<nav class="toc">` that `Navigation::tableOfContents()` writes at the top
+	 * off the document, so the page can show the TOC in a panel of its own.
+	 *
+	 * @param string $html
+	 * @return array{0: string, 1: string} The TOC and the rest of the document.
+	 */
+	protected function splitToc(string $html): array {
+		if (!str_starts_with($html, '<nav class="toc"')) {
+			return ['', $html];
+		}
+		$end = strpos($html, '</nav>');
+		if ($end === false) {
+			return ['', $html];
+		}
+		$end += strlen('</nav>');
+
+		return [substr($html, 0, $end), ltrim(substr($html, $end), "\n")];
 	}
 
 	/**
@@ -1284,7 +1317,7 @@ CARVE,
 			],
 			'toc' => [
 				'name' => 'Navigation::tableOfContents()',
-				'description' => 'Generates a table of contents from the top-level headings and inserts it at the top (default) or the bottom of the document, in a `<nav class="toc">`.',
+				'description' => 'Generates a table of contents from the headings and inserts it at the top (default) or the bottom of the document, in a `<nav class="toc">`. This demo splits the top TOC off the HTML and shows it in a panel of its own, as a host does for a sidebar.',
 				'example_carve' => <<<'CARVE'
 = Carve Documentation
 

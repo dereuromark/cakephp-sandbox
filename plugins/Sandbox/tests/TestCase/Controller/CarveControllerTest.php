@@ -490,6 +490,57 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * Strict follows `carve render --strict` (C2-T-051): an entry fails the render, the HTML stays.
+	 *
+	 * @return void
+	 */
+	public function testConvertStrictFailsOnParseEntry(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "``` php\nThis code fence is never closed.",
+			'strict' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringStartsWith('Strict: 1 entry', $response['error']);
+		$this->assertStringContainsString('fence', $response['error']);
+		$this->assertStringContainsString('<pre', $response['html']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertStrictPassesCleanSource(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => "= Heading\n\nSome *bold* text.",
+			'strict' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertWithExtensionsWritesFrontmatterAsComment(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => "---\ntitle: A -- B\n---\n\nBody text.",
+			'extensions' => ['frontmatter'],
+			'frontmatter_as_comment' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringStartsWith("<!-- frontmatter (yaml)\ntitle: A - - B\n-->\n", $response['rawHtml']);
+		$this->assertStringNotContainsString('<!--', $response['html']);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertLintsUnresolvedReference(): void {
@@ -849,9 +900,11 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertStringStartsWith('<nav class="toc"', $response['html']);
-		$this->assertStringContainsString('href="#Heading-1"', $response['html']);
-		$this->assertStringContainsString('href="#Heading-2"', $response['html']);
+		$this->assertStringStartsWith('<nav class="toc"', $response['toc']);
+		$this->assertStringContainsString('href="#Heading-1"', $response['toc']);
+		$this->assertStringContainsString('href="#Heading-2"', $response['toc']);
+		$this->assertStringNotContainsString('<nav', $response['html']);
+		$this->assertStringStartsWith('<section id="Heading-1">', $response['html']);
 	}
 
 	/**
@@ -904,7 +957,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('@user', $response['html']);
 		$this->assertStringContainsString('href="https://example.com"', $response['html']);
-		$this->assertStringContainsString('<nav class="toc"', $response['html']);
+		$this->assertStringContainsString('<nav class="toc"', $response['toc']);
 		$this->assertStringContainsString('href="/sandbox/carve?user=user"', $response['html']);
 	}
 

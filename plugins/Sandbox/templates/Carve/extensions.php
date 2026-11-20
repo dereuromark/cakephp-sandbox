@@ -58,6 +58,24 @@ if ($first !== null && $first->type === 'frontmatter') {
 }
 
 $html = Carve::render($document);
+
+// Host code, not Carve: frontmatter renders nothing (C2-H-070), so a host that
+// wants it in the page writes the comment itself.
+if ($first !== null && $first->type === 'frontmatter') {
+    $html = '<!-- frontmatter (' . $first->f['format'] . ")\n"
+        . str_replace('--', '- -', rtrim($first->f['value'], "\n")) . "\n-->\n" . $html;
+}
+PHP,
+	'toc' => <<<'PHP'
+use MarkupCarve\Carve\Carve;
+use MarkupCarve\Carve\Extension\Navigation;
+
+// Writes a <nav class="toc"> at the top (default) or the bottom of the HTML.
+$html = Carve::render($source, ['extensions' => [
+    Navigation::tableOfContents(),
+]]);
+
+// For a sidebar, split the leading <nav class="toc">...</nav> off the HTML.
 PHP,
 ];
 $usageSnippet = function (string $key, string $name) use ($factoryCalls, $transformBundles, $coreSnippets): string {
@@ -340,6 +358,11 @@ $this->end();
 	transforms go through <code>Carve::renderWithDocumentTransforms()</code>. Entries marked
 	<em>core</em> need no extension at all.
 </div>
+<p class="text-muted small">
+	The 0.1 plus-bullet extension has no 0.2 counterpart: a bullet marker is <code>-</code> or <code>*</code> (C2-B-034),
+	and a line starting with <code>+</code> is text (C2-B-059). The opt-in lint rule <code>djot-plus-bullet</code> finds such lines
+	and <code>carve fix</code> rewrites them to <code>-</code>, see the <?= $this->Html->link('Migration Fix', ['action' => 'migrationFix']) ?> page.
+</p>
 
 <div class="card mb-4">
 	<div class="card-header">
@@ -422,6 +445,12 @@ $this->end();
 				<div class="border rounded p-3 bg-white html-output carve carve-rendered" data-extension="<?= h($key) ?>" style="min-height: 150px;">
 					<span class="text-muted">Click "Convert" to see the output...</span>
 				</div>
+				<?php if ($key === 'toc') { ?>
+				<label class="form-label mt-2">Table of Contents (split off the HTML):</label>
+				<div class="border rounded p-3 bg-light toc-output carve" data-extension="<?= h($key) ?>" style="min-height: 100px;">
+					<span class="text-muted">TOC will appear here...</span>
+				</div>
+				<?php } ?>
 				<?php if ($key === 'smart_quotes') { ?>
 				<div class="mt-2 mb-2">
 					<label class="form-label" for="smart-quotes-locale"><code>locale</code>:</label>
@@ -449,6 +478,12 @@ $this->end();
 				</div>
 				<?php } ?>
 				<?php if ($key === 'frontmatter') { ?>
+				<?php if ($this->Configure->read('debug')) { ?>
+				<div class="form-check mt-2 mb-2">
+					<input class="form-check-input frontmatter-comment-toggle" type="checkbox" id="frontmatter-render-comment" data-extension="<?= h($key) ?>">
+					<label class="form-check-label" for="frontmatter-render-comment">Write the frontmatter as an HTML comment (host code, see the raw HTML)</label>
+				</div>
+				<?php } ?>
 				<label class="form-label mt-2">Frontmatter read from the tree:</label>
 				<div class="border rounded p-3 bg-light frontmatter-output" data-extension="<?= h($key) ?>" style="min-height: 100px;">
 					<span class="text-muted">Frontmatter data will appear here...</span>
@@ -594,7 +629,10 @@ Or contact @alice and @bob directly.</textarea>
 				<div class="border rounded p-3 bg-white carve carve-rendered" id="combined-html-output" style="min-height: 200px;">
 					<span class="text-muted">Click "Convert" to see the output...</span>
 				</div>
-				<p class="text-muted small mt-2 mb-0">With the TOC enabled, the table of contents is part of the HTML (Carve 0.2 has no separate TOC output).</p>
+				<label class="form-label mt-2">Table of Contents:</label>
+				<div class="border rounded p-3 bg-light carve" id="combined-toc-output" style="min-height: 80px;">
+					<span class="text-muted">TOC will appear here (if enabled)...</span>
+				</div>
 			</div>
 		</div>
 
@@ -687,8 +725,10 @@ Or contact @alice and @bob directly.</textarea>
 			const input = document.querySelector(`.carve-input[data-extension="${ext}"]`);
 			const htmlOutput = document.querySelector(`.html-output[data-extension="${ext}"]`);
 			const rawOutput = document.querySelector(`.raw-html-output[data-extension="${ext}"]`);
+			const tocOutput = document.querySelector(`.toc-output[data-extension="${ext}"]`);
 			const frontmatterOutput = document.querySelector(`.frontmatter-output[data-extension="${ext}"]`);
 			const smartQuotesLocale = document.querySelector(`.smart-quotes-locale[data-extension="${ext}"]`);
+			const frontmatterCommentToggle = document.querySelector(`.frontmatter-comment-toggle[data-extension="${ext}"]`);
 
 			this.disabled = true;
 			this.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Converting...';
@@ -700,6 +740,9 @@ Or contact @alice and @bob directly.</textarea>
 				});
 				if (smartQuotesLocale) {
 					params.append('smart_quotes_locale', smartQuotesLocale.value);
+				}
+				if (frontmatterCommentToggle && frontmatterCommentToggle.checked) {
+					params.append('frontmatter_as_comment', '1');
 				}
 
 				const response = await fetch(convertUrl, {
@@ -719,6 +762,10 @@ Or contact @alice and @bob directly.</textarea>
 				} else {
 					htmlOutput.innerHTML = result.html || '<span class="text-muted">No output</span>';
 					rawOutput.querySelector('code').textContent = result.rawHtml || result.html || 'No output';
+
+					if (tocOutput) {
+						tocOutput.innerHTML = result.toc || '<span class="text-muted">No headings found</span>';
+					}
 
 					// Display frontmatter data if present
 					if (frontmatterOutput && result.frontmatter) {
@@ -804,6 +851,7 @@ Or contact @alice and @bob directly.</textarea>
 		const input = document.getElementById('combined-input');
 		const htmlOutput = document.getElementById('combined-html-output');
 		const rawOutput = document.getElementById('combined-raw-output');
+		const tocOutput = document.getElementById('combined-toc-output');
 
 		const enabledExtensions = Array.from(document.querySelectorAll('.combined-ext-toggle:checked'))
 			.map(cb => cb.value);
@@ -833,6 +881,7 @@ Or contact @alice and @bob directly.</textarea>
 			} else {
 				htmlOutput.innerHTML = result.html || '<span class="text-muted">No output</span>';
 				rawOutput.querySelector('code').textContent = result.rawHtml || result.html || 'No output';
+				tocOutput.innerHTML = result.toc || '<span class="text-muted">TOC extension not enabled or no headings found</span>';
 
 				// Render Mermaid diagrams if present
 				if (window.mermaidRender) {

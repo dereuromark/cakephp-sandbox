@@ -25,6 +25,7 @@ $examples = [
 	'article' => ['profile' => 'article'],
 	'minimal' => ['profile' => 'minimal'],
 	'trusted' => ['preset' => 'trusted'],
+	'strict url policy' => ['urlPolicy' => ['allow' => ['https', 'mailto']]],
 ];
 $document = <<<'CARVE'
 ---json
@@ -69,9 +70,11 @@ PHP, 'lang' => 'php']); ?>
 	<p>
 		One source rendered with each option set. Every set denies <code>javascript:</code> and other unsafe URL schemes through <code>urlPolicy</code>
 		and drops event attributes. The default escapes raw HTML into a code block; <code>article</code>, <code>comment</code> and <code>minimal</code>
-		are profiles that degrade what they do not allow to text, and <code>trusted</code> sets <code>rawHtml: true</code> to keep raw HTML.
+		are profiles that degrade what they do not allow to text, <code>trusted</code> sets <code>rawHtml: true</code> to keep raw HTML,
+		and <code>strict url policy</code> tightens the URL filter to an allow list, the 0.2 form of the 0.1 strict safe mode.
 	</p>
-	<p class="small text-muted">Carve 0.2 has no safe mode and no <code>rawHtml: 'strip'</code>: profiles and <code>urlPolicy</code> replace safe mode, and raw HTML is either escaped or kept.</p>
+	<p class="small text-muted">Carve 0.2 has no <code>safeMode</code> option: <code>rawHtml</code> (off by default, raw HTML is escaped) and <code>urlPolicy</code> replace it.
+		There is no <code>rawHtml: 'strip'</code> either: raw HTML is escaped or kept (C2-H-050, C2-H-053).</p>
 	<?php echo $this->element('cake_carve/code', ['code' => $source, 'lang' => 'carve']); ?>
 
 	<div class="row">

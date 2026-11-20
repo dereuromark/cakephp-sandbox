@@ -26,7 +26,11 @@ class CakeCarveExamplesControllerTest extends TestCase {
 			$this->assertNotNull($output);
 			$this->assertCount(0, $xpath->query('.//h1', $output));
 		}
-		foreach (['default', 'comment', 'article', 'minimal'] as $preset) {
+		$strictUrls = $xpath->query('//div[@data-preset="strict url policy"]/div[contains(@class, "carve-output")]')->item(0);
+		$this->assertNotNull($strictUrls);
+		$this->assertCount(1, $xpath->query('.//a[@href="https://example.com"]', $strictUrls));
+		$this->assertCount(0, $xpath->query('.//a[contains(@href, "javascript")]', $strictUrls));
+		foreach (['default', 'comment', 'article', 'minimal', 'strict url policy'] as $preset) {
 			$output = $xpath->query('//div[@data-preset="' . $preset . '"]/div[contains(@class, "carve-output")]')->item(0);
 			$this->assertNotNull($output);
 			$this->assertCount(0, $xpath->query('.//div[contains(text(), "Raw HTML")]', $output));
