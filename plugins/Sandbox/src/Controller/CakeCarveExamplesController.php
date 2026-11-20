@@ -20,7 +20,7 @@ class CakeCarveExamplesController extends SandboxAppController {
 
 	public function validation(): void {
 		$this->viewBuilder()->addHelper('MarkupCarve/CakeCarve.Carve', ['debug' => false]);
-		$data = ['body' => "# Comment\n\nThis heading is disallowed by the comment profile.", 'preset' => 'comment', 'maxLength' => 200, 'lint' => false, 'strict' => false];
+		$data = ['body' => "= Comment\n\nThis heading is disallowed by the comment profile.", 'preset' => 'comment', 'maxLength' => 200, 'lint' => false, 'strict' => false];
 		$errors = [];
 		$form = new Form();
 		$renderedBody = null;
@@ -51,7 +51,7 @@ class CakeCarveExamplesController extends SandboxAppController {
 	}
 
 	public function behavior(): void {
-		$data = ['body' => "# Saved post\n\nSome *bold* text.\n\n## Details\n\nMore text."];
+		$data = ['body' => "= Saved post\n\nSome *bold* text.\n\n== Details\n\nMore text."];
 		$row = null;
 		if ($this->request->is('post')) {
 			$data['body'] = is_string($this->request->getData('body')) ? $this->request->getData('body') : '';
@@ -84,8 +84,7 @@ class CakeCarveExamplesController extends SandboxAppController {
 	public function document(): Response {
 		$this->viewBuilder()
 			->setClassName('MarkupCarve/CakeCarve.Carve')
-			->setLayout('Sandbox.carve_document')
-			->setOption('extensions', ['frontmatter']);
+			->setLayout('Sandbox.carve_document');
 		$this->set('name', 'CakePHP sandbox');
 
 		return $this->render('document');

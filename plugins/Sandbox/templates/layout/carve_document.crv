@@ -1,4 +1,4 @@
-# {{carve.meta.title}}
+= {{carve.meta.title}}
 
 {{content}}
 
