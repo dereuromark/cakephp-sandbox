@@ -133,29 +133,30 @@ window.carveRenderLanguageDiff = function(code) {
 $this->end();
 
 $defaultCarve = <<<'CARVE'
-# Carve Playground
+= Carve Playground
 
 This is a *Carve* markup demo.
 Try editing this text!
 
 ***
 
-## Features
+{#features}
+== Features
 
-- /emphasis/, *strong*, and _underline_ text
-- =highlighted= and ~struck~ text
+- /emphasis/, *strong*, and {_underline_} text
+- {=highlighted=} and {~struck~} text
 - {+inserted+} and {-deleted-} text
 - Links: [Carve docs](https://github.com/markup-carve/carve)
 - Inline `code` spans
 
-### Code Block
+=== Code Block
 
 ```php
 <?php
 echo "Hello, World!";
 ```
 
-### Language Diff
+=== Language Diff
 
 {.diff}
 ```js
@@ -164,19 +165,19 @@ echo "Hello, World!";
 + fileIcon.classList.remove("icon-file-text");
 ```
 
-### Blockquote
+=== Blockquote
 
 > The best way to predict the future is to invent it.
 ^ Alan Kay
 
-### Table
+=== Table
 
 {.table .table-striped}
 |= Name |= Type |
 | Carve | Markup |
 | PHP | Code |
 
-### Lists
+=== Lists
 
 . A *cool*
 . automatically *numbered*
@@ -184,13 +185,13 @@ echo "Hello, World!";
     - subsub
 . nested *list*
 
-### Task List
+=== Task List
 
 - [ ] Write documentation
 - [x] Create examples
 - [x] Test features
 
-### Definition List
+=== Definition List
 
 :: Carve
 : A lightweight markup language with clean syntax.
@@ -198,22 +199,22 @@ echo "Hello, World!";
 :: Djot
 : The predecessors that inspired Carve.
 
-### Super/Subscript
+=== Super/Subscript
 
 - Superscript: 2{^10^} = 1024
 - Subscript: H{,2,}O
 
-### Footnotes & Cross-references
+=== Footnotes & Cross-references
 
 Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
 
-Jump back to the </#Features> section.
+Jump back to the </#features> section.
 
-### Extensions (on by default)
+=== Extensions (on by default)
 
 Bare links autolink: https://github.com/markup-carve/carve. Press [Esc]{kbd} to
 close, and [HTML]{abbr="HyperText Markup Language"} gets a tooltip. See the
-[[Getting Started]] wiki page.
+:wiki[Getting Started] wiki page.
 
 ::: tip
 Admonitions render as styled callouts. Tick "Disable extensions" above to turn
@@ -243,15 +244,14 @@ CARVE;
 			<option value="">No filter</option>
 			<option value="full">Full (all features)</option>
 			<option value="article">Article (no raw HTML)</option>
-			<option value="comment">Comment (no images/tables)</option>
+			<option value="comment">Comment (no headings/images/tables)</option>
 			<option value="minimal">Minimal (no links/highlights)</option>
 		</select>
 	</div>
 	<div class="col-auto">
-		<label class="form-label small mb-0 me-1">Filter:</label>
-		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-filter-mode" title="How to handle disallowed elements">
-			<option value="to_text">To Text</option>
-			<option value="strip">Strip</option>
+		<label class="form-label small mb-0 me-1">On violation:</label>
+		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-filter-mode" title="Carve 0.2 renders what a profile refuses as text and reports it; Error fails the render instead (the 0.1 Strip mode is gone)">
+			<option value="to_text">Render as text</option>
 			<option value="error">Error</option>
 		</select>
 	</div>
@@ -276,12 +276,6 @@ CARVE;
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-warnings">
 			<label class="form-check-label" for="opt-warnings">Warnings</label>
-		</div>
-	</div>
-	<div class="col-auto">
-		<div class="form-check form-check-inline">
-			<input class="form-check-input" type="checkbox" id="opt-strict">
-			<label class="form-check-label" for="opt-strict">Strict</label>
 		</div>
 	</div>
 	<div class="col-auto">

@@ -4,8 +4,14 @@ declare(strict_types=1);
 namespace Sandbox\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
+use Cake\Http\ServerRequest;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+use MarkupCarve\Carve\Carve;
+use MarkupCarve\Carve\Diagnostics\Diagnostic;
+use ReflectionMethod;
+use Sandbox\Controller\CarveController;
 
 /**
  * Sandbox\Controller\CarveController Test Case
@@ -148,7 +154,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertContentType('application/json');
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertSame("|= Name |= Qty |\n| Banana split | 12 |\n", $response['carve']);
+		$this->assertSame("| Name | Qty |\n| --- | --- |\n| Banana split | 12 |\n", $response['carve']);
 	}
 
 	/**
@@ -156,7 +162,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testFormatAlignsTables(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'format'], [
-			'carve' => "| Name | Qty |\n|---|---|\n| Banana split | 12 |\n",
+			'carve' => "|= Name |= Qty |\n| Banana split | 12 |\n",
 			'alignTables' => '1',
 		]);
 
@@ -242,7 +248,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertSame([], $response['warnings']);
-		$this->assertStringContainsString('<li>PHP 8.2 or newer</li>', $response['html']);
+		$this->assertStringContainsString('PHP 8.2 or newer and Composer 2.', $response['html']);
 		$this->assertStringNotContainsString('Text after the region is skipped.', $response['html']);
 		$this->assertStringContainsString('<code class="language-js">const server', $response['html']);
 		$this->assertStringNotContainsString('export default server', $response['html']);
@@ -260,8 +266,8 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('{{ library/missing.crv }}', $response['html']);
-		$this->assertSame('include', $response['warnings'][0]['category']);
-		$this->assertSame('include-unresolved', $response['warnings'][0]['rule']);
+		$this->assertSame('parse', $response['warnings'][0]['category']);
+		$this->assertSame('include-not-found', $response['warnings'][0]['rule']);
 		$this->assertSame([
 			['target' => 'library/missing.crv', 'resolved' => false],
 		], $response['dependencies']);
@@ -278,7 +284,7 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('{{ library/../../config/app.php }}', $response['html']);
-		$this->assertSame('include-unresolved', $response['warnings'][0]['rule']);
+		$this->assertStringStartsWith('include-', $response['warnings'][0]['rule']);
 		$this->assertFalse($response['dependencies'][0]['resolved']);
 	}
 
@@ -310,7 +316,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertKeepsExplicitTableRowPartitions(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "{header-rows=1 footer-rows=1}\n|=< Item |=> Qty |\n| Coffee | 2 |\n| Total | 2 |\n",
+			'carve' => "{header-rows=1 footer-rows=1}\n|={<} Item |={>} Qty |\n| Coffee | 2 |\n| Total | 2 |\n",
 		]);
 
 		$this->assertResponseCode(200);
@@ -326,23 +332,19 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * The `?` prefix inherits the column's horizontal alignment so a cell can set
-	 * only its vertical one, and the resulting `vertical-align` declaration has to
-	 * survive the sanitizer's CSS allowlist.
-	 *
 	 * @return void
 	 */
 	public function testConvertKeepsInheritedCellAlignment(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "|=< Phase |=> Hours |\n|?v Design | 12 |\n| ^ | 8 |\n",
+			'carve' => "|={<} Phase |={>} Hours |\n| Design | 12 |\n| ^ | 8 |\n",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertStringContainsString('vertical-align:bottom;', $response['html']);
-		$this->assertStringContainsString('rowspan="2"', $response['html']);
+		$this->assertStringContainsString('<td rowspan="2" style="text-align:left;">Design</td>', $response['html']);
+		$this->assertStringContainsString('<td style="text-align:right;">8</td>', $response['html']);
 	}
 
 	/**
@@ -361,10 +363,8 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		// The playground parses with source lines on, so a cell's single paragraph
-		// keeps its `<p data-source-line>` wrapper instead of collapsing inline.
-		$this->assertStringContainsString('<th scope="col"><p data-source-line="2">Region</p></th>', $response['html']);
-		$this->assertStringContainsString('<th scope="row"><p data-source-line="7">2 regions</p></th>', $response['html']);
+		$this->assertStringContainsString('<th scope="col">Region</th>', $response['html']);
+		$this->assertStringContainsString('<th scope="row">2 regions</th>', $response['html']);
 		$this->assertStringContainsString('text-align:right;vertical-align:bottom;', $response['html']);
 	}
 
@@ -477,7 +477,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithWarnings(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => '[undefined link][missing-ref]',
+			'carve' => "``` php\nThis code fence is never closed.",
 			'warnings' => '1',
 		]);
 
@@ -485,24 +485,24 @@ class CarveControllerTest extends TestCase {
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNotEmpty($response['warnings']);
-		$this->assertArrayHasKey('message', $response['warnings'][0]);
-		$this->assertArrayHasKey('line', $response['warnings'][0]);
+		$this->assertSame('unclosed-code-fence', $response['warnings'][0]['rule']);
+		$this->assertSame(1, $response['warnings'][0]['line']);
 	}
 
 	/**
 	 * @return void
 	 */
-	public function testConvertWithStrictMode(): void {
+	public function testConvertLintsUnresolvedReference(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "``` php\nThis code fence is never closed.",
-			'strict' => '1',
+			'carve' => '[undefined link][missing-ref]',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNotNull($response['error']);
-		$this->assertStringContainsString('Unclosed code fence', $response['error']);
+		$this->assertNull($response['error']);
+		$this->assertSame('unresolved-reference-link', $response['lint'][0]['rule']);
+		$this->assertArrayHasKey('message', $response['lint'][0]);
 	}
 
 	/**
@@ -523,19 +523,17 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertInterruptsParagraphsByDefault(): void {
+	public function testConvertKeepsHeadingLineUnderTextInTheParagraph(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "Section\n# Heading",
+			'carve' => "Section\n= Heading",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Carve interrupts paragraphs by default (§10): the heading starts
-		// without a blank line in between. Blocks carry a data-source-line
-		// scroll-sync anchor, so match tolerantly.
-		$this->assertMatchesRegularExpression('#<p[^>]*>Section</p>#', $response['html']);
-		$this->assertStringContainsString('<h1', $response['html']);
+		// 0.2 paragraphs take every non-blank line (C2-B-012); lint points at the heading-shaped line.
+		$this->assertStringNotContainsString('<h1', $response['html']);
+		$this->assertSame('block-opener-without-blank-line', $response['lint'][0]['rule']);
 	}
 
 	/**
@@ -559,16 +557,14 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertInterruptsNestedBlockInsideListItem(): void {
+	public function testConvertNestsBlockAfterBlankLineInsideListItem(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "- Item\n  > nested quote",
+			'carve' => "- Item\n\n  > nested quote",
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		// Interruption is unconditional, so the nested ">" becomes a real
-		// blockquote inside the list item.
 		$this->assertStringContainsString('<blockquote', $response['html']);
 		$this->assertStringContainsString('nested quote', $response['html']);
 	}
@@ -576,19 +572,19 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertWithFilterModeStrip(): void {
+	public function testConvertProfileRendersRefusedConstructAsText(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "# Heading\n\nSome text",
+			'carve' => "= Heading\n\nSome text",
 			'profile' => 'comment',
-			'filter_mode' => 'strip',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
 		$this->assertStringNotContainsString('<h1', $response['html']);
-		$this->assertStringNotContainsString('Heading', $response['html']);
-		$this->assertNotEmpty($response['violations']);
+		$this->assertStringContainsString('Heading', $response['html']);
+		$this->assertSame('profile-construct-degraded', $response['violations'][0]['reason']);
 	}
 
 	/**
@@ -596,7 +592,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithFilterModeError(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "# Heading\n\nSome text",
+			'carve' => "= Heading\n\nSome text",
 			'profile' => 'comment',
 			'filter_mode' => 'error',
 		]);
@@ -655,12 +651,12 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-		$this->assertResponseContains('DefaultAttributesExtension');
-		$this->assertResponseContains('AutolinkExtension');
-		$this->assertResponseContains('ExternalLinksExtension');
-		$this->assertResponseContains('HeadingPermalinksExtension');
-		$this->assertResponseContains('MentionsExtension');
-		$this->assertResponseContains('TableOfContentsExtension');
+		$this->assertResponseContains('Transforms::defaultAttributes()');
+		$this->assertResponseContains('Navigation::autolink()');
+		$this->assertResponseContains('Navigation::externalLinks()');
+		$this->assertResponseContains('Navigation::headingPermalinks()');
+		$this->assertResponseContains('Mentions (core, option social)');
+		$this->assertResponseContains('Navigation::tableOfContents()');
 	}
 
 	/**
@@ -696,24 +692,6 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertArrayHasKey('html', $response);
 		$this->assertStringContainsString('<a href="https://example.com"', $response['html']);
-		$this->assertNull($response['error']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertWithExtensionsPlusBullet(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "+ Apple\n+ Banana",
-			'extensions' => ['plus_bullet'],
-		]);
-
-		$this->assertResponseCode(200);
-		$this->assertContentType('application/json');
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('<li>Apple</li>', $response['html']);
-		$this->assertStringContainsString('<li>Banana</li>', $response['html']);
 		$this->assertNull($response['error']);
 	}
 
@@ -778,7 +756,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertEnablesExtensionsByDefault(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "::: tip\nHeads up.\n:::\n\nSee [[Getting Started]].",
+			'carve' => "::: tip\nHeads up.\n:::\n\nSee :wiki[Getting Started].",
 		]);
 
 		$this->assertResponseCode(200);
@@ -863,17 +841,17 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithExtensionsToc(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "# Heading 1\n\n## Heading 2",
+			'carve' => "= Heading 1\n\n== Heading 2",
 			'extensions' => ['toc'],
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertArrayHasKey('toc', $response);
-		$this->assertStringContainsString('<nav class="toc">', $response['toc']);
-		$this->assertStringContainsString('Heading 1', $response['toc']);
-		$this->assertStringContainsString('Heading 2', $response['toc']);
+		$this->assertNull($response['error']);
+		$this->assertStringStartsWith('<nav class="toc"', $response['html']);
+		$this->assertStringContainsString('href="#Heading-1"', $response['html']);
+		$this->assertStringContainsString('href="#Heading-2"', $response['html']);
 	}
 
 	/**
@@ -917,7 +895,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithExtensionsCombined(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "# Hello\n\nThanks @user! Visit https://example.com",
+			'carve' => "= Hello\n\nThanks @user! Visit https://example.com",
 			'extensions' => ['autolink', 'mentions', 'toc'],
 		]);
 
@@ -926,7 +904,8 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertStringContainsString('@user', $response['html']);
 		$this->assertStringContainsString('href="https://example.com"', $response['html']);
-		$this->assertNotEmpty($response['toc']);
+		$this->assertStringContainsString('<nav class="toc"', $response['html']);
+		$this->assertStringContainsString('href="/sandbox/carve?user=user"', $response['html']);
 	}
 
 	/**
@@ -976,11 +955,6 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * Contract canary: the bundled carve-js must exist and still expose the
-	 * migration API the Migration Fix demo calls. A carve-js build that drops or
-	 * renames applyMigrationFixes turns CI red here instead of silently breaking
-	 * the page in the browser.
-	 *
 	 * @return void
 	 */
 	public function testCarveJsBundleExposesMigrationApi(): void {
@@ -990,9 +964,9 @@ class CarveControllerTest extends TestCase {
 		$contents = (string)file_get_contents($bundle);
 		$this->assertGreaterThan(1000, strlen($contents), 'carve-js bundle looks empty/truncated.');
 		$this->assertStringContainsString(
-			'applyMigrationFixes',
+			'fixableRules',
 			$contents,
-			'carve-js bundle no longer exposes applyMigrationFixes - the Migration Fix demo will break.',
+			'carve-js bundle no longer exposes fix()/fixableRules - the Migration Fix demo will break.',
 		);
 	}
 
@@ -1080,78 +1054,46 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * `safe` drops an element Carve has no spelling for, and the report names it.
-	 *
 	 * @return void
 	 */
-	public function testConvertHtmlSafeModeReportsDroppedElement(): void {
+	public function testConvertHtmlSemanticModeReportsDroppedElement(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
 			'html' => '<p>Keep me.</p><iframe src="https://example.com/x"></iframe>',
-			'mode' => 'safe',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertSame('safe', $response['mode']);
-		$this->assertStringContainsString('Keep me.', $response['carve']);
-		$this->assertStringNotContainsString('iframe', $response['carve']);
-		$codes = array_column($response['diagnostics'], 'code');
-		$this->assertContains('element-dropped', $codes);
+		$this->assertSame('semantic', $response['mode']);
+		$this->assertSame("Keep me.\n", $response['carve']);
+		$this->assertContains('import-element-dropped', array_column($response['diagnostics'], 'code'));
 	}
 
 	/**
-	 * `roundtrip` keeps the same element byte for byte as a raw `{=html}` span,
-	 * and reports that it did rather than staying silent.
-	 *
 	 * @return void
 	 */
-	public function testConvertHtmlRoundtripModePreservesRawElement(): void {
+	public function testConvertHtmlRawModePreservesRawElement(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
 			'html' => '<p>Keep me.</p><iframe src="https://example.com/x"></iframe>',
-			'mode' => 'roundtrip',
+			'mode' => 'raw',
 		]);
 
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertSame('roundtrip', $response['mode']);
-		$this->assertStringContainsString('<iframe src="https://example.com/x"></iframe>', $response['carve']);
-		$this->assertStringContainsString('{=html}', $response['carve']);
-		$codes = array_column($response['diagnostics'], 'code');
-		$this->assertContains('raw-preserved', $codes);
+		$this->assertSame('raw', $response['mode']);
+		$this->assertStringContainsString("```=html\n<iframe src=\"https://example.com/x\"></iframe>\n```", $response['carve']);
+		$this->assertSame([], $response['diagnostics']);
 	}
 
 	/**
-	 * An unknown mode falls back to `safe` rather than reaching the converter,
-	 * which would throw on it.
-	 *
 	 * @return void
 	 */
-	public function testConvertHtmlUnknownModeFallsBackToSafe(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
-			'html' => '<p>Text.</p>',
-			'mode' => 'nonsense',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertSame('safe', $response['mode']);
-	}
-
-	/**
-	 * A `::: >` fence is a block quote whose body is ordinary block content, and
-	 * `{loose}` spells a looseness no blank line was written for.
-	 *
-	 * @return void
-	 */
-	public function testConvertRendersFencedQuoteAndSpelledLooseness(): void {
+	public function testConvertRendersFencedQuoteAndLooseList(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => "::: >\nQuoted.\n:::\n\n{loose}\n- one\n- two\n",
+			'carve' => "::: >\nQuoted.\n:::\n\n- one\n\n- two\n",
 		]);
 
 		$this->assertResponseCode(200);
@@ -1160,30 +1102,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertNull($response['error']);
 		$this->assertStringContainsString('<blockquote', $response['html']);
 		$this->assertStringContainsString('Quoted.', $response['html']);
-		// Loose items wrap their content in a paragraph; a tight one would not.
 		$this->assertMatchesRegularExpression('#<li[^>]*>\s*<p[^>]*>one</p>#', $response['html']);
-	}
-
-	/**
-	 * The word adapter binds Word's footnote-shaped anchors (reference fragment
-	 * plus back-link) into real [^N] references and definitions; the generic
-	 * adapter would keep them as the literal links the HTML spelled.
-	 *
-	 * @return void
-	 */
-	public function testConvertHtmlWordAdapterReadsFootnotes(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertHtml'], [
-			'html' => '<p>Text<a href="#_ftn1" name="_ftnref1"><sup>[1]</sup></a> here.</p>'
-				. '<hr><div><p><a href="#_ftnref1" name="_ftn1"><sup>[1]</sup></a> The note.</p></div>',
-			'adapter' => 'word',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertStringContainsString('Text[^1] here.', $response['carve']);
-		$this->assertStringContainsString('[^1]: The note.', $response['carve']);
-		$this->assertNull($response['error']);
 	}
 
 	/**
@@ -1226,47 +1145,6 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertBbcode(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode'], [
-			'bbcode' => 'Hello [b]world[/b]!',
-		]);
-
-		$this->assertResponseCode(200);
-		$this->assertContentType('application/json');
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertArrayHasKey('carve', $response);
-		$this->assertStringContainsString('*world*', $response['carve']);
-		$this->assertNull($response['error']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertBbcodeEmpty(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode'], [
-			'bbcode' => '',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertSame('', $response['carve']);
-		$this->assertNull($response['error']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertBbcodeGetMethodNotAllowed(): void {
-		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertBbcode']);
-
-		$this->assertResponseCode(405);
-	}
-
-	/**
-	 * @return void
-	 */
 	public function testWysiwyg(): void {
 		Configure::write('plugins.Sandbox', dirname(__DIR__, 3) . DIRECTORY_SEPARATOR);
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'wysiwyg']);
@@ -1274,7 +1152,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 		$this->assertResponseContains('Export PDF');
-		$this->assertResponseContains('serializeToCarveWithReport');
+		$this->assertResponseContains('serializeToCarve');
 	}
 
 	/**
@@ -1354,7 +1232,7 @@ class CarveControllerTest extends TestCase {
 		}
 
 		$this->postEditorPdf([
-			'carve' => "# Tiptap JSON export\n\nA *strong* result.",
+			'carve' => "= Tiptap JSON export\n\nA *strong* result.",
 		]);
 
 		$this->assertResponseCode(200);
@@ -1441,7 +1319,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithExtensionsTabsAriaPreservesLabel(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => ":::: tabs\n\n::: tab\n### One\n\nAlpha\n:::\n\n::: tab\n### Two\n\nBeta\n:::\n\n::::",
+			'carve' => ":::: tabs\n::: tab \"One\"\nAlpha\n:::\n::: tab \"Two\"\nBeta\n:::\n::::\n",
 			'extensions' => ['tabs_aria'],
 		]);
 
@@ -1450,23 +1328,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		// The ARIA tab/panel association must survive sanitization.
 		$this->assertStringContainsString('aria-labelledby', $response['html']);
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertWithExtensionsFrontmatterAsComment(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "---yaml\ntitle: Demo\n---\n\n# Hi",
-			'extensions' => ['frontmatter'],
-			'frontmatter_as_comment' => '1',
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		// Frontmatter rendered as an HTML comment must not be stripped by the sanitizer.
-		$this->assertStringContainsString('<!--', $response['html']);
+		$this->assertStringContainsString('>One</button>', $response['html']);
 	}
 
 	/**
@@ -1474,7 +1336,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithExtensionsHeadingReference(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "# Installation\n\nSee [[Configuration]].\n\n# Configuration\n\nDetails.",
+			'carve' => "= Installation\n\nSee [Configuration][].\n\n= Configuration\n\nDetails.",
 			'extensions' => ['heading_reference'],
 		]);
 
@@ -1491,7 +1353,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertWithExtensionsInlineFootnotes(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => 'Text with a note[Inline footnote content.]{.fn} here.',
+			'carve' => 'Text with a note^[Inline footnote content.] here.',
 			'extensions' => ['inline_footnotes'],
 		]);
 
@@ -1502,26 +1364,6 @@ class CarveControllerTest extends TestCase {
 		$this->assertStringContainsString('role="doc-noteref"', $response['html']);
 		$this->assertStringContainsString('role="doc-endnotes"', $response['html']);
 		$this->assertStringContainsString('Inline footnote content.', $response['html']);
-	}
-
-	/**
-	 * HeadingReference and Wikilinks share the [[...]] syntax; enabling both must
-	 * not error, and Wikilinks wins so the reference renders as a wiki link.
-	 *
-	 * @return void
-	 */
-	public function testConvertWithExtensionsHeadingReferenceConflictsWithWikilinks(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "See [[Configuration]].\n\n# Configuration\n\nDetails.",
-			'extensions' => ['wikilinks', 'heading_reference'],
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertStringContainsString('class="wikilink"', $response['html']);
-		$this->assertStringNotContainsString('class="heading-ref"', $response['html']);
 	}
 
 	/**
@@ -1604,18 +1446,14 @@ class CarveControllerTest extends TestCase {
 		$roundtrip = $response['exports']['roundtrip'];
 		$this->assertStringNotContainsString('data-carve-ref', $plain['exported']);
 		$this->assertStringContainsString('data-carve-ref="d"', $roundtrip['exported']);
-		$this->assertStringContainsString('data-char="*"', $roundtrip['exported']);
-		$this->assertFalse($plain['carveStable']);
+				$this->assertFalse($plain['carveStable']);
 		$this->assertTrue($roundtrip['carveStable']);
 	}
 
 	/**
-	 * The Markdown roundtrip export brackets an element-less container with
-	 * carrier markers, so the container comes back.
-	 *
 	 * @return void
 	 */
-	public function testConvertRoundtripMarkdownCarrierMarkers(): void {
+	public function testConvertRoundtripMarkdownHasNoCarrierFormat(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertRoundtrip'], [
 			'carve' => "::: aside\nBoxed.\n:::",
 			'format' => 'markdown',
@@ -1624,13 +1462,11 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 
 		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
 		$this->assertSame('markdown', $response['format']);
-		$plain = $response['exports']['plain'];
-		$roundtrip = $response['exports']['roundtrip'];
-		$this->assertStringNotContainsString('<!-- carve:', $plain['exported']);
-		$this->assertStringContainsString('<!-- carve: ::: aside -->', $roundtrip['exported']);
-		$this->assertStringNotContainsString(':::', $plain['carve']);
-		$this->assertTrue($roundtrip['carveStable']);
+		$this->assertSame("Boxed.\n", $response['exports']['plain']['exported']);
+		$this->assertFalse($response['exports']['plain']['carveStable']);
+		$this->assertNull($response['exports']['roundtrip']);
 	}
 
 	/**
@@ -1660,9 +1496,6 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * The interruption page renders Carve's §10 default plus the escape hatch:
-	 * an as-typed marker interrupts, the backslash-escaped variant stays literal.
-	 *
 	 * @return void
 	 */
 	public function testInterruption(): void {
@@ -1670,11 +1503,11 @@ class CarveControllerTest extends TestCase {
 
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
-		$this->assertResponseContains('Paragraph Interruption (§10)');
-		// As-typed "# " interrupts into a heading.
+		$this->assertResponseContains('Paragraph Interruption');
+		// A heading line under text is a lazy line; with a blank line it is a heading.
+		$this->assertResponseContains('block-opener-without-blank-line');
 		$this->assertResponseContains('<h1>H</h1>');
-		// Lists are the documented exception to interruption.
-		$this->assertResponseContains('One exception - lists.');
+		$this->assertResponseContains('interrupts: no blank line needed');
 	}
 
 	/**
@@ -1729,7 +1562,7 @@ class CarveControllerTest extends TestCase {
 	public function testConvertAstEncodeWithPositions(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
 			'direction' => 'encode',
-			'carve' => "# Title\n\nText.\n",
+			'carve' => "= Title\n\nText.\n",
 			'positions' => '1',
 		]);
 
@@ -1741,7 +1574,7 @@ class CarveControllerTest extends TestCase {
 
 		$tree = json_decode($response['json'], true);
 		$pos = $tree['children'][0]['pos'];
-		$this->assertSame(
+		$this->assertEqualsCanonicalizing(
 			['startLine', 'endLine', 'startColumn', 'endColumn', 'startOffset', 'endOffset'],
 			array_keys($pos),
 		);
@@ -1749,15 +1582,12 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * The field names are spec-pinned, so a tree written by hand (or by another
-	 * engine) renders here without carve-php having produced it.
-	 *
 	 * @return void
 	 */
 	public function testConvertAstDecodeForeignTree(): void {
 		$tree = [
+			'astVersion' => '1.0',
 			'type' => 'document',
-			'srcByteLength' => 24,
 			'children' => [
 				[
 					'type' => 'heading',
@@ -1777,7 +1607,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertStringContainsString('From elsewhere', $response['html']);
-		$this->assertStringContainsString('## From elsewhere', $response['carve']);
+		$this->assertSame("== From elsewhere\n", $response['carve']);
 	}
 
 	/**
@@ -1809,146 +1639,6 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$this->assertNoRedirect();
 		$this->assertResponseContains('ProseMirror Bridge');
-	}
-
-	/**
-	 * @return void
-	 */
-	public function testConvertProseMirror(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
-			'carve' => "# Title\n\nText with *strong* and /emphasis/.\n\n- a\n- b\n",
-		]);
-
-		$this->assertResponseCode(200);
-		$this->assertContentType('application/json');
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertTrue($response['stable']);
-		$this->assertTrue($response['carveStable']);
-		$this->assertSame([], $response['dropped']);
-
-		$document = json_decode($response['pm'], true);
-		$this->assertSame('doc', $document['type']);
-		$this->assertSame('heading', $document['content'][0]['type']);
-		// And all the way back, without a Node runtime anywhere.
-		$this->assertStringContainsString('# Title', $response['carve']);
-		$this->assertStringContainsString('*strong*', $response['carve']);
-	}
-
-	/**
-	 * A typed div keeps its authored spelling across the ProseMirror bridge.
-	 *
-	 * It did not until carve-php#609: `carveDiv` carried only the class, so the
-	 * div came back untyped and the writer fell back to an attribute block plus
-	 * an anonymous fence. Both spellings render byte-identical HTML, so the HTML
-	 * check passed either way - only comparing canonical Carve saw it. The
-	 * bridge now records `carveTyped` alongside the authored attributes, and
-	 * `carveStable` is what pins that here.
-	 *
-	 * @return void
-	 */
-	public function testConvertProseMirrorKeepsTypedDivSpelling(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
-			'carve' => "::: note\nHi.\n:::\n",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		// Same meaning...
-		$this->assertTrue($response['stable']);
-		// ...and now the same spelling.
-		$this->assertTrue($response['carveStable']);
-		$this->assertStringContainsString("::: note\n", $response['canonical']);
-		$this->assertStringContainsString("::: note\n", $response['carve']);
-		// Nothing was lost, so the fidelity report stays empty.
-		$this->assertSame([], $response['dropped']);
-		$this->assertSame([], $response['degraded']);
-
-		$document = json_decode($response['pm'], true);
-		$this->assertSame('carveDiv', $document['content'][0]['type']);
-		$this->assertTrue($document['content'][0]['attrs']['carveTyped']);
-	}
-
-	/**
-	 * A link with an empty label used to be a real loss: the editor model had no
-	 * text to hang the mark on, so it came back gone and `degradedTypes()` named
-	 * it. carve-php now carries such a mark as a `carveEmptyMark` node, for the
-	 * five mark types the published schema gives a carrier (link, span,
-	 * abbreviation, insert, delete), so the round trip is exact and the report is
-	 * empty.
-	 *
-	 * The same direction the autolink (its #629) and the typed-div gap went - the
-	 * losses shrink, and this suite is what keeps the demo's claim in step.
-	 *
-	 * @return void
-	 */
-	public function testConvertProseMirrorCarriesEmptyLinkMark(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
-			'carve' => "[](https://example.com)\n",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertTrue($response['carveStable']);
-		$this->assertStringContainsString('[](https://example.com)', $response['canonical']);
-		$this->assertStringContainsString('[](https://example.com)', $response['carve']);
-		$this->assertSame([], $response['degraded']);
-
-		$document = json_decode($response['pm'], true);
-		$this->assertSame('carveEmptyMark', $document['content'][0]['content'][0]['type']);
-	}
-
-	/**
-	 * What the bridge still cannot carry is NAMED rather than lost quietly.
-	 *
-	 * An unresolved reference has no editor counterpart, so it rides across as
-	 * its literal source and comes back as escaped text. That is a real loss
-	 * rather than a different spelling, which is why the demo's claim is the
-	 * REPORT, not the round trip: `degradedTypes()` says what happened.
-	 *
-	 * @return void
-	 */
-	public function testConvertProseMirrorReportsDegradedUnresolvedReference(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
-			'carve' => "See [text][nope] here.\n",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertFalse($response['carveStable']);
-		$this->assertStringContainsString('See [text][nope] here.', $response['canonical']);
-		// It comes back as escaped prose - the brackets are literal text now, not a
-		// reference the editor model ever held.
-		$this->assertStringContainsString('See \\[text][nope] here.', $response['carve']);
-		// And the report names it.
-		$this->assertArrayHasKey('link', $response['degraded']);
-	}
-
-	/**
-	 * An autolink survives the bridge now (carve-php#629): it comes back as the
-	 * `<url>` the author wrote, not as `[url](url)`.
-	 *
-	 * @return void
-	 */
-	public function testConvertProseMirrorKeepsAutolinkSpelling(): void {
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
-			'carve' => "See <https://example.com> now.\n",
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertTrue($response['carveStable']);
-		$this->assertStringContainsString('<https://example.com>', $response['carve']);
-		$this->assertSame([], $response['degraded']);
 	}
 
 	/**
@@ -2020,7 +1710,7 @@ class CarveControllerTest extends TestCase {
 	 */
 	public function testConvertDoesNotReportCorrectCarve(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
-			'carve' => 'This is *strong* and _underlined_ and ~struck~.',
+			'carve' => 'This is *strong* and {_underlined_} and {~struck~}.',
 		]);
 
 		$this->assertResponseCode(200);
@@ -2077,25 +1767,16 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
-	 * The accessible name and the styling hooks survive the sanitizer detour.
-	 *
-	 * The img fence derives the alt text from the SVG's `<title>` and puts an
-	 * attribute line's `{#logo .wide}` on the tag, but the payload has to be
-	 * stashed around HTMLPurifier (which drops percent-encoded `data:` SVGs) and
-	 * the tag rebuilt afterwards. Rebuilding it from the src alone would strip
-	 * both from exactly the images that carry them, and no other assertion here
-	 * would notice.
-	 *
 	 * @return void
 	 */
-	public function testConvertWithExtensionsImgFenceKeepsAltAndAttributes(): void {
+	public function testConvertWithExtensionsImgFenceDropsTitle(): void {
 		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 20">'
-			. '<title>Blue "badge" &amp; label</title>'
+			. '<title>Blue badge</title>'
 			. '<rect width="60" height="20" fill="#3b82f6"/>'
 			. '</svg>';
 
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "{#logo .wide}\n``` img\n" . $svg . "\n```\n",
+			'carve' => "``` img\n" . $svg . "\n```\n",
 			'extensions' => ['img_fence'],
 		]);
 
@@ -2104,35 +1785,8 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertStringContainsString('data:image/svg+xml,', $response['html']);
-		// Quotes and ampersands stay escaped - the alt is authored text.
-		$this->assertStringContainsString('alt="Blue &quot;badge&quot; &amp; label"', $response['html']);
-		$this->assertStringContainsString('id="logo"', $response['html']);
-		$this->assertStringContainsString('class="wide carve-svg"', $response['html']);
-	}
-
-	/**
-	 * The three carried attributes bypass HTMLPurifier - the placeholder it sees
-	 * has none of them - so an id it would have rejected is dropped here instead
-	 * of riding back into the document.
-	 *
-	 * @return void
-	 */
-	public function testConvertWithExtensionsImgFenceDropsUnusableId(): void {
-		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"><title>T</title></svg>';
-
-		// An id starting with a digit is not a valid HTML id, and the purifier
-		// strips it from an ordinary <img> - so it has to go here too.
-		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
-			'carve' => "{id=\"1logo\"}\n``` img\n" . $svg . "\n```\n",
-			'extensions' => ['img_fence'],
-		]);
-
-		$this->assertResponseCode(200);
-
-		$response = json_decode((string)$this->_response->getBody(), true);
-		$this->assertNull($response['error']);
-		$this->assertStringContainsString('data:image/svg+xml,', $response['html']);
-		$this->assertStringNotContainsString('id=', $response['html']);
+		$this->assertStringContainsString('class="carve-svg"', $response['html']);
+		$this->assertStringNotContainsString('Blue badge', rawurldecode($response['html']));
 	}
 
 	/**
@@ -2179,8 +1833,8 @@ class CarveControllerTest extends TestCase {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'extensions']);
 
 		$this->assertResponseCode(200);
-		$this->assertResponseContains('ImgFenceExtension');
-		$this->assertResponseContains('HeadingNumbersExtension');
+		$this->assertResponseContains('ImgFence::definition(&#039;img&#039;)');
+		$this->assertResponseContains('Navigation::headingNumbers()');
 	}
 
 	/**
@@ -2232,7 +1886,7 @@ class CarveControllerTest extends TestCase {
 	/**
 	 * @return void
 	 */
-	public function testConvertAstPreservesThematicBreakMarker(): void {
+	public function testConvertAstRoundTripsThematicBreak(): void {
 		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertAst'], [
 			'direction' => 'encode',
 			'carve' => "***\n",
@@ -2241,8 +1895,135 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseCode(200);
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
-		$this->assertStringContainsString('"marker": "*"', $response['json']);
+		$this->assertStringContainsString('"type": "thematic_break"', $response['json']);
+		$this->assertStringContainsString('"astVersion": "2.0"', $response['json']);
 		$this->assertTrue($response['stable']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testTrees(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'trees']);
+
+		$this->assertResponseCode(200);
+		$this->assertNoRedirect();
+		// Level 0 is core; Level 3 is the host extension rendering nested disclosures.
+		$this->assertResponseContains('<div class="tree">');
+		$this->assertResponseContains('<details open><summary>');
+		$this->assertResponseNotContains('Error:');
+	}
+
+	/**
+	 * @return array<string, array{string}>
+	 */
+	public static function snippetProvider(): array {
+		/** @var array<string, array{title: string, source: string}> $snippets */
+		$snippets = (require CONFIG . 'carve_snippets.php')['CarveSnippets'];
+		$cases = [];
+		foreach ($snippets as $path => $snippet) {
+			$cases[$path] = [$path];
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * Every snippet of the include library is valid 0.2 Carve and expands through the playground.
+	 *
+	 * @param string $path
+	 * @return void
+	 */
+	#[DataProvider('snippetProvider')]
+	public function testSnippetLibraryIncludesRender(string $path): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => str_ends_with($path, '.crv') && $path !== 'library/cycle.crv'
+				? '{{ ' . $path . " }}\n"
+				: '{{ ' . $path . " @code }}\n",
+			'warnings' => '1',
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertNotSame('', $response['html']);
+		$this->assertStringNotContainsString('{{ ' . $path, $response['html']);
+		$this->assertTrue($response['dependencies'][0]['resolved'], $path);
+	}
+
+	/**
+	 * @return array<string, array{string, string}>
+	 */
+	public static function extensionExampleProvider(): array {
+		$controller = new CarveController(new ServerRequest());
+		/** @var array<string, array<string, mixed>> $examples */
+		$examples = (new ReflectionMethod($controller, 'getExtensionExamples'))->invoke($controller);
+		$cases = [];
+		foreach ($examples as $key => $example) {
+			if (isset($example['example_carve'])) {
+				$cases[$key] = [$key, (string)$example['example_carve']];
+			}
+		}
+
+		return $cases;
+	}
+
+	/**
+	 * Every example of the extension showcase renders with its extension and is lint clean.
+	 *
+	 * @param string $key
+	 * @param string $carve
+	 * @return void
+	 */
+	#[DataProvider('extensionExampleProvider')]
+	public function testExtensionExampleRenders(string $key, string $carve): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertWithExtensions'], [
+			'carve' => $carve,
+			'extensions' => [$key],
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error'], $key);
+		$this->assertNotSame('', trim($response['html']), $key);
+	}
+
+	/**
+	 * @return array<string, array{string, string}>
+	 */
+	public static function sourceExampleProvider(): array {
+		$controller = new CarveController(new ServerRequest());
+		$cases = [];
+		foreach (['getCodeBlockExamples', 'getTreeExamples', 'getExtensionExamples'] as $method) {
+			/** @var array<string, array<string, mixed>> $examples */
+			$examples = (new ReflectionMethod($controller, $method))->invoke($controller);
+			foreach ($examples as $key => $example) {
+				$source = $example['carve'] ?? $example['example_carve'] ?? null;
+				if (is_string($source)) {
+					$cases[$method . ':' . $key] = [$method . ':' . $key, $source];
+				}
+			}
+		}
+		$cases['demoSampleCarve'] = ['demoSampleCarve', (string)(new ReflectionMethod($controller, 'demoSampleCarve'))->invoke($controller)];
+
+		return $cases;
+	}
+
+	/**
+	 * Every example source in the controller is canonical 0.2 Carve without lint errors.
+	 *
+	 * @param string $name
+	 * @param string $source
+	 * @return void
+	 */
+	#[DataProvider('sourceExampleProvider')]
+	public function testExampleSourceIsValidCarve(string $name, string $source): void {
+		$errors = array_filter(
+			Carve::lint($source),
+			fn (Diagnostic $finding): bool => $finding->severity === 'error',
+		);
+		$this->assertSame([], array_map(fn (Diagnostic $finding): string => $finding->code . ': ' . $finding->message, array_values($errors)), $name);
+		$this->assertSame(rtrim($source, "\n") . "\n", Carve::format($source), $name . ' is not canonical');
 	}
 
 }

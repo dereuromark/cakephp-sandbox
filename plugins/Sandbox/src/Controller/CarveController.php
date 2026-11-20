@@ -27,6 +27,7 @@ use MarkupCarve\Carve\Extension\CodeCallouts;
 use MarkupCarve\Carve\Extension\CodeGroup;
 use MarkupCarve\Carve\Extension\ColorSwatch;
 use MarkupCarve\Carve\Extension\Details;
+use MarkupCarve\Carve\Extension\ExtensionDefinition;
 use MarkupCarve\Carve\Extension\FencedRender;
 use MarkupCarve\Carve\Extension\Glossary;
 use MarkupCarve\Carve\Extension\ImgFence;
@@ -161,10 +162,11 @@ class CarveController extends SandboxAppController {
 	 *
 	 * @param string $source Carve source.
 	 * @param bool $withExtensions Whether the caller renders with the default extension set.
+	 * @param array<string, mixed> $options Further lint options, e.g. `includes`.
 	 * @return array<array<string, mixed>>
 	 */
-	protected function lintCarve(string $source, bool $withExtensions = true): array {
-		$options = ['headingIds' => static::HEADING_IDS];
+	protected function lintCarve(string $source, bool $withExtensions = true, array $options = []): array {
+		$options += ['headingIds' => static::HEADING_IDS];
 		if ($withExtensions) {
 			$options['extensions'] = $this->defaultExtensions();
 		}
@@ -276,14 +278,14 @@ class CarveController extends SandboxAppController {
 		];
 
 		if ($carve) {
-			$result['lint'] = $this->lintCarve($carve, !$disableExtensions);
-
 			$includes = [
 				'resolver' => new SnippetCatalogResolver($this->snippetCatalog()),
 				'depth' => 8,
 				'bytes' => 262_144,
 				'maxDiagnostics' => 50,
 			];
+			$result['lint'] = $this->lintCarve($carve, !$disableExtensions, ['includes' => $includes]);
+
 			$options = [
 				'headingIds' => static::HEADING_IDS,
 				'sourceLines' => true,
@@ -309,6 +311,10 @@ class CarveController extends SandboxAppController {
 					} elseif ($collectWarnings) {
 						$result['warnings'][] = $this->diagnosticRow($carve, $diagnostic);
 					}
+				}
+				// Under strictLosses a render with a loss returns no HTML and reports the losses.
+				if (($options['strictLosses'] ?? false) && $result['violations']) {
+					$result['error'] = 'Profile violation: ' . $result['violations'][0]['message'];
 				}
 				foreach (Carve::includeDependencies($carve, ['includes' => $includes]) as $dependency) {
 					$result['dependencies'][] = [
@@ -1132,7 +1138,7 @@ CARVE,
 
 							break;
 						case 'img_fence':
-							$extensions[] = ImgFence::definition('img');
+							$extensions[] = $this->imgFence();
 							$svgFence = true;
 
 							break;
@@ -1870,7 +1876,7 @@ $html = Carve::renderWithDocumentTransforms($source, $bundle->transforms(), $opt
 CARVE,
 			],
 			'img_fence' => [
-				'name' => "ImgFence::definition('img')",
+				'name' => "ImgFence::definition('img')->withRenderer(ImgFence::render(...))",
 				'description' => 'Renders a ```img fenced block as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
 				'example_carve' => <<<'CARVE'
 ```img
@@ -2132,15 +2138,12 @@ CARVE,
 	}
 
 	/**
-	 * Paragraph interruption (§10): a line that begins with a block marker is
-	 * that block. Carve paragraphs are not greedy, so no blank line is needed -
-	 * with one exception: a list (bullet or ordered) following a paragraph needs
-	 * a blank line, so a hard-wrapped "- " mid-prose is not turned into a list.
-	 * Nested sub-lists still need no blank line.
+	 * Paragraph continuation in 0.2: an open paragraph takes every line that is not blank (a lazy
+	 * line, C2-B-012), unless the line is one of the six interrupters (C2-B-024), such
+	 * as a table row or a list marker at an open list's column. A heading, quote or break line
+	 * directly under text is text; lint reports it as `block-opener-without-blank-line`.
 	 *
-	 * Each case is shown three ways: as typed (marker starts the block), with a
-	 * blank line before the marker (identical result - the blank line is
-	 * optional), and with the marker escaped (kept literal inside the paragraph).
+	 * Each case is shown as typed and with a blank line before the marker.
 	 *
 	 * @return void
 	 */
@@ -2149,20 +2152,17 @@ CARVE,
 		foreach ($this->getInterruptionCases() as $case) {
 			$typedRaw = Carve::render($case['carve']);
 			$blankRaw = Carve::render($case['blank']);
-			$escapedRaw = Carve::render($case['escaped']);
 			$rows[] = [
 				'title' => $case['title'],
 				'note' => $case['note'],
 				'carve' => $case['carve'],
 				'blank' => $case['blank'],
-				'escaped' => $case['escaped'],
 				'typedRaw' => $typedRaw,
 				'blankRaw' => $blankRaw,
-				'escapedRaw' => $escapedRaw,
 				'typedHtml' => $this->sanitizeHtml($typedRaw),
 				'blankHtml' => $this->sanitizeHtml($blankRaw),
-				'escapedHtml' => $this->sanitizeHtml($escapedRaw),
-				// The whole point: no blank line and a blank line render the same.
+				'lint' => array_map(fn (Diagnostic $finding): array => $this->diagnosticRow($case['carve'], $finding), Carve::lint($case['carve'])),
+				// An interrupter starts its block either way; any other marker line is lazy text.
 				'equivalent' => $typedRaw === $blankRaw,
 			];
 		}
@@ -2172,48 +2172,48 @@ CARVE,
 	}
 
 	/**
-	 * Curated cases. `carve` is as-typed (marker directly under the paragraph),
-	 * `blank` adds a blank line before the marker (same result), `escaped` keeps
-	 * the marker literal with a leading backslash.
+	 * Curated cases. `carve` is as typed (marker directly under the paragraph), `blank` adds a
+	 * blank line before the marker.
 	 *
-	 * @return array<int, array{title: string, note: string, carve: string, blank: string, escaped: string}>
+	 * @return array<int, array{title: string, note: string, carve: string, blank: string}>
 	 */
 	protected function getInterruptionCases(): array {
 		return [
 			[
 				'title' => 'Heading marker after text',
-				'note' => 'A "# " line is a heading wherever it appears - the paragraph above does not absorb it.',
-				'carve' => "text\n# H",
-				'blank' => "text\n\n# H",
-				'escaped' => "text\n\\# H",
-			],
-			[
-				'title' => 'Nested list (no blank line)',
-				'note' => 'Indenting a sub-list nests it directly. Djot traditionally needed a blank line before the nested portion - a long-standing pain point - which Carve drops.',
-				'carve' => "- Drinks\n  - Coffee\n  - Tea\n- Snacks",
-				'blank' => "- Drinks\n\n  - Coffee\n  - Tea\n- Snacks",
-				'escaped' => "- Drinks\n  \\- Coffee\n  \\- Tea\n- Snacks",
+				'note' => 'A "= " line directly under text is a lazy line of the paragraph. Leave a blank line before a heading.',
+				'carve' => "text\n= H\n",
+				'blank' => "text\n\n= H\n",
 			],
 			[
 				'title' => 'Blockquote marker after text',
-				'note' => 'A "> " line is a blockquote. Escape it when you mean a literal greater-than.',
-				'carve' => "Make sure the result is\n> 5 so the check passes.",
-				'blank' => "Make sure the result is\n\n> 5 so the check passes.",
-				'escaped' => "Make sure the result is\n\\> 5 so the check passes.",
-			],
-			[
-				'title' => 'Pipe line after text',
-				'note' => 'A clean "| a | b |" row is a table. Escape the leading pipe to keep it as prose.',
-				'carve' => "The CSV header is\n| id | name | email |",
-				'blank' => "The CSV header is\n\n| id | name | email |",
-				'escaped' => "The CSV header is\n\\| id | name | email |",
+				'note' => 'A "> " line under text stays text, so "the result is > 5" survives a hard wrap.',
+				'carve' => "Make sure the result is\n> 5 so the check passes.\n",
+				'blank' => "Make sure the result is\n\n> 5 so the check passes.\n",
 			],
 			[
 				'title' => 'Thematic break after text',
-				'note' => 'A "---" line is a thematic break. Escape it to keep an em dash inside the paragraph.',
-				'carve' => "Sign here:\n---\nJane Doe",
-				'blank' => "Sign here:\n\n---\nJane Doe",
-				'escaped' => "Sign here:\n\\---\nJane Doe",
+				'note' => 'A "---" line under text is text (smart typography makes it a dash). A break needs blank lines around it.',
+				'carve' => "Sign here:\n---\nJane Doe\n",
+				'blank' => "Sign here:\n\n---\n\nJane Doe\n",
+			],
+			[
+				'title' => 'List marker after text',
+				'note' => 'A hard-wrapped "- " in the middle of prose is not turned into a list.',
+				'carve' => "Bring snacks\n- and drinks.\n",
+				'blank' => "Bring snacks\n\n- and drinks.\n",
+			],
+			[
+				'title' => 'Pipe line after text (interrupter)',
+				'note' => 'A table row is one of the six interrupters: it starts the table with or without a blank line.',
+				'carve' => "The CSV header is\n| id | name | email |\n",
+				'blank' => "The CSV header is\n\n| id | name | email |\n",
+			],
+			[
+				'title' => 'Nested list (interrupter)',
+				'note' => 'A list marker inside an open list item nests directly; no blank line is needed before a sub-list.',
+				'carve' => "- Drinks\n  - Coffee\n  - Tea\n- Snacks\n",
+				'blank' => "- Drinks\n\n  - Coffee\n  - Tea\n- Snacks\n",
 			],
 		];
 	}
@@ -2366,7 +2366,7 @@ CARVE,
 
 				$start = microtime(true);
 				// A stored 1.x tree (0.1 engines) is migrated first; a 2.0 tree passes through.
-				$document = Carve::decodeTree((string)json_encode(Carve::migrateTree($tree)));
+				$document = Carve::decodeTree((string)json_encode(Carve::migrateTree($tree)['document']));
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
 				$result['html'] = $this->sanitizeHtml(Carve::render($document));
 				$result['carve'] = Carve::write($document);
@@ -2698,6 +2698,15 @@ CARVE,
 	}
 
 	/**
+	 * The img fence with the engine's sanitizing renderer; the definition alone writes the code fallback.
+	 *
+	 * @return \MarkupCarve\Carve\Extension\ExtensionDefinition
+	 */
+	protected function imgFence(): ExtensionDefinition {
+		return ImgFence::definition('img')->withRenderer(ImgFence::render(...));
+	}
+
+	/**
 	 * Whether the img fence sanitizer of the engine returns this SVG unchanged.
 	 *
 	 * @param string $svg
@@ -2706,7 +2715,7 @@ CARVE,
 	protected function isEngineSanitizedSvg(string $svg): bool {
 		$fence = Carve::safeCodeFence($svg);
 		try {
-			$html = Carve::render($fence . "img\n" . $svg . "\n" . $fence . "\n", ['extensions' => [ImgFence::definition('img')]]);
+			$html = Carve::render($fence . "img\n" . $svg . "\n" . $fence . "\n", ['extensions' => [$this->imgFence()]]);
 		} catch (Throwable) {
 			return false;
 		}

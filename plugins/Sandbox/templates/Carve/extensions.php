@@ -4,6 +4,82 @@
  * @var array<string, array<string, mixed>> $examples
  */
 
+// Factory calls for the usage snippets where the example name is not the full call.
+$factoryCalls = [
+	'default_attributes' => "Transforms::defaultAttributes(['image' => ['loading' => 'lazy']])",
+	'smart_quotes' => "SmartQuotes::bundle('de')",
+	'heading_level_shift' => 'Navigation::headingLevelShift(1)',
+	'vega_lite' => "FencedRender::bundle(language: 'vega-lite', cssClass: 'vega-lite', contentMode: 'text')",
+	'chart' => "FencedRender::bundle(language: 'chart', cssClass: 'chart', contentMode: 'text')",
+	'tab_normalize' => 'Transforms::tabNormalize(4)',
+	'color_swatch' => 'ColorSwatch::bundle(tint: true)',
+];
+// Bundles whose document transforms must run through renderWithDocumentTransforms().
+$transformBundles = ['default_attributes', 'tab_normalize', 'code_callouts', 'glossary', 'index', 'citations'];
+$coreRender = <<<'PHP'
+use MarkupCarve\Carve\Carve;
+
+// Core syntax: no extension needed.
+$html = Carve::render($source);
+PHP;
+$coreSnippets = [
+	'mentions' => <<<'PHP'
+use MarkupCarve\Carve\Carve;
+
+// Core syntax: the social option turns mentions and tags into links.
+$html = Carve::render($source, ['social' => [
+    'mentionUrl' => '/users/{name}',
+    'tagUrl' => '/tags/{name}',
+]]);
+PHP,
+	'admonition' => $coreRender,
+	'inline_footnotes' => $coreRender,
+	'ascii_heading_ids' => <<<'PHP'
+use MarkupCarve\Carve\Carve;
+
+// Core render option: no extension needed.
+$html = Carve::render($source, ['headingIds' => 'ascii']);
+PHP,
+	'lowercase_heading_ids' => <<<'PHP'
+use MarkupCarve\Carve\Carve;
+
+// Core render option: no extension needed.
+$html = Carve::render($source, ['headingIds' => 'lower']);
+PHP,
+	'frontmatter' => <<<'PHP'
+use MarkupCarve\Carve\Carve;
+
+// Core syntax: frontmatter is the first child of the tree and never rendered.
+$document = Carve::parse($source);
+$first = $document->children[0] ?? null;
+if ($first !== null && $first->type === 'frontmatter') {
+    $format = $first->f['format'];  // 'yaml', 'toml', ...
+    $content = $first->f['value']; // raw string content
+}
+
+$html = Carve::render($document);
+PHP,
+];
+$usageSnippet = function (string $key, string $name) use ($factoryCalls, $transformBundles, $coreSnippets): string {
+	if (isset($coreSnippets[$key])) {
+		return $coreSnippets[$key];
+	}
+	$call = $factoryCalls[$key] ?? $name;
+	$class = strstr($call, '::', true) ?: $call;
+	$uses = 'use MarkupCarve\Carve\Carve;' . "\n" . 'use MarkupCarve\Carve\Extension\\' . $class . ';' . "\n\n";
+	if ($key === 'tabs') {
+		return $uses . '$html = Carve::render($source, [\'extensions\' => Tabs::extensions(true)]);';
+	}
+	if (in_array($key, $transformBundles, true)) {
+		return $uses . '$bundle = ' . $call . ";\n"
+			. '$html = Carve::renderWithDocumentTransforms($source, $bundle->transforms(), [' . "\n"
+			. '    \'extensions\' => [$bundle],' . "\n"
+			. '])->html;';
+	}
+
+	return $uses . '$html = Carve::render($source, [\'extensions\' => [' . $call . ']]);';
+};
+
 $this->append('script');
 echo $this->Html->css('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github.min.css');
 echo $this->Html->css('Sandbox.highlighting/hljs-carve.css', ['timestamp' => 'force']);
