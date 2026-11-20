@@ -1915,7 +1915,7 @@ CARVE,
 			],
 			'img_fence' => [
 				'name' => 'ImgFence::bundle()',
-				'description' => 'Renders a ```img (or ```image) fenced block as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
+				'description' => 'Renders a fenced block with the info word `img` or `image` as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
 				'example_carve' => <<<'CARVE'
 ```img
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64">
