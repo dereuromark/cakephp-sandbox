@@ -142,6 +142,30 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * The playground preview posts the template's own default sample on load.
+	 *
+	 * @return void
+	 */
+	public function testConvertRendersPlaygroundDefaultSample(): void {
+		$template = (string)file_get_contents(dirname(__DIR__, 3) . DS . 'templates' . DS . 'Carve' . DS . 'index.php');
+		$this->assertSame(1, preg_match("/\\\$defaultCarve = <<<'CARVE'\n(.*?)\nCARVE;/s", $template, $matches));
+
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convert'], [
+			'carve' => $matches[1],
+		]);
+
+		$this->assertResponseCode(200);
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertStringContainsString('Carve Playground</h1>', $response['html']);
+		$this->assertStringContainsString('<h2 data-source-line="8">Features</h2>', $response['html']);
+		$this->assertStringContainsString('<code class="language-php">', $response['html']);
+		$this->assertStringContainsString('<table', $response['html']);
+		$this->assertStringContainsString('<sup>10</sup>', $response['html']);
+		$this->assertSame(strlen($matches[1]), $response['bytes']);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testFormatKeepsTablesUnaligned(): void {
