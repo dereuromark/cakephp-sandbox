@@ -13,7 +13,7 @@ return [
 		],
 		'library/chapter.crv' => [
 			'title' => 'Nested chapter',
-			'source' => "## Reused chapter\n\nA stored snippet can include another stored snippet:\n\n{{ sign-off.crv }}\n",
+			'source' => "== Reused chapter\n\nA stored snippet can include another stored snippet:\n\n{{ sign-off.crv }}\n",
 		],
 		'library/sign-off.crv' => [
 			'title' => 'Nested sign-off',
@@ -25,7 +25,7 @@ return [
 		],
 		'library/setup.crv' => [
 			'title' => 'Named region (@region:requirements)',
-			'source' => "## Setup\n\nOnly the marked region below is included.\n\n%% #region requirements\n- PHP 8.2 or newer\n- Composer 2\n%% #endregion requirements\n\nText after the region is skipped.\n",
+			'source' => "== Setup\n\nOnly the marked region below is included.\n\n%% #region requirements\n\nPHP 8.2 or newer and Composer 2.\n\n%% #endregion requirements\n\nText after the region is skipped.\n",
 		],
 		'library/server.js' => [
 			'title' => 'Source file included as code (@code:js)',
