@@ -292,7 +292,7 @@ $this->end();
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@3.32.0",
 		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@3.32.0",
 		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@3.32.0",
-		"@markup-carve/carve-grammars/tiptap": "https://esm.sh/gh/markup-carve/carve-grammars@398be5b/tiptap/index.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-ordered-list"
+		"@markup-carve/carve-grammars/tiptap": "https://esm.sh/gh/markup-carve/carve-grammars@3121599/tiptap/index.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-ordered-list"
 	}
 }
 </script>

@@ -105,7 +105,7 @@ CARVE;
 	<code>getJSON()</code> goes back to PHP, which writes the Carve source shown under it.
 </p>
 <div id="editor-status" class="small text-muted mb-2">Loading editor...</div>
-<div id="tiptap-editor" class="border rounded p-3 bg-white" style="min-height: 160px;"></div>
+<div id="tiptap-editor" class="carve border rounded p-3 bg-white" style="min-height: 160px;"></div>
 <label class="form-label mt-3" for="carve-saved"><strong>Saved by the server</strong> <span id="saved-status" class="small text-muted"></span></label>
 <textarea id="carve-saved" class="form-control font-monospace" rows="12" readonly style="font-size: 0.85em;"></textarea>
 
@@ -129,6 +129,13 @@ $carve = (new ProseMirrorToCarve())-&gt;convert($editorJson);  // editor.getJSON
 #tiptap-editor pre { background: #f8f9fa; padding: 0.6em 0.8em; border-radius: 6px; }
 #tiptap-editor blockquote { border-left: 3px solid #dee2e6; padding-left: 0.8em; color: #6c757d; }
 #tiptap-editor .carve-block, #tiptap-editor .carve-inline { background: #f1f3f5; border-radius: 4px; padding: 0 0.3em; }
+#tiptap-editor ul[data-type="taskList"] { list-style: none; padding-left: 0.4em; }
+#tiptap-editor ul[data-type="taskList"] li { display: flex; gap: 0.5em; align-items: baseline; }
+#tiptap-editor ul[data-type="taskList"] li > div > p { margin: 0; }
+#tiptap-editor .carve-footnote-ref { color: var(--bs-link-color); cursor: default; }
+#tiptap-editor aside.carve-footnote { border-top: 1px solid #dee2e6; margin-top: 1em; padding-top: 0.5em; font-size: 0.9em; display: flex; gap: 0.4em; }
+#tiptap-editor aside.carve-footnote[data-key]::before { content: attr(data-key) "."; color: #6c757d; }
+#tiptap-editor aside.carve-footnote > p { margin: 0; }
 </style>
 
 </div>
@@ -245,7 +252,7 @@ $carve = (new ProseMirrorToCarve())-&gt;convert($editorJson);  // editor.getJSON
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@3.32.0",
 		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@3.32.0",
 		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@3.32.0",
-		"@markup-carve/carve-grammars/tiptap": "https://esm.sh/gh/markup-carve/carve-grammars@398be5b/tiptap/index.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-ordered-list"
+		"@markup-carve/carve-grammars/tiptap": "https://esm.sh/gh/markup-carve/carve-grammars@3121599/tiptap/index.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-ordered-list"
 	}
 }
 </script>
