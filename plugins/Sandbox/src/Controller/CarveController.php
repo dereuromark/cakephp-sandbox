@@ -501,9 +501,9 @@ class CarveController extends SandboxAppController {
 	 */
 	public function chatExport(): void {
 		$defaultCarve = <<<'CARVE'
-		# Release notes
+		= Release notes
 
-		Shipped /today/: *bold*, ~struck~ and `inline code`.
+		Shipped /today/: *bold*, {~struck~} and `inline code`.
 
 		See the [changelog](https://example.com/changelog) for details.
 
@@ -513,8 +513,8 @@ class CarveController extends SandboxAppController {
 		> A quoted line.
 
 		|= Feature |= State |
-		| Export   | done   |
-		| Split    | open   |
+		| Export | done |
+		| Split | open |
 
 		A claim needing a source[^1].
 
@@ -607,15 +607,15 @@ class CarveController extends SandboxAppController {
 	 */
 	public function pandoc(): void {
 		$defaultCarve = <<<'CARVE'
-		# Bridge demo
+		= Bridge demo
 
 		Carve maps /node by node/, so *emphasis*, tables with spans,
 		footnotes and math all arrive intact[^why].
 
 		|= Format |= Reachable |
-		| LaTeX   | yes        |
-		| DOCX    | yes        |
-		| Slack   | no         |
+		| LaTeX | yes |
+		| DOCX | yes |
+		| Slack | no |
 
 		[^why]: Target-routed raw spans fire too: `\alpha`{=latex} becomes a
 		  Pandoc RawInline that only the LaTeX writer emits.
@@ -875,8 +875,8 @@ CARVE,
 				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard-tier extension present in all three engines, off by default, and a host turns it on with a single `addExtension()` call. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: every branch is now a container with its own `:::` fence and closer.',
 				'mode' => 'details',
 				'carve' => <<<'CARVE'
-::: tree
-- ::: details "src/"
+::::: tree
+- :::: details "src/"
   - ::: details "Parser/"
     - BlockParser.php
     - InlineParser.php
@@ -885,9 +885,9 @@ CARVE,
     - HtmlRenderer.php
     - AnsiRenderer.php
     :::
-  :::
+  ::::
 - tests/
-:::
+:::::
 CARVE,
 			],
 			'progressive' => [
@@ -1308,8 +1308,8 @@ Check out this [link to Carve](https://github.com/markup-carve/carve).
 ![Sample image](/img/cake.icon.png)
 
 |= Feature |= Support |
-| Tables   | Yes      |
-| Images   | Yes      |
+| Tables | Yes |
+| Images | Yes |
 
 ```php
 echo "Hello World";
@@ -1360,19 +1360,19 @@ CARVE,
 				'description' => 'Inserts clickable anchor links (¶ symbol) to headings for easy navigation and sharing.',
 				'class' => HeadingPermalinksExtension::class,
 				'example_carve' => <<<'CARVE'
-# Introduction
+= Introduction
 
 Welcome to the documentation.
 
-## Getting Started
+== Getting Started
 
 First, install the package.
 
-### Configuration
+=== Configuration
 
 Configure the settings as needed.
 
-## Advanced Usage
+== Advanced Usage
 
 For power users.
 CARVE,
@@ -1407,31 +1407,31 @@ CARVE,
 				'description' => 'Automatically generates a table of contents from document headings. Can be retrieved manually or auto-inserted at top/bottom.',
 				'class' => TableOfContentsExtension::class,
 				'example_carve' => <<<'CARVE'
-# Carve Documentation
+= Carve Documentation
 
 An overview of the Carve markup language.
 
-## Basic Syntax
+== Basic Syntax
 
-### Paragraphs
+=== Paragraphs
 
 Text separated by blank lines.
 
-### Emphasis
+=== Emphasis
 
 Use /slashes/ for emphasis and *asterisks* for strong.
 
-## Advanced Features
+== Advanced Features
 
-### Code Blocks
+=== Code Blocks
 
 Fenced code blocks with syntax highlighting.
 
-### Tables
+=== Tables
 
 Grid-based table syntax.
 
-## Conclusion
+== Conclusion
 
 Carve is a powerful markup language.
 CARVE,
@@ -1448,30 +1448,33 @@ CARVE,
 				'description' => 'In-document placement directives. `::: toc` renders a `<nav class="toc">` exactly where written (unlike TableOfContentsExtension, which injects one TOC at the document top or bottom), so a long document can place its contents after an intro. A `{depth=N}` or `{from=X to=Y}` attribute line before the opener sets an optional level window. `::: footnotes` (always-on core, no toggle needed) relocates the endnotes section to the marker. Both render byte-identical to carve-js.',
 				'class' => TocPlacementExtension::class,
 				'example_carve' => <<<'CARVE'
-# Guide
+= Guide
 
 Intro paragraph shown before the contents.
 
 {depth=2}
 ::: toc
+
 :::
 
-## Setup
+== Setup
 
 Install steps[^install].
 
-### Requirements
+=== Requirements
 
 PHP 8.2+.
 
-## Usage
+== Usage
 
 Run it[^run].
 
 [^install]: Install via Composer.
+
 [^run]: See the CLI docs.
 
 ::: footnotes
+
 :::
 CARVE,
 				'options' => [
@@ -1527,15 +1530,15 @@ CARVE,
 				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when `h1` is reserved for the page title and document headings should start at `h2` for SEO and accessibility.',
 				'class' => HeadingLevelShiftExtension::class,
 				'example_carve' => <<<'CARVE'
-# Main Title (becomes h2)
+= Main Title (becomes h2)
 
 Introduction paragraph.
 
-## Section (becomes h3)
+== Section (becomes h3)
 
 Section content.
 
-### Subsection (becomes h4)
+=== Subsection (becomes h4)
 
 More details here.
 CARVE,
@@ -1702,23 +1705,23 @@ CARVE,
 				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). The tab name comes from the opener [Label] (canonical, carve#201), falling back to a leading content heading. Fences widen inward (carve#439): the outer `tabs` container keeps `:::` and each nested `tab` div widens to `::::`, because a bare closer only closes a container whose colon count it matches exactly.',
 				'class' => TabsExtension::class,
 				'example_carve' => <<<'CARVE'
-::: tabs
-:::: tab [Installation]
+:::: tabs
+::: tab "Installation"
 Install the package with Composer:
 
 `composer require markup-carve/carve-php`
-::::
+:::
 
-:::: tab [Usage]
+::: tab "Usage"
 Convert Carve to HTML:
 
-`$html = $converter->convert($carve);`
-::::
-
-:::: tab [Configuration]
-Configure options as needed.
-::::
+`$html = Carve::render($carve);`
 :::
+
+::: tab "Configuration"
+Configure options as needed.
+:::
+::::
 CARVE,
 				'options' => [
 					'mode' => "'css' (default) or 'aria'",
@@ -1760,13 +1763,13 @@ CARVE,
 				'description' => 'Parses `[[wikilinks]]` into navigational links. Supports `[[page|display text]]` syntax and anchors like `[[page#section]]`. Common in wiki systems and note-taking apps like Obsidian.',
 				'class' => WikilinksExtension::class,
 				'example_carve' => <<<'CARVE'
-Check out the [[Getting Started]] guide for beginners.
+Check out the :wiki[Getting Started] guide for beginners.
 
-For advanced users, see [[Advanced Topics|the advanced section]].
+For advanced users, see :wiki[Advanced Topics|the advanced section].
 
-The [[API Reference#authentication]] section covers auth.
+The :wiki[API Reference#authentication] section covers auth.
 
-Related: [[Best Practices]], [[FAQ]], [[Troubleshooting]]
+Related: :wiki[Best Practices], :wiki[FAQ], :wiki[Troubleshooting]
 CARVE,
 				'options' => [
 					'urlGenerator' => 'Custom URL generator closure',
@@ -1779,15 +1782,15 @@ CARVE,
 				'description' => 'Resolves `[[Heading Text]]` references to headings within the same document, producing anchor links. Supports custom display text via `[[Heading Text|click here]]`. Unresolvable references fall back to literal `[[...]]` text. Note: shares the `[[...]]` syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
 				'class' => HeadingReferenceExtension::class,
 				'example_carve' => <<<'CARVE'
-# Installation
+= Installation
 
-See [[Configuration]] for setup details, or jump straight to [[Usage|how to use it]].
+See [Configuration][] for setup details, or jump straight to [how to use it][Usage].
 
-# Configuration
+= Configuration
 
-Configure your settings here. A missing target like [[Nonexistent Section]] stays literal.
+Configure your settings here.
 
-# Usage
+= Usage
 
 Use the tool as described above.
 CARVE,
@@ -1813,7 +1816,7 @@ CARVE,
 				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (`yaml`, `neon`, `toml`, ...) is optional.',
 				'class' => FrontmatterExtension::class,
 				'example_carve' => <<<'CARVE'
----yaml
+---
 title: My Article
 author: John Doe
 date: 2024-01-15
@@ -1822,7 +1825,7 @@ tags:
   - documentation
 ---
 
-# My Article
+= My Article
 
 This is the main content after the frontmatter.
 CARVE,
@@ -1844,7 +1847,8 @@ CARVE,
 Mixed with the default markers:
 
 - Dash bullet
-+ Plus bullet
+  + Plus bullet
+
 * Star bullet
 
 Task lists work as well:
@@ -1861,11 +1865,11 @@ CARVE,
 				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (`# Über uns` becomes `Über-uns`); this extension transliterates them (`Über-uns` becomes `Uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
 				'class' => AsciiHeadingIdsExtension::class,
 				'example_carve' => <<<'CARVE'
-# Über uns
+= Über uns
 
-## Café résumé
+== Café résumé
 
-### Größe & Maße
+=== Größe & Maße
 
 Compare the generated id attributes with and without the extension.
 CARVE,
@@ -1910,6 +1914,7 @@ CARVE,
 - -{header-row} Region
   - Notes
 - - EMEA
+
   - Strong quarter.
 
     Drivers:
@@ -1943,14 +1948,18 @@ CARVE,
 				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end. Supports a prefix ([see @key]), author suppression ([-@key]), typed locators after a comma ([@key, p. 12] / ch. / §, the full citeproc vocabulary, §22), multiple semicolon-separated sources, and a group-level integral marker ([+@key]).',
 				'class' => CitationsExtension::class,
 				'example_carve' => <<<'CARVE'
-Carve follows the djot spec [@durusau2022, p. 12] and borrows ideas from Markdown [see @gruber2004, ch. 3].
+Carve follows the djot spec :cite[durusau2022]{locator="p. 12"} and borrows ideas from Markdown :cite[gruber2004]{prefix=see locator="ch. 3"}.
 
-Author suppression reads naturally: Gruber [-@gruber2004] introduced Markdown in 2004.
+Author suppression reads naturally: Gruber :cite[gruber2004]{mode=suppress-author} introduced Markdown in 2004.
 
-Group several sources, with locators: [@durusau2022, pp. 12-14; @gruber2004, §2]. Force an integral (textual) group with a leading +: [+@durusau2022, p. 1].
+Group several sources: :cite[durusau2022; gruber2004].
 
-[@durusau2022]: Durusau, P. (2022). *The djot markup language*.
-[@gruber2004]: Gruber, J. (2004). *Markdown: Syntax*.
+::: references "References"
+:: durusau2022
+: Durusau, P. (2022). /The djot markup language/.
+:: gruber2004
+: Gruber, J. (2004). /Markdown: Syntax/.
+:::
 CARVE,
 				'options' => [
 					'mode' => "'numbered' (reference label style; default 'numbered')",
@@ -1961,9 +1970,9 @@ CARVE,
 				'description' => 'Carve heading ids are case-preserving by default (# Getting Started -> "Getting-Started"). This opt-in extension lowercases them for GitHub/SSG-style anchors (-> "getting-started"). Combine with AsciiHeadingIds for fully lowercase ASCII slugs.',
 				'class' => LowercaseHeadingIdsExtension::class,
 				'example_carve' => <<<'CARVE'
-# Getting Started
+= Getting Started
 
-## API Reference
+== API Reference
 
 See [API Reference][] for the lowercased anchor.
 CARVE,
@@ -2037,7 +2046,11 @@ CARVE,
 				'description' => 'Inline :index[term] drops an invisible marker (an empty <span class="index-term" id="idx-...">) at each occurrence, collected for a back-of-book index. It renders nothing visible; it is an anchor an index page can link back to.',
 				'class' => IndexExtension::class,
 				'example_carve' => <<<'CARVE'
-Carve:index[Carve] converts markup:index[markup] to HTML, and markup:index[markup] is fun.
+Carve :index[Carve] converts markup :index[markup] to HTML, and markup :index[markup] is fun.
+
+::: index
+
+:::
 CARVE,
 			],
 			'code_callouts' => [
@@ -2046,15 +2059,15 @@ CARVE,
 				'class' => CodeCalloutsExtension::class,
 				'example_carve' => <<<'CARVE'
 ```php
-$converter = new CarveConverter(); <1>
-$converter->addExtension(new CodeCalloutsExtension()); <2>
+$bundle = CodeCallouts::bundle(); <1>
+$options = ['extensions' => [$bundle]]; <2>
 
-$html = $converter->convert($source); <3>
+$html = Carve::renderWithDocumentTransforms($source, $bundle->transforms(), $options)->html; <3>
 ```
 
-<1> Create the converter with default options.
-<2> Register the extension so `<n>` markers are recognized.
-<3> Convert; callouts render as numbered bubbles.
+\<1> Create the bundle with its document transform.
+\<2> Register the bundle so `<n>` markers are recognized.
+\<3> Convert; callouts render as numbered bubbles.
 CARVE,
 			],
 			'img_fence' => [
@@ -2089,18 +2102,18 @@ CARVE,
 				'description' => 'Auto-numbers sections at render time and rewrites auto-filled </#id> cross-references to "Section 1.2 - Title". No new syntax: it reads the heading tree and honors a {.unnumbered} class (written on the line ABOVE the heading, since Carve takes no trailing attribute block on a heading). Numbers render as <span class="section-number">.',
 				'class' => HeadingNumbersExtension::class,
 				'example_carve' => <<<'CARVE'
-# Installation
+= Installation
 
-## Requirements
+== Requirements
 
 See </#Configuration> for what to set afterwards.
 
-## Configuration
+== Configuration
 
 Numbering follows the heading tree, so this is 1.2.
 
 {.unnumbered}
-# Appendix
+= Appendix
 
 An unnumbered heading is skipped by the counter.
 CARVE,
@@ -3520,28 +3533,30 @@ HTML;
 	 */
 	protected function demoSampleCarve(): string {
 		return <<<'CARVE'
-# Graceful degradation demo
+= Graceful degradation demo
 
 The same source below renders differently per target. Interactive constructs
 flatten or reveal when the medium cannot run client scripts.
 
-::: tabs
-:::: tab [Install]
+:::: tabs
+::: tab "Install"
 ```bash
 composer require markup-carve/carve-php
 ```
-::::
-:::: tab [Usage]
-```php
-$html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
-```
-::::
 :::
+
+::: tab "Usage"
+```php
+$html = MarkupCarve\Carve\Carve::render($carve);
+```
+:::
+::::
 
 ::: code-group
 ```js [config.js]
 export default { mode: 'static' };
 ```
+
 ```json [config.json]
 { "mode": "static" }
 ```

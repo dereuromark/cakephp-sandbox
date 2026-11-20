@@ -79,10 +79,10 @@
 		"cakephp/authentication": "^4.0",
 		"cakephp/authorization": "^3.4",
 		"dereuromark/cakephp-bouncer": "dev-master",
-		"php-collective/djot": "dev-master",
-		"markup-carve/carve-php": "dev-main as 0.1.17",
-		"markup-carve/carve-php-media-embed": "dev-main",
-		"markup-carve/carve-php-chat": "dev-main",
+		"php-collective/djot": "dev-master as 0.1.35",
+		"markup-carve/carve-php": "dev-next2 as 0.2.0",
+		"markup-carve/carve-php-media-embed": "dev-next2",
+		"markup-carve/carve-php-chat": "dev-next2",
 		"ezyang/htmlpurifier": "^4.19",
 		"josbeir/cakephp-mercure": "^0.3.1",
 		"php-collective/toml": "dev-master",
@@ -90,7 +90,7 @@
 		"nette/neon": "^4.0",
 		"dereuromark/cakephp-reactions": "dev-master",
 		"dereuromark/cakephp-menu": "dev-master",
-		"markup-carve/cakephp-carve": "dev-main"
+		"markup-carve/cakephp-carve": "dev-next2"
 	},
 	"require-dev": {
 		"php-collective/code-sniffer": "^0.6.0",
