@@ -299,6 +299,10 @@ class CarveController extends SandboxAppController {
 			if ((string)$this->request->getData('soft_break_br') === '1') {
 				$options['softBreak'] = 'br';
 			}
+			// Raw output (debug only) skips the sanitizer, so it also lets raw HTML through, which 0.2 escapes by default.
+			if ($raw) {
+				$options['rawHtml'] = true;
+			}
 
 			try {
 				$start = microtime(true);

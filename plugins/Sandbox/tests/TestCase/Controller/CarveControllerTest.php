@@ -209,7 +209,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('id="include-library"');
 		$this->assertResponseContains('https://markup-carve.github.io/carve/includes');
 		$this->assertResponseContains('transclusion');
-		$this->assertResponseContains('href="#strict-mode-example"');
+		$this->assertResponseContains('href="#violation-error-example"');
 		$this->assertResponseContains('data-copy-anchor="enabled-extensions"');
 	}
 
@@ -640,7 +640,7 @@ class CarveControllerTest extends TestCase {
 		$this->assertResponseContains('CSV Table');
 		$this->assertResponseContains('TSV Table without Header');
 		$this->assertResponseContains('Task States');
-		$this->assertResponseContains('Continuation Marker');
+		$this->assertResponseContains('Blocks inside List Items');
 	}
 
 	/**
