@@ -1719,6 +1719,71 @@ class CarveControllerTest extends TestCase {
 	}
 
 	/**
+	 * @return void
+	 */
+	public function testConvertProseMirrorRoundTrip(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'carve' => "= Title\n\nSome *bold* text and a [link](javascript:alert(1)).\n",
+		]);
+
+		$this->assertResponseCode(200);
+		$this->assertContentType('application/json');
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame("= Title\n\nSome *bold* text and a [link](javascript:alert(1)).\n", $response['carve']);
+		$this->assertTrue($response['stable']);
+		$this->assertTrue($response['carveStable']);
+		$this->assertSame(['javascript:alert(1)'], $response['blanked']);
+		$this->assertStringContainsString('"type": "bold"', $response['pm']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertProseMirrorSavesAnEditorDocument(): void {
+		$doc = [
+			'type' => 'doc',
+			'content' => [
+				['type' => 'heading', 'attrs' => ['level' => 2], 'content' => [['type' => 'text', 'text' => 'Saved']]],
+				['type' => 'paragraph', 'content' => [['type' => 'text', 'text' => 'bold', 'marks' => [['type' => 'bold']]]]],
+			],
+		];
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'pm' => (string)json_encode($doc),
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertNull($response['error']);
+		$this->assertSame("== Saved\n\n*bold*\n", $response['carve']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertProseMirrorReportsAnUnknownNode(): void {
+		$this->post(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror'], [
+			'pm' => '{"type":"doc","content":[{"type":"calloutBox"}]}',
+		]);
+
+		$this->assertResponseCode(200);
+
+		$response = json_decode((string)$this->_response->getBody(), true);
+		$this->assertStringContainsString('calloutBox', $response['error']);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertProseMirrorGetMethodNotAllowed(): void {
+		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'convertProseMirror']);
+
+		$this->assertResponseCode(405);
+	}
+
+	/**
 	 * A Markdown habit parses as a valid document, so no parse warning fires -
 	 * it just renders as literal asterisks. That is what the separate lint pass
 	 * is for.

@@ -41,6 +41,8 @@ use MarkupCarve\Carve\Extension\Tabs;
 use MarkupCarve\Carve\Extension\Transforms;
 use MarkupCarve\Carve\Extension\Wikilinks;
 use MarkupCarve\Carve\Node;
+use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
+use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
 use MarkupCarve\Carve\RenderError;
 use MarkupCarve\Carve\RenderResult;
 use MarkupCarve\Chat\ChatPreviewRenderer;
@@ -2492,12 +2494,73 @@ CARVE,
 	}
 
 	/**
-	 * ProseMirror / Tiptap bridge: the carve-php bridge is not part of 0.2, the page says so.
+	 * ProseMirror / Tiptap bridge: Carve to a ProseMirror document and back, in PHP.
 	 *
 	 * @return void
 	 */
 	public function proseMirror(): void {
 		$this->set('debugMode', Configure::read('debug'));
+	}
+
+	/**
+	 * AJAX endpoint for the ProseMirror bridge.
+	 *
+	 * `carve`: Carve -> ProseMirror document -> Carve, entirely server-side.
+	 * `pm`: a document the editor saved (`editor.getJSON()`) -> Carve.
+	 *
+	 * @return \Cake\Http\Response
+	 */
+	public function convertProseMirror(): Response {
+		$this->request->allowMethod(['post']);
+
+		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+		$pm = (string)$this->request->getData('pm');
+
+		$result = [
+			'pm' => '',
+			'carve' => '',
+			'canonical' => '',
+			'stable' => false,
+			'carveStable' => false,
+			'blanked' => [],
+			'msToPm' => null,
+			'msToCarve' => null,
+			'error' => null,
+		];
+
+		try {
+			if ($pm !== '') {
+				$start = microtime(true);
+				$result['carve'] = (new ProseMirrorToCarve())->convert($pm);
+				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
+			} elseif (trim($carve) !== '') {
+				$tree = Carve::parse($carve);
+				$renderer = new ProseMirrorRenderer();
+
+				$start = microtime(true);
+				$document = $renderer->render($tree);
+				$result['msToPm'] = round((microtime(true) - $start) * 1000, 2);
+				$result['pm'] = (string)json_encode($document, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+				$result['blanked'] = $renderer->blanked();
+
+				$converter = new ProseMirrorToCarve();
+				$start = microtime(true);
+				$back = $converter->toTree($document);
+				$result['carve'] = Carve::write($back);
+				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
+
+				$result['stable'] = Carve::render($tree) === Carve::render($back);
+				// The editor model carries the tree, not the source layout, so compare with the writer's spelling of the tree.
+				$result['canonical'] = Carve::write($tree);
+				$result['carveStable'] = $result['canonical'] === $result['carve'];
+			}
+		} catch (Throwable $e) {
+			$result['error'] = $e->getMessage();
+		}
+
+		return $this->response
+			->withType('application/json')
+			->withStringBody((string)json_encode($result));
 	}
 
 	/**
