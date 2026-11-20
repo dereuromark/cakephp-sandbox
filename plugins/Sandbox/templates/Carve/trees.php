@@ -46,7 +46,7 @@ foreach ($examples as $key => $example) {
 	<strong>The ladder</strong>
 	<ul class="mb-0">
 		<li><strong>Level 0</strong> - <code>::: tree</code> and a stylesheet. No extension, no configuration, no JavaScript.</li>
-		<li><strong>Level 1</strong> - one <code>addExtension()</code> call turns on the shipped <code>::: details</code> extension. Still no custom code.</li>
+		<li><strong>Level 1</strong> - passing <code>Details::bundle()</code> in the <code>extensions</code> option turns on the shipped <code>::: details</code> extension. Still no custom code.</li>
 		<li><strong>Level 2</strong> - the Level 0 markup plus a few lines of page script, when you want clean source and no server change.</li>
 		<li><strong>Level 3</strong> - a ~60-line host extension for the cleanest spelling of all. Prototype of the Tier-2 <code>Tree</code> extension proposed for the spec.</li>
 	</ul>
@@ -114,9 +114,9 @@ foreach ($examples as $key => $example) {
 	</div>
 	<div class="card-body">
 		<p class="lead">
-			The whole thing. It hooks <code>render.div</code>, claims a tree that carries
-			<code>.collapsible</code>, and walks the list nodes the parser already built. No parser
-			change, no new AST node, no new syntax - the same container the other levels use.
+			The whole thing. An <code>ExtensionDefinition</code> with a <code>div</code> matcher claims a
+			tree that carries <code>.collapsible</code>, and its renderer walks the list nodes the parser
+			already built. No parser change, no new syntax - the same container the other levels use.
 		</p>
 <pre class="border rounded p-2 bg-light mb-0" style="max-height: 32em; overflow: auto;"><code class="language-php"><?= h($extensionSource) ?></code></pre>
 	</div>

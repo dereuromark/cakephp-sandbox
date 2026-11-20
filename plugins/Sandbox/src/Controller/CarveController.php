@@ -16,61 +16,35 @@ use HTMLPurifier;
 use HTMLPurifier_AttrDef;
 use HTMLPurifier_AttrDef_CSS_Color;
 use HTMLPurifier_Config;
-use LengthException;
-use MarkupCarve\Carve\Ast\AstCodec;
-use MarkupCarve\Carve\CarveConverter;
-use MarkupCarve\Carve\Converter\BbcodeToCarve;
-use MarkupCarve\Carve\Converter\DjotToCarve;
-use MarkupCarve\Carve\Converter\HtmlToCarve;
-use MarkupCarve\Carve\Converter\MarkdownToCarve;
-use MarkupCarve\Carve\Exception\ParseException;
-use MarkupCarve\Carve\Exception\ProfileViolationException;
-use MarkupCarve\Carve\Extension\AdmonitionExtension;
-use MarkupCarve\Carve\Extension\AsciiHeadingIdsExtension;
-use MarkupCarve\Carve\Extension\AutolinkExtension;
-use MarkupCarve\Carve\Extension\CitationsExtension;
-use MarkupCarve\Carve\Extension\CodeCalloutsExtension;
-use MarkupCarve\Carve\Extension\CodeGroupExtension;
-use MarkupCarve\Carve\Extension\ColorSwatchExtension;
-use MarkupCarve\Carve\Extension\DefaultAttributesExtension;
-use MarkupCarve\Carve\Extension\DetailsExtension;
-use MarkupCarve\Carve\Extension\ExternalLinksExtension;
-use MarkupCarve\Carve\Extension\FencedRenderExtension;
-use MarkupCarve\Carve\Extension\FrontmatterExtension;
-use MarkupCarve\Carve\Extension\GlossaryExtension;
-use MarkupCarve\Carve\Extension\HeadingLevelShiftExtension;
-use MarkupCarve\Carve\Extension\HeadingNumbersExtension;
-use MarkupCarve\Carve\Extension\HeadingPermalinksExtension;
-use MarkupCarve\Carve\Extension\HeadingReferenceExtension;
-use MarkupCarve\Carve\Extension\ImgFenceExtension;
-use MarkupCarve\Carve\Extension\IndexExtension;
-use MarkupCarve\Carve\Extension\InlineFootnotesExtension;
-use MarkupCarve\Carve\Extension\ListTableExtension;
-use MarkupCarve\Carve\Extension\LowercaseHeadingIdsExtension;
-use MarkupCarve\Carve\Extension\MathBlockExtension;
-use MarkupCarve\Carve\Extension\MentionsExtension;
-use MarkupCarve\Carve\Extension\PlusBulletExtension;
-use MarkupCarve\Carve\Extension\SemanticSpanExtension;
-use MarkupCarve\Carve\Extension\SmartQuotesExtension;
-use MarkupCarve\Carve\Extension\SpoilerExtension;
-use MarkupCarve\Carve\Extension\SvgSanitizer;
-use MarkupCarve\Carve\Extension\TableOfContentsExtension;
-use MarkupCarve\Carve\Extension\TabNormalizeExtension;
-use MarkupCarve\Carve\Extension\TabsExtension;
-use MarkupCarve\Carve\Extension\TocPlacementExtension;
-use MarkupCarve\Carve\Extension\WikilinksExtension;
-use MarkupCarve\Carve\Lint\MarkdownHabitLinter;
-use MarkupCarve\Carve\Lint\RetiredSpellingLinter;
-use MarkupCarve\Carve\Lint\SemanticAttributeLinter;
-use MarkupCarve\Carve\Lint\TemplateSourceLinter;
-use MarkupCarve\Carve\Parser\BlockParser;
-use MarkupCarve\Carve\Profile;
+use MarkupCarve\Carve\Carve;
+use MarkupCarve\Carve\Diagnostics\Diagnostic;
+use MarkupCarve\Carve\Export\AnsiExporter;
+use MarkupCarve\Carve\Export\MarkdownExporter;
+use MarkupCarve\Carve\Export\PlainTextExporter;
+use MarkupCarve\Carve\Extension\Bundle;
+use MarkupCarve\Carve\Extension\Citations;
+use MarkupCarve\Carve\Extension\CodeCallouts;
+use MarkupCarve\Carve\Extension\CodeGroup;
+use MarkupCarve\Carve\Extension\ColorSwatch;
+use MarkupCarve\Carve\Extension\Details;
+use MarkupCarve\Carve\Extension\FencedRender;
+use MarkupCarve\Carve\Extension\Glossary;
+use MarkupCarve\Carve\Extension\ImgFence;
+use MarkupCarve\Carve\Extension\IndexTerms;
+use MarkupCarve\Carve\Extension\ListTable;
+use MarkupCarve\Carve\Extension\MathBlock;
+use MarkupCarve\Carve\Extension\Navigation;
+use MarkupCarve\Carve\Extension\SemanticSpan;
+use MarkupCarve\Carve\Extension\SmartQuotes;
+use MarkupCarve\Carve\Extension\Spoiler;
+use MarkupCarve\Carve\Extension\Tabs;
+use MarkupCarve\Carve\Extension\Transforms;
+use MarkupCarve\Carve\Extension\Wikilinks;
+use MarkupCarve\Carve\Node;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
-use MarkupCarve\Carve\Renderer\MarkdownRenderer;
-use MarkupCarve\Carve\Renderer\RenderMode;
-use MarkupCarve\Carve\Renderer\SoftBreakMode;
-use MarkupCarve\Carve\Transform\IncludeExpander;
+use MarkupCarve\Carve\RenderError;
+use MarkupCarve\Carve\RenderResult;
 use MarkupCarve\Chat\ChatPreviewRenderer;
 use MarkupCarve\Chat\ChatRenderer;
 use MarkupCarve\Chat\FlavorRegistry;
@@ -82,6 +56,13 @@ use Sandbox\Carve\TreeExtension;
 use Throwable;
 
 class CarveController extends SandboxAppController {
+
+	/**
+	 * Heading id form of the playground: ASCII-folded and lowercased, for share-safe fragments.
+	 *
+	 * @var string
+	 */
+	protected const HEADING_IDS = 'ascii-lower';
 
 	/**
 	 * @return void
@@ -110,53 +91,61 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
-	 * Adds the playground's default extension set to a converter.
+	 * The playground's default extension set.
 	 *
-	 * Curated to be safe-by-default: each is either a no-op until its syntax
-	 * appears or a mild enrichment, with no colliding pair and nothing that needs
-	 * page-specific JS. Wikilinks point at the {@link self::wiki()} stub so they
-	 * resolve instead of 404ing; Mentions stay out (no user pages). Keep this list
-	 * in sync with {@link self::defaultExtensionInfo()}.
+	 * Each is a no-op until its syntax appears or a mild enrichment. Wikilinks point at the
+	 * {@link self::wiki()} stub. Keep this list in sync with {@link self::defaultExtensionInfo()}.
 	 *
-	 * @param \MarkupCarve\Carve\CarveConverter $converter
-	 * @return void
+	 * @return array<\MarkupCarve\Carve\Extension\Bundle|\MarkupCarve\Carve\Extension\ExtensionDefinition>
 	 */
-	protected function addDefaultExtensions(CarveConverter $converter): void {
-		$converter->addExtension(new AutolinkExtension());
-		$converter->addExtension(new ExternalLinksExtension(
-			internalHosts: ['sandbox.dereuromark.de', 'localhost'],
-		));
-		$converter->addExtension(new AdmonitionExtension(icons: true));
-		$converter->addExtension(new SemanticSpanExtension());
-		$converter->addExtension(new AsciiHeadingIdsExtension());
-		$converter->addExtension(new PlusBulletExtension());
-		$converter->addExtension(new InlineFootnotesExtension());
-		$converter->addExtension(new WikilinksExtension(
-			urlGenerator: fn (string $page): string => Router::url([
+	protected function defaultExtensions(): array {
+		return [
+			Navigation::autolink(),
+			Navigation::externalLinks(),
+			SemanticSpan::bundle(),
+			Wikilinks::bundle(urlGenerator: fn (string $page): string => Router::url([
 				'plugin' => 'Sandbox',
 				'controller' => 'Carve',
 				'action' => 'wiki',
 				$this->wikiSlug($page),
-			]),
-		));
-		$converter->addExtension(new DetailsExtension());
-		$converter->addExtension(new ListTableExtension());
-		$converter->addExtension(new MathBlockExtension());
-		$converter->addExtension(new CitationsExtension());
-		$converter->addExtension(new LowercaseHeadingIdsExtension());
-		$converter->addExtension(new SpoilerExtension());
-		$converter->addExtension(new ColorSwatchExtension(tint: true));
-		$converter->addExtension(new GlossaryExtension());
-		$converter->addExtension(new IndexExtension());
-		$converter->addExtension(new CodeCalloutsExtension());
-		// Text mode so the Chart.js config rides in <pre class="chart"> as escaped
-		// text and survives sanitizing (the json preset's <script> wrapper would
-		// be stripped). The playground renders it client-side via Chart.js.
-		$converter->addExtension(new FencedRenderExtension(
-			language: 'chart',
-			contentMode: FencedRenderExtension::MODE_TEXT,
-			cssClass: 'chart',
-		));
+			])),
+			Details::bundle(),
+			ListTable::bundle(),
+			MathBlock::bundle(),
+			Citations::bundle(),
+			Spoiler::bundle(),
+			ColorSwatch::bundle(tint: true),
+			Glossary::bundle(),
+			IndexTerms::bundle(),
+			CodeCallouts::bundle(),
+			// Text mode so the Chart.js config rides in <pre class="chart"> as escaped text and
+			// survives sanitizing; the page renders it client-side.
+			FencedRender::bundle(language: 'chart', cssClass: 'chart', contentMode: 'text'),
+			// Tabs in code render unevenly without a CSS tab-size.
+			Transforms::tabNormalize(4),
+		];
+	}
+
+	/**
+	 * Renders with extensions, running the document transforms of every bundle.
+	 *
+	 * @param \MarkupCarve\Carve\Node|string $input
+	 * @param array<\MarkupCarve\Carve\Extension\Bundle|\MarkupCarve\Carve\Extension\ExtensionDefinition|\MarkupCarve\Carve\Extension\ExtensionProvider> $extensions
+	 * @param array<string, mixed> $options
+	 * @return \MarkupCarve\Carve\RenderResult
+	 */
+	protected function renderCarve(Node|string $input, array $extensions = [], array $options = []): RenderResult {
+		$transforms = [];
+		foreach ($extensions as $extension) {
+			if ($extension instanceof Bundle) {
+				$transforms = array_merge($transforms, $extension->transforms());
+			}
+		}
+		if ($extensions) {
+			$options['extensions'] = $extensions;
+		}
+
+		return Carve::renderWithDocumentTransforms($input, $transforms, $options);
 	}
 
 	/**
@@ -170,83 +159,63 @@ class CarveController extends SandboxAppController {
 	}
 
 	/**
-	 * Reports Markdown habits that parse as valid Carve but render as something
-	 * the author did not intend.
-	 *
-	 * This is a separate pass from parse warnings on purpose: `**bold**` is a
-	 * perfectly valid document, so nothing complains - it just renders as
-	 * literal asterisks. Only forms that are never meaningful Carve are
-	 * reported, so `*strong*` and `_underline_` (correct Carve) stay silent.
+	 * The lint findings of a source (Markdown habits, semantic attributes, retired spellings, ...).
 	 *
 	 * @param string $source Carve source.
+	 * @param bool $withExtensions Whether the caller renders with the default extension set.
+	 * @param array<string, mixed> $options Further lint options, e.g. `includes`.
 	 * @return array<array<string, mixed>>
 	 */
-	protected function lintMarkdownHabits(string $source): array {
+	protected function lintCarve(string $source, bool $withExtensions = true, array $options = []): array {
+		$options += ['headingIds' => static::HEADING_IDS];
+		if ($withExtensions) {
+			$options['extensions'] = $this->defaultExtensions();
+		}
+
 		$warnings = [];
-		foreach ((new MarkdownHabitLinter())->lint($source) as $warning) {
-			$warnings[] = [
-				'line' => $warning->line,
-				'column' => $warning->column,
-				'rule' => $warning->rule,
-				'message' => $warning->message,
-			];
+		try {
+			foreach (Carve::lint($source, $options) as $finding) {
+				$warnings[] = $this->diagnosticRow($source, $finding);
+			}
+		} catch (Throwable) {
+			// The render path reports the error.
 		}
 
 		return $warnings;
 	}
 
 	/**
-	 * Runs every shipped lint pass over the source: the source-scanning
-	 * Markdown-habit pass plus the AST-walking passes (semantic attribute
-	 * misuse, retired spellings, template tags read as comments).
+	 * A diagnostic as the JSON row the pages show, with a 1-based line and column.
 	 *
-	 * The habit pass runs unguarded so its findings survive even when the
-	 * AST passes cannot parse the document for an unrelated reason.
-	 *
-	 * @param string $source Carve source.
-	 * @param bool $withExtensions Whether the caller renders with the default
-	 *   extension set; the semantic linter reads its element names off the
-	 *   renderer those extensions configure.
-	 * @return array<array<string, mixed>>
+	 * @param string $source
+	 * @param \MarkupCarve\Carve\Diagnostics\Diagnostic $diagnostic
+	 * @return array<string, mixed>
 	 */
-	protected function lintCarve(string $source, bool $withExtensions = true): array {
-		$warnings = $this->lintMarkdownHabits($source);
-
-		$semanticOptions = [];
-		if ($withExtensions) {
-			$probe = new CarveConverter();
-			$this->addDefaultExtensions($probe);
-			$semanticOptions['extensions'] = $probe->getExtensions();
-		}
-
-		try {
-			$lintWarnings = array_merge(
-				(new SemanticAttributeLinter())->lint($source, $semanticOptions),
-				(new RetiredSpellingLinter())->lint($source),
-				(new TemplateSourceLinter())->lint($source),
-			);
-			foreach ($lintWarnings as $warning) {
-				$warnings[] = [
-					'line' => $warning->line,
-					'column' => $warning->column,
-					'rule' => $warning->rule,
-					'message' => $warning->message,
-				];
+	protected function diagnosticRow(string $source, Diagnostic $diagnostic): array {
+		$line = null;
+		$column = null;
+		if ($diagnostic->file === null) {
+			try {
+				['line' => $line, 'column' => $column] = Carve::positionOf($source, $diagnostic->startOffset);
+			} catch (Throwable) {
 			}
-		} catch (Throwable) {
-			// The document did not parse; the convert path reports that error.
 		}
 
-		usort($warnings, function (array $a, array $b): int {
-			return $a['line'] <=> $b['line'] ?: $a['column'] <=> $b['column'];
-		});
-
-		return $warnings;
+		return [
+			'line' => $line,
+			'column' => $column,
+			'rule' => $diagnostic->code,
+			'severity' => $diagnostic->severity,
+			'category' => $diagnostic->channel,
+			'message' => $diagnostic->message,
+			'file' => $diagnostic->file,
+			'path' => $diagnostic->path,
+		];
 	}
 
 	/**
 	 * Demo stub target for the Wikilinks extension. There is no real wiki; any
-	 * [[Page]] link from the playground lands here so the links resolve.
+	 * :wiki[Page] link from the playground lands here so the links resolve.
 	 *
 	 * @param string $page
 	 * @return void
@@ -258,31 +227,28 @@ class CarveController extends SandboxAppController {
 
 	/**
 	 * Human-readable description of the default extension set, for the page
-	 * footer. Keep in sync with {@link self::addDefaultExtensions()}.
+	 * footer. Keep in sync with {@link self::defaultExtensions()}.
 	 *
 	 * @return array<string, string>
 	 */
 	protected function defaultExtensionInfo(): array {
 		return [
-			'AutolinkExtension' => 'Bare URLs and email addresses become links.',
-			'ExternalLinksExtension' => 'External links get target="_blank" and rel="noopener noreferrer".',
-			'AdmonitionExtension' => '::: note / tip / warning / ... blocks render as styled callouts with icons.',
-			'SemanticSpanExtension' => '[text]{samp}, {var}, {cite} and {dfn="..."} become their semantic elements; kbd/abbr/time are core.',
-			'AsciiHeadingIdsExtension' => 'Heading ids are folded to ASCII for share-safe fragments.',
-			'PlusBulletExtension' => '+ works as a bullet-list marker alongside - and *.',
-			'InlineFootnotesExtension' => '[note]{.fn} produces an inline footnote collected at the end.',
-			'WikilinksExtension' => '[[Page]] and [[Page|label]] link to the /sandbox/carve/wiki/... stub.',
-			'DetailsExtension' => '::: details "Title" renders as a native <details>/<summary> disclosure widget.',
-			'ListTableExtension' => '::: list-table blocks (nested lists) render as real HTML tables with block-level cells.',
-			'MathBlockExtension' => '```math fenced blocks render as display math for KaTeX / MathJax.',
-			'CitationsExtension' => '[@key] citations with an in-document bibliography ([@key]: ...) collected as a numbered reference list.',
-			'LowercaseHeadingIdsExtension' => 'Heading ids are lowercased for GitHub/SSG-style anchors.',
-			'FencedRenderExtension (chart)' => '```chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
-			'SpoilerExtension' => ':spoiler[text] becomes a click-to-reveal blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
-			'ColorSwatchExtension' => ':color[#3b82f6] renders a small color chip next to the value when it is a valid CSS color.',
-			'GlossaryExtension' => ':term[word] links a use to its definition in a glossary definition list.',
-			'IndexExtension' => ':index[term] drops an invisible index marker, collected per occurrence for a back-of-book index.',
-			'CodeCalloutsExtension' => '<n> markers at the end of code lines become numbered bubbles; a following list of <n> text lines binds as the explanation.',
+			'Navigation::autolink()' => 'Bare URLs and email addresses become links.',
+			'Navigation::externalLinks()' => 'http(s) links get target="_blank" and rel="noopener noreferrer".',
+			'SemanticSpan::bundle()' => '[text]{samp}, {var}, {cite} and {dfn="..."} become their semantic elements; kbd/abbr/time are core.',
+			'headingIds: ascii-lower' => 'Heading ids are folded to ASCII and lowercased for share-safe fragments (a core option in 0.2).',
+			'Wikilinks::bundle()' => ':wiki[Page] and :wiki[Page|label] link to the /sandbox/carve/wiki/... stub.',
+			'Details::bundle()' => '::: details "Title" renders as a native <details>/<summary> disclosure widget.',
+			'ListTable::bundle()' => '::: list-table blocks (nested lists) render as real HTML tables with block-level cells.',
+			'MathBlock::bundle()' => '```math fenced blocks render as display math for KaTeX / MathJax.',
+			'Citations::bundle()' => ':cite[key] citations resolved against a ::: references description list, collected as a numbered list.',
+			'FencedRender::bundle(chart)' => '```chart fenced blocks (Chart.js JSON, text mode) render client-side via Chart.js.',
+			'Spoiler::bundle()' => ':spoiler[text] becomes a click-to-reveal blurred inline span; ::: spoiler "Title" becomes a <details> disclosure.',
+			'ColorSwatch::bundle()' => ':color[#3b82f6] renders a small color chip next to the value when it is a valid CSS color.',
+			'Glossary::bundle()' => ':term[word] links a use to its definition in a ::: glossary description list.',
+			'IndexTerms::bundle()' => ':index[term] drops an invisible index marker; ::: index lists every term with back-links.',
+			'CodeCallouts::bundle()' => '<n> markers at the end of code lines become numbered bubbles; a following list of <n> text lines binds as the explanation.',
+			'Transforms::tabNormalize(4)' => 'Tabs in code become four spaces.',
 		];
 	}
 
@@ -301,9 +267,6 @@ class CarveController extends SandboxAppController {
 		$profileName = (string)$this->request->getData('profile');
 		$filterMode = (string)$this->request->getData('filter_mode');
 		$disableExtensions = (bool)$this->request->getData('disable_ext');
-		// Markdown-compatibility option: render soft breaks (single newlines) as
-		// <br>. Null keeps the Carve default (newline / collapse onto one line).
-		$softBreakMode = (string)$this->request->getData('soft_break_br') === '1' ? SoftBreakMode::Break : null;
 
 		$result = [
 			'html' => '',
@@ -317,84 +280,64 @@ class CarveController extends SandboxAppController {
 		];
 
 		if ($carve) {
-			// Runs outside the try: a Markdown habit is worth reporting even when
-			// the document fails to parse for an unrelated reason.
-			$result['lint'] = $this->lintCarve($carve, !$disableExtensions);
+			$includes = [
+				'resolver' => new SnippetCatalogResolver($this->snippetCatalog()),
+				'depth' => 8,
+				'bytes' => 262_144,
+				'maxDiagnostics' => 50,
+			];
+			$result['lint'] = $this->lintCarve($carve, !$disableExtensions, ['includes' => $includes]);
+
+			$options = [
+				'headingIds' => static::HEADING_IDS,
+				'sourceLines' => true,
+				'includes' => $includes,
+			];
+			if (in_array($profileName, ['full', 'article', 'comment', 'minimal'], true)) {
+				$options['profile'] = $profileName;
+				// 0.2 renders what a profile refuses as text and reports it; `error` makes that a hard failure.
+				$options['strictLosses'] = $filterMode === 'error';
+			}
+			if ((string)$this->request->getData('soft_break_br') === '1') {
+				$options['softBreak'] = 'br';
+			}
+			// Raw output (debug only) skips the sanitizer, so it also lets raw HTML through, which 0.2 escapes by default.
+			if ($raw) {
+				$options['rawHtml'] = true;
+			}
 
 			try {
-				$profile = $this->getProfile($profileName, $filterMode);
-				// Carve interrupts paragraphs unconditionally (§10 default); there
-				// is no strict toggle anymore.
-				$converter = new CarveConverter(true, $collectWarnings, $strict, null, $profile, softBreakMode: $softBreakMode, sourceLines: true);
-				// Tabs in code render unevenly without a CSS tab-size; expand
-				// them to spaces by default for consistent playground output.
-				$converter->addExtension(new TabNormalizeExtension(width: 4));
-				// The playground enables a curated, safe set of extensions by
-				// default (mostly no-ops unless their syntax is used); the UI can
-				// turn them off to show plain spec output.
-				if (!$disableExtensions) {
-					$this->addDefaultExtensions($converter);
-				}
 				$start = microtime(true);
-				$document = $converter->parse($carve);
-				$includes = new IncludeExpander(
-					resolver: new SnippetCatalogResolver($this->snippetCatalog()),
-					currentPath: 'playground/main.crv',
-					depthLimit: 8,
-					byteBudget: 262_144,
-					source: $carve,
-					resolverCallLimit: 64,
-					warningLimit: 50,
-				);
-				$document = $converter->transform($document, $includes);
-				$html = $converter->render($document);
+				$rendered = $this->renderCarve($carve, $disableExtensions ? [] : $this->defaultExtensions(), $options);
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
-				$result['html'] = $raw ? $html : $this->sanitizeHtml($html);
-				if ($collectWarnings) {
-					foreach (array_merge($converter->getWarnings(), $includes->getWarnings()) as $warning) {
-						$result['warnings'][] = [
-							'message' => $warning->getMessage(),
-							'line' => $warning->getLine(),
-							'column' => $warning->getColumn(),
-							'category' => $warning->getCategory(),
-							'rule' => $warning->getRule(),
-							'file' => $warning->getFile(),
-							'suggestion' => $warning->getSuggestion(),
-						];
+				$result['html'] = $raw ? $rendered->html : $this->sanitizeHtml($rendered->html);
+				foreach ($rendered->diagnostics as $diagnostic) {
+					if ($diagnostic->channel === 'render-loss') {
+						$result['violations'][] = $this->violationRow($diagnostic);
+					} elseif ($collectWarnings) {
+						$result['warnings'][] = $this->diagnosticRow($carve, $diagnostic);
 					}
 				}
-				foreach ($includes->getDependencies() as $dependency) {
+				// Under strictLosses a render with a loss returns no HTML and reports the losses.
+				if (($options['strictLosses'] ?? false) && $result['violations']) {
+					$result['error'] = 'Profile violation: ' . $result['violations'][0]['message'];
+				} elseif ($strict && $rendered->diagnostics) {
+					// `carve render --strict` (C2-T-051): any entry fails the render, the HTML is still written.
+					$result['error'] = sprintf('Strict: %d %s, first: %s', count($rendered->diagnostics), count($rendered->diagnostics) === 1 ? 'entry' : 'entries', $rendered->diagnostics[0]->message);
+				}
+				foreach (Carve::includeDependencies($carve, ['includes' => $includes]) as $dependency) {
 					$result['dependencies'][] = [
-						'target' => $dependency->getTarget(),
-						'resolved' => $dependency->isResolved(),
+						'target' => $dependency['file'] ?? $dependency['path'],
+						'resolved' => $dependency['read'],
 					];
 				}
-				if ($profile) {
-					foreach ($converter->getProfileViolations() as $violation) {
-						$result['violations'][] = [
-							'nodeType' => $violation->nodeType,
-							'reason' => $violation->reason,
-							'message' => $violation->getMessage(),
-						];
-					}
-				}
-			} catch (ParseException $e) {
-				$result['error'] = $e->getMessage();
-			} catch (LengthException $e) {
-				$result['error'] = $e->getMessage();
-			} catch (ProfileViolationException $e) {
+			} catch (RenderError $e) {
 				$result['error'] = 'Profile violation: ' . $e->getMessage();
-				foreach ($e->violations as $violation) {
-					$result['violations'][] = [
-						'nodeType' => $violation->nodeType,
-						'reason' => $violation->reason,
-						'message' => $violation->getMessage(),
-					];
+				foreach ($e->diagnostics as $diagnostic) {
+					$result['violations'][] = $this->violationRow($diagnostic);
 				}
 			} catch (Throwable $e) {
-				// Last-resort guard: any other error (e.g. a TypeError from an
-				// extension closure) must surface as JSON, not an HTML error
-				// page that would break the AJAX client's JSON.parse.
+				// Any error (e.g. from an extension renderer) must surface as JSON, not an HTML error page.
 				$result['error'] = $e->getMessage();
 			}
 		}
@@ -402,6 +345,18 @@ class CarveController extends SandboxAppController {
 		return $this->response
 			->withType('application/json')
 			->withStringBody((string)json_encode($result));
+	}
+
+	/**
+	 * @param \MarkupCarve\Carve\Diagnostics\Diagnostic $diagnostic
+	 * @return array<string, string|null>
+	 */
+	protected function violationRow(Diagnostic $diagnostic): array {
+		return [
+			'nodeType' => $diagnostic->foreignType ?? $diagnostic->path,
+			'reason' => $diagnostic->code,
+			'message' => $diagnostic->message,
+		];
 	}
 
 	/**
@@ -425,7 +380,7 @@ class CarveController extends SandboxAppController {
 			$result['error'] = __('Nothing to format: the editor is empty.');
 		} else {
 			try {
-				$result['carve'] = CarveConverter::toCarve($carve, alignTables: $alignTables);
+				$result['carve'] = Carve::format($carve, ['alignTables' => $alignTables, 'extensions' => $this->defaultExtensions()]);
 			} catch (Throwable $e) {
 				$result['error'] = __('Could not format: {0}', $e->getMessage());
 			}
@@ -474,13 +429,10 @@ class CarveController extends SandboxAppController {
 			$carve = $defaultCarve;
 		}
 
-		$converter = new CarveConverter();
-		$converter->addExtension(new MediaEmbedExtension());
-
 		$output = '';
 		$error = null;
 		try {
-			$output = $converter->convert($carve);
+			$output = Carve::render($carve, ['extensions' => [new MediaEmbedExtension()]]);
 		} catch (Throwable $e) {
 			$error = $e->getMessage();
 		}
@@ -501,9 +453,9 @@ class CarveController extends SandboxAppController {
 	 */
 	public function chatExport(): void {
 		$defaultCarve = <<<'CARVE'
-		# Release notes
+		= Release notes
 
-		Shipped /today/: *bold*, ~struck~ and `inline code`.
+		Shipped /today/: *bold*, {~struck~} and `inline code`.
 
 		See the [changelog](https://example.com/changelog) for details.
 
@@ -513,8 +465,8 @@ class CarveController extends SandboxAppController {
 		> A quoted line.
 
 		|= Feature |= State |
-		| Export   | done   |
-		| Split    | open   |
+		| Export | done |
+		| Split | open |
 
 		A claim needing a source[^1].
 
@@ -528,13 +480,12 @@ class CarveController extends SandboxAppController {
 		}
 
 		$registry = new FlavorRegistry();
-		$converter = CarveConverter::create();
 
 		$results = [];
 		$error = null;
 
 		try {
-			$document = $converter->parse($carve);
+			$document = Carve::parse($carve);
 			foreach ($registry->ids() as $id) {
 				$flavor = $registry->get($id);
 				$result = (new ChatRenderer($flavor))->renderResult($document);
@@ -607,15 +558,15 @@ class CarveController extends SandboxAppController {
 	 */
 	public function pandoc(): void {
 		$defaultCarve = <<<'CARVE'
-		# Bridge demo
+		= Bridge demo
 
 		Carve maps /node by node/, so *emphasis*, tables with spans,
 		footnotes and math all arrive intact[^why].
 
 		|= Format |= Reachable |
-		| LaTeX   | yes        |
-		| DOCX    | yes        |
-		| Slack   | no         |
+		| LaTeX | yes |
+		| DOCX | yes |
+		| Slack | no |
 
 		[^why]: Target-routed raw spans fire too: `\alpha`{=latex} becomes a
 		  Pandoc RawInline that only the LaTeX writer emits.
@@ -634,10 +585,9 @@ class CarveController extends SandboxAppController {
 	 * @return void
 	 */
 	public function codeBlocks(): void {
-		$converter = new CarveConverter();
 		$examples = [];
 		foreach ($this->getCodeBlockExamples() as $key => $example) {
-			$example['html'] = $converter->convert($example['carve']);
+			$example['html'] = Carve::render($example['carve']);
 			$examples[$key] = $example;
 		}
 		$this->set(compact('examples'));
@@ -756,18 +706,15 @@ CARVE,
 	 * @return void
 	 */
 	public function trees(): void {
-		$converters = [
-			'plain' => new CarveConverter(),
-			'details' => new CarveConverter(),
-			'custom' => new CarveConverter(),
+		$extensions = [
+			'plain' => [],
+			'details' => [Details::bundle()],
+			'custom' => [new TreeExtension()],
 		];
-		$converters['details']->addExtension(new DetailsExtension());
-		$converters['custom']->addExtension(new TreeExtension());
 
 		$examples = [];
 		foreach ($this->getTreeExamples() as $key => $example) {
-			$converter = $converters[$example['mode'] ?? 'plain'];
-			$example['html'] = $converter->convert($example['carve']);
+			$example['html'] = Carve::render($example['carve'], ['extensions' => $extensions[$example['mode'] ?? 'plain']]);
 			$examples[$key] = $example;
 		}
 
@@ -783,7 +730,7 @@ CARVE,
 	 * extension. Each carries the Carve source; the rendered HTML is added in
 	 * {@link self::trees()}. The `mode` key picks the converter: `plain` has no
 	 * extensions at all, `details` enables the shipped
-	 * {@link \MarkupCarve\Carve\Extension\DetailsExtension}, and `custom` enables
+	 * {@link \MarkupCarve\Carve\Extension\Details}, and `custom` enables
 	 * the sandbox's own {@link \Sandbox\Carve\TreeExtension}.
 	 *
 	 * @return array<string, array<string, mixed>>
@@ -872,11 +819,11 @@ CARVE,
 			'details_nested' => [
 				'level' => 'Level 1 - a shipped extension, still no custom code',
 				'title' => 'Collapsible with the stock Details extension',
-				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard-tier extension present in all three engines, off by default, and a host turns it on with a single `addExtension()` call. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: every branch is now a container with its own `:::` fence and closer.',
+				'description' => 'A disclosure cannot be built from a `<ul>` by CSS alone - it needs an element that carries open/closed state. Carve already ships one: `::: details` is a standard extension, off by default, and a host turns it on by passing `Details::bundle()` in the `extensions` option. Nest one per branch and the tree collapses, with zero custom code and zero JavaScript. The cost is the source: every branch is now a container with its own `:::` fence and closer.',
 				'mode' => 'details',
 				'carve' => <<<'CARVE'
-::: tree
-- ::: details "src/"
+::::: tree
+- :::: details "src/"
   - ::: details "Parser/"
     - BlockParser.php
     - InlineParser.php
@@ -885,9 +832,9 @@ CARVE,
     - HtmlRenderer.php
     - AnsiRenderer.php
     :::
-  :::
+  ::::
 - tests/
-:::
+:::::
 CARVE,
 			],
 			'progressive' => [
@@ -912,7 +859,7 @@ CARVE,
 			'collapsible' => [
 				'level' => 'Level 3 - a host extension, ~60 lines',
 				'title' => 'Collapsible with a clean source spelling',
-				'description' => 'The cleanest authoring, and still no engine change. The sandbox registers its own extension on the `render.div` hook; it claims a tree marked `{.collapsible}` and emits nested `<details>`/`<summary>` itself. The author writes the same list as Level 0 plus one class, there is no JavaScript, and it survives a print or PDF render. This is a working prototype of the Tier-2 Tree extension being proposed for the spec.',
+				'description' => 'The cleanest authoring, and still no engine change. The sandbox registers its own `ExtensionDefinition` with a `div` matcher; it claims a tree marked `{.collapsible}` and emits nested `<details>`/`<summary>` itself. The author writes the same list as Level 0 plus one class, there is no JavaScript, and it survives a print or PDF render. This is a working prototype of the Tier-2 Tree extension being proposed for the spec.',
 				'mode' => 'custom',
 				'carve' => <<<'CARVE'
 {.collapsible}
@@ -993,7 +940,7 @@ CARVE,
 		return [
 			'Links & References' => ['autolink', 'external_links', 'wikilinks', 'mentions', 'inline_footnotes', 'citations', 'heading_reference', 'glossary', 'index'],
 			'Headings & TOC' => ['heading_permalinks', 'ascii_heading_ids', 'lowercase_heading_ids', 'heading_level_shift', 'heading_numbers', 'toc', 'toc_placement'],
-			'Inline & Text' => ['semantic_span', 'smart_quotes', 'plus_bullet', 'tab_normalize', 'color_swatch'],
+			'Inline & Text' => ['semantic_span', 'smart_quotes', 'tab_normalize', 'color_swatch'],
 			'Blocks & Containers' => ['admonition', 'details', 'spoiler', 'tabs', 'code_group', 'code_callouts', 'list_table'],
 			'Client-rendered & Math' => ['math_block', 'mermaid', 'plantuml', 'wavedrom', 'vega_lite', 'chart', 'img_fence'],
 			'Document & Attributes' => ['frontmatter', 'default_attributes'],
@@ -1037,16 +984,6 @@ CARVE,
 		$carve = (string)$this->request->getData('carve');
 		$enabledExtensions = (array)$this->request->getData('extensions');
 
-		// HeadingReference and Wikilinks both claim the [[...]] inline syntax and
-		// cannot share one converter instance. In the combined demo all toggles
-		// default to on, so drop HeadingReference when Wikilinks is also enabled.
-		if (in_array('wikilinks', $enabledExtensions, true) && in_array('heading_reference', $enabledExtensions, true)) {
-			$enabledExtensions = array_values(array_filter(
-				$enabledExtensions,
-				fn (mixed $ext): bool => $ext !== 'heading_reference',
-			));
-		}
-
 		$result = [
 			'html' => '',
 			'rawHtml' => '',
@@ -1057,230 +994,193 @@ CARVE,
 
 		if ($carve) {
 			try {
-				$converter = new CarveConverter();
-				$tocExtension = null;
-				$frontmatterExtension = null;
-				// Only the img fence produces the sanitized SVG data URI that
-				// HTMLPurifier would otherwise drop; keep the allowance off for
-				// every other extension set.
+				$extensions = [];
+				$options = [];
+				// Only the img fence produces the sanitized SVG data URI that HTMLPurifier would otherwise drop.
 				$svgFence = false;
 
 				foreach ($enabledExtensions as $ext) {
 					switch ($ext) {
 						case 'autolink':
-							$converter->addExtension(new AutolinkExtension());
+							$extensions[] = Navigation::autolink();
 
 							break;
 						case 'external_links':
-							$converter->addExtension(new ExternalLinksExtension(
-								internalHosts: ['sandbox.dereuromark.de', 'localhost'],
-							));
+							$extensions[] = Navigation::externalLinks();
 
 							break;
 						case 'heading_permalinks':
-							$converter->addExtension(new HeadingPermalinksExtension());
+							$extensions[] = Navigation::headingPermalinks();
 
 							break;
 						case 'mentions':
-							$converter->addExtension(new MentionsExtension(
-								mentionUrl: '/sandbox/carve?user={name}',
-							));
+							// Core syntax in 0.2; the `social` option sets the link targets.
+							$options['social'] = ['mentionUrl' => '/sandbox/carve?user={name}'];
 
 							break;
 						case 'toc':
-							$tocExtension = new TableOfContentsExtension();
-							$converter->addExtension($tocExtension);
-
-							break;
 						case 'toc_top':
-							$converter->addExtension(new TableOfContentsExtension(position: 'top'));
+							$extensions[] = Navigation::tableOfContents();
 
 							break;
 						case 'toc_bottom':
-							$converter->addExtension(new TableOfContentsExtension(position: 'bottom'));
+							$extensions[] = Navigation::tableOfContents(position: 'bottom');
 
 							break;
 						case 'toc_placement':
-							$converter->addExtension(new TocPlacementExtension());
+							$extensions[] = Navigation::tocPlacement();
 
 							break;
 						case 'default_attributes':
-							$converter->addExtension(new DefaultAttributesExtension([
+							$extensions[] = Transforms::defaultAttributes([
 								'image' => ['loading' => 'lazy', 'decoding' => 'async'],
 								'table' => ['class' => 'table table-striped'],
 								'link' => ['class' => 'text-primary'],
 								'code_block' => ['class' => 'bg-dark text-light p-2 rounded'],
-							]));
+							]);
 
 							break;
 						case 'semantic_span':
-							$converter->addExtension(new SemanticSpanExtension());
+							$extensions[] = SemanticSpan::bundle();
 
 							break;
 						case 'smart_quotes':
 							$locale = (string)$this->request->getData('smart_quotes_locale') ?: 'de';
-							$converter->addExtension(new SmartQuotesExtension(locale: $locale));
+							$extensions[] = SmartQuotes::bundle($locale);
 
 							break;
 						case 'heading_level_shift':
-							$converter->addExtension(new HeadingLevelShiftExtension(shift: 1));
+							$extensions[] = Navigation::headingLevelShift(1);
 
 							break;
 						case 'mermaid':
-							$converter->addExtension(FencedRenderExtension::mermaid());
+							$extensions[] = FencedRender::mermaid();
 
 							break;
 						case 'plantuml':
-							$converter->addExtension(FencedRenderExtension::plantuml());
+							$extensions[] = FencedRender::plantuml();
 
 							break;
 						case 'wavedrom':
-							$converter->addExtension(FencedRenderExtension::wavedrom());
+							$extensions[] = FencedRender::wavedrom();
 
 							break;
 						case 'vega_lite':
-							// Text mode (not the json-mode vegaLite() preset) so the
-							// spec rides in <pre class="vega-lite"> as escaped text and
-							// survives HTML sanitizing; the json preset's inert
-							// <script type="application/json"> wrapper would be stripped.
-							$converter->addExtension(new FencedRenderExtension(
-								language: 'vega-lite',
-								contentMode: FencedRenderExtension::MODE_TEXT,
-								cssClass: 'vega-lite',
-							));
-
-							break;
-						case 'admonition':
-							$converter->addExtension(new AdmonitionExtension(icons: true));
+							// Text mode (not the json-mode vegaLite() preset) so the spec rides in
+							// <pre class="vega-lite"> as escaped text and survives HTML sanitizing.
+							$extensions[] = FencedRender::bundle(language: 'vega-lite', cssClass: 'vega-lite', contentMode: 'text');
 
 							break;
 						case 'tabs':
-							$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_CSS));
+							array_push($extensions, ...Tabs::extensions(true));
 
 							break;
 						case 'tabs_aria':
-							$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_ARIA));
+							array_push($extensions, ...Tabs::extensions(true, 'aria'));
 
 							break;
 						case 'code_group':
-							$converter->addExtension(new CodeGroupExtension());
+							$extensions[] = CodeGroup::bundle();
 
 							break;
 						case 'wikilinks':
-							$converter->addExtension(new WikilinksExtension(
-								urlGenerator: fn (string $page) => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
-							));
+							$extensions[] = Wikilinks::bundle(
+								urlGenerator: fn (string $page): string => '/wiki/' . strtolower(str_replace(' ', '-', $page)),
+							);
 
 							break;
 						case 'heading_reference':
-							$converter->addExtension(new HeadingReferenceExtension());
-
-							break;
-						case 'inline_footnotes':
-							$converter->addExtension(new InlineFootnotesExtension());
-
-							break;
-						case 'frontmatter':
-							$renderAsComment = (bool)$this->request->getData('frontmatter_as_comment');
-							$frontmatterExtension = new FrontmatterExtension(renderAsComment: $renderAsComment);
-							$converter->addExtension($frontmatterExtension);
-
-							break;
-						case 'plus_bullet':
-							$converter->addExtension(new PlusBulletExtension());
+							$extensions[] = Navigation::headingReference();
 
 							break;
 						case 'ascii_heading_ids':
-							$converter->addExtension(new AsciiHeadingIdsExtension());
-
-							break;
-						case 'tab_normalize':
-							$converter->addExtension(new TabNormalizeExtension(width: 4));
-
-							break;
-						case 'details':
-							$converter->addExtension(new DetailsExtension());
-
-							break;
-						case 'list_table':
-							$converter->addExtension(new ListTableExtension());
-
-							break;
-						case 'math_block':
-							$converter->addExtension(new MathBlockExtension());
-
-							break;
-						case 'citations':
-							$converter->addExtension(new CitationsExtension());
+							$options['headingIds'] = ($options['headingIds'] ?? '') === 'lower' ? 'ascii-lower' : 'ascii';
 
 							break;
 						case 'lowercase_heading_ids':
-							$converter->addExtension(new LowercaseHeadingIdsExtension());
+							$options['headingIds'] = ($options['headingIds'] ?? '') === 'ascii' ? 'ascii-lower' : 'lower';
+
+							break;
+						case 'tab_normalize':
+							$extensions[] = Transforms::tabNormalize(4);
+
+							break;
+						case 'details':
+							$extensions[] = Details::bundle();
+
+							break;
+						case 'list_table':
+							$extensions[] = ListTable::bundle();
+
+							break;
+						case 'math_block':
+							$extensions[] = MathBlock::bundle();
+
+							break;
+						case 'citations':
+							$extensions[] = Citations::bundle();
 
 							break;
 						case 'spoiler':
-							$converter->addExtension(new SpoilerExtension());
+							$extensions[] = Spoiler::bundle();
 
 							break;
 						case 'color_swatch':
-							$converter->addExtension(new ColorSwatchExtension(tint: true));
+							$extensions[] = ColorSwatch::bundle(tint: true);
 
 							break;
 						case 'glossary':
-							$converter->addExtension(new GlossaryExtension());
+							$extensions[] = Glossary::bundle();
 
 							break;
 						case 'index':
-							$converter->addExtension(new IndexExtension());
+							$extensions[] = IndexTerms::bundle();
 
 							break;
 						case 'code_callouts':
-							$converter->addExtension(new CodeCalloutsExtension());
+							$extensions[] = CodeCallouts::bundle();
 
 							break;
 						case 'chart':
-							// Text mode (not the json-mode chart() preset) so the
-							// config rides in <pre class="chart"> as escaped text and
-							// survives HTML sanitizing; the json preset's inert
-							// <script type="application/json"> wrapper would be stripped.
-							$converter->addExtension(new FencedRenderExtension(
-								language: 'chart',
-								contentMode: FencedRenderExtension::MODE_TEXT,
-								cssClass: 'chart',
-							));
+							// Text mode (not the json-mode chart() preset) so the config survives sanitizing.
+							$extensions[] = FencedRender::bundle(language: 'chart', cssClass: 'chart', contentMode: 'text');
 
 							break;
 						case 'img_fence':
-							$converter->addExtension(new ImgFenceExtension());
+							$extensions[] = ImgFence::bundle();
 							$svgFence = true;
 
 							break;
 						case 'heading_numbers':
-							$converter->addExtension(new HeadingNumbersExtension());
+							$extensions[] = Navigation::headingNumbers();
 
 							break;
 					}
 				}
-
-				$rawHtml = $converter->convert($carve);
+				$rawHtml = $this->renderCarve($carve, $extensions, $options)->html;
+				if (in_array('toc', $enabledExtensions, true)) {
+					[$toc, $rawHtml] = $this->splitToc($rawHtml);
+					$result['toc'] = $this->sanitizeHtml($toc);
+				}
 				$result['html'] = $this->sanitizeHtml($rawHtml, allowSanitizedSvg: $svgFence);
 				if (Configure::read('debug')) {
 					$result['rawHtml'] = $rawHtml;
 				}
-				if ($tocExtension !== null) {
-					$result['toc'] = $this->sanitizeHtml($tocExtension->getTocHtml());
-				}
-				if ($frontmatterExtension !== null) {
-					$fm = $frontmatterExtension->getFrontmatter();
-					if ($fm !== null) {
+				if (in_array('frontmatter', $enabledExtensions, true)) {
+					// Frontmatter is core in 0.2: the tree's first child, never rendered.
+					$first = Carve::parse($carve)->children[0] ?? null;
+					if ($first !== null && $first->type === 'frontmatter') {
 						$result['frontmatter'] = [
-							'format' => $fm->getFormat(),
-							'content' => $fm->getContent(),
+							'format' => $first->f['format'] ?? null,
+							'content' => $first->f['value'] ?? '',
 						];
+						// Host code: frontmatter renders nothing (C2-H-070), so the page writes the comment itself.
+						if ($result['rawHtml'] !== '' && $this->request->getData('frontmatter_as_comment')) {
+							$result['rawHtml'] = '<!-- frontmatter (' . $result['frontmatter']['format'] . ")\n"
+								. str_replace('--', '- -', rtrim($result['frontmatter']['content'], "\n")) . "\n-->\n" . $result['rawHtml'];
+						}
 					}
 				}
-			} catch (ParseException $e) {
-				$result['error'] = $e->getMessage();
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -1292,6 +1192,26 @@ CARVE,
 	}
 
 	/**
+	 * Splits the leading `<nav class="toc">` that `Navigation::tableOfContents()` writes at the top
+	 * off the document, so the page can show the TOC in a panel of its own.
+	 *
+	 * @param string $html
+	 * @return array{0: string, 1: string} The TOC and the rest of the document.
+	 */
+	protected function splitToc(string $html): array {
+		if (!str_starts_with($html, '<nav class="toc"')) {
+			return ['', $html];
+		}
+		$end = strpos($html, '</nav>');
+		if ($end === false) {
+			return ['', $html];
+		}
+		$end += strlen('</nav>');
+
+		return [substr($html, 0, $end), ltrim(substr($html, $end), "\n")];
+	}
+
+	/**
 	 * Get extension example data.
 	 *
 	 * @return array<string, array<string, mixed>>
@@ -1299,17 +1219,16 @@ CARVE,
 	protected function getExtensionExamples(): array {
 		return [
 			'default_attributes' => [
-				'name' => 'DefaultAttributesExtension',
+				'name' => 'Transforms::defaultAttributes()',
 				'description' => 'Adds default attributes to elements by type. This demo adds: images get lazy loading, tables get Bootstrap classes, links get text-primary class, and code blocks get dark styling.',
-				'class' => DefaultAttributesExtension::class,
 				'example_carve' => <<<'CARVE'
 Check out this [link to Carve](https://github.com/markup-carve/carve).
 
 ![Sample image](/img/cake.icon.png)
 
 |= Feature |= Support |
-| Tables   | Yes      |
-| Images   | Yes      |
+| Tables | Yes |
+| Images | Yes |
 
 ```php
 echo "Hello World";
@@ -1323,9 +1242,8 @@ CARVE,
 				],
 			],
 			'autolink' => [
-				'name' => 'AutolinkExtension',
+				'name' => 'Navigation::autolink()',
 				'description' => 'Automatically converts bare URLs and email addresses into clickable links without requiring explicit link syntax.',
-				'class' => AutolinkExtension::class,
 				'example_carve' => <<<'CARVE'
 Visit https://github.com/markup-carve/carve for the official documentation.
 
@@ -1338,9 +1256,8 @@ CARVE,
 				],
 			],
 			'external_links' => [
-				'name' => 'ExternalLinksExtension',
-				'description' => 'Adds `target="_blank"` and `rel="noopener noreferrer"` attributes to external links for security and UX.',
-				'class' => ExternalLinksExtension::class,
+				'name' => 'Navigation::externalLinks()',
+				'description' => 'Adds `target="_blank"` and `rel="noopener noreferrer"` to every link and autolink to an http or https URL.',
 				'example_carve' => <<<'CARVE'
 Check out [Carve's homepage](https://github.com/markup-carve/carve) for more information.
 
@@ -1349,45 +1266,44 @@ This [internal link](/sandbox/carve) stays in the same tab.
 Visit [GitHub](https://github.com) to see the source code.
 CARVE,
 				'options' => [
-					'internalHosts' => "['example.com']",
-					'target' => "'_blank'",
-					'rel' => "'noopener noreferrer'",
+					'target' => '\'_blank\'',
+					'rel' => '\'noopener noreferrer\'',
 					'nofollow' => 'false',
 				],
 			],
 			'heading_permalinks' => [
-				'name' => 'HeadingPermalinksExtension',
+				'name' => 'Navigation::headingPermalinks()',
 				'description' => 'Inserts clickable anchor links (¶ symbol) to headings for easy navigation and sharing.',
-				'class' => HeadingPermalinksExtension::class,
 				'example_carve' => <<<'CARVE'
-# Introduction
+= Introduction
 
 Welcome to the documentation.
 
-## Getting Started
+== Getting Started
 
 First, install the package.
 
-### Configuration
+=== Configuration
 
 Configure the settings as needed.
 
-## Advanced Usage
+== Advanced Usage
 
 For power users.
 CARVE,
 				'options' => [
-					'symbol' => "'¶'",
-					'position' => "'after'",
-					'cssClass' => "'permalink'",
-					'ariaLabel' => "'Permalink'",
+					'symbol' => '\'¶\'',
+					'cssClass' => '\'permalink\'',
+					'ariaLabel' => '\'Permalink\'',
 					'levels' => '[1, 2, 3, 4, 5, 6]',
+					'prepend' => 'false',
+					'showOnHover' => 'false',
+					'copyToClipboard' => 'false',
 				],
 			],
 			'mentions' => [
-				'name' => 'MentionsExtension',
-				'description' => 'Transforms `@username` patterns into profile links, perfect for social features.',
-				'class' => MentionsExtension::class,
+				'name' => 'Mentions (core, option social)',
+				'description' => 'Core syntax in 0.2: `@username` is a mention and `#tag` a tag without any extension. The `social` render option turns them into links (`mentionUrl`, `tagUrl` with a `{name}` placeholder); without it a mention renders as a styled span.',
 				'example_carve' => <<<'CARVE'
 Thanks to @johndoe for the contribution!
 
@@ -1396,82 +1312,82 @@ The feature was implemented by @alice and reviewed by @bob.
 If you have questions, reach out to @support-team.
 CARVE,
 				'options' => [
-					'mentionUrl' => "'/users/{name}'",
-					'tagUrl' => "'/tags/{name}'",
-					'mentionClass' => "'mention'",
-					'tagClass' => "'tag'",
+					'social.mentionUrl' => '\'/users/{name}\'',
+					'social.tagUrl' => '\'/tags/{name}\'',
 				],
 			],
 			'toc' => [
-				'name' => 'TableOfContentsExtension',
-				'description' => 'Automatically generates a table of contents from document headings. Can be retrieved manually or auto-inserted at top/bottom.',
-				'class' => TableOfContentsExtension::class,
+				'name' => 'Navigation::tableOfContents()',
+				'description' => 'Generates a table of contents from the headings and inserts it at the top (default) or the bottom of the document, in a `<nav class="toc">`. This demo splits the top TOC off the HTML and shows it in a panel of its own, as a host does for a sidebar.',
 				'example_carve' => <<<'CARVE'
-# Carve Documentation
+= Carve Documentation
 
 An overview of the Carve markup language.
 
-## Basic Syntax
+== Basic Syntax
 
-### Paragraphs
+=== Paragraphs
 
 Text separated by blank lines.
 
-### Emphasis
+=== Emphasis
 
 Use /slashes/ for emphasis and *asterisks* for strong.
 
-## Advanced Features
+== Advanced Features
 
-### Code Blocks
+=== Code Blocks
 
 Fenced code blocks with syntax highlighting.
 
-### Tables
+=== Tables
 
 Grid-based table syntax.
 
-## Conclusion
+== Conclusion
 
 Carve is a powerful markup language.
 CARVE,
 				'options' => [
 					'minLevel' => '1',
 					'maxLevel' => '6',
-					'listType' => "'ul'",
-					'cssClass' => "'toc'",
-					'position' => "null, 'top', or 'bottom'",
+					'listType' => '\'ul\' or \'ol\'',
+					'cssClass' => '\'toc\'',
+					'position' => '\'top\' (default) or \'bottom\'',
+					'collapsible' => 'false (true wraps it in <details>)',
 				],
 			],
 			'toc_placement' => [
-				'name' => 'TocPlacementExtension',
-				'description' => 'In-document placement directives. `::: toc` renders a `<nav class="toc">` exactly where written (unlike TableOfContentsExtension, which injects one TOC at the document top or bottom), so a long document can place its contents after an intro. A `{depth=N}` or `{from=X to=Y}` attribute line before the opener sets an optional level window. `::: footnotes` (always-on core, no toggle needed) relocates the endnotes section to the marker. Both render byte-identical to carve-js.',
-				'class' => TocPlacementExtension::class,
+				'name' => 'Navigation::tocPlacement()',
+				'description' => 'In-document placement directives. `::: toc` renders a `<nav class="toc">` exactly where written (unlike Navigation::tableOfContents(), which injects one TOC at the document top or bottom), so a long document can place its contents after an intro. A `{depth=N}` or `{from=X to=Y}` attribute line before the opener sets an optional level window. `::: footnotes` (always-on core, no toggle needed) relocates the endnotes section to the marker. Both render byte-identical to carve-js.',
 				'example_carve' => <<<'CARVE'
-# Guide
+= Guide
 
 Intro paragraph shown before the contents.
 
 {depth=2}
 ::: toc
+
 :::
 
-## Setup
+== Setup
 
 Install steps[^install].
 
-### Requirements
+=== Requirements
 
 PHP 8.2+.
 
-## Usage
+== Usage
 
 Run it[^run].
 
 [^install]: Install via Composer.
+
 [^run]: See the CLI docs.
 
 ::: footnotes
+
 :::
 CARVE,
 				'options' => [
@@ -1481,9 +1397,8 @@ CARVE,
 				],
 			],
 			'semantic_span' => [
-				'name' => 'SemanticSpanExtension',
+				'name' => 'SemanticSpan::bundle()',
 				'description' => 'Converts the four opt-in span attributes (`samp`, `var`, `cite`, `dfn`) into their semantic HTML5 elements. Core already reserves `kbd`, `abbr` and `time` - those need no extension.',
-				'class' => SemanticSpanExtension::class,
 				'example_carve' => <<<'CARVE'
 The command prints [Hello, World!]{samp} to the terminal.
 
@@ -1502,9 +1417,8 @@ CARVE,
 				],
 			],
 			'smart_quotes' => [
-				'name' => 'SmartQuotesExtension',
+				'name' => 'SmartQuotes::bundle()',
 				'description' => 'Configures locale-specific typographic quote characters. Transforms straight quotes into proper opening/closing quotes based on language conventions.',
-				'class' => SmartQuotesExtension::class,
 				'example_carve' => <<<'CARVE'
 She said, "Hello, world!"
 
@@ -1523,19 +1437,18 @@ CARVE,
 				],
 			],
 			'heading_level_shift' => [
-				'name' => 'HeadingLevelShiftExtension',
+				'name' => 'Navigation::headingLevelShift()',
 				'description' => 'Shifts heading levels down (h1 → h2, h2 → h3, etc.). Useful when `h1` is reserved for the page title and document headings should start at `h2` for SEO and accessibility.',
-				'class' => HeadingLevelShiftExtension::class,
 				'example_carve' => <<<'CARVE'
-# Main Title (becomes h2)
+= Main Title (becomes h2)
 
 Introduction paragraph.
 
-## Section (becomes h3)
+== Section (becomes h3)
 
 Section content.
 
-### Subsection (becomes h4)
+=== Subsection (becomes h4)
 
 More details here.
 CARVE,
@@ -1544,9 +1457,8 @@ CARVE,
 				],
 			],
 			'mermaid' => [
-				'name' => 'FencedRenderExtension::mermaid()',
-				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams (flowcharts, sequence, class diagrams, and more). Mermaid is a preset of the generic FencedRenderExtension; presets for d2, graphviz, wavedrom and abc also exist.',
-				'class' => FencedRenderExtension::class,
+				'name' => 'FencedRender::mermaid()',
+				'description' => 'Transforms code blocks with language `mermaid` into Mermaid.js-compatible markup for rendering diagrams (flowcharts, sequence, class diagrams, and more). Mermaid is a preset of the generic FencedRender; presets for d2, graphviz, wavedrom and abc also exist.',
 				'example_carve' => <<<'CARVE'
 ```mermaid
 graph TD;
@@ -1571,9 +1483,8 @@ CARVE,
 				],
 			],
 			'plantuml' => [
-				'name' => 'FencedRenderExtension::plantuml()',
+				'name' => 'FencedRender::plantuml()',
 				'description' => 'Renders `plantuml` / `puml` fenced blocks as full UML and beyond - things Mermaid has no equivalent for, like GUI wireframes (Salt) and rich deployment/component diagrams. The block is emitted as <pre class="plantuml"> and drawn client-side via the Kroki service (kroki.io). Languages: plantuml, puml.',
-				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
 A GUI wireframe (Salt) - Mermaid cannot draw UI mockups:
 
@@ -1611,9 +1522,8 @@ CARVE,
 				],
 			],
 			'wavedrom' => [
-				'name' => 'FencedRenderExtension::wavedrom()',
+				'name' => 'FencedRender::wavedrom()',
 				'description' => 'Renders `wavedrom` fenced blocks as digital timing / waveform diagrams - a domain Mermaid does not cover at all. The JSON spec is emitted as <pre class="wavedrom"> and drawn client-side by WaveDrom.',
-				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
 ```wavedrom
 { "signal": [
@@ -1629,9 +1539,8 @@ CARVE,
 				],
 			],
 			'vega_lite' => [
-				'name' => 'FencedRenderExtension (vega-lite)',
+				'name' => "FencedRender::bundle('vega-lite')",
 				'description' => 'Renders `vega-lite` fenced blocks as statistical data visualizations (bar/line/area/scatter, aggregations, faceting) - real analytical charts beyond Mermaid\'s scope. Text mode keeps the JSON spec in <pre class="vega-lite"> so it survives HTML sanitizing; Vega-Embed draws it client-side.',
-				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
 ```vega-lite
 {
@@ -1654,14 +1563,13 @@ CARVE,
 CARVE,
 				'options' => [
 					'language' => "'vega-lite'",
-					'contentMode' => 'MODE_TEXT (survives sanitizing)',
+					'contentMode' => '\'text\' (survives sanitizing)',
 					'cssClass' => "'vega-lite'",
 				],
 			],
 			'admonition' => [
-				'name' => 'AdmonitionExtension',
-				'description' => 'Transforms divs with admonition type classes (note, tip, warning, danger, info, success) into semantic HTML with ARIA roles, emoji icons, and auto-generated titles. For a collapsible block use the Details extension (::: details "Title").',
-				'class' => AdmonitionExtension::class,
+				'name' => 'Admonitions (core)',
+				'description' => 'Core in 0.2: `::: note`, `::: tip`, `::: warning`, `::: danger`, `::: info` and the other admonition types render as `<aside class="admonition ...">` with an ARIA label, no extension needed. A `{title="..."}` attribute line sets the title. For a collapsible block use `::: details`.',
 				'example_carve' => <<<'CARVE'
 ::: note
 This is a simple note with 📝 icon.
@@ -1688,50 +1596,36 @@ This action cannot be undone! (🚨 icon)
 Operation completed successfully! (✅ icon)
 :::
 CARVE,
-				'options' => [
-					'types' => "['note', 'tip', 'warning', 'danger', 'info', 'success']",
-					'icons' => 'true',
-					'defaultTitle' => 'true',
-					'titleTag' => "'p'",
-					'titleClass' => "'admonition-title'",
-					'containerClass' => "'admonition'",
-				],
 			],
 			'tabs' => [
-				'name' => 'TabsExtension',
-				'description' => 'Transforms nested divs into accessible tabbed interfaces. CSS-only mode uses radio inputs and sibling selectors (no JavaScript required). The tab name comes from the opener [Label] (canonical, carve#201), falling back to a leading content heading. Fences widen inward (carve#439): the outer `tabs` container keeps `:::` and each nested `tab` div widens to `::::`, because a bare closer only closes a container whose colon count it matches exactly.',
-				'class' => TabsExtension::class,
+				'name' => 'Tabs::extensions()',
+				'description' => 'Turns a `::: tabs` div holding `::: tab "Label"` divs into a tabbed interface. CSS mode uses radio inputs and sibling selectors (no JavaScript); aria mode writes a tablist with buttons and needs a script. The quoted title of each tab is its label.',
 				'example_carve' => <<<'CARVE'
-::: tabs
-:::: tab [Installation]
+:::: tabs
+::: tab "Installation"
 Install the package with Composer:
 
 `composer require markup-carve/carve-php`
-::::
+:::
 
-:::: tab [Usage]
+::: tab "Usage"
 Convert Carve to HTML:
 
-`$html = $converter->convert($carve);`
-::::
-
-:::: tab [Configuration]
-Configure options as needed.
-::::
+`$html = Carve::render($carve);`
 :::
+
+::: tab "Configuration"
+Configure options as needed.
+:::
+::::
 CARVE,
 				'options' => [
-					'mode' => "'css' (default) or 'aria'",
-					'wrapperClass' => "'tabs'",
-					'tabClass' => "'tabs-panel'",
-					'labelClass' => "'tabs-label'",
-					'radioClass' => "'tabs-radio'",
+					'mode' => '\'css\' (default) or \'aria\'',
 				],
 			],
 			'code_group' => [
-				'name' => 'CodeGroupExtension',
-				'description' => 'Transforms code-group divs into tabbed code block interfaces. Labels are extracted from language hints using `[Label]` suffix syntax (e.g., `php [Installation]`), falling back to the language name or "Code N".',
-				'class' => CodeGroupExtension::class,
+				'name' => 'CodeGroup::bundle()',
+				'description' => 'Turns a `::: code-group` div of code blocks into a tabbed code view. The panel label is the bracket label, then the quoted title, then the language, then "Code N".',
 				'example_carve' => <<<'CARVE'
 ::: code-group
 ```bash [Composer]
@@ -1748,25 +1642,25 @@ pip install carve
 :::
 CARVE,
 				'options' => [
-					'wrapperClass' => "'code-group'",
-					'panelClass' => "'code-group-panel'",
-					'labelClass' => "'code-group-label'",
-					'radioClass' => "'code-group-radio'",
+					'mode' => '\'css\' (default) or \'aria\'',
+					'wrapperClass' => '\'code-group\'',
+					'panelClass' => '\'code-group-panel\'',
+					'labelClass' => '\'code-group-label\'',
+					'radioClass' => '\'code-group-radio\'',
 					'highlighter' => 'Custom syntax highlighter callback',
 				],
 			],
 			'wikilinks' => [
-				'name' => 'WikilinksExtension',
-				'description' => 'Parses `[[wikilinks]]` into navigational links. Supports `[[page|display text]]` syntax and anchors like `[[page#section]]`. Common in wiki systems and note-taking apps like Obsidian.',
-				'class' => WikilinksExtension::class,
+				'name' => 'Wikilinks::bundle()',
+				'description' => 'The standard `:wiki` matcher: `:wiki[Page]` links a page, `:wiki[Page|display text]` sets the text and `:wiki[Page#section]` appends an anchor. Common in wiki systems and note-taking apps like Obsidian.',
 				'example_carve' => <<<'CARVE'
-Check out the [[Getting Started]] guide for beginners.
+Check out the :wiki[Getting Started] guide for beginners.
 
-For advanced users, see [[Advanced Topics|the advanced section]].
+For advanced users, see :wiki[Advanced Topics|the advanced section].
 
-The [[API Reference#authentication]] section covers auth.
+The :wiki[API Reference#authentication] section covers auth.
 
-Related: [[Best Practices]], [[FAQ]], [[Troubleshooting]]
+Related: :wiki[Best Practices], :wiki[FAQ], :wiki[Troubleshooting]
 CARVE,
 				'options' => [
 					'urlGenerator' => 'Custom URL generator closure',
@@ -1775,19 +1669,18 @@ CARVE,
 				],
 			],
 			'heading_reference' => [
-				'name' => 'HeadingReferenceExtension',
-				'description' => 'Resolves `[[Heading Text]]` references to headings within the same document, producing anchor links. Supports custom display text via `[[Heading Text|click here]]`. Unresolvable references fall back to literal `[[...]]` text. Note: shares the `[[...]]` syntax with WikilinksExtension, so the two cannot be enabled on the same converter.',
-				'class' => HeadingReferenceExtension::class,
+				'name' => 'Navigation::headingReference()',
+				'description' => 'Adds a class to every reference link that a heading resolves: `[Heading Text][]`, or `[click here][Heading Text]` with custom text. Heading references are core in 0.2; the extension only marks them. (The 0.1 `[[Heading]]` spelling is gone.)',
 				'example_carve' => <<<'CARVE'
-# Installation
+= Installation
 
-See [[Configuration]] for setup details, or jump straight to [[Usage|how to use it]].
+See [Configuration][] for setup details, or jump straight to [how to use it][Usage].
 
-# Configuration
+= Configuration
 
-Configure your settings here. A missing target like [[Nonexistent Section]] stays literal.
+Configure your settings here.
 
-# Usage
+= Usage
 
 Use the tool as described above.
 CARVE,
@@ -1796,24 +1689,19 @@ CARVE,
 				],
 			],
 			'inline_footnotes' => [
-				'name' => 'InlineFootnotesExtension',
-				'description' => 'Converts spans marked with the `.fn` class into inline footnotes. Footnote content is written inline with the text instead of in a separate definition block, and is collected into a footnotes section at the end of the document. Content supports full inline formatting.',
-				'class' => InlineFootnotesExtension::class,
+				'name' => 'Inline footnotes (core)',
+				'description' => 'Core in 0.2: `^[note]` writes a footnote inline, right where it belongs. It is numbered and collected into the footnotes section with the other notes, and its content takes full inline formatting.',
 				'example_carve' => <<<'CARVE'
-Carve supports inline footnotes[This is the footnote content, written inline.]{.fn} right where you need them.
+Carve supports inline footnotes^[This is the footnote content, written inline.] right where you need them.
 
-Footnote content can include /emphasis/ and `code`[Footnotes support full inline formatting.]{.fn} too.
+Footnote content can include /emphasis/ and `code`^[Footnotes support full inline formatting.] too.
 CARVE,
-				'options' => [
-					'cssClass' => "'fn'",
-				],
 			],
 			'frontmatter' => [
-				'name' => 'FrontmatterExtension',
-				'description' => 'Parses YAML/NEON/TOML/... frontmatter blocks at the start of documents. The format identifier (`yaml`, `neon`, `toml`, ...) is optional.',
-				'class' => FrontmatterExtension::class,
+				'name' => 'Frontmatter (core)',
+				'description' => 'Core in 0.2: a `---` block at the start of a document is frontmatter (YAML by default, or a named format such as `---toml`). It is never rendered; the host reads it from the tree, which is what the panel below shows.',
 				'example_carve' => <<<'CARVE'
----yaml
+---
 title: My Article
 author: John Doe
 date: 2024-01-15
@@ -1822,61 +1710,30 @@ tags:
   - documentation
 ---
 
-# My Article
+= My Article
 
 This is the main content after the frontmatter.
 CARVE,
-				'options' => [
-					'defaultFormat' => "'yaml'",
-					'renderAsComment' => 'false (true renders as HTML comment)',
-					'renderCallback' => 'Custom render function',
-				],
-			],
-			'plus_bullet' => [
-				'name' => 'PlusBulletExtension',
-				'description' => 'Re-enables `+` as a bullet-list marker alongside `-` and `*`. A `+` is only a bullet when followed by a space and content; a bare `+` stays the list-continuation marker, so the two never collide. Task lists (`+ [ ]`) work too.',
-				'class' => PlusBulletExtension::class,
-				'example_carve' => <<<'CARVE'
-+ Apple
-+ Banana
-+ Cherry
-
-Mixed with the default markers:
-
-- Dash bullet
-+ Plus bullet
-* Star bullet
-
-Task lists work as well:
-
-+ [ ] Pending task
-+ [x] Completed task
-CARVE,
-				'options' => [
-					'(none)' => 'Toggle-only; enable by adding the extension',
-				],
 			],
 			'ascii_heading_ids' => [
-				'name' => 'AsciiHeadingIdsExtension',
-				'description' => 'Folds auto-generated heading ids to ASCII. By default Carve keeps non-ASCII characters in ids (`# Über uns` becomes `Über-uns`); this extension transliterates them (`Über-uns` becomes `Uber-uns`) for share-safe URL fragments. Unmapped scripts (CJK, Arabic) pass through unchanged.',
-				'class' => AsciiHeadingIdsExtension::class,
+				'name' => "headingIds: 'ascii' (core option)",
+				'description' => 'A core render option in 0.2. By default Carve keeps non-ASCII characters in ids (`= Über uns` becomes `Über-uns`); `headingIds: ascii` transliterates them (`Uber-uns`) for share-safe URL fragments.',
 				'example_carve' => <<<'CARVE'
-# Über uns
+= Über uns
 
-## Café résumé
+== Café résumé
 
-### Größe & Maße
+=== Größe & Maße
 
 Compare the generated id attributes with and without the extension.
 CARVE,
 				'options' => [
-					'transliterator' => 'AsciiTransliterator (custom map optional)',
+					'headingIds' => '\'off\', \'keep-case\', \'lower\', \'ascii\', \'ascii-lower\', \'ascii-strict\', \'ascii-strict-lower\'',
 				],
 			],
 			'tab_normalize' => [
-				'name' => 'TabNormalizeExtension',
+				'name' => 'Transforms::tabNormalize()',
 				'description' => 'Expands literal tabs in code blocks and inline code to a fixed number of spaces at render time. Carve preserves tabs by default (a CSS tab-size concern); this is useful for fixed-width output without CSS, e.g. email, RSS or plain HTML. This demo uses width 4.',
-				'class' => TabNormalizeExtension::class,
 				'example_carve' => <<<CARVE
 ```js
 function greet() {
@@ -1889,9 +1746,8 @@ CARVE,
 				],
 			],
 			'details' => [
-				'name' => 'DetailsExtension',
+				'name' => 'Details::bundle()',
 				'description' => 'Renders ::: details "Title" admonition blocks as the native HTML5 <details>/<summary> disclosure widget. The quoted title becomes the <summary>; the body stays collapsed until the reader expands it.',
-				'class' => DetailsExtension::class,
 				'example_carve' => <<<'CARVE'
 ::: details "What is Carve?"
 Carve is a djot-flavored markup converter for PHP.
@@ -1901,15 +1757,15 @@ The body can hold *any* block content: lists, code, even tables.
 CARVE,
 			],
 			'list_table' => [
-				'name' => 'ListTableExtension',
+				'name' => 'ListTable::bundle()',
 				'description' => 'Renders ::: list-table blocks as real HTML tables authored as nested lists, so cells can hold full block content (paragraphs, lists, code) that pipe-table syntax cannot. The preceding line carries optional {header-rows=N} / {header-cols=N} / {footer-rows=N} counts, or their boolean form ({header-rows} marks just the first row/column). A cell carries its own attributes glued to its bullet: -{header-row} makes the row a local header and opens a new <tbody> partition, -{header} promotes the single cell, and -{align=...}/-{valign=...} set that cell alignment.',
-				'class' => ListTableExtension::class,
 				'example_carve' => <<<'CARVE'
 {footer-rows=1}
 ::: list-table "Quarterly results"
 - -{header-row} Region
   - Notes
 - - EMEA
+
   - Strong quarter.
 
     Drivers:
@@ -1926,9 +1782,8 @@ CARVE,
 CARVE,
 			],
 			'math_block' => [
-				'name' => 'MathBlockExtension',
+				'name' => 'MathBlock::bundle()',
 				'description' => 'Renders a fenced ```math ```block as block-level display math (<div class="math display">\[…\]</div>), matching how inline and display $…$ math is emitted so KaTeX / MathJax can pick it up.',
-				'class' => MathBlockExtension::class,
 				'example_carve' => <<<'CARVE'
 ```math
 \int_0^1 x^2 \, dx = \frac{1}{3}
@@ -1939,39 +1794,41 @@ CARVE,
 				],
 			],
 			'citations' => [
-				'name' => 'CitationsExtension',
-				'description' => 'Bracketed [@key] citations with an in-document bibliography. Each [@key] becomes a numbered reference link, and [@key]: ... definition lines are collected into an ordered reference list at the end. Supports a prefix ([see @key]), author suppression ([-@key]), typed locators after a comma ([@key, p. 12] / ch. / §, the full citeproc vocabulary, §22), multiple semicolon-separated sources, and a group-level integral marker ([+@key]).',
-				'class' => CitationsExtension::class,
+				'name' => 'Citations::bundle()',
+				'description' => 'Citations with an in-document bibliography: `:cite[key]` resolves against a `::: references` (or `::: bibliography`) description list and becomes a numbered reference link; the list is written as an ordered reference list. The attributes `locator`, `prefix`, `suffix` and `mode` shape each citation.',
 				'example_carve' => <<<'CARVE'
-Carve follows the djot spec [@durusau2022, p. 12] and borrows ideas from Markdown [see @gruber2004, ch. 3].
+Carve follows the djot spec :cite[durusau2022]{locator="p. 12"} and borrows ideas from Markdown :cite[gruber2004]{prefix=see locator="ch. 3"}.
 
-Author suppression reads naturally: Gruber [-@gruber2004] introduced Markdown in 2004.
+Author suppression reads naturally: Gruber :cite[gruber2004]{mode=suppress-author} introduced Markdown in 2004.
 
-Group several sources, with locators: [@durusau2022, pp. 12-14; @gruber2004, §2]. Force an integral (textual) group with a leading +: [+@durusau2022, p. 1].
+Group several sources: :cite[durusau2022; gruber2004].
 
-[@durusau2022]: Durusau, P. (2022). *The djot markup language*.
-[@gruber2004]: Gruber, J. (2004). *Markdown: Syntax*.
+::: references "References"
+:: durusau2022
+: Durusau, P. (2022). /The djot markup language/.
+:: gruber2004
+: Gruber, J. (2004). /Markdown: Syntax/.
+:::
 CARVE,
 				'options' => [
-					'mode' => "'numbered' (reference label style; default 'numbered')",
+					'mode' => '\'numbered\' (default) or \'author-date\'',
+					'bibliography' => 'CSL-JSON array (optional)',
 				],
 			],
 			'lowercase_heading_ids' => [
-				'name' => 'LowercaseHeadingIdsExtension',
-				'description' => 'Carve heading ids are case-preserving by default (# Getting Started -> "Getting-Started"). This opt-in extension lowercases them for GitHub/SSG-style anchors (-> "getting-started"). Combine with AsciiHeadingIds for fully lowercase ASCII slugs.',
-				'class' => LowercaseHeadingIdsExtension::class,
+				'name' => "headingIds: 'lower' (core option)",
+				'description' => 'A core render option in 0.2. Heading ids keep their case by default (`= Getting Started` becomes `Getting-Started`); `headingIds: lower` lowercases them for GitHub/SSG-style anchors (`getting-started`). Together with ASCII folding the value is `ascii-lower`.',
 				'example_carve' => <<<'CARVE'
-# Getting Started
+= Getting Started
 
-## API Reference
+== API Reference
 
 See [API Reference][] for the lowercased anchor.
 CARVE,
 			],
 			'spoiler' => [
-				'name' => 'SpoilerExtension',
+				'name' => 'Spoiler::bundle()',
 				'description' => 'Hidden / blurred spoiler content. Inline :spoiler[text] becomes <span class="spoiler"> (blurred until you click it); block ::: spoiler "Title" becomes a native <details class="spoiler"> disclosure (click the summary). The blur + click-to-reveal is host CSS + a tiny bit of JS.',
-				'class' => SpoilerExtension::class,
 				'example_carve' => <<<'CARVE'
 The killer was :spoiler[the butler] all along.
 
@@ -1981,9 +1838,8 @@ They defeat the villain and head home.
 CARVE,
 			],
 			'chart' => [
-				'name' => 'FencedRenderExtension::chart() (text mode)',
+				'name' => "FencedRender::bundle('chart') (text mode)",
 				'description' => 'Renders a ```chart fenced block (Chart.js JSON config) as a client-rendered chart. Configured in text mode so the JSON rides in <pre class="chart"> as escaped text and survives HTML sanitizing, instead of the json preset\'s <script type="application/json"> wrapper (which a sanitizer strips). Chart.js must be loaded on the page.',
-				'class' => FencedRenderExtension::class,
 				'example_carve' => <<<'CARVE'
 ```chart
 {
@@ -1997,13 +1853,12 @@ CARVE,
 CARVE,
 				'options' => [
 					'language' => "'chart' (fence info string to match)",
-					'contentMode' => 'MODE_TEXT (sanitizer-safe; avoids the json-mode <script> wrapper)',
+					'contentMode' => '\'text\' (sanitizer-safe; avoids the json-mode <script> wrapper)',
 				],
 			],
 			'color_swatch' => [
-				'name' => 'ColorSwatchExtension',
+				'name' => 'ColorSwatch::bundle()',
 				'description' => 'Inline :color[value] renders a small color chip next to the value when it flattens to a valid CSS color (hex, named, rgb()/hsl()); invalid values fall back to a plain <span class="ext-color">. Configurable chip position, shape and an optional faint tint behind the swatch. Add a {contrast} attribute to render the value inside a filled box with an auto-picked black or white label (brightness-based), instead of a chip. This demo uses tint: true.',
-				'class' => ColorSwatchExtension::class,
 				'options' => [
 					'position' => "'before' (default) | 'after' | 'none' (chip only, value as title)",
 					'shape' => "'square' (default) | 'round' | 'ring'",
@@ -2020,47 +1875,49 @@ Not a color: :color[banana].
 CARVE,
 			],
 			'glossary' => [
-				'name' => 'GlossaryExtension',
-				'description' => 'Inline :term[word] marks a glossary use and links it to the matching definition-list term (<dt>) defined elsewhere in the document. Reuses the definition-list syntax; no new block syntax.',
-				'class' => GlossaryExtension::class,
+				'name' => 'Glossary::bundle()',
+				'description' => 'Inline :term[word] marks a glossary use and links it to the matching entry of a `::: glossary` description list elsewhere in the document; an undefined term stays a plain span.',
 				'example_carve' => <<<'CARVE'
 Carve is built on the :term[djot] data model and adds a few :term[extension]s.
 
+::: glossary
 :: djot
 : A light markup language with a clean, unambiguous grammar.
 :: extension
 : An opt-in feature that adds inline or block behavior.
+:::
 CARVE,
 			],
 			'index' => [
-				'name' => 'IndexExtension',
-				'description' => 'Inline :index[term] drops an invisible marker (an empty <span class="index-term" id="idx-...">) at each occurrence, collected for a back-of-book index. It renders nothing visible; it is an anchor an index page can link back to.',
-				'class' => IndexExtension::class,
+				'name' => 'IndexTerms::bundle()',
+				'description' => 'Inline :index[term] drops an invisible marker (an empty <span class="index-term" id="idx-...">) at each occurrence; a `::: index` directive lists every term with one back-link per use.',
 				'example_carve' => <<<'CARVE'
-Carve:index[Carve] converts markup:index[markup] to HTML, and markup:index[markup] is fun.
+Carve :index[Carve] converts markup :index[markup] to HTML, and markup :index[markup] is fun.
+
+::: index
+
+:::
 CARVE,
 			],
 			'code_callouts' => [
-				'name' => 'CodeCalloutsExtension',
+				'name' => 'CodeCallouts::bundle()',
 				'description' => 'Annotate code with numbered callouts. A `<n>` marker at the end of a fenced-code line becomes a numbered bubble (<b class="callout">), and an immediately-following paragraph of `<n> text` lines binds to it as a `<ol class="callouts">` explanation list. Markers in the code round-trip unchanged.',
-				'class' => CodeCalloutsExtension::class,
 				'example_carve' => <<<'CARVE'
 ```php
-$converter = new CarveConverter(); <1>
-$converter->addExtension(new CodeCalloutsExtension()); <2>
+$bundle = CodeCallouts::bundle(); <1>
+$options = ['extensions' => [$bundle]]; <2>
 
-$html = $converter->convert($source); <3>
+$html = Carve::renderWithDocumentTransforms($source, $bundle->transforms(), $options)->html; <3>
 ```
 
-<1> Create the converter with default options.
-<2> Register the extension so `<n>` markers are recognized.
-<3> Convert; callouts render as numbered bubbles.
+\<1> Create the bundle with its document transform.
+\<2> Register the bundle so `<n>` markers are recognized.
+\<3> Convert; callouts render as numbered bubbles.
 CARVE,
 			],
 			'img_fence' => [
-				'name' => 'ImgFenceExtension',
-				'description' => 'Renders a ```img fenced block as the SVG it contains instead of showing the source, after running it through a hand-written tokenizing sanitizer (not a regex scrub). Presentational elements survive; <script>, event handlers, <foreignObject>, external references and javascript: URLs are dropped together with their subtrees. The default emit mode is a sandboxed data:image/svg+xml image, so the SVG cannot reach the page DOM at all. The fence words svg and xml are deliberately NOT claimed, so SVG source can still be syntax-highlighted.',
-				'class' => ImgFenceExtension::class,
+				'name' => 'ImgFence::bundle()',
+				'description' => 'Renders a fenced block with the info word `img` or `image` as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
 				'example_carve' => <<<'CARVE'
 ```img
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64">
@@ -2076,31 +1933,25 @@ The `script` element and the `javascript:` link above are gone from the rendered
 image - dropped with their subtrees, not escaped.
 CARVE,
 				'options' => [
-					'language' => "'img' (fence info word to match; alias 'image')",
-					'allowStyle' => 'false (keep <style> and style="" - active CSS)',
-					'allowLinks' => 'false (keep <a>, safe schemes only)',
-					'allowAnimation' => 'false (keep SMIL animate/set elements)',
-					'allowExternalImages' => 'false (keep <image> with an external href)',
-					'allowInline' => 'false (emit inline <svg> instead of a sandboxed data: image)',
+					'languages' => '\'img\' and \'image\' (fence info words the bundle matches)',
 				],
 			],
 			'heading_numbers' => [
-				'name' => 'HeadingNumbersExtension',
+				'name' => 'Navigation::headingNumbers()',
 				'description' => 'Auto-numbers sections at render time and rewrites auto-filled </#id> cross-references to "Section 1.2 - Title". No new syntax: it reads the heading tree and honors a {.unnumbered} class (written on the line ABOVE the heading, since Carve takes no trailing attribute block on a heading). Numbers render as <span class="section-number">.',
-				'class' => HeadingNumbersExtension::class,
 				'example_carve' => <<<'CARVE'
-# Installation
+= Installation
 
-## Requirements
+== Requirements
 
 See </#Configuration> for what to set afterwards.
 
-## Configuration
+== Configuration
 
 Numbering follows the heading tree, so this is 1.2.
 
 {.unnumbered}
-# Appendix
+= Appendix
 
 An unnumbered heading is skipped by the counter.
 CARVE,
@@ -2151,11 +2002,10 @@ CARVE,
 
 		if ($markdown) {
 			try {
-				$converter = new MarkdownToCarve();
-				$result['carve'] = $converter->convert($markdown);
+				$result['carve'] = Carve::importDocument($markdown, ['from' => 'gfm'])->source;
 				// Lint the OUTPUT: a habit surviving the conversion is a
 				// converter gap, and it renders as literal text from here on.
-				$result['lint'] = $this->lintMarkdownHabits($result['carve']);
+				$result['lint'] = $this->lintCarve($result['carve'], false);
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -2183,41 +2033,29 @@ CARVE,
 		$this->request->allowMethod(['post']);
 
 		$html = (string)$this->request->getData('html');
-		$adapter = (string)$this->request->getData('adapter') ?: 'generic';
-		// Provenance declaration: which editor/exporter produced the HTML. The
-		// word and google-docs adapters additionally read footnote-shaped HTML
-		// back as real [^N] references and definitions.
-		$adapters = ['generic', 'tiptap', 'prosemirror', 'ckeditor', 'tinymce', 'word', 'google-docs'];
-		if (!in_array($adapter, $adapters, true)) {
-			$adapter = 'generic';
-		}
-		// How much of the HTML the import is allowed to keep. `safe` and
-		// `semantic` drop what Carve has no spelling for; `roundtrip` preserves
-		// it byte for byte as a raw `{=html}` span. Every mode reports what it
-		// did, which is what the demo shows next to the output.
-		$mode = (string)$this->request->getData('mode') ?: 'safe';
-		$modes = ['safe', 'semantic', 'roundtrip'];
-		if (!in_array($mode, $modes, true)) {
-			$mode = 'safe';
-		}
+		// `semantic` drops raw HTML Carve has no spelling for; `raw` keeps it as a raw `{=html}` block.
+		// Either way the diagnostics name what the import did.
+		$mode = (string)$this->request->getData('mode') === 'raw' ? 'raw' : 'semantic';
 
 		$result = [
 			'carve' => '',
 			'mode' => $mode,
-			'adapter' => $adapter,
 			'diagnostics' => [],
 			'error' => null,
 		];
 
 		if ($html) {
 			try {
-				$converter = new HtmlToCarve(importMode: $mode, importAdapter: $adapter);
-				$import = $converter->convertWithReport($html);
-				$result['carve'] = $import->value;
-				$report = $import->report();
-				$result['mode'] = $report['mode'];
-				$result['adapter'] = $report['adapter'];
-				$result['diagnostics'] = $report['diagnostics'];
+				$import = Carve::importHtml($html, ['rawHtml' => $mode === 'raw']);
+				$result['carve'] = $import->source;
+				foreach ($import->diagnostics as $diagnostic) {
+					$result['diagnostics'][] = [
+						'code' => $diagnostic->code,
+						'severity' => $diagnostic->severity,
+						'message' => $diagnostic->message,
+						'path' => $diagnostic->path,
+					];
+				}
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -2331,35 +2169,6 @@ CARVE,
 	}
 
 	/**
-	 * AJAX endpoint for BBCode to Carve conversion.
-	 *
-	 * @return \Cake\Http\Response
-	 */
-	public function convertBbcode(): Response {
-		$this->request->allowMethod(['post']);
-
-		$bbcode = (string)$this->request->getData('bbcode');
-
-		$result = [
-			'carve' => '',
-			'error' => null,
-		];
-
-		if ($bbcode) {
-			try {
-				$converter = new BbcodeToCarve();
-				$result['carve'] = $converter->convert($bbcode);
-			} catch (Throwable $e) {
-				$result['error'] = $e->getMessage();
-			}
-		}
-
-		return $this->response
-			->withType('application/json')
-			->withStringBody((string)json_encode($result));
-	}
-
-	/**
 	 * Roundtrip test playground.
 	 *
 	 * @return void
@@ -2369,39 +2178,31 @@ CARVE,
 	}
 
 	/**
-	 * Paragraph interruption (§10): a line that begins with a block marker is
-	 * that block. Carve paragraphs are not greedy, so no blank line is needed -
-	 * with one exception: a list (bullet or ordered) following a paragraph needs
-	 * a blank line, so a hard-wrapped "- " mid-prose is not turned into a list.
-	 * Nested sub-lists still need no blank line.
+	 * Paragraph continuation in 0.2: an open paragraph takes every line that is not blank (a lazy
+	 * line, C2-B-012), unless the line is one of the six interrupters (C2-B-024), such
+	 * as a table row or a list marker at an open list's column. A heading, quote or break line
+	 * directly under text is text; lint reports it as `block-opener-without-blank-line`.
 	 *
-	 * Each case is shown three ways: as typed (marker starts the block), with a
-	 * blank line before the marker (identical result - the blank line is
-	 * optional), and with the marker escaped (kept literal inside the paragraph).
+	 * Each case is shown as typed and with a blank line before the marker.
 	 *
 	 * @return void
 	 */
 	public function interruption(): void {
-		$converter = new CarveConverter();
-
 		$rows = [];
 		foreach ($this->getInterruptionCases() as $case) {
-			$typedRaw = $converter->convert($case['carve']);
-			$blankRaw = $converter->convert($case['blank']);
-			$escapedRaw = $converter->convert($case['escaped']);
+			$typedRaw = Carve::render($case['carve']);
+			$blankRaw = Carve::render($case['blank']);
 			$rows[] = [
 				'title' => $case['title'],
 				'note' => $case['note'],
 				'carve' => $case['carve'],
 				'blank' => $case['blank'],
-				'escaped' => $case['escaped'],
 				'typedRaw' => $typedRaw,
 				'blankRaw' => $blankRaw,
-				'escapedRaw' => $escapedRaw,
 				'typedHtml' => $this->sanitizeHtml($typedRaw),
 				'blankHtml' => $this->sanitizeHtml($blankRaw),
-				'escapedHtml' => $this->sanitizeHtml($escapedRaw),
-				// The whole point: no blank line and a blank line render the same.
+				'lint' => array_map(fn (Diagnostic $finding): array => $this->diagnosticRow($case['carve'], $finding), Carve::lint($case['carve'])),
+				// An interrupter starts its block either way; any other marker line is lazy text.
 				'equivalent' => $typedRaw === $blankRaw,
 			];
 		}
@@ -2411,48 +2212,48 @@ CARVE,
 	}
 
 	/**
-	 * Curated cases. `carve` is as-typed (marker directly under the paragraph),
-	 * `blank` adds a blank line before the marker (same result), `escaped` keeps
-	 * the marker literal with a leading backslash.
+	 * Curated cases. `carve` is as typed (marker directly under the paragraph), `blank` adds a
+	 * blank line before the marker.
 	 *
-	 * @return array<int, array{title: string, note: string, carve: string, blank: string, escaped: string}>
+	 * @return array<int, array{title: string, note: string, carve: string, blank: string}>
 	 */
 	protected function getInterruptionCases(): array {
 		return [
 			[
 				'title' => 'Heading marker after text',
-				'note' => 'A "# " line is a heading wherever it appears - the paragraph above does not absorb it.',
-				'carve' => "text\n# H",
-				'blank' => "text\n\n# H",
-				'escaped' => "text\n\\# H",
-			],
-			[
-				'title' => 'Nested list (no blank line)',
-				'note' => 'Indenting a sub-list nests it directly. Djot traditionally needed a blank line before the nested portion - a long-standing pain point - which Carve drops.',
-				'carve' => "- Drinks\n  - Coffee\n  - Tea\n- Snacks",
-				'blank' => "- Drinks\n\n  - Coffee\n  - Tea\n- Snacks",
-				'escaped' => "- Drinks\n  \\- Coffee\n  \\- Tea\n- Snacks",
+				'note' => 'A "= " line directly under text is a lazy line of the paragraph. Leave a blank line before a heading.',
+				'carve' => "text\n= H\n",
+				'blank' => "text\n\n= H\n",
 			],
 			[
 				'title' => 'Blockquote marker after text',
-				'note' => 'A "> " line is a blockquote. Escape it when you mean a literal greater-than.',
-				'carve' => "Make sure the result is\n> 5 so the check passes.",
-				'blank' => "Make sure the result is\n\n> 5 so the check passes.",
-				'escaped' => "Make sure the result is\n\\> 5 so the check passes.",
-			],
-			[
-				'title' => 'Pipe line after text',
-				'note' => 'A clean "| a | b |" row is a table. Escape the leading pipe to keep it as prose.',
-				'carve' => "The CSV header is\n| id | name | email |",
-				'blank' => "The CSV header is\n\n| id | name | email |",
-				'escaped' => "The CSV header is\n\\| id | name | email |",
+				'note' => 'A "> " line under text stays text, so "the result is > 5" survives a hard wrap.',
+				'carve' => "Make sure the result is\n> 5 so the check passes.\n",
+				'blank' => "Make sure the result is\n\n> 5 so the check passes.\n",
 			],
 			[
 				'title' => 'Thematic break after text',
-				'note' => 'A "---" line is a thematic break. Escape it to keep an em dash inside the paragraph.',
-				'carve' => "Sign here:\n---\nJane Doe",
-				'blank' => "Sign here:\n\n---\nJane Doe",
-				'escaped' => "Sign here:\n\\---\nJane Doe",
+				'note' => 'A "---" line under text is text (smart typography makes it a dash). A break needs blank lines around it.',
+				'carve' => "Sign here:\n---\nJane Doe\n",
+				'blank' => "Sign here:\n\n---\n\nJane Doe\n",
+			],
+			[
+				'title' => 'List marker after text',
+				'note' => 'A hard-wrapped "- " in the middle of prose is not turned into a list.',
+				'carve' => "Bring snacks\n- and drinks.\n",
+				'blank' => "Bring snacks\n\n- and drinks.\n",
+			],
+			[
+				'title' => 'Pipe line after text (interrupter)',
+				'note' => 'A table row is one of the six interrupters: it starts the table with or without a blank line.',
+				'carve' => "The CSV header is\n| id | name | email |\n",
+				'blank' => "The CSV header is\n\n| id | name | email |\n",
+			],
+			[
+				'title' => 'Nested list (interrupter)',
+				'note' => 'A list marker inside an open list item nests directly; no blank line is needed before a sub-list.',
+				'carve' => "- Drinks\n  - Coffee\n  - Tea\n- Snacks\n",
+				'blank' => "- Drinks\n\n  - Coffee\n  - Tea\n- Snacks\n",
 			],
 		];
 	}
@@ -2496,18 +2297,15 @@ CARVE,
 
 		if ($carve) {
 			try {
-				$toHtml = new CarveConverter(xhtml: true);
-				$toCarve = new HtmlToCarve();
-
 				$t = microtime(true);
-				$rawHtml1 = $toHtml->convert($carve);
+				$rawHtml1 = Carve::render($carve);
 				$result['msToHtml'] = round((microtime(true) - $t) * 1000, 2);
 
 				$t = microtime(true);
-				$carve2 = $toCarve->convert($rawHtml1);
+				$carve2 = Carve::importHtml($rawHtml1)->source;
 				$result['msToCarve'] = round((microtime(true) - $t) * 1000, 2);
 
-				$rawHtml2 = (new CarveConverter(xhtml: true))->convert($carve2);
+				$rawHtml2 = Carve::render($carve2);
 
 				$result['html1'] = $this->sanitizeHtml($rawHtml1);
 				$result['carve2'] = $carve2;
@@ -2518,10 +2316,8 @@ CARVE,
 				$result['carveStable'] = trim($carve) === trim($carve2);
 				$result['exports'] = [
 					'plain' => $this->roundtripExport($carve, $format, false),
-					'roundtrip' => $this->roundtripExport($carve, $format, true),
+					'roundtrip' => $format === 'html' ? $this->roundtripExport($carve, $format, true) : null,
 				];
-			} catch (ParseException $e) {
-				$result['error'] = $e->getMessage();
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -2541,12 +2337,14 @@ CARVE,
 	 * @return array{exported: string, carve: string, carveStable: bool}
 	 */
 	protected function roundtripExport(string $carve, string $format, bool $carry): array {
-		// One option for both targets; the renderer decides which carriers it writes.
-		$renderer = $format === 'markdown' ? new MarkdownRenderer() : null;
-		$exported = (new CarveConverter(roundTripMode: $carry, renderer: $renderer))->convert($carve);
-		$back = $format === 'markdown'
-			? (new MarkdownToCarve())->convert($exported)
-			: (new HtmlToCarve())->convert($exported);
+		// 0.2 has no Markdown carrier format; the `roundtrip` render option writes the HTML carriers.
+		if ($format === 'markdown') {
+			$exported = (new MarkdownExporter())->export(Carve::parse($carve))->output;
+			$back = Carve::importDocument($exported, ['from' => 'gfm'])->source;
+		} else {
+			$exported = Carve::render($carve, ['roundtrip' => $carry]);
+			$back = Carve::importHtml($exported)->source;
+		}
 
 		return [
 			'exported' => $exported,
@@ -2597,7 +2395,6 @@ CARVE,
 			'error' => null,
 		];
 
-		$codec = new AstCodec();
 		$flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
 
 		try {
@@ -2608,11 +2405,12 @@ CARVE,
 				}
 
 				$start = microtime(true);
-				$document = $codec->decodeJson($tree);
+				// A stored 1.x tree (0.1 engines) is migrated first; a 2.0 tree passes through.
+				$document = Carve::decodeTree((string)json_encode(Carve::migrateTree($tree)['document']));
 				$result['ms'] = round((microtime(true) - $start) * 1000, 2);
-				$result['html'] = $this->sanitizeHtml((new CarveConverter())->render($document));
-				$result['carve'] = CarveConverter::carve()->render($document);
-				$result['nodes'] = $this->countAstNodes($codec->encode($document));
+				$result['html'] = $this->sanitizeHtml(Carve::render($document));
+				$result['carve'] = Carve::write($document);
+				$result['nodes'] = $this->countAstNodes((array)json_decode(Carve::encodeTree($document), true));
 
 				return $this->astResponse($result);
 			}
@@ -2622,10 +2420,13 @@ CARVE,
 				return $this->astResponse($result);
 			}
 
-			$converter = new CarveConverter(parser: new BlockParser(trackPositions: $withPositions));
 			$start = microtime(true);
-			$document = $converter->parse($carve);
-			$encoded = $codec->encode($document);
+			$document = Carve::parse($carve);
+			/** @var array<string, mixed> $encoded */
+			$encoded = (array)json_decode(Carve::encodeTree($document), true);
+			if (!$withPositions) {
+				$encoded = $this->stripPositions($encoded);
+			}
 			$result['ms'] = round((microtime(true) - $start) * 1000, 2);
 			$result['json'] = (string)json_encode($encoded, $flags);
 			$result['nodes'] = $this->countAstNodes($encoded);
@@ -2633,12 +2434,29 @@ CARVE,
 			// The round trip is the claim worth checking: decode what was just
 			// encoded and render both. Equal output means the tree carried
 			// everything the renderer needs.
-			$result['stable'] = $converter->render($codec->decodeJson($result['json'])) === $converter->render($document);
+			$result['stable'] = Carve::render(Carve::decodeTree($result['json'])) === Carve::render($document);
 		} catch (Throwable $e) {
 			$result['error'] = $e->getMessage();
 		}
 
 		return $this->astResponse($result);
+	}
+
+	/**
+	 * Drops the `pos` field of every node: 0.2 always records positions, the inspector shows them on request.
+	 *
+	 * @param array<mixed> $node
+	 * @return array<mixed>
+	 */
+	protected function stripPositions(array $node): array {
+		unset($node['pos']);
+		foreach ($node as $key => $value) {
+			if (is_array($value)) {
+				$node[$key] = $this->stripPositions($value);
+			}
+		}
+
+		return $node;
 	}
 
 	/**
@@ -2676,7 +2494,7 @@ CARVE,
 	}
 
 	/**
-	 * ProseMirror / Tiptap bridge, rendered by carve-php - no Node runtime.
+	 * ProseMirror / Tiptap bridge: Carve to a ProseMirror document and back, in PHP.
 	 *
 	 * @return void
 	 */
@@ -2687,9 +2505,8 @@ CARVE,
 	/**
 	 * AJAX endpoint for the ProseMirror bridge.
 	 *
-	 * Carve -> ProseMirror document -> Carve, entirely server-side. The
-	 * fidelity report is the point: types the editor model cannot hold are
-	 * named by droppedTypes()/degradedTypes() instead of vanishing quietly.
+	 * `carve`: Carve -> ProseMirror document -> Carve, entirely server-side.
+	 * `pm`: a document the editor saved (`editor.getJSON()`) -> Carve.
 	 *
 	 * @return \Cake\Http\Response
 	 */
@@ -2697,51 +2514,48 @@ CARVE,
 		$this->request->allowMethod(['post']);
 
 		$carve = str_replace(["\r\n", "\r"], "\n", (string)$this->request->getData('carve'));
+		$pm = (string)$this->request->getData('pm');
 
 		$result = [
 			'pm' => '',
 			'carve' => '',
 			'canonical' => '',
-			'html' => '',
-			'dropped' => [],
-			'degraded' => [],
 			'stable' => false,
 			'carveStable' => false,
+			'blanked' => [],
 			'msToPm' => null,
 			'msToCarve' => null,
 			'error' => null,
 		];
 
-		if (trim($carve)) {
-			try {
-				$converter = new CarveConverter();
+		try {
+			if ($pm !== '') {
+				$start = microtime(true);
+				$result['carve'] = (new ProseMirrorToCarve())->convert($pm);
+				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
+			} elseif (trim($carve) !== '') {
+				$tree = Carve::parse($carve);
 				$renderer = new ProseMirrorRenderer();
 
 				$start = microtime(true);
-				$document = $renderer->render($converter->parse($carve));
+				$document = $renderer->render($tree);
 				$result['msToPm'] = round((microtime(true) - $start) * 1000, 2);
 				$result['pm'] = (string)json_encode($document, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-				$result['dropped'] = $renderer->droppedTypes();
-				$result['degraded'] = $renderer->degradedTypes();
+				$result['blanked'] = $renderer->blanked();
 
+				$converter = new ProseMirrorToCarve();
 				$start = microtime(true);
-				$back = (new ProseMirrorToCarve())->convert($document);
+				$back = $converter->toTree($document);
+				$result['carve'] = Carve::write($back);
 				$result['msToCarve'] = round((microtime(true) - $start) * 1000, 2);
-				$result['carve'] = CarveConverter::carve()->render($back);
-				$result['html'] = $this->sanitizeHtml($converter->render($back));
-				$result['stable'] = $converter->render($converter->parse($carve)) === $converter->render($back);
-				// The HTML verdict alone is a check that cannot fail on the loss
-				// that matters here: `::: note` and `{.note}` + a bare fence are
-				// the same document semantically and render byte-identical, so
-				// comparing HTML can never see the authored form disappear.
-				// Comparing the canonical Carve of both sides can. The input is
-				// canonicalized first, so ordinary formatting normalization does
-				// not masquerade as a loss.
-				$result['canonical'] = CarveConverter::carve()->render($converter->parse($carve));
+
+				$result['stable'] = Carve::render($tree) === Carve::render($back);
+				// The editor model carries the tree, not the source layout, so compare with the writer's spelling of the tree.
+				$result['canonical'] = Carve::write($tree);
 				$result['carveStable'] = $result['canonical'] === $result['carve'];
-			} catch (Throwable $e) {
-				$result['error'] = $e->getMessage();
 			}
+		} catch (Throwable $e) {
+			$result['error'] = $e->getMessage();
 		}
 
 		return $this->response
@@ -2774,8 +2588,7 @@ CARVE,
 
 		if ($djot) {
 			try {
-				$converter = new DjotToCarve();
-				$result['carve'] = $converter->convert($djot);
+				$result['carve'] = Carve::importDocument($djot, ['from' => 'djot'])->source;
 			} catch (Throwable $e) {
 				$result['error'] = $e->getMessage();
 			}
@@ -2784,34 +2597,6 @@ CARVE,
 		return $this->response
 			->withType('application/json')
 			->withStringBody((string)json_encode($result));
-	}
-
-	/**
-	 * Get profile instance from name.
-	 *
-	 * @param string $name
-	 * @param string $filterMode
-	 * @return \MarkupCarve\Carve\Profile|null
-	 */
-	protected function getProfile(string $name, string $filterMode): ?Profile {
-		$profile = match ($name) {
-			'full' => Profile::full(),
-			'article' => Profile::article(),
-			'comment' => Profile::comment(),
-			'minimal' => Profile::minimal(),
-			default => null,
-		};
-
-		if ($profile !== null && $filterMode) {
-			$action = match ($filterMode) {
-				'strip' => Profile::ACTION_STRIP,
-				'error' => Profile::ACTION_ERROR,
-				default => Profile::ACTION_TO_TEXT,
-			};
-			$profile->onDisallowed($action);
-		}
-
-		return $profile;
 	}
 
 	/**
@@ -2970,9 +2755,8 @@ CARVE,
 	 * (it validates them with getimagesize), so a percent-encoded
 	 * `data:image/svg+xml` image is dropped outright and the fence renders as
 	 * nothing. Rather than widening the purifier, each payload is decoded and
-	 * run through the SAME {@see \MarkupCarve\Carve\Extension\SvgSanitizer} the
-	 * extension used. It is stashed only when that second pass returns the
-	 * byte-identical string, so anything the sanitizer would still alter - a
+	 * run through the SAME img fence sanitizer again (a one-fence render). It is
+	 * stashed only when that second pass returns the byte-identical string, so anything the sanitizer would still alter - a
 	 * hand-written data: URI in a raw HTML block, say - keeps being dropped.
 	 * What {@see self::restoreSvgImages()} puts back is markup built here from
 	 * sanitizer output, never markup the request supplied.
@@ -2996,8 +2780,7 @@ CARVE,
 			'#<img\b[^>]*\bsrc="data:image/svg\+xml,([^"]*)"[^>]*>#i',
 			function (array $match) use (&$stash): string {
 				$svg = rawurldecode($match[1]);
-				$sanitized = SvgSanitizer::sanitize($svg);
-				if (!$sanitized['ok'] || $sanitized['svg'] !== $svg) {
+				if (!$this->isEngineSanitizedSvg($svg)) {
 					return '';
 				}
 
@@ -3013,6 +2796,23 @@ CARVE,
 			},
 			$html,
 		);
+	}
+
+	/**
+	 * Whether the img fence sanitizer of the engine returns this SVG unchanged.
+	 *
+	 * @param string $svg
+	 * @return bool
+	 */
+	protected function isEngineSanitizedSvg(string $svg): bool {
+		$fence = Carve::safeCodeFence($svg);
+		try {
+			$html = Carve::render($fence . "img\n" . $svg . "\n" . $fence . "\n", ['extensions' => [ImgFence::bundle()]]);
+		} catch (Throwable) {
+			return false;
+		}
+
+		return preg_match('#src="data:image/svg\+xml,([^"]*)"#', $html, $match) === 1 && rawurldecode($match[1]) === $svg;
 	}
 
 	/**
@@ -3066,8 +2866,8 @@ CARVE,
 	 * code-group, details, spoiler, mermaid, math) is visible per target.
 	 *
 	 * Targets:
-	 * - `interactive`: live HTML (RenderMode::INTERACTIVE).
-	 * - `static`: HTML for a non-interactive medium (RenderMode::STATIC); tabs
+	 * - `interactive`: live HTML (`mode: interactive`).
+	 * - `static`: HTML for a non-interactive medium (`mode: static`); tabs
 	 *   and code-group flatten to labeled sections, details/spoiler reveal,
 	 *   mermaid/math use the build-time `renderers` closures or fall back to
 	 *   source.
@@ -3100,31 +2900,27 @@ CARVE,
 		try {
 			switch ($target) {
 				case 'interactive':
-					$rendered = $this->sanitizeHtml($this->demoHtmlConverter(RenderMode::INTERACTIVE)->convert($carve));
-					$output = $this->demoHtmlConverter(RenderMode::INTERACTIVE)->convert($carve);
+					$output = $this->demoRender($carve, 'interactive');
+					$rendered = $this->sanitizeHtml($output);
 					$isHtml = true;
 
 					break;
 				case 'static':
-					$converter = $this->demoHtmlConverter(
-						RenderMode::STATIC,
-						$useRenderers ? $this->demoStaticRenderers() : [],
-					);
-					$output = $converter->convert($carve);
+					$output = $this->demoRender($carve, 'static', $useRenderers);
 					$rendered = $this->sanitizeHtml($output);
 					$isHtml = true;
 
 					break;
 				case 'markdown':
-					$output = CarveConverter::markdown()->convert($carve);
+					$output = (new MarkdownExporter())->export(Carve::parse($carve))->output;
 
 					break;
 				case 'plain':
-					$output = CarveConverter::plainText()->convert($carve);
+					$output = (new PlainTextExporter())->export(Carve::parse($carve))->output;
 
 					break;
 				case 'ansi':
-					$ansi = CarveConverter::ansi()->convert($carve);
+					$ansi = (new AnsiExporter())->export(Carve::parse($carve))->output;
 					$output = $ansi;
 					$rendered = $this->ansiToHtml($ansi);
 					$isHtml = true;
@@ -3163,11 +2959,7 @@ CARVE,
 		$key = 'carve_demo_pdf_' . md5($carve . ($useRenderers ? '1' : '0'));
 		$pdf = Cache::read($key, 'carve_demo');
 		if (!is_string($pdf)) {
-			$converter = $this->demoHtmlConverter(
-				RenderMode::STATIC,
-				$useRenderers ? $this->demoStaticRenderers() : [],
-			);
-			$body = $this->sanitizeHtml($converter->convert($carve));
+			$body = $this->sanitizeHtml($this->demoRender($carve, 'static', $useRenderers));
 			$html = $this->demoPrintDocument($body);
 
 			$options = new Options();
@@ -3268,25 +3060,29 @@ HTML;
 	}
 
 	/**
-	 * Build an HTML CarveConverter for the demo with the full interactive
-	 * extension set (tabs, code-group, details, spoiler, mermaid, math, ...),
-	 * a render mode, and optional build-time static renderers.
+	 * Renders the demo source with the full interactive extension set (tabs, code-group, details,
+	 * spoiler, mermaid, math, ...) in a render mode, optionally with build-time renderers.
 	 *
-	 * @param string $mode RenderMode::INTERACTIVE or RenderMode::STATIC.
-	 * @param array<string, \Closure(string): string> $renderers
-	 * @return \MarkupCarve\Carve\CarveConverter
+	 * @param string $carve
+	 * @param string $mode `interactive` or `static`.
+	 * @param bool $useRenderers Whether static mode gets the build-time renderers.
+	 * @return string
 	 */
-	protected function demoHtmlConverter(string $mode, array $renderers = []): CarveConverter {
-		$converter = new CarveConverter(xhtml: true, mode: $mode, renderers: $renderers);
-		$converter->addExtension(new TabNormalizeExtension(width: 4));
-		$converter->addExtension(new TabsExtension(mode: TabsExtension::MODE_ARIA));
-		$converter->addExtension(new CodeGroupExtension());
-		$converter->addExtension(new DetailsExtension());
-		$converter->addExtension(new SpoilerExtension());
-		$converter->addExtension(new MathBlockExtension());
-		$converter->addExtension(FencedRenderExtension::mermaid());
+	protected function demoRender(string $carve, string $mode, bool $useRenderers = false): string {
+		$renderers = $useRenderers ? $this->demoStaticRenderers() : [];
+		$math = $renderers['math'] ?? null;
+		$extensions = [
+			Transforms::tabNormalize(4),
+			...Tabs::extensions(true, 'aria'),
+			CodeGroup::bundle(),
+			Details::bundle(),
+			Spoiler::bundle(),
+			MathBlock::bundle(build: $math ? fn (string $tex, bool $display): string => $math($tex) : null),
+			FencedRender::mermaid(build: $renderers['mermaid'] ?? null),
+			FencedRender::graphviz(build: $renderers['graphviz'] ?? null),
+		];
 
-		return $converter;
+		return $this->renderCarve($carve, $extensions, ['mode' => $mode])->html;
 	}
 
 	/**
@@ -3317,7 +3113,6 @@ HTML;
 				fn (): ?string => $this->demoMathFigure(trim($s)),
 				fn (): string => '<div class="math-static">' . htmlspecialchars($s, ENT_QUOTES) . '</div>',
 			),
-			'chart' => fn (string $s): string => $this->demoDiagramSource($s, 'Chart config (no build-time renderer)'),
 		];
 	}
 
@@ -3520,28 +3315,30 @@ HTML;
 	 */
 	protected function demoSampleCarve(): string {
 		return <<<'CARVE'
-# Graceful degradation demo
+= Graceful degradation demo
 
 The same source below renders differently per target. Interactive constructs
 flatten or reveal when the medium cannot run client scripts.
 
-::: tabs
-:::: tab [Install]
+:::: tabs
+::: tab "Install"
 ```bash
 composer require markup-carve/carve-php
 ```
-::::
-:::: tab [Usage]
-```php
-$html = (new MarkupCarve\Carve\CarveConverter())->convert($carve);
-```
-::::
 :::
+
+::: tab "Usage"
+```php
+$html = MarkupCarve\Carve\Carve::render($carve);
+```
+:::
+::::
 
 ::: code-group
 ```js [config.js]
 export default { mode: 'static' };
 ```
+
 ```json [config.json]
 { "mode": "static" }
 ```

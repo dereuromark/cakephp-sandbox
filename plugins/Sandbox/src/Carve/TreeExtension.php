@@ -4,123 +4,123 @@ declare(strict_types=1);
 
 namespace Sandbox\Carve;
 
-use MarkupCarve\Carve\CarveConverter;
-use MarkupCarve\Carve\Event\RenderEvent;
-use MarkupCarve\Carve\Extension\ExtensionInterface;
-use MarkupCarve\Carve\Node\Block\Div;
-use MarkupCarve\Carve\Node\Block\ListBlock;
-use MarkupCarve\Carve\Node\Block\ListItem;
-use MarkupCarve\Carve\Node\Block\Paragraph;
-use MarkupCarve\Carve\Node\Node;
-use MarkupCarve\Carve\Renderer\HtmlRenderer;
+use MarkupCarve\Carve\Attrs;
+use MarkupCarve\Carve\Extension\Claim;
+use MarkupCarve\Carve\Extension\ExtensionDefinition;
+use MarkupCarve\Carve\Extension\ExtensionProvider;
+use MarkupCarve\Carve\Extension\RenderHost;
+use MarkupCarve\Carve\Node;
 
 /**
- * Renders a `::: tree` container marked `{.collapsible}` as nested
- * `<details>`/`<summary>` disclosures instead of a plain nested `<ul>`.
+ * Host extension that renders a `::: tree` marked `{.collapsible}` as nested `<details>`.
  *
- * This lives in the sandbox rather than in carve-php on purpose: it is a
- * working prototype of the proposed Tier-2 Tree extension, and it demonstrates
- * that the host application can add the behavior without any engine change.
- *
- * A plain `::: tree` is left alone. The core renderer already emits
- *
- *     <div class="tree"><ul>...</ul></div>
- *
- * which is a correct, semantic, linkable tree; the sandbox stylesheet draws the
- * connectors. Only the collapsible variant needs different HTML, because a
- * disclosure widget cannot be produced from a `<ul>` by CSS alone.
- *
- * Input:
- *
- *     {.collapsible}
- *     ::: tree
- *     - src/
- *       - parser/
- *         - blocks.crv
- *     :::
- *
- * Output:
- *
- *     <div class="tree collapsible">
- *       <ul>
- *         <li><details open><summary>src/</summary>
- *           <ul>...</ul>
- *         </details></li>
- *       </ul>
- *     </div>
- *
- * Branches start expanded so the content stays visible to in-page search and to
- * a reader who never clicks. `{.collapsible .collapsed}` starts them closed.
- * Leaves stay plain `<li>` elements - a disclosure with nothing to disclose is
- * noise for a screen reader.
+ * A tree without the class is left to core (a plain `<div class="tree">` around a list).
  */
-class TreeExtension implements ExtensionInterface {
+class TreeExtension implements ExtensionProvider {
 
 	/**
-	 * Class that marks a container as a tree.
-	 *
-	 * @var string
-	 */
+     * @var string
+     */
+	public const NAME = 'sandbox.tree';
+
+	/**
+     * @var string
+     */
 	public const KIND = 'tree';
 
 	/**
-	 * Class that opts a tree into the disclosure rendering.
-	 *
-	 * @var string
-	 */
+     * @var string
+     */
 	public const CLASS_COLLAPSIBLE = 'collapsible';
 
 	/**
-	 * Class that makes collapsible branches start closed.
-	 *
-	 * @var string
-	 */
+     * @var string
+     */
 	public const CLASS_COLLAPSED = 'collapsed';
 
 	/**
-	 * @param \MarkupCarve\Carve\CarveConverter $converter Converter to hook into.
-	 * @return void
+	 * @return array<\MarkupCarve\Carve\Extension\ExtensionDefinition>
 	 */
-	public function register(CarveConverter $converter): void {
-		$renderer = $converter->getRenderer();
-		if (!$renderer instanceof HtmlRenderer) {
-			return;
-		}
+	public function definitions(): array {
+		$render = fn (Node $node, RenderHost $host): string => $this->render($node, $host);
 
-		$converter->on('render.div', function (RenderEvent $event) use ($renderer): void {
-			$node = $event->getNode();
-			if (!$node instanceof Div) {
-				return;
-			}
-			if (!$node->hasClass(static::KIND) || !$node->hasClass(static::CLASS_COLLAPSIBLE)) {
-				return;
-			}
+		return [new ExtensionDefinition(
+			static::NAME,
+			'1',
+			['body'],
+			matcher: ['form' => 'div', 'name' => static::KIND],
+			transform: function (Claim $claim): ?Node {
+				$attrs = $claim->node->f['attrs'] ?? null;
+				$classes = $attrs instanceof Attrs ? $attrs->classes : [];
+				if (!in_array(static::CLASS_COLLAPSIBLE, $classes, true) || $this->findList($claim->node->children ?? []) === null) {
+					return null;
+				}
 
-			$list = $this->findList($node);
-			if ($list === null) {
-				return;
-			}
+				$node = new Node('block_extension', []);
+				$node->f = [
+					'name' => static::NAME,
+					'version' => '1',
+					'slots' => ['body' => $claim->node->children ?? []],
+					'props' => ['open' => !in_array(static::CLASS_COLLAPSED, $classes, true)],
+					'fallback' => [$claim->copyNode()],
+				];
 
-			$open = !$node->hasClass(static::CLASS_COLLAPSED);
-			$attrs = $renderer->renderAttributeArray($renderer->sanitizeAttributes($node->getAttributes()));
-
-			$event->setHtml(
-				'<div' . $attrs . ">\n"
-				. $this->renderList($list, $renderer, $open, 1)
-				. "</div>\n",
-			);
-		});
+				return $node;
+			},
+			renderer: $render,
+			buildTimeRenderer: $render,
+		),
+		];
 	}
 
 	/**
-	 * The first list directly inside the container, or null when the body is not a list.
-	 *
-	 * @param \MarkupCarve\Carve\Node\Node $node Container node.
-	 * @return \MarkupCarve\Carve\Node\Block\ListBlock|null
+	 * @param \MarkupCarve\Carve\Node $node
+	 * @param \MarkupCarve\Carve\Extension\RenderHost $host
+	 * @return string
 	 */
-	protected function findList(Node $node): ?ListBlock {
-		foreach ($node->getChildren() as $child) {
-			if ($child instanceof ListBlock) {
+	protected function render(Node $node, RenderHost $host): string {
+		$list = $this->findList($node->f['slots']['body'] ?? []);
+		if ($list === null) {
+			return '';
+		}
+		// A static render (print, PDF) never receives a click, so every branch stays open there.
+		$open = ($node->f['props']['open'] ?? true) || $host->mode === 'static';
+
+		return '<div' . $this->attributes($node->f['attrs'] ?? null) . ">\n"
+			. $this->renderList($list, $host, $open, 1)
+			. '</div>';
+	}
+
+	/**
+	 * @param mixed $attrs
+	 * @return string
+	 */
+	protected function attributes(mixed $attrs): string {
+		if (!$attrs instanceof Attrs) {
+			return '';
+		}
+		$out = '';
+		if ($attrs->id !== null) {
+			$out .= ' id="' . RenderHost::escapeAttribute($attrs->id) . '"';
+		}
+		$classes = array_merge([static::KIND], array_diff($attrs->classes, [static::KIND]));
+		$out .= ' class="' . RenderHost::escapeAttribute(implode(' ', $classes)) . '"';
+		foreach ($attrs->pairs as [$key, $value]) {
+			if (preg_match('/^data-[a-z0-9-]+$/', $key) === 1) {
+				$out .= ' ' . $key . '="' . RenderHost::escapeAttribute($value) . '"';
+			}
+		}
+
+		return $out;
+	}
+
+	/**
+	 * @param array<\MarkupCarve\Carve\Node> $children
+	 * @return \MarkupCarve\Carve\Node|null
+	 */
+	protected function findList(array $children): ?Node {
+		foreach ($children as $child) {
+			if ($child->type === 'list') {
 				return $child;
 			}
 		}
@@ -129,67 +129,49 @@ class TreeExtension implements ExtensionInterface {
 	}
 
 	/**
-	 * @param \MarkupCarve\Carve\Node\Block\ListBlock $list List to render.
-	 * @param \MarkupCarve\Carve\Renderer\HtmlRenderer $renderer Active renderer.
-	 * @param bool $open Whether branches start expanded.
-	 * @param int $depth Indentation depth.
+	 * @param \MarkupCarve\Carve\Node $list
+	 * @param \MarkupCarve\Carve\Extension\RenderHost $host
+	 * @param bool $open
+	 * @param int $depth
 	 * @return string
 	 */
-	protected function renderList(ListBlock $list, HtmlRenderer $renderer, bool $open, int $depth): string {
+	protected function renderList(Node $list, RenderHost $host, bool $open, int $depth): string {
 		$pad = str_repeat('  ', $depth);
 		$html = $pad . "<ul>\n";
-		foreach ($list->getChildren() as $item) {
-			if (!$item instanceof ListItem) {
-				continue;
+		foreach ($list->children ?? [] as $item) {
+			if ($item->type === 'list_item') {
+				$html .= $this->renderItem($item, $host, $open, $depth + 1);
 			}
-			$html .= $this->renderItem($item, $renderer, $open, $depth + 1);
 		}
 
 		return $html . $pad . "</ul>\n";
 	}
 
 	/**
-	 * A branch becomes a disclosure; a leaf stays a plain list item.
-	 *
-	 * @param \MarkupCarve\Carve\Node\Block\ListItem $item Item to render.
-	 * @param \MarkupCarve\Carve\Renderer\HtmlRenderer $renderer Active renderer.
-	 * @param bool $open Whether branches start expanded.
-	 * @param int $depth Indentation depth.
+	 * @param \MarkupCarve\Carve\Node $item
+	 * @param \MarkupCarve\Carve\Extension\RenderHost $host
+	 * @param bool $open
+	 * @param int $depth
 	 * @return string
 	 */
-	protected function renderItem(ListItem $item, HtmlRenderer $renderer, bool $open, int $depth): string {
+	protected function renderItem(Node $item, RenderHost $host, bool $open, int $depth): string {
 		$pad = str_repeat('  ', $depth);
-		$label = $this->renderLabel($item, $renderer);
-		$child = $this->findList($item);
+		$label = '';
+		foreach ($item->children ?? [] as $child) {
+			if ($child->type === 'paragraph') {
+				$label = ($host->inlines)($child->children ?? []);
 
-		if ($child === null) {
+				break;
+			}
+		}
+		$sublist = $this->findList($item->children ?? []);
+		if ($sublist === null) {
 			return $pad . '<li>' . $label . "</li>\n";
 		}
 
-		// A static render (print, PDF) never receives a click, so force every
-		// branch open there - the same call DetailsExtension makes.
-		$openAttr = $open || $renderer->isStaticMode() ? ' open' : '';
-
-		return $pad . '<li><details' . $openAttr . '><summary>' . $label . "</summary>\n"
-			. $this->renderList($child, $renderer, $open, $depth + 1)
+		return $pad . '<li><details' . ($open ? ' open' : '') . '><summary>' . $label . "</summary>\n"
+			. $this->renderList($sublist, $host, $open, $depth + 1)
 			. $pad . "</details></li>\n";
-	}
-
-	/**
-	 * The item's own inline content, without the nested list underneath it.
-	 *
-	 * @param \MarkupCarve\Carve\Node\Block\ListItem $item Item to label.
-	 * @param \MarkupCarve\Carve\Renderer\HtmlRenderer $renderer Active renderer.
-	 * @return string
-	 */
-	protected function renderLabel(ListItem $item, HtmlRenderer $renderer): string {
-		foreach ($item->getChildren() as $child) {
-			if ($child instanceof Paragraph) {
-				return $renderer->renderInlineNodesFragment(array_values($child->getChildren()));
-			}
-		}
-
-		return '';
 	}
 
 }

@@ -5,12 +5,18 @@
  */
 
 $defaultCarve = <<<'CARVE'
-# ProseMirror bridge
+= ProseMirror bridge
 
 A paragraph with *strong*, /emphasis/, `code` and a [link](https://example.org).
 
 - a bullet
 - another one
+
+1. first
+2. second
+
+- [x] a done task
+- [ ] an open task
 
 > A blockquote.
 
@@ -18,12 +24,19 @@ A paragraph with *strong*, /emphasis/, `code` and a [link](https://example.org).
 echo 'fenced code';
 ```
 
-Editorial marks survive as ProseMirror marks: {+inserted+} and {-deleted-}.
+Editorial marks travel as marks: {+inserted+} and {-deleted-}.
 
-::: list-table
-- - Cells with block content
-  - are a Carve construct
+|= Name |= Qty |
+| Apples | 3 |
+
+{.note}
+::: aside
+A div with a class, kept in the `carve` attribute.
 :::
+
+A footnote[^1] and a [denied link](javascript:alert(1)).
+
+[^1]: The note text.
 CARVE;
 ?>
 
@@ -38,16 +51,16 @@ CARVE;
 	<i class="bi bi-arrow-right"></i> Carve, done entirely by
 	<strong>carve-php</strong>. No Node runtime is involved, so a
 	<a href="https://tiptap.dev/" target="_blank">Tiptap 3</a> editor in the browser
-	and PHP rendering on the server can share one source of truth.
+	and PHP on the server share one source of truth.
 </p>
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
 	The <?= $this->Html->link('WYSIWYG editor', ['action' => 'wysiwyg']) ?> does this
-	conversion in the browser. This page does the same trip in PHP - which is what a
-	CMS storing Carve needs, since it has to load and save the editor model without
-	shelling out to JavaScript. Node and mark names come from the map published by
-	<code>carve-grammars</code> rather than being restated on each side.
+	conversion in the browser. This page does the same trip in PHP, which is what a
+	CMS storing Carve needs: it loads and saves the editor model without shelling out
+	to JavaScript. Both sides use the schema of the Carve 0.2 Tiptap kit in
+	<code>carve-grammars</code>, so either one reads what the other wrote.
 </div>
 
 <div class="row">
@@ -78,48 +91,34 @@ CARVE;
 		<div id="stability" class="small"></div>
 	</div>
 	<div class="col-md-6">
-		<h5>Fidelity report</h5>
-		<div id="fidelity" class="small"></div>
+		<h5>Kept out of the editor</h5>
+		<div id="blanked" class="small"></div>
 	</div>
 </div>
 
 <hr class="my-4">
 
-<h4>Loaded into a real editor</h4>
+<h4>Loaded into a real editor, saved by the server</h4>
 <p class="text-muted small">
-	The document below is mounted straight from the JSON the <em>server</em>
-	produced - the browser never parsed the Carve source. The names have to line
-	up on both sides. The browser rejects JSON with a node or mark missing from
-	the editor schema and reports the error below.
-</p>
-<p class="small">
-	<button type="button" class="btn btn-sm btn-outline-warning" id="btn-skew">
-		<i class="bi bi-bug"></i> Add an editorial comment
-	</button>
-	<span class="text-muted ms-2">
-		A live check on that: <code>{# ... #}</code> becomes a
-		<code>carveCriticComment</code> mark, which only a CarveKit new enough to
-		declare it can hold. Pinning an older build can make this editor reject
-		the document while the server round trip still reports success.
-	</span>
+	The editor below is mounted straight from the JSON the <em>server</em> produced; the
+	browser never parses the Carve source. Edit it, and the editor's
+	<code>getJSON()</code> goes back to PHP, which writes the Carve source shown under it.
 </p>
 <div id="editor-status" class="small text-muted mb-2">Loading editor...</div>
-<div id="tiptap-editor" class="border rounded p-3 bg-white" style="min-height: 160px;"></div>
+<div id="tiptap-editor" class="carve border rounded p-3 bg-white" style="min-height: 160px;"></div>
+<label class="form-label mt-3" for="carve-saved"><strong>Saved by the server</strong> <span id="saved-status" class="small text-muted"></span></label>
+<textarea id="carve-saved" class="form-control font-monospace" rows="12" readonly style="font-size: 0.85em;"></textarea>
 
 <h3 class="mt-4">In PHP</h3>
-<pre class="bg-light p-3 border rounded"><code class="language-php">use MarkupCarve\Carve\CarveConverter;
+<pre class="bg-light p-3 border rounded"><code class="language-php">use MarkupCarve\Carve\Carve;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorRenderer;
 use MarkupCarve\Carve\ProseMirror\ProseMirrorToCarve;
 
-$converter = new CarveConverter();
 $renderer = new ProseMirrorRenderer();
+$json = $renderer-&gt;renderJson(Carve::parse($source));   // hand this to Tiptap
+$renderer-&gt;blanked();                                     // denied link and image destinations
 
-$document = $renderer-&gt;render($converter-&gt;parse($source));   // array, ready for Tiptap
-$renderer-&gt;droppedTypes();                                  // what the editor cannot hold
-$renderer-&gt;degradedTypes();                                 // what it holds only loosely
-
-$back = (new ProseMirrorToCarve())-&gt;convert($document);      // and all the way back
-$carve = CarveConverter::carve()-&gt;render($back);</code></pre>
+$carve = (new ProseMirrorToCarve())-&gt;convert($editorJson);  // editor.getJSON() back to Carve</code></pre>
 
 <?= $this->element('carve/output_styles') ?>
 
@@ -129,6 +128,14 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 #tiptap-editor h2 { font-size: 1.35em; }
 #tiptap-editor pre { background: #f8f9fa; padding: 0.6em 0.8em; border-radius: 6px; }
 #tiptap-editor blockquote { border-left: 3px solid #dee2e6; padding-left: 0.8em; color: #6c757d; }
+#tiptap-editor .carve-block, #tiptap-editor .carve-inline { background: #f1f3f5; border-radius: 4px; padding: 0 0.3em; }
+#tiptap-editor ul[data-type="taskList"] { list-style: none; padding-left: 0.4em; }
+#tiptap-editor ul[data-type="taskList"] li { display: flex; gap: 0.5em; align-items: baseline; }
+#tiptap-editor ul[data-type="taskList"] li > div > p { margin: 0; }
+#tiptap-editor .carve-footnote-ref { color: var(--bs-link-color); cursor: default; }
+#tiptap-editor aside.carve-footnote { border-top: 1px solid #dee2e6; margin-top: 1em; padding-top: 0.5em; font-size: 0.9em; display: flex; gap: 0.4em; }
+#tiptap-editor aside.carve-footnote[data-key]::before { content: attr(data-key) "."; color: #6c757d; }
+#tiptap-editor aside.carve-footnote > p { margin: 0; }
 </style>
 
 </div>
@@ -140,7 +147,7 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 	const carveBack = document.getElementById('carve-back');
 	const alertContainer = document.getElementById('alert-container');
 	const stability = document.getElementById('stability');
-	const fidelity = document.getElementById('fidelity');
+	const blanked = document.getElementById('blanked');
 	const btnCopyPm = document.getElementById('btn-copy-pm');
 
 	const convertUrl = <?= json_encode($this->Url->build(['action' => 'convertProseMirror'])) ?>;
@@ -151,41 +158,17 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 		return div.innerHTML;
 	}
 
-	// Both reports come back as a `type => reason` map, so an entry names the
-	// construct AND says why it could not be carried exactly.
-	function typeList(types, emptyLabel, cssClass) {
-		const entries = types ? Object.entries(types) : [];
-		if (entries.length === 0) {
-			return '<div class="text-success"><i class="bi bi-check-circle"></i> ' + emptyLabel + '</div>';
-		}
+	function post(field, value) {
+		const formData = new FormData();
+		formData.append(field, value);
 
-		return '<ul class="' + cssClass + ' mb-0 ps-3">'
-			+ entries.map(([type, reason]) =>
-				'<li><code>' + escapeHtml(type) + '</code>'
-				+ (reason && reason !== type ? ' <span class="text-muted">- ' + escapeHtml(String(reason)) + '</span>' : '')
-				+ '</li>').join('')
-			+ '</ul>';
+		return fetch(convertUrl, {
+			method: 'POST',
+			body: formData,
+			headers: { 'X-Requested-With': 'XMLHttpRequest' }
+		}).then(response => response.json());
 	}
-
-	// A line-level diff is enough here: the losses this bridge produces are
-	// re-spellings of a block opener, not reflowed prose.
-	function renderFormDiff(before, after) {
-		const target = document.getElementById('form-diff');
-		const beforeLines = (before || '').split('\n');
-		const afterLines = (after || '').split('\n');
-		const onlyIn = (a, b) => a.filter(line => line.trim() !== '' && !b.includes(line));
-
-		const removed = onlyIn(beforeLines, afterLines);
-		const added = onlyIn(afterLines, beforeLines);
-
-		target.innerHTML = '<div class="row"><div class="col-md-6">'
-			+ '<div class="small text-muted">as authored</div>'
-			+ '<pre class="border rounded p-2 mb-0 bg-light" style="font-size: 0.8em;">'
-			+ removed.map(escapeHtml).join('\n') + '</pre></div><div class="col-md-6">'
-			+ '<div class="small text-muted">after the round trip</div>'
-			+ '<pre class="border rounded p-2 mb-0 bg-light" style="font-size: 0.8em;">'
-			+ added.map(escapeHtml).join('\n') + '</pre></div></div>';
-	}
+	window.carveSaveProseMirror = (json) => post('pm', json);
 
 	let debounceTimer;
 	function convert() {
@@ -194,15 +177,7 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 	}
 
 	function doConvert() {
-		const formData = new FormData();
-		formData.append('carve', carveInput.value);
-
-		fetch(convertUrl, {
-			method: 'POST',
-			body: formData,
-			headers: { 'X-Requested-With': 'XMLHttpRequest' }
-		})
-		.then(response => response.json())
+		post('carve', carveInput.value)
 		.then(data => {
 			alertContainer.innerHTML = '';
 			if (data.error) {
@@ -218,22 +193,17 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 				? '<div class="text-success"><i class="bi bi-check-circle"></i> <strong>Meaning</strong> survived: rendered HTML is identical.</div>'
 				: '<div class="text-danger"><i class="bi bi-x-circle"></i> <strong>Meaning</strong> changed: rendered HTML differs.</div>')
 				+ (data.carveStable
-				? '<div class="text-success"><i class="bi bi-check-circle"></i> <strong>Authored form</strong> survived: canonical Carve is identical.</div>'
-				: '<div class="text-warning"><i class="bi bi-exclamation-triangle"></i> <strong>Authored form</strong> changed: the canonical Carve differs, so the document says the same thing a different way. '
-					+ '<button type="button" class="btn btn-link btn-sm p-0 align-baseline" id="btn-show-diff">show what changed</button></div>')
+				? '<div class="text-success"><i class="bi bi-check-circle"></i> <strong>Source</strong> survived: identical to <code>Carve::write()</code> of the parsed input.</div>'
+				: '<div class="text-warning"><i class="bi bi-exclamation-triangle"></i> <strong>Source</strong> differs from <code>Carve::write()</code> of the parsed input.</div>')
 				+ '<div class="text-muted mt-1">to ProseMirror: ' + escapeHtml(String(data.msToPm)) + ' ms'
-				+ ' &middot; back to Carve: ' + escapeHtml(String(data.msToCarve)) + ' ms</div>'
-				+ '<div id="form-diff" class="mt-2"></div>';
+				+ ' &middot; back to Carve: ' + escapeHtml(String(data.msToCarve)) + ' ms</div>';
 
-			const btnDiff = document.getElementById('btn-show-diff');
-			if (btnDiff) {
-				btnDiff.addEventListener('click', () => renderFormDiff(data.canonical, data.carve));
-			}
-
-			fidelity.innerHTML = '<div class="mb-1"><strong>Dropped</strong> (no place in the editor model): '
-				+ typeList(data.dropped, 'nothing dropped', 'text-danger') + '</div>'
-				+ '<div><strong>Degraded</strong> (held, but not exactly): '
-				+ typeList(data.degraded, 'nothing degraded', 'text-warning') + '</div>';
+			const entries = data.blanked || [];
+			blanked.innerHTML = entries.length === 0
+				? '<div class="text-success"><i class="bi bi-check-circle"></i> no denied link or image destination</div>'
+				: '<div>Denied by the URL policy, so the editor gets <code>null</code> in the link or image attribute; '
+					+ 'the value stays in the <code>carve</code> attribute and comes back on save:</div>'
+					+ '<ul class="mb-0 ps-3">' + entries.map(url => '<li><code>' + escapeHtml(url) + '</code></li>').join('') + '</ul>';
 
 			if (window.carveMountProseMirror && data.pm) {
 				window.carveMountProseMirror(data.pm);
@@ -243,10 +213,6 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 	}
 
 	carveInput.addEventListener('input', convert);
-	document.getElementById('btn-skew').addEventListener('click', function() {
-		carveInput.value = carveInput.value.replace(/\s*$/, '\n\nAnd {# an editorial comment #} in the prose.\n');
-		doConvert();
-	});
 	btnCopyPm.addEventListener('click', function() {
 		if (!navigator.clipboard) {
 			return;
@@ -286,8 +252,7 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 		"@tiptap/extension-hard-break": "https://esm.sh/@tiptap/extension-hard-break@3.32.0",
 		"@tiptap/extension-heading": "https://esm.sh/@tiptap/extension-heading@3.32.0",
 		"@tiptap/extension-ordered-list": "https://esm.sh/@tiptap/extension-ordered-list@3.32.0",
-		"carve-grammars/carve-kit.js": "https://esm.sh/gh/markup-carve/carve-grammars@414f9bbd/tiptap/carve-kit.js?external=node-diff3,@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-hard-break,@tiptap/extension-heading,@tiptap/extension-ordered-list",
-		"node-diff3": "https://cdn.jsdelivr.net/npm/node-diff3@3.2.1/dist/diff3.mjs"
+		"@markup-carve/carve-grammars/tiptap": "https://esm.sh/gh/markup-carve/carve-grammars@3121599/tiptap/index.js?external=@tiptap/core,@tiptap/starter-kit,@tiptap/extension-code,@tiptap/extension-code-block,@tiptap/extension-highlight,@tiptap/extension-subscript,@tiptap/extension-superscript,@tiptap/extension-underline,@tiptap/extension-link,@tiptap/extension-image,@tiptap/extension-table,@tiptap/extension-table-row,@tiptap/extension-table-cell,@tiptap/extension-table-header,@tiptap/extension-task-list,@tiptap/extension-task-item,@tiptap/extension-bullet-list,@tiptap/extension-list-item,@tiptap/extension-ordered-list"
 	}
 }
 </script>
@@ -297,27 +262,46 @@ $carve = CarveConverter::carve()-&gt;render($back);</code></pre>
 // CDN hiccup must not take the rest of the page down with it, so the mount is
 // guarded and reports its own failure.
 const status = document.getElementById('editor-status');
+const saved = document.getElementById('carve-saved');
+const savedStatus = document.getElementById('saved-status');
+
+function save(editor) {
+	window.carveSaveProseMirror(JSON.stringify(editor.getJSON())).then(data => {
+		if (data.error) {
+			savedStatus.textContent = 'The server could not write the document: ' + data.error;
+			savedStatus.className = 'small text-danger';
+
+			return;
+		}
+		saved.value = data.carve;
+		savedStatus.textContent = '(' + data.msToCarve + ' ms)';
+		savedStatus.className = 'small text-muted';
+	});
+}
 
 try {
 	const { Editor } = await import('@tiptap/core');
-	const { CarveKit } = await import('carve-grammars/carve-kit.js');
+	const { CarveKit } = await import('@markup-carve/carve-grammars/tiptap');
 
+	let saveTimer;
 	const editor = new Editor({
 		element: document.getElementById('tiptap-editor'),
-		extensions: [CarveKit.configure({ starterKit: { trailingNode: false } })],
+		extensions: [CarveKit],
 		content: { type: 'doc', content: [] },
 		editable: true,
+		onUpdate: ({ editor }) => {
+			clearTimeout(saveTimer);
+			saveTimer = setTimeout(() => save(editor), 300);
+		},
 	});
 
-	// Tiptap 3 can reject invalid JSON when requested. Check the mounted node
-	// count as well, since a normalized document may contain fewer blocks.
 	window.carveMountProseMirror = function (json) {
 		let parsed;
 		try {
 			parsed = JSON.parse(json);
 		} catch (e) {
-			status.innerHTML = '<span class="text-danger"><i class="bi bi-x-circle"></i> Server JSON did not parse: '
-				+ (e && e.message ? e.message : e) + '</span>';
+			status.textContent = 'Server JSON did not parse: ' + (e && e.message ? e.message : e);
+			status.className = 'small text-danger mb-2';
 
 			return;
 		}
@@ -326,24 +310,22 @@ try {
 		try {
 			editor.commands.setContent(parsed, { emitUpdate: false, errorOnInvalidContent: true });
 		} catch (e) {
-			const error = document.createElement('span');
-			error.className = 'text-danger';
-			error.textContent = 'The editor rejected the server document: ' + (e && e.message ? e.message : e);
-			status.replaceChildren(error);
+			status.textContent = 'The editor rejected the server document: ' + (e && e.message ? e.message : e);
+			status.className = 'small text-danger mb-2';
+
 			return;
 		}
 		const mounted = editor.state.doc.content.childCount;
-
 		if (expected > 0 && mounted < expected) {
-			status.innerHTML = '<span class="text-danger"><i class="bi bi-x-circle"></i> '
-				+ 'The editor mounted only ' + mounted + ' of ' + expected + ' top-level nodes. '
-				+ 'Check whether the browser schema supports every node in the server document.</span>';
+			status.textContent = 'The editor mounted only ' + mounted + ' of ' + expected + ' top-level nodes.';
+			status.className = 'small text-danger mb-2';
 
 			return;
 		}
 
 		status.innerHTML = '<span class="text-success"><i class="bi bi-check-circle"></i> Mounted from the server document ('
 			+ mounted + ' top-level nodes).</span>';
+		save(editor);
 	};
 
 	const pending = document.getElementById('pm-output').value;
@@ -353,7 +335,7 @@ try {
 		status.textContent = 'Editor ready, waiting for the server document...';
 	}
 } catch (e) {
-	status.innerHTML = '<span class="text-warning"><i class="bi bi-exclamation-triangle"></i> Editor could not be loaded ('
-		+ (e && e.message ? e.message : e) + '). The conversion above is unaffected.</span>';
+	status.textContent = 'Editor could not be loaded (' + (e && e.message ? e.message : e) + '). The conversion above is unaffected.';
+	status.className = 'small text-warning mb-2';
 }
 </script>

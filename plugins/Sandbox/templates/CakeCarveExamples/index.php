@@ -6,7 +6,7 @@
 echo $this->element('cake_carve/highlighting');
 
 $source = <<<'CARVE'
-# Preset comparison
+= Preset comparison
 
 Here is /emphasis/ and a [safe link](https://example.com).
 
@@ -22,27 +22,29 @@ CARVE;
 $examples = [
 	'default' => ['preset' => 'default'],
 	'comment' => ['preset' => 'comment'],
+	'article' => ['profile' => 'article'],
+	'minimal' => ['profile' => 'minimal'],
 	'trusted' => ['preset' => 'trusted'],
-	'strict' => ['safeMode' => 'strict'],
-	'raw html stripped' => ['rawHtml' => 'strip'],
+	'strict url policy' => ['urlPolicy' => ['allow' => ['https', 'mailto']]],
 ];
 $document = <<<'CARVE'
 ---json
 {"title": "Document metadata"}
 ---
-# First heading
+
+= First heading
 
 A short document.
 
-## Second heading
+== Second heading
 
 More content.
 
-## Third heading
+== Third heading
 
 End.
 CARVE;
-$result = $this->Carve->render($document, ['extensions' => ['frontmatter']]);
+$result = $this->Carve->render($document);
 ?>
 
 <div class="row">
@@ -64,12 +66,15 @@ $this->addHelper('MarkupCarve/CakeCarve.Carve');
 echo $this->Carve->convert($text, ['preset' => 'comment']);
 PHP, 'lang' => 'php']); ?>
 
-	<h3>Presets and safe mode</h3>
+	<h3>Presets and profiles</h3>
 	<p>
-		One source rendered with each option set. <code>comment</code> uses the comment profile and strict safe mode,
-		<code>strict</code> only tightens safe mode, and <code>trusted</code> turns safe mode off.
-		<code>raw html stripped</code> sets <code>rawHtml: 'strip'</code>, which removes raw HTML blocks instead of escaping them as the default does.
+		One source rendered with each option set. Every set denies <code>javascript:</code> and other unsafe URL schemes through <code>urlPolicy</code>
+		and drops event attributes. The default escapes raw HTML into a code block; <code>article</code>, <code>comment</code> and <code>minimal</code>
+		are profiles that degrade what they do not allow to text, <code>trusted</code> sets <code>rawHtml: true</code> to keep raw HTML,
+		and <code>strict url policy</code> tightens the URL filter to an allow list, the 0.2 form of the 0.1 strict safe mode.
 	</p>
+	<p class="small text-muted">Carve 0.2 has no <code>safeMode</code> option: <code>rawHtml</code> (off by default, raw HTML is escaped) and <code>urlPolicy</code> replace it.
+		There is no <code>rawHtml: 'strip'</code> either: raw HTML is escaped or kept (C2-H-050, C2-H-053).</p>
 	<?php echo $this->element('cake_carve/code', ['code' => $source, 'lang' => 'carve']); ?>
 
 	<div class="row">
@@ -97,10 +102,11 @@ PHP, 'lang' => 'php']); ?>
 	<?php echo $this->element('cake_carve/code', ['code' => <<<'BASH'
 bin/cake carve render document.crv --preset comment
 bin/cake carve render document.crv --format ansi
-bin/cake carve convert article.md --from markdown --output article.crv
+bin/cake carve convert page.html --from html --output page.crv
 bin/cake carve format document.crv --check --align-tables
 bin/cake carve lint document.crv
 BASH, 'lang' => 'bash']); ?>
+	<p class="small text-muted"><code>carve convert</code> imports HTML only; the plugin dropped the 0.1 Markdown, Djot and BBCode importers.</p>
 
 </div>
 </div>

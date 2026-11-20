@@ -1,5 +1,6 @@
-ARG CARVE_PDF_VERSION=0.1.1
-ARG CARVE_PDF_SHA256=8ba029c10a95cab2c4e4084a4884b17e6bc40fc6f987828eb480f3c4f42dd946
+# carve-pdf next2 (Carve 0.2 engines); no 0.2 tag exists yet, so the archive is pinned by commit.
+ARG CARVE_PDF_REF=6014826903268ee299a442295259145cbcf7f4f7
+ARG CARVE_PDF_SHA256=68e8549c371cf66661fa180a02f4840a518304912f2e893d4633ebd68ff8b83e
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends chromium python3-websocket \
@@ -8,7 +9,7 @@ RUN apt-get update \
     && chromium --version
 
 RUN curl -fsSL -o /tmp/carve-pdf.tar.gz \
-        "https://github.com/markup-carve/carve-pdf/archive/refs/tags/${CARVE_PDF_VERSION}.tar.gz" \
+        "https://github.com/markup-carve/carve-pdf/archive/${CARVE_PDF_REF}.tar.gz" \
     && echo "${CARVE_PDF_SHA256}  /tmp/carve-pdf.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/carve-pdf \
     && tar -xzf /tmp/carve-pdf.tar.gz -C /opt/carve-pdf --strip-components=1 \

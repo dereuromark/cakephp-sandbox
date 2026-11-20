@@ -15,7 +15,7 @@
 <div class="alert alert-secondary">
 	<i class="bi bi-info-circle"></i>
 	This is a demo stub for the <strong>Wikilinks</strong> extension. There is no real wiki -
-	every <code>[[Page]]</code> link from the
+	every <code>:wiki[Page]</code> link from the
 	<?= $this->Html->link('Carve playground', ['action' => 'index']) ?>
 	resolves here so the links are not dead.
 </div>

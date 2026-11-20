@@ -1,6 +1,6 @@
 import { DiagnosticSeverity, DocumentHighlightKind, InlayHintKind, type Diagnostic, type DocumentHighlight, type Hover, type InlayHint, type Position, type Range } from 'vscode-languageserver-types'
-import { parse } from '@markup-carve/carve'
-import { astColumnToCharacter } from './position.js'
+import { parseWithDiagnostics } from './engine.js'
+import { astColumnToCharacter, astOffsetToIndex } from './position.js'
 
 interface UnclosedContainer { kind: string; line: number; column: number; startOffset: number; endOffset: number; fenceWidth: number }
 
@@ -24,8 +24,11 @@ const FENCE_KIND_LABELS: Record<string, string> = { hard_break_block: 'hard-brea
 
 export function colonFenceStructure(source: string): { openers: FenceSite[]; pairs: FencePair[]; diagnostics: Diagnostic[] } {
   const lines = source.replace(/\r\n?/g, '\n').split('\n')
-  const unclosed: UnclosedContainer[] = []
-  const document = parse(source, { positions: true, onUnclosedContainer: (site) => unclosed.push(site) })
+  const parsed = parseWithDiagnostics(source)
+  const document = parsed.document
+  const unclosed = parsed.diagnostics.flatMap((entry) => entry.code === 'unclosed-container-fence' && entry.range
+    ? [unclosedSite(source, entry.range.startOffset)]
+    : [])
   const key = (line: number, column: number, width: number) => `${line}:${column}:${width}`
   // Keys use UTF-16 columns, the unit every FenceSite range carries.
   const unclosedKeys = new Set(unclosed.map((site) => key(site.line, astColumnToCharacter(lines[site.line - 1] ?? '', site.column) + 1, site.fenceWidth)))
@@ -192,4 +195,16 @@ function lineRun(line: string, at: number): { width: number; bare: boolean } | n
 }
 function contains(range: Range, p: Position): boolean {
   return p.line === range.start.line && p.character >= range.start.character && p.character <= range.end.character
+}
+
+/** The site of an unclosed container fence, from the start of its diagnostic range. */
+function unclosedSite(source: string, byteOffset: number): UnclosedContainer {
+  const index = astOffsetToIndex(source, byteOffset)
+  const before = source.slice(0, index).replace(/\r\n?/g, '\n')
+  const line = before.split('\n').length
+  const lineStart = before.lastIndexOf('\n') + 1
+  const lineText = source.replace(/\r\n?/g, '\n').split('\n')[line - 1] ?? ''
+  const at = index - lineStart
+  const fenceWidth = /^:*/.exec(lineText.slice(at))![0].length
+  return { kind: 'container', line, column: [...lineText.slice(0, at)].length + 1, startOffset: index, endOffset: index, fenceWidth }
 }

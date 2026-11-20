@@ -1,4 +1,4 @@
-import { parse } from '@markup-carve/carve'
+import { parse, stringOffsetOfByte } from './engine.js'
 
 /**
  * Converts between the units Carve positions and LSP positions count.
@@ -174,26 +174,28 @@ export function characterToAstColumn(lineText: string, character: number): numbe
 }
 
 /**
- * An OFFSET as the installed parser reports it, to the index a JavaScript
- * string is sliced by.
- *
- * The same divergence as the column pair above, one axis over: an offset into
- * the whole document rather than into a line. It is the conversion a position
- * computed by slicing the source needs, and only for offsets the PARSER
- * produced - `djotMigrationWarnings` reports UTF-16 offsets, and passing one
- * through here would move it.
+ * A tree OFFSET, which counts UTF-8 bytes in Carve 0.2 (C2-A-140), to the index
+ * a JavaScript string is sliced by. An offset past the end keeps its distance.
  */
 export function astOffsetToIndex(source: string, offset: number): number {
-  if (engineColumnUnit() !== 'codepoint') return offset
+  const total = utf8LengthOf(source)
+  if (offset > total) return source.length + (offset - total)
+  return stringOffsetOfByte(source, Math.max(0, offset))
+}
 
+function utf8LengthOf(source: string): number {
+  return new TextEncoder().encode(source).length
+}
+
+/**
+ * A CODEPOINT offset, as `IncludeWarning` reports it, to a string index.
+ */
+export function codepointOffsetToIndex(source: string, offset: number): number {
   let index = 0
   let counted = 0
   while (index < source.length && counted < offset) {
     index += (source.codePointAt(index) ?? 0) > 0xffff ? 2 : 1
     counted += 1
   }
-
-  // An offset past the end keeps its distance rather than collapsing onto it,
-  // for the same reason the column conversion does: an end offset is exclusive.
   return index + Math.max(0, offset - counted)
 }

@@ -5,12 +5,12 @@
  */
 
 $defaultCarve = <<<'CARVE'
-# Carve AST
+= Carve AST
 
 A paragraph with *strong*, /emphasis/ and a [link](https://example.org).
 
 ::: note
-Admonitions are divs carrying a class.
+An admonition is its own node in the tree.
 :::
 
 - one
@@ -28,7 +28,7 @@ CARVE;
 $defaultTree = <<<'JSON'
 {
   "type": "document",
-  "srcByteLength": 44,
+  "astVersion": "2.0",
   "children": [
     {
       "type": "heading",
@@ -39,7 +39,7 @@ $defaultTree = <<<'JSON'
       "type": "paragraph",
       "children": [
         { "type": "text", "value": "Field names are pinned by " },
-        { "type": "code", "value": "PART 12" },
+        { "type": "code", "value": "AST 2.0" },
         { "type": "text", "value": "." }
       ]
     }
@@ -56,20 +56,20 @@ JSON;
 
 <h2>AST Inspector</h2>
 <p>
-	The parsed document as JSON, in the shape
-	<a href="https://github.com/markup-carve/carve" target="_blank">PART 12</a> of the spec pins.
-	Until now the tree was reachable only as PHP objects, so anything that is not
-	"source to HTML" had to render HTML and parse it back. This is what editors,
-	linters and structural diffing actually want.
+	The parsed document as JSON, in the AST 2.0 shape the
+	<a href="https://github.com/markup-carve/carve" target="_blank">spec</a> pins
+	(<code>"astVersion": "2.0"</code>). Editors, linters and structural diffing work on this tree
+	instead of rendering HTML and parsing it back.
 </p>
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	Same shape as <code>bin/carve --json</code> (and <code>--from-json</code> for the
-	other direction). Because the field names are spec-pinned rather than
+	Same shape as <code>vendor/bin/carve ast FILE</code> (and <code>carve render --from-ast</code>
+	for the other direction). Because the field names are spec-pinned rather than
 	engine-private, a tree produced by <strong>carve-js</strong> or
-	<strong>carve-rs</strong> decodes here - and one this decoder would lose fields
-	from is rejected outright instead of being silently read as a different document.
+	<strong>carve-rs</strong> decodes here - and one that fails the schema
+	is rejected outright instead of being silently read as a different document.
+	A stored 1.x tree from a 0.1 engine is migrated to 2.0 first (<code>Carve::migrateTree()</code>).
 </div>
 
 <h4>Carve <i class="bi bi-arrow-right"></i> AST</h4>
@@ -81,9 +81,9 @@ JSON;
 		<div class="form-check mt-2">
 			<input class="form-check-input" type="checkbox" id="opt-positions" checked>
 			<label class="form-check-label" for="opt-positions">
-				Source positions (§4)
+				Source positions
 				<span class="text-muted small">
-					- opt-in: tracking costs work on every parse, so it is off unless asked for.
+					- the <code>pos</code> field of every node; 0.2 always records it, unchecked strips it from the view.
 				</span>
 			</label>
 		</div>
@@ -106,9 +106,9 @@ JSON;
 
 <h4>AST <i class="bi bi-arrow-right"></i> rendered</h4>
 <p class="text-muted small">
-	The reverse direction: paste a tree from any engine and render it through the
-	same formats as source. Edit the JSON below - break a field name and watch the
-	decoder refuse it rather than guess.
+	The reverse direction: paste a 2.0 tree from any engine (or a 1.x tree, which is migrated)
+	and render it through the same formats as source. Edit the JSON below - break a field name
+	and watch the decoder refuse it rather than guess.
 </p>
 
 <div class="row">
@@ -132,20 +132,19 @@ JSON;
 <div id="decode-alert" class="mt-2"></div>
 
 <h3 class="mt-4">In PHP</h3>
-<pre class="bg-light p-3 border rounded"><code class="language-php">use MarkupCarve\Carve\Ast\AstCodec;
-use MarkupCarve\Carve\CarveConverter;
-use MarkupCarve\Carve\Parser\BlockParser;
+<pre class="bg-light p-3 border rounded"><code class="language-php">use MarkupCarve\Carve\Carve;
 
-$codec = new AstCodec();
+$document = Carve::parse($source);
 
-// Source positions are opt-in - they cost work on every parse.
-$converter = new CarveConverter(parser: new BlockParser(trackPositions: true));
-$document = $converter->parse($source);
+// AST 2.0 JSON; every node carries its source position in `pos`.
+$json = Carve::encodeTree($document);
+$again = Carve::decodeTree($json);
 
-$json = $codec->encodeJson($document, JSON_PRETTY_PRINT);
-$again = $codec->decodeJson($json);
+Carve::render($again); // identical to Carve::render($document)
+Carve::write($again);  // back to canonical Carve source
 
-$converter->render($again); // identical to render($document)</code></pre>
+// A 1.x tree stored by a 0.1 engine:
+$document = Carve::decodeTree(json_encode(Carve::migrateTree($oldJson)['document']));</code></pre>
 
 </div>
 

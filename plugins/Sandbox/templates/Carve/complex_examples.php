@@ -26,7 +26,7 @@ CARVE,
 > To be or not to be,
 > that is the question.
 >
-> Whether 'tis nobler in the mind to suffer
+> Whether ’tis nobler in the mind to suffer
 > the slings and arrows of outrageous fortune...
 ^ William Shakespeare, *Hamlet*
 CARVE,
@@ -50,13 +50,13 @@ CARVE,
 |={<} Feature |={~} Markdown |={>} Carve |
 | Emphasis | `*text*` | `/text/` |
 | Strong | `**text**` | `*text*` |
-| Strikethrough | `~~text~~` | `~text~` |
-| Highlight | N/A | `=text=` |
+| Strikethrough | `~~text~~` | `{~text~}` |
+| Highlight | N/A | `{=text=}` |
 ^ Syntax comparison between Markdown and Carve
 CARVE,
 	],
 	'Table with Cell Spans' => [
-		'description' => 'Cells merge with `^` (rowspan, continues the cell above) and `<` (colspan, merges with the cell to the left). Per-cell markers like `|>` override the column alignment.',
+		'description' => 'Cells merge with `^` (rowspan, continues the cell above) and `<` (colspan, merges with the cell to the left). A cell\'s own attribute block, like `|{>}`, overrides the column alignment.',
 		'code' => <<<'CARVE'
 |= Category |= Item |={>} Price |
 | Fruit | Apple | $1.00 |
@@ -78,14 +78,14 @@ CARVE,
 CARVE,
 	],
 	'Table Row Partitions' => [
-		'description' => '`{header-rows=N}` and `{footer-rows=N}` on the line above the table name the partitions explicitly: the first N rows become the `<thead>` (cells promoted to `<th>`), the last N the `<tfoot>`. Naming either key replaces the automatic `|=` detection, so name both where the table also has a header.',
+		'description' => 'The `|=` header row becomes the `<thead>`. `{footer-rows=N}` on the line above the table moves the last N rows into the `<tfoot>`. (0.2 dropped `header-rows` on pipe tables: mark header cells with `|=`.)',
 		'code' => <<<'CARVE'
-{header-rows=1 footer-rows=1}
+{footer-rows=1}
 |={<} Item |={>} Qty |={>} Price |
 | Coffee | 2 | 8.00 |
 | Tea | 1 | 3.50 |
 | Total | 3 | 11.50 |
-^ First row is the thead, last row the tfoot
+^ The |= row is the thead, footer-rows=1 makes the last row the tfoot
 CARVE,
 	],
 	'Inherited Cell Alignment' => [
@@ -115,8 +115,7 @@ CARVE,
 	'TSV Table without Header' => [
 		'description' => 'A `tsv` fence splits on TAB. The other table attributes apply too: `header-rows=0` drops the header row and `aligns` sets per-column alignment.',
 		'code' => <<<'CARVE'
-{header-rows=0 aligns=left,right}
-{table}
+{table aligns=left,right header-rows=0}
 ```tsv
 Apple	12
 Pear	3
@@ -125,33 +124,34 @@ Plum	7
 CARVE,
 	],
 	'Fenced Block Quote' => [
-		'description' => 'A `::: >` fence opens a quote whose body is ordinary block content - no `>` prefix to maintain on every line, and the same node the prefixed form produces. The source records which spelling was authored, so `carve fmt` writes it back unchanged. Widen the fence to nest.',
+		'description' => 'A `::: >` fence opens a quote whose body is ordinary block content - no `>` prefix to maintain on every line, and the same node the prefixed form produces. The source records which spelling was authored, so `carve fmt` writes it back unchanged. To nest, give the outer fence more colons than the inner one.',
 		'code' => <<<'CARVE'
-::: >
+:::: >
 Fenced quotes hold whatever a block can hold:
 
 - a list
 - another item
 
-:::: >
-And a nested quote, on a wider fence.
-::::
+::: >
+A nested quote sits inside a wider outer fence.
 :::
+::::
 ^ Same node as the prefixed form, easier to edit
 CARVE,
 	],
-	'Spelled List Looseness' => [
-		'description' => 'Looseness normally follows from blank lines between items. `{loose}` on the line above says it outright, so every item renders its content in block wrappers without the author padding the source with blank lines.',
+	'Loose and Tight Lists' => [
+		'description' => 'A blank line between any two items makes the whole list loose, so every item renders its content in paragraphs. (The 0.1 `{loose}` attribute is gone in 0.2: blank lines are the only spelling.)',
 		'code' => <<<'CARVE'
-{loose}
-- Each item is wrapped in a paragraph
-- Even though the source is tight
-- No blank lines needed
+- A blank line between items
 
-Compare with the same list, unmarked:
+- makes the whole list loose:
 
-- Each item stays inline
-- Because nothing said otherwise
+- every item is wrapped in a paragraph
+
+Compare with a tight list:
+
+- No blank lines between items
+- keep the items inline
 CARVE,
 	],
 	'Definition List (Multiple Terms/Definitions)' => [
@@ -177,28 +177,30 @@ CARVE,
     . With continuation
   - Back to second level
 . Continue first level
+
   > Blockquote inside list
 CARVE,
 	],
-	'Continuation Marker' => [
-		'description' => 'A lone `+` attaches the next block to the open list item, block quote, footnote or description without indenting it. The list stays tight. The formatter writes the attached block indented instead.',
+	'Blocks inside List Items' => [
+		'description' => 'A block indented to the item text, after a blank line, belongs to the list item. (The 0.1 `+` continuation line is gone in 0.2: indent the block instead.)',
 		'code' => <<<'CARVE'
 - Install the plugin
-+
-> Run composer from the project root.
+
+  > Run composer from the project root.
+
 - Load the plugin
-+
-```php
-$this->addPlugin('MarkupCarve/CakeCarve');
-```
+
+  ```php
+  $this->addPlugin('MarkupCarve/CakeCarve');
+  ```
 CARVE,
 	],
 	'Divs with Attributes' => [
 		'description' => 'Custom divs with classes and IDs for styling.',
 		'code' => <<<'CARVE'
-{.warning #important-notice}
+{#important-notice .warning}
 :::
-## Warning
+== Warning
 
 This is an important notice with custom styling.
 
@@ -240,7 +242,9 @@ CARVE,
 		'description' => 'Interactive task/checkbox lists.',
 		'code' => <<<'CARVE'
 - [ ] Uncompleted task
+
 - [x] Completed task
+
 - [ ] Another pending item
 
   With additional content under the task.
@@ -275,11 +279,11 @@ CARVE,
 		'code' => <<<'CARVE'
 - *strong text* (bold)
 - /emphasized text/ (italic)
-- _underlined text_ (underline)
-- ~struck text~ (strikethrough)
+- {_underlined text_} (underline)
+- {~struck text~} (strikethrough)
 - {+inserted text+} (insert)
 - {-deleted text-} (delete)
-- =highlighted text= (mark)
+- {=highlighted text=} (mark)
 - `inline code`
 - H{,2,}O (subscript)
 - x{^2^} (superscript)
@@ -288,14 +292,14 @@ CARVE,
 CARVE,
 	],
 	'Line Blocks' => [
-		'description' => 'Preserve line breaks for poetry or addresses with the ::: | fence. Leading indent and medial gaps (runs of two or more spaces) are kept, so verse caesuras and aligned columns survive; a blank line splits stanzas.',
+		'description' => 'Preserve line breaks for poetry or addresses with the ::: | fence. Leading indent is kept and a blank line splits stanzas.',
 		'code' => <<<'CARVE'
 ::: |
 The Road Not Taken
-Two roads diverged    in a yellow wood,
+Two roads diverged in a yellow wood,
 And sorry I could not travel both
   And be one traveler, long I stood
-And looked down one    as far as I could
+And looked down one as far as I could
 
 --- /Robert Frost/
 :::
@@ -334,17 +338,13 @@ ORDER BY post_count DESC;
 CARVE,
 	],
 	'Thematic Breaks' => [
-		'description' => 'Section dividers with different styles.',
+		'description' => 'A line of `***` is a section divider. A line of `---` is text in 0.2 (it renders as an em dash).',
 		'code' => <<<'CARVE'
 First section content.
 
----
-
-Second section after thematic break.
-
 ***
 
-Third section with asterisk break.
+Second section after a thematic break.
 CARVE,
 	],
 	'Reference Links' => [
@@ -355,7 +355,9 @@ Check out [Carve's homepage][carve] or the [PHP implementation][carve-php].
 You can also use [implicit][] references.
 
 [carve]: https://github.com/markup-carve/carve "Carve Markup Language"
+
 [carve-php]: https://github.com/markup-carve/carve-php
+
 [implicit]: https://example.com
 CARVE,
 	],
@@ -406,11 +408,11 @@ CARVE,
 	'Escaped Characters' => [
 		'description' => 'Use backslash to show literal special characters.',
 		'code' => <<<'CARVE'
-Show literal \*asterisks\* without emphasis.
+Show literal \*asterisks\* without strong emphasis.
 
-And \_underscores\_ without formatting.
+And \/slashes\/ without italics.
 
-Also \`backticks\` and \[brackets\].
+Also \`backticks\` without code.
 CARVE,
 	],
 	'Comments (Hidden)' => [
@@ -434,7 +436,7 @@ CARVE,
 		'description' => 'A `%%` comment line between list items is not a blank line, so the list stays tight: the items render without paragraph wrappers, and the note never reaches the output.',
 		'code' => <<<'CARVE'
 - Milk
-%% check the date before buying
+  %% check the date before buying
 - Bread
 - Coffee
 CARVE,
@@ -453,12 +455,12 @@ CARVE,
 		'description' => 'Custom IDs and classes on headings for linking.',
 		'code' => <<<'CARVE'
 {#intro .chapter}
-## Introduction
+== Introduction
 
 This section can be linked with [jump to intro](#intro).
 
 {#conclusion}
-## Conclusion
+== Conclusion
 
 And this with [jump to conclusion](#conclusion).
 CARVE,
@@ -466,7 +468,7 @@ CARVE,
 	'Boolean Attributes' => [
 		'description' => 'A bare word in a `{...}` block (no `#`, `.` or `=`) becomes a value-less boolean attribute. Here `download` rides on a link (inline, trailing) and `reversed` on an ordered list (block, preceding line); both flow straight onto the rendered element.',
 		'code' => <<<'CARVE'
-[Download the spec](/files/carve-spec.pdf){download .btn}
+[Download the spec](/files/carve-spec.pdf){.btn download}
 
 {reversed}
 1. Third place

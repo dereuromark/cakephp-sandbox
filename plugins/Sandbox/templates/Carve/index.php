@@ -133,29 +133,30 @@ window.carveRenderLanguageDiff = function(code) {
 $this->end();
 
 $defaultCarve = <<<'CARVE'
-# Carve Playground
+= Carve Playground
 
 This is a *Carve* markup demo.
 Try editing this text!
 
 ***
 
-## Features
+{#features}
+== Features
 
-- /emphasis/, *strong*, and _underline_ text
-- =highlighted= and ~struck~ text
+- /emphasis/, *strong*, and {_underline_} text
+- {=highlighted=} and {~struck~} text
 - {+inserted+} and {-deleted-} text
 - Links: [Carve docs](https://github.com/markup-carve/carve)
 - Inline `code` spans
 
-### Code Block
+=== Code Block
 
 ```php
 <?php
 echo "Hello, World!";
 ```
 
-### Language Diff
+=== Language Diff
 
 {.diff}
 ```js
@@ -164,19 +165,19 @@ echo "Hello, World!";
 + fileIcon.classList.remove("icon-file-text");
 ```
 
-### Blockquote
+=== Blockquote
 
 > The best way to predict the future is to invent it.
 ^ Alan Kay
 
-### Table
+=== Table
 
 {.table .table-striped}
 |= Name |= Type |
 | Carve | Markup |
 | PHP | Code |
 
-### Lists
+=== Lists
 
 . A *cool*
 . automatically *numbered*
@@ -184,13 +185,13 @@ echo "Hello, World!";
     - subsub
 . nested *list*
 
-### Task List
+=== Task List
 
 - [ ] Write documentation
 - [x] Create examples
 - [x] Test features
 
-### Definition List
+=== Definition List
 
 :: Carve
 : A lightweight markup language with clean syntax.
@@ -198,22 +199,22 @@ echo "Hello, World!";
 :: Djot
 : The predecessors that inspired Carve.
 
-### Super/Subscript
+=== Super/Subscript
 
 - Superscript: 2{^10^} = 1024
 - Subscript: H{,2,}O
 
-### Footnotes & Cross-references
+=== Footnotes & Cross-references
 
 Reference footnote[^1] and an inline footnote^[a quick aside, written inline].
 
-Jump back to the </#Features> section.
+Jump back to the </#features> section.
 
-### Extensions (on by default)
+=== Extensions (on by default)
 
 Bare links autolink: https://github.com/markup-carve/carve. Press [Esc]{kbd} to
 close, and [HTML]{abbr="HyperText Markup Language"} gets a tooltip. See the
-[[Getting Started]] wiki page.
+:wiki[Getting Started] wiki page.
 
 ::: tip
 Admonitions render as styled callouts. Tick "Disable extensions" above to turn
@@ -243,15 +244,14 @@ CARVE;
 			<option value="">No filter</option>
 			<option value="full">Full (all features)</option>
 			<option value="article">Article (no raw HTML)</option>
-			<option value="comment">Comment (no images/tables)</option>
+			<option value="comment">Comment (no headings/images/tables)</option>
 			<option value="minimal">Minimal (no links/highlights)</option>
 		</select>
 	</div>
 	<div class="col-auto">
-		<label class="form-label small mb-0 me-1">Filter:</label>
-		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-filter-mode" title="How to handle disallowed elements">
-			<option value="to_text">To Text</option>
-			<option value="strip">Strip</option>
+		<label class="form-label small mb-0 me-1">On violation:</label>
+		<select class="form-select form-select-sm d-inline-block w-auto" id="opt-filter-mode" title="Carve 0.2 renders what a profile refuses as text and reports it; Error fails the render instead (the 0.1 Strip mode is gone)">
+			<option value="to_text">Render as text</option>
 			<option value="error">Error</option>
 		</select>
 	</div>
@@ -281,7 +281,7 @@ CARVE;
 	<div class="col-auto">
 		<div class="form-check form-check-inline">
 			<input class="form-check-input" type="checkbox" id="opt-strict">
-			<label class="form-check-label" for="opt-strict">Strict</label>
+			<label class="form-check-label" for="opt-strict" title="Like carve render --strict (C2-T-051): any parse or render entry fails the render, the HTML is still shown">Strict</label>
 		</div>
 	</div>
 	<div class="col-auto">
@@ -317,20 +317,20 @@ CARVE;
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<button type="button" class="btn btn-outline-secondary" data-wrap="*" title="Bold"><i class="bi bi-type-bold"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-wrap="/" title="Italic"><i class="bi bi-type-italic"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="_" title="Underline"><i class="bi bi-type-underline"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="=" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-wrap="~" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{_" data-wrap-end="_}" title="Underline"><i class="bi bi-type-underline"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{=" data-wrap-end="=}" title="Highlight"><i class="bi bi-pencil-fill"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-wrap="{~" data-wrap-end="~}" title="Strikethrough"><i class="bi bi-type-strikethrough"></i></button>
 			</div>
 			<div class="btn-group btn-group-sm me-1" role="group">
 				<div class="btn-group btn-group-sm" role="group">
 					<button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" title="Heading level"><i class="bi bi-type-h1"></i></button>
 					<ul class="dropdown-menu">
-						<li><button type="button" class="dropdown-item" data-prefix="# ">Heading 1</button></li>
-						<li><button type="button" class="dropdown-item" data-prefix="## ">Heading 2</button></li>
-						<li><button type="button" class="dropdown-item" data-prefix="### ">Heading 3</button></li>
-						<li><button type="button" class="dropdown-item" data-prefix="#### ">Heading 4</button></li>
-						<li><button type="button" class="dropdown-item" data-prefix="##### ">Heading 5</button></li>
-						<li><button type="button" class="dropdown-item" data-prefix="###### ">Heading 6</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="= ">Heading 1</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="== ">Heading 2</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="=== ">Heading 3</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="==== ">Heading 4</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="===== ">Heading 5</button></li>
+						<li><button type="button" class="dropdown-item" data-prefix="====== ">Heading 6</button></li>
 					</ul>
 				</div>
 				<button type="button" class="btn btn-outline-secondary" data-prefix="> " title="Quote"><i class="bi bi-quote"></i></button>
@@ -354,7 +354,7 @@ CARVE;
 				<button type="button" class="btn btn-outline-secondary" data-prefix="- [ ] " title="Task list"><i class="bi bi-check2-square"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="image" title="Image"><i class="bi bi-image"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-action="table" title="Table"><i class="bi bi-table"></i></button>
-				<button type="button" class="btn btn-outline-secondary" data-block="---\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
+				<button type="button" class="btn btn-outline-secondary" data-block="***\n" title="Horizontal rule"><i class="bi bi-hr"></i></button>
 				<button type="button" class="btn btn-outline-secondary" data-block="::: note\n\n:::\n" data-cursor="-5" title="Admonition (note / tip / warning / ...)"><i class="bi bi-info-square"></i></button>
 			</div>
 			<div class="d-flex ms-auto me-1">
@@ -494,15 +494,15 @@ body.carve-fullscreen-open {
 <div class="section-heading"><h3 class="mt-4" id="test-examples">Test Examples</h3><a class="section-copy-link" href="#test-examples" data-copy-anchor="test-examples" aria-label="Copy link to Test Examples" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 
 <div class="section-heading"><h5 id="profile-feature-restriction">Profile Feature Restriction</h5><a class="section-copy-link" href="#profile-feature-restriction" data-copy-anchor="profile-feature-restriction" aria-label="Copy link to Profile Feature Restriction" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-<p class="text-muted small">Select different profiles to see how content gets filtered. Violations show which elements were converted to plain text.</p>
+<p class="text-muted small">Select different profiles to see how content gets filtered. Carve 0.2 renders a construct the profile refuses as text and lists it under violations; "On violation: Error" fails the render instead.</p>
 
 <div class="row mb-4">
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="article-profile-test">Article Profile Test</h6><a class="section-copy-link" href="#article-profile-test" data-copy-anchor="article-profile-test" aria-label="Copy link to Article Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Select "Article" profile - all formatting except raw HTML blocks.</p>
-		<pre class="bg-light p-2 border rounded"><code class="language-carve"># Full Formatting Works
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">= Full Formatting Works
 
-*Bold*, /italic/, =highlight=, `code` - all allowed!
+*Bold*, /italic/, {=highlight=}, `code` - all allowed!
 
 ```=html
 &lt;script&gt;alert('This raw block is filtered')&lt;/script&gt;
@@ -514,16 +514,16 @@ Tables, images, footnotes all work in article mode.</code></pre>
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="comment-profile-test">Comment Profile Test</h6><a class="section-copy-link" href="#comment-profile-test" data-copy-anchor="comment-profile-test" aria-label="Copy link to Comment Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
 		<p class="text-muted small">Select "Comment" profile - images, headings, and tables will be filtered.</p>
-		<pre class="bg-light p-2 border rounded"><code class="language-carve"># This heading will be filtered
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">= This heading will be filtered
 
-*Bold*, /italic/, =highlight=, 2{^10^} all allowed!
+*Bold*, /italic/, {=highlight=}, 2{^10^} all allowed!
 
 > Blockquotes and `code` work too.
 
 ![This image is not allowed](/img/cake.icon.png)
 
 |= Tables |= Not |= Allowed |
-| Cell    | Cell | Cell      |
+| Cell | Cell | Cell |
 
 [Links](https://example.com) work fine!</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="comment"><i class="bi bi-play-fill"></i> Try this</button>
@@ -533,20 +533,17 @@ Tables, images, footnotes all work in article mode.</code></pre>
 <div class="row mb-4">
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="minimal-profile-test">Minimal Profile Test</h6><a class="section-copy-link" href="#minimal-profile-test" data-copy-anchor="minimal-profile-test" aria-label="Copy link to Minimal Profile Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-		<p class="text-muted small">Select "Minimal" profile - basic formatting and lists, no links or highlights.</p>
+		<p class="text-muted small">Select "Minimal" profile - basic inline formatting, no links or highlights.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">*Bold*, /italic/, `code`, 2{^10^}, {+insert+}, {-delete-} work!
 
-- Lists work too
-- With nesting
-
-=Highlights= become plain text.
+{=Highlights=} become plain text.
 
 Links like [this](https://example.com) are filtered.</code></pre>
 		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="minimal"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="raw-html-test">Raw HTML Test</h6><a class="section-copy-link" href="#raw-html-test" data-copy-anchor="raw-html-test" aria-label="Copy link to Raw HTML Test" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-		<p class="text-muted small">Raw HTML requires "No filter" profile and "Raw" mode enabled.</p>
+		<p class="text-muted small">Carve 0.2 renders raw HTML only when the host enables <code>rawHtml</code>; otherwise the inline span shows as text and the block as an HTML listing. Needs "No filter" and the debug-only "Raw" mode.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">Inline raw: `&lt;span style="color:red"&gt;red text&lt;/span&gt;`{=html}
 
 Block raw HTML:
@@ -566,18 +563,29 @@ Block raw HTML:
 <div class="row mb-4">
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="warning-example">Warning Example</h6><a class="section-copy-link" href="#warning-example" data-copy-anchor="warning-example" aria-label="Copy link to Warning Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-		<p class="text-muted small">Loads with "Warnings" checkbox enabled.</p>
+		<p class="text-muted small">Loads with "Warnings" checkbox enabled. The unclosed fence runs to the end of the document and is reported as an error.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">[undefined link][missing-ref]
 
-This has an undefined footnote[^missing].</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try this</button>
+This has an undefined footnote[^missing].
+
+```php
+This code fence is never closed.</code></pre>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="" data-warnings="1"><i class="bi bi-play-fill"></i> Try this</button>
+	</div>
+	<div class="col-md-6">
+		<div class="section-heading"><h6 id="violation-error-example">Violation as Error Example</h6><a class="section-copy-link" href="#violation-error-example" data-copy-anchor="violation-error-example" aria-label="Copy link to Violation as Error Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
+		<p class="text-muted small">Loads the "Comment" profile with "On violation: Error": headings are not allowed there, so the render fails. </p>
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">= Headings are not allowed in comments
+
+The rest of this comment is fine.</code></pre>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="comment" data-filter-mode="error"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 	<div class="col-md-6">
 		<div class="section-heading"><h6 id="strict-mode-example">Strict Mode Example</h6><a class="section-copy-link" href="#strict-mode-example" data-copy-anchor="strict-mode-example" aria-label="Copy link to Strict Mode Example" title="Copy link"><i class="bi bi-link-45deg"></i></a></div>
-		<p class="text-muted small">Loads with "Strict" enabled and reports an unclosed code fence as an error.</p>
+		<p class="text-muted small">Loads with "Strict" enabled and reports an unclosed code fence as an error. As with <code>carve render --strict</code>, any parse or render entry fails the render; the HTML is still shown.</p>
 		<pre class="bg-light p-2 border rounded"><code class="language-carve">``` php
 This code fence is never closed.</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-strict="1"><i class="bi bi-play-fill"></i> Try this</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="" data-strict="1"><i class="bi bi-play-fill"></i> Try this</button>
 	</div>
 </div>
 
@@ -591,6 +599,7 @@ This code fence is never closed.</code></pre>
 			object storage, or an online API. This is <strong>transclusion</strong>:
 			see the <a href="https://markup-carve.github.io/carve/includes" target="_blank" rel="noopener">file-inclusion documentation</a>
 			for the syntax, resolver contract, and safety limits.
+			An include is a block of its own in Carve 0.2: <code>{{ ... }}</code> inside a sentence stays text.
 		</p>
 		<div class="table-responsive">
 			<table class="table table-sm align-middle">
@@ -602,31 +611,29 @@ This code fence is never closed.</code></pre>
 				</tbody>
 			</table>
 		</div>
-		<pre class="bg-light p-2 border rounded"><code class="language-carve"># Reusable content
+		<pre class="bg-light p-2 border rounded"><code class="language-carve">= Reusable content
 
 {{ library/intro.crv }}
 
-## Included list
+== Included list
 
 {{ library/features.crv }}
 
-This sentence contains {{ library/inline.crv }}.
-
 {{ library/chapter.crv @shift:auto }}
 
-## A named region
+== A named region
 
 {{ library/setup.crv @region:requirements }}
 
-## Source as code
+== Source as code
 
 {{ library/server.js @region:start @code:js }}
 
-## CSV data as a table
+== CSV data as a table
 
 {table}
 {{ library/plans.csv @code:csv }}</code></pre>
-		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-warnings="1"><i class="bi bi-play-fill"></i> Try config includes</button>
+		<button type="button" class="btn btn-sm btn-outline-primary mt-1 try-example" data-profile="" data-warnings="1"><i class="bi bi-play-fill"></i> Try config includes</button>
 	</div>
 </div>
 
@@ -703,7 +710,8 @@ This sentence contains {{ library/inline.crv }}.
 			}
 		}
 		if (params.get('profile')) optProfile.value = params.get('profile');
-		if (params.get('filter_mode')) optFilterMode.value = params.get('filter_mode');
+		// Old share links may carry the 0.1 `strip` mode, which 0.2 no longer has.
+		if (params.get('filter_mode') === 'error') optFilterMode.value = 'error';
 		if (params.get('soft_break_br') === '1') optSoftBreakBr.checked = true;
 		if (params.get('warnings') === '1') optWarnings.checked = true;
 		if (params.get('strict') === '1') optStrict.checked = true;
@@ -838,11 +846,8 @@ This sentence contains {{ library/inline.crv }}.
 			if (data.warnings && data.warnings.length > 0) {
 				let warningHtml = '<div class="alert alert-warning py-2"><strong>Warnings:</strong><ul class="mb-0 ps-3">';
 				data.warnings.forEach(function(w) {
-					warningHtml += '<li>' + escapeHtml(w.message) + ' (line ' + w.line + ')';
-					if (w.suggestion) {
-						warningHtml += ' <i class="bi bi-lightbulb text-primary" title="' + escapeHtml(w.suggestion) + '" style="cursor: help;"></i>';
-					}
-					warningHtml += '</li>';
+					warningHtml += '<li>' + escapeHtml(w.message)
+						+ ' <span class="text-muted small">(' + escapeHtml(findingWhere(w)) + ', <code>' + escapeHtml(w.rule) + '</code>)</span></li>';
 				});
 				warningHtml += '</ul></div>';
 				alertContainer.innerHTML += warningHtml;
@@ -856,16 +861,16 @@ This sentence contains {{ library/inline.crv }}.
 				let lintHtml = '<div class="alert alert-primary py-2"><strong><i class="bi bi-magic"></i> Lint:</strong> valid Carve, but likely not what was meant.<ul class="mb-0 ps-3 mt-1">';
 				data.lint.forEach(function(l) {
 					lintHtml += '<li>' + escapeHtml(l.message)
-						+ ' <span class="text-muted small">(line ' + l.line + ':' + l.column + ', <code>' + escapeHtml(l.rule) + '</code>)</span></li>';
+						+ ' <span class="text-muted small">(' + escapeHtml(findingWhere(l)) + ', <code>' + escapeHtml(l.rule) + '</code>)</span></li>';
 				});
 				lintHtml += '</ul></div>';
 				alertContainer.innerHTML += lintHtml;
 			}
 
 			if (data.violations && data.violations.length > 0) {
-				let violationHtml = '<details class="alert alert-info py-2"><summary style="cursor: pointer;"><strong>Profile Violations:</strong> ' + data.violations.length + ' element(s) filtered.</summary><ul class="mb-0 ps-3 mt-2">';
+				let violationHtml = '<details class="alert alert-info py-2"><summary style="cursor: pointer;"><strong>Profile Violations:</strong> ' + data.violations.length + ' construct(s) not allowed by the profile.</summary><ul class="mb-0 ps-3 mt-2">';
 				data.violations.forEach(function(v) {
-					violationHtml += '<li><code>' + escapeHtml(v.nodeType) + '</code>: ' + escapeHtml(v.reason) + '</li>';
+					violationHtml += '<li>' + escapeHtml(v.message) + ' <span class="text-muted small">(<code>' + escapeHtml(v.reason) + '</code>)</span></li>';
 				});
 				violationHtml += '</ul></details>';
 				alertContainer.innerHTML += violationHtml;
@@ -928,6 +933,15 @@ This sentence contains {{ library/inline.crv }}.
 				console.error('Conversion error:', err);
 			}
 		});
+	}
+
+	// A finding inside an included file has no line in the editor source.
+	function findingWhere(finding) {
+		if (finding.line === null || finding.line === undefined) {
+			return finding.file ? 'in ' + finding.file : 'in an included file';
+		}
+
+		return 'line ' + finding.line + (finding.column ? ':' + finding.column : '');
 	}
 
 	function escapeHtml(text) {
@@ -1579,11 +1593,8 @@ This sentence contains {{ library/inline.crv }}.
 				} else {
 					optWarnings.checked = false;
 				}
-				if (this.dataset.strict === '1') {
-					optStrict.checked = true;
-				} else {
-					optStrict.checked = false;
-				}
+				optFilterMode.value = this.dataset.filterMode === 'error' ? 'error' : 'to_text';
+				optStrict.checked = this.dataset.strict === '1';
 				if (optRaw && this.dataset.raw === '1') {
 					optRaw.checked = true;
 				} else if (optRaw) {
