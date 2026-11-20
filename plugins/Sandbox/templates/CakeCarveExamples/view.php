@@ -24,8 +24,7 @@ echo $this->element('cake_carve/highlighting');
 	<?php echo $this->element('cake_carve/code', ['code' => <<<'PHP'
 $this->viewBuilder()
 	->setClassName('MarkupCarve/CakeCarve.Carve')
-	->setLayout('carve_document')
-	->setOption('extensions', ['frontmatter']);
+	->setLayout('carve_document');
 $this->set('name', 'CakePHP sandbox');
 PHP, 'lang' => 'php']); ?>
 
