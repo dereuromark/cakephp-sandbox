@@ -7,9 +7,9 @@ use Cake\Core\Configure;
 use Cake\Http\ServerRequest;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
-use PHPUnit\Framework\Attributes\DataProvider;
 use MarkupCarve\Carve\Carve;
 use MarkupCarve\Carve\Diagnostics\Diagnostic;
+use PHPUnit\Framework\Attributes\DataProvider;
 use ReflectionMethod;
 use Sandbox\Controller\CarveController;
 
@@ -1446,7 +1446,7 @@ class CarveControllerTest extends TestCase {
 		$roundtrip = $response['exports']['roundtrip'];
 		$this->assertStringNotContainsString('data-carve-ref', $plain['exported']);
 		$this->assertStringContainsString('data-carve-ref="d"', $roundtrip['exported']);
-				$this->assertFalse($plain['carveStable']);
+		$this->assertFalse($plain['carveStable']);
 		$this->assertTrue($roundtrip['carveStable']);
 	}
 

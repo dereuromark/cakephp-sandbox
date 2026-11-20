@@ -18,12 +18,24 @@ use MarkupCarve\Carve\Node;
  */
 class TreeExtension implements ExtensionProvider {
 
+	/**
+     * @var string
+     */
 	public const NAME = 'sandbox.tree';
 
+	/**
+     * @var string
+     */
 	public const KIND = 'tree';
 
+	/**
+     * @var string
+     */
 	public const CLASS_COLLAPSIBLE = 'collapsible';
 
+	/**
+     * @var string
+     */
 	public const CLASS_COLLAPSED = 'collapsed';
 
 	/**
@@ -57,7 +69,8 @@ class TreeExtension implements ExtensionProvider {
 			},
 			renderer: $render,
 			buildTimeRenderer: $render,
-		)];
+		),
+		];
 	}
 
 	/**
