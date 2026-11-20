@@ -46,20 +46,17 @@ function markFor(cls: string): Decoration {
 }
 
 // highlight.js shares palette classes across distinct Carve inline constructs.
+// Carve 0.2 spells underline, highlight and strike braced only (`{_x_}`, `{=x=}`, `{~x~}`).
 function editorTokenClass(cls: string, text: string, from: number, to: number, substitutionInsertion: boolean, substitution: boolean): string {
-  const first = text[from]
   const braced = text[from] === '{' ? text[from + 1] : ''
-  const last = text[to - 1]
   const bracedLast = text.slice(to - 2, to)
-  if (cls === 'hljs-addition' && !substitutionInsertion
-    && ((first === '=' && last === '=') || (braced === '=' && bracedLast === '=}'))) {
+  if (cls === 'hljs-addition' && !substitutionInsertion && braced === '=' && bracedLast === '=}') {
     return 'hljs-carve-highlight'
   }
-  if (cls === 'hljs-emphasis' && ((first === '_' && last === '_') || (braced === '_' && bracedLast === '_}'))) {
+  if (cls === 'hljs-emphasis' && braced === '_' && bracedLast === '_}') {
     return 'hljs-carve-underline'
   }
-  if (cls === 'hljs-deletion' && !substitution && ((first === '~' && last === '~')
-    || (braced === '~' && bracedLast === '~}'))) {
+  if (cls === 'hljs-deletion' && !substitution && braced === '~' && bracedLast === '~}') {
     return 'hljs-carve-strike'
   }
   return cls
@@ -83,21 +80,24 @@ function diffMarkerRanges(text: string): Array<{ from: number; to: number; cls: 
     }
     const node = value as {
       type?: string
-      lang?: string
+      syntax?: string
       attrs?: { classes?: string[] }
-      content?: string
+      value?: string
       pos?: { startLine?: number }
     }
-    if (node.type === 'code_block' && (node.lang?.toLowerCase() === 'diff' || node.attrs?.classes?.includes('diff'))
-      && node.pos?.startLine && node.content) {
-      node.content.split('\n').forEach((contentLine, index) => {
+    if (node.type === 'code_block' && (node.syntax?.toLowerCase() === 'diff' || node.attrs?.classes?.includes('diff'))
+      && node.pos?.startLine && node.value) {
+      // The block's position starts at a leading attribute line, so find the opening fence.
+      let fence = node.pos.startLine - 1
+      while (fence < lines.length && !/^(?:[ \t]*>)*[ \t]*(?:`{3,}|~{3,})/.test(lines[fence]!)) fence++
+      node.value.replace(/\n$/, '').split('\n').forEach((contentLine, index) => {
         const marker = contentLine[0]
         if (marker !== '+' && marker !== '-') return
-        const sourceLineIndex = node.pos!.startLine! + index
+        const sourceLineIndex = fence + 1 + index
         const sourceLine = lines[sourceLineIndex]
         const column = sourceLine?.lastIndexOf(contentLine) ?? -1
         if (column < 0) return
-        const from = lineStarts[sourceLineIndex] + column
+        const from = lineStarts[sourceLineIndex]! + column
         ranges.push({ from, to: from + 1, cls: marker === '+' ? 'cm-carve-diff-add' : 'cm-carve-diff-remove' })
       })
       return
@@ -107,7 +107,7 @@ function diffMarkerRanges(text: string): Array<{ from: number; to: number; cls: 
     }
   }
   try {
-    visit(parse(text, { positions: true }))
+    visit(parse(text))
   } catch {
     return []
   }
@@ -190,7 +190,7 @@ function inCodeBlock(text: string, line: number): boolean {
     for (const [key, child] of Object.entries(node)) if (key !== 'pos') visit(child)
   }
   try {
-    visit((parse(text, { positions: true }) as { children: unknown }).children)
+    visit((parse(text) as { children: unknown }).children)
   } catch {
     return false
   }
@@ -223,7 +223,7 @@ const continueOnEnter: Command = (v) => {
 }
 
 // A content-less marker as the continuation writes it: `- `, `- [ ] `, `2. `, `b) `.
-const BARE_LIST_MARKER = /^(?:[-*] [ \t]*(?:\[[ xX_>?-]\] [ \t]*)?|(?:\.|(?:[0-9]+|[A-Za-z]|[ivxlcdm]+|[IVXLCDM]+)[.)]) [ \t]*)$/
+const BARE_LIST_MARKER = /^(?:[-*] [ \t]*(?:\[[ xX_>?/!-]\] [ \t]*)?|(?:\.|(?:[0-9]+|[A-Za-z]|[ivxlcdm]+|[IVXLCDM]+)[.)]) [ \t]*)$/
 // Checked task boxes too, plus the server's own set, which adds a bare description `: `.
 const BARE_MARKER = { test: (rest: string) => BARE_LIST_MARKER.test(rest) || BARE_CONTINUATION_MARKER.test(rest) }
 

@@ -8,9 +8,9 @@
  * line ending, and only when the render confirms it changes nothing.
  */
 
-import { carveToHtml, parse } from '@markup-carve/carve'
+import { render, lint, parse } from './engine.js'
 import { colonFenceStructure, type FenceSite } from './colon-fences.js'
-import { astColumnToCharacter, sourceLines } from './position.js'
+import { astColumnToCharacter, astOffsetToIndex, sourceLines } from './position.js'
 import { walkNodes } from './ast-walk.js'
 import { bareMarkerItem, completedItem, listItems, listTree, type ItemSite, type TreeItem } from './list-items.js'
 
@@ -19,7 +19,7 @@ export function formatDocument(source: string): string {
   const formatted = source + (source.includes('\r\n') ? '\r\n' : '\n')
   // An unclosed code block at the end takes the line ending into its content.
   try {
-    return carveToHtml(formatted) === carveToHtml(source) ? formatted : source
+    return render(formatted) === render(source) ? formatted : source
   } catch {
     return source
   }
@@ -143,8 +143,8 @@ function verbatimColumn(source: string, lines: string[], line: number): number |
   let column: number | null = null
   walkAst(source, (node) => {
     const { startLine, endLine, startColumn } = node.pos ?? {}
-    // A `%%` line comment is inline: the text before it is ordinary.
-    if (!VERBATIM_TYPES.has(node.type ?? '') || node.block === false || startLine === undefined || endLine === undefined || startColumn === undefined) return
+    // Only a `%%%` comment block is verbatim (C2-A-074); a `%%` or braced comment is inline.
+    if (!VERBATIM_TYPES.has(node.type ?? '') || (node.type === 'comment' && node.form !== 'block') || startLine === undefined || endLine === undefined || startColumn === undefined) return
     if (line + 1 < startLine || line + 1 > endLine) return
     const at = astColumnToCharacter(lines[startLine - 1] ?? '', startColumn)
     column = column === null ? at : Math.min(column, at)
@@ -157,7 +157,7 @@ function inVerbatim(source: string, line: number): boolean {
   let found = false
   walkAst(source, (node) => {
     const { startLine, endLine } = node.pos ?? {}
-    if (VERBATIM_TYPES.has(node.type ?? '') && startLine !== undefined && endLine !== undefined && line + 1 >= startLine && line + 1 <= endLine) found = true
+    if (VERBATIM_TYPES.has(node.type ?? '') && !(node.type === 'comment' && node.form !== 'block') && startLine !== undefined && endLine !== undefined && line + 1 >= startLine && line + 1 <= endLine) found = true
   })
   return found
 }
@@ -197,6 +197,26 @@ function codeBlockAt(source: string, line: number): { startLine: number; endLine
   return found
 }
 
+/**
+ * The edits Enter writes from a `continuationPrefix` result. LSP cannot place the
+ * cursor, and clients move it past an insert made at its position, so only the
+ * text before the first newline goes at the cursor and a closer goes at the start
+ * of the next line. On the last line the whole prefix stays one insert at the cursor.
+ */
+export function continuationEdits(source: string, position: { line: number; character: number }): ContinuationEdit[] {
+  const prefix = continuationPrefix(source, position.line)
+  if (prefix === '') return []
+  const at = { start: position, end: position }
+  const newline = prefix.indexOf('\n')
+  if (newline < 0) return [{ range: at, newText: prefix }]
+  const eol = source.includes('\r\n') ? '\r\n' : '\n'
+  // On the last line nothing lies after the cursor, and LSP4IJ reverses two inserts at one offset.
+  if (position.line + 1 >= sourceLines(source).length) return [{ range: at, newText: prefix.replaceAll('\n', eol) }]
+  const next = { line: position.line + 1, character: 0 }
+  const closer: ContinuationEdit = { range: { start: next, end: next }, newText: `${prefix.slice(newline + 1).replaceAll('\n', eol)}${eol}` }
+  return newline > 0 ? [{ range: at, newText: prefix.slice(0, newline) }, closer] : [closer]
+}
+
 export interface ContinuationEdit {
   range: { start: { line: number; character: number }; end: { line: number; character: number } }
   newText: string
@@ -206,7 +226,7 @@ const BULLET = /^([ \t]*)([-*])([ \t]+)/
 const BARE_DOT = /^([ \t]*)(\.)([ \t]+)/
 const ORDERED = /^([ \t]*)([0-9]+|[A-Za-z]+)([.)])([ \t]+)/
 const MARKER_ATTRS = /^([ \t]*(?:[-*.]|(?:[0-9]+|[A-Za-z]+)[.)]))\{[^}\n]*\}[ \t]*/
-const TASK = /^\[[ xX_>?-]\]( [ \t]*|$)/
+const TASK = /^\[[ xX_>\/!?-]\]( [ \t]*|$)/
 // A marker and its separator alone on a line, as the continuation writes it. A
 // lone `-` with no separator is left alone: it may be prose. The separator must
 // open with a space and roman numerals are single-case, as the parser reads them;
@@ -279,10 +299,12 @@ const BARE_DESCRIPTION = /^: +$/
 function descriptionLines(source: string): Map<number, AstNode> {
   const lines = new Map<number, AstNode>()
   walkAst(source, (node) => {
-    if (node.type !== 'definition_list' || !Array.isArray(node.items)) return
-    for (const item of node.items as Array<{ termSpans?: Array<{ startLine: number }>; definitionLines?: number[] }>) {
-      for (const span of item.termSpans ?? []) lines.set(span.startLine - 1, node)
-      for (const line of item.definitionLines ?? []) lines.set(line - 1, node)
+    // 0.2 C2-A-062: the list holds `definition_term` and `definition_description` nodes; each opens on its marker line.
+    if (node.type !== 'definition_list' || !Array.isArray(node.children)) return
+    for (const child of node.children as AstNode[]) {
+      if ((child.type === 'definition_term' || child.type === 'definition_description') && child.pos?.startLine !== undefined) {
+        lines.set(child.pos.startLine - 1, node)
+      }
     }
   })
   return lines
@@ -382,6 +404,17 @@ export function listIndentEdits(source: string, line: number, direction: ListInd
   const indent = lead.slice(fixed)
   if (/[^ \t]/.test(indent)) return null
   const shape: Shape = { line, fixed, indent, marker: own[1]!, separator: own[2]!, quotes: (lead.slice(0, fixed).match(/>/g) ?? []).length }
+  // A lone `+` left of the item's marker column is an ancestor's marker (carve#3421).
+  if (indent && Array.from({ length: item.endLine - line }, (_, offset) => completed[line + offset + 1]!).some((entry) => {
+    let at = 0
+    for (let level = 0; level < shape.quotes; level++) {
+      const quote = QUOTE_LEVEL.exec(entry.slice(at))
+      if (!quote) return false
+      at += quote[0].length
+    }
+    const plus = /^([ \t]*)\+[ \t]*$/.exec(entry.slice(at))
+    return plus !== null && columns(plus[1]!) < columns(indent)
+  })) return null
 
   if (direction === 'indent') {
     const index = item.list.items.indexOf(item)
@@ -411,9 +444,16 @@ export function listIndentEdits(source: string, line: number, direction: ListInd
     const result = shiftItem(completed, item, shape, -removed, marker)
     const after = listTree(result.text)
     const moved = after?.get(line)
-    if (moved && moved.parent?.key === parent.parent?.key && moved.container === parent.container && keepsDescendants(tree!, after!, item)) return result.edits
+    if (moved && moved.parent?.key === parent.parent?.key && moved.container === parent.container && keepsDescendants(tree!, after!, item) &&
+      !markerOffColumn(result.text, line)) return result.edits
   }
   return null
+}
+
+/** A partial outdent can land between two columns, which the engine reads but lints (PART 9 §24). */
+function markerOffColumn(text: string, line: number): boolean {
+  return lint(text).some((entry) => entry.code === 'list-marker-below-content-column' && entry.range !== undefined &&
+    lineOfIndex(text, astOffsetToIndex(text, entry.range.startOffset)) === line)
 }
 
 /** Every item nested in `item` before the move is still nested in it, as deep as before. */
@@ -490,6 +530,7 @@ function shiftItem(lines: string[], item: TreeItem, shape: Shape, delta: number,
   edits.push({ range: { start: { line: shape.line, character: shape.fixed }, end: { line: shape.line, character: end } }, newText: replacement })
   next[shape.line] = next[shape.line]!.slice(0, shape.fixed) + replacement + next[shape.line]!.slice(end)
   const shift = delta + marker.length - shape.marker.length
+  const content = columns(shape.indent) + shape.marker.length + shape.separator.length
   for (let line = item.line + 1; line <= item.endLine; line++) {
     const text = lines[line]!
     let at = 0
@@ -501,12 +542,16 @@ function shiftItem(lines: string[], item: TreeItem, shape: Shape, delta: number,
       level++
     }
     // A lazy line (fewer quote markers) or a blank one is left as written.
-    if (level < shape.quotes || text.slice(at).trim() === '' || shift === 0) continue
-    if (shift > 0) {
-      edits.push({ range: { start: { line, character: at }, end: { line, character: at } }, newText: ' '.repeat(shift) })
-      next[line] = text.slice(0, at) + ' '.repeat(shift) + text.slice(at)
+    if (level < shape.quotes || text.slice(at).trim() === '') continue
+    // Left of the content column sit the item's `+` markers and the blocks they attach,
+    // which stay on the marker column as it moves (carve#3421).
+    const width = columns(/^[ \t]*/.exec(text.slice(at))![0]) < content ? delta : shift
+    if (width === 0) continue
+    if (width > 0) {
+      edits.push({ range: { start: { line, character: at }, end: { line, character: at } }, newText: ' '.repeat(width) })
+      next[line] = text.slice(0, at) + ' '.repeat(width) + text.slice(at)
     } else {
-      const removable = Math.min(-shift, /^[ \t]*/.exec(text.slice(at))![0].length)
+      const removable = Math.min(-width, /^[ \t]*/.exec(text.slice(at))![0].length)
       if (removable === 0) continue
       edits.push({ range: { start: { line, character: at }, end: { line, character: at + removable } }, newText: '' })
       next[line] = text.slice(0, at) + text.slice(at + removable)
@@ -528,9 +573,11 @@ function nextMarker(written: string, item: ItemSite): string | null {
   const next = increment(ordinal, item.olType)
   if (next === null) return null
   // Keep the content column when the marker changes width (9. -> 10., iii. -> iv.),
-  // but never drop below one space. A tab separator is copied as written.
+  // but never drop below the minimum: two spaces after a letter or roman `.`
+  // marker (carve#4811), one otherwise. A tab separator is copied as written.
   const width = ordinal.length + delim.length + separator.length
-  const gap = /\t/.test(separator) ? separator : ' '.repeat(Math.max(1, width - next.length - delim.length))
+  const minimum = delim === '.' && !/^[0-9]+$/.test(next) ? 2 : 1
+  const gap = /\t/.test(separator) ? separator : ' '.repeat(Math.max(minimum, width - next.length - delim.length))
   return indent + next + delim + gap
 }
 
@@ -570,4 +617,17 @@ function fromRoman(text: string): number | null {
   let rest = text
   for (const [amount, digits] of ROMAN) while (rest.startsWith(digits)) { value += amount; rest = rest.slice(digits.length) }
   return rest === '' && value > 0 ? value : null
+}
+
+/** Width of a leading run, a tab advancing to the next multiple of 4 (PART 9 §24). */
+function columns(run: string): number {
+  let width = 0
+  for (const char of run) width = char === '\t' ? width + 4 - (width % 4) : width + 1
+  return width
+}
+
+function lineOfIndex(text: string, index: number): number {
+  let line = 0
+  for (let at = 0; at < index && at < text.length; at++) if (text[at] === '\n') line++
+  return line
 }

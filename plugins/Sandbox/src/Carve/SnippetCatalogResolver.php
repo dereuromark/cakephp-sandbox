@@ -3,14 +3,12 @@ declare(strict_types=1);
 
 namespace Sandbox\Carve;
 
-use MarkupCarve\Carve\Transform\IncludeContext;
-use MarkupCarve\Carve\Transform\IncludeResolverInterface;
-use MarkupCarve\Carve\Transform\ResolvedInclude;
+use MarkupCarve\Carve\Include\IncludeResolver;
 
 /**
  * Resolves only the public, read-only `library/` namespace from a source map.
  */
-class SnippetCatalogResolver implements IncludeResolverInterface {
+class SnippetCatalogResolver implements IncludeResolver {
 
 	/**
 	 * @param array<string, array{title: string, source: string}> $snippets
@@ -18,18 +16,25 @@ class SnippetCatalogResolver implements IncludeResolverInterface {
 	public function __construct(protected array $snippets) {
 	}
 
-	public function resolve(string $path, IncludeContext $context): ?ResolvedInclude {
-		$canonical = $this->canonicalPath($path, $context->getIncludingPath());
+	/**
+	 * @param array{path: string, options: array<mixed>, section?: mixed, from?: string, budget: int} $request
+	 * @return array{text: string, id: string}|array{error: string, id?: string}
+	 */
+	public function resolve(array $request): array {
+		$canonical = $this->canonicalPath($request['path'], $request['from'] ?? null);
 		if ($canonical === null) {
-			return null;
+			return ['error' => 'outside_root'];
 		}
 
 		$snippet = $this->snippets[$canonical] ?? null;
 		if ($snippet === null) {
-			return null;
+			return ['error' => 'not_found'];
+		}
+		if (strlen($snippet['source']) > $request['budget']) {
+			return ['error' => 'size_exceeded', 'id' => $canonical];
 		}
 
-		return new ResolvedInclude($snippet['source'], $canonical);
+		return ['text' => $snippet['source'], 'id' => $canonical];
 	}
 
 	protected function canonicalPath(string $path, ?string $includingPath): ?string {

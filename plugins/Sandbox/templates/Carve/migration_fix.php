@@ -97,17 +97,17 @@ SOURCE;
 <p>
 	Autocorrect Djot/Markdown <strong>delimiter collisions</strong> to their Carve equivalents -
 	<code>**bold**</code> &rarr; <code>*bold*</code>, <code>_em_</code> &rarr; <code>/em/</code>,
-	<code>~~strike~~</code> &rarr; <code>~strike~</code>, <code>+</code> bullets &rarr; <code>-</code>.
+	<code>~~strike~~</code> &rarr; <code>{~strike~}</code>, <code>+</code> bullets &rarr; <code>-</code>.
 	This is a minimal-diff <em>linter/autocorrect</em>, not a full converter: it only rewrites the
-	exact spans that would mis-render, and reports anything it cannot safely fix. Strictly nested
-	collisions like <code>**_x_**</code> &rarr; <code>*/x/*</code> compose in a single pass; only an
-	ambiguous <em>crossing</em> overlap is left for manual review.
+	exact spans that would mis-render. Strictly nested collisions like <code>**_x_**</code> &rarr;
+	<code>*/x/*</code> compose; a fix that would not hold, such as a <em>crossing</em> overlap, is
+	left alone, and whatever <code>carve lint</code> still reports on the output is listed for manual review.
 </p>
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
 	Runs <strong>fully client-side</strong> in your browser via the bundled
 	<?= $this->Html->link('carve-js', 'https://github.com/markup-carve/carve-js', ['target' => '_blank']) ?>
-	library (<code>applyMigrationFixes</code>). This is the same logic the
+	library (<code>fix</code>, <code>lint</code> and <code>fixEdits</code>). This is the same logic the
 	<code>carve fix</code> CLI wraps - no server round-trip.
 </div>
 
@@ -139,8 +139,6 @@ SOURCE;
 	<pre id="mf-diff" class="form-control font-monospace mf-diff"></pre>
 </div>
 
-<div class="mt-3" id="mf-gate"></div>
-
 <div class="row mt-3">
 	<div class="col-md-7">
 		<h4 class="h6">Applied fixes <span class="badge bg-success" id="mf-applied-count">0</span></h4>
@@ -150,8 +148,8 @@ SOURCE;
 					<tr>
 						<th style="width: 5rem;">Line:Col</th>
 						<th>Rule</th>
-						<th>Before</th>
-						<th>After</th>
+						<th style="width: 4rem;">Fixes</th>
+						<th>Why</th>
 					</tr>
 				</thead>
 				<tbody id="mf-applied-body">
@@ -163,10 +161,8 @@ SOURCE;
 	<div class="col-md-5">
 		<h4 class="h6">Manual review <span class="badge bg-warning text-dark" id="mf-skipped-count">0</span></h4>
 		<p class="text-muted small">
-			Strictly nested collisions like <code>**_x_**</code> now <strong>compose automatically</strong> -
-			each rule edits only its delimiters, so they no longer corrupt each other's offsets.
-			Only a <em>crossing</em> overlap, where two collisions partly overlap and neither span contains the
-			other (e.g. <code>**_x**_</code>), stays genuinely ambiguous and is left for you.
+			Lint findings on the <strong>fixed output</strong>. A <em>crossing</em> overlap such as
+			<code>**_x**_</code> gets only the fix that holds and may need a look by hand.
 		</p>
 		<ul class="list-group list-group-flush small" id="mf-skipped-list">
 			<li class="list-group-item text-muted px-0">Nothing needs manual review.</li>
@@ -182,9 +178,10 @@ SOURCE;
 	<tbody>
 		<tr><td><code>carve fix &lt; in.crv</code></td><td>stdin &rarr; stdout - print the fixed text (the <strong>Output</strong> pane above)</td></tr>
 		<tr><td><code>carve fix --write doc.crv</code></td><td>rewrite the file in place with the applied fixes</td></tr>
-		<tr><td><code>carve fix --check doc.crv</code></td><td>CI gate - exit non-zero if anything would change or needs manual review (the <strong>gate badge</strong> above)</td></tr>
+		<tr><td><code>carve lint doc.crv</code></td><td>report what is still left (the <strong>Manual review</strong> list above)</td></tr>
 	</tbody>
 </table>
+<p class="text-muted small">The <code>carve fix --check</code> CI gate of Carve 0.1 is gone in 0.2.</p>
 
 </div>
 
@@ -193,7 +190,6 @@ SOURCE;
 	const input = document.getElementById('mf-input');
 	const output = document.getElementById('mf-output');
 	const diff = document.getElementById('mf-diff');
-	const gate = document.getElementById('mf-gate');
 	const appliedBody = document.getElementById('mf-applied-body');
 	const appliedCount = document.getElementById('mf-applied-count');
 	const skippedList = document.getElementById('mf-skipped-list');
@@ -207,10 +203,14 @@ SOURCE;
 		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (m, p1) => String.fromCharCode('0x' + p1)));
 	}
 
-	if (typeof window.CarveJS === 'undefined' || typeof window.CarveJS.applyMigrationFixes !== 'function') {
+	const engine = window.CarveJS;
+	if (typeof engine === 'undefined' || typeof engine.fix !== 'function') {
 		document.getElementById('carvejs-missing').style.display = '';
 		return;
 	}
+	// `fix` turns every fixable rule on; lint needs them switched on explicitly to list them.
+	const fixableRules = new Set(engine.fixableRules);
+	const lintOptions = { rules: Object.fromEntries(engine.fixableRules.map(rule => [rule, 'on'])) };
 
 	function escapeHtml(str) {
 		const div = document.createElement('div');
@@ -218,12 +218,9 @@ SOURCE;
 		return div.innerHTML;
 	}
 
-	function snippet(source, warning) {
-		// Prefer the exact source span; fall back to the suggestion if offsets are missing.
-		if (typeof warning.start === 'number' && typeof warning.end === 'number') {
-			return source.slice(warning.start, warning.end);
-		}
-		return warning.suggestion;
+	// Diagnostic ranges count UTF-8 bytes.
+	function position(source, diagnostic) {
+		return diagnostic.range ? engine.positionOf(source, diagnostic.range.startOffset) : { line: 1, column: 1 };
 	}
 
 	// Syntax-highlight the fixed Carve output with the hljs-carve grammar.
@@ -287,7 +284,7 @@ SOURCE;
 
 	function run() {
 		const source = input.value;
-		const result = window.CarveJS.applyMigrationFixes(source);
+		const result = engine.fix(source);
 
 		lastOutput = result.output;
 		renderOutput(result.output);
@@ -295,53 +292,45 @@ SOURCE;
 		// Carry the fixed output into the playground (?d= matches index decode).
 		tryLink.href = playgroundUrl + '?d=' + encodeURIComponent(compress(result.output || ''));
 
-		// Applied fixes table (rows jump to their line in the diff).
-		appliedCount.textContent = String(result.applied.length);
-		if (result.applied.length === 0) {
+		// Applied fixes by rule; a row jumps to the first finding of that rule in the source.
+		const findings = engine.lint(source, lintOptions).filter(d => fixableRules.has(d.code));
+		const applied = Array.from(result.applied, ([rule, count]) => {
+			const first = findings.find(d => d.code === rule);
+			return { rule, count, first, at: first ? position(source, first) : null };
+		});
+		appliedCount.textContent = String(applied.reduce((sum, row) => sum + row.count, 0));
+		if (applied.length === 0) {
 			appliedBody.innerHTML = '<tr><td colspan="4" class="text-muted">No fixes applied.</td></tr>';
 		} else {
-			appliedBody.innerHTML = result.applied.map(function(w) {
-				return '<tr class="mf-jumpable" data-line="' + w.line + '" title="Jump to this change">'
-					+ '<td class="text-nowrap">' + w.line + ':' + w.column + '</td>'
-					+ '<td><code>' + escapeHtml(w.rule) + '</code></td>'
-					+ '<td><code class="text-danger">' + escapeHtml(snippet(source, w)) + '</code></td>'
-					+ '<td><code class="text-success">' + escapeHtml(w.suggestion) + '</code></td>'
+			appliedBody.innerHTML = applied.map(function(row) {
+				const at = row.at ? row.at.line + ':' + row.at.column : '';
+				return '<tr class="mf-jumpable" data-line="' + (row.at ? row.at.line : '') + '" title="Jump to the first change">'
+					+ '<td class="text-nowrap">' + at + '</td>'
+					+ '<td><code>' + escapeHtml(row.rule) + '</code></td>'
+					+ '<td>' + row.count + '</td>'
+					+ '<td class="text-muted">' + escapeHtml(row.first ? row.first.message : '') + '</td>'
 					+ '</tr>';
 			}).join('');
 		}
 
-		// Skipped (manual review) list (also jumps; tint the source line amber).
-		skippedCount.textContent = String(result.skipped.length);
-		if (result.skipped.length === 0) {
+		// What lint still reports on the output (jumps; tints the output line amber).
+		const remaining = engine.lint(result.output, lintOptions);
+		skippedCount.textContent = String(remaining.length);
+		if (remaining.length === 0) {
 			skippedList.innerHTML = '<li class="list-group-item text-muted px-0">Nothing needs manual review.</li>';
 		} else {
-			skippedList.innerHTML = result.skipped.map(function(w) {
-				return '<li class="list-group-item px-0 mf-jumpable" data-line="' + w.line + '" title="Jump to this collision">'
-					+ '<span class="text-nowrap fw-bold">' + w.line + ':' + w.column + '</span> '
-					+ '<code>' + escapeHtml(w.rule) + '</code><br>'
-					+ '<span class="text-muted">' + escapeHtml(w.message) + '</span>'
+			skippedList.innerHTML = remaining.map(function(d) {
+				const at = position(result.output, d);
+				return '<li class="list-group-item px-0 mf-jumpable" data-line="' + at.line + '" title="Jump to this line">'
+					+ '<span class="text-nowrap fw-bold">' + at.line + ':' + at.column + '</span> '
+					+ '<code>' + escapeHtml(d.code) + '</code><br>'
+					+ '<span class="text-muted">' + escapeHtml(d.message) + '</span>'
 					+ '</li>';
 			}).join('');
-			result.skipped.forEach(function(w) {
-				const el = diff.querySelector('.mf-dline[data-line="' + w.line + '"]');
+			remaining.forEach(function(d) {
+				const el = diff.querySelector('.mf-dline[data-line="' + position(result.output, d).line + '"]');
 				if (el) { el.classList.add('mf-skip-line'); }
 			});
-		}
-
-		// --check gate badge: exit non-zero when anything would change or needs manual review.
-		const changed = result.applied.length;
-		const manual = result.skipped.length;
-		if (changed === 0 && manual === 0) {
-			gate.innerHTML = '<div class="alert alert-success py-2 mb-0">'
-				+ '<i class="bi bi-check-circle"></i> <strong><code>carve fix --check</code>: clean</strong> (exit 0) - no collisions.'
-				+ '</div>';
-		} else {
-			const parts = [];
-			if (changed > 0) { parts.push(changed + ' would change'); }
-			if (manual > 0) { parts.push(manual + ' need manual review'); }
-			gate.innerHTML = '<div class="alert alert-danger py-2 mb-0">'
-				+ '<i class="bi bi-x-circle"></i> <strong><code>carve fix --check</code>: ' + escapeHtml(parts.join(' · ')) + '</strong> (exit 1).'
-				+ '</div>';
 		}
 	}
 
