@@ -3,6 +3,11 @@
  * @var \App\View\AppView $this
  */
 
+$this->append('script');
+// BBCode import is JavaScript only in Carve 0.2: the page imports in the browser.
+echo $this->Html->script('carve-import.min.js', ['timestamp' => 'force']);
+$this->end();
+
 $defaultBbcode = <<<'BBCODE'
 [b]Welcome to BBCode![/b]
 
@@ -54,7 +59,7 @@ BBCODE;
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>{,sub,}</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>{_underline_}</code>, <code>{,sub,}</code>). The import runs in your browser with the carve-js importer (<code>CarveImport.importDocument(text, { from: 'bbcode' })</code>); Carve 0.2 has no PHP BBCode importer. To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -68,9 +73,6 @@ BBCODE;
 		<div class="d-flex justify-content-between align-items-center mb-1">
 			<label class="form-label mb-0"><strong>Carve Output</strong></label>
 			<div>
-				<span id="loading-indicator" class="me-2" style="opacity: 0;">
-					<span class="spinner-border spinner-border-sm text-secondary" role="status"></span>
-				</span>
 				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-copy" title="Copy Carve output">
 					<i class="bi bi-clipboard"></i> Copy
 				</button>
@@ -80,6 +82,7 @@ BBCODE;
 			</div>
 		</div>
 		<textarea id="carve-output" class="form-control font-monospace" rows="20" readonly placeholder="Carve output will appear here..."></textarea>
+		<div id="import-report" class="mt-2"></div>
 	</div>
 </div>
 
@@ -109,22 +112,22 @@ BBCODE;
 				<tr>
 					<td>Underline</td>
 					<td><code>[u]text[/u]</code></td>
-					<td><code>_text_</code></td>
+					<td><code>{_text_}</code></td>
 				</tr>
 				<tr>
 					<td>Strikethrough</td>
 					<td><code>[s]text[/s]</code></td>
-					<td><code>~text~</code></td>
+					<td><code>{-text-}</code> (deleted)</td>
 				</tr>
 				<tr>
 					<td>Superscript</td>
 					<td><code>[sup]text[/sup]</code></td>
-					<td><code>^text^</code></td>
+					<td><code>{^text^}</code></td>
 				</tr>
 				<tr>
 					<td>Subscript</td>
 					<td><code>[sub]text[/sub]</code></td>
-					<td><code>,text,</code></td>
+					<td><code>{,text,}</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -156,8 +159,8 @@ BBCODE;
 				</tr>
 				<tr>
 					<td>Quote</td>
-					<td><code>[quote]...[/quote]</code></td>
-					<td><code>&gt; ...</code></td>
+					<td><code>[quote=name]...[/quote]</code></td>
+					<td><code>&gt; ...</code> (<code>^ name</code> caption)</td>
 				</tr>
 				<tr>
 					<td>List item</td>
@@ -167,7 +170,7 @@ BBCODE;
 				<tr>
 					<td>Horizontal rule</td>
 					<td><code>[hr]</code></td>
-					<td><code>---</code></td>
+					<td><code>***</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -175,7 +178,7 @@ BBCODE;
 </div>
 
 <p class="text-muted small mt-3">
-	<strong>Note:</strong> Some BBCode features like <code>[size]</code>, <code>[color]</code>, and <code>[font]</code> have no direct Carve equivalent and are stripped during conversion.
+	<strong>Note:</strong> Some BBCode features like <code>[size]</code>, <code>[color]</code>, and <code>[font]</code> have no direct Carve equivalent: the tags are dropped and their text is kept.
 </p>
 
 </div>
@@ -185,12 +188,11 @@ BBCODE;
 	const bbcodeInput = document.getElementById('bbcode-input');
 	const carveOutput = document.getElementById('carve-output');
 	const alertContainer = document.getElementById('alert-container');
-	const loadingIndicator = document.getElementById('loading-indicator');
 	const btnCopy = document.getElementById('btn-copy');
 	const btnTry = document.getElementById('btn-try');
+	const reportContainer = document.getElementById('import-report');
 
 	let debounceTimer;
-	let currentRequest;
 
 	function convert() {
 		clearTimeout(debounceTimer);
@@ -198,47 +200,33 @@ BBCODE;
 	}
 
 	function doConvert() {
-		if (currentRequest) {
-			currentRequest.abort();
+		alertContainer.innerHTML = '';
+		const bbcode = bbcodeInput.value;
+		if (!bbcode) {
+			carveOutput.value = '';
+			reportContainer.innerHTML = '';
+			return;
 		}
+		try {
+			const result = CarveImport.importDocument(bbcode, { from: 'bbcode' });
+			carveOutput.value = result.source || '';
+			renderReport(result.diagnostics || []);
+		} catch (err) {
+			carveOutput.value = '';
+			reportContainer.innerHTML = '';
+			alertContainer.innerHTML = '<div class="alert alert-danger py-2"><strong>Error:</strong> ' + escapeHtml(err.message) + '</div>';
+		}
+	}
 
-		loadingIndicator.style.transition = 'none';
-		loadingIndicator.style.opacity = '1';
-
-		const controller = new AbortController();
-		currentRequest = controller;
-
-		const formData = new FormData();
-		formData.append('bbcode', bbcodeInput.value);
-
-		fetch('<?= $this->Url->build(['action' => 'convertBbcode']) ?>', {
-			method: 'POST',
-			body: formData,
-			signal: controller.signal,
-			headers: {
-				'X-Requested-With': 'XMLHttpRequest'
-			}
-		})
-		.then(response => response.json())
-		.then(data => {
-			currentRequest = null;
-			loadingIndicator.style.transition = 'opacity 0.8s';
-			loadingIndicator.style.opacity = '0';
-			alertContainer.innerHTML = '';
-
-			if (data.error) {
-				alertContainer.innerHTML = '<div class="alert alert-danger py-2"><strong>Error:</strong> ' + escapeHtml(data.error) + '</div>';
-			}
-
-			carveOutput.value = data.carve || '';
-		})
-		.catch(err => {
-			loadingIndicator.style.transition = 'opacity 0.8s';
-			loadingIndicator.style.opacity = '0';
-			if (err.name !== 'AbortError') {
-				console.error('Conversion error:', err);
-			}
-		});
+	function renderReport(diagnostics) {
+		if (!diagnostics.length) {
+			reportContainer.innerHTML = '<div class="text-success small"><i class="bi bi-check-circle"></i> Nothing lost in the import.</div>';
+			return;
+		}
+		const rows = diagnostics.map(function(d) {
+			return '<li><code>' + escapeHtml(d.code || '') + '</code> ' + escapeHtml(d.message || '') + '</li>';
+		}).join('');
+		reportContainer.innerHTML = '<div class="border rounded p-2 small"><strong>Import report</strong><ul class="mb-0 ps-3 mt-1">' + rows + '</ul></div>';
 	}
 
 	function escapeHtml(text) {

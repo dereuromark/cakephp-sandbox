@@ -5,7 +5,7 @@
 
 $defaultCarve = <<<'CARVE'
 {#start}
-# Roundtrip Test
+= Roundtrip Test
 
 This document is exported and imported back to check which spellings survive.
 
@@ -24,12 +24,6 @@ A plain container with no attributes.
 | Carve | Markup |
 | PHP | Code |
 
-A GFM separator row is an accepted alias. Only the HTML carrier keeps it:
-
-| Engine | Language |
-|:-------|---------:|
-| carve-php | PHP |
-
 [spec]: https://github.com/markup-carve/carve
 CARVE;
 $markdownFormat = $this->request->getQuery('format') === 'markdown';
@@ -44,30 +38,27 @@ $markdownFormat = $this->request->getQuery('format') === 'markdown';
 <h2>Carve Roundtrip Test</h2>
 <p>
 	Exports Carve to HTML or Markdown and imports it back:
-	<code>Carve &rarr; export &rarr; Carve</code>. Each trip runs twice, once as a plain
-	export and once with the <strong>roundtrip export option</strong>
-	(<code>new CarveConverter(roundTripMode: true)</code>, <code>--roundtrip</code> on the CLI),
-	so you can see what the option keeps. The same option serves both formats; the target
-	decides which carriers it writes.
+	<code>Carve &rarr; export &rarr; Carve</code>. The HTML trip runs twice, once as a plain
+	export and once with the <strong>roundtrip render option</strong>
+	(<code>Carve::render($carve, ['roundtrip' => true])</code>, <code>--roundtrip</code> on the CLI),
+	so you can see what the option keeps.
 </p>
 <ul class="small">
 	<li>
-		<strong>HTML</strong> (spec PART 10 &sect;13):
-		the export writes carrier attributes such as <code>data-marker</code>, <code>data-char</code>,
-		<code>data-carve-ref</code>, <code>data-carve-autolink</code> and <code>data-carve-col-widths</code>,
-		and the importer reads the authored spelling back from them.
+		<strong>HTML</strong>:
+		the export writes carrier attributes such as <code>data-marker</code>, <code>data-carve-tight</code>,
+		<code>data-carve-ref</code>, <code>data-carve-autolink</code> and <code>data-carve-explicit-id</code>,
+		and the HTML importer reads the authored spelling back from them.
 	</li>
 	<li>
-		<strong>Markdown</strong> (spec PART 11 &sect;10s, &sect;10t):
-		what Markdown has no spelling for is carried in <code>&lt;!-- carve: ... --&gt;</code> comments:
-		containers and line blocks, attribute lines such as a heading's <code>{#id}</code>,
-		definition lists and captions. The document's structure comes back; spellings Markdown
-		writes its own way (marker style, reference links, autolinks) still come back normalized.
+		<strong>Markdown</strong>:
+		a plain export only, read back with the GFM importer. Carve 0.2 has no Markdown carrier format,
+		so there is no roundtrip column for Markdown.
 	</li>
 </ul>
 <p class="text-muted small">
 	Carriers are highlighted in the exported source. Soft line breaks inside a paragraph and
-	table cell padding are not carried in either format.
+	table cell padding are not carried.
 </p>
 
 <div id="alert-container"></div>
@@ -129,8 +120,8 @@ $markdownFormat = $this->request->getQuery('format') === 'markdown';
 	const formatInputs = document.querySelectorAll('input[name="format"]');
 	const btnShare = document.getElementById('btn-share');
 
-	// The reserved carrier names (PART 10 §13a) plus the Markdown comment markers.
-	const carrierPattern = /(data-(?:carve|djot)-[a-z-]+(?:="[^"]*")?|data-(?:marker|char)="[^"]*"|&lt;!-- carve: .*? --&gt;)/g;
+	// The reserved HTML carrier attribute names.
+	const carrierPattern = /(data-carve-[a-z-]+(?:="[^"]*")?|data-(?:marker|char)="[^"]*")/g;
 
 	let debounceTimer;
 	let currentRequest;
@@ -214,7 +205,9 @@ $markdownFormat = $this->request->getQuery('format') === 'markdown';
 		if (!exp) {
 			exported.innerHTML = '';
 			diff.innerHTML = '';
-			verdict.innerHTML = '';
+			verdict.innerHTML = key === 'roundtrip' && currentFormat() === 'markdown'
+				? '<span class="badge bg-secondary">no Markdown carrier format in Carve 0.2</span>'
+				: '';
 			return;
 		}
 

@@ -43,7 +43,7 @@ MARKDOWN;
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>{,sub,}</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>{~strike~}</code>, <code>{,sub,}</code>). The input is read as GitHub Flavored Markdown. To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -99,12 +99,12 @@ MARKDOWN;
 				<tr>
 					<td>Strikethrough</td>
 					<td><code>~~text~~</code></td>
-					<td><code>~text~</code></td>
+					<td><code>{~text~}</code></td>
 				</tr>
 				<tr>
 					<td>Highlight</td>
-					<td><code>=text=</code></td>
-					<td><code>=text=</code></td>
+					<td><code>&lt;mark&gt;text&lt;/mark&gt;</code></td>
+					<td><code>{=text=}</code></td>
 				</tr>
 			</tbody>
 		</table>
@@ -122,17 +122,22 @@ MARKDOWN;
 				<tr>
 					<td>Superscript</td>
 					<td><code>&lt;sup&gt;text&lt;/sup&gt;</code></td>
-					<td><code>^text^</code></td>
+					<td><code>{^text^}</code></td>
 				</tr>
 				<tr>
 					<td>Subscript</td>
 					<td><code>&lt;sub&gt;text&lt;/sub&gt;</code></td>
-					<td><code>,text,</code></td>
+					<td><code>{,text,}</code></td>
 				</tr>
 				<tr>
 					<td>Insert</td>
 					<td><code>&lt;ins&gt;text&lt;/ins&gt;</code></td>
 					<td><code>{+text+}</code></td>
+				</tr>
+				<tr>
+					<td>Heading</td>
+					<td><code>## text</code></td>
+					<td><code>== text</code></td>
 				</tr>
 				<tr>
 					<td>Block spacing</td>

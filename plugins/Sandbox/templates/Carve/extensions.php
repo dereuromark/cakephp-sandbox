@@ -334,8 +334,11 @@ $this->end();
 
 <div class="alert alert-info">
 	<strong>How Extensions Work:</strong>
-	Extensions can register inline patterns (for custom syntax like @mentions),
-	block patterns (for custom block elements), and render event listeners (to modify output).
+	In Carve 0.2 each standard extension is a factory returning a bundle or definition that claims
+	core syntax (a <code>:name[...]</code> span, a <code>::: name</code> div, a fence word) and renders it.
+	Pass it in the <code>extensions</code> option of <code>Carve::render()</code>; bundles with document
+	transforms go through <code>Carve::renderWithDocumentTransforms()</code>. Entries marked
+	<em>core</em> need no extension at all.
 </div>
 
 <div class="card mb-4">
@@ -380,7 +383,7 @@ $this->end();
 
 		<div class="row mb-3">
 			<div class="col-md-4">
-				<h6>Constructor Options:</h6>
+				<h6>Options:</h6>
 				<?php $options = $example['options'] ?? []; ?>
 				<?php if ($options) { ?>
 					<table class="table table-sm table-bordered">
@@ -394,30 +397,12 @@ $this->end();
 						</tbody>
 					</table>
 				<?php } else { ?>
-					<p class="text-muted small mb-0">None - no constructor arguments.</p>
+					<p class="text-muted small mb-0">None.</p>
 				<?php } ?>
 			</div>
 			<div class="col-md-8">
 				<h6>Usage Example:</h6>
-				<?php if ($key === 'frontmatter') { ?>
-				<pre class="bg-light p-2 border rounded"><code class="language-php">$ext = new <?= h($example['name']) ?>();
-$converter = new CarveConverter();
-$converter->addExtension($ext);
-
-$html = $converter->convert($carve);
-
-// Retrieve the frontmatter after conversion
-$fm = $ext->getFrontmatter();
-if ($fm !== null) {
-    $format = $fm->getFormat();  // 'yaml', 'toml', 'neon'
-    $content = $fm->getContent(); // Raw string content
-}</code></pre>
-				<?php } else { ?>
-				<pre class="bg-light p-2 border rounded"><code class="language-php">$converter = new CarveConverter();
-$converter->addExtension(new <?= h($example['name']) ?>());
-
-$html = $converter->convert($carve);</code></pre>
-				<?php } ?>
+				<pre class="bg-light p-2 border rounded"><code class="language-php"><?= h($usageSnippet($key, $example['name'])) ?></code></pre>
 			</div>
 		</div>
 
@@ -437,12 +422,6 @@ $html = $converter->convert($carve);</code></pre>
 				<div class="border rounded p-3 bg-white html-output carve carve-rendered" data-extension="<?= h($key) ?>" style="min-height: 150px;">
 					<span class="text-muted">Click "Convert" to see the output...</span>
 				</div>
-				<?php if ($key === 'toc') { ?>
-				<label class="form-label mt-2">Table of Contents (manual retrieval):</label>
-				<div class="border rounded p-3 bg-light toc-output carve" data-extension="<?= h($key) ?>" style="min-height: 100px;">
-					<span class="text-muted">TOC will appear here...</span>
-				</div>
-				<?php } ?>
 				<?php if ($key === 'smart_quotes') { ?>
 				<div class="mt-2 mb-2">
 					<label class="form-label" for="smart-quotes-locale"><code>locale</code>:</label>
@@ -470,15 +449,7 @@ $html = $converter->convert($carve);</code></pre>
 				</div>
 				<?php } ?>
 				<?php if ($key === 'frontmatter') { ?>
-				<?php if ($this->Configure->read('debug')) { ?>
-				<div class="form-check mt-2 mb-2">
-					<input class="form-check-input frontmatter-comment-toggle" type="checkbox" id="frontmatter-render-comment" data-extension="<?= h($key) ?>">
-					<label class="form-check-label" for="frontmatter-render-comment">
-						<code>renderAsComment: true</code> <small class="text-muted">(output frontmatter as HTML comment)</small>
-					</label>
-				</div>
-				<?php } ?>
-				<label class="form-label">Parsed Frontmatter (via <code>getFrontmatter()</code>):</label>
+				<label class="form-label mt-2">Frontmatter read from the tree:</label>
 				<div class="border rounded p-3 bg-light frontmatter-output" data-extension="<?= h($key) ?>" style="min-height: 100px;">
 					<span class="text-muted">Frontmatter data will appear here...</span>
 				</div>
@@ -503,22 +474,22 @@ $html = $converter->convert($carve);</code></pre>
 	</div>
 	<div class="card-body">
 		<p class="lead">
-			The TableOfContentsExtension can automatically insert the TOC at the top or bottom of your content
+			<code>Navigation::tableOfContents()</code> inserts the TOC at the top or bottom of the document
 			using the <code>position</code> parameter.
 		</p>
 
 		<div class="row mb-3">
 			<div class="col-md-6">
 				<h6>Usage Example:</h6>
-				<pre class="bg-light p-2 border rounded"><code class="language-php">// Auto-insert TOC at top of content
-$converter->addExtension(new TableOfContentsExtension(
-    position: 'top',
-));
+				<pre class="bg-light p-2 border rounded"><code class="language-php">// Insert the TOC at the top of the document (default)
+$html = Carve::render($source, ['extensions' => [
+    Navigation::tableOfContents(position: 'top'),
+]]);
 
-// Or at bottom
-$converter->addExtension(new TableOfContentsExtension(
-    position: 'bottom',
-));</code></pre>
+// Or at the bottom
+$html = Carve::render($source, ['extensions' => [
+    Navigation::tableOfContents(position: 'bottom'),
+]]);</code></pre>
 			</div>
 			<div class="col-md-6">
 				<h6>Position Options:</h6>
@@ -535,23 +506,23 @@ $converter->addExtension(new TableOfContentsExtension(
 			<div class="col-md-5">
 				<div class="mb-2">
 					<label class="form-label">Carve Input:</label>
-					<textarea class="form-control font-monospace" id="toc-position-input" rows="10"># Welcome
+					<textarea class="form-control font-monospace" id="toc-position-input" rows="10">= Welcome
 
 Introduction paragraph.
 
-## Getting Started
+== Getting Started
 
 First steps to begin.
 
-### Installation
+=== Installation
 
 How to install.
 
-## Configuration
+== Configuration
 
 Setup options.
 
-## Conclusion
+== Conclusion
 
 Final thoughts.</textarea>
 				</div>
@@ -598,17 +569,17 @@ Final thoughts.</textarea>
 			<div class="col-md-6">
 				<div class="mb-2">
 					<label class="form-label">Carve Input:</label>
-					<textarea class="form-control font-monospace" id="combined-input" rows="12"># Welcome to Carve Extensions
+					<textarea class="form-control font-monospace" id="combined-input" rows="12">= Welcome to Carve Extensions
 
 Check out https://github.com/markup-carve/carve for the official documentation.
 
-## Features
+== Features
 
 Thanks to @johndoe for implementing this!
 
 Visit [GitHub](https://github.com/markup-carve/carve-php) for the source code.
 
-### Contact
+=== Contact
 
 Reach out at support@example.com for help.
 
@@ -623,10 +594,7 @@ Or contact @alice and @bob directly.</textarea>
 				<div class="border rounded p-3 bg-white carve carve-rendered" id="combined-html-output" style="min-height: 200px;">
 					<span class="text-muted">Click "Convert" to see the output...</span>
 				</div>
-				<label class="form-label mt-2">Table of Contents:</label>
-				<div class="border rounded p-3 bg-light carve" id="combined-toc-output" style="min-height: 80px;">
-					<span class="text-muted">TOC will appear here (if enabled)...</span>
-				</div>
+				<p class="text-muted small mt-2 mb-0">With the TOC enabled, the table of contents is part of the HTML (Carve 0.2 has no separate TOC output).</p>
 			</div>
 		</div>
 
@@ -719,9 +687,7 @@ Or contact @alice and @bob directly.</textarea>
 			const input = document.querySelector(`.carve-input[data-extension="${ext}"]`);
 			const htmlOutput = document.querySelector(`.html-output[data-extension="${ext}"]`);
 			const rawOutput = document.querySelector(`.raw-html-output[data-extension="${ext}"]`);
-			const tocOutput = document.querySelector(`.toc-output[data-extension="${ext}"]`);
 			const frontmatterOutput = document.querySelector(`.frontmatter-output[data-extension="${ext}"]`);
-			const frontmatterCommentToggle = document.querySelector(`.frontmatter-comment-toggle[data-extension="${ext}"]`);
 			const smartQuotesLocale = document.querySelector(`.smart-quotes-locale[data-extension="${ext}"]`);
 
 			this.disabled = true;
@@ -732,9 +698,6 @@ Or contact @alice and @bob directly.</textarea>
 					carve: input.value,
 					'extensions[]': ext,
 				});
-				if (frontmatterCommentToggle && frontmatterCommentToggle.checked) {
-					params.append('frontmatter_as_comment', '1');
-				}
 				if (smartQuotesLocale) {
 					params.append('smart_quotes_locale', smartQuotesLocale.value);
 				}
@@ -756,10 +719,6 @@ Or contact @alice and @bob directly.</textarea>
 				} else {
 					htmlOutput.innerHTML = result.html || '<span class="text-muted">No output</span>';
 					rawOutput.querySelector('code').textContent = result.rawHtml || result.html || 'No output';
-
-					if (tocOutput && result.toc) {
-						tocOutput.innerHTML = result.toc;
-					}
 
 					// Display frontmatter data if present
 					if (frontmatterOutput && result.frontmatter) {
@@ -845,7 +804,6 @@ Or contact @alice and @bob directly.</textarea>
 		const input = document.getElementById('combined-input');
 		const htmlOutput = document.getElementById('combined-html-output');
 		const rawOutput = document.getElementById('combined-raw-output');
-		const tocOutput = document.getElementById('combined-toc-output');
 
 		const enabledExtensions = Array.from(document.querySelectorAll('.combined-ext-toggle:checked'))
 			.map(cb => cb.value);
@@ -874,13 +832,7 @@ Or contact @alice and @bob directly.</textarea>
 				rawOutput.querySelector('code').textContent = 'Error: ' + result.error;
 			} else {
 				htmlOutput.innerHTML = result.html || '<span class="text-muted">No output</span>';
-				rawOutput.querySelector('code').textContent = result.html || 'No output';
-
-				if (result.toc) {
-					tocOutput.innerHTML = result.toc;
-				} else {
-					tocOutput.innerHTML = '<span class="text-muted">TOC extension not enabled or no headings found</span>';
-				}
+				rawOutput.querySelector('code').textContent = result.rawHtml || result.html || 'No output';
 
 				// Render Mermaid diagrams if present
 				if (window.mermaidRender) {

@@ -6,21 +6,24 @@
 $defaultDjot = <<<'DJOT'
 # Djot to Carve
 
-This text uses _Djot emphasis_ which becomes /Carve italic/.
+This text uses _Djot emphasis_ and *strong* text.
 
-Subscript like H~2~O and a {=highlight=} get rewritten too.
+Subscript like H~2~O, superscript like 2^10^ and a {=highlight=}.
 
-Intraword superscript like 2^10^ gets the forced {^..^} wrap in Carve.
+Edits stay braced: {+inserted+} and {-deleted-}.
 
-Braced forms convert as well: H{~2~}O becomes comma subscript, E=mc{^2^} stays braced.
+## Lists and code
 
-Intraword braced emphasis like intra{_word_}emphasis converts instead of staying literal.
+- A list item with a [link](https://djot.net)
+- Code stays untouched: `_x_`
 
-Markdown-isms such as **bold** and ~~strike~~ are normalized.
+``` php
+echo "Hello!";
+```
 
-Nested delimiters compose in one pass: **_bold italic_**, ~~_struck italic_~~, and partial overlaps like **bold with _italic_ inside** all rewrite cleanly.
+A footnote reference[^note].
 
-Code stays untouched: `_x_` and links like [home](/~user/index).
+[^note]: The note text.
 DJOT;
 ?>
 
@@ -33,8 +36,8 @@ DJOT;
 <p>
 	Migrate <a href="https://djot.net" target="_blank">Djot</a> markup to
 	<a href="https://github.com/markup-carve/carve" target="_blank">Carve</a> syntax.
-	Only the inline delimiters that change meaning between the two are rewritten;
-	code, link destinations and escaped delimiters are left untouched.
+	The Djot source is parsed as a document (<code>Carve::importDocument($djot, ['from' => 'djot'])</code>)
+	and written back as canonical Carve, so code, link destinations and escapes keep their meaning.
 	Edit on the left, see the Carve result on the right.
 </p>
 
@@ -65,29 +68,22 @@ DJOT;
 </div>
 
 <h3 class="mt-4">Delimiter Changes</h3>
-<p class="text-muted">These inline constructs differ between Djot and Carve and are rewritten:</p>
+<p class="text-muted">These constructs are spelled differently in Djot and Carve:</p>
 <table class="table table-sm w-auto">
 	<thead>
 		<tr><th>Meaning</th><th>Djot</th><th>Carve</th></tr>
 	</thead>
 	<tbody>
 		<tr><td>Emphasis (italic)</td><td><code>_text_</code></td><td><code>/text/</code></td></tr>
-		<tr><td>Subscript</td><td><code>~text~</code></td><td><code>,text,</code></td></tr>
-		<tr><td>Highlight</td><td><code>{=text=}</code></td><td><code>=text=</code></td></tr>
-		<tr><td>Bold (Markdown)</td><td><code>**text**</code></td><td><code>*text*</code></td></tr>
-		<tr><td>Strikethrough (Markdown)</td><td><code>~~text~~</code></td><td><code>~text~</code></td></tr>
+		<tr><td>Subscript</td><td><code>~text~</code></td><td><code>{,text,}</code></td></tr>
+		<tr><td>Superscript</td><td><code>^text^</code></td><td><code>{^text^}</code></td></tr>
+		<tr><td>Heading</td><td><code>## text</code></td><td><code>== text</code></td></tr>
+		<tr><td>Highlight, insert, delete</td><td><code>{=text=}</code>, <code>{+text+}</code>, <code>{-text-}</code></td><td>unchanged</td></tr>
 	</tbody>
 </table>
 <p class="text-muted small">
-	Constructs that mean the same in both (<code>{+ins+}</code>, <code>{-del-}</code>, reference links) are left unchanged.
-</p>
-<p class="text-muted small">
-	<strong>Nested delimiters compose.</strong> Each rewrite edits only its delimiters, never the wrapped text, so a strictly nested pair like
-	<code>**_x_**</code> &rarr; <code>*/x/*</code>, <code>~~_x_~~</code> &rarr; <code>~/x/~</code>, or a partial overlap like
-	<code>**a _b_ c**</code> &rarr; <code>*a /b/ c*</code> all rewrite in a single pass.
-	A <em>crossing</em> overlap (e.g. <code>**_x**_</code>, where neither span contains the other) is genuinely ambiguous; carve-php still
-	rewrites it mechanically (delimiter by delimiter), while the <a href="https://github.com/markup-carve/carve-js" target="_blank">carve-js</a>
-	migration API additionally flags such a case as <code>skipped</code> for manual review.
+	Djot <code>**x**</code> is strong inside strong, so it becomes <code>{*{*x*}*}</code>, not Markdown bold.
+	The 0.1 delimiter-by-delimiter rewriter is gone: Carve 0.2 imports the parsed document instead.
 </p>
 
 </div>

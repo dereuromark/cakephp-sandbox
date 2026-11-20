@@ -65,27 +65,8 @@ echo "Hello, World!";</code></pre>
 </dl>
 HTML;
 
-// Footnote-shaped HTML as Word's clipboard/export spells it: anchors pairing
-// a reference fragment with its note's back-link. Only the word (and
-// google-docs) adapters bind these into real [^N] references; generic keeps
-// the literal links.
-$wordFootnoteHtml = <<<'HTML'
-<p>Carve began as a rethink<a href="#_ftn1" name="_ftnref1"><sup>[1]</sup></a>
-of ideas from Djot and CommonMark.</p>
-
-<p>Its table syntax borrows from MediaWiki<a href="#_ftn2" name="_ftnref2"><sup>[2]</sup></a>
-rather than from Markdown pipes.</p>
-
-<hr>
-
-<div>
-    <p><a href="#_ftnref1" name="_ftn1"><sup>[1]</sup></a> Strictly speaking, a reimagining, not a fork.</p>
-    <p><a href="#_ftnref2" name="_ftn2"><sup>[2]</sup></a> Header markers instead of a separator row.</p>
-</div>
-HTML;
-
-// Elements Carve has no spelling for. `safe` and `semantic` drop them and say
-// so; `roundtrip` keeps them byte for byte as raw `{=html}` spans.
+// Elements Carve has no spelling for. `semantic` drops them and says so;
+// `raw` keeps them as raw HTML blocks and spans.
 $rawHtmlSample = <<<'HTML'
 <h2>Embed heavy page</h2>
 
@@ -121,7 +102,7 @@ HTML;
 
 <div class="alert alert-info py-2 small">
 	<i class="bi bi-info-circle"></i>
-	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>~strike~</code>, <code>{,sub,}</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
+	The converter emits native <strong>Carve</strong> syntax (e.g. <code>/emphasis/</code>, <code>{~strike~}</code>, <code>{,sub,}</code>). To convert <em>Djot</em> source instead, use <?= $this->Html->link('Djot to Carve', ['action' => 'djotToCarve']) ?>.
 </div>
 
 <div id="alert-container"></div>
@@ -131,41 +112,24 @@ HTML;
 		<div class="d-flex justify-content-between align-items-center mb-1">
 			<label class="form-label mb-0"><strong>HTML Input</strong></label>
 			<div class="d-flex align-items-center gap-2">
-				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-word-sample" title="Load Word-style footnote HTML and switch to the word adapter">
-					<i class="bi bi-file-earmark-word"></i> Word footnote sample
-				</button>
-				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-raw-sample" title="Load HTML holding elements Carve cannot spell and switch to roundtrip mode">
+				<button type="button" class="btn btn-sm btn-outline-secondary" id="btn-raw-sample" title="Load HTML holding elements Carve cannot spell and switch to raw mode">
 					<i class="bi bi-code-square"></i> Unspellable sample
 				</button>
 				<label for="mode-select" class="form-label mb-0 small text-muted">Mode</label>
 				<select id="mode-select" class="form-select form-select-sm" style="width: auto;" title="How much of the HTML the import may keep">
-					<option value="safe" selected>safe</option>
-					<option value="semantic">semantic</option>
-					<option value="roundtrip">roundtrip</option>
-				</select>
-				<label for="adapter-select" class="form-label mb-0 small text-muted">Adapter</label>
-				<select id="adapter-select" class="form-select form-select-sm" style="width: auto;" title="Which editor/exporter produced the HTML">
-					<option value="generic" selected>generic</option>
-					<option value="tiptap">tiptap</option>
-					<option value="prosemirror">prosemirror</option>
-					<option value="ckeditor">ckeditor</option>
-					<option value="tinymce">tinymce</option>
-					<option value="word">word</option>
-					<option value="google-docs">google-docs</option>
+					<option value="semantic" selected>semantic</option>
+					<option value="raw">raw</option>
 				</select>
 			</div>
 		</div>
 		<textarea id="html-input" class="form-control font-monospace" rows="20" placeholder="Enter HTML..."><?= h($defaultHtml) ?></textarea>
 		<p class="text-muted small mt-1 mb-0">
-			The adapter declares the HTML's provenance. <code>word</code> and <code>google-docs</code>
-			additionally read footnote-shaped HTML back as real <code>[^N]</code> references and
-			definitions; <code>generic</code> reads only what a Carve engine writes.
+			The mode decides what happens to HTML that Carve cannot spell. <code>semantic</code> drops it,
+			<code>raw</code> keeps it as raw HTML (a <code>=html</code> block or a <code>{=html}</code> span). Either way the import
+			<em>reports</em> what it did - that report is the panel below the output.
 		</p>
 		<p class="text-muted small mt-1 mb-0">
-			The mode decides what happens to HTML that Carve cannot spell. <code>safe</code> and
-			<code>semantic</code> drop it, <code>roundtrip</code> preserves it byte for byte as a raw
-			<code>{=html}</code> span. Either way the import <em>reports</em> what it did - that report
-			is the panel below the output.
+			Carve 0.2 has one HTML importer: the 0.1 editor adapters (tiptap, word, google-docs, ...) and the <code>safe</code>/<code>roundtrip</code> modes are gone.
 		</p>
 	</div>
 	<div class="col-md-6">
@@ -208,8 +172,8 @@ HTML;
 		<ul class="small">
 			<li><code>&lt;strong&gt;</code>, <code>&lt;b&gt;</code> - Strong</li>
 			<li><code>&lt;em&gt;</code>, <code>&lt;i&gt;</code> - Emphasis</li>
-			<li><code>&lt;del&gt;</code>, <code>&lt;s&gt;</code> - Deleted</li>
-			<li><code>&lt;ins&gt;</code>, <code>&lt;u&gt;</code> - Inserted</li>
+			<li><code>&lt;del&gt;</code> - Deleted, <code>&lt;s&gt;</code> - Strikethrough</li>
+			<li><code>&lt;ins&gt;</code> - Inserted, <code>&lt;u&gt;</code> - Underline</li>
 			<li><code>&lt;mark&gt;</code> - Highlighted</li>
 			<li><code>&lt;sup&gt;</code> - Superscript</li>
 			<li><code>&lt;sub&gt;</code> - Subscript</li>
@@ -238,12 +202,9 @@ HTML;
 	const loadingIndicator = document.getElementById('loading-indicator');
 	const btnCopy = document.getElementById('btn-copy');
 	const btnTry = document.getElementById('btn-try');
-	const btnWordSample = document.getElementById('btn-word-sample');
 	const btnRawSample = document.getElementById('btn-raw-sample');
-	const adapterSelect = document.getElementById('adapter-select');
 	const modeSelect = document.getElementById('mode-select');
 	const importReport = document.getElementById('import-report');
-	const wordFootnoteHtml = <?= json_encode($wordFootnoteHtml) ?>;
 	const rawHtmlSample = <?= json_encode($rawHtmlSample) ?>;
 
 	let debounceTimer;
@@ -267,7 +228,6 @@ HTML;
 
 		const formData = new FormData();
 		formData.append('html', htmlInput.value);
-		formData.append('adapter', adapterSelect.value);
 		formData.append('mode', modeSelect.value);
 
 		fetch('<?= $this->Url->build(['action' => 'convertHtml']) ?>', {
@@ -309,8 +269,7 @@ HTML;
 
 	function renderReport(data) {
 		const diagnostics = data.diagnostics || [];
-		const head = '<span class="text-muted">mode <code>' + escapeHtml(data.mode || '') + '</code>, adapter <code>'
-			+ escapeHtml(data.adapter || '') + '</code></span>';
+		const head = '<span class="text-muted">mode <code>' + escapeHtml(data.mode || '') + '</code></span>';
 
 		if (!diagnostics.length) {
 			importReport.innerHTML = '<div class="small">' + head
@@ -362,18 +321,11 @@ HTML;
 	}
 
 	htmlInput.addEventListener('input', convert);
-	adapterSelect.addEventListener('change', convert);
 	modeSelect.addEventListener('change', convert);
-
-	btnWordSample.addEventListener('click', function() {
-		htmlInput.value = wordFootnoteHtml;
-		adapterSelect.value = 'word';
-		convert();
-	});
 
 	btnRawSample.addEventListener('click', function() {
 		htmlInput.value = rawHtmlSample;
-		modeSelect.value = 'roundtrip';
+		modeSelect.value = 'raw';
 		convert();
 	});
 

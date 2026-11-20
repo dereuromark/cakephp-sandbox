@@ -1842,10 +1842,12 @@ CARVE,
 				'example_carve' => <<<'CARVE'
 Carve is built on the :term[djot] data model and adds a few :term[extension]s.
 
+::: glossary
 :: djot
 : A light markup language with a clean, unambiguous grammar.
 :: extension
 : An opt-in feature that adds inline or block behavior.
+:::
 CARVE,
 			],
 			'index' => [
