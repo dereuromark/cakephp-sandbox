@@ -27,7 +27,6 @@ use MarkupCarve\Carve\Extension\CodeCallouts;
 use MarkupCarve\Carve\Extension\CodeGroup;
 use MarkupCarve\Carve\Extension\ColorSwatch;
 use MarkupCarve\Carve\Extension\Details;
-use MarkupCarve\Carve\Extension\ExtensionDefinition;
 use MarkupCarve\Carve\Extension\FencedRender;
 use MarkupCarve\Carve\Extension\Glossary;
 use MarkupCarve\Carve\Extension\ImgFence;
@@ -1146,7 +1145,7 @@ CARVE,
 
 							break;
 						case 'img_fence':
-							$extensions[] = $this->imgFence();
+							$extensions[] = ImgFence::bundle();
 							$svgFence = true;
 
 							break;
@@ -1915,8 +1914,8 @@ $html = Carve::renderWithDocumentTransforms($source, $bundle->transforms(), $opt
 CARVE,
 			],
 			'img_fence' => [
-				'name' => "ImgFence::definition('img')->withRenderer(ImgFence::render(...))",
-				'description' => 'Renders a ```img fenced block as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
+				'name' => 'ImgFence::bundle()',
+				'description' => 'Renders a ```img (or ```image) fenced block as the SVG it contains instead of showing the source. The engine keeps only a small set of inert shape elements and presentational attributes (no script, no style, no links, no external images) and writes the result as a data: image.',
 				'example_carve' => <<<'CARVE'
 ```img
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64">
@@ -1932,7 +1931,7 @@ The `script` element and the `javascript:` link above are gone from the rendered
 image - dropped with their subtrees, not escaped.
 CARVE,
 				'options' => [
-					'language' => '\'img\' (fence info word to match)',
+					'languages' => '\'img\' and \'image\' (fence info words the bundle matches)',
 				],
 			],
 			'heading_numbers' => [
@@ -2737,15 +2736,6 @@ CARVE,
 	}
 
 	/**
-	 * The img fence with the engine's sanitizing renderer; the definition alone writes the code fallback.
-	 *
-	 * @return \MarkupCarve\Carve\Extension\ExtensionDefinition
-	 */
-	protected function imgFence(): ExtensionDefinition {
-		return ImgFence::definition('img')->withRenderer(ImgFence::render(...));
-	}
-
-	/**
 	 * Whether the img fence sanitizer of the engine returns this SVG unchanged.
 	 *
 	 * @param string $svg
@@ -2754,7 +2744,7 @@ CARVE,
 	protected function isEngineSanitizedSvg(string $svg): bool {
 		$fence = Carve::safeCodeFence($svg);
 		try {
-			$html = Carve::render($fence . "img\n" . $svg . "\n" . $fence . "\n", ['extensions' => [$this->imgFence()]]);
+			$html = Carve::render($fence . "img\n" . $svg . "\n" . $fence . "\n", ['extensions' => [ImgFence::bundle()]]);
 		} catch (Throwable) {
 			return false;
 		}

@@ -248,7 +248,7 @@ class CarveControllerTest extends TestCase {
 		$response = json_decode((string)$this->_response->getBody(), true);
 		$this->assertNull($response['error']);
 		$this->assertSame([], $response['warnings']);
-		$this->assertStringContainsString('PHP 8.2 or newer and Composer 2.', $response['html']);
+		$this->assertMatchesRegularExpression('#<li[^>]*>PHP 8.2 or newer</li>#', $response['html']);
 		$this->assertStringNotContainsString('Text after the region is skipped.', $response['html']);
 		$this->assertStringContainsString('<code class="language-js">const server', $response['html']);
 		$this->assertStringNotContainsString('export default server', $response['html']);
@@ -1886,7 +1886,7 @@ class CarveControllerTest extends TestCase {
 		$this->get(['plugin' => 'Sandbox', 'controller' => 'Carve', 'action' => 'extensions']);
 
 		$this->assertResponseCode(200);
-		$this->assertResponseContains('ImgFence::definition(&#039;img&#039;)');
+		$this->assertResponseContains('ImgFence::bundle()');
 		$this->assertResponseContains('Navigation::headingNumbers()');
 	}
 
