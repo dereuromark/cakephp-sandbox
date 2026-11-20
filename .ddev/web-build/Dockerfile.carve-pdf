@@ -1,6 +1,6 @@
 # carve-pdf next2 (Carve 0.2 engines); no 0.2 tag exists yet, so the archive is pinned by commit.
-ARG CARVE_PDF_REF=afc244bb0af511bc732251e79481847c1fdd3d6b
-ARG CARVE_PDF_SHA256=6474b322701b46c1c30475322e0380416a42b8ec16cc9aa8059a15c8f390d7b4
+ARG CARVE_PDF_REF=6014826903268ee299a442295259145cbcf7f4f7
+ARG CARVE_PDF_SHA256=68e8549c371cf66661fa180a02f4840a518304912f2e893d4633ebd68ff8b83e
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends chromium python3-websocket \
