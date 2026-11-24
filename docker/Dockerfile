@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:latest
+FROM dunglas/frankenphp:1-php8.5
 
 # Install system dependencies for PHP extensions.
 # wkhtmltox: the CakePdf WkHtmlToPdf engine binary. Upstream is archived and gone
